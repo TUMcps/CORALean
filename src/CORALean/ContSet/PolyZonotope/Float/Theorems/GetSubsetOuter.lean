@@ -44,7 +44,7 @@ theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (
   refine ⟨fun i => toReal ((pZ.getSubset k cen rad).c i)
       + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (pZ.getSubsetGDown k cen rad i l)
           * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
-      + ∑ j : Fin pZ.q, toReal ((pZ.getSubset k cen rad).GI i j) * β j,
+      + ∑ j : Fin pZ.q, toReal ((pZ.getSubset k cen rad).GI j i) * β j,
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, fun _ => rfl⟩,
     fun i => (∑ l, (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
         - toReal (pZ.getSubsetGDown k cen rad i l))
@@ -73,7 +73,7 @@ theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (
         + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)),
           Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
             * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
-        + ∑ j : Fin pZ.q, toReal (pZ.GI i j) * β j := hz i
+        + ∑ j : Fin pZ.q, toReal (pZ.GI j i) * β j := hz i
     -- the stored and the exact generator sums differ by exactly the box's point
     have hsum : (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (pZ.getSubsetGDown k cen rad i l)
           * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
@@ -90,7 +90,7 @@ theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (
     show toReal (pZ.c i)
         + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (pZ.getSubsetGDown k cen rad i l)
           * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
-        + (∑ j : Fin pZ.q, toReal (pZ.GI i j) * β j)
+        + (∑ j : Fin pZ.q, toReal (pZ.GI j i) * β j)
         + ((∑ l : Fin (pZ.h * (pZ.maxExp k + 1)),
           (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
             - toReal (pZ.getSubsetGDown k cen rad i l))

@@ -48,24 +48,24 @@ theorem PolyZonotope.partZonotope_nominal (pZ : PolyZonotope 𝕋 n) (V : Finset
   refine PolyZonotope.aux_toReal_append (𝕋 := 𝕋)
     (fun j : Fin pZ.h =>
       if decide ((∀ k ∈ V, pZ.E k j % 2 = 0) ∧ ¬ ∀ k ∈ V, pZ.E k j = 0) = true
-        then half (pZ.G i j) else pZ.G i j)
+        then half (pZ.G j i) else pZ.G j i)
     (fun j : Fin pZ.h =>
       if decide ((∀ k ∈ V, pZ.E k j % 2 = 0) ∧ ¬ ∀ k ∈ V, pZ.E k j = 0) = true
-        then half (pZ.G i j) else zero)
+        then half (pZ.G j i) else zero)
     (fun j : Fin pZ.h => if (∀ k ∈ V, pZ.E k j % 2 = 0) ∧ ¬ ∀ k ∈ V, pZ.E k j = 0 then
       (1 / 2 : ℝ) • (nominal pZ).G j else (nominal pZ).G j)
     (fun j : Fin pZ.h => if (∀ k ∈ V, pZ.E k j % 2 = 0) ∧ ¬ ∀ k ∈ V, pZ.E k j = 0 then
       (1 / 2 : ℝ) • (nominal pZ).G j else 0) i (fun j => ?_) (fun j => ?_) l
   · by_cases hP : (∀ k ∈ V, pZ.E k j % 2 = 0) ∧ ¬ ∀ k ∈ V, pZ.E k j = 0
     · rw [if_pos (decide_eq_true hP), if_pos hP, toReal_half]
-      simp only [nominal, Pi.smul_apply, smul_eq_mul]
+      simp only [nominal, Pi.smul_apply, smul_eq_mul, RealImage.realImage, toRealVec]
       ring
     · rw [if_neg (by simpa using hP), if_neg hP]
       rfl
   -- the second block holds the halves alone, and zero for the other columns
   · by_cases hP : (∀ k ∈ V, pZ.E k j % 2 = 0) ∧ ¬ ∀ k ∈ V, pZ.E k j = 0
     · rw [if_pos (decide_eq_true hP), if_pos hP, toReal_half]
-      simp only [nominal, Pi.smul_apply, smul_eq_mul]
+      simp only [nominal, Pi.smul_apply, smul_eq_mul, RealImage.realImage, toRealVec]
       ring
     · rw [if_neg (by simpa using hP), if_neg hP, toReal_zero]
       rfl

@@ -49,23 +49,23 @@ theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope 𝕋 n) (b : Fin pZ.
       ≤ toReal (PolyZonotope.evalPolyBoundS pZ i) := by -- --- PROOF ---
   -- unfold the point at `i`, `nominal pZ`'s fields read back as `pZ`'s own
   have h1 : Real.PolyZonotope.point (nominal pZ) b i
-      = toReal (pZ.c i) + ∑ l, toReal (pZ.G i l) * Real.PolyZonotope.monomial pZ.E b l := by
+      = toReal (pZ.c i) + ∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E b l := by
     show ((nominal pZ).c + ∑ l, Real.PolyZonotope.monomial (nominal pZ).E b l • (nominal pZ).G l) i
-      = toReal (pZ.c i) + ∑ l, toReal (pZ.G i l) * Real.PolyZonotope.monomial pZ.E b l
+      = toReal (pZ.c i) + ∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E b l
     rw [Pi.add_apply, Finset.sum_apply]
     simp only [Pi.smul_apply, smul_eq_mul]
     refine congrArg _ (Finset.sum_congr rfl fun l _ => ?_)
-    have hG : (nominal pZ).G l i = toReal (pZ.G i l) := rfl
+    have hG : (nominal pZ).G l i = toReal (pZ.G l i) := rfl
     have hE : (nominal pZ).E = pZ.E := rfl
     rw [hG, hE, mul_comm]
-  have h2 := abs_sum_le_radius (d := pZ.G) (Δ := fun i l => toReal (pZ.G i l))
+  have h2 := abs_sum_le_radius (d := fun i l => pZ.G l i) (Δ := fun i l => toReal (pZ.G l i))
     (β := fun l => Real.PolyZonotope.monomial pZ.E b l) (fun i l => le_refl _)
     (fun l => Real.PolyZonotope.abs_monomial_le_one pZ.E hb l) i
   rw [h1]
-  calc |toReal (pZ.c i) + ∑ l, toReal (pZ.G i l) * Real.PolyZonotope.monomial pZ.E b l|
-      ≤ |toReal (pZ.c i)| + |∑ l, toReal (pZ.G i l) * Real.PolyZonotope.monomial pZ.E b l| :=
+  calc |toReal (pZ.c i) + ∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E b l|
+      ≤ |toReal (pZ.c i)| + |∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E b l| :=
         abs_add_le _ _
-    _ ≤ toReal (absolute (pZ.c i)) + toReal (radius pZ.G i) := by
+    _ ≤ toReal (absolute (pZ.c i)) + toReal (radius (fun i l => pZ.G l i) i) := by
         rw [toReal_absolute]; linarith
     _ ≤ toReal (PolyZonotope.evalPolyBoundS pZ i) := add_le_addUp _ _
 
@@ -349,7 +349,7 @@ theorem PolyZonotope.evalPoly_outer (pZ : PolyZonotope 𝕋 n) (coeffs : List (V
         have hYc : (nominal (PolyZonotope.evalPoly pZ coeffs)).c
             = fun i => toReal ((PolyZonotope.evalPoly pZ coeffs).c i) := rfl
         have hYG : (nominal (PolyZonotope.evalPoly pZ coeffs)).G
-            = fun l i => toReal ((PolyZonotope.evalPoly pZ coeffs).G i l) := rfl
+            = fun l i => toReal ((PolyZonotope.evalPoly pZ coeffs).G l i) := rfl
         have hYE : (nominal (PolyZonotope.evalPoly pZ coeffs)).E
             = (PolyZonotope.evalPoly pZ coeffs).E := rfl
         simp only [Real.PolyZonotope.point, hYc, hYG, hYE, Pi.add_apply, Finset.sum_apply,

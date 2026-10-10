@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 /-- The same fold rounded up, which only the centre and the gaps read. -/
 def PolyZonotope.relaxGenEvenUp (pZ : PolyZonotope 𝕋 n)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
-  fun i => half (nsmulUp (pZ.relaxWidth part k₀) (pZ.G i (part.right 0)))
+  fun i => half (nsmulUp (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i))
 
 end CORALean.Float
 

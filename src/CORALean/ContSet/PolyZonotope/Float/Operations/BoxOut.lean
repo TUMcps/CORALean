@@ -36,9 +36,9 @@ def PolyZonotope.boxOut (pZ : PolyZonotope 𝕋 n) (removed : Fin pZ.h → Bool)
   h := (Finset.univ.filter fun l => removed l = false).card
   q := pZ.q + n
   c := pZ.c
-  G := fun i l => pZ.G i ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
+  G := fun l => pZ.G ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
   E := fun k l => pZ.E k ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
-  GI := fun i => Fin.append (pZ.GI i) (diagonalBlock (pZ.boxOutRadius removed taken) i)
+  GI := Fin.append pZ.GI fun j i => diagonalBlock (pZ.boxOutRadius removed taken) i j
   err := pZ.err
 
 end CORALean.Float

@@ -40,7 +40,7 @@ def PolyZonotope.nominalSupportBound (pZ : PolyZonotope 𝕋 n) {c : Vec ℝ n �
     (u : FloatBound 𝕋 ((InflatedContSet.nominal pZ).subsetAt {a | ∀ k, |a k| ≤ 1}) c) :
     FloatBound 𝕋 (nominalSet pZ) c :=
   let extent : Fin pZ.q → 𝕋 := fun j =>
-    maximum (dotUp a fun i => pZ.GI i j) (neg (dotDown a fun i => pZ.GI i j))
+    maximum (dotUp a (pZ.GI j)) (neg (dotDown a (pZ.GI j)))
   { val := addUp u.val (sumUp extent)
     le := fun x hx => le_trans
       (((InflatedContSet.nominal pZ).supportBound c u.toSupportBound).le x hx)
@@ -49,16 +49,16 @@ def PolyZonotope.nominalSupportBound (pZ : PolyZonotope 𝕋 n) {c : Vec ℝ n �
       have h₂ : ∀ j, |c ((InflatedContSet.nominal pZ).GI j)| ≤ toReal (extent j) := by
         intro j
         have hval : c ((InflatedContSet.nominal pZ).GI j)
-            = ∑ k, toReal (a k) * toReal (pZ.GI k j) := hc _
+            = ∑ k, toReal (a k) * toReal (pZ.GI j k) := hc _
         rw [hval, toReal_maximum, toReal_neg]
         refine abs_le.mpr ⟨?_, ?_⟩
-        · have hdown := dotDown_le a fun i => pZ.GI i j
-          have hm := le_max_right (toReal (dotUp a fun i => pZ.GI i j))
-            (-toReal (dotDown a fun i => pZ.GI i j))
+        · have hdown := dotDown_le a (pZ.GI j)
+          have hm := le_max_right (toReal (dotUp a (pZ.GI j)))
+            (-toReal (dotDown a (pZ.GI j)))
           linarith
-        · have hup := le_dotUp a fun i => pZ.GI i j
-          have hm := le_max_left (toReal (dotUp a fun i => pZ.GI i j))
-            (-toReal (dotDown a fun i => pZ.GI i j))
+        · have hup := le_dotUp a (pZ.GI j)
+          have hm := le_max_left (toReal (dotUp a (pZ.GI j)))
+            (-toReal (dotDown a (pZ.GI j)))
           linarith
       -- their total, summed upward once, then added to the dependent bound
       have h₃ : (∑ j, |c ((InflatedContSet.nominal pZ).GI j)|) ≤ toReal (sumUp extent) :=

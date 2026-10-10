@@ -33,9 +33,9 @@ def PolyZonotope.cartProd (pZ₁ : PolyZonotope 𝕋 n₁) (pZ₂ : PolyZonotope
   h := pZ₁.h + pZ₂.h
   q := pZ₁.q + pZ₂.q
   c := Fin.append pZ₁.c pZ₂.c
-  G := genBlockDiag pZ₁.G pZ₂.G
+  G := fun l i => genBlockDiag (fun i l => pZ₁.G l i) (fun i l => pZ₂.G l i) i l
   E := Real.PolyZonotope.plusE pZ₁.E pZ₂.E
-  GI := genBlockDiag pZ₁.GI pZ₂.GI
+  GI := fun j i => genBlockDiag (fun i j => pZ₁.GI j i) (fun i j => pZ₂.GI j i) i j
   err := Interval.append pZ₁.err pZ₂.err
 
 end CORALean.Float

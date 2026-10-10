@@ -35,8 +35,8 @@ theorem PolyZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {pZ : PolyZo
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet pZ ↔ ∃ a : Fin pZ.p → ℝ, ∃ β : Fin pZ.q → ℝ,
       (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = toReal (pZ.c i)
-        + (∑ l, toReal (pZ.G i l) * Real.PolyZonotope.monomial pZ.E a l)
-        + ∑ j, toReal (pZ.GI i j) * β j :=
+        + (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
+        + ∑ j, toReal (pZ.GI j i) * β j :=
   Real.PolyZonotope.mem_construct_iff
 
 end CORALean.Float

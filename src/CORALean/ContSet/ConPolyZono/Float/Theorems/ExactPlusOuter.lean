@@ -49,7 +49,8 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (
           Interval.sub_mem_residual fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩, ?_⟩
   funext i
   -- the stored blocks read back as the exact layer's appended ones, entry by entry
-  have hG : ∀ l : Fin (cPZ₁.h + cPZ₂.h), toReal (Fin.append (cPZ₁.G i) (cPZ₂.G i) l)
+  have hG : ∀ l : Fin (cPZ₁.h + cPZ₂.h),
+      toReal (Fin.append (fun l i => cPZ₁.G i l) (fun l i => cPZ₂.G i l) l i)
       = Fin.append (nominal cPZ₁).G (nominal cPZ₂).G l i :=
     Fin.addCases
       (fun l => by
@@ -59,7 +60,8 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (
         rw [Fin.append_right]
         exact (congrFun (Fin.append_right (nominal cPZ₁).G (nominal cPZ₂).G l) i).symm
   -- the independent blocks likewise
-  have hGI : ∀ j : Fin (cPZ₁.q + cPZ₂.q), toReal (Fin.append (cPZ₁.GI i) (cPZ₂.GI i) j)
+  have hGI : ∀ j : Fin (cPZ₁.q + cPZ₂.q),
+      toReal (Fin.append (fun j i => cPZ₁.GI i j) (fun j i => cPZ₂.GI i j) j i)
       = Fin.append (nominal cPZ₁).GI (nominal cPZ₂).GI j i :=
     Fin.addCases
       (fun j => by

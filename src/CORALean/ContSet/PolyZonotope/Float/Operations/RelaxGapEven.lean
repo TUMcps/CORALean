@@ -32,7 +32,7 @@ be off by, every one of them a gap between two roundings of one expression. -/
 def PolyZonotope.relaxGapEven (pZ : PolyZonotope 𝕋 n)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Mat 𝕋 n 3 :=
   fun i =>
-    ![subUp (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0))) (pZ.mergedGen part i),
+    ![subUp (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) (pZ.mergedGen part i),
       subUp (pZ.relaxGenEvenUp part k₀ i) (pZ.relaxGenEven part k₀ i),
       subUp (subUp (pZ.c i) (pZ.relaxGenEven part k₀ i)) (pZ.relaxCentreEven part k₀ i)]
 

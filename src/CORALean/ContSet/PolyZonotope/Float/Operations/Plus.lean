@@ -35,9 +35,9 @@ def PolyZonotope.plus (pZ₁ pZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n 
   h := pZ₁.h + pZ₂.h
   q := pZ₁.q + pZ₂.q
   c := fun i => addDown (pZ₁.c i) (pZ₂.c i)
-  G := fun i => Fin.append (pZ₁.G i) (pZ₂.G i)
+  G := Fin.append pZ₁.G pZ₂.G
   E := Real.PolyZonotope.plusE pZ₁.E pZ₂.E
-  GI := fun i => Fin.append (pZ₁.GI i) (pZ₂.GI i)
+  GI := Fin.append pZ₁.GI pZ₂.GI
   err := (pZ₁.err.plus pZ₂.err).plus (PolyZonotope.centerResidual pZ₁.c pZ₂.c)
 
 end CORALean.Float

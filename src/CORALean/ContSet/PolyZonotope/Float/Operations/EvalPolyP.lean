@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 factor count. -/
 def PolyZonotope.evalPolyP (pZ : PolyZonotope 𝕋 n) :
     List (Vec 𝕋 n) → {R : PolyZonotope 𝕋 n // R.p = pZ.p}
-  | [] => ⟨(⟨pZ.p, 0, 0, fun _ => zero, fun _ => Fin.elim0, fun _ => Fin.elim0, fun _ => Fin.elim0,
+  | [] => ⟨(⟨pZ.p, 0, 0, fun _ => zero, Fin.elim0, fun _ => Fin.elim0, Fin.elim0,
       ⟨fun _ => zero, fun _ => zero⟩⟩ : PolyZonotope 𝕋 n), rfl⟩
   | a :: rest =>
       let R := PolyZonotope.evalPolyP pZ rest

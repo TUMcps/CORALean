@@ -33,9 +33,9 @@ def PolyZonotope.isequal (Z S : PolyZonotope 𝕋 n) : Bool :=
       (le (Z.err.inf i) (S.err.inf i) && le (S.err.inf i) (Z.err.inf i)) &&
       (le (Z.err.sup i) (S.err.sup i) && le (S.err.sup i) (Z.err.sup i)) &&
       (List.finRange Z.h).all (fun j =>
-        le (Z.G i j) (S.G i (Fin.cast e.2.1 j)) && le (S.G i (Fin.cast e.2.1 j)) (Z.G i j)) &&
+        le (Z.G j i) (S.G (Fin.cast e.2.1 j) i) && le (S.G (Fin.cast e.2.1 j) i) (Z.G j i)) &&
       (List.finRange Z.q).all fun j =>
-        le (Z.GI i j) (S.GI i (Fin.cast e.2.2 j)) && le (S.GI i (Fin.cast e.2.2 j)) (Z.GI i j)) &&
+        le (Z.GI j i) (S.GI (Fin.cast e.2.2 j) i) && le (S.GI (Fin.cast e.2.2 j) i) (Z.GI j i)) &&
     -- the exponent matrices
     (List.finRange Z.p).all fun k => (List.finRange Z.h).all fun j =>
       Z.E k j == S.E (Fin.cast e.1 k) (Fin.cast e.2.1 j)

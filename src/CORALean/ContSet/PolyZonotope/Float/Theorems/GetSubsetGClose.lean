@@ -37,18 +37,18 @@ theorem PolyZonotope.getSubsetG_close (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) 
       (((pZ.E k (finProdFinEquiv.symm l).1).choose ((finProdFinEquiv.symm l).2 : ℕ) : ℝ)
         * toReal cen ^ (pZ.E k (finProdFinEquiv.symm l).1 - ((finProdFinEquiv.symm l).2 : ℕ))
         * toReal rad ^ ((finProdFinEquiv.symm l).2 : ℕ))
-        * toReal (pZ.G r (finProdFinEquiv.symm l).1) := rfl
+        * toReal (pZ.G (finProdFinEquiv.symm l).1 r) := rfl
   have hc := PolyZonotope.getSubsetCoef_mem pZ k cen rad (finProdFinEquiv.symm l).1
     ((finProdFinEquiv.symm l).2 : ℕ)
   -- the two directed products bracket it
-  have hb := Real.Interval.mul_between_corners hc.1 hc.2 (le_refl (toReal (pZ.G r
-    (finProdFinEquiv.symm l).1))) (le_refl (toReal (pZ.G r (finProdFinEquiv.symm l).1)))
+  have hb := Real.Interval.mul_between_corners hc.1 hc.2 (le_refl (toReal (pZ.G
+    (finProdFinEquiv.symm l).1 r))) (le_refl (toReal (pZ.G (finProdFinEquiv.symm l).1 r)))
   have hlo := le_trans (Interval.mulLo_le _ _ _ _) hb.1
   have hhi := le_trans hb.2 (Interval.le_mulHi _ _ _ _)
   have hgap := sub_le_subUp (Interval.mulHi (pZ.getSubsetCoef k cen rad (finProdFinEquiv.symm l).1
     ((finProdFinEquiv.symm l).2 : ℕ)).1 (pZ.getSubsetCoef k cen rad (finProdFinEquiv.symm l).1
-    ((finProdFinEquiv.symm l).2 : ℕ)).2 (pZ.G r (finProdFinEquiv.symm l).1)
-    (pZ.G r (finProdFinEquiv.symm l).1)) (pZ.getSubsetGDown k cen rad r l)
+    ((finProdFinEquiv.symm l).2 : ℕ)).2 (pZ.G (finProdFinEquiv.symm l).1 r)
+    (pZ.G (finProdFinEquiv.symm l).1 r)) (pZ.getSubsetGDown k cen rad r l)
   rw [hexact, abs_le]
   simp only [PolyZonotope.getSubsetGDiff, PolyZonotope.getSubsetGDown] at hgap ⊢
   constructor <;> linarith [hlo, hhi, hgap]

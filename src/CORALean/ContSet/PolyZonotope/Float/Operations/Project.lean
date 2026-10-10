@@ -36,9 +36,9 @@ def PolyZonotope.project (pZ : PolyZonotope 𝕋 n) (dims : Fin m → Fin n) : P
   h := pZ.h
   q := pZ.q
   c := fun k => pZ.c (dims k)
-  G := fun k l => pZ.G (dims k) l
+  G := fun l k => pZ.G l (dims k)
   E := pZ.E
-  GI := fun k j => pZ.GI (dims k) j
+  GI := fun j k => pZ.GI j (dims k)
   err := pZ.err.project dims
 
 end CORALean.Float

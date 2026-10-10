@@ -33,9 +33,9 @@ def PolyZonotope.jacobian (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) : PolyZonoto
   h := pZ.h
   q := 0
   c := fun _ => zero
-  G := fun r i => sumDown fun _ : Fin (pZ.E k i) => pZ.G r i
+  G := fun i r => sumDown fun _ : Fin (pZ.E k i) => pZ.G i r
   E := fun k' i => if k' = k then pZ.E k i - 1 else pZ.E k' i
-  GI := fun _ j => j.elim0
+  GI := Fin.elim0
   err := PolyZonotope.generatorError (pZ.jacobianGap k)
 
 end CORALean.Float

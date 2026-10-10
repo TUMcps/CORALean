@@ -32,7 +32,7 @@ def PolyZonotope.noIndep (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
   c := pZ.c
   G := pZ.G
   E := pZ.E
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   err := pZ.err
 
 end CORALean.Float

@@ -38,10 +38,10 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) (cen rad : 
   m := cPZ.m
   s := (cPZ.consPolyZonotope.getSubset k cen rad).h
   c := cPZ.c
-  G := (cPZ.toPolyZonotope.getSubset k cen rad).G
+  G := fun i l => (cPZ.toPolyZonotope.getSubset k cen rad).G l i
   E := (cPZ.toPolyZonotope.getSubset k cen rad).E
   GI := cPZ.GI
-  A := (cPZ.consPolyZonotope.getSubset k cen rad).G
+  A := fun i l => (cPZ.consPolyZonotope.getSubset k cen rad).G l i
   -- the rounding of the stored constraint entries, scaled by monomials in `[-1, 1]`
   b := cPZ.b.plus (PolyZonotope.generatorError (cPZ.consPolyZonotope.getSubsetGDiff k cen rad))
   EC := (cPZ.consPolyZonotope.getSubset k cen rad).E

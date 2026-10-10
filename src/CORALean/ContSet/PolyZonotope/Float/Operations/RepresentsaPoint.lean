@@ -29,9 +29,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def PolyZonotope.representsa_point (pZ : PolyZonotope 𝕋 n) : Bool :=
   (((List.finRange pZ.h).all fun j => (List.finRange n).all fun i =>
-    FloatOps.le (pZ.G i j) zero && FloatOps.le zero (pZ.G i j)) &&
+    FloatOps.le (pZ.G j i) zero && FloatOps.le zero (pZ.G j i)) &&
     ((List.finRange pZ.q).all fun j => (List.finRange n).all fun i =>
-      FloatOps.le (pZ.GI i j) zero && FloatOps.le zero (pZ.GI i j)) &&
+      FloatOps.le (pZ.GI j i) zero && FloatOps.le zero (pZ.GI j i)) &&
     pZ.err.representsa_point)
 
 end CORALean.Float

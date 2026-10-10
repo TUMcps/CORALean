@@ -32,16 +32,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A combination of the stored independent generators is their matrix applied to the weights. -/
 theorem PolyZonotope.aux_sum_gi (pZ : PolyZonotope 𝕋 n) (β : Vec ℝ pZ.q) :
-    (∑ j, β j • (nominal pZ).GI j) = toRealMat pZ.GI *ᵥ β := by -- --- PROOF ---
+    (∑ j, β j • (nominal pZ).GI j)
+      = toRealMat (fun i j => pZ.GI j i) *ᵥ β := by -- --- PROOF ---
   funext i
   simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Matrix.mulVec, dotProduct]
   exact Finset.sum_congr rfl fun j _ => by
-    show β j * toReal (pZ.GI i j) = toReal (pZ.GI i j) * β j
+    show β j * toReal (pZ.GI j i) = toReal (pZ.GI j i) * β j
     ring
 
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
 theorem PolyZonotope.aux_box_subset {pZ : PolyZonotope 𝕋 n} {H : Mat 𝕋 pZ.q n} {B : 𝕋}
-    (hc : Zonotope.ballCert pZ.GI H B one = true) {y₀ : Vec ℝ n}
+    (hc : Zonotope.ballCert (fun i j => pZ.GI j i) H B one = true) {y₀ : Vec ℝ n}
     (hy₀ : y₀ = (nominal pZ).c
       + ∑ i, Real.PolyZonotope.monomial (nominal pZ).E (fun _ => 0) i • (nominal pZ).G i)
     (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : y ∈ nominalSet pZ := by -- --- PROOF ---

@@ -33,9 +33,9 @@ def Interval.polyZonotope (I : Interval (Vec 𝕋 n)) : PolyZonotope 𝕋 n wher
   h := 0
   q := 0
   c := fun _ => zero
-  G := fun _ => Fin.elim0
+  G := Fin.elim0
   E := fun _ => Fin.elim0
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   err := I
 
 

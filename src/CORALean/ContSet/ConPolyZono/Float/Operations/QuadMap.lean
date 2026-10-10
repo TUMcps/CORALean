@@ -35,7 +35,8 @@ def ConPolyZono.quadMap (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 n) 
   let pZ := cPZ.toPolyZonotope.dependent
   -- the image of the generator part, its rounding in the error box
   let qZ := PolyZonotope.quadMapDep Q pZ
-  { p := qZ.p, h := qZ.h, q := 0, m := cPZ.m, s := cPZ.s, c := qZ.c, G := qZ.G, E := qZ.E,
+  { p := qZ.p, h := qZ.h, q := 0, m := cPZ.m, s := cPZ.s, c := qZ.c,
+    G := fun i l => qZ.G l i, E := qZ.E,
     GI := fun _ => Fin.elim0, A := cPZ.A, b := cPZ.b,
     EC := Real.ConPolyZono.padE cPZ.EC (cPZ.q + n), err := qZ.err }
 

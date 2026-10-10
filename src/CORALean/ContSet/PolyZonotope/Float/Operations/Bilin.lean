@@ -38,9 +38,9 @@ def PolyZonotope.bilin (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope 
   h := (pZ₁.h + 1) * (pZ₂.h + 1)
   q := 0
   c := fun _ => FloatOps.zero
-  G := PolyZonotope.bilinGDown Q pZ₁ pZ₂
+  G := fun l i => PolyZonotope.bilinGDown Q pZ₁ pZ₂ i l
   E := PolyZonotope.bilinE pZ₁ pZ₂ hp
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   err := PolyZonotope.generatorError (PolyZonotope.bilinGDiff Q pZ₁ pZ₂)
 
 end CORALean.Float

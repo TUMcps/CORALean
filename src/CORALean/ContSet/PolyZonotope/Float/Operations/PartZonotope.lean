@@ -44,8 +44,8 @@ def PolyZonotope.partZonotope (pZ : PolyZonotope 𝕋 n) (V : Finset (Fin pZ.p))
     h := pZ.h + pZ.h
     q := pZ.q
     c := pZ.c
-    G := fun r => Fin.append (fun i => if shifted i then half (pZ.G r i) else pZ.G r i)
-      (fun i => if shifted i then half (pZ.G r i) else zero)
+    G := fun l r => Fin.append (fun i => if shifted i then half (pZ.G i r) else pZ.G i r)
+      (fun i => if shifted i then half (pZ.G i r) else zero) l
     E := fun r => Fin.append
       (fun i => Fin.addCases (fun k => if k ∈ V then 0 else pZ.E k i)
         (fun g => if ¬ isZero i ∧ grp i = g.val then 1 else 0) r)

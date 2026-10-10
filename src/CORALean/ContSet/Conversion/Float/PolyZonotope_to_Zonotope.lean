@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def PolyZonotope.zonotope (pZ : PolyZonotope 𝕋 n) : Zonotope 𝕋 n where
   h := pZ.h + pZ.q
   c := pZ.c
-  G := fun j i => Fin.append (pZ.G i) (pZ.GI i) j
+  G := Fin.append pZ.G pZ.GI
   E := pZ.err
 
 def ConPolyZono.zonotope (cPZ : ConPolyZono 𝕋 n) : Zonotope 𝕋 n :=
@@ -52,7 +52,7 @@ theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope 𝕋 n) :
     · simpa using hβ j
   · rw [hx i]
     show _ = toReal (pZ.c i) + ∑ l : Fin (pZ.h + pZ.q),
-      toReal (Fin.append (pZ.G i) (pZ.GI i) l) * _
+      toReal (Fin.append pZ.G pZ.GI l i) * _
     rw [Fin.sum_univ_add]
     simp only [Fin.append_left, Fin.append_right]
     ring

@@ -52,7 +52,7 @@ theorem PolyZonotope.bilin_refines (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : P
             + (∑ l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1)),
                 toReal (PolyZonotope.bilinGDown Q pZ₁ pZ₂ i l)
                 * Real.PolyZonotope.monomial (PolyZonotope.bilinE pZ₁ pZ₂ hp) a l)
-            + ∑ j : Fin 0, toReal ((PolyZonotope.bilin Q pZ₁ pZ₂ hp).GI i j) * b j,
+            + ∑ j : Fin 0, toReal ((PolyZonotope.bilin Q pZ₁ pZ₂ hp).GI j i) * b j,
           PolyZonotope.mem_nominalSet_iff.mpr ⟨a, b, ha, hb, fun _ => rfl⟩, _, hbox, ?_⟩
   funext i
   -- stored generators plus their rounding are the exact ones, monomial by monomial

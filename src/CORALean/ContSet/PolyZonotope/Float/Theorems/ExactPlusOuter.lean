@@ -42,16 +42,16 @@ theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (
   obtain ⟨a, β, ha, hβ, hy⟩ := Real.PolyZonotope.mem_construct_iff.mp hy
   -- the float point at the same factors and coefficients, off by the centre's rounding
   refine ⟨fun i => toReal ((pZ₁.exactPlus pZ₂ hp).c i)
-            + (∑ l, toReal ((pZ₁.exactPlus pZ₂ hp).G i l)
+            + (∑ l, toReal ((pZ₁.exactPlus pZ₂ hp).G l i)
                 * Real.PolyZonotope.monomial (pZ₁.exactPlus pZ₂ hp).E a l)
-            + ∑ j, toReal ((pZ₁.exactPlus pZ₂ hp).GI i j) * β j,
+            + ∑ j, toReal ((pZ₁.exactPlus pZ₂ hp).GI j i) * β j,
           PolyZonotope.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, fun _ => rfl⟩,
           fun i => toReal (pZ₁.c i) + toReal (pZ₂.c i)
             - toReal ((pZ₁.exactPlus pZ₂ hp).c i),
           Interval.sub_mem_residual fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩, ?_⟩
   funext i
   -- the stored blocks read back as the exact layer's appended ones, entry by entry
-  have hG : ∀ l : Fin (pZ₁.h + pZ₂.h), toReal (Fin.append (pZ₁.G i) (pZ₂.G i) l)
+  have hG : ∀ l : Fin (pZ₁.h + pZ₂.h), toReal (Fin.append pZ₁.G pZ₂.G l i)
       = Fin.append (nominal pZ₁).G (nominal pZ₂).G l i :=
     Fin.addCases
       (fun l => by
@@ -60,7 +60,7 @@ theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (
       fun l => by
         rw [Fin.append_right]
         exact (congrFun (Fin.append_right (nominal pZ₁).G (nominal pZ₂).G l) i).symm
-  have hGI : ∀ j : Fin (pZ₁.q + pZ₂.q), toReal (Fin.append (pZ₁.GI i) (pZ₂.GI i) j)
+  have hGI : ∀ j : Fin (pZ₁.q + pZ₂.q), toReal (Fin.append pZ₁.GI pZ₂.GI j i)
       = Fin.append (nominal pZ₁).GI (nominal pZ₂).GI j i :=
     Fin.addCases
       (fun j => by

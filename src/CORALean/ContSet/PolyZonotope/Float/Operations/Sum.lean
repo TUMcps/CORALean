@@ -39,12 +39,11 @@ def PolyZonotope.sum {m : ℕ} (pZ : PolyZonotope 𝕋 n) (L : Fin m → PolyZon
   h := pZ.h + ∑ i, (L i).h
   q := pZ.q + ∑ i, (L i).q
   c := fun i => addDown (pZ.c i) (sumDown fun l => (L l).c i)
-  G := fun i => Fin.append (pZ.G i) fun j =>
-    (L (finSigmaFinEquiv.symm j).1).G i (finSigmaFinEquiv.symm j).2
+  G := Fin.append pZ.G fun j => (L (finSigmaFinEquiv.symm j).1).G (finSigmaFinEquiv.symm j).2
   E := fun k => Fin.append (pZ.E k) fun j =>
     (L (finSigmaFinEquiv.symm j).1).E (Fin.cast (hp _).symm k) (finSigmaFinEquiv.symm j).2
-  GI := fun i => Fin.append (pZ.GI i) fun j =>
-    (L (finSigmaFinEquiv.symm j).1).GI i (finSigmaFinEquiv.symm j).2
+  GI := Fin.append pZ.GI fun j =>
+    (L (finSigmaFinEquiv.symm j).1).GI (finSigmaFinEquiv.symm j).2
   err := ((pZ.err.plus (PolyZonotope.sumErr m fun i => (L i).err)).plus
     (Interval.residual (fun i => addDown (pZ.c i) (sumDown fun l => (L l).c i))
       (fun i => addUp (pZ.c i) (sumUp fun l => (L l).c i))

@@ -33,9 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def PolyZonotope.onlyId (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p)) :
     PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
   let mask : Fin pZ.h → Bool := fun i => decide (∀ k, k ∉ S → pZ.E k i = 0)
-  (⟨S.card, pZ.h, 0, pZ.c, fun i j => if mask j then pZ.G i j else zero,
-      fun k' i => pZ.E (S.orderIsoOfFin rfl k').1 i, fun _ j => j.elim0, Interval.origin n⟩,
-   ⟨pZ.p, pZ.h, pZ.q, fun _ => zero, fun i j => if mask j then zero else pZ.G i j, pZ.E, pZ.GI,
+  (⟨S.card, pZ.h, 0, pZ.c, fun j i => if mask j then pZ.G j i else zero,
+      fun k' i => pZ.E (S.orderIsoOfFin rfl k').1 i, Fin.elim0, Interval.origin n⟩,
+   ⟨pZ.p, pZ.h, pZ.q, fun _ => zero, fun j i => if mask j then zero else pZ.G j i, pZ.E, pZ.GI,
       pZ.err⟩)
 
 end CORALean.Float

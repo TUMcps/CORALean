@@ -30,9 +30,9 @@ def PolyZonotope.origin (n : ℕ) : PolyZonotope 𝕋 n where
   h := 0
   q := 0
   c := fun _ => zero
-  G := fun _ j => j.elim0
+  G := Fin.elim0
   E := fun i => i.elim0
-  GI := fun _ j => j.elim0
+  GI := Fin.elim0
   err := Interval.origin n
 
 end CORALean.Float

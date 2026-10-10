@@ -31,9 +31,9 @@ def Zonotope.polyZonotope (Z : Zonotope 𝕋 n) : PolyZonotope 𝕋 n where
   h := Z.h
   q := 0
   c := Z.c
-  G := fun i j => Z.G j i
+  G := Z.G
   E := Real.PolyZonotope.identE Z.h
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   err := Z.E
 
 variable [SoundFloatArithmetic 𝕋]

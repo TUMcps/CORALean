@@ -44,9 +44,9 @@ def PolyZonotope.mul (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (hp : pZ₁.p = pZ₂.p
   h := (pZ₁.h + 1) * (pZ₂.h + 1)
   q := 0
   c := fun _ => zero
-  G := PolyZonotope.mulGDown pZ₁ pZ₂
+  G := fun l i => PolyZonotope.mulGDown pZ₁ pZ₂ i l
   E := PolyZonotope.mulE pZ₁ pZ₂ hp
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   err := PolyZonotope.generatorError (PolyZonotope.mulGDiff pZ₁ pZ₂)
 
 end CORALean.Float
