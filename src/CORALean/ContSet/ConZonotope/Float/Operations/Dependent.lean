@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def ConZonotope.dependent (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := cZ.h + n
   c := cZ.c
-  G := fun i => Fin.append (cZ.G i) (diagonalBlock (PolyZonotope.errorBound cZ.E) i)
+  G := Fin.append cZ.G (diagonalBlock (PolyZonotope.errorBound cZ.E))
   P := cZ.P.padLeft n
   E := ⟨fun _ => zero, fun _ => zero⟩
 

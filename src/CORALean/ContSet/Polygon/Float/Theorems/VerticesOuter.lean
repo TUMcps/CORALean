@@ -39,7 +39,7 @@ theorem Polygon.vertices_outer (P : Polygon 𝕋) :
   refine convexHull_mono ?_ hy'
   rintro _ ⟨l, rfl⟩
   have hl : l.val < p.k := l.2
-  refine List.mem_map.mpr ⟨fun i => p.V i ⟨l.val, hl⟩, ?_, rfl⟩
+  refine List.mem_map.mpr ⟨p.V ⟨l.val, hl⟩, ?_, rfl⟩
   exact List.mem_flatMap.mpr ⟨p, hp, List.mem_ofFn.mpr ⟨⟨l.val, hl⟩, rfl⟩⟩
 
 end CORALean.Float

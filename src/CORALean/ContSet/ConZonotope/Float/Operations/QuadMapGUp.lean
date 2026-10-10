@@ -30,16 +30,16 @@ def ConZonotope.quadMapGUp (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n
     Fin m → Fin (cZ.h + cZ.h + cZ.h * cZ.h) → 𝕋 :=
   fun i => Fin.append
     (Fin.append
-      (fun j => addUp (ConZonotope.quadBilUp (Q i) cZ.c fun r => cZ.G r j)
-        (ConZonotope.quadBilUp (Q i) (fun r => cZ.G r j) cZ.c))
-      (fun j => half (ConZonotope.quadBilUp (Q i) (fun r => cZ.G r j) fun r => cZ.G r j)))
+      (fun j => addUp (ConZonotope.quadBilUp (Q i) cZ.c (cZ.G j))
+        (ConZonotope.quadBilUp (Q i) (cZ.G j) cZ.c))
+      (fun j => half (ConZonotope.quadBilUp (Q i) (cZ.G j) (cZ.G j))))
     (fun l =>
       if (finProdFinEquiv.symm l).1 < (finProdFinEquiv.symm l).2
       then addUp
-        (ConZonotope.quadBilUp (Q i) (fun r => cZ.G r (finProdFinEquiv.symm l).1)
-          fun r => cZ.G r (finProdFinEquiv.symm l).2)
-        (ConZonotope.quadBilUp (Q i) (fun r => cZ.G r (finProdFinEquiv.symm l).2)
-          fun r => cZ.G r (finProdFinEquiv.symm l).1)
+        (ConZonotope.quadBilUp (Q i) (cZ.G (finProdFinEquiv.symm l).1)
+          (cZ.G (finProdFinEquiv.symm l).2))
+        (ConZonotope.quadBilUp (Q i) (cZ.G (finProdFinEquiv.symm l).2)
+          (cZ.G (finProdFinEquiv.symm l).1))
       else zero)
 
 end CORALean.Float

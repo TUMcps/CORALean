@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 /-- The distance bound of `M c` and `M G` rounded, per coordinate, rounded up. -/
 def ConZonotope.mtimesNominalErr (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 n) : Vec 𝕋 m :=
   fun i => addUp (subUp (dotUp (M i) cZ.c) (dotDown (M i) cZ.c))
-    (radius (matMulDiff M cZ.G) i)
+    (radius (matMulDiff M fun i j => cZ.G j i) i)
 
 end CORALean.Float
 

@@ -4,7 +4,7 @@ import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
 import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 import CORALean.Global.Block
 
 /-!
@@ -65,10 +65,10 @@ theorem ConZonotope.dependent_nominal (cZ : ConZonotope 𝕋 n) :
     rw [blockLeft_append]
     exact hP
   -- and the diagonal block reproduces `e` exactly, coordinate by coordinate
-  · have hd : ∑ l, Matrix.diagonal (toRealVec (PolyZonotope.errorBound cZ.E)) i l
+  · have hd : ∑ l, Matrix.diagonal (toRealVec (PolyZonotope.errorBound cZ.E)) l i
         * Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound cZ.E l)) (e l)
           = e i := by
-      rw [Real.Zonotope.sum_diagonal_mul]
+      rw [Real.Zonotope.sum_diagonal_mul']
       exact Real.Zonotope.mul_coefficient (hbound i)
     show z i + e i = _
     rw [ConZonotope.aux_sum_univ_dependent]

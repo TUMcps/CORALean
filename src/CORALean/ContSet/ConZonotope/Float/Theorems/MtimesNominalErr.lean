@@ -35,17 +35,18 @@ theorem ConZonotope.mtimesNominal_err (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 
       ≤ toReal (cZ.mtimesNominalErr M i) := by -- --- PROOF ---
   obtain ⟨β, hβ, hP, hval⟩ := ConZonotope.mem_nominalSet_iff.mp hp
   -- the point the same coefficients name in `cZ`
-  have hz : (fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * β j) ∈ nominalSet cZ :=
+  have hz : (fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * β j) ∈ nominalSet cZ :=
     ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ, hP, fun _ => rfl⟩
   refine ⟨_, hz, fun i => ?_⟩
-  have hsplit := HPolytope.rowSplit M cZ.G cZ.c β _ (fun _ => rfl) i
-  have herr := abs_le.mp (HPolytope.prodError M cZ.G β hβ i)
+  have hsplit := HPolytope.rowSplit M (fun i j => cZ.G j i) cZ.c β _ (fun _ => rfl) i
+  have herr := abs_le.mp (HPolytope.prodError M (fun i j => cZ.G j i) β hβ i)
   have hc1 := dotDown_le (M i) cZ.c
   have hc2 := le_dotUp (M i) cZ.c
   have hc3 := sub_le_subUp (dotUp (M i) cZ.c) (dotDown (M i) cZ.c)
   have hadd := add_le_addUp (subUp (dotUp (M i) cZ.c) (dotDown (M i) cZ.c))
-    (radius (matMulDiff M cZ.G) i)
-  have hpi : p i = toReal (dotDown (M i) cZ.c) + (toRealMat (matMulDown M cZ.G) *ᵥ β) i := by
+    (radius (matMulDiff M fun i j => cZ.G j i) i)
+  have hpi : p i = toReal (dotDown (M i) cZ.c)
+      + (toRealMat (matMulDown M fun i j => cZ.G j i) *ᵥ β) i := by
     rw [hval i]
     rfl
   show |p i - (toRealMat M *ᵥ _) i| ≤ toReal (addUp _ _)

@@ -40,14 +40,14 @@ def ConZonotope.aux_clamp (w : 𝕋) : 𝕋 := maximum zero w
 /-- An upper end of the residual's `j`-th entry. -/
 def ConZonotope.aux_resUp (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
     (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : 𝕋 :=
-  addUp (dotUp a fun i => cZ.G i j)
+  addUp (dotUp a (cZ.G j))
     (addUp (neg (dotDown y fun k => cZ.P.A k j))
       (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j)))
 
 /-- A lower end of the residual's `j`-th entry. -/
 def ConZonotope.aux_resDown (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
     (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : 𝕋 :=
-  addDown (dotDown a fun i => cZ.G i j)
+  addDown (dotDown a (cZ.G j))
     (addDown (neg (dotUp y fun k => cZ.P.A k j))
       (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
 
@@ -67,7 +67,7 @@ theorem ConZonotope.aux_sum_swap {p q : ℕ} (u : Fin p → ℝ) (M : Fin p → 
 /-- The upper and lower ends enclose the exact residual. -/
 theorem ConZonotope.aux_res_encl (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
     (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) :
-    let r := (∑ i, toReal (a i) * toReal (cZ.G i j))
+    let r := (∑ i, toReal (a i) * toReal (cZ.G j i))
       - (∑ k, toReal (y k) * toReal (cZ.P.A k j))
       - (∑ k, toReal (zu k) * toReal (cZ.P.Ae k j))
       + ∑ k, toReal (zl k) * toReal (cZ.P.Ae k j)
@@ -75,8 +75,8 @@ theorem ConZonotope.aux_res_encl (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y :
       ∧ r ≤ toReal (ConZonotope.aux_resUp cZ a y zu zl j) := by -- --- PROOF ---
   intro r
   -- each of the four products, enclosed by its rounded dot product
-  have h1 := le_dotUp a fun i => cZ.G i j
-  have h2 := dotDown_le a fun i => cZ.G i j
+  have h1 := le_dotUp a (cZ.G j)
+  have h2 := dotDown_le a (cZ.G j)
   have h3 := le_dotUp y fun k => cZ.P.A k j
   have h4 := dotDown_le y fun k => cZ.P.A k j
   have h5 := le_dotUp zu fun k => cZ.P.Ae k j
@@ -89,7 +89,7 @@ theorem ConZonotope.aux_res_encl (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y :
       (dotDown zl fun k => cZ.P.Ae k j)
     have e2 := addDown_le_add (neg (dotUp y fun k => cZ.P.A k j))
       (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j))
-    have e3 := addDown_le_add (dotDown a fun i => cZ.G i j)
+    have e3 := addDown_le_add (dotDown a (cZ.G j))
       (addDown (neg (dotUp y fun k => cZ.P.A k j))
         (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
     rw [toReal_neg] at e1 e2
@@ -100,7 +100,7 @@ theorem ConZonotope.aux_res_encl (cZ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) (y :
       (dotUp zl fun k => cZ.P.Ae k j)
     have e2 := add_le_addUp (neg (dotDown y fun k => cZ.P.A k j))
       (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j))
-    have e3 := add_le_addUp (dotUp a fun i => cZ.G i j)
+    have e3 := add_le_addUp (dotUp a (cZ.G j))
       (addUp (neg (dotDown y fun k => cZ.P.A k j))
         (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j)))
     rw [toReal_neg] at e1 e2
@@ -136,7 +136,7 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 n) {c : Vec ℝ n →
       have hAeβ : ∀ k, (toRealMat cZ.P.Ae *ᵥ β) k = ∑ j, toReal (cZ.P.Ae k j) * β j :=
         fun _ => rfl
       -- the residual, column by column
-      set D : Fin cZ.h → ℝ := fun j => ∑ i, toReal (a i) * toReal (cZ.G i j) with hD
+      set D : Fin cZ.h → ℝ := fun j => ∑ i, toReal (a i) * toReal (cZ.G j i) with hD
       set Y : Fin cZ.h → ℝ := fun j => ∑ k, toReal (y k) * toReal (cZ.P.A k j) with hY
       set U : Fin cZ.h → ℝ := fun j => ∑ k, toReal (zu k) * toReal (cZ.P.Ae k j) with hU
       set L : Fin cZ.h → ℝ := fun j => ∑ k, toReal (zl k) * toReal (cZ.P.Ae k j) with hL
@@ -144,7 +144,7 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 n) {c : Vec ℝ n →
       have hcx : c x = (∑ i, toReal (a i) * toReal (cZ.c i)) + ∑ j, β j * D j := by
         rw [hc x]
         simp_rw [hxβ, mul_add, Finset.sum_add_distrib]
-        rw [ConZonotope.aux_sum_swap (fun i => toReal (a i)) (fun i j => toReal (cZ.G i j)) β]
+        rw [ConZonotope.aux_sum_swap (fun i => toReal (a i)) (fun i j => toReal (cZ.G j i)) β]
       -- the split of `βᵀD` into residual and rows
       have hsplit : ∑ j, β j * D j
           = (∑ j, β j * (D j - Y j - U j + L j)) + (∑ j, β j * Y j) + (∑ j, β j * U j)

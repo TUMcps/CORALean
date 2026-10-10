@@ -33,7 +33,7 @@ def ConZonotope.compact (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
   let isZero : 𝕋 → Bool := fun a => le a zero && le zero a
   -- the generators kept: some entry of the column of `[G; A; Ae]` not certified zero
   let S := Finset.univ.filter fun j : Fin cZ.h =>
-    !((List.finRange n).all (fun i => isZero (cZ.G i j))
+    !((List.finRange n).all (fun i => isZero (cZ.G j i))
       && (List.finRange cZ.P.m).all (fun k => isZero (cZ.P.A k j))
       && (List.finRange cZ.P.me).all (fun k => isZero (cZ.P.Ae k j)))
   -- the equality rows kept: all but the certified `0 x ∈ be` with `0 ∈ be`
@@ -42,7 +42,7 @@ def ConZonotope.compact (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
       && le (cZ.P.be.inf r) zero && le zero (cZ.P.be.sup r))
   { h := S.card
     c := cZ.c
-    G := fun i l => cZ.G i (S.orderEmbOfFin rfl l)
+    G := fun l => cZ.G (S.orderEmbOfFin rfl l)
     P :=
       { m := cZ.P.m
         A := fun k l => cZ.P.A k (S.orderEmbOfFin rfl l)

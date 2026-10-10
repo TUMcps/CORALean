@@ -44,10 +44,10 @@ def ConZonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (cZ : ConZonoto
   let MZ := ConZonotope.mtimes C cZ                                 -- mid(M) cZ
   let b : Vec 𝕋 m := fun i => sumUp fun j =>                        -- |M - mid(M)| (|c| + Σ|G|)
     mulUp (maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j)))
-      (addUp (absolute (cZ.c j)) (radius cZ.G j))
+      (addUp (absolute (cZ.c j)) (radius (fun i j => cZ.G j i) j))
   { h := cZ.h + m
     c := MZ.c
-    G := fun i => Fin.append (MZ.G i) (diagonalBlock b i)           -- mid(M) G, then diag(b)
+    G := Fin.append MZ.G (diagonalBlock b)                          -- mid(M) G, then diag(b)
     P := MZ.P.padLeft m                                             -- new coefficients are free
     E := MZ.E.plus (Interval.mtimesIntervalMat Rs cZ.E) }           -- mid(M) E ⊕ (M - mid(M)) E
 

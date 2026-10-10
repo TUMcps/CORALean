@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def ConZonotope.empty (n : ℕ) : ConZonotope 𝕋 n where
   h := 0
   c := fun _ => zero
-  G := fun _ j => j.elim0
+  G := Fin.elim0
   P := HPolytope.emptySet 𝕋 0
   E := Interval.origin n
 

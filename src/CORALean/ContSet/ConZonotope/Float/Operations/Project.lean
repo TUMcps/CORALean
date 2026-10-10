@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def ConZonotope.project (cZ : ConZonotope 𝕋 n) (dims : Fin m → Fin n) : ConZonotope 𝕋 m where
   h := cZ.h
   c := fun k => cZ.c (dims k)
-  G := fun k j => cZ.G (dims k) j
+  G := fun j k => cZ.G j (dims k)
   P := cZ.P
   E := cZ.E.project dims
 

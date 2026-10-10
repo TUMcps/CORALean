@@ -28,9 +28,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 def VPolytope.mtimes (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) : VPolytope 𝕋 m where
   k := P.k
-  V := matMulDown M P.V
+  V := fun l => mulVecDown M (P.V l)
   E := (Interval.mtimes M P.E).plus
-        (VPolytope.columnGap (matMulDown M P.V) (matMulUp M P.V))
+        (VPolytope.columnGap (fun l => mulVecDown M (P.V l)) fun l => mulVecUp M (P.V l))
 
 end CORALean.Float
 

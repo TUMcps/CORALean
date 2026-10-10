@@ -45,28 +45,28 @@ theorem ConZonotope.quadMapC_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonot
   -- the exact centre, with the generators read back as `toRealVec` reads them
   have hR : (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
       = toRealVec cZ.c ⬝ᵥ (toRealMat (Q i) *ᵥ toRealVec cZ.c)
-        + 1 / 2 * ∑ s, (toRealVec fun r => cZ.G r s) ⬝ᵥ
-          (toRealMat (Q i) *ᵥ toRealVec fun r => cZ.G r s) := rfl
+        + 1 / 2 * ∑ s, (toRealVec (cZ.G s)) ⬝ᵥ
+          (toRealMat (Q i) *ᵥ toRealVec (cZ.G s)) := rfl
   rw [hR]
   obtain ⟨a1, a2⟩ := ConZonotope.quadBil_bracket (Q i) cZ.c cZ.c
   -- the sum of the generators' forms, from either side
   have hs1 := sumDown_le_sum fun s =>
-    ConZonotope.quadBilDown (Q i) (fun r => cZ.G r s) fun r => cZ.G r s
+    ConZonotope.quadBilDown (Q i) (cZ.G s) (cZ.G s)
   have hs2 := sum_le_sumUp fun s =>
-    ConZonotope.quadBilUp (Q i) (fun r => cZ.G r s) fun r => cZ.G r s
-  have hlo : ∑ s, toReal (ConZonotope.quadBilDown (Q i) (fun r => cZ.G r s) fun r => cZ.G r s)
-      ≤ ∑ s, (toRealVec fun r => cZ.G r s) ⬝ᵥ
-          (toRealMat (Q i) *ᵥ toRealVec fun r => cZ.G r s) :=
+    ConZonotope.quadBilUp (Q i) (cZ.G s) (cZ.G s)
+  have hlo : ∑ s, toReal (ConZonotope.quadBilDown (Q i) (cZ.G s) (cZ.G s))
+      ≤ ∑ s, (toRealVec (cZ.G s)) ⬝ᵥ
+          (toRealMat (Q i) *ᵥ toRealVec (cZ.G s)) :=
     Finset.sum_le_sum fun s _ => (ConZonotope.quadBil_bracket (Q i) _ _).1
-  have hhi : ∑ s, (toRealVec fun r => cZ.G r s) ⬝ᵥ
-          (toRealMat (Q i) *ᵥ toRealVec fun r => cZ.G r s)
-      ≤ ∑ s, toReal (ConZonotope.quadBilUp (Q i) (fun r => cZ.G r s) fun r => cZ.G r s) :=
+  have hhi : ∑ s, (toRealVec (cZ.G s)) ⬝ᵥ
+          (toRealMat (Q i) *ᵥ toRealVec (cZ.G s))
+      ≤ ∑ s, toReal (ConZonotope.quadBilUp (Q i) (cZ.G s) (cZ.G s)) :=
     Finset.sum_le_sum fun s _ => (ConZonotope.quadBil_bracket (Q i) _ _).2
   have hd := addDown_le_add (ConZonotope.quadBilDown (Q i) cZ.c cZ.c)
     (half (sumDown fun s =>
-      ConZonotope.quadBilDown (Q i) (fun r => cZ.G r s) fun r => cZ.G r s))
+      ConZonotope.quadBilDown (Q i) (cZ.G s) (cZ.G s)))
   have hu := add_le_addUp (ConZonotope.quadBilUp (Q i) cZ.c cZ.c)
-    (half (sumUp fun s => ConZonotope.quadBilUp (Q i) (fun r => cZ.G r s) fun r => cZ.G r s))
+    (half (sumUp fun s => ConZonotope.quadBilUp (Q i) (cZ.G s) (cZ.G s)))
   simp only [ConZonotope.quadMapCDown, ConZonotope.quadMapCUp, toReal_half] at hd hu ⊢
   constructor <;> linarith
 

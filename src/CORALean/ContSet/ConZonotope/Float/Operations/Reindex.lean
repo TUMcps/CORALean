@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def ConZonotope.reindex (e : Fin m ≃ Fin n) (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 m where
   h := cZ.h
   c := fun i => cZ.c (e i)
-  G := fun i j => cZ.G (e i) j
+  G := fun j i => cZ.G j (e i)
   P := cZ.P
   E := cZ.E.reindex e
 

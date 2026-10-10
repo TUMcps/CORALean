@@ -81,13 +81,14 @@ def slab : HPolytope D 2 :=
 
 /-- The unit square's generators with the constraint `P`. -/
 def square (P : HPolytope D 2) : ConZonotope D 2 :=
-  ⟨2, ![d 0 0, d 0 0], !![d 1 0, d 0 0; d 0 0, d 1 0], P, box0⟩
+  ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], P, box0⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The default right inverse of the square's generators. -/
-def H₀ (P : HPolytope D 2) : Mat D 2 2 := Zonotope.rightInvCandidate (square P).G
+def H₀ (P : HPolytope D 2) : Mat D 2 2 :=
+  Zonotope.rightInvCandidate fun i j => (square P).G j i
 
 #eval (square sumLeOne).isFullDim (H₀ sumLeOne) (fun _ => d 0 0)    -- true
 #eval (square slab).isFullDim (H₀ slab) (fun _ => d 0 0)            -- true
@@ -104,8 +105,8 @@ def H₀ (P : HPolytope D 2) : Mat D 2 2 := Zonotope.rightInvCandidate (square P
 #eval sumLeOne.isFullDim ![d 1 0, d 0 0]   -- false: `1 < 1` fails
 
 /-- A triangle and three collinear points, as vertices. -/
-def triangle : VPolytope D 2 := ⟨3, !![d 0 0, d 1 0, d 0 0; d 0 0, d 0 0, d 1 0], box0⟩
-def segment : VPolytope D 2 := ⟨3, !![d 0 0, d 1 0, d 2 0; d 0 0, d 1 0, d 2 0], box0⟩
+def triangle : VPolytope D 2 := ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def segment : VPolytope D 2 := ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 1 0], ![d 2 0, d 2 0]], box0⟩
 
 #eval triangle.isFullDim   -- true
 #eval segment.isFullDim    -- false, the points lie on a line

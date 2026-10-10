@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Polygon.vertices (P : Polygon 𝕋) : List (Vec 𝕋 2) :=
-  P.sets.flatMap fun p => List.ofFn fun l : Fin p.k => fun i => p.V i l
+  P.sets.flatMap fun p => List.ofFn fun l : Fin p.k => p.V l
 
 end CORALean.Float
 

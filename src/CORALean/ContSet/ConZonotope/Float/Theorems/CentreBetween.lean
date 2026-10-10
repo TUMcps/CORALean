@@ -25,13 +25,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.centre_between (cZ : ConZonotope 𝕋 n) (β₀ : Vec 𝕋 cZ.h) (i : Fin n) :
-    toReal (cZ.centreLo β₀ i) ≤ toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * toReal (β₀ j)
-      ∧ toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * toReal (β₀ j)
+    toReal (cZ.centreLo β₀ i) ≤ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j)
+      ∧ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j)
         ≤ toReal (cZ.centreHi β₀ i) := by -- --- PROOF ---
-  have h1 := addDown_le_add (cZ.c i) (dotDown (fun j => cZ.G i j) β₀)
-  have h2 := add_le_addUp (cZ.c i) (dotUp (fun j => cZ.G i j) β₀)
-  have h3 := dotDown_le (fun j => cZ.G i j) β₀
-  have h4 := le_dotUp (fun j => cZ.G i j) β₀
+  have h1 := addDown_le_add (cZ.c i) (dotDown (fun j => cZ.G j i) β₀)
+  have h2 := add_le_addUp (cZ.c i) (dotUp (fun j => cZ.G j i) β₀)
+  have h3 := dotDown_le (fun j => cZ.G j i) β₀
+  have h4 := le_dotUp (fun j => cZ.G j i) β₀
   exact ⟨by simp only [ConZonotope.centreLo]; linarith,
     by simp only [ConZonotope.centreHi]; linarith⟩
 

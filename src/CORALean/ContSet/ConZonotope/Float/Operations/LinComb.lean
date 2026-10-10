@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := cZ₁.h + cZ₂.h + 1
   c := Zonotope.midpoint cZ₁.c cZ₂.c
-  G := fun i => Fin.append (Fin.append (cZ₁.G i) (cZ₂.G i))
-    fun _ : Fin 1 => half (subDown (cZ₁.c i) (cZ₂.c i))
+  G := Fin.append (Fin.append cZ₁.G cZ₂.G)
+    fun _ : Fin 1 => fun i => half (subDown (cZ₁.c i) (cZ₂.c i))
   P := ((cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).intersection
     (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)))
   E := (cZ₁.E.linComb cZ₂.E).plus

@@ -101,7 +101,7 @@ def HPolytope.onCoefficients (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : HPol
 def HPolytope.conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := Z.h
   c := Z.c
-  G := fun i j => Z.G j i
+  G := Z.G
   P := P.onCoefficients Z
   E := Z.E
 

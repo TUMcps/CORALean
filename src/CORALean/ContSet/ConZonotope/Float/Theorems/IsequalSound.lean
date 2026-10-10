@@ -42,7 +42,7 @@ theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 n} (h : Z.isequal S = 
     subst e
     simp only [Fin.cast_eq_self] at hnum
     have hc : toRealVec c₁ = toRealVec c₂ := funext fun i => eqr (hnum i).1.1.1
-    have hG : (fun j i => toReal (G₁ i j)) = fun j i => toReal (G₂ i j) :=
+    have hG : (fun j => toRealVec (G₁ j)) = fun j => toRealVec (G₂ j) :=
       funext fun j => funext fun i => eqr (by simpa using (hnum i).2 j)
     have hEi : toRealVec E₁.inf = toRealVec E₂.inf := funext fun i => eqr (hnum i).1.1.2
     have hEs : toRealVec E₁.sup = toRealVec E₂.sup := funext fun i => eqr (hnum i).1.2
@@ -57,9 +57,9 @@ theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 n} (h : Z.isequal S = 
       rw [this]
     have hN : (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 n)) =
         nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 n) := by
-      show (⟨h₁, toRealVec c₁, fun j i => toReal (G₁ i j), P₁.nominal⟩ :
+      show (⟨h₁, toRealVec c₁, fun j => toRealVec (G₁ j), P₁.nominal⟩ :
           CORALean.Real.ConZonotope (Vec ℝ n)) =
-        ⟨h₁, toRealVec c₂, fun j i => toReal (G₂ i j), P₂.nominal⟩
+        ⟨h₁, toRealVec c₂, fun j => toRealVec (G₂ j), P₂.nominal⟩
       rw [hc, hG, hPn]
     change ContSet.construct (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 n)) + E₁.construct =
       ContSet.construct (nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 n)) + E₂.construct

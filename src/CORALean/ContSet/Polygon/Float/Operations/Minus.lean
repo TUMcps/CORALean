@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Polygon.minus (P : Polygon 𝕋) (p : Vec 𝕋 2) : Polygon 𝕋 :=
-  let point : VPolytope 𝕋 2 := VPolytope.enclosePoints fun i (_ : Fin 1) => neg (p i)
+  let point : VPolytope 𝕋 2 := VPolytope.enclosePoints fun (_ : Fin 1) i => neg (p i)
   Polygon.plus P (Polygon.ofPieces [point])
 
 end CORALean.Float

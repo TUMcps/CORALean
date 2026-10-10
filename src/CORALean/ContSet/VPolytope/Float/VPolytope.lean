@@ -13,13 +13,14 @@ there is no direction to move it that enlarges the hull — a hull has no centre
 to move away from — so what rounding costs cannot be absorbed into the vertices
 the way an interval absorbs it into its bounds.
 
-Vertices are stored as the columns of a matrix, as a zonotope's generators are,
-and the nominal reading transposes.
+`GVPolytope α` is generic over its ambient type, vertices a family, as the exact
+layer's `VPolytope α` is; `VPolytope 𝕋 n` is the reducible vector case, and the
+nominal reading copies the family.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -34,15 +35,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure VPolytope (𝕋 : Type) (n : ℕ) where
+structure GVPolytope (α : Type) where
   k : ℕ
-  V : Mat 𝕋 n k
-  E : Interval (Vec 𝕋 n)
+  V : Fin k → α
+  E : Interval α
 
-instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (VPolytope 𝕋 n) (CORALean.Real.VPolytope (Vec ℝ n))
-      (Vec 𝕋 n) (Vec ℝ n) where
-  nominal P := ⟨P.k, fun l i => toReal (P.V i l)⟩
+abbrev VPolytope (𝕋 : Type) (n : ℕ) := GVPolytope (Vec 𝕋 n)
+
+/-- The exact vertex list the stored floats describe, read through `RealImage`. -/
+abbrev GVPolytope.nominal {α β : Type} [RealImage α β] (P : GVPolytope α) :
+    CORALean.Real.VPolytope β :=
+  ⟨P.k, fun l => RealImage.realImage (P.V l)⟩
+
+instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
+    InflatedContSet (GVPolytope α) (CORALean.Real.VPolytope β) α β where
+  nominal := GVPolytope.nominal
   error P := P.E
 
 /-- The nominal vertex list, so proofs can see through the instance. Through it
@@ -50,7 +57,7 @@ every count is `P.k`, where going via the instance gives the equal-but-distinct
 `(nominal P).k`. -/
 theorem VPolytope.nominal_eq [SoundFloatArithmetic 𝕋] (P : VPolytope 𝕋 n) :
     InflatedContSet.nominal P
-      = CORALean.Real.VPolytope.mk P.k (fun l i => toReal (P.V i l)) := rfl
+      = CORALean.Real.VPolytope.mk P.k (fun l i => toReal (P.V l i)) := rfl
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev VPolytope.construct [SoundFloatArithmetic 𝕋] (P : VPolytope 𝕋 n) : Set (Vec ℝ n) :=
@@ -63,9 +70,9 @@ over the one it was given. `materialise` stores them and `materialise_eq` says i
 is the identity; `Global/Tensor` says why the vectors are built here. -/
 
 def VPolytope.materialise (P : VPolytope 𝕋 n) : VPolytope 𝕋 n :=
-  let V : Vector (Vector 𝕋 P.k) n := Vector.ofFn fun i => Vector.ofFn fun l => P.V i l
+  let V : Vector (Vector 𝕋 n) P.k := Vector.ofFn fun l => Vector.ofFn (P.V l)
   { k := P.k
-    V := fun i l => (V[i.val]'i.isLt)[l.val]'l.isLt
+    V := fun l i => (V[l.val]'l.isLt)[i.val]'i.isLt
     E := P.E.materialise }
 
 omit [FloatOps 𝕋] in

@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 /-- The centre of the enclosing zonotope, from below. -/
 def ConZonotope.quadMapCDown (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) : Vec 𝕋 m :=
   fun i => addDown (ConZonotope.quadBilDown (Q i) cZ.c cZ.c)
-    (half (sumDown fun s => ConZonotope.quadBilDown (Q i) (fun r => cZ.G r s) fun r => cZ.G r s))
+    (half (sumDown fun s => ConZonotope.quadBilDown (Q i) (cZ.G s) (cZ.G s)))
 
 end CORALean.Float
 

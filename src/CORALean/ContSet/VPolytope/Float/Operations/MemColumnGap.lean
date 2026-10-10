@@ -25,21 +25,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Storing the lower rounding of column `l` leaves a residual the gap admits. -/
-theorem VPolytope.mem_columnGap [SoundFloatArithmetic 𝕋] {k : ℕ} {lo hi : Mat 𝕋 n k}
+theorem VPolytope.mem_columnGap [SoundFloatArithmetic 𝕋] {k : ℕ} {lo hi : Fin k → Vec 𝕋 n}
     {p : Vec ℝ n} {l : Fin k}
-    (h : ∀ i, toReal (lo i l) ≤ p i ∧ p i ≤ toReal (hi i l)) :
-    (fun i => p i - toReal (lo i l)) ∈ (VPolytope.columnGap lo hi).construct := by -- --- PROOF ---
+    (h : ∀ i, toReal (lo l i) ≤ p i ∧ p i ≤ toReal (hi l i)) :
+    (fun i => p i - toReal (lo l i)) ∈ (VPolytope.columnGap lo hi).construct := by -- --- PROOF ---
   refine fun i => ⟨?_, ?_⟩
-  · show toReal (zero : 𝕋) ≤ p i - toReal (lo i l)
+  · show toReal (zero : 𝕋) ≤ p i - toReal (lo l i)
     rw [toReal_zero]
     linarith [(h i).1]
   -- the column's own gap first, then the maximum over all of them
-  · show p i - toReal (lo i l) ≤ toReal (maximumOver fun l' => subUp (hi i l') (lo i l'))
-    calc p i - toReal (lo i l)
-        ≤ toReal (hi i l) - toReal (lo i l) := by linarith [(h i).2]
-      _ ≤ toReal (subUp (hi i l) (lo i l)) := sub_le_subUp _ _
-      _ ≤ toReal (maximumOver fun l' => subUp (hi i l') (lo i l')) :=
-          le_maximumOver (fun l' => subUp (hi i l') (lo i l')) l
+  · show p i - toReal (lo l i) ≤ toReal (maximumOver fun l' => subUp (hi l' i) (lo l' i))
+    calc p i - toReal (lo l i)
+        ≤ toReal (hi l i) - toReal (lo l i) := by linarith [(h i).2]
+      _ ≤ toReal (subUp (hi l i) (lo l i)) := sub_le_subUp _ _
+      _ ≤ toReal (maximumOver fun l' => subUp (hi l' i) (lo l' i)) :=
+          le_maximumOver (fun l' => subUp (hi l' i) (lo l' i)) l
 
 end CORALean.Float
 

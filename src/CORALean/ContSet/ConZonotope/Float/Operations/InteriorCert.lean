@@ -42,7 +42,7 @@ def ConZonotope.interiorCert (cZ : ConZonotope 𝕋 n) (H : Mat 𝕋 cZ.h n) (β
     && (List.finRange cZ.P.me).all (fun i =>
       le (addUp (dotUp (cZ.P.Ae i) β₀) (mulUp δ (radius cZ.P.Ae i))) (cZ.P.be.sup i)
         && le (cZ.P.be.inf i) (subDown (dotDown (cZ.P.Ae i) β₀) (mulUp δ (radius cZ.P.Ae i))))
-    && Zonotope.ballCert cZ.G H B δ
+    && Zonotope.ballCert (fun i j => cZ.G j i) H B δ
 
 end CORALean.Float
 

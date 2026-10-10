@@ -40,16 +40,16 @@ noncomputable def ConZonotope.aux_quadMapGReal (Q : Fin m → Mat 𝕋 n n) (cZ 
     Fin m → Fin (cZ.h + cZ.h + cZ.h * cZ.h) → ℝ :=
   fun i l => Fin.append
     (Fin.append
-      (fun j i => toRealVec cZ.c ⬝ᵥ (toRealMat (Q i) *ᵥ toRealVec fun r => cZ.G r j)
-        + (toRealVec fun r => cZ.G r j) ⬝ᵥ (toRealMat (Q i) *ᵥ toRealVec cZ.c))
-      (fun j i => (1 / 2) * (toRealVec fun r => cZ.G r j) ⬝ᵥ
-        (toRealMat (Q i) *ᵥ toRealVec fun r => cZ.G r j)))
+      (fun j i => toRealVec cZ.c ⬝ᵥ (toRealMat (Q i) *ᵥ toRealVec (cZ.G j))
+        + (toRealVec (cZ.G j)) ⬝ᵥ (toRealMat (Q i) *ᵥ toRealVec cZ.c))
+      (fun j i => (1 / 2) * (toRealVec (cZ.G j)) ⬝ᵥ
+        (toRealMat (Q i) *ᵥ toRealVec (cZ.G j))))
     (fun l i =>
       if (finProdFinEquiv.symm l).1 < (finProdFinEquiv.symm l).2
-      then (toRealVec fun r => cZ.G r (finProdFinEquiv.symm l).1) ⬝ᵥ
-          (toRealMat (Q i) *ᵥ toRealVec fun r => cZ.G r (finProdFinEquiv.symm l).2)
-        + (toRealVec fun r => cZ.G r (finProdFinEquiv.symm l).2) ⬝ᵥ
-          (toRealMat (Q i) *ᵥ toRealVec fun r => cZ.G r (finProdFinEquiv.symm l).1)
+      then (toRealVec (cZ.G (finProdFinEquiv.symm l).1)) ⬝ᵥ
+          (toRealMat (Q i) *ᵥ toRealVec (cZ.G (finProdFinEquiv.symm l).2))
+        + (toRealVec (cZ.G (finProdFinEquiv.symm l).2)) ⬝ᵥ
+          (toRealMat (Q i) *ᵥ toRealVec (cZ.G (finProdFinEquiv.symm l).1))
       else 0) l i
 
 /-- The exact generator lies between the two stored roundings. -/
@@ -61,38 +61,38 @@ theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZ
   refine Fin.addCases (fun l => ?_) (fun l => ?_) l
   · refine Fin.addCases (fun j => ?_) (fun j => ?_) l
     · -- the linear generator, two bilinear forms added
-      obtain ⟨a1, a2⟩ := ConZonotope.quadBil_bracket (Q i) cZ.c fun r => cZ.G r j
-      obtain ⟨b1, b2⟩ := ConZonotope.quadBil_bracket (Q i) (fun r => cZ.G r j) cZ.c
-      have h1 := addDown_le_add (ConZonotope.quadBilDown (Q i) cZ.c fun r => cZ.G r j)
-        (ConZonotope.quadBilDown (Q i) (fun r => cZ.G r j) cZ.c)
-      have h2 := add_le_addUp (ConZonotope.quadBilUp (Q i) cZ.c fun r => cZ.G r j)
-        (ConZonotope.quadBilUp (Q i) (fun r => cZ.G r j) cZ.c)
+      obtain ⟨a1, a2⟩ := ConZonotope.quadBil_bracket (Q i) cZ.c (cZ.G j)
+      obtain ⟨b1, b2⟩ := ConZonotope.quadBil_bracket (Q i) (cZ.G j) cZ.c
+      have h1 := addDown_le_add (ConZonotope.quadBilDown (Q i) cZ.c (cZ.G j))
+        (ConZonotope.quadBilDown (Q i) (cZ.G j) cZ.c)
+      have h2 := add_le_addUp (ConZonotope.quadBilUp (Q i) cZ.c (cZ.G j))
+        (ConZonotope.quadBilUp (Q i) (cZ.G j) cZ.c)
       simp only [ConZonotope.quadMapGDown, ConZonotope.quadMapGUp, ConZonotope.aux_quadMapGReal,
         Fin.append_left]
       exact ⟨by linarith, by linarith⟩
     · -- the square, half of one bilinear form
-      obtain ⟨a1, a2⟩ := ConZonotope.quadBil_bracket (Q i) (fun r => cZ.G r j)
-        fun r => cZ.G r j
+      obtain ⟨a1, a2⟩ := ConZonotope.quadBil_bracket (Q i) (cZ.G j)
+        (cZ.G j)
       simp only [ConZonotope.quadMapGDown, ConZonotope.quadMapGUp, ConZonotope.aux_quadMapGReal,
         Fin.append_left, Fin.append_right, toReal_half]
       exact ⟨by linarith, by linarith⟩
   · -- the pairs, a sum off the diagonal and zero on it
     by_cases hjk : (finProdFinEquiv.symm l).1 < (finProdFinEquiv.symm l).2
     · obtain ⟨a1, a2⟩ := ConZonotope.quadBil_bracket (Q i)
-        (fun r => cZ.G r (finProdFinEquiv.symm l).1) fun r => cZ.G r (finProdFinEquiv.symm l).2
+        (cZ.G (finProdFinEquiv.symm l).1) (cZ.G (finProdFinEquiv.symm l).2)
       -- both orders of the pair, each bracketed
       obtain ⟨b1, b2⟩ := ConZonotope.quadBil_bracket (Q i)
-        (fun r => cZ.G r (finProdFinEquiv.symm l).2) fun r => cZ.G r (finProdFinEquiv.symm l).1
+        (cZ.G (finProdFinEquiv.symm l).2) (cZ.G (finProdFinEquiv.symm l).1)
       have h1 := addDown_le_add
-        (ConZonotope.quadBilDown (Q i) (fun r => cZ.G r (finProdFinEquiv.symm l).1)
-          fun r => cZ.G r (finProdFinEquiv.symm l).2)
-        (ConZonotope.quadBilDown (Q i) (fun r => cZ.G r (finProdFinEquiv.symm l).2)
-          fun r => cZ.G r (finProdFinEquiv.symm l).1)
+        (ConZonotope.quadBilDown (Q i) (cZ.G (finProdFinEquiv.symm l).1)
+          (cZ.G (finProdFinEquiv.symm l).2))
+        (ConZonotope.quadBilDown (Q i) (cZ.G (finProdFinEquiv.symm l).2)
+          (cZ.G (finProdFinEquiv.symm l).1))
       have h2 := add_le_addUp
-        (ConZonotope.quadBilUp (Q i) (fun r => cZ.G r (finProdFinEquiv.symm l).1)
-          fun r => cZ.G r (finProdFinEquiv.symm l).2)
-        (ConZonotope.quadBilUp (Q i) (fun r => cZ.G r (finProdFinEquiv.symm l).2)
-          fun r => cZ.G r (finProdFinEquiv.symm l).1)
+        (ConZonotope.quadBilUp (Q i) (cZ.G (finProdFinEquiv.symm l).1)
+          (cZ.G (finProdFinEquiv.symm l).2))
+        (ConZonotope.quadBilUp (Q i) (cZ.G (finProdFinEquiv.symm l).2)
+          (cZ.G (finProdFinEquiv.symm l).1))
       simp only [ConZonotope.quadMapGDown, ConZonotope.quadMapGUp, ConZonotope.aux_quadMapGReal,
         Fin.append_right, if_pos hjk]
       exact ⟨by linarith, by linarith⟩

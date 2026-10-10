@@ -86,12 +86,12 @@ theorem VPolytope.conZonotope_contains (P : VPolytope 𝕋 n) :
   · rw [abs_of_nonneg (hnn j)]
     exact hsum ▸ Finset.single_le_sum (fun l _ => hnn l) (Finset.mem_univ j)
   · exact VPolytope.mem_simplex_iff.mpr ⟨hnn, hsum⟩
-  · have h : x i = ∑ l, β l * toReal (P.V i l) := by
+  · have h : x i = ∑ l, β l * toReal (P.V l i) := by
       rw [hval]
       simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
       rfl
     rw [h]
-    show ∑ l, β l * toReal (P.V i l) = toReal (zero : 𝕋) + ∑ l, toReal (P.V i l) * β l
+    show ∑ l, β l * toReal (P.V l i) = toReal (zero : 𝕋) + ∑ l, toReal (P.V l i) * β l
     rw [toReal_zero, zero_add]
     exact Finset.sum_congr rfl fun l _ => mul_comm _ _
 

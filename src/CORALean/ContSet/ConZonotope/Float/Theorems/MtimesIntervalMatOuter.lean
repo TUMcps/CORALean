@@ -8,7 +8,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.AbsResidualLe
 import CORALean.ContSet.Zonotope.Float.Theorems.MulVecSplit
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 
 /-!
 # `ConZonotope.mtimesIntervalMat` over-approximates every image
@@ -75,10 +75,10 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (cZ :
   have hγ : ∀ j, |γ j| ≤ 1 := hγ₀
   have hPγ : γ ∈ (ConZonotope.mtimes C cZ).P.construct := hPγ₀
   have ht₀γ : ∀ i, t₀ i = toReal ((ConZonotope.mtimes C cZ).c i)
-      + ∑ j, toReal ((ConZonotope.mtimes C cZ).G i j) * γ j := ht₀γ₀
+      + ∑ j, toReal ((ConZonotope.mtimes C cZ).G j i) * γ j := ht₀γ₀
   set b : Vec 𝕋 m := fun i => sumUp fun j =>
     mulUp (maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j)))
-      (addUp (absolute (cZ.c j)) (radius cZ.G j)) with hb
+      (addUp (absolute (cZ.c j)) (radius (fun i j => cZ.G j i) j)) with hb
   have hbound : ∀ i, |(R *ᵥ z) i| ≤ toReal (b i) := hbound'
   -- the new coefficients stay in `[-1, 1]`, and the sum of the new point is the image
   have hb0 : ∀ i, 0 ≤ toReal (b i) := fun i => le_trans (abs_nonneg _) (hbound i)
@@ -99,12 +99,12 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (cZ :
       exact hPγ
     · -- the stored centre and generators recombine into the image
       show t₀ i + (R *ᵥ z) i = toReal (mulVecDown C cZ.c i)
-        + ∑ j : Fin (cZ.h + m), toReal (Fin.append (matMulDown C cZ.G i)
-          (diagonalBlock b i) j) * Fin.append (m := cZ.h) γ
+        + ∑ j : Fin (cZ.h + m), toReal (Fin.append (fun j => mulVecDown C (cZ.G j))
+          (diagonalBlock b) j i) * Fin.append (m := cZ.h) γ
             (fun i => Real.Zonotope.coefficient (toReal (b i)) ((R *ᵥ z) i)) j
       rw [Fin.sum_univ_add]
       simp only [Fin.append_left, Fin.append_right, toReal_diagonalBlock]
-      rw [Real.Zonotope.sum_diagonal_mul, toRealVec, Real.Zonotope.mul_coefficient (hbound i),
+      rw [Real.Zonotope.sum_diagonal_mul', toRealVec, Real.Zonotope.mul_coefficient (hbound i),
         ht₀γ i, add_assoc]
       rfl
   · show t₀ + R *ᵥ z + (e₀ + R *ᵥ e) = A *ᵥ (z + e)

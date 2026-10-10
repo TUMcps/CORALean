@@ -16,13 +16,15 @@ constraints have chosen a point, and a rounded equality system can be infeasible
 where the exact one is not. The slack has to sit on the constraint, so `be` is an
 interval and the row reads `Ae x ∈ be`.
 
-The nominal reading is the exact layer's `slab`, so what this denotes is fixed by
-definition rather than by a lemma, and every operation owes only enclosure.
+The nominal reading is the exact layer's `slab`, so every operation owes only enclosure.
+It stays at `Vec`, the only place either layer pairs a row with a point, though
+`GHPolytope 𝕋 α` stores its rows as a family in `α` as the exact layer does;
+`HPolytope 𝕋 n` is the reducible vector case, rows of a matrix.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -37,15 +39,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure HPolytope (𝕋 : Type) (n : ℕ) where
+structure GHPolytope (𝕋 α : Type) where
   m : ℕ
-  A : Mat 𝕋 m n
+  A : Fin m → α
   b : Vec 𝕋 m
   me : ℕ
-  Ae : Mat 𝕋 me n
+  Ae : Fin me → α
   /-- Interval-valued, unlike the exact layer's point: this is where an
   equality's rounding goes. -/
   be : Interval (Vec 𝕋 me)
+
+abbrev HPolytope (𝕋 : Type) (n : ℕ) := GHPolytope 𝕋 (Vec 𝕋 n)
 
 def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 n) :
     CORALean.Real.HPolytope (Vec ℝ n) :=

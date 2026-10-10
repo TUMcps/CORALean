@@ -114,27 +114,28 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 n) (ξL ξU : Vec 𝕋 
     · field_simp
       ring
   -- the generators' rounding against `δ`, entrywise
-  have hgen : ∀ i j, |toReal (cZ.G i j) * toReal (ξr j) - toReal (mulDown (cZ.G i j) (ξr j))|
-      ≤ toReal (subUp (mulUp (cZ.G i j) (ξr j)) (mulDown (cZ.G i j) (ξr j))) :=
+  have hgen : ∀ i j, |toReal (cZ.G j i) * toReal (ξr j) - toReal (mulDown (cZ.G j i) (ξr j))|
+      ≤ toReal (subUp (mulUp (cZ.G j i) (ξr j)) (mulDown (cZ.G j i) (ξr j))) :=
     fun i j => ConZonotope.aux_mulDown_gap _ _
   -- the stored centre's rounding
-  have hcen : ∀ i, toReal (addDown (cZ.c i) (dotDown (cZ.G i) ξm))
-        ≤ toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * toReal (ξm j)
-      ∧ toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * toReal (ξm j)
-        ≤ toReal (addUp (cZ.c i) (dotUp (cZ.G i) ξm)) := by
+  have hcen : ∀ i, toReal (addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm))
+        ≤ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (ξm j)
+      ∧ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (ξm j)
+        ≤ toReal (addUp (cZ.c i) (dotUp (fun j => cZ.G j i) ξm)) := by
     intro i
-    have h1 := dotDown_le (cZ.G i) ξm
-    have h2 := le_dotUp (cZ.G i) ξm
-    have h3 := addDown_le_add (cZ.c i) (dotDown (cZ.G i) ξm)
-    have h4 := add_le_addUp (cZ.c i) (dotUp (cZ.G i) ξm)
+    have h1 := dotDown_le (fun j => cZ.G j i) ξm
+    have h2 := le_dotUp (fun j => cZ.G j i) ξm
+    have h3 := addDown_le_add (cZ.c i) (dotDown (fun j => cZ.G j i) ξm)
+    have h4 := add_le_addUp (cZ.c i) (dotUp (fun j => cZ.G j i) ξm)
     constructor <;> linarith
   obtain ⟨hin, heq⟩ := HPolytope.mem_construct_iff.mp hP
-  refine ⟨fun i => toReal (addDown (cZ.c i) (dotDown (cZ.G i) ξm))
-      + ∑ j, toReal (mulDown (cZ.G i j) (ξr j)) * δ j,
+  refine ⟨fun i => toReal (addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm))
+      + ∑ j, toReal (mulDown (cZ.G j i) (ξr j)) * δ j,
     ConZonotope.mem_nominalSet_iff.mpr ⟨δ, hδ, HPolytope.mem_construct_iff.mpr
       ⟨fun k => ?_, fun k => ⟨?_, ?_⟩⟩, fun _ => rfl⟩,
     _, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨e, he, _,
-      Interval.sub_mem_residual (stored := fun i => addDown (cZ.c i) (dotDown (cZ.G i) ξm)) hcen,
+      Interval.sub_mem_residual
+        (stored := fun i => addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm)) hcen,
       rfl⟩, _, Zonotope.mem_generatorError hgen hδ, rfl⟩, ?_⟩
   · -- an inequality row: the old row at `ξ`, less the part at `ξm`, plus the rounding
     have hk := hin k
@@ -178,13 +179,13 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 n) (ξL ξU : Vec 𝕋 
     linarith
   · -- the point: the rescaled one plus the old error and the two roundings
     funext i
-    have hs := ConZonotope.aux_row_split (cZ.G i) ξm ξr δ ξ hξδ
+    have hs := ConZonotope.aux_row_split (fun j => cZ.G j i) ξm ξr δ ξ hξδ
     have hyi := hy i
-    show (toReal (addDown (cZ.c i) (dotDown (cZ.G i) ξm))
-        + ∑ j, toReal (mulDown (cZ.G i j) (ξr j)) * δ j)
-      + ((e i + (toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * toReal (ξm j)
-          - toReal (addDown (cZ.c i) (dotDown (cZ.G i) ξm))))
-        + ∑ j, (toReal (cZ.G i j) * toReal (ξr j) - toReal (mulDown (cZ.G i j) (ξr j))) * δ j)
+    show (toReal (addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm))
+        + ∑ j, toReal (mulDown (cZ.G j i) (ξr j)) * δ j)
+      + ((e i + (toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (ξm j)
+          - toReal (addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm))))
+        + ∑ j, (toReal (cZ.G j i) * toReal (ξr j) - toReal (mulDown (cZ.G j i) (ξr j))) * δ j)
       = y i + e i
     rw [hyi, hs]
     ring

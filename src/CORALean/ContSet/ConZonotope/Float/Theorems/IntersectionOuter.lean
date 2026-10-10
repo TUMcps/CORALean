@@ -53,7 +53,7 @@ theorem ConZonotope.intersection_outer (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
     · rw [blockLeft_append]; exact hP₁
     · rw [blockRight_append]; exact hP₂
     -- the agreement row: the two nominal points differ by exactly `e₂ - e₁`
-    · have hrow : (toRealMat (fun i => Fin.append (cZ₁.G i) fun j => neg (cZ₂.G i j))
+    · have hrow : (toRealMat (fun i => Fin.append (fun j => cZ₁.G j i) fun j => neg (cZ₂.G j i))
             *ᵥ Fin.append β₁ β₂) i
           = (y₁ i - toReal (cZ₁.c i)) - (y₂ i - toReal (cZ₂.c i)) := by
         rw [hy₁ i, hy₂ i]
@@ -84,7 +84,7 @@ theorem ConZonotope.intersection_outer (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
     rw [hy₁ i]
     show _ = toReal (cZ₁.c i)
       + ∑ j : Fin (cZ₁.h + cZ₂.h),
-          toReal (Fin.append (cZ₁.G i) (fun _ => (zero : 𝕋)) j) * Fin.append β₁ β₂ j
+          toReal (Fin.append cZ₁.G (fun _ _ => (zero : 𝕋)) j i) * Fin.append β₁ β₂ j
     simp only [Fin.sum_univ_add, Fin.append_left, Fin.append_right, toReal_zero, zero_mul,
       Finset.sum_const_zero, add_zero]
 

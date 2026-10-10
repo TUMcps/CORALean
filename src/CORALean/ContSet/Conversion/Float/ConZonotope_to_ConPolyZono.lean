@@ -54,8 +54,7 @@ def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 n) : ConPolyZono 𝕋 n where
   m := cZ.P.m + cZ.P.me
   s := cZ.h
   c := cZ.c
-  -- the constrained zonotope stores its generators as a matrix, one per column
-  G := fun l i => cZ.G i l
+  G := cZ.G
   E := Real.PolyZonotope.identE cZ.h
   GI := Fin.elim0
   A := ConZonotope.conA cZ

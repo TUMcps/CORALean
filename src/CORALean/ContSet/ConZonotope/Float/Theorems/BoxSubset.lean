@@ -46,7 +46,7 @@ theorem ConZonotope.aux_row_move {m h : ℕ} (M : Mat 𝕋 m h) (v : Vec ℝ h) 
 
 theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 n} {H : Mat 𝕋 cZ.h n} {β₀ : Vec 𝕋 cZ.h}
     {δ B : 𝕋} (hc : cZ.interiorCert H β₀ δ B = true) (y : Vec ℝ n)
-    (hy : ∀ i, |y i - (toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * toReal (β₀ j))| ≤ toReal B) :
+    (hy : ∀ i, |y i - (toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))| ≤ toReal B) :
     y ∈ nominalSet cZ := by -- --- PROOF ---
   simp only [ConZonotope.interiorCert, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at hc
@@ -54,7 +54,7 @@ theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 n} {H : Mat 𝕋 cZ.h n} {
   have hδ : 0 ≤ toReal δ := by simpa [toReal_zero] using toReal_le_of_le hδ0
   obtain ⟨-, hreach⟩ := Zonotope.ballCert_reach hball
   obtain ⟨β', hβ', hβδ⟩ := hreach (fun i => y i - (toReal (cZ.c i)
-    + ∑ j, toReal (cZ.G i j) * toReal (β₀ j))) hy
+    + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))) hy
   -- the coefficients `β₀ + β'`: in the unit box, in the constraint polytope, reaching `y`
   refine ConZonotope.mem_nominalSet_iff.mpr
     ⟨fun j => toReal (β₀ j) + β' j, fun j => ?_, ?_, fun i => ?_⟩
@@ -101,13 +101,13 @@ theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 n} {H : Mat 𝕋 cZ.h n} {
   · -- the point: `y = c + G β` since `G β' = y - y₀`
     have := congrFun hβ' i
     simp only [Matrix.mulVec, dotProduct] at this
-    have hsum : ∑ j, toReal (cZ.G i j) * (toReal (β₀ j) + β' j)
-        = ∑ j, toReal (cZ.G i j) * toReal (β₀ j) + ∑ j, toReal (cZ.G i j) * β' j := by
+    have hsum : ∑ j, toReal (cZ.G j i) * (toReal (β₀ j) + β' j)
+        = ∑ j, toReal (cZ.G j i) * toReal (β₀ j) + ∑ j, toReal (cZ.G j i) * β' j := by
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by ring
     rw [hsum]
-    have h2 : ∑ j, toReal (cZ.G i j) * β' j = y i - (toReal (cZ.c i)
-        + ∑ j, toReal (cZ.G i j) * toReal (β₀ j)) := this
+    have h2 : ∑ j, toReal (cZ.G j i) * β' j = y i - (toReal (cZ.c i)
+        + ∑ j, toReal (cZ.G j i) * toReal (β₀ j)) := this
     linarith
 
 end CORALean.Float

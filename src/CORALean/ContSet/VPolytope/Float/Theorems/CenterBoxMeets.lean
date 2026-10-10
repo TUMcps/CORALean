@@ -70,7 +70,7 @@ theorem VPolytope.centerBox_meets (P : VPolytope 𝕋 n) (hk : 0 < P.k) :
     have hU0 : (0 : ℝ) < toReal (nsmulUp P.k (one : 𝕋)) := by linarith
     intro i
     -- the coordinate of the mean is the coordinate sum over the count
-    have hc : (InflatedContSet.nominal P).center i = (∑ l, toReal (P.V i l)) / P.k := by
+    have hc : (InflatedContSet.nominal P).center i = (∑ l, toReal (P.V l i)) / P.k := by
       rw [VPolytope.nominal_eq]
       simp [Real.VPolytope.center, Finset.sum_apply, div_eq_inv_mul]
     refine ⟨?_, ?_⟩

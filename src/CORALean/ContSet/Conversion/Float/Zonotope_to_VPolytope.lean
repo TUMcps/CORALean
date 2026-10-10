@@ -37,10 +37,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def Zonotope.signed (Z : Zonotope 𝕋 n) (σ : Fin Z.h → Bool) (i : Fin n) (j : Fin Z.h) : 𝕋 :=
   if σ j then Z.G j i else neg (Z.G j i)
 
-def Zonotope.cornerLo (Z : Zonotope 𝕋 n) (i : Fin n) (l : Fin (2 ^ Z.h)) : 𝕋 :=
+def Zonotope.cornerLo (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : Fin n) : 𝕋 :=
   addDown (Z.c i) (sumDown (Z.signed (signEquiv Z.h l) i))
 
-def Zonotope.cornerHi (Z : Zonotope 𝕋 n) (i : Fin n) (l : Fin (2 ^ Z.h)) : 𝕋 :=
+def Zonotope.cornerHi (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : Fin n) : 𝕋 :=
   addUp (Z.c i) (sumUp (Z.signed (signEquiv Z.h l) i))
 
 def Zonotope.vPolytope (Z : Zonotope 𝕋 n) : VPolytope 𝕋 n where
@@ -61,10 +61,10 @@ theorem Zonotope.aux_signed_toReal (Z : Zonotope 𝕋 n) (σ : Fin Z.h → Bool)
   · rw [if_neg h, if_neg h, toReal_neg, neg_one_mul]
 
 theorem Zonotope.aux_corner_mem (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : Fin n) :
-    toReal (Z.cornerLo i l)
+    toReal (Z.cornerLo l i)
         ≤ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
       ∧ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
-        ≤ toReal (Z.cornerHi i l) := by -- --- PROOF ---
+        ≤ toReal (Z.cornerHi l i) := by -- --- PROOF ---
   -- the exact corner as a sum of signed generators, which the two roundings bracket
   have hval : (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
       = toReal (Z.c i) + ∑ j, toReal (Z.signed (signEquiv Z.h l) i j) := by

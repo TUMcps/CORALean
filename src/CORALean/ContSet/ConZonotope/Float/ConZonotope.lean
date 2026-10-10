@@ -6,7 +6,10 @@ import CORALean.ContSet.Zonotope.Float.Zonotope
 # Constrained zonotopes over a floating-point scalar: the representation
 
 CORA's `conZonotope` with its centre, generators and coefficient constraints all
-held in `𝕋`, plus the error box that makes it an `InflatedContSet`.
+held in `𝕋`, plus the error box that makes it an `InflatedContSet`. `GConZonotope 𝕋 α`
+is generic over its ambient type, generators a family, as the exact layer's
+`ConZonotope α` is; `𝕋` stays, the constraints living on the coefficient space
+`Vec 𝕋 h` at every ambient type. `ConZonotope 𝕋 n` is the reducible vector case.
 
 Two roundings, in two different places, and the rule is the same one the other
 representations follow: pay where the representation already has slack of the
@@ -21,7 +24,7 @@ of its own.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -36,18 +39,23 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure ConZonotope (𝕋 : Type) (n : ℕ) where
+structure GConZonotope (𝕋 α : Type) where
   h : ℕ
-  c : Vec 𝕋 n
-  G : Mat 𝕋 n h
+  c : α
+  G : Fin h → α
   P : HPolytope 𝕋 h
-  E : Interval (Vec 𝕋 n)
+  E : Interval α
 
-instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (ConZonotope 𝕋 n) (CORALean.Real.ConZonotope (Vec ℝ n))
-      (Vec 𝕋 n) (Vec ℝ n) where
-  -- generators transpose: stored as a matrix here, a family of vectors there
-  nominal cZ := ⟨cZ.h, toRealVec cZ.c, fun j i => toReal (cZ.G i j), cZ.P.nominal⟩
+abbrev ConZonotope (𝕋 : Type) (n : ℕ) := GConZonotope 𝕋 (Vec 𝕋 n)
+
+/-- The exact constrained zonotope the stored floats describe, read through `RealImage`. -/
+abbrev GConZonotope.nominal {α β : Type} [RealImage α β] [SoundFloatArithmetic 𝕋]
+    (cZ : GConZonotope 𝕋 α) : CORALean.Real.ConZonotope β :=
+  ⟨cZ.h, RealImage.realImage cZ.c, fun j => RealImage.realImage (cZ.G j), cZ.P.nominal⟩
+
+instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
+    InflatedContSet (GConZonotope 𝕋 α) (CORALean.Real.ConZonotope β) α β where
+  nominal := GConZonotope.nominal
   error cZ := cZ.E
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
@@ -63,10 +71,10 @@ constraint polytope goes through its own `materialise`. -/
 
 def ConZonotope.materialise (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
   let c : Vector 𝕋 n := Vector.ofFn cZ.c
-  let G : Vector (Vector 𝕋 cZ.h) n := Vector.ofFn fun i => Vector.ofFn fun j => cZ.G i j
+  let G : Vector (Vector 𝕋 n) cZ.h := Vector.ofFn fun j => Vector.ofFn (cZ.G j)
   { h := cZ.h
     c := fun i => c[i.val]'i.isLt
-    G := fun i j => (G[i.val]'i.isLt)[j.val]'j.isLt
+    G := fun j i => (G[j.val]'j.isLt)[i.val]'i.isLt
     P := cZ.P.materialise
     E := cZ.E.materialise }
 

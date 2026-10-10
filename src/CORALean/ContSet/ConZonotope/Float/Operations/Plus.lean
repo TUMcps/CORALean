@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def ConZonotope.plus (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := cZ₁.h + cZ₂.h
   c := fun i => addDown (cZ₁.c i) (cZ₂.c i)
-  G := fun i => Fin.append (cZ₁.G i) (cZ₂.G i)
+  G := Fin.append cZ₁.G cZ₂.G
   P := (cZ₁.P.padLeft cZ₂.h).intersection (HPolytope.padRight cZ₁.h cZ₂.P)
   E := (cZ₁.E.plus cZ₂.E).plus (Zonotope.centerResidual cZ₁.c cZ₂.c)
 

@@ -54,8 +54,8 @@ theorem ConZonotope.aux_toReal_eq_zero {a : 𝕋}
 theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 n) :
     cZ.compact.construct = cZ.construct := by -- --- PROOF ---
   set S : Finset (Fin cZ.h) := Finset.univ.filter fun j : Fin cZ.h =>
-    !((List.finRange n).all (fun i => le (cZ.G i j) FloatOps.zero
-        && le FloatOps.zero (cZ.G i j))
+    !((List.finRange n).all (fun i => le (cZ.G j i) FloatOps.zero
+        && le FloatOps.zero (cZ.G j i))
       && (List.finRange cZ.P.m).all (fun k => le (cZ.P.A k j) FloatOps.zero
         && le FloatOps.zero (cZ.P.A k j))
       && (List.finRange cZ.P.me).all (fun k => le (cZ.P.Ae k j) FloatOps.zero
@@ -66,7 +66,7 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 n) :
         && le FloatOps.zero (cZ.P.Ae r j))
       && le (cZ.P.be.inf r) FloatOps.zero && le FloatOps.zero (cZ.P.be.sup r)) with hR
   -- what a dropped generator is: zero, and read by no row
-  have hdrop : ∀ j, j ∉ S → (∀ i, toReal (cZ.G i j) = 0) ∧ (∀ k, toReal (cZ.P.A k j) = 0)
+  have hdrop : ∀ j, j ∉ S → (∀ i, toReal (cZ.G j i) = 0) ∧ (∀ k, toReal (cZ.P.A k j) = 0)
       ∧ ∀ k, toReal (cZ.P.Ae k j) = 0 := by
     intro j hj
     simp only [hS, Finset.mem_filter, Finset.mem_univ, true_and, Bool.not_eq_true',
