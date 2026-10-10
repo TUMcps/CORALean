@@ -15,6 +15,8 @@ import CORALean.ContSet.Fullspace.Real.Operations.ConvHull
 import CORALean.ContSet.Fullspace.Real.Operations.SupportFunc
 import CORALean.ContSet.Fullspace.Real.Operations.IsBounded
 import CORALean.ContSet.Fullspace.Real.Operations.IsFullDimTest
+import CORALean.ContSet.Fullspace.Real.Operations.Vertices
+import CORALean.ContSet.Fullspace.Real.Operations.TruncatedVertices
 
 /-!
 # The full space: operations, collected

@@ -31,6 +31,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRepFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
+import CORALean.ContSet.PolyZonotope.Float.Operations.ConvHull
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
 import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
@@ -310,6 +311,7 @@ def pZ_plus : PolyZonotope D 2 := Plus.plus pZ pZ
 def pZ_linComb : PolyZonotope D 2 := LinComb.linComb pZ pZ
 def pZ_reduce : PolyZonotope D 2 := Reduce.reduce pZ 1
 def pZ_mtimes : PolyZonotope D 2 := Mtimes.mtimes (identityMat D 2) pZ
+def pZ_convHull : PolyZonotope D 2 := PolyZonotope.convHull pZ pZ
 
 -- the quadratic map `x ↦ xᵀ x` of `pZ`, its two-operand pairings, and the varying input part
 def pZ_quadMap : PolyZonotope D 2 := PolyZonotope.quadMap (fun _ : Fin 2 => identityMat D 2) pZ

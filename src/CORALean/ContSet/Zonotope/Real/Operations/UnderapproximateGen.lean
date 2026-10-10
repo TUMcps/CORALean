@@ -5,7 +5,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.Underapproximate
 
 `underapproximate` at CORA's default direction set `S = G`, which CORA takes when the generator
 matrix has at least as many rows as columns (`n ≥ h`); the other default, `dominantDirections`, is
-not here.
+`Zonotope.dominantDirections`, whose answer `underapproximate` takes as its `S`.
 -/
 
 -- Authors:       Tobias Ladner

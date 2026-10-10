@@ -31,6 +31,7 @@ import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
 import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.Capsule.Real.Theorems.EnclosePointsMem
 import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
+import CORALean.ContSet.Capsule.Real.Theorems.VolumeEq
 
 /-!
 # What a capsule guarantees, collected

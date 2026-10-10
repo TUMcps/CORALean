@@ -125,6 +125,7 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.SplitParallelotope
 import CORALean.ContSet.PolyZonotope.Float.Operations.Split
 import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
 import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDimWith
+import CORALean.ContSet.PolyZonotope.Float.Operations.ConvHull
 
 /-!
 # What `PolyZonotope` computes

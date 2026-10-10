@@ -118,23 +118,23 @@ Rulings on borderline cases:
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 0 | 28 | 1 | 10 | 3 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 28 | 0 | 10 | 3 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 3 | 35 | 1 | 8 | 3 |
 | [conZonotope](contSet/conZonotope.md) | contSet | 50 | 3 | 35 | 0 | 12 | 2 |
-| [contSet](contSet/contSet.md) | contSet | 101 | 0 | 28 | 1 | 72 | 0 |
+| [contSet](contSet/contSet.md) | contSet | 101 | 1 | 28 | 0 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 6 | 30 | 2 | 12 | 3 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 7 | 0 |
-| [fullspace](contSet/fullspace.md) | contSet | 33 | 4 | 20 | 1 | 8 | 0 |
+| [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 20 | 0 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 1 | 91 | 0 | 18 | 1 |
-| [levelSet](contSet/levelSet.md) | contSet | 22 | 3 | 9 | 1 | 9 | 2 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 6 | 46 | 6 | 15 | 3 |
+| [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 9 | 2 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 6 | 47 | 5 | 15 | 4 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 0 | 27 | 10 | 9 | 2 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 6 | 40 | 0 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 8 | 11 | 0 | 9 | 4 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 2 | 22 | 0 | 9 | 5 |
-| [taylm](contSet/taylm.md) | contSet | 51 | 1 | 37 | 1 | 12 | 0 |
+| [taylm](contSet/taylm.md) | contSet | 51 | 2 | 37 | 0 | 12 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 6 | 31 | 0 | 7 | 4 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 10 | 51 | 5 | 14 | 3 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 15 | 51 | 0 | 14 | 5 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 1 | 6 | 1 | 11 | 1 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 0 | 6 | 1 | 4 | 0 |

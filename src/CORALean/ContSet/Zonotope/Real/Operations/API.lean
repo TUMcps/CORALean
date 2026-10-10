@@ -140,6 +140,19 @@ import CORALean.ContSet.Zonotope.Real.Operations.AveragingWeights
 import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerUpdate
 import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
 import CORALean.ContSet.Zonotope.Real.Operations.StripGain
+import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyDropped
+import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyBasis
+import CORALean.ContSet.Zonotope.Real.Operations.EncloseMany
+import CORALean.ContSet.Zonotope.Real.Operations.MinnormOffset
+import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
+import CORALean.ContSet.Zonotope.Real.Operations.MinnormPoint
+import CORALean.ContSet.Zonotope.Real.Operations.VolumeRatio
+import CORALean.ContSet.Zonotope.Real.Operations.FilterOut
+import CORALean.ContSet.Zonotope.Real.Operations.GeneratorMatrix
+import CORALean.ContSet.Zonotope.Real.Operations.DominantLengthFilter
+import CORALean.ContSet.Zonotope.Real.Operations.DominantShortlist
+import CORALean.ContSet.Zonotope.Real.Operations.DominantScore
+import CORALean.ContSet.Zonotope.Real.Operations.DominantDirections
 
 /-!
 # What `Zonotope` computes

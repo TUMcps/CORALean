@@ -22,6 +22,7 @@ import CORALean.ContSet.Fullspace.Real.Theorems.NotDisjointIff
 import CORALean.ContSet.Fullspace.Real.Theorems.SupportFuncEq
 import CORALean.ContSet.Fullspace.Real.Theorems.IsBoundedIff
 import CORALean.ContSet.Fullspace.Real.Theorems.IsFullDimTestIff
+import CORALean.ContSet.Fullspace.Real.Theorems.ConstructEqIUnionTruncatedVertices
 
 /-!
 # The full space: theorems, collected

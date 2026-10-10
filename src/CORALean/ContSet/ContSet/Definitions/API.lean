@@ -7,6 +7,7 @@ import CORALean.ContSet.ContSet.Definitions.SupportFunc
 import CORALean.ContSet.ContSet.Definitions.DimReduce
 import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
 import CORALean.ContSet.ContSet.Definitions.IsBoundIntersect2D
+import CORALean.ContSet.ContSet.Definitions.ExactVertices
 
 /-!
 # What the set interface asks of a representation, without computing anything

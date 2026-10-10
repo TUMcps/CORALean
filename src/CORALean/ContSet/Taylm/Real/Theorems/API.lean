@@ -117,6 +117,13 @@ import CORALean.ContSet.Taylm.Real.Theorems.WeightAppend
 import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
 import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaEmptySetIff
 import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaPointConstruct
+import CORALean.ContSet.Taylm.Real.Theorems.SumBernsteinBasis
+import CORALean.ContSet.Taylm.Real.Theorems.BernsteinBasisNonneg
+import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinBasis
+import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinEntry
+import CORALean.ContSet.Taylm.Real.Theorems.LeBernsteinDegree
+import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqSumBernsteinCoeff
+import CORALean.ContSet.Taylm.Real.Theorems.OptBernsteinMem
 
 /-!
 # Taylor model guarantees, collected
