@@ -52,8 +52,8 @@ def PolyZonotope.outerApprox (pZ : PolyZonotope 𝕋 n) (tol : 𝕋) (S : Finset
     ((List.finRange pZ.h).filter dep).map Sum.inl ++ (List.finRange pZ.q).map Sum.inr
   -- `GGI`, the even columns halved
   let GGI : Fin pZ.h ⊕ Fin pZ.q → Vec 𝕋 n
-    | Sum.inl i => fun k => if even i then half (pZ.G k i) else pZ.G k i
-    | Sum.inr j => fun k => pZ.GI k j
+    | Sum.inl i => fun k => if even i then half (pZ.G i k) else pZ.G i k
+    | Sum.inr j => pZ.GI j
   -- `sort(sum(abs(GGI),1),'ascend')`
   let sorted : List (Fin pZ.h ⊕ Fin pZ.q) :=
     cand.mergeSort fun s t =>

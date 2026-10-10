@@ -31,8 +31,8 @@ same bound, so one box covers the two blocks together. -/
 def PolyZonotope.dropRadius (pZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) : Vec 𝕋 n :=
-  fun i₀ => addUp (radius (fun i l => pZ.G i (partD.right l)) i₀)
-    (radius (fun i j => pZ.GI i (partI.right j)) i₀)
+  fun i₀ => addUp (radius (fun i l => pZ.G (partD.right l) i) i₀)
+    (radius (fun i j => pZ.GI (partI.right j) i) i₀)
 
 end CORALean.Float
 

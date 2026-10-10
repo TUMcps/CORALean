@@ -72,19 +72,23 @@ theorem PolyZonotope.aux_nominal_cartProd (pZ₁ : PolyZonotope 𝕋 n₁) (pZ�
   · -- the dependent generators, column by column
     funext l
     refine Fin.addCases (fun l => ?_) (fun l => ?_) l
-    · show (fun i => toReal (genBlockDiag pZ₁.G pZ₂.G i (Fin.castAdd pZ₂.h l))) = _
+    · show (fun i => toReal (genBlockDiag (fun i l => pZ₁.G l i) (fun i l => pZ₂.G l i) i
+        (Fin.castAdd pZ₂.h l))) = _
       rw [toReal_genBlockDiag_left, PolyZonotope.aux_realG_left, appendLinear_apply]
       rfl
-    · show (fun i => toReal (genBlockDiag pZ₁.G pZ₂.G i (Fin.natAdd pZ₁.h l))) = _
+    · show (fun i => toReal (genBlockDiag (fun i l => pZ₁.G l i) (fun i l => pZ₂.G l i) i
+        (Fin.natAdd pZ₁.h l))) = _
       rw [toReal_genBlockDiag_right, PolyZonotope.aux_realG_right, appendLinear_apply]
       rfl
   · -- the independent generators, column by column
     funext l
     refine Fin.addCases (fun l => ?_) (fun l => ?_) l
-    · show (fun i => toReal (genBlockDiag pZ₁.GI pZ₂.GI i (Fin.castAdd pZ₂.q l))) = _
+    · show (fun i => toReal (genBlockDiag (fun i l => pZ₁.GI l i) (fun i l => pZ₂.GI l i) i
+        (Fin.castAdd pZ₂.q l))) = _
       rw [toReal_genBlockDiag_left, PolyZonotope.aux_realGI_left, appendLinear_apply]
       rfl
-    · show (fun i => toReal (genBlockDiag pZ₁.GI pZ₂.GI i (Fin.natAdd pZ₁.q l))) = _
+    · show (fun i => toReal (genBlockDiag (fun i l => pZ₁.GI l i) (fun i l => pZ₂.GI l i) i
+        (Fin.natAdd pZ₁.q l))) = _
       rw [toReal_genBlockDiag_right, PolyZonotope.aux_realGI_right, appendLinear_apply]
       rfl
 

@@ -51,13 +51,13 @@ def PolyZonotope.linComb (pZ₁ pZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋
   h := pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)
   q := pZ₁.q + pZ₂.q
   c := PolyZonotope.midpoint pZ₁.c pZ₂.c
-  G := fun i => Fin.append
-        (Fin.append (fun l => half (pZ₁.G i l)) (fun l => half (pZ₂.G i l)))
+  G := Fin.append
+        (Fin.append (fun l i => half (pZ₁.G l i)) (fun l i => half (pZ₂.G l i)))
         (Fin.append
-          (Fin.append (fun l => half (pZ₁.G i l)) (fun l => neg (half (pZ₂.G i l))))
-          (fun _ : Fin 1 => PolyZonotope.halfDiff pZ₁.c pZ₂.c i))
+          (Fin.append (fun l i => half (pZ₁.G l i)) (fun l i => neg (half (pZ₂.G l i))))
+          (fun _ : Fin 1 => PolyZonotope.halfDiff pZ₁.c pZ₂.c))
   E := Real.PolyZonotope.linCombE pZ₁.E pZ₂.E
-  GI := PolyZonotope.linCombGI addDown subDown pZ₁ pZ₂
+  GI := fun j i => PolyZonotope.linCombGI addDown subDown pZ₁ pZ₂ i j
   err := (pZ₁.err.linComb pZ₂.err).plus
     ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).plus
       ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).plus

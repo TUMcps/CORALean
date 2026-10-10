@@ -32,14 +32,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A column's exact multiple is off from the stored one by at most the gap. -/
 theorem PolyZonotope.aux_jacobianGap (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (r : Fin n)
     (i : Fin pZ.h) :
-    |(pZ.E k i : ℝ) * toReal (pZ.G r i) - toReal ((pZ.jacobian k).G r i)|
+    |(pZ.E k i : ℝ) * toReal (pZ.G i r) - toReal ((pZ.jacobian k).G i r)|
       ≤ toReal (pZ.jacobianGap k r i) := by -- --- PROOF ---
-  have hlo := sumDown_le_sum (fun _ : Fin (pZ.E k i) => pZ.G r i)
-  have hhi := sum_le_sumUp (fun _ : Fin (pZ.E k i) => pZ.G r i)
+  have hlo := sumDown_le_sum (fun _ : Fin (pZ.E k i) => pZ.G i r)
+  have hhi := sum_le_sumUp (fun _ : Fin (pZ.E k i) => pZ.G i r)
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul] at hlo hhi
-  have hgap := sub_le_subUp (sumUp fun _ : Fin (pZ.E k i) => pZ.G r i)
-    (sumDown fun _ : Fin (pZ.E k i) => pZ.G r i)
-  have hG : toReal ((pZ.jacobian k).G r i) = toReal (sumDown fun _ : Fin (pZ.E k i) => pZ.G r i) :=
+  have hgap := sub_le_subUp (sumUp fun _ : Fin (pZ.E k i) => pZ.G i r)
+    (sumDown fun _ : Fin (pZ.E k i) => pZ.G i r)
+  have hG : toReal ((pZ.jacobian k).G i r) = toReal (sumDown fun _ : Fin (pZ.E k i) => pZ.G i r) :=
     rfl
   rw [abs_le]
   simp only [PolyZonotope.jacobianGap]
@@ -54,17 +54,17 @@ theorem PolyZonotope.jacobian_outer (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) :
   rintro _ ⟨a, β, ha, hβ, rfl⟩
   -- the stored multiples are off by `Δ`, which the box holds
   have hbox := PolyZonotope.mem_generatorError_monomial (E := (pZ.jacobian k).E) (a := a)
-    (Δ := fun r l => (pZ.E k l : ℝ) * toReal (pZ.G r l) - toReal ((pZ.jacobian k).G r l))
+    (Δ := fun r l => (pZ.E k l : ℝ) * toReal (pZ.G l r) - toReal ((pZ.jacobian k).G l r))
     (pZ.aux_jacobianGap k) ha
   refine ⟨fun i => toReal ((pZ.jacobian k).c i)
-      + (∑ l, toReal ((pZ.jacobian k).G i l) * Real.PolyZonotope.monomial (pZ.jacobian k).E a l)
-      + ∑ j, toReal ((pZ.jacobian k).GI i j) * β j,
+      + (∑ l, toReal ((pZ.jacobian k).G l i) * Real.PolyZonotope.monomial (pZ.jacobian k).E a l)
+      + ∑ j, toReal ((pZ.jacobian k).GI j i) * β j,
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, fun _ => rfl⟩, _, hbox, ?_⟩
   funext i
   -- no independent generators on either side
   have h0 : ∑ j, β j • ((nominal pZ).jacobian k).GI j = (0 : Vec ℝ n) :=
     Finset.sum_eq_zero fun j _ => (j : Fin 0).elim0
-  have h1 : ∑ j, toReal ((pZ.jacobian k).GI i j) * β j = 0 :=
+  have h1 : ∑ j, toReal ((pZ.jacobian k).GI j i) * β j = 0 :=
     Finset.sum_eq_zero fun j _ => (j : Fin 0).elim0
   have hc : toReal ((pZ.jacobian k).c i) = 0 := toReal_zero
   have hE : (pZ.jacobian k).E = ((nominal pZ).jacobian k).E := rfl
@@ -73,15 +73,15 @@ theorem PolyZonotope.jacobian_outer (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) :
   rw [h1, hc, hE]
   simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
   -- the stored multiples plus their errors are the exact multiples
-  have hG : ∀ x, ((nominal pZ).jacobian k).G x i = (pZ.E k x : ℝ) * toReal (pZ.G i x) :=
+  have hG : ∀ x, ((nominal pZ).jacobian k).G x i = (pZ.E k x : ℝ) * toReal (pZ.G x i) :=
     fun x => rfl
   have hc0 : ((nominal pZ).jacobian k).c i = 0 := rfl
-  have hsum : (∑ l, toReal ((pZ.jacobian k).G i l)
+  have hsum : (∑ l, toReal ((pZ.jacobian k).G l i)
         * Real.PolyZonotope.monomial ((nominal pZ).jacobian k).E a l)
-      + (∑ l, ((pZ.E k l : ℝ) * toReal (pZ.G i l) - toReal ((pZ.jacobian k).G i l))
+      + (∑ l, ((pZ.E k l : ℝ) * toReal (pZ.G l i) - toReal ((pZ.jacobian k).G l i))
         * Real.PolyZonotope.monomial ((nominal pZ).jacobian k).E a l)
       = ∑ l, Real.PolyZonotope.monomial ((nominal pZ).jacobian k).E a l
-        * ((pZ.E k l : ℝ) * toReal (pZ.G i l)) := by
+        * ((pZ.E k l : ℝ) * toReal (pZ.G l i)) := by
     exact Finset.sum_add_distrib.symm.trans (Finset.sum_congr rfl fun l _ => by ring)
   rw [hc0]
   simp only [hG]

@@ -62,9 +62,9 @@ theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
   obtain ⟨a₁, β₁, ha₁, hβ₁, hx₁⟩ := PolyZonotope.mem_nominalSet_iff.mp hx₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hx₂⟩ := PolyZonotope.mem_nominalSet_iff.mp hx₂'
   refine ⟨fun i => toReal ((pZ₁.plus pZ₂).c i)
-            + (∑ l, toReal ((pZ₁.plus pZ₂).G i l)
+            + (∑ l, toReal ((pZ₁.plus pZ₂).G l i)
                 * Real.PolyZonotope.monomial (pZ₁.plus pZ₂).E (Fin.append a₁ a₂) l)
-            + ∑ j, toReal ((pZ₁.plus pZ₂).GI i j) * Fin.append β₁ β₂ j,
+            + ∑ j, toReal ((pZ₁.plus pZ₂).GI j i) * Fin.append β₁ β₂ j,
           PolyZonotope.mem_nominalSet_iff.mpr
             ⟨Fin.append a₁ a₂, Fin.append β₁ β₂, ?_, ?_, fun _ => rfl⟩,
           fun i => toReal (pZ₁.c i) + toReal (pZ₂.c i) - toReal ((pZ₁.plus pZ₂).c i), ?_, ?_⟩

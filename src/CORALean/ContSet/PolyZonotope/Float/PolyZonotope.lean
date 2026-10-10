@@ -17,11 +17,14 @@ identical in kind to a zonotope's; `Theorems/MemGeneratorError` says what it
 costs.
 
 The error box is `err` rather than `E`, which the exponent matrix has taken.
+
+`GPolyZonotope α` is generic over its ambient type, generators a family, as the exact
+layer's `PolyZonotope α` is; `PolyZonotope 𝕋 n` is its reducible vector case.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -36,25 +39,30 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure PolyZonotope (𝕋 : Type) (n : ℕ) where
+structure GPolyZonotope (α : Type) where
   /-- The dependent factors, shared across all of `G`. -/
   p : ℕ
   /-- The dependent generators. -/
   h : ℕ
   /-- The independent generators. -/
   q : ℕ
-  c : Vec 𝕋 n
-  G : Mat 𝕋 n h
+  c : α
+  G : Fin h → α
   E : Fin p → Fin h → ℕ
-  GI : Mat 𝕋 n q
-  err : Interval (Vec 𝕋 n)
+  GI : Fin q → α
+  err : Interval α
 
-instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (PolyZonotope 𝕋 n) (CORALean.Real.PolyZonotope (Vec ℝ n))
-      (Vec 𝕋 n) (Vec ℝ n) where
-  -- generators transpose: stored as a matrix here, a family of vectors there
-  nominal pZ := ⟨pZ.p, pZ.h, pZ.q, toRealVec pZ.c, fun l i => toReal (pZ.G i l), pZ.E,
-    fun j i => toReal (pZ.GI i j)⟩
+abbrev PolyZonotope (𝕋 : Type) (n : ℕ) := GPolyZonotope (Vec 𝕋 n)
+
+/-- The exact polynomial zonotope the stored floats describe, read through `RealImage`. -/
+abbrev GPolyZonotope.nominal {α β : Type} [RealImage α β] (pZ : GPolyZonotope α) :
+    CORALean.Real.PolyZonotope β :=
+  ⟨pZ.p, pZ.h, pZ.q, RealImage.realImage pZ.c, fun l => RealImage.realImage (pZ.G l), pZ.E,
+    fun j => RealImage.realImage (pZ.GI j)⟩
+
+instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
+    InflatedContSet (GPolyZonotope α) (CORALean.Real.PolyZonotope β) α β where
+  nominal := GPolyZonotope.nominal
   error pZ := pZ.err
 
 /-! The nominal set's fields, so proofs can see through the instance. -/
@@ -87,16 +95,16 @@ unstored exponent matrix costs the most. -/
 
 def PolyZonotope.materialise (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
   let c : Vector 𝕋 n := Vector.ofFn pZ.c
-  let G : Vector (Vector 𝕋 pZ.h) n := Vector.ofFn fun i => Vector.ofFn fun l => pZ.G i l
+  let G : Vector (Vector 𝕋 n) pZ.h := Vector.ofFn fun l => Vector.ofFn (pZ.G l)
   let E : Vector (Vector ℕ pZ.h) pZ.p := Vector.ofFn fun k => Vector.ofFn fun l => pZ.E k l
-  let GI : Vector (Vector 𝕋 pZ.q) n := Vector.ofFn fun i => Vector.ofFn fun j => pZ.GI i j
+  let GI : Vector (Vector 𝕋 n) pZ.q := Vector.ofFn fun j => Vector.ofFn (pZ.GI j)
   { p := pZ.p
     h := pZ.h
     q := pZ.q
     c := fun i => c[i.val]'i.isLt
-    G := fun i l => (G[i.val]'i.isLt)[l.val]'l.isLt
+    G := fun l i => (G[l.val]'l.isLt)[i.val]'i.isLt
     E := fun k l => (E[k.val]'k.isLt)[l.val]'l.isLt
-    GI := fun i j => (GI[i.val]'i.isLt)[j.val]'j.isLt
+    GI := fun j i => (GI[j.val]'j.isLt)[i.val]'i.isLt
     err := pZ.err.materialise }
 
 omit [FloatOps 𝕋] in

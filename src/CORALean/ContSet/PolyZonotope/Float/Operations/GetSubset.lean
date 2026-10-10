@@ -35,7 +35,7 @@ def PolyZonotope.getSubset (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (cen rad : 
   h := pZ.h * (pZ.maxExp k + 1)
   q := pZ.q
   c := pZ.c
-  G := pZ.getSubsetGDown k cen rad
+  G := fun l r => pZ.getSubsetGDown k cen rad r l
   -- the substituted factor's exponent is the term's index, the others the column's own
   E := fun k' l => if k' = k then ((finProdFinEquiv.symm l).2 : ℕ)
     else pZ.E k' (finProdFinEquiv.symm l).1

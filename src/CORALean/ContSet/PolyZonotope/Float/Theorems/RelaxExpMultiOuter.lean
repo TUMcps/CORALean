@@ -64,13 +64,13 @@ theorem PolyZonotope.aux_sum_univ_relaxExpMulti_q {pZ : PolyZonotope 𝕋 n}
 upward rounding. -/
 theorem PolyZonotope.aux_mergedGenMulti_gap (pZ : PolyZonotope 𝕋 n)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
-    |toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0))
+    |toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
       - toReal (pZ.mergedGen part i)| ≤ toReal (pZ.relaxGapMulti part i 0) := by -- --- PROOF ---
   have hlo : toReal (pZ.mergedGen part i)
-      ≤ toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0)) := addDown_le_add _ _
-  have hhi : toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0))
-      ≤ toReal (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0))) := add_le_addUp _ _
-  have hgap : toReal (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0)))
+      ≤ toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i) := addDown_le_add _ _
+  have hhi : toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
+      ≤ toReal (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) := add_le_addUp _ _
+  have hgap : toReal (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i))
       - toReal (pZ.mergedGen part i) ≤ toReal (pZ.relaxGapMulti part i 0) := sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
@@ -79,14 +79,14 @@ theorem PolyZonotope.aux_mergedGenMulti_gap (pZ : PolyZonotope 𝕋 n)
 too is off by at most its gap to the upward fold. -/
 theorem PolyZonotope.aux_relaxGenMulti_gap (pZ : PolyZonotope 𝕋 n)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
-    |(pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G i (part.right 0))
+    |(pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i)
       - toReal (pZ.relaxGenMulti part i)|
         ≤ toReal (pZ.relaxGapMulti part i 1) := by -- --- PROOF ---
   have hlo : toReal (pZ.relaxGenMulti part i)
-      ≤ (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G i (part.right 0)) := nsmulDown_le _ _
-  have hhi : (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G i (part.right 0))
-      ≤ toReal (nsmulUp (pZ.relaxWidthMulti part) (pZ.G i (part.right 0))) := le_nsmulUp _ _
-  have hgap : toReal (nsmulUp (pZ.relaxWidthMulti part) (pZ.G i (part.right 0)))
+      ≤ (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i) := nsmulDown_le _ _
+  have hhi : (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i)
+      ≤ toReal (nsmulUp (pZ.relaxWidthMulti part) (pZ.G (part.right 0) i)) := le_nsmulUp _ _
+  have hgap : toReal (nsmulUp (pZ.relaxWidthMulti part) (pZ.G (part.right 0) i))
       - toReal (pZ.relaxGenMulti part i) ≤ toReal (pZ.relaxGapMulti part i 1) := sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
@@ -128,15 +128,15 @@ theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope 𝕋 n)
     rfl
   -- the point at the stored columns, and what the two gaps still owe it
   refine ⟨fun i => toReal (pZ.c i)
-      + (∑ l : Fin d, toReal (pZ.G i (part.left l))
+      + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
             * Real.PolyZonotope.monomial pZ.E a (part.left l)
           + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
-      + (∑ j, toReal (pZ.GI i j) * β j + toReal (pZ.relaxGenMulti part i) * t),
+      + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.relaxGenMulti part i) * t),
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, Fin.append β fun _ => t, ha, ?_, ?_⟩,
     _, PolyZonotope.mem_generatorError (G := pZ.relaxGapMulti part)
-      (Δ := fun i => ![toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0))
+      (Δ := fun i => ![toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
           - toReal (pZ.mergedGen part i),
-        (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G i (part.right 0))
+        (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i)
           - toReal (pZ.relaxGenMulti part i)])
       (t := ![Real.PolyZonotope.monomial pZ.E a (part.right 1), t]) ?_ ?_, ?_⟩
   -- the fresh independent coefficient is what the drift asks of the new column
@@ -160,16 +160,16 @@ theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope 𝕋 n)
   -- the two stored columns, their gaps and the drift recombine into the exact sums
   · funext i
     show toReal (pZ.c i)
-          + (∑ l : Fin d, toReal (pZ.G i (part.left l))
+          + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
               * Real.PolyZonotope.monomial pZ.E a (part.left l)
             + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
-          + (∑ j, toReal (pZ.GI i j) * β j + toReal (pZ.relaxGenMulti part i) * t)
+          + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.relaxGenMulti part i) * t)
         + ∑ l, _ * _ = x i
     rw [hxi i, Fin.sum_univ_two,
-      part.sum_split₂ fun l => toReal (pZ.G i l) * Real.PolyZonotope.monomial pZ.E a l,
+      part.sum_split₂ fun l => toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l,
       Fin.sum_univ_two]
     simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
-    linear_combination toReal (pZ.G i (part.right 0)) * hcoef
+    linear_combination toReal (pZ.G (part.right 0) i) * hcoef
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

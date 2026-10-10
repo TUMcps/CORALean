@@ -31,7 +31,7 @@ def PolyZonotope.compactGens (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n wh
   h := (PolyZonotope.repKeep pZ.E).card
   q := pZ.q
   c := pZ.c
-  G := pZ.mergedCol
+  G := fun j i => pZ.mergedCol i j
   E := fun k j => pZ.E k (PolyZonotope.keepIdx pZ.E j)
   GI := pZ.GI
   err := pZ.err.plus (PolyZonotope.generatorError (PolyZonotope.compactGap pZ))

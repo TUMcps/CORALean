@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 Generators carry the second index here, so concatenating them appends along a
 row. -/
 def PolyZonotope.aux_concatGens (pZ : PolyZonotope 𝕋 n) : Mat 𝕋 n (pZ.h + pZ.q) :=
-  fun i => Fin.append (pZ.G i) (pZ.GI i)
+  fun i => Fin.append (fun l => pZ.G l i) (fun j => pZ.GI j i)
 
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once
@@ -55,8 +55,8 @@ def PolyZonotope.reduceGirard (pZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotop
   if o * n < pZ.h + pZ.q then
     let K := (o - 1) * n
     let d := pZ.aux_girardKeptDep K
-    pZ.reduceBy (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.G) d)
-      (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.GI) (K - d))
+    pZ.reduceBy (PolyZonotope.girardSplit (PolyZonotope.girardMetric fun i l => pZ.G l i) d)
+      (PolyZonotope.girardSplit (PolyZonotope.girardMetric fun i j => pZ.GI j i) (K - d))
   else pZ
 
 end CORALean.Float

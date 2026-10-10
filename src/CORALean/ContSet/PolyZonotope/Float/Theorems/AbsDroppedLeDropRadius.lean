@@ -32,10 +32,10 @@ they lie in `[-1, 1]`. -/
 theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin pZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
-    |∑ l, toReal (pZ.G i (partD.right l))
+    |∑ l, toReal (pZ.G (partD.right l) i)
         * Real.PolyZonotope.monomial pZ.E a (partD.right l)|
-      ≤ toReal (radius (fun i l => pZ.G i (partD.right l)) i) :=
-  abs_sum_le_radius (d := fun i l => pZ.G i (partD.right l)) (fun _ _ => le_refl _)
+      ≤ toReal (radius (fun i l => pZ.G (partD.right l) i) i) :=
+  abs_sum_le_radius (d := fun i l => pZ.G (partD.right l) i) (fun _ _ => le_refl _)
     (fun l => Real.PolyZonotope.abs_monomial_le_one pZ.E ha (partD.right l)) i
 
 /-- The same for the dropped independent generators, whose coefficients are
@@ -43,9 +43,9 @@ free to begin with. -/
 theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope 𝕋 n)
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin pZ.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |∑ j, toReal (pZ.GI i (partI.right j)) * β (partI.right j)|
-      ≤ toReal (radius (fun i j => pZ.GI i (partI.right j)) i) :=
-  abs_sum_le_radius (d := fun i j => pZ.GI i (partI.right j)) (fun _ _ => le_refl _)
+    |∑ j, toReal (pZ.GI (partI.right j) i) * β (partI.right j)|
+      ≤ toReal (radius (fun i j => pZ.GI (partI.right j) i) i) :=
+  abs_sum_le_radius (d := fun i j => pZ.GI (partI.right j) i) (fun _ _ => le_refl _)
     (fun j => hβ (partI.right j)) i
 
 
@@ -56,14 +56,14 @@ theorem PolyZonotope.abs_dropped_le_dropRadius (pZ : PolyZonotope 𝕋 n)
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {a : Fin pZ.p → ℝ}
     {β : Fin pZ.q → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |(∑ l, toReal (pZ.G i (partD.right l))
+    |(∑ l, toReal (pZ.G (partD.right l) i)
           * Real.PolyZonotope.monomial pZ.E a (partD.right l))
-        + ∑ j, toReal (pZ.GI i (partI.right j)) * β (partI.right j)|
+        + ∑ j, toReal (pZ.GI (partI.right j) i) * β (partI.right j)|
       ≤ toReal (pZ.dropRadius partD partI i) := by -- --- PROOF ---
   have hD := PolyZonotope.aux_abs_droppedDep_le pZ partD ha i
   have hI := PolyZonotope.aux_abs_droppedInd_le pZ partI hβ i
-  have hsum := add_le_addUp (radius (fun i l => pZ.G i (partD.right l)) i)
-    (radius (fun i j => pZ.GI i (partI.right j)) i)
+  have hsum := add_le_addUp (radius (fun i l => pZ.G (partD.right l) i) i)
+    (radius (fun i j => pZ.GI (partI.right j) i) i)
   refine le_trans (abs_add_le _ _) ?_
   simp only [PolyZonotope.dropRadius]
   linarith

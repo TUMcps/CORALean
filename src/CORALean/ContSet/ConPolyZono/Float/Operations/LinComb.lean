@@ -42,9 +42,9 @@ def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 
     m := cPZ₁.m + cPZ₂.m
     s := cPZ₁.s + cPZ₂.s
     c := pZ.c
-    G := pZ.G
+    G := fun i l => pZ.G l i
     E := pZ.E
-    GI := pZ.GI
+    GI := fun i j => pZ.GI j i
     A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
     b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
     EC := Real.ConPolyZono.padE (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) 1

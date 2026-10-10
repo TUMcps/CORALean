@@ -55,46 +55,46 @@ theorem PolyZonotope.sum_outer {m : ℕ} (pZ : PolyZonotope 𝕋 n)
       PolyZonotope.sumErr_mem _ eL heL, rfl⟩, _, hr, rfl⟩
   -- the float point at the same factors and coefficients, off by the centre's rounding
   refine ⟨fun i => toReal ((pZ.sum L hp).c i)
-        + (∑ l, toReal ((pZ.sum L hp).G i l) * Real.PolyZonotope.monomial (pZ.sum L hp).E a l)
-        + ∑ j, toReal ((pZ.sum L hp).GI i j) * β j,
+        + (∑ l, toReal ((pZ.sum L hp).G l i) * Real.PolyZonotope.monomial (pZ.sum L hp).E a l)
+        + ∑ j, toReal ((pZ.sum L hp).GI j i) * β j,
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, fun _ => rfl⟩, _, hbox, ?_⟩
   funext i
   -- the stored blocks read back as the exact layer's appended ones, entry by entry
   let σh : Fin (∑ i, (L i).h) → Σ i, Fin (L i).h := fun j => finSigmaFinEquiv.symm j
   let σq : Fin (∑ i, (L i).q) → Σ i, Fin (L i).q := fun j => finSigmaFinEquiv.symm j
   have hG : ∀ l : Fin (pZ.h + ∑ i, (L i).h),
-      toReal ((pZ.sum L hp).G i l)
+      toReal ((pZ.sum L hp).G l i)
       = (Real.PolyZonotope.sum (nominal pZ) (fun i => nominal (L i)) hp).G l i :=
     Fin.addCases
       (fun l => by
-        show toReal ((Fin.append (pZ.G i) (fun j =>
-            (L (σh j).1).G i (σh j).2)) (Fin.castAdd _ l))
+        show toReal ((Fin.append pZ.G (fun j =>
+            (L (σh j).1).G (σh j).2)) (Fin.castAdd _ l) i)
           = (Fin.append (nominal pZ).G (fun j =>
             (nominal (L (σh j).1)).G (σh j).2) (Fin.castAdd _ l)) i
         rw [Fin.append_left, Fin.append_left]
         rfl)
       fun l => by
-        show toReal ((Fin.append (pZ.G i) (fun j =>
-            (L (σh j).1).G i (σh j).2)) (Fin.natAdd _ l))
+        show toReal ((Fin.append pZ.G (fun j =>
+            (L (σh j).1).G (σh j).2)) (Fin.natAdd _ l) i)
           = (Fin.append (nominal pZ).G (fun j =>
             (nominal (L (σh j).1)).G (σh j).2) (Fin.natAdd _ l)) i
         rw [Fin.append_right, Fin.append_right]
         rfl
   -- and the independent block
   have hGI : ∀ l : Fin (pZ.q + ∑ i, (L i).q),
-      toReal ((pZ.sum L hp).GI i l)
+      toReal ((pZ.sum L hp).GI l i)
       = (Real.PolyZonotope.sum (nominal pZ) (fun i => nominal (L i)) hp).GI l i :=
     Fin.addCases
       (fun l => by
-        show toReal ((Fin.append (pZ.GI i) (fun j =>
-            (L (σq j).1).GI i (σq j).2)) (Fin.castAdd _ l))
+        show toReal ((Fin.append pZ.GI (fun j =>
+            (L (σq j).1).GI (σq j).2)) (Fin.castAdd _ l) i)
           = (Fin.append (nominal pZ).GI (fun j =>
             (nominal (L (σq j).1)).GI (σq j).2) (Fin.castAdd _ l)) i
         rw [Fin.append_left, Fin.append_left]
         rfl)
       fun l => by
-        show toReal ((Fin.append (pZ.GI i) (fun j =>
-            (L (σq j).1).GI i (σq j).2)) (Fin.natAdd _ l))
+        show toReal ((Fin.append pZ.GI (fun j =>
+            (L (σq j).1).GI (σq j).2)) (Fin.natAdd _ l) i)
           = (Fin.append (nominal pZ).GI (fun j =>
             (nominal (L (σq j).1)).GI (σq j).2) (Fin.natAdd _ l)) i
         rw [Fin.append_right, Fin.append_right]

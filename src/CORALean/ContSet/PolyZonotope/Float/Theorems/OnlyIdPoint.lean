@@ -36,10 +36,10 @@ theorem PolyZonotope.aux_onlyId_nominal_G (pZ : PolyZonotope 𝕋 n) (S : Finset
   constructor
   · funext l i
     simp only [Real.PolyZonotope.onlyId, PolyZonotope.onlyId, nominal]
-    split_ifs <;> simp [toReal_zero]
+    split_ifs <;> simp [toReal_zero, RealImage.realImage, toRealVec]
   · funext l i
     simp only [Real.PolyZonotope.onlyId, PolyZonotope.onlyId, nominal]
-    split_ifs <;> simp [toReal_zero]
+    split_ifs <;> simp [toReal_zero, RealImage.realImage, toRealVec]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

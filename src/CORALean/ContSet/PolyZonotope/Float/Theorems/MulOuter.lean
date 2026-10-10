@@ -53,7 +53,7 @@ theorem PolyZonotope.aux_mul_refines (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (hp : p
   refine ⟨fun i => toReal ((PolyZonotope.mul pZ₁ pZ₂ hp).c i)
             + (∑ l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1)), toReal (PolyZonotope.mulGDown pZ₁ pZ₂ i l)
                 * Real.PolyZonotope.monomial (PolyZonotope.mulE pZ₁ pZ₂ hp) a l)
-            + ∑ j : Fin 0, toReal ((PolyZonotope.mul pZ₁ pZ₂ hp).GI i j) * b j,
+            + ∑ j : Fin 0, toReal ((PolyZonotope.mul pZ₁ pZ₂ hp).GI j i) * b j,
           PolyZonotope.mem_nominalSet_iff.mpr ⟨a, b, ha, hb, fun _ => rfl⟩, _, hbox, ?_⟩
   funext i
   -- binders ascribed: the two layers' counts are one number but not the term `rw` matches

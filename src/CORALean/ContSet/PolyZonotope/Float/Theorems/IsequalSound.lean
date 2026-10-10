@@ -42,9 +42,9 @@ theorem PolyZonotope.isequal_sound {Z S : PolyZonotope 𝕋 n} (h : Z.isequal S 
     obtain ⟨rfl, rfl, rfl⟩ := e
     simp only [Fin.cast_eq_self] at hnum hE
     have hc : toRealVec c₁ = toRealVec c₂ := funext fun i => eqr (hnum i).1.1.1.1
-    have hG : (fun l i => toReal (G₁ i l)) = fun l i => toReal (G₂ i l) :=
+    have hG : (fun l i => toReal (G₁ l i)) = fun l i => toReal (G₂ l i) :=
       funext fun l => funext fun i => eqr (by simpa using (hnum i).1.2 l)
-    have hGI : (fun l i => toReal (GI₁ i l)) = fun l i => toReal (GI₂ i l) :=
+    have hGI : (fun l i => toReal (GI₁ l i)) = fun l i => toReal (GI₂ l i) :=
       funext fun l => funext fun i => eqr (by simpa using (hnum i).2 l)
     have hEi : toRealVec r₁.inf = toRealVec r₂.inf := funext fun i => eqr (hnum i).1.1.1.2
     have hEs : toRealVec r₁.sup = toRealVec r₂.sup := funext fun i => eqr (hnum i).1.1.2
@@ -59,9 +59,9 @@ theorem PolyZonotope.isequal_sound {Z S : PolyZonotope 𝕋 n} (h : Z.isequal S 
       rw [this]
     have hN : (nominal (⟨p₁, h₁, q₁, c₁, G₁, E₁, GI₁, r₁⟩ : PolyZonotope 𝕋 n)) =
         nominal (⟨p₁, h₁, q₁, c₂, G₂, E₂, GI₂, r₂⟩ : PolyZonotope 𝕋 n) := by
-      show (⟨p₁, h₁, q₁, toRealVec c₁, fun l i => toReal (G₁ i l), E₁,
-          fun j i => toReal (GI₁ i j)⟩ : CORALean.Real.PolyZonotope (Vec ℝ n)) =
-        ⟨p₁, h₁, q₁, toRealVec c₂, fun l i => toReal (G₂ i l), E₂, fun j i => toReal (GI₂ i j)⟩
+      show (⟨p₁, h₁, q₁, toRealVec c₁, fun l i => toReal (G₁ l i), E₁,
+          fun j i => toReal (GI₁ j i)⟩ : CORALean.Real.PolyZonotope (Vec ℝ n)) =
+        ⟨p₁, h₁, q₁, toRealVec c₂, fun l i => toReal (G₂ l i), E₂, fun j i => toReal (GI₂ j i)⟩
       rw [hc, hG, hGI, hE']
     change ContSet.construct (nominal (⟨p₁, h₁, q₁, c₁, G₁, E₁, GI₁, r₁⟩ : PolyZonotope 𝕋 n)) +
         r₁.construct =

@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The centre as generator zero, so a point is one sum. -/
 def PolyZonotope.extG (pZ : PolyZonotope 𝕋 n) : Mat 𝕋 n (pZ.h + 1) :=
-  fun i => Fin.cons (pZ.c i) (pZ.G i)
+  fun i => Fin.cons (pZ.c i) fun l => pZ.G l i
 
 end CORALean.Float
 

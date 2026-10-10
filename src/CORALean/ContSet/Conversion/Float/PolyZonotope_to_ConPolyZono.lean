@@ -30,9 +30,9 @@ def PolyZonotope.conPolyZono (pZ : PolyZonotope 𝕋 n) : ConPolyZono 𝕋 n whe
   m := 0
   s := 0
   c := pZ.c
-  G := pZ.G
+  G := fun i l => pZ.G l i
   E := pZ.E
-  GI := pZ.GI
+  GI := fun i j => pZ.GI j i
   A := fun i => i.elim0
   b := ⟨fun i => i.elim0, fun i => i.elim0⟩
   EC := fun _ => Fin.elim0

@@ -42,7 +42,7 @@ def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) ⊕ (Fin 0) 
 def PolyZonotope.reduceGirardDependent (pZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
   if o * n < pZ.h then
     pZ.reduceBy
-      (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.G) ((o - 1) * n))
+      (PolyZonotope.girardSplit (PolyZonotope.girardMetric fun i l => pZ.G l i) ((o - 1) * n))
       (PolyZonotope.aux_keepAll pZ.q)
   else pZ
 

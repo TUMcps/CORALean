@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 one, in copies of the relaxed generator, rounded down. -/
 def PolyZonotope.relaxShiftMid (pZ : PolyZonotope 𝕋 n)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
-  fun i => half (subDown (nsmulDown (pZ.relaxDrift part k₀).2 (pZ.G i (part.right 0)))
-    (nsmulUp (pZ.relaxDrift part k₀).1 (pZ.G i (part.right 0))))
+  fun i => half (subDown (nsmulDown (pZ.relaxDrift part k₀).2 (pZ.G (part.right 0) i))
+    (nsmulUp (pZ.relaxDrift part k₀).1 (pZ.G (part.right 0) i)))
 
 end CORALean.Float
 

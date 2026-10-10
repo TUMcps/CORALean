@@ -42,12 +42,12 @@ def PolyZonotope.convHull (pZ₁ pZ₂ : PolyZonotope 𝕋 n) : PolyZonotope �
   -- pZ = linComb(linComb(pZ1_, pZ1_), linComb(pZ2_, pZ2_))
   let pZ := (pZ₁'.linComb pZ₁').linComb (pZ₂'.linComb pZ₂')
   -- Z1 = zonotope(c0, pZ1.GI), Z2 = zonotope(c0, S.GI)
-  let Z₁ : Zonotope 𝕋 n := ⟨pZ₁.q, fun _ => zero, fun j i => pZ₁.GI i j, Interval.origin n⟩
-  let Z₂ : Zonotope 𝕋 n := ⟨pZ₂.q, fun _ => zero, fun j i => pZ₂.GI i j, Interval.origin n⟩
+  let Z₁ : Zonotope 𝕋 n := ⟨pZ₁.q, fun _ => zero, pZ₁.GI, Interval.origin n⟩
+  let Z₂ : Zonotope 𝕋 n := ⟨pZ₂.q, fun _ => zero, pZ₂.GI, Interval.origin n⟩
   -- Z = enclose(Z1, Z2)
   let Z := Z₁.linComb Z₂
   -- pZ.GI = Z.G
-  { pZ with q := Z.h, GI := fun i j => Z.G j i, err := pZ.err.plus (Z.E.plus (Interval.point Z.c)) }
+  { pZ with q := Z.h, GI := Z.G, err := pZ.err.plus (Z.E.plus (Interval.point Z.c)) }
 
 end CORALean.Float
 

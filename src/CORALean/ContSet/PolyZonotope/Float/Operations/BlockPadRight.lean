@@ -30,9 +30,9 @@ def PolyZonotope.blockPadRight (n₁ : ℕ) (pZ : PolyZonotope 𝕋 n) : PolyZon
   h := pZ.h
   q := pZ.q
   c := Fin.append (fun _ => zero) pZ.c
-  G := fun i l => Fin.addCases (motive := fun _ => 𝕋) (fun _ => zero) (fun i => pZ.G i l) i
+  G := fun l => Fin.append (fun _ => zero) (pZ.G l)
   E := pZ.E
-  GI := fun i j => Fin.addCases (motive := fun _ => 𝕋) (fun _ => zero) (fun i => pZ.GI i j) i
+  GI := fun j => Fin.append (fun _ => zero) (pZ.GI j)
   err := ⟨Fin.append (fun _ => zero) pZ.err.inf, Fin.append (fun _ => zero) pZ.err.sup⟩
 
 end CORALean.Float

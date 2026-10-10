@@ -59,9 +59,9 @@ theorem ConPolyZono.aux_quadMapG_close (Q : Fin k → Mat 𝕋 n n) (pZ : PolyZo
 theorem ConPolyZono.aux_dependent_point (pZ : PolyZonotope 𝕋 n) (a : Fin pZ.p → ℝ)
     (β : Fin pZ.q → ℝ) (e : Vec ℝ n)
     (hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.err i)) (i : Fin n) :
-    toReal (pZ.c i) + (∑ l, toReal (pZ.G i l) * Real.PolyZonotope.monomial pZ.E a l)
-        + (∑ j, toReal (pZ.GI i j) * β j) + e i
-      = toReal (pZ.dependent.c i) + ∑ l : Fin pZ.dependent.h, toReal (pZ.dependent.G i l)
+    toReal (pZ.c i) + (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
+        + (∑ j, toReal (pZ.GI j i) * β j) + e i
+      = toReal (pZ.dependent.c i) + ∑ l : Fin pZ.dependent.h, toReal (pZ.dependent.G l i)
         * Real.PolyZonotope.monomial pZ.dependent.E (Fin.append a (Fin.append β
           fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.err i)) (e i)))
           l := by -- --- PROOF ---
@@ -108,7 +108,7 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
   have hpt : Real.PolyZonotope.point (nominal D) a' = z + e := by
     funext i
     have h := ConPolyZono.aux_dependent_point cPZ.toPolyZonotope a β e hbound i
-    show toReal (D.c i) + (∑ l, Real.PolyZonotope.monomial D.E a' l • fun r => toReal (D.G r l)) i
+    show toReal (D.c i) + (∑ l, Real.PolyZonotope.monomial D.E a' l • fun r => toReal (D.G l r)) i
       = z i + e i
     simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
     rw [hz i]

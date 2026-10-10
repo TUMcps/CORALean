@@ -39,13 +39,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The zero-centred zonotope of the independent block, as `convHull` builds it. -/
 abbrev PolyZonotope.aux_Z (P : PolyZonotope 𝕋 n) : Zonotope 𝕋 n :=
-  ⟨P.q, fun _ => zero, fun j i => P.GI i j, Interval.origin n⟩
+  ⟨P.q, fun _ => zero, P.GI, Interval.origin n⟩
 
 /-- The dependent value at `a`, plus an error, is a point of the operand without its independent
 block. -/
 theorem PolyZonotope.aux_dep_mem (P : PolyZonotope 𝕋 n) {a : Fin P.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) {e : Vec ℝ n} (he : e ∈ P.err.construct) :
-    (fun i => toReal (P.c i) + ∑ l, toReal (P.G i l) * Real.PolyZonotope.monomial P.E a l) + e
+    (fun i => toReal (P.c i) + ∑ l, toReal (P.G l i) * Real.PolyZonotope.monomial P.E a l) + e
       ∈ P.noIndep.construct :=
   Set.add_mem_add (PolyZonotope.mem_nominalSet_iff.mpr
     ⟨a, Fin.elim0, ha, fun j => j.elim0, fun i => by simp [PolyZonotope.noIndep]; rfl⟩) he
@@ -54,12 +54,12 @@ theorem PolyZonotope.aux_dep_mem (P : PolyZonotope 𝕋 n) {a : Fin P.p → ℝ}
 /-- The independent value is a point of the zonotope of the independent block. -/
 theorem PolyZonotope.aux_ind_mem (P : PolyZonotope 𝕋 n) {β : Fin P.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) :
-    (fun i => ∑ j, toReal (P.GI i j) * β j)
+    (fun i => ∑ j, toReal (P.GI j i) * β j)
       ∈ (PolyZonotope.aux_Z P).construct := by -- --- PROOF ---
   have h0 : (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct := by
     rw [Interval.origin_exact]
     exact Set.mem_singleton _
-  have hz : (fun i => ∑ j, toReal (P.GI i j) * β j) + 0
+  have hz : (fun i => ∑ j, toReal (P.GI j i) * β j) + 0
       ∈ InflatedContSet.nominalSet (PolyZonotope.aux_Z P)
         + (Interval.origin n : Interval (Vec 𝕋 n)).construct :=
     Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun i => by

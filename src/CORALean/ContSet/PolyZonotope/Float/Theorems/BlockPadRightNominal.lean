@@ -34,18 +34,22 @@ theorem PolyZonotope.nominal_blockPadRight (n₁ : ℕ) (pZ : PolyZonotope 𝕋 
   congr 1
   · funext j
     refine Fin.addCases (fun i => ?_) (fun i => ?_) j
-    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, toRealVec, toReal_zero]
-    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, toRealVec]
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec,
+        toReal_zero]
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec]
+      rfl
+  -- each generator of either block, padded as the centre is
+  · funext l j
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) j
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec,
+        toReal_zero]
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec]
       rfl
   · funext l j
     refine Fin.addCases (fun i => ?_) (fun i => ?_) j
-    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, toReal_zero]
-    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight]
-      rfl
-  · funext l j
-    refine Fin.addCases (fun i => ?_) (fun i => ?_) j
-    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, toReal_zero]
-    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight]
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec,
+        toReal_zero]
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec]
       rfl
 
 end CORALean.Float

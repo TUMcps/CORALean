@@ -59,8 +59,8 @@ theorem PolyZonotope.aux_sum_univ_linComb_q {pZ₁ pZ₂ : PolyZonotope 𝕋 n}
 noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (i : Fin n) :
     Fin (pZ₁.q + pZ₂.q) → ℝ :=
   Fin.append
-    (Real.Zonotope.pairSum (fun j => toReal (pZ₁.GI i j)) (fun j => toReal (pZ₂.GI i j)))
-    (Real.Zonotope.pairDiff (fun j => toReal (pZ₁.GI i j)) (fun j => toReal (pZ₂.GI i j)))
+    (Real.Zonotope.pairSum (fun j => toReal (pZ₁.GI j i)) (fun j => toReal (pZ₂.GI j i)))
+    (Real.Zonotope.pairDiff (fun j => toReal (pZ₁.GI j i)) (fun j => toReal (pZ₂.GI j i)))
 
 /-- What the stored independent generators are wrong by, entrywise, which is
 what `linCombGIDiff` records. -/
@@ -78,10 +78,10 @@ theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (i 
     refine Fin.addCases ?_ ?_
     · intro k
       simp only [Fin.append_left]
-      exact Zonotope.pairSum_bracket (pZ₁.GI i) (pZ₂.GI i) k
+      exact Zonotope.pairSum_bracket (fun j => pZ₁.GI j i) (fun j => pZ₂.GI j i) k
     · intro k
       simp only [Fin.append_right]
-      exact Zonotope.pairDiff_bracket (pZ₁.GI i) (pZ₂.GI i) k
+      exact Zonotope.pairDiff_bracket (fun j => pZ₁.GI j i) (fun j => pZ₂.GI j i) k
   -- the gap between the two directed spellings is what bounds the error
   obtain ⟨hlo, hhi⟩ := hbr j
   have hgap := sub_le_subUp (PolyZonotope.linCombGI addUp subUp pZ₁ pZ₂ i j)
@@ -97,12 +97,12 @@ theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (i : 
     (∑ j, PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
-      = lam * (∑ j, toReal (pZ₁.GI i j) * β₁ j)
-        + (1 - lam) * ∑ j, toReal (pZ₂.GI i j) * β₂ j := by
+      = lam * (∑ j, toReal (pZ₁.GI j i) * β₁ j)
+        + (1 - lam) * ∑ j, toReal (pZ₂.GI j i) * β₂ j := by
   rw [Fin.sum_univ_add]
   simp only [PolyZonotope.aux_linCombGIReal, Fin.append_left, Fin.append_right]
-  exact Zonotope.sum_pair_mul (fun j => toReal (pZ₁.GI i j))
-    (fun j => toReal (pZ₂.GI i j)) β₁ β₂ lam
+  exact Zonotope.sum_pair_mul (fun j => toReal (pZ₁.GI j i))
+    (fun j => toReal (pZ₂.GI j i)) β₁ β₂ lam
 
 /-- The two directed midpoints bracket the exact one, halving being exact. -/
 theorem PolyZonotope.aux_midpoint_mem_residual (a b : Vec 𝕋 n) :
@@ -188,16 +188,16 @@ theorem PolyZonotope.linComb_nominal_at (pZ₁ pZ₂ : PolyZonotope 𝕋 n) {a�
     (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
     ∃ β : Fin (pZ₁.linComb pZ₂).q → ℝ, (∀ j, |β j| ≤ 1) ∧
       lam • (fun i => toReal (pZ₁.c i)
-          + (∑ l, toReal (pZ₁.G i l) * Real.PolyZonotope.monomial pZ₁.E a₁ l)
-          + ∑ j, toReal (pZ₁.GI i j) * β₁ j)
+          + (∑ l, toReal (pZ₁.G l i) * Real.PolyZonotope.monomial pZ₁.E a₁ l)
+          + ∑ j, toReal (pZ₁.GI j i) * β₁ j)
         + (1 - lam) • (fun i => toReal (pZ₂.c i)
-          + (∑ l, toReal (pZ₂.G i l) * Real.PolyZonotope.monomial pZ₂.E a₂ l)
-          + ∑ j, toReal (pZ₂.GI i j) * β₂ j)
+          + (∑ l, toReal (pZ₂.G l i) * Real.PolyZonotope.monomial pZ₂.E a₂ l)
+          + ∑ j, toReal (pZ₂.GI j i) * β₂ j)
       ∈ ({fun i => toReal ((pZ₁.linComb pZ₂).c i)
-            + (∑ l, toReal ((pZ₁.linComb pZ₂).G i l)
+            + (∑ l, toReal ((pZ₁.linComb pZ₂).G l i)
                 * Real.PolyZonotope.monomial (pZ₁.linComb pZ₂).E
                     (Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1)) l)
-            + ∑ j, toReal ((pZ₁.linComb pZ₂).GI i j) * β j} : Set (Vec ℝ n))
+            + ∑ j, toReal ((pZ₁.linComb pZ₂).GI j i) * β j} : Set (Vec ℝ n))
         + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).construct
             + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).construct
                 + (Zonotope.generatorError

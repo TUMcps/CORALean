@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 independent blocks, which is the exact layer's pairing at a zero centre. -/
 def PolyZonotope.linCombGI (add sub : 𝕋 → 𝕋 → 𝕋) (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
     Mat 𝕋 n (pZ₁.q + pZ₂.q) :=
-  fun i => Fin.append (Zonotope.pairSum add (pZ₁.GI i) (pZ₂.GI i))
-    (Zonotope.pairDiff sub (pZ₁.GI i) (pZ₂.GI i))
+  fun i => Fin.append (Zonotope.pairSum add (fun j => pZ₁.GI j i) (fun j => pZ₂.GI j i))
+    (Zonotope.pairDiff sub (fun j => pZ₁.GI j i) (fun j => pZ₂.GI j i))
 
 end CORALean.Float
 

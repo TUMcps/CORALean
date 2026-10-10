@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def PolyZonotope.longestFactor (pZ : PolyZonotope 𝕋 n) : Option (Fin pZ.p) :=
   -- the first generator whose squared length is maximal
-  let len := fun j => sumUp fun i => mulUp (pZ.G i j) (pZ.G i j)
+  let len := fun j => sumUp fun i => mulUp (pZ.G j i) (pZ.G j i)
   match (List.finRange pZ.h).foldl
       (fun best j => match best with
         | none => some j

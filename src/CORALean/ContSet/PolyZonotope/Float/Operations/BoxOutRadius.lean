@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The radius of the box in coordinate `i`, rounded up. -/
 def PolyZonotope.boxOutRadius (pZ : PolyZonotope 𝕋 n) (removed : Fin pZ.h → Bool)
     (taken : Fin pZ.q → Bool) : Vec 𝕋 n := fun i =>
-  addUp (sumUp fun l => if removed l then absolute (pZ.G i l) else zero)
-    (sumUp fun j => if taken j then absolute (pZ.GI i j) else zero)
+  addUp (sumUp fun l => if removed l then absolute (pZ.G l i) else zero)
+    (sumUp fun j => if taken j then absolute (pZ.GI j i) else zero)
 
 end CORALean.Float
 

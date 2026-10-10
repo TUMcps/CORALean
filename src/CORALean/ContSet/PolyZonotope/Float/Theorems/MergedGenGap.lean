@@ -35,17 +35,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
 upward rounding. -/
 theorem PolyZonotope.mergedGen_gap (pZ : PolyZonotope 𝕋 n)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
-    |toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0))
+    |toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
       - toReal (pZ.mergedGen part i)|
-      ≤ toReal (subUp (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0)))
+      ≤ toReal (subUp (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i))
         (pZ.mergedGen part i)) := by -- --- PROOF ---
   have hlo : toReal (pZ.mergedGen part i)
-      ≤ toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0)) := addDown_le_add _ _
-  have hhi : toReal (pZ.G i (part.right 1)) + toReal (pZ.G i (part.right 0))
-      ≤ toReal (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0))) := add_le_addUp _ _
-  have hgap : toReal (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0)))
+      ≤ toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i) := addDown_le_add _ _
+  have hhi : toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
+      ≤ toReal (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) := add_le_addUp _ _
+  have hgap : toReal (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i))
       - toReal (pZ.mergedGen part i)
-      ≤ toReal (subUp (addUp (pZ.G i (part.right 1)) (pZ.G i (part.right 0)))
+      ≤ toReal (subUp (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i))
         (pZ.mergedGen part i)) := sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith

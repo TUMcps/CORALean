@@ -26,8 +26,8 @@ open Pointwise FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def PolyZonotope.taylm (pZ : PolyZonotope 𝕋 n) (N : ℕ) : Fin n → Taylm 𝕋 (pZ.p + pZ.q) :=
-  fun i => ⟨(pZ.c i, 0) :: (List.ofFn (fun j => (pZ.G i j, Fin.append (fun k => pZ.E k j) 0))
-    ++ List.ofFn (fun l => (pZ.GI i l, Pi.single (Fin.natAdd pZ.p l) 1))),
+  fun i => ⟨(pZ.c i, 0) :: (List.ofFn (fun j => (pZ.G j i, Fin.append (fun k => pZ.E k j) 0))
+    ++ List.ofFn (fun l => (pZ.GI l i, Pi.single (Fin.natAdd pZ.p l) 1))),
     pZ.err.inf i, pZ.err.sup i, N⟩
 
 variable [SoundFloatArithmetic 𝕋]
@@ -38,9 +38,9 @@ variable [SoundFloatArithmetic 𝕋]
 theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope 𝕋 n) (N : ℕ) (i : Fin n)
     (t : Vec ℝ (pZ.p + pZ.q)) :
     (pZ.taylm N i).nominal.poly t = toReal (pZ.c i)
-      + ∑ j, toReal (pZ.G i j)
+      + ∑ j, toReal (pZ.G j i)
           * Real.PolyZonotope.monomial pZ.E (fun k => t (Fin.castAdd pZ.q k)) j
-      + ∑ l, toReal (pZ.GI i l) * t (Fin.natAdd pZ.p l) := by -- --- PROOF ---
+      + ∑ l, toReal (pZ.GI l i) * t (Fin.natAdd pZ.p l) := by -- --- PROOF ---
   have hm : ∀ j, Real.Taylm.monomial (Fin.append (fun k => pZ.E k j) 0) t
       = Real.PolyZonotope.monomial pZ.E (fun k => t (Fin.castAdd pZ.q k)) j := by
     intro j
@@ -61,15 +61,15 @@ theorem PolyZonotope.taylm_exact (pZ : PolyZonotope 𝕋 n) (N : ℕ) :
   -- a point of the range set: the variables split into the factors and the coefficients
   · rintro ⟨t, ht, hx⟩
     have hp : (fun i => toReal (pZ.c i)
-        + ∑ j, toReal (pZ.G i j)
+        + ∑ j, toReal (pZ.G j i)
             * Real.PolyZonotope.monomial pZ.E (fun k => t (Fin.castAdd pZ.q k)) j
-        + ∑ l, toReal (pZ.GI i l) * t (Fin.natAdd pZ.p l)) ∈ InflatedContSet.nominalSet pZ :=
+        + ∑ l, toReal (pZ.GI l i) * t (Fin.natAdd pZ.p l)) ∈ InflatedContSet.nominalSet pZ :=
       PolyZonotope.mem_nominalSet_iff.mpr ⟨fun k => t (Fin.castAdd pZ.q k),
         fun l => t (Fin.natAdd pZ.p l), fun k => ht _, fun l => ht _, fun i => rfl⟩
     refine ⟨_, hp, x - fun i => toReal (pZ.c i)
-        + ∑ j, toReal (pZ.G i j)
+        + ∑ j, toReal (pZ.G j i)
             * Real.PolyZonotope.monomial pZ.E (fun k => t (Fin.castAdd pZ.q k)) j
-        + ∑ l, toReal (pZ.GI i l) * t (Fin.natAdd pZ.p l), fun i => ?_, ?_⟩
+        + ∑ l, toReal (pZ.GI l i) * t (Fin.natAdd pZ.p l), fun i => ?_, ?_⟩
     · have := hx i
       rw [PolyZonotope.aux_taylm_poly] at this
       exact this

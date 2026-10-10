@@ -64,9 +64,9 @@ theorem PolyZonotope.aux_reduceBy_nominal (pZ : PolyZonotope 𝕋 n)
   refine PolyZonotope.mem_nominalSet_iff.mpr
     ⟨a, Fin.append (fun j => β (partI.left j)) (fun i => Real.Zonotope.coefficient
         (toReal (pZ.dropRadius partD partI i))
-        ((∑ l, toReal (pZ.G i (partD.right l))
+        ((∑ l, toReal (pZ.G (partD.right l) i)
             * Real.PolyZonotope.monomial pZ.E a (partD.right l))
-          + ∑ j, toReal (pZ.GI i (partI.right j)) * β (partI.right j))),
+          + ∑ j, toReal (pZ.GI (partI.right j) i) * β (partI.right j))),
       ha, ?_, fun i => ?_⟩
   -- the kept coefficients are unchanged; the fresh ones are scaled to that box
   · refine Fin.addCases (fun j => ?_) (fun i => ?_)
@@ -74,9 +74,9 @@ theorem PolyZonotope.aux_reduceBy_nominal (pZ : PolyZonotope 𝕋 n)
     · simp only [Fin.append_right]
       exact Real.Zonotope.abs_coefficient_le_one
         ((abs_nonneg _).trans (hbound i)) (hbound i)
-  · rw [hx i, partD.sum_split₂ fun l => toReal (pZ.G i l)
+  · rw [hx i, partD.sum_split₂ fun l => toReal (pZ.G l i)
         * Real.PolyZonotope.monomial pZ.E a l,
-      partI.sum_split₂ fun j => toReal (pZ.GI i j) * β j,
+      partI.sum_split₂ fun j => toReal (pZ.GI j i) * β j,
       PolyZonotope.aux_sum_univ_reduceBy_q, PolyZonotope.aux_sum_univ_reduceBy_h]
     simp only [PolyZonotope.reduceBy, Fin.append_left, Fin.append_right,
       toReal_diagonalBlock]

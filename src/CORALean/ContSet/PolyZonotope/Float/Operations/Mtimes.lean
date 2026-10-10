@@ -38,9 +38,9 @@ def PolyZonotope.mtimes (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) : PolyZono
   h := pZ.h
   q := pZ.q
   c := mulVecDown M pZ.c
-  G := matMulDown M pZ.G
+  G := fun l => mulVecDown M (pZ.G l)
   E := pZ.E
-  GI := matMulDown M pZ.GI
+  GI := fun j => mulVecDown M (pZ.GI j)
   err := (Interval.mtimes M pZ.err).plus (PolyZonotope.mtimesResidual M pZ)
 
 end CORALean.Float
