@@ -1,0 +1,55 @@
+import CORALean.Global.JacobiSlice
+import CORALean.Global.Float.SoundFloatArithmetic
+import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
+
+/-!
+# The slice through a point lies in `sliceBox`
+
+For `v` in `U`, `jacobiSlice xc ind v` reads `v` at the coordinates `ind` and `xc` elsewhere,
+so it lies in `sliceBox X₀ ind U` once `ind` is injective and `xc` lies in `X₀` at the other
+coordinates.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.jacobiSlice_mem_sliceBox (X₀ : Interval (Vec 𝕋 p)) {ind : Fin n → Fin p}
+    (hind : Function.Injective ind) (U : Interval (Vec 𝕋 n)) {xc : Vec ℝ p} {v : Vec ℝ n}
+    (hv : v ∈ U.construct)
+    (hxc : ∀ k, (∀ i, ind i ≠ k) → toReal (X₀.inf k) ≤ xc k ∧ xc k ≤ toReal (X₀.sup k)) :
+    jacobiSlice xc ind v ∈ (PolyZonotope.sliceBox X₀ ind U).construct := by -- --- PROOF ---
+  intro k
+  show toReal ((PolyZonotope.sliceBox X₀ ind U).inf k) ≤ jacobiSlice xc ind v k ∧
+    jacobiSlice xc ind v k ≤ toReal ((PolyZonotope.sliceBox X₀ ind U).sup k)
+  simp only [PolyZonotope.sliceBox]
+  cases h : (List.finRange n).find? fun i => decide (ind i = k) with
+  | some i =>
+    -- `k` is `ind i`, where the slice reads `v`
+    have hik : ind i = k := of_decide_eq_true (List.find?_some (p := fun i => decide (ind i = k)) h)
+    rw [← hik, jacobiSlice_apply_ind xc hind v i]
+    exact hv i
+  | none =>
+    -- no coordinate of `U` sits at `k`, so the slice reads `xc`
+    have hk : ∀ i, ind i ≠ k := fun i hi =>
+      absurd (decide_eq_true hi) (List.find?_eq_none.mp h i (List.mem_finRange i))
+    rw [jacobiSlice_apply_of_ne xc v hk]
+    exact hxc k hk
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

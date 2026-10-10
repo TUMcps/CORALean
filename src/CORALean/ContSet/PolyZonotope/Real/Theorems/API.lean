@@ -180,6 +180,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapMixedExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SquareExampleConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.UnionSubsetConvHull
+import CORALean.ContSet.PolyZonotope.Real.Theorems.CentreNotMemCounterexample
 
 /-!
 # What `PolyZonotope` guarantees

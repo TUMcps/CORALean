@@ -90,6 +90,9 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrStepFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrRunFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
+import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
+import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffInputSolutionSubsetReachSet
+import CORALean.ContDynamics.NonlinearSys.Theorems.ConvexHullTimeIntervalCounterexample
 
 /-!
 # What `NonlinearSys` guarantees

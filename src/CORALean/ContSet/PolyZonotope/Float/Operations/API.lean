@@ -126,6 +126,23 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Split
 import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
 import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDimWith
 import CORALean.ContSet.PolyZonotope.Float.Operations.ConvHull
+import CORALean.ContSet.PolyZonotope.Float.Operations.MonoBox
+import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
+import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
+import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
+import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
+import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
+import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
+import CORALean.ContSet.PolyZonotope.Float.Operations.InnerColumns
+import CORALean.ContSet.PolyZonotope.Float.Operations.InnerSpecial
+import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
+import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApproxImage
+import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApprox
+import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointApprox
+import CORALean.ContSet.PolyZonotope.Float.Operations.IndepFactors
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitIndepGen
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGenAll
+import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsSetApprox
 
 /-!
 # What `PolyZonotope` computes

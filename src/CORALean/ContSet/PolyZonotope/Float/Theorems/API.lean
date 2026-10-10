@@ -97,6 +97,22 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ConvHullOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.PointBoxOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianBoxOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.PrecondRegularInjective
+import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobiSliceMemSliceBox
+import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerStepSubsetImage
+import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
+import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerSpecialSubsetImage
+import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
+import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerApproxImageSubsetImage
+import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerApproxInner
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointApproxSound
+import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitIndepGenOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenAllCover
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsSetApproxSound
 
 /-!
 # What `PolyZonotope` guarantees

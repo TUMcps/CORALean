@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 71,
     "in_scope": 1062,
-    "formalized": 968,
-    "not_formalized": 94,
+    "formalized": 970,
+    "not_formalized": 92,
     "out_of_scope": 892,
     "out_of_scope_by_reason": {
       "restated": 319,
@@ -29,25 +29,25 @@
     },
     "by_class": {
       "correct": 672,
-      "underspecified": 174,
+      "underspecified": 175,
       "proof-gap": 31,
       "fixed": 87,
-      "false": 4
+      "false": 5
     },
     "claims": {
       "in_scope": 416,
-      "formalized": 368,
+      "formalized": 369,
       "correct": 230,
       "underspecified": 69,
       "proof-gap": 31,
       "fixed": 36,
-      "false": 2
+      "false": 3
     },
     "definitions": {
       "in_scope": 646,
-      "formalized": 600,
+      "formalized": 601,
       "correct": 442,
-      "underspecified": 105,
+      "underspecified": 106,
       "proof-gap": 0,
       "fixed": 51,
       "false": 2
@@ -1341,8 +1341,8 @@
       "year": 2013,
       "title": "General Inner Approximation of Vector-valued Functions",
       "in_scope": 15,
-      "formalized": 14,
-      "not_formalized": 1,
+      "formalized": 15,
+      "not_formalized": 0,
       "out_of_scope": 15,
       "out_of_scope_by_reason": {
         "restated": 5,
@@ -1353,7 +1353,7 @@
       },
       "by_class": {
         "correct": 10,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 1,
         "fixed": 2,
         "false": 0
@@ -1369,9 +1369,9 @@
       },
       "definitions": {
         "in_scope": 12,
-        "formalized": 11,
+        "formalized": 12,
         "correct": 8,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 2,
         "false": 0
@@ -1381,6 +1381,11 @@
           "result": "Cor. 3.1",
           "class": "proof-gap",
           "reason": "the proof's step \"(5) implies (i)\" fails on faces of `∂u` with `u₂` at a bound (`innerTest_step_counterexample`); the corollary holds on the slice `v ↦ f₁:ᵣ(v, ũ₂)`; see Findings"
+        },
+        {
+          "result": "Alg. 3",
+          "class": "underspecified",
+          "reason": "`ũ` names the midpoint and the inflated box at once (lines 3, 13-18, line 8 repeats line 7, line 14 subtracts `ũ₁ - ũ₁`), read as CORA's `aux_InnerGeneral`; the closed inclusion needs the midpoint to stay in the inflated box, which `f₁:ᵣ(ũ) ∈ y₁` gives in exact arithmetic and the formalization checks, and `C` nonsingular, checked; see Findings"
         },
         {
           "result": "Eq. 10",
@@ -4721,8 +4726,8 @@
       "year": 2024,
       "title": "Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference",
       "in_scope": 7,
-      "formalized": 5,
-      "not_formalized": 2,
+      "formalized": 6,
+      "not_formalized": 1,
       "out_of_scope": 16,
       "out_of_scope_by_reason": {
         "restated": 13,
@@ -4736,16 +4741,16 @@
         "underspecified": 0,
         "proof-gap": 1,
         "fixed": 0,
-        "false": 0
+        "false": 1
       },
       "claims": {
         "in_scope": 3,
-        "formalized": 2,
+        "formalized": 3,
         "correct": 1,
         "underspecified": 0,
         "proof-gap": 1,
         "fixed": 0,
-        "false": 0
+        "false": 1
       },
       "definitions": {
         "in_scope": 4,
@@ -4761,6 +4766,11 @@
           "result": "Prop. 1",
           "class": "proof-gap",
           "reason": "the proof applies `Lemma 1` with A = R_aff(Δt) = e^{AΔt}X₀ + R_con, which is not convex for the merely compact X₀ the proposition allows; the statement holds because R̂_err is (Findings)"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "false",
+          "reason": "false for a nonconvex X₀, which the proposition admits; whether a convex X₀, all that `Alg. 1` passes, repairs it is open; see Findings"
         }
       ]
     },
@@ -5413,8 +5423,8 @@
         "class": "polyZonotope",
         "methods": 73,
         "proved": 6,
-        "float": 47,
-        "not_yet": 5,
+        "float": 49,
+        "not_yet": 3,
         "out_of_scope": 15,
         "needs_float": 6,
         "out_of_scope_by_reason": {
@@ -5425,10 +5435,10 @@
           "matlab-runtime": 7,
           "deprecated": 1
         },
-        "cora_issues": 5,
+        "cora_issues": 6,
         "findings": {
           "correct": 27,
-          "underspecified": 7,
+          "underspecified": 8,
           "proof-gap": 1,
           "fixed": 2,
           "false": 0
@@ -5925,7 +5935,7 @@
           "underspecified": 9,
           "proof-gap": 7,
           "fixed": 4,
-          "false": 0
+          "false": 1
         }
       },
       {
@@ -6219,11 +6229,11 @@
       "contSet": {
         "methods": 908,
         "proved": 71,
-        "float": 582,
-        "not_yet": 8,
+        "float": 584,
+        "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 71,
-        "cora_issues": 46,
+        "cora_issues": 47,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -6234,7 +6244,7 @@
         },
         "findings": {
           "correct": 361,
-          "underspecified": 89,
+          "underspecified": 90,
           "proof-gap": 7,
           "fixed": 44,
           "false": 4
@@ -6261,7 +6271,7 @@
           "underspecified": 48,
           "proof-gap": 18,
           "fixed": 22,
-          "false": 0
+          "false": 1
         }
       },
       "hybrid": {
@@ -6316,11 +6326,11 @@
     "totals": {
       "methods": 1260,
       "proved": 115,
-      "float": 725,
-      "not_yet": 24,
+      "float": 727,
+      "not_yet": 22,
       "out_of_scope": 396,
       "needs_float": 115,
-      "cora_issues": 68,
+      "cora_issues": 69,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -6331,10 +6341,10 @@
       },
       "findings": {
         "correct": 583,
-        "underspecified": 149,
+        "underspecified": 150,
         "proof-gap": 27,
         "fixed": 69,
-        "false": 4
+        "false": 5
       }
     },
     "findings_not_on_a_class": {
@@ -6361,11 +6371,11 @@
       }
     },
     "theorems": {
-      "paper": 1329,
-      "float": 1673,
-      "helper": 1148,
-      "lemma": 2423,
-      "total": 6573,
+      "paper": 1332,
+      "float": 1691,
+      "helper": 1149,
+      "lemma": 2429,
+      "total": 6601,
       "examples": 118
     }
   }

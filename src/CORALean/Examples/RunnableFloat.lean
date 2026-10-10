@@ -147,6 +147,10 @@ import CORALean.ContSet.Equality.Float.Operations.EqBool
 import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
 import CORALean.ContDynamics.NonlinearARX.Operations.FeedFloat
 import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
+import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointApprox
+import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsSetApprox
+import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApprox
+import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
 
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation
@@ -1309,6 +1313,36 @@ def arxModel : NonlinearARX.FloatModel D 1 1 1 where
 def arxBoxes : ℕ → Interval (Vec D (1 * 1)) :=
   NonlinearSysDT.simulateBoxFloat arxModel.toNonlinearSysDTFloat ![d 1 0]
     (NonlinearARX.feedFloat 1 fun _ => (![d 1 (-4)] : Vec D 1))
+/-! ## A polynomial zonotope's inner approximation and approximate containment
+
+CORA's `innerApprox` example `polyZonotope([0;0],[2 0 2;0 2 2],[0.5;0],[1 0 3;0 1 1])`, inner
+boxes down to six bisections; the point `(3/8, 1/4)`, the value at the factors `(0, 1/8, 3/4)`
+from which the test starts; and the box of radius `1/64` around it, from a box of radius
+`1/32` around those factors. The approximate inverse is `Zonotope.basisInverse`. -/
+
+def pZinner : PolyZonotope D 2 where
+  p := 2
+  h := 3
+  q := 1
+  c := ![d 0 0, d 0 0]
+  G := ![![d 2 0, d 0 0], ![d 0 0, d 2 0], ![d 2 0, d 2 0]]
+  E := ![![1, 0, 3], ![0, 1, 1]]
+  GI := ![![d 1 (-1), d 0 0]]
+  err := zbox 2
+-- the inner boxes, the point and the box
+def pZ_innerApprox : List (Zonotope D 2) :=
+  PolyZonotope.innerApprox pZinner (d 1 (-3)) (fun M => Zonotope.basisInverse M) 20 6
+def pZ_containsPointApprox : Bool :=
+  PolyZonotope.containsPointApprox pZinner ![d 3 (-3), d 1 (-2)] ![d 0 0, d 1 (-3), d 3 (-2)]
+    (fun M => Zonotope.basisInverse M) 20
+def pZinnerS : PolyZonotope D 2 :=
+  ⟨0, 0, 2, ![d 3 (-3), d 1 (-2)], Fin.elim0, Fin.elim0, ![![d 1 (-6), d 0 0], ![d 0 0, d 1 (-6)]],
+    zbox 2⟩
+def pZ_containsSetApprox : Bool :=
+  PolyZonotope.containsSetApprox pZinner pZinnerS
+    (fun _ => ⟨![d (-1) (-5), d 3 (-5), d 23 (-5)], ![d 1 (-5), d 5 (-5), d 25 (-5)]⟩)
+    (fun M => Zonotope.basisInverse M) 20 3
+
 
 end CORALean.RunnableFloat
 
