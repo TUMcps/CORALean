@@ -639,6 +639,8 @@ def floatRows : StateT Nat IO Unit := do
   row "ctSysD" (ofIMat fCtD.A)
   row "ctReachRun" (ofZono fCtReach)
   row "checkSafe" (ofBool (fSafe.check fEnclose))
+  row "polyOffOrigin" (ofVP RunnableFloat.polyOffOrigin)
+  row "polyOffOriginBox" (ofBox RunnableFloat.polyOffOriginBox)
 
 end CORALean.RunCheck
 

@@ -32,14 +32,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- `maximumOver` of non-negative entries is non-negative, at every length. -/
 theorem aux_maximumOver_nonneg : ∀ {k : ℕ} (g : Fin k → 𝕋), (∀ i, 0 ≤ toReal (g i)) →
-    0 ≤ toReal (maximumOver g) := by -- --- PROOF ---
+    0 ≤ toReal (maximumOver g) := by
   intro k
-  induction k with
+  cases k with
   | zero => intro _ _; rw [maximumOver, toReal_zero]
-  | succ k ih =>
-    intro g hg
-    rw [maximumOver, toReal_maximum]
-    exact le_trans (ih _ fun i => hg i.succ) (le_max_right _ _)
+  | succ k => exact fun g hg => le_trans (hg 0) (le_maximumOver g 0)
 
 /-- The sup norm of a point of a box is at most the box's `bound`. -/
 theorem aux_norm_le_bound {I : Interval (Vec 𝕋 n)} {y : Vec ℝ n} (hy : y ∈ I.construct) :

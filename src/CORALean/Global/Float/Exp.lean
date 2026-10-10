@@ -59,12 +59,12 @@ private def squareUpIter : ℕ → 𝕋 → 𝕋
   | 0, u => u
   | k + 1, u => squareUpIter k (mulUp u u)
 
-/-- `exp a` from below, at every `a`. `n` is precision: the reduction is exact,
-so a larger `n` only buys accuracy. -/
+/-- `exp a` from below, at every `a`. `n` is the reduction depth: the halvings are exact, but each
+of the `n` squarings rounds, so `n` should stay below the scalar's mantissa width (issue #131). -/
 def expDown (n : ℕ) (a : 𝕋) : 𝕋 := squareDownIter n (seedDown (halfIter n a))
 
-/-- `exp a` from above, for `toReal a ≤ 2 ^ n / 2`; see the module docstring for
-why that hypothesis does not go away. -/
+/-- `exp a` from above, for `toReal a ≤ 2 ^ n / 2`; see the module docstring for why that stays.
+Sound but useless for `n` above the mantissa width, and can overflow the runtime (issue #131). -/
 def expUp (n : ℕ) (a : 𝕋) : 𝕋 := squareUpIter n (seedUp (halfIter n a))
 
 open SoundFloatArithmetic
