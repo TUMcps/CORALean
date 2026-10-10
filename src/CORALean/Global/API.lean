@@ -156,6 +156,11 @@ import CORALean.Global.ZonotopeSubsetEllipsotopeOfLR
 import CORALean.Global.ZonotopeSubsetEllipsotopeOfLRCentre
 import CORALean.Global.TerminalSetRowConstraints
 
+import CORALean.Global.NoRetractionClosedBall
+import CORALean.Global.BrouwerClosedBall
+import CORALean.Global.Brouwer
+import CORALean.Global.JacobiExistence
+import CORALean.Global.InnerRangeTestClosed
 /-!
 # Global definitions, collected
 
@@ -168,10 +173,10 @@ box needs, the model every asserted running cost is stated against, the width of
 the tightest box over a set and the origin-centred Euclidean radius of that box
 (`err`), the Euclidean norm a vector does not carry by default, the Hausdorff
 distance read through it, a family of generators' own induced operator norm
-(`genOpNorm₂`), the cancellation law that
-turns an outer approximation into an inner one, Carathéodory's theorem over a
-fixed index, the minimax inequality a parametrized infimum's continuity gives
-over two compact sets, when a set-based evaluation shrinks superlinearly, when a
+(`genOpNorm₂`), the cancellation law that turns an outer approximation into an inner one,
+Carathéodory's theorem over a fixed index, Brouwer's fixed-point theorem and the interval
+Jacobi existence test it gives, the minimax inequality a parametrized infimum's continuity
+gives over two compact sets, when a set-based evaluation shrinks superlinearly, when a
 step error converges to zero, a fixed horizon's error budget, the classical
 convergence order a point-valued ODE solver either has or does not, the linear
 programming every set representation ends up asking for, the dynamic mode decomposition

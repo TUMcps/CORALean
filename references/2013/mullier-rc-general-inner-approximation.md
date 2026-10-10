@@ -11,7 +11,8 @@ interior point onto the frontier of its image (`Lemma 3.1`), so a box the image 
 and that meets the image is inside it (`Thm. 3.1`), and a Hansen–Sengupta-type inclusion
 proves that (`Cor. 3.1`), also preconditioned (`Eq. 10`). Formalized, without Brouwer's
 theorem: the test's step from (5) to condition (i) does not hold on the faces of `∂u` where
-only `u₂` is at a bound, but the corollary does, through the slice at `ũ₂`. Sec. 4.3 extracts
+only `u₂` is at a bound, but the corollary does, through the slice at `ũ₂`; with it, the
+closed inclusion `Alg. 3` and CORA check. Sec. 4.3 extracts
 a regular sub-matrix of the interval Jacobian by linear programs over binary picks; (14), (15),
 (17) and (18) are sound, the printed (13) is infeasible and the printed (16) has the sign of
 `μ` wrong.
@@ -28,7 +29,7 @@ a regular sub-matrix of the interval Jacobian by linear programs over binary pic
 | `Alg. 1` | (Range inner-approximation as defined in [5]) Bisect the domain until `Inner` accepts the box `ỹ = f(x̃) ∩ (f(mid x̃) + f'(x̃)(x̃ - mid x̃))` or the width falls below `ε`. | n/a — restated from Goldsztejn and Jaulin [5, Alg. 1]; its soundness is that of `Inner`, `Alg. 3` | `restated` |
 | `Alg. 2` | (Inclusion test as defined in [5]) The test of `Cor. 2.1` with preconditioning and domain inflation. | n/a — restated from Goldsztejn and Jaulin [5, Alg. 2] | `restated` |
 | `Example 4.1` | `f(x) = Ax`, `A = [1 1; -1 1]` on `[-2, 2]²`, inner approximation by `Alg. 1` (Fig. 3). | n/a — an illustration | `not-a-claim` |
-| `Alg. 3` | (Inclusion test based on `Cor. 3.1`) Precondition `J_{f₁:ᵣ}` by `C`, split `u` into `(u₁, u₂)`, iterate `t = Diag⁻¹J₁ (y₁ - f₁:ᵣ(ũ) - OffDiag J₁(ũ₁ - ũ₁) - J₂(ũ₂ - ũ₂))` with domain inflation `ũ ← ũ + τt` while `ũ ⊆ u`, return true once `ũ + t ⊆ ũ`. | — | — |
+| `Alg. 3` | (Inclusion test based on `Cor. 3.1`) Precondition `J_{f₁:ᵣ}` by `C`, split `u` into `(u₁, u₂)`, iterate `t = Diag⁻¹J₁ (y₁ - f₁:ᵣ(ũ) - OffDiag J₁(ũ₁ - ũ₁) - J₂(ũ₂ - ũ₂))` with domain inflation `ũ ← ũ + τt` while `ũ ⊆ u`, return true once `ũ + t ⊆ ũ`. | — partial: the acceptance test, not the loop. [`InnerRangeTestClosed.lean`](../../src/CORALean/Global/InnerRangeTestClosed.lean) (`Icc_subset_image_of_innerTest_closed`, `Cor. 3.1` with the closed inclusion `ũ + t ⊆ ũ` on which `Alg. 3` returns true, by Brouwer's theorem on the slice at `ũ₂`), which rests on `exists_mem_Icc_eq_add_of_jacobi`, the square case; missing: the domain-inflation loop with `τ` and `μ` and the preconditioned interval evaluation that feeds the test | — |
 | `Eq. 10` | (Preconditioning) `C` the first `r` columns of `D_ũ⁻¹`, `D_ũ = (J_{f₁:ᵣ}(ũ); 0 Iₘ₋ᵣ)`, `C = (C₁, C₂)ᵀ`; the test of `Cor. 3.1` becomes `H_{f₁:ᵣ}(C J_{f₁:ᵣ}, ũ, u, C y₁) ⊆ int(u₁)`. | [`PreconditionedInnerTest.lean`](../../src/CORALean/Global/PreconditionedInnerTest.lean) — `Icc_subset_image_of_preconditioned_innerTest`, any `r × r` `C` with `det C ≠ 0`, against a box enclosing `C y₁` | `underspecified` — `C` as printed is `m × r` and `C J_{f₁:ᵣ}` is `m × m`; the test needs the `r × r` block `C₁ = J₁(ũ)⁻¹`, which CORA takes |
 | `Def. 4.2` | (Regular interval matrix) `A` is regular iff every `A ∈ A` is nonsingular. | n/a — a definition; the theorems below state it as `det ≠ 0` for every real matrix in the bounds | `not-a-claim` |
 | `Def. 4.3` | (Rank of an interval matrix) `A` has constant rank `r` iff its largest regular square sub-matrix is `r × r`; this means `rank A ≥ r` for every `A ∈ A`. | [`SubmatrixLp.lean`](../../src/CORALean/Global/SubmatrixLp.lean) — `le_rank_of_det_submatrix_ne_zero`: a regular `k × k` sub-matrix gives `rank A ≥ k` | `correct` |
@@ -74,8 +75,13 @@ matrix is singular (`subLp16_counterexample`). (14), (15), (17) and (18) are sou
 (`det_submatrix_ne_zero_of_lp14` to `_lp18`); none of them needs `M`.
 [`SubmatrixLpCounterexample.lean`](../../src/CORALean/Global/SubmatrixLpCounterexample.lean)
 
-Not formalized, so recorded without a class: `Alg. 3` returns true on `ũ + t ⊆ ũ`, a closed
-inclusion, where `Cor. 3.1` needs `int(u₁)`; CORA's `aux_InnerGeneral` does the same. The
-closed version is true by the existence theorem for the Hansen–Sengupta operator, which rests
-on Brouwer's fixed-point theorem, not in Mathlib. `Alg. 3` as printed also overwrites `x̃`
-by its midpoint (line 3), repeats line 7 as line 8 and subtracts `ũ₁ - ũ₁` (line 14).
+Not formalized as a whole, so recorded without a class: `Alg. 3` returns true on `ũ + t ⊆ ũ`,
+a closed inclusion, where `Cor. 3.1` needs `int(u₁)`; CORA's `aux_InnerGeneral` does the same.
+The closed version is true: on the slice at `ũ₂` the test is the Jacobi step of the square
+case, whose map `x ↦ x̃ + Diag⁻¹A(x)(b - OffDiag A(x)(x - x̃))` with the average Jacobian `A(x)`
+is a continuous self-map of the box, and Brouwer's theorem fixes a zero
+(`exists_mem_Icc_eq_add_of_jacobi`, `Icc_subset_image_of_innerTest_closed`). CORA's
+`aux_InnerGeneral` subtracts `J₂(u₂ - ũ₂)` after the division by the diagonal rather than
+before; that interval contains `0`, so the test it computes still contains the slice's and
+stays sound. `Alg. 3` as printed also overwrites `x̃` by its midpoint (line 3), repeats line 7
+as line 8 and subtracts `ũ₁ - ũ₁` (line 14).

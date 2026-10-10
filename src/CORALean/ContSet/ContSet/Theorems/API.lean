@@ -35,6 +35,8 @@ import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfConvex
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfContracting
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfConvex
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffNotSubsetOfDiscontinuous
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuous
+import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuousOfConvex
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddCancel
 import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 import CORALean.ContSet.ContSet.Theorems.MinusFromOuter

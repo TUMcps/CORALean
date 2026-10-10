@@ -9,10 +9,12 @@ An inner approximation of the reachable set of a nonlinear system computed direc
 an outer approximation first: the affine part's reachable set minus — Minkowski difference —
 the abstraction error's. The time-point step (`Prop. 1`) rests on `Lemma 1`, a fixed-point
 argument (Brouwer), and the time-interval step (`Prop. 2`) on `Lemma 1` again; `Alg. 1` runs
-both with polytopes and constrained zonotopes. Brouwer's fixed-point theorem is not in
-Mathlib, so `Lemma 1` and the two propositions resting on it are open here; `Remark 1`'s
-counterexample is formalized, as is the closed form of the constant-input solution (12). The
-rest is restated from the conservative-linearization papers the method is built on.
+both with polytopes and constrained zonotopes. Formalized, on CORALean's own proof of
+Brouwer's theorem (`exists_fixedPoint_of_isCompact_convex`): `Lemma 1` as printed, `Prop. 1`
+from the representation (21), whose printed proof needs the error set's convexity rather than
+`R_aff`'s, and `Remark 1`'s counterexample, as is the closed form of the constant-input
+solution (12). `Prop. 2` is open. The rest is restated from the conservative-linearization
+papers the method is built on.
 
 ## Results
 
@@ -29,9 +31,9 @@ rest is restated from the conservative-linearization papers the method is built 
 | `Eq. 13` | The abstraction error's reachable set is enclosed by ⊕_{j=0}^η A^jΔt^{j+1}/(j+1)! L ⊕ E(Δt)ΔtL. | n/a — restated from [19, Prop. 3.7]; tracked as `Prop. 3.7` on [Althoff's thesis](../2010/althoff-thesis.md) | `restated` |
 | `Eq. 14` | R(Δt) ⊆ R_aff(Δt) ⊕ R̂_err, and (15) R(τ₀) ⊆ R̂_aff(τ₀) ⊕ R̂_err. | n/a — restated from [18, Sec. III] | `restated` |
 | `Eq. 16` | R̂_aff(τ₀) = conv(X₀, R_aff(Δt)) ⊕ C encloses the affine time-interval solution, C = F(Δt)X₀ ⊕ G(Δt)w (17). | n/a — restated from [19, Sec. 3.2.2] and [16, Eq. (18), (26)] | `restated` |
-| `Lemma 1` | For A ⊂ ℝⁿ nonempty, convex, compact, B centrally symmetric around c, φ: A → B continuous and S = {a + φ(a) \| a ∈ A}: A ⊖ B ⊆ S - 2c (19). | — | — |
+| `Lemma 1` | For A ⊂ ℝⁿ nonempty, convex, compact, B centrally symmetric around c, φ: A → B continuous and S = {a + φ(a) \| a ∈ A}: A ⊖ B ⊆ S - 2c (19). | [`MinkowskiDiffSubsetOfContinuous.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffSubsetOfContinuous.lean) — `minkowskiDiff_subset_of_continuous`, in any finite-dimensional real normed space, the symmetry as `b ∈ B → 2c - b ∈ B`, by Brouwer's theorem as the paper argues | `correct` |
 | `Remark 1` | Continuity of φ cannot be dropped: A = B = [-1, 1] gives A ⊖ B = {0}, and φ = sign (sign 0 = 1) gives S = [-2, -1) ∪ [1, 2]. | [`MinkowskiDiffNotSubsetOfDiscontinuous.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffNotSubsetOfDiscontinuous.lean) — all three sets as stated, and 0 ∉ S | `correct` |
-| `Prop. 1` | (Time-point reachable set) For X₀ compact, nonempty and R̂_err centrally symmetric, R̂(Δt) = R_aff(Δt) ⊖ R̂_err + 2c ⊆ R(Δt), c = cen(R̂_err) (20). | — | — |
+| `Prop. 1` | (Time-point reachable set) For X₀ compact, nonempty and R̂_err centrally symmetric, R̂(Δt) = R_aff(Δt) ⊖ R̂_err + 2c ⊆ R(Δt), c = cen(R̂_err) (20). | [`MinkowskiDiffAddSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffAddSubsetReachSet.lean), [`MinkowskiDiffSubsetOfContinuousOfConvex.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffSubsetOfContinuousOfConvex.lean) — `NonlinearSys.minkowskiDiff_add_subset_reachSet`: e^{AΔt} = `M` invertible, R_con = `v`, R̂_err a convex compact set as (13) makes it; the proof's representation (21) is the hypothesis `herr` (restated from [18], like (14)), the solutions and the field's Lipschitz constant along them (the paper's standing assumption) are hypotheses, and Grönwall gives the continuity of `z` the proof invokes; `minkowskiDiff_subset_of_continuous_of_convex` is `Lemma 1` with `B`, not `A`, convex | `proof-gap` — the proof applies `Lemma 1` with A = R_aff(Δt) = e^{AΔt}X₀ + R_con, which is not convex for the merely compact X₀ the proposition allows; the statement holds because R̂_err is (Findings) |
 | `Prop. 2` | (Time-interval reachable set) For E = C ⊕ R̂_err centrally symmetric around c, R̂(τ₀) = conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R(τ₀) (23). | — | — |
 | `Def. 2` | (Support function) ρ(S, ℓ) := max_{s∈S} ℓᵀs. | n/a — restated from Le Guernic and Girard 2010 [21, Def. 1] | `restated` |
 | `Def. 3` | (Polytope) P = {s \| Hs ≤ d} = ⟨H, d⟩_H. | n/a — restated from Ziegler [22, Sec. 1.1] | `restated` |
@@ -44,8 +46,15 @@ rest is restated from the conservative-linearization papers the method is built 
 
 ## Findings
 
-Not formalized, so recorded without a class: `Lemma 1` needs Brouwer's fixed-point theorem,
-which Mathlib does not provide, and both propositions rest on it.
+**`Prop. 1` — `Lemma 1` needs a convex `A`.** The proof writes x(Δt) = R_con + e^{AΔt}x(0) +
+z(x(0)) (21), z continuous with values in R̂_err, and applies `Lemma 1` to A = R_aff(Δt).
+`Lemma 1` asks A to be convex, and Prop. 1 asks of X₀ only that it be compact and nonempty, so
+for a nonconvex X₀ the lemma does not apply as cited. The proposition is true all the same:
+for x ∈ A ⊖ R̂_err the set x + R̂_err lies in A, and a ↦ x + 2c - φ(a) maps it into itself,
+so Brouwer's theorem on x + R̂_err, convex and compact because (13) makes R̂_err a zonotope,
+gives the fixed point (`minkowskiDiff_subset_of_continuous_of_convex`,
+`NonlinearSys.minkowskiDiff_add_subset_reachSet`).
+[`MinkowskiDiffAddSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffAddSubsetReachSet.lean)
 
 **`Prop. 2` — `Lemma 1` is applied where it does not fit.** The proof writes each state as
 x(t) = a + z(x(0), t) with a = x(0) + (t/Δt)(e^{AΔt}x(0) + R_con - x(0)) ∈ conv(X₀, R_aff(Δt))
