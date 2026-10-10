@@ -13,8 +13,9 @@ combine into a box inside the image when each input is existential in exactly on
 (`Thm. 3`, by Brouwer's fixed-point theorem), and with the flow as `f` this gives robust inner
 approximations of reachable sets (Sec. III). CORA's `reachInner` with `'parallelo'` is
 `Thm. 3` with preconditioning. Formalized: `Thm. 1`, `Thm. 2`, the preconditioning and the
-reachable-set definitions. `Thm. 3` and `Remark 1` need Brouwer's theorem, absent from
-Mathlib.
+reachable-set definitions. `Thm. 3` and `Remark 1` need Brouwer's theorem, which CORALean
+now has (`exists_fixedPoint_of_isCompact_convex`), and Goldsztejn's continuous selections of
+the components' AE extensions, which it does not.
 
 ## Results
 
@@ -46,7 +47,7 @@ The statement still holds: `∂ᵢf` keeps one sign along each coordinate line o
 
 Not formalized, so recorded without a class: `Thm. 3` builds a continuous self-map of the box
 from the components' continuous selections (Goldsztejn's result for elementary functions) and
-takes a fixed point by Brouwer's theorem, which Mathlib does not provide; for `n = 1` it is
-`Thm. 2`. The requirement that `π` be a map — each input existential in one component only —
+takes a fixed point by Brouwer's theorem (`exists_fixedPoint_of_isCompact_convex`); the
+selections are what is missing. For `n = 1` it is `Thm. 2`. The requirement that `π` be a map — each input existential in one component only —
 is what CORA's `'parallelo'` loses ([FINDINGS.md](../../FINDINGS.md), "NonlinearSys
 `reachInner`, `'parallelo'`"; `prod_inner_ranges_not_subset_image`).

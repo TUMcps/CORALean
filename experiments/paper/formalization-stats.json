@@ -15,10 +15,10 @@
   ],
   "totals": {
     "papers": 82,
-    "papers_with_findings": 70,
+    "papers_with_findings": 71,
     "in_scope": 1062,
-    "formalized": 966,
-    "not_formalized": 96,
+    "formalized": 968,
+    "not_formalized": 94,
     "out_of_scope": 892,
     "out_of_scope_by_reason": {
       "restated": 319,
@@ -28,18 +28,18 @@
       "not-covered": 74
     },
     "by_class": {
-      "correct": 671,
+      "correct": 672,
       "underspecified": 174,
-      "proof-gap": 30,
+      "proof-gap": 31,
       "fixed": 87,
       "false": 4
     },
     "claims": {
       "in_scope": 416,
-      "formalized": 366,
-      "correct": 229,
+      "formalized": 368,
+      "correct": 230,
       "underspecified": 69,
-      "proof-gap": 30,
+      "proof-gap": 31,
       "fixed": 36,
       "false": 2
     },
@@ -4721,8 +4721,8 @@
       "year": 2024,
       "title": "Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference",
       "in_scope": 7,
-      "formalized": 3,
-      "not_formalized": 4,
+      "formalized": 5,
+      "not_formalized": 2,
       "out_of_scope": 16,
       "out_of_scope_by_reason": {
         "restated": 13,
@@ -4732,18 +4732,18 @@
         "not-covered": 2
       },
       "by_class": {
-        "correct": 3,
+        "correct": 4,
         "underspecified": 0,
-        "proof-gap": 0,
+        "proof-gap": 1,
         "fixed": 0,
         "false": 0
       },
       "claims": {
         "in_scope": 3,
-        "formalized": 0,
-        "correct": 0,
+        "formalized": 2,
+        "correct": 1,
         "underspecified": 0,
-        "proof-gap": 0,
+        "proof-gap": 1,
         "fixed": 0,
         "false": 0
       },
@@ -4756,7 +4756,13 @@
         "fixed": 0,
         "false": 0
       },
-      "findings": []
+      "findings": [
+        {
+          "result": "Prop. 1",
+          "class": "proof-gap",
+          "reason": "the proof applies `Lemma 1` with A = R_aff(Δt) = e^{AΔt}X₀ + R_con, which is not convex for the merely compact X₀ the proposition allows; the statement holds because R̂_err is (Findings)"
+        }
+      ]
     },
     {
       "page": "2025/bassan-icml-explaining-fast-and-slow.md",
@@ -5265,7 +5271,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 50,
+          "correct": 51,
           "underspecified": 17,
           "proof-gap": 0,
           "fixed": 9,
@@ -5917,7 +5923,7 @@
         "findings": {
           "correct": 15,
           "underspecified": 9,
-          "proof-gap": 6,
+          "proof-gap": 7,
           "fixed": 4,
           "false": 0
         }
@@ -6227,7 +6233,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 360,
+          "correct": 361,
           "underspecified": 89,
           "proof-gap": 7,
           "fixed": 44,
@@ -6253,7 +6259,7 @@
         "findings": {
           "correct": 141,
           "underspecified": 48,
-          "proof-gap": 17,
+          "proof-gap": 18,
           "fixed": 22,
           "false": 0
         }
@@ -6324,9 +6330,9 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 582,
+        "correct": 583,
         "underspecified": 149,
-        "proof-gap": 26,
+        "proof-gap": 27,
         "fixed": 69,
         "false": 4
       }
@@ -6355,11 +6361,11 @@
       }
     },
     "theorems": {
-      "paper": 1324,
+      "paper": 1328,
       "float": 1670,
-      "helper": 1137,
-      "lemma": 2385,
-      "total": 6516,
+      "helper": 1148,
+      "lemma": 2389,
+      "total": 6535,
       "examples": 80
     }
   }
