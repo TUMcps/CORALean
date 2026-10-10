@@ -49,7 +49,7 @@ def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 n) : ConPolyZon
   c := fun i => nsmulDown a (cPZ.c i)
   G := ConPolyZono.convHullG a cPZ.c cPZ.G
   E := Real.ConPolyZono.convHullE a cPZ.E
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   A := ConPolyZono.convHullA a cPZ.A
   b := ConPolyZono.convHullB a cPZ.b
   EC := Real.ConPolyZono.convHullEC a cPZ.EC

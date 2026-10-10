@@ -30,11 +30,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- file-local: only `reduceGirard` below needs these
-/-- CORA's `[G, GI]`: the two blocks as one matrix, which is what it ranks.
-Generators carry the second index here, so concatenating them appends along a
-row. -/
-def PolyZonotope.aux_concatGens (pZ : PolyZonotope 𝕋 n) : Mat 𝕋 n (pZ.h + pZ.q) :=
-  fun i => Fin.append (fun l => pZ.G l i) (fun j => pZ.GI j i)
+/-- CORA's `[G, GI]`: the two blocks as one family, which is what it ranks. -/
+def PolyZonotope.aux_concatGens (pZ : PolyZonotope 𝕋 n) : Fin (pZ.h + pZ.q) → Vec 𝕋 n :=
+  Fin.append pZ.G pZ.GI
 
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once
@@ -55,8 +53,8 @@ def PolyZonotope.reduceGirard (pZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotop
   if o * n < pZ.h + pZ.q then
     let K := (o - 1) * n
     let d := pZ.aux_girardKeptDep K
-    pZ.reduceBy (PolyZonotope.girardSplit (PolyZonotope.girardMetric fun i l => pZ.G l i) d)
-      (PolyZonotope.girardSplit (PolyZonotope.girardMetric fun i j => pZ.GI j i) (K - d))
+    pZ.reduceBy (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.G) d)
+      (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.GI) (K - d))
   else pZ
 
 end CORALean.Float

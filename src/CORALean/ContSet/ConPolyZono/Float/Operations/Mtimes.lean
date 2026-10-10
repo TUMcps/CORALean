@@ -39,9 +39,9 @@ def ConPolyZono.mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) : ConPolyZo
   m := cPZ.m
   s := cPZ.s
   c := mulVecDown M cPZ.c
-  G := matMulDown M cPZ.G
+  G := fun l => mulVecDown M (cPZ.G l)
   E := cPZ.E
-  GI := matMulDown M cPZ.GI
+  GI := fun j => mulVecDown M (cPZ.GI j)
   A := cPZ.A
   b := cPZ.b
   EC := cPZ.EC

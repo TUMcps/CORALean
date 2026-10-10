@@ -38,7 +38,7 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) (cen rad : 
   m := cPZ.m
   s := (cPZ.consPolyZonotope.getSubset k cen rad).h
   c := cPZ.c
-  G := fun i l => (cPZ.toPolyZonotope.getSubset k cen rad).G l i
+  G := (cPZ.toPolyZonotope.getSubset k cen rad).G
   E := (cPZ.toPolyZonotope.getSubset k cen rad).E
   GI := cPZ.GI
   A := fun i l => (cPZ.consPolyZonotope.getSubset k cen rad).G l i

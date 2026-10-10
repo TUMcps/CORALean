@@ -31,18 +31,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ConPolyZono.nominal_dependent (cPZ : ConPolyZono 𝕋 n) :
     nominal cPZ.dependent = (nominal cPZ).dependent := by -- --- PROOF ---
   have hG : (fun (l : Fin (cPZ.h + cPZ.q)) (i : Fin n) =>
-        toReal (Fin.append (cPZ.G i) (cPZ.GI i) l))
-      = Fin.append (fun (l : Fin cPZ.h) (i : Fin n) => toReal (cPZ.G i l))
-        (fun (j : Fin cPZ.q) (i : Fin n) => toReal (cPZ.GI i j)) := by
+        toReal (Fin.append cPZ.G cPZ.GI l i))
+      = Fin.append (fun (l : Fin cPZ.h) (i : Fin n) => toReal (cPZ.G l i))
+        (fun (j : Fin cPZ.q) (i : Fin n) => toReal (cPZ.GI j i)) := by
     refine funext (Fin.addCases (fun l => ?_) fun j => ?_) <;> funext i <;>
       simp only [Fin.append_left, Fin.append_right]
-  have hGI : (fun (j : Fin 0) (_ : Fin n) => toReal ((Fin.elim0 : Fin 0 → 𝕋) j))
+  have hGI : (fun (j : Fin 0) (i : Fin n) => toReal ((Fin.elim0 : Fin 0 → Vec 𝕋 n) j i))
       = (Fin.elim0 : Fin 0 → Vec ℝ n) := funext fun j => j.elim0
   -- the two records side by side, so only the two rewritten generator blocks differ
   show (⟨cPZ.p + cPZ.q, cPZ.h + cPZ.q, 0, cPZ.m, cPZ.s, toRealVec cPZ.c,
-      fun l i => toReal (Fin.append (cPZ.G i) (cPZ.GI i) l),
+      fun l i => toReal (Fin.append cPZ.G cPZ.GI l i),
       Real.PolyZonotope.plusE cPZ.E (Real.PolyZonotope.identE cPZ.q),
-      fun j _ => toReal ((Fin.elim0 : Fin 0 → 𝕋) j),
+      fun j i => toReal ((Fin.elim0 : Fin 0 → Vec 𝕋 n) j i),
       toRealMat cPZ.A, cPZ.b.nominal, Real.ConPolyZono.padE cPZ.EC cPZ.q⟩ :
     Real.ConPolyZono (Vec ℝ n)) = _
   rw [hG, hGI]

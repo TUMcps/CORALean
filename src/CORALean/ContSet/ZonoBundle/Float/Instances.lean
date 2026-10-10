@@ -30,7 +30,7 @@ every field below materialises, exactly as `Zonotope`'s do.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -43,7 +43,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance {n : ℕ} : ContSet (ZonoBundle 𝕋 n) (Vec ℝ n) := ⟨ZonoBundle.construct⟩
+/-- One instance at every ambient type, as `GZonotope`'s `InflatedContSet` is. -/
+instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι] :
+    ContSet (GZonoBundle α) β := ⟨GZonoBundle.construct⟩
 
 /-- An intersection of convex sets, each member's error box included in what
 that member denotes. -/

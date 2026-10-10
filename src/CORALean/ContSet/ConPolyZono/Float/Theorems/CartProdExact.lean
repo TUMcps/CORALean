@@ -76,19 +76,23 @@ theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ�
   · -- the dependent generators, column by column
     funext l
     refine Fin.addCases (fun l => ?_) (fun l => ?_) l
-    · show (fun i => toReal (genBlockDiag cPZ₁.G cPZ₂.G i (Fin.castAdd cPZ₂.h l))) = _
+    · show (fun i => toReal (genBlockDiag (fun i l => cPZ₁.G l i) (fun i l => cPZ₂.G l i) i
+        (Fin.castAdd cPZ₂.h l))) = _
       rw [toReal_genBlockDiag_left, ConPolyZono.aux_realG_left, appendLinear_apply]
       rfl
-    · show (fun i => toReal (genBlockDiag cPZ₁.G cPZ₂.G i (Fin.natAdd cPZ₁.h l))) = _
+    · show (fun i => toReal (genBlockDiag (fun i l => cPZ₁.G l i) (fun i l => cPZ₂.G l i) i
+        (Fin.natAdd cPZ₁.h l))) = _
       rw [toReal_genBlockDiag_right, ConPolyZono.aux_realG_right, appendLinear_apply]
       rfl
   · -- the independent generators, column by column
     funext l
     refine Fin.addCases (fun l => ?_) (fun l => ?_) l
-    · show (fun i => toReal (genBlockDiag cPZ₁.GI cPZ₂.GI i (Fin.castAdd cPZ₂.q l))) = _
+    · show (fun i => toReal (genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i
+        (Fin.castAdd cPZ₂.q l))) = _
       rw [toReal_genBlockDiag_left, ConPolyZono.aux_realGI_left, appendLinear_apply]
       rfl
-    · show (fun i => toReal (genBlockDiag cPZ₁.GI cPZ₂.GI i (Fin.natAdd cPZ₁.q l))) = _
+    · show (fun i => toReal (genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i
+        (Fin.natAdd cPZ₁.q l))) = _
       rw [toReal_genBlockDiag_right, ConPolyZono.aux_realGI_right, appendLinear_apply]
       rfl
   · -- the constraint matrix

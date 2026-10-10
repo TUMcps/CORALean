@@ -67,10 +67,10 @@ they lie in `[-1, 1]`. -/
 theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono 𝕋 n)
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin cPZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
-    |∑ l, toReal (cPZ.G i (partD.right l))
+    |∑ l, toReal (cPZ.G (partD.right l) i)
         * Real.PolyZonotope.monomial cPZ.E a (partD.right l)|
-      ≤ toReal (radius (fun i l => cPZ.G i (partD.right l)) i) :=
-  abs_sum_le_radius (d := fun i l => cPZ.G i (partD.right l)) (fun _ _ => le_refl _)
+      ≤ toReal (radius (fun i l => cPZ.G (partD.right l) i) i) :=
+  abs_sum_le_radius (d := fun i l => cPZ.G (partD.right l) i) (fun _ _ => le_refl _)
     (fun l => Real.PolyZonotope.abs_monomial_le_one cPZ.E ha (partD.right l)) i
 
 /-- The same for the dropped independent generators, whose coefficients are
@@ -78,9 +78,9 @@ free to begin with. -/
 theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono 𝕋 n)
     (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin cPZ.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |∑ j, toReal (cPZ.GI i (partI.right j)) * β (partI.right j)|
-      ≤ toReal (radius (fun i j => cPZ.GI i (partI.right j)) i) :=
-  abs_sum_le_radius (d := fun i j => cPZ.GI i (partI.right j)) (fun _ _ => le_refl _)
+    |∑ j, toReal (cPZ.GI (partI.right j) i) * β (partI.right j)|
+      ≤ toReal (radius (fun i j => cPZ.GI (partI.right j) i) i) :=
+  abs_sum_le_radius (d := fun i j => cPZ.GI (partI.right j) i) (fun _ _ => le_refl _)
     (fun j => hβ (partI.right j)) i
 
 /-- One box for the two dropped blocks: their radii, added upward. -/
@@ -88,14 +88,14 @@ theorem ConPolyZono.aux_abs_dropped_le (cPZ : ConPolyZono 𝕋 n)
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) {a : Fin cPZ.p → ℝ}
     {β : Fin cPZ.q → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |(∑ l, toReal (cPZ.G i (partD.right l))
+    |(∑ l, toReal (cPZ.G (partD.right l) i)
           * Real.PolyZonotope.monomial cPZ.E a (partD.right l))
-        + ∑ j, toReal (cPZ.GI i (partI.right j)) * β (partI.right j)|
+        + ∑ j, toReal (cPZ.GI (partI.right j) i) * β (partI.right j)|
       ≤ toReal (cPZ.dropRadius partD partI i) := by -- --- PROOF ---
   have hD := ConPolyZono.aux_abs_droppedDep_le cPZ partD ha i
   have hI := ConPolyZono.aux_abs_droppedInd_le cPZ partI hβ i
-  have hsum := add_le_addUp (radius (fun i l => cPZ.G i (partD.right l)) i)
-    (radius (fun i j => cPZ.GI i (partI.right j)) i)
+  have hsum := add_le_addUp (radius (fun i l => cPZ.G (partD.right l) i) i)
+    (radius (fun i j => cPZ.GI (partI.right j) i) i)
   refine le_trans (abs_add_le _ _) ?_
   simp only [ConPolyZono.dropRadius]
   linarith
@@ -111,9 +111,9 @@ theorem ConPolyZono.aux_reduceBy_nominal (cPZ : ConPolyZono 𝕋 n)
   refine ConPolyZono.mem_nominalSet_iff.mpr
     ⟨a, Fin.append (fun j => β (partI.left j)) (fun i => Real.Zonotope.coefficient
         (toReal (cPZ.dropRadius partD partI i))
-        ((∑ l, toReal (cPZ.G i (partD.right l))
+        ((∑ l, toReal (cPZ.G (partD.right l) i)
             * Real.PolyZonotope.monomial cPZ.E a (partD.right l))
-          + ∑ j, toReal (cPZ.GI i (partI.right j)) * β (partI.right j))),
+          + ∑ j, toReal (cPZ.GI (partI.right j) i) * β (partI.right j))),
       ha, ?_, hsat, fun i => ?_⟩
   -- the kept coefficients are unchanged; the fresh ones are scaled to that box
   · refine Fin.addCases (fun j => ?_) (fun i => ?_)
@@ -121,9 +121,9 @@ theorem ConPolyZono.aux_reduceBy_nominal (cPZ : ConPolyZono 𝕋 n)
     · simp only [Fin.append_right]
       exact Real.Zonotope.abs_coefficient_le_one
         ((abs_nonneg _).trans (hbound i)) (hbound i)
-  · rw [hx i, partD.sum_split₂ fun l => toReal (cPZ.G i l)
+  · rw [hx i, partD.sum_split₂ fun l => toReal (cPZ.G l i)
         * Real.PolyZonotope.monomial cPZ.E a l,
-      partI.sum_split₂ fun j => toReal (cPZ.GI i j) * β j,
+      partI.sum_split₂ fun j => toReal (cPZ.GI j i) * β j,
       ConPolyZono.aux_sum_univ_reduceBy_q, ConPolyZono.aux_sum_univ_reduceBy_h]
     simp only [ConPolyZono.reduceBy, Fin.append_left, Fin.append_right,
       toReal_diagonalBlock]

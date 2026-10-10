@@ -35,24 +35,24 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 operands'. -/
 theorem ConPolyZono.aux_sum_union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n)
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (i : Fin n) :
-    (∑ l, toReal ((cPZ₁.union cPZ₂).G i l)
+    (∑ l, toReal ((cPZ₁.union cPZ₂).G l i)
         * Real.PolyZonotope.monomial (cPZ₁.union cPZ₂).E a l)
       = a (Real.ConPolyZono.unionSel cPZ₁.p cPZ₂.p)
           * toReal (PolyZonotope.halfDiff cPZ₁.c cPZ₂.c i)
         + ((∑ l, Real.PolyZonotope.monomial cPZ₁.E
-              (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) l * toReal (cPZ₁.G i l))
+              (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) l * toReal (cPZ₁.G l i))
           + ∑ l, Real.PolyZonotope.monomial cPZ₂.E
               (fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k))) l
-                * toReal (cPZ₂.G i l)) := by -- --- PROOF ---
+                * toReal (cPZ₂.G l i)) := by -- --- PROOF ---
   -- the exact layer's sum, at the generators the stored ones read back as
   have h := Real.ConPolyZono.sum_unionE (2 * toReal (PolyZonotope.halfDiff cPZ₁.c cPZ₂.c i))
-    (0 : ℝ) (fun l => toReal (cPZ₁.G i l)) (fun l => toReal (cPZ₂.G i l)) cPZ₁.E cPZ₂.E a
+    (0 : ℝ) (fun l => toReal (cPZ₁.G l i)) (fun l => toReal (cPZ₂.G l i)) cPZ₁.E cPZ₂.E a
   simp only [smul_eq_mul] at h
-  have key : (∑ l, toReal ((cPZ₁.union cPZ₂).G i l)
+  have key : (∑ l, toReal ((cPZ₁.union cPZ₂).G l i)
         * Real.PolyZonotope.monomial (cPZ₁.union cPZ₂).E a l)
       = ∑ x, Real.PolyZonotope.monomial (Real.ConPolyZono.unionE cPZ₁.E cPZ₂.E) a x
         * Real.ConPolyZono.unionG (2 * toReal (PolyZonotope.halfDiff cPZ₁.c cPZ₂.c i)) 0
-          (fun l => toReal (cPZ₁.G i l)) (fun l => toReal (cPZ₂.G i l)) x := by
+          (fun l => toReal (cPZ₁.G l i)) (fun l => toReal (cPZ₂.G l i)) x := by
     refine Finset.sum_congr rfl fun l _ => ?_
     rw [mul_comm]
     congr 1
@@ -118,7 +118,7 @@ theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n)
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (ha : ∀ k, |a k| ≤ 1)
     (hsat : (Real.ConPolyZono.union (nominal cPZ₁) (nominal cPZ₂)).satisfies a) :
     (fun i => toReal ((cPZ₁.union cPZ₂).c i)
-      + ∑ l, toReal ((cPZ₁.union cPZ₂).G i l)
+      + ∑ l, toReal ((cPZ₁.union cPZ₂).G l i)
         * Real.PolyZonotope.monomial (cPZ₁.union cPZ₂).E a l)
       ∈ nominalSet (cPZ₁.union cPZ₂) := by -- --- PROOF ---
   refine ConPolyZono.mem_nominalSet_iff.mpr ⟨a, fun j => j.elim0, ha, fun j => j.elim0,
@@ -152,7 +152,7 @@ theorem ConPolyZono.union_point_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) {y e : 
   have hyi := congrFun hy i
   -- the exact layer's generator sum, read at coordinate `i`
   have hG := Real.ConPolyZono.sum_unionE (toRealVec cPZ₁.c) (toRealVec cPZ₂.c)
-    (fun l i => toReal (cPZ₁.G i l)) (fun l i => toReal (cPZ₂.G i l)) cPZ₁.E cPZ₂.E a
+    (fun l i => toReal (cPZ₁.G l i)) (fun l i => toReal (cPZ₂.G l i)) cPZ₁.E cPZ₂.E a
   have hGi := congrFun hG i
   -- the stored generator sum, and the exact one
   have hS := ConPolyZono.aux_sum_union cPZ₁ cPZ₂ a i
@@ -164,7 +164,7 @@ theorem ConPolyZono.union_point_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) {y e : 
   have hyi' : y i = 2⁻¹ * (toReal (cPZ₁.c i) + toReal (cPZ₂.c i))
       + ∑ x, Real.PolyZonotope.monomial (Real.ConPolyZono.unionE cPZ₁.E cPZ₂.E) a x
         * Real.ConPolyZono.unionG (toRealVec cPZ₁.c) (toRealVec cPZ₂.c)
-          (fun l i => toReal (cPZ₁.G i l)) (fun l i => toReal (cPZ₂.G i l)) x i := by
+          (fun l i => toReal (cPZ₁.G l i)) (fun l i => toReal (cPZ₂.G l i)) x i := by
     rw [hyi, h0, add_zero]
     simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
     rfl

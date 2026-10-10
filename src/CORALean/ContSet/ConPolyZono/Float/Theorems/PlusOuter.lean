@@ -62,9 +62,9 @@ theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
     funext fun k => Fin.append_right a₁ a₂ k
   -- the witness: one appended factor vector, one appended coefficient vector
   refine ⟨fun i => toReal ((cPZ₁.plus cPZ₂).c i)
-            + (∑ l, toReal ((cPZ₁.plus cPZ₂).G i l)
+            + (∑ l, toReal ((cPZ₁.plus cPZ₂).G l i)
                 * Real.PolyZonotope.monomial (cPZ₁.plus cPZ₂).E (Fin.append a₁ a₂) l)
-            + ∑ j, toReal ((cPZ₁.plus cPZ₂).GI i j) * Fin.append β₁ β₂ j,
+            + ∑ j, toReal ((cPZ₁.plus cPZ₂).GI j i) * Fin.append β₁ β₂ j,
           ConPolyZono.mem_nominalSet_iff.mpr
             ⟨Fin.append a₁ a₂, Fin.append β₁ β₂, ?_, ?_, ?_, fun _ => rfl⟩,
           fun i => toReal (cPZ₁.c i) + toReal (cPZ₂.c i) - toReal ((cPZ₁.plus cPZ₂).c i), ?_, ?_⟩

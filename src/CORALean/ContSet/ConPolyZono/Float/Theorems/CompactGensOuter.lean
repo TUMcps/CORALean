@@ -39,17 +39,19 @@ directed masked sums. -/
 theorem ConPolyZono.aux_compactGensGap (cPZ : ConPolyZono 𝕋 n) (i : Fin n)
     (j : Fin (PolyZonotope.repKeep cPZ.E).card) :
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-        (fun l => toReal (cPZ.G i l)) (PolyZonotope.keepIdx cPZ.E j)
+        (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
       - toReal (cPZ.mergedCol i j)|
     ≤ toReal (ConPolyZono.compactGensGap cPZ i j) := by -- --- PROOF ---
   have hlo : toReal (cPZ.mergedCol i j)
       ≤ Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-          (fun l => toReal (cPZ.G i l)) (PolyZonotope.keepIdx cPZ.E j) :=
-    PolyZonotope.fiberDown_le (Real.PolyZonotope.rep cPZ.E) cPZ.G i (PolyZonotope.keepIdx cPZ.E j)
+          (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j) :=
+    PolyZonotope.fiberDown_le (Real.PolyZonotope.rep cPZ.E) (fun i l => cPZ.G l i) i
+      (PolyZonotope.keepIdx cPZ.E j)
   have hhi : Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-        (fun l => toReal (cPZ.G i l)) (PolyZonotope.keepIdx cPZ.E j)
+        (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
       ≤ toReal (cPZ.mergedColUp i j) :=
-    PolyZonotope.le_fiberUp (Real.PolyZonotope.rep cPZ.E) cPZ.G i (PolyZonotope.keepIdx cPZ.E j)
+    PolyZonotope.le_fiberUp (Real.PolyZonotope.rep cPZ.E) (fun i l => cPZ.G l i) i
+      (PolyZonotope.keepIdx cPZ.E j)
   have hgap := sub_le_subUp (cPZ.mergedColUp i j) (cPZ.mergedCol i j)
   rw [abs_le]
   simp only [ConPolyZono.compactGensGap]
@@ -66,7 +68,7 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 n) :
             + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j)
                 * Real.PolyZonotope.monomial
                     (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j)
-            + ∑ j, toReal (cPZ.GI i j) * β j,
+            + ∑ j, toReal (cPZ.GI j i) * β j,
           ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, hsat, fun _ => rfl⟩,
           _, PolyZonotope.mem_generatorError_monomial
             (E := fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j'))
@@ -77,12 +79,12 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 n) :
         * Real.PolyZonotope.monomial (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j)
       + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
           (Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-              (fun l => toReal (cPZ.G i l)) (PolyZonotope.keepIdx cPZ.E j)
+              (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
             - toReal (cPZ.mergedCol i j))
             * Real.PolyZonotope.monomial (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j)
       = ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
           Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-              (fun l => toReal (cPZ.G i l)) (PolyZonotope.keepIdx cPZ.E j)
+              (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
             * Real.PolyZonotope.monomial
                 (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j := by
     rw [← Finset.sum_add_distrib]
@@ -91,15 +93,23 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 n) :
   show toReal (cPZ.c i)
         + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j)
             * Real.PolyZonotope.monomial (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j)
-        + (∑ j, toReal (cPZ.GI i j) * β j)
+        + (∑ j, toReal (cPZ.GI j i) * β j)
       + ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
           (Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-              (fun l => toReal (cPZ.G i l)) (PolyZonotope.keepIdx cPZ.E j)
+              (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
             - toReal (cPZ.mergedCol i j))
             * Real.PolyZonotope.monomial (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j
     = x i
-  rw [hxi i, ConPolyZono.merge cPZ.E cPZ.G a
-    (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) (fun _ _ => rfl) i]
+  -- the regrouping read at the generators laid out as CORA's `n × h` matrix
+  have hmerge : (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E a l)
+      = ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
+          Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
+              (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
+            * Real.PolyZonotope.monomial
+                (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j :=
+    ConPolyZono.merge cPZ.E (fun i l => cPZ.G l i) a
+      (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) (fun _ _ => rfl) i
+  rw [hxi i, hmerge]
   linarith [hsum]
 
 

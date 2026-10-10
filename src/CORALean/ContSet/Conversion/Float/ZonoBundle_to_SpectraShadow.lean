@@ -25,7 +25,7 @@ namespace CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 def ZonoBundle.spectraShadow (zB : ZonoBundle 𝕋 n) : SpectraShadow 𝕋 n :=
-  match List.ofFn fun i => (zB.Z i).spectraShadow with
+  match List.ofFn fun i => Zonotope.spectraShadow (zB.Z i) with
   | [] => SpectraShadow.Inf n                    -- no member: the whole space
   | S :: Ss => Ss.foldl SpectraShadow.inter S    -- `and_` of the members, in order
 
@@ -48,7 +48,7 @@ theorem ZonoBundle.spectraShadow_contains (zB : ZonoBundle 𝕋 n) :
     zB.construct ⊆ zB.spectraShadow.construct := by -- --- PROOF ---
   intro x hx
   -- every member's shadow holds the point
-  have hall : ∀ T ∈ List.ofFn (fun i => (zB.Z i).spectraShadow), x ∈ T.construct := by
+  have hall : ∀ T ∈ List.ofFn (fun i => Zonotope.spectraShadow (zB.Z i)), x ∈ T.construct := by
     intro T hT
     obtain ⟨i, rfl⟩ := List.mem_ofFn.mp hT
     exact Zonotope.spectraShadow_contains _ (Set.mem_iInter.mp hx i)

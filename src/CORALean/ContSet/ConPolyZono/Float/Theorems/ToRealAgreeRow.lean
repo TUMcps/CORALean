@@ -31,7 +31,7 @@ theorem ConPolyZono.toReal_agreeRow (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (i : Fi
     toReal (ConPolyZono.agreeRow cPZ₁ cPZ₂ i l)
       = Real.ConPolyZono.agreeRow (nominal cPZ₁) (nominal cPZ₂) i l := by -- --- PROOF ---
   have hreal : Real.ConPolyZono.agreeRow (nominal cPZ₁) (nominal cPZ₂) i
-      = (Fin.append (fun l => toReal (cPZ₁.G i l)) fun l => -toReal (cPZ₂.G i l)) := rfl
+      = (Fin.append (fun l => toReal (cPZ₁.G l i)) fun l => -toReal (cPZ₂.G l i)) := rfl
   rw [hreal]
   refine Fin.addCases (fun l => ?_) (fun l => ?_) l <;>
     simp only [ConPolyZono.agreeRow, Fin.append_left, Fin.append_right, toReal_neg]

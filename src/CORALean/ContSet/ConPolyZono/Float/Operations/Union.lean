@@ -54,10 +54,9 @@ def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n 
   s := 1 + (2 + (cPZ₁.p + cPZ₁.p + (cPZ₂.p + cPZ₂.p + (cPZ₁.p * cPZ₂.p + cPZ₁.p * cPZ₂.p))))
     + (cPZ₁.s + cPZ₂.s + 1)
   c := PolyZonotope.midpoint cPZ₁.c cPZ₂.c
-  G := fun i => Fin.append (fun _ => PolyZonotope.halfDiff cPZ₁.c cPZ₂.c i)
-    (Fin.append (cPZ₁.G i) (cPZ₂.G i))
+  G := Fin.append (fun _ => PolyZonotope.halfDiff cPZ₁.c cPZ₂.c) (Fin.append cPZ₁.G cPZ₂.G)
   E := Real.ConPolyZono.unionE cPZ₁.E cPZ₂.E
-  GI := fun _ => Fin.elim0
+  GI := Fin.elim0
   A := ConPolyZono.plusA (ConPolyZono.unionUpperA cPZ₁.p cPZ₂.p)
     (ConPolyZono.unionLowerA cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b)
   b := ConPolyZono.plusB (ConPolyZono.unionUpperB cPZ₁.p cPZ₂.p)

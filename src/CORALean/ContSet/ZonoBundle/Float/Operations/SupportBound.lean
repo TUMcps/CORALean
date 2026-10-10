@@ -73,12 +73,12 @@ theorem ZonoBundle.aux_le_minimumFrom : ∀ {k : ℕ} {b : 𝕋} {u : Fin k → 
 def ZonoBundle.boundDot (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 zB.construct c where
-  val := ZonoBundle.aux_minimumFrom ((zB.Z ⟨0, hk⟩).boundDot a hc).val
-    fun i => ((zB.Z i).boundDot a hc).val
+  val := ZonoBundle.aux_minimumFrom (Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).val
+    fun i => (Zonotope.boundDot (zB.Z i) a hc).val
   le x hx := by
     have hmem : ∀ i, x ∈ (zB.Z i).construct := fun i => Set.mem_iInter.mp hx i
-    exact ZonoBundle.aux_le_minimumFrom (((zB.Z ⟨0, hk⟩).boundDot a hc).le x (hmem _))
-      fun i => ((zB.Z i).boundDot a hc).le x (hmem i)
+    exact ZonoBundle.aux_le_minimumFrom ((Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).le x (hmem _))
+      fun i => (Zonotope.boundDot (zB.Z i) a hc).le x (hmem i)
 
 end CORALean.Float
 

@@ -32,9 +32,9 @@ def ConPolyZono.project (cPZ : ConPolyZono 𝕋 n) (dims : Fin m → Fin n) : Co
   m := cPZ.m
   s := cPZ.s
   c := fun k => cPZ.c (dims k)
-  G := fun k l => cPZ.G (dims k) l
+  G := fun l k => cPZ.G l (dims k)
   E := cPZ.E
-  GI := fun k j => cPZ.GI (dims k) j
+  GI := fun j k => cPZ.GI j (dims k)
   A := cPZ.A
   b := cPZ.b
   EC := cPZ.EC

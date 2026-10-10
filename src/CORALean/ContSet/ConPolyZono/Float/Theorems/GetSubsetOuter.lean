@@ -106,9 +106,9 @@ theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) (
       (PolyZonotope.getSubsetG_close cPZ.toPolyZonotope k cen rad) ha
   -- the float point at the same factors and coefficients, plus what the rounding and the box add
   refine ⟨fun i => toReal ((cPZ.getSubset k cen rad).c i)
-      + (∑ l, toReal ((cPZ.getSubset k cen rad).G i l)
+      + (∑ l, toReal ((cPZ.getSubset k cen rad).G l i)
           * Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).E a l)
-      + ∑ j : Fin cPZ.q, toReal ((cPZ.getSubset k cen rad).GI i j) * β j,
+      + ∑ j : Fin cPZ.q, toReal ((cPZ.getSubset k cen rad).GI j i) * β j,
     ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ,
       ConPolyZono.aux_getSubset_satisfies cPZ k cen rad a ha hsat, fun _ => rfl⟩,
     fun i => (∑ l, (Real.PolyZonotope.getSubsetG (nominal cPZ.toPolyZonotope) k (toReal cen)
@@ -145,7 +145,7 @@ theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) (
           Real.PolyZonotope.getSubsetG (nominal cPZ.toPolyZonotope) k (toReal cen) (toReal rad) l i
             * Real.PolyZonotope.monomial
               (Real.PolyZonotope.getSubsetE (nominal cPZ.toPolyZonotope) k) a l)
-        + ∑ j : Fin cPZ.q, toReal (cPZ.GI i j) * β j := hz i
+        + ∑ j : Fin cPZ.q, toReal (cPZ.GI j i) * β j := hz i
     -- the stored and the exact generator sums differ by exactly the box's point
     have hsum : (∑ l : Fin (cPZ.toPolyZonotope.h * (cPZ.toPolyZonotope.maxExp k + 1)),
           toReal (cPZ.toPolyZonotope.getSubsetGDown k cen rad i l)
@@ -168,7 +168,7 @@ theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) (
           toReal (cPZ.toPolyZonotope.getSubsetGDown k cen rad i l)
           * Real.PolyZonotope.monomial
             (Real.PolyZonotope.getSubsetE (nominal cPZ.toPolyZonotope) k) a l)
-        + (∑ j : Fin cPZ.q, toReal (cPZ.GI i j) * β j)
+        + (∑ j : Fin cPZ.q, toReal (cPZ.GI j i) * β j)
         + ((∑ l : Fin (cPZ.toPolyZonotope.h * (cPZ.toPolyZonotope.maxExp k + 1)),
           (Real.PolyZonotope.getSubsetG (nominal cPZ.toPolyZonotope) k (toReal cen)
             (toReal rad) l i - toReal (cPZ.toPolyZonotope.getSubsetGDown k cen rad i l))

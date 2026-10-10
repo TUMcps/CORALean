@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 copied and `neg` is exact, so nothing here rounds. -/
 def ConPolyZono.agreeRow (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (i : Fin n) :
     Fin (cPZ₁.h + cPZ₂.h) → 𝕋 :=
-  Fin.append (fun l => cPZ₁.G i l) fun l => neg (cPZ₂.G i l)
+  Fin.append (fun l => cPZ₁.G l i) fun l => neg (cPZ₂.G l i)
 
 end CORALean.Float
 

@@ -36,10 +36,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Read back, a stored generator is the exact layer's. -/
-theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G : Mat 𝕋 n h)
-    (i : Fin n) (l : Fin (a + (a * h + a * h))) :
-    toReal (ConPolyZono.convHullG a c G i l)
-      = Real.ConPolyZono.convHullG a (toRealVec c) (fun l i => toReal (G i l))
+theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
+    (l : Fin (a + (a * h + a * h))) (i : Fin n) :
+    toReal (ConPolyZono.convHullG a c G l i)
+      = Real.ConPolyZono.convHullG a (toRealVec c) (fun l i => toReal (G l i))
         l i := by -- --- PROOF ---
   refine Fin.addCases (fun l => ?_) (fun l => ?_) l
   · simp only [ConPolyZono.convHullG, Real.ConPolyZono.convHullG, Fin.append_left, toRealVec]
@@ -53,7 +53,7 @@ theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 n)
     (v : Fin (a * cPZ.p + a) → ℝ) (hv : ∀ k, |v k| ≤ 1)
     (hsat : (Real.ConPolyZono.convHullSingle a (nominal cPZ)).satisfies v) :
     (fun i => toReal ((cPZ.convHullSingle a).c i)
-      + ∑ l, toReal ((cPZ.convHullSingle a).G i l)
+      + ∑ l, toReal ((cPZ.convHullSingle a).G l i)
         * Real.PolyZonotope.monomial (cPZ.convHullSingle a).E v l)
       ∈ nominalSet (cPZ.convHullSingle a) := by -- --- PROOF ---
   refine ConPolyZono.mem_nominalSet_iff.mpr ⟨v, fun j => j.elim0, hv, fun j => j.elim0,
@@ -89,7 +89,7 @@ theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 n) (h
       ∧ (Real.ConPolyZono.convHullSingle a (nominal cPZ)).satisfies w
       ∧ r = (a : ℝ) • toRealVec cPZ.c
         + ∑ l, Real.PolyZonotope.monomial (Real.ConPolyZono.convHullE a cPZ.E) w l
-          • Real.ConPolyZono.convHullG a (toRealVec cPZ.c) (fun l i => toReal (cPZ.G i l)) l :=
+          • Real.ConPolyZono.convHullG a (toRealVec cPZ.c) (fun l i => toReal (cPZ.G l i)) l :=
     ⟨v, hv, hsat, by rw [hr, h0, add_zero]; rfl⟩
   have hz := ConPolyZono.aux_convHullSingle_mem a cPZ w hw hsatw
   -- what storing `a c` from below leaves to pay
@@ -102,13 +102,13 @@ theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 n) (h
   have hri := congrFun hrw i
   simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul] at hri ⊢
   -- the stored generator sum is the exact form's, read at coordinate `i`
-  have hsum : (∑ l, toReal ((cPZ.convHullSingle a).G i l)
+  have hsum : (∑ l, toReal ((cPZ.convHullSingle a).G l i)
         * Real.PolyZonotope.monomial (cPZ.convHullSingle a).E w l)
       = ∑ l, Real.PolyZonotope.monomial (Real.ConPolyZono.convHullE a cPZ.E) w l
-        * Real.ConPolyZono.convHullG a (toRealVec cPZ.c) (fun l i => toReal (cPZ.G i l)) l i :=
+        * Real.ConPolyZono.convHullG a (toRealVec cPZ.c) (fun l i => toReal (cPZ.G l i)) l i :=
     Finset.sum_congr rfl fun l _ => by
       rw [mul_comm]
-      exact congrArg _ (ConPolyZono.aux_toReal_convHullG a cPZ.c cPZ.G i l)
+      exact congrArg _ (ConPolyZono.aux_toReal_convHullG a cPZ.c cPZ.G l i)
   -- the centre `a c` against its stored shortfall
   have hc : (cPZ.convHullSingle a).c i = nsmulDown a (cPZ.c i) := rfl
   rw [hc, hsum]

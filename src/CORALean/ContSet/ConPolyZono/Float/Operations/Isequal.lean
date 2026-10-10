@@ -35,10 +35,10 @@ def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 n) : Bool :=
       (le (Z.err.inf i) (S.err.inf i) && le (S.err.inf i) (Z.err.inf i)) &&
       (le (Z.err.sup i) (S.err.sup i) && le (S.err.sup i) (Z.err.sup i)) &&
       (List.finRange Z.h).all (fun j =>
-        le (Z.G i j) (S.G i (Fin.cast e.2.1 j)) && le (S.G i (Fin.cast e.2.1 j)) (Z.G i j)) &&
+        le (Z.G j i) (S.G (Fin.cast e.2.1 j) i) && le (S.G (Fin.cast e.2.1 j) i) (Z.G j i)) &&
       (List.finRange Z.q).all fun j =>
-        le (Z.GI i j) (S.GI i (Fin.cast e.2.2.1 j)) &&
-          le (S.GI i (Fin.cast e.2.2.1 j)) (Z.GI i j)) &&
+        le (Z.GI j i) (S.GI (Fin.cast e.2.2.1 j) i) &&
+          le (S.GI (Fin.cast e.2.2.1 j) i) (Z.GI j i)) &&
     -- the constraint interval and matrix
     (List.finRange Z.m).all (fun r =>
       (le (Z.b.inf r) (S.b.inf (Fin.cast e.2.2.2.1 r)) &&

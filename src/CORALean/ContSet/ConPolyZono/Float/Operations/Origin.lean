@@ -32,9 +32,9 @@ def ConPolyZono.origin (n : ℕ) : ConPolyZono 𝕋 n where
   m := 0
   s := 0
   c := fun _ => zero
-  G := fun _ j => j.elim0
+  G := Fin.elim0
   E := fun i => i.elim0
-  GI := fun _ j => j.elim0
+  GI := Fin.elim0
   A := fun i => i.elim0
   b := Interval.origin 0
   EC := fun i => i.elim0

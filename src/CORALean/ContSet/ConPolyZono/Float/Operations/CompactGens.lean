@@ -35,7 +35,7 @@ def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n wher
   m := cPZ.m
   s := cPZ.s
   c := cPZ.c
-  G := cPZ.mergedCol
+  G := fun j i => cPZ.mergedCol i j
   E := fun k j => cPZ.E k (PolyZonotope.keepIdx cPZ.E j)
   GI := cPZ.GI
   A := cPZ.A

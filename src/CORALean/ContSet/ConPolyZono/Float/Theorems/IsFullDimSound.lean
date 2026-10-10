@@ -46,11 +46,12 @@ theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.s)
 
 /-- A combination of the stored independent generators is their matrix applied to the weights. -/
 theorem ConPolyZono.aux_sum_gi (cPZ : ConPolyZono 𝕋 n) (β : Vec ℝ cPZ.q) :
-    (∑ j, β j • (nominal cPZ).GI j) = toRealMat cPZ.GI *ᵥ β := by -- --- PROOF ---
+    (∑ j, β j • (nominal cPZ).GI j)
+      = toRealMat (fun i j => cPZ.GI j i) *ᵥ β := by -- --- PROOF ---
   funext i
   simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Matrix.mulVec, dotProduct]
   exact Finset.sum_congr rfl fun j _ => by
-    show β j * toReal (cPZ.GI i j) = toReal (cPZ.GI i j) * β j
+    show β j * toReal (cPZ.GI j i) = toReal (cPZ.GI j i) * β j
     ring
 
 /-- The checked rows say the factors `0` satisfy the constraints. -/
@@ -69,7 +70,7 @@ theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 n}
 
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
 theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 n} {H : Mat 𝕋 cPZ.q n} {B : 𝕋}
-    (hc : Zonotope.ballCert cPZ.GI H B one = true)
+    (hc : Zonotope.ballCert (fun i j => cPZ.GI j i) H B one = true)
     (hsat : cPZ.satisfies (fun _ => 0)) {y₀ : Vec ℝ n}
     (hy₀ : y₀ = (nominal cPZ).c
       + ∑ i, Real.PolyZonotope.monomial (nominal cPZ).E (fun _ => 0) i • (nominal cPZ).G i)

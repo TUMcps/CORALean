@@ -33,7 +33,7 @@ def ConPolyZono.longestFactor (cPZ : ConPolyZono 𝕋 n) : Option (Fin cPZ.p) :=
     ∃ i, ∑ j', cPZ.E i j' = 1 ∧ cPZ.E i j = 1 ∧ ∀ i', i' ≠ i → cPZ.E i' j = 0
   -- the columns kept, and `G` with the all-even columns halved
   let kept := if indAll.card < cPZ.h then indAllᶜ else Finset.univ
-  let G := fun j c => if ∀ i, cPZ.E i j % 2 = 0 then half (cPZ.G c j) else cPZ.G c j
+  let G := fun j c => if ∀ i, cPZ.E i j % 2 = 0 then half (cPZ.G j c) else cPZ.G j c
   -- `lenGen i`: the summed squared lengths of the generators carrying factor `i`, rounded up
   let lenGen := fun i : Fin cPZ.p => sumUp fun j : Fin cPZ.h =>
     if j ∈ kept ∧ 0 < cPZ.E i j then sumUp fun c => mulUp (G j c) (G j c) else zero
