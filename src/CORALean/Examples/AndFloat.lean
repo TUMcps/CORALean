@@ -21,8 +21,7 @@ CORA's `and_` (set intersection) at five representations, each with its own guar
   of both, is shown to be in the answer.
 * `Polygon.and`: every pair of pieces intersected by the float `VPolytope.intersection` (through
   the pieces' boxes). A square and a triangle give one piece, printed as its box (the float box
-  of a vertex list is seeded at the origin, so it is `[0, 2]²` where the tight answer is
-  `[1, 2]²`: sound, looser);
+  of a vertex list is the hull of the vertices, here `[1, 2]²`);
   `Polygon.and_outer` says the intersection of the polygons lies inside the answer.
 * `LevelSet.and_`: the constraints stacked. The disc `x² + y² ≤ 1` and the open half-plane
   `-x < 0` give a level set with two rows, exactly their intersection (`LevelSet.and_exact`); a
@@ -102,7 +101,7 @@ def Q : Polygon D := ⟨[poly 3 ![![d 1 0, d 1 0], ![d 3 0, d 1 0], ![d 1 0, d 3
 def PQ : Polygon D := Polygon.and P Q
 
 #eval PQ.sets.length                          -- 1 piece
-#eval PQ.sets.map fun V => boxF V.interval    -- its box, [0, 2]²
+#eval PQ.sets.map fun V => boxF V.interval    -- its box, [1, 2]²
 
 theorem PQ_outer : ContSet.construct P ∩ ContSet.construct Q ⊆ ContSet.construct PQ :=
   Polygon.and_outer P Q

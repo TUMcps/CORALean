@@ -1,3 +1,4 @@
+import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
 import CORALean.ContDynamics.LinearARX.Operations.InputMat
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
@@ -1343,6 +1344,15 @@ def pZ_containsSetApprox : Bool :=
     (fun _ => ⟨![d (-1) (-5), d 3 (-5), d 23 (-5)], ![d 1 (-5), d 5 (-5), d 25 (-5)]⟩)
     (fun M => Zonotope.basisInverse M) 20 3
 
+
+/-! ## A vertex list away from the origin
+
+The triangle `(1,1), (3,1), (1,3)`: its box is the hull of its vertices, `[1, 3]²`, not that hull
+joined with the origin. -/
+
+def polyOffOrigin : VPolytope D 2 :=
+  ⟨3, ![![d 1 0, d 1 0], ![d 3 0, d 1 0], ![d 1 0, d 3 0]], zbox 2⟩
+def polyOffOriginBox : Interval (Vec D 2) := polyOffOrigin.interval
 
 end CORALean.RunnableFloat
 

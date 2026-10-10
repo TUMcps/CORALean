@@ -146,10 +146,13 @@ theorem le_maximumOver : ∀ {k : ℕ} (f : Fin k → 𝕋) (l : Fin k),
   | zero => exact fun _ l => absurd l.isLt (Nat.not_lt_zero _)
   | succ m ih =>
     intro f l
-    rw [maximumOver, toReal_maximum]
-    refine Fin.cases ?_ (fun l' => ?_) l
-    · exact le_max_left _ _
-    · exact le_trans (ih (fun i => f i.succ) l') (le_max_right _ _)
+    cases m with
+    | zero => rw [Fin.fin_one_eq_zero l]; exact le_rfl
+    | succ m =>
+      rw [maximumOver, toReal_maximum]
+      refine Fin.cases ?_ (fun l' => ?_) l
+      · exact le_max_left _ _
+      · exact le_trans (ih (fun i => f i.succ) l') (le_max_right _ _)
 
 /-- And `minimumOver` is under every entry, the reflection of the same fold. -/
 theorem minimumOver_le {k : ℕ} (f : Fin k → 𝕋) (l : Fin k) :

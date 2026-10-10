@@ -121,27 +121,35 @@ def nsmulUp : ℕ → 𝕋 → 𝕋
   | 0, _ => zero
   | k + 1, a => addUp a (nsmulUp k a)
 
-/-- The largest of `n` values, `zero` below none. Exact, as `maximum` is, so it
-needs no direction. -/
+/-- The largest of `n` values, seeded at the last of them, so a hull of values that all lie on one
+side of the origin does not reach the origin. `zero` only for no values at all. Exact, as `maximum`
+is, so it needs no direction. -/
 def maximumOver : {n : ℕ} → (Fin n → 𝕋) → 𝕋
   | 0, _ => zero
-  | _ + 1, f => maximum (f 0) (maximumOver fun i => f i.succ)
+  | 1, f => f 0
+  | _ + 2, f => maximum (f 0) (maximumOver fun i => f i.succ)
 
 /-- Right-nested like `maximumOver`. `maximum` is associative where `addUp` is
 not, so here the bracketing is a matter of cost alone. -/
 def maximumOverImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 :=
-  Fin.foldr n (fun i acc => maximum (f i) acc) zero
+  match n, f with
+  | 0, _ => zero
+  | k + 1, f => Fin.foldr k (fun i acc => maximum (f i.castSucc) acc) (f (Fin.last k))
 
 @[csimp] theorem maximumOver_eq_impl : @maximumOver = @maximumOverImpl := by -- --- PROOF ---
   funext 𝕋 _ n
   induction n with
-  | zero => funext f; rw [maximumOverImpl, Fin.foldr_zero]; rfl
-  | succ n ih =>
+  | zero => funext f; rfl
+  | succ k ih =>
     funext f
-    rw [maximumOverImpl, Fin.foldr_succ, ← maximumOverImpl, ← congrFun ih fun i => f i.succ]
-    rfl
+    cases k with
+    | zero => rfl
+    | succ k =>
+      rw [maximumOver, congrFun ih fun i => f i.succ]
+      simp only [maximumOverImpl, Fin.foldr_succ]
+      rfl
 
-/-- The smallest of `n` values, `zero` above none. `neg` and `maximum` are both
+/-- The smallest of `n` values, `zero` only for none. `neg` and `maximum` are both
 exact, so the reflection costs nothing and no second fold is needed. -/
 def minimumOver {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := neg (maximumOver fun i => neg (f i))
 
