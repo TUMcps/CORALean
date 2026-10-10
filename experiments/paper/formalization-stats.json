@@ -5679,7 +5679,7 @@
           "matlab-runtime": 1,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 4,
           "underspecified": 2,
@@ -5822,11 +5822,11 @@
         "group": "contDynamics",
         "class": "nonlinDASys",
         "methods": 13,
-        "proved": 4,
+        "proved": 6,
         "float": 1,
-        "not_yet": 5,
+        "not_yet": 3,
         "out_of_scope": 3,
-        "needs_float": 4,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 0,
@@ -6056,11 +6056,11 @@
         "group": "hybridDynamics",
         "class": "location",
         "methods": 24,
-        "proved": 0,
+        "proved": 1,
         "float": 12,
-        "not_yet": 4,
+        "not_yet": 3,
         "out_of_scope": 8,
-        "needs_float": 0,
+        "needs_float": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 1,
           "random/sampling": 0,
@@ -6069,7 +6069,7 @@
           "matlab-runtime": 7,
           "deprecated": 0
         },
-        "cora_issues": 2,
+        "cora_issues": 3,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -6236,12 +6236,12 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 24,
+        "proved": 26,
         "float": 63,
-        "not_yet": 12,
+        "not_yet": 10,
         "out_of_scope": 60,
-        "needs_float": 24,
-        "cora_issues": 12,
+        "needs_float": 26,
+        "cora_issues": 13,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
           "random/sampling": 6,
@@ -6260,12 +6260,12 @@
       },
       "hybrid": {
         "methods": 89,
-        "proved": 2,
+        "proved": 3,
         "float": 36,
-        "not_yet": 7,
+        "not_yet": 6,
         "out_of_scope": 44,
-        "needs_float": 2,
-        "cora_issues": 4,
+        "needs_float": 3,
+        "cora_issues": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
@@ -6309,12 +6309,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 108,
+      "proved": 111,
       "float": 721,
-      "not_yet": 37,
+      "not_yet": 34,
       "out_of_scope": 394,
-      "needs_float": 108,
-      "cora_issues": 63,
+      "needs_float": 111,
+      "cora_issues": 65,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -6357,9 +6357,9 @@
     "theorems": {
       "paper": 1324,
       "float": 1662,
-      "helper": 1121,
-      "lemma": 2365,
-      "total": 6472,
+      "helper": 1122,
+      "lemma": 2370,
+      "total": 6478,
       "examples": 80
     }
   }

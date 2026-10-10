@@ -91,6 +91,7 @@ import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORACounterexample
 import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORASharedInputs
 import CORALean.HybridDynamics.Theorems.UrgentRunToRun
 import CORALean.HybridDynamics.Theorems.ReachGuardOuter
+import CORALean.HybridDynamics.Theorems.GuardIntersectLevelSetOuter
 
 /-!
 # What a hybrid run guarantees, collected

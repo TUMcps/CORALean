@@ -40,6 +40,7 @@ import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInputSplit
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
+import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
 
 /-!
 # What a continuous-time linear system with a set-valued matrix computes

@@ -20,6 +20,9 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorCoraCounterexample
 import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearCoraCounterexample
 import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
+import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.InitReachOuter
 
 /-!
 # What `NonlinDASys` guarantees

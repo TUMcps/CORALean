@@ -52,6 +52,7 @@ import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
 import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
 import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
 import CORALean.HybridDynamics.Operations.ReachGuard
+import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
 
 /-!
 # What a hybrid automaton computes, collected

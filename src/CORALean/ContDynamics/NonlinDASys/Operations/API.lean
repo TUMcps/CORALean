@@ -10,6 +10,8 @@ import CORALean.ContDynamics.NonlinDASys.Operations.LinError
 import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
 import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearCora
 import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinear
+import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
+import CORALean.ContDynamics.NonlinDASys.Operations.InitReach
 
 /-!
 # What `NonlinDASys` computes
