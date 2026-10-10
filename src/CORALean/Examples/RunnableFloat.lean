@@ -134,6 +134,19 @@ import CORALean.NN.Operations.VerifySplit
 import CORALean.NN.Theorems.HoldsOfCheck
 import CORALean.Specification.Instances
 import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
+import CORALean.ContSet.Zonotope.Float.Operations.And
+import CORALean.ContSet.Polygon.Float.Operations.And
+import CORALean.ContSet.SetIntersection.API
+import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
+import CORALean.ContSet.Taylm.Float.Operations.Times
+import CORALean.ContSet.Taylm.Float.Operations.Plus
+import CORALean.ContSet.Taylm.Float.Operations.Bounds
+import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
+import CORALean.ContSet.Equality.Float.Instances
+import CORALean.ContSet.Equality.Float.Operations.EqBool
+import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
+import CORALean.ContDynamics.NonlinearARX.Operations.FeedFloat
+import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
 
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation
@@ -1258,6 +1271,44 @@ def cZ_eqs : ConZonotope D 2 where
   E := zbox 2
 
 def cZ_reduceLift : ConZonotope D 2 := cZ_eqs.reduceLift 1
+
+/-! ## Components with a worked example of their own
+
+`Zonotope.and_`, `Polygon.and`, a branch-wise `SetIntersection`, `LevelSet`'s sign test,
+a `Taylm` product and sum, the certified `eqBool`, and a nonlinear ARX model simulated in boxes
+(`AndFloat`, `SetIntersectionFloat`, `LevelSetFloat`, `TaylmFloat`, `IsequalFloat`,
+`NonlinearARXFloat`). `NonlinDASys.reachFloat` is the ordinary run of its float model
+(`vdpReach` above) and needs the real-valued reduced model, so it is run in `NonlinDASysFloat`. -/
+
+def zAnd : Zonotope D 2 := Z.and_ Z_plus
+def polyAnd : Polygon D := Polygon.and polyP polyP
+def interSum : SetIntersection (Zonotope D 2) :=
+  Plus.plus (⟨[Z, Z_plus]⟩ : SetIntersection (Zonotope D 2)) ⟨[Z]⟩
+
+/-- The sign test of the disc `x² + y² ≤ 1` at bounds `-1/2` on its row value. -/
+def lsContainsRun : Bool :=
+  LevelSet.containsPoint (𝕋 := D) (⟨1, fun _ => 0, ![.le]⟩ : CORALean.Real.LevelSet 2)
+    ![(d (-1) (-1), d (-1) (-1))]
+
+/-- `x · x` and `x · x + x` for the variable `x ∈ [1/2, 3/2]`, order `3`, as ranges (`exp` is run
+at `Dyadic 53` in `TaylmFloat`). -/
+def tlmI : Interval (Vec D 1) := ⟨![d 1 (-1)], ![d 3 (-1)]⟩
+def tlmX : Taylm D 1 := (tlmI.taylm 3) 0
+def tlmSq : Taylm D 1 := tlmX.times tlmX
+def tlmSum : Taylm D 1 := tlmSq.plus tlmX
+def tlmSqBox : Interval D := ⟨tlmSq.bounds.1, tlmSq.bounds.2⟩
+def tlmSumBox : Interval D := ⟨tlmSum.bounds.1, tlmSum.bounds.2⟩
+
+def eqBoolRun : Bool := ContSet.eqBool Z Z_plus
+def eqBoolSelf : Bool := ContSet.eqBool Z Z
+
+/-- `y(k) = y(k-1)/2 + u(k)`, one lag, as an interval extension of its field. -/
+def arxModel : NonlinearARX.FloatModel D 1 1 1 where
+  f Y V := ⟨![addDown (half (Y.inf 0)) (V.inf 0)], ![addUp (half (Y.sup 0)) (V.sup 0)]⟩
+
+def arxBoxes : ℕ → Interval (Vec D (1 * 1)) :=
+  NonlinearSysDT.simulateBoxFloat arxModel.toNonlinearSysDTFloat ![d 1 0]
+    (NonlinearARX.feedFloat 1 fun _ => (![d 1 (-4)] : Vec D 1))
 
 end CORALean.RunnableFloat
 
