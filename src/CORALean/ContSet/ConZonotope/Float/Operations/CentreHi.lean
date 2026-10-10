@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConZonotope.centreHi (cZ : ConZonotope 𝕋 n) (β₀ : Vec 𝕋 cZ.h) : Vec 𝕋 n := fun i =>
-  addUp (cZ.c i) (dotUp (fun j => cZ.G i j) β₀)
+  addUp (cZ.c i) (dotUp (fun j => cZ.G j i) β₀)
 
 end CORALean.Float
 

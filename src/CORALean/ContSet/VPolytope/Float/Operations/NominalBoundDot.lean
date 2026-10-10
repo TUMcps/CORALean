@@ -31,13 +31,13 @@ product per vertex, then the largest of them. -/
 def VPolytope.nominalBoundDot (P : VPolytope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 (nominalSet P) c where
-  val := maximumOver fun l => dotUp a fun j => P.V j l
+  val := maximumOver fun l => dotUp a (P.V l)
   le _ hx :=
     (InflatedContSet.nominal P).le_of_forall_le c
       (fun l => by
         rw [hc]
-        exact le_trans (le_dotUp a fun j => P.V j l)
-          (le_maximumOver (fun l => dotUp a fun j => P.V j l) l)) hx
+        exact le_trans (le_dotUp a (P.V l))
+          (le_maximumOver (fun l => dotUp a (P.V l)) l)) hx
 
 end CORALean.Float
 

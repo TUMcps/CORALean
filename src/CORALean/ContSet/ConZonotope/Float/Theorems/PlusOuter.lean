@@ -47,7 +47,7 @@ theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
   obtain ⟨β₁, hβ₁, hP₁, hz₁⟩ := ConZonotope.mem_nominalSet_iff.mp hz₁'
   obtain ⟨β₂, hβ₂, hP₂, hz₂⟩ := ConZonotope.mem_nominalSet_iff.mp hz₂'
   refine ⟨fun i => toReal ((cZ₁.plus cZ₂).c i)
-            + ∑ j, toReal ((cZ₁.plus cZ₂).G i j) * Fin.append β₁ β₂ j,
+            + ∑ j, toReal ((cZ₁.plus cZ₂).G j i) * Fin.append β₁ β₂ j,
           ConZonotope.mem_nominalSet_iff.mpr ⟨Fin.append β₁ β₂, ?_, ?_, fun _ => rfl⟩,
           fun i => toReal (cZ₁.c i) + toReal (cZ₂.c i) - toReal ((cZ₁.plus cZ₂).c i), ?_, ?_⟩
   · refine Fin.addCases (fun l => ?_) fun l => ?_

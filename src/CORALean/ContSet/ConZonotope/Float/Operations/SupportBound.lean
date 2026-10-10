@@ -39,7 +39,7 @@ from the floats' own values. Checked, not trusted. -/
 def ConZonotope.boundDot [ToRat 𝕋] (cZ : ConZonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 cZ.construct c :=
-  let w := cZ.P.dualWeights fun j => ∑ i, ToRat.toRat (a i) * ToRat.toRat (cZ.G i j)
+  let w := cZ.P.dualWeights fun j => ∑ i, ToRat.toRat (a i) * ToRat.toRat (cZ.G j i)
   cZ.boundDotWeights a hc w.1 w.2.1 w.2.2
 
 end CORALean.Float

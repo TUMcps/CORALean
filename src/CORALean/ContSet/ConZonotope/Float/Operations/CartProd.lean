@@ -33,7 +33,7 @@ def ConZonotope.cartProd (cZ₁ : ConZonotope 𝕋 n₁) (cZ₂ : ConZonotope �
     ConZonotope 𝕋 (n₁ + n₂) where
   h := cZ₁.h + cZ₂.h
   c := Fin.append cZ₁.c cZ₂.c
-  G := genBlockDiag cZ₁.G cZ₂.G
+  G := fun j i => genBlockDiag (fun i j => cZ₁.G j i) (fun i j => cZ₂.G j i) i j
   P := cZ₁.P.cartProd cZ₂.P
   E := Interval.append cZ₁.E cZ₂.E
 

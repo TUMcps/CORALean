@@ -34,7 +34,7 @@ theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cZ : ConZono
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet cZ ↔ ∃ β : Vec ℝ cZ.h, (∀ j, |β j| ≤ 1)
       ∧ β ∈ cZ.P.construct
-      ∧ ∀ i, x i = toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * β j :=
+      ∧ ∀ i, x i = toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * β j :=
   Real.ConZonotope.mem_construct_iff
 
 end CORALean.Float

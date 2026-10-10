@@ -38,25 +38,25 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact image of `c + G β + e`, regrouped so the centre and each generator appear once. -/
-theorem ConZonotope.aux_mulVec_regroup {h : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n) (G : Mat 𝕋 n h)
+theorem ConZonotope.aux_mulVec_regroup {h : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
     (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
-    (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G k j) * β j + e k) (i : Fin m) :
+    (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G j k) * β j + e k) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (c k))
-      + ∑ j, (∑ k, toReal (M i k) * toReal (G k j)) * β j
+      + ∑ j, (∑ k, toReal (M i k) * toReal (G j k)) * β j
       + (toRealMat M *ᵥ e) i := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _ + _ + ∑ k, toReal (M i k) * e k
   calc ∑ k, toReal (M i k) * x k
       = ∑ k, (toReal (M i k) * toReal (c k)
-              + ∑ j, toReal (M i k) * toReal (G k j) * β j + toReal (M i k) * e k) := by
+              + ∑ j, toReal (M i k) * toReal (G j k) * β j + toReal (M i k) * e k) := by
         refine Finset.sum_congr rfl fun k _ => ?_
         rw [hx k, mul_add, mul_add, Finset.mul_sum]
         exact congrArg₂ _ (congrArg _ (Finset.sum_congr rfl fun j _ => by ring)) rfl
     _ = (∑ k, toReal (M i k) * toReal (c k))
-        + ∑ k, ∑ j, toReal (M i k) * toReal (G k j) * β j
+        + ∑ k, ∑ j, toReal (M i k) * toReal (G j k) * β j
         + ∑ k, toReal (M i k) * e k := by
         rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
     _ = _ := by
-        rw [Finset.sum_comm (f := fun k j => toReal (M i k) * toReal (G k j) * β j)]
+        rw [Finset.sum_comm (f := fun k j => toReal (M i k) * toReal (G j k) * β j)]
         exact congrArg₂ _ (congrArg _ (Finset.sum_congr rfl fun j _ =>
           (Finset.sum_mul _ _ _).symm)) rfl
 
@@ -70,11 +70,11 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : Con
   rintro x ⟨⟨y₁, hy₁', e₁, he₁, hx₁⟩, y₂, hy₂', e₂, he₂, hx₂⟩
   obtain ⟨β₁, hβ₁, hP₁, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hP₂, hy₂⟩ := ConZonotope.mem_nominalSet_iff.mp hy₂'
-  set W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G i j, cZ₁.E⟩ with hW
+  set W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G j i, cZ₁.E⟩ with hW
   -- the float image's nominal point at `β₁`, and what is left of `M x`
   set yW : Vec ℝ m := fun i => toReal (W.c i) + ∑ j, toReal (W.G j i) * β₁ j with hyW
   set eW : Vec ℝ m := fun i => (toRealMat M *ᵥ x) i - yW i with heW
-  have hxk : ∀ k, x k = toReal (cZ₁.c k) + ∑ j, toReal (cZ₁.G k j) * β₁ j + e₁ k := by
+  have hxk : ∀ k, x k = toReal (cZ₁.c k) + ∑ j, toReal (cZ₁.G j k) * β₁ j + e₁ k := by
     intro k
     have h := congrFun hx₁ k
     simp only at h
@@ -82,16 +82,18 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : Con
   -- the rest lies in the float image's error box
   have heWmem : eW ∈ W.E.construct := by
     -- the generators are wrong by this much, entrywise
-    have hgen : ∀ i j, |(∑ k, toReal (M i k) * toReal (cZ₁.G k j))
-        - toReal (matMulDown M cZ₁.G i j)| ≤ toReal (matMulDiff M cZ₁.G i j) := by
+    have hgen : ∀ i j, |(∑ k, toReal (M i k) * toReal (cZ₁.G j k))
+        - toReal (mulVecDown M (cZ₁.G j) i)|
+          ≤ toReal (matMulDiff M (fun i j => cZ₁.G j i) i j) := by
       intro i j
-      have hlo : toReal (matMulDown M cZ₁.G i j) ≤ ∑ k, toReal (M i k) * toReal (cZ₁.G k j) :=
-        dotDown_le (M i) (fun k => cZ₁.G k j)
-      have hhi : ∑ k, toReal (M i k) * toReal (cZ₁.G k j) ≤ toReal (matMulUp M cZ₁.G i j) :=
-        le_dotUp (M i) (fun k => cZ₁.G k j)
-      have hgap := sub_le_subUp (matMulUp M cZ₁.G i j) (matMulDown M cZ₁.G i j)
+      have hlo : toReal (mulVecDown M (cZ₁.G j) i) ≤ ∑ k, toReal (M i k) * toReal (cZ₁.G j k) :=
+        dotDown_le (M i) (fun k => cZ₁.G j k)
+      have hhi : ∑ k, toReal (M i k) * toReal (cZ₁.G j k) ≤ toReal (mulVecUp M (cZ₁.G j) i) :=
+        le_dotUp (M i) (fun k => cZ₁.G j k)
+      have hgap := sub_le_subUp (mulVecUp M (cZ₁.G j) i) (mulVecDown M (cZ₁.G j) i)
+      change _ ≤ toReal (subUp (mulVecUp M (cZ₁.G j) i) (mulVecDown M (cZ₁.G j) i))
       rw [abs_le]
-      exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
+      exact ⟨by linarith, by linarith⟩
     -- the box's image, then the centre's and the generators' rounding
     refine Interval.plus_outer _ _ ⟨toRealMat M *ᵥ e₁, Interval.mtimes_outer M cZ₁.E ⟨e₁, he₁, rfl⟩,
       _, Interval.plus_outer _ _
@@ -100,18 +102,18 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : Con
          _, Zonotope.mem_generatorError hgen hβ₁, rfl⟩, ?_⟩
     -- the stored generators and their errors recombine into the exact image
     funext i
-    have hsum : (∑ j, toReal (matMulDown M cZ₁.G i j) * β₁ j)
-        + (∑ j, (∑ k, toReal (M i k) * toReal (cZ₁.G k j)
-            - toReal (matMulDown M cZ₁.G i j)) * β₁ j)
-        = ∑ j, (∑ k, toReal (M i k) * toReal (cZ₁.G k j)) * β₁ j := by
+    have hsum : (∑ j, toReal (mulVecDown M (cZ₁.G j) i) * β₁ j)
+        + (∑ j, (∑ k, toReal (M i k) * toReal (cZ₁.G j k)
+            - toReal (mulVecDown M (cZ₁.G j) i)) * β₁ j)
+        = ∑ j, (∑ k, toReal (M i k) * toReal (cZ₁.G j k)) * β₁ j := by
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by ring
     show (toRealMat M *ᵥ e₁) i
         + ((∑ k, toReal (M i k) * toReal (cZ₁.c k) - toReal (mulVecDown M cZ₁.c i))
-          + ∑ j, (∑ k, toReal (M i k) * toReal (cZ₁.G k j)
-              - toReal (matMulDown M cZ₁.G i j)) * β₁ j)
+          + ∑ j, (∑ k, toReal (M i k) * toReal (cZ₁.G j k)
+              - toReal (mulVecDown M (cZ₁.G j) i)) * β₁ j)
       = (toRealMat M *ᵥ x) i - (toReal (mulVecDown M cZ₁.c i)
-          + ∑ j, toReal (matMulDown M cZ₁.G i j) * β₁ j)
+          + ∑ j, toReal (mulVecDown M (cZ₁.G j) i) * β₁ j)
     rw [ConZonotope.aux_mulVec_regroup M cZ₁.c cZ₁.G β₁ e₁ hxk i]
     linarith [hsum]
   -- the witness: the first set's nominal point at `[β₁; β₂]`, with its own box point
@@ -127,7 +129,7 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : Con
     · rw [blockLeft_append]; exact hP₁
     · rw [blockRight_append]; exact hP₂
     -- the agreement row: the two nominal points differ by exactly `e₂ - eW`
-    · have hrow : (toRealMat (fun i => Fin.append (fun j => W.G j i) fun j => neg (cZ₂.G i j))
+    · have hrow : (toRealMat (fun i => Fin.append (fun j => W.G j i) fun j => neg (cZ₂.G j i))
             *ᵥ Fin.append β₁ β₂) i
           = (yW i - toReal (W.c i)) - (y₂ i - toReal (cZ₂.c i)) := by
         rw [hy₂ i]
@@ -159,7 +161,7 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : Con
     rw [hy₁ i]
     show _ = toReal (cZ₁.c i)
       + ∑ j : Fin (cZ₁.h + cZ₂.h),
-          toReal (Fin.append (cZ₁.G i) (fun _ => (zero : 𝕋)) j) * Fin.append β₁ β₂ j
+          toReal (Fin.append cZ₁.G (fun _ _ => (zero : 𝕋)) j i) * Fin.append β₁ β₂ j
     simp only [Fin.sum_univ_add, Fin.append_left, Fin.append_right, toReal_zero, zero_mul,
       Finset.sum_const_zero, add_zero]
 

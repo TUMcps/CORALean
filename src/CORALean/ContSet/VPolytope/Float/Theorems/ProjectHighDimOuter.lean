@@ -53,6 +53,7 @@ theorem VPolytope.projectHighDim_outer (P : VPolytope 𝕋 n) {dims : Fin n → 
       show (⟨P.k, _⟩ : CORALean.Real.VPolytope (Vec ℝ N)) = ⟨P.k, _⟩
       congr 1
       funext l j
+      change toReal ((P.projectHighDim dims).V l j) = _
       by_cases h : ∃ k, dims k = j
       · -- a coordinate in the range of `dims` reads the vertex's entry
         obtain ⟨k, rfl⟩ := h

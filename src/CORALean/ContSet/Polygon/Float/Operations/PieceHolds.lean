@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 def Polygon.pieceHolds (p : VPolytope 𝕋 2) (x : Vec 𝕋 2) : Bool :=
   (List.finRange p.k).any fun a => (List.finRange p.k).any fun b =>
     (List.finRange p.k).any fun c =>
-      Polygon.inTriangle (fun i => p.V i a) (fun i => p.V i b) (fun i => p.V i c) x
+      Polygon.inTriangle (p.V a) (p.V b) (p.V c) x
 
 end CORALean.Float
 

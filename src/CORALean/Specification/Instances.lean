@@ -337,7 +337,7 @@ instance fullDimTestVPolytope : FullDimTest (VPolytope 𝕋 n) where
 /-- The default right inverse, and the origin as the coefficient point: `true` where it lies
 strictly inside the constraints. A caller with a better point calls `ConZonotope.isFullDim`. -/
 instance fullDimTestConZonotope : FullDimTest (ConZonotope 𝕋 n) where
-  isFullDim cZ := cZ.isFullDim (Zonotope.rightInvCandidate cZ.G) fun _ => zero
+  isFullDim cZ := cZ.isFullDim (Zonotope.rightInvCandidate fun i j => cZ.G j i) fun _ => zero
   isFullDim_sound _ h := ConZonotope.isFullDim_sound h
 
 /-- The default right inverse of the independent generators. -/

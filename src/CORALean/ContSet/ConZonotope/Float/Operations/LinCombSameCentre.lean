@@ -39,7 +39,7 @@ centre of the second. -/
 def ConZonotope.linCombSameCentre (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := cZ₁.h + cZ₂.h + 1
   c := cZ₁.c
-  G := fun i => Fin.append (Fin.append (cZ₁.G i) (cZ₂.G i)) fun _ : Fin 1 => zero
+  G := Fin.append (Fin.append cZ₁.G cZ₂.G) fun _ : Fin 1 => fun _ => zero
   P := ((cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).intersection
     (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)))
   E := Interval.point fun _ => zero

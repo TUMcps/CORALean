@@ -137,26 +137,26 @@ theorem ConZonotope.linCombSameCentre_subset (cZ₁ cZ₂ : ConZonotope 𝕋 n) 
     (by obtain ⟨y, hy⟩ := hne₂
         obtain ⟨b, hb, hbP, -⟩ := ConZonotope.mem_nominalSet_iff.mp hy
         exact ⟨b, hb, hbP⟩) (by linarith) hA₂ hE₂
-  refine ⟨fun i => toReal (cZ₁.c i) + ∑ j, toReal (cZ₁.G i j) * β₁ j,
+  refine ⟨fun i => toReal (cZ₁.c i) + ∑ j, toReal (cZ₁.G j i) * β₁ j,
     ConZonotope.mem_nominalSet_iff.mpr ⟨β₁, hβ₁, hP₁, fun _ => rfl⟩,
-    fun i => toReal (cZ₂.c i) + ∑ j, toReal (cZ₂.G i j) * β₂ j,
+    fun i => toReal (cZ₂.c i) + ∑ j, toReal (cZ₂.G j i) * β₂ j,
     ConZonotope.mem_nominalSet_iff.mpr ⟨β₂, hβ₂, hP₂, fun _ => rfl⟩, lam, ⟨hl0, hl1⟩, ?_⟩
   funext i
   have hxi := hval i
   -- the value of the stored hull at the coefficients, in three blocks
   change x i = toReal (cZ₁.c i) + ∑ j : Fin (cZ₁.h + cZ₂.h + 1),
-    toReal (Fin.append (Fin.append (cZ₁.G i) (cZ₂.G i)) (fun _ : Fin 1 => (zero : 𝕋)) j)
+    toReal (Fin.append (Fin.append cZ₁.G cZ₂.G) (fun _ : Fin 1 => fun _ => (zero : 𝕋)) j i)
       * β j at hxi
   rw [hβeq, Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_one] at hxi
   simp only [Fin.append_left, Fin.append_right, toReal_zero, zero_mul, add_zero] at hxi
   -- the blocks, as their weights times the coefficients of their own sets
-  have e₁ : ∑ j, toReal (cZ₁.G i j) * γ₁ j = lam * ∑ j, toReal (cZ₁.G i j) * β₁ j := by
+  have e₁ : ∑ j, toReal (cZ₁.G j i) * γ₁ j = lam * ∑ j, toReal (cZ₁.G j i) * β₁ j := by
     rw [Finset.mul_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [← hγ₁eq]
     simp only [Pi.smul_apply, smul_eq_mul]
     ring
-  have e₂ : ∑ j, toReal (cZ₂.G i j) * γ₂ j = (1 - lam) * ∑ j, toReal (cZ₂.G i j) * β₂ j := by
+  have e₂ : ∑ j, toReal (cZ₂.G j i) * γ₂ j = (1 - lam) * ∑ j, toReal (cZ₂.G j i) * β₂ j := by
     rw [Finset.mul_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [← hγ₂eq]

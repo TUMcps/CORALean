@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n N : ℕ}
 
 def VPolytope.projectHighDim (P : VPolytope 𝕋 n) (dims : Fin n → Fin N) : VPolytope 𝕋 N where
   k := P.k
-  V := fun j l =>
-    if h : ∃ k, dims k = j then P.V (Fin.find (fun k => dims k = j) h) l else zero
+  V := fun l j =>
+    if h : ∃ k, dims k = j then P.V l (Fin.find (fun k => dims k = j) h) else zero
   E := P.E.projectHighDim_ N dims
 
 end CORALean.Float

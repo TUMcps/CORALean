@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n s : ℕ}
 def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋 s n) (φ y : Vec 𝕋 s)
     (Λ : Mat 𝕋 n s) : ConZonotope 𝕋 n :=
   -- C (c + G ξ + e): centre and generators rounded down, the rest in a box
-  let W := Zonotope.mtimes C ⟨cZ.h, cZ.c, fun j i => cZ.G i j, cZ.E⟩
+  let W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩
   -- c + Λ (y - C c), as bounds around the stored centre
   let w : Interval (Vec 𝕋 s) :=
     ⟨fun k => subDown (y k) (dotUp (C k) cZ.c), fun k => subUp (y k) (dotDown (C k) cZ.c)⟩
@@ -55,12 +55,12 @@ def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋 s n) (φ 
   let cHi : Vec 𝕋 n := fun i => addUp (cZ.c i) (shift.sup i)
   -- (I - Λ C) G, column by column from the box of Λ C G, rounded down, and its gap
   let LCG : Fin cZ.h → Interval (Vec 𝕋 n) := fun j =>
-    Interval.mtimes Λ ⟨fun k => matMulDown C cZ.G k j, fun k => matMulUp C cZ.G k j⟩
-  let G₁ : Mat 𝕋 n cZ.h := fun i j => subDown (cZ.G i j) ((LCG j).sup i)
-  let gap₁ : Mat 𝕋 n cZ.h := fun i j => subUp (subUp (cZ.G i j) ((LCG j).inf i)) (G₁ i j)
+    Interval.mtimes Λ ⟨mulVecDown C (cZ.G j), mulVecUp C (cZ.G j)⟩
+  let G₁ : Fin cZ.h → Vec 𝕋 n := fun j i => subDown (cZ.G j i) ((LCG j).sup i)
+  let gap₁ : Mat 𝕋 n cZ.h := fun i j => subUp (subUp (cZ.G j i) ((LCG j).inf i)) (G₁ j i)
   -- φₖ Λₖ, rounded down, and its gap
-  let G₂ : Mat 𝕋 n s := fun i k => mulDown (Λ i k) (φ k)
-  let gap₂ : Mat 𝕋 n s := fun i k => subUp (mulUp (Λ i k) (φ k)) (G₂ i k)
+  let G₂ : Fin s → Vec 𝕋 n := fun k i => mulDown (Λ i k) (φ k)
+  let gap₂ : Mat 𝕋 n s := fun i k => subUp (mulUp (Λ i k) (φ k)) (G₂ k i)
   -- the strip rows `C G ξ - φ ν = y - C c`, widened by what the image's box lets them be off
   let Astrip : Mat 𝕋 s (cZ.h + s) := fun k =>
     Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k) else zero
@@ -69,7 +69,7 @@ def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋 s n) (φ 
      fun k => subUp (subUp (y k) (W.c k)) (W.E.inf k)⟩
   { h := cZ.h + s
     c := cLo
-    G := fun i => Fin.append (G₁ i) (G₂ i)
+    G := Fin.append G₁ G₂
     P := (cZ.P.padLeft s).intersection (HPolytope.eqs Astrip bstrip)
     E := (((cZ.E.minus (Interval.mtimes Λ (Interval.mtimes C cZ.E))).plus
         (Interval.residual cLo cHi cLo)).plus (Zonotope.generatorError gap₁)).plus

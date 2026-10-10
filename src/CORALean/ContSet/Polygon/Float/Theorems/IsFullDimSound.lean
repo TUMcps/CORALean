@@ -57,11 +57,11 @@ theorem Polygon.aux_affineSpan_eq_top {k : ℕ} (V : Fin k → Vec ℝ 2) (a b c
 /-- The certified cross product is the real one, so it is not zero. -/
 theorem Polygon.aux_cross_ne_zero {p : VPolytope 𝕋 2} {a b c : Fin p.k}
     (h : Polygon.crossCertified p a b c = true) :
-    (toReal (p.V 0 b) - toReal (p.V 0 a)) * (toReal (p.V 1 c) - toReal (p.V 1 a))
-      - (toReal (p.V 1 b) - toReal (p.V 1 a)) * (toReal (p.V 0 c) - toReal (p.V 0 a))
+    (toReal (p.V b 0) - toReal (p.V a 0)) * (toReal (p.V c 1) - toReal (p.V a 1))
+      - (toReal (p.V b 1) - toReal (p.V a 1)) * (toReal (p.V c 0) - toReal (p.V a 0))
       ≠ 0 := by -- --- PROOF ---
   simp only [Polygon.crossCertified, Bool.or_eq_true] at h
-  have hb := Polygon.orientBounds_le (fun i => p.V i a) (fun i => p.V i b) (fun i => p.V i c)
+  have hb := Polygon.orientBounds_le (p.V a) (p.V b) (p.V c)
   -- one certified side of zero, read as reals
   rcases h with h | h
   · have := toReal_lt_of_ltStrict h
@@ -80,7 +80,7 @@ theorem Polygon.isFullDim_sound {P : Polygon 𝕋} (h : Polygon.isFullDim P = tr
     List.mem_finRange, true_and, forall_const] at h
   obtain ⟨p, hp, hbox, a, b, c, hc⟩ := h
   -- the nominal piece has an interior point
-  have hspan := Polygon.aux_affineSpan_eq_top (fun l i => toReal (p.V i l)) a b c
+  have hspan := Polygon.aux_affineSpan_eq_top (fun l i => toReal (p.V l i)) a b c
     (Polygon.aux_cross_ne_zero hc)
   obtain ⟨x, hx⟩ := (CORALean.Real.VPolytope.isFullDim_iff (nominal p)).mpr hspan
   -- moved by the box's lower corner, it is interior to the piece, so to the region

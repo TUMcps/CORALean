@@ -39,25 +39,25 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n s : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact image of `c + G ξ + e`, regrouped so the centre and each generator appear once. -/
-theorem ConZonotope.aux_strip_regroup {h : ℕ} (M : Mat 𝕋 s n) (c : Vec 𝕋 n) (G : Mat 𝕋 n h)
+theorem ConZonotope.aux_strip_regroup {h : ℕ} (M : Mat 𝕋 s n) (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
     (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
-    (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G k j) * β j + e k) (i : Fin s) :
+    (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G j k) * β j + e k) (i : Fin s) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (c k))
-      + ∑ j, (∑ k, toReal (M i k) * toReal (G k j)) * β j
+      + ∑ j, (∑ k, toReal (M i k) * toReal (G j k)) * β j
       + (toRealMat M *ᵥ e) i := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _ + _ + ∑ k, toReal (M i k) * e k
   calc ∑ k, toReal (M i k) * x k
       = ∑ k, (toReal (M i k) * toReal (c k)
-              + ∑ j, toReal (M i k) * toReal (G k j) * β j + toReal (M i k) * e k) := by
+              + ∑ j, toReal (M i k) * toReal (G j k) * β j + toReal (M i k) * e k) := by
         refine Finset.sum_congr rfl fun k _ => ?_
         rw [hx k, mul_add, mul_add, Finset.mul_sum]
         exact congrArg₂ _ (congrArg _ (Finset.sum_congr rfl fun j _ => by ring)) rfl
     _ = (∑ k, toReal (M i k) * toReal (c k))
-        + ∑ k, ∑ j, toReal (M i k) * toReal (G k j) * β j
+        + ∑ k, ∑ j, toReal (M i k) * toReal (G j k) * β j
         + ∑ k, toReal (M i k) * e k := by
         rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
     _ = _ := by
-        rw [Finset.sum_comm (f := fun k j => toReal (M i k) * toReal (G k j) * β j)]
+        rw [Finset.sum_comm (f := fun k j => toReal (M i k) * toReal (G j k) * β j)]
         exact congrArg₂ _ (congrArg _ (Finset.sum_congr rfl fun j _ =>
           (Finset.sum_mul _ _ _).symm)) rfl
 
@@ -80,13 +80,13 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
       ⊆ (cZ.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
   rintro x ⟨⟨y₁, hy₁', e, he, hx⟩, hstrip⟩
   obtain ⟨ξ, hξ, hP, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
-  have hxk : ∀ k, x k = toReal (cZ.c k) + ∑ j, toReal (cZ.G k j) * ξ j + e k := by
+  have hxk : ∀ k, x k = toReal (cZ.c k) + ∑ j, toReal (cZ.G j k) * ξ j + e k := by
     intro k
     have h : y₁ k + e k = x k := congrFun hx k
     rw [← h, hy₁ k]
-  set W := Zonotope.mtimes C ⟨cZ.h, cZ.c, fun j i => cZ.G i j, cZ.E⟩ with hW
+  set W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩ with hW
   -- the exact entries of `C G`
-  set CG : Mat ℝ s cZ.h := fun k j => ∑ l, toReal (C k l) * toReal (cZ.G l j) with hCG
+  set CG : Mat ℝ s cZ.h := fun k j => ∑ l, toReal (C k l) * toReal (cZ.G j l) with hCG
   have hCx : ∀ k, (toRealMat C *ᵥ x) k = (∑ l, toReal (C k l) * toReal (cZ.c l))
       + ∑ j, CG k j * ξ j + (toRealMat C *ᵥ e) k :=
     ConZonotope.aux_strip_regroup C cZ.c cZ.G ξ e hxk
@@ -115,14 +115,15 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
   set eW : Vec ℝ s := fun k =>
     (toRealMat C *ᵥ x) k - (toReal (W.c k) + ∑ j, toReal (W.G j k) * ξ j) with heW
   have heWmem : eW ∈ W.E.construct := by
-    have hgen : ∀ k j, |CG k j - toReal (matMulDown C cZ.G k j)|
-        ≤ toReal (matMulDiff C cZ.G k j) := by
+    have hgen : ∀ k j, |CG k j - toReal (mulVecDown C (cZ.G j) k)|
+        ≤ toReal (matMulDiff C (fun i j => cZ.G j i) k j) := by
       intro k j
-      have hlo : toReal (matMulDown C cZ.G k j) ≤ CG k j := dotDown_le (C k) (fun l => cZ.G l j)
-      have hhi : CG k j ≤ toReal (matMulUp C cZ.G k j) := le_dotUp (C k) (fun l => cZ.G l j)
-      have hgap := sub_le_subUp (matMulUp C cZ.G k j) (matMulDown C cZ.G k j)
+      have hlo : toReal (mulVecDown C (cZ.G j) k) ≤ CG k j := dotDown_le (C k) (fun l => cZ.G j l)
+      have hhi : CG k j ≤ toReal (mulVecUp C (cZ.G j) k) := le_dotUp (C k) (fun l => cZ.G j l)
+      have hgap := sub_le_subUp (mulVecUp C (cZ.G j) k) (mulVecDown C (cZ.G j) k)
+      change _ ≤ toReal (subUp (mulVecUp C (cZ.G j) k) (mulVecDown C (cZ.G j) k))
       rw [abs_le]
-      exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
+      exact ⟨by linarith, by linarith⟩
     -- the box's image, then the centre's and the generators' rounding
     refine Interval.plus_outer _ _ ⟨toRealMat C *ᵥ e, Interval.mtimes_outer C cZ.E ⟨e, he, rfl⟩,
       _, Interval.plus_outer _ _
@@ -130,15 +131,15 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
             (fun k => ⟨dotDown_le (C k) cZ.c, le_dotUp (C k) cZ.c⟩),
          _, Zonotope.mem_generatorError hgen hξ, rfl⟩, ?_⟩
     funext k
-    have hsum : (∑ j, toReal (matMulDown C cZ.G k j) * ξ j)
-        + (∑ j, (CG k j - toReal (matMulDown C cZ.G k j)) * ξ j) = ∑ j, CG k j * ξ j := by
+    have hsum : (∑ j, toReal (mulVecDown C (cZ.G j) k) * ξ j)
+        + (∑ j, (CG k j - toReal (mulVecDown C (cZ.G j) k)) * ξ j) = ∑ j, CG k j * ξ j := by
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by ring
     show (toRealMat C *ᵥ e) k
         + ((∑ l, toReal (C k l) * toReal (cZ.c l) - toReal (mulVecDown C cZ.c k))
-          + ∑ j, (CG k j - toReal (matMulDown C cZ.G k j)) * ξ j)
+          + ∑ j, (CG k j - toReal (mulVecDown C (cZ.G j) k)) * ξ j)
       = (toRealMat C *ᵥ x) k - (toReal (mulVecDown C cZ.c k)
-          + ∑ j, toReal (matMulDown C cZ.G k j) * ξ j)
+          + ∑ j, toReal (mulVecDown C (cZ.G j) k) * ξ j)
     rw [hCx k]
     linarith [hsum]
   -- the stored data of the result, named as in the definition
@@ -149,12 +150,12 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
   set cLo : Vec 𝕋 n := fun i => addDown (cZ.c i) (shift.inf i) with hcLo
   set cHi : Vec 𝕋 n := fun i => addUp (cZ.c i) (shift.sup i) with hcHi
   set LCG : Fin cZ.h → Interval (Vec 𝕋 n) := fun j =>
-    Interval.mtimes Λ ⟨fun k => matMulDown C cZ.G k j, fun k => matMulUp C cZ.G k j⟩ with hLCG
-  set G₁ : Mat 𝕋 n cZ.h := fun i j => subDown (cZ.G i j) ((LCG j).sup i) with hG₁
-  set gap₁ : Mat 𝕋 n cZ.h := fun i j => subUp (subUp (cZ.G i j) ((LCG j).inf i)) (G₁ i j)
+    Interval.mtimes Λ ⟨mulVecDown C (cZ.G j), mulVecUp C (cZ.G j)⟩ with hLCG
+  set G₁ : Fin cZ.h → Vec 𝕋 n := fun j i => subDown (cZ.G j i) ((LCG j).sup i) with hG₁
+  set gap₁ : Mat 𝕋 n cZ.h := fun i j => subUp (subUp (cZ.G j i) ((LCG j).inf i)) (G₁ j i)
     with hgap₁
-  set G₂ : Mat 𝕋 n s := fun i k => mulDown (Λ i k) (φ k) with hG₂
-  set gap₂ : Mat 𝕋 n s := fun i k => subUp (mulUp (Λ i k) (φ k)) (G₂ i k) with hgap₂
+  set G₂ : Fin s → Vec 𝕋 n := fun k i => mulDown (Λ i k) (φ k) with hG₂
+  set gap₂ : Mat 𝕋 n s := fun i k => subUp (mulUp (Λ i k) (φ k)) (G₂ k i) with hgap₂
   -- `y - C c` and the columns of `C G`, inside their boxes, and their images under `Λ`
   set wR : Vec ℝ s := fun k => toReal (y k) - ∑ l, toReal (C k l) * toReal (cZ.c l) with hwR
   have hw : wR ∈ w.construct := fun k => by
@@ -169,20 +170,20 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
   have hshift := Interval.mtimes_outer Λ w ⟨wR, hw, rfl⟩
   have hcol : ∀ j, (toRealMat Λ *ᵥ fun k => CG k j) ∈ (LCG j).construct := fun j =>
     Interval.mtimes_outer Λ _ ⟨fun k => CG k j, fun k =>
-      ⟨dotDown_le (C k) (fun l => cZ.G l j), le_dotUp (C k) (fun l => cZ.G l j)⟩, rfl⟩
+      ⟨dotDown_le (C k) (fun l => cZ.G j l), le_dotUp (C k) (fun l => cZ.G j l)⟩, rfl⟩
   -- the first generator block's rounding
-  have hgen₁ : ∀ i j, |(toReal (cZ.G i j) - (toRealMat Λ *ᵥ fun k => CG k j) i)
-      - toReal (G₁ i j)| ≤ toReal (gap₁ i j) := by
+  have hgen₁ : ∀ i j, |(toReal (cZ.G j i) - (toRealMat Λ *ᵥ fun k => CG k j) i)
+      - toReal (G₁ j i)| ≤ toReal (gap₁ i j) := by
     intro i j
     have hb : toReal ((LCG j).inf i) ≤ (toRealMat Λ *ᵥ fun k => CG k j) i
         ∧ (toRealMat Λ *ᵥ fun k => CG k j) i ≤ toReal ((LCG j).sup i) := hcol j i
-    have h1 := subDown_le_sub (cZ.G i j) ((LCG j).sup i)
-    have h2 := sub_le_subUp (cZ.G i j) ((LCG j).inf i)
-    have h3 := sub_le_subUp (subUp (cZ.G i j) ((LCG j).inf i)) (G₁ i j)
+    have h1 := subDown_le_sub (cZ.G j i) ((LCG j).sup i)
+    have h2 := sub_le_subUp (cZ.G j i) ((LCG j).inf i)
+    have h3 := sub_le_subUp (subUp (cZ.G j i) ((LCG j).inf i)) (G₁ j i)
     rw [abs_le]
     simp only [hgap₁, hG₁] at h3 ⊢
     constructor <;> linarith
-  have hgen₂ : ∀ i k, |toReal (Λ i k) * toReal (φ k) - toReal (G₂ i k)| ≤ toReal (gap₂ i k) :=
+  have hgen₂ : ∀ i k, |toReal (Λ i k) * toReal (φ k) - toReal (G₂ k i)| ≤ toReal (gap₂ i k) :=
     fun i k => ConZonotope.aux_strip_mulDown_gap _ _
   -- the new centre's rounding
   have hcen : ∀ i, toReal (cLo i) ≤ toReal (cZ.c i) + (toRealMat Λ *ᵥ wR) i
@@ -259,7 +260,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
     exact Finset.sum_eq_zero fun k _ => by rw [hbr k, mul_zero]
   -- the witness: the new nominal point at `[ξ; ν]`, the error split four ways
   refine ⟨fun i => toReal (cLo i) + ∑ j : Fin (cZ.h + s),
-      toReal (Fin.append (G₁ i) (G₂ i) j) * Fin.append ξ ν j,
+      toReal (Fin.append G₁ G₂ j i) * Fin.append ξ ν j,
     ConZonotope.mem_nominalSet_iff.mpr ⟨Fin.append ξ ν, ?_, hPnew, fun _ => rfl⟩,
     _, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _
       ⟨_, heΛ, _, Interval.sub_mem_residual (stored := cLo) hcen, rfl⟩,
@@ -273,20 +274,20 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋
     have hk := hkey i
     have hxi := hxk i
     simp only [Pi.add_apply, Pi.sub_apply, Fin.sum_univ_add, Fin.append_left, Fin.append_right]
-    have hM : ∑ j, (toReal (cZ.G i j) - (toRealMat Λ *ᵥ fun k => CG k j) i) * ξ j
-        = ∑ j, toReal (cZ.G i j) * ξ j
+    have hM : ∑ j, (toReal (cZ.G j i) - (toRealMat Λ *ᵥ fun k => CG k j) i) * ξ j
+        = ∑ j, toReal (cZ.G j i) * ξ j
           - ∑ j, (toRealMat Λ *ᵥ fun k => CG k j) i * ξ j := by
       rw [← Finset.sum_sub_distrib]
       exact Finset.sum_congr rfl fun j _ => by ring
     -- each stored block plus its rounding is the exact block
-    have hs1 : ∑ j, toReal (G₁ i j) * ξ j
-        + ∑ j, ((toReal (cZ.G i j) - (toRealMat Λ *ᵥ fun k => CG k j) i)
-          - toReal (G₁ i j)) * ξ j
-        = ∑ j, (toReal (cZ.G i j) - (toRealMat Λ *ᵥ fun k => CG k j) i) * ξ j := by
+    have hs1 : ∑ j, toReal (G₁ j i) * ξ j
+        + ∑ j, ((toReal (cZ.G j i) - (toRealMat Λ *ᵥ fun k => CG k j) i)
+          - toReal (G₁ j i)) * ξ j
+        = ∑ j, (toReal (cZ.G j i) - (toRealMat Λ *ᵥ fun k => CG k j) i) * ξ j := by
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by ring
-    have hs2 : ∑ k, toReal (G₂ i k) * ν k
-        + ∑ k, (toReal (Λ i k) * toReal (φ k) - toReal (G₂ i k)) * ν k
+    have hs2 : ∑ k, toReal (G₂ k i) * ν k
+        + ∑ k, (toReal (Λ i k) * toReal (φ k) - toReal (G₂ k i)) * ν k
         = ∑ k, toReal (Λ i k) * toReal (φ k) * ν k := by
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun k _ => by ring

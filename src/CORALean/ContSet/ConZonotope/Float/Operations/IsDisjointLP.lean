@@ -59,8 +59,8 @@ def ConZonotope.aux_coeffRows (cZ : ConZonotope 𝕋 n) (off : ℕ) : List ((ℕ
 def ConZonotope.aux_gapRows (cZ₁ cZ₂ : ConZonotope 𝕋 n) : List ((ℕ → ℚ) × ℚ) :=
   let s := cZ₁.h + cZ₂.h
   let gap (i : Fin n) : ℕ → ℚ := fun v =>
-    ConZonotope.aux_place (fun j => ToRat.toRat (cZ₁.G i j)) 0 v
-      - ConZonotope.aux_place (fun j => ToRat.toRat (cZ₂.G i j)) cZ₁.h v
+    ConZonotope.aux_place (fun j => ToRat.toRat (cZ₁.G j i)) 0 v
+      - ConZonotope.aux_place (fun j => ToRat.toRat (cZ₂.G j i)) cZ₁.h v
   let dc (i : Fin n) : ℚ := ToRat.toRat (cZ₂.c i) - ToRat.toRat (cZ₁.c i)
   (List.finRange n).map (fun i => (fun v => gap i v - if v = s then 1 else 0, dc i))
     ++ (List.finRange n).map (fun i => (fun v => -gap i v - if v = s then 1 else 0, -dc i))

@@ -25,7 +25,7 @@ open SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def ConZonotope.zonotope (cZ : ConZonotope 𝕋 n) : Zonotope 𝕋 n :=
-  ⟨cZ.h, cZ.c, fun j i => cZ.G i j, cZ.E⟩
+  ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩
 
 variable [SoundFloatArithmetic 𝕋]
 

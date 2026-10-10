@@ -39,7 +39,7 @@ def d (m e : ℤ) : D := ⟨m, e⟩
 def square (P : HPolytope D 2) : ConZonotope D 2 where
   h := 2
   c := ![d 0 0, d 0 0]
-  G := !![d 1 0, d 0 0; d 0 0, d 1 0]
+  G := ![![d 1 0, d 0 0], ![d 0 0, d 1 0]]
   P := P
   E := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 

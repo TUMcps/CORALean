@@ -3,10 +3,10 @@ import CORALean.ContSet.VPolytope.Float.VPolytope
 /-!
 # `VPolytope.columnGap`
 
-A box wide enough for every column's rounding at once. The operations here store
-a whole vertex list, and a hull has no centre to move a vertex away from, so one
-box has to cover all of it — the widest gap in each coordinate, taken over the
-columns.
+A box wide enough for every vertex's rounding at once, a vertex being a column of
+CORA's vertex matrix. The operations here store a whole vertex list, and a hull has
+no centre to move a vertex away from, so one box has to cover all of it — the widest
+gap in each coordinate, taken over the vertices.
 
 -/
 
@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.columnGap {k : ℕ} (lo hi : Mat 𝕋 n k) : Interval (Vec 𝕋 n) :=
-  ⟨fun _ => zero, fun i => maximumOver fun l => subUp (hi i l) (lo i l)⟩
+def VPolytope.columnGap {k : ℕ} (lo hi : Fin k → Vec 𝕋 n) : Interval (Vec 𝕋 n) :=
+  ⟨fun _ => zero, fun i => maximumOver fun l => subUp (hi l i) (lo l i)⟩
 
 end CORALean.Float
 

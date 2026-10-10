@@ -32,7 +32,7 @@ theorem Polygon.minus_outer (P : Polygon 𝕋) (p : Vec 𝕋 2) :
   rintro _ ⟨x, hx, rfl⟩
   -- the point `-p`, read as reals, is in the one-piece polygon
   have hpt : -toRealVec p ∈ ContSet.construct
-      (Polygon.ofPieces [VPolytope.enclosePoints fun i (_ : Fin 1) => neg (p i)]) := by
+      (Polygon.ofPieces [VPolytope.enclosePoints fun (_ : Fin 1) i => neg (p i)]) := by
     refine SetUnion.mem_construct.mpr ⟨_, List.mem_singleton_self _, ?_⟩
     show _ ∈ VPolytope.construct _
     rw [VPolytope.enclosePoints_exact]

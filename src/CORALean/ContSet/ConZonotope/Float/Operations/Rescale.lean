@@ -46,18 +46,18 @@ def ConZonotope.rescale (cZ : ConZonotope 𝕋 n) (ξL ξU : Vec 𝕋 cZ.h) : Co
   let ξr : Vec 𝕋 cZ.h := fun j =>                                    -- ξr covers both ends
     maximum (subUp (ξU j) (ξm j)) (subUp (ξm j) (ξL j))
   -- c + G ξm, rounded down and up
-  let cLo : Vec 𝕋 n := fun i => addDown (cZ.c i) (dotDown (cZ.G i) ξm)
-  let cHi : Vec 𝕋 n := fun i => addUp (cZ.c i) (dotUp (cZ.G i) ξm)
+  let cLo : Vec 𝕋 n := fun i => addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm)
+  let cHi : Vec 𝕋 n := fun i => addUp (cZ.c i) (dotUp (fun j => cZ.G j i) ξm)
   -- how far each entry of `M diag(ξr)`, rounded down, may be off
   let gapG : Mat 𝕋 n cZ.h := fun i j =>
-    subUp (mulUp (cZ.G i j) (ξr j)) (mulDown (cZ.G i j) (ξr j))
+    subUp (mulUp (cZ.G j i) (ξr j)) (mulDown (cZ.G j i) (ξr j))
   let gapA : Mat 𝕋 cZ.P.m cZ.h := fun k j =>
     subUp (mulUp (cZ.P.A k j) (ξr j)) (mulDown (cZ.P.A k j) (ξr j))
   let gapAe : Mat 𝕋 cZ.P.me cZ.h := fun k j =>
     subUp (mulUp (cZ.P.Ae k j) (ξr j)) (mulDown (cZ.P.Ae k j) (ξr j))
   { h := cZ.h
     c := cLo
-    G := fun i j => mulDown (cZ.G i j) (ξr j)
+    G := fun j i => mulDown (cZ.G j i) (ξr j)
     P :=
       { m := cZ.P.m
         A := fun k j => mulDown (cZ.P.A k j) (ξr j)

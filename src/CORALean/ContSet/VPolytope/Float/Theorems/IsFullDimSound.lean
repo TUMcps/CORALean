@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 reached: the last row is the sum of the weights. -/
 theorem VPolytope.aux_weights (P : VPolytope 𝕋 n) (z : Vec ℝ n) (w : Vec ℝ P.k)
     (h : toRealMat P.bordered *ᵥ w = fun i => if hi : i.val < n then z ⟨i.val, hi⟩ else 0) :
-    ∑ j, w j = 0 ∧ ∀ i : Fin n, ∑ j, toReal (P.V i j) * w j = z i := by -- --- PROOF ---
+    ∑ j, w j = 0 ∧ ∀ i : Fin n, ∑ j, toReal (P.V j i) * w j = z i := by -- --- PROOF ---
   refine ⟨?_, fun i => ?_⟩
   · have := congrFun h (Fin.last n)
     simp only [Matrix.mulVec, dotProduct, Fin.val_last, lt_irrefl, dite_false] at this
@@ -67,8 +67,8 @@ theorem VPolytope.isFullDim_sound {P : VPolytope 𝕋 n} {H : Mat 𝕋 P.k (n + 
     rw [le_div_iff₀ hkpos]
     linarith
   -- the mean of the vertices, and the open box around it
-  obtain ⟨m, hm⟩ : ∃ m : Vec ℝ n, ∀ i, m i = (1 / (P.k : ℝ)) * ∑ j, toReal (P.V i j) :=
-    ⟨fun i => (1 / (P.k : ℝ)) * ∑ j, toReal (P.V i j), fun _ => rfl⟩
+  obtain ⟨m, hm⟩ : ∃ m : Vec ℝ n, ∀ i, m i = (1 / (P.k : ℝ)) * ∑ j, toReal (P.V j i) :=
+    ⟨fun i => (1 / (P.k : ℝ)) * ∑ j, toReal (P.V j i), fun _ => rfl⟩
   let U : Set (Vec ℝ n) := Set.pi Set.univ fun i =>
     Metric.ball (m i) (toReal (Zonotope.ballB H δ))
   have hU : IsOpen U := isOpen_set_pi Set.finite_univ fun _ _ => Metric.isOpen_ball
@@ -84,7 +84,7 @@ theorem VPolytope.isFullDim_sound {P : VPolytope 𝕋 n} {H : Mat 𝕋 P.k (n + 
     obtain ⟨hsum, hrows⟩ := VPolytope.aux_weights P (fun i => y i - m i) w hw
     -- the weights `1/k + w j`: nonnegative, summing to one, combining to `y`
     change ∃ β : Fin P.k → ℝ, (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1
-      ∧ y = ∑ j, β j • (fun i : Fin n => toReal (P.V i j))
+      ∧ y = ∑ j, β j • (fun i : Fin n => toReal (P.V j i))
     refine ⟨fun j => 1 / (P.k : ℝ) + w j, fun j => ?_, ?_, ?_⟩
     · have := (abs_le.mp (hwδ j)).1
       linarith
@@ -93,9 +93,9 @@ theorem VPolytope.isFullDim_sound {P : VPolytope 𝕋 n} {H : Mat 𝕋 P.k (n + 
     · -- the vertex rows combine to `y`
       funext i
       have hi := hrows i
-      have : ∑ j, (1 / (P.k : ℝ) + w j) * toReal (P.V i j) = y i := by
-        calc ∑ j, (1 / (P.k : ℝ) + w j) * toReal (P.V i j)
-            = (1 / (P.k : ℝ)) * ∑ j, toReal (P.V i j) + ∑ j, toReal (P.V i j) * w j := by
+      have : ∑ j, (1 / (P.k : ℝ) + w j) * toReal (P.V j i) = y i := by
+        calc ∑ j, (1 / (P.k : ℝ) + w j) * toReal (P.V j i)
+            = (1 / (P.k : ℝ)) * ∑ j, toReal (P.V j i) + ∑ j, toReal (P.V j i) * w j := by
               rw [Finset.mul_sum, ← Finset.sum_add_distrib]
               exact Finset.sum_congr rfl fun j _ => by ring
           _ = y i := by rw [← hm i, hi]; ring

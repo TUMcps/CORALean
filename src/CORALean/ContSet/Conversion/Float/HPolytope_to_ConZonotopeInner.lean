@@ -48,7 +48,7 @@ a constrained zonotope whose every point is a point of `P`, wherever `Z` lies. -
 def HPolytope.conZonotopeInnerOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := Z.h
   c := Z.c
-  G := fun i j => Z.G j i
+  G := Z.G
   P := P.onCoefficientsInner Z
   E := Interval.point fun _ => zero
 

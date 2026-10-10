@@ -56,7 +56,7 @@ noncomputable def ConZonotope.aux_linCombCoeff {h₁ h₂ : ℕ} (β₁ : Vec �
 /-- The generator row `linComb` would store if nothing rounded. -/
 noncomputable def ConZonotope.aux_linCombGReal (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n) :
     Fin (cZ₁.h + cZ₂.h + 1) → ℝ :=
-  Fin.append (Fin.append (fun j => toReal (cZ₁.G i j)) fun j => toReal (cZ₂.G i j))
+  Fin.append (Fin.append (fun j => toReal (cZ₁.G j i)) fun j => toReal (cZ₂.G j i))
     fun _ : Fin 1 => (toReal (cZ₁.c i) - toReal (cZ₂.c i)) / 2
 
 /-- Every weighted coefficient is admissible, the fresh one because `2λ - 1` is
@@ -96,7 +96,7 @@ theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 n) {β₁ 
 blocks, and on the centre generator the gap `linCombGDiff` records. -/
 theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n)
     (j : Fin (cZ₁.h + cZ₂.h + 1)) :
-    |ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G i j)|
+    |ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G j i)|
       ≤ toReal (ConZonotope.linCombGDiff cZ₁ cZ₂ i j) := by -- --- PROOF ---
   simp only [ConZonotope.aux_linCombGReal, ConZonotope.linCombGDiff, ConZonotope.linComb]
   refine Fin.addCases ?_ ?_ j
@@ -123,16 +123,16 @@ supplies. -/
 theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n) (β₁ : Vec ℝ cZ₁.h)
     (β₂ : Vec ℝ cZ₂.h) (lam : ℝ) :
     (∑ j, ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
-      = lam * (∑ j, toReal (cZ₁.G i j) * β₁ j) + (1 - lam) * (∑ j, toReal (cZ₂.G i j) * β₂ j)
+      = lam * (∑ j, toReal (cZ₁.G j i) * β₁ j) + (1 - lam) * (∑ j, toReal (cZ₂.G j i) * β₂ j)
         + (2 * lam - 1) * ((toReal (cZ₁.c i) - toReal (cZ₂.c i)) / 2) := by -- --- PROOF ---
   rw [Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_one]
   simp only [ConZonotope.aux_linCombGReal, ConZonotope.aux_linCombCoeff, Fin.append_left,
     Fin.append_right, Pi.smul_apply, smul_eq_mul]
-  have e₁ : (∑ j, toReal (cZ₁.G i j) * (lam * β₁ j)) = lam * ∑ j, toReal (cZ₁.G i j) * β₁ j := by
+  have e₁ : (∑ j, toReal (cZ₁.G j i) * (lam * β₁ j)) = lam * ∑ j, toReal (cZ₁.G j i) * β₁ j := by
     rw [Finset.mul_sum]
     exact Finset.sum_congr rfl fun j _ => by ring
-  have e₂ : (∑ j, toReal (cZ₂.G i j) * ((1 - lam) * β₂ j))
-      = (1 - lam) * ∑ j, toReal (cZ₂.G i j) * β₂ j := by
+  have e₂ : (∑ j, toReal (cZ₂.G j i) * ((1 - lam) * β₂ j))
+      = (1 - lam) * ∑ j, toReal (cZ₂.G j i) * β₂ j := by
     rw [Finset.mul_sum]
     exact Finset.sum_congr rfl fun j _ => by ring
   rw [e₁, e₂]
@@ -152,7 +152,7 @@ theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
   have hβ := ConZonotope.aux_abs_linCombCoeff hβ₁ hβ₂ hl0 hl1
   -- the witness: the stored midpoint and generators at those coefficients
   refine ⟨fun i => toReal (Zonotope.midpoint cZ₁.c cZ₂.c i)
-            + ∑ j : Fin (cZ₁.h + cZ₂.h + 1), toReal ((cZ₁.linComb cZ₂).G i j)
+            + ∑ j : Fin (cZ₁.h + cZ₂.h + 1), toReal ((cZ₁.linComb cZ₂).G j i)
                 * ConZonotope.aux_linCombCoeff β₁ β₂ lam j,
           ConZonotope.mem_nominalSet_iff.mpr ⟨ConZonotope.aux_linCombCoeff β₁ β₂ lam, hβ,
             ConZonotope.aux_mem_linComb_P cZ₁ cZ₂ hβ₁ hP₁ hβ₂ hP₂ hl0 hl1, fun _ => rfl⟩,
@@ -160,9 +160,9 @@ theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
               _, Zonotope.mem_generatorError (ConZonotope.aux_linCombG_error cZ₁ cZ₂) hβ, rfl⟩, ?_⟩
   funext i
   -- the stored generators and their shortfalls recombine into the exact ones
-  have hsum : (∑ j : Fin (cZ₁.h + cZ₂.h + 1), toReal ((cZ₁.linComb cZ₂).G i j)
+  have hsum : (∑ j : Fin (cZ₁.h + cZ₂.h + 1), toReal ((cZ₁.linComb cZ₂).G j i)
           * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
-      + (∑ j, (ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G i j))
+      + (∑ j, (ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G j i))
           * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
       = ∑ j, ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j
           * ConZonotope.aux_linCombCoeff β₁ β₂ lam j := by

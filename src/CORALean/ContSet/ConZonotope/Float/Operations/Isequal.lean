@@ -35,7 +35,7 @@ def ConZonotope.isequal (Z S : ConZonotope 𝕋 n) : Bool :=
       (le (Z.E.inf i) (S.E.inf i) && le (S.E.inf i) (Z.E.inf i)) &&
       (le (Z.E.sup i) (S.E.sup i) && le (S.E.sup i) (Z.E.sup i)) &&
       (List.finRange Z.h).all fun j =>
-        le (Z.G i j) (S.G i (Fin.cast e j)) && le (S.G i (Fin.cast e j)) (Z.G i j)) &&
+        le (Z.G j i) (S.G (Fin.cast e j) i) && le (S.G (Fin.cast e j) i) (Z.G j i)) &&
     HPolytope.isequal Z.P (e ▸ S.P)
   else false
 

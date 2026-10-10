@@ -25,8 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The points are the columns of `pts`. -/
-def VPolytope.enclosePoints {N : ℕ} (pts : Mat 𝕋 n N) : VPolytope 𝕋 n :=
+/-- The points are the family `pts`, as the exact layer's are. -/
+def VPolytope.enclosePoints {N : ℕ} (pts : Fin N → Vec 𝕋 n) : VPolytope 𝕋 n :=
   ⟨N, pts, Interval.origin n⟩
 
 end CORALean.Float

@@ -39,7 +39,7 @@ theorem ConZonotope.containsPoint_sound {cZ : ConZonotope 𝕋 n} {H : Mat 𝕋 
   have hx : (fun i => toReal (p i) - toReal (cZ.E.inf i)) ∈ nominalSet cZ :=
     ConZonotope.box_subset hc _ fun i =>
       le_trans (Zonotope.deviation_bound p cZ.E.inf (cZ.centreLo β₀) (cZ.centreHi β₀)
-        (fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * toReal (β₀ j))
+        (fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))
         (fun i => (ConZonotope.centre_between cZ β₀ i).1)
         (fun i => (ConZonotope.centre_between cZ β₀ i).2) i) hdev
   have hsum : toRealVec p = (fun i => toReal (p i) - toReal (cZ.E.inf i))

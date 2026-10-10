@@ -35,13 +35,13 @@ theorem ConZonotope.isFullDim_sound {cZ : ConZonotope 𝕋 n} {H : Mat 𝕋 cZ.h
   simp only [ConZonotope.isFullDim, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hc, hE⟩ := h
-  have hball : Zonotope.ballCert cZ.G H (Zonotope.ballB H (cZ.interiorMargin β₀))
+  have hball : Zonotope.ballCert (fun i j => cZ.G j i) H (Zonotope.ballB H (cZ.interiorMargin β₀))
       (cZ.interiorMargin β₀) = true := by
     simp only [ConZonotope.interiorCert, Bool.and_eq_true] at hc
     exact hc.2
   obtain ⟨hB, -⟩ := Zonotope.ballCert_reach hball
   have hx := ConZonotope.mem_interior hc
-    (fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G i j) * toReal (β₀ j)) fun i => by simpa using hB
+    (fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j)) fun i => by simpa using hB
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx (ConZonotope.corner_mem hE))⟩
 
 end CORALean.Float

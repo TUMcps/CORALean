@@ -36,7 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet P ⊆
       nominalSet (VPolytope.mtimes M P)
-        + (VPolytope.columnGap (matMulDown M P.V) (matMulUp M P.V)).construct := by -- --- PROOF ---
+        + (VPolytope.columnGap (fun l => mulVecDown M (P.V l))
+            fun l => mulVecUp M (P.V l)).construct := by -- --- PROOF ---
   have hexact : (toRealMat M *ᵥ ·) '' nominalSet P
       = (Real.VPolytope.mtimes (toRealMat M) (nominal P)).construct :=
     Real.VPolytope.mtimes_exact _ _
@@ -47,7 +48,8 @@ theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
 -- the old box travels through the map and absorbs the column gap on the way
 theorem VPolytope.aux_mtimes_error (M : Mat 𝕋 m n) (P : VPolytope 𝕋 n) :
     (toRealMat M *ᵥ ·) '' (error P).construct
-      + (VPolytope.columnGap (matMulDown M P.V) (matMulUp M P.V)).construct ⊆
+      + (VPolytope.columnGap (fun l => mulVecDown M (P.V l))
+          fun l => mulVecUp M (P.V l)).construct ⊆
       (error (VPolytope.mtimes M P)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M P.E))
     (Interval.plus_outer _ _)

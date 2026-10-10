@@ -49,12 +49,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def ConZonotope.intersection (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
   -- Z = [c₁, G₁, zeros(size(G₂))]
-  let G : Mat 𝕋 n (cZ₁.h + cZ₂.h) := fun i => Fin.append (cZ₁.G i) fun _ => zero
+  let G : Fin (cZ₁.h + cZ₂.h) → Vec 𝕋 n := Fin.append cZ₁.G fun _ _ => zero
   -- A = blkdiag(A₁, A₂), b = [b₁; b₂]
   let P := (cZ₁.P.padLeft cZ₂.h).intersection (HPolytope.padRight cZ₁.h cZ₂.P)
   -- A = [A; G₁, -G₂]
   let Aagree : Mat 𝕋 n (cZ₁.h + cZ₂.h) := fun i =>
-    Fin.append (cZ₁.G i) fun j => neg (cZ₂.G i j)
+    Fin.append (fun j => cZ₁.G j i) fun j => neg (cZ₂.G j i)
   -- b = [b; c₂ - c₁], widened by what the two error boxes let the points differ by
   let bagree : Interval (Vec 𝕋 n) :=
     ⟨fun i => addDown (subDown (cZ₂.c i) (cZ₁.c i)) (subDown (cZ₂.E.inf i) (cZ₁.E.sup i)),

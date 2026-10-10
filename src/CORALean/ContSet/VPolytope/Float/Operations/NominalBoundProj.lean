@@ -29,10 +29,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 def VPolytope.nominalBoundProj (P : VPolytope 𝕋 n) (j : Fin n) :
     FloatBound 𝕋 (nominalSet P) (LinearMap.proj j) where
-  val := maximumOver fun l => P.V j l
+  val := maximumOver fun l => P.V l j
   le _ hx :=
     (InflatedContSet.nominal P).le_of_forall_le (LinearMap.proj j)
-      (fun l => le_maximumOver (fun l => P.V j l) l) hx
+      (fun l => le_maximumOver (fun l => P.V l j) l) hx
 
 end CORALean.Float
 

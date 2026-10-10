@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 def VPolytope.project (P : VPolytope 𝕋 n) (dims : Fin m → Fin n) : VPolytope 𝕋 m where
   k := P.k
-  V := fun i l => P.V (dims i) l
+  V := fun l i => P.V l (dims i)
   E := P.E.project dims
 
 end CORALean.Float

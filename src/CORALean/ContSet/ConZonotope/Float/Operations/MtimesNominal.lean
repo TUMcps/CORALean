@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 def ConZonotope.mtimesNominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 m where
   h := cZ.h
   c := fun i => dotDown (M i) cZ.c
-  G := matMulDown M cZ.G
+  G := fun j => mulVecDown M (cZ.G j)
   P := cZ.P
   E := Interval.point fun _ => zero
 
