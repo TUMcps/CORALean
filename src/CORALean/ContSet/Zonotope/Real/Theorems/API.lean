@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsStursbergMem
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
+import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfAbsLe
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsCorner
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsAbs

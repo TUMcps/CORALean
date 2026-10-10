@@ -39,6 +39,10 @@ import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
 import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
 import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
 import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
+import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
+import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
+import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
+import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
 
 /-!
 # What the float `ConZonotope` computes

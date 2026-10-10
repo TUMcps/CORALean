@@ -19,6 +19,8 @@ import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
 import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainOuter
 import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainInner
 import CORALean.ContSet.HPolytope.Float.Theorems.IsFullDimSound
+import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledLeft
+import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
 
 /-!
 # What the float `HPolytope` guarantees

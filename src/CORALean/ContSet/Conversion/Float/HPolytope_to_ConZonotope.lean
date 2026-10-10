@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
+import CORALean.ContSet.Interval.Float.Operations.Point
 import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
@@ -39,10 +40,8 @@ open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q h : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
 /-- A row reads a point as the centre's contribution plus the generators'. -/
-theorem aux_row_split (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (c : Vec 𝕋 n) (β : Vec ℝ h)
+theorem HPolytope.rowSplit (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (c : Vec 𝕋 n) (β : Vec ℝ h)
     (x : Vec ℝ n) (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G k j) * β j) (i : Fin q) :
     (toRealMat M *ᵥ x) i
       = (∑ k, toReal (M i k) * toReal (c k))
@@ -58,7 +57,7 @@ theorem aux_row_split (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (c : Vec 𝕋 n) (β
     exact Finset.sum_congr rfl fun k _ => by ring
 
 /-- What the stored product can be off by, on the unit box. -/
-theorem aux_prod_error (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ h)
+theorem HPolytope.prodError (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ h)
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin q) :
     |(∑ j, (∑ k, toReal (M i k) * toReal (G k j)) * β j)
         - (toRealMat (matMulDown M G) *ᵥ β) i|
@@ -118,8 +117,8 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
   · show (toRealMat (matMulDown P.A (fun i j => Z.G j i)) *ᵥ β) i
         ≤ toReal (addUp (subUp (P.b i) (dotDown (P.A i) Z.c))
           (radius (matMulDiff P.A (fun i j => Z.G j i)) i))
-    have hsplit := aux_row_split P.A (fun i j => Z.G j i) Z.c β x hval i
-    have herr := abs_le.mp (aux_prod_error P.A (fun i j => Z.G j i) β hβ i)
+    have hsplit := HPolytope.rowSplit P.A (fun i j => Z.G j i) Z.c β x hval i
+    have herr := abs_le.mp (HPolytope.prodError P.A (fun i j => Z.G j i) β hβ i)
     have hc := dotDown_le (P.A i) Z.c
     have hb := sub_le_subUp (P.b i) (dotDown (P.A i) Z.c)
     have hadd := add_le_addUp (subUp (P.b i) (dotDown (P.A i) Z.c))
@@ -131,8 +130,8 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
   · show toReal (subDown (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c))
           (radius (matMulDiff P.Ae (fun i j => Z.G j i)) i))
         ≤ (toRealMat (matMulDown P.Ae (fun i j => Z.G j i)) *ᵥ β) i
-    have hsplit := aux_row_split P.Ae (fun i j => Z.G j i) Z.c β x hval i
-    have herr := abs_le.mp (aux_prod_error P.Ae (fun i j => Z.G j i) β hβ i)
+    have hsplit := HPolytope.rowSplit P.Ae (fun i j => Z.G j i) Z.c β x hval i
+    have herr := abs_le.mp (HPolytope.prodError P.Ae (fun i j => Z.G j i) β hβ i)
     have hc := le_dotUp (P.Ae i) Z.c
     have hb := subDown_le_sub (P.be.inf i) (dotUp (P.Ae i) Z.c)
     have hsub := subDown_le_sub (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c))
@@ -144,8 +143,8 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
   · show (toRealMat (matMulDown P.Ae (fun i j => Z.G j i)) *ᵥ β) i
         ≤ toReal (addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c))
           (radius (matMulDiff P.Ae (fun i j => Z.G j i)) i))
-    have hsplit := aux_row_split P.Ae (fun i j => Z.G j i) Z.c β x hval i
-    have herr := abs_le.mp (aux_prod_error P.Ae (fun i j => Z.G j i) β hβ i)
+    have hsplit := HPolytope.rowSplit P.Ae (fun i j => Z.G j i) Z.c β x hval i
+    have herr := abs_le.mp (HPolytope.prodError P.Ae (fun i j => Z.G j i) β hβ i)
     have hc := dotDown_le (P.Ae i) Z.c
     have hb := sub_le_subUp (P.be.sup i) (dotDown (P.Ae i) Z.c)
     have hadd := add_le_addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c))

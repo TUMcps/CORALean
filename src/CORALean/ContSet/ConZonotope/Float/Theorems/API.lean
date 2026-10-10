@@ -38,6 +38,10 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.MemInterior
 import CORALean.ContSet.ConZonotope.Float.Theorems.ContainsPointSound
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.ConZonotope.Float.Theorems.RepresentsaEmptySetSound
+import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
+import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCentreSubset
+import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesNominalErr
+import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
 
 /-!
 # What the float `ConZonotope` guarantees

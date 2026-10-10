@@ -140,6 +140,17 @@ def ofMinState {n : ℕ} (s : LinearSys.MinBackReachStateOf 𝕋 (Zonotope 𝕋 
       ++ (ofCZ s.R).text,
     ToF.toF s.t :: zonoF s.ZW₀ ++ zonoF s.ZU₀ ++ (ofCZ s.R).vals, false⟩
 
+/-- The time bracket and the sets of an inner backward reachable set's loop state. -/
+def ofMaxState {n : ℕ} (o : Option (LinearSys.MaxBackReachStateFloat 𝕋 n)) : Out :=
+  match o with
+  | none => ⟨"none", [], true⟩
+  | some s =>
+    ⟨s!"t=[{sc s.tLo}, {sc s.tHi}] ZU: " ++ (ofZono s.ZU).text ++ " UErr=" ++ vecS s.UErr
+        ++ " ZW: " ++ (ofZono s.ZW).text ++ " RH: " ++ (ofCZ s.RH).text ++ " RU: "
+        ++ (ofZono s.RU).text,
+      ToF.toF s.tLo :: ToF.toF s.tHi :: zonoF s.ZU ++ vecF s.UErr ++ zonoF s.ZW
+        ++ (ofCZ s.RH).vals ++ zonoF s.RU, false⟩
+
 def ofBundles {n : ℕ} (L : List (ZonoBundle 𝕋 n)) : Out :=
   ⟨s!"bundles={L.length} last: " ++ (L.getLast?.map fun B => (ofBundle B).text).getD "-",
     L.flatMap fun B => (ofBundle B).vals, L.isEmpty⟩
@@ -513,6 +524,12 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "checkSafeHull" (ofBool RunnableFloat.checkSafeHull)
   row "checkSafeUnion" (ofBool RunnableFloat.checkSafeUnion)
   row "verifySplitRun" (ofBool RunnableFloat.verifySplitRun)
+  row "reachBoxRun" (ofWindows RunnableFloat.reachBoxRun)
+  row "backW" (ofZono RunnableFloat.backW)
+  row "backBx" (ofBox RunnableFloat.backBx)
+  row "backInitRun" (ofMaxState RunnableFloat.backInitRun)
+  row "backStepRun" (ofMaxState RunnableFloat.backStepRun)
+  row "backRunRun" (ofMaxState RunnableFloat.backRunRun)
 
 /-! ## Hardware `Float`
 

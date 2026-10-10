@@ -1,0 +1,39 @@
+import CORALean.ContSet.HPolytope.Float.HPolytope
+
+/-!
+# A row with one nonzero entry reads one coordinate
+
+The sign the entry carries times the coordinate; the other entries are `0` and drop out.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Matrix FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem HPolytope.mulVec_single {a : 𝕋} (x : Vec ℝ n) (j : Fin n) :
+    (toRealMat (fun j' k => if j' = k then a else zero) *ᵥ x) j
+      = toReal a * x j := by -- --- PROOF ---
+  show ∑ k, toReal (if j = k then a else zero) * x k = _
+  rw [Finset.sum_eq_single j]
+  · rw [if_pos rfl]
+  · intro k _ hk
+    rw [if_neg (Ne.symm hk), toReal_zero, zero_mul]
+  · exact fun h => absurd (Finset.mem_univ j) h
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

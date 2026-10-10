@@ -1,0 +1,88 @@
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
+import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachInitFloatEncloses
+import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachStepFloatEncloses
+
+/-!
+# The float state after `k` iterations stands for the exact one
+
+By induction on `k`: the initial state stands for `maxBackReachInit`
+(`maxBackReachInitFloat_encloses`) and one float iteration carries a state standing for an exact
+one to a state standing for the exact iteration (`maxBackReachStepFloat_encloses`). The exact run
+takes one Taylor order `η` for the initial state and every iteration, so the float run checks that
+the searches at `t₀` and at `Δt` land on one order `ηr`, and is `none` otherwise; the exact run
+the theorem names is at that `ηr`. The float input solution holds the exact one
+(`inputSolution_subset_inputSolutionFloat`), so the input `W₀` is only asked to hold `W₀r` with
+error box `{0}`.
+The lines are those of [1, Alg. 2].
+
+## References
+
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
+      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
+      2023.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float FloatOps SoundFloatArithmetic ContSet Matrix
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem LinearSys.maxBackReachRunFloat_encloses (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
+    (P₁ P₂ : HPolytope 𝕋 n) {U W₀ : Zonotope 𝕋 n} {Zw : 𝕋 → 𝕋 → Zonotope 𝕋 n} {t₀ Δt : 𝕋}
+    {η : ℕ}
+    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ),
+      SupportBound P.construct c)
+    (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n)) (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n))
+    (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀) (hΔt : 0 < toReal Δt)
+    (hU0 : (0 : Vec ℝ n) ∈ U.E.construct) (hU : U.construct ⊆ construct Ur)
+    (hWE : W₀.E = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
+    (hZw : ∀ (tLo tHi : 𝕋) (t : ℝ), toReal tLo ≤ t → t ≤ toReal tHi →
+      construct (Zwr t) ⊆ (Zw tLo tHi).construct)
+    (hP₁ : P₁.construct ⊆ P₁r.construct) (hP₂ : P₂.construct ⊆ P₂r.construct)
+    (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
+    (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
+    (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
+    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0) (k : ℕ)
+    {s : LinearSys.MaxBackReachStateFloat 𝕋 n}
+    (h : sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k = some s) :
+    ∃ ηr, sys.reachOrderFloat t₀ t₀ η = some ηr ∧ sys.reachOrderFloat Δt Δt η = some ηr ∧
+      s.Encloses
+        (sys.maxBackReachRun ρ P₁r P₂r Ur W₀r Zwr (toReal t₀) (toReal Δt) ηr
+          k) := by -- --- PROOF ---
+  induction k generalizing s with
+  | zero =>
+    -- the run's own check makes the two searches agree
+    unfold LinearSys.maxBackReachRunFloat at h
+    split_ifs at h with hc
+    obtain ⟨ηr, hη₀⟩ : ∃ ηr, sys.reachOrderFloat t₀ t₀ η = some ηr := by
+      unfold LinearSys.maxBackReachInitFloat at h
+      cases hs : sys.reachOrderFloat t₀ t₀ η with
+      | none => simp [hs] at h
+      | some e => exact ⟨e, rfl⟩
+    exact ⟨ηr, hη₀, hc ▸ hη₀,
+      sys.maxBackReachInitFloat_encloses h hη₀ Ur W₀r ht₀ hU0 hU hWE hW₀r⟩
+  | succ k ih =>
+    -- one float iteration from the state of the run before it
+    obtain ⟨sk, hsk, hstep⟩ := Option.bind_eq_some_iff.mp h
+    obtain ⟨ηr, hη₀, hη, hsr⟩ := ih hsk
+    exact ⟨ηr, hη₀, hη, sys.maxBackReachStepFloat_encloses Bx P₁ P₂ hstep hη ρ P₁r P₂r Ur W₀r
+      Zwr _ hsr hΔt hU0 hU hWE hW₀r (hZw _ _ _ hsr.tLo_le hsr.le_tHi) hP₁ hP₂ hker₁ hker₂
+      hkerr₁ hkerr₂⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

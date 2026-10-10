@@ -5,7 +5,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolu
 /-!
 # `P^U(Δt)` lies in the closed convex hull of eq. (20)'s set
 
-[1, Prop. 11], eq. (20)'s soundness `P^U(Δt) ⊆ P̂^U(Δt)` is open (see `Prop. 11` on [1]'s page): the
+[1, Prop. 11], eq. (20)'s soundness `P^U(Δt) ⊆ P̂^U(Δt)` is open (see `Prop. 11` on [1]'s page)
+but where a point of `U₀` dominates (`inputReach_subset_particularSolutionOuter_of_dominant`): the
 remainder block `E(Δt,η)ΔtU₀` is an exact interval product, which is not convex, and the
 remainder of the exact solution is an integral over it. What the integral does give is the
 closed convex hull. With `U₀` convex, closed, bounded and containing `0`, as [1]'s Alg. 1 has it

@@ -29,6 +29,7 @@ import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
 import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
 import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
 import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
+import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
 import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
 import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
 import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
