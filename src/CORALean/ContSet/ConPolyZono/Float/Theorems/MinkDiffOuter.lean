@@ -91,7 +91,7 @@ theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono 𝕋 n) (Z : Zonotope �
     (h0 : (0 : Vec ℝ n) ∈ Z.E.construct) :
     minkowskiDiff cPZ₁.construct Z.construct ⊆ (cPZ₁.minkDiff Z).construct := by -- --- PROOF ---
   intro x hx
-  refine ConPolyZono.aux_minkDiff_fold (fun i r => Z.G r i) _
+  refine ConPolyZono.aux_minkDiff_fold Z.G _
     {y | y + toRealVec Z.c ∈ cPZ₁.construct} ?_ ?_
   · -- the start: the minuend, made dependent, moved by `-c`
     intro y hy
@@ -104,7 +104,7 @@ theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono 𝕋 n) (Z : Zonotope �
     exact hy
   · -- every corner `c + Σ ±gⱼ` is a point of the float zonotope
     intro s
-    have hz : toRealVec Z.c + ∑ j, (if s j then (1 : ℝ) else -1) • toRealVec (fun r => Z.G r j)
+    have hz : toRealVec Z.c + ∑ j, (if s j then (1 : ℝ) else -1) • toRealVec (Z.G j)
         ∈ Z.construct := by
       refine ⟨_, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => if s j then 1 else -1,
         fun j => by by_cases hs : s j <;> simp [hs], fun i => ?_⟩, 0, h0, add_zero _⟩

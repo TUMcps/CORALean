@@ -97,6 +97,16 @@ import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
 import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRepCandidate
 import CORALean.ContSet.Zonotope.Float.Operations.UnderapproximateCandidate
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceUnderApprox
+import CORALean.ContSet.Zonotope.Float.Operations.MatMul
+import CORALean.ContSet.Zonotope.Float.Operations.MatMulIntervalMat
+import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+import CORALean.ContSet.Zonotope.Float.Operations.MatPlus
+import CORALean.ContSet.Zonotope.Float.Operations.MatPlusInterval
+import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+import CORALean.ContSet.Zonotope.Float.Operations.MatZonotope
+import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
+import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
+import CORALean.ContSet.Zonotope.Float.Operations.PointMat
 
 /-!
 # What `Zonotope` computes

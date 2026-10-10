@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`. Zero exactly on the
 axis-aligned generators, which a box reproduces for free. -/
 def Zonotope.aux_girardMetric (Z : Zonotope 𝕋 n) (j : Fin Z.h) : 𝕋 :=
-  subDown (sumUp fun i => absolute (Z.G i j)) (maximumOver fun i => absolute (Z.G i j))
+  subDown (sumUp fun i => absolute (Z.G j i)) (maximumOver fun i => absolute (Z.G j i))
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

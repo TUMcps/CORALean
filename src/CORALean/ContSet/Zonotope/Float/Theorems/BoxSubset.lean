@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The box of radius `B` around the centre lies in the nominal set. -/
 theorem Zonotope.box_subset {Z : Zonotope 𝕋 n} {H : Mat 𝕋 Z.h n} {B : 𝕋}
-    (hc : Zonotope.ballCert Z.G H B one = true) (y : Vec ℝ n)
+    (hc : Zonotope.ballCert (fun i j => Z.G j i) H B one = true) (y : Vec ℝ n)
     (hy : ∀ i, |y i - toReal (Z.c i)| ≤ toReal B) : y ∈ nominalSet Z := by -- --- PROOF ---
   obtain ⟨-, hreach⟩ := Zonotope.ballCert_reach hc
   obtain ⟨β, hβ, hβδ⟩ := hreach (fun i => y i - toReal (Z.c i)) hy
@@ -35,7 +35,7 @@ theorem Zonotope.box_subset {Z : Zonotope 𝕋 n} {H : Mat 𝕋 Z.h n} {B : 𝕋
     ⟨β, fun j => by simpa [toReal_one] using hβδ j, fun i => ?_⟩
   have := congrFun hβ i
   simp only [Matrix.mulVec, dotProduct] at this
-  have h2 : ∑ j, toReal (Z.G i j) * β j = y i - toReal (Z.c i) := this
+  have h2 : ∑ j, toReal (Z.G j i) * β j = y i - toReal (Z.c i) := this
   linarith
 
 end CORALean.Float

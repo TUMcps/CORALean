@@ -43,7 +43,7 @@ def Zonotope.spectraShadow (Z : Zonotope 𝕋 n) : SpectraShadow 𝕋 n where
     (fun i j => if i = j then one else zero)
   A := fun j => blockDiag zero (Zonotope.unitDiag one j) (Zonotope.unitDiag (neg one) j)
   c := Z.c
-  G := Z.G
+  G := fun i j => Z.G j i
   E := Z.E
 
 variable [SoundFloatArithmetic 𝕋]
@@ -101,12 +101,12 @@ theorem Zonotope.spectraShadow_contains (Z : Zonotope 𝕋 n) :
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hP, hx'⟩ := (Real.Zonotope.spectraShadow_exact (nominal Z)).subset hx
   change x = toRealVec Z.c
-    + ∑ j : Fin Z.h, (β : Fin Z.h → ℝ) j • (fun i => toReal (Z.G i j) : Vec ℝ n) at hx'
+    + ∑ j : Fin Z.h, (β : Fin Z.h → ℝ) j • (fun i => toReal (Z.G j i) : Vec ℝ n) at hx'
   exact SpectraShadow.mem_nominalSet_iff.mpr
     ⟨β, Zonotope.posSemidef_spectraShadow Z β
       ((Real.Zonotope.posSemidef_spectraShadow_iff (nominal Z) β).mp hP),
       fun i => (congrFun hx' i).trans
-      (Entrywise.add_sum_smul_apply (toRealVec Z.c) (fun j i => toReal (Z.G i j)) β i)⟩
+      (Entrywise.add_sum_smul_apply (toRealVec Z.c) (fun j i => toReal (Z.G j i)) β i)⟩
 
 end CORALean.Float
 

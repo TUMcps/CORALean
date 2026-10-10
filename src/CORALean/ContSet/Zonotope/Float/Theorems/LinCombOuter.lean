@@ -51,8 +51,8 @@ noncomputable def Zonotope.aux_linCombGReal (Z₁ Z₂ : Zonotope 𝕋 n) (i : F
     Fin (Z₁.h + Z₂.h + 1) → ℝ :=
   Fin.append
     (Fin.append
-      (Real.Zonotope.pairSum (fun j => toReal (Z₁.G i j)) (fun j => toReal (Z₂.G i j)))
-      (Real.Zonotope.pairDiff (fun j => toReal (Z₁.G i j)) (fun j => toReal (Z₂.G i j))))
+      (Real.Zonotope.pairSum (fun j => toReal (Z₁.G j i)) (fun j => toReal (Z₂.G j i)))
+      (Real.Zonotope.pairDiff (fun j => toReal (Z₁.G j i)) (fun j => toReal (Z₂.G j i))))
     (fun _ : Fin 1 => (toReal (Z₁.c i) - toReal (Z₂.c i)) / 2)
 
 /-- Every stored generator sits at the low end of a bracket around its exact
@@ -69,10 +69,10 @@ theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope 𝕋 n) (i : Fin n) 
   · refine Fin.addCases ?_ ?_
     · intro k
       simp only [Fin.append_left]
-      exact Zonotope.pairSum_bracket (Z₁.G i) (Z₂.G i) k
+      exact Zonotope.pairSum_bracket (fun j => Z₁.G j i) (fun j => Z₂.G j i) k
     · intro k
       simp only [Fin.append_left, Fin.append_right]
-      exact Zonotope.pairDiff_bracket (Z₁.G i) (Z₂.G i) k
+      exact Zonotope.pairDiff_bracket (fun j => Z₁.G j i) (fun j => Z₂.G j i) k
   · intro _
     simp only [Fin.append_right]
     rw [toReal_half, toReal_half]
@@ -101,12 +101,12 @@ theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope 𝕋 n) (i : Fin n)
     (∑ j, Zonotope.aux_linCombGReal Z₁ Z₂ i j
         * Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam)) (fun _ : Fin 1 => 2 * lam - 1) j)
-      = lam * (∑ j, toReal (Z₁.G i j) * β₁ j)
-        + (1 - lam) * (∑ j, toReal (Z₂.G i j) * β₂ j)
+      = lam * (∑ j, toReal (Z₁.G j i) * β₁ j)
+        + (1 - lam) * (∑ j, toReal (Z₂.G j i) * β₂ j)
         + (2 * lam - 1) * ((toReal (Z₁.c i) - toReal (Z₂.c i)) / 2) := by -- --- PROOF ---
   rw [Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_one]
   simp only [Zonotope.aux_linCombGReal, Fin.append_left, Fin.append_right]
-  rw [Zonotope.sum_pair_mul (fun j => toReal (Z₁.G i j)) (fun j => toReal (Z₂.G i j))
+  rw [Zonotope.sum_pair_mul (fun j => toReal (Z₁.G j i)) (fun j => toReal (Z₂.G j i))
     β₁ β₂ lam]
   ring
 

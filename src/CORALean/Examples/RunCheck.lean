@@ -168,7 +168,7 @@ def ofRegions (o : Option (List (RegionPoly 𝕋))) : Out :=
       errs, L.isEmpty⟩
 
 -- matrix zonotopes and lists of windows (`none` is a missing value)
-def ofMZ {m n : ℕ} (M : MatZonotope 𝕋 m n) : Out :=
+def ofMZ {m n : ℕ} (M : GZonotope (Mat 𝕋 m n)) : Out :=
   ⟨s!"h={M.h} c={matS M.c} E inf={matS M.E.inf} sup={matS M.E.sup}",
     matF M.c ++ (List.range M.h).flatMap (fun i =>
       if h : i < M.h then matF (M.G ⟨i, h⟩) else []) ++ matF M.E.inf ++ matF M.E.sup, false⟩
@@ -525,7 +525,7 @@ def fI : Interval (Vec F 2) := fZ.interval
 def fZ' : Zonotope F 2 where
   h := 2
   c := ![0.1, 0.2]
-  G := !![0.3, 0.1; 0.7, 0.9]
+  G := ![![0.3, 0.7], ![0.1, 0.9]]
   E := fzbox 2
 
 -- a discrete-time system, a network and a continuous-time system sampled, as at `Dyadic 24`

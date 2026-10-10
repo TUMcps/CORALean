@@ -33,8 +33,8 @@ def Zonotope.exactPlusGap (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) :
   have hm₂ : m ≤ Z₂.h := (min_le_left _ _).trans (min_le_right _ _)
   -- the gap on each shared column, and nothing on the copied ones
   let gap : Mat 𝕋 n m := fun i j =>
-    subUp (addUp (Z₁.G i (Fin.castLE hm₁ j)) (Z₂.G i (Fin.castLE hm₂ j)))
-      (addDown (Z₁.G i (Fin.castLE hm₁ j)) (Z₂.G i (Fin.castLE hm₂ j)))
+    subUp (addUp (Z₁.G (Fin.castLE hm₁ j) i) (Z₂.G (Fin.castLE hm₂ j) i))
+      (addDown (Z₁.G (Fin.castLE hm₁ j) i) (Z₂.G (Fin.castLE hm₂ j) i))
   fun i => Fin.append (Fin.append (gap i) fun _ : Fin (Z₁.h - m) => zero)
     fun _ : Fin (Z₂.h - m) => zero
 

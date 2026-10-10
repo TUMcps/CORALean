@@ -1,9 +1,9 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylorFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
-import CORALean.ContSet.MatZonotope.Float.Theorems.MatPowOuter
-import CORALean.ContSet.MatZonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.MatZonotope.Float.Theorems.SmulOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatPlusOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
 
 /-!
 # The Taylor truncation lies in the float matrix zonotope's Taylor truncation
@@ -30,16 +30,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One order of the series: the member's power, scaled. -/
-theorem MatExp.aux_term_mem_expMatZonoTerm (M : MatZonotope 𝕋 n n) {A : Mat ℝ n n}
+theorem MatExp.aux_term_mem_expMatZonoTerm (M : GZonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
     (hA : A ∈ M.construct) (i : ℕ) :
     ((Nat.factorial i : ℝ)⁻¹) • A ^ i ∈ (MatExp.expMatZonoTerm M i).construct :=
-  MatZonotope.smul_outer (MatExp.invFactorialBounds_mem i).1 (MatExp.invFactorialBounds_mem i).2
-    (M.matPow i) (MatZonotope.matPow_outer M hA i)
+  GZonotope.matSmul_outer (MatExp.invFactorialBounds_mem i).1 (MatExp.invFactorialBounds_mem i).2
+    (M.matPow i) (GZonotope.matPow_outer M hA i)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.expTaylor_mem_expMatZonoTaylor (M : MatZonotope 𝕋 n n) {A : Mat ℝ n n}
+theorem MatExp.expTaylor_mem_expMatZonoTaylor (M : GZonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
     (hA : A ∈ M.construct) (η : ℕ) :
     Real.MatExp.expTaylor A η ∈ (MatExp.expMatZonoTaylor M η).construct := by -- --- PROOF ---
   induction η with
@@ -56,10 +56,10 @@ theorem MatExp.expTaylor_mem_expMatZonoTaylor (M : MatZonotope 𝕋 n n) {A : Ma
         rw [Finset.sum_range_succ]
         exact add_comm _ _
       rw [h]
-      show _ ∈ (MatZonotope.plus (MatExp.expMatZonoTerm M (k + 1))
-        (MatExp.expMatZonoTaylor M k)).materialise.construct
-      rw [MatZonotope.materialise_eq]
-      exact MatZonotope.plus_outer _ _
+      show _ ∈ (GZonotope.matPlus (MatExp.expMatZonoTerm M (k + 1))
+        (MatExp.expMatZonoTaylor M k)).materialiseMat.construct
+      rw [GZonotope.materialiseMat_eq]
+      exact GZonotope.matPlus_outer _ _
         (Set.add_mem_add (MatExp.aux_term_mem_expMatZonoTerm M hA (k + 1)) ih)
 
 end CORALean.Float

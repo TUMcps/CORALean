@@ -8,7 +8,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MulVecSplit
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 
 /-!
 # `Zonotope.mtimesIntervalMat` over-approximates every matrix in the box
@@ -62,7 +62,7 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (Z : Zon
   obtain ⟨γ, hγ, ht₀γ⟩ := Zonotope.mem_nominalSet_iff.mp ht₀
   set b : Vec 𝕋 m := fun i => sumUp fun j =>
     mulUp (maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j)))
-      (addUp (absolute (Z.c j)) (radius Z.G j))
+      (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
   have hb0 : ∀ i, 0 ≤ toReal (b i) := fun i => le_trans (abs_nonneg _) (hbound i)
   refine ⟨t₀ + R *ᵥ z, ?_, e₀ + R *ᵥ e, Interval.plus_outer _ _ (Set.add_mem_add he₀ hRe), ?_⟩
   · -- the witness: `mid(M) Z`'s coefficients, then one per coordinate scaled to the radius
@@ -74,12 +74,12 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (Z : Zon
       · simp only [Fin.append_right]
         exact Real.Zonotope.abs_coefficient_le_one (hb0 i) (hbound i)
     · show t₀ i + (R *ᵥ z) i = toReal (mulVecDown C Z.c i)
-        + ∑ j : Fin (Z.h + m), toReal (Fin.append (matMulDown C Z.G i)
-          (diagonalBlock b i) j) * Fin.append (m := Z.h) γ
+        + ∑ j : Fin (Z.h + m), toReal (Fin.append (fun l => mulVecDown C (Z.G l))
+          (diagonalBlock b) j i) * Fin.append (m := Z.h) γ
             (fun i => Real.Zonotope.coefficient (toReal (b i)) ((R *ᵥ z) i)) j
       rw [Fin.sum_univ_add]
       simp only [Fin.append_left, Fin.append_right, toReal_diagonalBlock]
-      rw [Real.Zonotope.sum_diagonal_mul, toRealVec, Real.Zonotope.mul_coefficient (hbound i),
+      rw [Real.Zonotope.sum_diagonal_mul', toRealVec, Real.Zonotope.mul_coefficient (hbound i),
         ht₀γ i, add_assoc]
       rfl
   · show t₀ + R *ᵥ z + (e₀ + R *ᵥ e) = A *ᵥ (z + e)

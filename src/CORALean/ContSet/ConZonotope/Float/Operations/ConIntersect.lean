@@ -40,14 +40,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def ConZonotope.conIntersect (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : ConZonotope 𝕋 m) (M : Mat 𝕋 m n) :
     ConZonotope 𝕋 n :=
   -- M (c₁ + G₁ β₁ + e₁): centre and generators rounded down, the rest in a box
-  let W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, cZ₁.G, cZ₁.E⟩
+  let W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G i j, cZ₁.E⟩
   -- Z = [c₁, G₁, zeros(size(G₂))]
   let G : Mat 𝕋 n (cZ₁.h + cZ₂.h) := fun i => Fin.append (cZ₁.G i) fun _ => zero
   -- A = blkdiag(A₁, A₂), b = [b₁; b₂]
   let P := (cZ₁.P.padLeft cZ₂.h).intersection (HPolytope.padRight cZ₁.h cZ₂.P)
   -- A = [A; M G₁, -G₂]
   let Aagree : Mat 𝕋 m (cZ₁.h + cZ₂.h) := fun i =>
-    Fin.append (W.G i) fun j => neg (cZ₂.G i j)
+    Fin.append (fun j => W.G j i) fun j => neg (cZ₂.G i j)
   -- b = [b; c₂ - M c₁], widened by what the two error boxes let the points differ by
   let bagree : Interval (Vec 𝕋 m) :=
     ⟨fun i => addDown (subDown (cZ₂.c i) (W.c i)) (subDown (cZ₂.E.inf i) (W.E.sup i)),

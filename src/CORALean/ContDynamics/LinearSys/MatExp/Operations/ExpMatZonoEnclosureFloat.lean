@@ -2,8 +2,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainderFloa
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylorFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-import CORALean.ContSet.Conversion.Float.MatZonotope_to_Interval
-import CORALean.ContSet.MatZonotope.Float.Operations.PlusInterval
+import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Zonotope.Float.Operations.MatPlusInterval
 
 /-!
 # `MatExp.expMatZonoEnclosure`, over a floating-point scalar
@@ -36,10 +36,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The Taylor sum as a matrix zonotope, widened by the tail bound taken at the
 interval matrix the zonotope encloses. -/
-def MatExp.expMatZonoEnclosure (M : MatZonotope 𝕋 n n) (η : ℕ) : MatZonotope 𝕋 n n :=
+def MatExp.expMatZonoEnclosure (M : GZonotope (Mat 𝕋 n n)) (η : ℕ) : GZonotope (Mat 𝕋 n n) :=
   let T := MatExp.expMatZonoTaylor M η                                     -- the Taylor sum
   let b := MatExp.expRemainderBound (MatExp.normUpperBound M.interval) η   -- its tail, entrywise
-  MatZonotope.plusInterval T (MatExp.expMatZonoRemainder n b)
+  GZonotope.matPlusInterval T (MatExp.expMatZonoRemainder n b)
 
 end CORALean.Float
 

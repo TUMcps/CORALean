@@ -52,7 +52,7 @@ theorem Taylm.aux_reexpand_foldl (m r : Vec 𝕋 n) (hmr : ∀ k, |toReal (m k)|
       by_cases hj : j = k
       · subst hj
         simp [hk]
-      · simp [Function.update_of_ne hj, hj]
+      · simp [hj]
     rw [List.foldl_cons, hfun]
     exact h'
 

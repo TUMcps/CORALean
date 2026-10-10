@@ -32,7 +32,7 @@ theorem Zoo.ofInterval_attains (I : Interval (Vec 𝕋 n)) (i : Fin n) {x : Vec 
       x i = toReal (I.center i) + toReal (I.radiusFrom i) * t i := by -- --- PROOF ---
   obtain ⟨β, hβ, hxβ⟩ := Zonotope.mem_nominalSet_iff.mp (I.subset_nominal_zonotope hx)
   refine ⟨β, hβ, ?_⟩
-  have hs : ∑ j, toReal (I.zonotope.G i j) * β j = toReal (I.radiusFrom i) * β i :=
+  have hs : ∑ j, toReal (I.zonotope.G j i) * β j = toReal (I.radiusFrom i) * β i :=
     Zoo.diagonalBlock_sum I i β
   rw [hxβ i, hs]
   rfl

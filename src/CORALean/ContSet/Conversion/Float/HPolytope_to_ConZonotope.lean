@@ -88,20 +88,21 @@ theorem aux_prod_error (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ h)
 /-- The rows, carried onto the coefficients and widened by what carrying them
 rounds off. -/
 def HPolytope.onCoefficients (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : HPolytope 𝕋 Z.h :=
-  let err := radius (matMulDiff P.A Z.G)          -- how far a row's carried product can be off
-  let errE := radius (matMulDiff P.Ae Z.G)        -- the same, for the equality rows
+  -- how far a row's carried product can be off, and the same for the equality rows
+  let err := radius (matMulDiff P.A (fun i j => Z.G j i))
+  let errE := radius (matMulDiff P.Ae (fun i j => Z.G j i))
   { m := P.m
-    A := matMulDown P.A Z.G
+    A := matMulDown P.A (fun i j => Z.G j i)
     b := fun i => addUp (subUp (P.b i) (dotDown (P.A i) Z.c)) (err i)
     me := P.me
-    Ae := matMulDown P.Ae Z.G
+    Ae := matMulDown P.Ae (fun i j => Z.G j i)
     be := ⟨fun i => subDown (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c)) (errE i),
            fun i => addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c)) (errE i)⟩ }
 
 def HPolytope.conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZonotope 𝕋 n where
   h := Z.h
   c := Z.c
-  G := Z.G
+  G := fun i j => Z.G j i
   P := P.onCoefficients Z
   E := Z.E
 
@@ -114,40 +115,41 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
   obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hx
   refine ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ, ?_, hval⟩
   refine HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun i => ⟨?_, ?_⟩⟩
-  · show (toRealMat (matMulDown P.A Z.G) *ᵥ β) i
-        ≤ toReal (addUp (subUp (P.b i) (dotDown (P.A i) Z.c)) (radius (matMulDiff P.A Z.G) i))
-    have hsplit := aux_row_split P.A Z.G Z.c β x hval i
-    have herr := abs_le.mp (aux_prod_error P.A Z.G β hβ i)
+  · show (toRealMat (matMulDown P.A (fun i j => Z.G j i)) *ᵥ β) i
+        ≤ toReal (addUp (subUp (P.b i) (dotDown (P.A i) Z.c))
+          (radius (matMulDiff P.A (fun i j => Z.G j i)) i))
+    have hsplit := aux_row_split P.A (fun i j => Z.G j i) Z.c β x hval i
+    have herr := abs_le.mp (aux_prod_error P.A (fun i j => Z.G j i) β hβ i)
     have hc := dotDown_le (P.A i) Z.c
     have hb := sub_le_subUp (P.b i) (dotDown (P.A i) Z.c)
     have hadd := add_le_addUp (subUp (P.b i) (dotDown (P.A i) Z.c))
-      (radius (matMulDiff P.A Z.G) i)
+      (radius (matMulDiff P.A (fun i j => Z.G j i)) i)
     have h := hle i
     rw [hsplit] at h
     linarith [herr.1, herr.2]
   -- an equality's lower end, widened downward
   · show toReal (subDown (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c))
-          (radius (matMulDiff P.Ae Z.G) i))
-        ≤ (toRealMat (matMulDown P.Ae Z.G) *ᵥ β) i
-    have hsplit := aux_row_split P.Ae Z.G Z.c β x hval i
-    have herr := abs_le.mp (aux_prod_error P.Ae Z.G β hβ i)
+          (radius (matMulDiff P.Ae (fun i j => Z.G j i)) i))
+        ≤ (toRealMat (matMulDown P.Ae (fun i j => Z.G j i)) *ᵥ β) i
+    have hsplit := aux_row_split P.Ae (fun i j => Z.G j i) Z.c β x hval i
+    have herr := abs_le.mp (aux_prod_error P.Ae (fun i j => Z.G j i) β hβ i)
     have hc := le_dotUp (P.Ae i) Z.c
     have hb := subDown_le_sub (P.be.inf i) (dotUp (P.Ae i) Z.c)
     have hsub := subDown_le_sub (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c))
-      (radius (matMulDiff P.Ae Z.G) i)
+      (radius (matMulDiff P.Ae (fun i j => Z.G j i)) i)
     have h := (heq i).1
     rw [hsplit] at h
     linarith [herr.1, herr.2]
   -- and its upper end, widened upward
-  · show (toRealMat (matMulDown P.Ae Z.G) *ᵥ β) i
+  · show (toRealMat (matMulDown P.Ae (fun i j => Z.G j i)) *ᵥ β) i
         ≤ toReal (addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c))
-          (radius (matMulDiff P.Ae Z.G) i))
-    have hsplit := aux_row_split P.Ae Z.G Z.c β x hval i
-    have herr := abs_le.mp (aux_prod_error P.Ae Z.G β hβ i)
+          (radius (matMulDiff P.Ae (fun i j => Z.G j i)) i))
+    have hsplit := aux_row_split P.Ae (fun i j => Z.G j i) Z.c β x hval i
+    have herr := abs_le.mp (aux_prod_error P.Ae (fun i j => Z.G j i) β hβ i)
     have hc := dotDown_le (P.Ae i) Z.c
     have hb := sub_le_subUp (P.be.sup i) (dotDown (P.Ae i) Z.c)
     have hadd := add_le_addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c))
-      (radius (matMulDiff P.Ae Z.G) i)
+      (radius (matMulDiff P.Ae (fun i j => Z.G j i)) i)
     have h := (heq i).2
     rw [hsplit] at h
     linarith [herr.1, herr.2]

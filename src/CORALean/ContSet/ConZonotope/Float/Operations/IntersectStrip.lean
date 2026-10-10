@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n s : ℕ}
 def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋 s n) (φ y : Vec 𝕋 s)
     (Λ : Mat 𝕋 n s) : ConZonotope 𝕋 n :=
   -- C (c + G ξ + e): centre and generators rounded down, the rest in a box
-  let W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩
+  let W := Zonotope.mtimes C ⟨cZ.h, cZ.c, fun j i => cZ.G i j, cZ.E⟩
   -- c + Λ (y - C c), as bounds around the stored centre
   let w : Interval (Vec 𝕋 s) :=
     ⟨fun k => subDown (y k) (dotUp (C k) cZ.c), fun k => subUp (y k) (dotDown (C k) cZ.c)⟩
@@ -63,7 +63,7 @@ def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋 s n) (φ 
   let gap₂ : Mat 𝕋 n s := fun i k => subUp (mulUp (Λ i k) (φ k)) (G₂ i k)
   -- the strip rows `C G ξ - φ ν = y - C c`, widened by what the image's box lets them be off
   let Astrip : Mat 𝕋 s (cZ.h + s) := fun k =>
-    Fin.append (W.G k) fun l => if l = k then neg (φ k) else zero
+    Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k) else zero
   let bstrip : Interval (Vec 𝕋 s) :=
     ⟨fun k => subDown (subDown (y k) (W.c k)) (W.E.sup k),
      fun k => subUp (subUp (y k) (W.c k)) (W.E.inf k)⟩

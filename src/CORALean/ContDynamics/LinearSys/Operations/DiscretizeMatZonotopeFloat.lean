@@ -1,8 +1,8 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
 import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
-import CORALean.ContSet.MatZonotope.Float.Instances
-import CORALean.ContSet.MatZonotope.Float.Operations.Point
+import CORALean.ContSet.Zonotope.Float.Zonotope
+import CORALean.ContSet.Zonotope.Float.Operations.PointMat
 
 /-!
 # Sampling a continuous-time system in floats, the exponential a matrix zonotope
@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The system a step of `Δt` leaves behind, its matrix the float matrix-zonotope
 enclosure of `e^{AΔt}` at Taylor order `η`. -/
 def LinearSys.discretizeMatZonotopeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) :
-    LinParamSysDT (fun m n => MatZonotope 𝕋 m n) n :=
-  let AΔt := MatZonotope.smul Δt Δt (MatZonotope.point sys.A)     -- AΔt, rounded
+    LinParamSysDT (fun m n => GZonotope (Mat 𝕋 m n)) n :=
+  let AΔt := GZonotope.matSmul Δt Δt (GZonotope.pointMat sys.A)     -- AΔt, rounded
   let eAΔt := MatExp.expMatZonoEnclosure AΔt η                      -- [e^{AΔt}]
   ⟨eAΔt⟩                                                            -- x_{k+1} ∈ [e^{AΔt}] x_k + u_k
 

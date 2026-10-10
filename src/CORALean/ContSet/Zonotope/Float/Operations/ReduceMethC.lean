@@ -45,10 +45,11 @@ def Zonotope.reduceMethC (Z : Zonotope 𝕋 n) (o : ℕ) : Zonotope 𝕋 n :=
     let P := Z.methCBasis
     let H := Zonotope.basisInverse P
     if le (Zonotope.methCQ H P) (half one) = true then
-      let ρ := addUp (Zonotope.methCReach H Z.G) (Zonotope.methCReach H Z.G)
+      let ρ := addUp (Zonotope.methCReach H fun i j => Z.G j i)
+        (Zonotope.methCReach H fun i j => Z.G j i)
       { h := n
         c := Z.c
-        G := fun i k => mulDown ρ (P i k)
+        G := fun k i => mulDown ρ (P i k)
         E := Z.E.plus (Zonotope.generatorError fun i k =>
           subUp (mulUp ρ (P i k)) (mulDown ρ (P i k))) }
     else Z

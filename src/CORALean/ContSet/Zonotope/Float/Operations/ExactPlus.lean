@@ -36,13 +36,13 @@ def Zonotope.exactPlus (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n
   have hm₂ : m ≤ Z₂.h := (min_le_left _ _).trans (min_le_right _ _)
   -- the shared columns, added pairwise and rounded down
   let shared : Mat 𝕋 n m := fun i j =>
-    addDown (Z₁.G i (Fin.castLE hm₁ j)) (Z₂.G i (Fin.castLE hm₂ j))
+    addDown (Z₁.G (Fin.castLE hm₁ j) i) (Z₂.G (Fin.castLE hm₂ j) i)
   -- the rest of each operand's columns, copied
-  let rest₁ : Mat 𝕋 n (Z₁.h - m) := fun i j => Z₁.G i ⟨m + j, by have := j.2; omega⟩
-  let rest₂ : Mat 𝕋 n (Z₂.h - m) := fun i j => Z₂.G i ⟨m + j, by have := j.2; omega⟩
+  let rest₁ : Mat 𝕋 n (Z₁.h - m) := fun i j => Z₁.G ⟨m + j, by have := j.2; omega⟩ i
+  let rest₂ : Mat 𝕋 n (Z₂.h - m) := fun i j => Z₂.G ⟨m + j, by have := j.2; omega⟩ i
   { h := m + (Z₁.h - m) + (Z₂.h - m)
     c := fun i => addDown (Z₁.c i) (Z₂.c i)
-    G := fun i => Fin.append (Fin.append (shared i) (rest₁ i)) (rest₂ i)
+    G := fun j i => Fin.append (Fin.append (shared i) (rest₁ i)) (rest₂ i) j
     E := ((Z₁.E.plus Z₂.E).plus (Zonotope.centerResidual Z₁.c Z₂.c)).plus
       (Zonotope.generatorError (Z₁.exactPlusGap Z₂ k)) }
 

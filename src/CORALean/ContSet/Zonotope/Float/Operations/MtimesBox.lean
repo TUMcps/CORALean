@@ -37,7 +37,8 @@ inexact generators cost — `matMulDiff`'s rounding gap read through
 def Zonotope.mtimesBox (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) : Interval (Vec 𝕋 m) :=
   (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => zero⟩ :
       Interval (Vec 𝕋 m)).plus
-    ((Zonotope.generatorError (matMulDiff M Z.G)).plus (Zonotope.mtimes M Z).E)
+    ((Zonotope.generatorError (matMulDiff M fun i j => Z.G j i)).plus
+      (Zonotope.mtimes M Z).E)
 
 end CORALean.Float
 

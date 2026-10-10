@@ -28,11 +28,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The candidate vertex for direction `s`; rounding may move it, `underapproximate` checks it. -/
 def Zonotope.underapproximateCandidate (Z : Zonotope 𝕋 n) (s : Vec 𝕋 n) (b : Bool) : Vec 𝕋 n :=
-  let d := fun j : Fin Z.h => sumUp fun i => mulUp (s i) (Z.G i j)  -- sᵀ gⱼ
+  let d := fun j : Fin Z.h => sumUp fun i => mulUp (s i) (Z.G j i)  -- sᵀ gⱼ
   let sgn := fun j : Fin Z.h =>  -- sign(sᵀ gⱼ), `0` unless strictly signed, flipped for `false`
     if le (d j) zero then (if le zero (d j) then zero else if b then neg one else one)
     else (if b then one else neg one)
-  fun i => addUp (Z.c i) (sumUp fun j => mulUp (sgn j) (Z.G i j))
+  fun i => addUp (Z.c i) (sumUp fun j => mulUp (sgn j) (Z.G j i))
 
 end CORALean.Float
 

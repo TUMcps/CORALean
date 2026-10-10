@@ -35,7 +35,7 @@ def Zonotope.ofEntryBounds {h : ℕ} (cLo cHi : Vec 𝕋 n) (GLo GHi : Mat 𝕋 
   let W : Mat 𝕋 n h := fun i k => subUp (GHi i k) (GLo i k)       -- each generator's width
   { h := h
     c := cLo
-    G := GLo
+    G := fun k i => GLo i k
     E := (E.plus (Interval.residual cLo cHi cLo)).plus (Zonotope.generatorError W) }
 
 end CORALean.Float

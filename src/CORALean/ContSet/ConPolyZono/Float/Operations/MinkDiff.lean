@@ -45,8 +45,8 @@ def ConPolyZono.minkDiff (cPZ₁ : ConPolyZono 𝕋 n) (Z : Zonotope 𝕋 n) : C
   let P₁ := cPZ₁.dependent
   -- the centre is subtracted, and each generator `g` cuts `(P + g) ∩ (P - g)`
   Fin.foldl Z.h
-    (fun cPZ i => (cPZ.plus (pt fun r => Z.G r i)).intersection
-      (cPZ.plus (pt fun r => neg (Z.G r i))))
+    (fun cPZ i => (cPZ.plus (pt (Z.G i))).intersection
+      (cPZ.plus (pt fun r => neg (Z.G i r))))
     (P₁.plus (pt fun r => neg (Z.c r)))
 
 end CORALean.Float

@@ -42,10 +42,10 @@ def Zonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope 𝕋
   let MZ := Zonotope.mtimes C Z                                     -- mid(M) Z
   let b : Vec 𝕋 m := fun i => sumUp fun j =>                        -- |M - mid(M)| (|c| + Σ|G|)
     mulUp (maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j)))
-      (addUp (absolute (Z.c j)) (radius Z.G j))
+      (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
   { h := Z.h + m
     c := MZ.c
-    G := fun i => Fin.append (MZ.G i) (diagonalBlock b i)           -- mid(M) G, then diag(b)
+    G := Fin.append MZ.G (diagonalBlock b)                          -- mid(M) G, then diag(b)
     E := MZ.E.plus (Interval.mtimesIntervalMat Rs Z.E) }            -- mid(M) E ⊕ (M - mid(M)) E
 
 end CORALean.Float

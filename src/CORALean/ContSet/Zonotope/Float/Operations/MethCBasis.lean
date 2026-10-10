@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The `n` longest generators, side by side. -/
 def Zonotope.methCBasis (Z : Zonotope 𝕋 n) : Mat 𝕋 n n := fun i k =>
   if hk : k.val < Z.h then
-    Z.G i (sortPerm (fun j₁ j₂ => le (Z.generatorLength 2 j₂) (Z.generatorLength 2 j₁))
-      ⟨k.val, hk⟩)
+    Z.G (sortPerm (fun j₁ j₂ => le (Z.generatorLength 2 j₂) (Z.generatorLength 2 j₁))
+      ⟨k.val, hk⟩) i
   else zero
 
 end CORALean.Float

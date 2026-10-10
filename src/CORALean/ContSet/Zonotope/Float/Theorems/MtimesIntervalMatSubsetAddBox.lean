@@ -4,7 +4,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesSubsetAddBox
 import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesError
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 
 /-!
 # `mtimesIntervalMat` reaches no further than one matrix of the box, plus a box
@@ -42,16 +42,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 `|c| + Σ|G| + |E|`, rounded up. -/
 theorem Zonotope.aux_abs_le_construct {Z : Zonotope 𝕋 n} {z e : Vec ℝ n}
     (hz : z ∈ nominalSet Z) (he : e ∈ Z.E.construct) (j : Fin n) :
-    |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius Z.G j)) ∧
-      |z j + e j| ≤ toReal (addUp (addUp (absolute (Z.c j)) (radius Z.G j))
+    |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) ∧
+      |z j + e j| ≤ toReal (addUp (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
         (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j)))) := by -- --- PROOF ---
   obtain ⟨β, hβ, hzβ⟩ := Zonotope.mem_nominalSet_iff.mp hz
-  have hgen := abs_sum_le_radius (d := Z.G) (Δ := fun i j => toReal (Z.G i j))
+  have hgen := abs_sum_le_radius (d := fun i j => Z.G j i) (Δ := fun i j => toReal (Z.G j i))
     (fun _ _ => le_refl _) hβ j
-  have hup := add_le_addUp (absolute (Z.c j)) (radius Z.G j)
+  have hup := add_le_addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)
   rw [toReal_absolute] at hup
   -- the nominal part, as `mtimesIntervalMat_outer` bounds it
-  have hzb : |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius Z.G j)) := by
+  have hzb : |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) := by
     rw [hzβ j]
     exact le_trans (le_trans (abs_add_le _ _) (by linarith)) hup
   -- the error box, by the larger magnitude of its bounds
@@ -89,7 +89,7 @@ theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
   set R : Mat ℝ m n := fun i j => A i j - toReal (C i j) with hRdef
   set r : Mat 𝕋 m n := fun i j => maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j))
     with hrdef
-  set ν : Vec 𝕋 n := fun j => addUp (absolute (Z.c j)) (radius Z.G j) with hνdef
+  set ν : Vec 𝕋 n := fun j => addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j) with hνdef
   set ξ : Vec 𝕋 n := fun j => addUp (ν j) (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j)))
     with hξdef
   set b : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ν j) with hbdef
@@ -104,16 +104,16 @@ theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
   -- the nominal point splits into `mid(M) Z`'s part and the diagonal generators' part
   obtain ⟨β, hβ, hyβ⟩ := Zonotope.mem_nominalSet_iff.mp hy
   set t : Vec ℝ m := fun i => toReal (mulVecDown C Z.c i)
-    + ∑ l : Fin Z.h, toReal (matMulDown C Z.G i l) * β (Fin.castAdd m l) with htdef
+    + ∑ l : Fin Z.h, toReal (mulVecDown C (Z.G l) i) * β (Fin.castAdd m l) with htdef
   set d : Vec ℝ m := fun i => toReal (b i) * β (Fin.natAdd Z.h i) with hddef
   have hytd : y = t + d := funext fun i => by
     rw [hyβ i]
     show toReal (mulVecDown C Z.c i) + ∑ j : Fin (Z.h + m),
-        toReal (Fin.append (matMulDown C Z.G i) (diagonalBlock b i) j) * β j = _
+        toReal (Fin.append (fun l => mulVecDown C (Z.G l)) (diagonalBlock b) j i) * β j = _
     rw [Fin.sum_univ_add]
     simp only [Fin.append_left, Fin.append_right, toReal_diagonalBlock]
-    have hdiag : ∑ k, diagonal (toRealVec b) i k * β (Fin.natAdd Z.h k) = d i :=
-      Real.Zonotope.sum_diagonal_mul (toRealVec b) (fun k => β (Fin.natAdd Z.h k)) i
+    have hdiag : ∑ k, diagonal (toRealVec b) k i * β (Fin.natAdd Z.h k) = d i :=
+      Real.Zonotope.sum_diagonal_mul' (toRealVec b) (fun k => β (Fin.natAdd Z.h k)) i
     rw [hdiag, ← add_assoc]
     rfl
   -- `t` is a point of `mid(M) Z`, whose error box holds `0`

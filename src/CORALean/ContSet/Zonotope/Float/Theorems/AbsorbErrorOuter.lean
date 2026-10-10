@@ -51,7 +51,7 @@ theorem Zonotope.absorbError_outer (Z : Zonotope 𝕋 n) :
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   refine ⟨fun i => toReal (Z.absorbError.c i)
-            + ∑ j, toReal (Z.absorbError.G i j)
+            + ∑ j, toReal (Z.absorbError.G j i)
                 * Fin.append β (fun l => Real.Zonotope.coefficient (toReal (Z.errorRadius l))
                     (e l - (toReal (Z.E.inf l) + toReal (Z.E.sup l)) / 2)) j,
           Zonotope.mem_nominalSet_iff.mpr ⟨_, ?_, fun _ => rfl⟩,
@@ -69,7 +69,7 @@ theorem Zonotope.absorbError_outer (Z : Zonotope 𝕋 n) :
     rw [Zonotope.aux_sum_univ_absorbError]
     simp only [Zonotope.absorbError, Fin.append_left, Fin.append_right,
       toReal_diagonalBlock, hz i]
-    rw [Real.Zonotope.sum_diagonal_mul]
+    rw [Real.Zonotope.sum_diagonal_mul']
     simp only [toRealVec]
     rw [Real.Zonotope.mul_coefficient (Zonotope.abs_sub_mid_le_errorRadius Z he i)]
     ring

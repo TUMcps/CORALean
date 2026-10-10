@@ -40,7 +40,8 @@ structure VPolytope (𝕋 : Type) (n : ℕ) where
   E : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (VPolytope 𝕋 n) (CORALean.Real.VPolytope (Vec ℝ n)) 𝕋 n where
+    InflatedContSet (VPolytope 𝕋 n) (CORALean.Real.VPolytope (Vec ℝ n))
+      (Vec 𝕋 n) (Vec ℝ n) where
   nominal P := ⟨P.k, fun l i => toReal (P.V i l)⟩
   error P := P.E
 

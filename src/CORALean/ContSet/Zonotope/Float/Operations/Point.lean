@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.point (c : Vec 𝕋 n) : Zonotope 𝕋 n where
   h := 0
   c := c
-  G := fun _ j => j.elim0
+  G := fun j => j.elim0
   E := Interval.origin n
 
 end CORALean.Float

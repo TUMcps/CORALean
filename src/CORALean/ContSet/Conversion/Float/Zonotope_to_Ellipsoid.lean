@@ -37,11 +37,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The generators scaled by the proposed `√h`, rounded up. -/
 def Zonotope.ellipsoidG (Z : Zonotope 𝕋 n) (σ : 𝕋) : Mat 𝕋 n Z.h :=
-  fun i j => mulUp σ (Z.G i j)
+  fun i j => mulUp σ (Z.G j i)
 
 /-- The width of each scaled generator's rounding bracket. -/
 def Zonotope.ellipsoidGap (Z : Zonotope 𝕋 n) (σ : 𝕋) : Mat 𝕋 n Z.h :=
-  fun i j => subUp (mulUp σ (Z.G i j)) (mulDown σ (Z.G i j))
+  fun i j => subUp (mulUp σ (Z.G j i)) (mulDown σ (Z.G j i))
 
 /-- What the rounding of the generators can move a point by, rounded up. -/
 def Zonotope.ellipsoidSlack (Z : Zonotope 𝕋 n) (σ : 𝕋) : Vec 𝕋 n :=
@@ -63,14 +63,14 @@ variable [SoundFloatArithmetic 𝕋]
 
 /-- The rounding of a generator, against the bracket that stores it. -/
 theorem Zonotope.aux_ellipsoid_round_le (Z : Zonotope 𝕋 n) (σ : 𝕋) (i : Fin n) (j : Fin Z.h) :
-    |toReal σ * toReal (Z.G i j) - toReal (Z.ellipsoidG σ i j)|
+    |toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j)|
       ≤ |toReal (Z.ellipsoidGap σ i j)| := by -- --- PROOF ---
-  have h1 := mul_le_mulUp σ (Z.G i j)
-  have h2 := mulDown_le_mul σ (Z.G i j)
-  have h3 := sub_le_subUp (mulUp σ (Z.G i j)) (mulDown σ (Z.G i j))
-  have hG : toReal (Z.ellipsoidG σ i j) = toReal (mulUp σ (Z.G i j)) := rfl
+  have h1 := mul_le_mulUp σ (Z.G j i)
+  have h2 := mulDown_le_mul σ (Z.G j i)
+  have h3 := sub_le_subUp (mulUp σ (Z.G j i)) (mulDown σ (Z.G j i))
+  have hG : toReal (Z.ellipsoidG σ i j) = toReal (mulUp σ (Z.G j i)) := rfl
   have hgap : toReal (Z.ellipsoidGap σ i j)
-      ≥ toReal (mulUp σ (Z.G i j)) - toReal (mulDown σ (Z.G i j)) := h3
+      ≥ toReal (mulUp σ (Z.G j i)) - toReal (mulDown σ (Z.G j i)) := h3
   rw [hG]
   refine le_trans ?_ (le_abs_self _)
   rw [abs_le]
@@ -79,10 +79,10 @@ theorem Zonotope.aux_ellipsoid_round_le (Z : Zonotope 𝕋 n) (σ : 𝕋) (i : F
 /-- The residual the rounding leaves, at most the slack. -/
 theorem Zonotope.aux_ellipsoid_slack (Z : Zonotope 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
     {β : Vec ℝ Z.h} (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |(∑ j, (toReal σ * toReal (Z.G i j) - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ|
+    |(∑ j, (toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ|
       ≤ toReal (Z.ellipsoidSlack σ i) := by -- --- PROOF ---
   have hS := abs_sum_le_radius (d := Z.ellipsoidGap σ)
-    (Δ := fun i j => toReal σ * toReal (Z.G i j) - toReal (Z.ellipsoidG σ i j))
+    (Δ := fun i j => toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j))
     (fun i j => Z.aux_ellipsoid_round_le σ i j) hβ i
   rw [abs_div, abs_of_pos hσ, div_le_iff₀ hσ]
   refine le_trans hS ?_
@@ -121,7 +121,7 @@ theorem Zonotope.ellipsoid_contains (Z : Zonotope 𝕋 n) (σ : 𝕋) (hσ : 0 <
     calc ‖fun j => β j / toReal σ‖₂ ≤ Real.sqrt 1 := Real.sqrt_le_sqrt hsum
       _ = 1 := Real.sqrt_one
   -- what the rounded generators leave over
-  set S : Vec ℝ n := fun i => (∑ j, (toReal σ * toReal (Z.G i j)
+  set S : Vec ℝ n := fun i => (∑ j, (toReal σ * toReal (Z.G j i)
       - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ with hSdef
   have hSle : ∀ i, |S i| ≤ toReal (Z.ellipsoidSlack σ i) := fun i =>
     Z.aux_ellipsoid_slack σ hσ hβ i
@@ -129,7 +129,7 @@ theorem Zonotope.ellipsoid_contains (Z : Zonotope 𝕋 n) (σ : 𝕋) (hσ : 0 <
       = S i := fun i => by
     rw [hz i]
     show _ - (_ + ∑ j, toReal (Z.ellipsoidG σ i j) * (β j / toReal σ))
-      = (∑ j, (toReal σ * toReal (Z.G i j) - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ
+      = (∑ j, (toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ
     rw [Finset.sum_div, add_sub_add_left_eq_sub, ← Finset.sum_sub_distrib]
     refine Finset.sum_congr rfl fun j _ => ?_
     field_simp

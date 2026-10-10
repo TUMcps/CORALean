@@ -2,8 +2,8 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosureFloat
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
-import CORALean.ContSet.MatZonotope.Float.Theorems.MemPoint
-import CORALean.ContSet.MatZonotope.Float.Theorems.SmulOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
+import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
 
 /-!
 # A sampled trajectory of the float matrix-zonotope system
@@ -43,14 +43,14 @@ theorem LinearSys.Trajectory.discretizeMatZonotopeFloat {sys : LinearSys 𝕋 n}
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hε : toReal (MatExp.normUpperBound
-      (MatZonotope.smul Δt Δt (MatZonotope.point sys.A)).interval) / ((η : ℝ) + 2) ≤ 1 / 2) :
+      (GZonotope.matSmul Δt Δt (GZonotope.pointMat sys.A)).interval) / ((η : ℝ) + 2) ≤ 1 / 2) :
     (sys.discretizeMatZonotopeFloat Δt η).Trajectory R₀ Ud
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) where
   init := by simpa using traj.init
   input k := hUd k
   step k := ⟨exp (toReal Δt • Scalar.toRealMat sys.A),
     MatExp.exp_mem_expMatZonoEnclosure _ η
-      (MatZonotope.smul_outer le_rfl le_rfl _ (MatZonotope.mem_point sys.A)) hε, by
+      (GZonotope.matSmul_outer le_rfl le_rfl _ (GZonotope.mem_pointMat sys.A)) hε, by
     simpa [LinearSys.discretize] using traj.discretize_step hΔt hU k (step_subset hΔt hT k)⟩
 
 end CORALean

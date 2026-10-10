@@ -1,12 +1,12 @@
 import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
 import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.ContSet.MatZonotope.Float.Operations.OfInterval
+import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 import Mathlib.Data.Matrix.Basic
 
 /-!
-# `MatZonotope.ofInterval` contains the interval matrix
+# `GZonotope.ofIntervalMat` contains the interval matrix
 
 A member's distance from the centre is within the entry's radius (`sub_mem_matResidual`),
 so the entry's own generator reaches it with coefficient `Zonotope.coefficient`, and no
@@ -15,7 +15,7 @@ other generator touches that entry.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   09-October-2026
 -- Last revision: ---
 
 
@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatZonotope.ofInterval_outer (I : Interval (Mat 𝕋 m n)) :
-    I.construct ⊆ (MatZonotope.ofInterval I).construct := by -- --- PROOF ---
+theorem GZonotope.ofIntervalMat_outer (I : Interval (Mat 𝕋 m n)) :
+    I.construct ⊆ (GZonotope.ofIntervalMat I).construct := by -- --- PROOF ---
   intro X hX
   set C := Interval.centreMat I
   set Rs := Interval.matResidual I.inf I.sup C
@@ -52,15 +52,15 @@ theorem MatZonotope.ofInterval_outer (I : Interval (Mat 𝕋 m n)) :
   refine ⟨X, ⟨β, hβ, ?_⟩, 0, ?_, add_zero X⟩
   -- only the entry's own generator reaches it
   · funext i j
-    show X i j = toReal (C i j) + (∑ k, β k • (MatZonotope.ofInterval I).nominal.G k) i j
+    show X i j = toReal (C i j) + (∑ k, β k • (GZonotope.ofIntervalMat I).nominal.G k) i j
     rw [Matrix.sum_apply, Finset.sum_eq_single (finProdFinEquiv (i, j))]
-    · simp only [MatZonotope.nominal, MatZonotope.ofInterval, Matrix.smul_apply, toRealMat,
-        smul_eq_mul, if_true, β, Equiv.symm_apply_apply]
+    · simp only [realImage_mat, GZonotope.ofIntervalMat, Matrix.smul_apply,
+        toRealMat, smul_eq_mul, if_true, β, Equiv.symm_apply_apply]
       rw [mul_comm, CORALean.Real.Zonotope.mul_coefficient (hDr i j)]
       ring
     · intro k _ hk
-      simp only [MatZonotope.nominal, MatZonotope.ofInterval, Matrix.smul_apply, toRealMat,
-        smul_eq_mul, if_neg (Ne.symm hk), toReal_zero, mul_zero]
+      simp only [realImage_mat, GZonotope.ofIntervalMat, Matrix.smul_apply,
+        toRealMat, smul_eq_mul, if_neg (Ne.symm hk), toReal_zero, mul_zero]
     · intro hc
       exact absurd (Finset.mem_univ _) hc
   · refine Interval.mem_mat_iff.mpr fun i j => ?_

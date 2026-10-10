@@ -37,35 +37,35 @@ def Zonotope.nominalBoundDot (Z : Zonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] �
     FloatBound 𝕋 (nominalSet Z) c :=
   FloatBound.ofSupportBound ((InflatedContSet.nominal Z).supportBound c)
     (addUp (dotUp a Z.c)
-      (sumUp fun j => maximum (dotUp a fun i => Z.G i j) (neg (dotDown a fun i => Z.G i j))))
+      (sumUp fun j => maximum (dotUp a fun i => Z.G j i) (neg (dotDown a fun i => Z.G j i))))
     (by
       have h₁ : c (InflatedContSet.nominal Z).c ≤ toReal (dotUp a Z.c) := by
         rw [hc]
         exact le_dotUp a Z.c
       have h₂ : ∀ j, |c ((InflatedContSet.nominal Z).G j)|
-          ≤ toReal (maximum (dotUp a fun i => Z.G i j)
-              (neg (dotDown a fun i => Z.G i j))) := by
+          ≤ toReal (maximum (dotUp a fun i => Z.G j i)
+              (neg (dotDown a fun i => Z.G j i))) := by
         intro j
         -- the nominal generator spelt out, so both sides name the same sum
         have hval : c ((InflatedContSet.nominal Z).G j)
-            = ∑ k, toReal (a k) * toReal (Z.G k j) := hc _
+            = ∑ k, toReal (a k) * toReal (Z.G j k) := hc _
         rw [hval, toReal_maximum, toReal_neg]
         refine abs_le.mpr ⟨?_, ?_⟩
-        · have hdown := dotDown_le a fun i => Z.G i j
-          have hm := le_max_right (toReal (dotUp a fun i => Z.G i j))
-            (-toReal (dotDown a fun i => Z.G i j))
+        · have hdown := dotDown_le a fun i => Z.G j i
+          have hm := le_max_right (toReal (dotUp a fun i => Z.G j i))
+            (-toReal (dotDown a fun i => Z.G j i))
           linarith
-        · have hup := le_dotUp a fun i => Z.G i j
-          have hm := le_max_left (toReal (dotUp a fun i => Z.G i j))
-            (-toReal (dotDown a fun i => Z.G i j))
+        · have hup := le_dotUp a fun i => Z.G j i
+          have hm := le_max_left (toReal (dotUp a fun i => Z.G j i))
+            (-toReal (dotDown a fun i => Z.G j i))
           linarith
       -- and the generators' total, summed upward once
       have h₃ : (∑ j, |c ((InflatedContSet.nominal Z).G j)|)
-          ≤ toReal (sumUp fun j => maximum (dotUp a fun i => Z.G i j)
-              (neg (dotDown a fun i => Z.G i j))) :=
+          ≤ toReal (sumUp fun j => maximum (dotUp a fun i => Z.G j i)
+              (neg (dotDown a fun i => Z.G j i))) :=
         le_trans (Finset.sum_le_sum fun j _ => h₂ j) (sum_le_sumUp _)
       have h₄ := add_le_addUp (dotUp a Z.c)
-        (sumUp fun j => maximum (dotUp a fun i => Z.G i j) (neg (dotDown a fun i => Z.G i j)))
+        (sumUp fun j => maximum (dotUp a fun i => Z.G j i) (neg (dotDown a fun i => Z.G j i)))
       show c (InflatedContSet.nominal Z).c + ∑ j, |c ((InflatedContSet.nominal Z).G j)| ≤ _
       linarith)
 

@@ -38,7 +38,7 @@ cannot have left anything unevaluated. -/
 def checksum (toD : 𝕋 → Float) (arr : Array (Zonotope 𝕋 2)) : Float :=
   arr.foldl (fun acc Z =>
     let cSum := (Array.ofFn Z.c).foldl (· + toD ·) 0.0
-    let rowSum (i : Fin 2) : Float := (Array.ofFn fun j => Z.G i j).foldl (· + toD ·) 0.0
+    let rowSum (i : Fin 2) : Float := (Array.ofFn fun j => Z.G j i).foldl (· + toD ·) 0.0
     let gSum := (Array.ofFn rowSum).foldl (· + ·) 0.0
     let iSum := (Array.ofFn Z.E.inf).foldl (· + toD ·) 0.0
     let sSum := (Array.ofFn Z.E.sup).foldl (· + toD ·) 0.0

@@ -41,7 +41,8 @@ def Zonotope.mtimesIntervalMatBox (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope �
   let Rs := Interval.matResidual IM.inf IM.sup C                    -- M - mid(M), a box
   let r : Mat 𝕋 m n := fun i j =>                                   -- |M - mid(M)|
     maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j))
-  let ν : Vec 𝕋 n := fun j => addUp (absolute (Z.c j)) (radius Z.G j)     -- |c| + Σ|G|
+  let ν : Vec 𝕋 n := fun j =>                                       -- |c| + Σ|G|
+    addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)
   let ξ : Vec 𝕋 n := fun j =>                                       -- |c| + Σ|G| + |E|
     addUp (ν j) (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j)))
   let b : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ν j)   -- diag(b)'s reach

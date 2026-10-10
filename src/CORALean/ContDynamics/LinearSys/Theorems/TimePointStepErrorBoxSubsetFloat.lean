@@ -40,18 +40,15 @@ theorem aux_errorBoxFloat_nominal (ε : 𝕋) :
     (nominal (⟨n, fun _ => zero, diagonalBlock fun _ => ε, Interval.point fun _ => zero⟩ :
       Zonotope 𝕋 n)) =
       (⟨n, 0, Matrix.diagonal fun _ => toReal ε⟩ : Real.Zonotope (Vec ℝ n)) := by -- --- PROOF ---
-  show (⟨n, toRealVec fun _ => (zero : 𝕋), fun j i => toReal (diagonalBlock (fun _ => ε) i j)⟩
+  show (⟨n, toRealVec fun _ => (zero : 𝕋), fun j i => toReal (diagonalBlock (fun _ => ε) j i)⟩
     : Real.Zonotope (Vec ℝ n)) = _
   have hc : toRealVec (fun _ : Fin n => (zero : 𝕋)) = 0 := by
     funext i; simp [toRealVec, toReal_zero]
-  have hG : (fun (j : Fin n) (i : Fin n) => toReal (diagonalBlock (fun _ : Fin n => ε) i j))
+  have hG : (fun (j : Fin n) (i : Fin n) => toReal (diagonalBlock (fun _ : Fin n => ε) j i))
       = Matrix.diagonal fun _ => toReal ε := by
     funext j i
     rw [toReal_diagonalBlock]
     simp only [toRealVec, Matrix.diagonal_apply]
-    by_cases h : i = j
-    · simp [h]
-    · simp [h, Ne.symm h]
   rw [hc, hG]
 
 /-- A box of non-negative radius lies in the closed ball of that radius. -/

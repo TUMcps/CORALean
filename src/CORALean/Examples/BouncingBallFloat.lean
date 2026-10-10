@@ -67,7 +67,7 @@ def ball : HybridAutomaton (Zonotope D) (HPolytope D) Unit D 2 where
   loc _ :=
     { inv := aboveFloor
       dynamics := ⟨!![d 0 0, d 1 0; d 0 0, d 0 0]⟩
-      U := ⟨0, ![d 0 0, d (-157) (-4)], fun _ j => j.elim0, ⟨![d 0 0, d 0 0], ![d 0 0, d 0 0]⟩⟩
+      U := ⟨0, ![d 0 0, d (-157) (-4)], fun j => j.elim0, ⟨![d 0 0, d 0 0], ![d 0 0, d 0 0]⟩⟩
       trans := [bounce] }
 
 /-- `(1, 0) ± 1/16` in each coordinate. -/

@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.isFullDimWith (Z : Zonotope 𝕋 n) (H : Mat 𝕋 Z.h n) : Bool :=
-  Zonotope.ballCert Z.G H (Zonotope.ballB H one) one
+  Zonotope.ballCert (fun i j => Z.G j i) H (Zonotope.ballB H one) one
     && (List.finRange n).all fun i => le (Z.E.inf i) (Z.E.sup i)
 
 end CORALean.Float

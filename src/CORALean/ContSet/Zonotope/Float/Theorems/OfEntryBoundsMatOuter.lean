@@ -1,11 +1,11 @@
 import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
 import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.ContSet.MatZonotope.Float.Operations.OfEntryBounds
+import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 import Mathlib.Data.Matrix.Basic
 
 /-!
-# `MatZonotope.ofEntryBounds` contains the exact matrix zonotope it brackets
+# `GZonotope.ofEntryBoundsMat` contains the exact matrix zonotope it brackets
 
 The exact zonotope's coefficients are the witness, unchanged: the stored generators
 reach the nominal part, and what they miss — the centre's gap and each generator's gap
@@ -15,7 +15,7 @@ every gap is nonnegative and below its width.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   09-October-2026
 -- Last revision: ---
 
 
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generators' gaps, scaled by coefficients in `[-1, 1]`, within the summed widths. -/
-theorem MatZonotope.aux_abs_gap_le {h : ℕ} {GLo GHi : Fin h → Mat 𝕋 m n}
+theorem GZonotope.aux_abs_gap_le {h : ℕ} {GLo GHi : Fin h → Mat 𝕋 m n}
     {G : Fin h → Mat ℝ m n}
     (hG : ∀ k i j, toReal (GLo k i j) ≤ G k i j ∧ G k i j ≤ toReal (GHi k i j))
     {β : Fin h → ℝ} (hβ : ∀ k, |β k| ≤ 1) (i : Fin m) (j : Fin n) :
@@ -49,12 +49,12 @@ theorem MatZonotope.aux_abs_gap_le {h : ℕ} {GLo GHi : Fin h → Mat 𝕋 m n}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatZonotope.ofEntryBounds_outer (Z : CORALean.Real.Zonotope (Mat ℝ m n))
+theorem GZonotope.ofEntryBoundsMat_outer (Z : CORALean.Real.Zonotope (Mat ℝ m n))
     {cLo cHi : Mat 𝕋 m n} {GLo GHi : Fin Z.h → Mat 𝕋 m n} (E : Interval (Mat 𝕋 m n))
     (hc : ∀ i j, toReal (cLo i j) ≤ Z.c i j ∧ Z.c i j ≤ toReal (cHi i j))
     (hG : ∀ k i j, toReal (GLo k i j) ≤ Z.G k i j ∧ Z.G k i j ≤ toReal (GHi k i j)) :
     Z.construct + E.construct
-      ⊆ (MatZonotope.ofEntryBounds cLo cHi GLo GHi E).construct := by -- --- PROOF ---
+      ⊆ (GZonotope.ofEntryBoundsMat cLo cHi GLo GHi E).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨β, hβ, rfl⟩, e, he, rfl⟩
   set gap : Mat ℝ m n := fun i j => ∑ k, β k * (Z.G k i j - toReal (GLo k i j))
   set dc : Mat ℝ m n := fun i j => Z.c i j - toReal (cLo i j)
@@ -63,7 +63,7 @@ theorem MatZonotope.ofEntryBounds_outer (Z : CORALean.Real.Zonotope (Mat ℝ m n
       (Interval.sub_mem_matResidual fun i j => hc i j)) ?_, ?_⟩
   -- the generators' share: a symmetric box of the summed widths
   · refine Interval.mem_mat_iff.mpr fun i j => ?_
-    have hb := abs_le.mp (MatZonotope.aux_abs_gap_le hG hβ i j)
+    have hb := abs_le.mp (GZonotope.aux_abs_gap_le hG hβ i j)
     refine ⟨?_, hb.2⟩
     show toReal (neg _) ≤ _
     rw [toReal_neg]

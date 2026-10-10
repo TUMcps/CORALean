@@ -6,7 +6,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
 import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.MatZonotope.Float.Theorems.PlusIntervalOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatPlusIntervalOuter
 
 /-!
 # The exponential of every member lies in the float matrix-zonotope enclosure
@@ -40,12 +40,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.exp_mem_expMatZonoEnclosure (M : MatZonotope 𝕋 n n) (η : ℕ)
+theorem MatExp.exp_mem_expMatZonoEnclosure (M : GZonotope (Mat 𝕋 n n)) (η : ℕ)
     {A : Mat ℝ n n} (hA : A ∈ M.construct)
     (hε : toReal (MatExp.normUpperBound M.interval) / ((η : ℝ) + 2) ≤ 1 / 2) :
     exp A ∈ (MatExp.expMatZonoEnclosure M η).construct := by -- --- PROOF ---
   have hnorm : ‖A‖ ≤ toReal (MatExp.normUpperBound M.interval) :=
-    le_trans (Real.Interval.norm_le_absMax (MatZonotope.interval_contains M hA))
+    le_trans (Real.Interval.norm_le_absMax (GZonotope.interval_contains M hA))
       (MatExp.norm_absMax_le_normUpperBound _)
   have hnn : (0 : ℝ) ≤ toReal (MatExp.normUpperBound M.interval) := le_trans (norm_nonneg A) hnorm
   have hfrac : ‖A‖ / ((η : ℝ) + 2) ≤ toReal (MatExp.normUpperBound M.interval) / ((η : ℝ) + 2) :=
@@ -58,7 +58,7 @@ theorem MatExp.exp_mem_expMatZonoEnclosure (M : MatZonotope 𝕋 n n) (η : ℕ)
   have hrem : exp A - Real.MatExp.expTaylor A η ∈ (MatExp.expMatZonoRemainder n
       (MatExp.expRemainderBound (MatExp.normUpperBound M.interval) η)).construct :=
     MatExp.mem_expMatZonoRemainder fun i j => le_trans (Real.abs_entry_le_norm _ i j) htail
-  have hmem := MatZonotope.plusInterval_outer _ _
+  have hmem := GZonotope.matPlusInterval_outer _ _
     (Set.add_mem_add (MatExp.expTaylor_mem_expMatZonoTaylor M hA η) hrem)
   have heq : Real.MatExp.expTaylor A η + (exp A - Real.MatExp.expTaylor A η) = exp A := by abel
   rw [heq] at hmem

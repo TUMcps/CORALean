@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 /-- What `mtimes` owes beyond its nominal part: the centre, and the generators. -/
 def Zonotope.mtimesResidual (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) : Interval (Vec 𝕋 m) :=
   (Interval.residual (mulVecDown M Z.c) (mulVecUp M Z.c) (mulVecDown M Z.c)).plus
-    (Zonotope.generatorError (matMulDiff M Z.G))
+    (Zonotope.generatorError (matMulDiff M fun i j => Z.G j i))
 
 end CORALean.Float
 

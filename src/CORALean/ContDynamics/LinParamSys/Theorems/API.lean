@@ -60,6 +60,7 @@ import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepFloa
 import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalZonoOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepIntervalOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoFloatOuter
 
 /-!
 # What `LinParamSys` gives, collected

@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 omit [ToRat 𝕋] in
 /-- The generator-free zonotope at `v` holds `v`. -/
 theorem aux_linReach_mem_pt {k : ℕ} (v : Vec 𝕋 k) :
-    toRealVec v ∈ (⟨0, v, fun _ j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
+    toRealVec v ∈ (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
       Zonotope 𝕋 k).construct := by -- --- PROOF ---
   refine ⟨toRealVec v, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0,
     fun i => by simp [toRealVec]⟩, 0, fun i => ?_, add_zero _⟩
@@ -141,7 +141,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     obtain ⟨η, hη, hone⟩ := hrest
     obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer hone
     refine ⟨hΔt, fun {x u} traj => hout traj fun t ht => ?_⟩
-    set Rdelta := R ⊞ (⟨0, fun i => neg (xs i), fun _ j => j.elim0,
+    set Rdelta := R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0,
       ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n) with hRdelta
     -- the start, `x(0) - x✱ ∈ Rdelta`
     have hx₀ : x 0 - toRealVec xs ∈ Rdelta.construct := by
@@ -149,7 +149,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
         funext i; exact toReal_neg (xs i)
       have hp := aux_linReach_mem_pt (fun i => neg (xs i))
       rw [hneg] at hp
-      have := Plus.plus_outer R (⟨0, fun i => neg (xs i), fun _ j => j.elim0,
+      have := Plus.plus_outer R (⟨0, fun i => neg (xs i), fun j => j.elim0,
         ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
     -- `x - x✱` is a run of the `'lin'` linearization, so its differences are in `Rdiff`

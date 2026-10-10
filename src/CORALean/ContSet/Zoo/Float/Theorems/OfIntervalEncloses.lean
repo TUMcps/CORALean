@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Zoo.aux_ofInterval_poly (Z : Zonotope 𝕋 n) (N : ℕ) (i : Fin n) (t : Vec ℝ Z.h) :
-    (Z.taylm N i).nominal.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G i j) * t j := by
+    (Z.taylm N i).nominal.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j := by
   simp only [Zonotope.taylm, Taylm.nominal, Real.Taylm.poly, List.map_cons, List.map_ofFn,
     Real.Taylm.polyOf_cons, Real.Taylm.polyOf_ofFn, Real.Taylm.monomial_zero,
     Function.comp_def, Real.Taylm.monomial_single, mul_one]
@@ -44,8 +44,8 @@ theorem Zoo.ofInterval_encloses (I : Interval (Vec 𝕋 n)) (N : ℕ) (i : Fin n
     intro t _
     -- the stored polynomial is the zonotope's centre plus its generators
     have hp : (I.taylm N i).nominal.poly t = toReal (I.zonotope.c i) +
-        ∑ j, toReal (I.zonotope.G i j) * t j := Zoo.aux_ofInterval_poly I.zonotope N i t
-    have hs : ∑ j, toReal (I.zonotope.G i j) * t j = toReal (I.radiusFrom i) * t i :=
+        ∑ j, toReal (I.zonotope.G j i) * t j := Zoo.aux_ofInterval_poly I.zonotope N i t
+    have hs : ∑ j, toReal (I.zonotope.G j i) * t j = toReal (I.radiusFrom i) * t i :=
       Zoo.diagonalBlock_sum I i t
     have h0 : toReal (I.zonotope.E.inf i) = 0 := toReal_zero
     have h1 : toReal (I.zonotope.E.sup i) = 0 := toReal_zero

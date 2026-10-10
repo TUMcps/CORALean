@@ -31,7 +31,7 @@ def Zonotope.polyZonotope (Z : Zonotope 𝕋 n) : PolyZonotope 𝕋 n where
   h := Z.h
   q := 0
   c := Z.c
-  G := Z.G
+  G := fun i j => Z.G j i
   E := Real.PolyZonotope.identE Z.h
   GI := fun _ => Fin.elim0
   err := Z.E

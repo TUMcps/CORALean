@@ -59,7 +59,7 @@ def stepJson (toD : 𝕋 → Float) (toExact : Option (𝕋 → String)) (k : �
       ("t0", floatToJson t0),
       ("t1", floatToJson t1),
       ("c", Json.arr (Array.ofFn fun i => sj (Z.c i))),
-      ("G", Json.arr (Array.ofFn fun i => Json.arr (Array.ofFn fun j => sj (Z.G i j)))),
+      ("G", Json.arr (Array.ofFn fun i => Json.arr (Array.ofFn fun j => sj (Z.G j i)))),
       ("E", Json.mkObj
         [ ("inf", Json.arr (Array.ofFn fun i => sj (Z.E.inf i))),
           ("sup", Json.arr (Array.ofFn fun i => sj (Z.E.sup i))) ]) ]
@@ -98,7 +98,7 @@ dimension (`2 * sum |G_ij|`, CORA's own interval-hull formula), and the error
 box's radius per dimension (`sup - inf`, unsigned by construction). -/
 def csvRow (toD : 𝕋 → Float) (k : ℕ) (t : Float) (Z : Zonotope 𝕋 2) : String :=
   let width (i : Fin 2) : Float :=
-    2.0 * (Array.ofFn fun j => (toD (Z.G i j)).abs).foldl (· + ·) 0.0
+    2.0 * (Array.ofFn fun j => (toD (Z.G j i)).abs).foldl (· + ·) 0.0
   let radius (i : Fin 2) : Float := toD (Z.E.sup i) - toD (Z.E.inf i)
   let f := floatToCsv
   s!"{k},{f t},{f (width 0)},{f (width 1)},{f (radius 0)},{f (radius 1)}"

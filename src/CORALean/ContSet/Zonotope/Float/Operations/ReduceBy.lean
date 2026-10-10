@@ -33,8 +33,8 @@ def Zonotope.reduceBy (Z : Zonotope 𝕋 n) (part : Split (Fin Z.h) into (Fin q)
     Zonotope 𝕋 n where
   h := q + n
   c := Z.c
-  G := fun i => Fin.append (fun l => Z.G i (part.left l))
-                  (diagonalBlock (radius fun i l => Z.G i (part.right l)) i)
+  G := Fin.append (fun l => Z.G (part.left l))
+         (diagonalBlock (radius fun i l => Z.G (part.right l) i))
   E := Z.E
 
 end CORALean.Float

@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Zonotope.containsZonotope (Z₂ Z₁ : Zonotope 𝕋 n) (H : Mat 𝕋 Z₂.h n) : Bool :=
   let δ := Z₂.stDelta Z₁ H
-  Zonotope.ballCert Z₂.G H (Zonotope.ballB H δ) δ
+  Zonotope.ballCert (fun i j => Z₂.G j i) H (Zonotope.ballB H δ) δ
     && (List.finRange Z₂.h).all (fun k => le (addUp (Z₂.stUsed Z₁ H k) δ) one)
     && (List.finRange n).all (fun i => le (Z₂.stLeftover Z₁ H i) (Zonotope.ballB H δ))
     && (List.finRange n).all fun i => le (Z₂.E.inf i) (Z₂.E.sup i)

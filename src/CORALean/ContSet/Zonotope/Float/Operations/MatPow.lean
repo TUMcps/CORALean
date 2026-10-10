@@ -1,8 +1,8 @@
-import CORALean.ContSet.MatZonotope.Float.Operations.MatMul
-import CORALean.ContSet.MatZonotope.Float.Operations.Point
+import CORALean.ContSet.Zonotope.Float.Operations.MatMul
+import CORALean.ContSet.Zonotope.Float.Operations.PointMat
 
 /-!
-# `MatZonotope.matPow`
+# `GZonotope.matPow`
 
 The exact layer's `Zonotope.matPow` rounded: the identity at order `0`, then
 `M · M^k`, recursing on the right as the exact one does so `matPow_outer` unfolds the
@@ -12,7 +12,7 @@ same way. The identity is `diagonalBlock fun _ => one`, `𝕋` having no `One` (
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   09-October-2026
 -- Last revision: ---
 
 
@@ -27,9 +27,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def MatZonotope.matPow (M : MatZonotope 𝕋 n n) : ℕ → MatZonotope 𝕋 n n
-  | 0 => MatZonotope.point (diagonalBlock fun _ => one)
-  | k + 1 => (MatZonotope.matMul M (MatZonotope.matPow M k)).materialise
+def GZonotope.matPow (M : GZonotope (Mat 𝕋 n n)) : ℕ → GZonotope (Mat 𝕋 n n)
+  | 0 => GZonotope.pointMat (diagonalBlock fun _ => one)
+  | k + 1 => (GZonotope.matMul M (GZonotope.matPow M k)).materialiseMat
 
 end CORALean.Float
 

@@ -99,6 +99,16 @@ import CORALean.ContSet.Zonotope.Float.Theorems.UnderapproximateInner
 import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffRepInner
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceUnderApproxInner
 import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoundError
+import CORALean.ContSet.Zonotope.Float.Theorems.MatMulIntervalMatOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatMulOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatPlusIntervalOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatPlusOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.MatZonotopeContains
+import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
+import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.OfIntervalMatOuter
 
 /-!
 # What `Zonotope` guarantees

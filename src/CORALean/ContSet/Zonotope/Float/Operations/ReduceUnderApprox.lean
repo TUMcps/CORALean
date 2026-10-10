@@ -37,7 +37,7 @@ def Zonotope.reduceUnderApprox
   match opt Z with
   | none => if Z.containsZonotope centre H then some centre else none
   | some ⟨h, Gr⟩ =>
-    let reduced : Zonotope 𝕋 n := ⟨h, Z.c, Gr, Interval.origin n⟩
+    let reduced : Zonotope 𝕋 n := ⟨h, Z.c, fun j i => Gr i j, Interval.origin n⟩
     if Z.containsZonotope reduced H then some reduced
     else if Z.containsZonotope centre H then some centre else none
 

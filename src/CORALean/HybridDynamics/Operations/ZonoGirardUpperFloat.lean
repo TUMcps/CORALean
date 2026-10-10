@@ -49,8 +49,8 @@ def Location.zonoGirardUpperFloat (Z : Zonotope 𝕋 n) (nv : Vec 𝕋 n) (γ : 
       (fun _ => rfl)).val (mulUp μ γ)
   -- the slopes `(gⱼ)₂/(gⱼ)₁` of the generators, the dual's breakpoints
   let slope : Fin S.h → 𝕋 := fun j =>
-    let a := S.G 1 j
-    let b := S.G 0 j
+    let a := S.G j 1
+    let b := S.G j 0
     if le zero b then (if le b zero then zero else divUp a b) else divUp (neg a) (neg b)
   (List.finRange S.h).foldl (fun m j => minimum m (dual (slope j))) (dual zero)
 

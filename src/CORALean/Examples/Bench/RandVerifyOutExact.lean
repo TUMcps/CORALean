@@ -55,7 +55,7 @@ def outputZonoExact (C : Array (Array ℚ)) (R : Zonotope 𝕋 5) : RandOutZono 
   let c := fin5.map fun k => ToRat.toRat (R.c k)
   let lo := fin5.map fun k => ToRat.toRat (R.E.inf k)
   let hi := fin5.map fun k => ToRat.toRat (R.E.sup k)
-  let G := (List.finRange R.h).toArray.map fun j => fin5.map fun k => ToRat.toRat (R.G k j)
+  let G := (List.finRange R.h).toArray.map fun j => fin5.map fun k => ToRat.toRat (R.G j k)
   let D := Nat.lcm (aux_lcmDen (c ++ lo ++ hi)) (G.foldl (fun d g => Nat.lcm d (aux_lcmDen g)) 1)
   let s := aux_scaleTo D
   -- over `2 D`: the centre `2c + lo + hi`, the generators `2 g_j` and `(hi - lo) e_k`

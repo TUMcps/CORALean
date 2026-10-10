@@ -63,7 +63,7 @@ theorem Zonotope.aux_nominal_projectHighDim_ (Z : Zonotope 𝕋 n) (proj : Fin n
     · rw [dif_pos h, dif_pos h]; rfl
     · rw [dif_neg h, dif_neg h, toReal_zero]
   · funext l j
-    show toReal ((Z.projectHighDim_ N proj).G j l) = Real.Zonotope.embed proj _ j
+    show toReal ((Z.projectHighDim_ N proj).G l j) = Real.Zonotope.embed proj _ j
     rw [Zonotope.aux_embed_find proj hproj]
     show toReal (if h : ∃ k, proj k = j then _ else _) = _
     by_cases h : ∃ k, proj k = j

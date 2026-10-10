@@ -49,9 +49,9 @@ theorem Zonotope.nominal_cartProd_G (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope
         (InflatedContSet.nominal Z₂)).G j) := by -- --- PROOF ---
   refine Fin.addCases (fun j => ?_) (fun j => ?_) j
   · rw [Zonotope.aux_realG_left, appendLinear_apply]
-    exact toReal_genBlockDiag_left Z₁.G Z₂.G j
+    exact toReal_genBlockDiag_left (fun i j => Z₁.G j i) (fun i j => Z₂.G j i) j
   · rw [Zonotope.aux_realG_right, appendLinear_apply]
-    exact toReal_genBlockDiag_right Z₁.G Z₂.G j
+    exact toReal_genBlockDiag_right (fun i j => Z₁.G j i) (fun i j => Z₂.G j i) j
 
 
 end CORALean.Float

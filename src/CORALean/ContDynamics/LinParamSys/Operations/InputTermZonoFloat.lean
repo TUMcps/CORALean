@@ -1,8 +1,8 @@
 import CORALean.ContDynamics.LinParamSys.LinParamSys
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
-import CORALean.ContSet.MatZonotope.Float.Instances
-import CORALean.ContSet.MatZonotope.Float.Operations.MatPow
-import CORALean.ContSet.MatZonotope.Float.Operations.Smul
+import CORALean.ContSet.Zonotope.Float.Zonotope
+import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
 
 /-!
 # The matrix-zonotope order `i` of the input solution, in floats
@@ -35,10 +35,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Aᵢ r^{i+1}/(i+1)!` over the system's whole float matrix zonotope, for `r ≥ 0`. -/
-def LinParamSys.inputTermZonoFloat (sys : LinParamSys (fun m n => MatZonotope 𝕋 m n) n)
-    (r : 𝕋) (i : ℕ) : MatZonotope 𝕋 n n :=
+def LinParamSys.inputTermZonoFloat (sys : LinParamSys (fun m n => GZonotope (Mat 𝕋 m n)) n)
+    (r : 𝕋) (i : ℕ) : GZonotope (Mat 𝕋 n n) :=
   let c := MatExp.taylorCoeffBounds r (i + 1)                  -- r^{i+1}/(i+1)! ∈ [c.1, c.2]
-  (MatZonotope.smul c.1 c.2 (sys.A.matPow i)).materialise       -- · Aᵢ
+  (GZonotope.matSmul c.1 c.2 (sys.A.matPow i)).materialiseMat    -- · Aᵢ
 
 end CORALean
 

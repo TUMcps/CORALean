@@ -40,7 +40,7 @@ theorem Zonotope.isequal_sound {Z S : Zonotope 𝕋 n} (h : Z.isequal S = true) 
     simp only at e
     subst e
     have hc : toRealVec c₁ = toRealVec c₂ := funext fun i => eqr (h i).1.1.1
-    have hG : (fun j i => toReal (G₁ i j)) = fun j i => toReal (G₂ i j) :=
+    have hG : (fun j i => toReal (G₁ j i)) = fun j i => toReal (G₂ j i) :=
       funext fun j => funext fun i => eqr (by simpa using (h i).2 j)
     have hEi : toRealVec E₁.inf = toRealVec E₂.inf := funext fun i => eqr (h i).1.1.2
     have hEs : toRealVec E₁.sup = toRealVec E₂.sup := funext fun i => eqr (h i).1.2
@@ -54,8 +54,8 @@ theorem Zonotope.isequal_sound {Z S : Zonotope 𝕋 n} (h : Z.isequal S = true) 
       rw [this]
     have hN : (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope 𝕋 n)) =
         nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope 𝕋 n) := by
-      show (⟨h₁, toRealVec c₁, fun j i => toReal (G₁ i j)⟩ : CORALean.Real.Zonotope (Vec ℝ n)) =
-        ⟨h₁, toRealVec c₂, fun j i => toReal (G₂ i j)⟩
+      show (⟨h₁, toRealVec c₁, fun j i => toReal (G₁ j i)⟩ : CORALean.Real.Zonotope (Vec ℝ n)) =
+        ⟨h₁, toRealVec c₂, fun j i => toReal (G₂ j i)⟩
       rw [hc, hG]
     -- so the two sums of nominal set and error box are the same
     change ContSet.construct (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope 𝕋 n)) + E₁.construct =

@@ -1,12 +1,12 @@
 import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
-import CORALean.ContSet.MatZonotope.Float.Operations.Smul
-import CORALean.ContSet.MatZonotope.Float.Theorems.OfEntryBoundsOuter
+import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 import Mathlib.LinearAlgebra.BilinearMap
 
 /-!
-# `MatZonotope.smul` over-approximates scaling by every scalar in `[cLo, cHi]`
+# `GZonotope.matSmul` over-approximates scaling by every scalar in `[cLo, cHi]`
 
 At one scalar `c` in the range, the nominal part scales inside the exact
 `Zonotope.map (c • ·)` (`map_exact`), whose centre and generators `mul_between_corners`
@@ -15,7 +15,7 @@ brackets entry by entry; the box scales by `Interval.smul_outer`.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   09-October-2026
 -- Last revision: ---
 
 
@@ -30,9 +30,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatZonotope.smul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤ c)
-    (hcHi : c ≤ toReal cHi) (Z : MatZonotope 𝕋 m n) {A : Mat ℝ m n} (hA : A ∈ Z.construct) :
-    c • A ∈ (MatZonotope.smul cLo cHi Z).construct := by -- --- PROOF ---
+theorem GZonotope.matSmul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤ c)
+    (hcHi : c ≤ toReal cHi) (Z : GZonotope (Mat 𝕋 m n)) {A : Mat ℝ m n} (hA : A ∈ Z.construct) :
+    c • A ∈ (GZonotope.matSmul cLo cHi Z).construct := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hA
   set Zc := CORALean.Real.Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ m n) c) Z.nominal
   have hca : c • a ∈ Zc.construct := by
@@ -42,7 +42,7 @@ theorem MatZonotope.smul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤
   have hentry : ∀ x : 𝕋, toReal (Interval.mulLo cLo cHi x x) ≤ c * toReal x
       ∧ c * toReal x ≤ toReal (Interval.mulHi cLo cHi x x) :=
     fun x => Interval.mul_between_corners hcLo hcHi le_rfl le_rfl
-  have hmem := MatZonotope.ofEntryBounds_outer Zc (Interval.smul cLo cHi Z.E)
+  have hmem := GZonotope.ofEntryBoundsMat_outer Zc (Interval.smul cLo cHi Z.E)
     (cLo := fun i j => Interval.mulLo cLo cHi (Z.c i j) (Z.c i j))
     (cHi := fun i j => Interval.mulHi cLo cHi (Z.c i j) (Z.c i j))
     (GLo := fun k i j => Interval.mulLo cLo cHi (Z.G k i j) (Z.G k i j))

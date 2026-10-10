@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 Squaring avoids `Real.sqrt`, absent from `FloatOps`, and keeps the ranking,
 monotone on the nonnegatives a length is. -/
 def Zonotope.aux_combastelMetric (Z : Zonotope 𝕋 n) (j : Fin Z.h) : 𝕋 :=
-  sqSumUp fun i => Z.G i j
+  sqSumUp (Z.G j)
 
 /-- The generators Combastel's rule keeps at order `o`, against the rest:
 `(o-1)*n` of them, leaving room for the box of `n`. The comparator ranks the

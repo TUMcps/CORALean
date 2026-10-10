@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.absorbError (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := Z.h + n
   c := Z.shiftDown
-  G := fun i => Fin.append (Z.G i) (diagonalBlock Z.errorRadius i)
+  G := Fin.append Z.G (diagonalBlock Z.errorRadius)
   E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
 end CORALean.Float

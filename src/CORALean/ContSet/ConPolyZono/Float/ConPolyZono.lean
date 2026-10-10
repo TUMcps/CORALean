@@ -62,7 +62,8 @@ structure ConPolyZono (𝕋 : Type) (n : ℕ) where
   err : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (ConPolyZono 𝕋 n) (CORALean.Real.ConPolyZono (Vec ℝ n)) 𝕋 n where
+    InflatedContSet (ConPolyZono 𝕋 n) (CORALean.Real.ConPolyZono (Vec ℝ n))
+      (Vec 𝕋 n) (Vec ℝ n) where
   -- generators transpose: stored as a matrix here, a family of vectors there
   nominal cPZ := ⟨cPZ.p, cPZ.h, cPZ.q, cPZ.m, cPZ.s, toRealVec cPZ.c,
     fun l i => toReal (cPZ.G i l), cPZ.E, fun j i => toReal (cPZ.GI i j), toRealMat cPZ.A,

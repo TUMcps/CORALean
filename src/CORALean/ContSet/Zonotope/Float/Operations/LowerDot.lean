@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.lowerDot (Z : Zonotope 𝕋 n) (a : Vec 𝕋 n) : 𝕋 :=
   let centre := dotDown a Z.c                                       -- aᵀc
   let gens := sumDown fun j => maximum zero                         -- Σⱼ |aᵀGⱼ|, from below
-    (maximum (dotDown a fun i => Z.G i j) (neg (dotUp a fun i => Z.G i j)))
+    (maximum (dotDown a (Z.G j)) (neg (dotUp a (Z.G j))))
   let box := sumDown fun i =>                                       -- Σᵢ aᵢ eᵢ, at the smaller end
     minimum (mulDown (a i) (Z.E.inf i)) (mulDown (a i) (Z.E.sup i))
   addDown (addDown centre gens) box

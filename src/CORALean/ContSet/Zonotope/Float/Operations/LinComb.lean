@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.linComb (Z₁ Z₂ : Zonotope 𝕋 n) : Zonotope 𝕋 n where
   h := Z₁.h + Z₂.h + 1
   c := Zonotope.midpoint Z₁.c Z₂.c
-  G := Zonotope.linCombG addDown subDown Z₁ Z₂
+  G := fun j i => Zonotope.linCombG addDown subDown Z₁ Z₂ i j
   E := (Z₁.E.linComb Z₂.E).plus
         ((Zonotope.midpointResidual Z₁.c Z₂.c).plus
           (Zonotope.generatorError (Zonotope.linCombGDiff Z₁ Z₂)))

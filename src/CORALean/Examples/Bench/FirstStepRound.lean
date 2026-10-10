@@ -58,7 +58,7 @@ def roundX0In (cfg : HeadlineConfig) (exactIn : ExactDyadic → 𝕋) :
   pure
     { h := cfg.x0Generators.size
       c := fun i => (cAt i).1
-      G := fun i j => (gAt i j).1
+      G := fun j i => (gAt i j).1
       E := ⟨fun i => FloatOps.neg (w i),
             fun i => FloatOps.addUp (w i) (subUp (cAt i).2 (cAt i).1)⟩ }
 

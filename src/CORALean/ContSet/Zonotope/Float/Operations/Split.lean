@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The two halves of `Z` along its `j`-th generator. -/
 def Zonotope.split (Z : Zonotope 𝕋 n) (j : Fin Z.h) : Zonotope 𝕋 n × Zonotope 𝕋 n :=
-  let g := fun i => half (Z.G i j)
+  let g := fun i => half (Z.G j i)
   (Z.splitHalf j fun i => neg (g i), Z.splitHalf j g)
 
 end CORALean.Float

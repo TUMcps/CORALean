@@ -54,11 +54,11 @@ def d (m e : ℤ) : D := ⟨m, e⟩
 def box0 : Interval (Vec D 2) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 /-- Zonotopes centred at the origin: invertible, rank one, wide, and nearly singular. -/
-def zInv : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], !![d 1 0, d 1 0; d 0 0, d 1 0], box0⟩
-def zRank1 : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], !![d 1 0, d 1 0; d 1 0, d 1 0], box0⟩
+def zInv : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 1 0, d 1 0]], box0⟩
+def zRank1 : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d 1 0]], box0⟩
 def zWide : Zonotope D 2 :=
-  ⟨3, ![d 0 0, d 0 0], !![d 1 0, d 0 0, d 1 0; d 0 0, d 1 0, d 1 0], box0⟩
-def zNear : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], !![d 1 0, d 1 0; d 0 0, d 1 (-30)], box0⟩
+  ⟨3, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0], ![d 1 0, d 1 0]], box0⟩
+def zNear : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 1 0, d 1 (-30)]], box0⟩
 
 #eval zInv.isFullDim     -- true
 #eval zRank1.isFullDim   -- false, the generators span a line
@@ -112,23 +112,24 @@ def segment : VPolytope D 2 := ⟨3, !![d 0 0, d 1 0, d 2 0; d 0 0, d 1 0, d 2 0
 
 /-- A flat box and a thin parallelogram, which meet near the origin. -/
 def bundle : ZonoBundle D 2 :=
-  ⟨2, ![⟨2, ![d 0 0, d 0 0], !![d 2 0, d 0 0; d 0 0, d 1 (-3)], box0⟩,
-        ⟨2, ![d 0 0, d 0 0], !![d 2 0, d 1 (-3); d 2 0, d (-1) (-3)], box0⟩]⟩
+  ⟨2, ![⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 1 (-3)]], box0⟩,
+        ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 2 0], ![d 1 (-3), d (-1) (-3)]], box0⟩]⟩
 
 /-- Two unit segments five apart. -/
 def apart : ZonoBundle D 2 :=
-  ⟨2, ![⟨1, ![d 0 0, d 0 0], !![d 1 0; d 0 0], box0⟩,
-        ⟨1, ![d 5 0, d 0 0], !![d 1 0; d 0 0], box0⟩]⟩
+  ⟨2, ![⟨1, ![d 0 0, d 0 0], ![![d 1 0, d 0 0]], box0⟩,
+        ⟨1, ![d 5 0, d 0 0], ![![d 1 0, d 0 0]], box0⟩]⟩
 
-#eval bundle.isFullDim (fun i => Zonotope.rightInvCandidate (bundle.Z i).G) ![d 0 0, d 0 0]  -- true
+#eval bundle.isFullDim (fun i => Zonotope.rightInvCandidate fun r j => (bundle.Z i).G j r)
+  ![d 0 0, d 0 0]  -- true
 #eval bundle.representsa_emptySet   -- false
 #eval apart.representsa_emptySet    -- true
 
 /-- `[-2, 2]²`, a unit square shifted by `(1/2, 0)`, one centred at `(3, 0)`, a diagonal segment. -/
-def big : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], !![d 2 0, d 0 0; d 0 0, d 2 0], box0⟩
-def inside : Zonotope D 2 := ⟨2, ![d 1 (-1), d 0 0], !![d 1 0, d 0 0; d 0 0, d 1 0], box0⟩
-def outside : Zonotope D 2 := ⟨2, ![d 3 0, d 0 0], !![d 1 0, d 0 0; d 0 0, d 1 0], box0⟩
-def diagonal : Zonotope D 2 := ⟨1, ![d 0 0, d 0 0], !![d 1 0; d 1 0], box0⟩
+def big : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 2 0]], box0⟩
+def inside : Zonotope D 2 := ⟨2, ![d 1 (-1), d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def outside : Zonotope D 2 := ⟨2, ![d 3 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def diagonal : Zonotope D 2 := ⟨1, ![d 0 0, d 0 0], ![![d 1 0, d 1 0]], box0⟩
 
 #eval Contains.contains big inside     -- true
 #eval Contains.contains big outside    -- false
