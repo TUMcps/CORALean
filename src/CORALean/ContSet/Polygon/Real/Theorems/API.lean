@@ -25,6 +25,16 @@ import CORALean.ContSet.Polygon.Real.Theorems.AndRegion
 import CORALean.ContSet.Polygon.Real.Theorems.VolumeEqPieceAreas
 import CORALean.ContSet.Polygon.Real.Theorems.RegionCenterMem
 import CORALean.ContSet.Polygon.Real.Theorems.CenterMem
+import CORALean.ContSet.Polygon.Real.Theorems.ConstructEqTriples
+import CORALean.ContSet.Polygon.Real.Theorems.TriangulationExact
+import CORALean.ContSet.Polygon.Real.Theorems.QuadMapOuter
+import CORALean.ContSet.Polygon.Real.Theorems.QuadMapMixedOuter
+import CORALean.ContSet.Polygon.Real.Theorems.SubtractOuter
+import CORALean.ContSet.Polygon.Real.Theorems.MldivideOuter
+import CORALean.ContSet.Polygon.Real.Theorems.MinkDiffSandwich
+import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLeIff
+import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLe
+import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistCounterexample
 
 /-!
 # Polygon theorems, collected

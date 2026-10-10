@@ -119,6 +119,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.FilterOutKeeps
 import CORALean.ContSet.Zonotope.Float.Theorems.MinnormBall
 import CORALean.ContSet.Zonotope.Float.Theorems.MinnormLe
 import CORALean.ContSet.Zonotope.Float.Theorems.MinnormOffsetGe
+import CORALean.ContSet.Zonotope.Float.Theorems.PolygonContains
 
 /-!
 # What `Zonotope` guarantees

@@ -312,6 +312,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.OfEchelonInvEq
 import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapTriOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottParallelotopeVolume
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottVolumeSum
+import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
 
 /-!
 # What `Zonotope` guarantees

@@ -27,6 +27,9 @@ import CORALean.ContSet.Polygon.Float.Operations.PieceHolds
 import CORALean.ContSet.Polygon.Float.Operations.PieceSubset
 import CORALean.ContSet.Polygon.Float.Operations.IsConvex
 import CORALean.ContSet.Polygon.Float.Operations.Volume
+import CORALean.ContSet.Polygon.Float.Operations.Triangulation
+import CORALean.ContSet.Polygon.Float.Operations.QuadMap
+import CORALean.ContSet.Polygon.Float.Operations.QuadMapMixed
 
 /-!
 # Float polygon operations, collected

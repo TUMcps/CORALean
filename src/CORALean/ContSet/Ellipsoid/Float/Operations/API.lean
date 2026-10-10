@@ -29,6 +29,8 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose2
 import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
 import CORALean.ContSet.Ellipsoid.Float.Operations.EllipsoidNormUb
 import CORALean.ContSet.Ellipsoid.Float.Operations.Volume
+import CORALean.ContSet.Ellipsoid.Float.Operations.Polygon
+import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
 
 /-!
 # What a float ellipsoid computes, collected

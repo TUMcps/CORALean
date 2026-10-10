@@ -1,13 +1,14 @@
 import CORALean.ContSet.PolyZonotope.Float.Operations.Polygon
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.PolygonContains
 import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
 
 /-!
 # The float `polygon` encloses the polynomial zonotope
 
 The pieces cover the set after every round (`splitLongestGen_outer`) for every choice of the
-pieces to refine, and each piece lies in its zonotope and that in its float `vPolytope`. Outer, and
-no exactness is claimed.
+pieces to refine, and each piece lies in its zonotope and that in its float `Zonotope.polygon`.
+Outer, and no exactness is claimed.
 -/
 
 -- Authors:       Tobias Ladner
@@ -60,7 +61,7 @@ theorem PolyZonotope.polygon_outer (pZ : PolyZonotope 𝕋 2) (splits : ℕ)
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_polygonPieces_cover pZ pick splits hx
   rw [PolyZonotope.polygon, Polygon.construct_ofPieces]
   refine Set.mem_biUnion (List.mem_map.mpr ⟨q, hq, rfl⟩) ?_
-  exact Zonotope.vPolytope_contains _ (PolyZonotope.zonotope_contains q hxq)
+  exact Zonotope.polygon_contains _ (PolyZonotope.zonotope_contains q hxq)
 
 end CORALean.Float
 
