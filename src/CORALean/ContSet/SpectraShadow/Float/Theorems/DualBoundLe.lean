@@ -64,7 +64,7 @@ theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 n} {a : Vec 𝕋 n} {
     · simp [hj, toRealMat, toReal_absolute]
   -- the equalities, read as reals
   have htr : ∀ l, (toRealMat (S.A l) * toRealMat Y).trace
-      = -∑ r, toReal (a r) * toReal (S.G r l) := fun l => by
+      = -∑ r, toReal (a r) * toReal (S.G l r) := fun l => by
     have := congrArg (fun q : ℚ => (q : ℝ)) (heq l)
     simp only [Rat.cast_sum, Rat.cast_mul, Rat.cast_neg, toReal_toRat] at this
     simpa [Matrix.trace, Matrix.mul_apply, toRealMat] using this
@@ -73,7 +73,7 @@ theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 n} {a : Vec 𝕋 n} {
   rw [Matrix.add_mul, Matrix.trace_add, Matrix.sum_mul, Matrix.trace_sum] at h0
   simp only [Matrix.smul_mul, Matrix.trace_smul, smul_eq_mul, htr, mul_neg,
     Finset.sum_neg_distrib] at h0
-  have hdual : ∑ j, β j * ∑ r, toReal (a r) * toReal (S.G r j)
+  have hdual : ∑ j, β j * ∑ r, toReal (a r) * toReal (S.G j r)
       ≤ (toRealMat S.A₀ * toRealMat Y).trace := by linarith
   -- the rounded-up parts of the bound
   have htrA : (toRealMat S.A₀ * toRealMat Y).trace
@@ -90,9 +90,9 @@ theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 n} {a : Vec 𝕋 n} {
     exact SpectraShadow.aux_mul_le_corner _ _ _ hb.1 hb.2
   -- the point's value along `a`, split into centre, generators and error
   have hsplit : ∑ r, toReal (a r) * (y + e) r = ∑ r, toReal (a r) * toReal (S.c r)
-      + ∑ j, β j * ∑ r, toReal (a r) * toReal (S.G r j) + ∑ r, toReal (a r) * e r := by
-    have hgen : ∑ r, toReal (a r) * ∑ j, toReal (S.G r j) * β j
-        = ∑ j, β j * ∑ r, toReal (a r) * toReal (S.G r j) := by
+      + ∑ j, β j * ∑ r, toReal (a r) * toReal (S.G j r) + ∑ r, toReal (a r) * e r := by
+    have hgen : ∑ r, toReal (a r) * ∑ j, toReal (S.G j r) * β j
+        = ∑ j, β j * ∑ r, toReal (a r) * toReal (S.G j r) := by
       simp_rw [Finset.mul_sum]
       rw [Finset.sum_comm]
       exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun r _ => by ring

@@ -68,7 +68,7 @@ theorem SpectraShadow.aux_sum_mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 
 one beside a zero block. -/
 theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 n)
     (v : Fin (S.mtimes M).m → ℝ) (z : Vec ℝ n)
-    (hz : ∀ i, z i = toReal (S.c i) + ∑ j, toReal (S.G i j) * v (Fin.castAdd n j))
+    (hz : ∀ i, z i = toReal (S.c i) + ∑ j, toReal (S.G j i) * v (Fin.castAdd n j))
     (hv : ∀ i, v (Fin.natAdd S.m i) = z i) :
     toRealMat (S.mtimes M).A₀ + ∑ l, v l • toRealMat ((S.mtimes M).A l)
       = blockDiag 0 (toRealMat S.A₀ + ∑ j, v (Fin.castAdd n j) • toRealMat (S.A j))
@@ -85,7 +85,7 @@ theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 
   -- the old inequality beside the diagonal block of the equalities
   refine SpectraShadow.aux_lmi_block (toRealMat S.A₀) (fun j => toRealMat (S.A j))
     (toRealVec (Fin.append (fun i => neg (S.c i)) S.c))
-    (fun j => toRealVec (Fin.append (fun i => neg (S.G i j)) fun i => S.G i j))
+    (fun j => toRealVec (Fin.append (fun i => neg (S.G j i)) fun i => S.G j i))
     (fun i => toRealVec (Fin.append (fun r => if r = i then one else zero)
       fun r => if r = i then neg one else zero))
     (fun j => v (Fin.castAdd n j)) (fun i => v (Fin.natAdd S.m i)) ?_
@@ -103,8 +103,8 @@ theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 
     simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Pi.zero_apply,
       toRealVec, Fin.append_left, hv, toReal_neg, hite, mul_ite, mul_one, mul_zero,
       Finset.sum_ite_eq, Finset.mem_univ, if_true, mul_neg]
-    have h2 : ∑ x, v (Fin.castAdd n x) * toReal (S.G i x)
-        = ∑ x, toReal (S.G i x) * v (Fin.castAdd n x) :=
+    have h2 : ∑ x, v (Fin.castAdd n x) * toReal (S.G x i)
+        = ∑ x, toReal (S.G x i) * v (Fin.castAdd n x) :=
       Finset.sum_congr rfl fun _ _ => mul_comm _ _
     rw [Finset.sum_neg_distrib, h2]
     linarith
@@ -112,8 +112,8 @@ theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 
     simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Pi.zero_apply,
       toRealVec, Fin.append_right, hv, hite', mul_ite, mul_one, mul_zero,
       Finset.sum_ite_eq, Finset.mem_univ, if_true, mul_neg]
-    have h2 : ∑ x, v (Fin.castAdd n x) * toReal (S.G i x)
-        = ∑ x, toReal (S.G i x) * v (Fin.castAdd n x) :=
+    have h2 : ∑ x, v (Fin.castAdd n x) * toReal (S.G x i)
+        = ∑ x, toReal (S.G x i) * v (Fin.castAdd n x) :=
       Finset.sum_congr rfl fun _ _ => mul_comm _ _
     rw [h2]
     linarith

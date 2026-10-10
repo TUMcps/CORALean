@@ -67,9 +67,9 @@ theorem SpectraShadow.tieInter_outer (S₁ S₂ : SpectraShadow 𝕋 n) :
       refine Fin.addCases (fun r₁ => ?_) (fun r₁ => ?_) r <;>
         refine Fin.addCases (fun r' => ?_) (fun r' => ?_) r₁ <;>
         have e₁ := hx₁ r' <;> have e₂ := hx₂ r' <;>
-        have s₁ : ∑ j, β₁ j * toReal (S₁.G r' j) = ∑ j, toReal (S₁.G r' j) * β₁ j :=
+        have s₁ : ∑ j, β₁ j * toReal (S₁.G j r') = ∑ j, toReal (S₁.G j r') * β₁ j :=
           Finset.sum_congr rfl fun _ _ => mul_comm _ _ <;>
-        have s₂ : ∑ j, β₂ j * toReal (S₂.G r' j) = ∑ j, toReal (S₂.G r' j) * β₂ j :=
+        have s₂ : ∑ j, β₂ j * toReal (S₂.G j r') = ∑ j, toReal (S₂.G j r') * β₂ j :=
           Finset.sum_congr rfl fun _ _ => mul_comm _ _ <;>
         simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, toRealVec,
           Fin.append_left, Fin.append_right] <;>
@@ -77,7 +77,8 @@ theorem SpectraShadow.tieInter_outer (S₁ S₂ : SpectraShadow 𝕋 n) :
         linarith
   · -- the point is the tied variable
     show x r = toReal (zero : 𝕋) + ∑ l : Fin ((S₁.m + S₂.m) + n),
-      toReal (Fin.append (fun _ => (zero : 𝕋)) (fun i => if r = i then (one : 𝕋) else zero) l)
+      toReal (Fin.append (fun (_ : Fin (S₁.m + S₂.m)) (_ : Fin n) => (zero : 𝕋))
+        (fun (i r' : Fin n) => if r' = i then (one : 𝕋) else zero) l r)
         * (Fin.append (Fin.append β₁ β₂) x : Fin ((S₁.m + S₂.m) + n) → ℝ) l
     rw [Fin.sum_univ_add]
     simp [Fin.append_left, Fin.append_right, hunit, toReal_zero]

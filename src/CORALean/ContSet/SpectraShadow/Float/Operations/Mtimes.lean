@@ -36,7 +36,7 @@ def SpectraShadow.mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 n) : Spectra
   -- the equalities `zᵢ - cᵢ - Σⱼ Gᵢⱼ βⱼ = 0`, as that expression and its negation, per `i`
   let constraintConst : Vec 𝕋 (n + n) := Fin.append (fun i => neg (S.c i)) S.c
   let constraintGen : Fin S.m → Vec 𝕋 (n + n) := fun j =>
-    Fin.append (fun i => neg (S.G i j)) (fun i => S.G i j)
+    Fin.append (fun i => neg (S.G j i)) (fun i => S.G j i)
   let constraintPoint : Fin n → Vec 𝕋 (n + n) := fun i =>
     Fin.append (fun r => if r = i then one else zero) (fun r => if r = i then neg one else zero)
   { k := S.k + (n + n)
@@ -45,7 +45,7 @@ def SpectraShadow.mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 n) : Spectra
     A := Fin.append (fun j => blockDiag zero (S.A j) (diagonalBlock (constraintGen j)))
       (fun i => blockDiag zero (fun _ _ => zero) (diagonalBlock (constraintPoint i)))
     c := fun _ => zero
-    G := fun r l => Fin.append (fun _ : Fin S.m => zero) (fun i => M r i) l
+    G := fun l r => Fin.append (fun _ : Fin S.m => zero) (fun i => M r i) l
     E := Interval.mtimes M S.E }
 
 end CORALean.Float

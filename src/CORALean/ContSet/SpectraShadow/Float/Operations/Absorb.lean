@@ -44,7 +44,7 @@ def SpectraShadow.absorb (S : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 n :=
     A₀ := blockDiag zero S.A₀ (diagonalBlock boxConst)
     A := fun l => blockDiag zero (X l) (diagonalBlock (d l))
     c := S.c
-    G := fun r => Fin.append (S.G r) fun i => unit i r
+    G := Fin.append S.G unit
     E := Interval.origin n }
 
 end CORALean.Float

@@ -32,7 +32,7 @@ def SpectraShadow.base (S : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 S.m where
   A₀ := S.A₀
   A := S.A
   c := fun _ => zero
-  G := fun r j => if r = j then one else zero
+  G := fun j r => if r = j then one else zero
   E := Interval.origin S.m
 
 end CORALean.Float

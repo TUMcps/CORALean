@@ -39,7 +39,7 @@ def HPolytope.spectraShadow (P : HPolytope 𝕋 n) : SpectraShadow 𝕋 n where
   A := fun i p q => if p = q then neg (Fin.append (fun r => P.A r i)
     (Fin.append (fun r => P.Ae r i) fun r => neg (P.Ae r i)) p) else zero
   c := fun _ => zero
-  G := fun i j => if i = j then one else zero
+  G := fun j i => if i = j then one else zero
   E := Interval.point fun _ => zero
 
 variable [SoundFloatArithmetic 𝕋]

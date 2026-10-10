@@ -33,7 +33,7 @@ def ConZonotope.spectraShadow (cZ : ConZonotope 𝕋 n) : SpectraShadow 𝕋 n w
   A₀ := blockDiag FloatOps.zero cZ.zonotope.spectraShadow.A₀ cZ.P.spectraShadow.A₀
   A := fun j => blockDiag FloatOps.zero (cZ.zonotope.spectraShadow.A j) (cZ.P.spectraShadow.A j)
   c := cZ.c
-  G := cZ.G
+  G := fun j i => cZ.G i j
   E := cZ.E
 
 variable [SoundFloatArithmetic 𝕋]

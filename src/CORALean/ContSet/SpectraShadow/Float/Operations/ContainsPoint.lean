@@ -42,8 +42,8 @@ def SpectraShadow.containsPoint (S : SpectraShadow 𝕋 n) (p : Vec 𝕋 n) (β 
     le (S.A₀ i j) (S.A₀ j i) && (List.finRange S.m).all fun l => le (S.A l i j) (S.A l j i)
   let dominant : Bool := (List.finRange S.k).all fun i => le (offDiag i) (entryLo i i)
   -- the remainder `p - c - G β`, between its two roundings
-  let lo : Vec 𝕋 n := fun r => subDown (p r) (addUp (S.c r) (dotUp (fun j => S.G r j) β))
-  let hi : Vec 𝕋 n := fun r => subUp (p r) (addDown (S.c r) (dotDown (fun j => S.G r j) β))
+  let lo : Vec 𝕋 n := fun r => subDown (p r) (addUp (S.c r) (dotUp (fun j => S.G j r) β))
+  let hi : Vec 𝕋 n := fun r => subUp (p r) (addDown (S.c r) (dotDown (fun j => S.G j r) β))
   symmetric && dominant &&
     (List.finRange n).all fun r => le (S.E.inf r) (lo r) && le (hi r) (S.E.sup r)
 

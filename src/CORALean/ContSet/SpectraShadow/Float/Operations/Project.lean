@@ -4,7 +4,7 @@ import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 /-!
 # `SpectraShadow.project` over a floating-point scalar
 
-The centre and every generator row at the chosen coordinates, the inequality untouched, and
+The centre and every generator read at the chosen coordinates, the inequality untouched, and
 the error box projected with `Interval.project`. Selecting coordinates moves stored floats
 without arithmetic, so nothing rounds. `dims` may repeat or reorder coordinates.
 -/
@@ -30,7 +30,7 @@ def SpectraShadow.project (S : SpectraShadow 𝕋 n) (dims : Fin m → Fin n) : 
   A₀ := S.A₀
   A := S.A
   c := fun i => S.c (dims i)
-  G := fun i j => S.G (dims i) j
+  G := fun j i => S.G j (dims i)
   E := S.E.project dims
 
 end CORALean.Float

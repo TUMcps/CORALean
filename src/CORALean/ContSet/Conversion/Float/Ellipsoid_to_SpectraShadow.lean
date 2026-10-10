@@ -33,7 +33,7 @@ def Ellipsoid.spectraShadow (E : Ellipsoid 𝕋 n) : SpectraShadow 𝕋 n where
   A₀ := fun p q => if p = q then one else zero
   A := fun i p q => if (p = 0 ∧ q = i.succ) ∨ (p = i.succ ∧ q = 0) then one else zero
   c := E.q
-  G := E.G
+  G := fun j i => E.G i j
   E := E.err
 
 variable [SoundFloatArithmetic 𝕋]

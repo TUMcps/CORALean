@@ -57,7 +57,7 @@ theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 N) :
       | left a =>
         simp only [Fin.append_left]
         simp [SpectraShadow.toRealMat_blockDiag, aux_toRealMat_arrowMat, toReal_one, toReal_zero,
-          InflatedContSet.nominal]
+          InflatedContSet.nominal, RealImage.realImage]
       | right j =>
         simp only [Fin.append_left, Fin.append_right]
         simp [SpectraShadow.toRealMat_blockDiag, aux_toRealMat_arrowMat, toReal_zero,
@@ -72,17 +72,17 @@ theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 N) :
       simp [SpectraShadow.toRealMat_blockDiag, aux_toRealMat_arrowMat, toReal_zero, toReal_one,
         SpectraShadow.toRealMat_const_zero, h0]
   · funext i
-    simp [toRealVec, toReal_zero]
+    simp [RealImage.realImage, toRealVec, toReal_zero]
   -- the generators
   · funext j i
     induction j using Fin.addCases with
     | left p =>
       induction p using Fin.addCases with
-      | left a => simp [InflatedContSet.nominal, toRealVec]
+      | left a => simp [InflatedContSet.nominal]
       | right k => simp [InflatedContSet.nominal]
     | right q =>
       erw [Fin.append_right]
-      simp [toReal_zero]
+      simp [RealImage.realImage, toRealVec, toReal_zero]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

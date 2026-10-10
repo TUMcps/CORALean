@@ -36,15 +36,19 @@ theorem SpectraShadow.aux_padLeft_nominal (S : SpectraShadow 𝕋 n) :
   congr 1
   · funext i
     refine Fin.addCases (fun j => ?_) (fun j => ?_) i
-    · simp [SpectraShadow.padLeft, blockPadLeft, toRealVec]
+    · rw [realImage_vec]
+      simp [SpectraShadow.padLeft, blockPadLeft, toRealVec]
       rfl
-    · simp [SpectraShadow.padLeft, blockPadLeft, toRealVec, toReal_zero]
+    · rw [realImage_vec]
+      simp [SpectraShadow.padLeft, blockPadLeft, toRealVec, toReal_zero]
   · funext j
     funext i
     refine Fin.addCases (fun l => ?_) (fun l => ?_) i
-    · simp [SpectraShadow.padLeft, blockPadLeft]
+    · rw [realImage_vec]
+      simp [SpectraShadow.padLeft, blockPadLeft, toRealVec]
       rfl
-    · simp [SpectraShadow.padLeft, blockPadLeft, toReal_zero]
+    · rw [realImage_vec]
+      simp [SpectraShadow.padLeft, blockPadLeft, toRealVec, toReal_zero]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

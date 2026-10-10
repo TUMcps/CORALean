@@ -33,14 +33,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem SpectraShadow.mem_nominalSet_iff {S : SpectraShadow 𝕋 n} {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet S ↔ ∃ β : Vec ℝ S.m,
       (toRealMat S.A₀ + ∑ i, β i • toRealMat (S.A i)).PosSemidef ∧
-        ∀ i, x i = toReal (S.c i) + ∑ j, toReal (S.G i j) * β j := by -- --- PROOF ---
+        ∀ i, x i = toReal (S.c i) + ∑ j, toReal (S.G j i) * β j := by -- --- PROOF ---
   constructor
   · rintro ⟨β, hβ, hx⟩
     exact ⟨β, hβ, fun i => (congrFun hx i).trans
-      (Entrywise.add_sum_smul_apply (toRealVec S.c) (fun j i => toReal (S.G i j)) β i)⟩
+      (Entrywise.add_sum_smul_apply (toRealVec S.c) (fun j i => toReal (S.G j i)) β i)⟩
   · rintro ⟨β, hβ, hx⟩
     exact ⟨β, hβ, funext fun i => (hx i).trans
-      (Entrywise.add_sum_smul_apply (toRealVec S.c) (fun j i => toReal (S.G i j)) β i).symm⟩
+      (Entrywise.add_sum_smul_apply (toRealVec S.c) (fun j i => toReal (S.G j i)) β i).symm⟩
 
 end CORALean.Float
 
