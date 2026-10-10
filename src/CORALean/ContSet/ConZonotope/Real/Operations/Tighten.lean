@@ -11,7 +11,7 @@ does — gives an interval enclosure of it. `Thm. 2`'s `E_k` and `R_{r,c}` (eq. 
 what a single pass buys.
 
 The paper's own outer refinement — running Algorithm 1 again on its own output — is a
-separate procedure `Thm. 2` does not ask for and is not formalized here.
+separate procedure `Thm. 2` does not ask for; it is `tightenER`, which also returns `R`.
 
 ## References
 

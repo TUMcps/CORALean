@@ -41,6 +41,7 @@ import CORALean.ContSet.VPolytope.Real.Theorems.SuccLeOfInteriorNonempty
 import CORALean.ContSet.VPolytope.Real.Theorems.SupportFuncEq
 import CORALean.ContSet.VPolytope.Real.Theorems.HausdorffDistEq
 import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
+import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
 
 /-!
 # What `VPolytope` guarantees

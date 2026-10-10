@@ -38,18 +38,18 @@
 <text x="150" y="148" font-size="10" fill="#888">+n: out of scope, not in the bar</text>
 <text x="150" y="160" font-weight="bold">(b) Formalized paper statements</text>
 <text x="142" y="179" text-anchor="end">Paper results</text>
-<rect x="150.0" y="168" width="325.9" height="14" fill="rgb(120,197,127)"/>
-<text x="313.0" y="179" text-anchor="middle" font-size="9" fill="#000">665</text>
-<rect x="475.9" y="168" width="14.7" height="14" fill="rgb(237,177,32)"/>
-<rect x="490.6" y="168" width="83.3" height="14" fill="rgb(255,174,76)"/>
-<text x="532.3" y="179" text-anchor="middle" font-size="9" fill="#000">170</text>
-<rect x="573.9" y="168" width="42.1" height="14" fill="rgb(241,141,145)"/>
-<text x="595.0" y="179" text-anchor="middle" font-size="9" fill="#000">86</text>
-<rect x="616.1" y="168" width="2.0" height="14" fill="rgb(162,20,47)"/>
-<rect x="618.0" y="168" width="52.0" height="14" fill="rgb(255,255,255)"/>
-<text x="644.0" y="179" text-anchor="middle" font-size="9" fill="#000">106</text>
+<rect x="150.0" y="168" width="328.5" height="14" fill="rgb(120,197,127)"/>
+<text x="314.3" y="179" text-anchor="middle" font-size="9" fill="#000">671</text>
+<rect x="478.5" y="168" width="14.7" height="14" fill="rgb(237,177,32)"/>
+<rect x="493.2" y="168" width="84.7" height="14" fill="rgb(255,174,76)"/>
+<text x="535.6" y="179" text-anchor="middle" font-size="9" fill="#000">173</text>
+<rect x="577.9" y="168" width="42.6" height="14" fill="rgb(241,141,145)"/>
+<text x="599.2" y="179" text-anchor="middle" font-size="9" fill="#000">87</text>
+<rect x="620.5" y="168" width="2.0" height="14" fill="rgb(162,20,47)"/>
+<rect x="622.5" y="168" width="47.5" height="14" fill="rgb(255,255,255)"/>
+<text x="646.3" y="179" text-anchor="middle" font-size="9" fill="#000">97</text>
 <rect x="150" y="168" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
-<text x="675.0" y="179" font-size="9" fill="#888">+882</text>
+<text x="675.0" y="179" font-size="9" fill="#888">+892</text>
 <rect x="150" y="194" width="12" height="12" fill="rgb(120,197,127)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="204">correct</text>
 <rect x="340" y="194" width="12" height="12" fill="rgb(237,177,32)" stroke="#000" stroke-width="0.8"/>
@@ -64,14 +64,14 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="104.9" height="14" fill="rgb(0,114,189)"/>
-<text x="202.5" y="259" text-anchor="middle" font-size="9" fill="#fff">1284</text>
-<rect x="254.9" y="248" width="193.0" height="14" fill="rgb(42,92,173)"/>
-<text x="351.4" y="259" text-anchor="middle" font-size="9" fill="#000">2362</text>
-<rect x="448.0" y="248" width="132.6" height="14" fill="rgb(84,69,158)"/>
-<text x="514.3" y="259" text-anchor="middle" font-size="9" fill="#000">1623</text>
-<rect x="580.6" y="248" width="89.4" height="14" fill="rgb(126,47,142)"/>
-<text x="625.3" y="259" text-anchor="middle" font-size="9" fill="#000">1094</text>
+<rect x="150.0" y="248" width="107.0" height="14" fill="rgb(0,114,189)"/>
+<text x="203.5" y="259" text-anchor="middle" font-size="9" fill="#fff">1322</text>
+<rect x="257.0" y="248" width="191.2" height="14" fill="rgb(42,92,173)"/>
+<text x="352.6" y="259" text-anchor="middle" font-size="9" fill="#000">2362</text>
+<rect x="448.3" y="248" width="131.4" height="14" fill="rgb(84,69,158)"/>
+<text x="514.0" y="259" text-anchor="middle" font-size="9" fill="#000">1623</text>
+<rect x="579.6" y="248" width="90.4" height="14" fill="rgb(126,47,142)"/>
+<text x="624.8" y="259" text-anchor="middle" font-size="9" fill="#000">1116</text>
 <rect x="150" y="248" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="274" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="284">paper theorems</text>

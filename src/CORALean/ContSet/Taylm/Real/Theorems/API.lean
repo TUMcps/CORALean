@@ -124,6 +124,10 @@ import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinEntry
 import CORALean.ContSet.Taylm.Real.Theorems.LeBernsteinDegree
 import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqSumBernsteinCoeff
 import CORALean.ContSet.Taylm.Real.Theorems.OptBernsteinMem
+import CORALean.ContSet.Taylm.Real.Theorems.QfbQuadExpand
+import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchStepVariational
+import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchStepFixedIsMinOn
+import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchConverges
 
 /-!
 # Taylor model guarantees, collected

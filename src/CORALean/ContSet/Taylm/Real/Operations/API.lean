@@ -95,6 +95,7 @@ import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
 import CORALean.ContSet.Taylm.Real.Operations.BernsteinDegree
 import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
 import CORALean.ContSet.Taylm.Real.Operations.OptBernstein
+import CORALean.ContSet.Taylm.Real.Operations.QfbSearchStep
 
 /-!
 # Taylor model operations, collected
