@@ -444,6 +444,16 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "reduceByBoxRun (absorbs one)" (ofZono (RunnableFloat.Z.reduceByBox
     (Partition.split 1 1 : Split (Fin RunnableFloat.Z.h) into (Fin 1) ⊕ (Fin 1))))
   row "mtimesIntervalMatBoxRun" (ofBox RunnableFloat.mtimesIntervalMatBoxRun)
+  -- the picks, deletions, bounds and oriented boxes
+  row "Zbig" (ofZono RunnableFloat.Zbig)
+  row "dominantDirectionsRun" (match RunnableFloat.dominantDirectionsRun with
+    | none => ⟨"none", [], true⟩
+    | some P => ofMat P)
+  row "filterOutRun" ⟨s!"kept {RunnableFloat.filterOutRun.map (·.val)}", [], false⟩
+  row "minnormRun" (match RunnableFloat.minnormRun with
+    | none => ⟨"none", [], true⟩
+    | some x => ofD x)
+  row "encloseManyRun" (ofOptZono RunnableFloat.encloseManyRun)
   -- discrete time and networks
   row "sys" (ofMat RunnableFloat.sys.A)
   row "reachRun" (ofZono RunnableFloat.reachRun)

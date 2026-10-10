@@ -95,7 +95,11 @@ import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.SetUnion.Instances
 import CORALean.ContSet.VPolytope.Float.Instances
 import CORALean.ContSet.ZonoBundle.Float.Instances
+import CORALean.ContSet.Zonotope.Float.Operations.DominantDirections
+import CORALean.ContSet.Zonotope.Float.Operations.EncloseMany
+import CORALean.ContSet.Zonotope.Float.Operations.FilterOut
 import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
+import CORALean.ContSet.Zonotope.Float.Operations.Minnorm
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
 import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
@@ -590,6 +594,27 @@ def reduceGirardBoxRun : Zonotope D 2 := Zonotope.reduceGirardBox Z 1
 -- what `[e^{AΔt}] Z` holds beyond `A Z` for every `A` in the interval matrix (#129)
 def mtimesIntervalMatBoxRun : Interval (Vec D 2) :=
   Zonotope.mtimesIntervalMatBox expEnclosureRun Z
+
+
+/-! ## The zonotope operations that pick, delete, measure and orient
+
+`dominantDirections` (the two generators of `Z`, if their parallelotope ranks first), `filterOut`
+of `Z` and a larger cell holding it (the small one is deleted), `minnorm` (an upper bound on the
+radius of the ball around the centre, `1/4` for `Z`) and `encloseMany` along the diagonal. -/
+
+/-- A cell holding `Z`: the same centre, generators four times as long. -/
+def Zbig : Zonotope D 2 where
+  h := 2
+  c := ![d 1 0, d 0 0]
+  G := !![d 1 0, d 0 0; d 0 0, d 1 0]
+  E := zbox 2
+
+def dominantDirectionsRun : Option (Mat D 2 2) := Z.dominantDirections
+def filterOutRun : List (Fin 2) :=
+  (List.finRange 2).filter fun i => decide (i ∈ Zonotope.filterOut ![Z, Zbig])
+def minnormRun : Option D := Z.minnorm 8
+def encloseManyRun : Option (Zonotope D 2) :=
+  Zonotope.encloseMany 8 (fun _ : Fin 1 => Z) ![d 1 0, d 1 0]
 
 
 /-! ## Discrete-time reach and a network, run rather than only compiled

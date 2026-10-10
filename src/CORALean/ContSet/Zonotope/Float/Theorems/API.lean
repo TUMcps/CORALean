@@ -109,6 +109,15 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MatZonotopeContains
 import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
 import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.OfIntervalMatOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.DominantDirectionsMem
+import CORALean.ContSet.Zonotope.Float.Theorems.DominantDirectionsOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.EncloseManyBasisInvMem
+import CORALean.ContSet.Zonotope.Float.Theorems.EncloseManyOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.FilterOutCovered
+import CORALean.ContSet.Zonotope.Float.Theorems.FilterOutKeeps
+import CORALean.ContSet.Zonotope.Float.Theorems.MinnormBall
+import CORALean.ContSet.Zonotope.Float.Theorems.MinnormLe
+import CORALean.ContSet.Zonotope.Float.Theorems.MinnormOffsetGe
 
 /-!
 # What `Zonotope` guarantees

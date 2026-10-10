@@ -107,6 +107,21 @@ import CORALean.ContSet.Zonotope.Float.Operations.MatZonotope
 import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
 import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+import CORALean.ContSet.Zonotope.Float.Operations.DetCandidate
+import CORALean.ContSet.Zonotope.Float.Operations.DominantDirections
+import CORALean.ContSet.Zonotope.Float.Operations.DominantLengthFilter
+import CORALean.ContSet.Zonotope.Float.Operations.DominantScore
+import CORALean.ContSet.Zonotope.Float.Operations.DominantShortlist
+import CORALean.ContSet.Zonotope.Float.Operations.EncloseMany
+import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasis
+import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasisInv
+import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyDropped
+import CORALean.ContSet.Zonotope.Float.Operations.FacetNormal
+import CORALean.ContSet.Zonotope.Float.Operations.FilterOut
+import CORALean.ContSet.Zonotope.Float.Operations.GeneratorMatrix
+import CORALean.ContSet.Zonotope.Float.Operations.Minnorm
+import CORALean.ContSet.Zonotope.Float.Operations.MinnormOffset
+import CORALean.ContSet.Zonotope.Float.Operations.NonzeroCount
 
 /-!
 # What `Zonotope` computes
