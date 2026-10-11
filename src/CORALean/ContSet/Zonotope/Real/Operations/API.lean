@@ -175,6 +175,16 @@ import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripMeasurement
 import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripStep
 import CORALean.ContSet.Zonotope.Real.Operations.DiffusionTimeUpdate
 import CORALean.ContSet.Zonotope.Real.Operations.DiffusionUpdate
+import CORALean.ContSet.Zonotope.Real.Operations.BisectLow
+import CORALean.ContSet.Zonotope.Real.Operations.BisectStep
+import CORALean.ContSet.Zonotope.Real.Operations.BoundIntersect2DBisect
+import CORALean.ContSet.Zonotope.Real.Operations.BoundIntersect2DScan
+import CORALean.ContSet.Zonotope.Real.Operations.MirrorY
+import CORALean.ContSet.Zonotope.Real.Operations.PointUp
+import CORALean.ContSet.Zonotope.Real.Operations.ScanEdge
+import CORALean.ContSet.Zonotope.Real.Operations.SplitPivot
+import CORALean.ContSet.Zonotope.Real.Operations.Shear
+import CORALean.ContSet.Zonotope.Real.Operations.Face
 
 /-!
 # What `Zonotope` computes

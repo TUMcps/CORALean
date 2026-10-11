@@ -6,8 +6,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffRowsEq
 
 `Zonotope.gen_not_required_iff` at the rows of [1, Thm. 3] themselves, `Zonotope.minkDiffRowNormal`
 and `Zonotope.minkDiffRowOffset`, where `hrows` is the theorem `Zonotope.minkowskiDiff_rows_eq`,
-at [1, Thm. 2]'s own hypothesis that the minuend's generators span. What stays a hypothesis is
-the minimum H-representation `hmin`/`hirr`, polytope theory Mathlib has not got.
+at [1, Thm. 2]'s own hypothesis that the minuend's generators span. The minimum H-representation
+`hmin`/`hirr` stays a hypothesis here; `gen_not_required_iff_of_fullDim` discharges it.
 
 ## References
 
