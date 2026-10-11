@@ -33,8 +33,10 @@ instance : Plus (VPolytope 𝕋 n) (Vec ℝ n) where
     exact VPolytope.plus_outer P₁ P₂
 
 instance : Intersection (VPolytope 𝕋 n) (Vec ℝ n) where
-  intersection := VPolytope.intersection
-  intersection_outer := VPolytope.intersection_outer
+  intersection P₁ P₂ := (VPolytope.intersection P₁ P₂).materialise
+  intersection_outer P₁ P₂ := by
+    rw [VPolytope.materialise_eq]
+    exact VPolytope.intersection_outer P₁ P₂
 
 instance : LinComb (VPolytope 𝕋 n) (Vec ℝ n) where
   linComb P₁ P₂ := (VPolytope.linComb P₁ P₂).materialise

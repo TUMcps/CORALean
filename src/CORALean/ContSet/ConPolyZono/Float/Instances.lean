@@ -55,8 +55,10 @@ instance {n : ℕ} : Reduce (ConPolyZono 𝕋 n) (Vec ℝ n) where
     exact ConPolyZono.reduce_outer cPZ o
 
 instance {n : ℕ} : Intersection (ConPolyZono 𝕋 n) (Vec ℝ n) where
-  intersection := ConPolyZono.intersection
-  intersection_outer := ConPolyZono.intersection_outer
+  intersection cPZ₁ cPZ₂ := (ConPolyZono.intersection cPZ₁ cPZ₂).materialise
+  intersection_outer cPZ₁ cPZ₂ := by
+    rw [ConPolyZono.materialise_eq]
+    exact ConPolyZono.intersection_outer cPZ₁ cPZ₂
 
 instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
   mtimes M cPZ := (ConPolyZono.mtimes M cPZ).materialise
