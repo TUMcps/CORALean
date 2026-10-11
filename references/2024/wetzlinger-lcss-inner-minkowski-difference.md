@@ -14,8 +14,8 @@ Brouwer's theorem (`exists_fixedPoint_of_isCompact_convex`): `Lemma 1` as printe
 from the representation (21), whose printed proof needs the error set's convexity rather than
 `R_aff`'s, (21) itself from a linearization's abstraction-error certificate, so that `Prop. 1`
 holds for a linearized step, and `Remark 1`'s counterexample, as is the closed form of the
-constant-input solution (12). `Prop. 2` is false for a nonconvex initial set, which it admits;
-for a convex one it is open. The rest is restated from the conservative-linearization papers
+constant-input solution (12). `Prop. 2` is false, for a nonconvex initial set, which it admits,
+and for a convex one (a box, under a linear shear) alike. The rest is restated from the conservative-linearization papers
 the method is built on.
 
 ## Results
@@ -36,13 +36,13 @@ the method is built on.
 | `Lemma 1` | For A ⊂ ℝⁿ nonempty, convex, compact, B centrally symmetric around c, φ: A → B continuous and S = {a + φ(a) \| a ∈ A}: A ⊖ B ⊆ S - 2c (19). | [`MinkowskiDiffSubsetOfContinuous.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffSubsetOfContinuous.lean) — `minkowskiDiff_subset_of_continuous`, in any finite-dimensional real normed space, the symmetry as `b ∈ B → 2c - b ∈ B`, by Brouwer's theorem as the paper argues | `correct` |
 | `Remark 1` | Continuity of φ cannot be dropped: A = B = [-1, 1] gives A ⊖ B = {0}, and φ = sign (sign 0 = 1) gives S = [-2, -1) ∪ [1, 2]. | [`MinkowskiDiffNotSubsetOfDiscontinuous.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffNotSubsetOfDiscontinuous.lean) — all three sets as stated, and 0 ∉ S | `correct` |
 | `Prop. 1` | (Time-point reachable set) For X₀ compact, nonempty and R̂_err centrally symmetric, R̂(Δt) = R_aff(Δt) ⊖ R̂_err + 2c ⊆ R(Δt), c = cen(R̂_err) (20). | [`MinkowskiDiffAddSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffAddSubsetReachSet.lean), [`MinkowskiDiffSubsetOfContinuousOfConvex.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffSubsetOfContinuousOfConvex.lean) — `NonlinearSys.minkowskiDiff_add_subset_reachSet`: e^{AΔt} = `M` invertible, R_con = `v`, R̂_err a convex compact set as (13) makes it; the proof's representation (21) is the hypothesis `herr` (restated from [18], like (14)), the solutions and the field's Lipschitz constant along them (the paper's standing assumption) are hypotheses, and Grönwall gives the continuity of `z` the proof invokes; `minkowskiDiff_subset_of_continuous_of_convex` is `Lemma 1` with `B`, not `A`, convex. [`SubMemInputSolution.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/SubMemInputSolution.lean), [`MinkowskiDiffInputSolutionSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffInputSolutionSubsetReachSet.lean) — (21) derived from a linearization: `NonlinearSys.Trajectory.sub_mem_inputSolution` for a run that stays in the region of an `AbstractionError` certificate `L`, with R̂_err = `inputSolution Δt η L` (13), and with it `NonlinearSys.minkowskiDiff_inputSolution_subset_reachSet`, the proposition for a linearized step, the confinement still a hypothesis | `proof-gap` — the proof applies `Lemma 1` with A = R_aff(Δt) = e^{AΔt}X₀ + R_con, which is not convex for the merely compact X₀ the proposition allows; the statement holds because R̂_err is (Findings) |
-| `Prop. 2` | (Time-interval reachable set) For a compact, non-empty X₀ and E = C ⊕ R̂_err (22) centrally symmetric around c, R̂(τ₀) = conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R(τ₀) (23). | [`ConvexHullTimeIntervalCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ConvexHullTimeIntervalCounterexample.lean) — **Counterexample:** `convexHull_timeInterval_counterexample`: for `ẋ = (0, 1)`, where R̂_err and C vanish, and two squares as X₀, (23) holds a point no run reaches | `false` — false for a nonconvex X₀, which the proposition admits; whether a convex X₀, all that `Alg. 1` passes, repairs it is open; see Findings |
+| `Prop. 2` | (Time-interval reachable set) For a compact, non-empty X₀ and E = C ⊕ R̂_err (22) centrally symmetric around c, R̂(τ₀) = conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R(τ₀) (23). | [`ConvexHullTimeIntervalCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ConvexHullTimeIntervalCounterexample.lean), [`ConvexHullTimeIntervalConvexCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ConvexHullTimeIntervalConvexCounterexample.lean) — **Counterexample:** `convexHull_timeInterval_counterexample`: for `ẋ = (0, 1)`, where R̂_err and C vanish, and two squares as X₀, (23) holds a point no run reaches; `convexHull_timeInterval_convex_counterexample`: the same for the shear `ẋ = (x₂, 0)`, where R̂_err and C vanish as well (`A² = 0`), from the box X₀ = [-1/10, 1/10] × [-1, 1] | `false` — false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes, so convexity does not repair it; see Findings |
 | `Def. 2` | (Support function) ρ(S, ℓ) := max_{s∈S} ℓᵀs. | n/a — restated from Le Guernic and Girard 2010 [21, Def. 1] | `restated` |
 | `Def. 3` | (Polytope) P = {s \| Hs ≤ d} = ⟨H, d⟩_H. | n/a — restated from Ziegler [22, Sec. 1.1] | `restated` |
 | `Eq. 24` | P ⊖ S = ⟨H, d̃⟩_H, d̃⁽ʲ⁾ = d⁽ʲ⁾ - ρ(S, H⁽ʲ,·⁾ᵀ). | n/a — restated from Kolmanovsky and Gilbert 1998 [23, Thm. 2.2] | `restated` |
 | `Def. 4` | (Constrained zonotope) CZ = {c + Σ G⁽·,ⁱ⁾αᵢ \| Σ K⁽·,ⁱ⁾αᵢ = l, αᵢ ∈ [-1, 1]}; without constraints a zonotope. | n/a — restated from [24, Def. 1 and 3]; tracked as `Def. 3` on [Scott et al. 2016](../2016/scott-automatica-constrained-zonotopes.md) | `restated` |
 | `Sec. IV-A` | Operation counts: linear map O(hn²), Minkowski difference O(hO(ρ)), Chebyshev center and box by linear programs, the zonotope and constrained-zonotope operations. | n/a — computational complexity, a subject CORALean does not cover | `not-covered` |
-| `Alg. 1` | (Inner approximation of the reachable set) Per step: linearize at cen(R̂(t_k)) + ½Δt f(·), compute C, R_aff, R̂_aff, iterate the Lagrange remainder until L ⊆ L̂, then R̂(t_{k+1}) ← R_aff ⊖ R̂_err + 2c (Prop. 1) and R̂(τ_k) ← conv(CZ(R̂(t_k) ⊖ R̂_err ⊖ C), CZ(R̂(t_{k+1}) ⊖ C)) + 2c (Prop. 2), c = cen(C) + cen(R̂_err). | — partial: the time-point set of a step, [`MinkowskiDiffInputSolutionSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffInputSolutionSubsetReachSet.lean) (`NonlinearSys.minkowskiDiff_inputSolution_subset_reachSet`: R̂(t_{k+1}) ⊆ R(t_{k+1}) for a linearization whose remainder `L` holds on a region the solutions do not leave, R̂_err from (13)); missing: the time-interval set (`Prop. 2`, false as printed, open for a convex X₀), the loop over the steps and the Lagrange-remainder iteration that certifies `L` and the confinement | — |
+| `Alg. 1` | (Inner approximation of the reachable set) Per step: linearize at cen(R̂(t_k)) + ½Δt f(·), compute C, R_aff, R̂_aff, iterate the Lagrange remainder until L ⊆ L̂, then R̂(t_{k+1}) ← R_aff ⊖ R̂_err + 2c (Prop. 1) and R̂(τ_k) ← conv(CZ(R̂(t_k) ⊖ R̂_err ⊖ C), CZ(R̂(t_{k+1}) ⊖ C)) + 2c (Prop. 2), c = cen(C) + cen(R̂_err). | — partial: the time-point set of a step, [`MinkowskiDiffInputSolutionSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffInputSolutionSubsetReachSet.lean) (`NonlinearSys.minkowskiDiff_inputSolution_subset_reachSet`: R̂(t_{k+1}) ⊆ R(t_{k+1}) for a linearization whose remainder `L` holds on a region the solutions do not leave, R̂_err from (13)); missing: the time-interval set (`Prop. 2`, false, for a convex X₀ too), the loop over the steps and the Lagrange-remainder iteration that certifies `L` and the confinement | — |
 | `Sec. IV-B` | Alg. 1 runs in O((h + n)^{1.5}n³) per step, O(n^{4.5}) for h linear in n. | n/a — computational complexity, a subject CORALean does not cover | `not-covered` |
 | `Sec. V` | Benchmarks against the scaling and projection approaches (Table I, Figs. 2-3). | n/a — experiments | `not-a-claim` |
 
@@ -67,9 +67,24 @@ hull holds others. For `ẋ = w` with `A = 0` the remainder and the curvature er
 `conv(X₀ ∪ (X₀ + Δt w)) ⊆ R([0, Δt]) = X₀ + [0, Δt] w`. For
 `X₀ = ([0, 1/10] ∪ [9/10, 1]) × [0, 1/10]`, `w = (0, 1)`, `Δt = 1`, the midpoint `(1/2, 1/2)` of
 `(0, 0)` and `(1, 1)` is in the hull, and every run keeps its first coordinate in
-`[0, 1/10] ∪ [9/10, 1]` (`convexHull_timeInterval_counterexample`). `Alg. 1` passes only
-polytopes and constrained zonotopes, so a convex X₀; whether (23) holds then is open here.
+`[0, 1/10] ∪ [9/10, 1]` (`convexHull_timeInterval_counterexample`).
 [`ConvexHullTimeIntervalCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ConvexHullTimeIntervalCounterexample.lean)
+
+**`Prop. 2` — false for a convex `X₀` too.** `Alg. 1` passes only polytopes and constrained
+zonotopes, so a convex X₀, and convexity does not repair (23): the hull holds points that lie on
+no chord `[x(0), R_aff(x(0))]` whenever the flow shears the set, as a linear flow already does.
+For the shear `ẋ = (x₂, 0)`, `A = [0 1; 0 0]`, `A² = 0`: the linearization is exact, so
+R̂_err = 0 (13); `F(Δt)` is a sum of `Aⁱ`, `i ≥ 2`, and `E(Δt)` of `|A|ⁱ`, `i > η`, so `F = 0`,
+and the constant input `w = f(x*) - Ax*` is `0`, so `C = 0` (17); hence `c = 0` and (23) is
+`conv(X₀ ∪ e^{AΔt}X₀) ⊆ R([0, Δt])`. For `X₀ = [-1/10, 1/10] × [-1, 1]` and `Δt = 1`,
+`e^{A}x₀ = (x₀₁ + x₀₂, x₀₂)`, and `(1/2, 0)`, the midpoint of `(0, -1) ∈ X₀` and
+`e^{A}(0, 1) = (1, 1)`, is in the hull; a run through it starts on `x₂ = 0`, where `ẋ = 0`, so
+its first coordinate is in `[-1/10, 1/10]` (`convexHull_timeInterval_convex_counterexample`).
+The convex correction is therefore no correction, and the row stays `false`: what `Lemma 1`
+gives, for each fixed `t` and a convex X₀, is the shrunk image of the convex
+`((1 - t/Δt)I + (t/Δt)e^{AΔt})X₀ + (t/Δt)R_con` (where that matrix is invertible), and the union of these over `t` is not the hull. CORA's `linReachInner` computes (23) (FINDINGS.md,
+"NonlinearSys `reachInner`, `'minkdiff'`").
+[`ConvexHullTimeIntervalConvexCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ConvexHullTimeIntervalConvexCounterexample.lean)
 
 **`Alg. 1`, line 15 — which centre.** `Prop. 1` shifts R_aff ⊖ R̂_err by 2 cen(R̂_err); line 15
 shifts it by 2c with c = cen(C) + cen(R̂_err) from line 14, the centre `Prop. 2` uses. The two

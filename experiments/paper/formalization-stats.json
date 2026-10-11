@@ -4785,7 +4785,7 @@
         {
           "result": "Prop. 2",
           "class": "false",
-          "reason": "false for a nonconvex X₀, which the proposition admits; whether a convex X₀, all that `Alg. 1` passes, repairs it is open; see Findings"
+          "reason": "false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes, so convexity does not repair it; see Findings"
         }
       ]
     },
@@ -5684,7 +5684,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
           "correct": 44,
           "underspecified": 5,
@@ -6272,7 +6272,7 @@
         "not_yet": 10,
         "out_of_scope": 60,
         "needs_float": 26,
-        "cora_issues": 13,
+        "cora_issues": 14,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
           "random/sampling": 6,
@@ -6345,7 +6345,7 @@
       "not_yet": 22,
       "out_of_scope": 396,
       "needs_float": 115,
-      "cora_issues": 69,
+      "cora_issues": 70,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -6386,11 +6386,11 @@
       }
     },
     "theorems": {
-      "paper": 1349,
+      "paper": 1350,
       "float": 1698,
-      "helper": 1159,
-      "lemma": 2457,
-      "total": 6663,
+      "helper": 1170,
+      "lemma": 2458,
+      "total": 6676,
       "examples": 120
     }
   }
