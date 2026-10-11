@@ -123,6 +123,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.Minnorm
 import CORALean.ContSet.Zonotope.Float.Operations.MinnormOffset
 import CORALean.ContSet.Zonotope.Float.Operations.NonzeroCount
 import CORALean.ContSet.Zonotope.Float.Operations.Polygon
+import CORALean.ContSet.Zonotope.Float.Operations.QuadMapMatZono
+import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
+import CORALean.ContSet.Zonotope.Float.Operations.UnitIntervalMul
+import CORALean.ContSet.Zonotope.Float.Operations.HalfspaceRange
 
 /-!
 # What `Zonotope` computes

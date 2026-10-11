@@ -117,6 +117,7 @@ import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
 import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
 import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeDotUp
 import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeMagnitudeMat
+import CORALean.ContSet.Interval.Float.Theorems.SumTermsMatMem
 
 /-!
 # What `Interval` guarantees

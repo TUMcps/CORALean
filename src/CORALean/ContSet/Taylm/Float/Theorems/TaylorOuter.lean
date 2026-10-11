@@ -1,4 +1,5 @@
 import CORALean.ContSet.Taylm.Float.Operations.Taylor
+import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
 import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
 import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 import CORALean.Global.TaylorRemainder
@@ -53,18 +54,7 @@ theorem Taylm.taylor_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enc
   refine le_trans hL ?_
   -- `|f t - c|` below the rounded reach
   set B : 𝕋 := maximum zero (maximum (subUp T.bounds.2 c) (subUp c T.bounds.1))
-  have hB : |f t - toReal c| ≤ toReal B := by
-    have h1 := sub_le_subUp T.bounds.2 c
-    have h2 := sub_le_subUp c T.bounds.1
-    simp only [B, toReal_maximum, toReal_zero]
-    rw [abs_le]
-    constructor
-    · linarith [le_max_right (0 : ℝ)
-          (max (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1))),
-        le_max_right (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1)), hb.1]
-    · linarith [le_max_right (0 : ℝ)
-          (max (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1))),
-        le_max_left (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1)), hb.2]
+  have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   have hPow := le_powUp (abs_nonneg _) hB (N + 1)
   -- each factor of the bound below its rounded counterpart
   have hE : 0 ≤ D := le_trans (abs_nonneg _) (hD (toReal c) (hsub Set.left_mem_uIcc))

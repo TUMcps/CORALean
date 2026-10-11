@@ -116,6 +116,7 @@ import CORALean.ContSet.Interval.Float.Operations.PowLo
 import CORALean.ContSet.Interval.Float.Operations.Power
 import CORALean.ContSet.Interval.Float.Operations.Magnitude
 import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
+import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
 
 /-!
 # What `Interval` computes

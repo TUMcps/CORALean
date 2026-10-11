@@ -4,11 +4,11 @@ import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 /-!
 # The shared remainder factor lies in the bounds of `1/Λ²`
 
-`1/(Λ(ξ)Λ(x₀)) ∈ [φ̲, φ̄]` for `ξ`, `x₀` in a zonotope `R(0)` on which `Λ(x) = nᵀ(Ax + b)` has no
-zero and `[φ̲, φ̄] ⊇ {1/Λ(x)²}`: `Λ` is affine and `R(0)` convex, so `Λ` keeps one sign on it
-and `1/(Λ(ξ)Λ(x₀))` is the geometric mean of `1/Λ(ξ)²` and `1/Λ(x₀)²`. The factor `φ` of the
-exact expansion `GuardMap.hitPoint_add_eq`, enclosed by the interval `[φ̲, φ̄]` of
-[1, Prop. 3].
+`1/(Λ(ξ)Λ(x₀)) ∈ [φ̲, φ̄]` for `ξ`, `x₀` in a convex set `R(0)`, such as a zonotope, on which
+`Λ(x) = nᵀ(Ax + b)` has no zero and `[φ̲, φ̄] ⊇ {1/Λ(x)²}`: `Λ` is affine and `R(0)` convex, so
+`Λ` keeps one sign on it and `1/(Λ(ξ)Λ(x₀))` is the geometric mean of `1/Λ(ξ)²` and
+`1/Λ(x₀)²`. The factor `φ` of the exact expansion `GuardMap.hitPoint_add_eq`, enclosed by
+the interval `[φ̲, φ̄]` of [1, Prop. 3].
 
 ## References
 
@@ -36,11 +36,11 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `Λ` keeps its sign on `R(0)`, so `1/(Λ(ξ)Λ(x₀))` lies in `[φ̲, φ̄]`. -/
-theorem GuardMap.hitFactor_mem_Icc (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ : Real.Zonotope (Vec ℝ n))
-    {φlo φhi : ℝ} (hΛ : ∀ x ∈ R₀.construct, nv ⬝ᵥ (A *ᵥ x + b) ≠ 0)
-    (hφ : ∀ x ∈ R₀.construct, φlo ≤ 1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ∧
+theorem GuardMap.hitFactor_mem_Icc (A : Mat ℝ n n) (b nv : Vec ℝ n) {R₀ : Set (Vec ℝ n)}
+    (hR : Convex ℝ R₀) {φlo φhi : ℝ} (hΛ : ∀ x ∈ R₀, nv ⬝ᵥ (A *ᵥ x + b) ≠ 0)
+    (hφ : ∀ x ∈ R₀, φlo ≤ 1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ∧
       1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ≤ φhi)
-    {ξ x₀ : Vec ℝ n} (hξ : ξ ∈ R₀.construct) (hx₀ : x₀ ∈ R₀.construct) :
+    {ξ x₀ : Vec ℝ n} (hξ : ξ ∈ R₀) (hx₀ : x₀ ∈ R₀) :
     φlo ≤ 1 / ((nv ⬝ᵥ (A *ᵥ ξ + b)) * (nv ⬝ᵥ (A *ᵥ x₀ + b))) ∧
       1 / ((nv ⬝ᵥ (A *ᵥ ξ + b)) * (nv ⬝ᵥ (A *ᵥ x₀ + b))) ≤ φhi := by -- --- PROOF ---
   -- same sign: else `Λ` vanishes on the segment, which lies in the convex `R(0)`
@@ -75,8 +75,8 @@ theorem GuardMap.hitFactor_mem_Icc (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ : 
         · exact div_nonneg (by linarith) (by linarith)
         · exact div_nonneg_of_nonpos (by linarith) (by linarith)
       -- the zero is a point of `R(0)`, against `Λ ≠ 0` there
-      have hmem : (q / (q - p)) • ξ + (1 - q / (q - p)) • x₀ ∈ R₀.construct :=
-        Real.Zonotope.convex_construct R₀ hξ hx₀ ht0 ht1 (by ring)
+      have hmem : (q / (q - p)) • ξ + (1 - q / (q - p)) • x₀ ∈ R₀ :=
+        hR hξ hx₀ ht0 ht1 (by ring)
       apply hΛ _ hmem
       rw [hseg]
       field_simp

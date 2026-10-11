@@ -121,6 +121,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MinnormBall
 import CORALean.ContSet.Zonotope.Float.Theorems.MinnormLe
 import CORALean.ContSet.Zonotope.Float.Theorems.MinnormOffsetGe
 import CORALean.ContSet.Zonotope.Float.Theorems.PolygonContains
+import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapMatZonoOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
+import CORALean.ContSet.Zonotope.Float.Theorems.UnitIntervalMulOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.HalfspaceRangeMem
 
 /-!
 # What `Zonotope` guarantees

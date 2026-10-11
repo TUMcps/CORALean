@@ -6336,11 +6336,11 @@
         "group": "hybridDynamics",
         "class": "location",
         "methods": 24,
-        "proved": 2,
-        "float": 12,
+        "proved": 1,
+        "float": 13,
         "not_yet": 2,
         "out_of_scope": 8,
-        "needs_float": 2,
+        "needs_float": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 1,
           "random/sampling": 0,
@@ -6540,11 +6540,11 @@
       },
       "hybrid": {
         "methods": 89,
-        "proved": 4,
-        "float": 36,
+        "proved": 3,
+        "float": 37,
         "not_yet": 5,
         "out_of_scope": 44,
-        "needs_float": 4,
+        "needs_float": 3,
         "cora_issues": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
@@ -6589,11 +6589,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 116,
-      "float": 727,
+      "proved": 115,
+      "float": 728,
       "not_yet": 21,
       "out_of_scope": 396,
-      "needs_float": 116,
+      "needs_float": 115,
       "cora_issues": 71,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6636,10 +6636,10 @@
     },
     "theorems": {
       "paper": 1554,
-      "float": 1704,
-      "helper": 1467,
-      "lemma": 2539,
-      "total": 7264,
+      "float": 1720,
+      "helper": 1454,
+      "lemma": 2546,
+      "total": 7274,
       "examples": 120
     }
   }

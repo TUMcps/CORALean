@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
 import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
+import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
@@ -41,40 +43,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- A `mapM` into `Option` that succeeds has one result per entry, each the
-function's value there. -/
-theorem LinearSys.aux_mapM_some' {α β : Type} {f : α → Option β} :
-    ∀ {l : List α} {l' : List β}, l.mapM f = some l' →
-      ∃ hlen : l'.length = l.length, ∀ (i : ℕ) (hi : i < l'.length),
-        f (l[i]'(hlen ▸ hi)) = some l'[i] := by -- --- PROOF ---
-  intro l
-  induction l with
-  | nil =>
-    intro l' h
-    simp only [List.mapM_nil, Option.pure_def, Option.some.injEq] at h
-    subst h
-    exact ⟨rfl, fun i hi => absurd hi (Nat.not_lt_zero i)⟩
-  | cons a l ih =>
-    intro l' h
-    simp only [List.mapM_cons, Option.bind_eq_bind, Option.bind_eq_some_iff, Option.pure_def,
-      Option.some.injEq] at h
-    obtain ⟨b, hb, bs, hbs, rfl⟩ := h
-    obtain ⟨hlen, hget⟩ := ih hbs
-    -- the head is `f a`, the tail the induction's
-    refine ⟨by simp [hlen], fun i hi => ?_⟩
-    cases i with
-    | zero => exact hb
-    | succ i => exact hget i (Nat.lt_of_succ_lt_succ hi)
-
-/-- `e^{A(a + b)} = e^{Ab} e^{Aa}`, both powers of the same matrix. -/
-theorem aux_exp_add_smul {A : Mat ℝ n n} (a b : ℝ) :
-    exp ((a + b) • A) = exp (b • A) * exp (a • A) := by
-  rw [add_comm a b, add_smul]
-  exact exp_add_of_commute (((Commute.refl A).smul_left _).smul_right _)
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U` is,
@@ -98,8 +66,8 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
   obtain ⟨N, hN, η', hη', Hτ, hHτ, Pτ, hPτ, rfl⟩ := h
   obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
   have hadm := (LinearSys.reachOrderFloat_spec hη').1
-  obtain ⟨hHlen, hHget⟩ := LinearSys.aux_mapM_some' hHτ
-  obtain ⟨hPlen, hPget⟩ := LinearSys.aux_mapM_some' hPτ
+  obtain ⟨hHlen, hHget⟩ := LinParamSys.mapM_eq_some hHτ
+  obtain ⟨hPlen, hPget⟩ := LinParamSys.mapM_eq_some hPτ
   rw [List.length_range] at hHlen hPlen
   refine ⟨N, hNΔt, by simp [hHlen, hPlen], fun {x u} traj k hk t ht => ?_⟩
   set Δ := toReal Δt with hΔ
@@ -216,7 +184,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
   have hfree : exp (t • A) *ᵥ x 0
       = exp (((k : ℝ) * Δ) • A) *ᵥ (exp ((t - k * Δ) • A) *ᵥ x 0) := by
     conv_lhs => rw [hsplit]
-    rw [aux_exp_add_smul, Matrix.mulVec_mulVec]
+    rw [add_comm (t - k * Δ) ((k : ℝ) * Δ), exp_add_smul_eq_mul, Matrix.mulVec_mulVec]
   have hconstk := Real.MatExp.expIntegral_add_mulVec A ũ hτ.1 hk0
   rw [← hsplit] at hconstk
   rw [eq_sub_iff_add_eq, ← hA] at hpq

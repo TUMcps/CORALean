@@ -200,7 +200,7 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
   have hx₀ν : ξ + ν = x₀ := by rw [hν]; abel
   have hexp := GuardMap.hitPoint_add_eq A b nv d ξ ν (hΛne ξ hξ) (by rw [hx₀ν]; exact hΛne x₀ hx₀')
   rw [hx₀ν] at hexp
-  have hφm := GuardMap.hitFactor_mem_Icc A b nv R0red hΛne hφ hξ hx₀'
+  have hφm := GuardMap.hitFactor_mem_Icc A b nv (Zonotope.convex_construct R0red) hΛne hφ hξ hx₀'
   -- `Θ(ξ)/Λ(ξ) = ψ_c + κψ_g`: `τ(ξ) = (d − nᵀξ)/Λ(ξ)` lies in `[τ̲, τ̄]`
   have hnum : -dint.2 ≤ d - nv ⬝ᵥ ξ ∧ d - nv ⬝ᵥ ξ ≤ -dint.1 := by
     have h := aux_hpMap_range (v := nv) (d := d) hξ
