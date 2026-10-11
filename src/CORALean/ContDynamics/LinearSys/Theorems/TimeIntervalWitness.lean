@@ -4,7 +4,7 @@ import CORALean.Global.LinProg.API
 /-!
 # A time-point lower bound is a time-interval lower bound
 
-[1, Alg. 1]'s line 16: the lower bound `ρ(R̲(t_k), ℓ)` computed at a time point
+[1, Alg. 1 (lower bounds)]'s line 16: the lower bound `ρ(R̲(t_k), ℓ)` computed at a time point
 carries straight over to `ρ(R̲(τ_k), ℓ)`, the whole step, because
 `timeIntervalReachSet_eq_iUnion` makes `reachSet` at any `t ∈ [0, r]` a
 *subset* of `timeIntervalReachSet` over `[0, r]`, and `SupportWitness.mono`

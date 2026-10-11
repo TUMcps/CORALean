@@ -10,6 +10,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
 import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
 import CORALean.ContSet.Zonotope.Real.Operations.EnclRatioLoop
 import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
+import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowNormal
+import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowOffset
 import CORALean.ContSet.Zonotope.Real.Operations.GenMap
 import CORALean.ContSet.Zonotope.Real.Operations.GenSelection
 import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit

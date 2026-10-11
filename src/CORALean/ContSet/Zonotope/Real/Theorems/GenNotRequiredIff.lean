@@ -8,10 +8,10 @@ The printed biconditional, over `gen_removable_iff`'s counting half. "The `i`-th
 longer required for the difference" is read as [1]'s own proof reads it: the difference is still cut
 out by the rows of `C` that `g⁽ᵐ'ⁱ⁾` does not span.
 
-`hrows` is [1, Thm. 3] — proved, `Zonotope.minkowskiDiff_hRep_eq`, but indexed by [1, Thm. 2]'s own
-generator selections, not `Bool × Finset (Fin Zm.h)` as `C`/`d` are here; bridging the two needs
-`nCross`'s permutation sign and its vanishing at a repeated index, more than `Thm. 3` itself, so
-`hrows` stays a hypothesis. `hmin` and `hirr` are the *minimum* H-representation: dropping every row
+`hrows` is [1, Thm. 3] at the rows `C`/`d`, kept as a hypothesis here so that `C` and `d` stay
+free. At `Zonotope.minkDiffRowNormal`/`Zonotope.minkDiffRowOffset` it is the theorem
+`Zonotope.minkowskiDiff_rows_eq`, and `Zonotope.gen_not_required_iff_of_span` is this statement with
+it discharged. `hmin` and `hirr` are the *minimum* H-representation: dropping every row
 of `Red` still describes the difference, and no row outside `Red` is redundant, so `Red` is exactly
 the redundant set. The paper obtains it by linear programming; nothing here computes it, and nothing
 here proves one exists.

@@ -3,7 +3,7 @@
 # What a verification run concludes
 
 Three answers, shared by `VerifyHalfspace` and `VerifyConvex`, which are
-`[1, Alg. 2]` and `[1, Alg. 3]`: a certificate of safety, a certificate that the
+`[1, Alg. 2]` and `[1, Alg. 3 (exits)]`: a certificate of safety, a certificate that the
 specification is violated, or neither found before the fuel ran out. `undecided`
 is not a third verdict about the system — it says only that this run stopped,
 which is the honest reading of a loop whose termination is never promised.

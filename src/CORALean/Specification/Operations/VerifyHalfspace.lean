@@ -4,9 +4,10 @@ import Mathlib.Data.Real.Basic
 /-!
 # [1, Alg. 2]: verifying a halfspace safe set, one round at a time
 
-The decision only, over `[1, Alg. 1]`'s outputs taken as already-computed bounds: `bndUp`,
-`bndLo`, one real per round `r` (how many times the step has halved), step `k : Fin (2 ^ r)`
-within it, and direction `i`. `unsafe` fires when some step's lower bound crosses its
+The decision only, over the outputs of `[1, Alg. 1 (upper bounds)]` and
+`[1, Alg. 1 (lower bounds)]` taken as already-computed bounds: `bndUp`, `bndLo`, one real
+per round `r` (how many times the step has halved), step `k : Fin (2 ^ r)` within it, and
+direction `i`. `unsafe` fires when some step's lower bound crosses its
 halfspace's offset, `safe` once every upper bound stays under it, otherwise the step halves
 and the search continues on `fuel` — the honest shape of a loop `[1]` never claims
 terminates. No set is built and no representation named.

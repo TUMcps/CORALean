@@ -4,7 +4,7 @@ import CORALean.Global.LinProg.API
 /-!
 # A support bound on the reachable set, term for term
 
-[1, Alg. 1]'s lines 10-12 from a bound on `inputReach` itself:
+[1, Alg. 1 (upper bounds)]'s lines 10-12 from a bound on `inputReach` itself:
 `ρ(R₀, ℓᵀe^{tA}) + ρ(P, ℓ)`, assembled by `SupportBound.image` and `.add` and
 carried across `reachSet_eq`, an equality rather than an enclosure, so no `mono`
 is needed. `timePointBound` is the same bound from one on `inputSolution`.

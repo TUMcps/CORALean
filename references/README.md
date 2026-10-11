@@ -115,7 +115,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Reachability Analysis of ARMAX Models](2023/luetzow-cdc-armax.md) | Lützow, Althoff | CDC, pp. 7027-7034 | 2023 | 🟢 14/14 \| 5 |
 | [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2023/wetzlinger-arxiv-backward-reachability.md) | Wetzlinger, Althoff | arXiv:2310.19083 | 2023 | 🟢 11/11 \| 9 |
 | [Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets](2023/wetzlinger-fully-automated-verification.md) | Wetzlinger, Kochdumper, Bak, Althoff | IEEE Transactions on Automatic Control, vol. 68, no. 12, pp. 7771–7786 | 2023 | 🟢 19/19 \| 6 |
-| [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md) | Wetzlinger, Kochdumper, Bak, Althoff | HSCC | 2023 | 🟡 3/5 \| 4 |
+| [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md) | Wetzlinger, Kochdumper, Bak, Althoff | HSCC | 2023 | 🟡 6/8 \| 4 |
 | [Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems](2024/kulmburg-ecc-zonotope-ellipsotope-containment.md) | Kulmburg, Brkan, Althoff | ECC | 2024 | 🟡 13/18 \| 9 |
 | [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md) | Ladner, Althoff | AAAI | 2024 | 🟡 6/8 \| 6 |
 | [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md) | Wetzlinger, Kotsev, Kulmburg, Althoff | ARCH24, EPiC Series in Computing 103, pp. 163-181 | 2024 | 🟡 49/50 \| 15 |

@@ -42,6 +42,9 @@ import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
 import CORALean.ContDynamics.LinearSys.Definitions.ManualInvariantFloat
 import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
 import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloatEncloses
+import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
+import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
+import CORALean.ContDynamics.LinearSys.Definitions.SupportLowerState
 
 /-!
 # What a continuous-time linear system means

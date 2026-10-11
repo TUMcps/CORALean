@@ -4,7 +4,7 @@ import CORALean.Specification.Theorems.VerifyConvexFoldInv
 /-!
 # A `safe` verdict from `verifyConvex` names a separating direction
 
-`exists_separating_of_verifyConvex_eq_safe`: a `safe` answer from [1, Alg. 3] came from the
+`exists_separating_of_verifyConvex_eq_safe`: a `safe` answer from [1, Alg. 3 (exits)] came from the
 bounds already separating along some direction the search tried.
 
 ## References

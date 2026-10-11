@@ -3,7 +3,7 @@ import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
 import CORALean.Specification.Theorems.Separation
 
 /-!
-# [1, Alg. 3, l. 4-5]: `verifyConvex`'s `safe` answer is sound
+# [1, Alg. 3 (exits), l. 4-5]: `verifyConvex`'s `safe` answer is sound
 
 `exists_separating_of_verifyConvex_eq_safe` names the direction the search
 stopped at; `Specification.holds_unsafeSet_of_separating` is exactly what a
@@ -32,7 +32,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Alg. 3]: a `safe` answer from `verifyConvex` means the reachable set
+/-- [1, Alg. 3 (exits)]: a `safe` answer from `verifyConvex` means the reachable set
 and the unsafe set really are disjoint. -/
 theorem Specification.holds_unsafeSet_of_verifyConvex_safe
     (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d) (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d)

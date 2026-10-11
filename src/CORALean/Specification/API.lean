@@ -13,7 +13,7 @@ What a requirement is in `Specification`, and what checking one buys in
 it about a computed set through `Contains`/`IsDisjoint`, which `Instances`
 computes at float boxes, zonotopes and halfspace descriptions, over any scalar.
 `VerifyHalfspace` and `VerifyConvex` are the two
-algorithms here, `[1, Alg. 2]`'s and `[1, Alg. 3]`'s decision procedures — the
+algorithms here, `[1, Alg. 2]`'s and `[1, Alg. 3 (exits)]`'s decision procedures — the
 first in `Operations`, the second in `Definitions` beside its two soundness
 theorems — and both have more soundness proved in `Theorems`.
 

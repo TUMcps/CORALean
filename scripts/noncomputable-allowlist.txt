@@ -206,6 +206,8 @@ LinearSys.reachStepk  real-layer: one window of `reach`; in floats, an entry of 
 LinearSys.reachStepkWrappingFree  real-layer: one wrapping-free window; runs in floats as `LinearSys.reachStepkWrappingFreeFloat`
 LinearSys.stepInput  spec: what an input function contributes over a step, an exact integral
 LinearSys.stepInputConst  spec: what an input function contributes over a step, an exact integral
+LinearSys.supportCounterexample  real-layer: HSCC'23 Eqs. (19)-(20), the support vectors at the real exponential `e^{AΔt}` and `∫e^{Aσ}dσ`, an initial state and inputs for a counterexample run; proved over ℝ and never run, no float counterpart
+LinearSys.supportLower  real-layer: HSCC'23 `Alg. 1` lines 1-4, 6-10, 14-16 (lower bounds) at the real exponential `e^{AΔt}` and `∫e^{Aσ}dσ` over support-vector oracles; proved over ℝ and never run, no float counterpart
 LinearSys.timeIntervalBound  spec: a support-function certificate for the exact reachable set, a proof object with nothing to run
 LinearSys.timeIntervalStep  real-layer: one window at the real exponential; runs in floats as `LinearSys.timeIntervalStepFloat`
 LinearSys.timeIntervalStepCurvatureError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timeIntervalStepCurvatureErrorFloat` (`timeIntervalStepCurvatureError_le_float`)
