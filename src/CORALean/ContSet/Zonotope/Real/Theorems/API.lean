@@ -324,6 +324,13 @@ import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleNotSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSamplePrintedCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleProb
 import CORALean.ContSet.Zonotope.Real.Theorems.ShenmaierVertexProb
+import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropLuenbergerOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropStepOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionStripOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionStripStepOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionTimeUpdateOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionUpdateOuter
 
 /-!
 # What `Zonotope` guarantees

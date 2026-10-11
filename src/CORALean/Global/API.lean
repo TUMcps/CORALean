@@ -186,6 +186,13 @@ import CORALean.Global.NormTwoSqEqDotProduct
 import CORALean.Global.NormTwoTransposeMulVecEq
 import CORALean.Global.ShenmaierVertexCounterexample
 import CORALean.Global.L1BallOrthantVolume
+import CORALean.Global.DiscardTree
+import CORALean.Global.OptimalDiscard
+import CORALean.Global.OptimalDiscardLe
+import CORALean.Global.OptimalDiscardNoneExample
+import CORALean.Global.PosDefSchurComplementFirst
+import CORALean.Global.RankOneKroneckerGe
+import CORALean.Global.SupportConstraints
 /-!
 # Global definitions, collected
 

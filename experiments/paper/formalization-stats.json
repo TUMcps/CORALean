@@ -15,39 +15,39 @@
   ],
   "totals": {
     "papers": 82,
-    "papers_with_findings": 71,
+    "papers_with_findings": 72,
     "in_scope": 1064,
-    "formalized": 999,
-    "not_formalized": 65,
-    "out_of_scope": 896,
+    "formalized": 1009,
+    "not_formalized": 55,
+    "out_of_scope": 897,
     "out_of_scope_by_reason": {
       "restated": 322,
       "mathlib": 17,
-      "not-a-claim": 471,
+      "not-a-claim": 472,
       "done-differently": 12,
       "not-covered": 74
     },
     "by_class": {
-      "correct": 680,
-      "underspecified": 186,
+      "correct": 686,
+      "underspecified": 190,
       "proof-gap": 31,
       "fixed": 95,
       "false": 7
     },
     "claims": {
       "in_scope": 416,
-      "formalized": 388,
+      "formalized": 389,
       "correct": 235,
-      "underspecified": 75,
+      "underspecified": 76,
       "proof-gap": 31,
       "fixed": 42,
       "false": 5
     },
     "definitions": {
       "in_scope": 648,
-      "formalized": 611,
-      "correct": 445,
-      "underspecified": 111,
+      "formalized": 620,
+      "correct": 451,
+      "underspecified": 114,
       "proof-gap": 0,
       "fixed": 53,
       "false": 2
@@ -641,42 +641,53 @@
       "year": 2009,
       "title": "Interval predictor models: Identification and reliability",
       "in_scope": 9,
-      "formalized": 5,
-      "not_formalized": 4,
-      "out_of_scope": 27,
+      "formalized": 7,
+      "not_formalized": 2,
+      "out_of_scope": 28,
       "out_of_scope_by_reason": {
         "restated": 1,
         "mathlib": 0,
-        "not-a-claim": 26,
+        "not-a-claim": 27,
         "done-differently": 0,
         "not-covered": 0
       },
       "by_class": {
         "correct": 5,
-        "underspecified": 0,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "claims": {
         "in_scope": 3,
-        "formalized": 0,
+        "formalized": 1,
         "correct": 0,
-        "underspecified": 0,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "definitions": {
         "in_scope": 6,
-        "formalized": 5,
+        "formalized": 6,
         "correct": 5,
-        "underspecified": 0,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
-      "findings": []
+      "findings": [
+        {
+          "result": "Alg. A*",
+          "class": "underspecified",
+          "reason": "a problem with no support constraint has no child, so the tree can die before level `k` and the algorithm returns nothing, though removing `k` constraints with value `w(∅)` is possible: `c = (1, 0, 0, 0)`, `k = 2 < N - d = 3`; see Findings"
+        },
+        {
+          "result": "Thm. 2",
+          "class": "underspecified",
+          "reason": "the last hypothesis is missing: the proof's \"the leaves generated at level `k` from this problem are optimal too\" presupposes the problem has support constraints to generate them; supplied; see Findings"
+        }
+      ]
     },
     {
       "page": "2009/lara-infocomp-hyperbox-hyperplane.md",
@@ -2171,8 +2182,8 @@
       "year": 2017,
       "title": "Zonotopic Fault Detection Observer with H− Performance",
       "in_scope": 15,
-      "formalized": 11,
-      "not_formalized": 4,
+      "formalized": 15,
+      "not_formalized": 0,
       "out_of_scope": 20,
       "out_of_scope_by_reason": {
         "restated": 4,
@@ -2182,7 +2193,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 8,
+        "correct": 12,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 2,
@@ -2199,8 +2210,8 @@
       },
       "definitions": {
         "in_scope": 15,
-        "formalized": 11,
-        "correct": 8,
+        "formalized": 15,
+        "correct": 12,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 2,
@@ -2461,8 +2472,8 @@
       "year": 2018,
       "title": "Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems",
       "in_scope": 18,
-      "formalized": 16,
-      "not_formalized": 2,
+      "formalized": 18,
+      "not_formalized": 0,
       "out_of_scope": 9,
       "out_of_scope_by_reason": {
         "restated": 2,
@@ -2472,7 +2483,7 @@
         "not-covered": 1
       },
       "by_class": {
-        "correct": 9,
+        "correct": 11,
         "underspecified": 5,
         "proof-gap": 1,
         "fixed": 1,
@@ -2489,8 +2500,8 @@
       },
       "definitions": {
         "in_scope": 9,
-        "formalized": 7,
-        "correct": 3,
+        "formalized": 9,
+        "correct": 5,
         "underspecified": 4,
         "proof-gap": 0,
         "fixed": 0,
@@ -3859,8 +3870,8 @@
       "year": 2023,
       "title": "Distributed Set-Based Observers Using Diffusion Strategies",
       "in_scope": 8,
-      "formalized": 6,
-      "not_formalized": 2,
+      "formalized": 8,
+      "not_formalized": 0,
       "out_of_scope": 13,
       "out_of_scope_by_reason": {
         "restated": 6,
@@ -3871,7 +3882,7 @@
       },
       "by_class": {
         "correct": 3,
-        "underspecified": 3,
+        "underspecified": 5,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -3887,18 +3898,28 @@
       },
       "definitions": {
         "in_scope": 4,
-        "formalized": 2,
+        "formalized": 4,
         "correct": 1,
-        "underspecified": 1,
+        "underspecified": 3,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "findings": [
         {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "Step 2's weights are an `argmin` of `‖Ǵ‖_F` only up to a common factor (`Ǵ` is homogeneous of degree 0 in `𝔴`) and the closed form of Prop. 1 needs `tr(Ḡʲ Ḡʲᵀ) > 0`, which the algorithm does not state; `↓q` is any enclosing reduction and `Ẑ_{s,k} = Z₀` leaves open which instant it is the prediction of; supplied; see Findings"
+        },
+        {
           "result": "Prop. 1",
           "class": "underspecified",
           "reason": "tr(Ḡʲ Ḡʲᵀ) > 0 is missing: a zero generator matrix leaves 1 / tr undefined; supplied"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "the same weights and `↓q` as `Alg. 1`; and the innovation `ȳ_k - Γ x̂_{k-1}` of Eq. 27 pairs the output of instant `k` with the state of instant `k - 1`, so the sets hold the true state of Eq. 8 only for the output of the previous instant; supplied; see Findings"
         },
         {
           "result": "Prop. 2",
@@ -5725,7 +5746,7 @@
         "cora_issues": 5,
         "findings": {
           "correct": 122,
-          "underspecified": 31,
+          "underspecified": 33,
           "proof-gap": 3,
           "fixed": 15,
           "false": 1
@@ -5906,7 +5927,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 26,
+          "correct": 32,
           "underspecified": 10,
           "proof-gap": 0,
           "fixed": 6,
@@ -6349,7 +6370,7 @@
         },
         "findings": {
           "correct": 366,
-          "underspecified": 95,
+          "underspecified": 97,
           "proof-gap": 7,
           "fixed": 45,
           "false": 5
@@ -6372,7 +6393,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 142,
+          "correct": 148,
           "underspecified": 52,
           "proof-gap": 18,
           "fixed": 25,
@@ -6445,8 +6466,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 589,
-        "underspecified": 159,
+        "correct": 595,
+        "underspecified": 161,
         "proof-gap": 27,
         "fixed": 73,
         "false": 6
@@ -6455,7 +6476,7 @@
     "findings_not_on_a_class": {
       "global": {
         "correct": 68,
-        "underspecified": 19,
+        "underspecified": 21,
         "proof-gap": 4,
         "fixed": 16,
         "false": 1
@@ -6476,11 +6497,11 @@
       }
     },
     "theorems": {
-      "paper": 1404,
+      "paper": 1414,
       "float": 1704,
-      "helper": 1220,
-      "lemma": 2458,
-      "total": 6786,
+      "helper": 1228,
+      "lemma": 2465,
+      "total": 6811,
       "examples": 120
     }
   }
