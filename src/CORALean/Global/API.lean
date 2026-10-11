@@ -209,6 +209,14 @@ import CORALean.Global.BinomialTailStrictAntiOn
 import CORALean.Global.PiCountLeMeasureLe
 import CORALean.Global.IpmReliability
 import CORALean.Global.IpmReliabilityMDependentCounterexample
+import CORALean.Global.IndepMidOfIndep
+import CORALean.Global.IndepPointOfMDependent
+import CORALean.Global.MapProdPiOfIndep
+import CORALean.Global.ExistsSeparatedCardEq
+import CORALean.Global.MeasureProdViolationLt
+import CORALean.Global.IpmSolCongr
+import CORALean.Global.IpmExistsSubsetCardEq
+import CORALean.Global.IpmReliabilityMDependent
 /-!
 # Global definitions, collected
 
