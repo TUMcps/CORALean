@@ -101,8 +101,15 @@ import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
 import CORALean.HybridDynamics.Theorems.HitSetSubsetHitEnclosure
 import CORALean.HybridDynamics.Theorems.HitPointAddEq
 import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
+import CORALean.HybridDynamics.Theorems.AbstractionErrorDecomp
 import CORALean.HybridDynamics.Theorems.AbstractionErrorOuter
 import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapOuter
+import CORALean.HybridDynamics.Theorems.AbstractionErrorFloatOuter
+import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
+import CORALean.HybridDynamics.Theorems.HitJacobianMemHitJacobianFloat
+import CORALean.HybridDynamics.Theorems.HitHessianMatZonoFloatMem
+import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
+import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapFloatOuter
 
 /-!
 # What a hybrid run guarantees, collected

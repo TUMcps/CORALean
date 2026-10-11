@@ -1,4 +1,5 @@
 import CORALean.ContSet.Taylm.Float.Operations.Exp
+import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
 import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
 import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 import CORALean.Global.TaylorRemainder
@@ -58,18 +59,7 @@ theorem Taylm.exp_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
   refine le_trans hL ?_
   -- each factor of the bound below its rounded counterpart
   set B : 𝕋 := maximum zero (maximum (subUp T.bounds.2 c) (subUp c T.bounds.1))
-  have hB : |f t - toReal c| ≤ toReal B := by
-    have h1 := sub_le_subUp T.bounds.2 c
-    have h2 := sub_le_subUp c T.bounds.1
-    simp only [B, toReal_maximum, toReal_zero]
-    rw [abs_le]
-    constructor
-    · linarith [le_max_right (0 : ℝ)
-          (max (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1))),
-        le_max_right (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1)), hb.1]
-    · linarith [le_max_right (0 : ℝ)
-          (max (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1))),
-        le_max_left (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1)), hb.2]
+  have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   have hPow := le_powUp (abs_nonneg _) hB (N + 1)
   -- the derivative bound, the power and `1 / (N+1)!`, each below its rounding
   have hD : Real.exp (max (toReal c) (toReal T.bounds.2))

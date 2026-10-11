@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Operations.BundleReach
+import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
+import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
 import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
@@ -46,27 +48,6 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- `k` passes of a loop that steps its state and appends what the new state outputs. -/
-theorem aux_foldl_step {σ β : Type} (step : σ → σ) (out : σ → β) (s₀ : σ) (k : ℕ) :
-    (List.range k).foldl (fun (P : σ × List β) (_ : ℕ) => (step P.1, P.2 ++ [out (step P.1)]))
-      (s₀, [out s₀])
-      = (step^[k] s₀,
-        (List.range (k + 1)).map fun j => out (step^[j] s₀)) := by -- --- PROOF ---
-  induction k with
-  | zero => simp
-  | succ k ih =>
-    rw [List.range_succ, List.foldl_append, ih]
-    simp [List.range_succ, Function.iterate_succ_apply']
-
-/-- `e^{A(a+b)} = e^{Aa} e^{Ab}`. -/
-theorem aux_exp_add_smul_eq_mul (A : Mat ℝ n n) (a b : ℝ) :
-    exp ((a + b) • A) = exp (a • A) * exp (b • A) := by
-  rw [add_smul]
-  exact exp_add_of_commute (((Commute.refl A).smul_left a).smul_right b)
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 1]: `R_k` encloses the reachable set at every `t ∈ [t_k, t_{k+1}]`, `k ≤ N`. -/
@@ -89,7 +70,7 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
   set s₀ := (Rh₀, Ri₀, Ri₀.interval.zonotope)
   have hlist : sys.bundleReach Rh₀ Ri₀ r N
       = (List.range (N + 1)).map fun j => out (step^[j] s₀) :=
-    congrArg Prod.snd (aux_foldl_step step out s₀ N)
+    congrArg Prod.snd (foldl_range_step_out step out s₀ N)
   have hkr : ∀ k : ℕ, (0:ℝ) ≤ k * r := fun k => mul_nonneg (Nat.cast_nonneg k) hr
   -- the three invariants
   have hinv : ∀ k : ℕ, ∀ τ ∈ Set.Icc (0:ℝ) r,
@@ -110,10 +91,10 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
       rw [Function.iterate_succ_apply']
       -- `e^{A(k+1)r} = e^{Ar} e^{Akr}`, with and without `τ`
       have hEk : exp ((((k + 1 : ℕ) : ℝ) * r) • A) = E * exp ((k * r) • A) := by
-        rw [show ((k + 1 : ℕ) : ℝ) * r = r + k * r by push_cast; ring, aux_exp_add_smul_eq_mul]
+        rw [show ((k + 1 : ℕ) : ℝ) * r = r + k * r by push_cast; ring, exp_add_smul_eq_mul]
       have hEkτ : exp ((((k + 1 : ℕ) : ℝ) * r + τ) • A) = E * exp ((k * r + τ) • A) := by
         rw [show ((k + 1 : ℕ) : ℝ) * r + τ = r + (k * r + τ) by push_cast; ring,
-          aux_exp_add_smul_eq_mul]
+          exp_add_smul_eq_mul]
       -- the homogeneous part: one more `e^{Ar}`
       have h2 : (fun y => exp ((((k + 1 : ℕ) : ℝ) * r) • A) *ᵥ y) '' sys.inputReach U τ
           ⊆ (step (step^[k] s₀)).2.1.construct := by

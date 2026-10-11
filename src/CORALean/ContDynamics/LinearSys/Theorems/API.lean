@@ -55,6 +55,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepInnerInner
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepInnerInner
+import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
+import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormCNeOne

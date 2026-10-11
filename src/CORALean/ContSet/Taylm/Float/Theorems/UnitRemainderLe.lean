@@ -1,4 +1,5 @@
 import CORALean.ContSet.Taylm.Float.Operations.UnitRemainder
+import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
 import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 import CORALean.Global.TaylorRemainder
 
@@ -41,18 +42,7 @@ theorem Taylm.unitRemainder_le {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T
   refine le_trans hL ?_
   -- the reach of the hull from the centre, below its rounding
   set B : 𝕋 := maximum zero (maximum (subUp T.bounds.2 c) (subUp c T.bounds.1))
-  have hB : |f t - toReal c| ≤ toReal B := by
-    have h1 := sub_le_subUp T.bounds.2 c
-    have h2 := sub_le_subUp c T.bounds.1
-    simp only [B, toReal_maximum, toReal_zero]
-    rw [abs_le]
-    constructor
-    · linarith [le_max_right (0 : ℝ)
-          (max (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1))),
-        le_max_right (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1)), hb.1]
-    · linarith [le_max_right (0 : ℝ)
-          (max (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1))),
-        le_max_left (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1)), hb.2]
+  have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   have hPow := le_powUp (abs_nonneg _) hB (N + 1)
   have hF := (divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
     (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (N + 1)).2

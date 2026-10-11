@@ -1,5 +1,9 @@
 import CORALean.Global.CoeffNorm
 import CORALean.Global.LinearRelaxationDual
+import CORALean.Global.MatrixFunctionalEqSumSingle
+import CORALean.Global.MatrixFunctionalMulEqSum
+import CORALean.Global.MatrixTraceTransposeMulEqSum
+import CORALean.Global.PiLpNormToLpLeOfAbsLe
 import Mathlib.Analysis.MeanInequalities
 import Mathlib.Analysis.Normed.Lp.PiLp
 import Mathlib.Analysis.Normed.Module.FiniteDimension
@@ -45,25 +49,6 @@ variable {n m l : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The `q`-norm is monotone in the absolute values of the entries. -/
-theorem aux_lrExact_norm_mono (q : ℝ≥0∞) [Fact (1 ≤ q)] (a b : Fin l → ℝ)
-    (h : ∀ i, |a i| ≤ b i) : ‖WithLp.toLp q a‖ ≤ ‖WithLp.toLp q b‖ := by -- --- PROOF ---
-  have hb : ∀ i, 0 ≤ b i := fun i => (abs_nonneg _).trans (h i)
-  by_cases hq : q = ∞
-  · subst hq
-    simp only [PiLp.norm_toLp]
-    refine (pi_norm_le_iff_of_nonneg (norm_nonneg _)).mpr fun i => ?_
-    rw [Real.norm_eq_abs]
-    exact (h i).trans ((le_abs_self _).trans (by
-      simpa [Real.norm_eq_abs] using norm_le_pi_norm b i))
-  · have hq0 : 0 < q.toReal :=
-      ENNReal.toReal_pos (zero_lt_one.trans_le (Fact.out : (1 : ℝ≥0∞) ≤ q)).ne' hq
-    rw [PiLp.norm_eq_sum hq0, PiLp.norm_eq_sum hq0]
-    refine Real.rpow_le_rpow (Finset.sum_nonneg fun i _ => by positivity)
-      (Finset.sum_le_sum fun i _ => ?_) (by positivity)
-    simp only [Real.norm_eq_abs]
-    exact Real.rpow_le_rpow (abs_nonneg _) ((h i).trans (le_abs_self _)) hq0.le
-
 /-- Hölder: `Σ aᵢ bᵢ ≤ ‖a‖_{q'} ‖b‖_q`, endpoints included. -/
 theorem aux_lrExact_holder (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q'] (a b : Fin l → ℝ) :
     ∑ i, a i * b i ≤ ‖WithLp.toLp q' a‖ * ‖WithLp.toLp q b‖ := by -- --- PROOF ---
@@ -98,34 +83,6 @@ theorem aux_lrExact_holder (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjuga
     rw [PiLp.norm_eq_sum hq'0, PiLp.norm_eq_sum hq0]
     simpa [Real.norm_eq_abs] using Real.inner_le_Lp_mul_Lq Finset.univ a b hR
 
-/-- `tr(Aᵀ B) = Σₖ Σⱼ A_{kj} B_{kj}`. -/
-theorem aux_lrExact_trace {a b : ℕ} (A B : Matrix (Fin a) (Fin b) ℝ) :
-    trace (Aᵀ * B) = ∑ k, ∑ j, A k j * B k j := by
-  simp only [trace, diag, mul_apply, transpose_apply]
-  exact Finset.sum_comm
-
-/-- A functional on matrices is `M ↦ Σ M_{kj} f(E_{kj})`. -/
-theorem aux_lrExact_functional_eq (f : Matrix (Fin n) (Fin m) ℝ →ₗ[ℝ] ℝ)
-    (M : Matrix (Fin n) (Fin m) ℝ) :
-    f M = ∑ k, ∑ j, M k j * f (single k j 1) := by
-  conv_lhs => rw [Matrix.matrix_eq_sum_single M]
-  simp only [map_sum]
-  refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun j _ => ?_
-  rw [show single k j (M k j) = M k j • single k j (1 : ℝ) by simp, map_smul, smul_eq_mul]
-
-/-- After `X ↦ H X`, it is `X ↦ Σ (Hᵀ Z)_{ij} X_{ij}` with `Z_{kj} = f(E_{kj})`. -/
-theorem aux_lrExact_functional_mul (f : Matrix (Fin n) (Fin m) ℝ →ₗ[ℝ] ℝ)
-    (H : Matrix (Fin n) (Fin l) ℝ) (X : Matrix (Fin l) (Fin m) ℝ) :
-    f (H * X) = ∑ i, ∑ j,
-      (Hᵀ * Matrix.of fun k j => f (single k j (1 : ℝ))) i j * X i j := by -- --- PROOF ---
-  -- both sides are `tr((H X)ᵀ Z) = tr(Xᵀ (Hᵀ Z))`
-  rw [aux_lrExact_functional_eq f]
-  have h := aux_lrExact_trace (H * X) (Matrix.of fun k j => f (single k j (1 : ℝ)))
-  rw [transpose_mul, Matrix.mul_assoc, aux_lrExact_trace] at h
-  simp only [of_apply] at h
-  rw [← h]
-  exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => mul_comm _ _
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -155,12 +112,13 @@ theorem lr_exact_of_columns_eq_up_to_sign (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [
         have : f (L (single i j 1)) ∈ (LinearMap.range L).map f := ⟨_, ⟨_, rfl⟩, rfl⟩
         rw [hf] at this
         simpa [L] using (Submodule.mem_bot ℝ).mp this
-      rw [aux_lrExact_functional_mul f H] at h0
+      rw [functional_mul_eq_sum f H] at h0
       simpa [single_apply, ite_and, Finset.sum_ite_irrel, Finset.sum_ite_eq] using h0
     have hfeas := hYmax (Y + (f G)⁻¹ • Z) (by
       rwa [Matrix.mul_add, Matrix.mul_smul, hHZ, smul_zero, add_zero])
-    rw [Matrix.mul_add, trace_add, Matrix.mul_smul, trace_smul, aux_lrExact_trace G Z] at hfeas
-    have hGZ : ∑ k, ∑ j, G k j * Z k j = f G := (aux_lrExact_functional_eq f G).symm
+    rw [Matrix.mul_add, trace_add, Matrix.mul_smul, trace_smul,
+      trace_transpose_mul_eq_sum G Z] at hfeas
+    have hGZ : ∑ k, ∑ j, G k j * Z k j = f G := (functional_eq_sum_single f G).symm
     rw [hGZ, smul_eq_mul, inv_mul_cancel₀ hfG] at hfeas
     linarith
   -- strong duality of Eq. 32: the minimum `d` of Eq. 29, and a dual certificate attaining it
@@ -196,7 +154,7 @@ theorem lr_exact_of_columns_eq_up_to_sign (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [
     have hGα : G *ᵥ α = Hl (WithLp.toLp q (Xs *ᵥ α)) := by
       rw [hHl, WithLp.ofLp_toLp, mulVec_mulVec, hXs]
     rw [hGα, hXsd]
-    refine (coeffNorm_le Hl _).trans (aux_lrExact_norm_mono q _ _ fun i => ?_)
+    refine (coeffNorm_le Hl _).trans (PiLp.norm_toLp_le_of_abs_le q _ _ fun i => ?_)
     rw [Matrix.mulVec, dotProduct]
     refine (Finset.abs_sum_le_sum_abs _ _).trans (Finset.sum_le_sum fun j _ => ?_)
     rw [abs_mul]
@@ -204,13 +162,13 @@ theorem lr_exact_of_columns_eq_up_to_sign (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [
   -- `tr(Gᵀ Y) = (Hᵀ y)ᵀ β ≤ ‖β‖_q` for the minimal `β` with `H β = G σ`
   have hlow : trace (Gᵀ * Y) ≤ coeffNorm Hl (G *ᵥ σ) := by
     rcases isEmpty_or_nonempty (Fin m) with hm | ⟨⟨j₀⟩⟩
-    · rw [aux_lrExact_trace]
+    · rw [trace_transpose_mul_eq_sum]
       simpa using coeffNorm_nonneg Hl (G *ᵥ σ)
     obtain ⟨β, hβ, hβn⟩ := exists_coeffNorm_eq Hl ⟨WithLp.toLp q (X₀ *ᵥ σ), by
       rw [hHl, WithLp.ofLp_toLp, mulVec_mulVec, hX₀]⟩
     have htr : trace (Gᵀ * Y) = ∑ i, (y ᵥ* H) i * WithLp.ofLp β i := by
       calc trace (Gᵀ * Y) = y ⬝ᵥ (G *ᵥ σ) := by
-            rw [aux_lrExact_trace]
+            rw [trace_transpose_mul_eq_sum]
             simp only [hYσ, dotProduct, mulVec, Finset.mul_sum]
             exact Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun j _ => by ring
         _ = y ⬝ᵥ (H *ᵥ WithLp.ofLp β) := by rw [← hHl, hβ]
@@ -221,7 +179,7 @@ theorem lr_exact_of_columns_eq_up_to_sign (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [
       exact Finset.sum_congr rfl fun k _ => by ring
     -- Eq. 36: the rows of `Hᵀ Y` are `σᵀ` times `(Hᵀ y)ᵢ`, so `‖Hᵀ y‖_{q'} ≤ 1`
     have h1 : ‖WithLp.toLp q' (y ᵥ* H)‖ ≤ 1 := by
-      refine (aux_lrExact_norm_mono q' _ _ fun i => ?_).trans hY
+      refine (PiLp.norm_toLp_le_of_abs_le q' _ _ fun i => ?_).trans hY
       refine le_trans ?_ (le_ciSup (f := fun j => |(Hᵀ * Y) i j|) (Set.finite_range _).bddAbove j₀)
       rw [hrow, abs_mul, hσ1, one_mul]
     rw [htr, ← hβn]

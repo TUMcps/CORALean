@@ -1,4 +1,5 @@
 import CORALean.ContSet.Taylm.Float.Operations.Log
+import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
 import CORALean.ContSet.Taylm.Float.Theorems.LogCoefMem
 import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
 import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
@@ -57,18 +58,7 @@ theorem Taylm.log_outer (q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (
   refine le_trans hL ?_
   -- `N!/Lᴺ⁺¹ · yᴺ⁺¹/(N+1)! = (y/L)ᴺ⁺¹/(N+1)`, then each piece below its rounding
   set B : 𝕋 := maximum zero (maximum (subUp T.bounds.2 c) (subUp c T.bounds.1))
-  have hB : |f t - toReal c| ≤ toReal B := by
-    have h1 := sub_le_subUp T.bounds.2 c
-    have h2 := sub_le_subUp c T.bounds.1
-    simp only [B, toReal_maximum, toReal_zero]
-    rw [abs_le]
-    constructor
-    · linarith [le_max_right (0 : ℝ)
-          (max (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1))),
-        le_max_right (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1)), hb.1]
-    · linarith [le_max_right (0 : ℝ)
-          (max (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1))),
-        le_max_left (toReal (subUp T.bounds.2 c)) (toReal (subUp c T.bounds.1)), hb.2]
+  have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   -- `B / L` rounded up, then its power, then the division by `N + 1`
   have hLf : toReal (minimum c T.bounds.1) = L := toReal_minimum _ _
   have hq : |f t - toReal c| / L ≤ toReal (divUp B (minimum c T.bounds.1)) := by

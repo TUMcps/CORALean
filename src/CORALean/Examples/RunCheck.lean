@@ -395,6 +395,10 @@ def dyadicRows : StateT Nat IO Unit := do
   row "zonoGirardUpperRun" (ofD RunnableFloat.zonoGirardUpperRun)
   row "zonoGirardRun" (ofBundle RunnableFloat.zonoGirardRun)
   row "checkFlowRun" (ofWindows (some RunnableFloat.checkFlowRun))
+  -- the guard map onto a hyperplane of a location drifting across it
+  row "hpMapLoc" (ofZono RunnableFloat.hpMapLoc.U)
+  row "hpMapR0" (ofZono RunnableFloat.hpMapR0)
+  row "hpMapRun" (ofOptZono RunnableFloat.hpMapRun)
   -- the parametric system
   row "lpA" (ofIMat RunnableFloat.lpA)
   row "lpSys" (ofIMat RunnableFloat.lpSys.A)

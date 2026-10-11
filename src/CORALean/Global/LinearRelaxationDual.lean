@@ -1,3 +1,5 @@
+import CORALean.Global.MatrixFunctionalMulEqSum
+import CORALean.Global.PiLpNormToLpLeOfAbsLe
 import Mathlib.Analysis.MeanInequalities
 import Mathlib.Analysis.Normed.Group.Quotient
 import Mathlib.Analysis.Normed.Lp.PiLp
@@ -55,25 +57,6 @@ theorem aux_lrDual_norm_eq {β : Fin l → Type*} [∀ i, SeminormedAddCommGroup
   · have hq0 : 0 < q.toReal :=
       ENNReal.toReal_pos (zero_lt_one.trans_le (Fact.out : (1 : ℝ≥0∞) ≤ q)).ne' hq
     simp [PiLp.norm_eq_sum hq0]
-
-/-- The `q`-norm is monotone in the absolute values of the entries. -/
-theorem aux_lrDual_norm_mono (q : ℝ≥0∞) [Fact (1 ≤ q)] (a b : Fin l → ℝ)
-    (h : ∀ i, |a i| ≤ b i) : ‖WithLp.toLp q a‖ ≤ ‖WithLp.toLp q b‖ := by -- --- PROOF ---
-  have hb : ∀ i, 0 ≤ b i := fun i => (abs_nonneg _).trans (h i)
-  by_cases hq : q = ∞
-  · subst hq
-    simp only [PiLp.norm_toLp]
-    refine (pi_norm_le_iff_of_nonneg (norm_nonneg _)).mpr fun i => ?_
-    rw [Real.norm_eq_abs]
-    exact (h i).trans ((le_abs_self _).trans (by
-      simpa [Real.norm_eq_abs] using norm_le_pi_norm b i))
-  · have hq0 : 0 < q.toReal :=
-      ENNReal.toReal_pos (zero_lt_one.trans_le (Fact.out : (1 : ℝ≥0∞) ≤ q)).ne' hq
-    rw [PiLp.norm_eq_sum hq0, PiLp.norm_eq_sum hq0]
-    refine Real.rpow_le_rpow (Finset.sum_nonneg fun i _ => by positivity)
-      (Finset.sum_le_sum fun i _ => ?_) (by positivity)
-    simp only [Real.norm_eq_abs]
-    exact Real.rpow_le_rpow (abs_nonneg _) ((h i).trans (le_abs_self _)) hq0.le
 
 /-- The converse for `u ≥ 0`: `Σ wᵢ uᵢ ≤ ‖w‖_q` for every `w ≥ 0` gives `‖u‖_{q'} ≤ 1`. -/
 theorem aux_lrDual_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
@@ -150,7 +133,7 @@ theorem aux_lrDual_matrix_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.Ho
     simp only [X, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
     rw [mul_left_comm, self_mul_sign]
   have hnorm : ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖ ≤ ‖WithLp.toLp q w‖ :=
-    aux_lrDual_norm_mono q _ _ fun i => by
+    PiLp.norm_toLp_le_of_abs_le q _ _ fun i => by
       simp only [X, apply_ite, abs_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true, abs_mul,
         abs_of_nonneg (hw i)]
       rw [abs_abs]
@@ -160,34 +143,6 @@ theorem aux_lrDual_matrix_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.Ho
   calc ∑ i, w i * |Z i (J i)| = ∑ i, ∑ j, Z i j * X i j := by simp only [hrow]
     _ ≤ _ := h X
     _ ≤ _ := hnorm
-
-/-- `tr(Aᵀ B) = Σₖ Σⱼ A_{kj} B_{kj}`. -/
-theorem aux_lrDual_trace {a b : ℕ} (A B : Matrix (Fin a) (Fin b) ℝ) :
-    trace (Aᵀ * B) = ∑ k, ∑ j, A k j * B k j := by
-  simp only [trace, diag, mul_apply, transpose_apply]
-  exact Finset.sum_comm
-
-/-- A functional on matrices is `M ↦ Σ M_{kj} f(E_{kj})`. -/
-theorem aux_lrDual_functional_eq (f : Matrix (Fin n) (Fin m) ℝ →ₗ[ℝ] ℝ)
-    (M : Matrix (Fin n) (Fin m) ℝ) :
-    f M = ∑ k, ∑ j, M k j * f (single k j 1) := by
-  conv_lhs => rw [Matrix.matrix_eq_sum_single M]
-  simp only [map_sum]
-  refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun j _ => ?_
-  rw [show single k j (M k j) = M k j • single k j (1 : ℝ) by simp, map_smul, smul_eq_mul]
-
-/-- After `X ↦ H X`, it is `X ↦ Σ (Hᵀ Z)_{ij} X_{ij}` with `Z_{kj} = f(E_{kj})`. -/
-theorem aux_lrDual_functional_mul (f : Matrix (Fin n) (Fin m) ℝ →ₗ[ℝ] ℝ)
-    (H : Matrix (Fin n) (Fin l) ℝ) (X : Matrix (Fin l) (Fin m) ℝ) :
-    f (H * X) = ∑ i, ∑ j,
-      (Hᵀ * Matrix.of fun k j => f (single k j (1 : ℝ))) i j * X i j := by -- --- PROOF ---
-  -- both sides are `tr((H X)ᵀ Z) = tr(Xᵀ (Hᵀ Z))`
-  rw [aux_lrDual_functional_eq f]
-  have h := aux_lrDual_trace (H * X) (Matrix.of fun k j => f (single k j (1 : ℝ)))
-  rw [transpose_mul, Matrix.mul_assoc, aux_lrDual_trace] at h
-  simp only [of_apply] at h
-  rw [← h]
-  exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => mul_comm _ _
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -262,7 +217,7 @@ theorem lr_exists_dual (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q
   set Ys : Matrix (Fin n) (Fin m) ℝ := Matrix.of fun k j => ψ (single k j 1)
   have hφX : ∀ X, φ (J X) = ∑ i, ∑ j, (Hᵀ * Ys) i j * X i j := fun X => by
     rw [← hψ, LinearMap.dualMap_apply, hLJ]
-    exact aux_lrDual_functional_mul ψ H X
+    exact functional_mul_eq_sum ψ H X
   have hYs : ‖WithLp.toLp q' (fun i => ⨆ j, |(Hᵀ * Ys) i j|)‖ ≤ 1 :=
     aux_lrDual_matrix_dual_le_one q q' _ fun X => by
       rw [← hφX, ← hJ]
@@ -271,10 +226,10 @@ theorem lr_exists_dual (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q
   · rintro _ ⟨X, hX, rfl⟩
     rw [← hJ]
     exact hd _ (by rw [hLJ, hX])
-  · have h1 : ∑ k, ∑ j, G k j * Ys k j = ψ G := (aux_lrDual_functional_eq ψ G).symm
+  · have h1 : ∑ k, ∑ j, G k j * Ys k j = ψ G := (functional_eq_sum_single ψ G).symm
     have h2 : ψ G = φ x₀ := by rw [← hψ, LinearMap.dualMap_apply, hLx₀]
     have h3 : φ x₀ = ‖K.mkQ x₀‖ := hgx
-    rw [aux_lrDual_trace, h1, h2, h3]
+    rw [trace_transpose_mul_eq_sum, h1, h2, h3]
     exact hdq
 
 end CORALean

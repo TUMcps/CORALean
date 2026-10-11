@@ -230,7 +230,11 @@ import CORALean.Global.GaussianAbsMoment
 import CORALean.Global.GaussianNormMomentLe
 import CORALean.Global.GaussianRoundingLe
 import CORALean.Global.GaussianSignCorrelation
+import CORALean.Global.MatrixFunctionalEqSumSingle
+import CORALean.Global.MatrixFunctionalMulEqSum
+import CORALean.Global.MatrixTraceTransposeMulEqSum
 import CORALean.Global.PiLpHolder
+import CORALean.Global.PiLpNormToLpLeOfAbsLe
 import CORALean.Global.DotProductLeCoeffNorm
 import CORALean.Global.LinearRelaxationDual
 import CORALean.Global.LinearRelaxationAccuracy

@@ -17,6 +17,7 @@ import CORALean.ContSet.ContSet.Operations.Times
 import CORALean.ContSet.ContSet.Operations.Uminus
 import CORALean.ContSet.ContSet.Operations.Uplus
 import CORALean.ContSet.ContSet.Operations.Polygon
+import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
 
 /-!
 # What the set interface computes

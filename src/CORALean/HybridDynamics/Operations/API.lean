@@ -57,6 +57,12 @@ import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
 import CORALean.HybridDynamics.Operations.GuardTransitionLevelSet
 import CORALean.HybridDynamics.Operations.AbstractionError
 import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMap
+import CORALean.HybridDynamics.Operations.AbstractionErrorFloat
+import CORALean.HybridDynamics.Operations.HitPointFloat
+import CORALean.HybridDynamics.Operations.HitJacobianFloat
+import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
+import CORALean.HybridDynamics.Operations.SdcInputFloat
+import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
 
 /-!
 # What a hybrid automaton computes, collected

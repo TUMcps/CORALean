@@ -105,7 +105,8 @@ theorem GuardMap.hitSet_subset_hitEnclosure (A : Mat ℝ n n) (b nv : Vec ℝ n)
     Real.Zonotope.quadMapMatZono_outer _ _ _ ⟨ν, hνmem, fac, hfac1, fun i => by
       rw [hqdef]; dsimp only; rw [hQξ i]⟩
   -- `φ ∈ [φ̲, φ̄]`, written as `0.5(φ̲ + φ̄) + 0.5(φ̄ − φ̲)s`, `|s| ≤ 1`
-  obtain ⟨hlo, hhi⟩ := GuardMap.hitFactor_mem_Icc A b nv R₀ hΛ hφ ⟨βξ, hβξ, hξeq⟩ ⟨βx, hβx, hxeq⟩
+  obtain ⟨hlo, hhi⟩ := GuardMap.hitFactor_mem_Icc A b nv
+    (Real.Zonotope.convex_construct R₀) hΛ hφ ⟨βξ, hβξ, hξeq⟩ ⟨βx, hβx, hxeq⟩
   rw [← hφdef] at hlo hhi
   obtain ⟨s, hs, hφs⟩ : ∃ s : ℝ, s ∈ Set.Icc (-1 : ℝ) 1 ∧
       φ = (φlo + φhi) / 2 + (φhi - φlo) / 2 * s := by

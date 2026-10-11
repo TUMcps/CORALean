@@ -1,4 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
+import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
+import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
@@ -44,27 +46,6 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- `k` passes of a loop that steps its state and appends what the new state outputs. -/
-theorem aux_reachBoxFloat_foldl {σ β : Type} (step : σ → σ) (out : σ → β) (s₀ : σ) (k : ℕ) :
-    (List.range k).foldl (fun (P : σ × List β) (_ : ℕ) => (step P.1, P.2 ++ [out (step P.1)]))
-      (s₀, [out s₀])
-      = (step^[k] s₀,
-        (List.range (k + 1)).map fun j => out (step^[j] s₀)) := by -- --- PROOF ---
-  induction k with
-  | zero => simp
-  | succ k ih =>
-    rw [List.range_succ, List.foldl_append, ih]
-    simp [List.range_succ, Function.iterate_succ_apply']
-
-/-- `e^{A(a+b)} = e^{Aa} e^{Ab}`. -/
-theorem aux_reachBoxFloat_exp_add (A : Mat ℝ n n) (a b : ℝ) :
-    exp ((a + b) • A) = exp (a • A) * exp (b • A) := by
-  rw [add_smul]
-  exact exp_add_of_commute (((Commute.refl A).smul_left a).smul_right b)
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 2] in floats: `R_k` encloses the reachable set at every `t ∈ [kr, (k+1)r]`,
@@ -101,7 +82,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
       (fun (s : (Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n) × List (Zonotope 𝕋 n)) _ =>
         ((step s.1), s.2 ++ [out (step s.1)])) ((s₀), [out s₀])
       = (step^[N] s₀, (List.range (N + 1)).map fun j => out (step^[j] s₀)) :=
-    aux_reachBoxFloat_foldl step out s₀ N
+    foldl_range_step_out step out s₀ N
   -- what the listing needs of the sets: bounded, a step is enclosed, a box encloses
   have hU : Bornology.IsBounded (ContSet.construct U) := CompactSet.isBounded_construct U
   have hkr : ∀ k : ℕ, (0:ℝ) ≤ k * ρ := fun k => mul_nonneg (Nat.cast_nonneg k) hr.le
@@ -141,10 +122,10 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
       have hτ0 := hτ.1
       rw [Function.iterate_succ_apply']
       have hEk : exp ((((k + 1 : ℕ) : ℝ) * ρ) • A) = E * exp ((k * ρ) • A) := by
-        rw [show ((k + 1 : ℕ) : ℝ) * ρ = ρ + k * ρ by push_cast; ring, aux_reachBoxFloat_exp_add]
+        rw [show ((k + 1 : ℕ) : ℝ) * ρ = ρ + k * ρ by push_cast; ring, exp_add_smul_eq_mul]
       have hEkτ : exp ((((k + 1 : ℕ) : ℝ) * ρ + τ) • A) = E * exp ((k * ρ + τ) • A) := by
         rw [show ((k + 1 : ℕ) : ℝ) * ρ + τ = ρ + (k * ρ + τ) by push_cast; ring,
-          aux_reachBoxFloat_exp_add]
+          exp_add_smul_eq_mul]
       -- `V_{k+1}`: one more `e^{Ar}`
       have h2 : (fun y => exp ((((k + 1 : ℕ) : ℝ) * ρ) • A) *ᵥ y) ''
           sys.inputReach (S := Zonotope 𝕋) U τ ⊆ (step (step^[k] s₀)).2.1.construct := by

@@ -65,6 +65,7 @@ import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
 import CORALean.HybridDynamics.Operations.CheckFlowFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
+import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
 import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
@@ -443,6 +444,18 @@ def zonoGirardUpperRun : D := Location.zonoGirardUpperFloat Z hpNormal hpOffset 
 def zonoGirardRun : ZonoBundle D 2 :=
   Location.guardIntersectZonoGirardFloat [hpBasis] Z [] hpNormal hpOffset
 def checkFlowRun : List (Zonotope D 2) := ctLoc.checkFlowFloat hpNormal hpOffset [Z]
+
+/-- A location drifting along `e₁` at unit speed under a slow rotation, and the guard map of the
+box of half-width `2⁻⁴` about `(1, 0)` onto `x₁ = 1`, `tmax = 2⁻³`, two Taylor terms. -/
+def hpMapLoc : Location (Zonotope D) (Zonotope D) Unit D 2 :=
+  ⟨Z, ⟨!![d 0 0, d (-1) (-1); d 1 (-1), d 0 0]⟩, Zonotope.point ![d 1 0, d 0 0], []⟩
+def hpMapR0 : Zonotope D 2 where
+  h := 2
+  c := ![d 1 0, d 0 0]
+  G := !![d 1 (-4), d 0 0; d 0 0, d 1 (-4)]
+  E := zbox 2
+def hpMapRun : Option (Zonotope D 2) :=
+  hpMapLoc.guardIntersectHyperplaneMapFloat hpNormal (d 1 0) hpMapR0 (d 1 (-3)) 2 10 10 20
 
 /-- `A` known only to `±2⁻⁵` entrywise, as a `LinParamSys` over float interval matrices: an
 admissible order, one step of its flow, its input solution over `Z`, and five sampled steps. -/

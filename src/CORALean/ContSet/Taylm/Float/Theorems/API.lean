@@ -24,6 +24,7 @@ import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 import CORALean.ContSet.Taylm.Float.Theorems.CodeEvalEncloses
 import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
 import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
 import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
 import CORALean.ContSet.Taylm.Float.Theorems.IntrinsicEncloses
 import CORALean.ContSet.Taylm.Float.Theorems.LogCoefMem
