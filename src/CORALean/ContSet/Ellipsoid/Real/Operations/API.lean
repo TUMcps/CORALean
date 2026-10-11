@@ -48,6 +48,8 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
 import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 import CORALean.ContSet.Ellipsoid.Real.Operations.Polygon
 import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
+import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
+import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
 
 /-!
 # What an ellipsoid computes, collected

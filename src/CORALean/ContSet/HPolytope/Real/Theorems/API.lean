@@ -102,6 +102,10 @@ import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageAffine
 import CORALean.ContSet.HPolytope.Real.Theorems.BallSubsetIneqsIff
 import CORALean.ContSet.HPolytope.Real.Theorems.EmptyRedundantCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.EmptySetRowsMinimal
+import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceNotSubset
+import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspacePrintedCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceValueLe
+import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceAccuracyCounterexample
 
 /-!
 # What `HPolytope` guarantees

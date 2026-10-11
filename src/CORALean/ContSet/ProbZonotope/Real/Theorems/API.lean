@@ -36,6 +36,9 @@ import CORALean.ContSet.ProbZonotope.Real.Theorems.MaxAnti
 import CORALean.ContSet.ProbZonotope.Real.Theorems.LeAddSumOfLevels
 import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidOuter
 import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidNotGeProb
+import CORALean.ContSet.ProbZonotope.Real.Theorems.EphMtimesExp
+import CORALean.ContSet.ProbZonotope.Real.Theorems.EphMtimesExpLeMax
+import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfExpMulVec
 
 /-!
 # What a probabilistic zonotope guarantees, collected

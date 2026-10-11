@@ -1,0 +1,197 @@
+import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
+import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeContains
+import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsApproxLownerJohnOfSandwich
+import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+
+/-!
+# Goffin's algorithm keeps `Z` inside, and stops at an approximate Löwner–John ellipse
+
+[1, Sec. 4.6 (algorithm)]: every `E(E_j, 0)` contains `Z`, and when the test (17) passes at `E_j`,
+`E(E_j/(1+ε), 0)` (generator `E_j^{1/2}/√(1+ε)`) is an `ε`-approximate Löwner–John ellipse of `Z`.
+The oracle `test` is held to what [1] derives: a pass gives the ball of radius
+`1/(n√(1+ε))` inside `Z′ = E_j^{-1/2}Z` (Eq. 18), a fail a separator `aᵀx ≤ b` of `Z′` from some
+`x₀` with `‖x₀‖ = γ` (Sec. 4.5). The cut: `Z′` lies in the unit ball, and by the central symmetry
+of `Z` in `|cᵀx| ≤ γ` too, `|aᵀx| ≤ b < aᵀx₀ ≤ ‖a‖γ`; Lemma 4.3 (containment) puts it in
+`E(E, 0)`, and `ξ ↦ E_j^{1/2}ξ` maps that onto `E(E_j^{1/2}EE_j^{1/2}, 0)`. The stop is Eq. 5 at
+`E_j`. Lemma 4.3 needs `n ≥ 2`, which [1] does not state.
+
+## References
+
+* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+open scoped MatrixOrder
+
+variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The symmetric root `S = E^{1/2}` of a positive-definite `E`: `Sᵀ = S`, `S S⁻¹ = 1 = S⁻¹ S`. -/
+theorem Ellipsoid.aux_sqrt_facts {E : Mat ℝ n n} (hE : E.PosDef) :
+    (CFC.sqrt E)ᵀ = CFC.sqrt E ∧ CFC.sqrt E * (CFC.sqrt E)⁻¹ = 1
+      ∧ (CFC.sqrt E)⁻¹ * CFC.sqrt E = 1 := by -- --- PROOF ---
+  set S := CFC.sqrt E
+  have hSh : S.IsHermitian := (CFC.sqrt_nonneg E).posSemidef.isHermitian
+  have hST : Sᵀ = S := by simpa [conjTranspose_eq_transpose_of_trivial] using hSh.eq
+  have hSS : S * S = E := CFC.sqrt_mul_sqrt_self E hE.posSemidef.nonneg
+  -- `S` is invertible, its square being `E`
+  have hEu : IsUnit E.det := (isUnit_iff_isUnit_det E).1 hE.isUnit
+  have hSu : IsUnit S.det := by
+    have : IsUnit (S * S).det := hSS ▸ hEu
+    rw [det_mul] at this
+    exact (IsUnit.mul_iff.1 this).1
+  exact ⟨hST, mul_nonsing_inv S hSu, nonsing_inv_mul S hSu⟩
+
+/-- `ξ ↦ E^{1/2}ξ` maps `E(F, 0)` into `E(E^{1/2}FE^{1/2}, 0)`, which is positive definite. -/
+theorem Ellipsoid.aux_mem_ofShape_conj {E F : Mat ℝ n n} (hE : E.PosDef) (hF : F.PosDef)
+    {x : Vec ℝ n} (hx : (CFC.sqrt E)⁻¹ *ᵥ x ∈ (Ellipsoid.ofShape F 0).construct) :
+    (CFC.sqrt E * F * CFC.sqrt E).PosDef
+      ∧ x ∈ (Ellipsoid.ofShape (CFC.sqrt E * F * CFC.sqrt E) 0).construct := by -- --- PROOF ---
+  set S := CFC.sqrt E
+  obtain ⟨hST, hSi, hiS⟩ := Ellipsoid.aux_sqrt_facts hE
+  have hinj : Function.Injective S.mulVec := fun y z h => by
+    have := congrArg ((S⁻¹) *ᵥ ·) h
+    simp only [mulVec_mulVec] at this
+    rwa [hiS, one_mulVec, one_mulVec] at this
+  have hpd : (S * F * S).PosDef := by
+    have h := hF.conjTranspose_mul_mul_same hinj
+    rwa [conjTranspose_eq_transpose_of_trivial, hST] at h
+  refine ⟨hpd, ?_⟩
+  rw [Ellipsoid.mem_ofShape_iff hF, sub_zero] at hx
+  rw [Ellipsoid.mem_ofShape_iff hpd, sub_zero]
+  -- `(SFS)⁻¹ = S⁻¹F⁻¹S⁻¹` with `S⁻¹` symmetric, so both forms read `(S⁻¹x)ᵀF⁻¹(S⁻¹x)`
+  have hiST : (S⁻¹)ᵀ = S⁻¹ := by rw [transpose_nonsing_inv, hST]
+  rw [Matrix.mul_inv_rev, Matrix.mul_inv_rev, ← mulVec_mulVec, ← mulVec_mulVec,
+    dotProduct_mulVec, ← mulVec_transpose, hiST]
+  exact hx
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Sec. 4.6 (algorithm)]: `Z ⊆ E(E_j, 0)` for every `j`, and a passed test at `E_j` makes
+`E(E_j/(1+ε), 0)` an `ε`-approximate Löwner–John ellipse of `Z`. -/
+theorem Ellipsoid.goffin_spec {ε : ℝ} (hε : 0 < ε) (hn : 2 ≤ n) (Z : Set (Vec ℝ n))
+    (hZne : Z.Nonempty) (hsymm : ∀ x ∈ Z, -x ∈ Z) (test : Mat ℝ n n → Option (Vec ℝ n))
+    (hpass : ∀ E : Mat ℝ n n, E.PosDef → test E = none →
+      ∀ u : Vec ℝ n, ‖u‖₂ ≤ 1 / ((n : ℝ) * Real.sqrt (1 + ε)) → CFC.sqrt E *ᵥ u ∈ Z)
+    (hsep : ∀ (E : Mat ℝ n n) (a : Vec ℝ n), E.PosDef → test E = some a →
+      ∃ (b : ℝ) (x₀ : Vec ℝ n), ‖x₀‖₂ = 1 / Real.sqrt ((n : ℝ) * (1 + ε)) ∧
+        (∀ z ∈ Z, a ⬝ᵥ ((CFC.sqrt E)⁻¹ *ᵥ z) ≤ b) ∧ b < a ⬝ᵥ x₀)
+    {E₀ : Mat ℝ n n} (hE₀ : E₀.PosDef) (hZ₀ : Z ⊆ (Ellipsoid.ofShape E₀ 0).construct) (j : ℕ) :
+    ((Ellipsoid.goffin ε test E₀ j).PosDef
+        ∧ Z ⊆ (Ellipsoid.ofShape (Ellipsoid.goffin ε test E₀ j) 0).construct)
+      ∧ (test (Ellipsoid.goffin ε test E₀ j) = none →
+        Ellipsoid.IsApproxLownerJohn ε Z ⟨n, 0, (1 / Real.sqrt (1 + ε))
+          • CFC.sqrt (Ellipsoid.goffin ε test E₀ j)⟩) := by -- --- PROOF ---
+  have hn' : (2 : ℝ) ≤ n := by exact_mod_cast hn
+  set γ := 1 / Real.sqrt ((n : ℝ) * (1 + ε)) with hγ
+  have hγ0 : 0 < γ := by positivity
+  have hγn : (n : ℝ) * γ ^ 2 < 1 := by
+    rw [hγ, div_pow, Real.sq_sqrt (by positivity), one_pow, mul_one_div,
+      div_lt_one (by positivity)]
+    nlinarith
+  -- one cut keeps `Z` inside: the invariant's step
+  have hstep : ∀ (E : Mat ℝ n n) (a : Vec ℝ n), E.PosDef →
+      Z ⊆ (Ellipsoid.ofShape E 0).construct → test E = some a →
+      (Ellipsoid.goffinCut ε E a).PosDef
+        ∧ Z ⊆ (Ellipsoid.ofShape (Ellipsoid.goffinCut ε E a) 0).construct := by
+    intro E a hE hZ ha
+    obtain ⟨b, x₀, hx₀, hb, hbx⟩ := hsep E a hE ha
+    set S := CFC.sqrt E with hS
+    obtain ⟨-, hSi, hiS⟩ := Ellipsoid.aux_sqrt_facts hE
+    -- `‖a‖ > 0`: `0 ∈ Z` would otherwise give `0 ≤ b < 0`; and `b < ‖a‖γ`
+    have hbγ : b < ‖a‖₂ * γ := by
+      have h := dotProduct_le_norm₂_mul_norm₂ a x₀
+      rw [hx₀] at h
+      linarith
+    set c := (‖a‖₂)⁻¹ • a with hc
+    have hcut : ∀ z ∈ Z, (‖S⁻¹ *ᵥ z‖₂ ≤ 1 ∧ |c ⬝ᵥ (S⁻¹ *ᵥ z)| ≤ γ) ∧ c ⬝ᵥ c = 1 := by
+      intro z hz
+      -- `z = S u` with `‖u‖ ≤ 1`, from `z ∈ E(E, 0)`
+      obtain ⟨u, hu, hzu⟩ : ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧ z = 0 + S *ᵥ u := hZ hz
+      have hSz : S⁻¹ *ᵥ z = u := by
+        rw [hzu, zero_add, mulVec_mulVec, hiS, one_mulVec]
+      -- the separator at `z` and at `-z`: `|aᵀS⁻¹z| ≤ b`
+      have h1 := hb z hz
+      have h2 := hb (-z) (hsymm z hz)
+      rw [mulVec_neg, dotProduct_neg] at h2
+      have hapos : 0 < ‖a‖₂ := by
+        rcases (norm₂_nonneg a).lt_or_eq with h | h
+        · exact h
+        · have ha0 : a = 0 := by
+            rw [← dotProduct_self_eq_zero, dotProduct_self, ← h]
+            ring
+          rw [ha0, zero_dotProduct] at h1 hbx
+          linarith
+      have hcc : c ⬝ᵥ c = 1 := by
+        rw [hc, smul_dotProduct, dotProduct_smul, dotProduct_self, smul_eq_mul, smul_eq_mul]
+        field_simp
+      -- so `|cᵀS⁻¹z| ≤ b/‖a‖ < γ`
+      refine ⟨⟨hSz ▸ hu, ?_⟩, hcc⟩
+      rw [hc, smul_dotProduct, smul_eq_mul, abs_mul, abs_inv, abs_of_pos hapos,
+        inv_mul_le_iff₀ hapos]
+      exact abs_le.2 ⟨by linarith, by linarith⟩
+    obtain ⟨z₀, hz₀⟩ := hZne
+    have hcpd : (Ellipsoid.cutShape n c γ).PosDef :=
+      Ellipsoid.cutShape_posDef (hcut z₀ hz₀).2 hn hγ0 hγn
+    -- the cut ellipsoid holds `S⁻¹z` (Lemma 4.3), so `E_{j+1} = S E S` holds `z`
+    have hcutE : Ellipsoid.goffinCut ε E a = S * Ellipsoid.cutShape n c γ * S := rfl
+    rw [hcutE]
+    refine ⟨(Ellipsoid.aux_mem_ofShape_conj hE hcpd
+      (Ellipsoid.cutShape_contains (hcut z₀ hz₀).2 hn hγ0 hγn (hcut z₀ hz₀).1)).1,
+      fun z hz => ?_⟩
+    exact (Ellipsoid.aux_mem_ofShape_conj hE hcpd
+      (Ellipsoid.cutShape_contains (hcut z hz).2 hn hγ0 hγn (hcut z hz).1)).2
+  -- the invariant, by induction over the iterations
+  have hinv : ∀ j, (Ellipsoid.goffin ε test E₀ j).PosDef
+      ∧ Z ⊆ (Ellipsoid.ofShape (Ellipsoid.goffin ε test E₀ j) 0).construct := by
+    intro j
+    induction j with
+    | zero => exact ⟨hE₀, hZ₀⟩
+    | succ j ih =>
+      cases h : test (Ellipsoid.goffin ε test E₀ j) with
+      | none =>
+        have he : Ellipsoid.goffin ε test E₀ (j + 1) = Ellipsoid.goffin ε test E₀ j := by
+          simp [Ellipsoid.goffin, h]
+        rw [he]
+        exact ih
+      | some a =>
+        have he : Ellipsoid.goffin ε test E₀ (j + 1)
+            = Ellipsoid.goffinCut ε (Ellipsoid.goffin ε test E₀ j) a := by
+          simp [Ellipsoid.goffin, h]
+        rw [he]
+        exact hstep _ a ih.1 ih.2 h
+  refine ⟨hinv j, fun hnone => ?_⟩
+  -- the stop: the ball of radius `1/(n√(1+ε))` in `Z′` puts `E(E_j/(n²(1+ε)), 0)` in `Z` (Eq. 5)
+  set E := Ellipsoid.goffin ε test E₀ j
+  have hin : (⟨(Ellipsoid.ofShape E 0).k, (Ellipsoid.ofShape E 0).q,
+      (1 / ((n : ℝ) * Real.sqrt (1 + ε))) • (Ellipsoid.ofShape E 0).G⟩ : Ellipsoid n).construct
+        ⊆ Z := by
+    intro x hx
+    obtain ⟨u, hu, rfl⟩ : ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧
+        x = 0 + ((1 / ((n : ℝ) * Real.sqrt (1 + ε))) • CFC.sqrt E) *ᵥ u := hx
+    have hr : 0 < 1 / ((n : ℝ) * Real.sqrt (1 + ε)) := by positivity
+    rw [zero_add, smul_mulVec, ← mulVec_smul]
+    refine hpass E (hinv j).1 hnone _ ?_
+    rw [norm₂_smul, abs_of_pos hr]
+    exact mul_le_of_le_one_right hr.le hu
+  exact Ellipsoid.isApproxLownerJohn_of_sandwich (by linarith) Z (Ellipsoid.ofShape E 0) hin
+    (hinv j).2
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

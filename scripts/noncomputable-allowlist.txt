@@ -444,3 +444,4 @@ NonlinParamSys.linearize  real-layer: the matrix zonotopes of real Jacobians (`f
 NonlinDASys.linReach  real-layer: one DAE linearization step through `LinearSys.oneStep` at the real matrix exponential; no float refinement
 NonlinDASys.initReach  real-layer: `NonlinDASys.linReach` on each start set, split by `Zonotope.split`; no float refinement
 LinParamSys.dependentHomSolLowOrder  real-layer: CORA's second-order dependent solution, read for its counterexample only
+LinProbSys.enclosingHull  real-layer: [1, Alg. 1] at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart

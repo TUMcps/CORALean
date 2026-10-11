@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinProbSys.Theorems.InitReachCovLt
 import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
 import CORALean.ContDynamics.LinProbSys.Theorems.PostCov
+import CORALean.ContDynamics.LinProbSys.Theorems.EnclosingHullCov
 
 /-!
 # What `LinProbSys` guarantees
