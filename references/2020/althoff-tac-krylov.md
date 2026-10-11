@@ -19,7 +19,8 @@ bound's linear-in-time form (`Prop. B.1`). `Thm. III.2` and `Cor. IV.1` are fals
 (Findings), and so are the varying-input results (`Thm. IV.2`, `Cor. IV.2`): their Krylov
 remainder fails with Prop. B.1's own error bound, and they are formalized with the Krylov Taylor
 terms below the Krylov order and the thesis' remainder in place of the Krylov one. `Alg. 2` is
-open; formalized of it is the input propagation, whose line 8 is one step off.
+formalized as printed and, with line 8 at `e^{Akδ}`, line 10's `Thm. III.2` given its own end set
+and `0 ∈ U`, shown to enclose the reachable set from what its subroutines deliver.
 
 ## Results
 
@@ -49,7 +50,7 @@ open; formalized of it is the input propagation, whose line 8 is one step off.
 | `Cor. IV.2` | (Varying inputs with zonotopic bounds) For the zonotope U, R_p(δ) is enclosed by (c̃_u, g̃⁽ⁱ'ʲ⁾_u) ⊕ R_{p,err}, the generators PṼ(g⁽ⁱ⁾_u)H̃ʲ/j! δʲe₁. | [`VaryingInputReachCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputReachCounterexample.lean), [`InputReachSubsetKrylovZonotope.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovZonotope.lean), [`AugmentArnoldiPow.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/AugmentArnoldiPow.lean) — corrected: for U = (c_u, g⁽¹⁾_u, …, g⁽q⁾_u) and η + 1 < ξ, R_p(δ) lies in the sum over j ≤ η + 1 of the zonotopes (P Ṽ(c_u)H̃ʲ(c_u)e₁, P Ṽ(g⁽ⁱ⁾_u)H̃ʲ(g⁽ⁱ⁾_u)e₁)δʲ/j!, which is (c̃_u, g̃⁽ⁱ'ʲ⁾_u) by (4), plus the thesis' remainder E(δ)δU closed and convexified in place of R_p,err; the splitting into center and generators holds there, P Ṽ(u)H̃ʲ(u)e₁ = A^{j-1}u being linear in u; **Counterexample:** `Krylov.varying_input_reach_counterexample` with U = (0₄, (1/10, 0, 0, 0)): Alg. 1 breaks down at c_u = 0, so ε̃(c_u) = 0 and Ẽ(δ, c_u) adds nothing in the fourth coordinate, and the point with y₄ = π/40 lies outside (c̃_u, g̃⁽ⁱ'ʲ⁾_u) ⊕ R_p,err | `fixed` — R_p,err is `Thm. IV.2`'s remainder at the center and generators and fails with it; for η ≥ ξ the splitting of {Ṽ(u)H̃ʲ(u) \| u ∈ U} into center and generators is also unsupported, u ↦ P Ṽ(u)H̃ʲ(u)e₁ not being linear there; see Findings |
 | `Eq. 20` | R_h(τ_{k+1}) = e^{Aδ}R_h(τ_k), R_p(τ_{k+1}) = e^{Aδ}R_p(τ_k) ⊕ R_p(τ₀) (21); with R_b, R_b(τ_{k+1}) = e^{Aδ}R_b(τ_k) (22), R_p(τ_{k+1}) = R_p(τ_k) ⊕ box(R_b(τ_{k+1})) (23). | n/a — restated from Girard 2005 [22, Alg. 1] and Girard, Le Guernic, Maler 2006 [65] | `restated` |
 | `Eq. 24` | R_b(τ_{k+1}) = e^{At_k}R_b(τ₀), the propagation of (22) in one step. | n/a — e^{At_k} = (e^{Aδ})^k, Mathlib's `NormedSpace.exp_nsmul` | `mathlib` |
-| `Alg. 2` | (Compute R([0, t_f])) Thm. III.1 for R*_{h,k+1} and R*_{b,k+1}, R_{p,k+1} = R_{p,k} ⊕ box(R*_{b,k+1}), Thm. III.2 for R_{h,k+1}, R_{k+1} = R_{h,k+1} ⊕ R_{p,k+1}, from Cor. IV.2 and box(conv(0ₙ, R*_{b,1})). | — partial: [`ImageSubsetOfApprox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ImageSubsetOfApprox.lean) (`Thm. III.1`, lines 1, 7, 8), [`TimeIntervalSubset.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/TimeIntervalSubset.lean) (`Thm. III.2` corrected, lines 4, 10), [`InputReachSubsetSumExpImage.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetSumExpImage.lean) (lines 3, 8, 9 with e^{Akδ} in line 8: R_p(kδ + s) ⊆ ⊕_{i=0}^{k} e^{Aiδ}R_p(δ) for s ∈ [0, δ], 0 ∈ U), [`PrintedInputPropagationCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PrintedInputPropagationCounterexample.lean) (line 8 as printed, e^{A(k+1)δ}, misses a reachable point at t = 2δ); line 2 is `Cor. IV.2`, false as printed (`Krylov.varying_input_reach_counterexample`) and corrected below the Krylov order with the thesis' remainder (`Cor. IV.2`'s row); missing: the loop with its union (line 13) | — |
+| `Alg. 2` | (Compute R([0, t_f])) Thm. III.1 for R*_{h,k+1} and R*_{b,k+1}, R_{p,k+1} = R_{p,k} ⊕ box(R*_{b,k+1}), Thm. III.2 for R_{h,k+1}, R_{k+1} = R_{h,k+1} ⊕ R_{p,k+1}, from Cor. IV.2 and box(conv(0ₙ, R*_{b,1})). | [`Alg2.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/Alg2.lean), [`Alg2Corrected.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/Alg2Corrected.lean), [`ReachSubsetAlg2Corrected.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ReachSubsetAlg2Corrected.lean), [`InputReachSubsetSumExpImage.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetSumExpImage.lean), [`ImageSubsetOfApprox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ImageSubsetOfApprox.lean), [`TimeIntervalSubset.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/TimeIntervalSubset.lean), [`PrintedInputPropagationCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PrintedInputPropagationCounterexample.lean) — the listing over plain sets, line by line, with its subroutines theorem_III.1, corollary_IV.2, theorem_III.2 as parameters and box the axis-aligned hull; corrected (line 8 at e^{Akδ}, line 10 as theorem_III.2(R*_{h,k}, theorem_III.1(R*_{h,k}, A, δ), A, δ)), every e^{At}x₀ + y, x₀ ∈ X₀, y ∈ R_p(t), t ∈ [0, t_f], lies in ⋃_{k ≤ ⌈t_f/δ⌉} R_k for a bounded U ∋ 0 whenever theorem_III.1(X, t) ⊇ e^{At}X (`Thm. III.1`), corollary_IV.2 ⊇ R_p(δ) (`Cor. IV.2` corrected, `Krylov.inputReach_subset_krylovZonotope`) and theorem_III.2(X, theorem_III.1(X, A, δ)) ⊇ e^{At}X on [0, δ] (`Thm. III.2` corrected) | `underspecified` — line 8 propagates by e^{A(k+1)δ}, one step too far (a reachable point at t = 2δ is missed, `Krylov.printed_input_propagation_counterexample`); line 10 hands `Thm. III.2` an end set R*_{h,k+1} computed from X₀, not from its start set R*_{h,k}, which `Thm. III.2` does not cover; line 2's `Cor. IV.2` is false as printed; 0 ∈ U, which line 3's conv(0ₙ, R*_{b,1}) presumes, is not stated; line 13's bound t_f/δ is read as ⌈t_f/δ⌉; see Findings |
 | `Sec. V-B` | Complexity O((o_h + o_b)n³) without and O(ξ²(o_h + o_b)n² + sξ(o_h + o_b)n³) with the Krylov subspace (Table I). | n/a — computational complexity, a subject CORALean does not cover | `not-covered` |
 | `Sec. VI` | Benchmarks and the bridge model (Tables II, Figs. 4-5). | n/a — experiments | `not-a-claim` |
 | `Eq. 32` | (A-posteriori bound at t_f) ‖e^{Ct_f}v - ‖v‖Ve^{Ht_f}e₁‖ ≤ ‖v‖h_{ξ+1,ξ} max_{[0,t_f]}\|e_ξᵀe^{Ht}e₁\|(e^{ν(C)t_f} - 1)/ν(C). | n/a — restated from Wang and Ye [58, Eq. 4.1] | `restated` |
@@ -151,9 +152,7 @@ every generator have fourth coordinate `0`, and `y₄ = π/40` exceeds `ε̃(w)�
 nothing in [1] supports the splitting.
 [`InputReachSubsetKrylovZonotope.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovZonotope.lean)
 
-The rest is not formalized, so recorded without a class.
-
-**`Alg. 2` — the step of line 8.** Line 8 propagates the input part by `e^{A(k+1)δ}`, and line 9
+**`Alg. 2` — lines 8 and 10.** Line 8 propagates the input part by `e^{A(k+1)δ}`, and line 9
 adds `box(R*_{b,k+1})`, so the input part after two steps is
 `box(conv(0ₙ, R*_{b,1})) ⊕ box(e^{2Aδ}R*_{b,1})`; the input solution at `2δ` is
 `R*_{b,1} ⊕ e^{Aδ}R*_{b,1}`, as (21) and (22) have it with `e^{Aδ}` per step. For `ẋ = -x + u`,
@@ -163,7 +162,18 @@ at `t = 2`; with `X₀ = {0}` the union of line 13 misses it. Line 8 with `kδ`,
 reads for `t_k = kδ`, encloses: `R_p(kδ + s) ⊆ ⊕_{i=0}^{k} e^{Aiδ}R_p(δ)` for `s ∈ [0, δ]`, from
 [Althoff's thesis](../2010/althoff-thesis.md) (`Prop. 3.2`, `Prop. 3.3`). It is proved with `0 ∈ U`,
 which `Alg. 2` does not state; that is what makes line 3's `conv(0ₙ, R*_{b,1})` hold `R_p(s)` for
-`s < δ` (`R_p(s) ⊆ R_p(δ)`, the input held at `0` first). As an algorithm listing the row would be `underspecified`; it stays `—` until line 2 is.
+`s < δ` (`R_p(s) ⊆ R_p(δ)`, the input held at `0` first).
+Line 10 calls `Thm. III.2` with the start set `R*_{h,k}` and the end set `R*_{h,k+1}`, the latter
+computed from `X₀` at `(k + 1)δ` (line 7). `Thm. III.2` absorbs the Krylov error of its start set's
+center and generators into the error box of its own end set `R_h(δ)` (the corrected proof); for
+an end set computed from other vectors nothing bounds that error, so the repaired listing passes
+`theorem_III.1(R*_{h,k}, A, δ)`. With these repairs, and line 2 any enclosure of `R_p(δ)` (the
+corrected `Cor. IV.2`), the union of line 13 encloses the reachable set: the pass for `k` covers
+`[kδ, (k + 1)δ]`, its homogeneous part from `R*_{h,k} ⊇ e^{Akδ}X₀`, its input part from the sum
+above. Whether line 10 as printed can fail is not settled.
+[`Alg2.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/Alg2.lean),
+[`Alg2Corrected.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/Alg2Corrected.lean),
+[`ReachSubsetAlg2Corrected.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ReachSubsetAlg2Corrected.lean),
 [`PrintedInputPropagationCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PrintedInputPropagationCounterexample.lean),
 [`InputReachSubsetSumExpImage.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetSumExpImage.lean)
 

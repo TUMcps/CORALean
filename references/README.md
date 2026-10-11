@@ -90,7 +90,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Linear Encodings for Polytope Containment Problems](2019/sadraddini-cdc-polytope-containment.md) | Sadraddini, Tedrake | CDC, pp. 4367-4372 | 2019 | 🟢 23/23 \| 17 |
 | [Interval estimation methods for discrete-time linear time-invariant systems](2019/tang-tac-interval-estimation.md) | Tang, Wang, Wang, Raïssi, Shen | IEEE Transactions on Automatic Control, 64(11):4717-4724 | 2019 | 🟢 18/18 \| 22 |
 | [Zonotopic set-membership state estimation for discrete-time descriptor LPV systems](2019/wang-tac-descriptor-lpv-estimation.md) | Wang, Wang, Puig, Cembrano | IEEE Transactions on Automatic Control, 64(5):2092-2099 | 2019 | 🟢 11/11 \| 16 |
-| [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md) | Althoff | IEEE Transactions on Automatic Control, 65(2):477-492 | 2020 | 🟡 12/13 \| 16 |
+| [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md) | Althoff | IEEE Transactions on Automatic Control, 65(2):477-492 | 2020 | 🟢 13/13 \| 16 |
 | [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md) | Gaßmann, Althoff | ACC, pp. 4715-4721 | 2020 | 🟢 15/15 \| 15 |
 | [Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances](2020/goubault-lcss-robust-underapproximations.md) | Goubault, Putot | IEEE Control Systems Letters, 4(4):928-933 | 2020 | 🟢 7/7 \| 5 |
 | [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md) | Kochdumper, Althoff | HSCC | 2020 | 🟢 16/16 \| 6 |

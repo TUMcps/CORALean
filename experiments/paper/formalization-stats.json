@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 75,
     "in_scope": 1066,
-    "formalized": 1056,
-    "not_formalized": 10,
+    "formalized": 1057,
+    "not_formalized": 9,
     "out_of_scope": 901,
     "out_of_scope_by_reason": {
       "restated": 323,
@@ -29,7 +29,7 @@
     },
     "by_class": {
       "correct": 704,
-      "underspecified": 208,
+      "underspecified": 209,
       "proof-gap": 35,
       "fixed": 101,
       "false": 8
@@ -45,9 +45,9 @@
     },
     "definitions": {
       "in_scope": 648,
-      "formalized": 642,
+      "formalized": 643,
       "correct": 462,
-      "underspecified": 125,
+      "underspecified": 126,
       "proof-gap": 0,
       "fixed": 53,
       "false": 2
@@ -2919,8 +2919,8 @@
       "year": 2020,
       "title": "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace",
       "in_scope": 13,
-      "formalized": 12,
-      "not_formalized": 1,
+      "formalized": 13,
+      "not_formalized": 0,
       "out_of_scope": 16,
       "out_of_scope_by_reason": {
         "restated": 12,
@@ -2931,7 +2931,7 @@
       },
       "by_class": {
         "correct": 5,
-        "underspecified": 2,
+        "underspecified": 3,
         "proof-gap": 1,
         "fixed": 4,
         "false": 0
@@ -2947,9 +2947,9 @@
       },
       "definitions": {
         "in_scope": 2,
-        "formalized": 1,
+        "formalized": 2,
         "correct": 0,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -2984,6 +2984,11 @@
           "result": "Cor. IV.2",
           "class": "fixed",
           "reason": "R_p,err is `Thm. IV.2`'s remainder at the center and generators and fails with it; for η ≥ ξ the splitting of {Ṽ(u)H̃ʲ(u) | u ∈ U} into center and generators is also unsupported, u ↦ P Ṽ(u)H̃ʲ(u)e₁ not being linear there; see Findings"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "line 8 propagates by e^{A(k+1)δ}, one step too far (a reachable point at t = 2δ is missed, `Krylov.printed_input_propagation_counterexample`); line 10 hands `Thm. III.2` an end set R*_{h,k+1} computed from X₀, not from its start set R*_{h,k}, which `Thm. III.2` does not cover; line 2's `Cor. IV.2` is false as printed; 0 ∈ U, which line 3's conv(0ₙ, R*_{b,1}) presumes, is not stated; line 13's bound t_f/δ is read as ⌈t_f/δ⌉; see Findings"
         },
         {
           "result": "Prop. B.1",
@@ -6050,7 +6055,7 @@
         "cora_issues": 1,
         "findings": {
           "correct": 35,
-          "underspecified": 21,
+          "underspecified": 22,
           "proof-gap": 10,
           "fixed": 9,
           "false": 0
@@ -6542,7 +6547,7 @@
         },
         "findings": {
           "correct": 150,
-          "underspecified": 57,
+          "underspecified": 58,
           "proof-gap": 18,
           "fixed": 28,
           "false": 1
@@ -6615,7 +6620,7 @@
       },
       "findings": {
         "correct": 611,
-        "underspecified": 172,
+        "underspecified": 173,
         "proof-gap": 31,
         "fixed": 78,
         "false": 7
@@ -6645,11 +6650,11 @@
       }
     },
     "theorems": {
-      "paper": 1557,
+      "paper": 1558,
       "float": 1720,
-      "helper": 1478,
+      "helper": 1480,
       "lemma": 2545,
-      "total": 7300,
+      "total": 7303,
       "examples": 120
     }
   }
