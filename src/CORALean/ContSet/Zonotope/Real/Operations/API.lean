@@ -167,6 +167,14 @@ import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetNeurons
 import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetDepth
 import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetMaxWidth
 import CORALean.ContSet.Zonotope.Real.Operations.GoffinSeparator
+import CORALean.ContSet.Zonotope.Real.Operations.DiffusionProp
+import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropLuenberger
+import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropStep
+import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStrip
+import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripMeasurement
+import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripStep
+import CORALean.ContSet.Zonotope.Real.Operations.DiffusionTimeUpdate
+import CORALean.ContSet.Zonotope.Real.Operations.DiffusionUpdate
 
 /-!
 # What `Zonotope` computes

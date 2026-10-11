@@ -34,6 +34,11 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
 import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
 import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
+import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorDecoupleRank
+import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmiGain
+import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
+import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
+import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusStepPositive
 
 /-!
 # Discrete-time linear systems, collected

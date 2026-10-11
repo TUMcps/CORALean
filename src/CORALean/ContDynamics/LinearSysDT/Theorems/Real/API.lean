@@ -58,6 +58,12 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfFaultRadiusLm
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusOfLmi
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiCoraCounterexample
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.RadiusUltimateBoundOfContraction
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorDecoupleDynamic
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorDecoupleOfRank
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiGainIff
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusLmiGainIffHMinusLmi
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusLmiPhiIffGain
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusStepPositiveIffPhi
 
 /-!
 # What holds of `LinearSysDT` only at `𝕋 := ℝ`, collected
