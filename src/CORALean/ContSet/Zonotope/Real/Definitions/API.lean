@@ -12,6 +12,8 @@ import CORALean.ContSet.Zonotope.Real.Definitions.SegmentSum
 import CORALean.ContSet.Zonotope.Real.Definitions.BackpropEnclose
 import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
 import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
+import CORALean.ContSet.Zonotope.Real.Definitions.Degree
+import CORALean.ContSet.Zonotope.Real.Definitions.MinFace
 
 /-!
 # What a zonotope means beyond its own construction

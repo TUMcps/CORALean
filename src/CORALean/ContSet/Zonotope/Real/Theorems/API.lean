@@ -319,6 +319,11 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottParallelotopeVolume
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottVolumeSum
 import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
 import CORALean.ContSet.Zonotope.Real.Theorems.GradientImageEnclosure
+import CORALean.ContSet.Zonotope.Real.Theorems.GoffinSeparatorSpec
+import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleNotSubset
+import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSamplePrintedCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleProb
+import CORALean.ContSet.Zonotope.Real.Theorems.ShenmaierVertexProb
 
 /-!
 # What `Zonotope` guarantees

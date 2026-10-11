@@ -166,6 +166,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
 import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetNeurons
 import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetDepth
 import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetMaxWidth
+import CORALean.ContSet.Zonotope.Real.Operations.GoffinSeparator
 
 /-!
 # What `Zonotope` computes

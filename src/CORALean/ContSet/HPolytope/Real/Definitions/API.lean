@@ -1,5 +1,7 @@
 import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
 import CORALean.ContSet.HPolytope.Real.Definitions.PolyNorm
+import CORALean.ContSet.HPolytope.Real.Definitions.ExtendedRow
+import CORALean.ContSet.HPolytope.Real.Definitions.NaiveHalfspaceValue
 
 /-!
 # What a halfspace polytope means beyond its own construction

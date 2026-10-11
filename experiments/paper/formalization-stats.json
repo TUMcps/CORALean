@@ -16,40 +16,40 @@
   "totals": {
     "papers": 82,
     "papers_with_findings": 71,
-    "in_scope": 1067,
-    "formalized": 984,
-    "not_formalized": 83,
-    "out_of_scope": 892,
+    "in_scope": 1064,
+    "formalized": 999,
+    "not_formalized": 65,
+    "out_of_scope": 896,
     "out_of_scope_by_reason": {
-      "restated": 319,
+      "restated": 322,
       "mathlib": 17,
-      "not-a-claim": 470,
+      "not-a-claim": 471,
       "done-differently": 12,
       "not-covered": 74
     },
     "by_class": {
-      "correct": 675,
-      "underspecified": 182,
+      "correct": 680,
+      "underspecified": 186,
       "proof-gap": 31,
-      "fixed": 90,
-      "false": 6
+      "fixed": 95,
+      "false": 7
     },
     "claims": {
-      "in_scope": 418,
-      "formalized": 380,
-      "correct": 233,
-      "underspecified": 74,
+      "in_scope": 416,
+      "formalized": 388,
+      "correct": 235,
+      "underspecified": 75,
       "proof-gap": 31,
-      "fixed": 38,
-      "false": 4
+      "fixed": 42,
+      "false": 5
     },
     "definitions": {
-      "in_scope": 649,
-      "formalized": 604,
-      "correct": 442,
-      "underspecified": 108,
+      "in_scope": 648,
+      "formalized": 611,
+      "correct": 445,
+      "underspecified": 111,
       "proof-gap": 0,
-      "fixed": 52,
+      "fixed": 53,
       "false": 2
     }
   },
@@ -552,8 +552,8 @@
       "year": 2009,
       "title": "Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions",
       "in_scope": 15,
-      "formalized": 9,
-      "not_formalized": 6,
+      "formalized": 13,
+      "not_formalized": 2,
       "out_of_scope": 5,
       "out_of_scope_by_reason": {
         "restated": 3,
@@ -563,26 +563,26 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 3,
-        "underspecified": 3,
+        "correct": 4,
+        "underspecified": 6,
         "proof-gap": 0,
         "fixed": 3,
         "false": 0
       },
       "claims": {
         "in_scope": 4,
-        "formalized": 2,
-        "correct": 0,
-        "underspecified": 1,
+        "formalized": 4,
+        "correct": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
       },
       "definitions": {
         "in_scope": 11,
-        "formalized": 7,
+        "formalized": 9,
         "correct": 3,
-        "underspecified": 2,
+        "underspecified": 4,
         "proof-gap": 0,
         "fixed": 2,
         "false": 0
@@ -592,6 +592,11 @@
           "result": "Sec. II",
           "class": "fixed",
           "reason": "the printed form is the one for the drift `-A`: in `ℝ¹` with `λ = C = t = 1`, `Σ_s = (e² - 1)/2` and the formula gives `(1 - e⁻²)/2`; see Findings"
+        },
+        {
+          "result": "Def. 2",
+          "class": "underspecified",
+          "reason": "the definition leaves open the initial density `f₀` (Sec. II's Gaussian here) and the class of the input signals (Eq. 1's Lipschitz `u`, measurable here as in `LinearSys.inputReach`); see Findings"
         },
         {
           "result": "Prop. 1",
@@ -612,6 +617,16 @@
           "result": "Sec. V",
           "class": "underspecified",
           "reason": "`𝒵` has no single density `f_𝒵`; for each mean in `Z` the probability of `Ψ` is at most, not exactly, `1 - erf(γ/√2)ⁿ`; see Findings"
+        },
+        {
+          "result": "Prop. 4",
+          "class": "underspecified",
+          "reason": "the input class (Lipschitz `u`, measurable here) and the `+`, an independent sum, are left open; `η` of an interval's hull is defined only for the representative at `r`; see Findings"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the listing says `h` time intervals and loops to `ζ`, takes `ℛ̂([0,r])`, `R̄(r)`, `ℛ̲(r)` from elsewhere, and the first interval's noise enters only through `η(ℛ̄(r), γ)`, a set; see Findings"
         },
         {
           "result": "Eq. 7",
@@ -1174,26 +1189,26 @@
       "label": "Cerny 2012",
       "year": 2012,
       "title": "Goffin's algorithm for zonotopes",
-      "in_scope": 28,
-      "formalized": 20,
-      "not_formalized": 8,
-      "out_of_scope": 18,
+      "in_scope": 25,
+      "formalized": 23,
+      "not_formalized": 2,
+      "out_of_scope": 21,
       "out_of_scope_by_reason": {
-        "restated": 5,
+        "restated": 8,
         "mathlib": 0,
         "not-a-claim": 3,
         "done-differently": 0,
         "not-covered": 10
       },
       "by_class": {
-        "correct": 15,
-        "underspecified": 4,
+        "correct": 17,
+        "underspecified": 5,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
       },
       "claims": {
-        "in_scope": 8,
+        "in_scope": 6,
         "formalized": 4,
         "correct": 2,
         "underspecified": 2,
@@ -1202,10 +1217,10 @@
         "false": 0
       },
       "definitions": {
-        "in_scope": 20,
-        "formalized": 16,
-        "correct": 13,
-        "underspecified": 2,
+        "in_scope": 19,
+        "formalized": 19,
+        "correct": 15,
+        "underspecified": 3,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
@@ -1230,6 +1245,11 @@
           "result": "Lemma 4.4",
           "class": "underspecified",
           "reason": "the cut and the formula need `n ≥ 2`, which the lemma does not say; see Findings"
+        },
+        {
+          "result": "Sec. 4.6 (algorithm)",
+          "class": "underspecified",
+          "reason": "the cut of Lemma 4.3 needs `n ≥ 2`, which the algorithm does not say; see Findings"
         },
         {
           "result": "Eq. 19",
@@ -2816,8 +2836,8 @@
       "year": 2020,
       "title": "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace",
       "in_scope": 13,
-      "formalized": 7,
-      "not_formalized": 6,
+      "formalized": 10,
+      "not_formalized": 3,
       "out_of_scope": 16,
       "out_of_scope_by_reason": {
         "restated": 12,
@@ -2827,19 +2847,19 @@
         "not-covered": 1
       },
       "by_class": {
-        "correct": 4,
+        "correct": 5,
         "underspecified": 2,
         "proof-gap": 1,
-        "fixed": 0,
+        "fixed": 2,
         "false": 0
       },
       "claims": {
         "in_scope": 11,
-        "formalized": 6,
-        "correct": 4,
+        "formalized": 9,
+        "correct": 5,
         "underspecified": 1,
         "proof-gap": 1,
-        "fixed": 0,
+        "fixed": 2,
         "false": 0
       },
       "definitions": {
@@ -2861,6 +2881,16 @@
           "result": "Thm. III.1",
           "class": "underspecified",
           "reason": "ε_norm is computed per vector (Appendix B: h_{ξ+1,ξ} and ω come from that vector's Arnoldi run), and one ε_norm for c and every g⁽ⁱ⁾ holds only as their maximum; the formalization takes one bound per vector, as Thm. IV.1 does"
+        },
+        {
+          "result": "Thm. III.2",
+          "class": "fixed",
+          "reason": "the printed `N` drops the `[-1, 1]` in front of `‖g⁽ⁱ⁾‖V(g⁽ⁱ⁾)F(g⁽ⁱ⁾)e₁` on the claim that `F(g⁽ⁱ⁾)` is symmetric; its entries `[(i^{-i/(i-1)} - i^{-1/(i-1)})δⁱ, 0]` are not, and `e^{A/2}(e₃ - e₁)` escapes for the `3 × 3` shift; see Findings"
+        },
+        {
+          "result": "Cor. IV.1",
+          "class": "fixed",
+          "reason": "the difference of `Lemma IV.1`'s two error boxes has the sum of their radii, not `ε̃_norm(t_e - t₀)`; at `A = 3`, `u = 4`, `δ = 1`, `ξ = 1`, `[t₀, t_e] = [0, 1/9]` the printed box is too small; see Findings"
         },
         {
           "result": "Prop. B.1",
@@ -4504,39 +4534,39 @@
       "year": 2024,
       "title": "Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems",
       "in_scope": 18,
-      "formalized": 13,
-      "not_formalized": 5,
-      "out_of_scope": 9,
+      "formalized": 18,
+      "not_formalized": 0,
+      "out_of_scope": 10,
       "out_of_scope_by_reason": {
         "restated": 6,
         "mathlib": 0,
-        "not-a-claim": 3,
+        "not-a-claim": 4,
         "done-differently": 0,
         "not-covered": 0
       },
       "by_class": {
-        "correct": 10,
+        "correct": 11,
         "underspecified": 0,
         "proof-gap": 0,
-        "fixed": 3,
-        "false": 0
+        "fixed": 6,
+        "false": 1
       },
       "claims": {
         "in_scope": 6,
-        "formalized": 3,
+        "formalized": 6,
         "correct": 1,
         "underspecified": 0,
         "proof-gap": 0,
-        "fixed": 2,
-        "false": 0
+        "fixed": 4,
+        "false": 1
       },
       "definitions": {
         "in_scope": 12,
-        "formalized": 10,
-        "correct": 9,
+        "formalized": 12,
+        "correct": 10,
         "underspecified": 0,
         "proof-gap": 0,
-        "fixed": 1,
+        "fixed": 2,
         "false": 0
       },
       "findings": [
@@ -4554,6 +4584,26 @@
           "result": "Thm. 4.3",
           "class": "fixed",
           "reason": "Ê ⊆ E is not random: with Ê ⊄ E, one sample of [-1, 1]² returns P_Shs ≈ 0.086 > 0 = P(Ê ⊆ E); the proof picks ε = 1 - r_Shs after sampling; true at a fixed ε; see Findings"
+        },
+        {
+          "result": "Thm. 4.6",
+          "class": "fixed",
+          "reason": "`P_Svs` is not a probability that `Ê ⊆ E`, which is not random: with `Ê ⊄ E`, one sample of `B₁` returns `P_Svs > 0 = P(Ê ⊆ E)`; true at a fixed `ε`, proved at `p = ∞` only; see Findings"
+        },
+        {
+          "result": "Cor. 4.7",
+          "class": "fixed",
+          "reason": "`Ẑ ⊆ Ê` is not random: with `Ẑ ⊄ Ê`, one sampled corner of norm `19/20` gives `P_S(1/20) > 0 = P(Ẑ ⊆ Ê)`; true at a fixed `ε`; see Findings"
+        },
+        {
+          "result": "Cor. 4.8",
+          "class": "false",
+          "reason": "`Ê ⊆ Ẑ` is not random (one sampled facet gives `P_S(9/10) > 0` for `Ê ⊄ Ẑ`), and the printed `r_hs` falls short of the radius by `Eq. 11`'s error, so not even `r_hs ≥ (1 - ε) r` holds with a probability `P_S(ε) > 0` (`ℝ¹`, `p = 2`: `r = 2`, `r_hs ≤ √2`); no corrected version of this statement is proved; see Findings"
+        },
+        {
+          "result": "App. B",
+          "class": "fixed",
+          "reason": "the exponent is the dimension `m` of the coefficients `B_q` lives in, not the printed `n` of the image: `n = 1`, `m = 2`, `q = ∞`, `M = (√2/2, √2/2)` has `√2 ∈ E_∞(M)` outside `1^{1/2}B₂`; see Findings"
         }
       ]
     },
@@ -5336,7 +5386,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 51,
+          "correct": 52,
           "underspecified": 17,
           "proof-gap": 0,
           "fixed": 9,
@@ -5363,7 +5413,7 @@
         "cora_issues": 3,
         "findings": {
           "correct": 35,
-          "underspecified": 5,
+          "underspecified": 6,
           "proof-gap": 2,
           "fixed": 3,
           "false": 2
@@ -5544,11 +5594,11 @@
         },
         "cora_issues": 4,
         "findings": {
-          "correct": 42,
+          "correct": 43,
           "underspecified": 15,
           "proof-gap": 0,
           "fixed": 8,
-          "false": 1
+          "false": 2
         }
       },
       {
@@ -5674,10 +5724,10 @@
         },
         "cora_issues": 5,
         "findings": {
-          "correct": 120,
+          "correct": 122,
           "underspecified": 31,
           "proof-gap": 3,
-          "fixed": 14,
+          "fixed": 15,
           "false": 1
         }
       },
@@ -5727,7 +5777,7 @@
         "cora_issues": 2,
         "findings": {
           "correct": 44,
-          "underspecified": 5,
+          "underspecified": 6,
           "proof-gap": 1,
           "fixed": 3,
           "false": 0
@@ -5830,10 +5880,10 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 34,
-          "underspecified": 17,
+          "correct": 35,
+          "underspecified": 19,
           "proof-gap": 10,
-          "fixed": 5,
+          "fixed": 7,
           "false": 0
         }
       },
@@ -6298,11 +6348,11 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 362,
-          "underspecified": 94,
+          "correct": 366,
+          "underspecified": 95,
           "proof-gap": 7,
-          "fixed": 44,
-          "false": 4
+          "fixed": 45,
+          "false": 5
         }
       },
       "contDynamics": {
@@ -6322,10 +6372,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 141,
-          "underspecified": 49,
+          "correct": 142,
+          "underspecified": 52,
           "proof-gap": 18,
-          "fixed": 23,
+          "fixed": 25,
           "false": 1
         }
       },
@@ -6395,11 +6445,11 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 584,
-        "underspecified": 155,
+        "correct": 589,
+        "underspecified": 159,
         "proof-gap": 27,
-        "fixed": 70,
-        "false": 5
+        "fixed": 73,
+        "false": 6
       }
     },
     "findings_not_on_a_class": {
@@ -6407,7 +6457,7 @@
         "correct": 68,
         "underspecified": 19,
         "proof-gap": 4,
-        "fixed": 14,
+        "fixed": 16,
         "false": 1
       },
       "specification": {
@@ -6426,11 +6476,11 @@
       }
     },
     "theorems": {
-      "paper": 1368,
+      "paper": 1404,
       "float": 1704,
-      "helper": 1207,
+      "helper": 1220,
       "lemma": 2458,
-      "total": 6737,
+      "total": 6786,
       "examples": 120
     }
   }

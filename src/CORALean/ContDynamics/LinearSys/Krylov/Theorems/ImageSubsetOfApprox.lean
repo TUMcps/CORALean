@@ -9,7 +9,7 @@ known at the centre and at each generator only up to an error box — `M c ∈ �
 `M gᵢ ∈ ĝᵢ ⊕ [-1, 1]ⁿ eᵢ`, Lemmas III.1 and IV.1 — then `M⟨c, g⟩ ⊆ ⟨ĉ, ĝ⟩ ⊕ [-1, 1]ⁿ(e_c + Σ eᵢ)`.
 By linearity, `M(c + Σ βᵢgᵢ) = ĉ + Σ βᵢĝᵢ` plus an error at most `e_c + Σ |βᵢ| eᵢ` in each
 coordinate. One error per vector, as Thm. IV.1 writes it: Thm. III.1's single `ε_norm` is
-the case of equal `εᵢ`, `eᵢ = ‖gᵢ‖ ε t`.
+the case of equal `εᵢ`, `eᵢ = ‖gᵢ‖ ε t`. [1, Alg. 2] calls it in lines 1, 7 and 8.
 
 ## References
 

@@ -176,6 +176,16 @@ import CORALean.Global.EllipsotopeContainmentRadius
 import CORALean.Global.LinearRelaxationRadiusLe
 import CORALean.Global.ParallelotopeLRExact
 import CORALean.Global.ParallelotopeLRExactCounterexample
+import CORALean.Global.EllipsotopeRoundingCounterexample
+import CORALean.Global.EllipsotopeRoundingOfLeTwo
+import CORALean.Global.EllipsotopeRoundingOfTwoLe
+import CORALean.Global.LpNormLeCardRpowMul
+import CORALean.Global.LpNormLeLpNorm
+import CORALean.Global.NormTwoMulVecLe
+import CORALean.Global.NormTwoSqEqDotProduct
+import CORALean.Global.NormTwoTransposeMulVecEq
+import CORALean.Global.ShenmaierVertexCounterexample
+import CORALean.Global.L1BallOrthantVolume
 /-!
 # Global definitions, collected
 
