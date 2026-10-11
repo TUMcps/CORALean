@@ -176,6 +176,14 @@ import CORALean.Global.GadgetRadiusIff
 import CORALean.Global.GadgetRadiusIffCounterexample
 import CORALean.Global.GadgetSigmaCounterexample
 import CORALean.Global.EllipsotopeContainmentRadius
+import CORALean.Global.LinearRelaxationExact
+import CORALean.Global.EllipsoidContainmentRadiusSDP
+import CORALean.Global.EllipsoidContainmentRadiusSDPOfSurjective
+import CORALean.Global.ExistsQuadNeg
+import CORALean.Global.IsPinvOfSurjective
+import CORALean.Global.SLemma
+import CORALean.Global.SLemmaHomogeneous
+import CORALean.Global.SLemmaPosSemidef
 import CORALean.Global.LinearRelaxationRadiusLe
 import CORALean.Global.ParallelotopeLRExact
 import CORALean.Global.ParallelotopeLRExactCounterexample

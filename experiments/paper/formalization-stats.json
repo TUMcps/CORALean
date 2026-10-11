@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 72,
     "in_scope": 1063,
-    "formalized": 1016,
-    "not_formalized": 47,
+    "formalized": 1018,
+    "not_formalized": 45,
     "out_of_scope": 898,
     "out_of_scope_by_reason": {
       "restated": 322,
@@ -28,7 +28,7 @@
       "not-covered": 74
     },
     "by_class": {
-      "correct": 691,
+      "correct": 693,
       "underspecified": 190,
       "proof-gap": 32,
       "fixed": 96,
@@ -36,8 +36,8 @@
     },
     "claims": {
       "in_scope": 416,
-      "formalized": 391,
-      "correct": 235,
+      "formalized": 393,
+      "correct": 237,
       "underspecified": 76,
       "proof-gap": 32,
       "fixed": 43,
@@ -5068,8 +5068,8 @@
       "year": 2025,
       "title": "Approximability of the Containment Problem for Zonotopes and Ellipsotopes",
       "in_scope": 20,
-      "formalized": 13,
-      "not_formalized": 7,
+      "formalized": 15,
+      "not_formalized": 5,
       "out_of_scope": 31,
       "out_of_scope_by_reason": {
         "restated": 9,
@@ -5079,7 +5079,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 7,
+        "correct": 9,
         "underspecified": 3,
         "proof-gap": 0,
         "fixed": 2,
@@ -5087,8 +5087,8 @@
       },
       "claims": {
         "in_scope": 16,
-        "formalized": 9,
-        "correct": 3,
+        "formalized": 11,
+        "correct": 5,
         "underspecified": 3,
         "proof-gap": 0,
         "fixed": 2,
@@ -6485,7 +6485,7 @@
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 68,
+        "correct": 70,
         "underspecified": 21,
         "proof-gap": 4,
         "fixed": 16,
@@ -6507,11 +6507,11 @@
       }
     },
     "theorems": {
-      "paper": 1423,
+      "paper": 1429,
       "float": 1704,
-      "helper": 1239,
-      "lemma": 2469,
-      "total": 6835,
+      "helper": 1263,
+      "lemma": 2471,
+      "total": 6867,
       "examples": 120
     }
   }
