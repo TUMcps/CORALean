@@ -255,6 +255,7 @@ tlmSq | [0.000000, 2.250000] | ok
 tlmSum | [0.500000, 3.750000] | ok
 tlmSqBox | [0.000000, 2.250000] | ok
 tlmSumBox | [0.500000, 3.750000] | ok
+tlmExpDeep | [-inf, inf] | ok
 eqBoolRun | false | ok
 eqBoolSelf | true | ok
 arxModel | [0.500000, 1.062500] | ok

@@ -142,6 +142,7 @@ import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
 import CORALean.ContSet.Taylm.Float.Operations.Times
 import CORALean.ContSet.Taylm.Float.Operations.Plus
 import CORALean.ContSet.Taylm.Float.Operations.Bounds
+import CORALean.ContSet.Taylm.Float.Operations.Exp
 import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
 import CORALean.ContSet.Equality.Float.Instances
 import CORALean.ContSet.Equality.Float.Operations.EqBool
@@ -1303,6 +1304,11 @@ def tlmSq : Taylm D 1 := tlmX.times tlmX
 def tlmSum : Taylm D 1 := tlmSq.plus tlmX
 def tlmSqBox : Interval D := ⟨tlmSq.bounds.1, tlmSq.bounds.2⟩
 def tlmSumBox : Interval D := ⟨tlmSum.bounds.1, tlmSum.bounds.2⟩
+
+/-- `exp (x · x)` at the reduction depth `53`, far above the mantissa width `24`: `expUp`
+returns an exponent about `2 ^ 32`, which `addUp` and `le` take without forming `2 ^ gap` (#131).
+The range is sound and astronomically wide, so it prints as infinite. -/
+def tlmExpDeep : Taylm D 1 := tlmSq.exp 53
 
 def eqBoolRun : Bool := ContSet.eqBool Z Z_plus
 def eqBoolSelf : Bool := ContSet.eqBool Z Z

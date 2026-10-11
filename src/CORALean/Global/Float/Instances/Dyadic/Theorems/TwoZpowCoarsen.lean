@@ -1,0 +1,36 @@
+import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenUp
+import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
+
+/-!
+# The alignment of a coarsening
+
+`two_zpow_align` at the shift `(e - exponent).toNat` and the exponent `max exponent e` that
+`coarsenUp` and `coarsenDown` use.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       10-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float.Dyadic
+
+variable {p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem two_zpow_coarsen (d : Dyadic p) (e : ℤ) :
+    (2 : ℝ) ^ (e - d.exponent).toNat * 2 ^ d.exponent = 2 ^ max d.exponent e := by
+  have h : d.exponent ≤ max d.exponent e := le_max_left _ _
+  have hk : (e - d.exponent).toNat = (max d.exponent e - d.exponent).toNat := by omega
+  rw [hk]
+  exact two_zpow_align h
+
+end CORALean.Float.Dyadic
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
