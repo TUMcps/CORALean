@@ -41,12 +41,12 @@
 <rect x="150.0" y="168" width="343.4" height="14" fill="rgb(120,197,127)"/>
 <text x="321.7" y="179" text-anchor="middle" font-size="9" fill="#000">704</text>
 <rect x="493.4" y="168" width="16.1" height="14" fill="rgb(237,177,32)"/>
-<rect x="509.5" y="168" width="98.5" height="14" fill="rgb(255,174,76)"/>
-<text x="558.8" y="179" text-anchor="middle" font-size="9" fill="#000">202</text>
-<rect x="608.0" y="168" width="47.8" height="14" fill="rgb(241,141,145)"/>
-<text x="632.0" y="179" text-anchor="middle" font-size="9" fill="#000">98</text>
-<rect x="655.9" y="168" width="3.4" height="14" fill="rgb(162,20,47)"/>
-<rect x="659.3" y="168" width="10.7" height="14" fill="rgb(255,255,255)"/>
+<rect x="509.5" y="168" width="100.0" height="14" fill="rgb(255,174,76)"/>
+<text x="559.5" y="179" text-anchor="middle" font-size="9" fill="#000">205</text>
+<rect x="609.5" y="168" width="47.8" height="14" fill="rgb(241,141,145)"/>
+<text x="633.4" y="179" text-anchor="middle" font-size="9" fill="#000">98</text>
+<rect x="657.3" y="168" width="3.4" height="14" fill="rgb(162,20,47)"/>
+<rect x="660.7" y="168" width="9.3" height="14" fill="rgb(255,255,255)"/>
 <rect x="150" y="168" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="675.0" y="179" font-size="9" fill="#888">+901</text>
 <rect x="150" y="194" width="12" height="12" fill="rgb(120,197,127)" stroke="#000" stroke-width="0.8"/>
@@ -63,13 +63,13 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="110.9" height="14" fill="rgb(0,114,189)"/>
-<text x="205.5" y="259" text-anchor="middle" font-size="9" fill="#fff">1519</text>
-<rect x="260.9" y="248" width="183.8" height="14" fill="rgb(42,92,173)"/>
-<text x="352.9" y="259" text-anchor="middle" font-size="9" fill="#000">2517</text>
-<rect x="444.8" y="248" width="124.4" height="14" fill="rgb(84,69,158)"/>
-<text x="507.0" y="259" text-anchor="middle" font-size="9" fill="#000">1704</text>
-<rect x="569.2" y="248" width="100.8" height="14" fill="rgb(126,47,142)"/>
+<rect x="150.0" y="248" width="111.2" height="14" fill="rgb(0,114,189)"/>
+<text x="205.6" y="259" text-anchor="middle" font-size="9" fill="#fff">1524</text>
+<rect x="261.2" y="248" width="183.7" height="14" fill="rgb(42,92,173)"/>
+<text x="353.1" y="259" text-anchor="middle" font-size="9" fill="#000">2518</text>
+<rect x="445.0" y="248" width="124.3" height="14" fill="rgb(84,69,158)"/>
+<text x="507.1" y="259" text-anchor="middle" font-size="9" fill="#000">1704</text>
+<rect x="569.3" y="248" width="100.7" height="14" fill="rgb(126,47,142)"/>
 <text x="619.6" y="259" text-anchor="middle" font-size="9" fill="#000">1380</text>
 <rect x="150" y="248" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="274" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
