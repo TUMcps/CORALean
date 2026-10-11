@@ -1,0 +1,434 @@
+{
+  "_comment": "One short description per `false`/`fixed` row of references/<year>/*.md, keyed by page and result label as printed in the row (without backticks): what is wrong, from the row's Class cell and the page's Findings. Text is LaTeX-escaped by the generator except inside $...$. The optional `fix` names the linked Lean file that carries the corrected theorem when it is not the first linked theorem file that is not a counterexample. Read by scripts/errors-table.py for experiments/paper/latex/appendix-errors.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry.",
+  "2003/makino-ijpam-taylor-models": {
+    "Def. 3 (arcsin)": {
+      "description": "addition formula needs $|\\arcsin f - \\arcsin c_f| \\le \\pi/2$"
+    },
+    "Def. 3 (arctan)": {
+      "description": "addition formula needs $1 + c_f f > 0$"
+    },
+    "Def. 3 (antiderivation)": {
+      "description": "remainder scaled by the width, not the signed lengths",
+      "fix": "AntiderivOuter.lean"
+    },
+    "Thm. 1": {
+      "description": "hypotheses do not bound the polynomial parts uniformly in $h$",
+      "fix": "TimesScaled.lean"
+    }
+  },
+  "2005/girard-hscc-reachability-zonotopes": {
+    "Lemma 2": {
+      "description": "error factor $1/2 + r$ should be $1/2 + r\\|A\\|$",
+      "fix": "HausdorffDistIUnionReachSetLinCombPlusCubeLe.lean"
+    },
+    "Thm. 1": {
+      "description": "inherits Lemma~2's error factor; $1/2 + r\\|A\\|$ needed",
+      "fix": "HausdorffDistGirardReachLe.lean"
+    }
+  },
+  "2006/kurzhanskiy-cdc-ellipsoidal-toolbox": {
+    "Sec. II (sign of the distance)": {
+      "description": "strict sign printed; boundary and touching sets give $0$"
+    }
+  },
+  "2008/althoff-cdc-conservative-linearization": {
+    "Eq. 7": {
+      "description": "condition $\\hat{L} \\le \\bar{L}$ does not imply (6)"
+    }
+  },
+  "2009/althoff-ecc-enclosing-hulls": {
+    "Sec. II": {
+      "description": "covariance formula is the one for the drift $-A$"
+    },
+    "Prop. 1": {
+      "description": "normalization $(2\\pi)^{-q/2}$ should be $(2\\pi)^{-n/2}$",
+      "fix": "GZonotopeLawDensity.lean"
+    },
+    "Eq. 7": {
+      "description": "volumes lack the density heights as factors"
+    }
+  },
+  "2009/campi-automatica-interval-predictor-models": {
+    "Thm. 4": {
+      "description": "pairwise independence of Def.~5 too weak for the bound"
+    }
+  },
+  "2009/lara-infocomp-hyperbox-hyperplane": {
+    "Cor. 6.3 (1)": {
+      "description": "edge criterion false at a vertex that is not low"
+    },
+    "Lemma 6.5": {
+      "description": "a piece's own face can miss the plane"
+    }
+  },
+  "2010/trombettoni-cp-box-consistency": {
+    "Sec. 3 (extremal functions)": {
+      "description": "sufficiency needs $f(x, \\cdot)$ continuous"
+    }
+  },
+  "2011/althoff-cdc-zonotope-bundles": {
+    "Prop. 7": {
+      "description": "``if'' direction of the equivalence is false"
+    },
+    "Eq. 2": {
+      "description": "halves printed disjoint, but they share the cut",
+      "fix": "SplitInter.lean"
+    }
+  },
+  "2011/althoff-reachability-parametric-uncertainties": {
+    "Prop. 3": {
+      "description": "generators $L^{(j)}$ off by a factor of two"
+    }
+  },
+  "2012/althoff-hscc-avoiding-intersection": {
+    "Thm. 1": {
+      "description": "enclosure needs factors shared by all coordinates"
+    },
+    "Sec. 5.2": {
+      "description": "$\\underline{\\omega} \\ge 0$ admits touching; needs $\\underline{\\omega} > 0$"
+    },
+    "Prop. 3": {
+      "description": "per-coordinate factors leave the matrix zonotope",
+      "fix": "HitHessianNumMemHitHessianMatZono.lean"
+    }
+  },
+  "2012/cerny-kybernetika-goffin-zonotopes": {
+    "Sec. 1.1 (ellipse)": {
+      "description": "ellipse centred at $-E^{1/2}s$ instead of $s$"
+    }
+  },
+  "2013/althoff-hscc-conservative-polynomialization": {
+    "Eq. 7": {
+      "description": "equality printed where only an enclosure holds"
+    },
+    "Prop. 2": {
+      "description": "stretch factor $1 + \\gamma_j$ undershoots for $\\gamma_j < 0$"
+    }
+  },
+  "2013/mullier-rc-general-inner-approximation": {
+    "Eq. 13": {
+      "description": "constraint infeasible once $m \\ge 2$; implication (14) meant"
+    },
+    "Eq. 16": {
+      "description": "sign of $\\mu$ flipped; admits a singular sub-matrix"
+    }
+  },
+  "2014/althoff-tac-nonlinear-dae": {
+    "Eq. 10": {
+      "description": "one Lagrange point $\\xi$ shared by all rows"
+    },
+    "Eq. 11": {
+      "description": "one Lagrange point $\\xi$ shared by all rows"
+    },
+    "Eq. 20": {
+      "description": "one Lagrange point $\\xi$ shared by all rows"
+    }
+  },
+  "2014/raman-cdc-mpc-stl": {
+    "Sec. II-C": {
+      "description": "robustness equivalence fails at $\\rho = 0$"
+    },
+    "Sec. IV-B.3 (temporal)": {
+      "description": "encoding needs horizon $N \\ge t + \\mathrm{bound}(\\varphi)$"
+    },
+    "Sec. IV-B.3 (until)": {
+      "description": "until recursion lets $\\varphi_2$ end where $\\varphi_1$ fails"
+    },
+    "Sec. IV-B.3 (correctness)": {
+      "description": "needs the corrected until and a long enough horizon"
+    },
+    "Eq. 5": {
+      "description": "only the ``if'' holds; ties break ``only if''",
+      "fix": "RobustSelectorCounterexample.lean"
+    },
+    "Sec. V (correctness)": {
+      "description": "$r > 0$ is sufficient, not necessary; until corrected"
+    }
+  },
+  "2015/althoff-arxiv-minkowski-difference": {
+    "Prop. 5": {
+      "description": "alignment factors must lie in $[0, 1]$"
+    },
+    "Prop. 6": {
+      "description": "needs $\\mu \\ge 0$; normal in (23) has the wrong sign"
+    }
+  },
+  "2016/proctor-siads-dmd-control": {
+    "Eq. 3": {
+      "description": "$X$ and $X'$ swapped"
+    },
+    "Eq. 13": {
+      "description": "for $\\lambda = 0$ the projected mode is no eigenvector"
+    },
+    "Eq. 24": {
+      "description": "for $\\lambda = 0$ the projected mode is no eigenvector"
+    }
+  },
+  "2016/scott-automatica-constrained-zonotopes": {
+    "Sec. 4.2 (choice of j)": {
+      "description": "$r_j = 0$ insufficient: Algorithm~1's $R$ violates (A.1)",
+      "fix": "PartialSolveEqOfRZero.lean"
+    }
+  },
+  "2017/bak-formats-time-triggered-conversion": {
+    "Lemma 2": {
+      "description": "error is zero only against the unbounded reachable set"
+    },
+    "Thm. 1": {
+      "description": "no scaling time brings the conversion error below $\\delta$"
+    }
+  },
+  "2017/wang-ccc-fault-detection-observer": {
+    "Eq. 10": {
+      "description": "enclosure needs a fault-free output $f_k = 0$"
+    },
+    "Eq. 16": {
+      "description": "radius bound must use the reduced generators",
+      "fix": "FaultObservePRadiusLe.lean"
+    }
+  },
+  "2018/halder-cdc-minkowski-sum-ellipsoids": {
+    "Eq. 24": {
+      "description": "expansion counts the $\\mu_1$ term twice"
+    },
+    "Lemma 2": {
+      "description": "$\\mu$ not strictly increasing ($d = 3$)"
+    },
+    "Cor. 1": {
+      "description": "$\\mu$ not always positive ($d = 3$)"
+    }
+  },
+  "2018/singh-neurips-deepz": {
+    "Thm. 3.2": {
+      "description": "curvature of the S-shape condition reversed"
+    }
+  },
+  "2018/wang-automatica-descriptor-observer": {
+    "Thm. 4": {
+      "description": "printed bound (28) fails; the LMI bounds by $\\operatorname{tr} M$"
+    }
+  },
+  "2019/sadraddini-cdc-polytope-containment": {
+    "Eq. 4": {
+      "description": "false for non-square $X$; equality row missing"
+    },
+    "Eq. 7": {
+      "description": "ill-typed, offset dropped, range row missing"
+    },
+    "Prop. 7": {
+      "description": "wrong sign on $\\bar{x}$ in a certificate row"
+    }
+  },
+  "2019/tang-tac-interval-estimation": {
+    "Remark 2": {
+      "description": "absolute values missing in the row sums"
+    },
+    "Lemma 5": {
+      "description": "image printed equal to a box; only its hull is"
+    },
+    "Thm. 7": {
+      "description": "hypothesis $A - LC \\ge 0$ missing"
+    }
+  },
+  "2019/wang-tac-descriptor-lpv-estimation": {
+    "Remark 1": {
+      "description": "second equality holds only as $\\le$"
+    },
+    "Thm. 2": {
+      "description": "LMI (20) infeasible; (19) merges two coefficients"
+    },
+    "Lemma 2": {
+      "description": "conditions (28) admit a singular sum; strict (28b) needed"
+    },
+    "Cor. 2": {
+      "description": "vertex LMIs do not give the scheduled LMI"
+    }
+  },
+  "2020/althoff-tac-krylov": {
+    "Thm. III.2": {
+      "description": "$[-1, 1]$ factor dropped; $F(g^{(i)})$ is not symmetric"
+    },
+    "Cor. IV.1": {
+      "description": "error radius must be the sum of both radii"
+    }
+  },
+  "2020/gassmann-acc-zonotope-ellipsoid": {
+    "Lemma 5": {
+      "description": "axis test must be measured from the centre"
+    }
+  },
+  "2020/kochdumper-hscc-nonlinear-guards": {
+    "Thm. 1": {
+      "description": "equality needs $p_k$ independent of $x(k)$",
+      "fix": "IntersectLevelSetBoxExact.lean"
+    },
+    "Example 2": {
+      "description": "solved form undefined on the line $x_1 = 0$"
+    },
+    "Prop. 2": {
+      "description": "sign of $v(x)$ flipped in (11)"
+    },
+    "Eq. 14": {
+      "description": "one remainder point shared by all coordinates"
+    }
+  },
+  "2020/wetzlinger-cdc-adaptive-tuning": {
+    "Prop. 2": {
+      "description": "needs $\\varepsilon_P(\\Delta t)/\\Delta t \\to 0$, which Def.~1 lacks"
+    }
+  },
+  "2021/kulmburg-ejc-zonotope-containment": {
+    "Lemma 1": {
+      "description": "unit ball is $P$ only if every $h_i > 0$"
+    },
+    "Remark 2": {
+      "description": "$S_Z$ does not exist for degenerate $Z$ centred at $0$"
+    },
+    "Eq. 29": {
+      "description": "halfspace set is the parallelotope of $Z^{-1}$, not $Z$"
+    },
+    "Eq. 30": {
+      "description": "equality false; only $R_1 \\le n R_\\infty$ holds"
+    }
+  },
+  "2022/althoff-arch-power-systems": {
+    "Sec. 3.1.2": {
+      "description": "criterion does not give the limit $D$ asks for",
+      "fix": "SubsetRegionOfAttraction.lean"
+    }
+  },
+  "2022/wetzlinger-nahs-abstraction-error": {
+    "Lemma 3": {
+      "description": "dichotomy false for smooth, non-analytic $f$"
+    },
+    "Def. 6": {
+      "description": "maximum printed where a minimum is meant"
+    },
+    "Prop. 2 (derivative)": {
+      "description": "limit can be positive; needs $g'(0)/g(0) \\ge 0$",
+      "fix": "GainDimDerivLimitNonpos.lean"
+    }
+  },
+  "2022/yang-lcss-zonotopic-underapproximation": {
+    "Prop. 2": {
+      "description": "uses $W$'s halfspaces instead of $EW$'s"
+    },
+    "Prop. 4": {
+      "description": "inherits Prop.~2's use of $W$'s halfspaces"
+    },
+    "Prop. 5": {
+      "description": "outer half inherits Prop.~2's use of $W$'s halfspaces",
+      "fix": "BackReachAlignedOuter.lean"
+    },
+    "Eq. 16": {
+      "description": "sets printed equal; only an inclusion holds"
+    }
+  },
+  "2023/althoff-arch-reachset-conformance": {
+    "Sec. 2.2": {
+      "description": "falsification test needs $-V$, not $V$"
+    },
+    "Table 2": {
+      "description": "capsule test $< r$ should be $\\le r$"
+    },
+    "Eq. 7": {
+      "description": "closed form fails for a disturbance constant on $[0, t]$"
+    }
+  },
+  "2023/liu-tro-guarantees-real-robotic": {
+    "Eq. 7": {
+      "description": "input enters through $A^i B$ instead of $A^{k-i} B$"
+    }
+  },
+  "2023/luetzow-cdc-armax": {
+    "Eq. 12": {
+      "description": "reachable windows printed as a product of output sets"
+    },
+    "Thm. 3": {
+      "description": "false for $k_\\mathrm{init} > p$"
+    }
+  },
+  "2023/wetzlinger-arxiv-backward-reachability": {
+    "Prop. 1": {
+      "description": "sum (23) starts at $i = 1$, dropping the first order"
+    }
+  },
+  "2023/wetzlinger-hscc-support-functions": {
+    "Sec. 4.2": {
+      "description": "support direction drops $T$ and counts steps from the wrong end",
+      "fix": "HeldSimLeSupportCounterexample.lean"
+    }
+  },
+  "2024/kulmburg-ecc-zonotope-ellipsotope-containment": {
+    "Prop. 2.2": {
+      "description": "unit circle is $\\partial E_p(G)$, not $E_p(G)$"
+    },
+    "Eq. 11": {
+      "description": "support printed as one dual norm instead of a sum"
+    },
+    "Thm. 4.3": {
+      "description": "probability of a non-random inclusion; needs a fixed $\\varepsilon$"
+    },
+    "Thm. 4.6": {
+      "description": "probability of a non-random inclusion; needs a fixed $\\varepsilon$"
+    },
+    "Cor. 4.7": {
+      "description": "probability of a non-random inclusion; needs a fixed $\\varepsilon$"
+    },
+    "Cor. 4.8": {
+      "description": "probability of a non-random inclusion; radius estimate falls short"
+    },
+    "App. B": {
+      "description": "exponent uses the image dimension $n$, not $m$",
+      "fix": "EllipsotopeRoundingOfTwoLe.lean"
+    }
+  },
+  "2024/ladner-aaai-exponent-relaxation": {
+    "Thm. 1": {
+      "description": "centre shift sign flipped; evenness condition omitted"
+    }
+  },
+  "2024/wetzlinger-arch-polyhedral-operations": {
+    "Sec. 4.1 (support vector)": {
+      "description": "a halfspace tight at a vertex need not define a facet"
+    },
+    "Eq. 7": {
+      "description": "false when a list repeats a point"
+    },
+    "Eq. 18": {
+      "description": "degeneracy test printed reversed"
+    },
+    "Eq. 20": {
+      "description": "without column pivoting $Q$'s columns need not span"
+    }
+  },
+  "2024/wetzlinger-lcss-inner-minkowski-difference": {
+    "Prop. 2": {
+      "description": "hull over time holds unreachable points, also for convex $X_0$"
+    }
+  },
+  "2025/kochdumper-hscc-hybrid-automata-identification": {
+    "Eq. 5": {
+      "description": "Gram matrix $\\Phi^\\top \\Phi$ singular with data in columns"
+    }
+  },
+  "2025/koller-tmlr-set-based-training": {
+    "Prop. 8": {
+      "description": "gradient misses a factor $1/n_\\kappa$"
+    },
+    "Prop. 9": {
+      "description": "inherits Prop.~8's missing factor $1/n_\\kappa$"
+    }
+  },
+  "2025/kulmburg-tac-approximability-containment": {
+    "Thm. 16 (parallelotope)": {
+      "description": "maximizer not unique; only some has equal columns"
+    },
+    "Lemma 27": {
+      "description": "circumbody $Z(H)$ should be $Z(\\tfrac{1}{2}H)$"
+    },
+    "Prop. 28": {
+      "description": "bound (80) on $\\sigma$ fails for either circumbody"
+    }
+  }
+}

@@ -38,7 +38,11 @@ Writes `experiments/paper/formalization-stats.json` and, under
 * `appendix-formalization.tex`, the appendix: the two figures above, each a figure of its own,
   and their captions;
 * `figures/formalization/formalization.svg`, a dependency-free preview of the
-  overview bars for a quick look without a TeX Live.
+  overview bars for a quick look without a TeX Live;
+* `appendix-errors.tex`, the appendix table of every `false` and `fixed` result with its
+  description, Lean counterexample and Lean fix (`scripts/errors-table.py`, which says where
+  the descriptions and BibTeX keys come from); a row without a description, or a page without
+  a key, fails the run and `--check`.
 
 Everything is a function of `references/` and `src/`; no clock, no randomness, so
 a rerun on unchanged tables rewrites identical files, and `check-references.py`
@@ -63,10 +67,14 @@ HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("check_references", HERE / "check-references.py")
 cr = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(cr)
+spec = importlib.util.spec_from_file_location("errors_table", HERE / "errors-table.py")
+et = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(et)
 
 LATEX = cr.ROOT / "experiments" / "paper" / "latex"
 FIG_DIR = LATEX / "figures" / "formalization"
 APPENDIX = LATEX / "appendix-formalization.tex"
+ERRORS = LATEX / "appendix-errors.tex"  # see scripts/errors-table.py
 
 # The colours of `experiments/paper/latex/cora-macs.sty`, as (name, rgb): the TikZ files name
 # them, the SVG preview needs the numbers.
@@ -394,7 +402,7 @@ def findings_entries(data):
     entries = [(LABEL[g], {k: cov["groups"][g]["findings"][k] for k in keys}, None)
                for g in cr.REPORT_GROUPS]
     off = {k: sum(f[k] for f in cov["findings_not_on_a_class"].values()) for k in keys}
-    entries.append(("No CORA class", off, None))
+    entries.append(("Other", off, None))
     return entries
 
 
@@ -523,6 +531,7 @@ def svg(data):
 def outputs():
     papers = [cr.Paper(p, lambda m: None) for p in sorted(cr.REFS.glob(cr.PAPER_GLOB))]
     data = cr.stats(papers)
+    errors, problems, _ = et.table(cr)
     return {
         cr.STATS_JSON: json.dumps(data, indent=2, ensure_ascii=False) + "\n",
         FIG_DIR / "formalization.tikz": tikz(data),
@@ -531,17 +540,20 @@ def outputs():
         FIG_DIR / "formalization-caption.tex": caption(data),
         FIG_DIR / "formalization.svg": svg(data),
         APPENDIX: appendix(data),
-    }, data
+        ERRORS: errors,
+    }, data, problems
 
 
 def main():
-    files, data = outputs()
+    files, data, problems = outputs()
+    for problem in problems:
+        print(f"appendix-errors.tex: {problem}")
     if "--check" in sys.argv[1:]:
         stale = [p for p, text in files.items()
                  if not p.exists() or p.read_text(encoding="utf-8") != text]
         for p in stale:
             print(f"{p.relative_to(cr.ROOT).as_posix()}: stale — rerun scripts/formalization-stats.py")
-        return 1 if stale else 0
+        return 1 if stale or problems else 0
     for p, text in files.items():
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(text, encoding="utf-8")
@@ -554,7 +566,7 @@ def main():
           f"{c['not_yet']} not yet, {c['out_of_scope']} out of scope")
     th = data["cora_coverage"]["theorems"]
     print("theorems: " + ", ".join(f"{k} {v}" for k, v in th.items()))
-    return 0
+    return 1 if problems else 0
 
 
 if __name__ == "__main__":

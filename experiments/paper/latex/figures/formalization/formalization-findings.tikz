@@ -10,7 +10,7 @@
     height=3.15cm,
     width=0.6\linewidth,
     ytick={0,1,2,3,4},
-    yticklabels={{Set representations},{Cont. dynamics},{Hybrid systems},{Neural networks},{No CORA class}},
+    yticklabels={{Set representations},{Cont. dynamics},{Hybrid systems},{Neural networks},{Other}},
     clip=false,
     scaled ticks=false,
     ytick style={draw=none},

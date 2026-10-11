@@ -16,10 +16,17 @@ Kept generators keep their coefficients; the dropped ones contribute `D` in row
 `i`, which the diagonal block reproduces with coefficient `D / R` for `R` that
 row's box radius. `hbound` bounds `|D|` by `R`, so the coefficient is
 admissible, and `coefficient` handles the rescaling, degenerate `R = 0`
-included.
+included. With `R = Σ |G|` over the dropped columns this is the corrected form of
+[1, Remark 2], whose row sums need the absolute values.
 
 `Partition.sum_split₂` is where the partition pays: the sum over all generators
 splits into kept and dropped with no side condition.
+
+## References
+
+* [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
+      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control,
+      64(11):4717-4724, 2019.
 -/
 
 -- Authors:       Tobias Ladner

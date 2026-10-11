@@ -33,7 +33,7 @@ section for the full command sequence from a results directory to
 
 ## The formalization figure and appendix
 
-`figures/formalization/formalization.tikz` (and a plain `formalization.svg` preview),
+`figures/formalization/formalization.tikz` (and a plain `formalization.svg` preview), `appendix-errors.tex`,
 `figures/formalization/formalization-classes.tikz` and `appendix-formalization.tex` are not made
 from a results directory: `scripts/formalization-stats.py` writes them, and
 `experiments/paper/formalization-stats.json` beside the paper's scripts, from the tables under
@@ -41,7 +41,7 @@ from a results directory: `scripts/formalization-stats.py` writes them, and
 `paper_floats.tex` inputs the appendix after the floats. Regenerate after any change to a table:
 
 ```
-python3 scripts/formalization-stats.py          # JSON, .tikz, .svg and appendix
+python3 scripts/formalization-stats.py          # JSON, .tikz, .svg, appendix and errors table
 python3 scripts/formalization-stats.py --check  # fails when any of them is stale
 python3 scripts/check-references.py             # the tables themselves, and the JSON
 ```
@@ -101,6 +101,34 @@ out-of-scope count after the bar; and `formalization-findings.tikz`, the paper f
 wrong and CORALean parts from it deliberately (`cora-issue` notes) is in the JSON (`cora_issues`).
 There is no TeX Live where the generator runs, so these files are written to the same pgfplots
 and `booktabs` forms as the evaluation floats and have not been compiled by it.
+
+**The errors table** (`appendix-errors.tex`) lists every paper result classed `false` or
+`fixed`, one `longtable` row each (booktabs, `\footnotesize`), sorted by year, then page, then
+the row's place in the page's table: the reference as `\cite[Prop.~32]{key}` (a dagger marks
+`false`), a few words on what is wrong, and links `[CEX]` to the Lean counterexample and
+`[FIX]` to the Lean file proving the corrected statement (`---` where there is none: every
+`false` row, and a `fixed` row whose corrected theorem lives in a file the row does not link).
+`python3 scripts/formalization-stats.py` writes it with the files above, through
+`scripts/errors-table.py`, which documents how the two files are picked from the row's links.
+It was compiled against `llncs` and `splncs04`. The data it needs that the ledger does not hold
+is committed beside it:
+
+* `experiments/paper/ledger-errors.json`: per page and result label (as printed in the row,
+  without backticks), the description, written from the row's Class cell and the page's
+  Findings, and, where the first linked theorem file is not the corrected theorem, `fix`, the
+  linked file that is;
+* `experiments/paper/ledger-bibkeys.json`: the BibTeX key of every page with such a row. A key
+  listed under `paper_keys` is the paper's own `references.bib` entry for that publication; every
+  other key is defined in `appendix-errors.bib` here, which the paper adds to its
+  `\bibliography`.
+
+The run, and `--check`, fail when a `false`/`fixed` row has no description, a description
+matches no such row, a `fix` is not a linked file, a page has no key, or a key is defined nowhere
+or used by no page. So a new `false`/`fixed` row needs its description (and, for a new paper, its
+key and entry) in the same change. The paper needs `\usepackage{array,longtable,booktabs,hyperref}`,
+`\input{appendix-errors}` where the table goes, and `appendix-errors` in `\bibliography{...}`;
+the links point at `\coraleanrepo`, which the table `\providecommand`s as the repository's
+`main` branch, so defining it first (`\newcommand{\coraleanrepo}{.../-/blob/<tag>}`) pins them.
 
 Not counted: which paper *results* also have a float refinement. Nothing in a row says so, float
 files rarely cite the paper they refine, and matching `Real/` to `Float/` files by name finds
