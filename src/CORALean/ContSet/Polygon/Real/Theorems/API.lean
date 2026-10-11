@@ -35,6 +35,7 @@ import CORALean.ContSet.Polygon.Real.Theorems.MinkDiffSandwich
 import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLeIff
 import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLe
 import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistCounterexample
+import CORALean.ContSet.Polygon.Real.Theorems.RemoveCollinearPointsCounterexample
 
 /-!
 # Polygon theorems, collected
