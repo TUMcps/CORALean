@@ -57,8 +57,6 @@ theorem aux_abs_pow_sub_div_mul_pow_le {t r : ℝ} (ht : 0 ≤ t) (htr : t ≤ r
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `tsum` and `HasSum` over the matrix algebra, under the four local `linftyOp*` instances
-set_option maxHeartbeats 400000 in
 /-- [1, Lemma 2], eq. 6: `e^{tA}z` against the segment from `z` to `e^{rA}z`. -/
 theorem MatExp.norm_exp_mulVec_sub_interpolate_le (A : Mat ℝ n n) {t r : ℝ} (ht : 0 ≤ t)
     (htr : t ≤ r) (z : Vec ℝ n) :

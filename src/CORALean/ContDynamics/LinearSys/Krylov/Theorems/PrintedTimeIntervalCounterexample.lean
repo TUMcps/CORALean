@@ -57,11 +57,17 @@ theorem Krylov.aux_exp_smul_of_pow_three {n : ℕ} (A : Mat ℝ n n) (hA : A ^ 3
     have hAi : A ^ i = 0 := by rw [show i = 3 + (i - 3) by omega, pow_add, hA, zero_mul]
     rw [hAi, smul_zero]
 
+/-- The Hessenberg entries of the `3 × 3` shift's Arnoldi run at `e₁`, for all indices at once. -/
+theorem Krylov.aux_arnoldi_shift_hessenberg (i j : ℕ) :
+    (Krylov.arnoldi (!![0, 0, 0; 1, 0, 0; 0, 1, 0] : Mat ℝ 3 3) ![1, 0, 0] 3).2 i j
+      = if (j = 0 ∧ i = 1) ∨ (j = 1 ∧ i = 2) then 1 else 0 := by
+  simp [Krylov.arnoldi, Krylov.gramSchmidtStep, norm₂, Fin.sum_univ_three, dotProduct, vecHead,
+    vecTail]
+  split_ifs <;> first | rfl | (exfalso; omega)
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `simp` evaluates three Arnoldi passes on concrete vectors
-set_option maxHeartbeats 800000 in
 /-- [1, Thm. III.2] as printed fails at the `3 × 3` shift, `X₀ = (e₃, e₁)`, `δ = 1`, `η = 2`:
 Alg. 1 is exact (`h_{ξ+1,ξ} = 0`, so `ε_norm = 0`), and `e^{A/2}(e₃ - e₁)` is outside. -/
 theorem Krylov.printed_time_interval_counterexample :
@@ -98,14 +104,12 @@ theorem Krylov.printed_time_interval_counterexample :
       dotProduct, vecHead, vecTail]
     funext i
     fin_cases i <;> rfl
+  have hKg2 : ∀ i j : ℕ, Kg.2 i j = if (j = 0 ∧ i = 1) ∨ (j = 1 ∧ i = 2) then 1 else 0 :=
+    Krylov.aux_arnoldi_shift_hessenberg
   have hHg : Hg = A := by
     ext i j
-    fin_cases i <;> fin_cases j <;>
-      simp [Hg, Kg, Krylov.arnoldi, Krylov.gramSchmidtStep, A, g, norm₂, Fin.sum_univ_three,
-        dotProduct, vecHead, vecTail]
-  have hKg32 : Kg.2 3 2 = 0 := by
-    simp [Kg, Krylov.arnoldi, Krylov.gramSchmidtStep, A, g, norm₂, Fin.sum_univ_three,
-      dotProduct, vecHead, vecTail]
+    fin_cases i <;> fin_cases j <;> simp [Hg, hKg2, A]
+  have hKg32 : Kg.2 3 2 = 0 := by simp [hKg2]
   -- so `V(e₁) = I`, `V(e₃) = e₃`, `H(e₃) = 0`, and `e^{sA} = I + sA + s²A²/2`
   have hVg : Vg = 1 := by
     ext i j

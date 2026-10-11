@@ -42,7 +42,7 @@ open Matrix CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- simp evaluates the form of Eq. 17's concrete `4 × 4` block matrix entry by entry
-set_option maxHeartbeats 400000 in
+set_option maxHeartbeats 100000 in
 theorem Zonotope.aux_faultRadiusCounterexample_lmi :
     LinearSysDT.FaultRadiusLmi (n := 2) (ny := 1) (nw := 0) (nv := 0) (rw := 0) (rv := 0)
       ((9 / 10 : ℝ) • 1) 0 0 0 0 0 1 0 (9 / 10) := by -- --- PROOF ---

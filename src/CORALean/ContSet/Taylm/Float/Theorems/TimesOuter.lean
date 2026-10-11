@@ -30,8 +30,6 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `nlinarith` closes the two ends over a dozen rounding facts on nested list sums
-set_option maxHeartbeats 400000 in
 theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (h₁ : T₁.Encloses f)
     (h₂ : T₂.Encloses g) : (T₁.times T₂).Encloses fun t => f t * g t := by -- --- PROOF ---
   intro t ht
@@ -93,12 +91,12 @@ theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (
         (add_le_add (le_trans (addDown_le_add _ _) (add_le_add (subDown_le_sub _ _) le_rfl))
           le_rfl)) le_rfl)) _)) ?_
     simp only [N, P, pk, ex] at *
-    nlinarith [m₁.1, m₂.1, m₃.1, hD.1, rK.1, rD.1, q₁]
+    linarith [m₁.1, m₂.1, m₃.1, hD.1, rK.1, rD.1, q₁]
   · refine le_trans ?_ (le_trans (add_le_add (le_trans (add_le_add (le_trans
       (add_le_add (le_trans (add_le_add (add_le_addUp _ _) le_rfl) (add_le_addUp _ _)) le_rfl)
         (add_le_addUp _ _)) le_rfl) (add_le_addUp _ _)) le_rfl) (add_le_addUp _ _))
     simp only [N, P, pk, ex] at *
-    nlinarith [m₁.2, m₂.2, m₃.2, hD.2, rK.2, rD.2, q₂]
+    linarith [m₁.2, m₂.2, m₃.2, hD.2, rK.2, rD.2, q₂]
 
 end CORALean.Float
 

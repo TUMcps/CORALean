@@ -34,7 +34,6 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the proof is a single partition-of-the-ball argument, not worth splitting into files
-set_option maxHeartbeats 400000 in
 theorem l1Ball_orthant_volume (vol : Measure (Fin m → ℝ)) [vol.IsAddHaarMeasure]
     (s : Fin m → ℝ) (hs : ∀ j, s j = 1 ∨ s j = -1) :
     vol {x | (∑ j, |x j|) ≤ 1 ∧ ∀ j, 0 < s j * x j} * 2 ^ m
@@ -101,7 +100,8 @@ theorem l1Ball_orthant_volume (vol : Measure (Fin m → ℝ)) [vol.IsAddHaarMeas
     obtain ⟨j, hj⟩ := Function.ne_iff.mp hne
     have h1 := hx j
     have h2 := hy j
-    cases hσ : σ j <;> cases hτ : τ j <;> simp_all [sg] <;> linarith
+    cases hσ : σ j <;> cases hτ : τ j <;> rw [hσ] at h1 <;> rw [hτ] at h2 <;>
+      simp [sg] at h1 h2 <;> first | linarith | exact hj (hσ.trans hτ.symm)
   have hsub : (⋃ σ, O σ) ⊆ K := fun x hx => by
     obtain ⟨σ, hσ⟩ := Set.mem_iUnion.mp hx
     exact hσ.1

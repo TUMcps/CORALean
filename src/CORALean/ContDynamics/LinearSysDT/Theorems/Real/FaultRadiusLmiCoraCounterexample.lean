@@ -39,8 +39,34 @@ open Matrix
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
--- simp evaluates the form of CORA's concrete `4 × 4` block matrix entry by entry
-set_option maxHeartbeats 400000 in
+/-- The negated form of the block matrix is a sum of squares, positive off `0`. -/
+theorem LinearSysDT.aux_faultRadiusLmiCora_sos (θ s₀ s₁ w : ℝ)
+    (hx' : θ ≠ 0 ∨ s₀ ≠ 0 ∨ s₁ ≠ 0 ∨ w ≠ 0) :
+    0 < 9 / 20 * θ ^ 2 + 9 / 10 * (w - 10 / 9 * (s₀ / 2 + s₁)) ^ 2 +
+      (5 * (s₁ - 2 / 5 * s₀) ^ 2 + 126 / 5 * s₀ ^ 2) / 36 := by -- --- PROOF ---
+  have a := sq_nonneg θ
+  have b := sq_nonneg (w - 10 / 9 * (s₀ / 2 + s₁))
+  have c := sq_nonneg (s₁ - 2 / 5 * s₀)
+  have d := sq_nonneg s₀
+  -- whichever coordinate is nonzero makes one square positive
+  rcases hx' with h | h | h | h
+  · have := sq_pos_of_ne_zero h; linarith
+  · have := sq_pos_of_ne_zero h; linarith
+  · by_cases h0 : s₀ = 0
+    · have : (s₁ - 2 / 5 * s₀) ^ 2 = s₁ ^ 2 := by rw [h0]; ring
+      have := sq_pos_of_ne_zero h; linarith
+    · have := sq_pos_of_ne_zero h0; linarith
+  · by_cases hs : s₀ = 0 ∧ s₁ = 0
+    · have : (w - 10 / 9 * (s₀ / 2 + s₁)) ^ 2 = w ^ 2 := by rw [hs.1, hs.2]; ring
+      have := sq_pos_of_ne_zero h; linarith
+    · rcases not_and_or.mp hs with h0 | h1
+      · have := sq_pos_of_ne_zero h0; linarith
+      · by_cases h0 : s₀ = 0
+        · have : (s₁ - 2 / 5 * s₀) ^ 2 = s₁ ^ 2 := by rw [h0]; ring
+          have := sq_pos_of_ne_zero h1; linarith
+        · have := sq_pos_of_ne_zero h0; linarith
+
+
 theorem LinearSysDT.aux_faultRadiusLmiCora_posDef :
     let A : Mat ℝ 1 1 := 0
     let C : Mat ℝ 2 1 := 0
@@ -60,10 +86,16 @@ theorem LinearSysDT.aux_faultRadiusLmiCora_posDef :
     (-(fromBlocks TL R_cora R_coraᵀ (-P))).PosDef := by -- --- PROOF ---
   intro A C Dx Hw Dy Hv P W γ Gw Gv TL R_cora
   refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩
-  · -- symmetric, entry by entry
-    ext ((i | i | i) | i) ((j | j | j) | j) <;> fin_cases i <;> fin_cases j <;>
-      simp [TL, R_cora, A, C, Gw, Gv, Dx, Hw, Dy, Hv, P, W, γ, fromBlocks, fromRows,
-        Matrix.mul_apply, Fin.sum_univ_two]
+  · -- symmetric: `P`, `-γP` and the two `-MᵀM` blocks are, `R_cora` sits opposite its transpose
+    have hP : P.IsHermitian := by
+      ext i j; fin_cases i; fin_cases j; simp [P]
+    have hGram : ∀ {k l : ℕ} (M : Matrix (Fin k) (Fin l) ℝ), (-(Mᵀ * M)).IsHermitian := fun M => by
+      rw [← conjTranspose_eq_transpose_of_trivial]
+      exact (Matrix.isHermitian_conjTranspose_mul_self M).neg
+    refine Matrix.IsHermitian.neg (Matrix.IsHermitian.fromBlocks ?_ ?_ (hP.neg))
+    · exact Matrix.IsHermitian.fromBlocks ((hP.smul (IsSelfAdjoint.all _)).neg) (by simp)
+        (Matrix.IsHermitian.fromBlocks (hGram Gw) (by simp) (hGram Gv))
+    · rw [conjTranspose_eq_transpose_of_trivial]
   set θ := x (Sum.inl (Sum.inl 0))
   set s₀ := x (Sum.inl (Sum.inr (Sum.inr 0)))
   set s₁ := x (Sum.inl (Sum.inr (Sum.inr 1)))
@@ -75,29 +107,7 @@ theorem LinearSysDT.aux_faultRadiusLmiCora_posDef :
       rcases k with (k | k | k) | k <;> fin_cases k <;> simp [θ, s₀, s₁, w, hc.1, hc.2.1,
         hc.2.2.1, hc.2.2.2])
   -- the negated form is this sum of squares, positive off `0`
-  have hpos : 0 < 9 / 20 * θ ^ 2 + 9 / 10 * (w - 10 / 9 * (s₀ / 2 + s₁)) ^ 2 +
-      (5 * (s₁ - 2 / 5 * s₀) ^ 2 + 126 / 5 * s₀ ^ 2) / 36 := by
-    have a := sq_nonneg θ
-    have b := sq_nonneg (w - 10 / 9 * (s₀ / 2 + s₁))
-    have c := sq_nonneg (s₁ - 2 / 5 * s₀)
-    have d := sq_nonneg s₀
-    -- whichever coordinate is nonzero makes one square positive
-    rcases hx' with h | h | h | h
-    · have := sq_pos_of_ne_zero h; linarith
-    · have := sq_pos_of_ne_zero h; linarith
-    · by_cases h0 : s₀ = 0
-      · have : (s₁ - 2 / 5 * s₀) ^ 2 = s₁ ^ 2 := by rw [h0]; ring
-        have := sq_pos_of_ne_zero h; linarith
-      · have := sq_pos_of_ne_zero h0; linarith
-    · by_cases hs : s₀ = 0 ∧ s₁ = 0
-      · have : (w - 10 / 9 * (s₀ / 2 + s₁)) ^ 2 = w ^ 2 := by rw [hs.1, hs.2]; ring
-        have := sq_pos_of_ne_zero h; linarith
-      · rcases not_and_or.mp hs with h0 | h1
-        · have := sq_pos_of_ne_zero h0; linarith
-        · by_cases h0 : s₀ = 0
-          · have : (s₁ - 2 / 5 * s₀) ^ 2 = s₁ ^ 2 := by rw [h0]; ring
-            have := sq_pos_of_ne_zero h1; linarith
-          · have := sq_pos_of_ne_zero h0; linarith
+  have hpos := LinearSysDT.aux_faultRadiusLmiCora_sos θ s₀ s₁ w hx'
   -- the form, written out in the four coordinates
   simp only [star_trivial, dotProduct, mulVec, Fintype.sum_sum_type, Fin.sum_univ_two,
     Fin.sum_univ_zero, Fin.sum_univ_one]

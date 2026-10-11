@@ -47,8 +47,6 @@ variable [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the closed form is read at the point system the frozen matrix names
-set_option maxHeartbeats 400000 in
 /-- One step of a `'varParam'` run: the box's homogeneous step, plus whatever
 holds the input and the parameter drift together. -/
 theorem LinParamSys.Trajectory.timeInterval_outer {sys : LinParamSys ℐ n} {T : Set ℝ}

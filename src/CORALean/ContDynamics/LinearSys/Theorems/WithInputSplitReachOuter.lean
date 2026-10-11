@@ -55,8 +55,6 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the window's five summands, each elaborating a `Mtimes` instance at `Mat ℝ` or `ℐ`
-set_option maxHeartbeats 1000000 in
 /-- Every state a run on `[0, tFinal - tStart]` from `X₀ = params.R0`, under inputs in
 `sys.U` wherever it sits, reaches is in one of `reach`'s windows. -/
 theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit 𝕋 S n)

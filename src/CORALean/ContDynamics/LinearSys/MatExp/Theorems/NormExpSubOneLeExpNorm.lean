@@ -42,8 +42,6 @@ theorem aux_norm_exp_tail_term_le (x : Mat ℝ n n) (i : ℕ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the `Real.exp_eq_exp_ℝ` rewrite against the four local matrix instances is what is slow
-set_option maxHeartbeats 400000 in
 /-- `exp x` sits at most `Real.exp ‖x‖ - 1` away from the identity: the matrix
 series is dominated termwise by the real exponential's own. -/
 theorem norm_exp_sub_one_le_exp_norm (x : Mat ℝ n n) :
@@ -68,12 +66,15 @@ theorem norm_exp_sub_one_le_exp_norm (x : Mat ℝ n n) :
     simp [hg]
   -- the norm of the matrix tail is under the sum of norms, then term by term
   rw [htail, htailR]
-  calc ‖∑' i : ℕ, f (i + 1)‖
-      ≤ ∑' i : ℕ, ‖f (i + 1)‖ :=
-        norm_tsum_le_tsum_norm ((summable_nat_add_iff 1).mpr hnorm)
-    _ ≤ ∑' i : ℕ, g (i + 1) :=
-        Summable.tsum_le_tsum (fun i => aux_norm_exp_tail_term_le x i)
-          ((summable_nat_add_iff 1).mpr hnorm) ((summable_nat_add_iff 1).mpr hgsum)
+  have hsn : Summable (fun i : ℕ => ‖f (i + 1)‖) :=
+    (summable_nat_add_iff (f := fun i : ℕ => ‖f i‖) 1).mpr hnorm
+  have hsg : Summable (fun i : ℕ => g (i + 1)) :=
+    (summable_nat_add_iff (f := g) 1).mpr hgsum
+  have h1 : ‖∑' i : ℕ, f (i + 1)‖ ≤ ∑' i : ℕ, ‖f (i + 1)‖ :=
+    norm_tsum_le_tsum_norm hsn
+  have h2 : ∑' i : ℕ, ‖f (i + 1)‖ ≤ ∑' i : ℕ, g (i + 1) :=
+    Summable.tsum_le_tsum (fun i => aux_norm_exp_tail_term_le x i) hsn hsg
+  exact h1.trans h2
 
 end CORALean.Real
 

@@ -45,8 +45,6 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- restated only up to the argument shift `deltaReach_outer_inputSolution` needs
-set_option maxHeartbeats 1000000 in
 /-- A run confined step by step moves no further within step `i` than
 `relinDeltaReach` allows, at every time of the step. -/
 theorem NonlinearSys.Trajectory.relinDeltaReach_outer {sys : NonlinearSys n m} {T : Set ℝ}

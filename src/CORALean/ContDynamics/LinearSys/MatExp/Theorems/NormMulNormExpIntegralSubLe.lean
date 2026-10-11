@@ -40,8 +40,6 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `tsum` and `HasSum` over the matrix algebra, under the four local `linftyOp*` instances
-set_option maxHeartbeats 400000 in
 /-- `∫₀ʳ e^{As} ds` is `r I` up to the exponential's second-order remainder, over `‖A‖`. -/
 theorem MatExp.norm_mul_norm_expIntegral_sub_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) :
     ‖A‖ * ‖MatExp.expIntegral A r - r • (1 : Mat ℝ n n)‖

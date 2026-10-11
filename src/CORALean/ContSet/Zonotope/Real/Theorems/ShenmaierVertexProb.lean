@@ -41,7 +41,6 @@ variable {n m N : ℕ} {E₂ : Type} [NormedAddCommGroup E₂] [NormedSpace ℝ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-set_option maxHeartbeats 400000 in -- the orthant and independence arguments in one proof
 theorem Zonotope.shenmaierVertex_prob (G : Vec ℝ m →ₗ[ℝ] Vec ℝ n) (c d : Vec ℝ n)
     (H : E₂ →ₗ[ℝ] Vec ℝ n) (hH : Function.Surjective H) {r : ℝ}
     (hr : IsGreatest ((fun α => coeffNorm H (G α + c - d)) '' Metric.closedBall 0 1) r)

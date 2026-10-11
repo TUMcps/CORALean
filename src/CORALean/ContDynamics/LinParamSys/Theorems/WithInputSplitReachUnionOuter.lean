@@ -59,8 +59,6 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the window's four summands, each elaborating a `Mtimes` instance at `ℐ`
-set_option maxHeartbeats 1000000 in
 /-- Every state a constant-parameter run on `[0, tFinal - tStart]` from `R0`, under
 inputs in `sys.U` wherever it sits, reaches is in one of `reachUnion`'s
 windows. -/

@@ -37,8 +37,6 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- two rounded sums over `Fin η` compared with the exact `Finset.range` sums, entrywise
-set_option maxHeartbeats 400000 in
 theorem MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix (A : Interval (Mat 𝕋 n n))
     {r : 𝕋} (hr : 0 < toReal r) (η : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / ((η : ℝ) + 2) ≤ 1 / 2)

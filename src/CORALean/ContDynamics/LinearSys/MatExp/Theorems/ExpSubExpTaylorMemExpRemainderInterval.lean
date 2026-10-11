@@ -41,8 +41,6 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `exp_smul_tsum` and the shifted `tsum` re-solve the four local normed-algebra instances
-set_option maxHeartbeats 400000 in
 /-- [1, Eq. 6]: `e^{At} - Σᵢ₌₀^η (At)ⁱ/i! ∈ [-W(t), W(t)]` at `t ≥ 0`. -/
 theorem MatExp.exp_sub_expTaylor_mem_expRemainderInterval (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t)
     (η : ℕ) :

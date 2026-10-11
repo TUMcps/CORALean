@@ -45,8 +45,6 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the inner set is the pivot for both directions, so no upper bound on the outer one is needed
-set_option maxHeartbeats 1000000 in
 /-- [1, Prop. 1], outer half: the Hausdorff distance to the exact particular
 solution over `t = ωΔt` is `O(Δt)`, hence `0` in the limit. -/
 theorem LinearSys.hausdorffDist₂_inputSolutionSet_le (sys : LinearSys 𝕋 n) {U : S n}

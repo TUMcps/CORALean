@@ -72,8 +72,6 @@ theorem norm₂_sum_smul_le_genOpNorm₂_mul_norm₂ (G : Fin h → Vec ℝ n) (
   rwa [hveq] at hkey
 
 
--- `hval`'s `rfl` unfolds `toEuclideanLin` through two equivalences and a `WithLp`
-set_option maxHeartbeats 200000 in
 /-- And the bound in the other direction, which is what an error term shrinking to `0` needs: the
 generators' own Euclidean lengths, summed, dominate the operator norm. Loose by up to `√h` against
 the tight constant, and enough wherever the quantity bounded is an asymptotic one. -/
@@ -81,13 +79,15 @@ theorem genOpNorm₂_le_sum_norm₂ (G : Fin h → Vec ℝ n) :
     genOpNorm₂ G ≤ ∑ j, ‖G j‖₂ := by -- --- PROOF ---
   have hnn : (0:ℝ) ≤ ∑ j, ‖G j‖₂ := Finset.sum_nonneg fun j _ => norm₂_nonneg _
   rw [genOpNorm₂, Matrix.l2_opNorm_def]
-  refine ContinuousLinearMap.opNorm_le_bound _ hnn fun x => ?_
+  have key : ∀ T : EuclideanSpace ℝ (Fin h) →L[ℝ] EuclideanSpace ℝ (Fin n),
+      (∀ x, ‖T x‖ ≤ (∑ j, ‖G j‖₂) * ‖x‖) → ‖T‖ ≤ ∑ j, ‖G j‖₂ :=
+    fun T hT => T.opNorm_le_bound hnn hT
+  refine key _ ?_
+  intro x
   -- the induced map at `x` is the generators' combination, read back through `toEuclidean`
-  have hval : ((toEuclideanLin ≪≫ₗ LinearMap.toContinuousLinearMap)
-      (Matrix.of fun i j => G j i : Mat ℝ n h)) x
-      = toEuclidean ((Matrix.of fun i j => G j i : Mat ℝ n h).mulVec (WithLp.ofLp x)) := rfl
+  change ‖toEuclidean ((Matrix.of fun i j => G j i : Mat ℝ n h).mulVec (WithLp.ofLp x))‖ ≤ _
   have hxn : ‖x‖ = ‖(WithLp.ofLp x : Vec ℝ h)‖₂ := norm_toEuclidean _
-  rw [hval, norm_toEuclidean, hxn, aux_mulVec_genMat_eq]
+  rw [norm_toEuclidean, hxn, aux_mulVec_genMat_eq]
   calc ‖∑ j, (WithLp.ofLp x : Vec ℝ h) j • G j‖₂
       ≤ ∑ j, ‖(WithLp.ofLp x : Vec ℝ h) j • G j‖₂ := norm₂_sum_le _ _
     _ = ∑ j, |(WithLp.ofLp x : Vec ℝ h) j| * ‖G j‖₂ :=

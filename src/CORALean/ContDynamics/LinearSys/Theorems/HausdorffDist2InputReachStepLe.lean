@@ -48,8 +48,6 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- eight set-valued arguments to `hausdorffDist₂_add_le`, each re-solving the matrix instances
-set_option maxHeartbeats 400000 in
 /-- [1, Prop. 2], one step: the error at `t_k` plus eq. (25)'s one-step error bounds the distance
 between `P^U(t_k+Δt_k)` and the recursively computed `P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)`. -/
 theorem LinearSys.hausdorffDist₂_inputReach_step_le (sys : LinearSys 𝕋 n) {U : S n}

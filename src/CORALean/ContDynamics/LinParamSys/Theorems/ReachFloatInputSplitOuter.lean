@@ -45,8 +45,6 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the window's four summands, each elaborating a `Mtimes` instance at `ℐ`
-set_option maxHeartbeats 1000000 in
 theorem LinParamSys.reachFloatInputSplit_outer
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {U : Zonotope 𝕋 n}
     {params : Reach.Params (Zonotope 𝕋 n) ℚ} {options : LinearSys.ReachOptions 𝕋}

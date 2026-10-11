@@ -78,8 +78,6 @@ theorem aux_corrCoeff_eq (hi : 2 ≤ i) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `geom_sum₂_mul` and two `gcongr` sweeps over an `i`-term sum of `rpow`s
-set_option maxHeartbeats 200000 in
 theorem MatExp.corrCoeff_le_sub (hi : 2 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) :
     MatExp.corrCoeff i ≤ s ^ i - s := by -- --- PROOF ---
   rw [MatExp.corrCoeff]

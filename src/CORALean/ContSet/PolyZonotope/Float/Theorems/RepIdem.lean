@@ -25,8 +25,6 @@ variable {p h : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- each `min'_le` re-elaborates the decidability instance of the filter it ranges over
-set_option maxHeartbeats 400000 in
 /-- The least index of a class is the least index of its own class, which makes
 a non-representative's fibre empty. The two finsets are named rather than left
 to unification, `rep` unfolding to a `min'` over a filter. -/

@@ -57,8 +57,6 @@ theorem MatExp.aux_expRemainder_entry_eq (B : Mat ℝ n n) (t : ℝ) (η : ℕ) 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- two `tsum`s over `Mat ℝ n n`, each re-solving the local normed-algebra instances
-set_option maxHeartbeats 400000 in
 /-- [1, Prop. 11], eq. (18): `|(e^{Aτ} − Σ_{i≤η}(Aτ)ⁱ/i!)_{jk}| ≤ E(Δt,η)_{jk}` for `0 ≤ τ ≤ Δt`. -/
 theorem MatExp.abs_expRemainder_entry_le (A : Mat ℝ n n) {τ Δt : ℝ} (hτ : 0 ≤ τ)
     (hτΔt : τ ≤ Δt) (η : ℕ) (j k : Fin n) :

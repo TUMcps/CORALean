@@ -46,8 +46,6 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- restated only up to the argument shift `timeInterval_outer_inputSolution` needs
-set_option maxHeartbeats 1000000 in
 /-- A run confined step by step is inside `relinTimeInterval` at every time of
 every step, not only at the step boundaries `relinReach` covers. -/
 theorem NonlinearSys.Trajectory.relinTimeInterval_outer {sys : NonlinearSys n m} {T : Set ℝ}

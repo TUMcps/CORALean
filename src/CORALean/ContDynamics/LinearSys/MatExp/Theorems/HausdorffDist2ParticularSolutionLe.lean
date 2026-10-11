@@ -115,8 +115,6 @@ theorem aux_mem_particularSolutionOuterCorrelated (A : Mat ℝ n n) {U0 : Set (V
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- a dozen `Set`-valued `have`s over `Vec ℝ n`, each re-solving the local matrix instances
-set_option maxHeartbeats 400000 in
 /-- [1, Prop. 11]: eq. (25) bounds `d_H(e^{At_k}P^U(Δt), e^{At_k}bPU(Δt))` for every `P` between
 [1]'s constant-input inner-approximation and eq. (20)'s outer one. -/
 theorem MatExp.hausdorffDist₂_particularSolution_le (A : Mat ℝ n n) (tk : ℝ)

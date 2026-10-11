@@ -43,8 +43,6 @@ variable [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the interpolation error is assembled entrywise from three interval matrices at once
-set_option maxHeartbeats 1000000 in
 /-- Every image of the initial set under the flow, at every time of the step,
 inside the exact sum `timeIntervalStep_outer` only reaches after two lifts. -/
 theorem LinearSys.timeIntervalStep_outer_segments (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)

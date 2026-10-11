@@ -42,8 +42,6 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the weight moves into the measure, so every step carries an `ℝ≥0∞` coercion with it
-set_option maxHeartbeats 1000000 in
 /-- The weighted average of a set-valued function, scaled by the total weight. -/
 theorem integral_pow_smul_mem {S : Set (Vec ℝ n)} (hconv : Convex ℝ S) (hclosed : IsClosed S)
     (hbdd : Bornology.IsBounded S) {f : ℝ → Vec ℝ n} {r : ℝ} (hr : 0 < r) (i : ℕ)

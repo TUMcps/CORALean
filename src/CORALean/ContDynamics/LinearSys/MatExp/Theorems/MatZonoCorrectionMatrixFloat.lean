@@ -36,8 +36,6 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- two rounded sums over `Fin (m + 1)` compared with the exact `Finset.range` sums, entrywise
-set_option maxHeartbeats 400000 in
 theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (Z : GZonotope (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 < toReal r) {m : ℕ}
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r Z.interval))

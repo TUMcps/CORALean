@@ -65,8 +65,6 @@ theorem aux_autoTuneOrder_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool
       exact hle _ _ (Bool.and_eq_true_iff.mp hchk).1
     · exact ih _ _ h
 
--- the sweep's own `let`s carry three error terms, each re-solving the matrix instances
-set_option maxHeartbeats 400000 in
 /-- Lines 6-15: whatever the halving sweep reports is a positive step whose `Δε^a_k` is
 inside line 14's share at that very step. -/
 theorem aux_autoTuneSearch_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}

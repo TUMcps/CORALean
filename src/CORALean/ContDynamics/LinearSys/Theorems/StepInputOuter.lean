@@ -49,8 +49,6 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
--- nine hypotheses passed through to `inputSolution_outer`, each fixing `Mtimes` at `ℐ`
-set_option maxHeartbeats 400000 in
 /-- What a step's input contributed lies in `inputSolution`, for every step.
 Reflecting about the step's end is what the substitution inside
 `inputSolution_outer` leaves behind, and only step `k` is spoken about. -/

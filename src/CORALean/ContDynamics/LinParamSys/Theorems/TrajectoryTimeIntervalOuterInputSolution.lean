@@ -45,8 +45,6 @@ variable [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the enlarged input set is carried through nine hypotheses, each elaborating `Mtimes` at `ℐ`
-set_option maxHeartbeats 400000 in
 /-- One step of a `'varParam'` run, initial set and enlarged input together, at
 every time of the step. -/
 theorem LinParamSys.Trajectory.timeInterval_outer_inputSolution {sys : LinParamSys ℐ n}

@@ -115,8 +115,6 @@ theorem aux_hd_norm₂_sub_le (x y : Vec ℝ n) : ‖x - y‖₂ ≤ ‖x‖₂ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- a dozen `Set`-valued `have`s over `Vec ℝ n`, each re-solving the local matrix instances
-set_option maxHeartbeats 1000000 in
 /-- [1, Prop. 11]: `d_H(e^{At_k}P^U(Δt), e^{At_k}P̂^U(Δt)) ≤ Δε^U_k(Δt,η)` of eq. (25), for `U₀`
 convex, closed, bounded and containing `0`, with no hypothesis on eq. (20). -/
 theorem LinearSys.hausdorffDist₂_inputReach_le_of_convex (sys : LinearSys 𝕋 n) (tk : ℝ)

@@ -53,8 +53,6 @@ theorem aux_continuous_expRemainderMatEntryHom (j k : Fin n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `exp_smul_tsum` and the shifted `tsum` re-solve the four local normed-algebra instances
-set_option maxHeartbeats 200000 in
 /-- An entry of `E(Δt,η)` is the sum of the exponential series at `|A|Δt` past order `η`. -/
 theorem MatExp.hasSum_expRemainderMat_entry (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) (j k : Fin n) :
     HasSum (fun i : ℕ => ((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * Δt ^ (i + (η + 1)))

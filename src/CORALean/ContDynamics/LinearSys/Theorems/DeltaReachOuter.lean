@@ -41,8 +41,6 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the interpolation error is assembled entrywise from three interval matrices at once
-set_option maxHeartbeats 1000000 in
 /-- Every difference between a state of the step and the state it started
 from. -/
 theorem LinearSys.deltaReach_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}

@@ -50,8 +50,6 @@ variable {n p m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the conclusion elaborates `oneStep` at `𝒵`, its `Mtimes` at `ℐ` and at `Mat ℝ`
-set_option maxHeartbeats 1000000 in
 /-- A run confined to `R^z`, over which `Verror` and `Verror_y` hold every consistent point's
 errors, is in `linReach`'s time-point set at `Δt`, and its `x` and `(x, y)` in the
 time-interval and joint sets throughout `[0, Δt]`. -/

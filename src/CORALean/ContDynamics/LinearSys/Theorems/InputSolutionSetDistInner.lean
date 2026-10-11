@@ -145,8 +145,6 @@ theorem LinearSys.aux_tail_term_le (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- three pieces, each `O(Δt²)`: the orders past zero, the remainder, the series' tail
-set_option maxHeartbeats 1000000 in
 /-- [1, Prop. 1], outer half: one step of the outer approximation is `O(Δt²)` from the
 inner approximation, hence from the exact particular solution. -/
 theorem LinearSys.inputSolutionSet_dist_inputSolutionInner (sys : LinearSys 𝕋 n) {U : S n}

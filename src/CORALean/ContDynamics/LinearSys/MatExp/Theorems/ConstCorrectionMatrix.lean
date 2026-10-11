@@ -46,8 +46,6 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
--- `ring_nf` under `smul` re-solves the local normed-algebra instances on `Mat ℝ n n`
-set_option maxHeartbeats 400000 in
 /-- The interpolation error of the integrated exponential, as one series from
 order `1` up. -/
 theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
@@ -80,8 +78,6 @@ theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0)
     simp [hg, h1]
   rw [← htsum, ← hshift, hfirst, zero_add]
 
--- the same `ring_nf` under `smul`, this time inside a `Summable.congr`
-set_option maxHeartbeats 400000 in
 /-- The same series, shifted past `η`, is summable. -/
 theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
@@ -93,10 +89,9 @@ theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
   have hg : Summable (fun i : ℕ =>
       (((Nat.factorial (i + 1) : ℝ))⁻¹ * (t ^ (i + 1) - (t / r) * r ^ (i + 1))) • A ^ i) :=
     (hst.sub hsr).congr fun i => by simp only [smul_smul, ← sub_smul]; ring_nf
-  exact (summable_nat_add_iff 1).mpr hg
+  exact (summable_nat_add_iff (f := fun i : ℕ =>
+    (((Nat.factorial (i + 1) : ℝ))⁻¹ * (t ^ (i + 1) - (t / r) * r ^ (i + 1))) • A ^ i) 1).mpr hg
 
--- a six-step `calc` carrying `Nat.factorial (i + η + 2)` through every rewrite
-set_option maxHeartbeats 1000000 in
 /-- Every tail term carries `r^{i+2}` in its scalar factor; pulling one `r` out
 leaves the exponential's own remainder series. -/
 theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ)
@@ -173,8 +168,6 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- two `ring` normalisations of the same factorial-and-power product under `smul_apply`
-set_option maxHeartbeats 1000000 in
 /-- Althoff's `F̃` contains the constant input's interpolation error, at every
 time of the step. -/
 theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : ℝ}

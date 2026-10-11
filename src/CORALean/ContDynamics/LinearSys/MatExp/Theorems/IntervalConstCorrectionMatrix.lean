@@ -47,8 +47,6 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the two sums are compared termwise and the `r`-scaled tail bounds by `linarith` at the end
-set_option maxHeartbeats 400000 in
 /-- Althoff's `F̃` at an interval matrix contains the constant input's
 interpolation error, at every time of the step, of every matrix the box holds. -/
 theorem MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix (A : Interval (Mat ℝ n n))

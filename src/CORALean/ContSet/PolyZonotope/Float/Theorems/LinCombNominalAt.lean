@@ -181,8 +181,6 @@ theorem PolyZonotope.aux_sum_neg_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the witness is one nested `Fin.append` term, re-elaborated at every `Fin.addCases` branch
-set_option maxHeartbeats 400000 in
 theorem PolyZonotope.linComb_nominal_at (pZ₁ pZ₂ : PolyZonotope 𝕋 n) {a₁ : Fin pZ₁.p → ℝ}
     {a₂ : Fin pZ₂.p → ℝ} {β₁ : Fin pZ₁.q → ℝ} {β₂ : Fin pZ₂.q → ℝ} {lam : ℝ}
     (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :

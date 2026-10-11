@@ -76,8 +76,6 @@ theorem aux_mtimesIM_mem [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
--- a three-way `plus` in the conclusion, elaborated at `ℐ` and `Mat ℝ` together
-set_option maxHeartbeats 1000000 in
 /-- The input's contribution at every time of the step, split along
 `U ⊆ {c} ⊕ U₀`. Neither piece needs `0 ∈ U`. -/
 theorem LinearSys.Trajectory.inputSolution_timeInterval_outer_split

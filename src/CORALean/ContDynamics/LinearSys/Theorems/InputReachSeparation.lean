@@ -76,8 +76,6 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the concatenated input is measured by splitting the window and rebuilding it
-set_option maxHeartbeats 1000000 in
 /-- [1, Prop. 3.2]: what a run over `[0, a+b]` can contribute includes everything
 a run over `[0,a]` can contribute, propagated across the remaining `b`, plus
 everything a run over `[0,b]` can. -/

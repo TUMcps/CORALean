@@ -46,8 +46,6 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- unfolds every hypothesis of the two step-level lemmas it composes at once
-set_option maxHeartbeats 1000000 in
 /-- Reach for this to enclose the whole interval's reachable set by a genuine
 sum of segments and sets; for `timeIntervalReachSet_subset_timeInterval_inputSolution`
 where a computed representation is what is wanted instead. -/
