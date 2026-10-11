@@ -15,10 +15,10 @@
   ],
   "totals": {
     "papers": 82,
-    "papers_with_findings": 74,
+    "papers_with_findings": 75,
     "in_scope": 1066,
-    "formalized": 1050,
-    "not_formalized": 16,
+    "formalized": 1054,
+    "not_formalized": 12,
     "out_of_scope": 901,
     "out_of_scope_by_reason": {
       "restated": 323,
@@ -30,18 +30,18 @@
     "by_class": {
       "correct": 704,
       "underspecified": 208,
-      "proof-gap": 33,
-      "fixed": 98,
-      "false": 7
+      "proof-gap": 35,
+      "fixed": 99,
+      "false": 8
     },
     "claims": {
       "in_scope": 418,
-      "formalized": 408,
+      "formalized": 412,
       "correct": 242,
       "underspecified": 83,
-      "proof-gap": 33,
-      "fixed": 45,
-      "false": 5
+      "proof-gap": 35,
+      "fixed": 46,
+      "false": 6
     },
     "definitions": {
       "in_scope": 648,
@@ -2039,8 +2039,8 @@
       "year": 2017,
       "title": "Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata",
       "in_scope": 4,
-      "formalized": 0,
-      "not_formalized": 4,
+      "formalized": 4,
+      "not_formalized": 0,
       "out_of_scope": 18,
       "out_of_scope_by_reason": {
         "restated": 0,
@@ -2052,18 +2052,18 @@
       "by_class": {
         "correct": 0,
         "underspecified": 0,
-        "proof-gap": 0,
-        "fixed": 0,
-        "false": 0
+        "proof-gap": 2,
+        "fixed": 1,
+        "false": 1
       },
       "claims": {
         "in_scope": 4,
-        "formalized": 0,
+        "formalized": 4,
         "correct": 0,
         "underspecified": 0,
-        "proof-gap": 0,
-        "fixed": 0,
-        "false": 0
+        "proof-gap": 2,
+        "fixed": 1,
+        "false": 1
       },
       "definitions": {
         "in_scope": 0,
@@ -2074,7 +2074,28 @@
         "fixed": 0,
         "false": 0
       },
-      "findings": []
+      "findings": [
+        {
+          "result": "Lemma 1",
+          "class": "proof-gap",
+          "reason": "the proof's first case, \"if the mode of s is m₁ then ξ is also directly an execution of H_tt\", fails for an execution still in m₁ after t₁: `H_tt` leaves m₁ at t₁ and runs it in m_either, which is why `f_either` must contain `f₁`; the statement holds, and is proved for any t₁, t₂ with the two properties (t₁ is described as \"the minimum duration\" with them, which is zero, and t₂ as \"the smallest time\", which need not exist); see Findings"
+        },
+        {
+          "result": "Lemma 2",
+          "class": "fixed",
+          "reason": "against `Reach≤T(H_single)`, as `Def. 9` and the statement have it, the error is not zero (at ẋ = 1, g ≡ 1, t_begin = t_scaling = T = 1 the scaled automaton reaches 2 by time 2 and `Reach≤1 = [0, 1]`); corrected to the error against the unbounded `Reach(H)`, which is zero, as the proof shows; see Findings"
+        },
+        {
+          "result": "Cor. 1",
+          "class": "proof-gap",
+          "reason": "the statement holds, but \"since Lemma 1 and Lemma 2 hold\" does not give it: `Lemma 2` is about one mode and is false as printed, and the run of `H_final` must be built from the end state of one of `H`, with the scaled run never passing the guard point (`g` and so `g · f₁` vanish on `G`, the step the paper does not mention) and `m_either` getting what is left of the orbit within `t₂`; the duration is `d + t_scaling - σ ≤ T + t_scaling`; see Findings"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "false",
+          "reason": "the proof bounds the time spent in m_either by t₂ ≤ t_γ, but t₂ is the dwell time of `H` (more than the spread of the arrival times at the guard, here 90), which scaling does not shrink: the run from the state already at the guard spends all of it in m_either; the case m' = m₁ also takes the states of `H_final` of duration up to T + t_scaling for states of `H` of duration T; the claim needs a different construction (a dwell time in m_either recomputed for the scaled automaton), not a different measure; see Findings"
+        }
+      ]
     },
     {
       "page": "2017/goubault-hscc-forward-inner-reachability.md",
@@ -6254,9 +6275,9 @@
         "findings": {
           "correct": 17,
           "underspecified": 6,
-          "proof-gap": 0,
-          "fixed": 2,
-          "false": 0
+          "proof-gap": 2,
+          "fixed": 3,
+          "false": 1
         }
       },
       {
@@ -6536,9 +6557,9 @@
         "findings": {
           "correct": 17,
           "underspecified": 6,
-          "proof-gap": 0,
-          "fixed": 2,
-          "false": 0
+          "proof-gap": 2,
+          "fixed": 3,
+          "false": 1
         }
       },
       "neuralNetworks": {
@@ -6585,9 +6606,9 @@
       "findings": {
         "correct": 611,
         "underspecified": 172,
-        "proof-gap": 29,
-        "fixed": 75,
-        "false": 6
+        "proof-gap": 31,
+        "fixed": 76,
+        "false": 7
       }
     },
     "findings_not_on_a_class": {
@@ -6614,11 +6635,11 @@
       }
     },
     "theorems": {
-      "paper": 1539,
+      "paper": 1550,
       "float": 1704,
-      "helper": 1434,
-      "lemma": 2518,
-      "total": 7195,
+      "helper": 1446,
+      "lemma": 2531,
+      "total": 7231,
       "examples": 120
     }
   }
