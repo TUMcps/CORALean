@@ -12,8 +12,11 @@ time axis, `Stay` and `jump`; `locationProduct` builds the product location as a
 the single automaton, and `Run.toProduct` says every parallel run is a run of it, so the
 single automaton's outer reachable sets bound the parallel one's.
 
-Linear flows only, as `Location` is; the product's invariant, input set and guards are lifted
-by a `Lifting` the caller supplies, since `ContSet` has no product; `boxLifting` is one, boxes
-for inputs and halfspace descriptions for invariants and guards. The converse of
-`Run.toProduct`, synchronization labels and nonlinear flows are not here (#40).
+Linear flows only, as `Location` is; the product's invariant, input set and guards are lifted by a
+`Lifting` the caller supplies, since `ContSet` has no product; `boxLifting` is one, boxes for
+inputs and halfspace descriptions for invariants and guards. `Run.ofProduct` is the converse of
+`Run.toProduct` under stated conditions, `mergeFlowsAdd` closes `SelfBindFree` at an exact sum,
+`SyncRun` and `productSync` are synchronization labels (soundness direction), and `zonoLifting`,
+`conZonoLifting` are `Lifting`s with zonotope inputs. Nonlinear flows, outputs and the labeled
+converse are not here (#40).
 -/

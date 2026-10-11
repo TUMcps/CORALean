@@ -1,16 +1,11 @@
-import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsMulVec
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.InnerProductSpace.Basic
+import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
+import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
 
 /-!
 # A shared stay is a stay of the product
 
-The derivative of the stack is the stack of the derivatives, and by `mergeFlows_mulVec` each is
-the product's flow: a state-bound input is the matrix term, a global one the product's input.
-The invariant and the input set are the lifted ones, by `Lifting`'s two fields. Nothing else
-of the product is read, and no bound input is asked to lie anywhere but where its component's
-own location put it.
+`Stay.trajectoryWith` at `mergeFlows`, whose flow law holds under `SelfBindFree`
+(`mergeFlows_flowLaw`).
 -/
 
 -- Authors:       Tobias Ladner
@@ -38,34 +33,8 @@ theorem ParallelHybridAutomaton.Stay.trajectory [ExactScalar 𝕋]
     (lift : ParallelHybridAutomaton.Lifting S G n m P.binds) {ℓ : ∀ i, L i} {τ : ℝ}
     {x u : ∀ i, ℝ → Vec ℝ (n i)} {g : ℝ → Vec ℝ m} (h : P.Stay ℓ τ x u g) :
     (P.locationProduct lift ℓ).Trajectory τ (fun t => stack fun i => x i t)
-      (fun t => stack (globalInput P.binds fun i => u i t)) where
-  nonneg := h.nonneg
-  input t ht := by
-    show _ ∈ construct (lift.input _)
-    exact lift.mem_input _ (fun i => u i t) fun i => h.input i t ht
-  flow t ht := by
-    -- the stack is differentiable coordinate by coordinate, each coordinate a component's
-    classical
-    rw [hasDerivWithinAt_pi]
-    intro p
-    obtain ⟨⟨i, j⟩, rfl⟩ := finSigmaFinEquiv.surjective p
-    have hs : ∀ (y : ∀ i, Vec ℝ (n i)) (c : Fin k) (s : Fin (n c)),
-        stack y (finSigmaFinEquiv ⟨c, s⟩) = y c s := by
-      intro y c s; unfold stack; rw [Equiv.symm_apply_apply]
-    -- the component's own flow at coordinate `j`
-    have hd := hasDerivWithinAt_pi.mp (h.flow i t ht) j
-    simp only [hs]
-    refine hd.congr_deriv ?_
-    -- the merged matrix on the stack, and what the binding says the input is
-    have hm := P.mergeFlows_mulVec hself ℓ (fun i => x i t) i j
-    simp only [Pi.add_apply]
-    show _ = (toRealMat (P.mergeFlows ℓ).A *ᵥ stack fun i => x i t) _ + _
-    rw [hm]
-    have hb := h.bound i j t ht
-    cases hbd : P.binds i j with
-    | global a => simp [hbd, hs, globalInput]
-    | state c s => simp [hbd, hs, globalInput] at hb ⊢; rw [hb]
-  invariant t ht := lift.mem_inv _ (fun i => x i t) fun i => h.invariant i t ht
+      (fun t => stack (globalInput P.binds fun i => u i t)) :=
+  h.trajectoryWith (P.mergeFlows_flowLaw hself) lift
 
 end CORALean
 

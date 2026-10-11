@@ -1,0 +1,49 @@
+import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
+import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
+import CORALean.ContSet.HPolytope.Real.Operations.ConstructFullspace
+
+/-!
+# `boxSyncLifting`: `boxLifting` with conjoined guards
+
+`boxLifting` and `SyncLifting.guardAll` as `HPolytope.stackProd` of the participants' guards, a
+component with no guard contributing the whole space. The stack of a tuple of points is in it
+exactly when every present guard holds at its block.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real ContSet
+
+variable {k m : ℕ} {n : Fin k → ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def ParallelHybridAutomaton.boxSyncLifting (binds : ∀ i, Fin (n i) → InputSource k n m) :
+    ParallelHybridAutomaton.SyncLifting (fun n => Interval (Vec ℝ n))
+      (fun n => HPolytope (Vec ℝ n)) n m binds where
+  toLifting := ParallelHybridAutomaton.boxLifting binds
+  guardAll gs := HPolytope.stackProd fun i => match gs i with
+    | some g => g
+    | none => HPolytope.fullspace (Vec ℝ (n i))
+  mem_guardAll gs x hx := by
+    show stack x ∈ (HPolytope.stackProd _).construct
+    rw [HPolytope.stackProd_exact]
+    intro i
+    rw [unstack_stack]
+    cases hg : gs i with
+    | some g => exact hx i g hg
+    | none => simp [HPolytope.construct_fullspace]
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

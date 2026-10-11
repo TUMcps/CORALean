@@ -2,6 +2,7 @@ import CORALean.Global.ErrLeNormOfAbsLe
 import CORALean.Global.Tensor
 import CORALean.Global.Scalar
 import CORALean.Global.ExactScalar
+import CORALean.Global.ExactAdd
 import CORALean.Global.NegScalar
 import CORALean.Global.Entrywise
 import CORALean.Global.Hadamard
