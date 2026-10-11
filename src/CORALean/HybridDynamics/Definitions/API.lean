@@ -5,14 +5,17 @@ import CORALean.HybridDynamics.Definitions.InvariantOn
 import CORALean.HybridDynamics.Definitions.ReachSet
 import CORALean.HybridDynamics.Definitions.RunUntil
 import CORALean.HybridDynamics.Definitions.UrgentRun
+import CORALean.HybridDynamics.Definitions.UrgentReachSetAt
 import CORALean.HybridDynamics.Definitions.NonlinearReset
 import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
+import CORALean.HybridDynamics.Definitions.NonlinHybridAutomaton
 import CORALean.HybridDynamics.Definitions.ConstFlowHitSet
 import CORALean.HybridDynamics.Definitions.CheckFlow
 import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirard
 import CORALean.HybridDynamics.Definitions.HitSet
 import CORALean.HybridDynamics.Definitions.SdcInput
 import CORALean.HybridDynamics.Definitions.HitHessian
+import CORALean.HybridDynamics.Definitions.HitHessianNum
 import CORALean.HybridDynamics.Definitions.HitJacobian
 import CORALean.HybridDynamics.Definitions.HitPoint
 import CORALean.HybridDynamics.Definitions.ResetTaylor

@@ -1,4 +1,7 @@
+import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfVolumeLeSupersetParallelotope
+import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
 import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
@@ -41,6 +44,7 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.DistHyperplaneEq
 import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestRadius
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IsLeastVolumeSupersetParallelotope
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerIffSubset
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerCoraCounterexample
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripGollamudi1DCounterexample

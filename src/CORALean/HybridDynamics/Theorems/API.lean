@@ -5,6 +5,9 @@ import CORALean.HybridDynamics.Theorems.FlowOuterSplit
 import CORALean.HybridDynamics.Theorems.FlowOuterFloat
 import CORALean.HybridDynamics.Theorems.FlowOuterSplitFloat
 import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
+import CORALean.HybridDynamics.Theorems.HitHessianMatZonoCounterexample
+import CORALean.HybridDynamics.Theorems.HitHessianNumMemHitHessianMatZono
+import CORALean.HybridDynamics.Theorems.HitPointMemTaylor
 import CORALean.HybridDynamics.Theorems.HoldsAllOfInvariant
 import CORALean.HybridDynamics.Theorems.HoldsOfCheck
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
@@ -89,9 +92,11 @@ import CORALean.HybridDynamics.Theorems.NonlinearResetResolveApply
 import CORALean.HybridDynamics.Theorems.NonlinearResetFloatModelEnclosesResolve
 import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORACounterexample
 import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORASharedInputs
+import CORALean.HybridDynamics.Theorems.UrgentReachSetAtSubsetReachSet
 import CORALean.HybridDynamics.Theorems.UrgentRunToRun
 import CORALean.HybridDynamics.Theorems.ReachGuardOuter
 import CORALean.HybridDynamics.Theorems.GuardIntersectLevelSetOuter
+import CORALean.HybridDynamics.Theorems.GuardTransitionLevelSetOuter
 
 /-!
 # What a hybrid run guarantees, collected

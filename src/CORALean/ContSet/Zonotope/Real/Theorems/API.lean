@@ -26,6 +26,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.CubeExact
 import CORALean.ContSet.Zonotope.Real.Theorems.EnclGenSelSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
+import CORALean.ContSet.Zonotope.Real.Theorems.ExistsCubeVertexMemFrontierLift
 import CORALean.ContSet.Zonotope.Real.Theorems.FaceCentrallySymmetric
 import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIff
 import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIffOfSpan

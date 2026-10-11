@@ -14,7 +14,9 @@ minimum from the halfspace representation (`Def. 4`) or a test on the axes (`Lem
 ellipsoids store a generator rather than a shape matrix, so the transformation `E₀^{-1/2}` is any
 invertible factor of `E₀`, which changes no norm. `Lemma 5` checks the wrong points when the
 zonotope is not centred at the origin; `Def. 4` needs normalized rows. The volume optimality of
-the parallelotope case and the duality-gap discussion are not yet formalized.
+the parallelotope case is formalized; the duality-gap discussion of `Eq. 19` is not: its strong
+duality between the semidefinite relaxation and (18) needs conic (semidefinite) duality, which
+neither the tree nor Mathlib has.
 
 ## Results
 
@@ -27,7 +29,7 @@ the parallelotope case and the duality-gap discussion are not yet formalized.
 | `Def. 3` | (Squared maximum zonotope norm) `⌈Z(G, z̄)⌉² = max_{\|u\| ≤ 1} uᵀ Gᵀ G u` (Eq. 5). | [`MaxNormSq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Definitions/MaxNormSq.lean), [`SqNormLeMaxNormSq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/SqNormLeMaxNormSq.lean), [`SqNormSumEqGram.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/SqNormSumEqGram.lean) | `correct` |
 | `Def. 4` | (Squared minimum zonotope norm) `⌊Z(G, z̄)⌋² = min(b²)` for `{z \| A z ≤ b}` the halfspace representation of `Z(G, 0)` (Eq. 6). | [`IsGreatestBallRadius.lean`](../../src/CORALean/ContSet/HPolytope/Real/Theorems/IsGreatestBallRadius.lean) — with unit rows the largest centred ball has radius `min b` and `(min b)² = min(b²)` | `underspecified` — `min(b²)` is the squared inradius only for normalized rows, which the derivation assumes and the definition omits; see Findings |
 | `Eq. 10` | (Eqs. 7-10) The radius `s*` of the largest ball in `Z(G, 0)` satisfies `s*² = min(b²)` when the rows `aᵢ` are normed: the ball of radius `s` lies in `aᵢᵀ z ≤ bᵢ` iff `s ≤ bᵢ`. | [`IsGreatestBallRadius.lean`](../../src/CORALean/ContSet/HPolytope/Real/Theorems/IsGreatestBallRadius.lean) | `correct` |
-| `Sec. III-A (Remark a)` | For `n = m`, `Z(I, ẑ) = G⁻¹ Z(G, z̄)` (Eq. 12); the minimum-volume ellipsoid covering a hypercube is the sphere of radius `√n` [14, 4.1], so that of `Z(G, z̄)` is `E(n G Gᵀ, z̄)`. | — | — |
+| `Sec. III-A (Remark a)` | For `n = m`, `Z(I, ẑ) = G⁻¹ Z(G, z̄)` (Eq. 12); the minimum-volume ellipsoid covering a hypercube is the sphere of radius `√n` [14, 4.1], so that of `Z(G, z̄)` is `E(n G Gᵀ, z̄)`. | [`IsLeastVolumeSupersetParallelotope.lean`](../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/IsLeastVolumeSupersetParallelotope.lean), [`ConstructEqOfVolumeLeSupersetParallelotope.lean`](../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/ConstructEqOfVolumeLeSupersetParallelotope.lean) — for invertible `G`, the generator `√n G` encloses `Z(G, z̄)` and its volume is the least of all ellipsoids `E(E, e)`, `E ≻ 0` (square generators), enclosing it; any enclosing one of no larger volume is the same set; the hypercube is `G = I`, and Eq. 12 is `Lemma 1` at `T = G⁻¹`; see Findings on the citation | `correct` |
 | `Eq. 11` | The minimum-volume enclosing ellipsoid of a zonotope from its vertices, `min -log det E` s.t. `(vᵢ - c)ᵀ E⁻¹ (vᵢ - c) ≤ 1` [9, Sec. 8.4.1]. | n/a — restated from Boyd and Vandenberghe's *Convex Optimization*, which has no page here | `restated` |
 | `Sec. III-A (Remark b)` | The variation of Goffin's algorithm [14] gives an enclosing ellipsoid that is not tight (Fig. 1). | n/a — an illustration | `not-a-claim` |
 | `Eq. 13` | The initial guess `E(E₀, z̄) = E(m G Gᵀ, z̄)` of [14, Sec. 4.1]. | n/a — restated; tracked as `Sec. 4.1` on [Černý 2012](../2012/cerny-kybernetika-goffin-zonotopes.md); it is the `E₀` of `Thm. 1` | `restated` |
@@ -46,7 +48,7 @@ the parallelotope case and the duality-gap discussion are not yet formalized.
 | `Thm. 2` | (Inscribed zonotope) `Z(r̂^{-1/2} T⁻¹ S, ē) ⊆ E(E, ē)` for `T = E^{-1/2}`, points `vᵢ` on the sphere and `r̂ ≥ ⌈Z(S, ·)⌉²` (Eqs. 22-24); `r̂` may be any upper bound (Remark a). | [`Ellipsoid_to_Zonotope.lean`](../../src/CORALean/ContSet/Conversion/Real/Ellipsoid_to_Zonotope.lean) — `Ellipsoid.zonotopeInnerNorm`, `contains_zonotopeInnerNorm`, for any points; the printed proof ends with `Z(r̂⁻¹ T⁻¹ S, ē)`, a typo for the statement's `r̂^{-1/2}` | `correct` |
 | `Eq. 25` | The maximum-volume ellipsoid inscribed in `{A x ≤ b}`, `min -log det B` s.t. `‖B aᵢ‖₂ + aᵢᵀ z̄ ≤ bᵢ` [9, Sec. 8.4.2]. | n/a — restated from Boyd and Vandenberghe | `restated` |
 | `Lemma 5` | (Lower bound on the squared minimum norm) If the test `ν eᵢ ∈ Z`, `i = 1, …, n`, of [14, Sec. 4.4] passes, then `l̂ = ν²/n` is a lower bound on `⌊Z⌋²` (Eq. 26); the test is the feasibility of `ν eᵢ = G x + z̄`, `x ∈ [-1, 1]ᵐ`. | [`BallSubsetOfAxisTest.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/BallSubsetOfAxisTest.lean), [`BallSubsetOfAxisTestCounterexample.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/BallSubsetOfAxisTestCounterexample.lean) — the test measured from the centre, `z̄ + ν eᵢ ∈ Z`; the counterexample `[5, 7]`, `ν = 6` **Counterexample:** `Zonotope.ball_subset_of_axis_test_counterexample` | `fixed` — as printed the test checks `ν eᵢ` itself, which bounds nothing for a zonotope off the origin; true from the centre; see Findings |
-| `Sec. V (complexity)` | The test of `Lemma 5` costs `O(n lp)`, `lp` the cost of a linear-programming feasibility check. | — | — |
+| `Sec. V (complexity)` | The test of `Lemma 5` costs `O(n lp)`, `lp` the cost of a linear-programming feasibility check. | n/a — a running time stated in the text, not a proposition of its own, which the tree can only assert (`Cost/`) and never prove; see CONTRIBUTING.md, "A size is proved; a running cost is asserted" | `not-a-claim` |
 | `Thm. 3` | (Inscribed ellipsoid) `E(l̂ E₀, z̄) ⊆ Z(G, z̄)` for `E₀ = G Gᵀ` and `l̂ ≤ ⌊E₀^{-1/2} Z(G, z̄)⌋²` from `Lemma 5` (Eq. 27). | [`Zonotope_to_Ellipsoid.lean`](../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Ellipsoid.lean) — `Zonotope.ellipsoidInnerNorm`, `contains_ellipsoidInnerNorm`: for any invertible factor `F` of `E₀` and `l̂` a ball of radius `√l̂` inside `F⁻¹ Z` around its centre | `correct` |
 | `Thm. 4` | (Enclosing zonotope) `E(E, ē) ⊆ Z(l̂^{-1/2} T⁻¹ S, ē)` for `T = E^{-1/2}`, points on the sphere and `l̂ ≤ ⌊Z(S, ·)⌋²` (Eqs. 28-30). | [`Ellipsoid_to_Zonotope.lean`](../../src/CORALean/ContSet/Conversion/Real/Ellipsoid_to_Zonotope.lean) — `Ellipsoid.zonotopeNorm`, `zonotopeNorm_contains`, for any points with a ball of radius `√l̂` inside `Z(S, 0)` | `correct` |
 | `Sec. VI` | Volume ratios and run times of `Thm. 1` and `Thm. 3` against the optimal ellipsoids (11) and (25) on random zonotopes (Tables I-II). | n/a — an experiment | `not-a-claim` |
@@ -66,3 +68,14 @@ centre the lemma holds, and `Thm. 3` needs that reading: it applies the lemma to
 `±ν eᵢ` a rotated hypercube, which it is only for `n ≤ 2`; it is a cross-polytope, and the radius
 `ν/√n` of its inscribed ball is the one the lemma states. CORA does not implement the test
 (`zonotope/ellipsoid.m`: "we do not implement the test used to compute the necessary lower bound"). [`BallSubsetOfAxisTest.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/BallSubsetOfAxisTest.lean), [`BallSubsetOfAxisTestCounterexample.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/BallSubsetOfAxisTestCounterexample.lean)
+
+**`Sec. III-A (Remark a)` — the citation.** The remark takes the minimum-volume ellipsoid of the
+hypercube from [14, 4.1] (Černý 2012), whose Sec. 4.1 says only that the ball of radius `√(m/2)`
+circumscribes the cube `[-1, 1]^{m/2}` (its `Sec. 4.1` row), not that it is of least volume. The
+statement holds and is proved here directly: an ellipsoid `{q + Fu | ‖u‖₂ ≤ 1}` around `Z(G, z̄)`
+holds each vertex `z̄ + Gσ` as `q + F(w + F⁻¹Gσ)`, and summing `‖w + F⁻¹Gσ‖₂² ≤ 1` over the `2ⁿ`
+sign vectors gives `‖w‖₂² + tr(F⁻¹G(F⁻¹G)ᵀ) ≤ 1`, so `det(F⁻¹G)² ≤ n⁻ⁿ` by AM-GM on the
+eigenvalues, `|det F| ≥ nⁿᐟ²|det G|`. At equality `w = 0` and `F⁻¹G(F⁻¹G)ᵀ = I/n`, so the
+ellipsoid is `E(nGGᵀ, z̄)` itself: it is the unique one of least volume.
+[`IsLeastVolumeSupersetParallelotope.lean`](../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/IsLeastVolumeSupersetParallelotope.lean),
+[`ConstructEqOfVolumeLeSupersetParallelotope.lean`](../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/ConstructEqOfVolumeLeSupersetParallelotope.lean)
