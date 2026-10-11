@@ -428,6 +428,24 @@ def minkDiffOpt : Option (Zonotope D 2) :=
     (d 15 (-4)) !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
 def minkDiffRun : Zonotope D 2 := minkDiffOpt.getD (Zonotope.point ![d 0 0, d 0 0])
 
+/-- The non-square Minkowski difference pinning the generator orientation, explained in
+`minkDiffRepCandidate`'s module docstring. -/
+def minkDiffNSMinuend : Zonotope D 2 where
+  h := 3
+  c := ![d 0 0, d 0 0]
+  G := !![d 1 0, d 0 0; d 0 0, d 1 0; d 1 0, d 1 0]
+  E := zbox 2
+def minkDiffNSSubtrahend : Zonotope D 2 where
+  h := 2
+  c := ![d 0 0, d 0 0]
+  G := !![d 1 (-1), d 0 0; d 1 (-2), d 1 (-1)]
+  E := zbox 2
+def minkDiffNSOpt : Option (Zonotope D 2) :=
+  let M : Mat D 3 2 := !![d 1 (-1), d 0 0; d 0 0, d 1 (-2); d 0 0, d 1 (-2)]
+  minkDiffNSMinuend.minkDiffRep minkDiffNSSubtrahend (fun i j => M i j) (d 1 (-1))
+    !![d 3 (-2), d (-3) (-3); d (-1) (-2), d 5 (-3); d 1 (-2), d 3 (-3)]
+def minkDiffNSRun : Zonotope D 2 := minkDiffNSOpt.getD (Zonotope.point ![d 0 0, d 0 0])
+
 /-- A location flowing by the same `A`, its input `Z` off the origin, and its stay over
 `[0, r]` from `Z` by the float step and by the split float step. -/
 def ctLoc : Location (Zonotope D) (Zonotope D) Unit D 2 := ⟨Z, ctSys, Z, []⟩

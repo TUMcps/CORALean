@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 75,
     "in_scope": 1066,
-    "formalized": 1057,
-    "not_formalized": 9,
+    "formalized": 1058,
+    "not_formalized": 8,
     "out_of_scope": 901,
     "out_of_scope_by_reason": {
       "restated": 323,
@@ -32,7 +32,7 @@
       "underspecified": 209,
       "proof-gap": 35,
       "fixed": 101,
-      "false": 8
+      "false": 9
     },
     "claims": {
       "in_scope": 418,
@@ -45,12 +45,12 @@
     },
     "definitions": {
       "in_scope": 648,
-      "formalized": 643,
+      "formalized": 644,
       "correct": 462,
       "underspecified": 126,
       "proof-gap": 0,
       "fixed": 53,
-      "false": 2
+      "false": 3
     }
   },
   "papers": [
@@ -4593,8 +4593,8 @@
       "year": 2023,
       "title": "Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions",
       "in_scope": 9,
-      "formalized": 8,
-      "not_formalized": 1,
+      "formalized": 9,
+      "not_formalized": 0,
       "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 3,
@@ -4608,7 +4608,7 @@
         "underspecified": 6,
         "proof-gap": 0,
         "fixed": 1,
-        "false": 0
+        "false": 1
       },
       "claims": {
         "in_scope": 0,
@@ -4621,12 +4621,12 @@
       },
       "definitions": {
         "in_scope": 9,
-        "formalized": 8,
+        "formalized": 9,
         "correct": 1,
         "underspecified": 6,
         "proof-gap": 0,
         "fixed": 1,
-        "false": 0
+        "false": 1
       },
       "findings": [
         {
@@ -4663,6 +4663,11 @@
           "result": "Alg. 3 (search)",
           "class": "underspecified",
           "reason": "line 18 sends `i ≤ n+1` to the Gram–Schmidt of line 23, but a non-degenerate `P̌` has `n+1` vertices, `i = n+1`, and there no direction is orthogonal to the vertices; `i ≥ n+1` is meant; see Findings"
+        },
+        {
+          "result": "Alg. 3 (termination)",
+          "class": "false",
+          "reason": "line 15 refines Δt only once `0 ∈ P̂`, but lines 19 and 23 choose the directions from `P̌`: with `L = {c}`, `c` between `e − 1` and the upper bound of `Alg. 1` at Δt = 1, `R(1)` keeps a distance `c − (e − 1) > 0` from `L`, and the search tries `ℓ = +1` forever without an exit or a refinement; see Findings"
         }
       ]
     },
@@ -6058,7 +6063,7 @@
           "underspecified": 22,
           "proof-gap": 10,
           "fixed": 9,
-          "false": 0
+          "false": 1
         }
       },
       {
@@ -6550,7 +6555,7 @@
           "underspecified": 58,
           "proof-gap": 18,
           "fixed": 28,
-          "false": 1
+          "false": 2
         }
       },
       "hybrid": {
@@ -6623,7 +6628,7 @@
         "underspecified": 173,
         "proof-gap": 31,
         "fixed": 78,
-        "false": 7
+        "false": 8
       }
     },
     "findings_not_on_a_class": {
@@ -6650,11 +6655,11 @@
       }
     },
     "theorems": {
-      "paper": 1558,
+      "paper": 1559,
       "float": 1720,
-      "helper": 1480,
+      "helper": 1482,
       "lemma": 2545,
-      "total": 7303,
+      "total": 7306,
       "examples": 120
     }
   }
