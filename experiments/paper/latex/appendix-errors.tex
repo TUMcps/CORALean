@@ -9,7 +9,7 @@
 \setlength{\tabcolsep}{4pt}
 \setlength{\LTcapwidth}{\textwidth}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{5.3cm}cc@{}}
-\caption{The 107 printed results of 47 papers cited by CORA that are false on a non-degenerate
+\caption{The 109 printed results of 47 papers cited by CORA that are false on a non-degenerate
 input: a few words on what is wrong, the Lean counterexample, and the Lean file proving the corrected
 statement. \textsuperscript{\dag}No corrected statement is proved (class \emph{false}).}
 \label{tab:errors}\\
@@ -88,6 +88,8 @@ Reference & Description & \begin{tabular}[b]{@{}c@{}}Lean\\counterexample\end{ta
 \cite[Cor.~2]{wang2019zonotopic} & vertex LMIs do not give the scheduled LMI & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/LpvLmiOfVerticesCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/LpvLmiOfVertices.lean}{[FIX]} \\
 \cite[Thm.~III.2]{althoff2020reachability} & $[-1, 1]$ factor dropped; $F(g^{(i)})$ is not symmetric & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PrintedTimeIntervalCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/TimeIntervalSubset.lean}{[FIX]} \\
 \cite[Cor.~IV.1]{althoff2020reachability} & error radius must be the sum of both radii & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PartialInputSolutionCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PartialInputSolutionMemBox.lean}{[FIX]} \\
+\cite[Thm.~IV.2]{althoff2020reachability} & Krylov error bound $\tilde{\epsilon}$ fails for time-varying inputs & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputReachCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovTaylor.lean}{[FIX]} \\
+\cite[Cor.~IV.2]{althoff2020reachability} & inherits the failing Krylov remainder of Thm.~IV.2 & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputReachCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovZonotope.lean}{[FIX]} \\
 \cite[Lemma~5]{gassmann2020scalable} & axis test must be measured from the centre & \href{\coraleanrepo/src/CORALean/ContSet/Zonotope/Real/Theorems/BallSubsetOfAxisTestCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContSet/Zonotope/Real/Theorems/BallSubsetOfAxisTest.lean}{[FIX]} \\
 \cite[Thm.~1]{kochdumper2020reachability} & equality needs $p_k$ independent of $x(k)$ & \href{\coraleanrepo/src/CORALean/ContSet/LevelSet/Real/Theorems/IntersectLevelSetBoxCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContSet/LevelSet/Real/Theorems/IntersectLevelSetBoxExact.lean}{[FIX]} \\
 \cite[Example~2]{kochdumper2020reachability} & solved form undefined on the line $x_1 = 0$ & \href{\coraleanrepo/src/CORALean/ContSet/LevelSet/Real/Theorems/SolvedGuardSinCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContSet/LevelSet/Real/Theorems/SolvedGuardSinOfNeZero.lean}{[FIX]} \\

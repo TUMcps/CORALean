@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 75,
     "in_scope": 1066,
-    "formalized": 1054,
-    "not_formalized": 12,
+    "formalized": 1056,
+    "not_formalized": 10,
     "out_of_scope": 901,
     "out_of_scope_by_reason": {
       "restated": 323,
@@ -31,16 +31,16 @@
       "correct": 704,
       "underspecified": 208,
       "proof-gap": 35,
-      "fixed": 99,
+      "fixed": 101,
       "false": 8
     },
     "claims": {
       "in_scope": 418,
-      "formalized": 412,
+      "formalized": 414,
       "correct": 242,
       "underspecified": 83,
       "proof-gap": 35,
-      "fixed": 46,
+      "fixed": 48,
       "false": 6
     },
     "definitions": {
@@ -2919,8 +2919,8 @@
       "year": 2020,
       "title": "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace",
       "in_scope": 13,
-      "formalized": 10,
-      "not_formalized": 3,
+      "formalized": 12,
+      "not_formalized": 1,
       "out_of_scope": 16,
       "out_of_scope_by_reason": {
         "restated": 12,
@@ -2933,16 +2933,16 @@
         "correct": 5,
         "underspecified": 2,
         "proof-gap": 1,
-        "fixed": 2,
+        "fixed": 4,
         "false": 0
       },
       "claims": {
         "in_scope": 11,
-        "formalized": 9,
+        "formalized": 11,
         "correct": 5,
         "underspecified": 1,
         "proof-gap": 1,
-        "fixed": 2,
+        "fixed": 4,
         "false": 0
       },
       "definitions": {
@@ -2974,6 +2974,16 @@
           "result": "Cor. IV.1",
           "class": "fixed",
           "reason": "the difference of `Lemma IV.1`'s two error boxes has the sum of their radii, not `ε̃_norm(t_e - t₀)`; at `A = 3`, `u = 4`, `δ = 1`, `ξ = 1`, `[t₀, t_e] = [0, 1/9]` the printed box is too small; see Findings"
+        },
+        {
+          "result": "Thm. IV.2",
+          "class": "fixed",
+          "reason": "Appendix A sums `Cor. IV.1` over l sub-intervals, whose error radii add up to about lδε̃, not ε̃δ (31), and uses of ε̃ only (3); B.1's ε̃ bounds the Krylov error of a constant input, in which the oscillating e_ξᵀe^{H̃t}e₁ averages out, and a varying input rectifies it; the statement also drops the Ṽ(u) in front of Ẽ(δ, u); see Findings"
+        },
+        {
+          "result": "Cor. IV.2",
+          "class": "fixed",
+          "reason": "R_p,err is `Thm. IV.2`'s remainder at the center and generators and fails with it; for η ≥ ξ the splitting of {Ṽ(u)H̃ʲ(u) | u ∈ U} into center and generators is also unsupported, u ↦ P Ṽ(u)H̃ʲ(u)e₁ not being linear there; see Findings"
         },
         {
           "result": "Prop. B.1",
@@ -6042,7 +6052,7 @@
           "correct": 35,
           "underspecified": 21,
           "proof-gap": 10,
-          "fixed": 7,
+          "fixed": 9,
           "false": 0
         }
       },
@@ -6534,7 +6544,7 @@
           "correct": 150,
           "underspecified": 57,
           "proof-gap": 18,
-          "fixed": 26,
+          "fixed": 28,
           "false": 1
         }
       },
@@ -6607,7 +6617,7 @@
         "correct": 611,
         "underspecified": 172,
         "proof-gap": 31,
-        "fixed": 76,
+        "fixed": 78,
         "false": 7
       }
     },
@@ -6635,11 +6645,11 @@
       }
     },
     "theorems": {
-      "paper": 1555,
+      "paper": 1557,
       "float": 1720,
-      "helper": 1454,
+      "helper": 1478,
       "lemma": 2545,
-      "total": 7274,
+      "total": 7300,
       "examples": 120
     }
   }

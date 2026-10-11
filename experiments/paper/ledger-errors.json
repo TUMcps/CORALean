@@ -250,6 +250,12 @@
     },
     "Cor. IV.1": {
       "description": "error radius must be the sum of both radii"
+    },
+    "Thm. IV.2": {
+      "description": "Krylov error bound $\\tilde{\\epsilon}$ fails for time-varying inputs"
+    },
+    "Cor. IV.2": {
+      "description": "inherits the failing Krylov remainder of Thm.~IV.2"
     }
   },
   "2020/gassmann-acc-zonotope-ellipsoid": {
