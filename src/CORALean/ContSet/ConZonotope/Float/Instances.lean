@@ -31,8 +31,10 @@ instance : Plus (ConZonotope 𝕋 n) (Vec ℝ n) where
     exact ConZonotope.plus_outer C₁ C₂
 
 instance : LinComb (ConZonotope 𝕋 n) (Vec ℝ n) where
-  linComb := ConZonotope.linComb
-  linComb_outer := ConZonotope.linComb_outer
+  linComb cZ₁ cZ₂ := (ConZonotope.linComb cZ₁ cZ₂).materialise
+  linComb_outer cZ₁ cZ₂ := by
+    rw [ConZonotope.materialise_eq]
+    exact ConZonotope.linComb_outer cZ₁ cZ₂
 
 instance : Intersection (ConZonotope 𝕋 n) (Vec ℝ n) where
   intersection cZ₁ cZ₂ := (cZ₁.intersection cZ₂).materialise
@@ -41,8 +43,10 @@ instance : Intersection (ConZonotope 𝕋 n) (Vec ℝ n) where
     exact ConZonotope.intersection_outer cZ₁ cZ₂
 
 instance : Reduce (ConZonotope 𝕋 n) (Vec ℝ n) where
-  reduce := ConZonotope.reduce
-  reduce_outer := ConZonotope.reduce_outer
+  reduce cZ o := (ConZonotope.reduce cZ o).materialise
+  reduce_outer cZ o := by
+    rw [ConZonotope.materialise_eq]
+    exact ConZonotope.reduce_outer cZ o
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/
