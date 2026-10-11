@@ -22,6 +22,7 @@ import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputNotOfErrorBound
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputReachCounterexample
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovZonotope
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ReachSubsetAlg2Corrected
 
 /-!
 # What the Krylov reachability of Althoff (TAC 2020) guarantees
@@ -43,5 +44,6 @@ inputs with the thesis' remainder, `InputReachSubsetKrylovZonotope` Cor. IV.2's 
 bound (3) alone, and `VaryingInputReachCounterexample` that it fails with Prop. B.1's `ε̃`.
 `InputReachSubsetSumExpImage` is
 Alg. 2's input part with (24)'s exponent, which line 8 overshoots
-(`PrintedInputPropagationCounterexample`).
+(`PrintedInputPropagationCounterexample`); `ReachSubsetAlg2Corrected` is Alg. 2, repaired, enclosing
+the reachable set.
 -/
