@@ -16,8 +16,8 @@
   "totals": {
     "papers": 82,
     "papers_with_findings": 71,
-    "in_scope": 1062,
-    "formalized": 970,
+    "in_scope": 1065,
+    "formalized": 973,
     "not_formalized": 92,
     "out_of_scope": 892,
     "out_of_scope_by_reason": {
@@ -29,9 +29,9 @@
     },
     "by_class": {
       "correct": 672,
-      "underspecified": 175,
+      "underspecified": 177,
       "proof-gap": 31,
-      "fixed": 87,
+      "fixed": 88,
       "false": 5
     },
     "claims": {
@@ -44,12 +44,12 @@
       "false": 3
     },
     "definitions": {
-      "in_scope": 646,
-      "formalized": 601,
+      "in_scope": 649,
+      "formalized": 604,
       "correct": 442,
-      "underspecified": 106,
+      "underspecified": 108,
       "proof-gap": 0,
-      "fixed": 51,
+      "fixed": 52,
       "false": 2
     }
   },
@@ -4434,8 +4434,8 @@
       "label": "Wetzlinger 2023 (hscc)",
       "year": 2023,
       "title": "Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions",
-      "in_scope": 5,
-      "formalized": 3,
+      "in_scope": 8,
+      "formalized": 6,
       "not_formalized": 2,
       "out_of_scope": 4,
       "out_of_scope_by_reason": {
@@ -4447,9 +4447,9 @@
       },
       "by_class": {
         "correct": 1,
-        "underspecified": 2,
+        "underspecified": 4,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 1,
         "false": 0
       },
       "claims": {
@@ -4462,12 +4462,12 @@
         "false": 0
       },
       "definitions": {
-        "in_scope": 5,
-        "formalized": 3,
+        "in_scope": 8,
+        "formalized": 6,
         "correct": 1,
-        "underspecified": 2,
+        "underspecified": 4,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 1,
         "false": 0
       },
       "findings": [
@@ -4477,9 +4477,24 @@
           "reason": "`Q` is semi-definite but written through `Q⁻¹`, which a singular `Q` does not admit"
         },
         {
+          "result": "Sec. 4.2",
+          "class": "fixed",
+          "reason": "Eq. (20) maximizes over U along (e^{At_j})^⊤ℓ, but Eq. (18) carries u(j) to t_k by e^{At_{k-1-j}}T, so the direction has to be (e^{At_{k-1-j}}T)^⊤ℓ: `T` is dropped and the steps are counted from the wrong end; see Findings"
+        },
+        {
+          "result": "Alg. 1 (lower bounds)",
+          "class": "underspecified",
+          "reason": "line 16 is a lower bound only when ũ ∈ U, that is 0 ∈ U_0: line 2's volumetric centre lies in U, but the centre of the enclosing interval, which Sec. 3 offers in its place, need not, and then line 16 can exceed ρ(R(τ_k),ℓ); see Findings"
+        },
+        {
           "result": "Alg. 2",
           "class": "underspecified",
-          "reason": "the falsification test is nested under the safety test and can never fire: it never returns unsafe"
+          "reason": "the falsification test is nested under the safety test and can never fire: it never returns unsafe; and when line 16's maximum is ρ(H(t_{k+1}),ℓ_i) the violating support vector is ν(Ř(t_{k+1}),ℓ_i), not ν(Ř(t_k),ℓ_i); see Findings"
+        },
+        {
+          "result": "Alg. 3 (exits)",
+          "class": "underspecified",
+          "reason": "the λ_j have to be non-negative, which the linear system decides only when the simplex's vertices are affinely independent; see Findings"
         }
       ]
     },
@@ -5776,9 +5791,9 @@
         "cora_issues": 1,
         "findings": {
           "correct": 34,
-          "underspecified": 16,
+          "underspecified": 17,
           "proof-gap": 10,
-          "fixed": 4,
+          "fixed": 5,
           "false": 0
         }
       },
@@ -6268,9 +6283,9 @@
         },
         "findings": {
           "correct": 141,
-          "underspecified": 48,
+          "underspecified": 49,
           "proof-gap": 18,
-          "fixed": 22,
+          "fixed": 23,
           "false": 1
         }
       },
@@ -6341,9 +6356,9 @@
       },
       "findings": {
         "correct": 583,
-        "underspecified": 150,
+        "underspecified": 151,
         "proof-gap": 27,
-        "fixed": 69,
+        "fixed": 70,
         "false": 5
       }
     },
@@ -6357,7 +6372,7 @@
       },
       "specification": {
         "correct": 22,
-        "underspecified": 7,
+        "underspecified": 8,
         "proof-gap": 0,
         "fixed": 6,
         "false": 0
@@ -6371,11 +6386,11 @@
       }
     },
     "theorems": {
-      "paper": 1332,
+      "paper": 1349,
       "float": 1698,
-      "helper": 1150,
-      "lemma": 2455,
-      "total": 6635,
+      "helper": 1159,
+      "lemma": 2457,
+      "total": 6663,
       "examples": 120
     }
   }

@@ -3,7 +3,7 @@ import CORALean.Specification.Operations.DiffPoint
 import Mathlib.Analysis.Convex.Hull
 
 /-!
-# [1, Alg. 3, l. 4-13]: one direction of the search
+# [1, Alg. 3 (exits), l. 4-13]: one direction of the search
 
 `verifyConvexStep`: `safe` once the bounds separate, `violated` once the accumulated hull
 reaches the origin, else the new point is folded in. A reached answer is carried forward,
@@ -33,7 +33,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 3, l. 4-13] for one direction `ℓ i`: `safe` once the bounds
+/-- [1, Alg. 3 (exits), l. 4-13] for one direction `ℓ i`: `safe` once the bounds
 separate, `violated` once the accumulated hull reaches the origin, else the
 new point is folded in. A reached answer is carried forward, extra fuel harmless. -/
 noncomputable def verifyConvexStep (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)

@@ -5,7 +5,7 @@ import Mathlib.Analysis.Convex.Hull
 # The origin in the hull of differences forces an intersection
 
 The falsification exit of a Gilbert-Johnson-Keerthi-style intersection check:
-[1, Alg. 3, l. 12] accumulates support vectors `vᵢ = xᵢ - yᵢ` with `xᵢ` in the
+[1, Alg. 3 (exits), l. 12] accumulates support vectors `vᵢ = xᵢ - yᵢ` with `xᵢ` in the
 reachable set and `yᵢ` in the unsafe set, and reports "unsafe" as soon as the
 convex hull of those points contains the origin. Sound because `O - U` is
 convex when `O` and `U` are, so `convexHull_min` puts the whole hull inside

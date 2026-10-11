@@ -8,7 +8,7 @@ import CORALean.Specification.Operations.VerifyHalfspace
 # Checking a specification, and the two verification decision procedures
 
 `Check` is CORA's `check`, run through the representation pair's instances.
-`VerifyHalfspace` is `[1, Alg. 2]`'s decision procedure. `VerifyConvex` is `[1, Alg. 3]`'s,
+`VerifyHalfspace` is `[1, Alg. 2]`'s decision procedure. `VerifyConvex` is `[1, Alg. 3 (exits)]`'s,
 folding `VerifyConvexStep` — each direction's test, over the witness difference `DiffPoint` —
 across a fuel-bounded direction sequence. `Theorems` holds both algorithms' soundness.
 

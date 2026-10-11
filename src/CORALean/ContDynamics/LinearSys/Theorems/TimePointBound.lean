@@ -4,9 +4,10 @@ import CORALean.Global.LinProg.API
 /-!
 # A support bound at the end of a step, not over the whole of it
 
-[1, Alg. 1]'s lines 10-12: `ρ(R(t_{k+1}), ℓ) ← ρ(R₀, ℓᵀe^{Ar}) + ρ(P̂_U(t_{k+1}), ℓ)`, term
-for term — `SupportBound.image` for the direction pulled back through `e^{Ar}`
-rather than the value moved, `SupportBound.add` for the `+`, and
+[1, Alg. 1 (upper bounds)]'s lines 10-12:
+`ρ(R(t_{k+1}), ℓ) ← ρ(R₀, ℓᵀe^{Ar}) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term —
+`SupportBound.image` for the direction pulled back through `e^{Ar}` rather than the value
+moved, `SupportBound.add` for the `+`, and
 `SupportBound.mono` to cross `reachSet_subset_image_inputSolution`.
 
 The two bounds are hypotheses, exactly as `timeIntervalBound` takes its three:

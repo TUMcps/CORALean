@@ -6,7 +6,7 @@ import CORALean.Specification.Theorems.DiffPointMemSub
 
 `verifyConvexFold_inv`: the accumulated points stay inside `O - U`, a `violated` answer
 already carries the origin in their hull, and a `safe` one already carries a separating
-direction — preserved by every further step of [1, Alg. 3].
+direction — preserved by every further step of [1, Alg. 3 (exits)].
 
 ## References
 

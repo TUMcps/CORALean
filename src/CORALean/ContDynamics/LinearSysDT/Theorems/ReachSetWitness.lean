@@ -9,7 +9,7 @@ matrix, `add` for the input set — but for a lower bound carrying the point tha
 attains it. This is the CORALean counterpart of `Alg. 1` of [1]'s
 verify-or-falsify loop: a lower bound on the support function of the reachable
 set is that paper's novel contribution, obtained from support vectors of an
-inner approximation, which is exactly what a `SupportWitness` carries [1, Alg. 1].
+inner approximation, which is exactly what a `SupportWitness` carries [1, Alg. 1 (lower bounds)].
 
 As with `reachSetBound`, the hypotheses are functions of a direction rather
 than two numbers, so any representation that can answer `SupportWitness` for

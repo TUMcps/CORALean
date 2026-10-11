@@ -3,7 +3,7 @@ import CORALean.Specification.Operations.DiffPoint
 /-!
 # The witness difference lies in `O - U`
 
-`diffPoint_mem_sub`: both witness points [1, Alg. 3, l. 10] reads lie in their own sets, so
+`diffPoint_mem_sub`: both witness points [1, Alg. 3 (exits), l. 10] reads lie in their own sets, so
 the difference lies in `O - U`.
 
 ## References

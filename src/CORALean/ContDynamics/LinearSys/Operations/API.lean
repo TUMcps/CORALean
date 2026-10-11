@@ -179,6 +179,8 @@ import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachErosionFloat
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
+import CORALean.ContDynamics.LinearSys.Operations.SupportLower
+import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
 
 /-!
 # What a continuous-time linear system computes

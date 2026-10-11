@@ -4,7 +4,7 @@ import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
 /-!
 # A support bound over a whole step, not a time point
 
-[1, Alg. 1]'s line 13: `ρ(R̂(τ_k), ℓ) ← max{ρ(H(t_k), ℓ), ρ(H(t_{k+1}), ℓ)} +
+[1, Alg. 1 (upper bounds)]'s line 13: `ρ(R̂(τ_k), ℓ) ← max{ρ(H(t_k), ℓ), ρ(H(t_{k+1}), ℓ)} +
 ρ(C, d_k) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term — `SupportBound.segments` for the
 `max`, `SupportBound.image` for the direction pulled back through `e^{Ar}`
 rather than the value moved, `SupportBound.add` for the two `+`s, and

@@ -17,6 +17,7 @@ import CORALean.Specification.Theorems.VerifyHalfspaceSafe
 import CORALean.Specification.Theorems.VerifyHalfspaceUnsafe
 import CORALean.Specification.Theorems.Violation
 import CORALean.Specification.Theorems.VerifyConvexSafe
+import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
 
 /-!
 # Checking a specification, collected

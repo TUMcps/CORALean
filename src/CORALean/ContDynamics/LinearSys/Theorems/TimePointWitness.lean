@@ -4,7 +4,7 @@ import CORALean.Global.LinProg.API
 /-!
 # A lower bound on the reachable set — the dual of the upper one
 
-[1, Alg. 1]'s line 15, over `reachSet`: `ρ(R₀, ℓᵀe^{tA}) + ρ(P, ℓ)` again,
+[1, Alg. 1 (lower bounds)]'s line 15, over `reachSet`: `ρ(R₀, ℓᵀe^{tA}) + ρ(P, ℓ)` again,
 now with a point in each set attaining at least it, assembled by
 `SupportWitness.image` and `.add` and carried across `reachSet_eq`. The
 first lower bound in the tree on a continuous-time reachable set: every

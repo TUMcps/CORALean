@@ -28,6 +28,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.EnclGenSelSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
 import CORALean.ContSet.Zonotope.Real.Theorems.FaceCentrallySymmetric
 import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIff
+import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIffOfSpan
+import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalCompPermAbs
+import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalEqZeroOfNotInjective
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffRowsEq
 import CORALean.ContSet.Zonotope.Real.Theorems.GenRemovableIff
 import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
 import CORALean.ContSet.Zonotope.Real.Theorems.HRepInterEq

@@ -5,7 +5,7 @@ import CORALean.Specification.Operations.VerifyConvex
 import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
 
 /-!
-# [1, Alg. 3, l. 12-13]: `verifyConvex`'s `violated` answer is sound
+# [1, Alg. 3 (exits), l. 12-13]: `verifyConvex`'s `violated` answer is sound
 
 The exit `not_holds_unsafeSet_of_zero_mem_convexHull` was already available;
 what was missing was a reachable set the hull-membership argument could reach
@@ -44,7 +44,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Alg. 3]: a `violated` answer from `verifyConvex`, run at the
+/-- [1, Alg. 3 (exits)]: a `violated` answer from `verifyConvex`, run at the
 continuous-time reachable set, means it really does meet a convex unsafe set. -/
 theorem LinearSys.not_holds_unsafeSet_of_verifyConvex_violated (sys : LinearSys 𝕋 n) (R₀ Uin : S n)
     {t : ℝ} (ht : 0 ≤ t) (hR₀ : Convex ℝ (construct R₀)) (hUin : Convex ℝ (construct Uin))

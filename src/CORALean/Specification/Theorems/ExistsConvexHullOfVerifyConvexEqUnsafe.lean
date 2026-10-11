@@ -4,8 +4,8 @@ import CORALean.Specification.Theorems.VerifyConvexFoldInv
 /-!
 # A `violated` verdict from `verifyConvex` names a witnessing hull
 
-`exists_convexHull_of_verifyConvex_eq_unsafe`: an `unsafe` answer from [1, Alg. 3] came from a
-finite set of accumulated `O - U` points whose hull already reaches the origin.
+`exists_convexHull_of_verifyConvex_eq_unsafe`: an `unsafe` answer from [1, Alg. 3 (exits)]
+came from a finite set of accumulated `O - U` points whose hull already reaches the origin.
 
 ## References
 
