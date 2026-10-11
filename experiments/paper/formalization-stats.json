@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 73,
     "in_scope": 1066,
-    "formalized": 1033,
-    "not_formalized": 33,
+    "formalized": 1034,
+    "not_formalized": 32,
     "out_of_scope": 898,
     "out_of_scope_by_reason": {
       "restated": 323,
@@ -31,16 +31,16 @@
       "correct": 702,
       "underspecified": 196,
       "proof-gap": 32,
-      "fixed": 96,
+      "fixed": 97,
       "false": 7
     },
     "claims": {
       "in_scope": 418,
-      "formalized": 400,
+      "formalized": 401,
       "correct": 241,
       "underspecified": 79,
       "proof-gap": 32,
-      "fixed": 43,
+      "fixed": 44,
       "false": 5
     },
     "definitions": {
@@ -646,8 +646,8 @@
       "year": 2009,
       "title": "Interval predictor models: Identification and reliability",
       "in_scope": 9,
-      "formalized": 8,
-      "not_formalized": 1,
+      "formalized": 9,
+      "not_formalized": 0,
       "out_of_scope": 28,
       "out_of_scope_by_reason": {
         "restated": 1,
@@ -660,16 +660,16 @@
         "correct": 5,
         "underspecified": 3,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 1,
         "false": 0
       },
       "claims": {
         "in_scope": 3,
-        "formalized": 2,
+        "formalized": 3,
         "correct": 0,
         "underspecified": 2,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 1,
         "false": 0
       },
       "definitions": {
@@ -696,6 +696,11 @@
           "result": "Thm. 3",
           "class": "underspecified",
           "reason": "the measurability of the consistency relation `y ∈ I_Q(ϕ)` and of the solution map is not stated, and without it the probabilities of the proof are undefined; supplied; see Findings"
+        },
+        {
+          "result": "Thm. 4",
+          "class": "fixed",
+          "reason": "Def. 5 asks only pairs `x(t)`, `x(t + s)`, `|s| > M`, to be independent, which the thinning does not survive; with past and future more than `M` apart independent (Bosq, whom the paper cites) the theorem holds; see Findings"
         }
       ]
     },
@@ -6519,7 +6524,7 @@
         "correct": 70,
         "underspecified": 22,
         "proof-gap": 4,
-        "fixed": 16,
+        "fixed": 17,
         "false": 1
       },
       "specification": {
@@ -6538,11 +6543,11 @@
       }
     },
     "theorems": {
-      "paper": 1460,
+      "paper": 1468,
       "float": 1704,
-      "helper": 1301,
+      "helper": 1306,
       "lemma": 2488,
-      "total": 6953,
+      "total": 6966,
       "examples": 120
     }
   }
