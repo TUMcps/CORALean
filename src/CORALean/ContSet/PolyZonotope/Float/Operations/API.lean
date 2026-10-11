@@ -18,6 +18,9 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 import CORALean.ContSet.PolyZonotope.Float.Operations.RepKeep
 import CORALean.ContSet.PolyZonotope.Float.Operations.SupportBound
 import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
+import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
+import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
+import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
 import CORALean.ContSet.PolyZonotope.Float.Operations.FiberDown
 import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
 import CORALean.ContSet.PolyZonotope.Float.Operations.MergedCol

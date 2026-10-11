@@ -165,6 +165,17 @@ import CORALean.Global.InnerRangeTestClosed
 import CORALean.Global.JacobiSlice
 import CORALean.Global.JacobiSliceExistence
 import CORALean.Global.MulVecInjectiveOfResidual
+import CORALean.Global.GadgetH
+import CORALean.Global.CoeffNormHalfGadgetH
+import CORALean.Global.GadgetZonotope
+import CORALean.Global.GadgetGA
+import CORALean.Global.GadgetRadiusIff
+import CORALean.Global.GadgetRadiusIffCounterexample
+import CORALean.Global.GadgetSigmaCounterexample
+import CORALean.Global.EllipsotopeContainmentRadius
+import CORALean.Global.LinearRelaxationRadiusLe
+import CORALean.Global.ParallelotopeLRExact
+import CORALean.Global.ParallelotopeLRExactCounterexample
 /-!
 # Global definitions, collected
 

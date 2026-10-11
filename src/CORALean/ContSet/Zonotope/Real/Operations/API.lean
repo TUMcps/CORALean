@@ -161,6 +161,11 @@ import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
 import CORALean.ContSet.Zonotope.Real.Operations.QuadMapPairIdx
 import CORALean.ContSet.Zonotope.Real.Operations.QuadMapTri
 import CORALean.ContSet.Zonotope.Real.Operations.Walk
+import CORALean.ContSet.Zonotope.Real.Operations.Row
+import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
+import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetNeurons
+import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetDepth
+import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetMaxWidth
 
 /-!
 # What `Zonotope` computes

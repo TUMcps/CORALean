@@ -20,6 +20,9 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.MulVecSplit
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulClose
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
+import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
 import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberEqZeroOfNotMem
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SupportBoundLe

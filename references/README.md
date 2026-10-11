@@ -122,8 +122,8 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md) | Wetzlinger, Kulmburg, Althoff | IEEE Control Systems Letters, 8:2033-2038 | 2024 | 🟡 6/7 \| 16 |
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
 | [Robust Identification of Hybrid Automata from Noisy Data](2025/kochdumper-hscc-hybrid-automata-identification.md) | Kochdumper, Foughali, Habermehl, Asarin | HSCC, pp. 1-11 | 2025 | 🟢 9/9 \| 17 |
-| [Set-Based Training for Neural Network Verification](2025/koller-tmlr-set-based-training.md) | Koller, Ladner, Althoff | TMLR | 2025 | 🟡 13/18 \| 24 |
-| [Approximability of the Containment Problem for Zonotopes and Ellipsotopes](2025/kulmburg-tac-approximability-containment.md) | Kulmburg, Schäfer, Althoff | IEEE Transactions on Automatic Control | 2025 | 🟡 7/18 \| 31 |
+| [Set-Based Training for Neural Network Verification](2025/koller-tmlr-set-based-training.md) | Koller, Ladner, Althoff | TMLR | 2025 | 🟢 18/18 \| 24 |
+| [Approximability of the Containment Problem for Zonotopes and Ellipsotopes](2025/kulmburg-tac-approximability-containment.md) | Kulmburg, Schäfer, Althoff | IEEE Transactions on Automatic Control | 2025 | 🟡 13/20 \| 31 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟡 10/12 \| 7 |
 | [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md) | Lützow, Eichelbeck, Kochenderfer, Althoff | Journal of Machine Learning Research, 26(294):1-37 | 2025 | 🟢 13/13 \| 19 |
 | [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md) | Lützow, Althoff | IEEE Transactions on Automatic Control, 71(5):3014-3029 | 2026 | 🟡 13/14 \| 11 |

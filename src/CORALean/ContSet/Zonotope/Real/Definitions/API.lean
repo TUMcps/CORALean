@@ -9,6 +9,9 @@ import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
 import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
 import CORALean.ContSet.Zonotope.Real.Definitions.GeneratorHull
 import CORALean.ContSet.Zonotope.Real.Definitions.SegmentSum
+import CORALean.ContSet.Zonotope.Real.Definitions.BackpropEnclose
+import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
+import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
 
 /-!
 # What a zonotope means beyond its own construction

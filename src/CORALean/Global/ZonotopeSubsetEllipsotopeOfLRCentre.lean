@@ -5,10 +5,10 @@ import Mathlib.Data.Fin.SuccPred
 # The linear relaxation at a shifted centre
 
 [1, Eq. 53]: a zonotope `Z(G, c)` lies in the ellipsotope `E_q(H, d)` if some `X` has
-`H X = [G, c - d]` and `‖X‖_{L⊤₁,q} ≤ 1`. It is `[1, Thm. 15]` at `G' = [G, c - d]` together
-with [1, Lemma 14]'s observation that `c + G α = d + G' (α, 1)`, the coefficient `(α, 1)` being
-in the unit box. The paper applies it to the reachable set of a sampled-data system and the
-terminal region `T`.
+`H X = [G, c - d]` and `‖X‖_{L⊤₁,q} ≤ 1`. It is `[1, Thm. 15 (relaxation)]` at
+`G' = [G, c - d]` together with [1, Lemma 14]'s observation that `c + G α = d + G' (α, 1)`, the
+coefficient `(α, 1)` being in the unit box. The paper applies it to the reachable set of a
+sampled-data system and the terminal region `T`.
 
 ## References
 

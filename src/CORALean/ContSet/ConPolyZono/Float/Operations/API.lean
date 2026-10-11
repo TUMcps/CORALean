@@ -9,12 +9,15 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
+import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensSpec
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsCol
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsColUp
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsGap
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsB
+import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsSpec
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactCons
+import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactorsSpec
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
 import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
 import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent

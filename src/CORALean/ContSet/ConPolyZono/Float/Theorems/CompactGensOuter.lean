@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
+import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensEqSpec
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
@@ -59,7 +60,7 @@ theorem ConPolyZono.aux_compactGensGap (cPZ : ConPolyZono 𝕋 n) (i : Fin n)
 
 -- the merged column is stored downward, and that gap is what the box pays for
 theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 n) :
-    nominalSet cPZ ⊆ nominalSet cPZ.compactGens
+    nominalSet cPZ ⊆ nominalSet cPZ.compactGensSpec
       + (PolyZonotope.generatorError
         (ConPolyZono.compactGensGap cPZ)).construct := by -- --- PROOF ---
   intro x hx
@@ -117,6 +118,7 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 n) :
 
 theorem ConPolyZono.compactGens_outer (cPZ : ConPolyZono 𝕋 n) :
     cPZ.construct ⊆ cPZ.compactGens.construct := by -- --- PROOF ---
+  rw [ConPolyZono.compactGens_eq_spec]
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', d, hd, hsum⟩ := ConPolyZono.aux_compactGens_nominal cPZ hz
   refine ⟨z', hz', e + d, Interval.plus_outer _ _ ⟨e, he, d, hd, rfl⟩, ?_⟩
