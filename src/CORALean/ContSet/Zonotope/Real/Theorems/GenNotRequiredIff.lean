@@ -13,13 +13,13 @@ free. At `Zonotope.minkDiffRowNormal`/`Zonotope.minkDiffRowOffset` it is the the
 `Zonotope.minkowskiDiff_rows_eq`, and `Zonotope.gen_not_required_iff_of_span` is this statement with
 it discharged. `hmin` and `hirr` are the *minimum* H-representation: dropping every row
 of `Red` still describes the difference, and no row outside `Red` is redundant, so `Red` is exactly
-the redundant set. The paper obtains it by linear programming; nothing here computes it, and nothing
-here proves one exists.
+the redundant set. The paper obtains it by linear programming; nothing here computes it.
 
 `hmin` is what carries the step [1] makes in one sentence. Each row of `Red` being redundant on its
 own would not give it — two rows cutting the same halfspace are each redundant and jointly are not —
 and the classical fact that rules that out for a full-dimensional polytope, that its irredundant
-halfspaces already describe it, is polytope theory Mathlib has not got.
+halfspaces already describe it, is `rows_eq_drop_redundant`, applied at [1, Thm. 3]'s rows by
+`gen_not_required_iff_of_fullDim`.
 
 ## References
 

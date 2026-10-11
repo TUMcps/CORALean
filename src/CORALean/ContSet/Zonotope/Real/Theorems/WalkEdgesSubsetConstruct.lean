@@ -1,0 +1,45 @@
+import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
+import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+
+/-!
+# The walk edges lie in the zonotope
+
+An edge joins two sign corners, which are in the zonotope, and the zonotope is convex. It holds
+for any order of the generators; the edges [1, Alg. 3] scans make up the boundary only once they
+are sorted (`Zonotope.construct_eq_convexHull_walk`).
+
+## References
+
+* [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems
+      Reachability Analysis". In Hybrid Systems: Computation and Control (HSCC), LNCS 4981,
+      Springer, 2008, pp. 215-228.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Zonotope.walkEdges_subset_construct (Z : Zonotope α) :
+    Z.walkEdges ⊆ Z.construct := by -- --- PROOF ---
+  -- an edge is a segment between two corners
+  intro x hx
+  obtain ⟨k, hk | hk⟩ := (Z.mem_walkEdges_iff x).mp hx
+  · exact Z.convex_construct.segment_subset (Z.corner_mem_construct _) (Z.corner_mem_construct _) hk
+  · exact Z.convex_construct.segment_subset (Z.corner_mem_construct _) (Z.corner_mem_construct _) hk
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --
