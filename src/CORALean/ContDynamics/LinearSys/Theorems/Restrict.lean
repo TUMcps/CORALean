@@ -4,15 +4,16 @@ import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # A trajectory restricts to any smaller time domain
 
-`HasDerivWithinAt.mono` is the whole content: a derivative within `T` is one
-within every `T' ⊆ T`. This is what makes the domain a parameter worth having —
+Every field but `meas` restricts pointwise, the integral equation being anchored
+at `0` and not at `T`; `meas` restricts with the measure. This is what makes the
+domain a parameter worth having —
 a run over all forward time is a run over `[0, τ]`, so a one-step guarantee
 applies to it without restating the hypotheses.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -34,7 +35,9 @@ theorem LinearSys.Trajectory.restrict (traj : sys.Trajectory T R₀ U x u) (hT :
     sys.Trajectory T' R₀ U x u where
   init := traj.init
   input t ht := traj.input t (hT ht)
-  flow t ht := (traj.flow t (hT ht)).mono hT
+  meas := traj.meas.mono_measure (MeasureTheory.Measure.restrict_mono hT le_rfl)
+  cont := traj.cont.mono hT
+  flow t ht := traj.flow t (hT ht)
 
 end CORALean
 

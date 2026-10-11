@@ -38,7 +38,7 @@ theorem NonlinearSys.Trajectory.linearize_horizon {sys : NonlinearSys n m} {T : 
     (traj : sys.Trajectory T R₀ U x u)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Icc 0 τ ⊆ T) (hR : ∀ t ∈ Set.Icc (0 : ℝ) τ, x t ∈ R) :
-    (NonlinearSys.linearize A).Trajectory (Set.Icc 0 τ) R₀ (linInput sys.f A B xs us U L) x
+    (NonlinearSys.linearize A).ClassicalTrajectory (Set.Icc 0 τ) R₀ (linInput sys.f A B xs us U L) x
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) :=
   (traj.restrict hT).linearize cert hR
 

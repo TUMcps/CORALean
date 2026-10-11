@@ -1,19 +1,18 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSys.Operations.InputReach
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 
 /-!
-# A witness in `inputReach` is a witness in `integralReachSet`
+# A witness in `inputReach` is a witness in `reachSet`
 
-The `⊇` half of `integralReachSet T R₀ U t = e^{tA} R₀ ⊕ inputReach U t`: every
-point the closed form names is reached by the `IntegralTrajectory` the closed
+The `⊇` half of `reachSet T R₀ U t = e^{tA} R₀ ⊕ inputReach U t`: every
+point the closed form names is reached by the `Trajectory` the closed
 form itself is — `closedForm_flow` and `closedForm_continuousOn` supplying its
-`flow` and `cont` fields verbatim. This is the new content over
-`ReachSetOuter`/`ReachSetSubsetReach`, which only place `Trajectory` runs
-between enclosures — a measurable, merely-bounded input has no `Trajectory`
-to appeal to. `IntegralReachSetSubset` is the other half.
+`flow` and `cont` fields verbatim. A measurable, merely bounded input is
+admissible, so a point named this way is genuinely reached.
+`ReachSetSubset` is the other half.
 -/
 
 -- Authors:       Tobias Ladner
@@ -38,13 +37,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every point `e^{tA} R₀ ⊕ inputReach U t` names is `x t` for the
-`IntegralTrajectory` that is `closedForm`'s own formula at the witnessing
+`Trajectory` that is `closedForm`'s own formula at the witnessing
 input, `closedForm_flow` supplying exactly its `flow` field. -/
-theorem LinearSys.mulVecLin_image_add_inputReach_subset_integralReachSet
+theorem LinearSys.mulVecLin_image_add_inputReach_subset_reachSet
     (sys : LinearSys 𝕋 n) (R₀ U : S n) {t : ℝ} (ht : 0 ≤ t)
     (hU : Bornology.IsBounded (construct U)) :
     (exp (t • toRealMat sys.A)).mulVecLin '' construct R₀ + sys.inputReach U t
-      ⊆ sys.integralReachSet (Set.Icc 0 t) R₀ U t := by -- --- PROOF ---
+      ⊆ sys.reachSet (Set.Icc 0 t) R₀ U t := by -- --- PROOF ---
   rintro y hy
   rw [Set.mem_add] at hy
   obtain ⟨_, ⟨r, hr, rfl⟩, w, ⟨u, hmem, hmeas, rfl⟩, rfl⟩ := hy

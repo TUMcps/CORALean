@@ -10,7 +10,7 @@ argument: `construct U` is bounded, `u` stays inside it on the window, so the
 integrand is dominated by a constant over a finite measure.
 
 Stated for a bare signal rather than for a run, since the two-signal flow of
-`PerturbedIntegralTrajectory` needs it once per signal and neither of those is
+`PerturbedTrajectory` needs it once per signal and neither of those is
 the input of a `Trajectory` on its own.
 -/
 

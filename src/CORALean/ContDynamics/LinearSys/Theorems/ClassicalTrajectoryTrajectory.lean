@@ -1,4 +1,3 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
@@ -6,7 +5,7 @@ import Mathlib.Analysis.Matrix.Normed
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 
 /-!
-# Every `Trajectory` is an `IntegralTrajectory`
+# Every classical run is a Carathéodory one
 
 A two-sided derivative at every point of `T` is enough for the fundamental
 theorem of calculus to give the integral equation outright, at every `t ∈ T` —
@@ -20,7 +19,7 @@ unconditionally measurable, off at most `T`'s greatest element — one point.
 
 -- Authors:       Tobias Ladner
 -- Written:       15-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -50,7 +49,7 @@ theorem aux_uIcc_subset {T : Set ℝ} (hTconv : Convex ℝ T) {t : ℝ} (h0T : (
 unconditionally measurable `derivWithin x (Ici ·) · - A x`; that one point is
 null, so the restriction carries no cost. -/
 theorem aux_aestronglyMeasurable_input {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
-    {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) (hTconv : Convex ℝ T) :
+    {x u : ℝ → Vec ℝ n} (traj : sys.ClassicalTrajectory T R₀ U x u) (hTconv : Convex ℝ T) :
     AEStronglyMeasurable u (volume.restrict T) := by -- --- PROOF ---
   have hTm : MeasurableSet T := hTconv.ordConnected.measurableSet
   have hxcont : ContinuousOn x T := fun t ht => (traj.flow t ht).continuousWithinAt
@@ -86,7 +85,7 @@ theorem aux_aestronglyMeasurable_input {sys : LinearSys 𝕋 n} {T : Set ℝ} {R
 /-- The flow's integrand, bounded on the compact window `uIcc 0 t` by `x`'s own
 continuity there and `U`'s boundedness, giving `IntervalIntegrable`. -/
 theorem aux_intervalIntegrable_flow {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
-    {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) (hTconv : Convex ℝ T)
+    {x u : ℝ → Vec ℝ n} (traj : sys.ClassicalTrajectory T R₀ U x u) (hTconv : Convex ℝ T)
     (h0T : (0:ℝ) ∈ T) (hU : Bornology.IsBounded (construct U)) {t : ℝ} (htT : t ∈ T) :
     IntervalIntegrable (fun s => toRealMat sys.A *ᵥ x s + u s) volume 0 t := by -- --- PROOF ---
   have hUIcc : Set.uIcc 0 t ⊆ T := aux_uIcc_subset hTconv h0T htT
@@ -123,11 +122,11 @@ theorem aux_intervalIntegrable_flow {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A run with a two-sided derivative everywhere on `T` also satisfies the
-integral equation, so nothing already proved of `Trajectory` is lost. -/
-theorem LinearSys.Trajectory.integralTrajectory {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
-    {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) (hTconv : Convex ℝ T)
+integral equation, so whatever is proved of `Trajectory` holds of it. -/
+theorem LinearSys.ClassicalTrajectory.trajectory {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
+    {x u : ℝ → Vec ℝ n} (traj : sys.ClassicalTrajectory T R₀ U x u) (hTconv : Convex ℝ T)
     (h0T : (0:ℝ) ∈ T) (hU : Bornology.IsBounded (construct U)) :
-    sys.IntegralTrajectory T R₀ U x u where
+    sys.Trajectory T R₀ U x u where
   init := traj.init
   input := traj.input
   meas := aux_aestronglyMeasurable_input traj hTconv

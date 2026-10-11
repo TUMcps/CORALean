@@ -7,7 +7,7 @@ import CORALean.ContDynamics.LinearSys.LinearSys
 `ẋ = A x + u` is the field `f(x, u) = A x + u`. Here rather than in
 `LinearSys`, so that deleting this directory leaves the linear development
 standing — the conversion belongs to the more general representation. The
-guarantee that trajectories agree is `TrajectoryIffNonlinearSys.lean`.
+guarantee that trajectories agree is `ClassicalTrajectoryIffNonlinearSys.lean`.
 -/
 
 -- Authors:       Tobias Ladner

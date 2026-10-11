@@ -34,6 +34,9 @@ theorem LinParamSys.constTrajectory_toTrajectory {sys : LinParamSys 𝕄 n} {T :
   init := traj.init
   input := traj.input
   param _ _ := traj.param
+  meas := traj.meas
+  measParam := MeasureTheory.aestronglyMeasurable_const
+  cont := traj.cont
   flow := traj.flow
 
 end CORALean

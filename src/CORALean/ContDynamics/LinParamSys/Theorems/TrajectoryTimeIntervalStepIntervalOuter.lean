@@ -13,15 +13,12 @@ so it is an input-free run of the interval system, and the box's own step holds 
 Not the matrix-zonotope step `timeIntervalStepZono`, which only
 `ConstTrajectory.timeIntervalZono_outer` reaches. The Peano–Baker averaging would
 carry over — a matrix-zonotope power holds products of different members and is
-closed and convex — but the measurable member does not:
-`Interval.exists_measurable_mulVec_eq` picks it row by row from the box's corner
-rows, and inside a zonotope the members mapping `x(s)` to the velocity form a
-polytope in the generator coordinates, with no such formula.
+closed and convex — but is not done here.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -55,7 +52,7 @@ theorem LinParamSys.Trajectory.timeIntervalStep_interval_outer {sys : LinParamSy
       ((⟨sys.A.interval⟩ : LinParamSys ℐ n).timeIntervalStep r (m + 2) R₀) := by
   have trajI : (⟨sys.A.interval⟩ : LinParamSys ℐ n).Trajectory T R₀ U x u A :=
     ⟨traj.init, traj.input, fun s hs => Zonotope.interval_contains _ (traj.param s hs),
-      traj.flow⟩
+      traj.meas, traj.measParam, traj.cont, traj.flow⟩
   exact trajI.timeIntervalStep_outer hr hT hu hε ht0 htr
 
 end CORALean

@@ -10,7 +10,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 
 /-!
-# A time-varying run with a measurable input stays in the float step and input solution
+# A time-varying run with an input stays in the float step and input solution
 
 `Trajectory.timeIntervalStep_outer_inputSolution` at the float layer, with the
 sets the float `'constParam'` step computes: `timeIntervalStepFloat` and
@@ -28,7 +28,7 @@ The remainder is a matrix within the float `E(r)·r` applied to a longest point 
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -96,13 +96,13 @@ theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys (fun m n => Interva
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A `'varParam'` run over a float box with a measurable input is, at every time of
+/-- A `'varParam'` run over a float box with an input is, at every time of
 the step, in the float time-interval step plus the float input solution. -/
 theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer_inputSolution
     {sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n} {T : Set ℝ}
     {R₀ U : Zonotope 𝕋 n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.Trajectory T R₀ U x u A) {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
-    (hT : Set.Icc 0 (toReal Δt) ⊆ T) (hum : Measurable u)
+    (hT : Set.Icc 0 (toReal Δt) ⊆ T)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt)
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (Plus.plus (sys.timeIntervalStepFloat Δt η R₀)
@@ -111,12 +111,11 @@ theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer_inputSolution
   set r := toReal Δt with hr
   set η := m + 2 with hη'
   let sysR : LinParamSys (fun m n => Real.Interval (Mat ℝ m n)) n := ⟨sys.A.nominal⟩
-  have trajR : sysR.Trajectory T R₀ U x u A := ⟨traj.init, traj.input, traj.param, traj.flow⟩
+  have trajR : sysR.Trajectory T R₀ U x u A :=
+    ⟨traj.init, traj.input, traj.param, traj.meas, traj.measParam, traj.cont, traj.flow⟩
   have hcpt : IsCompact (construct U) := Zonotope.isCompact_construct U
-  obtain ⟨Â, hÂi, hÂB, hx⟩ := trajR.exists_integral_eq_of_measurable hΔt.le hT hum
-    hcpt.isBounded
-  have hxc : ContinuousOn x (Set.Icc 0 r) := fun s hs =>
-    ((traj.flow s (hT hs)).continuousWithinAt).mono hT
+  obtain ⟨Â, hÂi, hÂB, hx⟩ := trajR.exists_integral_eq_of_measurable hΔt.le hT
+  have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
   have huU : ∀ s ∈ Set.Icc 0 r, u s ∈ construct U := fun s hs => traj.input s (hT hs)
   -- the input cut off outside the step, integrable over every window
   obtain ⟨C, hC⟩ := hcpt.isBounded.exists_norm_le
@@ -125,7 +124,8 @@ theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer_inputSolution
   have hũi : ∀ a b, IntervalIntegrable ũ volume a b := fun a b => by
     rw [intervalIntegrable_iff]
     refine Measure.integrableOn_of_bounded (M := C) measure_Ioc_lt_top.ne
-      (hum.indicator measurableSet_Icc).aestronglyMeasurable
+      ((aestronglyMeasurable_indicator_iff measurableSet_Icc).mpr
+        (traj.meas.mono_measure (Measure.restrict_mono hT le_rfl)))
       (Filter.Eventually.of_forall fun s => ?_)
     by_cases hs : s ∈ Set.Icc 0 r
     · rw [hũr s hs]; exact hC _ (huU s hs)

@@ -18,9 +18,9 @@ specification is checked on.
 State and input dimensions are separate, which CORA's are and `LinearSys`'s are
 not: there the input enters additively and so has to match the state.
 
-`Trajectory` mirrors `LinearSys.Trajectory` field for field, so the two agree by
-definition at a linear field — `LinearSys.trajectory_iff_nonlinearSys`. A bounded
-`T` is what makes `linearize` a one-step statement.
+`Trajectory` is classical and mirrors `LinearSys.ClassicalTrajectory` field for
+field — `LinearSys.classicalTrajectory_iff_nonlinearSys`; `ClassicalTrajectory.trajectory`
+carries a run to `LinearSys.Trajectory`. A bounded `T` makes `linearize` one step.
 -/
 
 -- Authors:       Tobias Ladner

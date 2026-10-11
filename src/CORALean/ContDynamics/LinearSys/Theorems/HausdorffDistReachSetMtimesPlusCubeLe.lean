@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetSubsetMtimesPlusCube
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetMtimesPlusCube
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
 
 /-!
@@ -6,7 +6,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
 
 [1, Lemma 1], second half: `d_H(Φ_r(Z), e^{rA}Z + □(β_r)) ≤ µ‖A‖e^{r‖A‖}r²`, the Hausdorff
 distance in [1]'s infinity norm, which is `Vec ℝ n`'s own. One direction is the first half,
-`integralReachSet_subset_mtimes_plus_cube`; the other is
+`reachSet_subset_mtimes_plus_cube`; the other is
 `exists_mem_inputReach_dist_le`: a point `e^{rA}z + w` of the enclosure is within the
 bound of `e^{rA}z + v`, `v` what a constant input reaches.
 
@@ -38,10 +38,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 1], convergence: `d_H(Φ_r(Z), e^{rA}Z + □(β_r)) ≤ µ‖A‖e^{r‖A‖}r²`. -/
-theorem LinearSys.hausdorffDist_integralReachSet_mtimes_plus_cube_le (sys : LinearSys 𝕋 n)
+theorem LinearSys.hausdorffDist_reachSet_mtimes_plus_cube_le (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r)
     (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ) :
-    Metric.hausdorffDist (sys.integralReachSet (S := 𝒵) (Set.Icc 0 r) Z U r)
+    Metric.hausdorffDist (sys.reachSet (S := 𝒵) (Set.Icc 0 r) Z U r)
       ((Z.mtimes (exp (r • toRealMat sys.A))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖
             * μ))).construct
@@ -55,7 +55,7 @@ theorem LinearSys.hausdorffDist_integralReachSet_mtimes_plus_cube_le (sys : Line
     have := Real.exp_nonneg (r * ‖toRealMat sys.A‖)
     positivity
   refine Metric.hausdorffDist_le_of_mem_dist hbound
-    (fun y hy => ⟨y, sys.integralReachSet_subset_mtimes_plus_cube Z U hA hr hμ hU hy,
+    (fun y hy => ⟨y, sys.reachSet_subset_mtimes_plus_cube Z U hA hr hμ hU hy,
       by rw [dist_self]; exact hbound⟩) ?_
   -- a point `e^{rA}z + w` of the enclosure, against what a constant input reaches
   intro q hq
@@ -64,7 +64,7 @@ theorem LinearSys.hausdorffDist_integralReachSet_mtimes_plus_cube_le (sys : Line
   obtain ⟨v, hv, hdist⟩ := sys.exists_mem_inputReach_dist_le hA hr hμ (S := 𝒵) (U := U)
     (by rw [show construct U = U.construct from rfl, hU]) (mem_closedBall_zero_iff.mp hw)
   refine ⟨exp (r • toRealMat sys.A) *ᵥ z + v, ?_, ?_⟩
-  · rw [sys.integralReachSet_eq (S := 𝒵) Z U hr (Zonotope.isBounded_construct U)]
+  · rw [sys.reachSet_eq (S := 𝒵) Z U hr (Zonotope.isBounded_construct U)]
     exact ⟨_, ⟨z, hz, rfl⟩, v, hv, rfl⟩
   · rwa [dist_add_left]
 

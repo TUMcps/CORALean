@@ -1,6 +1,5 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ContinuousOnState
-import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
 import Mathlib.Analysis.Calculus.FDeriv.Measurable
 import Mathlib.MeasureTheory.Integral.Prod
 
@@ -15,7 +14,7 @@ substitution `τ = c - s` leaves behind. The reflected argument sweeps
 
 -- Authors:       Tobias Ladner
 -- Written:       19-August-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -35,27 +34,19 @@ theorem LinearSys.Trajectory.aestronglyMeasurable_input_reflected {sys : LinearS
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) {c r : ℝ}
     (hT : Set.Icc (c - r) c ⊆ T) :
     AEStronglyMeasurable (fun τ => u (c - τ)) (volume.restrict (Set.Ioc 0 r)) := by -- --- PROOF ---
-  have hrefl : Continuous fun τ : ℝ => c - τ := continuous_const.sub continuous_id
-  have hmem : ∀ τ ∈ Set.Ioc (0 : ℝ) r, c - τ ∈ Set.Ico (c - r) c :=
-    fun _ hτ => ⟨by linarith [hτ.2], by linarith [hτ.1]⟩
-  have hmaps : Set.MapsTo (fun τ : ℝ => c - τ) (Set.Ioc 0 r) T :=
-    fun τ hτ => hT ⟨(hmem τ hτ).1, (hmem τ hτ).2.le⟩
-  -- both halves of `x' - Ax` survive the reflection: one strongly measurable, one continuous
-  have hderiv : AEStronglyMeasurable
-      (fun τ : ℝ => derivWithin x (Set.Ici (c - τ)) (c - τ))
-      (volume.restrict (Set.Ioc 0 r)) :=
-    ((stronglyMeasurable_derivWithin_Ici x).comp_measurable
-      hrefl.measurable).aestronglyMeasurable
-  have hstate : AEStronglyMeasurable (fun τ : ℝ => x (c - τ))
-      (volume.restrict (Set.Ioc 0 r)) :=
-    (traj.continuousOn_state.comp hrefl.continuousOn hmaps).aestronglyMeasurable
-      measurableSet_Ioc
-  have hdrift : AEStronglyMeasurable (fun τ : ℝ => toRealMat sys.A *ᵥ x (c - τ))
-      (volume.restrict (Set.Ioc 0 r)) :=
-    (mulVecL (toRealMat sys.A)).continuous.comp_aestronglyMeasurable hstate
-  refine (hderiv.sub hdrift).congr ?_
-  refine (ae_restrict_iff' measurableSet_Ioc).mpr (Filter.Eventually.of_forall fun τ hτ => ?_)
-  exact (traj.input_eq_derivWithin hT (hmem τ hτ)).symm
+  -- translate the window to `[0, r]`, then reflect it about `r`
+  have hpre : (fun s : ℝ => s + (c - r)) ⁻¹' Set.Icc (c - r) c = Set.Icc 0 r := by
+    ext s
+    simp only [Set.mem_preimage, Set.mem_Icc]
+    constructor <;> exact fun h => ⟨by linarith [h.1, h.2], by linarith [h.1, h.2]⟩
+  have hmp : MeasurePreserving (fun s : ℝ => s + (c - r))
+      (volume.restrict (Set.Icc 0 r)) (volume.restrict (Set.Icc (c - r) c)) := by
+    rw [← hpre]
+    exact (measurePreserving_add_right volume (c - r)).restrict_preimage measurableSet_Icc
+  have h := aestronglyMeasurable_reflect_Ioc
+    ((traj.aestronglyMeasurable_input hT).comp_measurePreserving hmp)
+  simpa only [Function.comp_def, show ∀ σ : ℝ, r - σ + (c - r) = c - σ from fun σ => by ring]
+    using h
 
 end CORALean
 

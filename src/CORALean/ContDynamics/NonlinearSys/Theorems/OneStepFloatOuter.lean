@@ -1,8 +1,10 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
 import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
+import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 /-!
@@ -71,7 +73,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   have hTf : (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)) = toReal Δt := by
     rw [ToRat.toReal_toRat, Rat.cast_zero, sub_zero]
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
-  have ltraj : (⟨A⟩ : LinearSys 𝕋 n).Trajectory (S := fun k => Set (Vec ℝ k))
+  have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := fun k => Set (Vec ℝ k))
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope 𝕋 n)).construct
@@ -100,6 +102,12 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
       show sys.f (x t) (u t) = Scalar.toRealMat A *ᵥ (x t - toRealVec xs)
         + (sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs))
       abel
+  -- a classical run on `[0, Δt]` with its input in a compact set is a Carathéodory one
+  have hVb : Bornology.IsBounded
+      ((Scalar.toRealMat (identityMat 𝕋 n) *ᵥ ·) '' V.construct) :=
+    ((Zonotope.isCompact_construct _).image
+      (continuous_const.matrix_mulVec continuous_id)).isBounded
+  have ltraj := ltrajC.trajectory (convex_Icc _ _) ⟨le_rfl, by rw [hTf]; exact hΔt.le⟩ hVb
   obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ hS
   obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ hS
   -- adding `x✱` back

@@ -10,7 +10,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
 assumes nothing about `r‖A‖`, `Z` or the origin. The sets compared are the lemma's own:
 the union of `Φ_t(Z)` over `[0, r]` and `P + □(α_r + β_r)` with `P` of eq. 5 of [1].
 
-`hausdorffDist_iUnion_integralReachSet_linComb_plus_cube_le` is the corrected bound, with
+`hausdorffDist_iUnion_reachSet_linComb_plus_cube_le` is the corrected bound, with
 `(1/2 + r‖A‖)`.
 
 ## References
@@ -40,14 +40,14 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- [1, Lemma 2], convergence, as printed, fails: a system, a zonotope and a step meeting
 every hypothesis where the distance exceeds `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup ‖x‖)`. -/
-theorem LinearSys.exists_lt_hausdorffDist_iUnion_integralReachSet :
+theorem LinearSys.exists_lt_hausdorffDist_iUnion_reachSet :
     ∃ (sys : LinearSys ℝ 1) (Z U : Zonotope (Vec ℝ 1)) (μ r s : ℝ),
       0 < ‖toRealMat sys.A‖ ∧ 0 < r ∧ 0 ≤ μ ∧ U.construct = Metric.closedBall 0 μ
       ∧ IsGreatest ((fun x => ‖x‖) '' Z.construct) s
       ∧ r * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
             * (μ / ‖toRealMat sys.A‖ + (1 / 2 + r) * s)
         < Metric.hausdorffDist
-          (⋃ t ∈ Set.Icc (0:ℝ) r, sys.integralReachSet (S := 𝒵) (Set.Icc 0 t) Z U t)
+          (⋃ t ∈ Set.Icc (0:ℝ) r, sys.reachSet (S := 𝒵) (Set.Icc 0 t) Z U t)
           ((Z.linComb (Z.mtimes (exp (r • toRealMat sys.A)))).plus
             (Zonotope.cube 1 ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖) * s
               + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖

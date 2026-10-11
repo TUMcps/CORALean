@@ -73,7 +73,7 @@ theorem LinearSys.WithInput.reach_outer (sys : LinearSys.WithInput 𝕋 S n)
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 tFinal := Set.Icc_subset_Icc_right ht.2
   have hU : Bornology.IsBounded (construct (construct sys.U)) :=
     CompactSet.isBounded_construct sys.U
-  have hvoc := traj.variation_of_constants hTt ht.1 (traj.intervalIntegrable_input hTt ht.1 hU)
+  have hvoc := traj.variation_of_constants hTt le_rfl ht.1 hU
   rw [sub_zero] at hvoc
   -- that integral is one admissible input's contribution by `t`
   have hin : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.sys.A) *ᵥ u s)

@@ -54,7 +54,7 @@ theorem LinParamSys.ConstTrajectory.discretizeEnclosureFloat
   -- the member is the same matrix at every step; `LinParamSysDT` only permits it to vary
   step k := ⟨exp (toReal Δt • A), sys.exp_mem_expIntervalFloat hη traj.param le_rfl le_rfl, by
     simpa [LinearSys.discretize, Scalar.toRealMat_real]
-      using traj.toLinearSys.discretize_step hΔt hU k (step_subset hΔt hT k)⟩
+      using traj.toLinearSys.discretize_step hΔt hU k fun _ hs => hT hs.1⟩
 
 end CORALean
 

@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
@@ -51,7 +52,8 @@ theorem Location.Trajectory.timeIntervalSplitFloat_outer
   set A := Scalar.toRealMat ℓ.dynamics.A with hA
   set ũ := Recentre.centre ℓ.U with hũ
   -- `x t` less its free motion and the constant's share is one `Ũ`-input's share
-  have hrest := (traj.linearSys h₀).sub_mem_inputReach_recentre (V := ℓ.U) subset_rfl
+  have hrest := ((traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, ht0.trans htτ⟩
+    (CompactSet.isBounded_construct ℓ.U)).sub_mem_inputReach_recentre (V := ℓ.U) subset_rfl
     ⟨ht0, htτ⟩
   -- `{ũ}` and `[0, ũ]` hold what they are built from
   have hpt : ũ ∈ (Interval.point ℓ.U.c).zonotope.construct :=

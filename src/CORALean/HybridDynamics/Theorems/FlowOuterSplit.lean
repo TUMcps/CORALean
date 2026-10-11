@@ -1,3 +1,5 @@
+import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
 import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit
 import CORALean.HybridDynamics.Theorems.LinearEmbedding
@@ -51,7 +53,8 @@ theorem Location.Trajectory.timeInterval_outer_split [∀ n, OfPoint (S n) (Vec 
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) :
     x t ∈ construct (ℓ.timeIntervalStepSplit τ (m + 2) R₀) :=
-  (traj.linearSys h₀).timeInterval_outer_split hτ subset_rfl hε ht0 htτ
+  ((traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, hτ.le⟩
+    (CompactSet.isBounded_construct ℓ.U)).timeInterval_outer_split hτ subset_rfl hε ht0 htτ
 
 end CORALean
 

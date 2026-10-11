@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Definitions.PerturbedIntegralTrajectory
+import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
 
 /-!
 # The backward reachable set under one fixed input trajectory
@@ -12,9 +12,8 @@ Its point is the identity the theorem opens with: `R^{∀∃}(-τ)` is the
 intersection of these sets over all admissible `u*(·)`, so intersecting over
 only finitely many of them can only grow the set — the first `⊆` of the proof.
 
-Over `PerturbedIntegralTrajectory`, for the reason
-`integralTimeIntervalBackReachSetForallExists` gives; here nothing quantifies
-over `u*(·)`, so its own measurability is a hypothesis of whoever supplies it.
+Nothing here quantifies over `u*(·)`, so its own measurability is a
+hypothesis of whoever supplies it.
 
 ## References
 
@@ -25,7 +24,7 @@ over `u*(·)`, so its own measurability is a hypothesis of whoever supplies it.
 
 -- Authors:       Tobias Ladner
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -43,9 +42,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every state some admissible disturbance drives into `Xend` at some time of
 `τ`, the input being held at the one signal `u`. -/
-def LinearSys.integralTimeIntervalBackReachSetOfInput (sys : LinearSys 𝕋 n) (T : Set ℝ)
+def LinearSys.timeIntervalBackReachSetOfInput (sys : LinearSys 𝕋 n) (T : Set ℝ)
     (U W Xend : S n) (τ : Set ℝ) (u : ℝ → Vec ℝ n) : Set (Vec ℝ n) :=
-  {x₀ | ∃ w x : ℝ → Vec ℝ n, sys.PerturbedIntegralTrajectory T U W x u w ∧
+  {x₀ | ∃ w x : ℝ → Vec ℝ n, sys.PerturbedTrajectory T U W x u w ∧
       x 0 = x₀ ∧ ∃ t ∈ τ, x t ∈ construct Xend}
 
 end CORALean

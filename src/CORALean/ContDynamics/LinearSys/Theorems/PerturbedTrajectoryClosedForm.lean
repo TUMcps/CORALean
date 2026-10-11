@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Definitions.PerturbedIntegralTrajectory
+import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
@@ -10,7 +10,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
 The converse of `PerturbedSuperposition`, and what the `⊇` halves of
 [1, Prop. 3] and [1, Prop. 5] need: given a measurable input and a measurable
 disturbance, the sum of the two closed forms — one started at `x₀`, one at the
-origin — is a `PerturbedIntegralTrajectory` carrying exactly those two signals.
+origin — is a `PerturbedTrajectory` carrying exactly those two signals.
 
 Summing two one-signal closed forms rather than forming `closedForm x₀ (u + w)`
 keeps every hypothesis at `U` or at `W` separately: the folded input would need
@@ -46,14 +46,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- The sum of the two closed forms is a perturbed run at the given input and
 disturbance, starting from `x₀`. -/
-theorem LinearSys.perturbedIntegralTrajectory_closedForm (sys : LinearSys 𝕋 n) {U W : S n}
+theorem LinearSys.perturbedTrajectory_closedForm (sys : LinearSys 𝕋 n) {U W : S n}
     {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
     (hW : Bornology.IsBounded (construct W)) (x₀ : Vec ℝ n) {u w : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
     (humeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t)))
     (hw : ∀ s ∈ Set.Icc (0:ℝ) t, w s ∈ construct W)
     (hwmeas : AEStronglyMeasurable w (volume.restrict (Set.Icc 0 t))) :
-    sys.PerturbedIntegralTrajectory (Set.Icc 0 t) U W
+    sys.PerturbedTrajectory (Set.Icc 0 t) U W
       (fun τ => sys.closedForm x₀ u τ + sys.closedForm 0 w τ) u w where
   input := hu
   disturbance := hw

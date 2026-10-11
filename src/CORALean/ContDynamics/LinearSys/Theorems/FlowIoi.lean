@@ -30,8 +30,8 @@ variable {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Ve
 
 /-- The same one-sided derivative with the point itself dropped, which is the
 form `integral_eq_sub_of_hasDeriv_right` asks for. -/
-theorem LinearSys.Trajectory.flow_Ioi (traj : sys.Trajectory T R₀ U x u) {a b t : ℝ}
-    (hT : Set.Icc a b ⊆ T) (ht : t ∈ Set.Ico a b) :
+theorem LinearSys.ClassicalTrajectory.flow_Ioi (traj : sys.ClassicalTrajectory T R₀ U x u)
+    {a b t : ℝ} (hT : Set.Icc a b ⊆ T) (ht : t ∈ Set.Ico a b) :
     HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) (Set.Ioi t) t :=
   (traj.flow_Ici hT ht).mono Set.Ioi_subset_Ici_self
 

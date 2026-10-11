@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
@@ -55,7 +56,8 @@ theorem NonlinearSys.Trajectory.reach_outer_inputSolution [Mtimes ℐ S]
     x (k * Δt) ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach
       ⟨R₀, (NonlinearSys.linearize A).inputSolution Δt η (linInput sys.f A B xs us U L), 0, k⟩
       ⟨o, ho⟩) :=
-  ((traj.restrict hT).linearize cert hR).reach_outer_inputSolution hΔt subset_rfl η hε
+  (((traj.restrict hT).linearize cert hR).trajectory (convex_Ici 0) Set.self_mem_Ici
+    hbdd).reach_outer_inputSolution hΔt subset_rfl η hε
     hconv hclosed hbdd hRconv hRclosed hRbdd ho k
 
 end CORALean

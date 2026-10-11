@@ -9,11 +9,11 @@ import Mathlib.Analysis.ODE.Gronwall
 /-!
 # A run of the integral equation *is* the closed form, point by point
 
-`IntegralTrajectory`'s uniqueness, stated at the raw hypotheses rather than at
+`Trajectory`'s uniqueness, stated at the raw hypotheses rather than at
 the structure: continuity, the integral equation, and a bounded measurable
-input. Two callers need it at shapes no `IntegralTrajectory` has —
-`IntegralReachSetSubset` names an `R₀` this statement never mentions, and the
-two-signal run of `PerturbedIntegralTrajectory` reaches it only after
+input. Two callers need it at shapes no `Trajectory` has —
+`ReachSetSubset` names an `R₀` this statement never mentions, and the
+two-signal run of `PerturbedTrajectory` reaches it only after
 subtracting off the disturbance's own closed form, where no initial set is left
 to name — so the hypotheses are what travels, not the bundle.
 

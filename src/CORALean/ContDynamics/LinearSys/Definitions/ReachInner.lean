@@ -4,9 +4,8 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachError
 # An inner approximation of a continuous reachable set, over a whole run
 
 `LinearSysDT.reachInner` at the sample times of a continuous-time system: the
-sampled run minus everything it owes. `reachInner_inner` puts it inside the
-integral reachable set at `t = kΔt`, the states the Carathéodory runs of the
-system reach — the set `reachSet` is being migrated to (#105).
+sampled run minus everything it owes. `reachInner_inner` puts it inside
+`reachSet` at `t = kΔt`, the states the system's Carathéodory runs reach.
 
 An outer approximation minus its error bound is [1]'s route to an inner one;
 here the bound is a zonotope, carried along the run rather than restated.

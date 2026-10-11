@@ -1,8 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableInput
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableReflected
 import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryVariationOfConstants
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 
 /-!

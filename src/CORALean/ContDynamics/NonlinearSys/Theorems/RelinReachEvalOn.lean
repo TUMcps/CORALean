@@ -1,7 +1,7 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryDiscretizeStep
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
 import CORALean.ContSet.PolyZonotope.Real.Theorems.PostEvalOn
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 
 /-!

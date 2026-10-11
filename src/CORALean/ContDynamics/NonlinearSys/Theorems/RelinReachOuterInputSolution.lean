@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryStepInputOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 
 /-!

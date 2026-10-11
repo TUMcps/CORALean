@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.GirardReachOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionIntegralReachSetDistLe
+import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetDistLe
 import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
 
 /-!
@@ -11,7 +11,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
 The printed proof's recursion: a point of `Qᵢ₊₁ = e^{rA}Qᵢ + □(β_r)` is `e^{rA}q + w`; `q` is
 within `δᵢ` of some `y ∈ Φ_t(I)` (induction), `w` within `µ‖A‖e^{r‖A‖}r²` of what a constant
 input reaches (`exists_mem_inputReach_dist_le`, [1, Lemma 1]), and `e^{rA}y` plus that is in
-`Φ_{t+r}(I)` (`integralReachSet_add_eq`), so `δᵢ₊₁ ≤ e^{r‖A‖}δᵢ + µ‖A‖e^{r‖A‖}r²`. The
+`Φ_{t+r}(I)` (`reachSet_add_eq`), so `δᵢ₊₁ ≤ e^{r‖A‖}δᵢ + µ‖A‖e^{r‖A‖}r²`. The
 invariant kept is `δᵢ ≤ e^{ir‖A‖}δ₀ + µ r e^{r‖A‖}(e^{ir‖A‖} - 1)`, the printed sum closed
 with `e^x - 1 ≥ x`. `δ₀` is [1, Lemma 2]'s, which is where the correction comes in: [1]
 prints `(1/2 + r)` and writes `sup_{x∈Z}`, `Z` undefined in the theorem and read here as `I`;
@@ -56,7 +56,7 @@ theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Z
     (hU : U.construct = Metric.closedBall 0 μ) (hN : 1 ≤ N)
     (hs : ∀ z ∈ I.construct, ‖z‖ ≤ s) :
     Metric.hausdorffDist
-      (⋃ t ∈ Set.Icc (0:ℝ) (N * r), sys.integralReachSet (S := 𝒵) (Set.Icc 0 t) I U t)
+      (⋃ t ∈ Set.Icc (0:ℝ) (N * r), sys.reachSet (S := 𝒵) (Set.Icc 0 t) I U t)
       (⋃ Q ∈ sys.girardReach I μ r (N * r), Q.construct)
       ≤ r * ‖toRealMat sys.A‖ * Real.exp (‖toRealMat sys.A‖ * (N * r))
         * (2 * μ / ‖toRealMat sys.A‖
@@ -85,13 +85,13 @@ theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Z
     show u ∈ U.construct; rw [hU]; exact hu
   -- the invariant: a point of `fⁱ(Q₀)` is near `Φ_t(I)` for a `t` in the `i`-th window
   have hrec : ∀ i : ℕ, ∀ q ∈ (f^[i] Q₀).construct, ∃ t ∈ Set.Icc ((i : ℝ) * r) ((i + 1) * r),
-      ∃ y ∈ sys.integralReachSet (S := 𝒵) (Set.Icc 0 t) I U t,
+      ∃ y ∈ sys.reachSet (S := 𝒵) (Set.Icc 0 t) I U t,
         dist q y ≤ Real.exp (i * x) * δ₀ + μ * r * Real.exp x * (Real.exp (i * x) - 1) := by
     intro i
     induction i with
     | zero =>
       intro q hq
-      obtain ⟨y, hy, hd⟩ := sys.exists_mem_iUnion_integralReachSet_dist_le I U hA hr hμ hU hsA hq
+      obtain ⟨y, hy, hd⟩ := sys.exists_mem_iUnion_reachSet_dist_le I U hA hr hμ hU hsA hq
       obtain ⟨t, ht, hyt⟩ := Set.mem_iUnion₂.mp hy
       refine ⟨t, by simpa using ht, y, hyt, ?_⟩
       simp only [Nat.cast_zero, zero_mul, Real.exp_zero, one_mul, sub_self, mul_zero, add_zero]
@@ -109,7 +109,7 @@ theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Z
       have ht0 : 0 ≤ t := (mul_nonneg (Nat.cast_nonneg i) hr.le).trans ht.1
       refine ⟨t + r, ⟨by push_cast; linarith [ht.1], by push_cast; linarith [ht.2]⟩,
         E *ᵥ y' + v, ?_, ?_⟩
-      · rw [sys.integralReachSet_add_eq (S := 𝒵) I U ht0 hr.le hUb]
+      · rw [sys.reachSet_add_eq (S := 𝒵) I U ht0 hr.le hUb]
         exact ⟨_, ⟨y', hy', rfl⟩, v, hv, rfl⟩
       -- one step: `e^{rA}` stretches by at most `e^x`, the bloating adds Lemma 1's error
       have hE : dist (E *ᵥ q') (E *ᵥ y') ≤ Real.exp x * dist q' y' := by

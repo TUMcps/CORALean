@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Operations.ReachBox
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
@@ -14,7 +14,7 @@ import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
 
 `reachBox`'s `R_k ⊇ R(t)` for every `t ∈ [kr, (k+1)r]` and `k ≤ N`, from a zonotope `X⁰` and
 an input zonotope `U ∋ 0`, at a Taylor order admissible for `r` and `A`: the claim of [1, Alg.
-2] that it computes `R([0, t_f])` window by window. `R(t)` is `integralReachSet` on `[0, t]`.
+2] that it computes `R([0, t_f])` window by window. `R(t)` is `reachSet` on `[0, t]`.
 
 Three invariants, by induction on `k`, at every `τ ∈ [0, r]`: `e^{A(kr+τ)}X⁰ ⊆ H^R_k`,
 `e^{Akr} inputReach U τ ⊆ V_k` and `inputReach U (kr+τ) ⊆ P^R_k`. The first holds at `k = 0` by
@@ -79,7 +79,7 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
     (h0 : (0 : Vec ℝ n) ∈ U.construct)
     {N k : ℕ} (hk : k ≤ N) {t : ℝ} (ht : t ∈ Set.Icc ((k : ℝ) * r) ((k + 1) * r)) :
     ∃ R, (sys.reachBox X₀ U r (m + 2) N)[k]? = some R
-      ∧ sys.integralReachSet (S := 𝒵) (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
+      ∧ sys.reachSet (S := 𝒵) (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
   set A := toRealMat sys.A
   set E := exp (r • A)
   set H₀ := sys.timeIntervalStep (S := 𝒵) r (m + 2) X₀
@@ -169,7 +169,7 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
   · rw [hlist, List.getElem?_map, List.getElem?_range (by omega)]
     rfl
   · have ht0 : 0 ≤ t := (hkr k).trans ht.1
-    rw [sys.integralReachSet_eq (S := 𝒵) X₀ U ht0 hU]
+    rw [sys.reachSet_eq (S := 𝒵) X₀ U ht0 hU]
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * r) hτ
     rw [show (k : ℝ) * r + (t - k * r) = t by ring] at hI

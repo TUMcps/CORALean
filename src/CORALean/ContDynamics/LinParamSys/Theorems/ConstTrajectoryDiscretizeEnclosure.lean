@@ -61,7 +61,7 @@ theorem LinParamSys.ConstTrajectory.discretizeEnclosure {sys : LinParamSys ℐ n
     MatExp.exp_mem_expIntervalEnclosure _ η
       (Interval.smul_outer Δt sys.A traj.param) hε, by
     simpa [LinParamSys.discretizeEnclosure, LinearSys.discretize, Scalar.toRealMat_real]
-      using traj.toLinearSys.discretize_step hΔt hU k (step_subset hΔt hT k)⟩
+      using traj.toLinearSys.discretize_step hΔt hU k fun _ hs => hT hs.1⟩
 
 end CORALean
 

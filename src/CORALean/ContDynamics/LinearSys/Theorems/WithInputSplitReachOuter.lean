@@ -85,7 +85,7 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 tFinal := Set.Icc_subset_Icc_right ht.2
   have hU : Bornology.IsBounded (construct (construct sys.U)) :=
     CompactSet.isBounded_construct sys.U
-  have hvoc := traj.variation_of_constants hTt ht.1 (traj.intervalIntegrable_input hTt ht.1 hU)
+  have hvoc := traj.variation_of_constants hTt le_rfl ht.1 hU
   rw [sub_zero] at hvoc
   -- the input, split along `U ⊆ {ũ} ⊕ Ũ`
   have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct (Recentre.recentre sys.U) :=

@@ -53,7 +53,7 @@ theorem LinearSys.Trajectory.discretizeMatZonotope {sys : LinearSys 𝕋 n} {T :
   step k := ⟨exp (Δt • toRealMat sys.A),
     Real.MatExp.exp_mem_expMatZonoEnclosure _ η (Real.Zonotope.mem_ofPoint _)
       (by rwa [Real.Zonotope.norm_absMax_ofPoint]), by
-    simpa [LinearSys.discretize] using traj.discretize_step hΔt hU k (step_subset hΔt hT k)⟩
+    simpa [LinearSys.discretize] using traj.discretize_step hΔt hU k fun _ hs => hT hs.1⟩
 
 end CORALean
 

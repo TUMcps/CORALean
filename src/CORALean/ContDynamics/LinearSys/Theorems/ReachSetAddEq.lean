@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 
 /-!
@@ -6,7 +6,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 
 The identity [1]'s proof of Theorem 1 runs on, `R_[ir,(i+1)r](I) = Φ_r(R_[(i-1)r,ir](I))`,
 at one time: `Φ_{t+r}(R₀) = e^{rA}Φ_t(R₀) + inputReach U r`. Both sides in closed form
-(`integralReachSet_eq`), it is the input reach set's separation
+(`reachSet_eq`), it is the input reach set's separation
 (`inputReach_separation_eq`) and `e^{(t+r)A} = e^{rA}e^{tA}`.
 
 ## References
@@ -38,16 +38,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- `Φ_{t+r}(R₀) = e^{rA}Φ_t(R₀) + inputReach U r`: [1, Thm. 1]'s step from one time interval
 to the next, at one time. -/
-theorem LinearSys.integralReachSet_add_eq (sys : LinearSys 𝕋 n) (R₀ U : S n) {t r : ℝ}
+theorem LinearSys.reachSet_add_eq (sys : LinearSys 𝕋 n) (R₀ U : S n) {t r : ℝ}
     (ht : 0 ≤ t) (hr : 0 ≤ r) (hU : Bornology.IsBounded (construct U)) :
-    sys.integralReachSet (Set.Icc 0 (t + r)) R₀ U (t + r)
+    sys.reachSet (Set.Icc 0 (t + r)) R₀ U (t + r)
       = (fun y => exp (r • toRealMat sys.A) *ᵥ y) ''
-          sys.integralReachSet (Set.Icc 0 t) R₀ U t + sys.inputReach U r := by -- --- PROOF ---
+          sys.reachSet (Set.Icc 0 t) R₀ U t + sys.inputReach U r := by -- --- PROOF ---
   have hmul : exp ((t + r) • toRealMat sys.A)
       = exp (r • toRealMat sys.A) * exp (t • toRealMat sys.A) := by
     rw [add_smul, add_comm]
     exact exp_add_of_commute (((Commute.refl (toRealMat sys.A)).smul_left r).smul_right t)
-  rw [sys.integralReachSet_eq R₀ U (add_nonneg ht hr) hU, sys.integralReachSet_eq R₀ U ht hU,
+  rw [sys.reachSet_eq R₀ U (add_nonneg ht hr) hU, sys.reachSet_eq R₀ U ht hU,
     sys.inputReach_separation_eq ht hr hU]
   ext y
   constructor

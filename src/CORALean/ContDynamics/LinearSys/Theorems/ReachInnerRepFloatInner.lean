@@ -1,8 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReachSubsetAddErrorFloat
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetSuperset
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
 import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
@@ -27,7 +27,7 @@ each step in the direction an inner approximation needs:
    gives `R ⊖ B ⊆ Y`.
 3. `Y` lies in the states the system reaches at `t = kΔt`
    (`discretize_reachSet_subset_inputReach`, then
-   `mulVecLin_image_add_inputReach_subset_integralReachSet`).
+   `mulVecLin_image_add_inputReach_subset_reachSet`).
 
 The exact reachable set is read from the nominal zonotopes of `R₀` and `U`; the
 float sets' error boxes are paid inside the budget. The budget is nonempty
@@ -67,7 +67,7 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := Zonotope 𝕋)
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h n) {D : Zonotope 𝕋 n}
     (hD : sys.reachInnerRepFloat Δt η o ho R₀ U k M ρ H = some D) :
-    D.construct ⊆ sys.integralReachSet (S := fun k => Real.Zonotope (Vec ℝ k))
+    D.construct ⊆ sys.reachSet (S := fun k => Real.Zonotope (Vec ℝ k))
       (Set.Icc 0 ((k : ℝ) * toReal Δt)) (nominal R₀) (nominal U)
       ((k : ℝ) * toReal Δt) := by -- --- PROOF ---
   set R := (sys.discretizeEnclosureFloat Δt η).reach (S := Zonotope 𝕋)
@@ -97,7 +97,7 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     hΔt (nominal R₀) (nominal U) Q (Real.Zonotope.isBounded_construct _)
     ⟨_, Real.Zonotope.centre_mem_construct _⟩ hstep k
   exact (Zonotope.minkDiffRep_inner hD).trans (hinner.trans (hzoh.trans
-    (sys.mulVecLin_image_add_inputReach_subset_integralReachSet
+    (sys.mulVecLin_image_add_inputReach_subset_reachSet
       (S := fun k => Real.Zonotope (Vec ℝ k)) (nominal R₀) (nominal U) (by positivity)
       (Real.Zonotope.isBounded_construct _))))
 

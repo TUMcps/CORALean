@@ -1,3 +1,5 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryPostDeltaFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
@@ -153,7 +155,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
         ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
     -- `x - x✱` is a run of the `'lin'` linearization, so its differences are in `Rdiff`
-    have ltraj : (⟨A⟩ : LinearSys 𝕋 n).Trajectory (S := fun k => Set (Vec ℝ k))
+    have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := fun k => Set (Vec ℝ k))
         (Set.Icc 0 (toReal Δt)) Rdelta.construct
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
           Mtimes.mtimes (𝕄 := Mat 𝕋) B (Recentre.recentre U)) ⊞
@@ -165,6 +167,8 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
         show sys.f (x s) (u s) = Scalar.toRealMat A *ᵥ (x s - toRealVec xs)
           + (sys.f (x s) (u s) - Scalar.toRealMat A *ᵥ (x s - toRealVec xs))
         abel⟩
+    have ltraj := ltrajC.trajectory (convex_Icc 0 _) ⟨le_rfl, hΔt.le⟩
+      (Zonotope.isCompact_construct _).isBounded
     have hδ := ltraj.postDeltaFloat_outer hΔt (LinearSys.reachOrderFloat_spec hη).1
       subset_rfl ht
     simp only [sub_sub_sub_cancel_right] at hδ

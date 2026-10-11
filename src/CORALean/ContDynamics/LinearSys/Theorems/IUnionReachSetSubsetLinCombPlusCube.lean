@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpMulVecSubInterpolateLe
 import CORALean.ContSet.Zonotope.Real.Instances
@@ -16,8 +16,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 eq. 5 of [1], `(c + e^{rA}c)/2` and generators `(gᵢ ± e^{rA}gᵢ)/2`, `(c - e^{rA}c)/2` — which is
 `Zonotope.linComb Z (e^{rA}Z)`, CORA's `enclose` — and `α_r = (e^{r‖A‖} - 1 - r‖A‖) sup ‖x‖`.
 
-`R_[0,r](Z)` is the union of `Φ_t(Z)` over `t ∈ [0, r]`, each `Φ_t(Z)` an
-`integralReachSet` on `[0, t]`, as Sec. 3 of [1] defines it. A point of `Φ_t(Z)` is
+`R_[0,r](Z)` is the union of `Φ_t(Z)` over `t ∈ [0, r]`, each `Φ_t(Z)` a
+`reachSet` on `[0, t]`, as Sec. 3 of [1] defines it. A point of `Φ_t(Z)` is
 `e^{tA}z + v`; `z + (t/r)(e^{rA}z - z)` is on a segment from `Z` to `e^{rA}Z`, so in `P`, and
 the rest is at most `α_r` (eq. 6, `MatExp.norm_exp_mulVec_sub_interpolate_le`) plus
 `β_t ≤ β_r` (eq. 3 of [1]).
@@ -53,11 +53,11 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 2], conservative approximation: `R_[0,r](Z) ⊆ P + □(α_r + β_r)`. -/
-theorem LinearSys.iUnion_integralReachSet_subset_linComb_plus_cube (sys : LinearSys 𝕋 n)
+theorem LinearSys.iUnion_reachSet_subset_linComb_plus_cube (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r s : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r)
     (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ)
     (hs : ∀ z ∈ Z.construct, ‖z‖ ≤ s) :
-    ⋃ t ∈ Set.Icc (0:ℝ) r, sys.integralReachSet (S := 𝒵) (Set.Icc 0 t) Z U t
+    ⋃ t ∈ Set.Icc (0:ℝ) r, sys.reachSet (S := 𝒵) (Set.Icc 0 t) Z U t
       ⊆ ((Z.linComb (Z.mtimes (exp (r • toRealMat sys.A)))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖) * s
             + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖
@@ -72,7 +72,7 @@ theorem LinearSys.iUnion_integralReachSet_subset_linComb_plus_cube (sys : Linear
     exact mem_closedBall_zero_iff.mp this
   intro y hy
   obtain ⟨t, ⟨ht0, htr⟩, hyt⟩ := Set.mem_iUnion₂.mp hy
-  rw [sys.integralReachSet_eq (S := 𝒵) Z U ht0 (Zonotope.isBounded_construct U)] at hyt
+  rw [sys.reachSet_eq (S := 𝒵) Z U ht0 (Zonotope.isBounded_construct U)] at hyt
   obtain ⟨_, ⟨z, hz, rfl⟩, v, hv, rfl⟩ := hyt
   have hz0 : 0 ≤ s := (norm_nonneg z).trans (hs z hz)
   have hβ0 : 0 ≤ (Real.exp (r * a) - 1) / a * μ := mul_nonneg (div_nonneg (by linarith) hA.le) hμ

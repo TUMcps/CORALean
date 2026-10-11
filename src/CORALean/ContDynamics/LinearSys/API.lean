@@ -22,12 +22,12 @@ Reachability holds at the sample times, by sampling into `LinearSysDT`, or, once
 the sample times it is `reach`, `Instances`' `Reach`: one `timeIntervalStep` window
 per `Δt`, carried by `e^{A t_k}`, plus at `WithInput` the input accumulated so far.
 
+A trajectory is Carathéodory — the integral equation — so `reachSet` *is*
+`e^{tA} R₀ ⊕ inputReach U t` (`reachSet_eq`) and a witness there is reached;
+`ClassicalTrajectory.trajectory` admits every derivative-everywhere run.
 Backward, `PerturbedTrajectory` is `Trajectory` with a second, independently
 quantified signal `w`: `backReachSetForallExists` and `backReachSetExistsForall`
-are Wetzlinger and Althoff's Def. 6 and Def. 7, minimal and maximal, each with
-a `timeInterval...` sibling for the interval reading of the same definition.
-`PerturbedIntegralTrajectory` reads those two runs as integral equations, the
-way `IntegralTrajectory` reads `Trajectory`, and `integralBackReach...` are the
-two sets over it — the reading in which Prop. 3 and Prop. 5 are equalities.
+are Wetzlinger and Althoff's Def. 6 and Def. 7, each with a `timeInterval...`
+sibling, the reading in which Prop. 3 and Prop. 5 are equalities.
 `minBackReachTimeInterval` is their Alg. 1, held to Thm. 1 in `Theorems`.
 -/

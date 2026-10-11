@@ -1,6 +1,8 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatHorizon
 import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
+import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
 
 /-!
 # `NeurNetContrSys.reachFloat` contains every sampled run at the period boundaries
@@ -48,7 +50,9 @@ theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys 𝕋 (Zonotope �
   | succ i ih =>
     intro hi
     have hiH : i < H := Nat.lt_of_succ_le hi
-    have key := (traj.period hπ i hiH _ (ih hiH.le)).discretizeEnclosureFloat_mem_reach_horizon
+    have hNΔ : (0:ℝ) ≤ (N : ℝ) * toReal Δt := mul_nonneg (Nat.cast_nonneg N) hΔt.le
+    have key := ((traj.period hπ i hiH _ (ih hiH.le)).trajectory (convex_Icc 0 _)
+      ⟨le_rfl, hNΔ⟩ (CompactSet.isBounded_construct _)).discretizeEnclosureFloat_mem_reach_horizon
       (K := N) hΔt subset_rfl hη ho N le_rfl
     -- the conclusion unfolded, so `key` matches it at the period's own clock
     show x (((i + 1 : ℕ) : ℝ) * ((N : ℝ) * toReal Δt)) ∈ construct

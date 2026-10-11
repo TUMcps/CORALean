@@ -90,7 +90,7 @@ theorem LinParamSys.WithInputSplit.reachUnion_outer (sys : LinParamSys.WithInput
     Set.Icc_subset_Icc_right ht.2
   have hU : Bornology.IsBounded (construct (construct sys.U)) :=
     CompactSet.isBounded_construct sys.U
-  have hvoc := trajL.variation_of_constants hTt ht.1 (trajL.intervalIntegrable_input hTt ht.1 hU)
+  have hvoc := trajL.variation_of_constants hTt le_rfl ht.1 hU
   simp only [sub_zero, Scalar.toRealMat_real] at hvoc
   -- the input, split along `U ⊆ {ũ} ⊞ Ũ`
   have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct (Recentre.recentre sys.U) :=

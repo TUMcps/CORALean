@@ -1,10 +1,9 @@
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 
 /-!
 # The run sampled from a bounded horizon alone
 
-`discretize_step` iterated, at the domain `step_subset_horizon` carves out. A
+`discretize_step` iterated, each step at the prefix `[0, (k+1)Δt]` of the horizon. A
 `TrajectoryOn K`, not a total `Trajectory` — nothing pins `x` or `u` past step
 `K`, which is what lets `reach_outer_horizon` answer for a run over `[0, KΔt]`
 without asking for all of forward time.
@@ -37,7 +36,10 @@ theorem LinearSys.Trajectory.discretize_horizon {sys : LinearSys 𝕋 n} {T : Se
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) where
   init := by simpa using traj.init
   input k hk := hUd k hk
-  step k hk := by simpa using traj.discretize_step hΔt hU k (step_subset_horizon hΔt hT hk)
+  step k hk := by
+    have hk' : ((k : ℝ) + 1) * Δt ≤ (K : ℝ) * Δt :=
+      mul_le_mul_of_nonneg_right (by exact_mod_cast Nat.succ_le_of_lt hk) hΔt
+    simpa using traj.discretize_step hΔt hU k ((Set.Icc_subset_Icc_right hk').trans hT)
 
 end CORALean
 

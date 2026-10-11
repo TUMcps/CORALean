@@ -53,7 +53,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionCounterexampl
 import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetAbstrReach
 import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetCentreAbstrReach
-import CORALean.ContDynamics.NonlinearSys.Theorems.TrajectoryIffNonlinearSys
+import CORALean.ContDynamics.NonlinearSys.Theorems.ClassicalTrajectoryIffNonlinearSys
 import CORALean.ContDynamics.NonlinearSys.Theorems.TuneDeltatInitGain
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter

@@ -16,13 +16,12 @@ The run solves the integral equation at a measurable member of the box
 (`MatExp.exists_mem_expIntervalEnclosure_of_integral`) is the rest.
 
 Input-free only, as CORA too splits the input off into `Rtrans` and the input
-solution: with an input, `A(s) x(s)` is the velocity minus `u(s)`, and nothing
-makes `u` measurable to recover it.
+solution.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -52,8 +51,7 @@ theorem LinParamSys.Trajectory.exists_mem_expIntervalEnclosure {sys : LinParamSy
     ∃ Φ ∈ construct (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η),
       x t = Φ *ᵥ x 0 := by
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq ht hT hu
-  have hxc : ContinuousOn x (Set.Icc 0 t) := fun s hs =>
-    ((traj.flow s (hT hs)).continuousWithinAt).mono hT
+  have hxc : ContinuousOn x (Set.Icc 0 t) := traj.cont.mono hT
   exact MatExp.exists_mem_expIntervalEnclosure_of_integral hÂi hÂB ht hxc hx η hε
 
 end CORALean

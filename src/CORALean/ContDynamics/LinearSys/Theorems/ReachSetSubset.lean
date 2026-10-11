@@ -1,9 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSys.Operations.InputReach
 import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
 
 /-!
-# Every `IntegralTrajectory` run is a witness in `e^{tA} R₀ ⊕ inputReach U t`
+# Every `Trajectory` run is a witness in `e^{tA} R₀ ⊕ inputReach U t`
 
 The `⊆` half. `eq_closedForm_of_flow` does the work: the run `x` and
 `closedForm (x 0) u` agree everywhere on `[0, t]`, so `x t` is exactly the point
@@ -12,7 +12,7 @@ splits into `e^{tA} (x 0)` and an `inputReach` witness by definition.
 
 `init` enters nowhere in that argument, which is why the theorem it is stated
 from takes no initial set: only here, to place `x 0` in `R₀`.
-`IntegralReachSetSuperset` is the other half.
+`ReachSetSuperset` is the other half.
 -/
 
 -- Authors:       Tobias Ladner
@@ -36,12 +36,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every point `integralReachSet` names is a closed-form point, so it is the
+/-- Every point `reachSet` names is a closed-form point, so it is the
 sum of a moved initial point and an `inputReach` witness. -/
-theorem LinearSys.integralReachSet_subset_mulVecLin_image_add_inputReach
+theorem LinearSys.reachSet_subset_mulVecLin_image_add_inputReach
     (sys : LinearSys 𝕋 n) (R₀ U : S n) {t : ℝ} (ht : 0 ≤ t)
     (hU : Bornology.IsBounded (construct U)) :
-    sys.integralReachSet (Set.Icc 0 t) R₀ U t
+    sys.reachSet (Set.Icc 0 t) R₀ U t
       ⊆ (exp (t • toRealMat sys.A)).mulVecLin '' construct R₀
         + sys.inputReach U t := by -- --- PROOF ---
   rintro _ ⟨x, u, traj, rfl⟩

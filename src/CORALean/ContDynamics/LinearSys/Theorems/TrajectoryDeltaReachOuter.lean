@@ -54,8 +54,8 @@ theorem LinearSys.Trajectory.deltaReach_outer {sys : LinearSys 𝕋 n} {T : Set 
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s) ∈ construct Ud) :
     x t - x 0 ∈ construct (Plus.plus (sys.deltaReach r (m + 2) R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
-  have hvoc := traj.variation_of_constants hTt ht0
-    (traj.intervalIntegrable_input hTt ht0 hU)
+  have hvoc := traj.variation_of_constants hTt le_rfl ht0
+    hU
   rw [sub_zero] at hvoc
   -- subtracting the step's own start leaves the initial state's term a difference
   have hsplit : x t - x 0

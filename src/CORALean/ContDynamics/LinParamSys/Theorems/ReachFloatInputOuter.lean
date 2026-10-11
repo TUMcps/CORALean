@@ -74,8 +74,8 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys (fun m n => Interva
     Set.Icc_subset_Icc_right (ht.2.trans hkN)
   -- the run is the point system `⟨A⟩`'s, split into its free motion and its input's integral
   have lin := traj.toLinearSys
-  have hvoc := lin.variation_of_constants hTt ht0
-    (lin.intervalIntegrable_input hTt ht0 (CompactSet.isBounded_construct U))
+  have hvoc := lin.variation_of_constants hTt le_rfl ht0
+    (CompactSet.isBounded_construct U)
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   -- that integral is one admissible input's contribution by `t`, under `A`
   have hin : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)

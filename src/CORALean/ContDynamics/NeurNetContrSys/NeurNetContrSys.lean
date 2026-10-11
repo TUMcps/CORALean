@@ -9,14 +9,13 @@ discrete sampling instants and *held* between them, so `u` is constant at
 `π(x(i Δtc))` for the whole period. The control period `Δtc` is not the
 reachability step; `Operations` is where the two meet, as `Δtc = N Δt`.
 
-`flow` is stated per period, with the derivative taken *within that period*. A
-zero-order-hold run is generally **not** a `LinearSys.Trajectory` on a two-sided
-domain: at a sampling instant `u` jumps and `x` is differentiable only one-sidedly
-from each side, so a run on `Ici 0` would force the two derivatives to agree and
-hence force the input never to switch. Restricted to one closed period the same
-predicate is exactly right, the endpoints being where the derivative becomes
-one-sided; `Theorems.Period` is that reading, and the only place the two
-developments touch.
+`flow` is stated per period, with the derivative taken *within that period*: at
+a sampling instant `u` jumps and `x` is differentiable only one-sidedly, so a
+derivative-everywhere run on `Ici 0` would force the input never to switch.
+Restricted to one closed period the derivative is exactly right, the endpoints
+being where it becomes one-sided; `Theorems.Period` reads a period as a
+`LinearSys.ClassicalTrajectory`, which `ClassicalTrajectory.trajectory` hands to
+`LinearSys`, and is the only place the two developments touch.
 
 `H` bounds the number of periods asserted over. No `B`, for the reason
 `NeurNetContrSysDT` gives: an actuation matrix is the controller's last layer.

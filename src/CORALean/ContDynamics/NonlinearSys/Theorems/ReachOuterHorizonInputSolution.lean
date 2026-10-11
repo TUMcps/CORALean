@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 
@@ -54,7 +55,9 @@ theorem NonlinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
       (((NonlinearSys.linearize A).discretize Δt).reach
         ⟨R₀, (NonlinearSys.linearize A).inputSolution Δt η (linInput sys.f A B xs us U L), 0, k⟩
         ⟨o, ho⟩) :=
-  (traj.linearize_horizon cert hT hR).reach_outer_horizon_inputSolution hΔt subset_rfl η hε
+  ((traj.linearize_horizon cert hT hR).trajectory (convex_Icc 0 _)
+    ⟨le_rfl, mul_nonneg (Nat.cast_nonneg K) hΔt.le⟩ hbdd).reach_outer_horizon_inputSolution
+    hΔt subset_rfl η hε
     hconv hclosed hbdd hRconv hRclosed hRbdd ho
 
 end CORALean
