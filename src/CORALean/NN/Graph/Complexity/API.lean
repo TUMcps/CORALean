@@ -5,6 +5,12 @@ import CORALean.NN.Graph.Complexity.GcnStepsBigO
 import CORALean.NN.Graph.Complexity.MessagePassingEnclosure
 import CORALean.NN.Graph.Complexity.MessagePassingEnclosureBigO
 import CORALean.NN.Graph.Complexity.Pooling
+import CORALean.NN.Graph.Complexity.GcnActSteps
+import CORALean.NN.Graph.Complexity.GcnActStepsQ
+import CORALean.NN.Graph.Complexity.TailEnclose
+import CORALean.NN.Graph.Complexity.Alg1Node
+import CORALean.NN.Graph.Complexity.Alg1Graph
+import CORALean.NN.Graph.Complexity.Alg1BigO
 
 /-!
 # How large a graph layer's result is

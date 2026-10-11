@@ -59,6 +59,19 @@ import CORALean.NN.Graph.Theorems.SumPoolLinApply
 import CORALean.NN.Graph.Theorems.UncertainAdjExact
 import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
 import CORALean.NN.Graph.Theorems.SumPoolLinPermInvariant
+import CORALean.NN.Graph.Theorems.RowEqMask
+import CORALean.NN.Graph.Theorems.EvalStepsLayersRowMask
+import CORALean.NN.Graph.Theorems.EvalStepsLayersSubmatrix
+import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBall
+import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallEnum
+import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallOfAdjacencyUncertain
+import CORALean.NN.Graph.Theorems.BfsVisitedEqBall
+import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBfsUncertain
+import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActSteps
+import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActStepsUncertain
+import CORALean.NN.Graph.Theorems.TailEncloseMem
+import CORALean.NN.Graph.Theorems.Alg1NodeSound
+import CORALean.NN.Graph.Theorems.Alg1GraphSound
 
 /-!
 # What the graph layers guarantee

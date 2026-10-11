@@ -1,0 +1,56 @@
+import CORALean.NN.Graph.Operations.Bfs
+import CORALean.NN.Graph.Theorems.BfsVisitedEqBall
+import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallOfAdjacencyUncertain
+
+/-!
+# `[1, Sec. 4.3]`'s subgraph, found by the breadth-first search
+
+The subgraph a caller verifies is the `(κ' + 1)`-hop neighbourhood of the node of interest that
+a breadth-first search over every uncertain edge finds, `bfs (adjMax A U) v (L + 1)`. A `κ`
+enumerating it carries row `v` of the layered network, at every admissible weighting of the
+uncertain edges, to the same row of the network run on the subgraph with its own message passing:
+`evalStepsLayers_row_ball_of_adjacency_uncertain` with the ball read off `bfs_visited`.
+
+## References
+
+* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
+      Convolutional Networks with Uncertain Node Features and Uncertain Graph
+      Structure". TMLR, 2025. arXiv:2404.15065.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Sec. 4.3]: a node's output row of the layered network is computed on the subgraph the
+breadth-first search finds, with message passing computed on that subgraph alone. -/
+theorem GNN.evalStepsLayers_row_bfs_uncertain {N F m : ℕ} (A : Mat ℝ N N)
+    (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (hSymm : ∀ i j, A i j = A j i)
+    {lam : Fin m → ℝ} (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (v : Fin N) (L : ℕ) {K : ℕ}
+    (κ : Fin K → Fin N) (hinj : Function.Injective κ)
+    (hκ : (GNN.bfs (GNN.adjMax A U) v (L + 1)).1 ⊆ Finset.univ.image κ)
+    (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) :
+    ∃ φ : Fin (GNN.ball (GNN.adjAt A U lam) v L).card → Fin K,
+      GNN.evalStepsLayers (GNN.messagePassing (GNN.adjAt A U lam)) L g X v
+        = GNN.evalStepsLayers
+            ((GNN.messagePassing ((GNN.adjAt A U lam).submatrix κ κ)).submatrix φ φ) L
+            g ((X.submatrix κ id).submatrix φ id)
+            (GNN.ballEnumIdx (GNN.adjAt A U lam) v L) := by
+  rw [GNN.bfs_visited] at hκ
+  exact GNN.evalStepsLayers_row_ball_of_adjacency_uncertain A U hA hSymm hlam v L κ hinj hκ g X
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.Conform.Definitions.Glo
+import CORALean.ContDynamics.Conform.Theorems.ProdJacSucc
 import Mathlib.Data.Matrix.Basic
 import Mathlib.Algebra.BigOperators.Group.List.Basic
 import Mathlib.Tactic.Abel
@@ -38,17 +39,6 @@ variable {n p q : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `∏_{l=1}^{m+1} A_{k+1-l} = A_k ∏_{l=1}^m A_{k-l}`. -/
-theorem aux_prodJac_succ (A : ℕ → Mat ℝ n n) (k m : ℕ) :
-    Conform.prodJac A (k + 1) (m + 1) = A k * Conform.prodJac A k m := by -- --- PROOF ---
-  simp only [Conform.prodJac]
-  rw [List.range_succ_eq_map, List.map_cons, List.prod_cons, List.map_map]
-  congr 2
-  refine List.map_congr_left fun a _ => ?_
-  simp only [Function.comp_apply]
-  congr 1
-  omega
-
 /-- The state deviation, unrolled. -/
 theorem aux_dev_unroll (x xb : ℕ → Vec ℝ n) (u ub : ℕ → Vec ℝ p) (A : ℕ → Mat ℝ n n)
     (B : ℕ → Mat ℝ n p) (lx : ℕ → Vec ℝ n)
@@ -60,7 +50,7 @@ theorem aux_dev_unroll (x xb : ℕ → Vec ℝ n) (u ub : ℕ → Vec ℝ p) (A 
   induction k with
   | zero => simp [Conform.prodJac]
   | succ k ih =>
-    rw [hx k, Finset.sum_range_succ, show k + 1 - k - 1 = 0 by omega, aux_prodJac_succ]
+    rw [hx k, Finset.sum_range_succ, show k + 1 - k - 1 = 0 by omega, Conform.prodJac_succ]
     have hsum : ∑ i ∈ Finset.range k, Conform.prodJac A (k + 1) (k + 1 - i - 1) *ᵥ
           (B i *ᵥ (u i - ub i) + lx i)
         = A k *ᵥ ∑ i ∈ Finset.range k, Conform.prodJac A k (k - i - 1) *ᵥ
@@ -68,7 +58,7 @@ theorem aux_dev_unroll (x xb : ℕ → Vec ℝ n) (u ub : ℕ → Vec ℝ p) (A 
       rw [mulVec_sum]
       refine Finset.sum_congr rfl fun i hi => ?_
       rw [Finset.mem_range] at hi
-      rw [show k + 1 - i - 1 = (k - i - 1) + 1 by omega, aux_prodJac_succ, ← mulVec_mulVec]
+      rw [show k + 1 - i - 1 = (k - i - 1) + 1 by omega, Conform.prodJac_succ, ← mulVec_mulVec]
     rw [hsum, ih, ← mulVec_mulVec]
     simp only [Conform.prodJac, List.range_zero, List.map_nil, List.prod_nil, one_mulVec,
       mulVec_add]

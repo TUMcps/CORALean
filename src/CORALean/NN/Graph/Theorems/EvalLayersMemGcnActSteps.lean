@@ -1,0 +1,102 @@
+import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+import CORALean.NN.Graph.Operations.EvalLayers
+import CORALean.NN.Graph.Operations.GcnActSteps
+import CORALean.NN.Graph.Theorems.GcnSharedPoint
+
+/-!
+# The graph part of `Alg. 1` contains the iteration it abstracts
+
+[1, Thm. 1]: whatever the graph, the iteration `H ↦ σ (P H W)` that *that* graph runs, from a
+point of the feature set, is a point of `gcnActSteps`. The invariant carried through the steps is
+one factor vector `a` reaching `P` and `H` together, which is what keeps an edge identified across
+steps: a convolution is the product at `a` (`gcnShared_point`), an activation enclosure adds
+coefficients `β` for its new independent generators (`ActLayer.Sound`), and `dependent` makes them
+the factors after the old ones (`dependent_point`) while `P` is padded by as many, so it
+still reads `a`. Induction on the number of steps, the widths and weights generalized.
+
+## References
+
+* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
+      Convolutional Networks with Uncertain Node Features and Uncertain Graph
+      Structure". TMLR, 2025. arXiv:2404.15065.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {N : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Appending after a cast of the first block is casting the append. -/
+theorem aux_append_cast {m m' n : ℕ} (e : m' = m) (a : Fin m → ℝ) (β : Fin n → ℝ)
+    (e' : m' + n = m + n) :
+    (fun k : Fin (m' + n) => (Fin.append a β : Fin (m + n) → ℝ) (Fin.cast e' k))
+      = Fin.append (fun k : Fin m' => a (Fin.cast e k)) β := by
+  subst e
+  funext k
+  simp only [Fin.cast_eq_self]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Thm. 1]: the exact layered iteration from a point is a point of `gcnActSteps`. -/
+theorem GNN.evalLayers_mem_gcnActSteps (L : ℕ) :
+    ∀ (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ) (W : ∀ s, Mat ℝ (c s) (c (s + 1)))
+      (acts : ∀ s, GNN.ActLayer N (c (s + 1))) (_ : ∀ s, (acts s).Sound (σ s))
+      (P : PolyZonotope (Mat ℝ N N)) (H : PolyZonotope (Mat ℝ N (c 0))) (hp : P.p = H.p)
+      (Pstar : Mat ℝ N N) (state : Mat ℝ N (c 0)) (a : Fin P.p → ℝ), (∀ k, |a k| ≤ 1) →
+      P.point a = Pstar → H.point (fun k => a (Fin.cast hp.symm k)) = state →
+        GNN.evalLayers Pstar L c σ W state
+          ∈ (GNN.gcnActSteps L c W acts P H hp).construct := by -- --- PROOF ---
+  induction L with
+  | zero =>
+    intro c σ W acts hσ P H hp Pstar state a ha hP hH
+    exact hH ▸ H.point_mem_construct (fun k => ha _)
+  | succ L ih =>
+    intro c σ W acts hσ P H hp Pstar state a ha hP hH
+    -- the convolution at `a` is the product, which the activation enclosure then encloses
+    have hconv : (GNN.gcnShared (W 0) P H hp).point a = Pstar * state * W 0 := by
+      rw [GNN.gcnShared_point, hP, hH]
+    obtain ⟨β, hβ, hact⟩ := hσ 0 (GNN.gcnShared (W 0) P H hp) rfl a ha
+    rw [hconv] at hact
+    -- the new factor vector appends the coefficients of the independent generators
+    refine ih (fun s => c (s + 1)) (fun s => σ (s + 1)) (fun s => W (s + 1))
+      (fun s => acts (s + 1)) (fun s => hσ (s + 1)) _ _ _ Pstar _ (Fin.append a β)
+      (fun k => ?_) ?_ ?_
+    · refine Fin.addCases (fun e => ?_) (fun t => ?_) k
+      · rw [Fin.append_left]; exact ha e
+      · rw [Fin.append_right]; exact hβ t
+    · rw [PolyZonotope.padBack_point]
+      simp only [Function.comp_def, Fin.append_left]
+      exact hP
+    · -- the dependent set at the appended vector is the enclosure's point plus its generators
+      have hpe : ((acts 0).act (GNN.gcnShared (W 0) P H hp)).p = P.p :=
+        (acts 0).p_eq (GNN.gcnShared (W 0) P H hp)
+      have hpt : (((acts 0).act (GNN.gcnShared (W 0) P H hp)).dependent).point
+          (fun k => (Fin.append a β : Fin (P.p + ((acts 0).act (GNN.gcnShared (W 0) P H hp)).q)
+            → ℝ) (Fin.cast (by
+              show ((acts 0).act (GNN.gcnShared (W 0) P H hp)).p + _ = _
+              rw [hpe]) k)) = (Pstar * state * W 0).map (σ 0) := by
+        refine Eq.trans (congrArg (fun f => (((acts 0).act (GNN.gcnShared (W 0) P H hp)).dependent
+          ).point f) (aux_append_cast hpe a β _)) ?_
+        rw [PolyZonotope.dependent_point]
+        exact hact.symm
+      exact hpt
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

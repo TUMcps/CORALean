@@ -1,6 +1,7 @@
 import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
-import CORALean.Global.Partition
+import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
+import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
 
 /-!
 # `PolyZonotope.expGreedySel`
@@ -41,11 +42,6 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- An edge's weight, summed over every factor so that the agreeing ones
-contribute nothing. -/
-def PolyZonotope.aux_expWeight {p h : ℕ} (E : Fin p → Fin h → ℕ) (i j : Fin h) : ℕ :=
-  ∑ k, PolyZonotope.eDiff (E k i) (E k j)
-
 /-- The lightest edge of the graph, or `none` where it has no edge at all. -/
 def PolyZonotope.aux_lightestEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) :
     Option (Fin h × Fin h) :=
@@ -55,24 +51,10 @@ def PolyZonotope.aux_lightestEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η 
         match best with
         | none => some ij
         | some b =>
-          if PolyZonotope.aux_expWeight E ij.1 ij.2 < PolyZonotope.aux_expWeight E b.1 b.2
+          if PolyZonotope.expWeight E ij.1 ij.2 < PolyZonotope.expWeight E b.1 b.2
             then some ij else some b
       else best)
     none
-
-/-- The permutation carrying the last two indices onto `i` and `j`. -/
-def PolyZonotope.aux_pairPerm {m : ℕ} (i j : Fin (m + 2)) : Equiv.Perm (Fin (m + 2)) :=
-  (Equiv.swap (Fin.natAdd m 1) (Equiv.swap (Fin.natAdd m 0) i j)).trans
-    (Equiv.swap (Fin.natAdd m 0) i)
-
-/-- The split naming `i` and `j` on the right, in that order, and every other
-index on the left. -/
-def PolyZonotope.aux_pairSplit {m : ℕ} (h2 : 2 ≤ m) (i j : Fin m) :
-    Split (Fin m) into (Fin (m - 2)) ⊕ (Fin 2) :=
-  (Partition.split (m - 2) 2).reindex
-    ((finCongr (Nat.sub_add_cancel h2).symm).trans
-      (PolyZonotope.aux_pairPerm (finCongr (Nat.sub_add_cancel h2).symm i)
-        (finCongr (Nat.sub_add_cancel h2).symm j)).symm)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -83,7 +65,7 @@ def PolyZonotope.expGreedySel {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : �
     Option ((d : ℕ) × (Split (Fin h) into (Fin d) ⊕ (Fin 2))) :=
   if h2 : 2 ≤ h then
     (PolyZonotope.aux_lightestEdge E η).map fun ij =>
-      ⟨h - 2, PolyZonotope.aux_pairSplit h2 ij.1 ij.2⟩
+      ⟨h - 2, PolyZonotope.pairSplit h2 ij.1 ij.2⟩
   else none
 
 end CORALean.Real
