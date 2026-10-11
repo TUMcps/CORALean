@@ -76,7 +76,8 @@ theorem aux_det_submatrix_ne_zero_of_col {x : Matrix (Fin n) (Fin m) ℝ} (hx : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Eq. 14]: `xₖₗ = 1 → ⟨aₖₗ⟩ > ∑_{i ≠ k} ∑ⱼ xᵢⱼ |aᵢₗ|` makes the picked sub-matrix regular. -/
+/-- [1, Eq. 14], the corrected form of [1, Eq. 13] (gated on `xₖₗ = 1`):
+`xₖₗ = 1 → ⟨aₖₗ⟩ > ∑_{i ≠ k} ∑ⱼ xᵢⱼ |aᵢₗ|` makes the picked sub-matrix regular. -/
 theorem det_submatrix_ne_zero_of_lp14 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀ i j, 0 ≤ x i j)
     {ρ : Fin k → Fin n} (hρ : Injective ρ) {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1)
     {mig mag : Matrix (Fin n) (Fin m) ℝ}
@@ -85,7 +86,8 @@ theorem det_submatrix_ne_zero_of_lp14 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     (A.submatrix ρ κ).det ≠ 0 :=
   aux_det_submatrix_ne_zero_of_col hx hρ hsel (fun t => h14 _ _ (hsel t)) A hA
 
-/-- [1, Eq. 15]: the big-M form `∑ ≤ M + (⟨aₖₗ⟩ - μ - M) xₖₗ`, `μ > 0`, does the same. -/
+/-- [1, Eq. 15], the corrected form of [1, Eq. 16] (`-μ` for `+μ`): the big-M form
+`∑ ≤ M + (⟨aₖₗ⟩ - μ - M) xₖₗ`, `μ > 0`, does the same. -/
 theorem det_submatrix_ne_zero_of_lp15 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀ i j, 0 ≤ x i j)
     {ρ : Fin k → Fin n} (hρ : Injective ρ) {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1)
     {mig mag : Matrix (Fin n) (Fin m) ℝ} {M μ : ℝ} (hμ : 0 < μ)
