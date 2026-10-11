@@ -76,8 +76,6 @@ theorem aux_horizonErrorBudget_ceilPred {tf Δtstar : ℝ} (htf : 0 < tf) (hΔts
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the three `Fin.sum_univ_castSucc` calcs below need the extra room
-set_option maxHeartbeats 400000 in
 /-- [1, Prop. 2]: a finite partition of `[0,t_f]`, of `M+1` steps, whose
 `ε_P`-errors sum below any given `ε_{P,max}`. -/
 theorem exists_finPartition_sum_particularError_le

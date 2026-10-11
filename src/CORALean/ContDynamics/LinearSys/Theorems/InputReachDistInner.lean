@@ -46,8 +46,6 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the mean input, the cancellation it produces, and the bound on what is left
-set_option maxHeartbeats 1000000 in
 /-- Every point of the exact one-step particular solution is `O(Δt²)` from the
 inner approximation. -/
 theorem LinearSys.inputReach_dist_inputSolutionInner (sys : LinearSys 𝕋 n) {U : S n}

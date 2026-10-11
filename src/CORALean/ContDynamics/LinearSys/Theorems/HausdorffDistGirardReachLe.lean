@@ -48,7 +48,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the window induction and the closed-form bookkeeping are elaborated in one proof
-set_option maxHeartbeats 1000000 in
+set_option maxHeartbeats 100000 in
 /-- [1, Thm. 1], convergence, with `(1/2 + r‖A‖)` for the printed `(1/2 + r)`:
 `d_H(R_[0,Nr](I), R_{N-1}) ≤ r‖A‖e^{‖A‖Nr}(2µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)`. -/
 theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Zonotope (Vec ℝ n))

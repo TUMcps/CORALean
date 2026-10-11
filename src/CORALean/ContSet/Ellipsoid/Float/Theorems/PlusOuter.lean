@@ -93,7 +93,6 @@ theorem Ellipsoid.aux_plusGap (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) 
     constructor <;> linarith
 
 -- the norm bound is rebuilt over the appended generator block, one `calc` chain per half
-set_option maxHeartbeats 400000 in
 theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n)
     (hne₁ : toReal s₁ ≠ 0) (hne₂ : toReal s₂ ≠ 0)
     (hs : 1 / toReal s₁ ^ 2 + 1 / toReal s₂ ^ 2 ≤ 1) :

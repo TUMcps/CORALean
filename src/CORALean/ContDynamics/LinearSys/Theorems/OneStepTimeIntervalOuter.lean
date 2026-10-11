@@ -49,8 +49,6 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the conclusion elaborates `Mtimes` at `ℐ` and at `Mat ℝ` several times over
-set_option maxHeartbeats 1000000 in
 /-- The state at every time of the step is in `oneStep`'s time-interval set. -/
 theorem LinearSys.Trajectory.oneStep_timeInterval_outer {sys : LinearSys 𝕋 n} {Δt : ℝ}
     (hΔt : 0 < Δt) {m : ℕ}

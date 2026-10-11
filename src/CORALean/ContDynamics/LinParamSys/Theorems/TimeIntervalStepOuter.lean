@@ -43,8 +43,6 @@ variable [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the interpolation error is assembled entrywise from three interval matrices at once
-set_option maxHeartbeats 1000000 in
 /-- Every image of the initial set under the flow of every member, at every time
 of the step. -/
 theorem LinParamSys.timeIntervalStep_outer (sys : LinParamSys ℐ n) {r : ℝ} (hr : 0 < r)

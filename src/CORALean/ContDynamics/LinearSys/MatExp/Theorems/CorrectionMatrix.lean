@@ -54,8 +54,6 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
--- a four-step `calc` carrying `Nat.factorial (i + η + 1)` through every rewrite
-set_option maxHeartbeats 400000 in
 /-- Every tail term is at most `r^m` in the scalar factor, so the tail is the
 exponential's own remainder series. -/
 theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ)
@@ -116,8 +114,6 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- a `Finset.range` split, then an entrywise `min`/`max` argument on the interval matrix
-set_option maxHeartbeats 1000000 in
 theorem MatExp.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)

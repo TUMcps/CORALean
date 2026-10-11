@@ -104,8 +104,6 @@ theorem LinearSys.aux_inputTaylorSum_mem_exists (sys : LinearSys 𝕋 n) (r : �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- three norm bounds over `Mat ℝ n n`, each re-solving the local normed-algebra instances
-set_option maxHeartbeats 1000000 in
 /-- The reverse of `timePointStep_outer`, against the states a *held* input
 reaches: what the step computes stays inside `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U`,
 widened by `timePointStepError`. -/

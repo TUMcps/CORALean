@@ -73,8 +73,6 @@ theorem LinParamSys.aux_inputTaylorSum_outer (sys : LinParamSys ℐ n) (r : ℝ)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- a dozen `have`s over `Mat ℝ n n`, each re-solving the local normed-algebra instances
-set_option maxHeartbeats 1000000 in
 theorem LinParamSys.inputSolution_outer (sys : LinParamSys ℐ n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)

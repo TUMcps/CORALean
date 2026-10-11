@@ -50,8 +50,6 @@ theorem aux_norm_pow_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (i : ℕ) :
   · exact le_trans (Matrix.linfty_opNorm_mulVec _ _)
       (mul_le_mul_of_nonneg_right (norm_pow_le' A hi) (norm_nonneg _))
 
--- `ContinuousLinearMap.map_tsum` moves a `Mat ℝ n n` series under an application
-set_option maxHeartbeats 400000 in
 /-- The exponential series carried through to a vector. -/
 theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
     exp (σ • A) *ᵥ v = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v) := by
@@ -59,8 +57,6 @@ theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
     ContinuousLinearMap.map_tsum (aux_mulVecR v) (Real.summable_exp_smul A σ)]
   exact tsum_congr fun i => by rw [aux_mulVecR_apply, Matrix.smul_mulVec]
 
--- a `calc` over the `linftyOp` norm, whose instances are local to this file
-set_option maxHeartbeats 400000 in
 /-- Applying a vector only shrinks the terms, by `‖A^i v‖ ≤ ‖A^i‖ ‖v‖`, so
 summability of a matrix series carries to it. -/
 theorem aux_summable_smul_mulVec {c : ℕ → ℝ} (A : Mat ℝ n n) (v : Vec ℝ n)
@@ -74,8 +70,6 @@ theorem aux_summable_smul_mulVec {c : ℕ → ℝ} (A : Mat ℝ n n) (v : Vec �
         mul_le_mul_of_nonneg_left (Matrix.linfty_opNorm_mulVec _ _) (norm_nonneg _)
     _ = ‖v‖ * (‖c i‖ * ‖A ^ i‖) := by ring
 
--- `norm_expSeries_summable'` is elaborated at the four local `Matrix.linftyOp*` instances
-set_option maxHeartbeats 400000 in
 /-- Each order of the exponential series, applied to a vector, is summable. -/
 theorem aux_summable_exp_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v)) := by
@@ -83,8 +77,6 @@ theorem aux_summable_exp_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
   refine (norm_expSeries_summable' (𝕂 := ℝ) (σ • A)).congr fun i => ?_
   rw [smul_pow, smul_smul]
 
--- the same instance search, one order higher
-set_option maxHeartbeats 400000 in
 /-- The same with the extra order integration adds. -/
 theorem aux_summable_expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (t : ℝ) :
     Summable (fun i : ℕ =>
@@ -101,8 +93,6 @@ theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- dominated convergence with its bound proved inline, over the same norm instances
-set_option maxHeartbeats 1000000 in
 /-- `expIntegral` is what its name says, once a vector is supplied. -/
 theorem Real.MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
     Real.MatExp.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by -- --- PROOF ---

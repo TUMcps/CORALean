@@ -34,8 +34,6 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `norm_expSeries_summable'` at the local matrix norm instances, then a four-step `calc`
-set_option maxHeartbeats 400000 in
 /-- The integrated series is dominated by `|t|` times the exponential's own. -/
 theorem MatExp.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => ‖(((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1))

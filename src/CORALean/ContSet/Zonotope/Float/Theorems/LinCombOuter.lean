@@ -110,8 +110,6 @@ theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope 𝕋 n) (i : Fin n)
     β₁ β₂ lam]
   ring
 
--- the doubly appended coefficient vector is re-elaborated at every `Fin.addCases` branch
-set_option maxHeartbeats 400000 in
 /-- The nominal part spills only by what the centre and the generators
 rounded. -/
 theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope 𝕋 n) :

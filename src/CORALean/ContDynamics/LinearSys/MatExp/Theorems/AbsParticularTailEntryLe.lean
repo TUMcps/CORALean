@@ -87,7 +87,7 @@ theorem aux_expRemainderMat_entry_eq (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) (j
   have hE : MatExp.expRemainderMat A Δt η = ∑' i, h (i + (η + 1)) := by
     rw [MatExp.expRemainderMat, ← hB, exp_smul_tsum B Δt, htay, ← hsum.sum_add_tsum_nat_add (η + 1)]
     abel
-  rw [hE, MatExp.tsum_entry_eq ((summable_nat_add_iff (η + 1)).mpr hsum) j k]
+  rw [hE, MatExp.tsum_entry_eq ((summable_nat_add_iff (f := h) (η + 1)).mpr hsum) j k]
   exact tsum_congr fun i => rfl
 
 /-- `expIntegral`'s tail past order `η`, likewise read off one entry at a time. -/
@@ -102,7 +102,8 @@ theorem aux_particularTail_entry_eq (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) (j 
   have hT : MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1), MatExp.particularCoeff A Δt i
       = ∑' i, MatExp.particularCoeff A Δt (i + (η + 1)) := by
     rw [hEI, ← hsum.sum_add_tsum_nat_add (η + 1)]; abel
-  rw [hT, MatExp.tsum_entry_eq ((summable_nat_add_iff (η + 1)).mpr hsum) j k]
+  rw [hT, MatExp.tsum_entry_eq
+    ((summable_nat_add_iff (f := fun i => MatExp.particularCoeff A Δt i) (η + 1)).mpr hsum) j k]
 
 /-- One order of the tail, against the same order of `E(Δt,η)·Δt`. -/
 theorem aux_abs_particularCoeff_entry_le (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (m : ℕ)
@@ -132,8 +133,6 @@ theorem aux_abs_particularCoeff_entry_le (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- three `tsum`s over `Mat ℝ n n`, each re-solving the local normed-algebra instances
-set_option maxHeartbeats 400000 in
 /-- [1]'s step `(18)`: `expIntegral`'s tail past order `η` is entrywise under `E(Δt,η)·Δt`. -/
 theorem MatExp.abs_particularTail_entry_le (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
     (j k : Fin n) :
@@ -143,7 +142,8 @@ theorem MatExp.abs_particularTail_entry_le (A : Mat ℝ n n) {Δt : ℝ} (hΔt :
       * ((MatExp.absMat A) ^ (i + (η + 1))) j k :=
     aux_summable_entry (f := fun i => ((Nat.factorial (i + (η + 1)) : ℝ)⁻¹
       * Δt ^ (i + (η + 1))) • (MatExp.absMat A) ^ (i + (η + 1)))
-      ((summable_nat_add_iff (η + 1)).mpr (summable_exp_smul (MatExp.absMat A) Δt)) j k
+      ((summable_nat_add_iff (f := fun i : ℕ => ((Nat.factorial i : ℝ)⁻¹ * Δt ^ i)
+        • (MatExp.absMat A) ^ i) (η + 1)).mpr (summable_exp_smul (MatExp.absMat A) Δt)) j k
   have hdom : ∀ i : ℕ, |(MatExp.particularCoeff A Δt (i + (η + 1))) j k|
       ≤ Δt * (((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * Δt ^ (i + (η + 1)))
         * ((MatExp.absMat A) ^ (i + (η + 1))) j k) := fun i =>

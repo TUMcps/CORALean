@@ -38,7 +38,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- evaluating Algorithm 1's two steps on the example symbolically needs more than the default
-set_option maxHeartbeats 400000 in
+set_option maxHeartbeats 100000 in
 /-- [1, Sec. 4.2 (choice of j)] fails: Algorithm 1's `R_j ⊆ [-1, 1]` (`r_j = 0`), yet `Z̃ ≠ Z`. -/
 theorem ConZonotope.partialSolve_rZero_counterexample :
     ∃ (c : Vec ℝ 2) (G : Fin 2 → Vec ℝ 2) (A : Mat ℝ 1 2) (b : Vec ℝ 1) (r : Fin 1) (j : Fin 2),

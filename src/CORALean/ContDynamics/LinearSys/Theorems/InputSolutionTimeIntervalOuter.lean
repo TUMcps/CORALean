@@ -39,8 +39,6 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
--- the same nine again, this time reaching `inputReach_mono` as well
-set_option maxHeartbeats 400000 in
 /-- Everything the input contributed up to any time in the step lies in the
 enclosure computed for the whole step, once `U` contains the origin. -/
 theorem LinearSys.Trajectory.inputSolution_timeInterval_outer

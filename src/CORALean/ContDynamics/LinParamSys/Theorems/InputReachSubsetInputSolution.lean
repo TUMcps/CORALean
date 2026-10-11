@@ -39,8 +39,6 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the nine hypotheses of the point case, each elaborating a `Mtimes` instance at `ℐ`
-set_option maxHeartbeats 400000 in
 /-- Every point the input alone can reach under one member's flow lies in the
 enclosure computed from the matrix set. -/
 theorem LinParamSys.inputReach_subset_inputSolution (sys : LinParamSys ℐ n)

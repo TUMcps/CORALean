@@ -36,8 +36,6 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- every `Entrywise` rewrite unfolds `plus` by `rfl`, and the four `linarith` calls pay for it
-set_option maxHeartbeats 400000 in
 theorem Interval.plus_exact (I₁ I₂ : Interval α) (h₁ : I₁.IsNonempty) (h₂ : I₂.IsNonempty) :
     I₁.construct + I₂.construct = (I₁.plus I₂).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (Interval.plus_outer I₁ I₂) fun x hx => ?_

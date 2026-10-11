@@ -45,8 +45,6 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the same nine again, this time reaching `inputReach_mono` as well
-set_option maxHeartbeats 400000 in
 /-- Everything a constant-parameter run's input contributed up to any time in
 the step lies in the enclosure computed for the whole step. -/
 theorem LinParamSys.ConstTrajectory.inputSolution_timeInterval_outer

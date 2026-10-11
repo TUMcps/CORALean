@@ -43,8 +43,6 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the `simp only` at `Finset.sum_range_succ` normalises factorials and powers together
-set_option maxHeartbeats 400000 in
 theorem MatExp.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹

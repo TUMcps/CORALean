@@ -62,8 +62,6 @@ theorem Krylov.aux_sum_Icc_two {M : Type} [AddCommMonoid M] (η : ℕ) (hη : 1 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the tail bound reads the matrix series one entry at a time
-set_option maxHeartbeats 400000 in
 theorem Krylov.expDiff_mem_correctionSet (H : Mat ℝ m m) {δ : ℝ} (hδ : 0 < δ) {η : ℕ}
     (hη : 1 ≤ η) {t : ℝ} (ht0 : 0 ≤ t) (htδ : t ≤ δ) :
     exp (t • H) - 1 - (t / δ) • (exp (δ • H) - 1)

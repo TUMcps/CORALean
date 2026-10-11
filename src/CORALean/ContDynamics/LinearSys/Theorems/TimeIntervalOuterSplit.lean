@@ -53,8 +53,6 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
--- twelve arguments in one term, each elaborating a `Mtimes` instance at `S` or `ℐ`
-set_option maxHeartbeats 400000 in
 /-- Every trajectory stays in the step enclosure at every time of the step,
 wherever the input set sits. -/
 theorem LinearSys.Trajectory.timeInterval_outer_split [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]

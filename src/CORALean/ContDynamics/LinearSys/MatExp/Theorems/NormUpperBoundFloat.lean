@@ -36,8 +36,6 @@ theorem aux_normUpperBound_nonneg (A : Interval (Mat 𝕋 n n)) :
   rw [MatExp.normUpperBound, toReal_maximum, toReal_zero]
   exact le_max_left _ _
 
--- the nested `Entrywise`/`RealImage`/`toReal` unfolding through `set` costs extra defeq checking
-set_option maxHeartbeats 1000000 in
 theorem aux_row_le_normUpperBound (A : Interval (Mat 𝕋 n n)) (i : Fin n) :
     (∑ j, A.nominal.absMax i j) ≤ toReal (MatExp.normUpperBound A) := by -- --- PROOF ---
   set d : Mat 𝕋 n n := fun i j => maximum (absolute (A.inf i j)) (absolute (A.sup i j)) with hd

@@ -44,8 +44,6 @@ variable [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the input half is discharged where the step ends, which is where it is proved
-set_option maxHeartbeats 400000 in
 /-- One step of a `'constParam'` run, initial set and inputs together. -/
 theorem LinParamSys.ConstTrajectory.step_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {r : ℝ}

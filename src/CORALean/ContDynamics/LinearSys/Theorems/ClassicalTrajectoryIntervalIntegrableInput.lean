@@ -77,8 +77,6 @@ theorem aux_classical_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the integrand's bound is assembled from two witnesses, over the local norm instances
-set_option maxHeartbeats 400000 in
 /-- What `variation_of_constants` asks for, given only that the input set is
 bounded — which every representation of a set of points is. -/
 theorem LinearSys.ClassicalTrajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {T : Set ℝ}

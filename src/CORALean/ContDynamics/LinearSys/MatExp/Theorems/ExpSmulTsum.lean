@@ -31,8 +31,6 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `exp_eq_tsum` is elaborated against the four local `Matrix.linftyOp*` instances
-set_option maxHeartbeats 200000 in
 /-- The exponential of a scaled matrix, with the scalar pulled out of the power. -/
 theorem exp_smul_tsum (A : Mat ℝ n n) (t : ℝ) :
     exp (t • A) = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i := by

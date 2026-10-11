@@ -42,8 +42,6 @@ theorem Zonotope.aux_sum_univ_linComb {Z₁ Z₂ : Zonotope α}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the closing `module` call normalises a sum over the doubly appended generator index
-set_option maxHeartbeats 400000 in
 theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope α) :
     segments Z₁.construct Z₂.construct ⊆ (Z₁.linComb Z₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨β₁, hβ₁, rfl⟩, y₂, ⟨β₂, hβ₂, rfl⟩, lam, ⟨hl0, hl1⟩, rfl⟩

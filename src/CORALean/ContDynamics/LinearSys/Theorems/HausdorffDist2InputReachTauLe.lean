@@ -65,8 +65,6 @@ theorem LinearSys.aux_zero_mem_reach (sys : LinearSys 𝕋 n) {U : S n} (τ : �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- eight set-valued arguments to `hausdorffDist₂_add_le`, each re-solving the matrix instances
-set_option maxHeartbeats 400000 in
 /-- [1, Prop. 3]: the error at `t_k` plus eq. (26)'s time-interval error bounds the distance, at
 every `t ∈ [t_k,t_k+Δt_k]`, between the exact `P^U(t)` and the recursively computed
 `P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)`. -/

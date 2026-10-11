@@ -35,8 +35,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- Three explicit memberships and four explicit halfspaces, all in coordinates.
-set_option maxHeartbeats 1000000 in
+-- three explicit memberships and four explicit halfspaces, all in coordinates
+set_option maxHeartbeats 100000 in
 /-- [1, Prop. 1]: at the paper's own three-dimensional pair, the Minkowski
 difference of two zonotopes is not a zonotope. -/
 theorem Zonotope.minkowskiDiff_not_zonotope :
@@ -79,13 +79,13 @@ theorem Zonotope.minkowskiDiff_not_zonotope :
     refine ⟨mu, hmu, ?_, ?_, ?_⟩
     · have h := congrFun heq 0
       simp [hGs, Fin.sum_univ_four] at h
-      linarith
+      linarith only [h]
     · have h := congrFun heq 1
       simp [hGs, Fin.sum_univ_four] at h
-      linarith
+      linarith only [h]
     · have h := congrFun heq 2
       simp [hGs, Fin.sum_univ_four] at h
-      linarith
+      linarith only [h]
   -- what a point of the difference must satisfy, once `mu` is chosen
   have hread : ∀ x ∈ minkowskiDiff (Zonotope.construct (⟨4, 0, Gm⟩ : Zonotope (Vec ℝ 3)))
         (Zonotope.construct (⟨4, 0, Gs⟩ : Zonotope (Vec ℝ 3))),
@@ -100,41 +100,41 @@ theorem Zonotope.minkowskiDiff_not_zonotope :
     refine ⟨b, hb, ?_, ?_, ?_⟩
     · have h := congrFun heq 0
       simp [hGm, Fin.sum_univ_four] at h
-      linarith
+      linarith only [h]
     · have h := congrFun heq 1
       simp [hGm, Fin.sum_univ_four] at h
-      linarith
+      linarith only [h]
     · have h := congrFun heq 2
       simp [hGm, Fin.sum_univ_four] at h
-      linarith
+      linarith only [h]
   -- `x₂ - x₁ ≤ 2/3`, the first of the four rows of [1, Thm. 2] the argument needs
   have hC2 : ∀ x ∈ minkowskiDiff (Zonotope.construct (⟨4, 0, Gm⟩ : Zonotope (Vec ℝ 3)))
         (Zonotope.construct (⟨4, 0, Gs⟩ : Zonotope (Vec ℝ 3))), x 1 - x 0 ≤ 2 / 3 := by
     intro x hx
     obtain ⟨b, hb, e0, e1, -⟩ := hread x hx ![1, -1, 1, 0] (by intro j; fin_cases j <;> norm_num)
     norm_num [Matrix.cons_val_two, Matrix.cons_val_three, Matrix.vecHead, Matrix.vecTail] at e0 e1
-    linarith [(abs_le.mp (hb 1)).1, (abs_le.mp (hb 2)).2]
+    linarith only [e0, e1, (abs_le.mp (hb 1)).1, (abs_le.mp (hb 2)).2]
   -- `x₂ ≤ 4/3`, the row the face is cut out by
   have hC3 : ∀ x ∈ minkowskiDiff (Zonotope.construct (⟨4, 0, Gm⟩ : Zonotope (Vec ℝ 3)))
         (Zonotope.construct (⟨4, 0, Gs⟩ : Zonotope (Vec ℝ 3))), x 1 ≤ 4 / 3 := by
     intro x hx
     obtain ⟨b, hb, -, e1, -⟩ := hread x hx ![1, 0, 1, 0] (by intro j; fin_cases j <;> norm_num)
     norm_num [Matrix.cons_val_two, Matrix.cons_val_three, Matrix.vecHead, Matrix.vecTail] at e1
-    linarith [(abs_le.mp (hb 0)).2, (abs_le.mp (hb 2)).2]
+    linarith only [e1, (abs_le.mp (hb 0)).2, (abs_le.mp (hb 2)).2]
   -- `x₁ - x₃ ≤ 2/3`, the row that tilts the face
   have hC4 : ∀ x ∈ minkowskiDiff (Zonotope.construct (⟨4, 0, Gm⟩ : Zonotope (Vec ℝ 3)))
         (Zonotope.construct (⟨4, 0, Gs⟩ : Zonotope (Vec ℝ 3))), x 0 - x 2 ≤ 2 / 3 := by
     intro x hx
     obtain ⟨b, hb, e0, -, e2⟩ := hread x hx ![-1, 1, 0, -1] (by intro j; fin_cases j <;> norm_num)
     norm_num [Matrix.cons_val_two, Matrix.cons_val_three, Matrix.vecHead, Matrix.vecTail] at e0 e2
-    linarith [(abs_le.mp (hb 1)).2, (abs_le.mp (hb 3)).1]
+    linarith only [e0, e2, (abs_le.mp (hb 1)).2, (abs_le.mp (hb 3)).1]
   -- `x₃ ≤ 4/3`, the last of the four
   have hC5 : ∀ x ∈ minkowskiDiff (Zonotope.construct (⟨4, 0, Gm⟩ : Zonotope (Vec ℝ 3)))
         (Zonotope.construct (⟨4, 0, Gs⟩ : Zonotope (Vec ℝ 3))), x 2 ≤ 4 / 3 := by
     intro x hx
     obtain ⟨b, hb, -, -, e2⟩ := hread x hx ![1, 0, 0, 1] (by intro j; fin_cases j <;> norm_num)
     norm_num [Matrix.cons_val_two, Matrix.cons_val_three, Matrix.vecHead, Matrix.vecTail] at e2
-    linarith [(abs_le.mp (hb 0)).2, (abs_le.mp (hb 3)).2]
+    linarith only [e2, (abs_le.mp (hb 0)).2, (abs_le.mp (hb 3)).2]
   -- three points of the face `x₂ = 4/3`
   have hA : (![2 / 3, 4 / 3, 0] : Vec ℝ 3) ∈
       minkowskiDiff (Zonotope.construct (⟨4, 0, Gm⟩ : Zonotope (Vec ℝ 3)))
@@ -147,10 +147,14 @@ theorem Zonotope.minkowskiDiff_not_zonotope :
     have m3 := abs_le.mp (hmu 3)
     refine hmemM _ ((mu 0 + 2) / 3) ((mu 1 - 2 * mu 0) / 3) ((2 + mu 2) / 3)
       ((mu 3 - 2) / 3) ?_ ?_ ?_ ?_ ?_ ?_ ?_
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
     -- and the three coordinates match the minuend's coefficients
     · show (2:ℝ) / 3 + z 0 = _
       rw [e0]; ring
@@ -170,10 +174,14 @@ theorem Zonotope.minkowskiDiff_not_zonotope :
     have m3 := abs_le.mp (hmu 3)
     refine hmemM _ ((mu 0 + 2) / 3) ((mu 1 - 2 * mu 0) / 3) ((2 + mu 2) / 3)
       ((2 + mu 3) / 3) ?_ ?_ ?_ ?_ ?_ ?_ ?_
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
     -- and the three coordinates match the minuend's coefficients
     · show (2:ℝ) / 3 + z 0 = _
       rw [e0]; ring
@@ -193,10 +201,14 @@ theorem Zonotope.minkowskiDiff_not_zonotope :
     have m3 := abs_le.mp (hmu 3)
     refine hmemM _ 1 ((1 - mu 0 + mu 1) / 3) ((1 + mu 0 + mu 2) / 3)
       ((1 + mu 0 + mu 3) / 3) ?_ ?_ ?_ ?_ ?_ ?_ ?_
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
-    · rw [abs_le]; constructor <;> linarith
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
+    · rw [abs_le]; constructor <;>
+      linarith only [m0.1, m0.2, m1.1, m1.2, m2.1, m2.2, m3.1, m3.2]
     -- and the three coordinates match the minuend's coefficients
     · show (4:ℝ) / 3 + z 0 = _
       rw [e0]; ring

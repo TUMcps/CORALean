@@ -205,8 +205,6 @@ theorem aux_pb_remainder_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- two tail sums, their limit and the telescoped remainder, over the local norm instances
-set_option maxHeartbeats 1000000 in
 /-- A run inside `B` with an input bounded by `ν` is its first `η + 1` Peano–Baker
 terms applied to `x(0)` and its input's first `η + 1` terms, each up to a remainder
 of `‖x(0)‖` respectively `t ν` times the remainder bound at the box of the step. -/
@@ -241,7 +239,8 @@ theorem MatExp.exists_peanoBaker_expansion {B : Interval (Mat ℝ n n)} {A : ℝ
   set g : ℕ → ℝ := fun i => (c * t) ^ (i + (η + 1)) / (Nat.factorial (i + (η + 1)) : ℝ)
     with hg
   have hgs : Summable g :=
-    (summable_nat_add_iff (η + 1)).mpr (Real.summable_pow_div_factorial (c * t))
+    (summable_nat_add_iff (f := fun i : ℕ => (c * t) ^ i / (Nat.factorial i : ℝ)) (η + 1)).mpr
+      (Real.summable_pow_div_factorial (c * t))
   -- every later order of each series is under its term of the exponential series
   have hpb : ∀ i, ‖p i‖ ≤ ‖x 0‖ * g i := fun i => by
     refine le_trans (aux_pb_norm_term_le hA hAB (x 0) _ t ht) (le_of_eq ?_)

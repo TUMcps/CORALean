@@ -62,8 +62,6 @@ theorem Interval.aux_ellipsoidG_ge (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (i : 
   rw [diagonalBlock, if_pos rfl]
   exact mul_le_mulUp _ _
 
--- each coordinate splits on a vanishing generator and both branches redo the division bounds
-set_option maxHeartbeats 400000 in
 theorem Interval.subset_nominal_ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
     I.construct ⊆ nominalSet (I.ellipsoid σ) := by -- --- PROOF ---

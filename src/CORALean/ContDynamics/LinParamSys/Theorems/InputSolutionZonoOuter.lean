@@ -77,8 +77,6 @@ theorem LinParamSys.aux_inputTaylorSumTail_outer (sys : LinParamSys ℐ n) (r : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- two families in one Taylor sum, each re-solving the local normed-algebra instances
-set_option maxHeartbeats 1000000 in
 theorem LinParamSys.inputSolutionZono_outer (sys : LinParamSys 𝕄𝒵 n)
     {r : ℝ} (hr : 0 < r) {η : ℕ} (hη : 2 ≤ η)
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / ((η : ℝ) + 2) < 1)

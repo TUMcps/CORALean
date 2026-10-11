@@ -47,6 +47,15 @@ theorem LinearSysDT.aux_form4 (M : Matrix ((Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin
   simp only [star_trivial, dotProduct, mulVec, Finset.mul_sum]
   exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => by ring
 
+-- the `4 × 4` block matrices `Ψᵢⱼ` of the counterexample are symmetric, structurally
+theorem LinearSysDT.aux_isHermitian_psi
+    (Dg : Matrix (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ℝ)
+    (hDg : Dg.IsHermitian) (P : Matrix (Fin 1) (Fin 1) ℝ) (hP : P.IsHermitian)
+    (R : Matrix (Fin 1) (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ℝ) :
+    (fromBlocks Dg Rᵀ R P).IsHermitian :=
+  Matrix.IsHermitian.fromBlocks hDg
+    (by rw [conjTranspose_eq_transpose_of_trivial, transpose_transpose]) hP
+
 -- a nonzero vector has a nonzero coordinate
 theorem LinearSysDT.aux_coord4 (x : (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1 → ℝ) (hx : x ≠ 0) :
     x (Sum.inl (Sum.inl 0)) ≠ 0 ∨ x (Sum.inl (Sum.inr (Sum.inl 0))) ≠ 0 ∨
@@ -59,8 +68,6 @@ theorem LinearSysDT.aux_coord4 (x : (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1 → 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- simp evaluates the forms of four concrete `4 × 4` block matrices entry by entry
-set_option maxHeartbeats 400000 in
 theorem LinearSysDT.lpvLmi_of_vertices_counterexample :
     let T : Mat ℝ 1 1 := 1
     let N : Mat ℝ 1 1 := 1
@@ -90,32 +97,44 @@ theorem LinearSysDT.lpvLmi_of_vertices_counterexample :
       (∀ i j, i < j → ((2 / ((2 : ℝ) - 1)) • Ψ i i + Ψ i j + Ψ j i).PosSemidef) ∧
       ¬ (fromBlocks Dg Rθᵀ Rθ P).PosDef := by -- --- PROOF ---
   intro T N C F P Λ Y A D α β ρ Dg R Ψ Λθ Aθ Dθ Rθ
+  have hP : P.IsHermitian := by
+    ext a b; fin_cases a; fin_cases b; simp [P]
+  have hDg : Dg.IsHermitian :=
+    Matrix.IsHermitian.fromBlocks (hP.smul (IsSelfAdjoint.all _)) (by simp)
+      (Matrix.IsHermitian.fromBlocks
+        (Matrix.isHermitian_one.smul (IsSelfAdjoint.all _)) (by simp)
+        (Matrix.isHermitian_one.smul (IsSelfAdjoint.all _)))
+  have hΨ : ∀ i j, (Ψ i j).IsHermitian := fun i j =>
+    LinearSysDT.aux_isHermitian_psi Dg hDg P hP (R i j)
   refine ⟨fun i => ?_, fun _ => by norm_num [ρ], by simp [ρ], fun i => ?_, fun i j hij => ?_, ?_⟩
   · -- `PΛᵢ = Yᵢ`
     fin_cases i <;> ext a b <;> fin_cases a <;> fin_cases b <;>
       norm_num [P, Λ, Y, Matrix.mul_apply]
   · -- `Ψ₁₁`, `Ψ₂₂`: couplings `0` and `1/2`
     refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩
-    · ext ((a | a | a) | a) ((b | b | b) | b) <;> fin_cases a <;> fin_cases b <;>
-        simp [Ψ, Dg, R, fromBlocks, fromCols, T, N, C, F, P, D, A, Y, α, β]
+    · exact hΨ i i
     -- the form, entry by entry, against a nonzero coordinate
     have hc := LinearSysDT.aux_coord4 x hx
+    have hpos : 0 < x (Sum.inl (Sum.inl 0)) ^ 2 + x (Sum.inl (Sum.inr (Sum.inl 0))) ^ 2
+        + x (Sum.inl (Sum.inr (Sum.inr 0))) ^ 2 + x (Sum.inr 0) ^ 2 := by
+      rcases hc with h | h | h | h <;>
+        linarith [sq_pos_of_ne_zero h, sq_nonneg (x (Sum.inl (Sum.inl 0))),
+          sq_nonneg (x (Sum.inl (Sum.inr (Sum.inl 0)))),
+          sq_nonneg (x (Sum.inl (Sum.inr (Sum.inr 0)))), sq_nonneg (x (Sum.inr 0))]
     rw [LinearSysDT.aux_form4]
     fin_cases i <;>
       simp [Fintype.sum_sum_type, Ψ, Dg, R, T, N, C, F, P, D, A, Y, α, β, fromBlocks,
         fromCols] <;>
-      rcases hc with h | h | h | h <;>
-      nlinarith [sq_pos_of_ne_zero h, sq_nonneg (x (Sum.inl (Sum.inl 0)) + x (Sum.inr 0)),
+      linarith [hpos, sq_nonneg (x (Sum.inl (Sum.inl 0)) + 2 * x (Sum.inr 0)),
         sq_nonneg (x (Sum.inl (Sum.inl 0))), sq_nonneg (x (Sum.inl (Sum.inr (Sum.inl 0)))),
         sq_nonneg (x (Sum.inl (Sum.inr (Sum.inr 0)))), sq_nonneg (x (Sum.inr 0))]
   · -- `2Ψ₁₁ + Ψ₁₂ + Ψ₂₁`: coupling `4`, form `2(x₁ + 2x₄)² + 3/2 (x₂² + x₃²)`
+    refine posSemidef_iff_dotProduct_mulVec.mpr
+      ⟨(((hΨ i i).smul (IsSelfAdjoint.all _)).add (hΨ i j)).add (hΨ j i), fun x => ?_⟩
     fin_cases i <;> fin_cases j <;> simp at hij
-    refine posSemidef_iff_dotProduct_mulVec.mpr ⟨?_, fun x => ?_⟩
-    · ext ((a | a | a) | a) ((b | b | b) | b) <;> fin_cases a <;> fin_cases b <;>
-        simp [Ψ, Dg, R, fromBlocks, fromCols, T, N, C, F, P, D, A, Y, α, β]
     rw [LinearSysDT.aux_form4]
     simp [Fintype.sum_sum_type, Ψ, Dg, R, T, N, C, F, P, D, A, Y, α, β, fromBlocks, fromCols]
-    nlinarith [sq_nonneg (x (Sum.inl (Sum.inl 0)) + 2 * x (Sum.inr 0)),
+    linarith [sq_nonneg (x (Sum.inl (Sum.inl 0)) + 2 * x (Sum.inr 0)),
       sq_nonneg (x (Sum.inl (Sum.inr (Sum.inl 0)))), sq_nonneg (x (Sum.inl (Sum.inr (Sum.inr 0))))]
   · -- Eq. 19 at `ρ = (1/2, 1/2)`: the form at `(1, 0, 0, -9/16)` is negative
     intro h

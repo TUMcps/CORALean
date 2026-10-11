@@ -44,8 +44,6 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
--- the successor case rebuilds `M.mulVec '' Rhat k + P k`'s expansion by hand, which is long
-set_option maxHeartbeats 1000000 in
 /-- `R` stays `R̂`'s own run widened by an explicit, well-behaved error set: (B.1)-(B.2)'s
 content once the shared `P k` reassociates away, tracked forward instead of read off `⊖`. -/
 theorem aux_exists_solverError {A : Mat ℝ n n} {Δt : ℝ} {N : ℕ}
@@ -77,8 +75,6 @@ theorem aux_exists_solverError {A : Mat ℝ n n} {Δt : ℝ} {N : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- combining the `boxDiameter` bounds with the operator-norm bound on `1 - exp` is arithmetic-heavy
-set_option maxHeartbeats 1000000 in
 /-- `[1]`'s `hstep`, honestly derived rather than assumed: for a *fixed* `A`, one step of a
 solver "of the form (10)" grows the global error by at most `1 + LΔt` before adding its own
 local error, with `L := ‖A‖e^{t_end‖A‖}` independent of `Δt` and of `N`. -/

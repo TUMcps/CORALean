@@ -49,8 +49,6 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the propagated inner set is inside the exact one, so only one side is an estimate
-set_option maxHeartbeats 1000000 in
 /-- [1, Prop. 1], inner half: the Hausdorff distance to the exact particular
 solution over `t = ωΔt` is `O(Δt)`, hence `0` in the limit. -/
 theorem LinearSys.hausdorffDist₂_inputSolutionInner_le (sys : LinearSys 𝕋 n) {U : S n}

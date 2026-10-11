@@ -47,8 +47,6 @@ theorem ConZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the nested `Finset.sum` rewrites over the appended generator block are what costs here
-set_option maxHeartbeats 400000 in
 theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (cZ : ConZonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' cZ.construct)

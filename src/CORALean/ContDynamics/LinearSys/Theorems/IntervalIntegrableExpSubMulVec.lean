@@ -64,8 +64,6 @@ theorem aux_continuous_expSub (A : Mat ℝ n n) (c : ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the bound is built from two `exists_bound` witnesses over the local norm instances
-set_option maxHeartbeats 400000 in
 /-- An admissible input has an integrable solution over its window: bounded by
 `U`, and measurable because the exponential factor is continuous. -/
 theorem intervalIntegrable_expSub_mulVec {A : Mat ℝ n n} {U : S n} {c τ : ℝ} (hτ : 0 ≤ τ)

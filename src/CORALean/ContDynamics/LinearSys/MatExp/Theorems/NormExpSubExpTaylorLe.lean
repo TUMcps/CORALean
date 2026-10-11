@@ -64,8 +64,6 @@ theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- summability and `tsum` over the matrix algebra is the cost here, not the estimate
-set_option maxHeartbeats 1000000 in
 theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
     (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
     ‖exp x - MatExp.expTaylor x η‖ ≤ MatExp.expRemainderBound x η := by -- --- PROOF ---
@@ -83,14 +81,17 @@ theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
     abel
   rw [htail]
   -- norm of the tail sum under the sum of norms, then the geometric closed form
-  calc ‖∑' i : ℕ, f (i + (η + 1))‖
-      ≤ ∑' i : ℕ, ‖f (i + (η + 1))‖ :=
-        norm_tsum_le_tsum_norm ((summable_nat_add_iff (η + 1)).mpr hnorm)
-    _ ≤ ∑' i : ℕ, (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i :=
-        Summable.tsum_le_tsum (fun i => aux_term_le x η i)
-          ((summable_nat_add_iff (η + 1)).mpr hnorm) (hgeo.mul_left _)
-    _ = (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹ := by
-        rw [tsum_mul_left, tsum_geometric_of_lt_one hε0 hε]
+  have hsn : Summable (fun i : ℕ => ‖f (i + (η + 1))‖) :=
+    (summable_nat_add_iff (f := fun i : ℕ => ‖f i‖) (η + 1)).mpr hnorm
+  have h1 : ‖∑' i : ℕ, f (i + (η + 1))‖ ≤ ∑' i : ℕ, ‖f (i + (η + 1))‖ :=
+    norm_tsum_le_tsum_norm hsn
+  have h2 : ∑' i : ℕ, ‖f (i + (η + 1))‖
+      ≤ ∑' i : ℕ, (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i :=
+    Summable.tsum_le_tsum (fun i => aux_term_le x η i) hsn (hgeo.mul_left _)
+  have h3 : ∑' i : ℕ, (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i
+      = (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹ := by
+    rw [tsum_mul_left, tsum_geometric_of_lt_one hε0 hε]
+  exact (h1.trans h2).trans h3.le
 
 end CORALean.Real
 

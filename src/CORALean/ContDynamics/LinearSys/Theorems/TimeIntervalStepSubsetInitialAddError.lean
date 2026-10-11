@@ -160,8 +160,6 @@ theorem aux_linComb_paired_subset {h : ℕ} (c₁ c₂ : Vec ℝ n) (G₁ G₂ :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the hull, the correction matrix and the exact set, each over `Mat ℝ n n`'s local instances
-set_option maxHeartbeats 1000000 in
 /-- The reverse of `timeIntervalStep_outer`, against the set the step starts
 from: what it computes stays inside `X₀` widened by `timeIntervalStepError`. -/
 theorem LinearSys.timeIntervalStep_subset_initial_add_error (sys : LinearSys 𝕋 n) {r : ℝ}

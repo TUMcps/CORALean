@@ -85,8 +85,6 @@ theorem LinearSys.aux_inputTaylorSum_outer (sys : LinearSys 𝕋 n) (r : ℝ) (U
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
--- a dozen `have`s over `Mat ℝ n n`, each re-solving the local normed-algebra instances
-set_option maxHeartbeats 1000000 in
 theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)

@@ -50,8 +50,6 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- a dozen `have`s over `Mat ℝ n n`, each re-solving the local normed-algebra instances
-set_option maxHeartbeats 1000000 in
 /-- [1, Prop. 11], eq. (20): a point of `P^U(Δt)` is a point of `⊕_{i≤η} ÃᵢU₀` plus a point of the
 closed convex hull of `E(Δt,η)ΔtU₀`. -/
 theorem LinearSys.inputReach_mem_add_closure_convexHull (sys : LinearSys 𝕋 n) {U : S n}

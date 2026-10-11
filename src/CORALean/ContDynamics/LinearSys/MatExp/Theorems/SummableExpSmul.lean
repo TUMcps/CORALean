@@ -29,8 +29,6 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- `expSeries_summable'` against those same four instances
-set_option maxHeartbeats 200000 in
 theorem summable_exp_smul (A : Mat ℝ n n) (t : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * t ^ i) • A ^ i) := by
   have h := expSeries_summable' (𝕂 := ℝ) (t • A)

@@ -37,8 +37,6 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
--- nine hypotheses passed straight through, each elaborating a `Mtimes` instance at `ℐ`
-set_option maxHeartbeats 400000 in
 theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}

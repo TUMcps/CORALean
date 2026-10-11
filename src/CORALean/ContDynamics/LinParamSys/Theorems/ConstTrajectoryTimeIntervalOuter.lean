@@ -45,8 +45,6 @@ variable [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the closed form is read at the point system the fixed matrix names
-set_option maxHeartbeats 400000 in
 /-- One step and nothing more, at every matrix the system's set holds: the
 domain has to cover `[0, r]` only. -/
 theorem LinParamSys.ConstTrajectory.timeInterval_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
