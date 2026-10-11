@@ -76,7 +76,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md) | Roehm, Oehlerking, Heinz, Althoff | ATVA, LNCS 9938, pp. 412-427 | 2016 | 🟡 18/19 \| 3 |
 | [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md) | Scott, Raimondo, Marseglia, Braatz | Automatica, 69:126-136 | 2016 | 🟢 13/13 \| 8 |
 | [Implementation of Interval Arithmetic in CORA 2016](2017/althoff-arch-interval-arithmetic.md) | Althoff, Grebenyuk | ARCH16, EPiC Series in Computing 43, pp. 91-105 | 2017 | 🟢 19/19 \| 6 |
-| [Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata](2017/bak-formats-time-triggered-conversion.md) | Bak, Bogomolov, Althoff | FORMATS, LNCS 10419, pp. 133-150 | 2017 | 🔴 0/4 \| 18 |
+| [Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata](2017/bak-formats-time-triggered-conversion.md) | Bak, Bogomolov, Althoff | FORMATS, LNCS 10419, pp. 133-150 | 2017 | 🟢 4/4 \| 18 |
 | [Forward Inner-Approximated Reachability of Non-Linear Continuous Systems](2017/goubault-hscc-forward-inner-reachability.md) | Goubault, Putot | HSCC, pp. 1-10 | 2017 | 🟢 4/4 \| 17 |
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
 | [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md) | Kopetzki, Schürmann, Althoff | CDC, pp. 5626-5633 | 2017 | 🟢 4/4 \| 4 |
@@ -325,6 +325,7 @@ pages carry one:
 * [Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption](2023/alanwar-ejc-privacy-preserving-estimation.md)
 * [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md)
 * [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md)
+* [Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata](2017/bak-formats-time-triggered-conversion.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.
