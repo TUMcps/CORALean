@@ -1,0 +1,44 @@
+import Mathlib.Analysis.InnerProductSpace.Positive
+import Mathlib.Analysis.InnerProductSpace.PiL2
+
+/-!
+# A positive semidefinite matrix is a Gram matrix
+
+The randomized rounding of [1, Thm. 17] and [1, Thm. 19] reads the dual certificate `X ≽ 0` as
+the inner products of vectors: `X = Σₐ vₐ vₐᵀ` (`Matrix.posSemidef_iff_eq_sum_vecMulVec`),
+so `X_{pq} = ⟨c_p, c_q⟩` for `c_p = (vₐ p)ₐ ∈ ℝ^d`.
+
+## References
+
+* [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
+      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
+      doi:10.1109/TAC.2025.3583624. arXiv:2404.11185.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Matrix
+open scoped RealInnerProductSpace
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem posSemidef_exists_gram {ι : Type*} [Fintype ι] {X : Matrix ι ι ℝ} (hX : X.PosSemidef) :
+    ∃ (d : ℕ) (c : ι → EuclideanSpace ℝ (Fin d)), ∀ p q, X p q = ⟪c p, c q⟫ := by
+  obtain ⟨d, v, hv⟩ := Matrix.posSemidef_iff_eq_sum_vecMulVec.mp hX
+  refine ⟨d, fun p => WithLp.toLp 2 fun a => v a p, fun p q => ?_⟩
+  rw [hv, EuclideanSpace.inner_toLp_toLp]
+  simp [Matrix.sum_apply, vecMulVec_apply, dotProduct, mul_comm]
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

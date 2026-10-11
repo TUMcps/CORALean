@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 74,
     "in_scope": 1066,
-    "formalized": 1047,
-    "not_formalized": 19,
+    "formalized": 1050,
+    "not_formalized": 16,
     "out_of_scope": 901,
     "out_of_scope_by_reason": {
       "restated": 323,
@@ -29,16 +29,16 @@
     },
     "by_class": {
       "correct": 704,
-      "underspecified": 205,
+      "underspecified": 208,
       "proof-gap": 33,
       "fixed": 98,
       "false": 7
     },
     "claims": {
       "in_scope": 418,
-      "formalized": 405,
+      "formalized": 408,
       "correct": 242,
-      "underspecified": 80,
+      "underspecified": 83,
       "proof-gap": 33,
       "fixed": 45,
       "false": 5
@@ -5144,8 +5144,8 @@
       "year": 2025,
       "title": "Approximability of the Containment Problem for Zonotopes and Ellipsotopes",
       "in_scope": 20,
-      "formalized": 15,
-      "not_formalized": 5,
+      "formalized": 18,
+      "not_formalized": 2,
       "out_of_scope": 31,
       "out_of_scope_by_reason": {
         "restated": 9,
@@ -5156,16 +5156,16 @@
       },
       "by_class": {
         "correct": 9,
-        "underspecified": 3,
+        "underspecified": 6,
         "proof-gap": 0,
         "fixed": 2,
         "false": 1
       },
       "claims": {
         "in_scope": 16,
-        "formalized": 11,
+        "formalized": 14,
         "correct": 5,
-        "underspecified": 3,
+        "underspecified": 6,
         "proof-gap": 0,
         "fixed": 2,
         "false": 1
@@ -5191,9 +5191,24 @@
           "reason": "the proof takes r through the ellipsotope norm (`Prop. 7`), which needs the circumbody non-degenerate (H onto), as the formalization assumes; the degenerate case is `Thm. 12`'s convention"
         },
         {
+          "result": "Thm. 15 (accuracy)",
+          "class": "underspecified",
+          "reason": "at `q = 1` the constant `γ_{q*} = γ_∞` of Eq. 31 is not a number; the formalization takes `q > 1`; see Findings"
+        },
+        {
           "result": "Thm. 16 (parallelotope)",
           "class": "fixed",
           "reason": "the maximizer need not be unique: at G = H = I₂ the maximum is 1 and Y = e₁e₁ᵀ attains it with columns (1, 0) and (0, 0); the proof's extreme point is one maximizer, not every one; see Findings"
+        },
+        {
+          "result": "Thm. 17",
+          "class": "underspecified",
+          "reason": "the tuples are printed in `ℝ^l × ℝ^m`; the blocks of Eq. 39 need `v ∈ ℝ^m`, `w ∈ ℝ^l`; see Findings"
+        },
+        {
+          "result": "Thm. 19",
+          "class": "underspecified",
+          "reason": "the tuples are printed in `ℝ^l × ℝ^m`, as in `Thm. 17`; see Findings"
         },
         {
           "result": "Lemma 26",
@@ -6578,7 +6593,7 @@
     "findings_not_on_a_class": {
       "global": {
         "correct": 70,
-        "underspecified": 25,
+        "underspecified": 28,
         "proof-gap": 4,
         "fixed": 17,
         "false": 1
@@ -6599,11 +6614,11 @@
       }
     },
     "theorems": {
-      "paper": 1524,
+      "paper": 1539,
       "float": 1704,
-      "helper": 1380,
+      "helper": 1434,
       "lemma": 2518,
-      "total": 7126,
+      "total": 7195,
       "examples": 120
     }
   }

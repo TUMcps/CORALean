@@ -225,6 +225,22 @@ import CORALean.Global.UnderApproxRangeBox
 import CORALean.Global.RobustRangeVec
 import CORALean.Global.MeanValueBoxSubsetRobustRange
 import CORALean.Global.ForwardInnerReach
+import CORALean.Global.GaussMomentRoot
+import CORALean.Global.GaussianAbsMoment
+import CORALean.Global.GaussianNormMomentLe
+import CORALean.Global.GaussianRoundingLe
+import CORALean.Global.GaussianSignCorrelation
+import CORALean.Global.PiLpHolder
+import CORALean.Global.DotProductLeCoeffNorm
+import CORALean.Global.LinearRelaxationDual
+import CORALean.Global.LinearRelaxationAccuracy
+import CORALean.Global.CoeffNormLeDual
+import CORALean.Global.PosSemidefGram
+import CORALean.Global.SdpRelaxationQuadLe
+import CORALean.Global.SdpRelaxationMinAttained
+import CORALean.Global.DiagBlockSdpDual
+import CORALean.Global.ZonotopeEllipsotopeSdpRelaxation
+import CORALean.Global.EllipsotopeSdpRelaxation
 /-!
 # Global definitions, collected
 
