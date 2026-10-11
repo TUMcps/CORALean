@@ -16,7 +16,7 @@ resting on it — be used at `'constParam'` without being restated.
 
 -- Authors:       Tobias Ladner
 -- Written:       08-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -38,6 +38,8 @@ theorem LinParamSys.ConstTrajectory.toLinearSys {sys : LinParamSys 𝕄 n} {T : 
     (LinearSys.mk A : LinearSys ℝ n).Trajectory T R₀ U x u where
   init := traj.init
   input := traj.input
+  meas := traj.meas
+  cont := traj.cont
   flow := fun t ht => by simpa only [Scalar.toRealMat_real] using traj.flow t ht
 
 end CORALean

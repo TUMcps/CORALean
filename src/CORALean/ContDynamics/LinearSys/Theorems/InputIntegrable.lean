@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
+import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
 import Mathlib.Analysis.Calculus.FDeriv.Measurable
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
@@ -6,23 +6,18 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # What `variation_of_constants` assumes about the input, discharged
 
-`Trajectory` puts no regularity on `u`, and none has to be added: the flow pins
-`u` to the derivative of `x`, so the integrand `e^{-As} u(s)` is itself a
-derivative — of `e^{-As} x(s)`. A derivative within `Ici s` is measurable in `s`
-for *any* function, so measurability costs nothing.
-
-Boundedness is the one thing that comes from outside, and from the input set
-rather than from `u`: a bounded `U` bounds the integrand together with the
+`meas` makes `u` measurable on the window, and `e^{-As}` is continuous, so
+their product is measurable. Boundedness comes from outside, and from the input
+set rather than from `u`: a bounded `U` bounds the integrand together with the
 exponential, which is continuous over a compact step.
 
 The statement asks only that the domain cover the window `[a, b]` it speaks
-about, so the identity pinning `u` holds on the half-open window alone —
-enough, the missing point being null.
+about.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       19-August-2026
--- Last update:   02-September-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -41,35 +36,20 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The integrand is the derivative of the substituted trajectory, taken within
-`Ici s`: the form Mathlib's measurability lemma speaks about, and no weaker, the
-two agreeing wherever the domain still extends to the right of `s`. -/
-theorem LinearSys.Trajectory.aux_integrand_eq_derivWithin {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) {a b s : ℝ}
-    (hT : Set.Icc a b ⊆ T) (hs : s ∈ Set.Ico a b) :
-    exp ((-s) • toRealMat sys.A) *ᵥ u s
-      = derivWithin (fun r : ℝ => exp ((-r) • toRealMat sys.A) *ᵥ x r) (Set.Ici s) s :=
-  ((hasDerivWithinAt_expNeg_mulVec (toRealMat sys.A) x u (Set.Ici s) s
-    (traj.flow_Ici hT hs)).derivWithin (uniqueDiffWithinAt_Ici s)).symm
+/-- The exponential is continuous, so it is bounded over a compact step. -/
+theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp ((-s) • A) :=
+  exp_continuous.comp (continuous_neg.smul continuous_const)
 
-/-- Measurable with nothing assumed of `u`: `stronglyMeasurable_derivWithin_Ici`
-holds for every function, and the integrand is a derivative of that shape almost
-everywhere on the window. -/
+/-- A continuous matrix times the measurable input is measurable. -/
 theorem LinearSys.Trajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.Trajectory T R₀ U x u)
     (hT : Set.Icc a b ⊆ T) :
     AEStronglyMeasurable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
-      (volume.restrict (Set.Ioc a b)) := by -- --- PROOF ---
-  rw [show volume.restrict (Set.Ioc a b) = volume.restrict (Set.Ioo a b) from
-    (Measure.restrict_congr_set Ioo_ae_eq_Ioc).symm]
-  refine (stronglyMeasurable_derivWithin_Ici
-    (fun r : ℝ => exp ((-r) • toRealMat sys.A) *ᵥ x r)).aestronglyMeasurable.congr ?_
-  refine (ae_restrict_iff' measurableSet_Ioo).mpr (Filter.Eventually.of_forall fun s hs => ?_)
-  exact (traj.aux_integrand_eq_derivWithin hT ⟨hs.1.le, hs.2⟩).symm
-
-/-- The exponential is continuous, so it is bounded over a compact step. -/
-theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp ((-s) • A) :=
-  exp_continuous.comp (continuous_neg.smul continuous_const)
+      (volume.restrict (Set.Ioc a b)) :=
+  (((aux_continuous_expNeg (toRealMat sys.A)).comp continuous_fst).matrix_mulVec
+    continuous_snd).comp_aestronglyMeasurable₂ (f := fun s : ℝ => s) aestronglyMeasurable_id
+    ((traj.aestronglyMeasurable_input hT).mono_measure
+      (Measure.restrict_mono Set.Ioc_subset_Icc_self le_rfl))
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

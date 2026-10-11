@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
 import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.ContSet.Zonotope.Real.Instances
@@ -58,7 +59,7 @@ theorem NonlinDASys.Trajectory.toLinearSys {sys : NonlinDASys n p m} {T : Set �
       (sys.f x' y' u' - (sys.f xs ys us + A *ᵥ (x' - xs) + B *ᵥ (u' - us) + C *ᵥ (y' - ys)))
         - (C * F_inv) *ᵥ (sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us)
           + F *ᵥ (y' - ys))) ∈ Verror.construct) :
-    (⟨A - C * F_inv * D⟩ : LinearSys ℝ n).Trajectory (S := 𝒵) T
+    (⟨A - C * F_inv * D⟩ : LinearSys ℝ n).ClassicalTrajectory (S := 𝒵) T
       (Rinit.plus (Zonotope.ofPoint (-xs)))
       ((Zonotope.ofPoint (sys.f xs ys us - (C * F_inv) *ᵥ sys.g xs ys us)).plus
         (((U.plus (Zonotope.ofPoint (-us))).mtimes (B - C * F_inv * E)).plus Verror))

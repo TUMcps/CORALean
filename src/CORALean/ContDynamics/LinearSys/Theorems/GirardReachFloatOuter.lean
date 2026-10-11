@@ -1,10 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpMulVecSubInterpolateLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
 import CORALean.ContDynamics.LinearSys.Operations.GirardReachFloat
 import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetAddEq
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetAddEq
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
@@ -112,7 +112,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
     {μ r : 𝕋} {T : ℚ} {Qs : List (Zonotope 𝕋 n)} (h : sys.girardReachFloat I μ r T = some Qs)
     (hA : 0 < ‖Scalar.toRealMat sys.A‖) (hr : 0 < toReal r) (hμ : 0 ≤ toReal μ)
     (hU : ∀ u ∈ U.construct, ‖u‖ ≤ toReal μ) :
-    ⋃ t ∈ Set.Icc (0:ℝ) T, sys.integralReachSet (S := Zonotope 𝕋) (Set.Icc 0 t) I U t
+    ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSet (S := Zonotope 𝕋) (Set.Icc 0 t) I U t
       ⊆ ⋃ Q ∈ Qs, Q.construct := by -- --- PROOF ---
   simp only [LinearSys.girardReachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h
@@ -199,14 +199,14 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
     ⊞ cube (addUp αr βr) with hQ₀
   -- every window lands in its own iterate
   have hwin : ∀ i : ℕ, ∀ t ∈ Set.Icc ((i : ℝ) * rr) (((i : ℝ) + 1) * rr),
-      sys.integralReachSet (S := Zonotope 𝕋) (Set.Icc 0 t) I U t ⊆ (f^[i] Q₀).construct := by
+      sys.reachSet (S := Zonotope 𝕋) (Set.Icc 0 t) I U t ⊆ (f^[i] Q₀).construct := by
     intro i
     induction i with
     | zero =>
       intro t ht y hy
       simp only [Nat.cast_zero, zero_mul, zero_add, one_mul] at ht
       obtain ⟨ht0, htr⟩ := ht
-      rw [sys.integralReachSet_eq I U ht0 hUb] at hy
+      rw [sys.reachSet_eq I U ht0 hUb] at hy
       obtain ⟨_, ⟨z, hz, rfl⟩, v, hv, rfl⟩ := hy
       -- the point of the segment from `z` to `e^{rA} z`, at the fraction `t / r`
       have hlam : t / rr ∈ Set.Icc (0:ℝ) 1 := ⟨div_nonneg ht0 hr.le, (div_le_one hr).mpr htr⟩
@@ -239,7 +239,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
       have ht' : t - rr ∈ Set.Icc ((i : ℝ) * rr) (((i : ℝ) + 1) * rr) := by
         push_cast at ht; constructor <;> linarith [ht.1, ht.2]
       have hti : 0 ≤ t - rr := (mul_nonneg (Nat.cast_nonneg i) hr.le).trans ht'.1
-      rw [show t = (t - rr) + rr by ring, sys.integralReachSet_add_eq I U hti hr.le hUb] at hy
+      rw [show t = (t - rr) + rr by ring, sys.reachSet_add_eq I U hti hr.le hUb] at hy
       obtain ⟨_, ⟨q, hq, rfl⟩, v, hv, rfl⟩ := hy
       rw [Function.iterate_succ_apply']
       have hvβ : ‖v‖ ≤ toReal βr := (sys.norm_le_of_mem_inputReach hA hr.le hU hv).trans hβ

@@ -17,14 +17,13 @@ puts it, at every time of the step, on the interpolation from its start to a
 member of the enclosure plus a member of `F` applied to its start
 (`MatExp.exists_mem_intervalCorrectionMatrix_of_integral`).
 
-Input-free only: with an input, `A(s) x(s)` is the velocity minus `u(s)`, and
-`Trajectory` does not make `u` measurable to recover it; with a measurable `u`,
-`…TimeIntervalStepOuterInputSolution`. The float step is `…TimeIntervalStepFloatOuter`.
+Input-free only; with an input, `…TimeIntervalStepOuterInputSolution`. The float step
+is `…TimeIntervalStepFloatOuter`.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   02-October-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -56,8 +55,7 @@ theorem LinParamSys.Trajectory.timeIntervalStep_outer {sys : LinParamSys ℐ n} 
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     x t ∈ construct (sys.timeIntervalStep r (m + 2) R₀) := by -- --- PROOF ---
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq hr.le hT hu
-  have hxc : ContinuousOn x (Set.Icc 0 r) := fun s hs =>
-    ((traj.flow s (hT hs)).continuousWithinAt).mono hT
+  have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
   obtain ⟨Φ, hΦ, F, hF, heq⟩ :=
     MatExp.exists_mem_intervalCorrectionMatrix_of_integral hÂi hÂB hr hxc hx hε ht0 htr
   have hx₀ := traj.init

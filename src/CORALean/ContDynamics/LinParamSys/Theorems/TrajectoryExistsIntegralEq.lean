@@ -9,14 +9,15 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 box whose entries are integrable over every window — the form the Peano–Baker
 expansion (`MatExp.norm_sub_peanoBakerSum_le`) takes.
 
-`Trajectory.exists_measurable_param` supplies `Â`, measurable and driving the
-same flow; inside the box its entries are bounded, hence integrable; and the
-fundamental theorem of calculus, at one-sided derivatives, does the rest.
+`Trajectory.exists_measurable_param` supplies `Â`, measurable, inside the box at
+every instant and equal to `A` almost everywhere on the window; inside the box its
+entries are bounded, hence integrable; and the flow, an integral, does not see
+the null set where the two differ, nor the endpoint where the input may not vanish.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -60,24 +61,18 @@ theorem LinParamSys.Trajectory.exists_integral_eq {sys : LinParamSys ℐ n} {T :
       (∀ i j a b, IntervalIntegrable (fun s => Â s i j) volume a b) ∧
       (∀ s, Â s ∈ construct sys.A) ∧
       ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, Â σ *ᵥ x σ := by -- --- PROOF ---
-  obtain ⟨Â, hÂm, hÂB, hÂx⟩ := traj.exists_measurable_param ht hT hu
-  have hÂi := aux_intervalIntegrable_param hÂm hÂB
-  have hxc : ContinuousOn x (Set.Icc 0 t) := fun s hs =>
-    ((traj.flow s (hT hs)).continuousWithinAt).mono hT
-  refine ⟨Â, hÂi, hÂB, fun s hs => ?_⟩
-  -- the flow, read at the measurable parameter, as a right derivative inside the window
-  have hderiv : ∀ σ ∈ Set.Ioo 0 s, HasDerivWithinAt x (Â σ *ᵥ x σ) (Set.Ioi σ) σ := by
-    intro σ hσ
-    have hσt : σ ∈ Set.Ico 0 t := ⟨hσ.1.le, hσ.2.trans_le hs.2⟩
-    have hd := (traj.flow σ (hT ⟨hσt.1, hσt.2.le⟩)).mono_of_mem_nhdsWithin
-      (Filter.mem_of_superset (Ioo_mem_nhdsGT hσt.2)
-        fun r hr => hT ⟨hσt.1.trans hr.1.le, hr.2.le⟩)
-    rwa [hu σ hσt, add_zero, ← hÂx σ hσt] at hd
-  have hxs : ContinuousOn x (Set.Icc 0 s) := hxc.mono (Set.Icc_subset_Icc le_rfl hs.2)
-  have hint := MatExp.intervalIntegrable_mulVec hÂi (a := 0) (b := s)
-    (by rw [Set.uIcc_of_le hs.1]; exact hxs)
-  rw [intervalIntegral.integral_eq_sub_of_hasDeriv_right_of_le hs.1 hxs hderiv hint]
-  abel
+  obtain ⟨Â, hÂm, hÂB, hae⟩ := traj.exists_measurable_param ht hT
+  refine ⟨Â, aux_intervalIntegrable_param hÂm hÂB, hÂB, fun s hs => ?_⟩
+  rw [traj.flow s (hT hs)]
+  congr 1
+  -- the two integrands agree off `t` and off the null set where `Â ≠ A`
+  have hae' : ∀ᵐ σ, σ ∈ Set.Icc 0 t → Â σ = A σ := (ae_restrict_iff' measurableSet_Icc).mp hae
+  have hne : ∀ᵐ σ : ℝ, σ ∉ ({t} : Set ℝ) := (Set.countable_singleton t).ae_notMem volume
+  refine intervalIntegral.integral_congr_ae ?_
+  filter_upwards [hae', hne] with σ h1 h2 hσ
+  rw [Set.uIoc_of_le hs.1] at hσ
+  have hσt : σ ∈ Set.Icc 0 t := ⟨hσ.1.le, hσ.2.trans hs.2⟩
+  rw [hu σ ⟨hσt.1, lt_of_le_of_ne hσt.2 h2⟩, add_zero, h1 hσt]
 
 end CORALean
 

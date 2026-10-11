@@ -4,7 +4,7 @@ import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # A nonlinear trajectory restricts to any smaller time domain
 
-`HasDerivWithinAt.mono` again, exactly as in `LinearSys.Trajectory.restrict`. It
+`HasDerivWithinAt.mono`: a derivative within `T` is one within every `T' ⊆ T`. It
 is what lets `linearize` be applied to a run over all forward time while asking
 for confinement on one step only: restrict first, linearize second.
 -/

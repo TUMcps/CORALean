@@ -1,13 +1,13 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
+import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
 import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!
 # The flow as a right derivative
 
-`Trajectory.flow` states the derivative within `T`, which is too weak for the
-one-sided lemmas `InputIntegrable` and `VariationOfConstants` build on: those
-ask for a derivative within `Ici t`, and `T` need not contain a neighbourhood
-of `t` on the left. `Set.Icc a b ⊆ T` with `t ∈ Ico a b` is what buys it —
+`ClassicalTrajectory.flow` states the derivative within `T`, which is too weak
+for the one-sided fundamental theorem of calculus `ClassicalTrajectory.trajectory`
+builds on: it asks for a derivative within `Ici t`, and `T` need not contain a
+neighbourhood of `t` on the left. `Set.Icc a b ⊆ T` with `t ∈ Ico a b` is what buys it —
 `T` still extends right of `t`, whatever it does on the left.
 -/
 
@@ -32,8 +32,8 @@ variable {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Ve
 
 /-- The flow as a right derivative, wherever the domain still extends to the
 right of `t`. -/
-theorem LinearSys.Trajectory.flow_Ici (traj : sys.Trajectory T R₀ U x u) {a b t : ℝ}
-    (hT : Set.Icc a b ⊆ T) (ht : t ∈ Set.Ico a b) :
+theorem LinearSys.ClassicalTrajectory.flow_Ici (traj : sys.ClassicalTrajectory T R₀ U x u)
+    {a b t : ℝ} (hT : Set.Icc a b ⊆ T) (ht : t ∈ Set.Ico a b) :
     HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) (Set.Ici t) t :=
   (traj.flow t (hT ⟨ht.1, ht.2.le⟩)).mono_of_mem_nhdsWithin
     (mem_nhdsGE_iff_exists_Ico_subset.mpr

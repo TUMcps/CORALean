@@ -69,11 +69,11 @@ theorem LinParamSys.Trajectory.timeInterval_outer_inputSolution {sys : LinParamS
       (sys.inputSolution r (m + 2) V)) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   -- the frozen matrix names the point system where `inputReach` lives
-  have lin := traj.toLinearSys Â hV
+  have lin := traj.toLinearSys Â hTt measurableSet_Icc fun s hs => hV s (hTt hs)
   have hmemt : (∫ s in (0:ℝ)..t, exp ((t - s) • Â) *ᵥ ((A s - Â) *ᵥ x s + u s))
       ∈ (LinearSys.mk Â : LinearSys ℝ n).inputReach V t :=
     ⟨fun s => (A s - Â) *ᵥ x s + u s, fun s hs => hV s (hTt hs),
-      lin.aestronglyMeasurable_input hTt, by simp only [Scalar.toRealMat_real]⟩
+      lin.aestronglyMeasurable_input subset_rfl, by simp only [Scalar.toRealMat_real]⟩
   refine traj.timeInterval_outer hr hT hε hÂ hV hbdd ht0 htr ?_
   exact sys.inputReach_subset_inputSolution hr (m + 2) hε hÂ hconv hclosed hbdd
     hRconv hRclosed hRbdd

@@ -7,15 +7,14 @@ The definition is [1, Def. 6], and [2, Def. 8]'s `Rᵉ_{X₀}(t)` is the same se
 [3, Def. 1]'s `R_e(r)`, its time-varying parameters being inputs here, and [4, Def. 1]'s
 `R(t)`, the autonomous case.
 
-`LinearSys.reachSet` at a nonlinear field: every state some trajectory of `sys`
-visits at time `t`, quantified over the runs rather than over an enclosure of
-them. Nothing is computed and nothing may be widened, so "the trajectory is in
-the reachable set" holds by construction, and the content of a reachability
-claim sits in the other inclusion, of this set in a computed one.
+`LinearSys.reachSet`'s shape at a nonlinear field, quantified over the runs: nothing
+is computed or widened, so "the trajectory is in the reachable set" holds by
+construction and a claim's content sits in the inclusion in a computed set. The runs
+are classical, a derivative everywhere, where `LinearSys`'s are Carathéodory: Mathlib
+has no existence theory for the latter at a nonlinear field.
 
 `relinReach` encloses it through linearizations, each conservative only where its
 certificate was issued, so its theorems carry a confinement hypothesis.
-
 `ReachSetOuter` puts every trajectory into it, `ReachSetConfinementOfSubset` keeps
 it inside each step's certified region, and `ReachSetSubsetRelinReach` and
 `ReachSetSubsetRelinTimeInterval` put it inside what is computed.

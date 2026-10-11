@@ -72,7 +72,7 @@ theorem LinearSys.timeIntervalReachSet_subset_segments_sum (sys : LinearSys 𝕋
   refine Set.iUnion₂_subset fun t ht => ?_
   rintro _ ⟨x, u, traj, rfl⟩
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 ht.2⟩
-  have hvoc := traj.variation_of_constants hTt ht.1 (traj.intervalIntegrable_input hTt ht.1 hbdd)
+  have hvoc := traj.variation_of_constants hTt le_rfl ht.1 hbdd
   rw [sub_zero] at hvoc
   rw [hvoc]
   exact Set.add_mem_add

@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
 import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
@@ -72,7 +73,9 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys 𝕋 S n) (o η N : �
   | succ i ih =>
     intro hi
     have hiH : i < H := Nat.lt_of_succ_le hi
-    have key := (traj.period hπ i hiH _ (ih hiH.le)).reach_outer_horizon_inputSolution
+    have hNΔ : (0:ℝ) ≤ (N : ℝ) * Δt := mul_nonneg (Nat.cast_nonneg N) hΔt.le
+    have key := ((traj.period hπ i hiH _ (ih hiH.le)).trajectory (convex_Icc 0 _)
+      ⟨le_rfl, hNΔ⟩ (CompactSet.isBounded_construct _)).reach_outer_horizon_inputSolution
       (K := N) hΔt subset_rfl η hε
       (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
       (CompactSet.isBounded_construct _) (ConvexSet.convex_construct _)

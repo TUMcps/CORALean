@@ -1,8 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralBackReachSetForallExists
+import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetForallExists
 import CORALean.ContDynamics.LinearSys.Operations.InputReach
 import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
-import CORALean.ContDynamics.LinearSys.Theorems.PerturbedIntegralTrajectoryClosedForm
+import CORALean.ContDynamics.LinearSys.Theorems.PerturbedTrajectoryClosedForm
 import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
 
 /-!
@@ -52,10 +52,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- [1, Prop. 3]: the states no admissible input keeps out of `Xend` are exactly
 `e^{-At}((Xend ⊕ -Z_W(t)) ⊖ Z_U(t))`. -/
-theorem LinearSys.integralBackReachSetForallExists_eq (sys : LinearSys 𝕋 n) (U W Xend : S n)
+theorem LinearSys.backReachSetForallExists_eq (sys : LinearSys 𝕋 n) (U W Xend : S n)
     {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
     (hW : Bornology.IsBounded (construct W)) :
-    sys.integralBackReachSetForallExists (Set.Icc 0 t) U W Xend t
+    sys.backReachSetForallExists (Set.Icc 0 t) U W Xend t
       = (exp ((-t) • toRealMat sys.A)).mulVecLin ''
           minkowskiDiff (construct Xend + -sys.inputReach W t)
             (sys.inputReach U t) := by -- --- PROOF ---
@@ -79,7 +79,7 @@ theorem LinearSys.integralBackReachSetForallExists_eq (sys : LinearSys 𝕋 n) (
       (hx₀ _ (⟨u, hu, humeas, rfl⟩ : _ ∈ sys.inputReach U t))
     rw [Set.mem_neg] at hb
     obtain ⟨w, hw, hwmeas, hqb⟩ := hb
-    have traj := sys.perturbedIntegralTrajectory_closedForm ht hU hW x₀ hu humeas hw hwmeas
+    have traj := sys.perturbedTrajectory_closedForm ht hU hW x₀ hu humeas hw hwmeas
     have hx0 : sys.closedForm x₀ u 0 + sys.closedForm 0 w 0 = x₀ := by
       rw [sys.closedForm_zero, sys.closedForm_zero, add_zero]
     have hsup := traj.superposition ht hU hW

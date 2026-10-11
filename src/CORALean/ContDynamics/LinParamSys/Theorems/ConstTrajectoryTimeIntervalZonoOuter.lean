@@ -50,7 +50,7 @@ theorem LinParamSys.ConstTrajectory.timeIntervalZono_outer {sys : LinParamSys �
       (Plus.plus (sys.timeIntervalStepZono r (m + 2) R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have lin := traj.toLinearSys
-  have hvoc := lin.variation_of_constants hTt ht0 (lin.intervalIntegrable_input hTt ht0 hU)
+  have hvoc := lin.variation_of_constants hTt le_rfl ht0 hU
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   rw [hvoc]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)

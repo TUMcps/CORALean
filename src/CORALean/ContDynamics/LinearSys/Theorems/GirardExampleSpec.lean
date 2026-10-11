@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Theorems.IUnionIntegralReachSetSubsetLinCombPlusCube
+import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetSubsetLinCombPlusCube
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.MemLinCombMtimesIff
@@ -15,7 +15,7 @@ fixes and the induced matrix norm are `|·|` and `‖A‖ = 100`. Then `sup_{x�
 Hausdorff distance is at least `3e - 5 ≈ 3.15`. The printed bound
 `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup |x|)` is `e·(1/2 + 1/100)·2 = 1.02e ≈ 2.77`.
 
-What is computed here is the three facts; `exists_lt_hausdorffDist_iUnion_integralReachSet`
+What is computed here is the three facts; `exists_lt_hausdorffDist_iUnion_reachSet`
 and `exists_lt_hausdorffDist_girardReach` read [1, Lemma 2] and [1, Thm. 1] off them.
 
 ## References
@@ -66,7 +66,7 @@ theorem LinearSys.girardExample_spec :
         (⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).construct) 2
     ∧ 3 * Real.exp 1 - 5 ≤ Metric.hausdorffDist
       (⋃ t ∈ Set.Icc (0:ℝ) (1 / 100),
-        (⟨Matrix.diagonal fun _ => 100⟩ : LinearSys ℝ 1).integralReachSet (S := 𝒵)
+        (⟨Matrix.diagonal fun _ => 100⟩ : LinearSys ℝ 1).reachSet (S := 𝒵)
           (Set.Icc 0 t) (⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1))
           (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1)) t)
       (((⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).linComb
@@ -82,7 +82,7 @@ theorem LinearSys.girardExample_spec :
   have he : 2.7182818283 < Real.exp 1 := Real.exp_one_gt_d9
   have hE0 : ∀ v : Vec ℝ 1, (E *ᵥ v) 0 = Real.exp 1 * v 0 := fun v => by
     rw [hE, aux_exp_diag_mulVec]; norm_num
-  set R := ⋃ t ∈ Set.Icc (0:ℝ) (1 / 100), sys.integralReachSet (S := 𝒵) (Set.Icc 0 t) Z U t
+  set R := ⋃ t ∈ Set.Icc (0:ℝ) (1 / 100), sys.reachSet (S := 𝒵) (Set.Icc 0 t) Z U t
   set Q := ((Z.linComb (Z.mtimes E)).plus (Zonotope.cube 1 (2 * (Real.exp 1 - 2))))
   -- the point `5 - 3e` of the enclosure
   set p : Vec ℝ 1 := fun _ => 5 - 3 * Real.exp 1
@@ -110,7 +110,7 @@ theorem LinearSys.girardExample_spec :
   have hRnn : ∀ y ∈ R, 0 ≤ y 0 := by
     intro y hy
     obtain ⟨t, ⟨ht0, -⟩, hyt⟩ := Set.mem_iUnion₂.mp hy
-    rw [sys.integralReachSet_eq (S := 𝒵) Z U ht0 (Zonotope.isBounded_construct U)] at hyt
+    rw [sys.reachSet_eq (S := 𝒵) Z U ht0 (Zonotope.isBounded_construct U)] at hyt
     obtain ⟨_, ⟨z, ⟨β, hβ, rfl⟩, rfl⟩, v, ⟨u, hu, -, rfl⟩, rfl⟩ := hyt
     -- the input integral vanishes, the input being `0` throughout
     have hv : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s) = 0 := by
@@ -131,7 +131,7 @@ theorem LinearSys.girardExample_spec :
   have hRne : R.Nonempty := by
     refine ⟨(exp ((0:ℝ) • toRealMat sys.A)).mulVecLin Z.c + 0,
       Set.mem_iUnion₂.mpr ⟨0, ⟨le_rfl, by norm_num⟩, ?_⟩⟩
-    rw [sys.integralReachSet_eq (S := 𝒵) Z U le_rfl (Zonotope.isBounded_construct U)]
+    rw [sys.reachSet_eq (S := 𝒵) Z U le_rfl (Zonotope.isBounded_construct U)]
     have h0 := sys.expIntegral_mem_inputReach (S := 𝒵) (le_refl (0:ℝ)) hU0'
     rw [Matrix.mulVec_zero] at h0
     exact ⟨_, ⟨Z.c, Zonotope.centre_mem_construct Z, rfl⟩, 0, h0, rfl⟩
@@ -148,7 +148,7 @@ theorem LinearSys.girardExample_spec :
       · exact hU0 u
       · rintro rfl; exact hU0'
     exact (Zonotope.isBounded_construct _).subset
-      (sys.iUnion_integralReachSet_subset_linComb_plus_cube Z U (by
+      (sys.iUnion_reachSet_subset_linComb_plus_cube Z U (by
         show 0 < ‖(Matrix.diagonal fun _ => (100:ℝ) : Mat ℝ 1 1)‖
         rw [hnorm]; norm_num) (by norm_num) le_rfl hUc hs)
   -- the distance from `5 - 3e` to anything at or above `0`

@@ -91,7 +91,7 @@ theorem LinParamSys.reachFloatInputSplit_outer
   -- the run is the point system `⟨A⟩`'s, split into its free motion and its input's integral
   have lin := traj.toLinearSys
   have hU : Bornology.IsBounded (construct (construct U)) := CompactSet.isBounded_construct U
-  have hvoc := lin.variation_of_constants hTt ht0 (lin.intervalIntegrable_input hTt ht0 hU)
+  have hvoc := lin.variation_of_constants hTt le_rfl ht0 hU
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   -- the input, split along `U ⊆ {ũ} ⊞ Ũ`
   have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - ũ ∈ construct (Recentre.recentre U) :=

@@ -12,7 +12,7 @@ import Mathlib.Analysis.Normed.Module.FiniteDimension
 
 `ConstTrajectory.timeInterval_outer_inputSolution` at `'varParam'`, with the same two
 sets — CORA's `initReach`, whose `priv_inputSolution` has no `'varParam'` branch of
-its own. The input must be measurable (`Trajectory.exists_integral_eq_of_measurable`).
+its own, the run read at a measurable parameter by `Trajectory.exists_integral_eq_of_measurable`.
 
 The Peano–Baker expansion splits the run. The homogeneous half is the interpolation
 plus correction (`MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`). The
@@ -29,7 +29,7 @@ and convexity of each order's image of `U` keep the average in it. Real only.
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -93,12 +93,12 @@ theorem aux_hull_subset_inputTerm (sys : LinParamSys ℐ n) {U : S n} {M₀ : Ma
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A `'varParam'` run with a measurable input is, at every time of the step, in the
+/-- A `'varParam'` run with an input is, at every time of the step, in the
 box's own time-interval step of the initial set plus its input solution. -/
 theorem LinParamSys.Trajectory.timeIntervalStep_outer_inputSolution {sys : LinParamSys ℐ n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.Trajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
-    (hum : Measurable u) {m : ℕ}
+    {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hclosed : IsClosed (construct U)) (hbdd : Bornology.IsBounded (construct U))
@@ -110,9 +110,8 @@ theorem LinParamSys.Trajectory.timeIntervalStep_outer_inputSolution {sys : LinPa
     x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   set η := m + 2 with hη
-  obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq_of_measurable hr.le hT hum hbdd
-  have hxc : ContinuousOn x (Set.Icc 0 r) := fun s hs =>
-    ((traj.flow s (hT hs)).continuousWithinAt).mono hT
+  obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq_of_measurable hr.le hT
+  have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
   have huU : ∀ s ∈ Set.Icc 0 r, u s ∈ construct U := fun s hs => traj.input s (hT hs)
   -- the input cut off outside the step, integrable over every window
   obtain ⟨C, hC⟩ := hbdd.exists_norm_le
@@ -121,7 +120,8 @@ theorem LinParamSys.Trajectory.timeIntervalStep_outer_inputSolution {sys : LinPa
   have hũi : ∀ a b, IntervalIntegrable ũ volume a b := fun a b => by
     rw [intervalIntegrable_iff]
     refine Measure.integrableOn_of_bounded (M := C) measure_Ioc_lt_top.ne
-      (hum.indicator measurableSet_Icc).aestronglyMeasurable
+      ((aestronglyMeasurable_indicator_iff measurableSet_Icc).mpr
+        (traj.meas.mono_measure (Measure.restrict_mono hT le_rfl)))
       (Filter.Eventually.of_forall fun s => ?_)
     by_cases hs : s ∈ Set.Icc 0 r
     · rw [hũr s hs]; exact hC _ (huU s hs)

@@ -1,8 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralReachSet
+import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
 import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
 import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetSuperset
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
 import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetAddError
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
@@ -22,9 +22,8 @@ Three steps. `reach_subset_discretize_reachSet_add_error` measures the run
 against the zero-order-hold reachable set, a recursion of zonotopes and so
 convex and compact, which is what `reachSet_inner_of_outer` asks of it. That set
 lies in `e^{kΔtA} R₀ ⊕ inputReach U (kΔt)`, a piecewise-constant input being
-admissible (`discretize_reachSet_subset_inputReach`). And that sum lies in
-`integralReachSet`, since the integral equation admits the jumps such an input
-makes where `Trajectory`'s everywhere-derivative does not.
+admissible (`discretize_reachSet_subset_inputReach`). And that sum is `reachSet`
+(`reachSet_eq`), the integral equation admitting the jumps such an input makes.
 
 The hypotheses are the step's own: `0 < Δt`, and the truncation order large
 enough that the exponential's remainder bound converges. `R₀` and `U` are
@@ -58,7 +57,7 @@ theorem LinearSys.reachInner_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
     sys.reachInner Δt η o ho R₀ U k
-      ⊆ sys.integralReachSet (S := 𝒵) (Set.Icc 0 ((k : ℝ) * Δt)) R₀ U
+      ⊆ sys.reachSet (S := 𝒵) (Set.Icc 0 ((k : ℝ) * Δt)) R₀ U
           ((k : ℝ) * Δt) := by -- --- PROOF ---
   set Q := Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) Δt) U with hQ
   -- the run minus its error lies in the zero-order-hold reachable set
@@ -76,7 +75,7 @@ theorem LinearSys.reachInner_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
     exact ⟨c, hc, rfl⟩
   have hzoh := sys.discretize_reachSet_subset_inputReach (S := 𝒵) hΔt R₀ U Q
     (Zonotope.isBounded_construct U) ⟨_, Zonotope.centre_mem_construct U⟩ hstep k
-  exact hinner.trans (hzoh.trans (sys.mulVecLin_image_add_inputReach_subset_integralReachSet
+  exact hinner.trans (hzoh.trans (sys.mulVecLin_image_add_inputReach_subset_reachSet
     (S := 𝒵) R₀ U (by positivity) (Zonotope.isBounded_construct U)))
 
 end CORALean

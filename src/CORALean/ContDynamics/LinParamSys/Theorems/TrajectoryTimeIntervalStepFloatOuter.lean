@@ -54,10 +54,9 @@ theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer
   -- the same run, read at the box's nominal real system
   let sysR : LinParamSys (fun m n => Real.Interval (Mat ℝ m n)) n := ⟨sys.A.nominal⟩
   have trajR : sysR.Trajectory T R₀ U x u A :=
-    ⟨traj.init, traj.input, traj.param, traj.flow⟩
+    ⟨traj.init, traj.input, traj.param, traj.meas, traj.measParam, traj.cont, traj.flow⟩
   obtain ⟨Â, hÂi, hÂB, hx⟩ := trajR.exists_integral_eq hΔt.le hT hu
-  have hxc : ContinuousOn x (Set.Icc 0 r) := fun s hs =>
-    ((traj.flow s (hT hs)).continuousWithinAt).mono hT
+  have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
   -- the real condition at `t`, read off a member attaining the box's norm
   obtain ⟨M, hM, hMn⟩ := Real.Interval.exists_norm_eq_absMax (hÂB 0)
   have hrM := Float.MatExp.norm_smul_le_normUpperBound sys.A Δt (M := M) hM

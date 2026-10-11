@@ -63,8 +63,8 @@ theorem LinParamSys.Trajectory.timeInterval_outer {sys : LinParamSys ℐ n} {T :
     x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀) Vd) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   -- the run is a point system's run at `Â`, its input enlarged by the drift
-  have lin := traj.toLinearSys Â hV
-  have hvoc := lin.variation_of_constants hTt ht0 (lin.intervalIntegrable_input hTt ht0 hVb)
+  have lin := traj.toLinearSys Â hTt measurableSet_Icc fun s hs => hV s (hTt hs)
+  have hvoc := lin.variation_of_constants subset_rfl le_rfl ht0 hVb
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   rw [hvoc]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hVd)

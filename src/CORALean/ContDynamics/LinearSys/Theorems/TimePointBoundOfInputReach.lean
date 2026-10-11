@@ -1,13 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 import CORALean.Global.LinProg.API
 
 /-!
-# A support bound on the integral reachable set, term for term
+# A support bound on the reachable set, term for term
 
-[1, Alg. 1]'s lines 10-12, over `integralReachSet` rather than `reachSet`:
+[1, Alg. 1]'s lines 10-12 from a bound on `inputReach` itself:
 `ρ(R₀, ℓᵀe^{tA}) + ρ(P, ℓ)`, assembled by `SupportBound.image` and `.add` and
-carried across `integralReachSet_eq`, an equality rather than an enclosure, so
-no `mono` is needed.
+carried across `reachSet_eq`, an equality rather than an enclosure, so no `mono`
+is needed. `timePointBound` is the same bound from one on `inputSolution`.
 
 ## References
 
@@ -38,15 +38,15 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A bound on `R₀` and on `sys.inputReach U t`, in every direction, give a
-bound on the time-point integral reachable set at `t` — no set built, and
-`integralReachSet` named only in the conclusion. -/
-noncomputable def LinearSys.integralTimePointBound (sys : LinearSys 𝕋 n) (R₀ U : S n)
+bound on the time-point reachable set at `t` — no set built, and
+`reachSet` named only in the conclusion. -/
+noncomputable def LinearSys.timePointBoundOfInputReach (sys : LinearSys 𝕋 n) (R₀ U : S n)
     {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
     (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct R₀) d)
     (bP : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (sys.inputReach U t) d)
     (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    SupportBound (sys.integralReachSet (Set.Icc 0 t) R₀ U t) c :=
-  sys.integralReachSet_eq R₀ U ht hU ▸
+    SupportBound (sys.reachSet (Set.Icc 0 t) R₀ U t) c :=
+  sys.reachSet_eq R₀ U ht hU ▸
     (SupportBound.image (mulVecLin (exp (t • toRealMat sys.A)))
       (b₀ (c.comp (mulVecLin (exp (t • toRealMat sys.A)))))).add (bP c)
 

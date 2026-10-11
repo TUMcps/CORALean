@@ -1,4 +1,4 @@
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpMulVecSubInterpolateLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
@@ -24,7 +24,7 @@ with `z ∈ Z` and `‖z'‖ ≤ sup ‖x‖`; the reachable point is `e^{(r/2)A
 The printed proof bounds `2α_r` by `e^{r‖A‖} r² sup ‖x‖`, which is false whenever `‖A‖ > 1`
 and `r` is small: `α_r = (e^{r‖A‖} - 1 - r‖A‖) sup ‖x‖` is of order `(r‖A‖)²`, not `r²`.
 What `e^x - 1 - x ≤ x²e^x/2` gives is `2α_r ≤ (r‖A‖)² e^{r‖A‖} sup ‖x‖`, so the factor
-printed as `(1/2 + r)` is `(1/2 + r‖A‖)` here; `exists_lt_hausdorffDist_iUnion_integralReachSet`
+printed as `(1/2 + r)` is `(1/2 + r‖A‖)` here; `exists_lt_hausdorffDist_iUnion_reachSet`
 shows that the printed factor fails.
 
 `0 < r` is needed for `e^{(r/2)A}z` to be the midpoint's companion: at `r = 0`, `(r/2)/r` is
@@ -68,14 +68,14 @@ theorem aux_exp_sub_one_le_mul_exp (x : ℝ) : Real.exp x - 1 ≤ x * Real.exp x
 
 /-- [1, Lemma 2], convergence, the direction from the enclosure: every point of
 `P + □(α_r + β_r)` is within `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)` of `R_[0,r](Z)`. -/
-theorem LinearSys.exists_mem_iUnion_integralReachSet_dist_le (sys : LinearSys 𝕋 n)
+theorem LinearSys.exists_mem_iUnion_reachSet_dist_le (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r s : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 < r)
     (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ)
     (hs : ∀ z ∈ Z.construct, ‖z‖ ≤ s) {q : Vec ℝ n}
     (hq : q ∈ ((Z.linComb (Z.mtimes (exp (r • toRealMat sys.A)))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖) * s
             + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ))).construct) :
-    ∃ y ∈ ⋃ t ∈ Set.Icc (0:ℝ) r, sys.integralReachSet (S := 𝒵) (Set.Icc 0 t) Z U t,
+    ∃ y ∈ ⋃ t ∈ Set.Icc (0:ℝ) r, sys.reachSet (S := 𝒵) (Set.Icc 0 t) Z U t,
       dist q y ≤ r * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
         * (μ / ‖toRealMat sys.A‖ + (1 / 2 + r * ‖toRealMat sys.A‖) * s) := by -- --- PROOF ---
   set A := toRealMat sys.A
@@ -116,7 +116,7 @@ theorem LinearSys.exists_mem_iUnion_integralReachSet_dist_le (sys : LinearSys �
     have := sys.expIntegral_mem_inputReach (S := 𝒵) hr2.1 h0U
     rwa [Matrix.mulVec_zero] at this
   refine ⟨exp ((r / 2) • A) *ᵥ z, Set.mem_iUnion₂.mpr ⟨r / 2, hr2, ?_⟩, ?_⟩
-  · rw [sys.integralReachSet_eq (S := 𝒵) Z U hr2.1 (Zonotope.isBounded_construct U)]
+  · rw [sys.reachSet_eq (S := 𝒵) Z U hr2.1 (Zonotope.isBounded_construct U)]
     exact ⟨_, ⟨z, hz, rfl⟩, 0, h0, add_zero _⟩
   -- three pieces: the bloating `w`, the midpoint against the flow, and `(I - e^{rA})z'/2`
   have hint := MatExp.norm_exp_mulVec_sub_interpolate_le A hr2.1 hr2.2 z

@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
@@ -89,7 +90,8 @@ theorem NonlinearSys.Trajectory.relinTimeInterval_outer {sys : NonlinearSys n m}
     refine hR i hi _ ⟨by linarith [hs.1], ?_⟩
     rw [hexp]; linarith [hs.2]
   -- the shifted run is a run of the linearized system, on `[0, Δt]`
-  have hlin := shifted.linearize (steps i).cert hR1
+  have hlin := (shifted.linearize (steps i).cert hR1).trajectory (convex_Icc 0 Δt)
+    ⟨le_rfl, hΔt.le⟩ (hbdd i hi)
   -- `t`'s own position inside the step, re-anchored the same way
   set s := t - (i : ℝ) * Δt with hs_def
   have hs0 : 0 ≤ s := by rw [hs_def]; linarith [ht.1]

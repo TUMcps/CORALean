@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.ContSet
 import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 /-!
@@ -7,21 +8,30 @@ import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 CORA's `@linParamSys`, `ẋ(t) = A x(t) + u(t)` with `A` ranging over a set
 `sys.A` — the system-matrix uncertainty CORA calls `type`. `Trajectory` is
-`'varParam'`: a fresh `A t ∈ construct sys.A` at every instant. `ConstTrajectory`
-is `'constParam'` (CORA's default): one `A ∈ construct sys.A`, fixed over the
-whole flow. `constTrajectory_toTrajectory` is the direction that always holds —
-a constant run is a time-varying one at the constant function; the converse
-fails (a run free to vary need not settle on one matrix) and is not stated,
-having no counterexample constructed here.
+`'varParam'`, a fresh `A t ∈ construct sys.A` at every instant; `ConstTrajectory`
+is `'constParam'` (CORA's default), one `A ∈ construct sys.A` over the whole flow.
+`constTrajectory_toTrajectory` is the direction that always holds; the converse
+fails (a run free to vary need not settle on one matrix) and is not stated.
+
+Both are Carathéodory runs, as `LinearSys.Trajectory` is: the integral equation
+`x t = x 0 + ∫₀ᵗ (A x + u)`, the form [1, Def. 3.1] writes with the parameter
+inside the integral, so a jumping input or parameter is admissible. `meas` and
+`measParam` make the input and the parameter measurable on `T`, the signals the
+integral is taken of — almost everywhere, which `Trajectory.exists_measurable_param`
+sharpens to a parameter measurable and in the box at every instant.
 
 `B` and `c` are absent, as in `LinearSys`: `B U ⊕ c` folds into the input set by
-one `mtimes` and one `plus`, and unifying that fold for both classes at once is
-#59, not done here.
+one `mtimes` and one `plus`; unifying that fold for both classes is #59.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -29,7 +39,7 @@ one `mtimes` and one `plus`, and unifying that fold for both classes at once is
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSet MeasureTheory
 
 variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
@@ -40,12 +50,17 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 structure LinParamSys (𝕄 : ℕ → ℕ → Type) (n : ℕ) where
   A : 𝕄 n n
 
+/-- `'varParam'`: a fresh `A t ∈ construct sys.A` at every instant, the flow stated
+as the integral equation. -/
 structure LinParamSys.Trajectory (sys : LinParamSys 𝕄 n) (T : Set ℝ) (R₀ U : S n)
     (x u : ℝ → Vec ℝ n) (A : ℝ → Mat ℝ n n) : Prop where
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
   param (t : ℝ) (ht : t ∈ T) : A t ∈ construct sys.A
-  flow (t : ℝ) (ht : t ∈ T) : HasDerivWithinAt x (A t *ᵥ x t + u t) T t
+  meas : AEStronglyMeasurable u (volume.restrict T)
+  measParam : AEStronglyMeasurable A (volume.restrict T)
+  cont : ContinuousOn x T
+  flow (t : ℝ) (ht : t ∈ T) : x t = x 0 + ∫ s in (0:ℝ)..t, (A s *ᵥ x s + u s)
 
 /-- `'constParam'`: one matrix `A`, fixed over the whole flow, rather than
 `Trajectory`'s fresh `A t` at each instant. -/
@@ -54,7 +69,9 @@ structure LinParamSys.ConstTrajectory (sys : LinParamSys 𝕄 n) (T : Set ℝ) (
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
   param : A ∈ construct sys.A
-  flow (t : ℝ) (ht : t ∈ T) : HasDerivWithinAt x (A *ᵥ x t + u t) T t
+  meas : AEStronglyMeasurable u (volume.restrict T)
+  cont : ContinuousOn x T
+  flow (t : ℝ) (ht : t ∈ T) : x t = x 0 + ∫ s in (0:ℝ)..t, (A *ᵥ x s + u s)
 
 end CORALean
 

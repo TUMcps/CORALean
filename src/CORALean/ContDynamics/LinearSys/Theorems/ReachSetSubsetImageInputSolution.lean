@@ -66,7 +66,7 @@ theorem LinearSys.reachSet_subset_image_inputSolution (sys : LinearSys 𝕋 n) {
   have hmem : (∫ s in (0:ℝ)..r, exp ((r - s) • toRealMat sys.A) *ᵥ u s)
       ∈ sys.inputReach U r :=
     ⟨u, fun s hs => traj.input s (hT hs), traj.aestronglyMeasurable_input hT, rfl⟩
-  have hvoc := traj.variation_of_constants hT hr.le (traj.intervalIntegrable_input hT hr.le hbdd)
+  have hvoc := traj.variation_of_constants hT le_rfl hr.le hbdd
   rw [sub_zero] at hvoc
   rw [hvoc]
   refine Set.add_mem_add ?_ (sys.inputReach_subset_inputSolution hr η hε hconv hclosed hbdd

@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
 import CORALean.NN.Theorems.EncloseOuter
 import Mathlib.Analysis.Calculus.Deriv.Add
 import Mathlib.Analysis.Calculus.Deriv.Comp
@@ -10,15 +11,15 @@ import Mathlib.Analysis.InnerProductSpace.Basic
 The join between the two halves, and the only place they touch. On period `i` the
 input is the single vector `π(x(i Δtc))`; the state at `i Δtc` is in whatever set
 the previous period was enclosed by, so the network's guarantee puts that vector
-in `enclose` of it — and a constant lying in a set is an admissible input of
-`LinearSys.Trajectory` at that set.
+in `enclose` of it — and a constant lying in a set is an admissible input of a
+`LinearSys.ClassicalTrajectory` at that set.
 
 `R` is a parameter with its membership a hypothesis, as in
 `NonlinearSys.Trajectory.shift`: the caller already holds the enclosure and its
 proof, and asking for them is what makes this compose into a recursion. The clock
 is moved here, every statement in `LinearSys` reading `Set.Icc 0 r ⊆ T`.
 
-**What this throws away.** `LinearSys.Trajectory` lets `u` take any value of
+**What this throws away.** `LinearSys.ClassicalTrajectory` lets `u` take any value of
 `construct U` at each instant independently, so every jittering input inside the
 set is admissible too, and the constancy a zero-order hold provides is dropped.
 Soundness does not need it, precision does; recovering it means a constant-input
@@ -49,7 +50,7 @@ theorem NeurNetContrSys.Trajectory.period {sys : NeurNetContrSys 𝕋 S n} {Δtc
     {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) {x : ℝ → Vec ℝ n}
     (traj : sys.Trajectory π Δtc H R₀ x) (i : ℕ) (hi : i < H)
     (R : S n) (hR : x ((i : ℝ) * Δtc) ∈ construct R) :
-    sys.plant.Trajectory (Set.Icc 0 Δtc) R (sys.contr.enclose R)
+    sys.plant.ClassicalTrajectory (Set.Icc 0 Δtc) R (sys.contr.enclose R)
       (fun t => x ((i : ℝ) * Δtc + t))
       (fun _ => π (x ((i : ℝ) * Δtc))) where
   init := by simpa using hR

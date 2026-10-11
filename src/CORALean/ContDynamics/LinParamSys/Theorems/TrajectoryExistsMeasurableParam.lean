@@ -1,29 +1,26 @@
 import CORALean.ContDynamics.LinParamSys.LinParamSys
 import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Interval.Real.Theorems.ExistsMeasurableMulVecEq
-import Mathlib.Analysis.Calculus.FDeriv.Measurable
-import Mathlib.Topology.Order.ProjIcc
+import CORALean.ContSet.Interval.Real.Theorems.MemMat
+import Mathlib.MeasureTheory.Function.StronglyMeasurable.AEStronglyMeasurable
+import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 /-!
-# A time-varying run is driven by a measurable member of the box
+# A time-varying run is driven by a measurable member of the box everywhere
 
-`Trajectory` asks nothing of `t ↦ A t` beyond `A t ∈ sys.A`, and only `A t x(t)`
-enters the flow, so a run's parameter can be as wild as a choice per instant.
-For an input-free run over `[0, t)` it can be replaced by a measurable one
-driving the same flow: at every instant, a member of the box that maps `x(s)`
-to the same velocity, chosen by a formula rather than by choice.
+`Trajectory.measParam` makes `t ↦ A t` measurable on `T`, almost everywhere and
+only there; the Peano–Baker expansion (`MatExp.norm_sub_peanoBakerSum_le`) wants a
+parameter measurable everywhere and inside the box at every instant. This
+supplies one equal to `A` almost everywhere on the window, so the flow, an
+integral, cannot tell the two apart.
 
-The member is `Interval.exists_measurable_mulVec_eq`'s, against the state
-extended past the window and the velocity as a one-sided derivative, which every
-function has measurably (`stronglyMeasurable_derivWithin_Ici`).
-
-With an input the target is the velocity minus `u(s)`, which `Trajectory` does not
-make measurable; `exists_measurable_param_of_measurable` asks that of `u`.
+Each entry is replaced by a measurable representative, the box membership is a
+measurable condition on those, and where it fails — a null set inside the window,
+the run's own `A` lying in the box there — the member `A 0` stands in.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       02-October-2026
--- Last update:   02-October-2026
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -40,37 +37,62 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- An input-free run over `[0, t)` is driven by a measurable member of the box:
-the same velocity at every instant, from a parameter measurable entry by entry. -/
+/-- A run over `[0, t]` agrees almost everywhere there with a parameter that is
+measurable and inside the box at every instant. -/
 theorem LinParamSys.Trajectory.exists_measurable_param {sys : LinParamSys ℐ n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} (traj : sys.Trajectory T R₀ U x u A)
-    {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T) (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) :
+    {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T) :
     ∃ Â : ℝ → Mat ℝ n n, (∀ i j, Measurable fun s => Â s i j) ∧
       (∀ s, Â s ∈ construct sys.A) ∧
-      ∀ s ∈ Set.Ico 0 t, Â s *ᵥ x s = A s *ᵥ x s := by -- --- PROOF ---
+      ∀ᵐ s ∂(volume.restrict (Set.Icc 0 t)), Â s = A s := by -- --- PROOF ---
+  classical
   have h0 : (0:ℝ) ∈ T := hT ⟨le_rfl, ht⟩
-  -- the state, extended constantly past the window so that it is continuous everywhere
-  have hxc : ContinuousOn x (Set.Icc 0 t) := fun s hs =>
-    ((traj.flow s (hT hs)).continuousWithinAt).mono hT
-  set y : ℝ → Vec ℝ n := Set.IccExtend ht (Set.restrict (Set.Icc 0 t) x) with hy
-  have hyc : Continuous y := (continuousOn_iff_continuous_restrict.mp hxc).Icc_extend'
-  have hyx : ∀ s ∈ Set.Icc 0 t, y s = x s := fun s hs => by
-    rw [hy, Set.IccExtend_of_mem ht _ hs]; rfl
-  -- the velocity, as a one-sided derivative, which is measurable for every function
-  set w : ℝ → Vec ℝ n := fun s => derivWithin x (Set.Ici s) s with hw
-  have hwm : Measurable w := (stronglyMeasurable_derivWithin_Ici x).measurable
-  have hwA : ∀ s ∈ Set.Ico 0 t, w s = A s *ᵥ x s := fun s hs => by
-    have hd := (traj.flow s (hT ⟨hs.1, hs.2.le⟩)).mono_of_mem_nhdsWithin
-      (mem_nhdsGE_iff_exists_Ico_subset.mpr
-        ⟨t, hs.2, fun _ hr => hT ⟨le_trans hs.1 hr.1, hr.2.le⟩⟩)
-    rw [hu s hs, add_zero] at hd
-    exact hd.derivWithin (uniqueDiffWithinAt_Ici s)
-  -- the run's own member puts the velocity between the corner values
-  obtain ⟨Â, hm, hB, hÂ⟩ := Interval.exists_measurable_mulVec_eq (traj.param 0 h0)
-    hyc.measurable hwm measurableSet_Ico fun s hs => ⟨A s, traj.param s (hT ⟨hs.1, hs.2.le⟩),
-      by rw [hyx s ⟨hs.1, hs.2.le⟩, hwA s hs]⟩
-  refine ⟨Â, hm, hB, fun s hs => ?_⟩
-  rw [← hyx s ⟨hs.1, hs.2.le⟩, hÂ s hs, hwA s hs, hyx s ⟨hs.1, hs.2.le⟩]
+  have hA : AEStronglyMeasurable A (volume.restrict (Set.Icc 0 t)) :=
+    traj.measParam.mono_measure (Measure.restrict_mono hT le_rfl)
+  -- every entry, and a measurable representative of it
+  have hAij : ∀ i j, AEStronglyMeasurable (fun s => A s i j)
+      (volume.restrict (Set.Icc 0 t)) :=
+    fun i j => (continuous_id.matrix_elem i j).comp_aestronglyMeasurable hA
+  set G : ℝ → Mat ℝ n n := fun s => Matrix.of fun i j => (hAij i j).mk _ s with hG
+  have hGm : ∀ i j, Measurable fun s => G s i j :=
+    fun i j => (hAij i j).stronglyMeasurable_mk.measurable
+  -- where the representatives lie in the box, a measurable set
+  set E : Set ℝ := {s | G s ∈ construct sys.A} with hE
+  have hEm : MeasurableSet E := by
+    have hEq : E = ⋂ i, ⋂ j,
+        ({s | sys.A.inf i j ≤ G s i j} ∩ {s | G s i j ≤ sys.A.sup i j}) := by
+      ext s
+      simp only [hE, Set.mem_setOf_eq, Set.mem_iInter, Set.mem_inter_iff]
+      exact Interval.mem_mat_iff
+    rw [hEq]
+    exact MeasurableSet.iInter fun i => MeasurableSet.iInter fun j =>
+      (measurableSet_le measurable_const (hGm i j)).inter
+        (measurableSet_le (hGm i j) measurable_const)
+  refine ⟨fun s => if s ∈ E then G s else A 0, fun i j => ?_, fun s => ?_, ?_⟩
+  · -- measurable: a measurable choice between a representative and a constant
+    have hite : (fun s => (if s ∈ E then G s else A 0) i j)
+        = fun s => if s ∈ E then G s i j else A 0 i j :=
+      funext fun s => by split_ifs <;> rfl
+    rw [hite]
+    exact Measurable.ite hEm (hGm i j) measurable_const
+  · by_cases hs : s ∈ E
+    · show (if s ∈ E then G s else A 0) ∈ construct sys.A
+      rw [if_pos hs]; exact hs
+    · show (if s ∈ E then G s else A 0) ∈ construct sys.A
+      rw [if_neg hs]; exact traj.param 0 h0
+  · -- almost every instant of the window has every representative right
+    have hall : ∀ᵐ s ∂(volume.restrict (Set.Icc 0 t)),
+        ∀ i j, (hAij i j).mk _ s = A s i j := by
+      rw [ae_all_iff]; intro i
+      rw [ae_all_iff]; intro j
+      exact (hAij i j).ae_eq_mk.symm
+    filter_upwards [hall, ae_restrict_mem measurableSet_Icc] with s hs hsI
+    have hGs : G s = A s := Matrix.ext fun i j => hs i j
+    have hsE : s ∈ E := by
+      show G s ∈ construct sys.A
+      rw [hGs]
+      exact traj.param s (hT hsI)
+    simp only [if_pos hsE, hGs]
 
 end CORALean
 

@@ -73,7 +73,7 @@ theorem LinParamSys.WithInput.reachUnion_outer (sys : LinParamSys.WithInput S n)
     Set.Icc_subset_Icc_right ht.2
   have hU : Bornology.IsBounded (construct (construct sys.U)) :=
     CompactSet.isBounded_construct sys.U
-  have hvoc := trajL.variation_of_constants hTt ht.1 (trajL.intervalIntegrable_input hTt ht.1 hU)
+  have hvoc := trajL.variation_of_constants hTt le_rfl ht.1 hU
   simp only [sub_zero, Scalar.toRealMat_real] at hvoc
   -- that integral is one admissible input's contribution by `t`, under `A`
   have hin : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)

@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
@@ -6,8 +7,9 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 # The nonlinear reachable set is the linearized one
 
 The payoff, [1, Sec. IV-A]: nothing new is computed for a nonlinear system. Once `linearize` has
-turned the run into a linear one, `LinearSys.Trajectory.reach_outer` is the whole
-proof and the enclosing set is the linear system's `reach`.
+turned the run into a classical linear one, `ClassicalTrajectory.trajectory` and
+`LinearSys.Trajectory.reach_outer` are the whole proof, the enclosing set the linear
+system's `reach`.
 
 The nonlinearity is paid for entirely in `linInput`, which is why
 `reach_outer_inputSolution` differs from its linear counterpart only in that
@@ -64,7 +66,8 @@ theorem NonlinearSys.Trajectory.reach_outer {sys : NonlinearSys n m} {T : Set �
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈
       construct (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
-  ((traj.restrict hT).linearize cert hR).reach_outer hΔt subset_rfl hU hUd ho k
+  (((traj.restrict hT).linearize cert hR).trajectory (convex_Ici 0) Set.self_mem_Ici hU).reach_outer
+    hΔt subset_rfl hU hUd ho k
 
 end CORALean
 

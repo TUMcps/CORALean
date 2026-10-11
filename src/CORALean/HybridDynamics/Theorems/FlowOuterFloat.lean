@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
@@ -47,11 +48,12 @@ theorem Location.Trajectory.timeIntervalFloat_outer {ℓ : Location (Zonotope �
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • Scalar.toRealMat ℓ.dynamics.A) *ᵥ u s)
       ∈ construct Ud) :
     x t ∈ construct (Plus.plus (ℓ.timeIntervalStepFloat r η R₀) Ud) := by -- --- PROOF ---
-  have ltraj := traj.linearSys h₀
+  have ltraj := (traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, ht0.trans htτ⟩
+    (CompactSet.isBounded_construct ℓ.U)
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 τ := Set.Icc_subset_Icc le_rfl htτ
   -- the variation of constants, from `0` to `t`
-  have hvoc := ltraj.variation_of_constants hTt ht0
-    (ltraj.intervalIntegrable_input hTt ht0 (CompactSet.isBounded_construct ℓ.U))
+  have hvoc := ltraj.variation_of_constants hTt le_rfl ht0
+    (CompactSet.isBounded_construct ℓ.U)
   rw [sub_zero] at hvoc
   rw [hvoc]
   exact Plus.plus_outer _ _ (Set.add_mem_add

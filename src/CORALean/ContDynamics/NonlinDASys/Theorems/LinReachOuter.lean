@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
 import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
 import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
@@ -83,7 +84,8 @@ theorem NonlinDASys.Trajectory.linReach_outer {sys : NonlinDASys n p m} {Δt : �
     with hU_lin
   set W : Zonotope (Vec ℝ n) := (Zonotope.ofPoint f0).plus (U_lin.plus Verror) with hW
   -- the shifted run is a run of the linear system `oneStep` is taken of
-  have lin := traj.toLinearSys hF hR hL
+  have lin := (traj.toLinearSys hF hR hL).trajectory (convex_Icc 0 Δt) ⟨le_rfl, hΔt.le⟩
+    (Zonotope.isBounded_construct _)
   -- `oneStep`'s side conditions, all of zonotopes
   have hWU : ∀ v ∈ construct (S := Zonotope (Vec ℝ n)) W,
       v - f0 ∈ construct (S := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by

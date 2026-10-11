@@ -45,7 +45,7 @@ theorem LinearSys.Trajectory.discretize {sys : LinearSys 𝕋 n} {T : Set ℝ} {
   init := by simpa using traj.init
   input k := hUd k
   step k := by
-    simpa using traj.discretize_step hΔt hU k (step_subset hΔt hT k)
+    simpa using traj.discretize_step hΔt hU k fun _ hs => hT hs.1
 
 end CORALean
 

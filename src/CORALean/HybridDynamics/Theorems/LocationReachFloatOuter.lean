@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
 import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
@@ -89,7 +90,8 @@ theorem Location.Trajectory.reachFloat_outer {ℓ : Location (Zonotope 𝕋) G L
     rw [← hI]
     exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (identityMat 𝕋 n) ℓ.U
       (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
-  have hd := (traj.linearSys h₀).sub_mem_inputReach_recentre hUV ht
+  have hd := ((traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, ht.1.trans ht.2⟩
+    (CompactSet.isBounded_construct ℓ.U)).sub_mem_inputReach_recentre hUV ht
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
   have hy := h3 (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)
     (Recentre.zero_mem_recentre _) ht.1 (by push_cast; exact htk) hd)

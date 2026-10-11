@@ -3,7 +3,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.IntegralReachSetEq
+import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
 
@@ -17,7 +17,7 @@ hold by the same induction, with `e^{Ar}` in the float interval matrix `[e^{Ar}]
 (`exp_mem_expIntervalFloat`, `Mtimes.mtimes_outer`) and each sum and box an enclosure
 (`Plus.plus_outer`, `Zonotope.interval_contains`, `Interval.zonotope_contains`). The base case
 is `timeIntervalStepFloat_outer` and `inputReach_subset_inputSolutionFloat`, once
-`inputReach U τ ⊆ inputReach U r`. The enclosure is of the exact `integralReachSet`, not an
+`inputReach U τ ⊆ inputReach U r`. The enclosure is of the exact `reachSet`, not an
 equality with `reachBox`'s sets.
 
 ## References
@@ -75,7 +75,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
     {k : ℕ} (hk : k ≤ N) {t : ℝ}
     (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) :
     ∃ R, Rs[k]? = some R ∧
-      sys.integralReachSet (S := Zonotope 𝕋) (Set.Icc 0 t) X₀ U t
+      sys.reachSet (S := Zonotope 𝕋) (Set.Icc 0 t) X₀ U t
         ⊆ R.construct := by -- --- PROOF ---
   -- the order is the search's, and the list is the loop's
   simp only [LinearSys.reachBoxFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
@@ -174,7 +174,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
     rw [ List.getElem?_map, List.getElem?_range (by omega)]
     rfl
   · have ht0 : 0 ≤ t := (hkr k).trans ht.1
-    rw [sys.integralReachSet_eq (S := Zonotope 𝕋) X₀ U ht0 hU]
+    rw [sys.reachSet_eq (S := Zonotope 𝕋) X₀ U ht0 hU]
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * ρ) hτ
     rw [show (k : ℝ) * ρ + (t - k * ρ) = t by ring] at hI

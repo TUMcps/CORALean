@@ -7,14 +7,9 @@ import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 /-!
 # The discrete reachable set, under constant-input steps, sits inside `inputReach`
 
-Not a bridge to `LinearSys.reachSet`: `ReachSet.lean`'s own docstring names the
-gap this stops short of — `e^{tA} R₀ ⊕ inputReach U t` *encloses*
-`reachSet` rather than equalling it, since `inputReach` admits any measurable
-input where `Trajectory` pins one by a derivative existing everywhere on `T`.
-A point of `inputReach` is exhibited here by a genuine piecewise-constant
-input, but nothing below shows that input has a two-sided derivative at a step
-boundary — it does not, so it is no `Trajectory`, and this result cannot be
-composed with `ReachSet.lean`'s definition to reach one.
+A point of `inputReach` is exhibited here by a genuine piecewise-constant input,
+and with `reachSet_eq` the inclusion continues into `reachSet` itself: a
+trajectory being Carathéodory, that input drives a run.
 
 Driven by induction on the step count: `inputReach_separation` supplies the
 one step `e^{Δt A} P^R(kΔt) + P^R(Δt) ⊆ P^R((k+1)Δt)`, and

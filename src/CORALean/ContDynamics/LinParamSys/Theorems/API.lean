@@ -76,7 +76,7 @@ puts the two together at its end, and `InputReachSubsetInputSolution` with
 of the step once `0 ∈ U`; `…TimeIntervalOuterInputSolution` is the whole step.
 
 `TrajectoryTimeIntervalStepOuter`/`…TimePointOuter` are CORA's own `'varParam'` step, input-free,
-through `TrajectoryExistsIntegralEq`/`…MeasurableParam`, `…InputSolution` with a measurable
+through `TrajectoryExistsIntegralEq`/`…MeasurableParam`, `…InputSolution` with an
 input, `…FloatOuter` at the float step; or `TrajectoryToLinearSys`
 pays the drift as input, `TrajectoryNormLe`/`…NormDriftLe` bounding it by Gronwall.
 The `…Split` pair drops `0 ∈ U` by splitting the input set, and

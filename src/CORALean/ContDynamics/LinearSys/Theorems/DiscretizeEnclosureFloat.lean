@@ -48,7 +48,7 @@ theorem LinearSys.Trajectory.discretizeEnclosureFloat {sys : LinearSys 𝕋 n} {
   input k := hUd k
   step k := ⟨exp (toReal Δt • Scalar.toRealMat sys.A),
     sys.exp_mem_expIntervalFloat hη le_rfl le_rfl, by
-    simpa [LinearSys.discretize] using traj.discretize_step hΔt hU k (step_subset hΔt hT k)⟩
+    simpa [LinearSys.discretize] using traj.discretize_step hΔt hU k fun _ hs => hT hs.1⟩
 
 end CORALean
 

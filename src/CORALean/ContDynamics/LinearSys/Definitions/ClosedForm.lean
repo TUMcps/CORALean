@@ -6,12 +6,11 @@ import Mathlib.Analysis.Matrix.Normed
 /-!
 # The variation-of-constants formula, as a function of time
 
-`e^{tA} x_0 + ∫₀ᵗ e^{(t-s)A} u(s) ds`: what `variation_of_constants` proves every
-`Trajectory` equals, and what `ClosedFormFlow` proves satisfies the raw
-integral equation `IntegralTrajectory.flow` asks for, for *any* measurable
-bounded `u` — not only ones a two-sided derivative pins down. Named apart from
-either use: `Theorems/ClosedFormFlow.lean` and the `⊇` half of the integral
-reachable set both build on it, at a point rather than a run.
+`e^{tA} x_0 + ∫₀ᵗ e^{(t-s)A} u(s) ds`: what `eq_closedForm_of_flow` proves every
+`Trajectory` equals, and what `ClosedFormFlow` proves satisfies the integral
+equation `Trajectory.flow` asks for, for *any* measurable bounded `u`. Named
+apart from either use: `Theorems/ClosedFormFlow.lean` and the `⊇` half of
+`reachSet_eq` both build on it, at a point rather than a run.
 -/
 
 -- Authors:       Tobias Ladner

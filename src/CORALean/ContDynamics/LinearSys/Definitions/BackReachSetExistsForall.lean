@@ -5,14 +5,12 @@ import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
 
 [1, Def. 7]: the time-point maximal backward reachable set `R^{∃∀}(-t)`. A
 state `x₀` is in it when some admissible input signal drives the perturbed
-run into `Xend` at time `t` whatever admissible disturbance occurs — the
-states the target is reachable from despite the worst case.
+run into `Xend` at time `t` whatever admissible disturbance occurs. The `∀w`
+guard ranges over the measurable admissible disturbances, the signals `Z_W(t)`
+integrates and the ones a `PerturbedTrajectory` exists for.
 
 `∃x` inside `∀w`, not `∀x`: quantifying the run itself universally would hold
-vacuously for a `w` no `PerturbedTrajectory` witnesses at all — a gap the
-derivative-everywhere predicate can leave open, per its own docstring — and
-would silently enlarge the set. Existential `x` asks for an actual run, the
-same reading `backReachSetForallExists` and `reachSet` both use.
+vacuously for a `w` no run witnesses, and would silently enlarge the set.
 
 ## References
 
@@ -23,7 +21,7 @@ same reading `backReachSetForallExists` and `reachSet` both use.
 
 -- Authors:       Tobias Ladner
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -31,7 +29,7 @@ same reading `backReachSetForallExists` and `reachSet` both use.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet Scalar MeasureTheory
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
@@ -41,10 +39,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every state from which some admissible input steers the perturbed run into
 `Xend` at time `t`, whatever admissible disturbance occurs. -/
-def LinearSys.backReachSetExistsForall (sys : LinearSys 𝕋 n) (T : Set ℝ) (U W Xend : S n)
-    (t : ℝ) : Set (Vec ℝ n) :=
+def LinearSys.backReachSetExistsForall (sys : LinearSys 𝕋 n) (T : Set ℝ)
+    (U W Xend : S n) (t : ℝ) : Set (Vec ℝ n) :=
   {x₀ | ∃ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ construct U) ∧
+      AEStronglyMeasurable u (volume.restrict T) ∧
       ∀ w : ℝ → Vec ℝ n, (∀ s ∈ T, w s ∈ construct W) →
+        AEStronglyMeasurable w (volume.restrict T) →
         ∃ x : ℝ → Vec ℝ n, sys.PerturbedTrajectory T U W x u w ∧
           x 0 = x₀ ∧ x t ∈ construct Xend}
 

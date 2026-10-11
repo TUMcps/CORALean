@@ -1,5 +1,5 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalBackReachSetForallExists
-import CORALean.ContDynamics.LinearSys.Definitions.IntegralTimeIntervalBackReachSetOfInput
+import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExists
+import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInput
 import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
 import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
 
@@ -16,9 +16,9 @@ and (44); it is `hcov` and `hp` here, stated against `Alg. 1`'s own outputs.
 
 `⊆`, not `=`: [1, (45)] claims an outer approximation and nothing more.
 
-The sets are the Carathéodory ones. Under `PerturbedTrajectory` the left-hand
-side is empty whenever `U` holds two points, so the statement would be true and
-empty — see `integralTimeIntervalBackReachSetForallExists`.
+The sets are over Carathéodory runs: under derivative-everywhere runs a
+non-measurable input admits none, the left-hand side would be empty whenever `U`
+holds two points, and the statement would be true and empty.
 
 ## References
 
@@ -60,20 +60,20 @@ theorem LinearSys.minBackReachTimeInterval_outer (sys : LinearSys 𝕋 n) {T τ 
     (hû : ∀ i s, s ∈ T → û i s ∈ construct U)
     (hmû : ∀ i, AEStronglyMeasurable (û i) (volume.restrict T))
     -- (42), (43): the `ω` steps enclose the centre trajectory's own set
-    (hcov : sys.integralTimeIntervalBackReachSetOfInput T U W Xend τ u₀ ⊆
+    (hcov : sys.timeIntervalBackReachSetOfInput T U W Xend τ u₀ ⊆
       ⋃ k < ω, (sys.minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct)
     -- (44), (46): each `p_(j)` is a support value of some trajectory's own set
     (hp : ∀ j : Fin q, ∃ i : Fin q,
-      ∀ x ∈ sys.integralTimeIntervalBackReachSetOfInput T U W Xend τ (û i),
+      ∀ x ∈ sys.timeIntervalBackReachSetOfInput T U W Xend τ (û i),
         HPolytope.rowLin N j x ≤ sys.minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1) j) :
-    sys.integralTimeIntervalBackReachSetForallExists T U W Xend τ ⊆
+    sys.timeIntervalBackReachSetForallExists T U W Xend τ ⊆
       sys.minBackReachTimeInterval ρ CZ W₀ U₀ Zw N t₀ tend η ω := by -- --- PROOF ---
   subst hΔt
   intro x₀ hx₀
   -- (40), (52): `x₀` is in `R^∃(-τ;u*(·))` for every admissible `u*(·)`, so for `Û`'s
   have key : ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ construct U) →
       AEStronglyMeasurable u (volume.restrict T) →
-      x₀ ∈ sys.integralTimeIntervalBackReachSetOfInput T U W Xend τ u :=
+      x₀ ∈ sys.timeIntervalBackReachSetOfInput T U W Xend τ u :=
     fun u hu hmu => hx₀ u hu hmu
   -- (54): every row of `⟨N,p⟩_H` bounds one of those sets, hence `x₀`
   have hP : x₀ ∈ (HPolytope.ineqs N

@@ -12,10 +12,10 @@ construction, and a computed set is then measured against this one *set* rather
 than against every trajectory separately.
 
 `LinearSysDT.reachSet` is the discrete counterpart, a recursion — a flow has no
-step to recurse on. The variation-of-constants shape,
-`e^{tA} R₀ ⊕ inputReach U t`, encloses this rather than equalling it:
-`inputReach` admits any measurable input, where a trajectory's is pinned by a
-derivative that exists everywhere on `T`.
+step to recurse on. A trajectory being Carathéodory, a zero-order-hold run is one,
+and the variation-of-constants shape `e^{tA} R₀ ⊕ inputReach U t` *equals* this
+set (`reachSet_eq`) rather than merely enclosing it: a witness in `inputReach` is
+a reached state, so this set can refute as well as prove.
 
 `Theorems.ReachSetOuter` puts every trajectory into it; `ReachSetSubsetReach`
 and `ReachSetSubsetTimeIntervalInputSolution` put it inside what is computed.
@@ -31,7 +31,7 @@ and `ReachSetSubsetTimeIntervalInputSolution` put it inside what is computed.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 

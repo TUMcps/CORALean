@@ -1,8 +1,10 @@
+import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
 import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
+import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 /-!
@@ -100,7 +102,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
   have hUU' : U.construct ⊆ U'.construct :=
     fun v hv => (aux_mem_hull U.interval U.c).1 (Zonotope.interval_contains U hv)
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
-  have ltraj : (⟨A⟩ : LinearSys 𝕋 n).Trajectory (S := fun k => Set (Vec ℝ k))
+  have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := fun k => Set (Vec ℝ k))
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope 𝕋 n)).construct
@@ -130,6 +132,12 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
       show sys.f (x t) (u t) = Scalar.toRealMat A *ᵥ (x t - toRealVec xs)
         + (sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs))
       abel
+  -- a classical run on `[0, Δt]` with its input in a compact set is a Carathéodory one
+  have hVb : Bornology.IsBounded
+      ((Scalar.toRealMat (identityMat 𝕋 n) *ᵥ ·) '' (fm.linInputFloat A B xs X U U').construct) :=
+    ((Zonotope.isCompact_construct _).image
+      (continuous_const.matrix_mulVec continuous_id)).isBounded
+  have ltraj := ltrajC.trajectory (convex_Icc _ _) ⟨le_rfl, by rw [hTf]; exact hΔt.le⟩ hVb
   obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ hS
   obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ hS
   -- adding `x✱` back

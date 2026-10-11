@@ -13,7 +13,7 @@ in the set, never that the set is only the point. Not stated.
 
 -- Authors:       Tobias Ladner
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   10-October-2026
 -- Last revision: ---
 
 
@@ -36,6 +36,8 @@ theorem LinearSys.Trajectory.toLinParam {sys : LinearSys 𝕋 n} {T : Set ℝ} {
   init := traj.init
   input := traj.input
   param := OfPoint.mem_ofPoint (toRealMat sys.A)
+  meas := traj.meas
+  cont := traj.cont
   flow := traj.flow
 
 end CORALean
