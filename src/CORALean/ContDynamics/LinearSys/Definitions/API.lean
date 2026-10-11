@@ -49,6 +49,8 @@ import CORALean.ContDynamics.LinearSys.Definitions.HullPdf
 import CORALean.ContDynamics.LinearSys.Definitions.HullPdfInterval
 import CORALean.ContDynamics.LinearSys.Definitions.InputLaws
 import CORALean.ContDynamics.LinearSys.Definitions.InputLawsOver
+import CORALean.ContDynamics.LinearSys.Definitions.SupportUpperState
+import CORALean.ContDynamics.LinearSys.Definitions.VerifySearchState
 
 /-!
 # What a continuous-time linear system means

@@ -391,6 +391,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ExistsRaiseDegree
 import CORALean.ContSet.Zonotope.Real.Theorems.ExistsFacetMemIntrinsicInterior
 import CORALean.ContSet.Zonotope.Real.Theorems.RowsEqDropRedundant
 import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIffOfFullDim
+import CORALean.ContSet.Zonotope.Real.Theorems.MaxNormSqSdpRelaxation
 
 /-!
 # What `Zonotope` guarantees
