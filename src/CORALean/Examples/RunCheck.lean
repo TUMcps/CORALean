@@ -565,6 +565,8 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "tlmSum" (ofScalarBox ⟨RunnableFloat.tlmSum.bounds.1, RunnableFloat.tlmSum.bounds.2⟩)
   row "tlmSqBox" (ofScalarBox RunnableFloat.tlmSqBox)
   row "tlmSumBox" (ofScalarBox RunnableFloat.tlmSumBox)
+  row "tlmExpDeep"
+    (ofScalarBox ⟨RunnableFloat.tlmExpDeep.bounds.1, RunnableFloat.tlmExpDeep.bounds.2⟩)
   row "eqBoolRun" (ofBool RunnableFloat.eqBoolRun)
   row "eqBoolSelf" (ofBool RunnableFloat.eqBoolSelf)
   row "arxModel" (ofBox (RunnableFloat.arxModel.f

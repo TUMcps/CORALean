@@ -1,3 +1,5 @@
+import CORALean.Global.Float.Instances.Dyadic.Theorems.AddDownLeAdd
+import CORALean.Global.Float.Instances.Dyadic.Theorems.AddLeAddUp
 import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
 import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.Dyadic.Operations.API
@@ -5,7 +7,6 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
 import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
 import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
 import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealHalf
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealLeOfLe
@@ -62,8 +63,8 @@ instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
     show Dyadic.toReal (⟨1, 0⟩ : Dyadic p) = 1
     rw [Dyadic.toReal_def]
     norm_num
-  add_le_addUp a b := Dyadic.toReal_exactAdd a b ▸ Dyadic.le_roundUp _
-  addDown_le_add a b := Dyadic.toReal_exactAdd a b ▸ Dyadic.roundDown_le _
+  add_le_addUp := Dyadic.add_le_addUp
+  addDown_le_add := Dyadic.addDown_le_add
   mul_le_mulUp a b := Dyadic.toReal_exactMul a b ▸ Dyadic.le_roundUp _
   mulDown_le_mul a b := Dyadic.toReal_exactMul a b ▸ Dyadic.roundDown_le _
   div_le_divUp := Dyadic.le_divUp
