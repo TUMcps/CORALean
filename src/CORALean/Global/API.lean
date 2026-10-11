@@ -218,6 +218,13 @@ import CORALean.Global.IpmSolCongr
 import CORALean.Global.IpmExistsSubsetCardEq
 import CORALean.Global.IpmReliabilityMDependent
 import CORALean.Global.DiagSdpStrongDuality
+import CORALean.Global.CoordinateGain
+import CORALean.Global.CoordinatePathOff
+import CORALean.Global.RobustUnderApproxBox
+import CORALean.Global.UnderApproxRangeBox
+import CORALean.Global.RobustRangeVec
+import CORALean.Global.MeanValueBoxSubsetRobustRange
+import CORALean.Global.ForwardInnerReach
 /-!
 # Global definitions, collected
 

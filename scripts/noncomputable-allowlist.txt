@@ -457,3 +457,4 @@ NonlinDASys.reachLoop  real-layer: Althoff and Krogh `Alg. 1` lines 2-23, the `w
 NonlinDASys.reachRepeat  real-layer: Althoff and Krogh `Alg. 1` lines 5-10, the linearization-error loop over zonotopes at the real exponential; proved over ℝ and never run
 LinParamSys.dependentHomSolLowOrder  real-layer: CORA's second-order dependent solution, read for its counterexample only
 LinProbSys.enclosingHull  real-layer: [1, Alg. 1] at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
+forwardInnerRange  real-layer: [1, Alg. 1, Step 3] through `kaucherInnerStep` at the real flow enclosures; no float refinement

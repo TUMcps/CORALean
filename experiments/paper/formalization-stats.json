@@ -17,8 +17,8 @@
     "papers": 82,
     "papers_with_findings": 74,
     "in_scope": 1066,
-    "formalized": 1044,
-    "not_formalized": 22,
+    "formalized": 1047,
+    "not_formalized": 19,
     "out_of_scope": 901,
     "out_of_scope_by_reason": {
       "restated": 323,
@@ -29,25 +29,25 @@
     },
     "by_class": {
       "correct": 704,
-      "underspecified": 202,
+      "underspecified": 205,
       "proof-gap": 33,
       "fixed": 98,
       "false": 7
     },
     "claims": {
       "in_scope": 418,
-      "formalized": 404,
+      "formalized": 405,
       "correct": 242,
-      "underspecified": 79,
+      "underspecified": 80,
       "proof-gap": 33,
       "fixed": 45,
       "false": 5
     },
     "definitions": {
       "in_scope": 648,
-      "formalized": 640,
+      "formalized": 642,
       "correct": 462,
-      "underspecified": 123,
+      "underspecified": 125,
       "proof-gap": 0,
       "fixed": 53,
       "false": 2
@@ -2082,8 +2082,8 @@
       "year": 2017,
       "title": "Forward Inner-Approximated Reachability of Non-Linear Continuous Systems",
       "in_scope": 4,
-      "formalized": 3,
-      "not_formalized": 1,
+      "formalized": 4,
+      "not_formalized": 0,
       "out_of_scope": 17,
       "out_of_scope_by_reason": {
         "restated": 9,
@@ -2094,7 +2094,7 @@
       },
       "by_class": {
         "correct": 2,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -2110,14 +2110,19 @@
       },
       "definitions": {
         "in_scope": 4,
-        "formalized": 3,
+        "formalized": 4,
         "correct": 2,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "findings": [
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "Steps 1-2 (the Picard-Lindelöf iteration and the Taylor models (15)-(17), the validated integration of [25]) are an argument with the validity hypothesis, not computed; and Step 3's guarantee is per component, see `Eq. 18`"
+        },
         {
           "result": "Eq. 18",
           "class": "underspecified",
@@ -3016,8 +3021,8 @@
       "year": 2020,
       "title": "Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances",
       "in_scope": 7,
-      "formalized": 5,
-      "not_formalized": 2,
+      "formalized": 7,
+      "not_formalized": 0,
       "out_of_scope": 5,
       "out_of_scope_by_reason": {
         "restated": 0,
@@ -3028,25 +3033,25 @@
       },
       "by_class": {
         "correct": 3,
-        "underspecified": 1,
+        "underspecified": 3,
         "proof-gap": 1,
         "fixed": 0,
         "false": 0
       },
       "claims": {
         "in_scope": 3,
-        "formalized": 2,
+        "formalized": 3,
         "correct": 0,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 1,
         "fixed": 0,
         "false": 0
       },
       "definitions": {
         "in_scope": 4,
-        "formalized": 3,
+        "formalized": 4,
         "correct": 3,
-        "underspecified": 0,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -3061,6 +3066,16 @@
           "result": "Thm. 2",
           "class": "underspecified",
           "reason": "(3) needs `x_A` and (4) `x_E` nonempty, while the paper's `IR` contains the empty interval (over no disturbance every `z` is robustly reached)"
+        },
+        {
+          "result": "Thm. 3",
+          "class": "underspecified",
+          "reason": "\"elementary\" is not defined (here `C¹`, the standing assumption of `Thm. 1`), and the box must be nonempty: over an empty `x` with `∇̲ = 0` and a point `f₀` the printed `z` is nonempty and `range(f, x)` empty; see Findings"
+        },
+        {
+          "result": "Remark 1",
+          "class": "underspecified",
+          "reason": "the codomain `{1, …, n} \\ I_A` removes input indices from the output indices, and `π` is read as defined on `{1, …, m} \\ I_A`; and `Thm. 3`'s `C¹` and nonempty box, see Findings"
         }
       ]
     },
@@ -6563,7 +6578,7 @@
     "findings_not_on_a_class": {
       "global": {
         "correct": 70,
-        "underspecified": 22,
+        "underspecified": 25,
         "proof-gap": 4,
         "fixed": 17,
         "false": 1
@@ -6584,11 +6599,11 @@
       }
     },
     "theorems": {
-      "paper": 1519,
+      "paper": 1524,
       "float": 1704,
       "helper": 1380,
-      "lemma": 2517,
-      "total": 7120,
+      "lemma": 2518,
+      "total": 7126,
       "examples": 120
     }
   }
