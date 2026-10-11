@@ -6,8 +6,9 @@ import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
 What [1, Alg. 1] computes, column by column: `C v(k) = Σ_{i≤k} h_{i,k} v(i) + h_{k+1,k} v(k+1)`,
 `C V_ξ = V_{ξ+1} H̄_ξ` read one column at a time — the identity behind [1]'s approximation (1).
 The sweep leaves `w = C v(k) - Σ h_{i,k} v(i)` whatever the earlier vectors are, and line 12
-divides it by `h_{k+1,k} ≠ 0`. That the `v(i)` are orthonormal, which makes `H` the
-projection of `C`, is not shown here.
+divides it by `h_{k+1,k} = ‖w‖`; at a happy breakdown `‖w‖ = 0` makes `w = 0`, so the relation
+holds for every column. That the `v(i)` are orthonormal, which makes `H` the projection of `C`,
+is not shown here.
 
 ## References
 
@@ -17,7 +18,7 @@ projection of `C`, is not shown here.
 
 -- Authors:       Tobias Ladner
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   11-October-2026
 -- Last revision: ---
 
 
@@ -52,10 +53,21 @@ theorem Krylov.aux_gramSchmidtStep_eq (w : Vec ℝ n) (V : ℕ → Vec ℝ n) (j
     abel
 
 
+/-- `‖w‖ (‖w‖⁻¹ w) = w`, also at `w = 0`, where line 12 divides by zero. -/
+theorem Krylov.aux_norm₂_smul_inv_smul (w : Vec ℝ n) :
+    ‖w‖₂ • (‖w‖₂⁻¹ • w) = w := by -- --- PROOF ---
+  rcases eq_or_ne ‖w‖₂ 0 with h | h
+  · funext j
+    have hj := abs_le_norm₂ w j
+    rw [h] at hj ⊢
+    simp only [zero_smul, Pi.zero_apply]
+    exact (abs_nonpos_iff.mp hj).symm
+  · rw [smul_smul, mul_inv_cancel₀ h, one_smul]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Krylov.arnoldi_relation (C : Mat ℝ n n) (v : Vec ℝ n) (k : ℕ)
-    (hk : (Krylov.arnoldi C v (k + 1)).2 (k + 1) k ≠ 0) :
+theorem Krylov.arnoldi_relation (C : Mat ℝ n n) (v : Vec ℝ n) (k : ℕ) :
     C *ᵥ (Krylov.arnoldi C v (k + 1)).1 k
       = ∑ i ∈ Finset.range (k + 1),
           (Krylov.arnoldi C v (k + 1)).2 i k • (Krylov.arnoldi C v (k + 1)).1 i
@@ -79,8 +91,7 @@ theorem Krylov.arnoldi_relation (C : Mat ℝ n n) (v : Vec ℝ n) (k : ℕ)
   have hh : (Krylov.arnoldi C v (k + 1)).2 (k + 1) k = ‖swept.1‖₂ := by
     rw [hH, if_neg (by omega), if_pos rfl]
   -- `h_{k+1,k} v(k+1)` is the swept `w`, and the sweep took off `Σ h_{i,k} v(i)`
-  rw [hh] at hk ⊢
-  rw [hVnew, smul_smul, mul_inv_cancel₀ hk, one_smul, hVold k le_rfl, hswept,
+  rw [hh, hVnew, Krylov.aux_norm₂_smul_inv_smul, hVold k le_rfl, hswept,
     Krylov.aux_gramSchmidtStep_eq]
   have hcol : ∀ i ∈ Finset.range (k + 1), (Krylov.arnoldi C v (k + 1)).2 i k
       • (Krylov.arnoldi C v (k + 1)).1 i = swept.2 i • V i := by

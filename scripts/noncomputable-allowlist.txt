@@ -416,6 +416,8 @@ shenmaierVertex  real-layer: Alg. 3 of Kulmburg et al. ECC 2024 at exact reals; 
 toPolyL  the polynomial an integer coefficient list stands for, over ℝ: the statement of `eval_toPolyL`, `eval_odePoly_odeL` and `eval_recL`, never evaluated; the lists (`evalL`) are what is computed
 LinearSys.oneStep  real-layer: the one-step reachable sets at the real matrix exponential and the real correction matrices, over any representation; see `LinearSys.constInputSolution`
 Krylov.arnoldi  real-layer: the Arnoldi iteration over ℝ (Euclidean norm and division by it), the subject of Althoff's Krylov paper; no float Krylov reachability yet
+Krylov.arnoldiBasis  real-layer: the basis V of the Arnoldi iteration over ℝ, read off `Krylov.arnoldi`; no float Krylov reachability yet
+Krylov.arnoldiHessenberg  real-layer: the Hessenberg matrix H of the Arnoldi iteration over ℝ, read off `Krylov.arnoldi`; no float Krylov reachability yet
 STL.CNF.upsilon  real-layer: time is `ℝ≥0` and `X_{c/2}` divides by two, which `NNReal` cannot compute; the transformation acts on reach sequences indexed by real time
 StarSet.rowBounds  real-layer: the star set of CORA's constrained-zonotope propagation is over ℝ, no scalar-generic form yet; bounds of a neuron over the factor box
 StarSet.coraRowBounds  real-layer: the star set's neuron bounds as CORA's code computes them, kept for the counterexample, ℝ-only for the same reason
