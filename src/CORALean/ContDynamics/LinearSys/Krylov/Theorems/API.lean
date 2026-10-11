@@ -11,6 +11,14 @@ import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PartialInputSolutionCount
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PartialInputSolutionMemBox
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PrintedTimeIntervalCounterexample
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.TimeIntervalSubset
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfHessenberg
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiBasisMulVecPow
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentArnoldiPow
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ConvexKrylovTermSet
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovTaylor
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetSumExpImage
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PrintedInputPropagationCounterexample
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
 
 /-!
 # What the Krylov reachability of Althoff (TAC 2020) guarantees
@@ -24,4 +32,9 @@ at the reduced matrix `H` and then mapped back through `V`; `ExpMulIntervalSubse
 (`PrintedTimeIntervalCounterexample`). `ExpAugmentMulVec` reads `∫₀ᵗ e^{Aσ}dσ u` off the augmented
 exponential, which makes `InputSolutionMemBox` Lemma IV.1; `PartialInputSolutionMemBox` is Cor. IV.1
 with the sum of the two error radii (`PartialInputSolutionCounterexample`).
+`ArnoldiBasisMulVecPow` (through `PowMulVecOfHessenberg`) makes Alg. 1 exact below the Krylov
+order, so `AugmentArnoldiPow` reads `P Ṽ H̃ʲ e₁ = A^{j-1}u`: the sets of Thm. IV.2 are convex there
+(`ConvexKrylovTermSet`), and `InputReachSubsetKrylovTaylor` is Thm. IV.2's Taylor part for varying
+inputs with the thesis' remainder. `InputReachSubsetSumExpImage` is Alg. 2's input part with
+(24)'s exponent, which line 8 overshoots (`PrintedInputPropagationCounterexample`).
 -/

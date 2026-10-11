@@ -6543,11 +6543,11 @@
       }
     },
     "theorems": {
-      "paper": 1468,
+      "paper": 1475,
       "float": 1704,
-      "helper": 1306,
-      "lemma": 2488,
-      "total": 6966,
+      "helper": 1317,
+      "lemma": 2489,
+      "total": 6985,
       "examples": 120
     }
   }
