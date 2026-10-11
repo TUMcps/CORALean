@@ -94,6 +94,7 @@ import CORALean.Specification.STL.Theorems.RobustDisjEncoding
 import CORALean.Specification.STL.Theorems.RobustSelectorCounterexample
 import CORALean.Specification.STL.Theorems.TsuppSubsetOfDecided
 import CORALean.Specification.STL.Theorems.UpsilonOrOfDecided
+import CORALean.Specification.STL.Theorems.UpsilonOrCounterexample
 
 /-!
 # Signal and reachset temporal logic: the theorems

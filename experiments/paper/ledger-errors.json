@@ -164,6 +164,12 @@
       "description": "for $\\lambda = 0$ the projected mode is no eigenvector"
     }
   },
+  "2016/roehm-atva-stl-model-checking": {
+    "Eq. 12": {
+      "description": "$\\mathrm{tsupp}$ need not decide the formula; disjointness is not enough",
+      "fix": "UpsilonOrOfDecided.lean"
+    }
+  },
   "2016/scott-automatica-constrained-zonotopes": {
     "Sec. 4.2 (choice of j)": {
       "description": "$r_j = 0$ insufficient: Algorithm~1's $R$ violates (A.1)",
