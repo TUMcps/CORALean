@@ -363,6 +363,9 @@
     "Sec. 4.2": {
       "description": "support direction drops $T$ and counts steps from the wrong end",
       "fix": "HeldSimLeSupportCounterexample.lean"
+    },
+    "Alg. 3 (termination)": {
+      "description": "search can stall at one $\\Delta t$ in a decidable case"
     }
   },
   "2024/kulmburg-ecc-zonotope-ellipsotope-containment": {

@@ -330,6 +330,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchLoopSound
 import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchSound
 import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerTimeIntervalCounterexample
 import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperCentreCounterexample
+import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchStallCounterexample
 
 /-!
 # What `LinearSys` guarantees

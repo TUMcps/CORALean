@@ -11,6 +11,13 @@ row sums are rounded up, so the margin down, and a scaled generator is rounded t
 margin is also shrunk by the factor `ρ ∈ (0, 1]` the caller picks, which leaves the slack the
 containment check of `Zonotope.minkDiffRep` needs. Rounding may still move the candidate off the
 real result, so it is not trusted: `Zonotope.minkDiffRep` returns it only once certified.
+
+Orientation, pinned by `minkDiffNS*` in `Examples/RunnableFloat.lean`: generators are stored
+generator-first (in `!![...]` each row is one), and `M i j` is the coefficient of `Z₁`'s generator
+`i` in `Z₂`'s generator `j`. The example is non-square (`h₁ = 3`, `h₂ = 2`,
+`M = [[½,0],[0,¼],[0,¼]]` for `Z₂`'s generators `(½,0)`, `(¼,½)` over `Z₁`'s `(1,0)`, `(0,1)`,
+`(1,1)`), so summing over the wrong axis changes the generator count and margins, and `ρ = ½`
+gives the hull `[-⅝,⅝] × [-¾,¾]`.
 -/
 
 -- Authors:       Tobias Ladner

@@ -125,7 +125,8 @@ is committed beside it:
 The run, and `--check`, fail when a `false`/`fixed` row has no description, a description
 matches no such row, a `fix` is not a linked file, a page has no key, or a key is defined nowhere
 or used by no page. So a new `false`/`fixed` row needs its description (and, for a new paper, its
-key and entry) in the same change. The paper needs `\usepackage{array,longtable,booktabs,hyperref}`,
+key and entry) in the same change. The paper needs `\usepackage{array,longtable,booktabs,hyperref}` (`longtable` after `arydshln`
+if the paper loads it: the other order makes pdflatex loop at the end of the table),
 `\input{appendix-errors}` where the table goes, and `appendix-errors` in `\bibliography{...}`;
 the links point at `\coraleanrepo`, which the table `\providecommand`s as the repository's
 `main` branch, so defining it first (`\newcommand{\coraleanrepo}{.../-/blob/<tag>}`) pins them.
