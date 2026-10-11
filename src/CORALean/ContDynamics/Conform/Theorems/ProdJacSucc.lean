@@ -1,0 +1,47 @@
+import CORALean.ContDynamics.Conform.Definitions.Glo
+
+/-!
+# One more factor of the Jacobian product
+
+`∏_{l=1}^{m+1} A_{k+1-l} = A_k ∏_{l=1}^m A_{k-l}`: the product `prodJac` of the GLO matrices
+of [1, Cor. 1] and [1, Cor. 2] grows by its latest factor on the left, which is what unrolling
+a recursion `x_{k+1} = A_k x_k + …` needs.
+
+## References
+
+* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE
+      Transactions on Automatic Control, 71(5):3014-3029, 2026.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Matrix
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- `∏_{l=1}^{m+1} A_{k+1-l} = A_k ∏_{l=1}^m A_{k-l}`. -/
+theorem Conform.prodJac_succ (A : ℕ → Mat ℝ n n) (k m : ℕ) :
+    Conform.prodJac A (k + 1) (m + 1) = A k * Conform.prodJac A k m := by -- --- PROOF ---
+  simp only [Conform.prodJac]
+  rw [List.range_succ_eq_map, List.map_cons, List.prod_cons, List.map_map]
+  congr 2
+  refine List.map_congr_left fun a _ => ?_
+  simp only [Function.comp_apply]
+  congr 1
+  omega
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

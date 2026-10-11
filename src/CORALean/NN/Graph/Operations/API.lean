@@ -41,6 +41,14 @@ import CORALean.NN.Graph.Operations.SumPool
 import CORALean.NN.Graph.Operations.SumPoolLin
 import CORALean.NN.Graph.Operations.UncertainAdj
 import CORALean.NN.Graph.Operations.UncertainAdjPad
+import CORALean.NN.Graph.Operations.EvalStepsLayers
+import CORALean.NN.Graph.Operations.Bfs
+import CORALean.NN.Graph.Operations.EvalLayers
+import CORALean.NN.Graph.Operations.GcnActSteps
+import CORALean.NN.Graph.Operations.TailEval
+import CORALean.NN.Graph.Operations.TailEnclose
+import CORALean.NN.Graph.Operations.Alg1Node
+import CORALean.NN.Graph.Operations.Alg1Graph
 
 /-!
 # What the graph layers compute, collected

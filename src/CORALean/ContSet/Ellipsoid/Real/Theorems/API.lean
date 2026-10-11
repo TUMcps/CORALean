@@ -114,6 +114,8 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBadDirIff
 import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
 import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
 import CORALean.ContSet.Ellipsoid.Real.Theorems.GoffinSpec
+import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreOfMinVolume
+import CORALean.ContSet.Ellipsoid.Real.Theorems.SumNotConstruct
 
 /-!
 # What an ellipsoid guarantees, collected

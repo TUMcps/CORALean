@@ -46,6 +46,11 @@ import CORALean.ContDynamics.Conform.Theorems.ZcpRegressionLp
 import CORALean.ContDynamics.Conform.Theorems.ZcpRegressionMilp
 import CORALean.ContDynamics.Conform.Theorems.ZcpSetEq
 import CORALean.ContDynamics.Conform.Theorems.PassesBFOfConformant
+import CORALean.ContDynamics.Conform.Theorems.GloInputOutput
+import CORALean.ContDynamics.Conform.Theorems.NarxWindowStep
+import CORALean.ContDynamics.Conform.Theorems.ProdJacSucc
+import CORALean.ContDynamics.Conform.Theorems.SumWindow
+import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
 
 /-!
 # What reachset conformance and its identification guarantee, collected

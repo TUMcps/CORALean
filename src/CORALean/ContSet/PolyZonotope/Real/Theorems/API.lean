@@ -181,6 +181,10 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapMixedExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SquareExampleConstruct
 import CORALean.ContSet.PolyZonotope.Real.Theorems.UnionSubsetConvHull
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CentreNotMemCounterexample
+import CORALean.ContSet.PolyZonotope.Real.Theorems.GreedyTargetSpec
+import CORALean.ContSet.PolyZonotope.Real.Theorems.LeafNodeSpec
+import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxGreedyOuter
+import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentPoint
 
 /-!
 # What `PolyZonotope` guarantees

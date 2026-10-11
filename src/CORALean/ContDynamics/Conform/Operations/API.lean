@@ -1,4 +1,7 @@
 import CORALean.ContDynamics.Conform.Operations.SearchOutliers
+import CORALean.ContDynamics.Conform.Operations.NarxAext
+import CORALean.ContDynamics.Conform.Operations.NarxBext
+import CORALean.ContDynamics.Conform.Operations.NarxE
 
 /-!
 # What reachset conformance and zono-conformal prediction compute, collected

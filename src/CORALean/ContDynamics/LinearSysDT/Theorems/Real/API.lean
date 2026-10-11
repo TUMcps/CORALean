@@ -64,6 +64,9 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiGainIff
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusLmiGainIffHMinusLmi
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusLmiPhiIffGain
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusStepPositiveIffPhi
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PRadiusLeOfLmiChain
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PRadiusPredictStripsLe
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmiChain
 
 /-!
 # What holds of `LinearSysDT` only at `𝕋 := ℝ`, collected

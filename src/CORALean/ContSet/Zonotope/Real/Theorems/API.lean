@@ -332,6 +332,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionStripOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionStripStepOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionTimeUpdateOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionUpdateOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripDev
+import CORALean.ContSet.Zonotope.Real.Theorems.PredictDev
 
 /-!
 # What `Zonotope` guarantees

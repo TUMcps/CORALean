@@ -25,6 +25,8 @@ import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpMid
 import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpMulti
 import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpGroup
 import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxExpGreedy
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxGreedy
+import CORALean.ContSet.PolyZonotope.Real.Cost.RelaxGreedyBigO
 
 /-!
 # What running `PolyZonotope`'s operations costs

@@ -204,6 +204,11 @@ import CORALean.Global.OptimalDiscardNoneExample
 import CORALean.Global.PosDefSchurComplementFirst
 import CORALean.Global.RankOneKroneckerGe
 import CORALean.Global.SupportConstraints
+import CORALean.Global.SupportConstraintsLengthLe
+import CORALean.Global.BinomialTailStrictAntiOn
+import CORALean.Global.PiCountLeMeasureLe
+import CORALean.Global.IpmReliability
+import CORALean.Global.IpmReliabilityMDependentCounterexample
 /-!
 # Global definitions, collected
 

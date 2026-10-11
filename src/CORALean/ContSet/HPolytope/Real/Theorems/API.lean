@@ -106,6 +106,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceNotSubset
 import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspacePrintedCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceValueLe
 import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceAccuracyCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIneqsIff
 
 /-!
 # What `HPolytope` guarantees

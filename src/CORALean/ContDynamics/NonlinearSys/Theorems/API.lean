@@ -94,6 +94,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffInputSolutionSubsetReachSet
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConvexHullTimeIntervalCounterexample
 import CORALean.ContDynamics.NonlinearSys.Theorems.ConvexHullTimeIntervalConvexCounterexample
+import CORALean.ContDynamics.NonlinearSys.Theorems.CancelRedundantCovers
 
 /-!
 # What `NonlinearSys` guarantees

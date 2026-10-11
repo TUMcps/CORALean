@@ -101,6 +101,9 @@ Example.splitter  real-layer: a worked example over the real specification layer
 Example.sqDeriv  real-layer: a worked example over the real specification layer, proved and never run
 Example.sqHess  real-layer: a worked example over the real specification layer, proved and never run
 Example.sysD  real-layer: a worked example over the real specification layer, proved and never run
+GNN.bfs  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.alg1Graph  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+GNN.alg1Node  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.ball  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.ballEnum  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.ballEnumIdx  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet

@@ -15,39 +15,39 @@
   ],
   "totals": {
     "papers": 82,
-    "papers_with_findings": 72,
-    "in_scope": 1063,
-    "formalized": 1018,
-    "not_formalized": 45,
+    "papers_with_findings": 73,
+    "in_scope": 1066,
+    "formalized": 1033,
+    "not_formalized": 33,
     "out_of_scope": 898,
     "out_of_scope_by_reason": {
-      "restated": 322,
+      "restated": 323,
       "mathlib": 17,
-      "not-a-claim": 473,
+      "not-a-claim": 472,
       "done-differently": 12,
       "not-covered": 74
     },
     "by_class": {
-      "correct": 693,
-      "underspecified": 190,
+      "correct": 702,
+      "underspecified": 196,
       "proof-gap": 32,
       "fixed": 96,
       "false": 7
     },
     "claims": {
-      "in_scope": 416,
-      "formalized": 393,
-      "correct": 237,
-      "underspecified": 76,
+      "in_scope": 418,
+      "formalized": 400,
+      "correct": 241,
+      "underspecified": 79,
       "proof-gap": 32,
       "fixed": 43,
       "false": 5
     },
     "definitions": {
-      "in_scope": 647,
-      "formalized": 625,
-      "correct": 456,
-      "underspecified": 114,
+      "in_scope": 648,
+      "formalized": 633,
+      "correct": 461,
+      "underspecified": 117,
       "proof-gap": 0,
       "fixed": 53,
       "false": 2
@@ -435,8 +435,8 @@
       "year": 2008,
       "title": "Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization",
       "in_scope": 11,
-      "formalized": 10,
-      "not_formalized": 1,
+      "formalized": 11,
+      "not_formalized": 0,
       "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 2,
@@ -447,7 +447,7 @@
       },
       "by_class": {
         "correct": 4,
-        "underspecified": 3,
+        "underspecified": 4,
         "proof-gap": 2,
         "fixed": 1,
         "false": 0
@@ -463,9 +463,9 @@
       },
       "definitions": {
         "in_scope": 8,
-        "formalized": 7,
+        "formalized": 8,
         "correct": 3,
-        "underspecified": 3,
+        "underspecified": 4,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
@@ -500,6 +500,11 @@
           "result": "Fig. 1",
           "class": "underspecified",
           "reason": "the figure's split-and-repeat has no bound; a fuel bound makes it terminate"
+        },
+        {
+          "result": "Sec. VI-B",
+          "class": "underspecified",
+          "reason": "\"reached before\" holds up to the polytope enclosures of the past segments, and nothing printed says why dropping a segment loses no later reachable state; see Findings"
         }
       ]
     },
@@ -641,8 +646,8 @@
       "year": 2009,
       "title": "Interval predictor models: Identification and reliability",
       "in_scope": 9,
-      "formalized": 7,
-      "not_formalized": 2,
+      "formalized": 8,
+      "not_formalized": 1,
       "out_of_scope": 28,
       "out_of_scope_by_reason": {
         "restated": 1,
@@ -653,16 +658,16 @@
       },
       "by_class": {
         "correct": 5,
-        "underspecified": 2,
+        "underspecified": 3,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "claims": {
         "in_scope": 3,
-        "formalized": 1,
+        "formalized": 2,
         "correct": 0,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -686,6 +691,11 @@
           "result": "Thm. 2",
           "class": "underspecified",
           "reason": "the last hypothesis is missing: the proof's \"the leaves generated at level `k` from this problem are optimal too\" presupposes the problem has support constraints to generate them; supplied; see Findings"
+        },
+        {
+          "result": "Thm. 3",
+          "class": "underspecified",
+          "reason": "the measurability of the consistency relation `y ∈ I_Q(ϕ)` and of the solution map is not stated, and without it the probabilities of the proof are undefined; supplied; see Findings"
         }
       ]
     },
@@ -1334,8 +1344,8 @@
       "year": 2013,
       "title": "Zonotopic guaranteed state estimation for uncertain systems",
       "in_scope": 14,
-      "formalized": 13,
-      "not_formalized": 1,
+      "formalized": 14,
+      "not_formalized": 0,
       "out_of_scope": 7,
       "out_of_scope_by_reason": {
         "restated": 4,
@@ -1345,7 +1355,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 13,
+        "correct": 14,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -1362,8 +1372,8 @@
       },
       "definitions": {
         "in_scope": 11,
-        "formalized": 10,
-        "correct": 10,
+        "formalized": 11,
+        "correct": 11,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -2354,8 +2364,8 @@
       "year": 2018,
       "title": "On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids",
       "in_scope": 30,
-      "formalized": 28,
-      "not_formalized": 2,
+      "formalized": 30,
+      "not_formalized": 0,
       "out_of_scope": 13,
       "out_of_scope_by_reason": {
         "restated": 6,
@@ -2365,7 +2375,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 23,
+        "correct": 25,
         "underspecified": 0,
         "proof-gap": 2,
         "fixed": 1,
@@ -2382,8 +2392,8 @@
       },
       "definitions": {
         "in_scope": 24,
-        "formalized": 22,
-        "correct": 21,
+        "formalized": 24,
+        "correct": 23,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 1,
@@ -2605,18 +2615,18 @@
       "year": 2019,
       "title": "Linear Encodings for Polytope Containment Problems",
       "in_scope": 23,
-      "formalized": 22,
-      "not_formalized": 1,
-      "out_of_scope": 16,
+      "formalized": 23,
+      "not_formalized": 0,
+      "out_of_scope": 17,
       "out_of_scope_by_reason": {
-        "restated": 5,
+        "restated": 6,
         "mathlib": 0,
         "not-a-claim": 11,
         "done-differently": 0,
         "not-covered": 0
       },
       "by_class": {
-        "correct": 13,
+        "correct": 14,
         "underspecified": 6,
         "proof-gap": 0,
         "fixed": 3,
@@ -2624,8 +2634,8 @@
       },
       "claims": {
         "in_scope": 18,
-        "formalized": 17,
-        "correct": 10,
+        "formalized": 18,
+        "correct": 11,
         "underspecified": 6,
         "proof-gap": 0,
         "fixed": 1,
@@ -3586,8 +3596,8 @@
       "year": 2022,
       "title": "Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes",
       "in_scope": 4,
-      "formalized": 3,
-      "not_formalized": 1,
+      "formalized": 4,
+      "not_formalized": 0,
       "out_of_scope": 3,
       "out_of_scope_by_reason": {
         "restated": 2,
@@ -3597,7 +3607,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 3,
+        "correct": 4,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -3614,8 +3624,8 @@
       },
       "definitions": {
         "in_scope": 3,
-        "formalized": 2,
-        "correct": 2,
+        "formalized": 3,
+        "correct": 3,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -4643,9 +4653,9 @@
       "label": "Ladner 2024",
       "year": 2024,
       "title": "Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification",
-      "in_scope": 8,
-      "formalized": 6,
-      "not_formalized": 2,
+      "in_scope": 9,
+      "formalized": 9,
+      "not_formalized": 0,
       "out_of_scope": 6,
       "out_of_scope_by_reason": {
         "restated": 5,
@@ -4655,16 +4665,16 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 5,
-        "underspecified": 0,
+        "correct": 7,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
       },
       "claims": {
-        "in_scope": 5,
-        "formalized": 4,
-        "correct": 3,
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 5,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 1,
@@ -4672,9 +4682,9 @@
       },
       "definitions": {
         "in_scope": 3,
-        "formalized": 2,
+        "formalized": 3,
         "correct": 2,
-        "underspecified": 0,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -4684,6 +4694,11 @@
           "result": "Thm. 1",
           "class": "fixed",
           "reason": "centre shift printed `+ξ_E/2`, is `−ξ_E/2` under the edge orientation; evenness of `E_{k₀,j}` omitted"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "equal weights are not broken and the leaf is not chosen, so the least index is taken; \"update `G`\" is run as lines 1-2 again on the relaxed set; see Findings"
         }
       ]
     },
@@ -5141,43 +5156,54 @@
       "label": "Ladner 2025",
       "year": 2025,
       "title": "Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure",
-      "in_scope": 12,
-      "formalized": 10,
-      "not_formalized": 2,
-      "out_of_scope": 7,
+      "in_scope": 14,
+      "formalized": 14,
+      "not_formalized": 0,
+      "out_of_scope": 6,
       "out_of_scope_by_reason": {
         "restated": 6,
         "mathlib": 0,
-        "not-a-claim": 1,
+        "not-a-claim": 0,
         "done-differently": 0,
         "not-covered": 0
       },
       "by_class": {
-        "correct": 10,
-        "underspecified": 0,
+        "correct": 12,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "claims": {
-        "in_scope": 8,
-        "formalized": 7,
-        "correct": 7,
-        "underspecified": 0,
+        "in_scope": 9,
+        "formalized": 9,
+        "correct": 8,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "definitions": {
-        "in_scope": 4,
-        "formalized": 3,
-        "correct": 3,
-        "underspecified": 0,
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 4,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
-      "findings": []
+      "findings": [
+        {
+          "result": "Thm. 1",
+          "class": "underspecified",
+          "reason": "`Prop. 1` is printed as an outer approximation, and `Alg. 1` reuses one `P` at every step, which needs each activation enclosure to keep the factors of its input and give its new generators factors of their own; see Findings"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the output-level labels of lines 8 and 10 are swapped, the loops of lines 3 and 11 do not say they step by two and the last pass of line 11 applies an activation past layer κ, and the input's independent generators are made dependent, as `Lemma 1` needs; see Findings"
+        }
+      ]
     },
     {
       "page": "2025/luetzow-jmlr-zono-conformal-prediction.md",
@@ -5234,8 +5260,8 @@
       "year": 2026,
       "title": "Reachset-Conformant System Identification",
       "in_scope": 14,
-      "formalized": 13,
-      "not_formalized": 1,
+      "formalized": 14,
+      "not_formalized": 0,
       "out_of_scope": 11,
       "out_of_scope_by_reason": {
         "restated": 4,
@@ -5246,16 +5272,16 @@
       },
       "by_class": {
         "correct": 12,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "claims": {
         "in_scope": 9,
-        "formalized": 8,
+        "formalized": 9,
         "correct": 7,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -5270,6 +5296,11 @@
         "false": 0
       },
       "findings": [
+        {
+          "result": "Cor. 2",
+          "class": "underspecified",
+          "reason": "`B_ext,k-j,k-i-j` needs the Jacobian block `B_{k,i}` at lags outside `0 ≤ i ≤ n_p`, which `h` does not have; read as zero, see Findings"
+        },
         {
           "result": "Thm. 2",
           "class": "underspecified",
@@ -5443,7 +5474,7 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 36,
+          "correct": 38,
           "underspecified": 6,
           "proof-gap": 2,
           "fixed": 3,
@@ -5573,8 +5604,8 @@
         },
         "cora_issues": 6,
         "findings": {
-          "correct": 27,
-          "underspecified": 8,
+          "correct": 29,
+          "underspecified": 9,
           "proof-gap": 1,
           "fixed": 2,
           "false": 0
@@ -5625,7 +5656,7 @@
         },
         "cora_issues": 4,
         "findings": {
-          "correct": 43,
+          "correct": 44,
           "underspecified": 15,
           "proof-gap": 0,
           "fixed": 8,
@@ -5807,8 +5838,8 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 44,
-          "underspecified": 6,
+          "correct": 45,
+          "underspecified": 7,
           "proof-gap": 1,
           "fixed": 3,
           "false": 0
@@ -5937,7 +5968,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 32,
+          "correct": 33,
           "underspecified": 10,
           "proof-gap": 0,
           "fixed": 6,
@@ -6068,7 +6099,7 @@
         "cora_issues": 2,
         "findings": {
           "correct": 15,
-          "underspecified": 9,
+          "underspecified": 10,
           "proof-gap": 7,
           "fixed": 4,
           "false": 1
@@ -6353,8 +6384,8 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 68,
-          "underspecified": 7,
+          "correct": 70,
+          "underspecified": 9,
           "proof-gap": 2,
           "fixed": 2,
           "false": 0
@@ -6379,8 +6410,8 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 367,
-          "underspecified": 97,
+          "correct": 372,
+          "underspecified": 98,
           "proof-gap": 8,
           "fixed": 45,
           "false": 5
@@ -6403,8 +6434,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 148,
-          "underspecified": 52,
+          "correct": 150,
+          "underspecified": 54,
           "proof-gap": 18,
           "fixed": 25,
           "false": 1
@@ -6451,8 +6482,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 68,
-          "underspecified": 7,
+          "correct": 70,
+          "underspecified": 9,
           "proof-gap": 2,
           "fixed": 2,
           "false": 0
@@ -6476,8 +6507,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 600,
-        "underspecified": 161,
+        "correct": 609,
+        "underspecified": 166,
         "proof-gap": 28,
         "fixed": 74,
         "false": 6
@@ -6486,7 +6517,7 @@
     "findings_not_on_a_class": {
       "global": {
         "correct": 70,
-        "underspecified": 21,
+        "underspecified": 22,
         "proof-gap": 4,
         "fixed": 16,
         "false": 1
@@ -6507,11 +6538,11 @@
       }
     },
     "theorems": {
-      "paper": 1429,
+      "paper": 1460,
       "float": 1704,
-      "helper": 1263,
-      "lemma": 2471,
-      "total": 6867,
+      "helper": 1301,
+      "lemma": 2488,
+      "total": 6953,
       "examples": 120
     }
   }

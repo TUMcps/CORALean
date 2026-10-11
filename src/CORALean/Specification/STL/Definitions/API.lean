@@ -13,6 +13,7 @@ import CORALean.Specification.STL.Definitions.Shift
 import CORALean.Specification.STL.Definitions.Transformation
 import CORALean.Specification.STL.Definitions.DiscreteFormula
 import CORALean.Specification.STL.Definitions.MILPEncoding
+import CORALean.Specification.STL.Definitions.Tsupp
 
 /-!
 # Signal and reachset temporal logic: the definitions
