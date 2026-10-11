@@ -211,6 +211,9 @@ LinearSys.stepInput  spec: what an input function contributes over a step, an ex
 LinearSys.stepInputConst  spec: what an input function contributes over a step, an exact integral
 LinearSys.supportCounterexample  real-layer: HSCC'23 Eqs. (19)-(20), the support vectors at the real exponential `e^{AΔt}` and `∫e^{Aσ}dσ`, an initial state and inputs for a counterexample run; proved over ℝ and never run, no float counterpart
 LinearSys.supportLower  real-layer: HSCC'23 `Alg. 1` lines 1-4, 6-10, 14-16 (lower bounds) at the real exponential `e^{AΔt}` and `∫e^{Aσ}dσ` over support-vector oracles; proved over ℝ and never run, no float counterpart
+LinearSys.supportUpper  real-layer: HSCC'23 `Alg. 1` lines 1-5, 7-13 (upper bounds) at the real exponential `e^{AΔt}` and `∫e^{Aσ}dσ` over a support-function oracle; proved over ℝ and never run, no float counterpart
+LinearSys.verifySearch  real-layer: HSCC'23 `Alg. 3` line 1 and the search loop at the real exponential and over support-function and support-vector oracles; proved sound over ℝ and never run, no float counterpart
+LinearSys.verifySearchLoop  real-layer: HSCC'23 `Alg. 3` lines 3, 7-9 and 14-25 over support-function and support-vector oracles, the bounds of `Alg. 1` at the real exponential; proved sound over ℝ and never run, no float counterpart
 LinearSys.timeIntervalBound  spec: a support-function certificate for the exact reachable set, a proof object with nothing to run
 LinearSys.timeIntervalStep  real-layer: one window at the real exponential; runs in floats as `LinearSys.timeIntervalStepFloat`
 LinearSys.timeIntervalStepCurvatureError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timeIntervalStepCurvatureErrorFloat` (`timeIntervalStepCurvatureError_le_float`)
@@ -449,5 +452,8 @@ sindyBig  real-layer: the entries at least the threshold in magnitude, a filter 
 NonlinParamSys.linearize  real-layer: the matrix zonotopes of real Jacobians (`fderiv`) over the parameter box; no float Jacobian of a real `f` exists to run it on
 NonlinDASys.linReach  real-layer: one DAE linearization step through `LinearSys.oneStep` at the real matrix exponential; no float refinement
 NonlinDASys.initReach  real-layer: `NonlinDASys.linReach` on each start set, split by `Zonotope.split`; no float refinement
+NonlinDASys.reach  real-layer: Althoff and Krogh `Alg. 1`, line 1 and the loop over zonotopes at the real exponential, with the linearization, Cor. 1's errors and the split as arguments; proved sound for certified runs over ℝ and never run
+NonlinDASys.reachLoop  real-layer: Althoff and Krogh `Alg. 1` lines 2-23, the `while` loop and its splits over zonotopes at the real exponential; proved sound for certified runs over ℝ and never run
+NonlinDASys.reachRepeat  real-layer: Althoff and Krogh `Alg. 1` lines 5-10, the linearization-error loop over zonotopes at the real exponential; proved over ℝ and never run
 LinParamSys.dependentHomSolLowOrder  real-layer: CORA's second-order dependent solution, read for its counterexample only
 LinProbSys.enclosingHull  real-layer: [1, Alg. 1] at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart

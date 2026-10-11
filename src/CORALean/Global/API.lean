@@ -217,6 +217,7 @@ import CORALean.Global.MeasureProdViolationLt
 import CORALean.Global.IpmSolCongr
 import CORALean.Global.IpmExistsSubsetCardEq
 import CORALean.Global.IpmReliabilityMDependent
+import CORALean.Global.DiagSdpStrongDuality
 /-!
 # Global definitions, collected
 

@@ -11,9 +11,9 @@ deviation through `F⁻¹`, and get a linear differential inclusion in the diffe
 whose input carries the linearization error (Eqs. 12-16, Prop. 1); the algebraic variables are
 recovered correlated with the differential ones (Prop. 2), and the error is enclosed through
 interval Hessians by a quadratic map that needs no interval arithmetic (Prop. 3, Thm. 1,
-Cor. 1). Everything from the Taylor expansion to the error enclosure is formalized; the overall
-algorithm is not. The remainder sets of Eqs. 10, 11 and 20 take one Lagrange point `ξ` for all
-rows, which is false; one per row, as Eq. 8 has it, is right, and every later step holds with
+Cor. 1). Everything from the Taylor expansion to the error enclosure is formalized, and the
+overall algorithm with its soundness for runs that stay in the region the errors are taken over.
+The remainder sets of Eqs. 10, 11 and 20 take one Lagrange point `ξ` for all rows, which is false; one per row, as Eq. 8 has it, is right, and every later step holds with
 it. CORA's `nonlinDASys` adds `C F⁻¹` times the algebraic error where Cor. 1 subtracts it
 (FINDINGS).
 
@@ -54,7 +54,7 @@ it. CORA's `nonlinDASys` adds `C F⁻¹` times the algebraic error where Cor. 1 
 | `Thm. 1` | (Interval-Free Computation of `Lᵈ`) With `H^d = H^d_c ⊕ [-H^d_Δ, H^d_Δ]`, `quadint(H^d, R^z_Δ) = quad(H^d_c, R^z_Δ) ⊕ [-η, η]`, `η = \|R^z_Δ\|ᵀ H^d_Δ \|R^z_Δ\|`. | [`QuadMapIntEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/QuadMapIntEq.lean) — equal as zonotopes, `[-η, η]` the box zonotope | `correct` |
 | `Eq. 24` | The previous work's bound `Lᵈᵢ ⊆ I_Δᵀ ⊗ H^{d,(i)} ⊗ I_Δ ⊆ [-Lᵢ, Lᵢ]`, `Lᵢ = \|I_Δ\|ᵀ\|H^{d,(i)}\|\|I_Δ\|`, `I_Δ = box(R^z_Δ)`, complexity `O(n³)`. | n/a — restated from [6]; tracked as `Prop. 1` on [Althoff, Stursberg, Buss 2008](../2008/althoff-cdc-conservative-linearization.md) | `restated` |
 | `Cor. 1` | (Interval-Free Computation of `L`) With `L^d_c = quad(H^d_c, R^z_Δ) = (d, H)`, `L^a_c = quad(H^a_c, R^z_Δ) = (e, V)`: `L ⊆ ½(d - CF⁻¹e, H - CF⁻¹V) ⊕ ½([-ζ, ζ] ⊕ (-CF⁻¹)[-ϱ, ϱ])`, `ζ = \|R^z_Δ\|ᵀH^d_Δ\|R^z_Δ\|`, `ϱ = \|R^z_Δ\|ᵀH^a_Δ\|R^z_Δ\|`. | [`LinError.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/LinError.lean), [`LinErrorOuter.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/LinErrorOuter.lean) — every row of `σ` and `φ` at its own Hessian of the intervals, so `L` with one `ξ` or one per row; the printed proof's last line has `+ CF⁻¹`, see Findings | `correct` |
-| `Alg. 1` | `reach(R(0), t_f, r, U, L_max, λ)`: per step, `taylor` (line 3), then repeat the guess `L̄` (Eq. 17), `Ũ`, `Rᵈ(τ_k)` (Eq. 4), `R(τ_k)` (Prop. 2) and `L` (Cor. 1) until `L ⊆ L̄` or `L ⊈ L_max` (lines 4-10); split and recurse if `L ⊈ L_max` (lines 11-16), else `Rᵈ(t_{k+1})` from the computed `L` (lines 18-21). | — | — |
+| `Alg. 1` | `reach(R(0), t_f, r, U, L_max, λ)`: per step, `taylor` (line 3), then repeat the guess `L̄` (Eq. 17), `Ũ`, `Rᵈ(τ_k)` (Eq. 4), `R(τ_k)` (Prop. 2) and `L` (Cor. 1) until `L ⊆ L̄` or `L ⊈ L_max` (lines 4-10); split and recurse if `L ⊈ L_max` (lines 11-16), else `Rᵈ(t_{k+1})` from the computed `L` (lines 18-21). | [`ErrorLoopResult.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Definitions/ErrorLoopResult.lean), [`ReachRepeat.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/ReachRepeat.lean) (`NonlinDASys.reachRepeat`, lines 5-10: Eq. 17's enlargement about the centre, lines 6-8 as one `linReach`, line 9 as Cor. 1 over the joint set, the exit test), [`ReachLoop.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/ReachLoop.lean) (`NonlinDASys.reachLoop`, lines 2-4 and 11-21: the split and its recursion on the remaining horizon, the step with `L` and `Rd(τ_k)` joined to the union), [`Reach.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/Reach.lean) (`NonlinDASys.reach`, lines 1 and 24), [`ReachRepeatSpec.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachRepeatSpec.lean) (`NonlinDASys.reachRepeat_spec`: the last pass is `linReach` at its assumed errors and its exit test holds), [`TrajectoryShift.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/TrajectoryShift.lean) (`NonlinDASys.Trajectory.shift`: the run counted from `t_k`), [`LinPointCertifiesOfSubset.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/LinPointCertifiesOfSubset.lean) (`NonlinDASys.LinPoint.certifies_of_subset`: a certificate at `L` holds at any `L̄ ⊇ L`), [`ReachLoopOuter.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachLoopOuter.lean) (`NonlinDASys.reachLoop_outer`, the induction over passes, steps and splits), [`ReachOuter.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachOuter.lean) (`NonlinDASys.reach_outer`: a run certified at every step is in the union `reach` returns) — line 3's `taylor`, line 9's Hessian bounds over `R^z` (`corollary1`) and line 12's split are arguments, as are `L ⊆ L̄` and `L ⊆ L_max` (`sub`); the errors are pairs, the dynamics' and the constraint's, and `L_max` bounds the dynamics' only; `fuel` bounds both loops and the result is `none` where it runs out; `u*` is the expansion point's `u` | `underspecified` — the horizon must be a whole number of steps `K r` with `K ≥ 1` (a last window can otherwise leave `[0, t_f]`, and at `t_f = 0` the union is empty); the guarantee is for runs certified at each step, staying in the region `R^z` over which the errors `L` are taken, which is `Prop. 1`'s assumption; and the `repeat` loop has no stated bound; see Findings |
 | `Sec. VII` | Transient stability of the IEEE 14-bus system with generators, 14 differential and 28 algebraic variables (Eqs. 25-26, Table I, Figs. 2-4): all solutions return to the initial set at `t = 4.32` s, 540 steps, 3889 s, no split. | n/a — an experiment | `not-a-claim` |
 
 ## Findings
@@ -82,3 +82,17 @@ linearization theorems do.
 ends "`L_c ⊆ (d + CF⁻¹e, H + CF⁻¹V)`", which drops the `½` and flips the sign. The statement is
 what follows from Eq. 15's `σ - CF⁻¹φ`, and what is proved. CORA's `nonlinDASys` computes the
 proof's `+` (FINDINGS.md).
+
+**`Alg. 1` — the horizon, the region and the loop bound.** Three things the listing leaves open
+are supplied. The `while t_k < t_f` loop steps by `r` and stops at the first `t_k ≥ t_f`, so unless
+`t_f` is a multiple of `r` its last window leaves `[0, t_f]`, where a run need not exist; the
+formalization takes `t_f = K r`, and `K ≥ 1`, since at `t_f = 0` the loop does not run and
+`R_union` is empty rather than `R(0)`. The soundness is for runs that stay, over each window, in a
+region `R^z` over which the errors `L` the loop computes hold every consistent point's
+linearization error: `Prop. 1`'s assumption, which the loop checks (`L ⊆ L̄`) on sets computed
+under it and never establishes, so `LinPoint.Certifies` is a hypothesis of `reach_outer` as it is
+of `initReach_outer`. The `repeat` loop of lines 4-10 has no stated bound on its passes, and its
+exit `L ⊈ L_max` hands over to the split with errors that were never contained in the assumed
+ones, which is why only the exit `L ⊆ L̄` passes a certificate from `L` to `L̄`. `reach` takes a
+`fuel`, the result `none` where it runs out, and the splits recurse on `t_f - t_k` from `L = {0}`
+and `R_union = ∅` exactly as lines 13-14 print them.

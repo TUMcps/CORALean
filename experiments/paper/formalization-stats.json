@@ -17,37 +17,37 @@
     "papers": 82,
     "papers_with_findings": 74,
     "in_scope": 1066,
-    "formalized": 1038,
-    "not_formalized": 28,
-    "out_of_scope": 900,
+    "formalized": 1044,
+    "not_formalized": 22,
+    "out_of_scope": 901,
     "out_of_scope_by_reason": {
       "restated": 323,
       "mathlib": 17,
-      "not-a-claim": 474,
+      "not-a-claim": 475,
       "done-differently": 12,
       "not-covered": 74
     },
     "by_class": {
-      "correct": 703,
-      "underspecified": 198,
+      "correct": 704,
+      "underspecified": 202,
       "proof-gap": 33,
-      "fixed": 97,
+      "fixed": 98,
       "false": 7
     },
     "claims": {
       "in_scope": 418,
-      "formalized": 403,
+      "formalized": 404,
       "correct": 242,
       "underspecified": 79,
       "proof-gap": 33,
-      "fixed": 44,
+      "fixed": 45,
       "false": 5
     },
     "definitions": {
       "in_scope": 648,
-      "formalized": 635,
-      "correct": 461,
-      "underspecified": 119,
+      "formalized": 640,
+      "correct": 462,
+      "underspecified": 123,
       "proof-gap": 0,
       "fixed": 53,
       "false": 2
@@ -1163,8 +1163,8 @@
       "year": 2012,
       "title": "Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems",
       "in_scope": 18,
-      "formalized": 17,
-      "not_formalized": 1,
+      "formalized": 18,
+      "not_formalized": 0,
       "out_of_scope": 6,
       "out_of_scope_by_reason": {
         "restated": 2,
@@ -1175,7 +1175,7 @@
       },
       "by_class": {
         "correct": 12,
-        "underspecified": 2,
+        "underspecified": 3,
         "proof-gap": 0,
         "fixed": 3,
         "false": 0
@@ -1191,9 +1191,9 @@
       },
       "definitions": {
         "in_scope": 12,
-        "formalized": 11,
+        "formalized": 12,
         "correct": 9,
-        "underspecified": 1,
+        "underspecified": 2,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
@@ -1223,6 +1223,11 @@
           "result": "Prop. 3",
           "class": "fixed",
           "reason": "with (19)'s interval arithmetic each coordinate of Θ/Λ has its own factor, while G̃^(i,1) scales all of ψ_g by one: Q^(1) at x_0 = (3, 0) is outside the matrix zonotope; true when Θ/Λ ∈ ψ_c ⊕ [-1, 1]ψ_g as a vector; Λ ≠ 0 on R(0) and ξ ∈ R(0) supplied; see Findings"
+        },
+        {
+          "result": "Sec. 5.4",
+          "class": "underspecified",
+          "reason": "holds with (19) read as one factor for the whole vector `Θ/Λ`, the reading under which `Prop. 3` holds, and with `Λ ≠ 0` on `R(0)` and `ξ ∈ R(0)`, which the formalization supplies; the printed coordinatewise derivation does not give it, an exact remainder at `ξ` with `φ = 1/(Λ(ξ)Λ(x₀))` does; see Findings"
         }
       ]
     },
@@ -1477,8 +1482,8 @@
       "year": 2014,
       "title": "Reachability Analysis of Nonlinear Differential-Algebraic Systems",
       "in_scope": 18,
-      "formalized": 17,
-      "not_formalized": 1,
+      "formalized": 18,
+      "not_formalized": 0,
       "out_of_scope": 17,
       "out_of_scope_by_reason": {
         "restated": 9,
@@ -1489,7 +1494,7 @@
       },
       "by_class": {
         "correct": 9,
-        "underspecified": 5,
+        "underspecified": 6,
         "proof-gap": 0,
         "fixed": 3,
         "false": 0
@@ -1505,9 +1510,9 @@
       },
       "definitions": {
         "in_scope": 13,
-        "formalized": 12,
+        "formalized": 13,
         "correct": 5,
-        "underspecified": 4,
+        "underspecified": 5,
         "proof-gap": 0,
         "fixed": 3,
         "false": 0
@@ -1552,6 +1557,11 @@
           "result": "Eq. 20",
           "class": "fixed",
           "reason": "one `ξ` shared by all rows, as in `Eq. 10`: `Lᵈ` holds the counterexample's remainder and the set does not; true with one `ξ` per row"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the horizon must be a whole number of steps `K r` with `K ≥ 1` (a last window can otherwise leave `[0, t_f]`, and at `t_f = 0` the union is empty); the guarantee is for runs certified at each step, staying in the region `R^z` over which the errors `L` are taken, which is `Prop. 1`'s assumption; and the `repeat` loop has no stated bound; see Findings"
         }
       ]
     },
@@ -2952,8 +2962,8 @@
       "year": 2020,
       "title": "Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm",
       "in_scope": 15,
-      "formalized": 14,
-      "not_formalized": 1,
+      "formalized": 15,
+      "not_formalized": 0,
       "out_of_scope": 15,
       "out_of_scope_by_reason": {
         "restated": 8,
@@ -2963,7 +2973,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 12,
+        "correct": 13,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 1,
@@ -2980,8 +2990,8 @@
       },
       "definitions": {
         "in_scope": 7,
-        "formalized": 6,
-        "correct": 5,
+        "formalized": 7,
+        "correct": 6,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
@@ -3714,8 +3724,8 @@
       "year": 2022,
       "title": "Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis",
       "in_scope": 14,
-      "formalized": 13,
-      "not_formalized": 1,
+      "formalized": 14,
+      "not_formalized": 0,
       "out_of_scope": 2,
       "out_of_scope_by_reason": {
         "restated": 1,
@@ -3728,16 +3738,16 @@
         "correct": 6,
         "underspecified": 4,
         "proof-gap": 1,
-        "fixed": 2,
+        "fixed": 3,
         "false": 0
       },
       "claims": {
         "in_scope": 8,
-        "formalized": 7,
+        "formalized": 8,
         "correct": 3,
         "underspecified": 2,
         "proof-gap": 1,
-        "fixed": 1,
+        "fixed": 2,
         "false": 0
       },
       "definitions": {
@@ -3779,6 +3789,11 @@
           "result": "Def. 6",
           "class": "fixed",
           "reason": "eq. (40) prints a maximum where a minimum is meant (the maximum is `∞` for infinite series), so the printed definition gives the wrong gain order on ordinary inputs"
+        },
+        {
+          "result": "Prop. 2 (derivative)",
+          "class": "fixed",
+          "reason": "the limit exists but is not always ≤ 0: the Q̇^(p)_i(0) terms of the numerator, which the proof's (B.5) drops, can make it positive; true when `g'(0)/g(0) ≥ 0`, in particular when the Q^(p)_i are constant; see Findings"
         },
         {
           "result": "Alg. 2",
@@ -4526,9 +4541,9 @@
       "label": "Wetzlinger 2023 (hscc)",
       "year": 2023,
       "title": "Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions",
-      "in_scope": 8,
-      "formalized": 6,
-      "not_formalized": 2,
+      "in_scope": 9,
+      "formalized": 8,
+      "not_formalized": 1,
       "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 3,
@@ -4539,7 +4554,7 @@
       },
       "by_class": {
         "correct": 1,
-        "underspecified": 4,
+        "underspecified": 6,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
@@ -4554,10 +4569,10 @@
         "false": 0
       },
       "definitions": {
-        "in_scope": 8,
-        "formalized": 6,
+        "in_scope": 9,
+        "formalized": 8,
         "correct": 1,
-        "underspecified": 4,
+        "underspecified": 6,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
@@ -4574,6 +4589,11 @@
           "reason": "Eq. (20) maximizes over U along (e^{At_j})^⊤ℓ, but Eq. (18) carries u(j) to t_k by e^{At_{k-1-j}}T, so the direction has to be (e^{At_{k-1-j}}T)^⊤ℓ: `T` is dropped and the steps are counted from the wrong end; see Findings"
         },
         {
+          "result": "Alg. 1 (upper bounds)",
+          "class": "underspecified",
+          "reason": "line 13's `ρ(P̂_U(t_{k+1}),ℓ)` bounds the particular solution at every time of `τ_k` only if `0 ∈ U₀`, that is `ũ ∈ U`: line 2's geometric centre lies in a convex `U`, but the centre of the enclosing interval, which Sec. 3 offers in its place, need not, and then line 13 falls below `ρ(R(τ_k),ℓ)`; `recentre U` is a set holding the origin by construction, which is what the proof uses; see Findings"
+        },
+        {
           "result": "Alg. 1 (lower bounds)",
           "class": "underspecified",
           "reason": "line 16 is a lower bound only when ũ ∈ U, that is 0 ∈ U_0: line 2's volumetric centre lies in U, but the centre of the enclosing interval, which Sec. 3 offers in its place, need not, and then line 16 can exceed ρ(R(τ_k),ℓ); see Findings"
@@ -4587,6 +4607,11 @@
           "result": "Alg. 3 (exits)",
           "class": "underspecified",
           "reason": "the λ_j have to be non-negative, which the linear system decides only when the simplex's vertices are affinely independent; see Findings"
+        },
+        {
+          "result": "Alg. 3 (search)",
+          "class": "underspecified",
+          "reason": "line 18 sends `i ≤ n+1` to the Gram–Schmidt of line 23, but a non-degenerate `P̌` has `n+1` vertices, `i = n+1`, and there no direction is orthogonal to the vertices; `i ≥ n+1` is meant; see Findings"
         }
       ]
     },
@@ -4728,14 +4753,14 @@
       "label": "Wetzlinger 2024 (arch)",
       "year": 2024,
       "title": "Implementation of Polyhedral Operations in CORA 2024",
-      "in_scope": 50,
+      "in_scope": 49,
       "formalized": 49,
-      "not_formalized": 1,
-      "out_of_scope": 15,
+      "not_formalized": 0,
+      "out_of_scope": 16,
       "out_of_scope_by_reason": {
         "restated": 7,
         "mathlib": 0,
-        "not-a-claim": 8,
+        "not-a-claim": 9,
         "done-differently": 0,
         "not-covered": 0
       },
@@ -4756,7 +4781,7 @@
         "false": 0
       },
       "definitions": {
-        "in_scope": 50,
+        "in_scope": 49,
         "formalized": 49,
         "correct": 32,
         "underspecified": 13,
@@ -5807,7 +5832,7 @@
         },
         "cora_issues": 5,
         "findings": {
-          "correct": 123,
+          "correct": 124,
           "underspecified": 35,
           "proof-gap": 5,
           "fixed": 15,
@@ -5964,7 +5989,7 @@
         "cora_issues": 1,
         "findings": {
           "correct": 35,
-          "underspecified": 19,
+          "underspecified": 21,
           "proof-gap": 10,
           "fixed": 7,
           "false": 0
@@ -6042,7 +6067,7 @@
         "cora_issues": 5,
         "findings": {
           "correct": 6,
-          "underspecified": 5,
+          "underspecified": 6,
           "proof-gap": 0,
           "fixed": 3,
           "false": 0
@@ -6122,7 +6147,7 @@
           "correct": 15,
           "underspecified": 10,
           "proof-gap": 7,
-          "fixed": 4,
+          "fixed": 5,
           "false": 1
         }
       },
@@ -6198,7 +6223,7 @@
         "cora_issues": 0,
         "findings": {
           "correct": 17,
-          "underspecified": 5,
+          "underspecified": 6,
           "proof-gap": 0,
           "fixed": 2,
           "false": 0
@@ -6431,7 +6456,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 373,
+          "correct": 374,
           "underspecified": 100,
           "proof-gap": 9,
           "fixed": 45,
@@ -6456,9 +6481,9 @@
         },
         "findings": {
           "correct": 150,
-          "underspecified": 54,
+          "underspecified": 57,
           "proof-gap": 18,
-          "fixed": 25,
+          "fixed": 26,
           "false": 1
         }
       },
@@ -6480,7 +6505,7 @@
         },
         "findings": {
           "correct": 17,
-          "underspecified": 5,
+          "underspecified": 6,
           "proof-gap": 0,
           "fixed": 2,
           "false": 0
@@ -6528,10 +6553,10 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 610,
-        "underspecified": 168,
+        "correct": 611,
+        "underspecified": 172,
         "proof-gap": 29,
-        "fixed": 74,
+        "fixed": 75,
         "false": 6
       }
     },
@@ -6559,11 +6584,11 @@
       }
     },
     "theorems": {
-      "paper": 1504,
+      "paper": 1519,
       "float": 1704,
-      "helper": 1357,
+      "helper": 1380,
       "lemma": 2517,
-      "total": 7082,
+      "total": 7120,
       "examples": 120
     }
   }

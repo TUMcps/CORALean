@@ -323,6 +323,9 @@ import CORALean.ContDynamics.LinearSys.Theorems.InputLawsAdd
 import CORALean.ContDynamics.LinearSys.Theorems.InputLawsOverAdd
 import CORALean.ContDynamics.LinearSys.Theorems.InputLawsOverDominated
 import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovariancePosSemidef
+import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperOuter
+import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchLoopSound
+import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchSound
 
 /-!
 # What `LinearSys` guarantees

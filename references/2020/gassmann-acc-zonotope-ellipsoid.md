@@ -14,9 +14,9 @@ minimum from the halfspace representation (`Def. 4`) or a test on the axes (`Lem
 ellipsoids store a generator rather than a shape matrix, so the transformation `E₀^{-1/2}` is any
 invertible factor of `E₀`, which changes no norm. `Lemma 5` checks the wrong points when the
 zonotope is not centred at the origin; `Def. 4` needs normalized rows. The volume optimality of
-the parallelotope case is formalized; the duality-gap discussion of `Eq. 19` is not: its strong
-duality between the semidefinite relaxation and (18) needs conic (semidefinite) duality, which
-neither the tree nor Mathlib has.
+the parallelotope case is formalized, and so is the duality-gap discussion of `Eq. 19`: the strong
+duality between the semidefinite relaxation and (18) is proved for this program by separating an
+open cone of positive definite matrices from an affine set (`diag_sdp_strong_duality`).
 
 ## Results
 
@@ -40,7 +40,7 @@ neither the tree nor Mathlib has.
 | `Sec. III-B (complexity)` | `Prop. 1` is a mixed-integer quadratic program, in NP [15]; (14) is solvable in `O(m^{n-1})` for fixed rank [16]; the dual (18) is a semidefinite program of polynomial complexity [17]. | n/a — restated from Papadimitriou, Ferrez et al. and Vandenberghe and Boyd, none with a page here | `restated` |
 | `Eq. 17` | `p* = max_{uᵢ² ≤ 1} uᵀ Gₜᵀ Gₜ u`, by `{u \| \|u\| ≤ 1} = {u \| uᵢ² ≤ 1}`. | n/a — `sq_le_one_iff_abs_le_one` | `mathlib` |
 | `Lemma 3` | (Upper bound on the maximum zonotope norm) The dual `d* = min_{λ ≥ 0} 1ᵀ λ` s.t. `diag(λ) - GᵀG ≽ 0` has `d* ≥ ⌈Z⌉²` (Eq. 18). | [`MaxNormSqLeOfDual.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MaxNormSqLeOfDual.lean) — every feasible `λ` bounds `⌈Z⌉²`, so the optimum does | `correct` |
-| `Eq. 19` | (17) as a rank-one semidefinite program; dropping the rank constraint gives a relaxation whose dual is (18), with strong duality, so the gap between (17) and (18) is due to the rank constraint alone. | — | — |
+| `Eq. 19` | (17) as a rank-one semidefinite program; dropping the rank constraint gives a relaxation whose dual is (18), with strong duality, so the gap between (17) and (18) is due to the rank constraint alone. | [`MaxNormSqSdpRelaxation.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MaxNormSqSdpRelaxation.lean), [`DiagSdpStrongDuality.lean`](../../src/CORALean/Global/DiagSdpStrongDuality.lean) — `Zonotope.maxNormSq_sdp_relaxation`: with `rank(U) = 1` written `U = u uᵀ`, as the paper does, the program's maximum is `⌈Z⌉²`; without it, the relaxation's maximum and the minimum of (18) are attained and equal (`diag_sdp_strong_duality`, for any symmetric matrix). The relaxation's own dual has `λ` free; `λ ≥ 0` of (18) follows from `diag(λ) ≽ GᵀG`, so the optima agree | `correct` |
 | `Thm. 1` | (Enclosing ellipsoid) `E(r̂ E₀, z̄) ⊇ Z(G, z̄)` for `E₀` from (13) and `r̂ ≥ ⌈E₀^{-1/2} Z(G, z̄)⌉²` from `Lemma 3` (Eq. 20). | [`Zonotope_to_Ellipsoid.lean`](../../src/CORALean/ContSet/Conversion/Real/Zonotope_to_Ellipsoid.lean) — `Zonotope.ellipsoidNorm`, `ellipsoidNorm_contains`: shape `r F Fᵀ` for any invertible factor `F` of `E₀` and any `r ≥ ⌈F⁻¹ Z⌉²` | `correct` |
 | `Example 1` | For the `G ∈ ℝ^{5×7}` of (21), `⌈Z⌉² = 231`, `d* = 233.250`, and [19] tightens the bound to `231.932`. | n/a — an illustration of the duality gap; the exact value was checked by enumerating the `2⁷` sign vectors, not in Lean | `not-a-claim` |
 | `Sec. IV (uniform points)` | An exactly uniform distribution of `m` points on the sphere is impossible for arbitrary `m`, to the authors' knowledge; random, deterministic or partition-based points approximate it [21]-[23]. | n/a — a remark on the literature | `not-a-claim` |
