@@ -10,7 +10,7 @@
 \setlength{\tabcolsep}{4pt}
 \setlength{\LTcapwidth}{\textwidth}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{5.3cm}cc@{}}
-\caption{The 110 printed results of 47 papers cited by CORA that are false on a non-degenerate
+\caption{The 111 printed results of 48 papers cited by CORA that are false on a non-degenerate
 input: a few words on what is wrong, the Lean counterexample, and the Lean file proving the corrected
 statement. \textsuperscript{\dag}No corrected statement is proved (class \emph{false}).}
 \label{tab:errors}\\
@@ -67,6 +67,7 @@ Reference & Description & \begin{tabular}[b]{@{}c@{}}Lean\\counterexample\end{ta
 \cite[Eq.~3]{proctor2016dynamic} & $X$ and $X'$ swapped & \href{\coraleanrepo/src/CORALean/Global/DmdcCounterexamples.lean}{[CEX]} & --- \\
 \cite[Eq.~13]{proctor2016dynamic} & for $\lambda = 0$ the projected mode is no eigenvector & \href{\coraleanrepo/src/CORALean/Global/DmdcCounterexamples.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/Global/DmdReduced.lean}{[FIX]} \\
 \cite[Eq.~24]{proctor2016dynamic} & for $\lambda = 0$ the projected mode is no eigenvector & \href{\coraleanrepo/src/CORALean/Global/DmdcCounterexamples.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/Global/DmdReduced.lean}{[FIX]} \\
+\cite[Eq.~12]{roehm2016stl} & $\mathrm{tsupp}$ need not decide the formula; disjointness is not enough & \href{\coraleanrepo/src/CORALean/Specification/STL/Theorems/UpsilonOrCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/Specification/STL/Theorems/UpsilonOrOfDecided.lean}{[FIX]} \\
 \cite[Sec.~4.2 (choice of j)]{scott2016constrained} & $r_j = 0$ insufficient: Algorithm~1's $R$ violates (A.1) & \href{\coraleanrepo/src/CORALean/ContSet/ConZonotope/Real/Theorems/PartialSolveRZeroCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContSet/ConZonotope/Real/Theorems/PartialSolveEqOfRZero.lean}{[FIX]} \\
 \cite[Lemma~2]{bak2017time} & error is zero only against the unbounded reachable set & \href{\coraleanrepo/src/CORALean/HybridDynamics/TimeTriggered/Theorems/ScalingConversionNotZeroError.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/HybridDynamics/TimeTriggered/Theorems/ScalingConversionZeroError.lean}{[FIX]} \\
 \cite[Thm.~1]{bak2017time}\textsuperscript{\dag} & no scaling time brings the conversion error below $\delta$ & \href{\coraleanrepo/src/CORALean/HybridDynamics/TimeTriggered/Theorems/FinalConversionNotErrorLt.lean}{[CEX]} & --- \\
