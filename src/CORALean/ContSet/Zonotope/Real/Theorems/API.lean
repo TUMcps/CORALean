@@ -318,6 +318,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapTriOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottParallelotopeVolume
 import CORALean.ContSet.Zonotope.Real.Theorems.ReduceScottVolumeSum
 import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
+import CORALean.ContSet.Zonotope.Real.Theorems.GradientImageEnclosure
 
 /-!
 # What `Zonotope` guarantees

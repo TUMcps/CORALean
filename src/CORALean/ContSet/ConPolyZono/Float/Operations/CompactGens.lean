@@ -1,4 +1,7 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
+import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensSpec
+import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
+import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
+import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
 import CORALean.ContSet.Interval.Float.Operations.Plus
 import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 
@@ -7,11 +10,16 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 
 Equal exponent columns added together, the stored value the lower rounding
 and the gap paid into the ambient box. The constraint block stands.
+
+The exponent matrix is scanned once, into a table of representatives and a table
+of kept columns, and every entry is read through those: the specification
+`compactGensSpec` rescans for each of the `n · h` entries and each of the `h`
+summands under it (issue #61). `compactGens_eq_spec` says they are one.
 -/
 
 -- Authors:       Tobias Ladner
 -- Written:       04-September-2026
--- Last update:   05-September-2026
+-- Last update:   11-October-2026
 -- Last revision: ---
 
 
@@ -26,22 +34,28 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Equal exponent columns added together, the stored value the lower rounding
-and the gap paid into the ambient box. The constraint block stands. -/
-def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
-  p := cPZ.p
-  h := (PolyZonotope.repKeep cPZ.E).card
-  q := cPZ.q
-  m := cPZ.m
-  s := cPZ.s
-  c := cPZ.c
-  G := fun j i => cPZ.mergedCol i j
-  E := fun k j => cPZ.E k (PolyZonotope.keepIdx cPZ.E j)
-  GI := cPZ.GI
-  A := cPZ.A
-  b := cPZ.b
-  EC := cPZ.EC
-  err := cPZ.err.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap cPZ))
+/-- CORA's merge of equal exponent columns, as computed: `compactGensSpec` with
+the representative and kept-column lookups shared between entries. -/
+def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+  let rt := PolyZonotope.repTab cPZ.E
+  let kt := PolyZonotope.keepTab rt
+  let r : Fin cPZ.h → Fin cPZ.h := fun l => rt.getD l.val l
+  let k := PolyZonotope.tabAt (PolyZonotope.repKeep cPZ.E) kt
+  { p := cPZ.p
+    h := (PolyZonotope.repKeep cPZ.E).card
+    q := cPZ.q
+    m := cPZ.m
+    s := cPZ.s
+    c := cPZ.c
+    G := fun j i => PolyZonotope.fiberDown r (fun i l => cPZ.G l i) i (k j)
+    E := fun a j => cPZ.E a (k j)
+    GI := cPZ.GI
+    A := cPZ.A
+    b := cPZ.b
+    EC := cPZ.EC
+    err := cPZ.err.plus (PolyZonotope.generatorError fun i j =>
+      subUp (PolyZonotope.fiberUp r (fun i l => cPZ.G l i) i (k j))
+        (PolyZonotope.fiberDown r (fun i l => cPZ.G l i) i (k j))) }
 
 end CORALean.Float
 

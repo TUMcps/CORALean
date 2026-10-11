@@ -11,6 +11,7 @@ import CORALean.ContSet.Zonotope.Real.Complexity.BilinBigO
 import CORALean.ContSet.Zonotope.Real.Complexity.BackReachAligned
 import CORALean.ContSet.Zonotope.Real.Complexity.ReduceScottStep
 import CORALean.ContSet.Zonotope.Real.Complexity.QuadMapTri
+import CORALean.ContSet.Zonotope.Real.Complexity.SetBasedNetForward
 
 /-!
 # How large `Zonotope`'s results are

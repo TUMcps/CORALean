@@ -2,6 +2,7 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.CompactCons
 import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsGap
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsCol
 import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsColUp
+import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsEqSpec
 import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
 import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
@@ -60,7 +61,7 @@ theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 n) (i : Fin cPZ.m
 by at most one `radius` of its gaps, and `b` moved out by exactly that. -/
 theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 n) {a : Fin cPZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (hsat : cPZ.satisfies a) :
-    cPZ.compactCons.satisfies a := by -- --- PROOF ---
+    cPZ.compactConsSpec.satisfies a := by -- --- PROOF ---
   intro i
   have hb : toReal (cPZ.b.inf i)
         ≤ (∑ l, toReal (cPZ.A i l) * Real.PolyZonotope.monomial cPZ.EC a l)
@@ -116,7 +117,7 @@ theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 n) {a : Fi
 /-- Only the constraint weakens, so the nominal set grows and the error box does
 not move. -/
 theorem ConPolyZono.aux_compactCons_nominal (cPZ : ConPolyZono 𝕋 n) :
-    nominalSet cPZ ⊆ nominalSet cPZ.compactCons := by
+    nominalSet cPZ ⊆ nominalSet cPZ.compactConsSpec := by
   intro x hx
   obtain ⟨a, β, ha, hβ, hsat, hxi⟩ := ConPolyZono.mem_nominalSet_iff.mp hx
   exact ConPolyZono.mem_nominalSet_iff.mpr
@@ -126,8 +127,9 @@ theorem ConPolyZono.aux_compactCons_nominal (cPZ : ConPolyZono 𝕋 n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compactCons_outer (cPZ : ConPolyZono 𝕋 n) :
-    cPZ.construct ⊆ cPZ.compactCons.construct :=
-  InflatedContSet.mono_subset (ConPolyZono.aux_compactCons_nominal cPZ) (subset_refl _)
+    cPZ.construct ⊆ cPZ.compactCons.construct := by
+  rw [ConPolyZono.compactCons_eq_spec]
+  exact InflatedContSet.mono_subset (ConPolyZono.aux_compactCons_nominal cPZ) (subset_refl _)
 
 end CORALean.Float
 

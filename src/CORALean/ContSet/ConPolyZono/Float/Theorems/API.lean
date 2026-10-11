@@ -10,8 +10,11 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionDepOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
+import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensEqSpec
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsEqSpec
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsEqSpec
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsNominal
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactOuter

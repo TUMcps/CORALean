@@ -6,11 +6,11 @@ import Mathlib.Topology.Algebra.InfiniteSum.Real
 /-!
 # The linear relaxation proves a zonotope lies in an ellipsotope
 
-[1, Thm. 15], the containment half: if `H X = G` and `‖X‖_{L⊤₁,q} ≤ 1` Eq. 29 of [1, Thm. 15],
-the `q`-norm of the vector of the rows' absolute sums of `X`, then `Z(G) ⊆ E_q(H)`. A point
+[1, Thm. 15 (relaxation)], the containment: if `H X = G` and `‖X‖_{L⊤₁,q} ≤ 1` (Eq. 29), the
+`q`-norm of the vector of the rows' absolute sums of `X`, then `Z(G) ⊆ E_q(H)`. A point
 `G α = H (X α)` with `‖α‖_∞ ≤ 1` has `|(X α)ᵢ| ≤ Σⱼ |Xᵢⱼ|`, and the `q`-norm is monotone in the
-absolute values. The surjectivity of `H` and the accuracy bound of [1, Thm. 15] are not needed
-here, and not proved.
+absolute values. The surjectivity of `H` is not needed here; that `LR_q` is attained and bounds
+the radius is `lr_isLeast_radius_le`.
 
 ## References
 

@@ -24,6 +24,9 @@ import CORALean.ContSet.Zonotope.Real.Cost.QuadMap
 import CORALean.ContSet.Zonotope.Real.Cost.ExhaustiveSearch
 import CORALean.ContSet.Zonotope.Real.Cost.ExhaustiveSearchBigO
 import CORALean.ContSet.Zonotope.Real.Cost.ExhaustiveSearchFilteredBigO
+import CORALean.ContSet.Zonotope.Real.Cost.ImageEnclosure
+import CORALean.ContSet.Zonotope.Real.Cost.SetBasedNetForward
+import CORALean.ContSet.Zonotope.Real.Cost.SetBasedTraining
 
 /-!
 # What running `Zonotope`'s operations costs
