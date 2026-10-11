@@ -1,4 +1,5 @@
 import CORALean.HybridDynamics.Operations.CalcBasisBox
+import CORALean.HybridDynamics.Operations.HitHessianMatZono
 import CORALean.HybridDynamics.Operations.Jump
 import CORALean.HybridDynamics.Operations.JumpIntersection
 import CORALean.HybridDynamics.Operations.JumpOfPoint
@@ -53,6 +54,7 @@ import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
 import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
 import CORALean.HybridDynamics.Operations.ReachGuard
 import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
+import CORALean.HybridDynamics.Operations.GuardTransitionLevelSet
 
 /-!
 # What a hybrid automaton computes, collected

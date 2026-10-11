@@ -63,7 +63,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md) | Althoff, Krogh | CDC-ECC, pp. 6814-6821 | 2011 | 🟢 16/16 \| 7 |
 | [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md) | Althoff, Krogh, Stursberg | In A. Rauh and E. Auer (eds.), Modeling, Design, and Simulation of Systems with Uncertainties, Springer | 2011 | 🟢 4/4 \| 0 |
 | [Reachability Computation of Low-Order Models for the Safety Verification of High-Order Road Vehicle Models](2012/althoff-acc-low-order-models.md) | Althoff, Dolan | ACC, pp. 3559-3566 | 2012 | 🟢 3/3 \| 11 |
-| [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md) | Althoff, Krogh | HSCC, pp. 45-54 | 2012 | 🟡 15/18 \| 6 |
+| [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md) | Althoff, Krogh | HSCC, pp. 45-54 | 2012 | 🟡 17/18 \| 6 |
 | [Goffin's algorithm for zonotopes](2012/cerny-kybernetika-goffin-zonotopes.md) | Černý | Kybernetika, 48(5):890-906 | 2012 | 🟡 23/25 \| 21 |
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 5 |
 | [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | Automatica, 49(11):3418-3424 | 2013 | 🟡 13/14 \| 7 |
@@ -91,14 +91,14 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Interval estimation methods for discrete-time linear time-invariant systems](2019/tang-tac-interval-estimation.md) | Tang, Wang, Wang, Raïssi, Shen | IEEE Transactions on Automatic Control, 64(11):4717-4724 | 2019 | 🟢 18/18 \| 22 |
 | [Zonotopic set-membership state estimation for discrete-time descriptor LPV systems](2019/wang-tac-descriptor-lpv-estimation.md) | Wang, Wang, Puig, Cembrano | IEEE Transactions on Automatic Control, 64(5):2092-2099 | 2019 | 🟢 11/11 \| 16 |
 | [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md) | Althoff | IEEE Transactions on Automatic Control, 65(2):477-492 | 2020 | 🟡 10/13 \| 16 |
-| [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md) | Gaßmann, Althoff | ACC, pp. 4715-4721 | 2020 | 🟡 13/16 \| 14 |
+| [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md) | Gaßmann, Althoff | ACC, pp. 4715-4721 | 2020 | 🟡 14/15 \| 15 |
 | [Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances](2020/goubault-lcss-robust-underapproximations.md) | Goubault, Putot | IEEE Control Systems Letters, 4(4):928-933 | 2020 | 🟡 5/7 \| 5 |
-| [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md) | Kochdumper, Althoff | HSCC | 2020 | 🟡 13/16 \| 6 |
+| [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md) | Kochdumper, Althoff | HSCC | 2020 | 🟢 16/16 \| 6 |
 | [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟢 11/11 \| 4 |
 | [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md) | Wetzlinger, Kochdumper, Althoff | CDC, pp. 5145–5152 | 2020 | 🟢 12/12 \| 1 |
 | [Guaranteed State Estimation in CORA 2021](2021/althoff-arch-state-estimation.md) | Althoff | ARCH21, EPiC Series in Computing 80, pp. 161-175 | 2021 | 🟢 4/4 \| 17 |
 | [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟢 19/19 \| 14 |
-| [On the co-NP-Completeness of the Zonotope Containment Problem](2021/kulmburg-ejc-zonotope-containment.md) | Kulmburg, Althoff | European Journal of Control, 62:84-91 | 2021 | 🟡 21/24 \| 4 |
+| [On the co-NP-Completeness of the Zonotope Containment Problem](2021/kulmburg-ejc-zonotope-containment.md) | Kulmburg, Althoff | European Journal of Control, 62:84-91 | 2021 | 🟡 22/24 \| 4 |
 | [Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems](2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md) | Wetzlinger, Kulmburg, Althoff | HSCC | 2021 | 🟢 5/5 \| 1 |
 | [Benchmarks for the Formal Verification of Power Systems](2022/althoff-arch-power-systems.md) | Althoff | ARCH22, EPiC Series in Computing, vol. 90, pp. 26-43 | 2022 | 🟢 3/3 \| 18 |
 | [Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes](2022/kochdumper-arxiv-nn-polyzono.md) | Kochdumper, Schilling, Althoff, Bak | arXiv:2207.02715; NFM 2023, LNCS, pp. 16-36 | 2022 | 🟡 3/4 \| 3 |

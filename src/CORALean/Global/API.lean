@@ -1,3 +1,5 @@
+import CORALean.Global.DetLeTraceDivPow
+import CORALean.Global.EqSmulOneOfDetEqTraceDivPow
 import CORALean.Global.ErrLeNormOfAbsLe
 import CORALean.Global.Tensor
 import CORALean.Global.Scalar
@@ -77,6 +79,7 @@ import CORALean.Global.L1NormLeCardMulNorm
 import CORALean.Global.L1NormLeCardMulNormCounterexample
 import CORALean.Global.SliceEqSmulConvexHull
 import CORALean.Global.ChooseLeExpMulDivPow
+import CORALean.Global.Chunks
 import CORALean.Global.CoeffNormBallEq
 import CORALean.Global.CoeffNormBallEqCounterexample
 import CORALean.Global.EllipsotopeSubsetIff

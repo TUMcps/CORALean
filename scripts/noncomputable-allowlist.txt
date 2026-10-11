@@ -252,6 +252,7 @@ LinearSysDT.reachErrorOrders  spec: what a run owes/what an inner approximation 
 LinearSysDT.reachErrorReduced  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachErrorReducedOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachInnerRep  real-layer: an operation over the exact zonotope layer, noncomputable because its `reduce` is; the float run's counterpart goes through `Float.Zonotope.minkDiffRep`
+Location.guardTransitionLevelSet  real-layer: [Kochdumper HSCC'20, Sec. 3.2]'s procedure, whose Step 1 compares real range bounds; the steps are operator arguments with no float instances yet
 Location.timeIntervalStep  real-layer: a location's stay at the real `LinearSys.timeIntervalStep`; runs in floats as `Location.timeIntervalStepFloat` (`timeIntervalFloat_outer`)
 Location.timeIntervalStepInv  real-layer: the stay at the real exponential, cut to the invariant by a homogeneous `Intersection`; runs in floats as `Location.timeIntervalStepInvFloat` (`timeIntervalInvFloat_outer`), cut through a box
 Location.timeIntervalStepSplit  real-layer: the split stay at the real exponential; runs in floats as `Location.timeIntervalStepSplitFloat` (`timeIntervalSplitFloat_outer`)

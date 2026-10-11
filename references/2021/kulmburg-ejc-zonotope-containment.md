@@ -10,7 +10,8 @@ containment problem `Z₁ ⊆ Z₂` as the maximization of a convex function ove
 paper proves co-NP-complete by reducing the circumradius of a parallelotope to the inradius
 of a zonotope. The norm, its properties and the two exact algorithms CORA runs as
 `contains_(..., 'exact:venum')` and `'exact:polymax'` are formalized, as are the reduction's
-lemmas; the hardness theorem itself and the geometric `Lemma 6` it rests on are not. Two
+lemmas, the geometric `Lemma 6` included; the hardness theorem and its corollary are not, the
+tree having no complexity classes to state NP-hardness or co-NP-completeness in. Two
 equations of the reduction and `Lemma 1`'s unit-ball claim are false as printed, and
 `Remark 2` is false.
 
@@ -38,7 +39,7 @@ equations of the reduction and `Lemma 1`'s unit-ball claim are false as printed,
 | `Eq. 30` | R₁(Π) = maxᵢ ‖vᵢ‖₁ ≤ maxᵢ n‖vᵢ‖∞ = nR∞(Π). | [`L1NormLeCardMulNormCounterexample.lean`](../../src/CORALean/Global/L1NormLeCardMulNormCounterexample.lean), [`L1NormLeCardMulNorm.lean`](../../src/CORALean/Global/L1NormLeCardMulNorm.lean) — the counterexample to the equality, and ‖x‖₁ ≤ n‖x‖∞, which gives R₁(Π) ≤ nR∞(Π) on any set **Counterexample:** `l1_norm_le_card_mul_norm_counterexample` | `fixed` — the first equality is false (the rows ±eᵢ have ‖·‖₁ = 1, the corner (1, 1) has 2); the inequality R₁(Π) ≤ nR∞(Π), all that is used, holds; see Findings |
 | `Eq. 34` | Π^Δ × [α, (2n-1)α] ⊂ Z*, the zonotope Z* = Σᵢ [0, 1](vᵢ + αe_{n+1}). | n/a — "as proven in [17]" (Burger and Gritzmann 2000), cited and not proved here | `restated` |
 | `Lemma 5` | For β ∈ [0, α], (β/α)Π^Δ × {β} = Z* ∩ (ℝⁿ × {β}) (Eq. 36), and Eq. 35 at β = α. | [`SliceEqSmulConvexHull.lean`](../../src/CORALean/Global/SliceEqSmulConvexHull.lean) — any N ≥ 1 points vᵢ, Π^Δ their convex hull | `proof-gap` — the printed proof divides by β (λᵢ = (α/β)μᵢ), undefined at β = 0, where the slice is {0} for another reason |
-| `Lemma 6` | There is a vertex q of the largest cube C ⊂ Z* centred at c that touches ∂Z* with qᵀe_{n+1} ∈ [0, α]. | — | — |
+| `Lemma 6` | There is a vertex q of the largest cube C ⊂ Z* centred at c that touches ∂Z* with qᵀe_{n+1} ∈ [0, α]. | [`ExistsCubeVertexMemFrontierLift.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ExistsCubeVertexMemFrontierLift.lean) — Π = {x \| \|zᵢᵀx\| ≤ 1} as for `Eq. 29`, α of `Eq. 31` with R∞(Π) the greatest ‖x‖∞ on Π, Z* of `Eq. 33` in `Vec ℝ n × ℝ` under the maximum norm; the largest cube exists, and a vertex on ∂Z* at height in [0, α] | `proof-gap` — the zones I-IV do not cover Z*, (39)'s r∞(Z*) ≤ (2n - 2)α fails at n = 1, and the bound the conclusion needs, r∞(Z*) ≥ (n - 1)α, is not argued; see Findings |
 | `Thm. 2` | INRAD∞ (does r∞(Z) ≤ k hold?) is NP-hard. | — | — |
 | `Cor. 4` | ZC is co-NP-complete. | — | — |
 | `Alg. 1` | (venum) Z₁ ⊆ Z₂ iff no vertex v of Z₁ has ‖v - c₂‖_{Z₂} > 1. | [`Venum.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/Venum.lean), [`VenumIff.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/VenumIff.lean), [`ConstructEqConvexHullCorner.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ConstructEqConvexHullCorner.lean) — vertices read as the 2^{m₁} sign corners; exact | `underspecified` — the listing takes any zonotopes, but ‖·‖_{Z₂} exists only for non-degenerate Z₂ (`Def. 4`) |
@@ -74,6 +75,21 @@ or as {Vx ≤ 1} matters to `Thm. 2`, which takes its NP-hardness from Bodlaende
 one of the two; neither the theorem nor that citation is formalized here.
 [`ParallelotopeEqAbsMulVecLeCounterexample.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ParallelotopeEqAbsMulVecLeCounterexample.lean),
 [`L1NormLeCardMulNormCounterexample.lean`](../../src/CORALean/Global/L1NormLeCardMulNormCounterexample.lean)
+
+**`Lemma 6` — the proof.** The statement holds (for linearly independent zᵢ and Π read as
+{x | |zᵢᵀx| ≤ 1}, as `Eq. 29` needs), but the proof does not establish it. Its zones I-IV are
+said to hold every point of Z* "in exactly one" of them, yet a point of the box's side faces
+(‖s‖∞ = r∞(Π^Δ), t ∈ (α, (2n - 1)α)) is in none. Its bound (39), r∞(Z*) ≤ min{r∞(Π^Δ),
+(2n - 2)α}, is false at n = 1: there Z* is the parallelogram with vertices 0, (z₁, α), (-z₁, α)
+and (0, 2α), and the square of radius α/2 around c = (0, α) lies in it, so r∞(Z*) > 0 =
+(2n - 2)α. And the conclusion, a vertex at height nα - r∞(Z*) ∈ [0, α], needs r∞(Z*) ≥ (n - 1)α,
+a lower bound the proof never states. It holds: the cube of radius (n - 1)α around c fits in Z*,
+its horizontal part inside Π^Δ because its coefficients aᵢ in the basis zᵢ have ∑|aᵢ| ≤
+n(n - 1)αR∞(Π) ≤ 1/2 (`Eq. 32`), its vertical part inside [α, (2n - 1)α] (`Eq. 34`). With that, a
+maximal cube has a vertex on ∂Z* (a cube whose vertices all lay inside could grow, being their
+hull), an upper one mirrors through c, and the lower vertices sit at height nα - r∞(Z*) ∈
+[0, α], r∞(Z*) ≤ nα since Z* lies between heights 0 and 2nα.
+[`ExistsCubeVertexMemFrontierLift.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ExistsCubeVertexMemFrontierLift.lean)
 
 **Minor.** `Eq. 20` prints the cube as [-1, -1]ⁿ; `Eq. 47` prints G₂ for G₁; `Lemma 3`
 needs b ≠ 0; `Lemma 5`'s proof divides by β; `Alg. 2` tests the sign vector in place of the

@@ -16,37 +16,37 @@
   "totals": {
     "papers": 82,
     "papers_with_findings": 72,
-    "in_scope": 1064,
-    "formalized": 1009,
-    "not_formalized": 55,
-    "out_of_scope": 897,
+    "in_scope": 1063,
+    "formalized": 1016,
+    "not_formalized": 47,
+    "out_of_scope": 898,
     "out_of_scope_by_reason": {
       "restated": 322,
       "mathlib": 17,
-      "not-a-claim": 472,
+      "not-a-claim": 473,
       "done-differently": 12,
       "not-covered": 74
     },
     "by_class": {
-      "correct": 686,
+      "correct": 691,
       "underspecified": 190,
-      "proof-gap": 31,
-      "fixed": 95,
+      "proof-gap": 32,
+      "fixed": 96,
       "false": 7
     },
     "claims": {
       "in_scope": 416,
-      "formalized": 389,
+      "formalized": 391,
       "correct": 235,
       "underspecified": 76,
-      "proof-gap": 31,
-      "fixed": 42,
+      "proof-gap": 32,
+      "fixed": 43,
       "false": 5
     },
     "definitions": {
-      "in_scope": 648,
-      "formalized": 620,
-      "correct": 451,
+      "in_scope": 647,
+      "formalized": 625,
+      "correct": 456,
       "underspecified": 114,
       "proof-gap": 0,
       "fixed": 53,
@@ -1137,8 +1137,8 @@
       "year": 2012,
       "title": "Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems",
       "in_scope": 18,
-      "formalized": 15,
-      "not_formalized": 3,
+      "formalized": 17,
+      "not_formalized": 1,
       "out_of_scope": 6,
       "out_of_scope_by_reason": {
         "restated": 2,
@@ -1148,25 +1148,25 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 11,
+        "correct": 12,
         "underspecified": 2,
         "proof-gap": 0,
-        "fixed": 2,
+        "fixed": 3,
         "false": 0
       },
       "claims": {
         "in_scope": 6,
-        "formalized": 5,
+        "formalized": 6,
         "correct": 3,
         "underspecified": 1,
         "proof-gap": 0,
-        "fixed": 1,
+        "fixed": 2,
         "false": 0
       },
       "definitions": {
         "in_scope": 12,
-        "formalized": 10,
-        "correct": 8,
+        "formalized": 11,
+        "correct": 9,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 1,
@@ -1192,6 +1192,11 @@
           "result": "Eq. 13",
           "class": "underspecified",
           "reason": "the right-hand side is an enclosure, not the set (cut at `η`, `Ê` for the rest), and `y` starts at the same `x₀` as `x`; see Findings"
+        },
+        {
+          "result": "Prop. 3",
+          "class": "fixed",
+          "reason": "with (19)'s interval arithmetic each coordinate of Θ/Λ has its own factor, while G̃^(i,1) scales all of ψ_g by one: Q^(1) at x_0 = (3, 0) is outside the matrix zonotope; true when Θ/Λ ∈ ψ_c ⊕ [-1, 1]ψ_g as a vector; Λ ≠ 0 on R(0) and ξ ∈ R(0) supplied; see Findings"
         }
       ]
     },
@@ -2915,19 +2920,19 @@
       "label": "Gassmann 2020",
       "year": 2020,
       "title": "Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm",
-      "in_scope": 16,
-      "formalized": 13,
-      "not_formalized": 3,
-      "out_of_scope": 14,
+      "in_scope": 15,
+      "formalized": 14,
+      "not_formalized": 1,
+      "out_of_scope": 15,
       "out_of_scope_by_reason": {
         "restated": 8,
         "mathlib": 2,
-        "not-a-claim": 4,
+        "not-a-claim": 5,
         "done-differently": 0,
         "not-covered": 0
       },
       "by_class": {
-        "correct": 11,
+        "correct": 12,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 1,
@@ -2943,9 +2948,9 @@
         "false": 0
       },
       "definitions": {
-        "in_scope": 8,
-        "formalized": 5,
-        "correct": 4,
+        "in_scope": 7,
+        "formalized": 6,
+        "correct": 5,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
@@ -3024,8 +3029,8 @@
       "year": 2020,
       "title": "Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets",
       "in_scope": 16,
-      "formalized": 13,
-      "not_formalized": 3,
+      "formalized": 16,
+      "not_formalized": 0,
       "out_of_scope": 6,
       "out_of_scope_by_reason": {
         "restated": 2,
@@ -3035,7 +3040,7 @@
         "not-covered": 1
       },
       "by_class": {
-        "correct": 6,
+        "correct": 9,
         "underspecified": 3,
         "proof-gap": 0,
         "fixed": 4,
@@ -3052,8 +3057,8 @@
       },
       "definitions": {
         "in_scope": 13,
-        "formalized": 10,
-        "correct": 6,
+        "formalized": 13,
+        "correct": 9,
         "underspecified": 2,
         "proof-gap": 0,
         "fixed": 2,
@@ -3359,8 +3364,8 @@
       "year": 2021,
       "title": "On the co-NP-Completeness of the Zonotope Containment Problem",
       "in_scope": 24,
-      "formalized": 21,
-      "not_formalized": 3,
+      "formalized": 22,
+      "not_formalized": 2,
       "out_of_scope": 4,
       "out_of_scope_by_reason": {
         "restated": 3,
@@ -3372,16 +3377,16 @@
       "by_class": {
         "correct": 11,
         "underspecified": 5,
-        "proof-gap": 1,
+        "proof-gap": 2,
         "fixed": 3,
         "false": 1
       },
       "claims": {
         "in_scope": 12,
-        "formalized": 9,
+        "formalized": 10,
         "correct": 6,
         "underspecified": 1,
-        "proof-gap": 1,
+        "proof-gap": 2,
         "fixed": 1,
         "false": 0
       },
@@ -3429,6 +3434,11 @@
           "result": "Lemma 5",
           "class": "proof-gap",
           "reason": "the printed proof divides by β (λᵢ = (α/β)μᵢ), undefined at β = 0, where the slice is {0} for another reason"
+        },
+        {
+          "result": "Lemma 6",
+          "class": "proof-gap",
+          "reason": "the zones I-IV do not cover Z*, (39)'s r∞(Z*) ≤ (2n - 2)α fails at n = 1, and the bound the conclusion needs, r∞(Z*) ≥ (n - 1)α, is not argued; see Findings"
         },
         {
           "result": "Alg. 1",
@@ -5433,7 +5443,7 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 35,
+          "correct": 36,
           "underspecified": 6,
           "proof-gap": 2,
           "fixed": 3,
@@ -5747,7 +5757,7 @@
         "findings": {
           "correct": 122,
           "underspecified": 33,
-          "proof-gap": 3,
+          "proof-gap": 4,
           "fixed": 15,
           "false": 1
         }
@@ -6135,10 +6145,10 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 13,
+          "correct": 17,
           "underspecified": 5,
           "proof-gap": 0,
-          "fixed": 1,
+          "fixed": 2,
           "false": 0
         }
       },
@@ -6369,9 +6379,9 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 366,
+          "correct": 367,
           "underspecified": 97,
-          "proof-gap": 7,
+          "proof-gap": 8,
           "fixed": 45,
           "false": 5
         }
@@ -6417,10 +6427,10 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 13,
+          "correct": 17,
           "underspecified": 5,
           "proof-gap": 0,
-          "fixed": 1,
+          "fixed": 2,
           "false": 0
         }
       },
@@ -6466,10 +6476,10 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 595,
+        "correct": 600,
         "underspecified": 161,
-        "proof-gap": 27,
-        "fixed": 73,
+        "proof-gap": 28,
+        "fixed": 74,
         "false": 6
       }
     },
@@ -6497,11 +6507,11 @@
       }
     },
     "theorems": {
-      "paper": 1414,
+      "paper": 1423,
       "float": 1704,
-      "helper": 1228,
-      "lemma": 2465,
-      "total": 6811,
+      "helper": 1239,
+      "lemma": 2469,
+      "total": 6835,
       "examples": 120
     }
   }
