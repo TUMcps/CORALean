@@ -392,6 +392,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ExistsFacetMemIntrinsicInterior
 import CORALean.ContSet.Zonotope.Real.Theorems.RowsEqDropRedundant
 import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIffOfFullDim
 import CORALean.ContSet.Zonotope.Real.Theorems.MaxNormSqSdpRelaxation
+import CORALean.ContSet.Zonotope.Real.Theorems.BisectLowPrintedCounterexample
 
 /-!
 # What `Zonotope` guarantees

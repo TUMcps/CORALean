@@ -99,6 +99,10 @@ import CORALean.HybridDynamics.Theorems.GuardIntersectLevelSetOuter
 import CORALean.HybridDynamics.Theorems.GuardTransitionLevelSetOuter
 import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
 import CORALean.HybridDynamics.Theorems.HitSetSubsetHitEnclosure
+import CORALean.HybridDynamics.Theorems.HitPointAddEq
+import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
+import CORALean.HybridDynamics.Theorems.AbstractionErrorOuter
+import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapOuter
 
 /-!
 # What a hybrid run guarantees, collected

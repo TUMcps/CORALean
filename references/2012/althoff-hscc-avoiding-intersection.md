@@ -92,7 +92,8 @@ coordinatewise by `ψ_c = (-2/3, -1/3)`, `ψ_g = (1/3, 1/3)`; for `i = 1` all ge
 entry `(2, 1)` needs `κ = -1`. Since `Θ(x₀)/Λ(x₀) = -n - τ(x₀)Υᵀ`, `τ = (d - nᵀx₀)/Λ`, an interval
 `τ_c ± τ_g` of `τ` gives the one-generator form `ψ_c = -n - τ_cΥᵀ`, `ψ_g = -τ_gΥᵀ`, with which the
 enclosure holds. CORA's `guardIntersect_hyperplaneMap` takes `psi_g = rad(psi_int)`, the
-coordinatewise radii. (17) itself needs `Λ ≠ 0` on `R(0)` and `ξ ∈ R(0)`, unstated.
+coordinatewise radii; [`GuardIntersectHyperplaneMap.lean`](../../src/CORALean/HybridDynamics/Operations/GuardIntersectHyperplaneMap.lean)
+formalizes it with the one-generator form, and is sound with it. (17) itself needs `Λ ≠ 0` on `R(0)` and `ξ ∈ R(0)`, unstated.
 [`HitHessianMatZonoCounterexample.lean`](../../src/CORALean/HybridDynamics/Theorems/HitHessianMatZonoCounterexample.lean),
 [`HitHessianNumMemHitHessianMatZono.lean`](../../src/CORALean/HybridDynamics/Theorems/HitHessianNumMemHitHessianMatZono.lean),
 [`HitPointMemTaylor.lean`](../../src/CORALean/HybridDynamics/Theorems/HitPointMemTaylor.lean)

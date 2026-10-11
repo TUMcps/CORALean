@@ -6336,11 +6336,11 @@
         "group": "hybridDynamics",
         "class": "location",
         "methods": 24,
-        "proved": 1,
+        "proved": 2,
         "float": 12,
-        "not_yet": 3,
+        "not_yet": 2,
         "out_of_scope": 8,
-        "needs_float": 1,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 1,
           "random/sampling": 0,
@@ -6349,7 +6349,7 @@
           "matlab-runtime": 7,
           "deprecated": 0
         },
-        "cora_issues": 3,
+        "cora_issues": 4,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -6540,12 +6540,12 @@
       },
       "hybrid": {
         "methods": 89,
-        "proved": 3,
+        "proved": 4,
         "float": 36,
-        "not_yet": 6,
+        "not_yet": 5,
         "out_of_scope": 44,
-        "needs_float": 3,
-        "cora_issues": 5,
+        "needs_float": 4,
+        "cora_issues": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
@@ -6589,12 +6589,12 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 115,
+      "proved": 116,
       "float": 727,
-      "not_yet": 22,
+      "not_yet": 21,
       "out_of_scope": 396,
-      "needs_float": 115,
-      "cora_issues": 70,
+      "needs_float": 116,
+      "cora_issues": 71,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -6635,11 +6635,11 @@
       }
     },
     "theorems": {
-      "paper": 1550,
+      "paper": 1554,
       "float": 1704,
-      "helper": 1446,
-      "lemma": 2531,
-      "total": 7231,
+      "helper": 1464,
+      "lemma": 2537,
+      "total": 7259,
       "examples": 120
     }
   }
