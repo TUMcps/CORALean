@@ -16,10 +16,10 @@ vector bound (`Lemma III.2`), the correction matrix in the subspace (`Lemma III.
 time-interval enclosure (`Thm. III.2`, corrected), the augmented-system identity behind
 `Lemma IV.1`, the input solution over part of a step (`Cor. IV.1`, corrected) and the error
 bound's linear-in-time form (`Prop. B.1`). `Thm. III.2` and `Cor. IV.1` are false as printed
-(Findings). The varying-input results (`Thm. IV.2`, `Cor. IV.2`) and `Alg. 2` built on them are
-open; formalized of them are the Krylov Taylor terms for varying inputs below the Krylov order
-(with the thesis' remainder in place of the Krylov one), that their Krylov remainder does not
-follow from (3) alone, and `Alg. 2`'s input propagation, whose line 8 is one step off.
+(Findings), and so are the varying-input results (`Thm. IV.2`, `Cor. IV.2`): their Krylov
+remainder fails with Prop. B.1's own error bound, and they are formalized with the Krylov Taylor
+terms below the Krylov order and the thesis' remainder in place of the Krylov one. `Alg. 2` is
+open; formalized of it is the input propagation, whose line 8 is one step off.
 
 ## Results
 
@@ -45,11 +45,11 @@ follow from (3) alone, and `Alg. 2`'s input propagation, whose line 8 is one ste
 | `Lemma IV.1` | (Krylov error of constant input solution) With Ṽ(u), H̃(u) from Alg. 1 for C = [A u; 0 0], v = [0ₙ; 1]: ∫₀^δ e^{At}dt u ∈ PṼ(u)e^{H̃(u)δ}e₁ ⊕ [-1, 1]ⁿε̃_norm δ, P = [I 0ₙ]. | [`Augment.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/Augment.lean), [`ExpAugmentMulVec.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ExpAugmentMulVec.lean), [`InputSolutionMemBox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputSolutionMemBox.lean) — `P e^{C̃δ}[0ₙ; 1] = ∫₀^δ e^{At}dt u` proved from the series of `C̃ = [A u; 0 0]`, and the box from (3) at `C̃`, `[0ₙ; 1]` as hypothesis, as for `Lemma III.1` | `correct` |
 | `Cor. IV.1` | (Input solution for general time bounds) ∫_{t₀}^{t_e} e^{A(δ-t)}dt u ∈ PṼ(u)(e^{H̃(u)(δ-t₀)} - e^{H̃(u)(δ-t_e)})e₁ ⊕ [-1, 1]ⁿε̃_norm(t_e - t₀). | [`PartialInputSolutionMemBox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PartialInputSolutionMemBox.lean), [`PartialInputSolutionCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PartialInputSolutionCounterexample.lean) — with the error radius `ε̃_norm((δ - t₀) + (δ - t_e))`, from `Lemma IV.1` at `δ - t₀` and at `δ - t_e`; **Counterexample:** `Krylov.partial_input_solution_counterexample` | `fixed` — the difference of `Lemma IV.1`'s two error boxes has the sum of their radii, not `ε̃_norm(t_e - t₀)`; at `A = 3`, `u = 4`, `δ = 1`, `ξ = 1`, `[t₀, t_e] = [0, 1/9]` the printed box is too small; see Findings |
 | `Thm. IV.1` | (Reachable set for constant inputs) ∫₀^δ e^{A(δ-t)}dt U ⊆ (c̃_u, g̃⁽¹⁾_u, …) ⊕ [-1, 1]ⁿ(ε̃_norm(c_u) + Σε̃_norm(g⁽ⁱ⁾_u))δ for the zonotope U. | [`ImageSubsetOfApprox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ImageSubsetOfApprox.lean) — the linear map ∫₀^δ e^{At}dt (`expIntegral`), from Lemma IV.1's box at c_u and at each g⁽ⁱ⁾_u, taken as hypotheses | `correct` |
-| `Thm. IV.2` | (Reachable set for varying inputs) R_p(δ) ⊆ P(⊕_{j=1}^η {Ṽ(u)H̃ʲ(u)/j! \| u ∈ U}δʲ ⊕ {Ẽ(δ, u) \| u ∈ U})e₁ ⊕ [-1, 1]ⁿ{ε̃_norm(u) \| u ∈ U}δ. | — partial: [`PartialInputSolutionMemBox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PartialInputSolutionMemBox.lean) (`Cor. IV.1` corrected, the per-interval step of Appendix A), [`AugmentArnoldiPow.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/AugmentArnoldiPow.lean) (P Ṽ(u)H̃ʲ(u)e₁ = A^{j-1}u for 1 ≤ j < ξ), [`ConvexKrylovTermSet.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ConvexKrylovTermSet.lean) (so P D⁽ʲ⁾e₁ = A^{j-1}U/j! is convex below the Krylov order, and the merge (29) holds there), [`InputReachSubsetKrylovTaylor.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovTaylor.lean) (R_p(δ) ⊆ ⊕_{j=1}^{η+1} P D⁽ʲ⁾e₁δʲ ⊕ R for arbitrarily varying inputs in a convex, closed, bounded U, η + 1 < ξ, with R the thesis' remainder E(δ)δU closed and convexified); [`VaryingInputNotOfErrorBound.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputNotOfErrorBound.lean) (the remainder does not follow from (3): at ξ = 1, P Ṽ(u) = 0 for every u, ε̃ = 9/8 satisfies (3) for every u ∈ U, and R_p(8) has a point at distance 10 > 9 in the first coordinate); missing: the printed remainder P{Ṽ(u)Ẽ(δ, u)}e₁ ⊕ [-1, 1]ⁿ{ε̃(u)}δ for varying inputs with Prop. B.1's ε̃ — its proof sums `Cor. IV.1` over l → ∞ sub-intervals (31), whose error radii add up to about lδε̃, not ε̃δ, and uses of ε̃ only (3), which is not enough; B.1's Grönwall factor ϕ is what would have to carry it, and no counterexample with it is known; the statement also drops the Ṽ(u) in front of Ẽ(δ, u) | — |
-| `Cor. IV.2` | (Varying inputs with zonotopic bounds) For the zonotope U, R_p(δ) is enclosed by (c̃_u, g̃⁽ⁱ'ʲ⁾_u) ⊕ R_{p,err}, the generators PṼ(g⁽ⁱ⁾_u)H̃ʲ/j! δʲe₁. | — partial: [`AugmentArnoldiPow.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/AugmentArnoldiPow.lean) (the generators P Ṽ(g⁽ⁱ⁾_u)H̃ʲe₁ = A^{j-1}g⁽ⁱ⁾_u and the center terms P Ṽ(c_u)H̃ʲe₁ = A^{j-1}c_u for j < ξ, linear in the input, as the proof's splitting of {Ṽ(u)H̃ʲ(u) \| u ∈ U} into center and generators needs); [`VaryingInputNotOfErrorBound.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputNotOfErrorBound.lean) (with U = (0ₙ, w), R_p,err does not follow from (3) either); missing: the enclosure, which rests on `Thm. IV.2`'s remainder; for η ≥ ξ the splitting itself is unsupported | — |
+| `Thm. IV.2` | (Reachable set for varying inputs) R_p(δ) ⊆ P(⊕_{j=1}^η {Ṽ(u)H̃ʲ(u)/j! \| u ∈ U}δʲ ⊕ {Ẽ(δ, u) \| u ∈ U})e₁ ⊕ [-1, 1]ⁿ{ε̃_norm(u) \| u ∈ U}δ. | [`VaryingInputReachCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputReachCounterexample.lean), [`InputReachSubsetKrylovTaylor.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovTaylor.lean), [`AugmentArnoldiPow.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/AugmentArnoldiPow.lean), [`ConvexKrylovTermSet.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ConvexKrylovTermSet.lean), [`PartialInputSolutionMemBox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PartialInputSolutionMemBox.lean), [`VaryingInputNotOfErrorBound.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputNotOfErrorBound.lean) — corrected: R_p(δ) ⊆ ⊕_{j=1}^{η+1} P D⁽ʲ⁾e₁δʲ ⊕ R for arbitrarily varying inputs in a convex, closed, bounded U and η + 1 < ξ, with the Krylov remainder P{Ṽ(u)Ẽ(δ, u)}e₁ ⊕ [-1, 1]ⁿ{ε̃(u)}δ replaced by R, the thesis' remainder E(δ)δU closed and convexified (below the Krylov order P Ṽ(u)H̃ʲ(u)e₁ = A^{j-1}u, so P D⁽ʲ⁾e₁ = A^{j-1}U/j! is convex and the merge (29) holds); the printed remainder does not follow from (3) alone (`Krylov.varying_input_not_of_errorBound`), and it fails with Prop. B.1's ε̃; **Counterexample:** `Krylov.varying_input_reach_counterexample`: for the skew A coupling two oscillators of frequency 40 at frequency 1, U = [-1, 1](1/10, 0, 0, 0), δ = π and ξ = 3, every Krylov term P Ṽ(u)Me₁ has fourth coordinate 0 and ε̃(u) = h₄,₃ω ϕ ≤ 1/50 (ν the largest eigenvalue of (C̃ + C̃ᵀ)/2, ω the maximum (35)), while the input -sin s sin 40s · (1/10, 0, 0, 0) reaches y₄ = π/40 > ε̃δ | `fixed` — Appendix A sums `Cor. IV.1` over l sub-intervals, whose error radii add up to about lδε̃, not ε̃δ (31), and uses of ε̃ only (3); B.1's ε̃ bounds the Krylov error of a constant input, in which the oscillating e_ξᵀe^{H̃t}e₁ averages out, and a varying input rectifies it; the statement also drops the Ṽ(u) in front of Ẽ(δ, u); see Findings |
+| `Cor. IV.2` | (Varying inputs with zonotopic bounds) For the zonotope U, R_p(δ) is enclosed by (c̃_u, g̃⁽ⁱ'ʲ⁾_u) ⊕ R_{p,err}, the generators PṼ(g⁽ⁱ⁾_u)H̃ʲ/j! δʲe₁. | [`VaryingInputReachCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputReachCounterexample.lean), [`InputReachSubsetKrylovZonotope.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovZonotope.lean), [`AugmentArnoldiPow.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/AugmentArnoldiPow.lean) — corrected: for U = (c_u, g⁽¹⁾_u, …, g⁽q⁾_u) and η + 1 < ξ, R_p(δ) lies in the sum over j ≤ η + 1 of the zonotopes (P Ṽ(c_u)H̃ʲ(c_u)e₁, P Ṽ(g⁽ⁱ⁾_u)H̃ʲ(g⁽ⁱ⁾_u)e₁)δʲ/j!, which is (c̃_u, g̃⁽ⁱ'ʲ⁾_u) by (4), plus the thesis' remainder E(δ)δU closed and convexified in place of R_p,err; the splitting into center and generators holds there, P Ṽ(u)H̃ʲ(u)e₁ = A^{j-1}u being linear in u; **Counterexample:** `Krylov.varying_input_reach_counterexample` with U = (0₄, (1/10, 0, 0, 0)): Alg. 1 breaks down at c_u = 0, so ε̃(c_u) = 0 and Ẽ(δ, c_u) adds nothing in the fourth coordinate, and the point with y₄ = π/40 lies outside (c̃_u, g̃⁽ⁱ'ʲ⁾_u) ⊕ R_p,err | `fixed` — R_p,err is `Thm. IV.2`'s remainder at the center and generators and fails with it; for η ≥ ξ the splitting of {Ṽ(u)H̃ʲ(u) \| u ∈ U} into center and generators is also unsupported, u ↦ P Ṽ(u)H̃ʲ(u)e₁ not being linear there; see Findings |
 | `Eq. 20` | R_h(τ_{k+1}) = e^{Aδ}R_h(τ_k), R_p(τ_{k+1}) = e^{Aδ}R_p(τ_k) ⊕ R_p(τ₀) (21); with R_b, R_b(τ_{k+1}) = e^{Aδ}R_b(τ_k) (22), R_p(τ_{k+1}) = R_p(τ_k) ⊕ box(R_b(τ_{k+1})) (23). | n/a — restated from Girard 2005 [22, Alg. 1] and Girard, Le Guernic, Maler 2006 [65] | `restated` |
 | `Eq. 24` | R_b(τ_{k+1}) = e^{At_k}R_b(τ₀), the propagation of (22) in one step. | n/a — e^{At_k} = (e^{Aδ})^k, Mathlib's `NormedSpace.exp_nsmul` | `mathlib` |
-| `Alg. 2` | (Compute R([0, t_f])) Thm. III.1 for R*_{h,k+1} and R*_{b,k+1}, R_{p,k+1} = R_{p,k} ⊕ box(R*_{b,k+1}), Thm. III.2 for R_{h,k+1}, R_{k+1} = R_{h,k+1} ⊕ R_{p,k+1}, from Cor. IV.2 and box(conv(0ₙ, R*_{b,1})). | — partial: [`ImageSubsetOfApprox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ImageSubsetOfApprox.lean) (`Thm. III.1`, lines 1, 7, 8), [`TimeIntervalSubset.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/TimeIntervalSubset.lean) (`Thm. III.2` corrected, lines 4, 10), [`InputReachSubsetSumExpImage.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetSumExpImage.lean) (lines 3, 8, 9 with e^{Akδ} in line 8: R_p(kδ + s) ⊆ ⊕_{i=0}^{k} e^{Aiδ}R_p(δ) for s ∈ [0, δ], 0 ∈ U), [`PrintedInputPropagationCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PrintedInputPropagationCounterexample.lean) (line 8 as printed, e^{A(k+1)δ}, misses a reachable point at t = 2δ); missing: the input solution of line 2 (`Cor. IV.2`) and the loop with its union (line 13) | — |
+| `Alg. 2` | (Compute R([0, t_f])) Thm. III.1 for R*_{h,k+1} and R*_{b,k+1}, R_{p,k+1} = R_{p,k} ⊕ box(R*_{b,k+1}), Thm. III.2 for R_{h,k+1}, R_{k+1} = R_{h,k+1} ⊕ R_{p,k+1}, from Cor. IV.2 and box(conv(0ₙ, R*_{b,1})). | — partial: [`ImageSubsetOfApprox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ImageSubsetOfApprox.lean) (`Thm. III.1`, lines 1, 7, 8), [`TimeIntervalSubset.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/TimeIntervalSubset.lean) (`Thm. III.2` corrected, lines 4, 10), [`InputReachSubsetSumExpImage.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetSumExpImage.lean) (lines 3, 8, 9 with e^{Akδ} in line 8: R_p(kδ + s) ⊆ ⊕_{i=0}^{k} e^{Aiδ}R_p(δ) for s ∈ [0, δ], 0 ∈ U), [`PrintedInputPropagationCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PrintedInputPropagationCounterexample.lean) (line 8 as printed, e^{A(k+1)δ}, misses a reachable point at t = 2δ); line 2 is `Cor. IV.2`, false as printed (`Krylov.varying_input_reach_counterexample`) and corrected below the Krylov order with the thesis' remainder (`Cor. IV.2`'s row); missing: the loop with its union (line 13) | — |
 | `Sec. V-B` | Complexity O((o_h + o_b)n³) without and O(ξ²(o_h + o_b)n² + sξ(o_h + o_b)n³) with the Krylov subspace (Table I). | n/a — computational complexity, a subject CORALean does not cover | `not-covered` |
 | `Sec. VI` | Benchmarks and the bridge model (Tables II, Figs. 4-5). | n/a — experiments | `not-a-claim` |
 | `Eq. 32` | (A-posteriori bound at t_f) ‖e^{Ct_f}v - ‖v‖Ve^{Ht_f}e₁‖ ≤ ‖v‖h_{ξ+1,ξ} max_{[0,t_f]}\|e_ξᵀe^{Ht}e₁\|(e^{ν(C)t_f} - 1)/ν(C). | n/a — restated from Wang and Ye [58, Eq. 4.1] | `restated` |
@@ -99,38 +99,59 @@ coefficient interval out of the sum is valid only when every term has one sign, 
 slope of exp from 0, increasing in νt by convexity, and at most 1 for νt < 0 since
 eˣ ≥ 1 + x. [`ErrorLeLinear.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorLeLinear.lean)
 
-The rest is not formalized, so recorded without a class.
+**`Thm. IV.2` — the remainder for varying inputs.** Appendix A sums `Cor. IV.1` over `l`
+sub-intervals (31) and lets `l → ∞`; with the radii `Lemma IV.1` supports the sum grows like
+`lδε̃`, and of `ε̃` the proof uses only that it satisfies (3), which is not enough
+(`Krylov.varying_input_not_of_errorBound`: at `ξ = 1` an `ε̃ = 9/8` satisfying (3) for every
+`u ∈ U` misses a point of `R_p(8)`). With Prop. B.1's own `ε̃ = h_{ξ+1,ξ}ωϕ` the theorem fails as
+well. (3) and (32) are in `‖·‖₂`, the box `[-1, 1]ⁿε̃δ` coordinatewise; the failure is in one
+coordinate, so it is not a matter of the norm. Take the skew
 
-**`Thm. IV.2` — a proof through `Cor. IV.1`.** Appendix A sums `Cor. IV.1` over `l`
-sub-intervals (31) and lets `l → ∞`; with the radii that `Lemma IV.1` supports the sum grows like
-`lδε̃` and the limit does not bound `R_p(δ)`. The merge (29), `aD ⊕ bD = (a + b)D`, holds for a convex
-`D`. Below the Krylov order it is: `Alg. 1` satisfies `C V e_k = V H e_k` for every column but the
-last, and `H` is upper Hessenberg, so `V Hʲ e₁ = Cʲ v/‖v‖` for `j < ξ`, and at `C̃ = [A u; 0 0]`,
-`ṽ = [0ₙ; 1]` this is `P Ṽ(u)H̃ʲ(u)e₁ = A^{j-1}u`: `P D⁽ʲ⁾e₁ = A^{j-1}U/j!`, a linear image of `U`.
-At `j ≥ ξ` the residual `h_{ξ+1,ξ}v⁽ξ⁺¹⁾` enters and the set need not be convex. So the Taylor part
-of the theorem holds for arbitrarily varying inputs as long as `η < ξ`, with the remainder of
-Althoff's thesis in place of the Krylov one. The printed remainder, `P{Ṽ(u)Ẽ(δ, u)}e₁ ⊕
-[-1, 1]ⁿ{ε̃(u)}δ`, is open: (3) bounds the Krylov error of constant inputs, and the error of the
-varying-input tail `Σ_{k≥η} Aᵏ ∫(δ-t)ᵏ/k! u(t)dt` is not one of those errors. The printed set also
-writes `Ẽ(δ, u)`, a `ξ × ξ` interval matrix, where `Ṽ(u)Ẽ(δ, u)` is meant (Appendix A carries the `Ṽ(u)`).
-(3) alone does not give the remainder. At `A = [0 1; 0 0]`, `U = [-1, 1]w`, `w = (1, -1/2)`,
-`δ = 8` and `ξ = 1`, Alg. 1 returns `Ṽ(u) = ṽ`, so `P Ṽ(u) = 0` and every Krylov term of the
-theorem is zero, whatever `η`, `H̃ʲ(u)` and `Ẽ(δ, u)` are. The error of `e^{C̃t}ṽ` at `u = βw` is
-`(β(t - t²/4), -βt/2, 0)`, of Euclidean norm at most `(9/8)t` on `[0, 8]`, so `ε̃ = 9/8` satisfies
-(3) for every `u ∈ U`; the input `-w` on `[0, 6[` and `w` on `[6, 8]` reaches `y₁ = ∫₀⁸ |s/2 - 3| ds
-= 10 > 9 = ε̃δ`. Prop. B.1's own `ε̃` is far larger here (`ϕ = (e^{8ν} - 1)/(8ν)`, `ν ≥ 1/2`), so
-this is not a counterexample to the theorem with that `ε̃`, and the row stays open: a proof has to
-use B.1's Grönwall factor, which Appendix A does not, and a random search (`n = 2`, `ξ ≤ 3`,
-`η ≤ 3`) found no point of `R_p(δ)` outside the printed set with it.
-[`VaryingInputNotOfErrorBound.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputNotOfErrorBound.lean),
+`A = [0 -40 -1 0; 40 0 0 -1; 1 0 0 -40; 0 1 40 0]`,
+
+two oscillators of frequency `40` coupled at frequency `1`, so that
+`e^{τA}e₁ = (cos τ cos 40τ, cos τ sin 40τ, sin τ cos 40τ, sin τ sin 40τ)`, `U = [-1, 1]w` with
+`w = (1/10, 0, 0, 0)` (the zonotope `(0₄, w)`), `δ = π` and `ξ = 3`. For `u = βw ≠ 0`, Alg. 1 on
+`C̃ = [A u; 0 0]`, `ṽ = e₅` returns `Ṽ = [e₅, σe₁, σ(0, 40, 1, 0, 0)/√1601]` (`σ = sgn β`),
+`H̃ = [0 0 0; |β|/10 0 -√1601; 0 √1601 0]` and `h₄,₃ = 80/√1601`; at `u = 0` it breaks down at
+once. So the fourth row of `P Ṽ(u)` is `0` and every Krylov term of the theorem, Taylor or `Ẽ`,
+has fourth coordinate `0`, whatever `η`. `e₃ᵀe^{H̃t}e₁ = (|β|/10)(1 - cos(√1601 t))/√1601`, so
+`ω ≤ 1/(5√1601)`; `xᵀC̃x = (β/10)x₁x₅` as `A` is skew, so `ν ≤ 1/20` and `ϕ ≤ 5/4`; together
+`ε̃(u) ≤ 20/1601 < 1/50`. The input `u(s) = -sin s sin 40s · w` gives the integrand
+`e^{(π - s)A}u(s)` the fourth coordinate `(sin s sin 40s)²/10`, so it reaches `y₄ = π/40`, outside
+`[-π/50, π/50]`. For a constant input the oscillating `e_ξᵀe^{H̃t}e₁` and the coupling average
+out, which (32) measures through `max_t|e_ξᵀe^{H̃t}e₁|`; a varying input that follows the
+oscillation rectifies it, and nothing in `ε̃` sees that. `ω` is taken as the maximum, the exact
+range of (35)'s `e_ξᵀe^{H[0,δ]}e₁`; the matrix-zonotope enclosure [73] that computes it gives an
+upper bound, which at `‖H̃‖δ ≈ 126` may be loose enough to cover the point. The failure needs the step to resolve
+the oscillation (`√1601 δ ≫ 1`, `ξ ≥ 3` so that `H̃` can oscillate); whether the theorem holds for
+small `‖A‖δ` is not settled, and a random search over `n = 2`, `ξ ≤ 3` had found no failure.
+[`VaryingInputReachCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputReachCounterexample.lean),
+[`VaryingInputNotOfErrorBound.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/VaryingInputNotOfErrorBound.lean)
+
+What holds is the Taylor part below the Krylov order with another remainder. `Alg. 1`
+satisfies `C V e_k = V H e_k` for every column but the last and `H` is upper Hessenberg, so
+`V Hʲ e₁ = Cʲ v/‖v‖` for `j < ξ`; at `C̃`, `ṽ` this is `P Ṽ(u)H̃ʲ(u)e₁ = A^{j-1}u`, so
+`P D⁽ʲ⁾e₁ = A^{j-1}U/j!` is a linear image of `U`, convex, and the merge (29) holds. With the
+remainder of Althoff's thesis, `E(δ)δU` closed and convexified, `R_p(δ)` lies in
+`⊕_{j=1}^{η+1} P D⁽ʲ⁾e₁δʲ ⊕ R` for arbitrarily varying inputs in a convex, closed, bounded `U`
+when `η + 1 < ξ`. At `j ≥ ξ` the residual `h_{ξ+1,ξ}v⁽ξ⁺¹⁾` enters and the set need not be
+convex. The printed set also writes `Ẽ(δ, u)`, a `ξ × ξ` interval matrix, where `Ṽ(u)Ẽ(δ, u)` is
+meant (Appendix A carries the `Ṽ(u)`).
+[`InputReachSubsetKrylovTaylor.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovTaylor.lean),
 [`ArnoldiBasisMulVecPow.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ArnoldiBasisMulVecPow.lean),
-[`ConvexKrylovTermSet.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ConvexKrylovTermSet.lean),
-[`InputReachSubsetKrylovTaylor.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovTaylor.lean)
+[`ConvexKrylovTermSet.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ConvexKrylovTermSet.lean)
 
 **`Cor. IV.2` — splitting the Krylov sets.** The proof inserts `U = (c_u, g⁽ⁱ⁾_u)` into `Thm. IV.2` and
 splits `{Ṽ(u)H̃ʲ(u) | u ∈ U}` into `Ṽ(c_u)H̃ʲ(c_u) ⊕ ⨁ᵢ [-1, 1]Ṽ(g⁽ⁱ⁾_u)H̃ʲ(g⁽ⁱ⁾_u)`, as if `u ↦ Ṽ(u)H̃ʲ(u)`
-were linear. After `P` and `e₁` it is, below the Krylov order (`A^{j-1}u`); for `η ≥ ξ`, and for
-`{Ẽ(δ, u)}` and `{ε̃(u)}`, nothing in [1] supports the splitting.
+were linear. After `P` and `e₁` it is, below the Krylov order (`A^{j-1}u`), and there the
+corollary holds with the thesis' remainder in place of `R_p,err`. `R_p,err` itself inherits
+`Thm. IV.2`'s failure: with `U = (0₄, w)` in the example above, `ε̃(c_u) = 0`, `Ẽ(δ, c_u)` and
+every generator have fourth coordinate `0`, and `y₄ = π/40` exceeds `ε̃(w)δ`. For `η ≥ ξ`
+nothing in [1] supports the splitting.
+[`InputReachSubsetKrylovZonotope.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovZonotope.lean)
+
+The rest is not formalized, so recorded without a class.
 
 **`Alg. 2` — the step of line 8.** Line 8 propagates the input part by `e^{A(k+1)δ}`, and line 9
 adds `box(R*_{b,k+1})`, so the input part after two steps is
