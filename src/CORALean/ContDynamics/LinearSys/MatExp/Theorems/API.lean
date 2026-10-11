@@ -174,6 +174,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrTermFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrixFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DetExpSmul
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
 
 /-!
 # What the exponential enclosures guarantee

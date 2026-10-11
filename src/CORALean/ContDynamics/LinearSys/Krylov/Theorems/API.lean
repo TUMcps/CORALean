@@ -19,6 +19,7 @@ import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovTay
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetSumExpImage
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PrintedInputPropagationCounterexample
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputNotOfErrorBound
 
 /-!
 # What the Krylov reachability of Althoff (TAC 2020) guarantees
@@ -35,6 +36,8 @@ with the sum of the two error radii (`PartialInputSolutionCounterexample`).
 `ArnoldiBasisMulVecPow` (through `PowMulVecOfHessenberg`) makes Alg. 1 exact below the Krylov
 order, so `AugmentArnoldiPow` reads `P Ṽ H̃ʲ e₁ = A^{j-1}u`: the sets of Thm. IV.2 are convex there
 (`ConvexKrylovTermSet`), and `InputReachSubsetKrylovTaylor` is Thm. IV.2's Taylor part for varying
-inputs with the thesis' remainder. `InputReachSubsetSumExpImage` is Alg. 2's input part with
-(24)'s exponent, which line 8 overshoots (`PrintedInputPropagationCounterexample`).
+inputs with the thesis' remainder; `VaryingInputNotOfErrorBound` shows that Thm. IV.2's own
+remainder does not follow from the error bound (3) alone. `InputReachSubsetSumExpImage` is
+Alg. 2's input part with (24)'s exponent, which line 8 overshoots
+(`PrintedInputPropagationCounterexample`).
 -/

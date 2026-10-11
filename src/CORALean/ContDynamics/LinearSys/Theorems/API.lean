@@ -326,6 +326,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovariancePosSemidef
 import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperOuter
 import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchLoopSound
 import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchSound
+import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerTimeIntervalCounterexample
+import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperCentreCounterexample
 
 /-!
 # What `LinearSys` guarantees

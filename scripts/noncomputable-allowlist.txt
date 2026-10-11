@@ -459,3 +459,5 @@ NonlinDASys.reachRepeat  real-layer: Althoff and Krogh `Alg. 1` lines 5-10, the 
 LinParamSys.dependentHomSolLowOrder  real-layer: CORA's second-order dependent solution, read for its counterexample only
 LinProbSys.enclosingHull  real-layer: [1, Alg. 1] at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 forwardInnerRange  real-layer: [1, Alg. 1, Step 3] through `kaucherInnerStep` at the real flow enclosures; no float refinement
+GuardMap.abstractionError  real-layer: CORA's `aux_abstractionError` of the hyperplane map at the real matrix exponential of `|A|tmax` and `Real.Zonotope`
+Location.guardIntersectHyperplaneMap  real-layer: CORA's `guardIntersect_hyperplaneMap` over `Real.Zonotope`, with real divisions and `Real.sqrt`

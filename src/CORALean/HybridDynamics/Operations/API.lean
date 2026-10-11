@@ -55,6 +55,8 @@ import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
 import CORALean.HybridDynamics.Operations.ReachGuard
 import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
 import CORALean.HybridDynamics.Operations.GuardTransitionLevelSet
+import CORALean.HybridDynamics.Operations.AbstractionError
+import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMap
 
 /-!
 # What a hybrid automaton computes, collected
