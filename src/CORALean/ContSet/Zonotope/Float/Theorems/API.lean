@@ -126,6 +126,19 @@ import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapMatZonoOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
 import CORALean.ContSet.Zonotope.Float.Theorems.UnitIntervalMulOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.HalfspaceRangeMem
+import CORALean.ContSet.Zonotope.Float.Theorems.CubContractBracket
+import CORALean.ContSet.Zonotope.Float.Theorems.ListQuadBracket
+import CORALean.ContSet.Zonotope.Float.Theorems.CubFoldBracket
+import CORALean.ContSet.Zonotope.Float.Theorems.CubMapCBetween
+import CORALean.ContSet.Zonotope.Float.Theorems.CubMapGClose
+import CORALean.ContSet.Zonotope.Float.Theorems.DependentOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
+import CORALean.ContSet.Zonotope.Float.Theorems.CubMapOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.TensorHBracket
+import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationCoeff
+import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationSmulOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationZonoOuter
 
 /-!
 # What `Zonotope` guarantees

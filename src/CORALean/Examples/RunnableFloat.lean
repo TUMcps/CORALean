@@ -31,6 +31,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.AutoTuneSetOrder
 import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
+import CORALean.ContDynamics.LinearSys.Operations.OneStepFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
 import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRepFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
@@ -409,6 +410,10 @@ def ctReachRun : Zonotope D 2 := ctSysD.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩
 -- what the input enclosures of five sampled steps owe, and the box one step pays (#1)
 def ctErrorBoxRun : Zonotope D 2 := ctSys.timePointStepErrorBoxFloat stepR 4 Z
 def ctInputErrorRun : Zonotope D 2 := ctSys.reachInputErrorFloat stepR 4 Z 5
+
+-- CORA's `oneStep` from `Z`: `Z` re-centred as the inputs `U`, `Z`'s centre as the constant `u`
+def oneStepTpRun : Zonotope D 2 := (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).1
+def oneStepTiRun : Zonotope D 2 := (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).2
 
 /-- The float Minkowski difference at a checked representation: the box `[-2, 2]²` minus a box of
 half-width `½` at `x₀ = ⅛`, its generators written in the minuend's by `M = ¼ I`, certified with

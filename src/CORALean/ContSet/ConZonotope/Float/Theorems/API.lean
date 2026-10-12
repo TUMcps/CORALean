@@ -44,6 +44,7 @@ import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
 import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCentreSubset
 import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesNominalErr
 import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
+import CORALean.ContSet.ConZonotope.Float.Theorems.CubMapOuter
 
 /-!
 # What the float `ConZonotope` guarantees

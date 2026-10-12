@@ -46,6 +46,7 @@ import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
 import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
 import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
 import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
+import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
 
 /-!
 # What the float `ConZonotope` computes

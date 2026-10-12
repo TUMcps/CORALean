@@ -5534,11 +5534,11 @@
         "group": "contSet",
         "class": "conZonotope",
         "methods": 50,
-        "proved": 3,
-        "float": 35,
+        "proved": 2,
+        "float": 36,
         "not_yet": 0,
         "out_of_scope": 12,
-        "needs_float": 3,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -5898,11 +5898,11 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 10,
-        "float": 56,
+        "proved": 7,
+        "float": 59,
         "not_yet": 0,
         "out_of_scope": 14,
-        "needs_float": 10,
+        "needs_float": 7,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -6054,11 +6054,11 @@
         "group": "contDynamics",
         "class": "linearSys",
         "methods": 33,
-        "proved": 3,
-        "float": 19,
+        "proved": 2,
+        "float": 20,
         "not_yet": 1,
         "out_of_scope": 10,
-        "needs_float": 3,
+        "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 1,
@@ -6522,11 +6522,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 66,
-        "float": 589,
+        "proved": 62,
+        "float": 593,
         "not_yet": 6,
         "out_of_scope": 247,
-        "needs_float": 66,
+        "needs_float": 62,
         "cora_issues": 51,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -6546,11 +6546,11 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 30,
-        "float": 65,
+        "proved": 29,
+        "float": 66,
         "not_yet": 4,
         "out_of_scope": 60,
-        "needs_float": 30,
+        "needs_float": 29,
         "cora_issues": 15,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
@@ -6619,11 +6619,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 113,
-      "float": 737,
+      "proved": 108,
+      "float": 742,
       "not_yet": 14,
       "out_of_scope": 396,
-      "needs_float": 113,
+      "needs_float": 108,
       "cora_issues": 76,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6666,10 +6666,10 @@
     },
     "theorems": {
       "paper": 1566,
-      "float": 1746,
+      "float": 1765,
       "helper": 1502,
       "lemma": 2576,
-      "total": 7390,
+      "total": 7409,
       "examples": 120
     }
   }
