@@ -34,7 +34,7 @@ section for the full command sequence from a results directory to
 ## The formalization figure and appendix
 
 `figures/formalization/formalization.tikz` (and a plain `formalization.svg` preview), `appendix-errors.tex`,
-`figures/formalization/formalization-classes.tikz` and `appendix-formalization.tex` are not made
+`figures/formalization/formalization-classes-{sets,others}.tikz` and `appendix-formalization.tex` are not made
 from a results directory: `scripts/formalization-stats.py` writes them, and
 `experiments/paper/formalization-stats.json` beside the paper's scripts, from the tables under
 `references/` and the Lean sources. `floats.tex` includes the first as `fig:formalization`;
@@ -94,7 +94,8 @@ hide a mistake. Algorithm listings (`Alg. n`, `Heuristic`) are read as intention
 README's own five reasons instead (`restated`, `mathlib`, `not-a-claim`, `done-differently`,
 `not-covered`), and a row in scope and not yet formalized is `—`.
 
-**The appendix** (`appendix-formalization.tex`) is two figures, no table: `formalization-classes.tikz`,
+**The appendix** (`appendix-formalization.tex`) is three figures, no table: `formalization-classes-sets.tikz`
+and `formalization-classes-others.tikz` (split so each fits a page and they float independently),
 one bar per CORA class in the three method segments, grouped under italic group headings, with the
 out-of-scope count after the bar; and `formalization-findings.tikz`, the paper findings
 (underspecified, proof gap, fixed, false) per group. The number of methods where CORA itself is

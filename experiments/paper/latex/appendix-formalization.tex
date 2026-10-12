@@ -3,16 +3,25 @@
 \section{CORA coverage and findings per class}
 \label{app:formalization}
 
-Fig.~\ref{fig:formalization-classes} shows the CORA methods per class and
+Fig.~\ref{fig:formalization-classes-sets} and Fig.~\ref{fig:formalization-classes-others} show the CORA
+methods per class and
 Fig.~\ref{fig:formalization-findings} the formalized results of the papers per group, by how they fared.
 Not in the bars are 396 CORA methods that are out of scope, by reason MATLAB plumbing (197), plotting and display (86), random sampling (47), conversions between MATLAB storage formats (30), solver encodings (22), deprecated (14), and 901 results
 of the papers, by reason not a claim (475), restated (323), not covered (74), mathlib (17), done differently (12).
 
-\begin{figure}[p]
+\begin{figure}[tp]
     \centering
-    \includetikz{./figures/formalization/formalization-classes}
-    \caption{CORA methods per class; \emph{+n} counts out-of-scope methods.}
-    \label{fig:formalization-classes}
+    \includetikz{./figures/formalization/formalization-classes-sets}
+    \caption{CORA methods per set representation; \emph{+n} counts out-of-scope methods.}
+    \label{fig:formalization-classes-sets}
+\end{figure}
+
+\begin{figure}[tp]
+    \centering
+    \includetikz{./figures/formalization/formalization-classes-others}
+    \caption{CORA methods per class of the dynamics, hybrid-systems and neural-network groups;
+    \emph{+n} counts out-of-scope methods.}
+    \label{fig:formalization-classes-others}
 \end{figure}
 
 \begin{figure}[t]
