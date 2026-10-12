@@ -531,7 +531,10 @@ CORA_OUT = ("plotting/display", "random/sampling", "solver-dependent",
 REPORT_GROUP = {"contSet": "contSet", "contDynamics": "contDynamics",
                 "hybridDynamics": "hybrid", "nn": "neuralNetworks"}
 REPORT_GROUPS = ("contSet", "contDynamics", "hybrid", "neuralNetworks")
-CORA_ISSUE = re.compile(r"^cora-issue\s+—\s*(.{10,})$")
+# A note is `;`- or sentence-separated parts; a row is a cora-issue row iff one part starts
+# `cora-issue —` (wherever it stands in the note), so a leading `route a —` part cannot drop it.
+CORA_ISSUE = re.compile(r"(?:^|[;.]\s+)cora-issue\s+—\s*(.{10,})$")
+CORA_ISSUE_PART = re.compile(r"(?:^|[;.]\s+)cora-issue")
 DECL = re.compile(
     r"^(?:@\[[^\]\n]*\]\s*)*((?:(?:private|protected|noncomputable|partial|unsafe|nonrec)\s+)*)"
     r"(def|theorem|lemma|abbrev|structure|inductive|class|instance)\s+(?:\(priority\s*:=\s*\w+\)\s+)?([^\s({\[:]+)", re.M)
@@ -609,10 +612,10 @@ class CoraTable:
             if method in self.rows:
                 say(f"{self.rel}: `{method}` is listed twice")
             self.rows[method] = (state, where, note)
-            if CORA_ISSUE.match(note):
+            if CORA_ISSUE.search(note):
                 self.issues += 1
-            elif note.startswith("cora-issue"):
-                say(f"{self.rel}: `{method}`: a note starting `cora-issue` reads "
+            elif CORA_ISSUE_PART.search(note):
+                say(f"{self.rel}: `{method}`: a note part starting `cora-issue` reads "
                     "`cora-issue — <what CORA gets wrong, and where FINDINGS.md says so>`")
 
     @property

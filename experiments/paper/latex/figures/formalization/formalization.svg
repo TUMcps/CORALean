@@ -2,25 +2,25 @@
 <rect width="100%" height="100%" fill="white"/>
 <text x="150" y="20" font-weight="bold">(a) CORA functions</text>
 <text x="142" y="39" text-anchor="end">Set representations</text>
-<rect x="150.0" y="28" width="462.6" height="14" fill="rgb(69,150,255)"/>
-<text x="381.3" y="39" text-anchor="middle" font-size="9" fill="#000">588</text>
-<rect x="612.6" y="28" width="52.7" height="14" fill="rgb(176,210,255)"/>
-<text x="638.9" y="39" text-anchor="middle" font-size="9" fill="#000">67</text>
+<rect x="150.0" y="28" width="463.4" height="14" fill="rgb(69,150,255)"/>
+<text x="381.7" y="39" text-anchor="middle" font-size="9" fill="#000">589</text>
+<rect x="613.4" y="28" width="51.9" height="14" fill="rgb(176,210,255)"/>
+<text x="639.3" y="39" text-anchor="middle" font-size="9" fill="#000">66</text>
 <rect x="665.3" y="28" width="4.7" height="14" fill="rgb(255,255,255)"/>
 <rect x="150" y="28" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="675.0" y="39" font-size="9" fill="#888">+247</text>
 <text x="142" y="59" text-anchor="end">Cont. dynamics</text>
-<rect x="150.0" y="48" width="49.6" height="14" fill="rgb(69,150,255)"/>
-<text x="174.8" y="59" text-anchor="middle" font-size="9" fill="#000">63</text>
-<rect x="199.6" y="48" width="25.2" height="14" fill="rgb(176,210,255)"/>
-<text x="212.1" y="59" text-anchor="middle" font-size="9" fill="#000">32</text>
+<rect x="150.0" y="48" width="51.1" height="14" fill="rgb(69,150,255)"/>
+<text x="175.6" y="59" text-anchor="middle" font-size="9" fill="#000">65</text>
+<rect x="201.1" y="48" width="23.6" height="14" fill="rgb(176,210,255)"/>
+<text x="212.9" y="59" text-anchor="middle" font-size="9" fill="#000">30</text>
 <rect x="224.7" y="48" width="3.1" height="14" fill="rgb(255,255,255)"/>
 <rect x="150" y="48" width="77.9" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="232.9" y="59" font-size="9" fill="#888">+60</text>
 <text x="142" y="79" text-anchor="end">Hybrid systems</text>
-<rect x="150.0" y="68" width="29.1" height="14" fill="rgb(69,150,255)"/>
-<text x="164.6" y="79" text-anchor="middle" font-size="9" fill="#000">37</text>
-<rect x="179.1" y="68" width="3.1" height="14" fill="rgb(176,210,255)"/>
+<rect x="150.0" y="68" width="30.7" height="14" fill="rgb(69,150,255)"/>
+<text x="165.3" y="79" text-anchor="middle" font-size="9" fill="#000">39</text>
+<rect x="180.7" y="68" width="1.6" height="14" fill="rgb(176,210,255)"/>
 <rect x="182.3" y="68" width="3.1" height="14" fill="rgb(255,255,255)"/>
 <rect x="150" y="68" width="35.4" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="190.4" y="79" font-size="9" fill="#888">+44</text>
@@ -64,14 +64,14 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="110.5" height="14" fill="rgb(0,114,189)"/>
-<text x="205.3" y="259" text-anchor="middle" font-size="9" fill="#fff">1566</text>
-<rect x="260.5" y="248" width="181.8" height="14" fill="rgb(42,92,173)"/>
-<text x="351.4" y="259" text-anchor="middle" font-size="9" fill="#000">2576</text>
-<rect x="442.3" y="248" width="121.7" height="14" fill="rgb(84,69,158)"/>
-<text x="503.2" y="259" text-anchor="middle" font-size="9" fill="#000">1724</text>
-<rect x="564.0" y="248" width="106.0" height="14" fill="rgb(126,47,142)"/>
-<text x="617.0" y="259" text-anchor="middle" font-size="9" fill="#000">1502</text>
+<rect x="150.0" y="248" width="110.2" height="14" fill="rgb(0,114,189)"/>
+<text x="205.1" y="259" text-anchor="middle" font-size="9" fill="#fff">1566</text>
+<rect x="260.2" y="248" width="181.3" height="14" fill="rgb(42,92,173)"/>
+<text x="350.8" y="259" text-anchor="middle" font-size="9" fill="#000">2576</text>
+<rect x="441.5" y="248" width="122.9" height="14" fill="rgb(84,69,158)"/>
+<text x="502.9" y="259" text-anchor="middle" font-size="9" fill="#000">1746</text>
+<rect x="564.3" y="248" width="105.7" height="14" fill="rgb(126,47,142)"/>
+<text x="617.2" y="259" text-anchor="middle" font-size="9" fill="#000">1502</text>
 <rect x="150" y="248" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="274" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="284">paper theorems</text>

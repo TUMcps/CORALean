@@ -25,6 +25,8 @@ import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeFloat
 import CORALean.HybridDynamics.Operations.LinearResetLift
 import CORALean.HybridDynamics.Operations.LinearResetSynchronize
 import CORALean.HybridDynamics.Operations.LinearResetSynchronizeFloat
+import CORALean.HybridDynamics.Operations.LinearResetResolveUpdateFloat
+import CORALean.HybridDynamics.Operations.LinearResetResolveFloat
 import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
 import CORALean.HybridDynamics.Operations.TransitionToNonlinearResetFloat
 import CORALean.HybridDynamics.Operations.SdcFlow
@@ -42,6 +44,7 @@ import CORALean.HybridDynamics.Operations.TransitionSynchronize
 import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
 import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
 import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
+import CORALean.HybridDynamics.Operations.TransitionSynchronizeFloat
 import CORALean.HybridDynamics.Operations.IdentGuard
 import CORALean.HybridDynamics.Operations.SplitTreeRegions
 import CORALean.HybridDynamics.Operations.Scatter

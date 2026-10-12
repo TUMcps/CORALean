@@ -57,6 +57,7 @@ import CORALean.HybridDynamics.Theorems.LinearResetLiftOfNotMem
 import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
 import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeFloatOffsetOuter
 import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeFloatOuter
+import CORALean.HybridDynamics.Theorems.LinearResetResolveFloatOuter
 import CORALean.HybridDynamics.Theorems.HasDerivAtSdcFlow
 import CORALean.HybridDynamics.Theorems.MemConstFlowHitSet
 import CORALean.HybridDynamics.Theorems.MemHitSet
@@ -82,6 +83,7 @@ import CORALean.HybridDynamics.Theorems.TransitionSynchronizeGuardExact
 import CORALean.HybridDynamics.Theorems.TransitionSynchronizeReset
 import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetApply
 import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetCORACounterexample
+import CORALean.HybridDynamics.Theorems.TransitionSynchronizeFloatEncloses
 import CORALean.HybridDynamics.Theorems.ResetTaylorMem
 import CORALean.HybridDynamics.Theorems.ResetTaylorCounterexample
 import CORALean.HybridDynamics.Theorems.TrajectoryErrorOuter
