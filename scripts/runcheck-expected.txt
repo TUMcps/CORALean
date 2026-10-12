@@ -279,6 +279,8 @@ pZ_innerApprox | windows=4 last: h=3 c=(0.257812, 0.507812) hull=[-0.500000, 1.0
 pZ_containsPointApprox | true | ok
 pZinnerS | p=0 h=0 q=2 c=(0.375000, 0.250000) err=[0.000000, 0.000000] x [0.000000, 0.000000] | ok
 pZ_containsSetApprox | true | ok
+pZ_containsPointSet | true | ok
+pZ_containsPointSetOut | false | ok
 == Float (hardware binary64) ==
 Z | h=2 c=(1.000000, 0.000000) hull=[0.750000, 1.250000] x [-0.250000, 0.250000] | ok
 I | [0.750000, 1.250000] x [-0.250000, 0.250000] | ok

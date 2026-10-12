@@ -76,6 +76,7 @@ import CORALean.ContSet.HPolytope.Float.Operations.KeptRows
 import CORALean.ContSet.HPolytope.Float.Operations.LeadRows
 import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
 import CORALean.ContSet.HPolytope.Float.Operations.CompactAtoAe
+import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint
 
 /-!
 # What the float `HPolytope` computes

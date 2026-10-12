@@ -127,7 +127,7 @@ Rulings on borderline cases:
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 20 | 0 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 0 | 92 | 0 | 18 | 1 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 9 | 2 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 3 | 52 | 3 | 15 | 6 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 1 | 54 | 3 | 15 | 6 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 2 | 31 | 2 | 11 | 5 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 3 | 43 | 0 | 12 | 4 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 5 | 14 | 0 | 9 | 4 |
@@ -156,7 +156,7 @@ Rulings on borderline cases:
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 4 | 1 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 7 | 1 |
-| [layers](nn/layers.md) | nn | 43 | 1 | 38 | 0 | 4 | 1 |
+| [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 4 | 1 |
 | [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 13 | 0 | 41 | 2 |
 <!-- /coverage-counts -->
 

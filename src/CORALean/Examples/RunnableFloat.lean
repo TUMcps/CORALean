@@ -155,6 +155,7 @@ import CORALean.ContDynamics.NonlinearARX.Operations.FeedFloat
 import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
 import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointApprox
 import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsSetApprox
+import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
 import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApprox
 import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
 
@@ -1402,6 +1403,13 @@ def pZ_containsSetApprox : Bool :=
   PolyZonotope.containsSetApprox pZinner pZinnerS
     (fun _ => ⟨![d (-1) (-5), d 3 (-5), d 23 (-5)], ![d 1 (-5), d 5 (-5), d 25 (-5)]⟩)
     (fun M => Zonotope.basisInverse M) 20 3
+-- the point set test along the four axes: `(8, 0)`, beyond every enclosure, is excluded
+def pZ_containsPointSet : Bool :=
+  PolyZonotope.containsPointSet pZinner ![![d 3 (-3), d 1 (-2)]] 2 10 fun _ =>
+    ⟨4, ![![d 1 0, d 0 0], ![d (-1) 0, d 0 0], ![d 0 0, d 1 0], ![d 0 0, d (-1) 0]]⟩
+def pZ_containsPointSetOut : Bool :=
+  PolyZonotope.containsPointSet pZinner ![![d 3 (-3), d 1 (-2)], ![d 8 0, d 0 0]] 2 10 fun _ =>
+    ⟨4, ![![d 1 0, d 0 0], ![d (-1) 0, d 0 0], ![d 0 0, d 1 0], ![d 0 0, d (-1) 0]]⟩
 
 
 /-! ## A vertex list away from the origin
