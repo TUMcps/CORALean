@@ -349,6 +349,11 @@
       "description": "'wang-FRad' applies dynamics twice; gain not optimal",
       "kind": "other"
     },
+    "enclosePoints": {
+      "description": "maiga: signed u gives zero generator, 0/0 NaN",
+      "kind": "other",
+      "cex": "Cloud2zonotopeCoraZeroGenerator.lean"
+    },
     "minkDiff": {
       "description": "default 'approx' scales unchecked; not inner",
       "kind": "unsound",

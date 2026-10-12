@@ -1,0 +1,39 @@
+import CORALean.ContSet.Zonotope.Real.Zonotope
+
+/-!
+# `Zonotope.signedSums`
+
+[1, Def. 1]: `Z±(R) = {R σ : σ ∈ {-1, 1}ᵖ}`, the images by `R` of the `2ᵖ` vertices of the
+unit cube, for the generators `R` as a family of columns. Centred; the centre is added by the caller
+(`c + Z±(R)`, [1, Eq. 41]).
+
+## References
+
+* [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for
+      Reachability Analysis of Uncertain Nonlinear Hybrid Systems". IEEE Transactions on
+      Automatic Control, 61(9):2341-2356, 2016.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n p : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `Z±(R)`. -/
+def Zonotope.signedSums (R : Fin p → Vec ℝ n) : Set (Vec ℝ n) :=
+  {x | ∃ σ : Fin p → Bool, x = ∑ j, (if σ j then (1 : ℝ) else -1) • R j}
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

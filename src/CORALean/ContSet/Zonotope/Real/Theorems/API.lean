@@ -306,7 +306,6 @@ import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullTranslate
 import CORALean.ContSet.Zonotope.Real.Theorems.HyperplanePolyhedronEqZonotope
 import CORALean.ContSet.Zonotope.Real.Theorems.InterHyperplaneIff
 import CORALean.ContSet.Zonotope.Real.Theorems.SegmentSumEq
-
 import CORALean.ContSet.Zonotope.Real.Theorems.AndAveragingOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.AveragingWeightsOptimal
 import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerUpdateOuter
@@ -431,6 +430,17 @@ import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStrip
 import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStripConvexOn
 import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStripDet
 import CORALean.ContSet.Zonotope.Real.Theorems.VolumeSumSnoc
+import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeCompressMem
+import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeMem
+import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullSignedSums
+import CORALean.ContSet.Zonotope.Real.Theorems.ExtremePointsSubsetSignedSums
+import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetOfSignedSums
+import CORALean.ContSet.Zonotope.Real.Theorems.SignedSumsAppend
+import CORALean.ContSet.Zonotope.Real.Theorems.MspbSetExact
+import CORALean.ContSet.Zonotope.Real.Theorems.MspbOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsMaigaMem
+import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeCoraZeroGenerator
+
 
 /-!
 # What `Zonotope` guarantees
