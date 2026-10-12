@@ -56,6 +56,12 @@ import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpCorrectedApplyLast
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiCorrectedErrorLeErrA
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSmulMulVecTaylorIsBigO
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiLeadingTermsIsBigO
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpNegSmulMulVecLe
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaExpWeight
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeExpMinIntegralDelta
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeOfDecayBound
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.WangYeIntegralStepCounterexample
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaLanczos
 
 /-!
 # What the Krylov reachability of Althoff (TAC 2020) guarantees
@@ -75,10 +81,10 @@ order, so `AugmentArnoldiPow` reads `P Ṽ H̃ʲ e₁ = A^{j-1}u`: the sets of T
 inputs with the thesis' remainder, `InputReachSubsetKrylovZonotope` Cor. IV.2's in the same form;
 `VaryingInputNotOfErrorBound` shows that Thm. IV.2's own remainder does not follow from the error
 bound (3) alone, and `VaryingInputReachCounterexample` that it fails with Prop. B.1's `ε̃`.
-`InputReachSubsetSumExpImage` is
-Alg. 2's input part with (24)'s exponent, which line 8 overshoots
+`InputReachSubsetSumExpImage` is Alg. 2's input part with (24)'s exponent, which line 8 overshoots
 (`PrintedInputPropagationCounterexample`); `ReachSubsetAlg2Corrected` is Alg. 2, repaired, enclosing
 the reachable set.
 
 Jawecki et al. (BIT 2020): (2.3)-(2.10), (3.1b), (3.4), (4.1), (6.8), (7.2), Thms. 1-3, Rmks. 2, 4.
+Wang and Ye (SIMAX 2017): (3.5), Thm. 3.1 (`ErrorLeExpMinIntegralDelta`), (6.4), Thm. 5.2's end.
 -/
