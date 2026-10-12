@@ -8,8 +8,9 @@ If the probabilistic particular solution `Rpar_prob` has the covariance `Σ_s(T)
 accumulated over `T`, and the input solution of one step `pRinput` that of `Δt`, then the one
 `post` returns, and the one of the time-interval set `Rnext.ti`, is `Σ_s(Δt + T)`: the
 recursion `eAt Σ eAtᵀ + Σ₁` is exact. Only the covariance: the sets `Rhom`, `Rpar_det`,
-`RauxDet` and the means have no statement here, and what `initReach` puts into `pRinput`
-is not covered, see FINDINGS.md. The recursion is that of [1, Sec. II].
+`RauxDet` and the means have no statement here. CORA's `initReach` puts a wrong `pRinput` in
+(FINDINGS.md); `LinProbSys.initReach`, sign corrected, meets both hypotheses
+(`initReach_cov`). The recursion is that of [1, Sec. II].
 
 ## References
 

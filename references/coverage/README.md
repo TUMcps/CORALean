@@ -138,7 +138,7 @@ Rulings on borderline cases:
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 2 | 0 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 1 | 6 | 1 | 11 | 2 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 0 | 6 | 1 | 4 | 1 |
-| [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 2 | 0 | 1 | 5 | 1 |
+| [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 3 | 0 | 0 | 5 | 1 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 4 | 0 | 2 | 0 |
 | [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 3 | 19 | 1 | 10 | 1 |
 | [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 4 | 7 | 0 | 6 | 1 |

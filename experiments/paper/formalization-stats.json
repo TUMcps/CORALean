@@ -6002,11 +6002,11 @@
         "group": "contDynamics",
         "class": "linProbSys",
         "methods": 8,
-        "proved": 2,
+        "proved": 3,
         "float": 0,
-        "not_yet": 1,
+        "not_yet": 0,
         "out_of_scope": 5,
-        "needs_float": 2,
+        "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 1,
@@ -6546,11 +6546,11 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 28,
+        "proved": 29,
         "float": 63,
-        "not_yet": 8,
+        "not_yet": 7,
         "out_of_scope": 60,
-        "needs_float": 28,
+        "needs_float": 29,
         "cora_issues": 14,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
@@ -6619,11 +6619,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 117,
+      "proved": 118,
       "float": 728,
-      "not_yet": 19,
+      "not_yet": 18,
       "out_of_scope": 396,
-      "needs_float": 117,
+      "needs_float": 118,
       "cora_issues": 71,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6667,9 +6667,9 @@
     "theorems": {
       "paper": 1566,
       "float": 1720,
-      "helper": 1489,
-      "lemma": 2550,
-      "total": 7325,
+      "helper": 1495,
+      "lemma": 2563,
+      "total": 7344,
       "examples": 120
     }
   }

@@ -440,6 +440,8 @@ dmdCandidate  real-layer: the dynamic mode decomposition at a real SVD factoriza
 LinearARX.ofCharpoly  real-layer: the coefficients of the real characteristic polynomial; `LinearARX.ofObserver`, its sibling, is real-layer too
 LinearSysDT.toLinearSys  real-layer: the converted system at a real matrix logarithm (an argument, Mathlib has none) and the real matrix inverse; no float counterpart
 LinProbSys.initReachCov  real-layer: CORA's input covariance at a diagonal `A`, real exponential; kept to state the finding that it is the printed, wrong-sign form
+LinProbSys.inputCov  real-layer: the corrected one-step noise covariance at the real exponential and matrix inverse; a Gaussian process has no float counterpart
+LinProbSys.initReach  real-layer: the first step of the probabilistic reach loop at the real matrix exponential, inverse and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 LinProbSys.post  real-layer: one step of the probabilistic reach loop at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 Transition.synchronize  real-layer: the synchronized transition at the real scalar, `LinearReset.synchronize` for the reset and `HPolytope.intersection` at the real `FloatOps` for the guard; the computable guard and target steps are `Transition.synchronizeGuard` and `Transition.synchronizeTarget`
 LinearSysDT.intervalObserverCoord  real-layer: the transformed interval observer of Tang et al. 2019 at the real matrix inverse `S⁻¹` of its coordinate transformation; no float counterpart of the inverse
