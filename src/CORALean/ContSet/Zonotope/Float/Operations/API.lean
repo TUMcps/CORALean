@@ -94,8 +94,12 @@ import CORALean.ContSet.Zonotope.Float.Operations.StUsed
 import CORALean.ContSet.Zonotope.Float.Operations.StDelta
 import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
 import CORALean.ContSet.Zonotope.Float.Operations.Underapproximate
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffAligned
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffAlignedCandidate
 import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
 import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRepCandidate
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffStretch
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffStretchInner
 import CORALean.ContSet.Zonotope.Float.Operations.UnderapproximateCandidate
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceUnderApprox
 import CORALean.ContSet.Zonotope.Float.Operations.MatMul

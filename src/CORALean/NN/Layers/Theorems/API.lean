@@ -40,6 +40,8 @@ import CORALean.NN.Layers.Theorems.LeakyReluSound
 import CORALean.NN.Layers.Theorems.LinearSound
 import CORALean.NN.Layers.Theorems.LipConstrLinearSound
 import CORALean.NN.Layers.Theorems.LipConstrScaleRowSumLe
+import CORALean.NN.Layers.Theorems.LipConstrLinearFloatSound
+import CORALean.NN.Layers.Theorems.LipConstrScaleFloatMem
 import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 import CORALean.NN.Layers.Theorems.LinearWithErrorSound
 import CORALean.NN.Layers.Theorems.LowerRegionOrderFits
@@ -92,6 +94,10 @@ import CORALean.NN.Layers.Theorems.SquareSound
 import CORALean.NN.Layers.Theorems.StarSetCoraRowBoundsUnsound
 import CORALean.NN.Layers.Theorems.StarSetReluNeuronOuter
 import CORALean.NN.Layers.Theorems.StarSetRowBoundsMem
+import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
+import CORALean.NN.Layers.Theorems.StarSetFloatReluNeuronOuter
+import CORALean.NN.Layers.Theorems.StarSetFloatRowBoundsMem
+import CORALean.NN.Layers.Theorems.ReluStarFloatSound
 import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
 import CORALean.NN.Layers.Theorems.SumIteZero
 import CORALean.NN.Layers.Theorems.SumOffDownLe

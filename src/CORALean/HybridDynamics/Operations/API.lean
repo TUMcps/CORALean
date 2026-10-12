@@ -67,6 +67,7 @@ import CORALean.HybridDynamics.Operations.HitJacobianFloat
 import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
 import CORALean.HybridDynamics.Operations.SdcInputFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
+import CORALean.HybridDynamics.Operations.TrajectoryErrorFloat
 
 /-!
 # What a hybrid automaton computes, collected

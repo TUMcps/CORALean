@@ -1,0 +1,34 @@
+import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+/-!
+# `PolyZonotope.subsPoly`
+
+Output `ii` of `pZin` as a sum of monomials, each stored coefficient a degenerate bracket.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def PolyZonotope.subsPoly {nu : ℕ} (pZin : PolyZonotope 𝕋 nu) (ii : Fin nu) :
+    List ((𝕋 × 𝕋) × (Fin pZin.p → ℕ)) :=
+  ((pZin.c ii, pZin.c ii), 0) ::
+    (List.finRange pZin.h).map fun j => ((pZin.G j ii, pZin.G j ii), fun k => pZin.E k j)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

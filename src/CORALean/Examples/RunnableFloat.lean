@@ -108,7 +108,9 @@ import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Operations.DominantDirections
 import CORALean.ContSet.Zonotope.Float.Operations.EncloseMany
 import CORALean.ContSet.Zonotope.Float.Operations.FilterOut
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffAligned
 import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
+import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffStretchInner
 import CORALean.ContSet.Zonotope.Float.Operations.Minnorm
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
 import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
@@ -450,6 +452,21 @@ def minkDiffNSOpt : Option (Zonotope D 2) :=
   minkDiffNSMinuend.minkDiffRep minkDiffNSSubtrahend (fun i j => M i j) (d 1 (-1))
     !![d 3 (-2), d (-3) (-3); d (-1) (-2), d 5 (-3); d 1 (-2), d 3 (-3)]
 def minkDiffNSRun : Zonotope D 2 := minkDiffNSOpt.getD (Zonotope.point ![d 0 0, d 0 0])
+
+/-- The aligned difference of `minkDiff*`'s operands (subtrahend `¼` of the minuend), shrunk by
+`ρ = 15/16`: at `ρ = 1` it is exact and leaves the check no slack. The stretch at `μ = ¾` is that
+exact difference rounded outward; at `μ = ⅝` it is certified inner by the same check. -/
+def minkDiffAlignedOpt : Option (Zonotope D 2) :=
+  minkDiffMinuend.minkDiffAligned minkDiffSubtrahend rfl (d 15 (-4))
+    !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
+def minkDiffAlignedRun : Zonotope D 2 := minkDiffAlignedOpt.getD (Zonotope.point ![d 0 0, d 0 0])
+def minkDiffStretchRun : Zonotope D 2 :=
+  minkDiffMinuend.minkDiffStretch minkDiffSubtrahend fun _ => d 3 (-2)
+def minkDiffStretchInnerOpt : Option (Zonotope D 2) :=
+  minkDiffMinuend.minkDiffStretchInner minkDiffSubtrahend (fun _ => d 5 (-3))
+    !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
+def minkDiffStretchInnerRun : Zonotope D 2 :=
+  minkDiffStretchInnerOpt.getD (Zonotope.point ![d 0 0, d 0 0])
 
 /-- A location flowing by the same `A`, its input `Z` off the origin, and its stay over
 `[0, r]` from `Z` by the float step and by the split float step. -/

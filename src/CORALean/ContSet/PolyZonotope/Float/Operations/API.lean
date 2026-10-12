@@ -151,6 +151,15 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGUp
 import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGDiff
 import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapDep
 import CORALean.ContSet.PolyZonotope.Float.Operations.CubMap
+import CORALean.ContSet.PolyZonotope.Float.Operations.SubsMul
+import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPow
+import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPoly
+import CORALean.ContSet.PolyZonotope.Float.Operations.SubsXprod
+import CORALean.ContSet.PolyZonotope.Float.Operations.SubsTerms
+import CORALean.ContSet.PolyZonotope.Float.Operations.SubsFactor
+import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDown
+import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDiff
+import CORALean.ContSet.PolyZonotope.Float.Operations.Subs
 
 /-!
 # What `PolyZonotope` computes
