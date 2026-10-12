@@ -29,6 +29,9 @@ import CORALean.ContDynamics.NonlinDASys.Operations.PassAdaptive
 import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
 import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
 import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
+import CORALean.ContDynamics.NonlinDASys.Operations.EnlargeInterfaceInput
+import CORALean.ContDynamics.NonlinDASys.Operations.ComposeSubsystems
+import CORALean.ContDynamics.NonlinDASys.Operations.ReachNextCompositional
 
 /-!
 # What `NonlinDASys` computes
@@ -37,5 +40,6 @@ import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
 the reduced system's re-linearization loop. `ConsistentInitialStateFloat` and
 `SteadyStateFloat` run CORA's Newton loops in floats and keep the end point only when
 `NewtonTestFloat` certifies a zero near it; `FloatModelStackRes` and `FloatModelStackJac` read a
-float model on the stacked state `(x, y)`.
+float model on the stacked state `(x, y)`. `EnlargeInterfaceInput`, `ComposeSubsystems` and
+`ReachNextCompositional` are the compositional step of Althoff's power-system analysis.
 -/

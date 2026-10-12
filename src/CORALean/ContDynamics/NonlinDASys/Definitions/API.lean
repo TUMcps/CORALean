@@ -12,6 +12,7 @@ import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptPass
 import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptState
 import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
 import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
+import CORALean.ContDynamics.NonlinDASys.Definitions.CompositionalState
 
 /-!
 # What `NonlinDASys` means beyond the system itself

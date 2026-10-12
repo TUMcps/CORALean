@@ -37,6 +37,11 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAdaptiveOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveLoopOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.EnlargeInterfaceInputSubset
+import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
+import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsEqPreimage
+import CORALean.ContDynamics.NonlinDASys.Theorems.CompositionalLocalErrorCounterexample
+import CORALean.ContDynamics.NonlinDASys.Theorems.ReachNextCompositionalSpec
 
 /-!
 # What `NonlinDASys` guarantees
@@ -48,4 +53,7 @@ reachable set, and `ReachUnionOuter` what `reachUnion` guarantees through it,
 `ReachYUnionSubsetImage` the algebraic part, `TrajectoryYEq` its pointwise form.
 `NewtonTestFloatSound` is what a passed float Newton test proves, a unique zero nearby, and
 `ConsistentInitialStateFloatRoot` and `SteadyStateFloatRoot` its two uses.
+`ComposeSubsystemsExact` and `ComposeSubsystemsEqPreimage` are the join of subsystem sets,
+`ReachNextCompositionalSpec` what the compositional loop certifies, and
+`CompositionalLocalErrorCounterexample` that local `C F⁻¹` blocks miss the coupling.
 -/
