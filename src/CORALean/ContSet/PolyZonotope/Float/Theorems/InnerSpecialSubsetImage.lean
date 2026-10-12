@@ -5,7 +5,13 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
 # `innerSpecial` proves an inner box
 
 `innerSpecial` is `innerTest` with `ind` the identity, so `innerTest_subset_image` is its
-guarantee: `true` puts `Y` inside the image of `X` under the dependent point map.
+guarantee: `true` puts `Y` inside the image of `X` under the dependent point map, which is
+what [1, Alg. 2] claims of `Inner`: `Inner(f, x, x̃, ỹ) = 1 ⟹ ỹ ⊆ range(f, x)`.
+
+## References
+
+* [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued
+      functions". Reliable Computing, 14:1-23, 2010.
 -/
 
 -- Authors:       Tobias Ladner

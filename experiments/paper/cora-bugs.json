@@ -38,6 +38,11 @@
       "description": "extra test C = I contradicts its own docstring",
       "kind": "other",
       "cex": "CanonicalFormCNeOne.lean"
+    },
+    "reach": {
+      "description": "Krylov error bound used outside its nonexpansive hypothesis",
+      "kind": "unsound",
+      "cex": "JaweckiBoundCoraCounterexample.lean"
     }
   },
   "contDynamics/linearSysDT": {

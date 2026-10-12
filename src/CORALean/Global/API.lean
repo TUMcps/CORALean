@@ -59,6 +59,16 @@ import CORALean.Global.InnerRangeTestStepCounterexample
 import CORALean.Global.PreconditionedInnerTest
 import CORALean.Global.HMatrix
 import CORALean.Global.HMatrixRegular
+import CORALean.Global.PathMeetsFrontier
+import CORALean.Global.FrontierImageSubsetOfSingular
+import CORALean.Global.SubsetImageOfDisjointBoundarySingular
+import CORALean.Global.GammaTest
+import CORALean.Global.IsHMatrixOfGammaTest
+import CORALean.Global.IccSubsetImageOfGammaTest
+import CORALean.Global.SubsetImageOfPreconditioned
+import CORALean.Global.IccSubsetImageOfPreconditionedGammaTest
+import CORALean.Global.GammaTestRotationExample
+import CORALean.Global.GammaTestPreconditionedExample
 import CORALean.Global.SubmatrixLp
 import CORALean.Global.SubmatrixLpCounterexample
 import CORALean.Global.LeastSquaresOfNormalEq
