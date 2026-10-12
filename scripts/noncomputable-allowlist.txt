@@ -505,3 +505,5 @@ STL.evaluatePredicateUnionPolytopeCora  real-layer: the union-of-unsafe-sets bra
 STL.safeToUnsafeCora  real-layer: CORA's `aux_safe2unsafe` as printed over real polytopes, `isIntersecting` a parameter; read for the verdict counterexample only
 STL.verifySTLKochdumperGloballyCora  real-layer: the first iteration of CORA's `priv_verifySTL_kochdumper` on `ẋ = 0` and `globally(φ,[0,T])`, as printed for that path; the model `verifySTLKochdumperGloballyCora_unionLastOnly_counterexample` runs
 STL.robustnessReachSetGloballyCora  real-layer: CORA's `stl/robustness` on a one-branch reach set of a 1-D system against `globally(x(1) > 0,[0,T])`, as printed for that path; read for its counterexample only
+LinearSys.verifyRAIntersectionDistanceCora  real-layer: CORA's `aux_distanceIntersectionZono` in `ℝ¹` (sSup/sInf of the intersection), read for the touching-verdict counterexample only
+LinearSys.verifyRAOuterVerdictCora  real-layer: the verdict of CORA's `priv_verifyRA_zonotope` for one outer set and one unsafe set in `ℝ¹`, no safe set, as printed; its counterexample runs

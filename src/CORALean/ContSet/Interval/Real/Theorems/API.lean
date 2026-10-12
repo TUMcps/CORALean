@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Real.Theorems.ContainsScalingCoraCounterexample
 import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
 import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
 import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos

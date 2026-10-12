@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Real.Operations.ContainsScalingCora
 import CORALean.ContSet.Interval.Real.Operations.BoundaryRatio
 import CORALean.ContSet.Interval.Real.Operations.BoundaryPoint
 import CORALean.ContSet.Interval.Real.Operations.Point

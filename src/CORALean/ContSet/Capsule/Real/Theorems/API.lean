@@ -23,6 +23,7 @@ import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
 import CORALean.ContSet.Capsule.Real.Theorems.PlusVecExact
 import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
 import CORALean.ContSet.Capsule.Real.Theorems.MtimesCoraCounterexample
+import CORALean.ContSet.Capsule.Real.Theorems.IsIntersectingCoraCounterexample
 import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
 import CORALean.ContSet.Capsule.Real.Theorems.EncloseOuter
 import CORALean.ContSet.Capsule.Real.Theorems.EncloseCoraCounterexample

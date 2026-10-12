@@ -134,6 +134,8 @@ import CORALean.ContDynamics.LinearSys.Operations.TunedRun
 import CORALean.ContDynamics.LinearSys.Operations.TunedStep
 import CORALean.ContDynamics.LinearSys.Operations.Verify
 import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
+import CORALean.ContDynamics.LinearSys.Operations.VerifyRAIntersectionDistanceCora
+import CORALean.ContDynamics.LinearSys.Operations.VerifyRAOuterVerdictCora
 import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
 import CORALean.ContDynamics.LinearSys.Operations.VerifyFloat
 import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat

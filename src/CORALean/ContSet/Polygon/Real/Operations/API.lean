@@ -1,3 +1,6 @@
+import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
+import CORALean.ContSet.Polygon.Real.Operations.ContainsRegionCora
+import CORALean.ContSet.Polygon.Real.Operations.OverlapsRegionCora
 import CORALean.ContSet.Polygon.Real.Operations.OfPieces
 import CORALean.ContSet.Polygon.Real.Operations.Empty
 import CORALean.ContSet.Polygon.Real.Operations.Plus

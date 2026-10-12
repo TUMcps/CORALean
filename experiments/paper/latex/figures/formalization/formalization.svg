@@ -64,14 +64,14 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="112.9" height="14" fill="rgb(0,114,189)"/>
-<text x="206.5" y="259" text-anchor="middle" font-size="9" fill="#fff">1698</text>
-<rect x="262.9" y="248" width="175.0" height="14" fill="rgb(42,92,173)"/>
-<text x="350.4" y="259" text-anchor="middle" font-size="9" fill="#000">2631</text>
-<rect x="437.9" y="248" width="126.2" height="14" fill="rgb(84,69,158)"/>
-<text x="501.1" y="259" text-anchor="middle" font-size="9" fill="#000">1898</text>
+<rect x="150.0" y="248" width="112.8" height="14" fill="rgb(0,114,189)"/>
+<text x="206.4" y="259" text-anchor="middle" font-size="9" fill="#fff">1698</text>
+<rect x="262.8" y="248" width="175.4" height="14" fill="rgb(42,92,173)"/>
+<text x="350.5" y="259" text-anchor="middle" font-size="9" fill="#000">2640</text>
+<rect x="438.2" y="248" width="126.1" height="14" fill="rgb(84,69,158)"/>
+<text x="501.2" y="259" text-anchor="middle" font-size="9" fill="#000">1898</text>
 <rect x="564.2" y="248" width="105.8" height="14" fill="rgb(126,47,142)"/>
-<text x="617.1" y="259" text-anchor="middle" font-size="9" fill="#000">1591</text>
+<text x="617.1" y="259" text-anchor="middle" font-size="9" fill="#000">1592</text>
 <rect x="150" y="248" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="274" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="284">paper theorems</text>

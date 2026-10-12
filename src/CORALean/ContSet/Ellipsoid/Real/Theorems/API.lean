@@ -54,6 +54,7 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripLiuOuter
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeAffineAdd
 import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseOuter
 import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseCoraCounterexample
+import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsEllipsoidCoraCounterexample
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkDiffPointExact
 import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
 import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
