@@ -15,6 +15,14 @@ import CORALean.ContDynamics.NonlinDASys.Operations.InitReach
 import CORALean.ContDynamics.NonlinDASys.Operations.ReachRepeat
 import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
 import CORALean.ContDynamics.NonlinDASys.Operations.Reach
+import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
+import CORALean.ContDynamics.NonlinDASys.Operations.AdaptPassLinPoint
+import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
+import CORALean.ContDynamics.NonlinDASys.Operations.ErrorLoopAdaptive
+import CORALean.ContDynamics.NonlinDASys.Operations.PassAdaptive
+import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
+import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
+import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
 
 /-!
 # What `NonlinDASys` computes
