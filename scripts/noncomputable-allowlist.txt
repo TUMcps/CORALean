@@ -473,6 +473,10 @@ NonlinDASys.linReachAdaptive  real-layer: CORA's `linReach_adaptive` at the real
 NonlinDASys.reachAdaptiveLoop  real-layer: the `while` loop of CORA's `reach_adaptive` over `NonlinDASys.linReachAdaptive`; proved over ℝ and never run
 NonlinDASys.reachAdaptive  real-layer: CORA's `reach_adaptive`, line 1 and the loop at the real matrix exponential; proved over ℝ and never run
 LinParamSys.dependentHomSolLowOrder  real-layer: CORA's second-order dependent solution, read for its counterexample only
+LinParamSys.dependentLowOrder  real-layer: CORA's second-order dependent solution with its missing monomials restored, at `r : ℝ` and `Real.Zonotope`; proved over ℝ, no float counterpart
+LinParamSys.dependentHomSol  real-layer: CORA's `priv_dependentHomSol` corrected, at the real matrix-zonotope family `𝕄𝒵` and `r : ℝ`; proved over ℝ, no float counterpart
+LinParamSys.initReachInputDependence  real-layer: CORA's `initReach_inputDependence` corrected, at the real matrix-zonotope family `𝕄𝒵` and `r : ℝ`; proved over ℝ, no float counterpart
+MatExp.inputIntervalTaylorTail  real-layer: the input series' orders three to κ by interval arithmetic, reached only from `LinParamSys.dependentHomSol`; no float counterpart
 LinProbSys.enclosingHull  real-layer: [1, Alg. 1] at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 forwardInnerRange  real-layer: [1, Alg. 1, Step 3] through `kaucherInnerStep` at the real flow enclosures; no float refinement
 GuardMap.abstractionError  real-layer: CORA's `aux_abstractionError` of the hyperplane map at the real matrix exponential of `|A|tmax` and `Real.Zonotope`

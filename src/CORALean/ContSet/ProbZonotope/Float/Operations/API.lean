@@ -1,3 +1,4 @@
+import CORALean.ContSet.ProbZonotope.Float.Operations.Abs
 import CORALean.ContSet.ProbZonotope.Float.Operations.RepresentsaEmptySet
 import CORALean.ContSet.ProbZonotope.Float.Operations.Mean
 import CORALean.ContSet.ProbZonotope.Float.Operations.Mtimes

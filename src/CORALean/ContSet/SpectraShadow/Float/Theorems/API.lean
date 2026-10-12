@@ -1,3 +1,4 @@
+import CORALean.ContSet.SpectraShadow.Float.Theorems.GenerateESumRepExact
 import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
 import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
 import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero

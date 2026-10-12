@@ -23,6 +23,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExactF
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTailFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputIntervalTaylorTail
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
