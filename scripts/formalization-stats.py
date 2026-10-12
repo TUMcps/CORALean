@@ -31,13 +31,13 @@ Writes `experiments/paper/formalization-stats.json` and, under
   results fared (and the in-scope ones not yet formalized), and what the Lean theorems are;
 * `figures/formalization/formalization-caption.tex`, its caption, with the out-of-scope reasons
   and their counts;
-* `figures/formalization/formalization-classes-sets.tikz` and
-  `formalization-classes-others.tikz`, the appendix's (a), split in two so each can float to its
-  own page: one bar per CORA class in the same three segments, the set representations in the
-  first, the dynamics, hybrid-systems and neural-network groups under their headings in the second;
+* `figures/formalization/formalization-classes-sets.tikz`, `formalization-classes-contdynamics.tikz`
+  and `formalization-classes-others.tikz`, the appendix's (a), split in three so each can float to
+  its own page: one bar per CORA class in the same three segments, the set representations, the
+  continuous dynamics, and the hybrid-systems and neural-network groups under their headings;
 * `figures/formalization/formalization-findings.tikz`, the appendix's (b): the formalized
   results per group, by segment (correct, proof gap, underspecified, fixed, false);
-* `appendix-formalization.tex`, the appendix: the three figures above, each a figure of its own,
+* `appendix-formalization.tex`, the appendix: the four figures above, each a figure of its own,
   and their captions;
 * `figures/formalization/formalization.svg`, a dependency-free preview of the
   overview bars for a quick look without a TeX Live;
@@ -465,8 +465,8 @@ def appendix(data):
 \\section{CORA coverage and findings per class}
 \\label{app:formalization}
 
-Fig.~\\ref{fig:formalization-classes-sets} and Fig.~\\ref{fig:formalization-classes-others} show the CORA
-methods per class and
+Figs.~\\ref{fig:formalization-classes-sets}, \\ref{fig:formalization-classes-contdynamics} and
+\\ref{fig:formalization-classes-others} show the CORA methods per class and
 Fig.~\\ref{fig:formalization-findings} the formalized results of the papers per group, by how they fared.
 Not in the bars are @COV@ CORA methods that are out of scope, by reason @REASONS@, and @RES@ results
 of the papers, by reason @RESREASONS@.
@@ -480,9 +480,16 @@ of the papers, by reason @RESREASONS@.
 
 \\begin{figure}[tp]
     \\centering
+    \\includetikz{./figures/formalization/formalization-classes-contdynamics}
+    \\caption{CORA methods per class of continuous dynamics; \\emph{+n} counts out-of-scope methods.}
+    \\label{fig:formalization-classes-contdynamics}
+\\end{figure}
+
+\\begin{figure}[tp]
+    \\centering
     \\includetikz{./figures/formalization/formalization-classes-others}
-    \\caption{CORA methods per class of the dynamics, hybrid-systems and neural-network groups;
-    \\emph{+n} counts out-of-scope methods.}
+    \\caption{CORA methods per class of hybrid systems and neural networks; \\emph{+n} counts
+    out-of-scope methods.}
     \\label{fig:formalization-classes-others}
 \\end{figure}
 
@@ -557,8 +564,8 @@ def outputs():
         cr.STATS_JSON: json.dumps(data, indent=2, ensure_ascii=False) + "\n",
         FIG_DIR / "formalization.tikz": tikz(data),
         FIG_DIR / "formalization-classes-sets.tikz": tikz_classes(data, ("contSet",)),
-        FIG_DIR / "formalization-classes-others.tikz":
-            tikz_classes(data, ("contDynamics", "hybridDynamics", "nn")),
+        FIG_DIR / "formalization-classes-contdynamics.tikz": tikz_classes(data, ("contDynamics",)),
+        FIG_DIR / "formalization-classes-others.tikz": tikz_classes(data, ("hybridDynamics", "nn")),
         FIG_DIR / "formalization-findings.tikz": tikz_findings(data),
         FIG_DIR / "formalization-caption.tex": caption(data),
         FIG_DIR / "formalization.svg": svg(data),
