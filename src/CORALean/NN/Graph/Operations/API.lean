@@ -49,6 +49,14 @@ import CORALean.NN.Graph.Operations.TailEval
 import CORALean.NN.Graph.Operations.TailEnclose
 import CORALean.NN.Graph.Operations.Alg1Node
 import CORALean.NN.Graph.Operations.Alg1Graph
+import CORALean.NN.Graph.Operations.Flatten
+import CORALean.NN.Graph.Operations.FloatBiasPoint
+import CORALean.NN.Graph.Operations.FloatGcn
+import CORALean.NN.Graph.Operations.FloatLeftMat
+import CORALean.NN.Graph.Operations.FloatLinear
+import CORALean.NN.Graph.Operations.FloatRightMat
+import CORALean.NN.Graph.Operations.FloatSumPool
+import CORALean.NN.Graph.Operations.FloatSumPoolMat
 
 /-!
 # What the graph layers compute, collected

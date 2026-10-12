@@ -72,6 +72,13 @@ import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActStepsUncertain
 import CORALean.NN.Graph.Theorems.TailEncloseMem
 import CORALean.NN.Graph.Theorems.Alg1NodeSound
 import CORALean.NN.Graph.Theorems.Alg1GraphSound
+import CORALean.NN.Graph.Theorems.FloatBiasPointMem
+import CORALean.NN.Graph.Theorems.FloatGcnOuter
+import CORALean.NN.Graph.Theorems.FloatLeftMatMulVec
+import CORALean.NN.Graph.Theorems.FloatLinearOuter
+import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
+import CORALean.NN.Graph.Theorems.FloatSumPoolMatMulVec
+import CORALean.NN.Graph.Theorems.FloatSumPoolOuter
 
 /-!
 # What the graph layers guarantee

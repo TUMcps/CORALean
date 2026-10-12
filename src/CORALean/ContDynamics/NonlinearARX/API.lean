@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.NonlinearARX.NonlinearARX
 import CORALean.ContDynamics.NonlinearARX.Definitions.FloatModel
+import CORALean.ContDynamics.NonlinearARX.Definitions.FloatJacModel
 import CORALean.ContDynamics.NonlinearARX.Operations.API
 import CORALean.ContDynamics.NonlinearARX.Theorems.API
 

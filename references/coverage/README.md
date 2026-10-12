@@ -145,9 +145,9 @@ Rulings on borderline cases:
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 8 | 1 | 1 | 3 | 5 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 2 | 2 | 1 | 4 | 1 |
-| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 1 | 4 | 0 | 3 | 0 |
+| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 0 | 5 | 0 | 3 | 0 |
 | [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 3 | 6 | 1 | 8 | 2 |
-| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 2 | 6 | 0 | 3 | 0 |
+| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 1 | 7 | 0 | 3 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
@@ -156,7 +156,7 @@ Rulings on borderline cases:
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 4 | 1 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 7 | 1 |
-| [layers](nn/layers.md) | nn | 43 | 6 | 33 | 0 | 4 | 2 |
+| [layers](nn/layers.md) | nn | 43 | 3 | 36 | 0 | 4 | 2 |
 | [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 9 | 11 | 0 | 41 | 2 |
 <!-- /coverage-counts -->
 

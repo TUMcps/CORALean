@@ -5,6 +5,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachUnion
 import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
 import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
 import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
+import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGOFloat
 import CORALean.ContDynamics.NonlinearSysDT.Operations.RefState
 import CORALean.ContDynamics.NonlinearSysDT.Operations.Identify
 import CORALean.ContDynamics.NonlinearSysDT.Operations.IdentifyCandidate
