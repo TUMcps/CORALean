@@ -27,6 +27,12 @@
     "initReach_inputDependence": {
       "description": "second-order expansion drops terms; solution can escape the set",
       "kind": "unsound"
+    },
+    "simulate": {
+      "description": "time stamps exceed tFinal; segments span full horizon",
+      "kind": "other",
+      "cex": "SimulateEndTimeCoraExceeds.lean",
+      "fix": null
     }
   },
   "contDynamics/linProbSys": {
@@ -345,6 +351,11 @@
     "shrink": {
       "description": "calls nonexistent parallelotope on a polytope",
       "kind": "other"
+    },
+    "split": {
+      "description": "halfspace form reads undefined variable; always errors",
+      "kind": "other",
+      "fix": null
     }
   },
   "contSet/zonotope": {
@@ -357,6 +368,11 @@
       "description": "calls reduce method that does not exist",
       "kind": "other"
     },
+    "enclosePoints": {
+      "description": "maiga: signed u gives zero generator, 0/0 NaN",
+      "kind": "other",
+      "cex": "Cloud2zonotopeCoraZeroGenerator.lean"
+    },
     "filterOut": {
       "description": "calls nonexistent chebyball; deletes both of equal cells",
       "kind": "other",
@@ -365,11 +381,6 @@
     "intersectStrip": {
       "description": "'wang-FRad' applies dynamics twice; gain not optimal",
       "kind": "other"
-    },
-    "enclosePoints": {
-      "description": "maiga: signed u gives zero generator, 0/0 NaN",
-      "kind": "other",
-      "cex": "Cloud2zonotopeCoraZeroGenerator.lean"
     },
     "minkDiff": {
       "description": "default 'approx' scales unchecked; not inner",
@@ -380,6 +391,12 @@
       "description": "raghuraman: 0/0 on orthogonal small generator; unsorted generators used",
       "kind": "other",
       "cex": "RaghuramanCoraZeroDivision.lean"
+    },
+    "representsa_": {
+      "description": "'polytope' returns the empty set, not the zonotope",
+      "kind": "other",
+      "cex": "RepresentsaPolytopeCoraNeConstruct.lean",
+      "fix": null
     },
     "tensorMultiplication": {
       "description": "second-order branch errors for every input",
@@ -443,6 +460,25 @@
     "reduceGNNForNode": {
       "description": "missing return at zero message-passing steps",
       "kind": "other"
+    }
+  },
+  "hybridDynamics/hybridAutomaton": {
+    "reach": {
+      "description": "input u assigned to last location only, as a cell",
+      "kind": "other",
+      "cex": "UlocCoraCounterexample.lean"
+    }
+  },
+  "hybridDynamics/parallelHybridAutomaton": {
+    "reach": {
+      "description": "split location indexes whole result; constructor error",
+      "kind": "other"
+    },
+    "simulateRandom": {
+      "description": "one input segment too few; empty trajectories",
+      "kind": "other",
+      "cex": "SimulateRandomTimesCoraCounterexample.lean",
+      "fix": null
     }
   }
 }

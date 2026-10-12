@@ -71,6 +71,10 @@ import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
 import CORALean.HybridDynamics.Operations.SdcInputFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
 import CORALean.HybridDynamics.Operations.TrajectoryErrorFloat
+import CORALean.HybridDynamics.Operations.MatlabLinspace
+import CORALean.HybridDynamics.Operations.SimulateRandomTimes
+import CORALean.HybridDynamics.Operations.UlocCora
+import CORALean.HybridDynamics.Operations.Uloc
 
 /-!
 # What a hybrid automaton computes, collected

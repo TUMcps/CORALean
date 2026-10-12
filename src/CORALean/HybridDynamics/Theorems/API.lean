@@ -121,6 +121,7 @@ import CORALean.HybridDynamics.Theorems.HitHessianMatZonoFloatMem
 import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
 import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapFloatOuter
 import CORALean.HybridDynamics.Theorems.TrajectoryErrorFloatOuter
+import CORALean.HybridDynamics.Theorems.UlocCoraCounterexample
 
 /-!
 # What a hybrid run guarantees, collected

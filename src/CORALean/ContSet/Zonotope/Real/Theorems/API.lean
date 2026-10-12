@@ -255,6 +255,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusLtOfLmi
 import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusLtOfLmiCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripWangFRadCoraCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.RaghuramanCoraZeroDivision
+import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPolytopeCoraNeConstruct
 import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntEq
 import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullUnionSubsetLinComb

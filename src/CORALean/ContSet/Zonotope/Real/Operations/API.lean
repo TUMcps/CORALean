@@ -80,6 +80,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.Underapproximate
 import CORALean.ContSet.Zonotope.Real.Operations.UnderapproximateGen
 import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
 import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaOrigin
+import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPolytopeCora
 import CORALean.ContSet.Zonotope.Real.Operations.ExactPlus
 import CORALean.ContSet.Zonotope.Real.Operations.NormUb
 import CORALean.ContSet.Zonotope.Real.Operations.Radius2
