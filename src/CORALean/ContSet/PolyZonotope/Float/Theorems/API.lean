@@ -116,6 +116,8 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitIndepGenOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenAllCover
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsSetApproxSound
+import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapDepPoint
+import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapOuter
 
 /-!
 # What `PolyZonotope` guarantees

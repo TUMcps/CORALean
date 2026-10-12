@@ -19,6 +19,12 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.Split
 import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
 import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
 import CORALean.ContSet.ZonoBundle.Float.Operations.ContainsPoint
+import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
+import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
+import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
+import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
+import CORALean.ContSet.ZonoBundle.Float.Operations.Shrink
+import CORALean.ContSet.ZonoBundle.Float.Operations.EncloseTight
 
 /-!
 # What a float zonotope bundle computes, collected

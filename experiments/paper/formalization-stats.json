@@ -5716,11 +5716,11 @@
         "group": "contSet",
         "class": "polyZonotope",
         "methods": 73,
-        "proved": 6,
-        "float": 49,
+        "proved": 5,
+        "float": 50,
         "not_yet": 3,
         "out_of_scope": 15,
-        "needs_float": 6,
+        "needs_float": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -5872,11 +5872,11 @@
         "group": "contSet",
         "class": "zonoBundle",
         "methods": 44,
-        "proved": 6,
-        "float": 31,
+        "proved": 3,
+        "float": 34,
         "not_yet": 0,
         "out_of_scope": 7,
-        "needs_float": 6,
+        "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 2,
@@ -6522,11 +6522,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 62,
-        "float": 593,
+        "proved": 58,
+        "float": 597,
         "not_yet": 6,
         "out_of_scope": 247,
-        "needs_float": 62,
+        "needs_float": 58,
         "cora_issues": 51,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -6619,11 +6619,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 108,
-      "float": 742,
+      "proved": 104,
+      "float": 746,
       "not_yet": 14,
       "out_of_scope": 396,
-      "needs_float": 108,
+      "needs_float": 104,
       "cora_issues": 76,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6666,10 +6666,10 @@
     },
     "theorems": {
       "paper": 1566,
-      "float": 1765,
-      "helper": 1502,
-      "lemma": 2576,
-      "total": 7409,
+      "float": 1773,
+      "helper": 1503,
+      "lemma": 2577,
+      "total": 7419,
       "examples": 120
     }
   }

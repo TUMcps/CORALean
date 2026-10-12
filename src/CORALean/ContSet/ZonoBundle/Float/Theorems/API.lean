@@ -23,6 +23,12 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.SplitOuter
 import CORALean.ContSet.ZonoBundle.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.ZonoBundle.Float.Theorems.ContainsPointSound
 import CORALean.ContSet.ZonoBundle.Float.Theorems.RepresentsaEmptySetSound
+import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
+import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
+import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
+import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceCombinedOuter
+import CORALean.ContSet.ZonoBundle.Float.Theorems.ShrinkOuter
+import CORALean.ContSet.ZonoBundle.Float.Theorems.EncloseTightOuter
 
 /-!
 # What a float zonotope bundle guarantees, collected
