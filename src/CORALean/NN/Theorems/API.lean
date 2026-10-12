@@ -38,6 +38,8 @@ import CORALean.NN.Theorems.ImageSubsetRefineLayer
 import CORALean.NN.Theorems.ImageSubsetRefineLoop
 import CORALean.NN.Theorems.IntervalChainBackpropAdjoint
 import CORALean.NN.Theorems.IntervalChainFwdHasDerivAt
+import CORALean.NN.Theorems.IntervalChainFwdFloatOuter
+import CORALean.NN.Theorems.IntervalChainBackpropFloatOuter
 import CORALean.NN.Theorems.IsMinSuffExplanationGreedyAbstractExplanation
 import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
 import CORALean.NN.Theorems.LinearLipschitz
@@ -124,6 +126,14 @@ import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
 import CORALean.NN.Theorems.CatMaxPoolEvalIff
 import CORALean.NN.Theorems.SetBasedLossGradient
 import CORALean.NN.Theorems.SetBasedLossGradientCounterexample
+import CORALean.NN.Theorems.ReluEnclosureEncloses
+import CORALean.NN.Theorems.ReluDerEnclosureEncloses
+import CORALean.NN.Theorems.IdentityEnclosureEncloses
+import CORALean.NN.Theorems.IdentityDerEnclosureEncloses
+import CORALean.NN.Theorems.ToRealMatMapAbsolute
+import CORALean.NN.Theorems.ScalarEnclosesVecMem
+import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
+import CORALean.NN.Theorems.IntervalChainFloatLinearRMem
 
 /-!
 # What a network's enclosure guarantees, collected

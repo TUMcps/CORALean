@@ -89,6 +89,11 @@ import CORALean.NN.Operations.CatReluOn
 import CORALean.NN.Operations.CatMaxSegment
 import CORALean.NN.Operations.CatMaxSegments
 import CORALean.NN.Operations.CatMaxPool
+import CORALean.NN.Operations.IntervalChainFwdFloat
+import CORALean.NN.Operations.IntervalChainBackpropFloat
+import CORALean.NN.Operations.ReluEnclosure
+import CORALean.NN.Operations.ReluDerEnclosure
+import CORALean.NN.Operations.IdentityDerEnclosure
 
 /-!
 # What a network does, collected

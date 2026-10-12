@@ -124,3 +124,4 @@ not defined by it. That the result encloses the hull is not a printed claim and 
 These name the paper as a whole. A locator would put each in a row above.
 
 * [`Max.lean`](../../src/CORALean/ContSet/ProbZonotope/Real/Operations/Max.lean)
+* [`Max.lean`](../../src/CORALean/ContSet/ProbZonotope/Float/Operations/Max.lean)
