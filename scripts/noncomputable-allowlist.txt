@@ -343,6 +343,7 @@ NonlinearSys.linPoint  real-layer: the expansion point at the real `f`; runs in 
 NonlinearSys.linReachInner  real-layer: CORA's `contDynamics/linReachInner.m` over exact sets, the exact Minkowski difference of `Set`s at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linReachInnerErr  real-layer: the abstraction error loop of CORA's `linReachInner.m` over exact sets, its stopping test a comparison of real vectors; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linReachPoly  real-layer: the `'poly'` step at a supplied Hessian and third-order bound; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
+NonlinearSys.linReachCora1D  real-layer: CORA's `'lin'` step as printed over real intervals in one dimension at a supplied Hessian bound, the model `linReachCora1D_hessianRegion_counterexample` runs; the float step checks its region first, see `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.polyReachReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 NonlinearSys.polyReachRun  real-layer: [Althoff 2013, Alg. 1]'s loop at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.reachAlgFloat` at `.poly` (`Encloses.reachAlgFloat_outer`)
 NonlinearSys.polyReachStep  real-layer: [Althoff 2013, Alg. 1]'s step at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)

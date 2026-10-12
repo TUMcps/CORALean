@@ -13,6 +13,8 @@ import CORALean.HybridDynamics.Definitions.ConstFlowHitSet
 import CORALean.HybridDynamics.Definitions.CheckFlow
 import CORALean.HybridDynamics.Definitions.CheckFlowCora
 import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirard
+import CORALean.HybridDynamics.Definitions.RobustProjectionCora
+import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirardCora
 import CORALean.HybridDynamics.Definitions.HitSet
 import CORALean.HybridDynamics.Definitions.SdcInput
 import CORALean.HybridDynamics.Definitions.HitHessian
