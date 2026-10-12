@@ -3,6 +3,9 @@ import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToTrajectory
 import CORALean.ContDynamics.NonlinParamSys.Theorems.JacobianFamilyMem
 import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFCounterexample
 import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFMem
+import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatF
+import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatJacX
+import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatJacU
 import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeJacUMem
 import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeJacXMem
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter

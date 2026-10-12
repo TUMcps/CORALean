@@ -10,6 +10,9 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
 import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
 import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateSpec
 import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateSpec
+import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
+import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateFloatRoot
+import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateFloatRoot
 import CORALean.ContDynamics.NonlinDASys.Theorems.ExistsLagrangeRemainder
 import CORALean.ContDynamics.NonlinDASys.Theorems.SharedLagrangePointCounterexample
 import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
@@ -42,4 +45,6 @@ model locally; `TrajectoryToNonlinearSys` and `TrajectoryOfNonlinearSys` are the
 correspondence with the reduced ordinary system, `ReachUnionExactEq` its consequence for the
 reachable set, and `ReachUnionOuter` what `reachUnion` guarantees through it,
 `ReachYUnionSubsetImage` the algebraic part, `TrajectoryYEq` its pointwise form.
+`NewtonTestFloatSound` is what a passed float Newton test proves, a unique zero nearby, and
+`ConsistentInitialStateFloatRoot` and `SteadyStateFloatRoot` its two uses.
 -/

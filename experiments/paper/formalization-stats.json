@@ -6132,11 +6132,11 @@
         "group": "contDynamics",
         "class": "nonlinDASys",
         "methods": 13,
-        "proved": 8,
-        "float": 1,
+        "proved": 6,
+        "float": 3,
         "not_yet": 1,
         "out_of_scope": 3,
-        "needs_float": 8,
+        "needs_float": 6,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 0,
@@ -6158,11 +6158,11 @@
         "group": "contDynamics",
         "class": "nonlinParamSys",
         "methods": 9,
-        "proved": 2,
-        "float": 2,
+        "proved": 1,
+        "float": 3,
         "not_yet": 1,
         "out_of_scope": 4,
-        "needs_float": 2,
+        "needs_float": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 0,
@@ -6546,11 +6546,11 @@
       },
       "contDynamics": {
         "methods": 159,
-        "proved": 26,
-        "float": 69,
+        "proved": 23,
+        "float": 72,
         "not_yet": 4,
         "out_of_scope": 60,
-        "needs_float": 26,
+        "needs_float": 23,
         "cora_issues": 15,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
@@ -6619,11 +6619,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 85,
-      "float": 765,
+      "proved": 82,
+      "float": 768,
       "not_yet": 14,
       "out_of_scope": 396,
-      "needs_float": 85,
+      "needs_float": 82,
       "cora_issues": 75,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6666,10 +6666,10 @@
     },
     "theorems": {
       "paper": 1566,
-      "float": 1853,
-      "helper": 1505,
-      "lemma": 2584,
-      "total": 7508,
+      "float": 1859,
+      "helper": 1507,
+      "lemma": 2585,
+      "total": 7517,
       "examples": 120
     }
   }
