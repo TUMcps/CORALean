@@ -7,9 +7,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.InnerSpecial
 # `PolyZonotope.innerApproxImage`
 
 CORA's `innerApproxImage` for the dependent point map `f` of a polynomial zonotope, the bisection
-of [1, Alg. 1]: for a box `X_` of the domain, `Y_ = f(X_) & (f(c) + df(X_)(X_ - c))` encloses
-its image; if `Inner` proves `Y_ ⊆ f(X)` the box `Y_` is kept, else `X_` is split at its widest
-coordinate while its narrowest radius is at least `tol`. `Inner` is `aux_InnerSpecial`
+of [2, Alg. 1] (restated as [1, Alg. 1]): for a box `X_` of the domain,
+`Y_ = f(X_) & (f(c) + df(X_)(X_ - c))` encloses its image; if `Inner` proves `Y_ ⊆ f(X)` the
+box `Y_` is kept, else `X_` is split at its widest coordinate while its narrowest radius is at
+least `tol`. `Inner` is `aux_InnerSpecial`
 (`innerSpecial`) when `f` and the domain have the same dimension, `aux_InnerGeneral`
 (`innerGeneral`) when the domain is larger; CORA throws when it is smaller, and the result here
 is empty. CORA's worklist runs breadth first and this recursion depth first, which reorders the
@@ -19,6 +20,8 @@ list and keeps every box; `depth` caps the recursion, which CORA bounds by `tol`
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
       Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
+* [2] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued
+      functions". Reliable Computing, 14:1-23, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -38,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 1] as `innerApproxImage` runs it, from the box `X₀` of the domain `X`. -/
+/-- [2, Alg. 1] as `innerApproxImage` runs it, from the box `X₀` of the domain `X`. -/
 def PolyZonotope.innerApproxImage (pZ : PolyZonotope 𝕋 n) (X : Interval (Vec 𝕋 pZ.p)) (tol : 𝕋)
     (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ) :
     ℕ → Interval (Vec 𝕋 pZ.p) → List (Interval (Vec 𝕋 n))

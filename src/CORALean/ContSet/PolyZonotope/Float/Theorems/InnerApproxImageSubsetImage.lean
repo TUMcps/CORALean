@@ -7,7 +7,13 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerSpecialSubsetImage
 
 Every box `innerApproxImage` returns was accepted by `innerSpecial` or `innerGeneral`, whose
 guarantees put it inside the image of the domain `X` under the dependent point map; how the
-search reached it, and whether `Y_` encloses the image of `X_`, does not matter.
+search reached it, and whether `Y_` encloses the image of `X_`, does not matter. This is the
+inner half of [1, Alg. 1]: the union of the boxes of `LInside` lies in `range(f, x)`.
+
+## References
+
+* [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued
+      functions". Reliable Computing, 14:1-23, 2010.
 -/
 
 -- Authors:       Tobias Ladner

@@ -14,40 +14,40 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 87,
-    "papers_with_findings": 80,
-    "in_scope": 1116,
-    "formalized": 1110,
-    "not_formalized": 6,
-    "out_of_scope": 956,
+    "papers": 89,
+    "papers_with_findings": 82,
+    "in_scope": 1158,
+    "formalized": 1129,
+    "not_formalized": 29,
+    "out_of_scope": 975,
     "out_of_scope_by_reason": {
-      "restated": 351,
+      "restated": 357,
       "mathlib": 21,
-      "not-a-claim": 497,
+      "not-a-claim": 510,
       "done-differently": 12,
       "not-covered": 75
     },
     "by_class": {
-      "correct": 737,
-      "underspecified": 223,
+      "correct": 753,
+      "underspecified": 226,
       "proof-gap": 35,
       "fixed": 105,
       "false": 10
     },
     "claims": {
-      "in_scope": 432,
-      "formalized": 428,
-      "correct": 252,
+      "in_scope": 449,
+      "formalized": 432,
+      "correct": 256,
       "underspecified": 86,
       "proof-gap": 35,
       "fixed": 49,
       "false": 6
     },
     "definitions": {
-      "in_scope": 684,
-      "formalized": 682,
-      "correct": 485,
-      "underspecified": 137,
+      "in_scope": 709,
+      "formalized": 697,
+      "correct": 497,
+      "underspecified": 140,
       "proof-gap": 0,
       "fixed": 56,
       "false": 4
@@ -1106,6 +1106,60 @@
           "result": "Heuristic 3.1",
           "class": "underspecified",
           "reason": "measure printed as a product, but the sentence justifying it needs a sum; formalized as printed"
+        }
+      ]
+    },
+    {
+      "page": "2010/goldsztejn-rc-inner-range.md",
+      "label": "Goldsztejn 2010",
+      "year": 2010,
+      "title": "Inner approximation of the range of vector-valued functions",
+      "in_scope": 18,
+      "formalized": 11,
+      "not_formalized": 7,
+      "out_of_scope": 6,
+      "out_of_scope_by_reason": {
+        "restated": 1,
+        "mathlib": 0,
+        "not-a-claim": 5,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 9,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 10,
+        "formalized": 4,
+        "correct": 4,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 8,
+        "formalized": 7,
+        "correct": 5,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the paper leaves the direction of the bisection and the order of `LDomain` open: CORA bisects the widest coordinate and stops when the narrowest radius is below `tol` (not `‖rad x̃‖ < ε`), depth first in Lean and breadth first in CORA (the same boxes), and `depth` caps the recursion, which `tol` alone bounds in CORA; only the inner half of the claim is formalized"
+        },
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "over `ℝ` the loop has no bound (the paper argues termination for floating-point numbers), so `iter` caps it; `C` is the caller's approximate inverse, certified nonsingular before it is trusted; the test at line 8 is the closed inclusion, where `Cor. 3.1` asks for `int x̃`, and the claim holds through Brouwer's theorem and the midpoint staying in the inflated box, which CORALean checks; see Findings"
         }
       ]
     },
@@ -3289,6 +3343,55 @@
           "result": "Remark 1",
           "class": "underspecified",
           "reason": "the codomain `{1, …, n} \\ I_A` removes input indices from the output indices, and `π` is read as defined on `{1, …, m} \\ I_A`; and `Thm. 3`'s `C¹` and nonempty box, see Findings"
+        }
+      ]
+    },
+    {
+      "page": "2020/jawecki-bit-krylov-error-bounds.md",
+      "label": "Jawecki 2020",
+      "year": 2020,
+      "title": "Computable upper error bounds for Krylov approximations to matrix exponentials and associated φ-functions",
+      "in_scope": 24,
+      "formalized": 8,
+      "not_formalized": 16,
+      "out_of_scope": 13,
+      "out_of_scope_by_reason": {
+        "restated": 5,
+        "mathlib": 0,
+        "not-a-claim": 8,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 7,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 7,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 17,
+        "formalized": 8,
+        "correct": 7,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 7",
+          "class": "underspecified",
+          "reason": "(7.3) bounds `L^{[j]}_m(Δt_j)w^{[j]}`, while the sum it is applied to, and the local error of the `j`-th step, is `L^{[j]}_m(Δt_j)w^{[j-1]}`; see Findings"
         }
       ]
     },
@@ -6036,8 +6139,8 @@
         },
         "cora_issues": 6,
         "findings": {
-          "correct": 30,
-          "underspecified": 10,
+          "correct": 31,
+          "underspecified": 12,
           "proof-gap": 1,
           "fixed": 3,
           "false": 0
@@ -6372,10 +6475,10 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
-          "correct": 35,
-          "underspecified": 22,
+          "correct": 42,
+          "underspecified": 23,
           "proof-gap": 10,
           "fixed": 9,
           "false": 1
@@ -6842,8 +6945,8 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 394,
-          "underspecified": 110,
+          "correct": 395,
+          "underspecified": 112,
           "proof-gap": 9,
           "fixed": 48,
           "false": 5
@@ -6856,7 +6959,7 @@
         "not_yet": 4,
         "out_of_scope": 60,
         "needs_float": 23,
-        "cora_issues": 15,
+        "cora_issues": 16,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
           "random/sampling": 6,
@@ -6866,8 +6969,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 161,
-          "underspecified": 60,
+          "correct": 168,
+          "underspecified": 61,
           "proof-gap": 18,
           "fixed": 28,
           "false": 3
@@ -6929,7 +7032,7 @@
       "not_yet": 14,
       "out_of_scope": 396,
       "needs_float": 73,
-      "cora_issues": 76,
+      "cora_issues": 77,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -6939,8 +7042,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 642,
-        "underspecified": 185,
+        "correct": 650,
+        "underspecified": 188,
         "proof-gap": 31,
         "fixed": 81,
         "false": 9
@@ -6948,7 +7051,7 @@
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 72,
+        "correct": 80,
         "underspecified": 30,
         "proof-gap": 4,
         "fixed": 17,
@@ -6970,11 +7073,11 @@
       }
     },
     "theorems": {
-      "paper": 1622,
+      "paper": 1639,
       "float": 1898,
-      "helper": 1573,
-      "lemma": 2616,
-      "total": 7709,
+      "helper": 1575,
+      "lemma": 2617,
+      "total": 7729,
       "examples": 120
     }
   }

@@ -23,6 +23,15 @@ import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputNotOfErrorBou
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputReachCounterexample
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovZonotope
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ReachSubsetAlg2Corrected
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyLastEqProd
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfKrylovIdentity
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorLe
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.JaweckiBoundCoraCounterexample
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.SpectrumSubsetOfKrylovIdentity
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.KrylovApproxMassConserved
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorEqSum
 
 /-!
 # What the Krylov reachability of Althoff (TAC 2020) guarantees
@@ -46,4 +55,6 @@ bound (3) alone, and `VaryingInputReachCounterexample` that it fails with Prop. 
 Alg. 2's input part with (24)'s exponent, which line 8 overshoots
 (`PrintedInputPropagationCounterexample`); `ReachSubsetAlg2Corrected` is Alg. 2, repaired, enclosing
 the reachable set.
+
+Jawecki-Auzinger-Koch (BIT 2020): (2.3)-(2.5), (2.9), (3.4), (7.2), (8.3), Sec. 7, CORA's Err_a.
 -/

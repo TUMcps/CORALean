@@ -3,16 +3,19 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
 /-!
 # `PolyZonotope.innerSpecial`
 
-CORA's `aux_InnerSpecial` in `innerApproxImage`, [1, Alg. 2]: the function and its domain have
-the same dimension, `C = inv(df(x_))` preconditions the whole Jacobian, and the inflation loop
-runs on all of `X_` (`innerTest` with `ind` the identity). `df(x_)` is the midpoint of the
-interval Jacobian at the point `x_`; `inv` is the caller's approximate inverse, which
-`innerTest` certifies before trusting.
+CORA's `aux_InnerSpecial` in `innerApproxImage`, [2, Alg. 2] (restated as [1, Alg. 2]): the
+function and its domain have the same dimension, `C = inv(df(x_))` preconditions the whole
+Jacobian, and the inflation loop runs on all of `X_` (`innerTest` with `ind` the identity).
+`df(x_)` is the midpoint of the interval Jacobian at the point `x_`; `inv` is the caller's
+approximate inverse, which `innerTest` certifies before trusting. The inflation loop is the
+iteration [2, Eq. 7], with `τ = 1.01` and `μ = 0.9`.
 
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
       Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
+* [2] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued
+      functions". Reliable Computing, 14:1-23, 2010.
 -/
 
 -- Authors:       Tobias Ladner
@@ -32,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 2] as `aux_InnerSpecial` runs it. -/
+/-- [2, Alg. 2] as `aux_InnerSpecial` runs it. -/
 def PolyZonotope.innerSpecial (pZ : PolyZonotope 𝕋 n) (X X₀ : Interval (Vec 𝕋 pZ.p))
     (Y : Interval (Vec 𝕋 n)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ)
     (h : n = pZ.p) : Bool :=
