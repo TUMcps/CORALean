@@ -25,7 +25,8 @@ every step. `Subgraph` is `[1, Cor. 1]`'s projection `M`, its products `H' = M H
 `Layer` carries an inclusion along a chain, these an equality `map_exact` proves at every type.
 
 `sumPool` is the seam: it lands in `Vec ℝ c`, so a graph network's output is a `NeuralNetwork`
-input unchanged. Real only, `Float.PolyZonotope` being vector-shaped.
+input unchanged. `Float.PolyZonotope` being vector-shaped, the float layers
+(`Float.GNN.gcn`, `sumPool`, `linear`) act on the node features stacked by `GNN.flatten`.
 
 ## References
 

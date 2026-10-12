@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.NonlinearARX.Theorems.ComputeGOOutput
+import CORALean.ContDynamics.NonlinearARX.Theorems.ComputeGOFloatOuter
 import CORALean.ContDynamics.NonlinearARX.Theorems.OutputOuter
 import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
 import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
@@ -8,6 +9,7 @@ import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemReach
 import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
 import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTTrajectory
 import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
+import CORALean.ContDynamics.NonlinearARX.Theorems.FloatJacModelEnclosesToNonlinearSysDTFloat
 
 /-!
 # What the conversion guarantees

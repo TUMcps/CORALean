@@ -17,6 +17,7 @@ import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+import CORALean.ContSet.Interval.Float.Theorems.DescProdOuter
 import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
 import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner

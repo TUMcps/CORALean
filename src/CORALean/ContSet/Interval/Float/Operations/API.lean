@@ -22,6 +22,7 @@ import CORALean.ContSet.Interval.Float.Operations.LinComb
 import CORALean.ContSet.Interval.Float.Operations.MatMul
 import CORALean.ContSet.Interval.Float.Operations.MatPlus
 import CORALean.ContSet.Interval.Float.Operations.MatPow
+import CORALean.ContSet.Interval.Float.Operations.DescProd
 import CORALean.ContSet.Interval.Float.Operations.MatResidual
 import CORALean.ContSet.Interval.Float.Operations.MinkDiff
 import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat

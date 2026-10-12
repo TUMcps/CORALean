@@ -4,6 +4,8 @@ import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
+import CORALean.ContDynamics.NonlinearSysDT.Definitions.GOFloat
+import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
 
 /-!
 # What `NonlinearSysDT` means beyond the system itself

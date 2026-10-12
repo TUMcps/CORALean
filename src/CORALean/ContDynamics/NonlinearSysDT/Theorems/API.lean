@@ -14,6 +14,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateBoxFloat
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOOutput
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOFloatOuter
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyCandidateFit
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyLeCandidate
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStepFloatOuter
