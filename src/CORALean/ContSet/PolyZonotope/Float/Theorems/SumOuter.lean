@@ -4,7 +4,6 @@ import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 
 /-!
 # `PolyZonotope.sum` encloses the exact sum at the nominal sets

@@ -17,6 +17,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachCora1D
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachTensor3Cora2D
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveCora1D
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveTensor3Cora2D
 import CORALean.ContDynamics.NonlinearSys.Operations.AdaptErrLoopCora1D
 import CORALean.ContDynamics.NonlinearSys.Operations.OptimalDeltatCora
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveCora1D

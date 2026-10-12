@@ -1,6 +1,5 @@
 import CORALean.ContSet.Zonotope.Real.Theorems.ExistsMinnormFacet
 import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
-import CORALean.ContSet.Zonotope.Real.Theorems.ExistsMinnormFacet
 import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
 import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
 

@@ -36,13 +36,6 @@ import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
 import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.Translate
-import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
-import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
-import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
-import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
 import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 import CORALean.ContSet.HPolytope.Float.Operations.Minus
 import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
