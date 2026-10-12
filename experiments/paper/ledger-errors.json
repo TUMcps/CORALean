@@ -464,5 +464,11 @@
     "Eq. 4": {
       "description": "$\\mathrm{sign}(g_i(1)g_j(1))$ should be $\\mathrm{sign}(g_i(1))\\,\\mathrm{sign}(g_j(1))$ for the stated cosine"
     }
+  },
+  "2024/kochdumper-nahs-stl-lti-verification": {
+    "Eq. 26": {
+      "description": "strict $>$ for every row: an unselected row reads $0>0$, so the program is infeasible for two or more halfspaces",
+      "fix": "MilpCorrectedIff.lean"
+    }
   }
 }
