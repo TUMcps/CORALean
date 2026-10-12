@@ -6,13 +6,12 @@ import Mathlib.Data.Matrix.Mul
 
 CORA's `@zonotope/intersectStrip` for a numeric weight matrix `Λ` (`aux_zonotopeFromLambda`, which
 CORA attributes to Prop. 1 of the same authors' ISIC 2013 paper; [1, Prop. 6] is its one-strip
-case, `Λ` a single column `λ`; [2, Lemma 1] is `intersectStripFamily`, the strips of several
-sensors at once). The strips `|C x - y| ≤ φ` meet the zonotope `c + G [-1, 1]^h`
-in a set that the zonotope with centre `c + Λ (y - C c)` and generators
-`[(I - Λ C) G, Λ diag(φ)]` encloses, whatever `Λ` is. Only this branch is modelled: the named
-methods that choose `Λ` (`'normGen'`, `'svd'`, `'radius'`, `'alamo-volume'`, `'alamo-FRad'`,
-`'wang-FRad'`, `'bravo'`) are tuning, as `Λ` is any matrix here, and the soundness does not depend
-on it.
+case, `Λ` a single column `λ`, and so is [3, Property 2]; [2, Lemma 1] is `intersectStripFamily`,
+the strips of several sensors at once). The strips `|C x - y| ≤ φ` meet the zonotope `c + G [-1,
+1]^h` in a set that the zonotope with centre `c + Λ (y - C c)` and generators `[(I - Λ C) G, Λ
+diag(φ)]` encloses, whatever `Λ` is. Only this branch is modelled: the named methods that choose
+`Λ` (`'normGen'`, `'svd'`, `'radius'`, `'alamo-volume'`, `'alamo-FRad'`, `'wang-FRad'`, `'bravo'`)
+are tuning, as `Λ` is any matrix here, and the soundness does not depend on it.
 
 ## References
 
@@ -21,6 +20,8 @@ on it.
 * [2] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
       "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption".
       European Journal of Control, 2023.
+* [3] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
+      Automatica, 41(6):1035-1043, 2005.
 -/
 
 -- Authors:       Tobias Ladner

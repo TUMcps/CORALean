@@ -19,6 +19,10 @@ import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyCandidateFit
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyLeCandidate
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStepFloatOuter
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStripBasedFloatOuter
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConsistentSetInterSubsetStrip
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConsistentSetSubsetIInter
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSubset
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSucc
 
 /-!
 # What `NonlinearSysDT` guarantees

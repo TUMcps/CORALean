@@ -113,6 +113,8 @@ import CORALean.ContSet.Interval.Real.Operations.FindSolutions
 import CORALean.ContSet.Interval.Real.Operations.ExploreBNVisits
 import CORALean.ContSet.Interval.Real.Operations.ExploreBN
 import CORALean.ContSet.Interval.Real.Operations.BoxPlaneIntersectNaive
+import CORALean.ContSet.Interval.Real.Operations.BoxDiff
+import CORALean.ContSet.Interval.Real.Operations.BoxDiffBounds
 
 /-!
 # What `Interval` computes

@@ -186,6 +186,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
 import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
 import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
 import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
+import CORALean.ContSet.PolyZonotope.Real.Operations.InnerScaling
 
 /-!
 # What `PolyZonotope` computes

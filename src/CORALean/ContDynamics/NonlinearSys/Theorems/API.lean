@@ -114,6 +114,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubsetReachSe
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerCertOfAbstractionError
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSet
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSetHorizon
+import CORALean.ContDynamics.NonlinearSys.Theorems.InnerScalingCounterexample
 
 /-!
 # What `NonlinearSys` guarantees

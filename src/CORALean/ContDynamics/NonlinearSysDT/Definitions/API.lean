@@ -6,6 +6,8 @@ import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.GOFloat
 import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
+import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
+import CORALean.ContDynamics.NonlinearSysDT.Definitions.ExactUncertainSet
 
 /-!
 # What `NonlinearSysDT` means beyond the system itself

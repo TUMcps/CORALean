@@ -1,0 +1,48 @@
+import Mathlib.Topology.Homeomorph.Lemmas
+
+/-!
+# The boundary of the image is inside what encloses the image of the boundary
+
+[1, Prop. 1]: an operator `reachSubset` enclosing the reachable set of every subset of `X₀`
+(its (6), [2, Thm. 1]) encloses `∂R_{X₀}(t)` when applied to `∂X₀`. The proof is [1]'s, with
+[1, Thm. 2] as `Homeomorph.image_frontier`: the flow at time `t` of a globally Lipschitz field
+is a homeomorphism `φ`, and `R_{X₀}(t) = φ(X₀)`. `X₀` is closed, so that `∂X₀ ⊆ X₀` and (6)
+applies to it; [1, Thm. 2] assumes it compact, Prop. 1 does not say so.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
+      for Nonlinear Continuous Systems". In Proc. of the 59th IEEE Conference on Decision and
+      Control (CDC), pp. 2130-2137, 2020.
+* [2] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
+      Reachable Sets". HSCC 2020. arXiv:1910.08354.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Set
+
+variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Prop. 1]: `φ(X̂₀) ⊆ S(X̂₀)` for every `X̂₀ ⊆ X₀`, `X₀` closed, gives `∂φ(X₀) ⊆ S(∂X₀)`. -/
+theorem frontier_image_subset_of_forall_subset (φ : X ≃ₜ Y) {X₀ : Set X} (hX₀ : IsClosed X₀)
+    (reachSubset : Set X → Set Y) (h6 : ∀ Xs ⊆ X₀, φ '' Xs ⊆ reachSubset Xs) :
+    frontier (φ '' X₀) ⊆ reachSubset (frontier X₀) := by
+  rw [← φ.image_frontier]
+  exact h6 _ hX₀.frontier_subset
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

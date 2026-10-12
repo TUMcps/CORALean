@@ -5,7 +5,7 @@ import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 
 The definition is [1, Def. 6], and [2, Def. 8]'s `Rᵉ_{X₀}(t)` is the same set, as are
 [3, Def. 1]'s `R_e(r)`, its time-varying parameters being inputs here, and [4, Def. 1]'s
-`R(t)`, the autonomous case.
+`R(t)`, the autonomous case, as is [5, Def. 1]'s `R_{X₀}(t)`.
 
 `LinearSys.reachSet`'s shape at a nonlinear field, quantified over the runs: nothing
 is computed or widened, so "the trajectory is in the reachable set" holds by
@@ -33,6 +33,9 @@ it inside each step's certified region, and `ReachSetSubsetRelinReach` and
 * [4] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
   Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
   8:2033-2038, 2024.
+* [5] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
+      for Nonlinear Continuous Systems". In Proc. of the 59th IEEE Conference on Decision and
+      Control (CDC), pp. 2130-2137, 2020.
 -/
 
 -- Authors:       Tobias Ladner
