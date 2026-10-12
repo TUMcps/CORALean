@@ -79,6 +79,12 @@ import CORALean.NN.Graph.Theorems.FloatLinearOuter
 import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
 import CORALean.NN.Graph.Theorems.FloatSumPoolMatMulVec
 import CORALean.NN.Graph.Theorems.FloatSumPoolOuter
+import CORALean.NN.Graph.Theorems.SupportFloatOfNeZero
+import CORALean.NN.Graph.Theorems.ReducedStepsFloatOuter
+import CORALean.NN.Graph.Theorems.ReduceGNNForNodeFloatOuter
+import CORALean.NN.Graph.Theorems.BallSubsetBallFloat
+import CORALean.NN.Graph.Theorems.BallFloatSubsetSucc
+import CORALean.NN.Graph.Theorems.BallSubsetReduceKeepFloat
 
 /-!
 # What the graph layers guarantee

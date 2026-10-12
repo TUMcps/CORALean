@@ -57,6 +57,11 @@ import CORALean.NN.Graph.Operations.FloatLinear
 import CORALean.NN.Graph.Operations.FloatRightMat
 import CORALean.NN.Graph.Operations.FloatSumPool
 import CORALean.NN.Graph.Operations.FloatSumPoolMat
+import CORALean.NN.Graph.Operations.SupportFloat
+import CORALean.NN.Graph.Operations.BallFloat
+import CORALean.NN.Graph.Operations.ReduceKeepFloat
+import CORALean.NN.Graph.Operations.ReducedStepsFloat
+import CORALean.NN.Graph.Operations.ReduceGNNForNodeFloat
 
 /-!
 # What the graph layers compute, collected

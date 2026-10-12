@@ -121,6 +121,11 @@ import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeMagnitudeMat
 import CORALean.ContSet.Interval.Float.Theorems.RoundAwayIntCast
 import CORALean.ContSet.Interval.Float.Theorems.RoundOuter
 import CORALean.ContSet.Interval.Float.Theorems.SumTermsMatMem
+import CORALean.ContSet.Interval.Float.Theorems.SubmatrixMem
+import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
+import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
+import CORALean.ContSet.Interval.Float.Theorems.HalvePlusMem
+import CORALean.ContSet.Interval.Float.Theorems.HalveMinusMem
 
 /-!
 # What `Interval` guarantees

@@ -130,7 +130,7 @@ Rulings on borderline cases:
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 4 | 51 | 3 | 15 | 6 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 4 | 29 | 2 | 11 | 5 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 3 | 43 | 0 | 12 | 4 |
-| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 7 | 12 | 0 | 9 | 4 |
+| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 5 | 14 | 0 | 9 | 4 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 23 | 0 | 9 | 5 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 2 | 37 | 0 | 12 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 34 | 0 | 7 | 4 |
@@ -157,7 +157,7 @@ Rulings on borderline cases:
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 7 | 1 |
 | [layers](nn/layers.md) | nn | 43 | 1 | 38 | 0 | 4 | 1 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 9 | 11 | 0 | 41 | 2 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 13 | 0 | 41 | 2 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.

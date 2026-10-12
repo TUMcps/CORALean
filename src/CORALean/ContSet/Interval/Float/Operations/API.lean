@@ -120,6 +120,8 @@ import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
 import CORALean.ContSet.Interval.Float.Operations.RoundAwayInt
 import CORALean.ContSet.Interval.Float.Operations.Round
 import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
+import CORALean.ContSet.Interval.Float.Operations.Submatrix
+import CORALean.ContSet.Interval.Float.Operations.Halve
 
 /-!
 # What `Interval` computes
