@@ -336,10 +336,14 @@ NonlinearSys.innerMinkDiff  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] o
 NonlinearSys.innerMinkDiffLoop  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 2-17 over exact sets, the steps of `innerMinkDiffStep`; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.innerMinkDiffStep  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 3-16 over exact sets at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linPoint  real-layer: the expansion point at the real `f`; runs in floats as `NonlinearSys.FloatModel.linPointFloat`
+NonlinearSys.linReachInner  real-layer: CORA's `contDynamics/linReachInner.m` over exact sets, the exact Minkowski difference of `Set`s at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`
+NonlinearSys.linReachInnerErr  real-layer: the abstraction error loop of CORA's `linReachInner.m` over exact sets, its stopping test a comparison of real vectors; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linReachPoly  real-layer: the `'poly'` step at a supplied Hessian and third-order bound; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
 NonlinearSys.polyReachReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 NonlinearSys.polyReachRun  real-layer: [Althoff 2013, Alg. 1]'s loop at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.reachAlgFloat` at `.poly` (`Encloses.reachAlgFloat_outer`)
 NonlinearSys.polyReachStep  real-layer: [Althoff 2013, Alg. 1]'s step at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
+NonlinearSys.reachInnerMinkdiff  real-layer: CORA's `priv_reachInnerMinkdiff.m` over exact sets, the steps of `linReachInner`; no float counterpart, see `NonlinearSys.innerMinkDiff`
+NonlinearSys.reachInnerMinkdiffLoop  real-layer: the step loop of CORA's `priv_reachInnerMinkdiff.m` over exact sets; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.reachInstance  real-layer: `Reach` for `WithSteps`, real certificates in the system; the float run is `NonlinearSys.FloatModel.reachFloat`, which takes a `FloatModel` rather than the system and so is no `Reach` instance
 NonlinearSys.relinDeltaReach  real-layer: CORA's `Rdiff` at supplied certificates, read only by the `'poly'` variant; the float step computes it as `LinearSys.postDeltaFloat` inside `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.relinReach  real-layer: the re-linearization loop at caller-supplied certificates `LinStep`; runs in floats as `NonlinearSys.FloatModel.reachFloat`, which linearizes itself from a `FloatModel` (`Encloses.reachFloat_outer`)
@@ -472,4 +476,5 @@ LinParamSys.dependentHomSolLowOrder  real-layer: CORA's second-order dependent s
 LinProbSys.enclosingHull  real-layer: [1, Alg. 1] at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 forwardInnerRange  real-layer: [1, Alg. 1, Step 3] through `kaucherInnerStep` at the real flow enclosures; no float refinement
 GuardMap.abstractionError  real-layer: CORA's `aux_abstractionError` of the hyperplane map at the real matrix exponential of `|A|tmax` and `Real.Zonotope`
+NonlinearSys.WithSteps.guardIntersectPancake  real-layer: CORA's `guardIntersect_pancake` at supplied certificates, with a real square root for the normal
 Location.guardIntersectHyperplaneMap  real-layer: CORA's `guardIntersect_hyperplaneMap` over `Real.Zonotope`, with real divisions and `Real.sqrt`

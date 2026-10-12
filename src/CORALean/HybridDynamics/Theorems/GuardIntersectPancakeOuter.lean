@@ -1,0 +1,164 @@
+import CORALean.HybridDynamics.Operations.GuardIntersectPancake
+import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
+import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
+
+/-!
+# A run's guard hit is in the pancake guard intersection
+
+The guarantee of CORA's `guardIntersect_pancake` [1] for a classical run. Time scaling cannot
+reach the guard (`g → 0` there, so the scaled clock `τ(t) = ∫₀ᵗ p/(nᵀx − d)` diverges at the hit),
+and the proof is where that is paid. Let `t_f` be the original time at which the scaled clock reads
+the horizon, `τ(t_f) = tScaled`, with the run strictly on the invariant side up to `t_f`. By
+`NonlinearSys.reparametrize` the run before `t_f` is a constant-parameter run of the scaled system
+at any positive `p` of the parameter set, so `x(t_f)` is in the scaled reach set
+(`NonlinParamSys.WithSteps.reachUnion_outer`). The jump is the original system run from the member
+holding it, and holds `x(t_f + s)` for `s ≤ δ` (`NonlinearSys.WithSteps.reachUnion_outer`, the
+run shifted by `t_f`); a guard point of the run in that window is therefore in the jump, and a
+point of the hyperplane is fixed by the projection (`ContSet.projectOnHyperplane_outer`).
+
+Disclosed: the theorem has two conditions that are CORA's run-time checks, not consequences. The
+scaled horizon must reach the original time `t_f` (`hclock`), and the guard hit must fall in the
+jump window `[t_f, t_f + δ]` (`ht`); where they fail CORA throws `Pancake approach failed!` or
+returns a set that misses the hit. Given a hit time `t*` and `δ > 0`, `t_f = max 0 (t* − δ)` and
+`tScaled = τ(t_f)` satisfy both. The run must extend to `t_f + δ`.
+
+## References
+
+* [1] `hybridDynamics/@location/guardIntersect_pancake.m`
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real
+open Matrix ContSet Set
+
+variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {m n : ℕ}
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
+variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
+variable [∀ n, OfPoint (S n) (Vec ℝ n)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- A guard point `x t`, `t ∈ [t_f, t_f + δ]`, of a run strictly inside until `t_f`, is in the
+set. -/
+theorem NonlinearSys.WithSteps.guardIntersectPancake_outer
+    (sys : NonlinearSys.WithSteps S Rg m n) (scaled : NonlinParamSys.WithSteps S Rg m 1 n)
+    (nv : Vec ℝ n) (d : ℝ) (R₀ : S n) (tScaled δ : ℝ)
+    (optionsScaled optionsJump : LinearSys.ReachOptions ℝ)
+    (hsc : scaled.sys = sys.sys.pancakeScaled nv d)
+    (hU : construct scaled.aug.U = construct sys.U)
+    {p : Vec ℝ 1} (hp : p ∈ construct scaled.P) (hp0 : 0 < p 0)
+    {T : ℝ} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
+    (traj : sys.sys.Trajectory (Icc 0 T) R₀ sys.U x u)
+    {tf : ℝ} (htf : 0 ≤ tf) (hδ : 0 ≤ δ) (htfT : tf + δ ≤ T)
+    (hpos : ∀ s ∈ Icc 0 tf, 0 < nv ⬝ᵥ x s - d)
+    (hclock : ∫ r in (0 : ℝ)..tf, ((nv ⬝ᵥ x r - d) / p 0)⁻¹ = tScaled)
+    {t : ℝ} (ht : t ∈ Icc tf (tf + δ)) (hhit : nv ⬝ᵥ x t = d) {Z : SetUnion (S n)}
+    (hZ : sys.guardIntersectPancake scaled nv d R₀ tScaled δ optionsScaled optionsJump = some Z) :
+    x t ∈ construct Z := by -- --- PROOF ---
+  -- the run before `t_f`, reparametrized: a constant-parameter run of the scaled system
+  have hgc : Continuous (fun z : Vec ℝ n => (nv ⬝ᵥ z - d) / p 0) := by
+    unfold dotProduct; fun_prop
+  obtain ⟨σ, hσ0, hσT, hmaps, -, hy, -⟩ := sys.sys.reparametrize tf htf x u
+    (fun z => (nv ⬝ᵥ z - d) / p 0)
+    (fun s hs => (traj.flow s ⟨hs.1, hs.2.trans (by linarith [ht.1, ht.2])⟩).mono
+      (Icc_subset_Icc_right (by linarith [ht.1, ht.2])))
+    hgc.continuousOn (fun s hs => div_pos (hpos s hs) hp0)
+  have hS0 : 0 ≤ tScaled := by
+    rw [← hclock]
+    exact intervalIntegral.integral_nonneg htf fun r hr =>
+      inv_nonneg.2 (div_pos (hpos r hr) hp0).le
+  -- the same at the horizon `tScaled` the integral equals
+  have hσT' : σ tScaled = tf := by rw [← hclock]; exact hσT
+  have hmaps' : MapsTo σ (Icc 0 tScaled) (Icc 0 tf) := by rw [← hclock]; exact hmaps
+  have hy' : ∀ s ∈ Icc 0 tScaled, HasDerivWithinAt (x ∘ σ)
+      (((nv ⬝ᵥ (x ∘ σ) s - d) / p 0) • sys.sys.f ((x ∘ σ) s) (u (σ s))) (Icc 0 tScaled) s := by
+    rw [← hclock]; exact hy
+  unfold NonlinearSys.WithSteps.guardIntersectPancake at hZ
+  simp only [Option.bind_eq_some_iff, Option.map_eq_some_iff] at hZ
+  obtain ⟨Rs, hRs, Rj, hRj, rfl⟩ := hZ
+  -- `x(t_f)` is in the scaled reach set at the horizon
+  have hmem : x tf ∈ construct Rs := by
+    have h1 := scaled.reachUnion_outer ⟨R₀, 0, tScaled⟩ optionsScaled
+    rw [hRs] at h1
+    have hx : x tf ∈ scaled.reachUnionExact (tScaled - 0) (construct R₀) := by
+      simp only [NonlinParamSys.WithSteps.reachUnionExact, mem_iUnion, mem_setOf_eq, sub_zero]
+      refine ⟨tScaled, ⟨hS0, le_rfl⟩, x ∘ σ, u ∘ σ, p, ⟨?_, fun s hs => ?_, hp, fun s hs => ?_⟩, ?_⟩
+      · simpa [hσ0] using traj.init
+      · rw [hU]; exact traj.input _ ⟨(hmaps' hs).1, (hmaps' hs).2.trans (by linarith [ht.1, ht.2])⟩
+      · rw [hsc]; exact hy' s hs
+      · simp [hσT']
+    exact h1 hx
+  obtain ⟨Ri, hRi, hxRi⟩ := SetUnion.mem_construct.mp hmem
+  -- the jump from the member `Ri` is somewhere in the list
+  have hmap : ∀ (l : List (S n)) (r : List (SetUnion (S n))),
+      l.mapM (fun Ri => sys.reachUnion ⟨Ri, 0, δ⟩ optionsJump) = some r → ∀ a ∈ l,
+      ∃ J, sys.reachUnion ⟨a, 0, δ⟩ optionsJump = some J ∧ J ∈ r := by
+    intro l
+    induction l with
+    | nil => intro r _ a ha; simp at ha
+    | cons b l ih =>
+      intro r h a ha
+      -- unfold the head step, then the tail, and conclude by the induction hypothesis
+      rw [List.mapM_cons] at h
+      cases hJ : sys.reachUnion ⟨b, 0, δ⟩ optionsJump with
+      | none => simp [hJ] at h
+      | some J =>
+        cases hl : List.mapM (fun Ri => sys.reachUnion ⟨Ri, 0, δ⟩ optionsJump) l with
+        | none => simp [hJ, hl] at h
+        | some rs =>
+          simp [hJ, hl] at h
+          subst h
+          rcases List.mem_cons.mp ha with rfl | ha
+          · exact ⟨J, hJ, List.mem_cons_self⟩
+          · obtain ⟨J', hJ', hm⟩ := ih rs hl a ha
+            exact ⟨J', hJ', List.mem_cons_of_mem _ hm⟩
+  obtain ⟨J, hJ, hJm⟩ := hmap _ _ hRj Ri hRi
+  -- the shifted run is a run of the original system from `Ri` over `[0, δ]`
+  have hxJ : x t ∈ construct J := by
+    have h2 := sys.reachUnion_outer ⟨Ri, 0, δ⟩ optionsJump
+    rw [hJ] at h2
+    refine h2 ?_
+    simp only [NonlinearSys.WithSteps.reachUnionExact, mem_iUnion, NonlinearSys.reachSet,
+      mem_setOf_eq, sub_zero]
+    refine ⟨t - tf, ⟨by linarith [ht.1], by linarith [ht.2]⟩, fun s => x (tf + s),
+      fun s => u (tf + s), ⟨?_, fun s hs => ?_, fun s hs => ?_⟩, by simp⟩
+    · simpa [hσT'] using hxRi
+    · exact traj.input _ ⟨by linarith [hs.1], by linarith [hs.2]⟩
+    · have hg : HasDerivWithinAt (fun s : ℝ => tf + s) 1 (Icc 0 δ) s :=
+        (hasDerivWithinAt_id s _).const_add tf
+      have h3 := (traj.flow (tf + s) ⟨by linarith [hs.1], by linarith [hs.2]⟩).scomp s hg
+        (fun r hr => ⟨by linarith [hr.1], by linarith [hr.2]⟩)
+      have h3' : HasDerivWithinAt (fun s : ℝ => x (tf + s))
+          (sys.sys.f (x (tf + s)) (u (tf + s))) (Icc 0 δ) s := by
+        simp only [one_smul] at h3; exact h3
+      exact h3'
+  -- a point of the hyperplane is fixed by the projection
+  obtain ⟨Rk, hRk, hxRk⟩ := SetUnion.mem_construct.mp hxJ
+  refine SetUnion.mem_construct.mpr
+    ⟨_, List.mem_map.mpr ⟨Rk, List.mem_flatMap.mpr ⟨J, hJm, hRk⟩, rfl⟩, ?_⟩
+  have hfix : x t - (((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) ⬝ᵥ x t - d / Real.sqrt (nv ⬝ᵥ nv)) •
+      ((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) ∈ construct (ContSet.projectOnHyperplane Rk
+        ((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) (d / Real.sqrt (nv ⬝ᵥ nv))) :=
+    ContSet.projectOnHyperplane_outer Rk _ _ ⟨x t, hxRk, rfl⟩
+  have h0 : ((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) ⬝ᵥ x t - d / Real.sqrt (nv ⬝ᵥ nv) = 0 := by
+    rw [smul_dotProduct, hhit, smul_eq_mul, div_eq_mul_inv]; ring
+  rwa [h0, zero_smul, sub_zero] at hfix
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

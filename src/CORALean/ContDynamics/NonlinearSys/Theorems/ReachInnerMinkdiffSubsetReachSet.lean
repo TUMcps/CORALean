@@ -1,0 +1,150 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiff
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubsetReachSet
+
+/-!
+# CORA's `'minkdiff'` inner reachability: every cell is an inner approximation
+
+`reachInnerMinkdiff`, CORA's `nonlinearSys/reachInner` with `'minkdiff'` as CORALean computes
+it: every time-point cell `k` lies in the reachable set `R(k Δt)`, every time-interval cell `k`
+in `R([k Δt, (k+1) Δt]) = ⋃_t R(t)` [1, Def. 1], and the cells past the horizon are empty. The
+induction is over the steps: the start of step `k` lies in `R(k Δt)`, its `Rtp` in
+`R((k+1) Δt)` (`linReachInner_subset_reachSet`, then `reachSet_subset_reachSet_add`) and its
+`Rti` in `R([k Δt, (k+1) Δt])` (`linReachInner_Rti_subset_reachSet`); `R0` is reached at `0`.
+
+What each step needs is [1, Prop. 1]'s hypotheses (`LinReachInnerCert`), asked for every step
+started from reachable states: the solutions exist, (21), which the abstraction error loop
+certifies (`LinReachInnerCert.of_abstractionError`), and `Rerror` convex, compact, nonempty and
+symmetric about the origin.
+
+Runs are under the constant input `u₀` (CORA's `params.u`), so under any `U ∋ u₀`.
+
+## References
+
+* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
+  Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
+  8:2033-2038, 2024.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open ContSet Set
+
+variable {n m : ℕ} {𝓛 : Type}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- CORA's `reachInner` with `'minkdiff'`: time-point cell `k` lies in `R(k Δt)`, time-interval
+cell `k` in `R([k Δt, (k+1) Δt])`, and the cells past `steps` are empty, given `Prop. 1`'s
+hypotheses at every step. -/
+theorem NonlinearSys.reachInnerMinkdiff_subset_reachSet (ops : NonlinearSys.LinReachInnerOps n 𝓛)
+    (sys : NonlinearSys n m) (u₀ : Vec ℝ m) (U : Set (Vec ℝ m)) (hu₀ : u₀ ∈ U) {Δt : ℝ}
+    (hΔt : 0 ≤ Δt) (steps fuel : ℕ) (X₀ : Set (Vec ℝ n))
+    (hcert : ∀ (T : ℝ) (X : Set (Vec ℝ n)) (e : Vec ℝ n) (st : NonlinearSys.LinReachInnerState n 𝓛),
+      X ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 T) X₀ {u₀} T →
+      NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st) →
+      NonlinearSys.LinReachInnerCert sys u₀ Δt X st)
+    {timePoint timeInt : ℕ → Set (Vec ℝ n)}
+    (h : NonlinearSys.reachInnerMinkdiff ops (fun x => sys.f x u₀) X₀ Δt steps fuel =
+      some (timePoint, timeInt)) :
+    (∀ k : ℕ, timePoint k ⊆
+      sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 (k * Δt)) X₀ U (k * Δt)) ∧
+    (∀ k : ℕ, timeInt k ⊆ ⋃ t ∈ Icc (k * Δt) ((k + 1) * Δt),
+      sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 t) X₀ U t) ∧
+    (∀ k, steps < k → timePoint k = ∅) ∧ (∀ k, steps ≤ k → timeInt k = ∅) := by -- --- PROOF ---
+  set RS : ℝ → Set (Vec ℝ n) := fun t =>
+    sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 t) X₀ {u₀} t with hRS
+  set RSI : ℕ → Set (Vec ℝ n) := fun k => ⋃ t ∈ Icc ((k : ℝ) * Δt) ((k + 1) * Δt), RS t
+    with hRSI
+  -- the induction over the steps, from step `k`
+  have step : ∀ (j k : ℕ) (R : Set (Vec ℝ n)) (e : Vec ℝ n) (tp ti tp' ti' : ℕ → Set (Vec ℝ n)),
+      R ⊆ RS (k * Δt) → (∀ i : ℕ, tp i ⊆ RS (i * Δt)) → (∀ i, ti i ⊆ RSI i) →
+      (∀ i, k < i → tp i = ∅) → (∀ i, k ≤ i → ti i = ∅) →
+      NonlinearSys.reachInnerMinkdiffLoop ops (fun x => sys.f x u₀) Δt fuel j k R e tp ti =
+        some (tp', ti') →
+      (∀ i : ℕ, tp' i ⊆ RS (i * Δt)) ∧ (∀ i, ti' i ⊆ RSI i) ∧
+        (∀ i, k + j < i → tp' i = ∅) ∧ (∀ i, k + j ≤ i → ti' i = ∅) := by
+    intro j
+    induction j with
+    | zero =>
+      -- no step left: the cells are returned as they are
+      intro k R e tp ti tp' ti' _ htp hti htp0 hti0 hl
+      simp only [NonlinearSys.reachInnerMinkdiffLoop, Option.some.injEq, Prod.mk.injEq] at hl
+      obtain ⟨rfl, rfl⟩ := hl
+      exact ⟨htp, hti, fun i hi => htp0 i (by omega), fun i hi => hti0 i (by omega)⟩
+    | succ j ih =>
+      intro k R e tp ti tp' ti' hR htp hti htp0 hti0 hl
+      obtain ⟨r, hr, hl⟩ := Option.bind_eq_some_iff.mp hl
+      cases r with
+      | none =>
+        -- `options.empty`: the loop breaks with the cells as they are
+        simp only [Option.some.injEq, Prod.mk.injEq] at hl
+        obtain ⟨rfl, rfl⟩ := hl
+        exact ⟨htp, hti, fun i hi => htp0 i (by omega), fun i hi => hti0 i (by omega)⟩
+      | some st =>
+        -- step `k`: `Rtp` at `(k+1)Δt`, `Rti` over `[kΔt, (k+1)Δt]`
+        have hk : (0 : ℝ) ≤ k * Δt := by positivity
+        have cert := hcert _ R e st hR hr
+        have h1 : st.Rtp ⊆ RS (((k + 1 : ℕ) : ℝ) * Δt) := by
+          have := (NonlinearSys.linReachInner_subset_reachSet ops sys u₀ hΔt fuel hr cert).trans
+            (sys.reachSet_subset_reachSet_add X₀ R u₀ hk hΔt hR)
+          rwa [show (k : ℝ) * Δt + Δt = ((k + 1 : ℕ) : ℝ) * Δt by push_cast; ring] at this
+        have h2 : st.Rti ⊆ RSI k := by
+          have := NonlinearSys.linReachInner_Rti_subset_reachSet ops sys u₀ X₀ hk hΔt fuel hR
+            hr cert
+          rwa [show (k : ℝ) * Δt + Δt = ((k : ℝ) + 1) * Δt by ring] at this
+        -- the updated cells satisfy the invariant at `k + 1`
+        have := ih (k + 1) st.Rtp st.err (Function.update tp (k + 1) st.Rtp)
+          (Function.update ti k st.Rti) tp' ti' h1
+          (fun i => by
+            rcases eq_or_ne i (k + 1) with rfl | hi
+            · rw [Function.update_self]; exact h1
+            · rw [Function.update_of_ne hi]; exact htp i)
+          (fun i => by
+            rcases eq_or_ne i k with rfl | hi
+            · rw [Function.update_self]; exact h2
+            · rw [Function.update_of_ne hi]; exact hti i)
+          (fun i hi => by rw [Function.update_of_ne (by omega)]; exact htp0 i (by omega))
+          (fun i hi => by rw [Function.update_of_ne (by omega)]; exact hti0 i (by omega)) hl
+        refine ⟨this.1, this.2.1, fun i hi => this.2.2.1 i (by omega),
+          fun i hi => this.2.2.2 i (by omega)⟩
+  -- `R0` is reached at `0`: on `{0}` any derivative is one
+  have base : X₀ ⊆ RS 0 := by
+    intro y hy
+    refine ⟨fun _ => y, fun _ => u₀, ⟨hy, fun _ _ => rfl, fun t ht => ?_⟩, rfl⟩
+    rw [Icc_self] at ht ⊢
+    rw [mem_singleton_iff.mp ht, hasDerivWithinAt_iff_tendsto_slope, sdiff_self,
+      nhdsWithin_empty]
+    exact Filter.tendsto_bot
+  have hall := step steps 0 X₀ 0 _ _ timePoint timeInt (by simpa using base)
+    (fun i => by
+      rcases eq_or_ne i 0 with rfl | hi
+      · rw [Function.update_self]; simpa using base
+      · rw [Function.update_of_ne hi]; exact empty_subset _)
+    (fun _ => empty_subset _)
+    (fun i hi => by rw [Function.update_of_ne (by omega)])
+    (fun _ _ => rfl) h
+  -- runs under `u₀` are runs with inputs in `U`
+  have mono : ∀ t, RS t ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 t) X₀ U t := by
+    rintro t y ⟨x, u, traj, hx⟩
+    refine ⟨x, u, ⟨traj.init, fun s hs => ?_, traj.flow⟩, hx⟩
+    have hu : u s = u₀ := traj.input s hs
+    show u s ∈ U
+    rw [hu]
+    exact hu₀
+  refine ⟨fun k => (hall.1 k).trans (mono _), fun k => (hall.2.1 k).trans
+    (biUnion_mono subset_rfl fun t _ => mono t), fun k hk => hall.2.2.1 k (by omega),
+    fun k hk => hall.2.2.2 k (by omega)⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

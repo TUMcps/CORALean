@@ -104,6 +104,7 @@ import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
 import CORALean.HybridDynamics.Theorems.AbstractionErrorDecomp
 import CORALean.HybridDynamics.Theorems.AbstractionErrorOuter
 import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapOuter
+import CORALean.HybridDynamics.Theorems.GuardIntersectPancakeOuter
 import CORALean.HybridDynamics.Theorems.AbstractionErrorFloatOuter
 import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
 import CORALean.HybridDynamics.Theorems.HitJacobianMemHitJacobianFloat

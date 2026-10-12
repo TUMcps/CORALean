@@ -57,6 +57,7 @@ import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
 import CORALean.HybridDynamics.Operations.GuardTransitionLevelSet
 import CORALean.HybridDynamics.Operations.AbstractionError
 import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMap
+import CORALean.HybridDynamics.Operations.GuardIntersectPancake
 import CORALean.HybridDynamics.Operations.AbstractionErrorFloat
 import CORALean.HybridDynamics.Operations.HitPointFloat
 import CORALean.HybridDynamics.Operations.HitJacobianFloat
