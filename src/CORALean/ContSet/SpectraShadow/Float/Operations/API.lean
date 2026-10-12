@@ -10,7 +10,6 @@ import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
 import CORALean.ContSet.SpectraShadow.Float.Operations.Project
 import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
 import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
-import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
 import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
 import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
 import CORALean.ContSet.SpectraShadow.Float.Operations.Base

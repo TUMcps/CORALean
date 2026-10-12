@@ -1103,6 +1103,14 @@ END { if (n > 0 && other == 0) print prev ": holds only `import Mathlib.*` lines
 ' $files)"
 report "$(printf '%s' "$out" | sed '/^$/d')"
 
+# No file may import the same module twice: union merges of merge trains leave
+# repeated `import` lines in the collector files.
+out=$(awk '
+FNR == 1 { delete seen }
+/^import / { if (seen[$0]++) print FILENAME ": duplicate import " $2 }
+' $files)
+report "$out"
+
 if [ "$status" -eq 0 ]; then
   printf 'conventions: %s files, all checks passed\n' "$(printf '%s\n' "$files" | wc -l | tr -d ' ')"
 fi

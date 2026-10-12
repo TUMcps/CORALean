@@ -201,14 +201,11 @@ import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
 import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
 import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 import CORALean.ContDynamics.LinearSys.Theorems.SuperlinearDecreaseTimePointStepRemainderError
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalBound
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSegmentsSum
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetTimeIntervalInputSolution
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepEpsOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
@@ -219,7 +216,6 @@ import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
 import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepTunedOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalWitness
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointBound
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter

@@ -5,8 +5,6 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
 import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetCoefMem
 import CORALean.ContSet.PolyZonotope.Float.Theorems.IsequalSound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetCoefMem
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
 import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
