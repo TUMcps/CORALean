@@ -55,6 +55,7 @@ import CORALean.HybridDynamics.Operations.NonlinearResetResolveFloat
 import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
 import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
 import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
+import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeResolveCORA
 import CORALean.HybridDynamics.Operations.ReachGuard
 import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
 import CORALean.HybridDynamics.Operations.GuardTransitionLevelSet

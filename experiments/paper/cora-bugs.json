@@ -2,8 +2,9 @@
   "_comment": "One entry per coverage row of references/coverage/**/*.md whose note has a `cora-issue —` part, keyed by coverage file (group/class) and method as printed in the row (without backticks). `description`: at most ten words on what CORA gets wrong, from the row's `cora-issue —` text and the FINDINGS.md row it cites; LaTeX-escaped by the generator except inside $...$. `kind`: `unsound` when CORA's result can miss reachable states, is not the enclosure it claims to be, or is a wrong verdict a verification relies on; `other` for a bug that is too large, a wrong flag, a crash or error path, or a documented behaviour that is not the code's. Optional `cex` / `fix`: name of a Lean file (or its repository path) the row or its FINDINGS.md row links, replacing the default pick; optional `findings`: further FINDINGS.md subjects that belong to the row. Read by scripts/cora-bugs-table.py for experiments/paper/latex/appendix-cora-bugs.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry.",
   "contDynamics/contDynamics": {
     "linReach": {
-      "description": "confinement check runs on the set it should certify",
-      "kind": "unsound"
+      "description": "Hessian read over a region missing the linearization point",
+      "kind": "unsound",
+      "cex": "LinReachCora1DHessianRegionCounterexample.lean"
     },
     "linReachInner": {
       "description": "inner approximation is not inside the reachable set",
@@ -98,7 +99,7 @@
   },
   "contDynamics/nonlinearSys": {
     "linReach_adaptive": {
-      "description": "confinement check runs on the set it should certify",
+      "description": "Hessian read over a region missing the linearization point",
       "kind": "unsound"
     },
     "reachInner": {
@@ -372,12 +373,13 @@
     },
     "guardIntersect_zonoGirard": {
       "description": "coordinate pinned wrongly for non-unit normals",
+      "cex": "GuardIntersectZonoGirardCoraCounterexample.lean",
       "kind": "unsound"
     }
   },
   "hybridDynamics/nonlinearReset": {
     "resolve": {
-      "description": "global inputs numbered by occurrence, not binding index",
+      "description": "global inputs numbered by occurrence; reaches parallel automaton resets",
       "kind": "unsound"
     }
   },

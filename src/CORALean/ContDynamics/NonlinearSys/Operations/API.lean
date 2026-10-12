@@ -14,6 +14,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachCora1D
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
@@ -114,8 +115,8 @@ run-time region test fails; `RelinDeltaReach` is CORA's `Rdiff`. `AbstrErrLin` i
 and certified in `Theorems`. `LagrangeRemainder` is the same one order up, once the quadratic term
 is subtracted exactly rather than boxed. `AbstrErrPolySearch` is `linReach`'s while loop for
 `alg = 'poly'`, a fuel-bounded search over the candidates `AbstrErrPolyCandidates` computes, and
-`LinReachPoly` runs both from a start set. `AbstrErr` is the other paper's `abstrErr`, one step's
-whole error out of `postΔ`, `VarInputs` and the latter.
+`LinReachPoly` runs both from a start set; `LinReachCora1D` is CORA's `'lin'` step in 1D, as
+printed. `AbstrErr` is the other paper's `abstrErr`, one step's error from `postΔ` and `VarInputs`.
 
 `LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer,
 `AbstrSolInf` the untruncated set of those errors, `GainDim`/`Gain`/`GainMax`/`GainOrder` how much
