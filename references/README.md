@@ -89,6 +89,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
 | [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md) | Kopetzki, Schürmann, Althoff | CDC, pp. 5626-5633 | 2017 | 🟢 4/4 \| 4 |
 | [Zonotopic Fault Detection Observer with H− Performance](2017/wang-ccc-fault-detection-observer.md) | Wang, Zhou, Puig, Cembrano, Wang | CCC, pp. 7230-7235 | 2017 | 🟢 15/15 \| 20 |
+| [Error bounds for the Krylov subspace methods for computations of matrix exponentials](2017/wang-simax-krylov-error-bounds.md) | Wang, Ye | SIAM Journal on Matrix Analysis and Applications, 38(1):155-187 | 2017 | 🟡 1/18 \| 9 |
 | [Implementation of Taylor Models in CORA 2018](2018/althoff-arch-taylor-models.md) | Althoff, Grebenyuk, Kochdumper | ARCH18, EPiC Series in Computing 54, pp. 145-173 | 2018 | 🟢 11/11 \| 38 |
 | [AI2: Safety and Robustness Certification of Neural Networks with Abstract Interpretation](2018/gehr-sp-ai2.md) | Gehr, Mirman, Drachsler-Cohen, Tsankov, Chaudhuri, Vechev | IEEE S&P, pp. 3-18 | 2018 | 🟢 11/11 \| 4 |
 | [On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids](2018/halder-cdc-minkowski-sum-ellipsoids.md) | Halder | CDC, pp. 4040-4045 | 2018 | 🟢 30/30 \| 13 |
@@ -337,6 +338,7 @@ pages carry one:
 * [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md)
 * [Benchmarks for the Formal Verification of Power Systems](2022/althoff-arch-power-systems.md)
 * [Zonotopic Fault Detection Observer with H− Performance](2017/wang-ccc-fault-detection-observer.md)
+* [Error bounds for the Krylov subspace methods for computations of matrix exponentials](2017/wang-simax-krylov-error-bounds.md)
 * [A distributed set-membership approach based on zonotopes for interconnected systems](2018/wang-cdc-distributed-set-membership.md)
 * [Set-Based Training for Neural Network Verification](2025/koller-tmlr-set-based-training.md)
 * [Goffin's algorithm for zonotopes](2012/cerny-kybernetika-goffin-zonotopes.md)

@@ -2,9 +2,12 @@
   "_comment": "One entry per coverage row of references/coverage/**/*.md whose note has a `cora-issue —` part, keyed by coverage file (group/class) and method as printed in the row (without backticks). `description`: at most ten words on what CORA gets wrong, from the row's `cora-issue —` text and the FINDINGS.md row it cites; LaTeX-escaped by the generator except inside $...$. `kind`: `unsound` when CORA's result can miss reachable states, is not the enclosure it claims to be, or is a wrong verdict a verification relies on; `other` for a bug that is too large, a wrong flag, a crash or error path, or a documented behaviour that is not the code's. Optional `cex` / `fix`: name of a Lean file (or its repository path) the row or its FINDINGS.md row links, replacing the default pick; optional `findings`: further FINDINGS.md subjects that belong to the row. Read by scripts/cora-bugs-table.py for experiments/paper/latex/appendix-cora-bugs.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry.",
   "contDynamics/contDynamics": {
     "linReach": {
-      "description": "Hessian read over a region missing the linearization point",
+      "description": "Hessian region misses linearization point; tensor-3 remainder misindexed",
       "kind": "unsound",
-      "cex": "LinReachCora1DHessianRegionCounterexample.lean"
+      "cex": "LinReachCora1DHessianRegionCounterexample.lean",
+      "findings": [
+        "Third-order remainder indexes the tensor list by position"
+      ]
     },
     "linReachInner": {
       "description": "inner approximation is not inside the reachable set",
@@ -65,10 +68,11 @@
   },
   "contDynamics/nonlinDASys": {
     "initReach": {
-      "description": "inherits linReach's wrong algebraic-error sign; reachable state missed",
+      "description": "inherits linReach's wrong sign; split path crashes (unset iter)",
       "kind": "unsound",
       "findings": [
-        "`NonlinDASys` linearization error, sign of `C F⁻¹`"
+        "`NonlinDASys` linearization error, sign of `C F⁻¹`",
+        "`NonlinDASys` `initReach`, `iter` never passed"
       ],
       "cex": "LinReachCoraCounterexample.lean"
     },
@@ -164,6 +168,13 @@
     }
   },
   "contSet/ellipsoid": {
+    "contains_": {
+      "description": "point operand: five arguments to three-argument private function",
+      "kind": "other",
+      "findings": [
+        "Ellipsoid `contains_`, point operand"
+      ]
+    },
     "enclose": {
       "description": "code omits Eplus; documented hull not enclosed",
       "kind": "unsound",
@@ -262,6 +273,11 @@
       "description": "P2 overwritten by P1; difference of P1 with itself",
       "kind": "unsound",
       "fix": null
+    },
+    "representsa_": {
+      "description": "cut row sends point {0} to emptySet test; rejected",
+      "kind": "other",
+      "cex": "RepresentsaIntervalCoraCounterexample.lean"
     }
   },
   "contSet/probZonotope": {

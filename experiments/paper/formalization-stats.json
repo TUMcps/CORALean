@@ -14,37 +14,37 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 94,
+    "papers": 95,
     "papers_with_findings": 87,
-    "in_scope": 1211,
-    "formalized": 1168,
-    "not_formalized": 43,
-    "out_of_scope": 1053,
+    "in_scope": 1229,
+    "formalized": 1169,
+    "not_formalized": 60,
+    "out_of_scope": 1062,
     "out_of_scope_by_reason": {
-      "restated": 389,
+      "restated": 396,
       "mathlib": 22,
-      "not-a-claim": 544,
+      "not-a-claim": 546,
       "done-differently": 12,
       "not-covered": 86
     },
     "by_class": {
-      "correct": 778,
+      "correct": 779,
       "underspecified": 239,
       "proof-gap": 35,
       "fixed": 106,
       "false": 10
     },
     "claims": {
-      "in_scope": 460,
-      "formalized": 442,
-      "correct": 266,
+      "in_scope": 471,
+      "formalized": 443,
+      "correct": 267,
       "underspecified": 86,
       "proof-gap": 35,
       "fixed": 49,
       "false": 6
     },
     "definitions": {
-      "in_scope": 751,
+      "in_scope": 758,
       "formalized": 726,
       "correct": 512,
       "underspecified": 153,
@@ -2712,7 +2712,7 @@
     },
     {
       "page": "2017/wang-ccc-fault-detection-observer.md",
-      "label": "Wang 2017",
+      "label": "Wang 2017 (ccc)",
       "year": 2017,
       "title": "Zonotopic Fault Detection Observer with H− Performance",
       "in_scope": 15,
@@ -2768,6 +2768,49 @@
           "reason": "the condition is printed with the norm unsquared on the left; `J^N_- > 0` is `‖p^{rf}‖²₂ > β²‖f‖²₂`, i.e. `‖p^{rf}‖₂ > β‖f‖₂`, the `H₋` index; see Findings"
         }
       ]
+    },
+    {
+      "page": "2017/wang-simax-krylov-error-bounds.md",
+      "label": "Wang 2017 (simax)",
+      "year": 2017,
+      "title": "Error bounds for the Krylov subspace methods for computations of matrix exponentials",
+      "in_scope": 18,
+      "formalized": 1,
+      "not_formalized": 17,
+      "out_of_scope": 9,
+      "out_of_scope_by_reason": {
+        "restated": 7,
+        "mathlib": 0,
+        "not-a-claim": 2,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 11,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 7,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
     },
     {
       "page": "2018/althoff-arch-taylor-models.md",
@@ -6297,7 +6340,7 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 3,
+        "cora_issues": 4,
         "findings": {
           "correct": 38,
           "underspecified": 6,
@@ -6479,7 +6522,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 4,
+        "cora_issues": 5,
         "findings": {
           "correct": 46,
           "underspecified": 17,
@@ -6767,7 +6810,7 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 54,
+          "correct": 55,
           "underspecified": 23,
           "proof-gap": 10,
           "fixed": 9,
@@ -7225,7 +7268,7 @@
         "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 41,
-        "cora_issues": 53,
+        "cora_issues": 55,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -7259,7 +7302,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 180,
+          "correct": 181,
           "underspecified": 64,
           "proof-gap": 18,
           "fixed": 28,
@@ -7322,7 +7365,7 @@
       "not_yet": 14,
       "out_of_scope": 396,
       "needs_float": 73,
-      "cora_issues": 79,
+      "cora_issues": 81,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -7332,7 +7375,7 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 671,
+        "correct": 672,
         "underspecified": 198,
         "proof-gap": 31,
         "fixed": 81,
@@ -7363,11 +7406,11 @@
       }
     },
     "theorems": {
-      "paper": 1693,
+      "paper": 1698,
       "float": 1898,
       "helper": 1591,
-      "lemma": 2623,
-      "total": 7805,
+      "lemma": 2627,
+      "total": 7814,
       "examples": 120
     }
   }
