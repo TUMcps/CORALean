@@ -18,6 +18,7 @@ import CORALean.HybridDynamics.Parallel.Operations.ProductWith
 import CORALean.HybridDynamics.Parallel.Operations.ProductAdd
 import CORALean.HybridDynamics.Parallel.Operations.SyncPick
 import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
+import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsCoraTarget
 import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsSync
 import CORALean.HybridDynamics.Parallel.Operations.ProductSync
 import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd

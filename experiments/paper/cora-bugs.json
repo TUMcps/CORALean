@@ -172,7 +172,7 @@
   },
   "contSet/levelSet": {
     "isIntersecting_": {
-      "description": "operator == read as <; touching sets reported disjoint",
+      "description": "== read as <; touching sets disjoint; potInt misses jump",
       "kind": "unsound",
       "fix": "IsIntersectingCell.lean"
     },
@@ -362,9 +362,9 @@
       "kind": "unsound"
     },
     "guardIntersect_hyperplaneMap": {
-      "description": "error summands and generator slices overwritten",
+      "description": "overwritten error summands; mapped set misses a guard hit",
       "kind": "unsound",
-      "cex": null
+      "cex": "GuardIntersectHyperplaneMapCoraErrCounterexample.lean"
     },
     "guardIntersect_levelSet": {
       "description": "drops mixed second-order terms of the guard",
@@ -383,7 +383,7 @@
   },
   "hybridDynamics/transition": {
     "synchronize": {
-      "description": "every component receives the last transition's target",
+      "description": "last transition's target to all components; wrong parallel reach jumps",
       "kind": "unsound"
     }
   },
