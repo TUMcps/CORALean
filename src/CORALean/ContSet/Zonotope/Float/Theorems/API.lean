@@ -98,7 +98,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ErrBoundLe
 import CORALean.ContSet.Zonotope.Float.Theorems.EntryDeviationBound
 import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
 import CORALean.ContSet.Zonotope.Float.Theorems.UnderapproximateInner
+import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffAlignedInner
 import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffRepInner
+import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffStretchInnerInner
+import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffStretchOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ReduceUnderApproxInner
 import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoundError
 import CORALean.ContSet.Zonotope.Float.Theorems.RealMtimesIntervalMatSubset

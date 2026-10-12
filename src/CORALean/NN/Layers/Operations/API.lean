@@ -34,6 +34,8 @@ import CORALean.NN.Layers.Operations.FindRegionPolys
 import CORALean.NN.Layers.Operations.FindRegionRight
 import CORALean.NN.Layers.Operations.LipConstrLinear
 import CORALean.NN.Layers.Operations.LipConstrScale
+import CORALean.NN.Layers.Operations.LipConstrLinearFloat
+import CORALean.NN.Layers.Operations.LipConstrScaleFloat
 import CORALean.NN.Layers.Operations.EnclosureMid
 import CORALean.NN.Layers.Operations.EvalPolyDown
 import CORALean.NN.Layers.Operations.EvalPolyUp
@@ -127,6 +129,12 @@ import CORALean.NN.Layers.Operations.SquareSlope
 import CORALean.NN.Layers.Operations.StarSetCoraRowBounds
 import CORALean.NN.Layers.Operations.StarSetReluNeuron
 import CORALean.NN.Layers.Operations.StarSetRowBounds
+import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
+import CORALean.NN.Layers.Operations.StarSetFloatContSet
+import CORALean.NN.Layers.Operations.StarSetFloatChordRow
+import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
+import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
+import CORALean.NN.Layers.Operations.ReluStarFloat
 import CORALean.NN.Layers.Operations.SumOffDown
 import CORALean.NN.Layers.Operations.SumOffUp
 import CORALean.NN.Layers.Operations.Tanh

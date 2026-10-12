@@ -1,0 +1,39 @@
+import CORALean.ContSet.Interval.Float.Operations.MulHi
+import CORALean.ContSet.Interval.Float.Operations.MulLo
+import CORALean.NN.Layers.Operations.StarSetFloatContSet
+
+/-!
+# The bounds of one neuron of a float star set
+
+The neuron `j` is `c_j + Σ_k G_jk α_k` with each factor in `[l_k, u_k]`. Each term is bounded by
+the corner hull of `G_jk` against `[l_k, u_k]`, the lower bounds summed rounding down and the
+upper ones rounding up. These bounds are certified by the rounding alone, not by CORA's centre and
+radius formula (`StarSet.rowBounds`), whose centre is not the one CORA computes.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Float Float.FloatOps
+
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The lower and the upper bound of neuron `j`, each rounded outward. -/
+def StarSetFloat.rowBounds (s : StarSetFloat 𝕋 n) (j : Fin n) : 𝕋 × 𝕋 :=
+  (addDown (s.c j) (sumDown fun k => Interval.mulLo (s.G j k) (s.G j k) (s.l k) (s.u k)),
+   addUp (s.c j) (sumUp fun k => Interval.mulHi (s.G j k) (s.G j k) (s.l k) (s.u k)))
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

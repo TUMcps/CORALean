@@ -118,6 +118,14 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenAllCover
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsSetApproxSound
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapDepPoint
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsMulRel
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPowRel
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPolyRel
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsXprodRel
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsTermsRel
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsGClose
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsOuter
 
 /-!
 # What `PolyZonotope` guarantees

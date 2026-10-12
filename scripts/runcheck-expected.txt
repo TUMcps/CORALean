@@ -107,6 +107,11 @@ minkDiffNSMinuend | h=3 c=(0.000000, 0.000000) hull=[-2.000000, 2.000000] x [-2.
 minkDiffNSSubtrahend | h=2 c=(0.000000, 0.000000) hull=[-0.750000, 0.750000] x [-0.500000, 0.500000] | ok
 minkDiffNSOpt | true | ok
 minkDiffNSRun | h=3 c=(0.000000, 0.000000) hull=[-0.625000, 0.625000] x [-0.750000, 0.750000] | ok
+minkDiffAlignedOpt | true | ok
+minkDiffAlignedRun | h=2 c=(-0.125000, 0.000000) hull=[-1.531250, 1.281250] x [-1.406250, 1.406250] | ok
+minkDiffStretchRun | h=2 c=(-0.125000, 0.000000) hull=[-1.625000, 1.375000] x [-1.500000, 1.500000] | ok
+minkDiffStretchInnerOpt | true | ok
+minkDiffStretchInnerRun | h=2 c=(-0.125000, 0.000000) hull=[-1.375000, 1.125000] x [-1.250000, 1.250000] | ok
 ctInnerSys | [-1.000000] | ok
 ctInnerX | h=1 c=(1.500000) hull=[1.000000, 2.000000] | ok
 ctInnerU | h=1 c=(0.000000) hull=[-0.015625, 0.015625] | ok
