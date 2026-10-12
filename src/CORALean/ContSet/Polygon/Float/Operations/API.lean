@@ -32,6 +32,8 @@ import CORALean.ContSet.Polygon.Float.Operations.QuadMap
 import CORALean.ContSet.Polygon.Float.Operations.QuadMapMixed
 import CORALean.ContSet.Polygon.Float.Operations.Subtract
 import CORALean.ContSet.Polygon.Float.Operations.Mldivide
+import CORALean.ContSet.Polygon.Float.Operations.InnerHRep
+import CORALean.ContSet.Polygon.Float.Operations.MinkDiff
 
 /-!
 # Float polygon operations, collected

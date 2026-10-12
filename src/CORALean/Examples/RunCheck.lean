@@ -572,6 +572,7 @@ def dyadicRows2 : StateT Nat IO Unit := do
   -- the components with a worked example of their own
   row "zAnd" (ofZono RunnableFloat.zAnd)
   row "polyAnd" (ofPolygon RunnableFloat.polyAnd)
+  row "polyMinkDiff" ((RunnableFloat.polyMinkDiff.sets.head?.map ofHP).getD ⟨"pieces=0", [], true⟩)
   row "interSum" (ofUnion ⟨RunnableFloat.interSum.sets⟩)
   row "lsContainsRun" (ofBool RunnableFloat.lsContainsRun)
   row "tlmI" (ofBox RunnableFloat.tlmI)

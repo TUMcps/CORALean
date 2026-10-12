@@ -31,6 +31,8 @@ import CORALean.ContSet.Polygon.Float.Theorems.QuadMapOuter
 import CORALean.ContSet.Polygon.Float.Theorems.QuadMapMixedOuter
 import CORALean.ContSet.Polygon.Float.Theorems.SubtractOuter
 import CORALean.ContSet.Polygon.Float.Theorems.MldivideOuter
+import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
+import CORALean.ContSet.Polygon.Float.Theorems.MinkDiffInner
 
 /-!
 # Float polygon theorems, collected

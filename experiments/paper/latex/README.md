@@ -131,6 +131,24 @@ if the paper loads it: the other order makes pdflatex loop at the end of the tab
 the links point at `\coraleanrepo`, which the table `\providecommand`s as the repository's
 `main` branch, so defining it first (`\newcommand{\coraleanrepo}{.../-/blob/<tag>}`) pins them.
 
+**The CORA bugs table** (`appendix-cora-bugs.tex`, label `tab:cora-bugs`) lists every CORA method
+whose coverage row (`references/coverage/**/*.md`) has a `cora-issue —` note, the rule of
+`scripts/check-references.py`. One `longtable` row each, sorted by group (contSet, contDynamics,
+hybridDynamics, nn), then class, then method: the function as `\texttt{class/method}`, an asterisk
+marking an *unsound* bug (CORA's result can miss reachable states, is not the enclosure it claims
+to be, or is a wrong verdict a verification relies on; the others are too large, a wrong flag, a
+crash or error path, or a documented behaviour that is not the code's), at most ten words on what
+CORA gets wrong, and links `[CEX]` to the Lean counterexample and `[FIX]` to the Lean file of the
+corrected version (`---` where there is none). `python3 scripts/formalization-stats.py` writes it,
+through `scripts/cora-bugs-table.py`, which documents how the two files are picked. The data is
+committed beside it, `experiments/paper/cora-bugs.json`: per coverage file and method, the
+`description`, the `kind` (`unsound` or `other`), and optionally `cex` / `fix` (a linked file's
+name, or `null` for none) and `findings` (further FINDINGS.md subjects). The run, and `--check`,
+fail when a `cora-issue` row has no entry, an entry matches no such row, or a `cex`/`fix` names a
+file neither the row nor its FINDINGS.md row links. There is no bibliography; the paper needs the
+same packages and the same `longtable`-after-`arydshln` order as for the errors table, and
+`\input{appendix-cora-bugs}` where the table goes.
+
 Not counted: which paper *results* also have a float refinement. Nothing in a row says so, float
 files rarely cite the paper they refine, and matching `Real/` to `Float/` files by name finds
 counterparts without a theorem and misses ones with one, so any number would be a guess. (For CORA

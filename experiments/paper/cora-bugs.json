@@ -1,0 +1,405 @@
+{
+  "_comment": "One entry per coverage row of references/coverage/**/*.md whose note has a `cora-issue —` part, keyed by coverage file (group/class) and method as printed in the row (without backticks). `description`: at most ten words on what CORA gets wrong, from the row's `cora-issue —` text and the FINDINGS.md row it cites; LaTeX-escaped by the generator except inside $...$. `kind`: `unsound` when CORA's result can miss reachable states, is not the enclosure it claims to be, or is a wrong verdict a verification relies on; `other` for a bug that is too large, a wrong flag, a crash or error path, or a documented behaviour that is not the code's. Optional `cex` / `fix`: name of a Lean file (or its repository path) the row or its FINDINGS.md row links, replacing the default pick; optional `findings`: further FINDINGS.md subjects that belong to the row. Read by scripts/cora-bugs-table.py for experiments/paper/latex/appendix-cora-bugs.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry.",
+  "contDynamics/contDynamics": {
+    "linReach": {
+      "description": "confinement check runs on the set it should certify",
+      "kind": "unsound"
+    },
+    "linReachInner": {
+      "description": "inner approximation is not inside the reachable set",
+      "kind": "unsound"
+    },
+    "observe": {
+      "description": "Hinf-G error set misses initial state off origin",
+      "kind": "unsound",
+      "findings": [
+        "LinearSysDT `observe`, `'Hinf-G'`"
+      ],
+      "cex": "ObserveIntervalCoraCounterexample.lean",
+      "fix": "ObserveInterval.lean"
+    }
+  },
+  "contDynamics/linParamSys": {
+    "initReach_inputDependence": {
+      "description": "second-order expansion drops terms; solution can escape the set",
+      "kind": "unsound"
+    }
+  },
+  "contDynamics/linProbSys": {
+    "initReach": {
+      "description": "input covariance uses the wrong drift sign; too small",
+      "kind": "unsound",
+      "cex": "InitReachCovLt.lean"
+    }
+  },
+  "contDynamics/linearSys": {
+    "isCanonicalForm": {
+      "description": "extra test C = I contradicts its own docstring",
+      "kind": "other",
+      "cex": "CanonicalFormCNeOne.lean"
+    }
+  },
+  "contDynamics/linearSysDT": {
+    "executeObserver": {
+      "description": "Hinf-G seeds error set with R0; misses initial state",
+      "kind": "unsound",
+      "findings": [
+        "LinearSysDT `observe`, `'Hinf-G'`"
+      ],
+      "cex": "ObserveIntervalCoraCounterexample.lean",
+      "fix": "ObserveInterval.lean"
+    }
+  },
+  "contDynamics/nonlinDASys": {
+    "initReach": {
+      "description": "inherits linReach's wrong sign of algebraic error",
+      "kind": "unsound",
+      "findings": [
+        "`NonlinDASys` linearization error, sign of `C F⁻¹`"
+      ],
+      "cex": "LinErrorCoraCounterexample.lean"
+    },
+    "linReach": {
+      "description": "algebraic linearization error added, not subtracted; error missed",
+      "kind": "unsound",
+      "findings": [
+        "`NonlinDASys` linearization error, sign of `C F⁻¹`"
+      ],
+      "cex": "LinErrorCoraCounterexample.lean"
+    },
+    "linReach_adaptive": {
+      "description": "algebraic linearization error added, not subtracted",
+      "kind": "unsound",
+      "findings": [
+        "`NonlinDASys` linearization error, sign of `C F⁻¹`"
+      ],
+      "cex": "LinErrorCoraCounterexample.lean"
+    },
+    "outputSet": {
+      "description": "output depending on algebraic variables gives a point",
+      "kind": "unsound"
+    },
+    "reach_adaptive": {
+      "description": "inherits wrong sign of algebraic linearization error",
+      "kind": "unsound",
+      "findings": [
+        "`NonlinDASys` linearization error, sign of `C F⁻¹`"
+      ],
+      "cex": "LinErrorCoraCounterexample.lean"
+    }
+  },
+  "contDynamics/nonlinParamSys": {
+    "linearize": {
+      "description": "parameters assumed affine without check; dynamics missed",
+      "kind": "unsound"
+    }
+  },
+  "contDynamics/nonlinearSys": {
+    "linReach_adaptive": {
+      "description": "confinement check runs on the set it should certify",
+      "kind": "unsound"
+    },
+    "reachInner": {
+      "description": "'minkdiff' time-interval sets are not inner",
+      "kind": "unsound"
+    }
+  },
+  "contSet/capsule": {
+    "enclose": {
+      "description": "code omits Cplus; documented hull not enclosed",
+      "kind": "unsound"
+    },
+    "enclosePoints": {
+      "description": "radius from projection onto axis; sound but wasteful",
+      "kind": "other"
+    },
+    "isFullDim": {
+      "description": "r > 0 rejects thin full-dimensional capsules",
+      "kind": "other"
+    },
+    "mtimes": {
+      "description": "radius scaled by squared singular value; too small",
+      "kind": "unsound"
+    }
+  },
+  "contSet/conPolyZono": {
+    "contains_": {
+      "description": "point extended by ones, not zeros; wrong true",
+      "kind": "unsound",
+      "fix": "ContainsPoint.lean"
+    },
+    "isFullDim": {
+      "description": "rank test is necessary only; arc passes",
+      "kind": "other"
+    },
+    "minkDiff": {
+      "description": "labelled exact, but not inner for nonconvex minuend",
+      "kind": "unsound"
+    }
+  },
+  "contSet/conZonotope": {
+    "cubMap": {
+      "description": "constraint columns lost; image [0,8] returned as [0,5]",
+      "kind": "unsound"
+    },
+    "isFullDim": {
+      "description": "rank test ignores factor constraints pinning the set",
+      "kind": "other"
+    }
+  },
+  "contSet/ellipsoid": {
+    "enclose": {
+      "description": "code omits Eplus; documented hull not enclosed",
+      "kind": "unsound",
+      "fix": "src/CORALean/ContSet/Ellipsoid/Real/Operations/Enclose.lean"
+    },
+    "intersectStrip": {
+      "description": "'Gollamudi1996' update has wrong scaling and centre; not enclosing",
+      "kind": "unsound"
+    },
+    "isBigger": {
+      "description": "always true in dimension 1",
+      "kind": "unsound"
+    }
+  },
+  "contSet/interval": {
+    "atan2": {
+      "description": "corner hull misses the branch cut",
+      "kind": "unsound"
+    }
+  },
+  "contSet/levelSet": {
+    "isIntersecting_": {
+      "description": "operator == read as <; touching sets reported disjoint",
+      "kind": "unsound",
+      "fix": "IsIntersectingCell.lean"
+    },
+    "isequal": {
+      "description": "variable renamings never compared; distinct sets reported equal",
+      "kind": "unsound"
+    }
+  },
+  "contSet/polyZonotope": {
+    "contains_": {
+      "description": "centre accepted although it can lie outside the set",
+      "kind": "unsound"
+    },
+    "convHull_": {
+      "description": "chord set returned, not the convex hull",
+      "kind": "unsound"
+    },
+    "isFullDim": {
+      "description": "rank test is necessary only; arc passes",
+      "kind": "other"
+    },
+    "isPolytope": {
+      "description": "wrong for exponents above one; accepts non-convex sets",
+      "kind": "other",
+      "cex": "IsPolytopeCexNotPolytope.lean"
+    },
+    "sum": {
+      "description": "adds first centre in every pass; centre wrong",
+      "kind": "unsound"
+    },
+    "volume_": {
+      "description": "signed Jacobian determinant gives negative volume",
+      "kind": "other",
+      "cex": "VolumeNegExample.lean"
+    }
+  },
+  "contSet/polygon": {
+    "hausdorffDist": {
+      "description": "one-directional distance; zero for square and its centre",
+      "kind": "other"
+    },
+    "minkDiff": {
+      "description": "not inner for a nonconvex subtrahend",
+      "kind": "unsound"
+    },
+    "minus": {
+      "description": "polygon branch reads undefined variable S",
+      "kind": "other"
+    },
+    "quadMap": {
+      "description": "pairs polygons index-wise instead of all pairs",
+      "kind": "unsound"
+    },
+    "removeCollinearPoints": {
+      "description": "angle sort reorders boundary of non-star-shaped polygons",
+      "kind": "unsound"
+    }
+  },
+  "contSet/polytope": {
+    "compact_": {
+      "description": "zero equality rows aligned; nonempty set reported empty",
+      "kind": "unsound"
+    },
+    "isFullDim": {
+      "description": "zero row caps Chebyshev radius; qr misses affine hull",
+      "kind": "other"
+    },
+    "isequal": {
+      "description": "repeated rows pass as redundant; unequal sets equal",
+      "kind": "unsound"
+    },
+    "mldivide": {
+      "description": "P2 overwritten by P1; difference of P1 with itself",
+      "kind": "unsound",
+      "fix": null
+    }
+  },
+  "contSet/probZonotope": {
+    "interval": {
+      "description": "ignores deterministic generators; mean outside the box",
+      "kind": "unsound"
+    },
+    "pyramid": {
+      "description": "step function misses floor; no probability bound",
+      "kind": "unsound",
+      "cex": "PyramidNotGeProb.lean"
+    },
+    "reduce": {
+      "description": "documented 'althoff' option calls missing reduce method",
+      "kind": "other"
+    },
+    "sup": {
+      "description": "ignores deterministic generators; below the mean's norm",
+      "kind": "unsound",
+      "cex": "SupCoraLt.lean"
+    }
+  },
+  "contSet/spectraShadow": {
+    "contains_": {
+      "description": "infeasible solver answer taken as containment",
+      "kind": "unsound",
+      "cex": "ContainsPointCoraLine.lean"
+    },
+    "isBounded": {
+      "description": "shortcut reports bounded point $\\{0\\}$ as unbounded",
+      "kind": "other",
+      "cex": "PointExampleIsBounded.lean"
+    },
+    "isFullDim": {
+      "description": "shortcut declares point shadow empty, not full-dimensional",
+      "kind": "other",
+      "cex": "FullDimShortcutPointExample.lean"
+    },
+    "representsa_": {
+      "description": "'fullspace' true for any set with infinite axis supports",
+      "kind": "other",
+      "cex": "RepresentsaFullspaceCoraLine.lean",
+      "fix": null
+    },
+    "supportFunc_": {
+      "description": "shortcut returns infinity where support is finite",
+      "kind": "other",
+      "cex": "SupportFuncCoraAllZeroNeSupportFunc.lean"
+    }
+  },
+  "contSet/zonoBundle": {
+    "isequal": {
+      "description": "different member counts return true before comparison",
+      "kind": "unsound"
+    },
+    "reduceCombined": {
+      "description": "undefined variable; cannot run; result not a bundle",
+      "kind": "other"
+    },
+    "representsa_": {
+      "description": "interval test inspects first member in every pass",
+      "kind": "other",
+      "fix": "IsBoxOfForall.lean"
+    },
+    "shrink": {
+      "description": "calls nonexistent parallelotope on a polytope",
+      "kind": "other"
+    }
+  },
+  "contSet/zonotope": {
+    "dominantDirections": {
+      "description": "answer can be singular; no enclosing parallelotope",
+      "kind": "other",
+      "cex": "DominantDirectionsDetEqZeroOfOrthogonal.lean"
+    },
+    "encloseMany": {
+      "description": "calls reduce method that does not exist",
+      "kind": "other"
+    },
+    "filterOut": {
+      "description": "calls nonexistent chebyball; deletes both of equal cells",
+      "kind": "other",
+      "cex": "FilterOutPair.lean"
+    },
+    "intersectStrip": {
+      "description": "'wang-FRad' applies dynamics twice; gain not optimal",
+      "kind": "other"
+    },
+    "minkDiff": {
+      "description": "default 'approx' scales unchecked; not inner",
+      "kind": "unsound",
+      "cex": "MinkDiffApproxNotInner.lean"
+    },
+    "tensorMultiplication": {
+      "description": "second-order branch errors for every input",
+      "kind": "other"
+    }
+  },
+  "contSet/zoo": {
+    "rdivide": {
+      "description": "calls nonexistent combineZooObjects",
+      "kind": "other"
+    },
+    "times": {
+      "description": "calls nonexistent combineZooObjects",
+      "kind": "other"
+    }
+  },
+  "hybridDynamics/location": {
+    "checkFlow": {
+      "description": "offset added as vector to scalar flow; sets dropped",
+      "kind": "unsound"
+    },
+    "guardIntersect_hyperplaneMap": {
+      "description": "error summands and generator slices overwritten",
+      "kind": "unsound",
+      "cex": null
+    },
+    "guardIntersect_levelSet": {
+      "description": "drops mixed second-order terms of the guard",
+      "kind": "unsound"
+    },
+    "guardIntersect_zonoGirard": {
+      "description": "coordinate pinned wrongly for non-unit normals",
+      "kind": "unsound"
+    }
+  },
+  "hybridDynamics/nonlinearReset": {
+    "resolve": {
+      "description": "global inputs numbered by occurrence, not binding index",
+      "kind": "unsound"
+    }
+  },
+  "hybridDynamics/transition": {
+    "synchronize": {
+      "description": "every component receives the last transition's target",
+      "kind": "unsound"
+    }
+  },
+  "nn/layers": {
+    "computeApproxPoly": {
+      "description": "DeepZ S-shape transformer unsound at $x^3$",
+      "kind": "unsound",
+      "fix": "DeepZSShapeSound.lean"
+    }
+  },
+  "nn/neuralNetwork": {
+    "nonlinearSysDT": {
+      "description": "drops scale of elementwise affine layer",
+      "kind": "other"
+    },
+    "reduceGNNForNode": {
+      "description": "missing return at zero message-passing steps",
+      "kind": "other"
+    }
+  }
+}
