@@ -68,6 +68,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedBounds
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedBoundsCounterexample
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffApproxNotInner
+import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOuterScalingCoraNotOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffNotSubsetMinkDiffAligned
 import CORALean.ContSet.Zonotope.Real.Theorems.ImageSubsetAlignedOfMinOut
 import CORALean.ContSet.Zonotope.Real.Theorems.AlignedSubsetOfMaxIn
@@ -167,6 +168,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
 import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaOriginIff
 import CORALean.ContSet.Zonotope.Real.Theorems.ExactPlusExact
 import CORALean.ContSet.Zonotope.Real.Theorems.NormUbLe
+import CORALean.ContSet.Zonotope.Real.Theorems.NormExactCoraLt
 import CORALean.ContSet.Zonotope.Real.Theorems.Radius2Bound
 import CORALean.ContSet.Zonotope.Real.Theorems.NormSubCentreLeSumGeneratorLength
 import CORALean.ContSet.Zonotope.Real.Theorems.ConstrSatSound
