@@ -39,6 +39,9 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
 import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
 import CORALean.ContSet.ConPolyZono.Float.Operations.ConsPolyZonotope
 import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
+import CORALean.ContSet.ConPolyZono.Float.Operations.UnitBox
+import CORALean.ContSet.ConPolyZono.Float.Operations.RescaleStep
+import CORALean.ContSet.ConPolyZono.Float.Operations.Rescale
 import CORALean.ContSet.ConPolyZono.Float.Operations.LongestFactor
 import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
 import CORALean.ContSet.ConPolyZono.Float.Operations.SplitLongestGen

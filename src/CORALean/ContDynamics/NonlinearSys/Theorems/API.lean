@@ -86,6 +86,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.IdentifyLeCandidate
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatCheckedEqSome
 import CORALean.ContDynamics.NonlinearSys.Theorems.OrderStepFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
+import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptLinPassFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptStepFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptRunFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrStepFloatOuter

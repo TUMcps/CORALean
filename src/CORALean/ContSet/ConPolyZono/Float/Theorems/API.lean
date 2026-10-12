@@ -42,7 +42,10 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.OriginExact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.EmptyExact
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CartProdExact
+import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
 import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetPointOuter
+import CORALean.ContSet.ConPolyZono.Float.Theorems.RescaleOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitDepFactorOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitLongestGenOuter
 import CORALean.ContSet.ConPolyZono.Float.Theorems.CentreMemConstruct
