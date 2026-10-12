@@ -179,6 +179,14 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapMixedExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SquareExampleConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMonomial
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraNormalCone
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexInCone
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraAccepts
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMemConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexNotConvex
+import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexNotPolytope
 import CORALean.ContSet.PolyZonotope.Real.Theorems.UnionSubsetConvHull
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CentreNotMemCounterexample
 import CORALean.ContSet.PolyZonotope.Real.Theorems.GreedyTargetSpec

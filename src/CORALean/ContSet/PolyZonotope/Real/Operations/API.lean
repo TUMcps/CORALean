@@ -174,6 +174,12 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
 import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
 import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapMixed
 import CORALean.ContSet.PolyZonotope.Real.Operations.SquareExample
+import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCex
+import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCexCorners
+import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
+import CORALean.ContSet.PolyZonotope.Real.Operations.CoraNormalCone
+import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
+import CORALean.ContSet.PolyZonotope.Real.Operations.CoraAccepts
 import CORALean.ContSet.PolyZonotope.Real.Operations.ConvHull
 import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
 import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
