@@ -26,6 +26,11 @@
       "fix": "HausdorffDistGirardReachLe.lean"
     }
   },
+  "2006/girard-hscc-lti-inputs": {
+    "Sec. 4.2": {
+      "description": "Minkowski sum of two $S$-band intersections is only contained in the band of the summed bounds"
+    }
+  },
   "2006/kurzhanskiy-cdc-ellipsoidal-toolbox": {
     "Sec. II (sign of the distance)": {
       "description": "strict sign printed; boundary and touching sets give $0$"

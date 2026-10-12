@@ -70,6 +70,8 @@ import CORALean.ContSet.ContSet.Theorems.SubsetHyperplanePolyhedron
 import CORALean.ContSet.ContSet.Theorems.PolygonExact
 import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
 import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
+import CORALean.ContSet.ContSet.Theorems.HyperplanePolyhedronAddSubset
+import CORALean.ContSet.ContSet.Theorems.ExistsHyperplanePolyhedronAddNe
 
 /-!
 # What the set interface's classes and definitions give together

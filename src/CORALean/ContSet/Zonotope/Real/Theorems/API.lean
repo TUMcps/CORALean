@@ -393,6 +393,14 @@ import CORALean.ContSet.Zonotope.Real.Theorems.RowsEqDropRedundant
 import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIffOfFullDim
 import CORALean.ContSet.Zonotope.Real.Theorems.MaxNormSqSdpRelaxation
 import CORALean.ContSet.Zonotope.Real.Theorems.BisectLowPrintedCounterexample
+import CORALean.ContSet.Zonotope.Real.Theorems.BoxSTight
+import CORALean.ContSet.Zonotope.Real.Theorems.BoxSInterHyperplaneIff
+import CORALean.ContSet.Zonotope.Real.Theorems.BoxSPlus
+import CORALean.ContSet.Zonotope.Real.Theorems.ExtremalGenExtremal
+import CORALean.ContSet.Zonotope.Real.Theorems.ExtremalGenPlus
+import CORALean.ContSet.Zonotope.Real.Theorems.UnderSEqConvexHull
+import CORALean.ContSet.Zonotope.Real.Theorems.UnderSSubset
+import CORALean.ContSet.Zonotope.Real.Theorems.UnderSInterHyperplaneIff
 
 /-!
 # What `Zonotope` guarantees

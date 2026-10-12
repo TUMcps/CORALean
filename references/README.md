@@ -51,6 +51,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Taylor Models and Other Validated Functional Inclusion Methods](2003/makino-ijpam-taylor-models.md) | Makino, Berz | International Journal of Pure and Applied Mathematics, 4(4):379-452 | 2003 | 🟢 20/20 \| 24 |
 | [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md) | Girard | HSCC, LNCS 3414, pp. 291-305 | 2005 | 🟢 7/7 \| 1 |
 | [Verified Global Optimization with Taylor Model-based Range Bounders](2005/makino-tc-global-optimization.md) | Makino, Berz | Transactions on Computers, 11(4):1611-1618 | 2005 | 🟢 4/4 \| 6 |
+| [Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs](2006/girard-hscc-lti-inputs.md) | Girard, Le Guernic, Maler | HSCC, LNCS 3927, pp. 257-271 | 2006 | 🟢 14/14 \| 5 |
 | [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md) | Kurzhanskiy, Varaiya | CDC, pp. 1498-1503 | 2006 | 🟢 6/6 \| 14 |
 | [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟢 11/11 \| 4 |
 | [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md) | Girard, Le Guernic | HSCC, LNCS 4981, pp. 215-228 | 2008 | 🟢 7/7 \| 13 |
@@ -250,6 +251,7 @@ heading — beside the result, where someone checking that result will be. These
 pages carry one:
 
 <!-- findings -->
+* [Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs](2006/girard-hscc-lti-inputs.md)
 * [Interval predictor models: Identification and reliability](2009/campi-automatica-interval-predictor-models.md)
 * [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md)
 * [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md)

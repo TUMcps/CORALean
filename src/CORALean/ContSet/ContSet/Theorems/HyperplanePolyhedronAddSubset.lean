@@ -1,0 +1,51 @@
+import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
+import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+/-!
+# The sum of two `S`-band intersections lies in the band of the summed bounds
+
+[1, Sec. 4.2] prints `[m₁, M₁]_S ⊕ [m₂, M₂]_S = [m₁ + m₂, M₁ + M₂]_S`. The inclusion
+proved here is the half that holds: `s·(x₁ + x₂) = s·x₁ + s·x₂` lies between the summed
+bounds. The equality fails when a bound is not attained
+(`ContSet.exists_hyperplanePolyhedron_add_ne`). The inclusion is what [1, Alg. 2] with
+`S`-bands needs, and there the bounds are attained ([1, Prop. 2]).
+
+## References
+
+* [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of
+      Linear Time-Invariant Systems with Inputs". In Hybrid Systems: Computation and
+      Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+namespace CORALean
+
+open Matrix Pointwise
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Sec. 4.2], corrected: `[m₁, M₁]_S ⊕ [m₂, M₂]_S ⊆ [m₁ + m₂, M₁ + M₂]_S`. -/
+theorem ContSet.hyperplanePolyhedron_add_subset (S : Finset (Vec ℝ n))
+    (m₁ M₁ m₂ M₂ : Vec ℝ n → ℝ) :
+    ContSet.hyperplanePolyhedron S m₁ M₁ + ContSet.hyperplanePolyhedron S m₂ M₂
+      ⊆ ContSet.hyperplanePolyhedron S (m₁ + m₂) (M₁ + M₂) := by -- --- PROOF ---
+  -- the value of a sum along `s` is the sum of the values
+  rintro _ ⟨x₁, hx₁, x₂, hx₂, rfl⟩ s hs
+  rw [add_dotProduct, Pi.add_apply, Pi.add_apply]
+  obtain ⟨h₁, h₂⟩ := hx₁ s hs
+  obtain ⟨h₃, h₄⟩ := hx₂ s hs
+  exact ⟨add_le_add h₁ h₃, add_le_add h₂ h₄⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

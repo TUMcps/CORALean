@@ -10,14 +10,18 @@ import Mathlib.Algebra.Group.Pointwise.Set.Basic
 # The interval hull of a Minkowski sum
 
 [1, Property 2]: `Box(S₁ ⊕ S₂) = Box(S₁) ⊕ Box(S₂)`, here for two nonempty bounded sets, from
-which the `m`-fold sum follows by induction. A coordinate of the sum ranges over the sum of the
-coordinate ranges, whose supremum is the sum of the suprema (`csSup_add`).
+which the `m`-fold sum follows by induction; [2, Eq. 3] prints it for every pair of sets. A
+coordinate of the sum ranges over the sum of the coordinate ranges, whose supremum is the sum of
+the suprema (`csSup_add`).
 
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
       discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control,
       64(11):4717-4724, 2019.
+* [2] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of
+      Linear Time-Invariant Systems with Inputs". In Hybrid Systems: Computation and
+      Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
 -/
 
 -- Authors:       Tobias Ladner
