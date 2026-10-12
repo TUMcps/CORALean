@@ -151,7 +151,6 @@ import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplicationZono
 import CORALean.ContSet.Zonotope.Real.Operations.CorrectedStep
 import CORALean.ContSet.Zonotope.Real.Operations.CorrectedStepDistributed
 import CORALean.ContSet.Zonotope.Real.Operations.Affine
-
 import CORALean.ContSet.Zonotope.Real.Operations.AndAveraging
 import CORALean.ContSet.Zonotope.Real.Operations.AveragingWeights
 import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerUpdate
@@ -207,6 +206,14 @@ import CORALean.ContSet.Zonotope.Real.Operations.IdentifyStep
 import CORALean.ContSet.Zonotope.Real.Operations.MeanValueInclusion
 import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
 import CORALean.ContSet.Zonotope.Real.Operations.SupportStrip
+import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
+import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeCompress
+import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeLoop
+import CORALean.ContSet.Zonotope.Real.Operations.SignedSums
+import CORALean.ContSet.Zonotope.Real.Operations.SegmentLength
+import CORALean.ContSet.Zonotope.Real.Operations.Mspb
+import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsMaiga
+
 
 /-!
 # What `Zonotope` computes

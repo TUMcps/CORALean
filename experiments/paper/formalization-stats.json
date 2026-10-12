@@ -14,40 +14,40 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 90,
-    "papers_with_findings": 83,
-    "in_scope": 1173,
-    "formalized": 1133,
-    "not_formalized": 40,
-    "out_of_scope": 990,
+    "papers": 91,
+    "papers_with_findings": 84,
+    "in_scope": 1187,
+    "formalized": 1145,
+    "not_formalized": 42,
+    "out_of_scope": 1003,
     "out_of_scope_by_reason": {
-      "restated": 364,
+      "restated": 368,
       "mathlib": 22,
-      "not-a-claim": 517,
+      "not-a-claim": 520,
       "done-differently": 12,
-      "not-covered": 75
+      "not-covered": 81
     },
     "by_class": {
-      "correct": 754,
-      "underspecified": 228,
+      "correct": 761,
+      "underspecified": 233,
       "proof-gap": 35,
       "fixed": 106,
       "false": 10
     },
     "claims": {
-      "in_scope": 455,
-      "formalized": 433,
-      "correct": 257,
+      "in_scope": 458,
+      "formalized": 435,
+      "correct": 259,
       "underspecified": 86,
       "proof-gap": 35,
       "fixed": 49,
       "false": 6
     },
     "definitions": {
-      "in_scope": 718,
-      "formalized": 700,
-      "correct": 497,
-      "underspecified": 142,
+      "in_scope": 729,
+      "formalized": 710,
+      "correct": 502,
+      "underspecified": 147,
       "proof-gap": 0,
       "fixed": 57,
       "false": 4
@@ -1985,6 +1985,75 @@
           "result": "Sec. 3.1",
           "class": "underspecified",
           "reason": "\"a small number\" is not a quantity; `p · n + 1` is what holds for every regression, and the printed `10` suffices only when it is at least that; for `λ ≤ 0` nothing is thresholded; the efficiency claim is not a result"
+        }
+      ]
+    },
+    {
+      "page": "2016/maiga-tac-hybrid-reachability.md",
+      "label": "Maiga 2016",
+      "year": 2016,
+      "title": "A Comprehensive Method for Reachability Analysis of Uncertain Nonlinear Hybrid Systems",
+      "in_scope": 14,
+      "formalized": 12,
+      "not_formalized": 2,
+      "out_of_scope": 13,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 0,
+        "not-a-claim": 3,
+        "done-differently": 0,
+        "not-covered": 6
+      },
+      "by_class": {
+        "correct": 7,
+        "underspecified": 5,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 3,
+        "formalized": 2,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 11,
+        "formalized": 10,
+        "correct": 5,
+        "underspecified": 5,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Alg. 3",
+          "class": "underspecified",
+          "reason": "the printed test is `∨`, with which `s₁ = n`, `s₂ = 0` does not stop after `n` rounds as Sec. VI-C says; `rad` is unassigned at the first test; step 8 cuts a zero generator from a cloud with extent (0/0 in step 2 of Alg. 4); see Findings"
+        },
+        {
+          "result": "Alg. 4",
+          "class": "underspecified",
+          "reason": "u = g/‖g‖ is 0/0 at g = 0, which Alg. 5 reaches at ratio = 0 and step 8 of Alg. 3 at u · rad = 0; Lean's x/0 = 0 gives u = 0 and the identity"
+        },
+        {
+          "result": "Alg. 5",
+          "class": "underspecified",
+          "reason": "the grid starts at ratio = 0, where g = 0 and Alg. 4 divides 0/0; ties in argmin are broken towards the first; the MSPB attributes are not split off; see Findings"
+        },
+        {
+          "result": "Eq. 45",
+          "class": "underspecified",
+          "reason": "the printed index range i₁ ≤ ... ≤ iₙ admits repeated generators, whose determinants vanish; the n-subsets (i₁ < ... < iₙ) supply the sum"
+        },
+        {
+          "result": "Eq. 46",
+          "class": "underspecified",
+          "reason": "the inner index is printed i, j is meant"
         }
       ]
     },
@@ -6378,10 +6447,10 @@
           "matlab-runtime": 5,
           "deprecated": 2
         },
-        "cora_issues": 7,
+        "cora_issues": 8,
         "findings": {
-          "correct": 140,
-          "underspecified": 43,
+          "correct": 147,
+          "underspecified": 48,
           "proof-gap": 5,
           "fixed": 16,
           "false": 1
@@ -6994,7 +7063,7 @@
         "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 41,
-        "cora_issues": 52,
+        "cora_issues": 53,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -7004,8 +7073,8 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 395,
-          "underspecified": 112,
+          "correct": 402,
+          "underspecified": 117,
           "proof-gap": 9,
           "fixed": 48,
           "false": 5
@@ -7091,7 +7160,7 @@
       "not_yet": 14,
       "out_of_scope": 396,
       "needs_float": 73,
-      "cora_issues": 78,
+      "cora_issues": 79,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -7101,8 +7170,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 650,
-        "underspecified": 188,
+        "correct": 657,
+        "underspecified": 193,
         "proof-gap": 31,
         "fixed": 81,
         "false": 9
@@ -7132,11 +7201,11 @@
       }
     },
     "theorems": {
-      "paper": 1647,
+      "paper": 1657,
       "float": 1898,
-      "helper": 1575,
+      "helper": 1577,
       "lemma": 2618,
-      "total": 7738,
+      "total": 7750,
       "examples": 120
     }
   }

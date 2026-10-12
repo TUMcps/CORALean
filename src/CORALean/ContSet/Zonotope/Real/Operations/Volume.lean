@@ -12,6 +12,14 @@ parallelotopes the `n`-subsets of its generators span, so the volume is `2^n Σ_
 returns `0` first when there are fewer than `n` generators or `rank G < n`, which the sum gives
 anyway (no subset, or every subset's determinant vanishes), so no case split is written. The
 approximations `'reduce'` and `'alamo'` are not modelled.
+
+The same sum is [1, Eq. 45], the size `µ` of a zonotope that `Zonotope.mspb` minimises.
+
+## References
+
+* [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for
+      Reachability Analysis of Uncertain Nonlinear Hybrid Systems". IEEE Transactions on
+      Automatic Control, 61(9):2341-2356, 2016.
 -/
 
 -- Authors:       Tobias Ladner
