@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineDynamicsErrorBound
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineTimeIntervalSolution
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpDiffMatrices
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRemainderError
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
 import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError

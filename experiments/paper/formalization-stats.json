@@ -5586,11 +5586,11 @@
         "group": "contSet",
         "class": "ellipsoid",
         "methods": 50,
-        "proved": 4,
-        "float": 34,
+        "proved": 3,
+        "float": 35,
         "not_yet": 0,
         "out_of_scope": 12,
-        "needs_float": 4,
+        "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -6522,11 +6522,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 42,
-        "float": 613,
+        "proved": 41,
+        "float": 614,
         "not_yet": 6,
         "out_of_scope": 247,
-        "needs_float": 42,
+        "needs_float": 41,
         "cora_issues": 51,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -6619,11 +6619,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 74,
-      "float": 776,
+      "proved": 73,
+      "float": 777,
       "not_yet": 14,
       "out_of_scope": 396,
-      "needs_float": 74,
+      "needs_float": 73,
       "cora_issues": 75,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6665,11 +6665,11 @@
       }
     },
     "theorems": {
-      "paper": 1566,
-      "float": 1886,
-      "helper": 1512,
-      "lemma": 2587,
-      "total": 7551,
+      "paper": 1570,
+      "float": 1898,
+      "helper": 1513,
+      "lemma": 2594,
+      "total": 7575,
       "examples": 120
     }
   }

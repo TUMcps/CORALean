@@ -249,6 +249,10 @@ LinearSysDT.identifyCandidate  real-layer: the dynamic mode decomposition at a r
 LinearARX.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearARX.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSysDT.nominalState  real-layer: the conformance check's nominal run and deviation sets at real matrices; no float counterpart yet
+LinearSysDT.observeEsoA  real-layer: the corrected ESO-A observer step over the real ellipsoid (`Real.sqrt`, matrix inverses); no float counterpart yet
+LinearSysDT.observeEsoA1D  real-layer: CORA's ESO-A observer step at n = 1 as the code computes it, a refuted reference (`observeEsoA1D_counterexample`), never meant to run
+LinearSysDT.observeEsoB  real-layer: the corrected ESO-B observer step over the real ellipsoid (`Real.sqrt`, matrix inverses); no float counterpart yet
+LinearSysDT.observeEsoB1D  real-layer: CORA's ESO-B observer step at n = 1 as the code computes it, a refuted reference (`observeEsoB1D_counterexample`), never meant to run
 LinearSysDT.observeStripBased  real-layer: the strip-based observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observeStripBasedFloat` (`observeStripBasedFloat_outer`)
 LinearSysDT.observePropagation  real-layer: the set-propagation observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observePropagationFloat` (`observePropagationFloat_outer`)
 LinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute

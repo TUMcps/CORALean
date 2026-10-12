@@ -35,6 +35,8 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.OfPoint
 import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
 import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
 import CORALean.ContSet.Ellipsoid.Float.Operations.EnclosePointsCov
+import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
+import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripLiu
 
 /-!
 # What a float ellipsoid computes, collected

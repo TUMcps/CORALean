@@ -28,6 +28,10 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStateFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStepFloat
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA1D
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB1D
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB
 import CORALean.ContDynamics.LinearSysDT.Operations.Identify
 import CORALean.ContDynamics.LinearSysDT.Operations.IdentifyCandidate
 import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys

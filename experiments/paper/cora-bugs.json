@@ -41,13 +41,15 @@
   },
   "contDynamics/linearSysDT": {
     "executeObserver": {
-      "description": "Hinf-G seeds error set with R0; misses initial state",
+      "description": "Hinf-G, ESO-A and ESO-B estimates miss the true state",
       "kind": "unsound",
       "findings": [
-        "LinearSysDT `observe`, `'Hinf-G'`"
+        "LinearSysDT `observe`, `'Hinf-G'`",
+        "LinearSysDT `observe`, `'ESO-A'`",
+        "LinearSysDT `observe`, `'ESO-B'`"
       ],
-      "cex": "ObserveIntervalCoraCounterexample.lean",
-      "fix": "ObserveInterval.lean"
+      "cex": "ObserveEsoA1DCounterexample.lean",
+      "fix": "ObserveEsoA.lean"
     }
   },
   "contDynamics/nonlinDASys": {
@@ -154,7 +156,7 @@
       "fix": "src/CORALean/ContSet/Ellipsoid/Real/Operations/Enclose.lean"
     },
     "intersectStrip": {
-      "description": "'Gollamudi1996' update has wrong scaling and centre; not enclosing",
+      "description": "Gollamudi and Liu2016 updates mis-scale the shape; not enclosing",
       "kind": "unsound"
     },
     "isBigger": {

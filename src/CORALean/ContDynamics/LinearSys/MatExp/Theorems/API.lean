@@ -176,6 +176,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrTermFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrixFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DetExpSmul
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffPrintedCounterexample
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMulVecImageSubsetAddImage2
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccEqImage
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccSubsetImageAdd
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
 
 /-!

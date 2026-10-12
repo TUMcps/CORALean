@@ -94,3 +94,6 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`IntervalCorrTerm.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalCorrTerm.lean)
 * [`IntervalConstCorrTerm.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalConstCorrTerm.lean)
 * [`IntervalInputRemainder.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalInputRemainder.lean)
+* [`ExpDiffMatrices.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/ExpDiffMatrices.lean)
+* [`ExpDiffPrintedCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpDiffPrintedCounterexample.lean)
+* [`ExpMulVecImageSubsetAddImage2.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpMulVecImageSubsetAddImage2.lean)
