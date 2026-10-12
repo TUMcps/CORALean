@@ -314,6 +314,12 @@
       "description": "zero row caps Chebyshev radius; qr misses affine hull",
       "kind": "other"
     },
+    "isIntersecting_": {
+      "description": "H/V test omits V*beta = x; disjoint sets intersect",
+      "kind": "other",
+      "cex": "IsIntersectingVPolyCoraCounterexample.lean",
+      "fix": "InterIneqsNonemptyIff.lean"
+    },
     "isequal": {
       "description": "repeated rows pass as redundant; unequal sets equal",
       "kind": "unsound"
@@ -426,9 +432,14 @@
       "kind": "other"
     },
     "minkDiff": {
-      "description": "default 'approx' scales unchecked; not inner",
+      "description": "'approx' not inner; 'outer:scaling' ignores subtrahend centre",
       "kind": "unsound",
       "cex": "MinkDiffApproxNotInner.lean"
+    },
+    "norm_": {
+      "description": "'exact' omits centre from program; norm under-estimated",
+      "kind": "unsound",
+      "cex": "NormExactCoraLt.lean"
     },
     "reduceUnderApprox": {
       "description": "raghuraman: 0/0 on orthogonal small generator; unsorted generators used",
