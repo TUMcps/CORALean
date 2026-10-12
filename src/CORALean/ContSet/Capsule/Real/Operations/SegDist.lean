@@ -5,11 +5,12 @@ import CORALean.Global.EuclideanNorm
 # `Capsule.segDist`
 
 The distance between the axes of two capsules: the least `‖(c₁ + t₁ g₁) - (c₂ + t₂ g₂)‖₂` over
-`t₁, t₂ ∈ [-1, 1]`. CORA's `aux_isIntersecting_capsule` finds the minimiser of its square by
-`CORAquadprog` (a box-constrained quadratic programme in `(t₁, t₂)`, with the Hessian
-`[g₁ᵀg₁ -g₁ᵀg₂; -g₁ᵀg₂ g₂ᵀg₂]` and the linear term `2[(c₁-c₂)ᵀg₁; -(c₁-c₂)ᵀg₂]`) and takes the
-distance of the two points, which is this value; an empty `g` is the zero vector. Here the least
-value is an infimum, attained (`Capsule.segDist_mem`).
+`t₁, t₂ ∈ [-1, 1]`. CORA's `aux_isIntersecting_capsule` means to find the minimiser of its square
+by `CORAquadprog` (a box-constrained quadratic programme in `(t₁, t₂)` with the linear term
+`2[(c₁-c₂)ᵀg₁; -(c₁-c₂)ᵀg₂]`) and takes the distance of the two points; an empty `g` is the zero
+vector. It passes `H = ½[g₁ᵀg₁ -g₁ᵀg₂; -g₁ᵀg₂ g₂ᵀg₂]` where the solvers' `½ tᵀHt` needs twice the
+bracket, so its minimiser can be wrong (`Capsule.isIntersecting_cora_counterexample`); this is the
+value it intends. Here the least value is an infimum, attained (`Capsule.segDist_mem`).
 -/
 
 -- Authors:       Tobias Ladner

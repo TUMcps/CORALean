@@ -260,6 +260,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecOfVerifyRun
 import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyRun
 import CORALean.ContDynamics.LinearSys.Theorems.VerifySafe
 import CORALean.ContDynamics.LinearSys.Theorems.VerifyViolated
+import CORALean.ContDynamics.LinearSys.Theorems.VerifyRAOuterVerdictTouchCounterexample
 import CORALean.ContDynamics.LinearSys.Theorems.VerifyFloatSafe
 import CORALean.ContDynamics.LinearSys.Theorems.VerifyFloatViolated
 import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecFloatOfVerifyStepFloat

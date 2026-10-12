@@ -54,9 +54,12 @@
       "cex": "ReachKrylovCounterexample.lean"
     },
     "verify": {
-      "description": "STL union predicate keeps last set; verifies violated spec",
+      "description": "STL union keeps last set; RA accepts touching unsafe set",
       "kind": "unsound",
-      "cex": "VerifySTLKochdumperUnionLastOnlyCounterexample.lean"
+      "cex": "VerifySTLKochdumperUnionLastOnlyCounterexample.lean",
+      "findings": [
+        "LinearSys `verify`, `reachavoid:zonotope`, touching unsafe set"
+      ]
     }
   },
   "contDynamics/linearSysDT": {
@@ -143,6 +146,11 @@
       "description": "r > 0 rejects thin full-dimensional capsules",
       "kind": "other"
     },
+    "isIntersecting_": {
+      "description": "QP Hessian four times too small; intersecting capsules called disjoint",
+      "kind": "unsound",
+      "cex": "IsIntersectingCoraCounterexample.lean"
+    },
     "mtimes": {
       "description": "radius scaled by squared singular value; too small",
       "kind": "unsound"
@@ -164,6 +172,13 @@
     }
   },
   "contSet/conZonotope": {
+    "contains_": {
+      "description": "point container, set operand: output never assigned",
+      "kind": "other",
+      "findings": [
+        "zonotope and constrained zonotope `contains_`, point container and a set operand"
+      ]
+    },
     "cubMap": {
       "description": "constraint columns lost; image [0,8] returned as [0,5]",
       "kind": "unsound"
@@ -175,11 +190,12 @@
   },
   "contSet/ellipsoid": {
     "contains_": {
-      "description": "point operand: five arguments to three-argument private function",
-      "kind": "other",
+      "description": "degenerate ellipsoid ignores centre offset; disjoint sets reported contained",
+      "kind": "unsound",
       "findings": [
         "Ellipsoid `contains_`, point operand"
-      ]
+      ],
+      "cex": "ContainsEllipsoidCoraCounterexample.lean"
     },
     "enclose": {
       "description": "code omits Eplus; documented hull not enclosed",
@@ -199,9 +215,19 @@
     "atan2": {
       "description": "corner hull misses the branch cut",
       "kind": "unsound"
+    },
+    "contains_": {
+      "description": "scaling uses abs(S), not abs(S-c); point outside accepted",
+      "kind": "unsound",
+      "cex": "ContainsScalingCoraCounterexample.lean"
     }
   },
   "contSet/levelSet": {
+    "contains_": {
+      "description": "== row tested as ub < 0; non-members reported contained",
+      "kind": "unsound",
+      "cex": "ContainsCellCoraCounterexample.lean"
+    },
     "isIntersecting_": {
       "description": "== read as <; touching sets disjoint; potInt misses jump",
       "kind": "unsound",
@@ -225,6 +251,13 @@
       "description": "rank test is necessary only; arc passes",
       "kind": "other"
     },
+    "isIntersecting_": {
+      "description": "interval operand: three arguments to a four-argument function",
+      "kind": "other",
+      "findings": [
+        "polyZonotope `isIntersecting_`, interval operand"
+      ]
+    },
     "isPolytope": {
       "description": "wrong for exponents above one; accepts non-convex sets",
       "kind": "other",
@@ -241,9 +274,19 @@
     }
   },
   "contSet/polygon": {
+    "contains_": {
+      "description": "ellipsoid replaced by inner polygon; containment wrongly accepted",
+      "kind": "unsound",
+      "cex": "ContainsEllipsoidCoraCounterexample.lean"
+    },
     "hausdorffDist": {
       "description": "one-directional distance; zero for square and its centre",
       "kind": "other"
+    },
+    "isIntersecting_": {
+      "description": "ellipsoid replaced by inner polygon; intersection missed",
+      "kind": "unsound",
+      "cex": "IsIntersectingEllipsoidCoraCounterexample.lean"
     },
     "minkDiff": {
       "description": "not inner for a nonconvex subtrahend",
@@ -401,6 +444,20 @@
     "tensorMultiplication": {
       "description": "second-order branch errors for every input",
       "kind": "other"
+    },
+    "isIntersecting_": {
+      "description": "point operand: six arguments to a seven-argument function",
+      "kind": "other",
+      "findings": [
+        "zonotope `isIntersecting_`, point operand"
+      ]
+    },
+    "contains_": {
+      "description": "point container, set operand: output never assigned",
+      "kind": "other",
+      "findings": [
+        "zonotope and constrained zonotope `contains_`, point container and a set operand"
+      ]
     }
   },
   "contSet/zoo": {
@@ -426,6 +483,13 @@
     "guardIntersect_levelSet": {
       "description": "drops mixed second-order terms of the guard",
       "kind": "unsound"
+    },
+    "guardIntersect_pancake": {
+      "description": "input check uses || for &&; any polytope guard passes",
+      "kind": "other",
+      "findings": [
+        "Location `guardIntersect`, `'pancake'`, guard validation"
+      ]
     },
     "guardIntersect_zonoGirard": {
       "description": "coordinate pinned wrongly for non-unit normals",

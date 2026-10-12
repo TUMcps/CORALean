@@ -28,6 +28,7 @@ import CORALean.ContSet.LevelSet.Real.Theorems.GuardDisjointOfRangeBound
 import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingUniformOuter
 import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellOuter
 import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellCounterexample
+import CORALean.ContSet.LevelSet.Real.Theorems.ContainsCellCoraCounterexample
 import CORALean.ContSet.LevelSet.Real.Theorems.PotIntCoraMissesCounterexample
 import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaEmptySetSound
 import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound

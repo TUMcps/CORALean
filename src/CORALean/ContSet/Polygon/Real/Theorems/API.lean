@@ -1,3 +1,6 @@
+import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
+import CORALean.ContSet.Polygon.Real.Theorems.ContainsEllipsoidCoraCounterexample
+import CORALean.ContSet.Polygon.Real.Theorems.IsIntersectingEllipsoidCoraCounterexample
 import CORALean.ContSet.Polygon.Real.Theorems.ConstructOfPieces
 import CORALean.ContSet.Polygon.Real.Theorems.MemConstruct
 import CORALean.ContSet.Polygon.Real.Theorems.EmptyExact

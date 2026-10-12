@@ -1,4 +1,5 @@
 import CORALean.Specification.Operations.Check
+import CORALean.Specification.Operations.CheckCustomCora
 import CORALean.Specification.Operations.DiffPoint
 import CORALean.Specification.Operations.VerifyConvex
 import CORALean.Specification.Operations.VerifyConvexStep
