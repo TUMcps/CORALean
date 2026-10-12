@@ -18,6 +18,9 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
 import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAlg
 import CORALean.ContDynamics.NonlinearSys.Definitions.AdmissibleLinError
 import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
+import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps
+import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffState
+import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
 
 /-!
 # What `NonlinearSys` means beyond the system itself

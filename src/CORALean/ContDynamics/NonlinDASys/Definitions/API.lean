@@ -6,6 +6,11 @@ import CORALean.ContDynamics.NonlinDASys.Definitions.LinInclusion
 import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
 import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
 import CORALean.ContDynamics.NonlinDASys.Definitions.ErrorLoopResult
+import CORALean.ContDynamics.NonlinDASys.Definitions.HessData
+import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
+import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptPass
+import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptState
+import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
 
 /-!
 # What `NonlinDASys` means beyond the system itself

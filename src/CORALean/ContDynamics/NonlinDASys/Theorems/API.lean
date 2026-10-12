@@ -28,6 +28,11 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.LinPointCertifiesOfSubset
 import CORALean.ContDynamics.NonlinDASys.Theorems.ReachRepeatSpec
 import CORALean.ContDynamics.NonlinDASys.Theorems.ReachLoopOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.ReachOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.AbstractionErrorAdaptiveOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAdaptiveOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveLoopOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveOuter
 
 /-!
 # What `NonlinDASys` guarantees

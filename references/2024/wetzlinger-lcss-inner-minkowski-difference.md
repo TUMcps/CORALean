@@ -15,7 +15,10 @@ from the representation (21), whose printed proof needs the error set's convexit
 `R_aff`'s, (21) itself from a linearization's abstraction-error certificate, so that `Prop. 1`
 holds for a linearized step, and `Remark 1`'s counterexample, as is the closed form of the
 constant-input solution (12). `Prop. 2` is false, for a nonconvex initial set, which it admits,
-and for a convex one (a box, under a linear shear) alike. The rest is restated from the conservative-linearization papers
+and for a convex one (a box, under a linear shear) alike. `Alg. 1` is written line by line
+over exact sets; its time-point sets are inner approximations, step by step, and its output, the
+union of the time-interval sets, is not, by `Prop. 2`'s convex counterexample run through the
+algorithm. The rest is restated from the conservative-linearization papers
 the method is built on.
 
 ## Results
@@ -42,7 +45,7 @@ the method is built on.
 | `Eq. 24` | P ⊖ S = ⟨H, d̃⟩_H, d̃⁽ʲ⁾ = d⁽ʲ⁾ - ρ(S, H⁽ʲ,·⁾ᵀ). | n/a — restated from Kolmanovsky and Gilbert 1998 [23, Thm. 2.2] | `restated` |
 | `Def. 4` | (Constrained zonotope) CZ = {c + Σ G⁽·,ⁱ⁾αᵢ \| Σ K⁽·,ⁱ⁾αᵢ = l, αᵢ ∈ [-1, 1]}; without constraints a zonotope. | n/a — restated from [24, Def. 1 and 3]; tracked as `Def. 3` on [Scott et al. 2016](../2016/scott-automatica-constrained-zonotopes.md) | `restated` |
 | `Sec. IV-A` | Operation counts: linear map O(hn²), Minkowski difference O(hO(ρ)), Chebyshev center and box by linear programs, the zonotope and constrained-zonotope operations. | n/a — computational complexity, a subject CORALean does not cover | `not-covered` |
-| `Alg. 1` | (Inner approximation of the reachable set) Per step: linearize at cen(R̂(t_k)) + ½Δt f(·), compute C, R_aff, R̂_aff, iterate the Lagrange remainder until L ⊆ L̂, then R̂(t_{k+1}) ← R_aff ⊖ R̂_err + 2c (Prop. 1) and R̂(τ_k) ← conv(CZ(R̂(t_k) ⊖ R̂_err ⊖ C), CZ(R̂(t_{k+1}) ⊖ C)) + 2c (Prop. 2), c = cen(C) + cen(R̂_err). | — partial: the time-point set of a step, [`MinkowskiDiffInputSolutionSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffInputSolutionSubsetReachSet.lean) (`NonlinearSys.minkowskiDiff_inputSolution_subset_reachSet`: R̂(t_{k+1}) ⊆ R(t_{k+1}) for a linearization whose remainder `L` holds on a region the solutions do not leave, R̂_err from (13)); missing: the time-interval set (`Prop. 2`, false, for a convex X₀ too), the loop over the steps and the Lagrange-remainder iteration that certifies `L` and the confinement | — |
+| `Alg. 1` | (Inner approximation of the reachable set) Per step: linearize at cen(R̂(t_k)) + ½Δt f(·), compute C, R_aff, R̂_aff, iterate the Lagrange remainder until L ⊆ L̂, then R̂(t_{k+1}) ← R_aff ⊖ R̂_err + 2c (Prop. 1) and R̂(τ_k) ← conv(CZ(R̂(t_k) ⊖ R̂_err ⊖ C), CZ(R̂(t_{k+1}) ⊖ C)) + 2c (Prop. 2), c = cen(C) + cen(R̂_err). | [`InnerMinkDiff.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerMinkDiff.lean), [`InnerMinkDiffLoop.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerMinkDiffLoop.lean), [`InnerMinkDiffStep.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerMinkDiffStep.lean), [`InnerMinkDiffRemainder.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerMinkDiffRemainder.lean), [`InnerMinkDiffOps.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/InnerMinkDiffOps.lean) — `NonlinearSys.innerMinkDiff`, line by line over exact sets (`CZ` is exact and drops out), the remainder loop of lines 10-13 with fuel and an `Option` result, `cen`, `box`, (6), (9), (13) and (17) supplied as `InnerMinkDiffOps`. [`InnerMinkDiffTimeIntervalCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffTimeIntervalCounterexample.lean) — **Counterexample:** `NonlinearSys.innerMinkDiff_timeInterval_counterexample`: one step over [0, 1] of the shear `ẋ = (x₂, 0)` from the box [-1/10, 1/10] × [-1, 1], where C = R̂_err = 0 and c = 0; the output R̂(τ) holds (1/2, 0), which no run reaches at any t ∈ [0, 1]. [`InnerMinkDiffLoopSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffLoopSubsetReachSet.lean), [`InnerMinkDiffStepSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffStepSubsetReachSet.lean), [`ReachSetSubsetReachSetAdd.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetSubsetReachSetAdd.lean), [`InnerMinkDiffLoopAdd.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffLoopAdd.lean), [`InnerMinkDiffCertOfAbstractionError.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffCertOfAbstractionError.lean), [`InnerMinkDiffCert.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/InnerMinkDiffCert.lean) — `NonlinearSys.innerMinkDiffLoop_subset_reachSet`: every time-point set R̂(t_k) ⊆ R(t_k), by induction over the steps (runs under the constant input concatenate, `NonlinearSys.reachSet_subset_reachSet_add`), given `Prop. 1`'s hypotheses at each step (`InnerMinkDiffCert`), R̂_err symmetric about line 14's c among them; `NonlinearSys.InnerMinkDiffCert.of_abstractionError` derives (21) from an `AbstractionError` certificate for L̂ on a region the solutions keep to, which stays a hypothesis | `false` — the output R̂(τ) the listing ensures is no inner approximation: line 16 is `Prop. 2`, false for the polytopic X₀ line 1 requires; the time-point sets are inner approximations, line 15 only when cen(C) = 0 (Findings) |
 | `Sec. IV-B` | Alg. 1 runs in O((h + n)^{1.5}n³) per step, O(n^{4.5}) for h linear in n. | n/a — computational complexity, a subject CORALean does not cover | `not-covered` |
 | `Sec. V` | Benchmarks against the scaling and projection approaches (Table I, Figs. 2-3). | n/a — experiments | `not-a-claim` |
 
@@ -86,8 +89,35 @@ gives, for each fixed `t` and a convex X₀, is the shrunk image of the convex
 "NonlinearSys `reachInner`, `'minkdiff'`").
 [`ConvexHullTimeIntervalConvexCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ConvexHullTimeIntervalConvexCounterexample.lean)
 
+**`Alg. 1` — the output is `Prop. 2`'s.** The listing ensures that R̂(τ) = ⋃_k R̂(τ_k) (line
+18) is an inner approximation of the reachable set over [0, t_end], and line 16 computes R̂(τ_k)
+by (23). The convex counterexample to `Prop. 2` is an input of the algorithm: for the shear
+`ẋ = (x₂, 0)` from the box `X₀ = [-1/10, 1/10] × [-1, 1]`, a polytope as line 1 asks, with
+`t_end = 1` and `ω = 1`, line 4 gives `x* = 0` (the box's centre is a Chebyshev centre), line 5
+`w = 0` and `A = [0 1; 0 0]`, line 6 `C = 0`, the remainder loop stops at its first pass with
+`L̂ = 0`, so `R̂_err = 0` and `c = 0`, and line 16 is `conv(X₀, e^{A}X₀)`, holding `(1/2, 0)`,
+which no run reaches at any `t ∈ [0, 1]` (`NonlinearSys.innerMinkDiff_timeInterval_counterexample`,
+the subroutines entering only through what (6), (9), (13), (17) and the centre give there).
+No correction is known that keeps line 16's hull, so the row is `false`, not `underspecified`.
+The time-point sets are sound: by induction over the steps, every R̂(t_k) lies in R(t_k)
+(`NonlinearSys.innerMinkDiffLoop_subset_reachSet`), a step from R̂(t_k) reaching only states
+some run reaches, since runs under the constant input concatenate
+(`NonlinearSys.reachSet_subset_reachSet_add`), given `Prop. 1`'s hypotheses at each step. Of
+those, (21) is what the remainder loop certifies: it follows from an `AbstractionError`
+certificate for `L̂` on a region the solutions do not leave
+(`NonlinearSys.InnerMinkDiffCert.of_abstractionError`); the confinement itself, which the box
+(25) is meant to give, stays a hypothesis, as in the conservative-linearization rows.
+[`InnerMinkDiffTimeIntervalCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffTimeIntervalCounterexample.lean),
+[`InnerMinkDiffLoopSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffLoopSubsetReachSet.lean)
+
 **`Alg. 1`, line 15 — which centre.** `Prop. 1` shifts R_aff ⊖ R̂_err by 2 cen(R̂_err); line 15
 shifts it by 2c with c = cen(C) + cen(R̂_err) from line 14, the centre `Prop. 2` uses. The two
 agree only when C is centred at the origin. CORA's `linReachInner` shifts the time-point set by
 nothing (its R̂_err is centred at the origin) and the time-interval sets by 2 cen(C), which is
-`Prop. 1` and `Prop. 2` as printed, not line 15.
+`Prop. 1` and `Prop. 2` as printed, not line 15. `NonlinearSys.innerMinkDiffLoop_subset_reachSet` takes line 15
+as printed and asks R̂_err to be symmetric about line 14's c; a bounded nonempty set has one
+centre of symmetry, so with cen(R̂_err) that centre this is cen(C) = 0, and with `Prop. 1`'s
+shift it is `Prop. 1`'s own hypothesis. For a linear field, where R̂_err = 0, line 15 is
+R(t_{k+1}) + 2 cen(C), outside R(t_{k+1}) whenever cen(C) ≠ 0, which (17) gives in general
+(`F(Δt)` has interval entries `[a, 0]`, `a < 0`); not written in Lean, as the row's class rests
+on the time-interval output.

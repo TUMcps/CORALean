@@ -332,6 +332,9 @@ NonlinearSys.adaptStep  real-layer: [Wetzlinger et al. 2022, Alg. 2] at real tun
 NonlinearSys.centreAbstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 NonlinearSys.centreAbstrRun  real-layer: [Wetzlinger et al. HSCC 2021, Alg. 1]'s loop at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.centreAbstrRunFloat` (`Encloses.centreAbstrRunFloat_outer`)
 NonlinearSys.centreAbstrStep  real-layer: [Wetzlinger et al. HSCC 2021, Alg. 1]'s step at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.centreAbstrStepFloat` (`Encloses.centreAbstrStepFloat_outer`)
+NonlinearSys.innerMinkDiff  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] over exact sets, the Minkowski difference and convex hull of `Set`s at the real exponential; no float counterpart, which would need the paper's polytopes, constrained zonotopes and linear programs
+NonlinearSys.innerMinkDiffLoop  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 2-17 over exact sets, the steps of `innerMinkDiffStep`; no float counterpart, see `NonlinearSys.innerMinkDiff`
+NonlinearSys.innerMinkDiffStep  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 3-16 over exact sets at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linPoint  real-layer: the expansion point at the real `f`; runs in floats as `NonlinearSys.FloatModel.linPointFloat`
 NonlinearSys.linReachPoly  real-layer: the `'poly'` step at a supplied Hessian and third-order bound; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
 NonlinearSys.polyReachReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
@@ -456,6 +459,13 @@ NonlinDASys.initReach  real-layer: `NonlinDASys.linReach` on each start set, spl
 NonlinDASys.reach  real-layer: Althoff and Krogh `Alg. 1`, line 1 and the loop over zonotopes at the real exponential, with the linearization, Cor. 1's errors and the split as arguments; proved sound for certified runs over ℝ and never run
 NonlinDASys.reachLoop  real-layer: Althoff and Krogh `Alg. 1` lines 2-23, the `while` loop and its splits over zonotopes at the real exponential; proved sound for certified runs over ℝ and never run
 NonlinDASys.reachRepeat  real-layer: Althoff and Krogh `Alg. 1` lines 5-10, the linearization-error loop over zonotopes at the real exponential; proved over ℝ and never run
+NonlinDASys.abstractionErrorAdaptive  real-layer: `priv_abstractionError_adaptive` over the real `NonlinDASys.linError`; no float refinement
+NonlinDASys.linReachAt  real-layer: `NonlinDASys.linReach` at a linearization; no float refinement
+NonlinDASys.errorLoopAdaptive  real-layer: the abstraction-error `while` loop of `linReach_adaptive` over `NonlinDASys.linReach`; proved over ℝ and never run
+NonlinDASys.passAdaptive  real-layer: the step-halving loop of `linReach_adaptive` over `NonlinDASys.errorLoopAdaptive`; proved over ℝ and never run
+NonlinDASys.linReachAdaptive  real-layer: CORA's `linReach_adaptive` at the real matrix exponential, tuning as arguments; proved over ℝ and never run
+NonlinDASys.reachAdaptiveLoop  real-layer: the `while` loop of CORA's `reach_adaptive` over `NonlinDASys.linReachAdaptive`; proved over ℝ and never run
+NonlinDASys.reachAdaptive  real-layer: CORA's `reach_adaptive`, line 1 and the loop at the real matrix exponential; proved over ℝ and never run
 LinParamSys.dependentHomSolLowOrder  real-layer: CORA's second-order dependent solution, read for its counterexample only
 LinProbSys.enclosingHull  real-layer: [1, Alg. 1] at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 forwardInnerRange  real-layer: [1, Alg. 1, Step 3] through `kaucherInnerStep` at the real flow enclosures; no float refinement

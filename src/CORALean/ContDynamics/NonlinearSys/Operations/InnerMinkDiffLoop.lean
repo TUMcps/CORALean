@@ -1,0 +1,45 @@
+import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
+
+/-!
+# `innerMinkDiffLoop`, the time steps of the inner Minkowski-difference algorithm
+
+The loop of lines 2-17 of [1, Alg. 1]: `k` steps of `innerMinkDiffStep`, each started from the
+previous step's `R̂(t_{k+1})`, returning the last time-point set and the union of the
+time-interval sets `R̂(τ_k)` the steps computed on top of `Rτ` — line 18's union, accumulated
+as the loop runs. `none` as soon as one step's remainder loop runs out of fuel.
+
+## References
+
+* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
+  Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
+  8:2033-2038, 2024.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       11-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {n : ℕ} {𝓛 : Type}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `k` steps of [1, Alg. 1] from `R̂(t_j) = Rtk`: `(R̂(t_{j+k}), Rτ ∪ ⋃ R̂(τ_i))`. -/
+noncomputable def NonlinearSys.innerMinkDiffLoop (ops : NonlinearSys.InnerMinkDiffOps n 𝓛)
+    (f : Vec ℝ n → Vec ℝ n) (Δt μ : ℝ) (fuel : ℕ) :
+    ℕ → Set (Vec ℝ n) → Set (Vec ℝ n) → Option (Set (Vec ℝ n) × Set (Vec ℝ n))
+  | 0, Rtk, Rτ => some (Rtk, Rτ)
+  | k + 1, Rtk, Rτ =>
+    (NonlinearSys.innerMinkDiffStep ops f Δt μ fuel Rtk).bind fun st =>  -- 3-16. one step
+      NonlinearSys.innerMinkDiffLoop ops f Δt μ fuel k st.Rtk1 (Rτ ∪ st.Rtauk) -- 17-18.
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

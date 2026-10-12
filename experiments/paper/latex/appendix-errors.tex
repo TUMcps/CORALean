@@ -10,7 +10,7 @@
 \setlength{\tabcolsep}{4pt}
 \setlength{\LTcapwidth}{\textwidth}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{5.3cm}cc@{}}
-\caption{The 111 printed results of 48 papers cited by CORA that are false on a non-degenerate
+\caption{The 112 printed results of 48 papers cited by CORA that are false on a non-degenerate
 input: a few words on what is wrong, the Lean counterexample, and the Lean file proving the corrected
 statement. \textsuperscript{\dag}No corrected statement is proved (class \emph{false}).}
 \label{tab:errors}\\
@@ -132,6 +132,7 @@ Reference & Description & \begin{tabular}[b]{@{}c@{}}Lean\\counterexample\end{ta
 \cite[Eq.~18]{wetzlinger2024implementation} & degeneracy test printed reversed & \href{\coraleanrepo/src/CORALean/ContSet/HPolytope/Real/Theorems/IneqsDegenerateChebyshevCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContSet/HPolytope/Real/Theorems/InteriorNonemptyIffChebyshev.lean}{[FIX]} \\
 \cite[Eq.~20]{wetzlinger2024implementation} & without column pivoting $Q$'s columns need not span & \href{\coraleanrepo/src/CORALean/ContSet/VPolytope/Real/Theorems/SpanQrColsCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContSet/VPolytope/Real/Theorems/SpanQrColsEqOfIndep.lean}{[FIX]} \\
 \cite[Prop.~2]{wetzlinger2024inner}\textsuperscript{\dag} & hull over time holds unreachable points, also for convex $X_0$ & \href{\coraleanrepo/src/CORALean/ContDynamics/NonlinearSys/Theorems/ConvexHullTimeIntervalCounterexample.lean}{[CEX]} & --- \\
+\cite[Alg.~1]{wetzlinger2024inner}\textsuperscript{\dag} & time-interval output by Prop.~2 holds unreachable states & \href{\coraleanrepo/src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffTimeIntervalCounterexample.lean}{[CEX]} & --- \\
 \cite[Eq.~5]{kochdumper2025robust} & Gram matrix $\Phi^\top \Phi$ singular with data in columns & \href{\coraleanrepo/src/CORALean/Global/GramTransposeSingular.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/Global/PinvLeastSquares.lean}{[FIX]} \\
 \cite[Prop.~8]{koller2025set} & gradient misses a factor $1/n_\kappa$ & \href{\coraleanrepo/src/CORALean/ContSet/Zonotope/Real/Theorems/FRadiusGradientCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/ContSet/Zonotope/Real/Theorems/FRadiusGradient.lean}{[FIX]} \\
 \cite[Prop.~9]{koller2025set} & inherits Prop.~8's missing factor $1/n_\kappa$ & \href{\coraleanrepo/src/CORALean/NN/Theorems/SetBasedLossGradientCounterexample.lean}{[CEX]} & \href{\coraleanrepo/src/CORALean/NN/Theorems/SetBasedLossGradient.lean}{[FIX]} \\

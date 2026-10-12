@@ -88,6 +88,10 @@ import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRunFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStepFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRunFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainderFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffRemainder
+import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
+import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
+import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiff
 
 /-!
 # What a linearization computes
