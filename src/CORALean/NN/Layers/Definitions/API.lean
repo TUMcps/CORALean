@@ -52,6 +52,8 @@ import CORALean.NN.Layers.Definitions.WindowMax
 import CORALean.NN.Layers.Definitions.SShape
 import CORALean.NN.Layers.Definitions.DeepZRelu
 import CORALean.NN.Layers.Definitions.DeepZSShape
+import CORALean.NN.Layers.Definitions.EvaluateSinghNeuronCora
+import CORALean.NN.Layers.Definitions.EvaluateSinghCora
 import CORALean.NN.Layers.Definitions.SShapedPrinted
 import CORALean.NN.Layers.Definitions.ApproxError
 import CORALean.NN.Layers.Definitions.ApproxErrorRelaxation
@@ -79,5 +81,6 @@ its `Enclose` instance in `Instances.lean`; `SoftmaxExactLayer` and `ActivationP
 the two exact ones, their instances here, being noncomputable.
 
 **DeepZ.** `DeepZRelu` and `DeepZSShape` are its transformers over ℝ, `SShapedPrinted` the
-class its footnote defines.
+class its footnote defines. `EvaluateSinghNeuronCora` and `EvaluateSinghCora` are CORA's
+`'singh'` neuron step and a two-neuron network run through it.
 -/

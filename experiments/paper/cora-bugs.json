@@ -55,12 +55,12 @@
   },
   "contDynamics/nonlinDASys": {
     "initReach": {
-      "description": "inherits linReach's wrong sign of algebraic error",
+      "description": "inherits linReach's wrong algebraic-error sign; reachable state missed",
       "kind": "unsound",
       "findings": [
         "`NonlinDASys` linearization error, sign of `C F⁻¹`"
       ],
-      "cex": "LinErrorCoraCounterexample.lean"
+      "cex": "LinReachCoraCounterexample.lean"
     },
     "linReach": {
       "description": "algebraic linearization error added, not subtracted; reachable state missed",
@@ -391,7 +391,7 @@
   },
   "nn/layers": {
     "computeApproxPoly": {
-      "description": "DeepZ S-shape transformer unsound at $x^3$",
+      "description": "DeepZ S-shape unsound at $x^3$; reaches network output",
       "kind": "unsound",
       "fix": "DeepZSShapeSound.lean"
     }
