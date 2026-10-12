@@ -126,6 +126,10 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsXprodRel
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsTermsRel
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsGClose
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsOuter
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulDownClose
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MemMatGeneratorError
+import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
+import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMapOuter
 
 /-!
 # What `PolyZonotope` guarantees
