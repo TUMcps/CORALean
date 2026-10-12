@@ -186,6 +186,9 @@ import CORALean.ContSet.Zonotope.Real.Operations.SplitPivot
 import CORALean.ContSet.Zonotope.Real.Operations.Shear
 import CORALean.ContSet.Zonotope.Real.Operations.Face
 import CORALean.ContSet.Zonotope.Real.Operations.BisectLowPrinted
+import CORALean.ContSet.Zonotope.Real.Operations.BoxS
+import CORALean.ContSet.Zonotope.Real.Operations.ExtremalGen
+import CORALean.ContSet.Zonotope.Real.Operations.UnderS
 
 /-!
 # What `Zonotope` computes

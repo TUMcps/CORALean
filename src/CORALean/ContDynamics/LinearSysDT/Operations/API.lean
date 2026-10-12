@@ -46,6 +46,8 @@ import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserver
 import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverCoord
 import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
+import CORALean.ContDynamics.LinearSysDT.Operations.GlmReach
+import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
 
 /-!
 # What `LinearSysDT` computes

@@ -2,12 +2,14 @@
   "_comment": "BibTeX key of every references/<year>/<page>.md with a `false` or `fixed` row, for experiments/paper/latex/appendix-errors.tex. A key in `paper_keys` is the entry already in the paper's references.bib (the same publication); every other key is defined in experiments/paper/latex/appendix-errors.bib. Checked by scripts/formalization-stats.py.",
   "paper_keys": [
     "girard2005zonotopes",
+    "girard2006efficient",
     "kulmburg2021co",
     "wetzlinger2024implementation"
   ],
   "pages": {
     "2003/makino-ijpam-taylor-models": "makino2003taylor",
     "2005/girard-hscc-reachability-zonotopes": "girard2005zonotopes",
+    "2006/girard-hscc-lti-inputs": "girard2006efficient",
     "2006/kurzhanskiy-cdc-ellipsoidal-toolbox": "kurzhanskiy2006ellipsoidal",
     "2008/althoff-cdc-conservative-linearization": "althoff2008reachability",
     "2009/althoff-ecc-enclosing-hulls": "althoff2009safety",
