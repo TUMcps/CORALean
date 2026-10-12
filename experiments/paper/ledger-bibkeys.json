@@ -56,6 +56,7 @@
     "2024/wetzlinger-lcss-inner-minkowski-difference": "wetzlinger2024inner",
     "2025/kochdumper-hscc-hybrid-automata-identification": "kochdumper2025robust",
     "2025/koller-tmlr-set-based-training": "koller2025set",
-    "2025/kulmburg-tac-approximability-containment": "kulmburg2025approximability"
+    "2025/kulmburg-tac-approximability-containment": "kulmburg2025approximability",
+    "2025/luetzow-lcss-underapprox-order-reduction": "luetzow2025underapproximative"
   }
 }

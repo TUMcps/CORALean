@@ -101,6 +101,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInnerErr
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiffLoop
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiff
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerScalingCora1D
 
 /-!
 # What a linearization computes
@@ -119,8 +120,8 @@ and certified in `Theorems`. `LagrangeRemainder` is the same one order up, once 
 is subtracted exactly rather than boxed. `AbstrErrPolySearch` is `linReach`'s while loop for
 `alg = 'poly'`, a fuel-bounded search over the candidates `AbstrErrPolyCandidates` computes, and
 `LinReachPoly` runs both from a start set; `LinReachCora1D` is CORA's `'lin'` step in 1D, as
-printed, `LinReachAdaptiveCora1D` its adaptive first step. `AbstrErr` is the other paper's
-`abstrErr`, one step's error from `postΔ` and `VarInputs`.
+printed, `LinReachAdaptiveCora1D` its adaptive first step, `ReachInnerScalingCora1D` its `'scale'`
+inner approximation; `AbstrErr` is the other paper's one-step error from `postΔ` and `VarInputs`.
 
 `LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer,
 `AbstrSolInf` the untruncated set of those errors, `GainDim`/`Gain`/`GainMax`/`GainOrder` how much

@@ -459,5 +459,10 @@
       "description": "Alg.~1 stores Prop.~3's half-open box closed; a flat box can cross the boundary; true for a non-flat box",
       "fix": "InnerScalingSubsetOfLt.lean"
     }
+  },
+  "2025/luetzow-lcss-underapprox-order-reduction": {
+    "Eq. 4": {
+      "description": "$\\mathrm{sign}(g_i(1)g_j(1))$ should be $\\mathrm{sign}(g_i(1))\\,\\mathrm{sign}(g_j(1))$ for the stated cosine"
+    }
   }
 }

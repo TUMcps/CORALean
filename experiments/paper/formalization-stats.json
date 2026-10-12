@@ -14,24 +14,24 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 86,
-    "papers_with_findings": 79,
-    "in_scope": 1106,
-    "formalized": 1100,
+    "papers": 87,
+    "papers_with_findings": 80,
+    "in_scope": 1116,
+    "formalized": 1110,
     "not_formalized": 6,
-    "out_of_scope": 944,
+    "out_of_scope": 956,
     "out_of_scope_by_reason": {
-      "restated": 344,
+      "restated": 351,
       "mathlib": 21,
-      "not-a-claim": 492,
+      "not-a-claim": 497,
       "done-differently": 12,
       "not-covered": 75
     },
     "by_class": {
-      "correct": 733,
-      "underspecified": 218,
+      "correct": 737,
+      "underspecified": 223,
       "proof-gap": 35,
-      "fixed": 104,
+      "fixed": 105,
       "false": 10
     },
     "claims": {
@@ -44,12 +44,12 @@
       "false": 6
     },
     "definitions": {
-      "in_scope": 674,
-      "formalized": 672,
-      "correct": 481,
-      "underspecified": 132,
+      "in_scope": 684,
+      "formalized": 682,
+      "correct": 485,
+      "underspecified": 137,
       "proof-gap": 0,
-      "fixed": 55,
+      "fixed": 56,
       "false": 4
     }
   },
@@ -5565,7 +5565,7 @@
     },
     {
       "page": "2025/luetzow-jmlr-zono-conformal-prediction.md",
-      "label": "Luetzow 2025",
+      "label": "Luetzow 2025 (jmlr)",
       "year": 2025,
       "title": "Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks",
       "in_scope": 13,
@@ -5609,6 +5609,80 @@
           "result": "Prop. 8",
           "class": "underspecified",
           "reason": "at `α* = 0` (23) is unbounded and has no solution to read `δ` from; see Findings"
+        }
+      ]
+    },
+    {
+      "page": "2025/luetzow-lcss-underapprox-order-reduction.md",
+      "label": "Luetzow 2025 (lcss)",
+      "year": 2025,
+      "title": "Underapproximative Methods for the Order Reduction of Zonotopes",
+      "in_scope": 10,
+      "formalized": 10,
+      "not_formalized": 0,
+      "out_of_scope": 12,
+      "out_of_scope_by_reason": {
+        "restated": 7,
+        "mathlib": 0,
+        "not-a-claim": 5,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 4,
+        "underspecified": 5,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 10,
+        "formalized": 10,
+        "correct": 4,
+        "underspecified": 5,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. II-B",
+          "class": "underspecified",
+          "reason": "the \"only if\" puts the slack `α - ‖t_i‖₁` on a coordinate, so `ν̂ ≥ 1` is supplied: at `ν̂ = 0` and `α > 0` the encoding reads `0 = α` while `‖T‖∞ = 0 ≤ α`"
+        },
+        {
+          "result": "Sec. III-B",
+          "class": "underspecified",
+          "reason": "at `ν̂ = 1` a small generator orthogonal to the large one has strict maximum `P = 0` and the printed `P/|P|` is `0/0`, read as `0`; `ν̂ ≤ ν` is supplied; ties between equal norms are broken by `Tuple.sort`"
+        },
+        {
+          "result": "Sec. IV-A",
+          "class": "underspecified",
+          "reason": "Step 1 is not a function of `G`, so the partition is supplied; a zero generator makes `dcos` `0/0`; \"globally optimal groupings\" is not what k-means++ computes, see Findings"
+        },
+        {
+          "result": "Eq. 4",
+          "class": "fixed",
+          "reason": "false when one first element is `0` and the other negative (g_i = (-1, 1), g_j = (0, 1): the cosine is -1/√2, (4) gives 1/√2); true with sign(g_i(1)) sign(g_j(1)) for sign(g_i(1) g_j(1)); see Findings"
+        },
+        {
+          "result": "Sec. IV-B",
+          "class": "underspecified",
+          "reason": "`ô ≥ 1` is supplied (else `ν̂ - n` is negative); `U` and `γ` are arguments"
+        },
+        {
+          "result": "Sec. IV-D",
+          "class": "underspecified",
+          "reason": "(6) maximizes over the sufficient condition (1), so its optimum is the maximum-volume underapproximation only if (1) is also necessary, which the letter does not argue (it notes the gap for Sadraddini's method, Sec. III-D); see Findings"
         }
       ]
     },
@@ -6142,12 +6216,12 @@
           "matlab-runtime": 5,
           "deprecated": 2
         },
-        "cora_issues": 6,
+        "cora_issues": 7,
         "findings": {
-          "correct": 136,
-          "underspecified": 38,
+          "correct": 140,
+          "underspecified": 43,
           "proof-gap": 5,
-          "fixed": 15,
+          "fixed": 16,
           "false": 1
         }
       },
@@ -6758,7 +6832,7 @@
         "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 41,
-        "cora_issues": 51,
+        "cora_issues": 52,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -6768,10 +6842,10 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 390,
-          "underspecified": 105,
+          "correct": 394,
+          "underspecified": 110,
           "proof-gap": 9,
-          "fixed": 47,
+          "fixed": 48,
           "false": 5
         }
       },
@@ -6855,7 +6929,7 @@
       "not_yet": 14,
       "out_of_scope": 396,
       "needs_float": 73,
-      "cora_issues": 75,
+      "cora_issues": 76,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -6865,10 +6939,10 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 638,
-        "underspecified": 180,
+        "correct": 642,
+        "underspecified": 185,
         "proof-gap": 31,
-        "fixed": 80,
+        "fixed": 81,
         "false": 9
       }
     },
@@ -6896,11 +6970,11 @@
       }
     },
     "theorems": {
-      "paper": 1605,
+      "paper": 1622,
       "float": 1898,
       "helper": 1573,
-      "lemma": 2612,
-      "total": 7688,
+      "lemma": 2616,
+      "total": 7709,
       "examples": 120
     }
   }
