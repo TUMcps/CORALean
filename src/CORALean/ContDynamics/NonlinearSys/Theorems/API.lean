@@ -25,6 +25,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyRegion
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachCora1DHessianRegionCounterexample
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachAdaptiveCora1DHessianRegionCounterexample
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
 import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon

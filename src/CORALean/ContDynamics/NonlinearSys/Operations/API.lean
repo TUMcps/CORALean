@@ -15,6 +15,10 @@ import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachCora1D
+import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveCora1D
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptErrLoopCora1D
+import CORALean.ContDynamics.NonlinearSys.Operations.OptimalDeltatCora
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveCora1D
 import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
 import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
@@ -101,10 +105,9 @@ import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiff
 /-!
 # What a linearization computes
 
-The two halves of one linearization: `Linearize` is the linear system, and
-`LinInput` the set its input has to range over for the two to agree. Neither
-mentions a derivative — what the split costs is an `AbstractionError`
-certificate, not a bound on `f`. `PrecompStatError` is CORA's
+The two halves of one linearization: `Linearize` is the linear system, and `LinInput` the set its
+input has to range over for the two to agree. Neither mentions a derivative — what the split costs
+is an `AbstractionError` certificate, not a bound on `f`. `PrecompStatError` is CORA's
 `priv_precompStatError`, computing the second-order term instead of boxing it.
 
 `RelinReach` is what a sequence of steps computes: one linear recursion step per linearization, the
@@ -116,7 +119,8 @@ and certified in `Theorems`. `LagrangeRemainder` is the same one order up, once 
 is subtracted exactly rather than boxed. `AbstrErrPolySearch` is `linReach`'s while loop for
 `alg = 'poly'`, a fuel-bounded search over the candidates `AbstrErrPolyCandidates` computes, and
 `LinReachPoly` runs both from a start set; `LinReachCora1D` is CORA's `'lin'` step in 1D, as
-printed. `AbstrErr` is the other paper's `abstrErr`, one step's error from `postΔ` and `VarInputs`.
+printed, `LinReachAdaptiveCora1D` its adaptive first step. `AbstrErr` is the other paper's
+`abstrErr`, one step's error from `postΔ` and `VarInputs`.
 
 `LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer,
 `AbstrSolInf` the untruncated set of those errors, `GainDim`/`Gain`/`GainMax`/`GainOrder` how much

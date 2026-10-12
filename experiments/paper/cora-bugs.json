@@ -100,7 +100,8 @@
   "contDynamics/nonlinearSys": {
     "linReach_adaptive": {
       "description": "Hessian read over a region missing the linearization point",
-      "kind": "unsound"
+      "kind": "unsound",
+      "cex": "LinReachAdaptiveCora1DHessianRegionCounterexample.lean"
     },
     "reachInner": {
       "description": "'minkdiff' time-interval sets are not inner",
