@@ -27,6 +27,10 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorObserverDecay
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveIntervalCoraCounterexample
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoA1DCounterexample
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoB1DCounterexample
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoAOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoBOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LuenbergerErrorMemReachErrorSet
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateErrorEqHull
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateOuter

@@ -33,6 +33,9 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
 import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
 import CORALean.ContSet.Ellipsoid.Float.Theorems.AndPointOuter
 import CORALean.ContSet.Ellipsoid.Float.Theorems.EnclosePointsCovMem
+import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
+import CORALean.ContSet.Ellipsoid.Float.Theorems.IntersectStripGollamudiOuter
+import CORALean.ContSet.Ellipsoid.Float.Theorems.IntersectStripLiuOuter
 
 /-!
 # What a float ellipsoid guarantees, collected
