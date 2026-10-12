@@ -47,6 +47,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 |---|---|---|---|---|
 | [Note on the derivatives with respect to a parameter of the solutions of a system of differential equations](1919/gronwall-annals-derivatives.md) | Gronwall | Annals of Mathematics, 20(4):292-296 | 1919 | 🟢 0/0 \| 6 |
 | [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md) | Rådström | Proc. Amer. Math. Soc. 3, pp. 165-169 | 1952 | 🟢 3/3 \| 2 |
+| [Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed Over Bounded Regions](1984/smith-or-uniform-points.md) | Smith | Operations Research, 32(6):1296-1308 | 1984 | 🟡 5/10 \| 5 |
 | [A state bounding observer based on zonotopes](2003/combastel-ecc-state-bounding-observer.md) | Combastel | ECC | 2003 | 🟢 5/5 \| 1 |
 | [Taylor Models and Other Validated Functional Inclusion Methods](2003/makino-ijpam-taylor-models.md) | Makino, Berz | International Journal of Pure and Applied Mathematics, 4(4):379-452 | 2003 | 🟢 20/20 \| 24 |
 | [Guaranteed state estimation by zonotopes](2005/alamo-automatica-guaranteed-estimation.md) | Alamo, Bravo, Camacho | Automatica, 41(6):1035-1043 | 2005 | 🟢 11/11 \| 14 |
@@ -74,6 +75,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md) | Mullier, Goubault, Kieffer, Putot | Reliable Computing, 18:117-143 | 2013 | 🟢 15/15 \| 15 |
 | [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md) | Althoff, Krogh | IEEE Transactions on Automatic Control, 59(2):371-383 | 2014 | 🟢 18/18 \| 17 |
 | [Formal and Compositional Analysis of Power Systems using Reachable Sets](2014/althoff-tps-power-systems.md) | Althoff | IEEE Transactions on Power Systems, 29(5):2270-2280 | 2014 | 🟡 3/4 \| 34 |
+| [Billiard walk - a new sampling algorithm for control and optimization](2014/polyak-ifac-billiard-walk.md) | Polyak, Gryazina | IFAC World Congress, IFAC Proceedings Volumes 47(3), pp. 6123-6128 | 2014 | 🟡 3/10 \| 11 |
 | [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md) | Raman, Donzé, Maasoumy, Murray, Sangiovanni-Vincentelli, Seshia | CDC, pp. 81-87 | 2014 | 🟢 16/16 \| 17 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 2 |
 | [Discovering governing equations from data by sparse identification of nonlinear dynamical systems](2016/brunton-pnas-sindy.md) | Brunton, Proctor, Kutz | Proceedings of the National Academy of Sciences, 113(15):3932-3937 | 2016 | 🟢 9/9 \| 12 |
@@ -346,6 +348,8 @@ pages carry one:
 * [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md)
 * [Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata](2017/bak-formats-time-triggered-conversion.md)
 * [Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis](2024/kochdumper-nahs-stl-lti-verification.md)
+* [Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed Over Bounded Regions](1984/smith-or-uniform-points.md)
+* [Billiard walk - a new sampling algorithm for control and optimization](2014/polyak-ifac-billiard-walk.md)
 
 [FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
 places this formalization parts from CORA on purpose, which belong to no paper.

@@ -108,6 +108,10 @@ import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceValueLe
 import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceAccuracyCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIneqsIff
 
+import CORALean.ContSet.HPolytope.Real.Theorems.MemAddSmulIffChord
+import CORALean.ContSet.HPolytope.Real.Theorems.HitAndRunStepMem
+import CORALean.ContSet.HPolytope.Real.Theorems.BilliardEndMem
+import CORALean.ContSet.HPolytope.Real.Theorems.BilliardStepMem
 /-!
 # What `HPolytope` guarantees
 

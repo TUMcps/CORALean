@@ -450,6 +450,7 @@ NonlinDASys.linError  real-layer: [Althoff, Krogh 2014, Cor. 1] over the real `Z
 NonlinDASys.compLocalErrorCora  real-layer: CORA's per-subsystem compositional linearization error, read for its counterexample only
 NonlinDASys.linErrorCora  real-layer: CORA's sign-flipped variant of `NonlinDASys.linError`, read for its counterexample only
 NonlinDASys.linReachCora  real-layer: CORA's `linReach` step at `NonlinDASys.linErrorCora`, read for its counterexample only
+NonlinDASys.linReachCompCora  real-layer: CORA's compositional `linReach` step at `NonlinDASys.compLocalErrorCora`, read for its counterexample only
 
 dmdCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearARX.ofCharpoly  real-layer: the coefficients of the real characteristic polynomial; `LinearARX.ofObserver`, its sibling, is real-layer too

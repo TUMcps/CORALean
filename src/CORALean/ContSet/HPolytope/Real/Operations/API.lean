@@ -62,6 +62,15 @@ import CORALean.ContSet.HPolytope.Real.Operations.Volume
 import CORALean.ContSet.HPolytope.Real.Operations.RowsRhs
 import CORALean.ContSet.HPolytope.Real.Operations.RowNorm
 
+import CORALean.ContSet.HPolytope.Real.Operations.HitTime
+import CORALean.ContSet.HPolytope.Real.Operations.ChordHighIndex
+import CORALean.ContSet.HPolytope.Real.Operations.ChordLowIndex
+import CORALean.ContSet.HPolytope.Real.Operations.ChordHigh
+import CORALean.ContSet.HPolytope.Real.Operations.ChordLow
+import CORALean.ContSet.HPolytope.Real.Operations.HitAndRunStep
+import CORALean.ContSet.HPolytope.Real.Operations.FacetNormal
+import CORALean.ContSet.HPolytope.Real.Operations.BilliardEnd
+import CORALean.ContSet.HPolytope.Real.Operations.BilliardStep
 /-!
 # What `HPolytope` computes
 

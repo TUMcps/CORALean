@@ -42,6 +42,7 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
 import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsEqPreimage
 import CORALean.ContDynamics.NonlinDASys.Theorems.CompositionalLocalErrorCounterexample
 import CORALean.ContDynamics.NonlinDASys.Theorems.CompLocalErrorCoraCounterexample
+import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachCompCoraCounterexample
 import CORALean.ContDynamics.NonlinDASys.Theorems.ReachNextCompositionalSpec
 
 /-!
