@@ -135,6 +135,7 @@ import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
 import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
 import CORALean.ContSet.Interval.Real.Theorems.PowerExact
 import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraCounterexample
+import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraGuardMissed
 import CORALean.ContSet.Interval.Real.Theorems.MulMatEntryImage
 import CORALean.ContSet.Interval.Real.Theorems.ConstructSubsetConvexHullVertices
 import CORALean.ContSet.Interval.Real.Theorems.InfExact

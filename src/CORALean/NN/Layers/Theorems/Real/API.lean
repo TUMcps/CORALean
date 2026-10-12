@@ -82,6 +82,7 @@ import CORALean.NN.Layers.Theorems.Real.ReluGapOfSlopeEqIte
 import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
 import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
 import CORALean.NN.Layers.Theorems.Real.SShapeBandAreaLe
+import CORALean.NN.Layers.Theorems.Real.EvaluateSinghCoraMissesCounterexample
 import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
 import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSigmoidSound
 import CORALean.NN.Layers.Theorems.Real.DeepZSShapeTanhSound

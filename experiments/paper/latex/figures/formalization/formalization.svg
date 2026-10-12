@@ -63,11 +63,11 @@
 <text x="548" y="220">not yet</text>
 <text x="150" y="240" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="259" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="248" width="107.1" height="14" fill="rgb(0,114,189)"/>
+<rect x="150.0" y="248" width="107.0" height="14" fill="rgb(0,114,189)"/>
 <text x="203.5" y="259" text-anchor="middle" font-size="9" fill="#fff">1570</text>
-<rect x="257.1" y="248" width="177.8" height="14" fill="rgb(42,92,173)"/>
-<text x="346.0" y="259" text-anchor="middle" font-size="9" fill="#000">2608</text>
-<rect x="434.9" y="248" width="129.4" height="14" fill="rgb(84,69,158)"/>
+<rect x="257.0" y="248" width="177.9" height="14" fill="rgb(42,92,173)"/>
+<text x="346.0" y="259" text-anchor="middle" font-size="9" fill="#000">2610</text>
+<rect x="435.0" y="248" width="129.4" height="14" fill="rgb(84,69,158)"/>
 <text x="499.6" y="259" text-anchor="middle" font-size="9" fill="#000">1898</text>
 <rect x="564.3" y="248" width="105.7" height="14" fill="rgb(126,47,142)"/>
 <text x="617.2" y="259" text-anchor="middle" font-size="9" fill="#000">1550</text>
