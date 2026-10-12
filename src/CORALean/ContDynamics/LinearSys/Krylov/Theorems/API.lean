@@ -32,6 +32,29 @@ import CORALean.ContDynamics.LinearSys.Krylov.Theorems.JaweckiBoundCoraCounterex
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.SpectrumSubsetOfKrylovIdentity
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.KrylovApproxMassConserved
 import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorEqSum
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HasDerivAtExpSmulMulVec
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecLe
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorEqIntegralDefect
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDelta
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpApplyLastLe
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeErrA
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpSmulMulVecTaylorIsBigO
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormErrorSubErrAIsBigO
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectSubLeadingIsBigO
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.IntegralBoundsOfEffectiveOrder
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.IntegralOneSubPowMulPow
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSeriesEqIntegral
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorEqIntegral
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorLeErrA
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpEqSumAddPhiMul
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorRemainderEqIntegral
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.CorrectedKrylovIdentity
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpCorrectedApplyLastLe
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiCorrectedErrorLeErrA
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSmulMulVecTaylorIsBigO
+import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiLeadingTermsIsBigO
 
 /-!
 # What the Krylov reachability of Althoff (TAC 2020) guarantees
@@ -56,5 +79,5 @@ Alg. 2's input part with (24)'s exponent, which line 8 overshoots
 (`PrintedInputPropagationCounterexample`); `ReachSubsetAlg2Corrected` is Alg. 2, repaired, enclosing
 the reachable set.
 
-Jawecki-Auzinger-Koch (BIT 2020): (2.3)-(2.5), (2.9), (3.4), (7.2), (8.3), Sec. 7, CORA's Err_a.
+Jawecki et al. (BIT 2020): (2.3)-(2.10), (3.1b), (3.4), (4.1), (6.8), (7.2), Thms. 1-3, Rmks. 2, 4.
 -/

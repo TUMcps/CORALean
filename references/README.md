@@ -73,6 +73,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | Automatica, 49(11):3418-3424 | 2013 | 🟢 14/14 \| 7 |
 | [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md) | Mullier, Goubault, Kieffer, Putot | Reliable Computing, 18:117-143 | 2013 | 🟢 15/15 \| 15 |
 | [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md) | Althoff, Krogh | IEEE Transactions on Automatic Control, 59(2):371-383 | 2014 | 🟢 18/18 \| 17 |
+| [Formal and Compositional Analysis of Power Systems using Reachable Sets](2014/althoff-tps-power-systems.md) | Althoff | IEEE Transactions on Power Systems, 29(5):2270-2280 | 2014 | 🟡 3/4 \| 34 |
 | [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md) | Raman, Donzé, Maasoumy, Murray, Sangiovanni-Vincentelli, Seshia | CDC, pp. 81-87 | 2014 | 🟢 16/16 \| 17 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 2 |
 | [Discovering governing equations from data by sparse identification of nonlinear dynamical systems](2016/brunton-pnas-sindy.md) | Brunton, Proctor, Kutz | Proceedings of the National Academy of Sciences, 113(15):3932-3937 | 2016 | 🟢 9/9 \| 12 |
@@ -98,7 +99,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md) | Althoff | IEEE Transactions on Automatic Control, 65(2):477-492 | 2020 | 🟢 13/13 \| 16 |
 | [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md) | Gaßmann, Althoff | ACC, pp. 4715-4721 | 2020 | 🟢 15/15 \| 15 |
 | [Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances](2020/goubault-lcss-robust-underapproximations.md) | Goubault, Putot | IEEE Control Systems Letters, 4(4):928-933 | 2020 | 🟢 7/7 \| 5 |
-| [Computable upper error bounds for Krylov approximations to matrix exponentials and associated φ-functions](2020/jawecki-bit-krylov-error-bounds.md) | Jawecki, Auzinger, Koch | BIT Numerical Mathematics, 60(1):157-197 | 2020 | 🟡 8/24 \| 13 |
+| [Computable upper error bounds for Krylov approximations to matrix exponentials and associated φ-functions](2020/jawecki-bit-krylov-error-bounds.md) | Jawecki, Auzinger, Koch | BIT Numerical Mathematics, 60(1):157-197 | 2020 | 🟡 20/24 \| 13 |
 | [Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems](2020/kochdumper-cdc-nonconvex-inner.md) | Kochdumper, Althoff | CDC, pp. 2130-2137 | 2020 | 🟢 9/9 \| 11 |
 | [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md) | Kochdumper, Althoff | HSCC | 2020 | 🟢 16/16 \| 6 |
 | [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟢 11/11 \| 4 |
@@ -315,6 +316,7 @@ pages carry one:
 * [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md)
 * [Computable upper error bounds for Krylov approximations to matrix exponentials and associated φ-functions](2020/jawecki-bit-krylov-error-bounds.md)
 * [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md)
+* [Formal and Compositional Analysis of Power Systems using Reachable Sets](2014/althoff-tps-power-systems.md)
 * [Implementation of Interval Arithmetic in CORA 2016](2017/althoff-arch-interval-arithmetic.md)
 * [Guaranteed State Estimation in CORA 2021](2021/althoff-arch-state-estimation.md)
 * [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md)

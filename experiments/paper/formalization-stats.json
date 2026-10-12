@@ -14,40 +14,40 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 91,
-    "papers_with_findings": 84,
-    "in_scope": 1187,
-    "formalized": 1145,
-    "not_formalized": 42,
-    "out_of_scope": 1003,
+    "papers": 92,
+    "papers_with_findings": 85,
+    "in_scope": 1191,
+    "formalized": 1160,
+    "not_formalized": 31,
+    "out_of_scope": 1037,
     "out_of_scope_by_reason": {
-      "restated": 368,
+      "restated": 389,
       "mathlib": 22,
-      "not-a-claim": 520,
+      "not-a-claim": 533,
       "done-differently": 12,
       "not-covered": 81
     },
     "by_class": {
-      "correct": 761,
-      "underspecified": 233,
+      "correct": 773,
+      "underspecified": 236,
       "proof-gap": 35,
       "fixed": 106,
       "false": 10
     },
     "claims": {
       "in_scope": 458,
-      "formalized": 435,
-      "correct": 259,
+      "formalized": 440,
+      "correct": 264,
       "underspecified": 86,
       "proof-gap": 35,
       "fixed": 49,
       "false": 6
     },
     "definitions": {
-      "in_scope": 729,
-      "formalized": 710,
-      "correct": 502,
-      "underspecified": 147,
+      "in_scope": 733,
+      "formalized": 720,
+      "correct": 509,
+      "underspecified": 150,
       "proof-gap": 0,
       "fixed": 57,
       "false": 4
@@ -1704,7 +1704,7 @@
     },
     {
       "page": "2014/althoff-tac-nonlinear-dae.md",
-      "label": "Althoff 2014",
+      "label": "Althoff 2014 (tac)",
       "year": 2014,
       "title": "Reachability Analysis of Nonlinear Differential-Algebraic Systems",
       "in_scope": 18,
@@ -1788,6 +1788,65 @@
           "result": "Alg. 1",
           "class": "underspecified",
           "reason": "the horizon must be a whole number of steps `K r` with `K ≥ 1` (a last window can otherwise leave `[0, t_f]`, and at `t_f = 0` the union is empty); the guarantee is for runs certified at each step, staying in the region `R^z` over which the errors `L` are taken, which is `Prop. 1`'s assumption; and the `repeat` loop has no stated bound; see Findings"
+        }
+      ]
+    },
+    {
+      "page": "2014/althoff-tps-power-systems.md",
+      "label": "Althoff 2014 (tps)",
+      "year": 2014,
+      "title": "Formal and Compositional Analysis of Power Systems using Reachable Sets",
+      "in_scope": 4,
+      "formalized": 3,
+      "not_formalized": 1,
+      "out_of_scope": 34,
+      "out_of_scope_by_reason": {
+        "restated": 21,
+        "mathlib": 0,
+        "not-a-claim": 13,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 0,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 3,
+        "correct": 0,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Eq. 14",
+          "class": "underspecified",
+          "reason": "`λ_U ≥ 1`, `Λ` idempotent (a 0/1 diagonal) and `ĉ` the centre of `U` are not stated; `U ⊆ Û` is not implied, since only the interface coordinates are scaled, which decorrelates them from the others"
+        },
+        {
+          "result": "Eq. 15",
+          "class": "underspecified",
+          "reason": "each `Φ⁽ⁱ⁾R⁽ⁱ⁾` already lies in the states of the full system, so `×` would have dimension `n_s n`; read as the Minkowski sum, which for disjoint coordinates is the product in place"
+        },
+        {
+          "result": "Sec. V-B",
+          "class": "underspecified",
+          "reason": "`L⁽ⁱ⁾` is not defined: with the `C⁽ⁱ⁾F⁽ⁱ⁾⁻¹` of the subsystem's own rows and columns the product misses the error whenever `F` couples the subsystems, and the remainders `σ`, `φ` of the parts must be joined before the global `CF⁻¹` of `Eq. 10`; see Findings"
         }
       ]
     },
@@ -3421,8 +3480,8 @@
       "year": 2020,
       "title": "Computable upper error bounds for Krylov approximations to matrix exponentials and associated φ-functions",
       "in_scope": 24,
-      "formalized": 8,
-      "not_formalized": 16,
+      "formalized": 20,
+      "not_formalized": 4,
       "out_of_scope": 13,
       "out_of_scope_by_reason": {
         "restated": 5,
@@ -3432,7 +3491,7 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 7,
+        "correct": 19,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
@@ -3440,8 +3499,8 @@
       },
       "claims": {
         "in_scope": 7,
-        "formalized": 0,
-        "correct": 0,
+        "formalized": 5,
+        "correct": 5,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -3449,8 +3508,8 @@
       },
       "definitions": {
         "in_scope": 17,
-        "formalized": 8,
-        "correct": 7,
+        "formalized": 15,
+        "correct": 14,
         "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
@@ -6605,7 +6664,7 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 42,
+          "correct": 54,
           "underspecified": 23,
           "proof-gap": 10,
           "fixed": 9,
@@ -6684,7 +6743,7 @@
         "cora_issues": 5,
         "findings": {
           "correct": 6,
-          "underspecified": 6,
+          "underspecified": 9,
           "proof-gap": 0,
           "fixed": 3,
           "false": 0
@@ -7097,8 +7156,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 168,
-          "underspecified": 61,
+          "correct": 180,
+          "underspecified": 64,
           "proof-gap": 18,
           "fixed": 28,
           "false": 3
@@ -7170,8 +7229,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 657,
-        "underspecified": 193,
+        "correct": 669,
+        "underspecified": 196,
         "proof-gap": 31,
         "fixed": 81,
         "false": 9
@@ -7201,11 +7260,11 @@
       }
     },
     "theorems": {
-      "paper": 1657,
+      "paper": 1684,
       "float": 1898,
-      "helper": 1577,
-      "lemma": 2618,
-      "total": 7750,
+      "helper": 1581,
+      "lemma": 2619,
+      "total": 7782,
       "examples": 120
     }
   }
