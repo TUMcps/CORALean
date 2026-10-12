@@ -105,8 +105,9 @@ is sound. CORA's `priv_linError_mixed_noInt_comp.m` takes the local blocks:
 `[~,~,Csub,~,~,Fsub] = options.subsystemJacobian{iSys}(…)`, `CFsub_inv = Csub*pinv(Fsub)`, and
 adds `index{iSys}.X'*error{iSys}` per subsystem, which is the unsound reading whenever the
 power-flow rows of a bus couple to a bus of another subsystem (a cut line); its own
-`Rtotal_y` is updated with the global `F_inv`. Not run, and the Lean witness is for the
-formula, not for CORA's code.
+`Rtotal_y` is updated with the global `F_inv`. Not run; the first witness is for the formula,
+and `NonlinDASys.compLocalErrorCora_counterexample` is for CORA's per-subsystem code on the same
+system (the error set of subsystem 1 is `{0}` for every `Csub`, `Fsub`).
 
 **`Alg. 2` — the validation of the assumed inputs.** The test `Υ⁽ⁱ⁾R(τ_k) ⊆ Λ⁽ⁱ⁾Û⁽ⁱ⁾` of
 the loop confirms that the computed sets stay in the assumed interface inputs; "thus valid" is

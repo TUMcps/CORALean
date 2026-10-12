@@ -40,14 +40,14 @@
       "cex": "CanonicalFormCNeOne.lean"
     },
     "reach": {
-      "description": "Krylov error bound used outside its nonexpansive hypothesis",
+      "description": "Krylov bound used off hypothesis; reach misses a trajectory",
       "kind": "unsound",
-      "cex": "JaweckiBoundCoraCounterexample.lean"
+      "cex": "ReachKrylovCounterexample.lean"
     },
     "verify": {
-      "description": "STL predicate status keeps only the last unsafe set",
+      "description": "STL union predicate keeps last set; verifies violated spec",
       "kind": "unsound",
-      "cex": "EvaluatePredicateUnionLastOnlyCounterexample.lean"
+      "cex": "VerifySTLKochdumperUnionLastOnlyCounterexample.lean"
     }
   },
   "contDynamics/linearSysDT": {
@@ -73,10 +73,11 @@
       "cex": "LinReachCoraCounterexample.lean"
     },
     "linReach": {
-      "description": "algebraic linearization error added, not subtracted; reachable state missed",
+      "description": "wrong algebraic-error sign; compositional local pinv(Fsub) drops coupling",
       "kind": "unsound",
       "findings": [
-        "`NonlinDASys` linearization error, sign of `C F⁻¹`"
+        "`NonlinDASys` linearization error, sign of `C F⁻¹`",
+        "`NonlinDASys` compositional linearization error, local `pinv(Fsub)`"
       ],
       "cex": "LinReachCoraCounterexample.lean"
     },
