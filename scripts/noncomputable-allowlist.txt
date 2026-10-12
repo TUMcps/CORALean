@@ -443,11 +443,13 @@ IntervalChain.jvp  real-layer: the tangent propagation of the interval chain, th
 IntervalChain.backprop  real-layer: CORA's interval backpropagation over ℝ, ℝ-only like `Chain.backprop`
 NonlinDASys.linError  real-layer: [Althoff, Krogh 2014, Cor. 1] over the real `Zonotope.quadMap` and `Interval.zonotope`; no float refinement
 NonlinDASys.linErrorCora  real-layer: CORA's sign-flipped variant of `NonlinDASys.linError`, read for its counterexample only
+NonlinDASys.linReachCora  real-layer: CORA's `linReach` step at `NonlinDASys.linErrorCora`, read for its counterexample only
 
 dmdCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearARX.ofCharpoly  real-layer: the coefficients of the real characteristic polynomial; `LinearARX.ofObserver`, its sibling, is real-layer too
 LinearSysDT.toLinearSys  real-layer: the converted system at a real matrix logarithm (an argument, Mathlib has none) and the real matrix inverse; no float counterpart
 LinProbSys.initReachCov  real-layer: CORA's input covariance at a diagonal `A`, real exponential; kept to state the finding that it is the printed, wrong-sign form
+LinProbSys.reachCovCora  real-layer: the covariance CORA's reach loop carries (`post` with `initReachCov`), read for its counterexample only; no float counterpart
 LinProbSys.inputCov  real-layer: the corrected one-step noise covariance at the real exponential and matrix inverse; a Gaussian process has no float counterpart
 LinProbSys.initReach  real-layer: the first step of the probabilistic reach loop at the real matrix exponential, inverse and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 LinProbSys.post  real-layer: one step of the probabilistic reach loop at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
@@ -464,6 +466,7 @@ sindyStep  real-layer: one pass of sequential thresholded least squares, compari
 sindy  real-layer: sequential thresholded least squares at real coefficients, the regression an argument; no float counterpart
 sindyBig  real-layer: the entries at least the threshold in magnitude, a filter on real comparisons
 NonlinParamSys.linearize  real-layer: the matrix zonotopes of real Jacobians (`fderiv`) over the parameter box; no float Jacobian of a real `f` exists to run it on
+NonlinParamSys.linReachCora  real-layer: one step of `linReach` on the real-layer `linearize` and `initReachInputDependence`; the float counterpart of the first needs a `FloatModel`, of the second a float interval matrix, neither is carried
 NonlinDASys.linReach  real-layer: one DAE linearization step through `LinearSys.oneStep` at the real matrix exponential; no float refinement
 NonlinDASys.initReach  real-layer: `NonlinDASys.linReach` on each start set, split by `Zonotope.split`; no float refinement
 NonlinDASys.reach  real-layer: Althoff and Krogh `Alg. 1`, line 1 and the loop over zonotopes at the real exponential, with the linearization, Cor. 1's errors and the split as arguments; proved sound for certified runs over ℝ and never run

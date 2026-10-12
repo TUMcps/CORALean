@@ -72,6 +72,7 @@ import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardOuter
 import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardFloatOuter
 import CORALean.HybridDynamics.Theorems.ZonoGirardUpperLe
 import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
+import CORALean.HybridDynamics.Theorems.CheckFlowCoraDropsHitCounterexample
 import CORALean.HybridDynamics.Theorems.CheckFlowDropped
 import CORALean.HybridDynamics.Theorems.CheckFlowFloatDropped
 import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact

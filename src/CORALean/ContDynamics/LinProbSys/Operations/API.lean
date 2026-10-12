@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinProbSys.Operations.Post
 import CORALean.ContDynamics.LinProbSys.Operations.EnclosingHull
 import CORALean.ContDynamics.LinProbSys.Operations.InputCov
 import CORALean.ContDynamics.LinProbSys.Operations.InitReach
+import CORALean.ContDynamics.LinProbSys.Operations.ReachCovCora
 
 /-!
 # What `LinProbSys` computes

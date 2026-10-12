@@ -25,6 +25,7 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearCoraCounterexam
 import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
 import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
+import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachCoraCounterexample
 import CORALean.ContDynamics.NonlinDASys.Theorems.InitReachOuter
 import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
 import CORALean.ContDynamics.NonlinDASys.Theorems.LinPointCertifiesOfSubset
