@@ -194,6 +194,8 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.LeafNodeSpec
 import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxGreedyOuter
 import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.CubEvalExpand
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructInterConstruct
+import CORALean.ContSet.PolyZonotope.Real.Theorems.InnerScalingSubsetOfLt
 
 /-!
 # What `PolyZonotope` guarantees

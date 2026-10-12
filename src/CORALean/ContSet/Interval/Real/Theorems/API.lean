@@ -193,6 +193,8 @@ import CORALean.ContSet.Interval.Real.Theorems.PieceHasBorderVertex
 import CORALean.ContSet.Interval.Real.Theorems.PieceSolutionCounterexample
 import CORALean.ContSet.Interval.Real.Theorems.BoxPlaneIntersectNaiveEq
 import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsLengthLeCard
+import CORALean.ContSet.Interval.Real.Theorems.BoxDiffSubsetDiff
+import CORALean.ContSet.Interval.Real.Theorems.BoxDiffExample
 
 /-!
 # What `Interval` guarantees

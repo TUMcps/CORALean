@@ -49,8 +49,10 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md) | Rådström | Proc. Amer. Math. Soc. 3, pp. 165-169 | 1952 | 🟢 3/3 \| 2 |
 | [A state bounding observer based on zonotopes](2003/combastel-ecc-state-bounding-observer.md) | Combastel | ECC | 2003 | 🟢 5/5 \| 1 |
 | [Taylor Models and Other Validated Functional Inclusion Methods](2003/makino-ijpam-taylor-models.md) | Makino, Berz | International Journal of Pure and Applied Mathematics, 4(4):379-452 | 2003 | 🟢 20/20 \| 24 |
+| [Guaranteed state estimation by zonotopes](2005/alamo-automatica-guaranteed-estimation.md) | Alamo, Bravo, Camacho | Automatica, 41(6):1035-1043 | 2005 | 🟢 11/11 \| 14 |
 | [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md) | Girard | HSCC, LNCS 3414, pp. 291-305 | 2005 | 🟢 7/7 \| 1 |
 | [Verified Global Optimization with Taylor Model-based Range Bounders](2005/makino-tc-global-optimization.md) | Makino, Berz | Transactions on Computers, 11(4):1611-1618 | 2005 | 🟢 4/4 \| 6 |
+| [Bounded error identification of systems with time-varying parameters](2006/bravo-tac-bounded-error-identification.md) | Bravo, Alamo, Camacho | IEEE Transactions on Automatic Control, 51(7):1144-1150 | 2006 | 🟢 6/6 \| 13 |
 | [Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs](2006/girard-hscc-lti-inputs.md) | Girard, Le Guernic, Maler | HSCC, LNCS 3927, pp. 257-271 | 2006 | 🟢 14/14 \| 5 |
 | [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md) | Kurzhanskiy, Varaiya | CDC, pp. 1498-1503 | 2006 | 🟢 6/6 \| 14 |
 | [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟢 11/11 \| 4 |
@@ -94,6 +96,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md) | Althoff | IEEE Transactions on Automatic Control, 65(2):477-492 | 2020 | 🟢 13/13 \| 16 |
 | [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md) | Gaßmann, Althoff | ACC, pp. 4715-4721 | 2020 | 🟢 15/15 \| 15 |
 | [Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances](2020/goubault-lcss-robust-underapproximations.md) | Goubault, Putot | IEEE Control Systems Letters, 4(4):928-933 | 2020 | 🟢 7/7 \| 5 |
+| [Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems](2020/kochdumper-cdc-nonconvex-inner.md) | Kochdumper, Althoff | CDC, pp. 2130-2137 | 2020 | 🟢 9/9 \| 11 |
 | [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md) | Kochdumper, Althoff | HSCC | 2020 | 🟢 16/16 \| 6 |
 | [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟢 11/11 \| 4 |
 | [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md) | Wetzlinger, Kochdumper, Althoff | CDC, pp. 5145–5152 | 2020 | 🟢 12/12 \| 1 |
@@ -256,6 +259,8 @@ pages carry one:
 * [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md)
 * [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md)
 * [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md)
+* [Guaranteed state estimation by zonotopes](2005/alamo-automatica-guaranteed-estimation.md)
+* [Bounded error identification of systems with time-varying parameters](2006/bravo-tac-bounded-error-identification.md)
 * [Taylor Models and Other Validated Functional Inclusion Methods](2003/makino-ijpam-taylor-models.md)
 * [Implementation of Taylor Models in CORA 2018](2018/althoff-arch-taylor-models.md)
 * [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md)
@@ -300,6 +305,7 @@ pages carry one:
 * [Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions](2009/althoff-ecc-enclosing-hulls.md)
 * [Reachability Analysis of ARMAX Models](2023/luetzow-cdc-armax.md)
 * [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md)
+* [Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems](2020/kochdumper-cdc-nonconvex-inner.md)
 * [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md)
 * [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md)
 * [Implementation of Interval Arithmetic in CORA 2016](2017/althoff-arch-interval-arithmetic.md)

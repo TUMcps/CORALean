@@ -189,6 +189,10 @@ import CORALean.ContSet.Zonotope.Real.Operations.BisectLowPrinted
 import CORALean.ContSet.Zonotope.Real.Operations.BoxS
 import CORALean.ContSet.Zonotope.Real.Operations.ExtremalGen
 import CORALean.ContSet.Zonotope.Real.Operations.UnderS
+import CORALean.ContSet.Zonotope.Real.Operations.IdentifyStep
+import CORALean.ContSet.Zonotope.Real.Operations.MeanValueInclusion
+import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
+import CORALean.ContSet.Zonotope.Real.Operations.SupportStrip
 
 /-!
 # What `Zonotope` computes

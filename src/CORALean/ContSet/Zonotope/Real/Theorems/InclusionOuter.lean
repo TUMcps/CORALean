@@ -10,14 +10,16 @@ import Mathlib.Algebra.BigOperators.Fin
 /-!
 # `Zonotope.inclusion` encloses the interval family
 
-[1, Prop. 4]: for every `M ∈ [M]` and `b ∈ Bᵐ`, `p + M b = p + mid[M] b + (M - mid[M]) b`, and
-coordinate `i` of the last term is at most `Σⱼ rad[M]ᵢⱼ` in size, which the `i`-th axis generator
-reaches. Outer only, as the paper states it.
+[1, Prop. 4], that is [2, Thm. 4]: for every `M ∈ [M]` and `b ∈ Bᵐ`, `p + M b = p + mid[M] b + (M -
+mid[M]) b`, and coordinate `i` of the last term is at most `Σⱼ rad[M]ᵢⱼ` in size, which the `i`-th
+axis generator reaches. Outer only, as the paper states it.
 
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
       estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+* [2] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
+      Automatica, 41(6):1035-1043, 2005.
 -/
 
 -- Authors:       Tobias Ladner

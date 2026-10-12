@@ -401,6 +401,16 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ExtremalGenPlus
 import CORALean.ContSet.Zonotope.Real.Theorems.UnderSEqConvexHull
 import CORALean.ContSet.Zonotope.Real.Theorems.UnderSSubset
 import CORALean.ContSet.Zonotope.Real.Theorems.UnderSInterHyperplaneIff
+import CORALean.ContSet.Zonotope.Real.Theorems.ConstructInterSupportStripInterEq
+import CORALean.ContSet.Zonotope.Real.Theorems.DetColsSnocEqMulDotProduct
+import CORALean.ContSet.Zonotope.Real.Theorems.DetColsSnocOneSubVecMulVec
+import CORALean.ContSet.Zonotope.Real.Theorems.IdentifyStepOuter
+import CORALean.ContSet.Zonotope.Real.Theorems.ImageSubsetMeanValueInclusion
+import CORALean.ContSet.Zonotope.Real.Theorems.SupportDotProduct
+import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStrip
+import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStripConvexOn
+import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStripDet
+import CORALean.ContSet.Zonotope.Real.Theorems.VolumeSumSnoc
 
 /-!
 # What `Zonotope` guarantees

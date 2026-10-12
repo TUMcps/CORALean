@@ -14,40 +14,40 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 83,
-    "papers_with_findings": 76,
-    "in_scope": 1080,
-    "formalized": 1074,
+    "papers": 86,
+    "papers_with_findings": 79,
+    "in_scope": 1106,
+    "formalized": 1100,
     "not_formalized": 6,
-    "out_of_scope": 906,
+    "out_of_scope": 944,
     "out_of_scope_by_reason": {
-      "restated": 325,
-      "mathlib": 17,
-      "not-a-claim": 478,
+      "restated": 344,
+      "mathlib": 21,
+      "not-a-claim": 492,
       "done-differently": 12,
-      "not-covered": 74
+      "not-covered": 75
     },
     "by_class": {
-      "correct": 715,
-      "underspecified": 211,
+      "correct": 733,
+      "underspecified": 218,
       "proof-gap": 35,
-      "fixed": 103,
+      "fixed": 104,
       "false": 10
     },
     "claims": {
-      "in_scope": 423,
-      "formalized": 419,
-      "correct": 247,
-      "underspecified": 83,
+      "in_scope": 432,
+      "formalized": 428,
+      "correct": 252,
+      "underspecified": 86,
       "proof-gap": 35,
-      "fixed": 48,
+      "fixed": 49,
       "false": 6
     },
     "definitions": {
-      "in_scope": 657,
-      "formalized": 655,
-      "correct": 468,
-      "underspecified": 128,
+      "in_scope": 674,
+      "formalized": 672,
+      "correct": 481,
+      "underspecified": 132,
       "proof-gap": 0,
       "fixed": 55,
       "false": 4
@@ -274,6 +274,65 @@
       ]
     },
     {
+      "page": "2005/alamo-automatica-guaranteed-estimation.md",
+      "label": "Alamo 2005",
+      "year": 2005,
+      "title": "Guaranteed state estimation by zonotopes",
+      "in_scope": 11,
+      "formalized": 11,
+      "not_formalized": 0,
+      "out_of_scope": 14,
+      "out_of_scope_by_reason": {
+        "restated": 7,
+        "mathlib": 3,
+        "not-a-claim": 4,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 8,
+        "underspecified": 3,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 3,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 5,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Def. 1",
+          "class": "underspecified",
+          "reason": "the measurement equation is printed `y_i = g(x_j, v_j)` with a stray index `i`; read as `y_j = g(x_j, v_j)`, `j = 1, …, k`"
+        },
+        {
+          "result": "Thm. 5",
+          "class": "underspecified",
+          "reason": "`f` is not said to be differentiable, which `□∇ₓf` presupposes; differentiability in `x` is supplied"
+        },
+        {
+          "result": "Property 1",
+          "class": "underspecified",
+          "reason": "the scalar printed `d_i` in the construction is `s_i` in the statement and the proof; `s_i` is used"
+        }
+      ]
+    },
+    {
       "page": "2005/girard-hscc-reachability-zonotopes.md",
       "label": "Girard 2005",
       "year": 2005,
@@ -379,6 +438,60 @@
         "false": 0
       },
       "findings": []
+    },
+    {
+      "page": "2006/bravo-tac-bounded-error-identification.md",
+      "label": "Bravo 2006",
+      "year": 2006,
+      "title": "Bounded error identification of systems with time-varying parameters",
+      "in_scope": 6,
+      "formalized": 6,
+      "not_formalized": 0,
+      "out_of_scope": 13,
+      "out_of_scope_by_reason": {
+        "restated": 8,
+        "mathlib": 0,
+        "not-a-claim": 5,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 4,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 6,
+        "formalized": 6,
+        "correct": 4,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 3",
+          "class": "underspecified",
+          "reason": "`FSS_k` names `Def. 1`'s set (which has met the strip of measurement `k`) and, in the recursion, the set before measurement `k`; with the recursion's reading the identity with `Def. 1` is an equation to prove, done here"
+        },
+        {
+          "result": "Sec. 3.3",
+          "class": "underspecified",
+          "reason": "step 3 applies `Property 1` to a strip `\\|cᵀx - d\\| ≤ σ`, while step 2 gives the tight strip as `q ≤ cᵀx ≤ r`; the centre `(q + r)/2` and half-width `(r - q)/2` are supplied, and the convention that `γ` is a vector (the example) not a scalar (`Assumption 2`)"
+        }
+      ]
     },
     {
       "page": "2006/girard-hscc-lti-inputs.md",
@@ -3180,6 +3293,65 @@
       ]
     },
     {
+      "page": "2020/kochdumper-cdc-nonconvex-inner.md",
+      "label": "Kochdumper 2020 (cdc)",
+      "year": 2020,
+      "title": "Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems",
+      "in_scope": 9,
+      "formalized": 9,
+      "not_formalized": 0,
+      "out_of_scope": 11,
+      "out_of_scope_by_reason": {
+        "restated": 4,
+        "mathlib": 1,
+        "not-a-claim": 5,
+        "done-differently": 0,
+        "not-covered": 1
+      },
+      "by_class": {
+        "correct": 6,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 5,
+        "formalized": 5,
+        "correct": 4,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Prop. 1",
+          "class": "underspecified",
+          "reason": "the proof applies (6) to ∂X₀, which needs ∂X₀ ⊆ X₀, X₀ closed; Prop. 1 does not say so, Thm. 2 (which it invokes) assumes X₀ compact"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "the contractor is left open, `argmax`'s ties are unresolved (the first axis here), and a half-open slab is stored in closed bounds, so the result need not be feasible for (10); see `Thm. 3` and Findings"
+        },
+        {
+          "result": "Thm. 3",
+          "class": "fixed",
+          "reason": "false as printed: Alg. 1 can return a flat box whose image crosses ∂R and still passes (14); true when the final factor box is not flat; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2020/kochdumper-hscc-nonlinear-guards.md",
       "label": "Kochdumper 2020 (hscc)",
       "year": 2020,
@@ -5738,7 +5910,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 44,
+          "correct": 47,
           "underspecified": 8,
           "proof-gap": 0,
           "fixed": 4,
@@ -5790,10 +5962,10 @@
         },
         "cora_issues": 6,
         "findings": {
-          "correct": 29,
-          "underspecified": 9,
+          "correct": 30,
+          "underspecified": 10,
           "proof-gap": 1,
-          "fixed": 2,
+          "fixed": 3,
           "false": 0
         }
       },
@@ -5972,8 +6144,8 @@
         },
         "cora_issues": 6,
         "findings": {
-          "correct": 129,
-          "underspecified": 36,
+          "correct": 136,
+          "underspecified": 38,
           "proof-gap": 5,
           "fixed": 15,
           "false": 1
@@ -6284,7 +6456,7 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 15,
+          "correct": 16,
           "underspecified": 10,
           "proof-gap": 7,
           "fixed": 5,
@@ -6310,8 +6482,8 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 0,
-          "underspecified": 0,
+          "correct": 4,
+          "underspecified": 2,
           "proof-gap": 0,
           "fixed": 0,
           "false": 0
@@ -6596,10 +6768,10 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 379,
-          "underspecified": 102,
+          "correct": 390,
+          "underspecified": 105,
           "proof-gap": 9,
-          "fixed": 46,
+          "fixed": 47,
           "false": 5
         }
       },
@@ -6620,8 +6792,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 156,
-          "underspecified": 58,
+          "correct": 161,
+          "underspecified": 60,
           "proof-gap": 18,
           "fixed": 28,
           "false": 3
@@ -6693,17 +6865,17 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 622,
-        "underspecified": 175,
+        "correct": 638,
+        "underspecified": 180,
         "proof-gap": 31,
-        "fixed": 79,
+        "fixed": 80,
         "false": 9
       }
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 70,
-        "underspecified": 28,
+        "correct": 72,
+        "underspecified": 30,
         "proof-gap": 4,
         "fixed": 17,
         "false": 1
@@ -6724,11 +6896,11 @@
       }
     },
     "theorems": {
-      "paper": 1583,
+      "paper": 1605,
       "float": 1898,
-      "helper": 1568,
-      "lemma": 2611,
-      "total": 7660,
+      "helper": 1573,
+      "lemma": 2612,
+      "total": 7688,
       "examples": 120
     }
   }

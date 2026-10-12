@@ -1,0 +1,41 @@
+import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
+
+/-!
+# The support strip of a zonotope
+
+[1, Def. 8]: the strip `{x | q ≤ cᵀx ≤ r}` between the hyperplanes tangent to the zonotope `Z = p ⊕
+H Bᵐ` with normal `c`, `r = max_{x ∈ Z} cᵀx = cᵀp + ‖Hᵀc‖₁` and `q = min_{x ∈ Z} cᵀx = cᵀp -
+‖Hᵀc‖₁` ([1, Def. 7]; the values are `support_dotProduct`'s). It is the smallest strip of this
+direction that contains `Z`.
+
+## References
+
+* [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with
+      time-varying parameters". IEEE Transactions on Automatic Control, 51(7):1144-1150, 2006.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `{x | cᵀp - ‖Hᵀc‖₁ ≤ cᵀx ≤ cᵀp + ‖Hᵀc‖₁}`. -/
+def Zonotope.supportStrip (Z : Zonotope (Vec ℝ n)) (c : Vec ℝ n) : Set (Vec ℝ n) :=
+  {x | c ⬝ᵥ Z.c - Z.supportRadius c ≤ c ⬝ᵥ x ∧ c ⬝ᵥ x ≤ c ⬝ᵥ Z.c + Z.supportRadius c}
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

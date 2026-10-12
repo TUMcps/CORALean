@@ -453,5 +453,11 @@
     "Prop. 28": {
       "description": "bound (80) on $\\sigma$ fails for either circumbody"
     }
+  },
+  "2020/kochdumper-cdc-nonconvex-inner": {
+    "Thm. 3": {
+      "description": "Alg.~1 stores Prop.~3's half-open box closed; a flat box can cross the boundary; true for a non-flat box",
+      "fix": "InnerScalingSubsetOfLt.lean"
+    }
   }
 }

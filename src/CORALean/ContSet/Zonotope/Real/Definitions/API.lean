@@ -16,6 +16,7 @@ import CORALean.ContSet.Zonotope.Real.Definitions.Degree
 import CORALean.ContSet.Zonotope.Real.Definitions.MinFace
 import CORALean.ContSet.Zonotope.Real.Definitions.BisectInv
 import CORALean.ContSet.Zonotope.Real.Definitions.WalkEdges
+import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
 
 /-!
 # What a zonotope means beyond its own construction

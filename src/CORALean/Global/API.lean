@@ -246,6 +246,12 @@ import CORALean.Global.SdpRelaxationMinAttained
 import CORALean.Global.DiagBlockSdpDual
 import CORALean.Global.ZonotopeEllipsotopeSdpRelaxation
 import CORALean.Global.EllipsotopeSdpRelaxation
+import CORALean.Global.FeasibleSolutionSet
+import CORALean.Global.FeasibleSolutionSetEqPredicted
+import CORALean.Global.PredictedSolutionSet
+import CORALean.Global.SubsetOfIsPreconnectedOfDisjointFrontier
+import CORALean.Global.FrontierImageSubsetOfForallSubset
+import CORALean.Global.FrontierIccEqIUnionFaces
 /-!
 # Global definitions, collected
 

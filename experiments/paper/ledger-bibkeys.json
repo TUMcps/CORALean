@@ -38,6 +38,7 @@
     "2019/wang-tac-descriptor-lpv-estimation": "wang2019zonotopic",
     "2020/althoff-tac-krylov": "althoff2020reachability",
     "2020/gassmann-acc-zonotope-ellipsoid": "gassmann2020scalable",
+    "2020/kochdumper-cdc-nonconvex-inner": "kochdumper2020computing",
     "2020/kochdumper-hscc-nonlinear-guards": "kochdumper2020reachability",
     "2020/wetzlinger-cdc-adaptive-tuning": "wetzlinger2020adaptive",
     "2021/kulmburg-ejc-zonotope-containment": "kulmburg2021co",
