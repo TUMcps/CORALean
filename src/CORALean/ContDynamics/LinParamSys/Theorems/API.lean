@@ -66,6 +66,7 @@ import CORALean.ContDynamics.LinParamSys.Theorems.MemDependentLowOrder
 import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenceOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInitReachInputDependenceOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.SimulateEndTimeCoraExceeds
 
 /-!
 # What `LinParamSys` gives, collected

@@ -45,6 +45,7 @@ import CORALean.HybridDynamics.Parallel.Theorems.SyncRunToProduct
 import CORALean.HybridDynamics.Parallel.Theorems.BoxSyncLifting
 import CORALean.HybridDynamics.Parallel.Theorems.InvariantCutCoraCounterexample
 import CORALean.HybridDynamics.Parallel.Theorems.MergeTransitionSetsCoraWrongTargetCounterexample
+import CORALean.HybridDynamics.Parallel.Theorems.SimulateRandomTimesCoraCounterexample
 
 /-!
 # What a parallel hybrid automaton guarantees, collected

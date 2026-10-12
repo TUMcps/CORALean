@@ -44,6 +44,7 @@ import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
 import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
 import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
 import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
+import CORALean.ContDynamics.LinParamSys.Operations.SimulateEndTimeCora
 
 /-!
 # What a continuous-time linear system with a set-valued matrix computes
