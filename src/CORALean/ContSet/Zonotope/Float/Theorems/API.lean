@@ -1,3 +1,4 @@
+import CORALean.ContSet.Zonotope.Float.Theorems.EnclosePointsStursbergOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.ErrLeErrUp
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.RadiusLe

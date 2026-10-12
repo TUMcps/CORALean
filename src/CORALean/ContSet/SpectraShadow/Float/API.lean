@@ -1,4 +1,5 @@
 import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+import CORALean.ContSet.SpectraShadow.Float.Definitions.API
 import CORALean.ContSet.SpectraShadow.Float.Operations.API
 import CORALean.ContSet.SpectraShadow.Float.Theorems.API
 import CORALean.ContSet.SpectraShadow.Float.Instances

@@ -41,6 +41,9 @@ import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInputSplit
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
 import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
+import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
+import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
+import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
 
 /-!
 # What a continuous-time linear system with a set-valued matrix computes
@@ -62,8 +65,9 @@ these at float interval matrices, `ExpIntervalFloat` the box's exponential at an
 At `ℐ` throughout: every factor is an interval matrix, the exponential and the
 correction matrix of a box being interval matrices themselves. `InputSolutionZono`
 is [1, Prop. 3.6] instead, at a matrix zonotope: `InputTermZono` for its exact
-linear and quadratic orders, `InputTaylorSumTail` for the interval-matrix orders
-past them.
+linear and quadratic orders, `InputTaylorSumTail` for the interval-matrix orders past them;
+`InitReachInputDependence`/`DependentHomSol` CORA's first step with an input sharing its
+parameters, `DependentLowOrder` corrected, `DependentHomSolLowOrder` as CORA computes it.
 
 ## References
 

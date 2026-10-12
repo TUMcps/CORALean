@@ -62,31 +62,35 @@ import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalZon
 import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepIntervalOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoFloatOuter
 import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolLowOrderCounterexample
+import CORALean.ContDynamics.LinParamSys.Theorems.MemDependentLowOrder
+import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenceOuter
+import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInitReachInputDependenceOuter
 
 /-!
 # What `LinParamSys` gives, collected
 
-`TimeIntervalStepOuter`/`ConstTrajectoryTimeIntervalOuter`: what the step
-encloses, and where a constant-parameter run then is at every time of the step.
-`ConstTrajectoryToLinearSys` is what the second rests on — with one matrix
-fixed, the closed form of a `LinearSys` run applies unchanged.
-`InputSolutionOuter` is the other half of a step, `ConstTrajectoryStepOuter`
-puts the two together at its end, and `InputReachSubsetInputSolution` with
-`ConstTrajectoryInputSolutionTimeIntervalOuter` extend that half to every time
-of the step once `0 ∈ U`; `…TimeIntervalOuterInputSolution` is the whole step.
+`TimeIntervalStepOuter`/`ConstTrajectoryTimeIntervalOuter`: what the step encloses, and where a
+constant-parameter run then is at every time of the step. `ConstTrajectoryToLinearSys` is what
+the second rests on — with one matrix fixed, the closed form of a `LinearSys` run applies
+unchanged. `InputSolutionOuter` is the other half of a step, `ConstTrajectoryStepOuter` puts the
+two together at its end, and `InputReachSubsetInputSolution` with
+`ConstTrajectoryInputSolutionTimeIntervalOuter` extend that half to every time of the step once
+`0 ∈ U`; `…TimeIntervalOuterInputSolution` is the whole step.
 
 `TrajectoryTimeIntervalStepOuter`/`…TimePointOuter` are CORA's own `'varParam'` step, input-free,
-through `TrajectoryExistsIntegralEq`/`…MeasurableParam`, `…InputSolution` with an
-input, `…FloatOuter` at the float step; or `TrajectoryToLinearSys`
-pays the drift as input, `TrajectoryNormLe`/`…NormDriftLe` bounding it by Gronwall.
-The `…Split` pair drops `0 ∈ U` by splitting the input set, and
-`ConstTrajectoryDiscretizeEnclosure`/`…MemReach` carry one step to a whole
-horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
+through `TrajectoryExistsIntegralEq`/`…MeasurableParam`, `…InputSolution` with an input,
+`…FloatOuter` at the float step; or `TrajectoryToLinearSys` pays the drift as input,
+`TrajectoryNormLe`/`…NormDriftLe` bounding it by Gronwall. The `…Split` pair drops `0 ∈ U` by
+splitting the input set, and `ConstTrajectoryDiscretizeEnclosure`/`…MemReach` carry one step to
+a whole horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
 `ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` convert: `'constParam'`
 is `'varParam'` at a constant, `LinearSys` `LinParamSys` at a point. `InputSolutionZonoOuter`
 is `InputSolutionOuter` at a matrix zonotope instead, `…ZonoOuter` the step there, and
 `ReachOrderAdmissible`/`ReachUnionOuter`/`WithInputReachUnionOuter` are `Instances`'.
 `…Float…` are the same guarantees of the float operations, at float interval matrices.
+`InitReachInputDependenceOuter` (`DependentHomSolOuter`, `MemDependentLowOrder`, a run's
+`ConstTrajectory…`) is CORA's step corrected, `DependentHomSolLowOrderCounterexample` CORA's.
 
 ## References
 

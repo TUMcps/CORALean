@@ -1,3 +1,4 @@
+import CORALean.ContSet.VPolytope.Float.Theorems.MatPolytopeExact
 import CORALean.ContSet.VPolytope.Float.Theorems.ProjectHighDimOuter
 import CORALean.ContSet.VPolytope.Float.Theorems.BoundDotLe
 import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
