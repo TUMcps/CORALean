@@ -11,6 +11,7 @@ import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
 import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptPass
 import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptState
 import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
+import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
 
 /-!
 # What `NonlinDASys` means beyond the system itself
@@ -18,5 +19,5 @@ import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
 `Index1` is CORA's index-1 assumption, `∂g/∂y` invertible; `ReducedModel` is the algebraic
 variable solved for, as data; `WithSteps` bundles the system, a reduced model and the
 `NonlinearSys.WithSteps` data of the reduced system; `ReachUnionExact` is the reachable set
-that run encloses.
+that run encloses. `FloatModel` is what a float run evaluates in place of `f` and `g`.
 -/

@@ -168,6 +168,7 @@ import CORALean.Global.InnerRangeTestClosed
 import CORALean.Global.JacobiSlice
 import CORALean.Global.JacobiSliceExistence
 import CORALean.Global.MulVecInjectiveOfResidual
+import CORALean.Global.ExistsUniqueZeroOfNewtonTest
 import CORALean.Global.GadgetH
 import CORALean.Global.CoeffNormHalfGadgetH
 import CORALean.Global.GadgetZonotope
@@ -258,12 +259,12 @@ the tightest box over a set and the origin-centred Euclidean radius of that box
 (`err`), the Euclidean norm a vector does not carry by default, the Hausdorff
 distance read through it, a family of generators' own induced operator norm
 (`genOpNorm₂`), the cancellation law that turns an outer approximation into an inner one,
-Carathéodory's theorem over a fixed index, Brouwer's fixed-point theorem and the interval
-Jacobi existence test it gives, the minimax inequality a parametrized infimum's continuity
-gives over two compact sets, when a set-based evaluation shrinks superlinearly, when a
-step error converges to zero, a fixed horizon's error budget, the classical
-convergence order a point-valued ODE solver either has or does not, the linear
-programming every set representation ends up asking for, the dynamic mode decomposition
+Carathéodory's theorem over a fixed index, Brouwer's fixed-point theorem and the interval Jacobi
+existence test it gives, the Newton (Krawczyk) test proving a unique zero, the minimax
+inequality a parametrized infimum's continuity gives over two compact sets, when a set-based
+evaluation shrinks superlinearly, when a step error converges to zero, a fixed horizon's error
+budget, the classical convergence order a point-valued ODE solver either has or does not, the
+linear programming every set representation ends up asking for, the dynamic mode decomposition
 `identify` is built on (`Dmd…`), power-system identities, regions of attraction, and
 interval predictor models (`Ipm…`).
 

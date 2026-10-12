@@ -5,6 +5,11 @@ import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
 import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
 import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialState
 import CORALean.ContDynamics.NonlinDASys.Operations.SteadyState
+import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
+import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackRes
+import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackJac
+import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialStateFloat
+import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
 import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
 import CORALean.ContDynamics.NonlinDASys.Operations.LinError
 import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
@@ -28,5 +33,8 @@ import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
 # What `NonlinDASys` computes
 
 `ToNonlinearSys` eliminates the algebraic variable through a reduced model; `ReachUnion` runs
-the reduced system's re-linearization loop.
+the reduced system's re-linearization loop. `ConsistentInitialStateFloat` and
+`SteadyStateFloat` run CORA's Newton loops in floats and keep the end point only when
+`NewtonTestFloat` certifies a zero near it; `FloatModelStackRes` and `FloatModelStackJac` read a
+float model on the stacked state `(x, y)`.
 -/
