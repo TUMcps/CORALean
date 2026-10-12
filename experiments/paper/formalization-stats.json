@@ -5742,11 +5742,11 @@
         "group": "contSet",
         "class": "polygon",
         "methods": 46,
-        "proved": 2,
-        "float": 31,
+        "proved": 1,
+        "float": 32,
         "not_yet": 2,
         "out_of_scope": 11,
-        "needs_float": 2,
+        "needs_float": 1,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 2,
@@ -6522,11 +6522,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 43,
-        "float": 612,
+        "proved": 42,
+        "float": 613,
         "not_yet": 6,
         "out_of_scope": 247,
-        "needs_float": 43,
+        "needs_float": 42,
         "cora_issues": 51,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -6619,11 +6619,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 75,
-      "float": 775,
+      "proved": 74,
+      "float": 776,
       "not_yet": 14,
       "out_of_scope": 396,
-      "needs_float": 75,
+      "needs_float": 74,
       "cora_issues": 75,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6666,10 +6666,10 @@
     },
     "theorems": {
       "paper": 1566,
-      "float": 1881,
-      "helper": 1507,
-      "lemma": 2585,
-      "total": 7539,
+      "float": 1886,
+      "helper": 1512,
+      "lemma": 2587,
+      "total": 7551,
       "examples": 120
     }
   }

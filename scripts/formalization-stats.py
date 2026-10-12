@@ -42,7 +42,10 @@ Writes `experiments/paper/formalization-stats.json` and, under
 * `appendix-errors.tex`, the appendix table of every `false` and `fixed` result with its
   description, Lean counterexample and Lean fix (`scripts/errors-table.py`, which says where
   the descriptions and BibTeX keys come from); a row without a description, or a page without
-  a key, fails the run and `--check`.
+  a key, fails the run and `--check`;
+* `appendix-cora-bugs.tex`, the appendix table of the bugs found in CORA, one row per coverage
+  row with a `cora-issue` note (`scripts/cora-bugs-table.py`); a row without an entry in
+  `experiments/paper/cora-bugs.json`, or an entry without a row, fails the run and `--check`.
 
 Everything is a function of `references/` and `src/`; no clock, no randomness, so
 a rerun on unchanged tables rewrites identical files, and `check-references.py`
@@ -70,11 +73,15 @@ spec.loader.exec_module(cr)
 spec = importlib.util.spec_from_file_location("errors_table", HERE / "errors-table.py")
 et = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(et)
+spec = importlib.util.spec_from_file_location("cora_bugs_table", HERE / "cora-bugs-table.py")
+cb = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(cb)
 
 LATEX = cr.ROOT / "experiments" / "paper" / "latex"
 FIG_DIR = LATEX / "figures" / "formalization"
 APPENDIX = LATEX / "appendix-formalization.tex"
 ERRORS = LATEX / "appendix-errors.tex"  # see scripts/errors-table.py
+CORA_BUGS = LATEX / "appendix-cora-bugs.tex"  # see scripts/cora-bugs-table.py
 
 # The colours of `experiments/paper/latex/cora-macs.sty`, as (name, rgb): the TikZ files name
 # them, the SVG preview needs the numbers.
@@ -532,6 +539,9 @@ def outputs():
     papers = [cr.Paper(p, lambda m: None) for p in sorted(cr.REFS.glob(cr.PAPER_GLOB))]
     data = cr.stats(papers)
     errors, problems, _ = et.table(cr)
+    bugs, bug_problems, _ = cb.table(cr)
+    problems = [f"appendix-errors.tex: {m}" for m in problems] + \
+               [f"appendix-cora-bugs.tex: {m}" for m in bug_problems]
     return {
         cr.STATS_JSON: json.dumps(data, indent=2, ensure_ascii=False) + "\n",
         FIG_DIR / "formalization.tikz": tikz(data),
@@ -541,13 +551,14 @@ def outputs():
         FIG_DIR / "formalization.svg": svg(data),
         APPENDIX: appendix(data),
         ERRORS: errors,
+        CORA_BUGS: bugs,
     }, data, problems
 
 
 def main():
     files, data, problems = outputs()
     for problem in problems:
-        print(f"appendix-errors.tex: {problem}")
+        print(problem)
     if "--check" in sys.argv[1:]:
         stale = [p for p, text in files.items()
                  if not p.exists() or p.read_text(encoding="utf-8") != text]

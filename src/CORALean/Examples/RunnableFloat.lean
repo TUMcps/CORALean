@@ -141,6 +141,7 @@ import CORALean.Specification.Instances
 import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
 import CORALean.ContSet.Zonotope.Float.Operations.And
 import CORALean.ContSet.Polygon.Float.Operations.And
+import CORALean.ContSet.Polygon.Float.Operations.MinkDiff
 import CORALean.ContSet.SetIntersection.API
 import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
 import CORALean.ContSet.Taylm.Float.Operations.Times
@@ -1342,6 +1343,8 @@ a `Taylm` product and sum, the certified `eqBool`, and a nonlinear ARX model sim
 
 def zAnd : Zonotope D 2 := Z.and_ Z_plus
 def polyAnd : Polygon D := Polygon.and polyP polyP
+/-- The triangle minus the point `(1, 0)`: its edge halfspaces, shifted to the translate. -/
+def polyMinkDiff : SetUnion (HPolytope D 2) := Polygon.minkDiff polyP polyPt
 def interSum : SetIntersection (Zonotope D 2) :=
   Plus.plus (⟨[Z, Z_plus]⟩ : SetIntersection (Zonotope D 2)) ⟨[Z]⟩
 
