@@ -73,4 +73,4 @@ for closed `X₀`; the paper's initial sets are boxes. [`FrontierImageSubsetOfFo
 `fmincon`, scales it by a factor and proves it valid by contracting to the empty set, and it
 drops the independent generators of the result. It never performs Step 4, the backward
 simulation (14), so `C ∩ R ≠ ∅` is not checked, and Thm. 1 alone then allows `C` to lie
-entirely outside `R`; not witnessed in Lean.
+entirely outside `R`. At the default `scaleFac = 'auto'` it does: a loop that never certifies a piece runs `factor` down to `0` and returns the uncut box's image, `[1, 3]` for `ẋ = 0` from `[-1, 1]` with outer approximation `2 + α + 2β`, whatever `fmincon` returns. [`ReachInnerScalingCora1DCounterexample.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachInnerScalingCora1DCounterexample.lean)

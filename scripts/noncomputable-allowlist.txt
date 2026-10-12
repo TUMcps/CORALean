@@ -496,3 +496,4 @@ NonlinearSys.WithSteps.guardIntersectPancake  real-layer: CORA's `guardIntersect
 Location.guardIntersectHyperplaneMap  real-layer: CORA's `guardIntersect_hyperplaneMap` over `Real.Zonotope`, with real divisions and `Real.sqrt`
 GuardMap.abstractionErrorCora  real-layer: CORA's printed `aux_abstractionError` with `err1` overwritten, read for its counterexample only
 Location.guardIntersectHyperplaneMapCoraErr  real-layer: `Location.guardIntersectHyperplaneMap` with CORA's printed error, read for its counterexample only
+NonlinearSys.reachInnerScalingCora1D  real-layer: CORA's `'scale'` inner approximation as printed in one dimension at a supplied optimizer and contractor, read for its counterexample only

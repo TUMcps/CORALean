@@ -130,6 +130,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Approximability of the Containment Problem for Zonotopes and Ellipsotopes](2025/kulmburg-tac-approximability-containment.md) | Kulmburg, Schäfer, Althoff | IEEE Transactions on Automatic Control | 2025 | 🟡 18/20 \| 31 |
 | [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md) | Ladner, Eichelbeck, Althoff | TMLR | 2025 | 🟢 14/14 \| 6 |
 | [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md) | Lützow, Eichelbeck, Kochenderfer, Althoff | Journal of Machine Learning Research, 26(294):1-37 | 2025 | 🟢 13/13 \| 19 |
+| [Underapproximative Methods for the Order Reduction of Zonotopes](2025/luetzow-lcss-underapprox-order-reduction.md) | Lützow, Kochdumper, Althoff | IEEE Control Systems Letters, 9:1730-1735 | 2025 | 🟢 10/10 \| 12 |
 | [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md) | Lützow, Althoff | IEEE Transactions on Automatic Control, 71(5):3014-3029 | 2026 | 🟢 14/14 \| 11 |
 
 ## CORA coverage
@@ -312,6 +313,7 @@ pages carry one:
 * [Guaranteed State Estimation in CORA 2021](2021/althoff-arch-state-estimation.md)
 * [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md)
 * [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md)
+* [Underapproximative Methods for the Order Reduction of Zonotopes](2025/luetzow-lcss-underapprox-order-reduction.md)
 * [Robust Identification of Hybrid Automata from Noisy Data](2025/kochdumper-hscc-hybrid-automata-identification.md)
 * [Interval estimation methods for discrete-time linear time-invariant systems](2019/tang-tac-interval-estimation.md)
 * [Zonotopic set-membership state estimation for discrete-time descriptor LPV systems](2019/wang-tac-descriptor-lpv-estimation.md)

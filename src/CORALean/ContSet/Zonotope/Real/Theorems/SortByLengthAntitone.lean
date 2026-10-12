@@ -1,0 +1,41 @@
+import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
+
+/-!
+# `sortByLength` sorts by decreasing 2-norm
+
+`‖g_{s,i}‖₂ ≥ ‖g_{s,i+1}‖₂` for the sorted generators, as [1, Sec. III-B, Step 1)] requires.
+
+## References
+
+* [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the
+      Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- The sorted generator lengths are antitone. -/
+theorem Zonotope.antitone_generatorLength_sortByLength (Z : Zonotope (Vec ℝ n)) :
+    Antitone fun i => Z.sortByLength.generatorLength i := by -- --- PROOF ---
+  -- `Tuple.sort` makes the negated lengths monotone
+  intro i j hij
+  have h := Tuple.monotone_sort (fun j => -Z.generatorLength j) hij
+  simp only [Zonotope.generatorLength, Zonotope.sortByLength, Function.comp] at h ⊢
+  linarith
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

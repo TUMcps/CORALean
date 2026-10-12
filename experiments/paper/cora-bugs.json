@@ -104,8 +104,9 @@
       "cex": "LinReachAdaptiveCora1DHessianRegionCounterexample.lean"
     },
     "reachInner": {
-      "description": "'minkdiff' time-interval sets are not inner",
-      "kind": "unsound"
+      "description": "'minkdiff' time-interval sets and 'scale' sets are not inner",
+      "kind": "unsound",
+      "cex": "ReachInnerScalingCora1DCounterexample.lean"
     }
   },
   "contSet/capsule": {
@@ -342,6 +343,11 @@
       "description": "default 'approx' scales unchecked; not inner",
       "kind": "unsound",
       "cex": "MinkDiffApproxNotInner.lean"
+    },
+    "reduceUnderApprox": {
+      "description": "raghuraman: 0/0 on orthogonal small generator; unsorted generators used",
+      "kind": "other",
+      "cex": "RaghuramanCoraZeroDivision.lean"
     },
     "tensorMultiplication": {
       "description": "second-order branch errors for every input",
