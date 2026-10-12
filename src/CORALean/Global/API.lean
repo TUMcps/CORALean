@@ -262,6 +262,12 @@ import CORALean.Global.PredictedSolutionSet
 import CORALean.Global.SubsetOfIsPreconnectedOfDisjointFrontier
 import CORALean.Global.FrontierImageSubsetOfForallSubset
 import CORALean.Global.FrontierIccEqIUnionFaces
+import CORALean.Global.SymmetricDensityKernelInvariant
+import CORALean.Global.PositiveDensityIndecomposable
+import CORALean.Global.BilliardReflect
+import CORALean.Global.BilliardReflectLaw
+import CORALean.Global.BilliardReflectReflect
+import CORALean.Global.SmithDiskIterations
 /-!
 # Global definitions, collected
 

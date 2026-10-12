@@ -14,40 +14,40 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 92,
-    "papers_with_findings": 85,
-    "in_scope": 1191,
-    "formalized": 1160,
-    "not_formalized": 31,
-    "out_of_scope": 1037,
+    "papers": 94,
+    "papers_with_findings": 87,
+    "in_scope": 1211,
+    "formalized": 1168,
+    "not_formalized": 43,
+    "out_of_scope": 1053,
     "out_of_scope_by_reason": {
       "restated": 389,
       "mathlib": 22,
-      "not-a-claim": 533,
+      "not-a-claim": 544,
       "done-differently": 12,
-      "not-covered": 81
+      "not-covered": 86
     },
     "by_class": {
-      "correct": 773,
-      "underspecified": 236,
+      "correct": 778,
+      "underspecified": 239,
       "proof-gap": 35,
       "fixed": 106,
       "false": 10
     },
     "claims": {
-      "in_scope": 458,
-      "formalized": 440,
-      "correct": 264,
+      "in_scope": 460,
+      "formalized": 442,
+      "correct": 266,
       "underspecified": 86,
       "proof-gap": 35,
       "fixed": 49,
       "false": 6
     },
     "definitions": {
-      "in_scope": 733,
-      "formalized": 720,
-      "correct": 509,
-      "underspecified": 150,
+      "in_scope": 751,
+      "formalized": 726,
+      "correct": 512,
+      "underspecified": 153,
       "proof-gap": 0,
       "fixed": 57,
       "false": 4
@@ -153,6 +153,55 @@
           "result": "Lemma 3",
           "class": "underspecified",
           "reason": "fails only at `X = ∅`, which the paper's setting (nonempty sets) excludes; `X` nonempty is supplied"
+        }
+      ]
+    },
+    {
+      "page": "1984/smith-or-uniform-points.md",
+      "label": "Smith 1984",
+      "year": 1984,
+      "title": "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed Over Bounded Regions",
+      "in_scope": 10,
+      "formalized": 5,
+      "not_formalized": 5,
+      "out_of_scope": 5,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 2,
+        "done-differently": 0,
+        "not-covered": 3
+      },
+      "by_class": {
+        "correct": 4,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 8,
+        "formalized": 3,
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 4 (disk)",
+          "class": "underspecified",
+          "reason": "an off-by-one: the bound at 17 iterations is 1.002%, and 1% holds from 18; see Findings"
         }
       ]
     },
@@ -1847,6 +1896,60 @@
           "result": "Sec. V-B",
           "class": "underspecified",
           "reason": "`L⁽ⁱ⁾` is not defined: with the `C⁽ⁱ⁾F⁽ⁱ⁾⁻¹` of the subsystem's own rows and columns the product misses the error whenever `F` couples the subsystems, and the remainders `σ`, `φ` of the parts must be joined before the global `CF⁻¹` of `Eq. 10`; see Findings"
+        }
+      ]
+    },
+    {
+      "page": "2014/polyak-ifac-billiard-walk.md",
+      "label": "Polyak 2014",
+      "year": 2014,
+      "title": "Billiard walk - a new sampling algorithm for control and optimization",
+      "in_scope": 10,
+      "formalized": 3,
+      "not_formalized": 7,
+      "out_of_scope": 11,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 9,
+        "done-differently": 0,
+        "not-covered": 2
+      },
+      "by_class": {
+        "correct": 1,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 10,
+        "formalized": 3,
+        "correct": 1,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Alg.",
+          "class": "underspecified",
+          "reason": "the draws `η`, `ξ` are arguments and \"go to step 2\" is `none`, the caller redrawing; \"nonsmooth\" is read as a hit point on a second hyperplane (unspecified for a polytope); `ℓ` exactly a segment length ends on the boundary (unspecified); see Findings"
+        },
+        {
+          "result": "Sec. 2.3",
+          "class": "underspecified",
+          "reason": "`s = aᵢ` is a unit vector only after normalizing the row; the sign is outward where the paper says internal, which the reflection does not see"
         }
       ]
     },
@@ -6378,8 +6481,8 @@
         },
         "cora_issues": 4,
         "findings": {
-          "correct": 44,
-          "underspecified": 15,
+          "correct": 46,
+          "underspecified": 17,
           "proof-gap": 0,
           "fixed": 8,
           "false": 2
@@ -7132,8 +7235,8 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 402,
-          "underspecified": 117,
+          "correct": 404,
+          "underspecified": 119,
           "proof-gap": 9,
           "fixed": 48,
           "false": 5
@@ -7229,8 +7332,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 669,
-        "underspecified": 196,
+        "correct": 671,
+        "underspecified": 198,
         "proof-gap": 31,
         "fixed": 81,
         "false": 9
@@ -7238,8 +7341,8 @@
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 80,
-        "underspecified": 30,
+        "correct": 83,
+        "underspecified": 31,
         "proof-gap": 4,
         "fixed": 17,
         "false": 1
@@ -7260,11 +7363,11 @@
       }
     },
     "theorems": {
-      "paper": 1684,
+      "paper": 1693,
       "float": 1898,
-      "helper": 1581,
-      "lemma": 2622,
-      "total": 7785,
+      "helper": 1591,
+      "lemma": 2623,
+      "total": 7805,
       "examples": 120
     }
   }
