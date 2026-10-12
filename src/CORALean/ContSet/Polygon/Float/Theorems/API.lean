@@ -29,6 +29,8 @@ import CORALean.ContSet.Polygon.Float.Theorems.CenterMem
 import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
 import CORALean.ContSet.Polygon.Float.Theorems.QuadMapOuter
 import CORALean.ContSet.Polygon.Float.Theorems.QuadMapMixedOuter
+import CORALean.ContSet.Polygon.Float.Theorems.SubtractOuter
+import CORALean.ContSet.Polygon.Float.Theorems.MldivideOuter
 
 /-!
 # Float polygon theorems, collected

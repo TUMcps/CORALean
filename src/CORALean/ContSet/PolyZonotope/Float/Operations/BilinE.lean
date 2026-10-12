@@ -10,7 +10,7 @@ float counterpart of `Real.PolyZonotope.bilinE`, of which `quadMapE` is the self
 
 -- Authors:       Tobias Ladner
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   12-October-2026
 -- Last revision: ---
 
 
@@ -18,13 +18,13 @@ float counterpart of `Real.PolyZonotope.bilinE`, of which `quadMapE` is the self
 
 namespace CORALean.Float
 
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+variable {α β : Type}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Its exponent column, the two columns added. -/
-def PolyZonotope.bilinE (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (hp : pZ₁.p = pZ₂.p) :
+def PolyZonotope.bilinE (pZ₁ : GPolyZonotope α) (pZ₂ : GPolyZonotope β) (hp : pZ₁.p = pZ₂.p) :
     Fin pZ₁.p → Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → ℕ :=
   fun k l => PolyZonotope.extE pZ₁ k (finProdFinEquiv.symm l).1
       + PolyZonotope.extE pZ₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2

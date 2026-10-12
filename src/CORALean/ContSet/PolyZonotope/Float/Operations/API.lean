@@ -160,6 +160,11 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.SubsFactor
 import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDown
 import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDiff
 import CORALean.ContSet.PolyZonotope.Float.Operations.Subs
+import CORALean.ContSet.PolyZonotope.Float.Operations.ExtGens
+import CORALean.ContSet.PolyZonotope.Float.Operations.PairG
+import CORALean.ContSet.PolyZonotope.Float.Operations.PairGI
+import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
+import CORALean.ContSet.PolyZonotope.Float.Operations.MatMap
 
 /-!
 # What `PolyZonotope` computes

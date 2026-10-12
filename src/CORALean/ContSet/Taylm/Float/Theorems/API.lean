@@ -67,6 +67,12 @@ import CORALean.ContSet.Taylm.Float.Theorems.SqrtCoefMem
 import CORALean.ContSet.Taylm.Float.Theorems.SqrtBoundGe
 import CORALean.ContSet.Taylm.Float.Theorems.SqrtOuter
 import CORALean.ContSet.Taylm.Float.Theorems.BinomCoefMem
+import CORALean.ContSet.Taylm.Float.Theorems.BernsteinStepMem
+import CORALean.ContSet.Taylm.Float.Theorems.BernsteinEntryBoundsMem
+import CORALean.ContSet.Taylm.Float.Theorems.BoundsProdMem
+import CORALean.ContSet.Taylm.Float.Theorems.BernsteinCoeffBoundsMem
+import CORALean.ContSet.Taylm.Float.Theorems.MemBernsteinIdx
+import CORALean.ContSet.Taylm.Float.Theorems.OptBernsteinMem
 import CORALean.ContSet.Taylm.Float.Theorems.PolyOfReexpPairs
 import CORALean.ContSet.Taylm.Float.Theorems.ReexpandAtOuter
 import CORALean.ContSet.Taylm.Float.Theorems.ReexpandOuter

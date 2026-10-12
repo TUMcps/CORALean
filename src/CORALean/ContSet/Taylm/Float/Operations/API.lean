@@ -74,6 +74,12 @@ import CORALean.ContSet.Taylm.Float.Operations.SqrtCoef
 import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
 import CORALean.ContSet.Taylm.Float.Operations.Sqrt
 import CORALean.ContSet.Taylm.Float.Operations.BinomCoef
+import CORALean.ContSet.Taylm.Float.Operations.BernsteinStep
+import CORALean.ContSet.Taylm.Float.Operations.BernsteinEntryBounds
+import CORALean.ContSet.Taylm.Float.Operations.BoundsProd
+import CORALean.ContSet.Taylm.Float.Operations.BernsteinCoeffBounds
+import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
+import CORALean.ContSet.Taylm.Float.Operations.OptBernstein
 import CORALean.ContSet.Taylm.Float.Operations.ReexpPairs
 import CORALean.ContSet.Taylm.Float.Operations.ReexpCoef
 import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
