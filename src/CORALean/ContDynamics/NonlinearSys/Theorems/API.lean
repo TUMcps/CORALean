@@ -31,6 +31,8 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.OptDeltatDescent
 import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorGetSubset
 import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorOfQuadRemainder
 import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
+import CORALean.ContDynamics.NonlinearSys.Theorems.PancakeTrajectory
+import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizonInputSolution
@@ -104,6 +106,11 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffLoopAdd
 import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffLoopSubsetReachSet
 import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffCertOfAbstractionError
 import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffTimeIntervalCounterexample
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerSubsetReachSet
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubsetReachSet
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerCertOfAbstractionError
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSet
+import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSetHorizon
 
 /-!
 # What `NonlinearSys` guarantees

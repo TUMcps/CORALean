@@ -92,6 +92,10 @@ import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffRemainder
 import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
 import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
 import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiff
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInnerErr
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiffLoop
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiff
 
 /-!
 # What a linearization computes

@@ -136,7 +136,7 @@ Rulings on borderline cases:
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 6 | 31 | 0 | 7 | 4 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 11 | 55 | 0 | 14 | 5 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 2 | 0 |
-| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 1 | 6 | 1 | 11 | 2 |
+| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 6 | 0 | 11 | 2 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 0 | 6 | 1 | 4 | 1 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 3 | 0 | 0 | 5 | 1 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 4 | 0 | 2 | 0 |
@@ -146,13 +146,13 @@ Rulings on borderline cases:
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 8 | 1 | 1 | 3 | 5 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 2 | 2 | 1 | 4 | 1 |
 | [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 1 | 4 | 0 | 3 | 0 |
-| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 4 | 4 | 2 | 8 | 2 |
+| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 5 | 4 | 1 | 8 | 2 |
 | [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 2 | 6 | 0 | 3 | 0 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 0 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
 | [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 1 | 6 | 0 | 3 | 0 |
-| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 1 | 13 | 2 | 8 | 4 |
+| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 2 | 13 | 1 | 8 | 4 |
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 4 | 1 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 1 | 6 | 0 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 1 | 4 | 0 | 7 | 1 |

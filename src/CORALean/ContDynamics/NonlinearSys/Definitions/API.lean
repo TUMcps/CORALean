@@ -21,6 +21,9 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
 import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps
 import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffState
 import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
+import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerOps
+import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerState
+import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
 
 /-!
 # What `NonlinearSys` means beyond the system itself
