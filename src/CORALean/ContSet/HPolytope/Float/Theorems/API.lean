@@ -38,6 +38,7 @@ import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairDot
 import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairSymm
 import CORALean.ContSet.HPolytope.Float.Theorems.PairsToEqExact
 import CORALean.ContSet.HPolytope.Float.Theorems.CompactAtoAeOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.ExcludesPointSound
 
 /-!
 # What the float `HPolytope` guarantees

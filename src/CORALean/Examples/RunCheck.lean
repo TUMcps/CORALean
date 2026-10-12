@@ -594,6 +594,8 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "pZ_containsPointApprox" (ofBool RunnableFloat.pZ_containsPointApprox)
   row "pZinnerS" (ofPZ RunnableFloat.pZinnerS)
   row "pZ_containsSetApprox" (ofBool RunnableFloat.pZ_containsSetApprox)
+  row "pZ_containsPointSet" (ofBool RunnableFloat.pZ_containsPointSet)
+  row "pZ_containsPointSetOut" (ofBool RunnableFloat.pZ_containsPointSetOut)
 
 /-! ## Hardware `Float`
 

@@ -132,6 +132,8 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.ConvHull
 import CORALean.ContSet.PolyZonotope.Float.Operations.MonoBox
 import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
 import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
+import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTerms
+import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTermsHessian
 import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
 import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
 import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
@@ -165,6 +167,11 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.PairG
 import CORALean.ContSet.PolyZonotope.Float.Operations.PairGI
 import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
 import CORALean.ContSet.PolyZonotope.Float.Operations.MatMap
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestIndepGen
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitGen
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitMany
+import CORALean.ContSet.PolyZonotope.Float.Operations.ZonotopeCora
+import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
 
 /-!
 # What `PolyZonotope` computes
