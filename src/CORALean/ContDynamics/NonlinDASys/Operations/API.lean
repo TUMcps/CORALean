@@ -13,6 +13,7 @@ import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
 import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
 import CORALean.ContDynamics.NonlinDASys.Operations.LinError
 import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
+import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
 import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearCora
 import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinear
 import CORALean.ContDynamics.NonlinDASys.Operations.LinReach

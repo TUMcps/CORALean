@@ -16,6 +16,9 @@ import CORALean.Specification.STL.Operations.SampToCNF
 import CORALean.Specification.STL.Operations.SampToFormula
 import CORALean.Specification.STL.Operations.DFormulaBound
 import CORALean.Specification.STL.Operations.EvaluatePredicateUnionCora
+import CORALean.Specification.STL.Operations.EvaluatePredicateUnionPolytopeCora
+import CORALean.Specification.STL.Operations.SafeToUnsafeCora
+import CORALean.Specification.STL.Operations.VerifySTLKochdumperGloballyCora
 import CORALean.Specification.STL.Operations.AutomatedVerification
 import CORALean.Specification.STL.Operations.FactorCheck
 import CORALean.Specification.STL.Operations.FactorMeet
