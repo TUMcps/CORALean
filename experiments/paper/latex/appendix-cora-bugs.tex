@@ -8,11 +8,7 @@
 \setlength{\tabcolsep}{4pt}
 \setlength{\LTcapwidth}{\textwidth}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{3.9cm}>{\raggedright\arraybackslash}p{4.4cm}cc@{}}
-\caption{The 75 bugs found in CORA while formalizing it: the CORA function, a few words on
-what is wrong, the Lean counterexample, and the Lean file of the corrected version.
-\textsuperscript{*}The result is unsound: it can miss reachable states, is not the enclosure it
-claims to be, or is a wrong verdict a verification relies on. The others are too large, return a
-wrong flag, fail at run time, or differ from their documentation.}
+\caption{List of bugs found in CORA while formalizing it in Lean 4.}
 \label{tab:cora-bugs}\\
 \toprule
 CORA function & Description & \begin{tabular}[b]{@{}c@{}}Lean\\counterexample\end{tabular} & \begin{tabular}[b]{@{}c@{}}Lean\\fix\end{tabular} \\
