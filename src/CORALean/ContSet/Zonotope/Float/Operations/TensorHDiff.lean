@@ -1,0 +1,35 @@
+import CORALean.ContSet.Zonotope.Float.Operations.TensorHDown
+import CORALean.ContSet.Zonotope.Float.Operations.TensorHUp
+
+/-!
+# `Zonotope.tensorHDiff`
+
+How far a stored column of `tensorMultiplication` can be from the exact one: the gap between its two
+roundings, which a coefficient in `[-1, 1]` then spreads either way.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Zonotope.tensorHDiff (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope 𝕋 n)
+    (L : Real.Zonotope.TensorLists Z.h) : Fin n → Fin L.C → 𝕋 :=
+  fun iDim cInd => subUp (Zonotope.tensorHUp M Z L iDim cInd) (Zonotope.tensorHDown M Z L iDim cInd)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

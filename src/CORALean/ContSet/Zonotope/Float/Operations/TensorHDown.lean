@@ -1,0 +1,44 @@
+import CORALean.ContSet.Zonotope.Float.Operations.CubContractDown
+import CORALean.ContSet.Zonotope.Float.Operations.Tensor3
+import CORALean.ContSet.Zonotope.Float.Zonotope
+import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
+
+/-!
+# `Zonotope.tensorHDown`
+
+The generators of `tensorMultiplication` on the stored floats, rounded down: column `cInd` of `H`
+is the sum of `tildeH`, the product of three generators through `M`, over the permutations `p` that
+`map` sends to `cInd`. The product is `cubContractDown` with the tensor's slices `M iDim ind1` as
+the matrices.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def Zonotope.tensorHDown (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope 𝕋 n)
+    (L : Real.Zonotope.TensorLists Z.h) : Fin n → Fin L.C → 𝕋 :=
+  fun iDim cInd =>
+    -- `tildeH` of each permutation, those mapped to `cInd` summed
+    sumDown fun p : Fin L.P =>
+      if L.map p = cInd then
+        Zonotope.cubContractDown M (Z.G (L.perm p 0)) (Z.G (L.perm p 1)) (Z.G (L.perm p 2)) iDim
+      else zero
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

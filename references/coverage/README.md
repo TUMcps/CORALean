@@ -120,7 +120,7 @@ Rulings on borderline cases:
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
 | [capsule](contSet/capsule.md) | contSet | 39 | 1 | 28 | 0 | 10 | 4 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 2 | 36 | 1 | 8 | 3 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 3 | 35 | 0 | 12 | 2 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 36 | 0 | 12 | 2 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 28 | 0 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 6 | 32 | 0 | 12 | 3 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 7 | 0 |
@@ -134,13 +134,13 @@ Rulings on borderline cases:
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 23 | 0 | 9 | 5 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 2 | 37 | 0 | 12 | 0 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 6 | 31 | 0 | 7 | 4 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 10 | 56 | 0 | 14 | 6 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 7 | 59 | 0 | 14 | 6 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 2 | 2 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 6 | 0 | 11 | 3 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 1 | 6 | 0 | 4 | 1 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 3 | 0 | 0 | 5 | 1 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 4 | 0 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 3 | 19 | 1 | 10 | 1 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 2 | 20 | 1 | 10 | 1 |
 | [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 4 | 7 | 0 | 6 | 1 |
 | [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 8 | 1 | 1 | 3 | 5 |

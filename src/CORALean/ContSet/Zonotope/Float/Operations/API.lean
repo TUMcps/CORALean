@@ -128,6 +128,26 @@ import CORALean.ContSet.Zonotope.Float.Operations.QuadMapMatZono
 import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
 import CORALean.ContSet.Zonotope.Float.Operations.UnitIntervalMul
 import CORALean.ContSet.Zonotope.Float.Operations.HalfspaceRange
+import CORALean.ContSet.Zonotope.Float.Operations.CubContractDown
+import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
+import CORALean.ContSet.Zonotope.Float.Operations.ListQuadDown
+import CORALean.ContSet.Zonotope.Float.Operations.ListQuadUp
+import CORALean.ContSet.Zonotope.Float.Operations.CubFoldDown
+import CORALean.ContSet.Zonotope.Float.Operations.CubFoldUp
+import CORALean.ContSet.Zonotope.Float.Operations.CubMapCDown
+import CORALean.ContSet.Zonotope.Float.Operations.CubMapCUp
+import CORALean.ContSet.Zonotope.Float.Operations.CubMapGDown
+import CORALean.ContSet.Zonotope.Float.Operations.CubMapGUp
+import CORALean.ContSet.Zonotope.Float.Operations.CubMapGDiff
+import CORALean.ContSet.Zonotope.Float.Operations.Dependent
+import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
+import CORALean.ContSet.Zonotope.Float.Operations.CubMap
+import CORALean.ContSet.Zonotope.Float.Operations.Tensor3
+import CORALean.ContSet.Zonotope.Float.Operations.TensorHDown
+import CORALean.ContSet.Zonotope.Float.Operations.TensorHUp
+import CORALean.ContSet.Zonotope.Float.Operations.TensorHDiff
+import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplication
+import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplicationZono
 
 /-!
 # What `Zonotope` computes

@@ -147,6 +147,8 @@ import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalFloatOut
 import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachSupportFloatGe
 import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
+import CORALean.ContDynamics.LinearSys.Theorems.OneStepFloatTimeIntervalOuter
+import CORALean.ContDynamics.LinearSys.Theorems.OneStepFloatTimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimeIntervalOuter
 import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimePointOuter
 import CORALean.ContDynamics.LinearSys.Theorems.NonlinearSysFloatModelEncloses

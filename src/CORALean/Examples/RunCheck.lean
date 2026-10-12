@@ -370,6 +370,8 @@ def dyadicRows : StateT Nat IO Unit := do
   row "ctReachRun" (ofZono RunnableFloat.ctReachRun)
   row "ctErrorBoxRun" (ofZono RunnableFloat.ctErrorBoxRun)
   row "ctInputErrorRun" (ofZono RunnableFloat.ctInputErrorRun)
+  row "oneStepTpRun" (ofZono RunnableFloat.oneStepTpRun)
+  row "oneStepTiRun" (ofZono RunnableFloat.oneStepTiRun)
   row "minkDiffMinuend" (ofZono RunnableFloat.minkDiffMinuend)
   row "minkDiffSubtrahend" (ofZono RunnableFloat.minkDiffSubtrahend)
   row "minkDiffOpt" (ofBool RunnableFloat.minkDiffOpt.isSome)

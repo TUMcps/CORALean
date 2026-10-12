@@ -17,6 +17,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorIsBigO
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorLe
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorNonneg
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
+import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrixSubsetFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
 import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
