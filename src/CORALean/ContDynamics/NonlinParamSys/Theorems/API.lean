@@ -8,6 +8,8 @@ import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatJacX
 import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatJacU
 import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeJacUMem
 import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeJacXMem
+import CORALean.ContDynamics.NonlinParamSys.Theorems.LinReachCoraMissesCounterexample
+import CORALean.ContDynamics.NonlinParamSys.Theorems.LinReachCoraRemainderZero
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatCheckedEqSome
@@ -29,4 +31,7 @@ the parameter as an extra state, and `ReachUnionOuter` what `reachUnion`
 guarantees through it. `LinearizeFMem`, `LinearizeJacXMem` and `LinearizeJacUMem` (through
 `JacobianFamilyMem`) say `linearize`'s zonotopes hold the dynamics and their Jacobians at every
 parameter of the box when `f` is affine in `p`; `LinearizeFCounterexample` is the case it is not.
+`LinReachCoraMissesCounterexample` follows it into one `linReach` step, where the state of the run
+at `p = 2` is outside the set; `LinReachCoraRemainderZero` rules out the abstraction error covering
+it.
 -/

@@ -27,7 +27,7 @@
   },
   "contDynamics/linProbSys": {
     "initReach": {
-      "description": "input covariance uses the wrong drift sign; too small",
+      "description": "wrong drift sign; covariance too small, carried by reach",
       "kind": "unsound",
       "cex": "InitReachCovLt.lean"
     }
@@ -62,12 +62,12 @@
       "cex": "LinErrorCoraCounterexample.lean"
     },
     "linReach": {
-      "description": "algebraic linearization error added, not subtracted; error missed",
+      "description": "algebraic linearization error added, not subtracted; reachable state missed",
       "kind": "unsound",
       "findings": [
         "`NonlinDASys` linearization error, sign of `C F⁻¹`"
       ],
-      "cex": "LinErrorCoraCounterexample.lean"
+      "cex": "LinReachCoraCounterexample.lean"
     },
     "linReach_adaptive": {
       "description": "algebraic linearization error added, not subtracted",
@@ -92,7 +92,7 @@
   },
   "contDynamics/nonlinParamSys": {
     "linearize": {
-      "description": "parameters assumed affine without check; dynamics missed",
+      "description": "affine-in-parameters assumed unchecked; reach misses states",
       "kind": "unsound"
     }
   },
@@ -358,7 +358,7 @@
   },
   "hybridDynamics/location": {
     "checkFlow": {
-      "description": "offset added as vector to scalar flow; sets dropped",
+      "description": "vector offset in scalar flow test drops sets; jumps missed",
       "kind": "unsound"
     },
     "guardIntersect_hyperplaneMap": {
