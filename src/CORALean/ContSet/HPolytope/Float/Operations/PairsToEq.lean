@@ -1,0 +1,42 @@
+import CORALean.ContSet.HPolytope.Float.Operations.KeptRows
+import CORALean.ContSet.HPolytope.Float.Operations.LeadRows
+
+/-!
+# `HPolytope.pairsToEq`: the inverted pairs as equalities
+
+CORA's `priv_compact_toEquality`: every pair `aᵀx ≤ b`, `-aᵀx ≤ -b` becomes the equality
+`aᵀx = b`, appended after the existing equality rows with the degenerate interval `[b, b]`; the rows
+in pairs are deleted from the inequalities. Nothing rounds.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The rows outside an inverted pair, and the lead row of each pair as an equality. -/
+def HPolytope.pairsToEq (Q : HPolytope 𝕋 n) : HPolytope 𝕋 n where
+  m := Q.keptRows.length
+  A := fun k => Q.A (Q.keptRows.get k)
+  b := fun k => Q.b (Q.keptRows.get k)
+  me := Q.me + Q.leadRows.length
+  Ae := Fin.append Q.Ae fun k => Q.A (Q.leadRows.get k)
+  be := ⟨Fin.append Q.be.inf fun k => Q.b (Q.leadRows.get k),
+    Fin.append Q.be.sup fun k => Q.b (Q.leadRows.get k)⟩
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

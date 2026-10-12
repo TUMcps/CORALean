@@ -21,6 +21,23 @@ import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainInner
 import CORALean.ContSet.HPolytope.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledLeft
 import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
+import CORALean.ContSet.HPolytope.Float.Theorems.RecipUpPos
+import CORALean.ContSet.HPolytope.Float.Theorems.ScaleDevBetween
+import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeConstraintsOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
+import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
+import CORALean.ContSet.HPolytope.Float.Theorems.IsZeroVecDot
+import CORALean.ContSet.HPolytope.Float.Theorems.DropZerosExact
+import CORALean.ContSet.HPolytope.Float.Theorems.CompactZerosOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
+import CORALean.ContSet.HPolytope.Float.Theorems.DropAlignedExact
+import CORALean.ContSet.HPolytope.Float.Theorems.CompactAlignedIneqOuter
+import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairDot
+import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairSymm
+import CORALean.ContSet.HPolytope.Float.Theorems.PairsToEqExact
+import CORALean.ContSet.HPolytope.Float.Theorems.CompactAtoAeOuter
 
 /-!
 # What the float `HPolytope` guarantees

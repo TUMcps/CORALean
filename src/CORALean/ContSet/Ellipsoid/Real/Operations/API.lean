@@ -23,6 +23,7 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
 import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
 import CORALean.ContSet.Ellipsoid.Real.Operations.IsBiggerCora
 import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi1D
+import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
 import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
 import CORALean.ContSet.Ellipsoid.Real.Operations.MinkDiffPoint
 import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint

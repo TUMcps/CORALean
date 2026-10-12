@@ -1,0 +1,50 @@
+import CORALean.ContSet.Interval.Float.Operations.Round
+import CORALean.ContSet.Interval.Float.Theorems.RoundAwayIntCast
+import CORALean.ContSet.Interval.Real.Operations.Round
+
+/-!
+# `Interval.round` encloses the exact rounding
+
+Outer: the exact layer's `Interval.round` of the nominal box is inside the float result's
+construct, so, with the exact layer's `round_outer`, is the rounding of every point of the nominal
+box. The bounds are the integers `roundAway` of the scalars' exact values, between `intDown` and
+`intUp` of themselves.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Interval.round_outer (I : Interval (Vec 𝕋 n)) :
+    I.nominal.round.construct ⊆ I.round.construct := by -- --- PROOF ---
+  intro x hx i
+  have h := hx i
+  have hl : CORALean.Real.roundAway (toReal (I.inf i)) =
+      ((roundAwayInt (ToRat.toRat (I.inf i)) : ℤ) : ℝ) := by
+    rw [roundAwayInt_cast, ToRat.toReal_toRat]
+  have hu : CORALean.Real.roundAway (toReal (I.sup i)) =
+      ((roundAwayInt (ToRat.toRat (I.sup i)) : ℤ) : ℝ) := by
+    rw [roundAwayInt_cast, ToRat.toReal_toRat]
+  have h1 := (intDown_le_intUp (𝕋 := 𝕋) (roundAwayInt (ToRat.toRat (I.inf i)))).1
+  have h2 := (intDown_le_intUp (𝕋 := 𝕋) (roundAwayInt (ToRat.toRat (I.sup i)))).2
+  refine ⟨?_, ?_⟩
+  · exact le_trans h1 (hl ▸ h.1)
+  · exact le_trans (hu ▸ h.2) h2
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

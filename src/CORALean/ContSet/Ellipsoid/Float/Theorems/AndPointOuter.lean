@@ -1,0 +1,54 @@
+import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
+import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
+import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
+import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
+
+/-!
+# `and_` of a float ellipsoid and a point encloses the intersection
+
+Outer: `E ∩ {p}` lies in what `Ellipsoid.andPoint` denotes, at every certificate. The point
+branches denote `{p}`, which holds `E ∩ {p}`; the empty branch is taken only when `excludesPoint`
+has proved `p ∉ E`, so `E ∩ {p}` is empty there. Exact on the two certified branches, as over ℝ
+(`Real.Ellipsoid.andPoint_exact`): a certified `p ∈ E` makes `{p} = E ∩ {p}`; only the undecided
+branch may return the point for an `E` that misses it.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p : Vec 𝕋 n) (u : Vec 𝕋 E.k)
+    (a : Vec 𝕋 n) (s : 𝕋) :
+    E.construct ∩ {toRealVec p} ⊆ ContSet.construct (E.andPoint p u a s) := by -- --- PROOF ---
+  -- the point ellipsoid holds every point of `E ∩ {p}`
+  have hpt : E.construct ∩ {toRealVec p}
+      ⊆ ContSet.construct (WithEmpty.of (Ellipsoid.ofPoint p) : WithEmpty (Ellipsoid 𝕋 n)) := by
+    rw [WithEmpty.construct_of]
+    change _ ⊆ (Ellipsoid.ofPoint p).construct
+    rw [Ellipsoid.ofPoint_exact]
+    exact Set.inter_subset_right
+  unfold Ellipsoid.andPoint
+  split_ifs with h₁ h₂
+  · exact hpt
+  · -- certified outside: the intersection is empty
+    rintro x ⟨hx, rfl⟩
+    exact absurd hx (Ellipsoid.excludesPoint_sound h₂)
+  · exact hpt
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

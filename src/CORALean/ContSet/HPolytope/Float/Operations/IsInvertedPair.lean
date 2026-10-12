@@ -1,0 +1,36 @@
+import CORALean.ContSet.HPolytope.Float.Operations.EqVec
+
+/-!
+# `HPolytope.isInvertedPair`: two inequality rows certified inverted
+
+Rows `i` and `j` with `[aⱼ, bⱼ] = -[aᵢ, bᵢ]`, certified entry by entry (`eqVec`, `eqScalar`) in both
+directions, so the test is symmetric as a `Bool`: CORA's `idxInverted`, at tolerance zero. The
+row `0 ≤ 0` is inverted with itself.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `[aⱼ, bⱼ] = -[aᵢ, bᵢ]` and `[aᵢ, bᵢ] = -[aⱼ, bⱼ]`, each certified. -/
+def HPolytope.isInvertedPair (Q : HPolytope 𝕋 n) (i j : Fin Q.m) : Bool :=
+  HPolytope.eqVec (Q.A j) (fun c => neg (Q.A i c)) && HPolytope.eqScalar (Q.b j) (neg (Q.b i)) &&
+    HPolytope.eqVec (Q.A i) (fun c => neg (Q.A j c)) && HPolytope.eqScalar (Q.b i) (neg (Q.b j))
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

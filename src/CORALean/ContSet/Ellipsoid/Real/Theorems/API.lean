@@ -48,6 +48,7 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.IsLeastVolumeSupersetParalleloto
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerIffSubset
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerCoraCounterexample
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripGollamudi1DCounterexample
+import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripGollamudiOuter
 import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseOuter
 import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseCoraCounterexample
 import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkDiffPointExact

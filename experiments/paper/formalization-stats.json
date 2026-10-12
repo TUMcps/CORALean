@@ -5586,11 +5586,11 @@
         "group": "contSet",
         "class": "ellipsoid",
         "methods": 50,
-        "proved": 6,
-        "float": 32,
+        "proved": 4,
+        "float": 34,
         "not_yet": 0,
         "out_of_scope": 12,
-        "needs_float": 6,
+        "needs_float": 4,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -5664,11 +5664,11 @@
         "group": "contSet",
         "class": "interval",
         "methods": 110,
-        "proved": 1,
-        "float": 91,
+        "proved": 0,
+        "float": 92,
         "not_yet": 0,
         "out_of_scope": 18,
-        "needs_float": 1,
+        "needs_float": 0,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -5768,11 +5768,11 @@
         "group": "contSet",
         "class": "polytope",
         "methods": 58,
-        "proved": 5,
-        "float": 41,
+        "proved": 3,
+        "float": 43,
         "not_yet": 0,
         "out_of_scope": 12,
-        "needs_float": 5,
+        "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 3,
@@ -6522,11 +6522,11 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 58,
-        "float": 597,
+        "proved": 53,
+        "float": 602,
         "not_yet": 6,
         "out_of_scope": 247,
-        "needs_float": 58,
+        "needs_float": 53,
         "cora_issues": 51,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -6619,11 +6619,11 @@
     },
     "totals": {
       "methods": 1260,
-      "proved": 104,
-      "float": 746,
+      "proved": 99,
+      "float": 751,
       "not_yet": 14,
       "out_of_scope": 396,
-      "needs_float": 104,
+      "needs_float": 99,
       "cora_issues": 76,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
@@ -6666,10 +6666,10 @@
     },
     "theorems": {
       "paper": 1566,
-      "float": 1773,
-      "helper": 1503,
-      "lemma": 2577,
-      "total": 7419,
+      "float": 1797,
+      "helper": 1505,
+      "lemma": 2578,
+      "total": 7446,
       "examples": 120
     }
   }

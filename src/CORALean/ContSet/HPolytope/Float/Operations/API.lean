@@ -57,6 +57,25 @@ import CORALean.ContSet.HPolytope.Float.Operations.RowScale
 import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
 import CORALean.ContSet.HPolytope.Float.Operations.EmptyWeights
 import CORALean.ContSet.HPolytope.Float.Operations.IsFullDim
+import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
+import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
+import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
+import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
+import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraints
+import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
+import CORALean.ContSet.HPolytope.Float.Operations.Restrict
+import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
+import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
+import CORALean.ContSet.HPolytope.Float.Operations.CompactZeros
+import CORALean.ContSet.HPolytope.Float.Operations.EqVec
+import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
+import CORALean.ContSet.HPolytope.Float.Operations.CompactAlignedIneq
+import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
+import CORALean.ContSet.HPolytope.Float.Operations.KeptRows
+import CORALean.ContSet.HPolytope.Float.Operations.LeadRows
+import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
+import CORALean.ContSet.HPolytope.Float.Operations.CompactAtoAe
 
 /-!
 # What the float `HPolytope` computes
