@@ -50,6 +50,7 @@
     "2023/luetzow-cdc-armax": "luetzow2023reachability",
     "2023/wetzlinger-arxiv-backward-reachability": "wetzlinger2023backward",
     "2023/wetzlinger-hscc-support-functions": "wetzlinger2023fully",
+    "2024/kochdumper-nahs-stl-lti-verification": "kochdumper2024fully",
     "2024/kulmburg-ecc-zonotope-ellipsotope-containment": "kulmburg2024search",
     "2024/ladner-aaai-exponent-relaxation": "ladner2024exponent",
     "2024/wetzlinger-arch-polyhedral-operations": "wetzlinger2024implementation",

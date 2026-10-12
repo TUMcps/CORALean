@@ -1,0 +1,62 @@
+import CORALean.Specification.STL.Operations.FactorStep
+
+/-!
+# A factor that enters a polytope stays in the pass of [1, Alg. 2]
+
+If `α` is in a polytope of `V` and the state `ξ` it gives, which is in `R̃`, is in one of the
+polytopes `P_hjkl`, then `α` is in a polytope of `STL.factorStep` (lines 7-13 of [1, Alg. 2]):
+`meets` finds the intersection, `α` is in the unsafe factors of that polytope by [1, Prop. 2]
+(`hU`), and a polytope holding `α` is not empty. `meets` answering `false` means no intersection,
+`isEmpty` answering `true` an empty polytope; neither is trusted otherwise.
+
+## References
+
+* [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+      against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
+      Hybrid Systems, vol. 53, 2024, 101491.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {S X : Type}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem STL.exists_mem_factorStep (Rj : Set S) (Pjk : List (Set S)) (unsafeSet : Set S → Set X)
+    (meets : Set S → Set S → Bool) (isEmpty : Set X → Bool) (V : List (Set X)) (α : X) (ξ : S)
+    (hR : ξ ∈ Rj) (hU : ∀ Pl, ξ ∈ Pl → α ∈ unsafeSet Pl)
+    (hmeets : ∀ A B, meets A B = false → A ∩ B = ∅)
+    (hempty : ∀ v, isEmpty v = true → v = ∅) (hP : ∃ Pl ∈ Pjk, ξ ∈ Pl)
+    (hV : ∃ v ∈ V, α ∈ v) :
+    ∃ v ∈ STL.factorStep Rj Pjk unsafeSet meets isEmpty V, α ∈ v := by -- --- PROOF ---
+  obtain ⟨v, hv, hαv⟩ := hV
+  obtain ⟨Pl, hPl, hξ⟩ := hP
+  -- `Rj` meets `Pl`, at `ξ`
+  have hm : meets Rj Pl = true := by
+    by_contra hne
+    have h1 := hmeets _ _ (by simpa using hne)
+    have h2 : ξ ∈ Rj ∩ Pl := ⟨hR, hξ⟩
+    rw [h1] at h2; exact h2
+  refine ⟨v ∩ unsafeSet Pl, ?_, hαv, hU Pl hξ⟩
+  simp only [STL.factorStep, List.mem_filter, STL.factorMeet, List.mem_flatMap, List.mem_map]
+  refine ⟨⟨v, hv, unsafeSet Pl, ⟨Pl, ⟨hPl, hm⟩, rfl⟩, rfl⟩, ?_⟩
+  -- the meet holds `α`, so it is not empty
+  simp only [Bool.not_eq_true']
+  by_contra hne
+  have h1 := hempty _ (by simpa using hne)
+  have h2 : α ∈ v ∩ unsafeSet Pl := ⟨hαv, hU Pl hξ⟩
+  rw [h1] at h2; exact h2
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

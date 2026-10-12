@@ -497,3 +497,4 @@ Location.guardIntersectHyperplaneMap  real-layer: CORA's `guardIntersect_hyperpl
 GuardMap.abstractionErrorCora  real-layer: CORA's printed `aux_abstractionError` with `err1` overwritten, read for its counterexample only
 Location.guardIntersectHyperplaneMapCoraErr  real-layer: `Location.guardIntersectHyperplaneMap` with CORA's printed error, read for its counterexample only
 NonlinearSys.reachInnerScalingCora1D  real-layer: CORA's `'scale'` inner approximation as printed in one dimension at a supplied optimizer and contractor, read for its counterexample only
+STL.evaluatePredicateUnionCora  real-layer: the union-of-unsafe-sets branch of CORA's `aux_evaluatePredicate` as printed, over real zonotope and halfspaces; the model `evaluatePredicateUnionCora_lastOnly_counterexample` runs

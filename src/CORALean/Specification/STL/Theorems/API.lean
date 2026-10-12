@@ -15,6 +15,7 @@ import CORALean.Specification.STL.Theorems.ClauseNodupInsert
 import CORALean.Specification.STL.Theorems.ClauseNodupMerge
 import CORALean.Specification.STL.Theorems.CompSound
 import CORALean.Specification.STL.Theorems.ExistsNnf
+import CORALean.Specification.STL.Theorems.EvaluatePredicateUnionLastOnlyCounterexample
 import CORALean.Specification.STL.Theorems.FinOpenNextEquiv
 import CORALean.Specification.STL.Theorems.FinRepConstOnBlock
 import CORALean.Specification.STL.Theorems.FinallyAIff
@@ -95,6 +96,14 @@ import CORALean.Specification.STL.Theorems.RobustSelectorCounterexample
 import CORALean.Specification.STL.Theorems.TsuppSubsetOfDecided
 import CORALean.Specification.STL.Theorems.UpsilonOrOfDecided
 import CORALean.Specification.STL.Theorems.UpsilonOrCounterexample
+import CORALean.Specification.STL.Theorems.AutomatedVerificationSound
+import CORALean.Specification.STL.Theorems.FactorCheckSound
+import CORALean.Specification.STL.Theorems.FactorMeetZipCounterexample
+import CORALean.Specification.STL.Theorems.FactorStepMem
+import CORALean.Specification.STL.Theorems.MilpCorrectedIff
+import CORALean.Specification.STL.Theorems.MilpPrintedCounterexample
+import CORALean.Specification.STL.Theorems.MilpPrintedInfeasible
+import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactors
 
 /-!
 # Signal and reachset temporal logic: the theorems
@@ -103,10 +112,15 @@ The results of [1] that are formalized, one file each: the properties of a sound
 transformation, its soundness and completeness on c-divisible reach sequences ([1, Lemma 2]), the
 rewriting rules of [1, Table 1], and the lemmas about traces and sets they use. The `aux_` lemmas
 are re-exported too. Beside them, the mixed-integer encodings of discrete-time STL: each
-constraint gadget, and the encodings deciding the formula and computing its robustness.
+constraint gadget, and the encodings deciding the formula and computing its robustness. Of [2]:
+the unsafe factors of a polytope, the soundness of the model checking over them and of the
+automated verifier built on it, and the program (26) of its falsification, infeasible as printed.
 
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and
       Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
+* [2] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+      against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
+      Hybrid Systems, vol. 53, 2024, 101491.
 -/

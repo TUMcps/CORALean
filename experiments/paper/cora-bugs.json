@@ -43,6 +43,11 @@
       "description": "Krylov error bound used outside its nonexpansive hypothesis",
       "kind": "unsound",
       "cex": "JaweckiBoundCoraCounterexample.lean"
+    },
+    "verify": {
+      "description": "STL predicate status keeps only the last unsafe set",
+      "kind": "unsound",
+      "cex": "EvaluatePredicateUnionLastOnlyCounterexample.lean"
     }
   },
   "contDynamics/linearSysDT": {

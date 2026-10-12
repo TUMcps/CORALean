@@ -14,42 +14,42 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 89,
-    "papers_with_findings": 82,
-    "in_scope": 1158,
-    "formalized": 1129,
-    "not_formalized": 29,
-    "out_of_scope": 975,
+    "papers": 90,
+    "papers_with_findings": 83,
+    "in_scope": 1173,
+    "formalized": 1133,
+    "not_formalized": 40,
+    "out_of_scope": 990,
     "out_of_scope_by_reason": {
-      "restated": 357,
-      "mathlib": 21,
-      "not-a-claim": 510,
+      "restated": 364,
+      "mathlib": 22,
+      "not-a-claim": 517,
       "done-differently": 12,
       "not-covered": 75
     },
     "by_class": {
-      "correct": 753,
-      "underspecified": 226,
+      "correct": 754,
+      "underspecified": 228,
       "proof-gap": 35,
-      "fixed": 105,
+      "fixed": 106,
       "false": 10
     },
     "claims": {
-      "in_scope": 449,
-      "formalized": 432,
-      "correct": 256,
+      "in_scope": 455,
+      "formalized": 433,
+      "correct": 257,
       "underspecified": 86,
       "proof-gap": 35,
       "fixed": 49,
       "false": 6
     },
     "definitions": {
-      "in_scope": 709,
-      "formalized": 697,
+      "in_scope": 718,
+      "formalized": 700,
       "correct": 497,
-      "underspecified": 140,
+      "underspecified": 142,
       "proof-gap": 0,
-      "fixed": 56,
+      "fixed": 57,
       "false": 4
     }
   },
@@ -5011,6 +5011,65 @@
       ]
     },
     {
+      "page": "2024/kochdumper-nahs-stl-lti-verification.md",
+      "label": "Kochdumper 2024",
+      "year": 2024,
+      "title": "Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis",
+      "in_scope": 15,
+      "formalized": 4,
+      "not_formalized": 11,
+      "out_of_scope": 15,
+      "out_of_scope_by_reason": {
+        "restated": 7,
+        "mathlib": 1,
+        "not-a-claim": 7,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 1,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 6,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 9,
+        "formalized": 3,
+        "correct": 0,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 1,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Alg. 2",
+          "class": "underspecified",
+          "reason": "line 12 prints `V(1)∩W(1), ..., V(|V|)∩W(|W|)`, a missing second index: read index by index it forms `min(|V|,|W|)` polytopes and drops unsafe factors, so a violating trajectory is called safe; `⋃V ∩ ⋃W` is all pairs, which is what CORA's `aux_orConstraints` forms; see Findings"
+        },
+        {
+          "result": "Alg. 3",
+          "class": "underspecified",
+          "reason": "the `repeat` has no bound on the halvings; line 9 uses (26), which is infeasible as printed (`Eq. 26`); the falsifying trajectory after it, `x(t_{i+1}) = e^{AΔt}x(t_i) + T(c_u + G_uα_{u,i})`, `i = 0,...,t_end/Δt`, omits `B` (`T` is the propagation matrix for constant `Bu`, so it solves `ẋ = Ax + u`) and its input factors `α_{u,i}` are shifted (the first is `α_{u,1}`, the last `i` runs one past `t_end`); CORA builds the trajectory from `x₀` and `c_u + G_uα`; see Findings"
+        },
+        {
+          "result": "Eq. 26",
+          "class": "fixed",
+          "reason": "as printed the program has no solution for a polytope of two or more halfspaces: the `λ_jk` sum to 1, an unselected `α̃_jk` is 0 and the strict `0 > 0` fails; true with the inequality required for `λ_jk = 1` only; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2024/kulmburg-ecc-zonotope-ellipsotope-containment.md",
       "label": "Kulmburg 2024",
       "year": 2024,
@@ -6475,7 +6534,7 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 2,
+        "cora_issues": 3,
         "findings": {
           "correct": 42,
           "underspecified": 23,
@@ -6959,7 +7018,7 @@
         "not_yet": 4,
         "out_of_scope": 60,
         "needs_float": 23,
-        "cora_issues": 16,
+        "cora_issues": 17,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
           "random/sampling": 6,
@@ -7032,7 +7091,7 @@
       "not_yet": 14,
       "out_of_scope": 396,
       "needs_float": 73,
-      "cora_issues": 77,
+      "cora_issues": 78,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -7058,10 +7117,10 @@
         "false": 1
       },
       "specification": {
-        "correct": 22,
-        "underspecified": 8,
+        "correct": 23,
+        "underspecified": 10,
         "proof-gap": 0,
-        "fixed": 7,
+        "fixed": 8,
         "false": 0
       },
       "examples": {
@@ -7073,11 +7132,11 @@
       }
     },
     "theorems": {
-      "paper": 1639,
+      "paper": 1647,
       "float": 1898,
       "helper": 1575,
-      "lemma": 2617,
-      "total": 7729,
+      "lemma": 2618,
+      "total": 7738,
       "examples": 120
     }
   }
