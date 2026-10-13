@@ -8,10 +8,10 @@ A common point lies in a piece of each polygon, so in their pair's intersection
 (`VPolytope.intersection_outer`), which is a piece of the result. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

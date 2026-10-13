@@ -7,10 +7,10 @@ import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
 Through the polynomial zonotope; the constraint-free embedding is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ CORA's `@interval/enclosePoints`: the smallest box containing a finite, nonempty
 points, the coordinatewise minimum and maximum (CORA's `min(points,[],2)`, `max(points,[],2)`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

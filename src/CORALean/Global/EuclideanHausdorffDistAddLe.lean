@@ -16,10 +16,10 @@ one-sided `d_H(S ⊕ V, S ⊕ W) ≤ d_H(V,W)` is `ContSet/ContSet/Theorems`'
 `ContSet` — so the argument is made once more rather than imported.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ its own block only. The first set's variables see a zero block in the second set
 rows, and conversely, so the inequality holds exactly when both do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

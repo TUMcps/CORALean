@@ -8,10 +8,10 @@ the error box's largest value of `aᵀ e` (per coordinate the larger of the two 
 every product and sum rounded up. What it bounds is `SpectraShadow.dualCertified`'s to decide.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

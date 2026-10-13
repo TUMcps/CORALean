@@ -9,10 +9,10 @@ A `true` answer makes every generator and the centre `0`, so the nominal part is
 error box is `{0}`: the zonotope is `{0}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

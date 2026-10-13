@@ -9,10 +9,10 @@ the set `outputSet` computed: a `true`, found by evaluation, is the specificatio
 exact output of every state and input the two sets hold.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

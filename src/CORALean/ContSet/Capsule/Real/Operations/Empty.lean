@@ -8,10 +8,10 @@ zero-width capsule, so the empty one is the one with radius `-1`, as `Capsule`'s
 says.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

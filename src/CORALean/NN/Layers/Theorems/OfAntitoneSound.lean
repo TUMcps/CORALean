@@ -9,10 +9,10 @@ bracketed by the enclosure, so `abs_sub_le_spread` bounds `σ t`'s distance from
 midpoint by the stored error.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

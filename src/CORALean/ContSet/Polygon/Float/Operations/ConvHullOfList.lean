@@ -9,10 +9,10 @@ The pieces' hulls folded with `VPolytope.convHull`, from the right. The empty li
 polytope and a single piece is itself, so no box is joined with a box that holds nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

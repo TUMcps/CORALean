@@ -11,10 +11,10 @@ within `m`, and `y = μ + g u`. The confidence zonotope is therefore at least as
 ellipsoid whose boundary `max(probZ, m)` measures.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

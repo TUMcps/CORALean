@@ -9,10 +9,10 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
 set exact where a representation stored by its boundary would lose it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

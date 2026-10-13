@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.SubsXprod
 The generators of the result, as pairs of an original generator and a term.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ composite is built from `Erased.out`, which is noncomputable, but `Erased.mk` er
 argument before anything is compiled, so a network of float layers still runs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

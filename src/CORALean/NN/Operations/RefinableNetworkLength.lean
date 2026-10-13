@@ -7,10 +7,10 @@ What a heuristic ranks over — a schedule is an infinite sequence and only its 
 entries are ever read.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

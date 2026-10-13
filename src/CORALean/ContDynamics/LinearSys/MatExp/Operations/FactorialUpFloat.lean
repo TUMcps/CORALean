@@ -10,10 +10,10 @@ bounds, so it is safe to divide by — `Theorems/InvFactorialBoundsFloat` is whe
 that division happens.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ Entry `(i, j)` of the power encloses the `(i, j)` entry of the power of the matr
 functions, pointwise: `M ^ 0 = 1`, `M ^ (e + 1) = M ^ e * M`, the order of `mpower`'s loop.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

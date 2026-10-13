@@ -10,10 +10,10 @@ pair. A term is a bracket `(lo, hi)` of its coefficient, which rounding has left
 exponent vector; the product's bracket is the pair of directed corner products.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

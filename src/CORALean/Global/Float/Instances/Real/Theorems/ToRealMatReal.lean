@@ -8,10 +8,10 @@ A layer written once over the scalar states its map with `toRealMat W`; at `𝕋
 what turns that back into `W`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

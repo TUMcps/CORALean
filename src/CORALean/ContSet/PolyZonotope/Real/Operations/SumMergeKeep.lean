@@ -8,10 +8,10 @@ different `Finset`, and needed wherever a sum written over the result's `Fin h`
 has to meet one written over the operand's surviving columns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

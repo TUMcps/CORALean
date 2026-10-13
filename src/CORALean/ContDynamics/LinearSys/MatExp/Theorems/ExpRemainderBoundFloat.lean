@@ -12,10 +12,10 @@ geometric factor under it); then `powUp`, `factorialDown` and the two
 `divUp`/`mulUp` calls each pay their own rounding to reach the float value.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

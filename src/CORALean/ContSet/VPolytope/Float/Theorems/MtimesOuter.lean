@@ -16,10 +16,10 @@ by `construct_subset_add`, every stored column being within `columnGap` of the
 exact product. The error obligation is the interval `mtimes` and one `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

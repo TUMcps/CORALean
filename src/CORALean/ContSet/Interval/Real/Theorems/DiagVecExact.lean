@@ -7,10 +7,10 @@ Reading a matrix box's diagonal is exact when no entry of the box is empty: with
 off-diagonal entry the box has no matrices at all, though its diagonal box may be nonempty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

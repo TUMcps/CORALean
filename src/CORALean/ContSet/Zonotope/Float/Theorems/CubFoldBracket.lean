@@ -12,10 +12,10 @@ lies between the two roundings: `Zonotope.listQuad_bracket` for each `listQuad{j
 directed sum of up to three bracketed terms is bracketed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

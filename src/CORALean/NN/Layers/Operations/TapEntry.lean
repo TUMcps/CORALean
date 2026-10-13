@@ -15,10 +15,10 @@ wins; it costs the whole kernel where the recursion stopped at that tap, and sav
 per tap that made a miss quadratic.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

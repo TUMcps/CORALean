@@ -11,10 +11,10 @@ hull (`SpectraShadow.interval`, `2n` dual certificates) has `inf = sup` in every
 certificate `β`). Then the set is that single point. Sufficient only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

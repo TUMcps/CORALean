@@ -15,10 +15,10 @@ if `gᵢ` is in cluster `k` and `0` otherwise: one `±1` per row, so `‖T‖∞
       Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

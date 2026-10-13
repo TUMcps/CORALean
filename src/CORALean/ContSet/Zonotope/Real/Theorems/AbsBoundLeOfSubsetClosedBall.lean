@@ -14,10 +14,10 @@ puts the sign of the centre on every generator at that coordinate, so it
 attains `|x j| = Z.absBound j` exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

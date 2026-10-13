@@ -23,10 +23,10 @@ of `f_ARX` from the real value of that window under that input has its stacked w
 step, in the printed box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

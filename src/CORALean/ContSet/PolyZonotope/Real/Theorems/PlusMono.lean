@@ -9,10 +9,10 @@ built out of `plus` needs it once per layer, and `plus_exact` read twice is not
 what a proof of monotonicity should look like at every one of them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

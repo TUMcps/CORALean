@@ -8,10 +8,10 @@ CORA's `@emptySet/supportFunc_` for type `'upper'`: `-Inf`, the supremum over no
 value of `EReal`, not `ℝ`, since no real number is the supremum of nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

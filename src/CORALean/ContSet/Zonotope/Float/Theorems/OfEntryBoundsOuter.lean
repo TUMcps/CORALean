@@ -12,10 +12,10 @@ nominal part, the centre's gap is `sub_mem_residual`, and each generator's gap, 
 nonnegative and below its width, is `mem_generatorError`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

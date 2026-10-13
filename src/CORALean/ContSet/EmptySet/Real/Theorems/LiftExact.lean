@@ -8,10 +8,10 @@ Lifting leaves the new coordinates unbounded, so the lifted set is every point w
 selected coordinates lie in the set. For `∅` that is `∅` again.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The box around both, as over ℝ. Exact: `minimum` and `maximum` pick one of the
 two stored floats and invent no digits, so neither bound rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

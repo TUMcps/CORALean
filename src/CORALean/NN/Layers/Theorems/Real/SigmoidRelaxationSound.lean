@@ -13,10 +13,10 @@ import CORALean.NN.Layers.Theorems.TighterSound
 exact enclosure and the exact bracket, the clamped secant landing in the bracket by `max`/`min`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

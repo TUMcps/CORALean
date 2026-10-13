@@ -11,10 +11,10 @@ the layer's, the number of variables `d` the input's, and a layer maps `TaylmArr
 `TaylmArray 𝕋 d m`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

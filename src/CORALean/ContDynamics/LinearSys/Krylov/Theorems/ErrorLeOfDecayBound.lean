@@ -17,10 +17,10 @@ Stated for any real `ν` with `Re(x*Ax) ≥ ν x*x` and the Krylov identity (3.1
   exponentials". SIAM Journal on Matrix Analysis and Applications, 38(1):155-187, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

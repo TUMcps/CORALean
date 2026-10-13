@@ -9,10 +9,10 @@ Generator `(i, j)` is `f` at the two extended generators, as `Real.PolyZonotope.
 (the stored generators) and the gap of its two roundings (what the error box is charged).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ generators' `(i, ·)` rows laid out as columns. Any combination of matrices boun
 these, with coefficients in `[-1, 1]`, lies in it (`mem_matGeneratorError`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

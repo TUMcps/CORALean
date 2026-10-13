@@ -16,10 +16,10 @@ system. What it costs is precision downstream: `reachInnerReduced` is a
 smaller set than `reachInner`, by exactly this widening.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

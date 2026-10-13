@@ -24,10 +24,10 @@ products with `N² = 0` or with the zero vector, and `E r` times the input) are 
 `O(r^(η+2))`, read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

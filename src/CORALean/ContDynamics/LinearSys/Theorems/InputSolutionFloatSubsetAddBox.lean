@@ -24,10 +24,10 @@ zero matrix, which lies in both remainder intervals, so the exact remainder term
 holds the `0` its float counterpart is measured against.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

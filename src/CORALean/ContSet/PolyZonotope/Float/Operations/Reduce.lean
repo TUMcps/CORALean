@@ -15,10 +15,10 @@ the box: merging two columns adds their entries, and running it first is what
 makes the order bound count distinct monomials rather than stored columns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

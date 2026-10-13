@@ -8,10 +8,10 @@ keeping `eval` outside `enclose`: the exact image is one set, fixed before any l
 and every schedule encloses that same set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

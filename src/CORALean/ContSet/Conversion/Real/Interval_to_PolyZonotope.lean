@@ -23,10 +23,10 @@ a residual block contributes to a Minkowski inflation.
 ordered for the same reason.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   13-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

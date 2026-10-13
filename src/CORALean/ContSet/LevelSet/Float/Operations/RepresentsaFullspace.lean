@@ -10,10 +10,10 @@ over the whole space are stored floats. A row holds everywhere when `ub ≤ 0` (
 `ltStrict`. Sufficient only: `true` proves the set is everything, `false` says nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

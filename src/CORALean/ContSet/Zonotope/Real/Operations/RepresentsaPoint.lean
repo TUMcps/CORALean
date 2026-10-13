@@ -7,10 +7,10 @@ CORA's `@zonotope/representsa_` at type `point` with tolerance `0`: no generator
 `Gⱼ = 0` for every `j` (CORA: `nrGens == 0` after compacting zero generators).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

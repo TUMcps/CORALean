@@ -7,10 +7,10 @@ Coordinatewise and exactly. Nothing rounds: choosing the larger of two stored
 lower bounds, or the smaller of two upper ones, returns one of them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ reduced network's enclosure holds on the original network's exact image, by
       Formal Verification". TMLR. arXiv:2305.01932.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ representable in every format: nothing is rounded. There is deliberately no `+` 
 `toReal (a + b)` is `toReal a + toReal b` only when the sum is exact (#117).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

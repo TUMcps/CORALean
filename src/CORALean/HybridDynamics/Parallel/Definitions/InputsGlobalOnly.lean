@@ -12,10 +12,10 @@ nonzero there (a component's `U` need only contain `0` at such a coordinate, as 
 the converse of `Run.toProduct` assumes it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

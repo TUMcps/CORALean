@@ -8,10 +8,10 @@ zero; every other tap's reach above the pivot's lower bound rounds up, `subUp`, 
 `maximumOver` above them. The one number max pooling rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ witnesses an existential and is never run. The float layer and
 `PolyZonotope.linComb`'s independent block use the same one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

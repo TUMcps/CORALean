@@ -12,10 +12,10 @@ mapped to it, each sum rounded the same way, so the exact column of the exact la
 `tensorMultiplication` on the read-back operand lies between the two stored ones.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

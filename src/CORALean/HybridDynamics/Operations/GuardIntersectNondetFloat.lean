@@ -21,10 +21,10 @@ special case are not needed. The guard is a conZonotope, which is what CORA's `a
 to. A bundle of one member is kept a bundle; CORA returns the zonotope itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

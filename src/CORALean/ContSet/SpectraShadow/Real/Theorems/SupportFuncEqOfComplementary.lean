@@ -8,10 +8,10 @@ Complementary slackness: a feasible `β` with `tr((A₀ + Σ βᵢ Aᵢ) Y) = 0`
 supremum, attained at `c₀ + Σ βᵢ Gᵢ`. The exact value, not an enclosure.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

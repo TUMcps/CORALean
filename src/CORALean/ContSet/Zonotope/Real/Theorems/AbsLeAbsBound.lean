@@ -9,10 +9,10 @@ most one. What both the real and the constrained interval-matrix products bound
 their leftover against.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ the powers and the factorial between their roundings. `h` is the rounded root po
 `c` inside `(-1, 1)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

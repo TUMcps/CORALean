@@ -19,10 +19,10 @@ the first pairing, `z∆ = -1`, `z = 1` in the second and `z∆ = 0` in the thir
       Polynomialization and Non-Convex Sets". HSCC 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

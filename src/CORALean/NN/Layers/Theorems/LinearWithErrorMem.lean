@@ -10,10 +10,10 @@ real `c` within what `E` denotes of `b` — CORA's `W h + b ⊕ E` read pointwis
 reduction algorithms freeze a bias at.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

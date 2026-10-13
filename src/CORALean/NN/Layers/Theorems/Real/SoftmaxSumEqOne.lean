@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Theorems.Real.ExpSumPos
 The constraint the enclosure is built to keep, and a fact a specification may use directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

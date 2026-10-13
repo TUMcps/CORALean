@@ -8,10 +8,10 @@ The product automaton with `mergeFlowsAdd` for its flow: `product` without `Self
 scalar with an exact sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

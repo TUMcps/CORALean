@@ -20,7 +20,7 @@ width" is `nnz(~withinTol(rad(I),0,tol)) <= 1`. Tolerance `0`. Read from the sou
 -- Authors:       Claude Sonnet 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

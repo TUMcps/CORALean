@@ -9,10 +9,10 @@ Every corner of `[a, b]·[c, d]` is at most `M·R` in magnitude when the ends of
 most `M` and those of the second at most `R`, so the least and the greatest corner are too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

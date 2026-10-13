@@ -10,10 +10,10 @@ boxes stack (`Interval.append`). Nothing is added or multiplied, so nothing roun
 `genBlockDiag` of the two stored matrices, each padded with zeros on the side of the other operand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

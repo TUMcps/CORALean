@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 Each coordinate is `mul_between_corners`. No hypothesis: it is an inclusion.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

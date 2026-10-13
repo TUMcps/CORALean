@@ -24,10 +24,10 @@ The blocks are not paired the way a zonotope's are: pairing merges two
 coefficients into one, and each block's constraints have to read them apart.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

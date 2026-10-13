@@ -8,10 +8,10 @@ a linear image reuses the same index type `Fin h` rather than growing or
 shrinking it. `rfl`, since `Operations/Mtimes.lean` states `h` directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

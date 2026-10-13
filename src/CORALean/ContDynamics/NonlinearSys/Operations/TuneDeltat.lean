@@ -26,10 +26,10 @@ unchanged: (27), (29), (30), (31) are [2]'s (54), (56), (57), (58).
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

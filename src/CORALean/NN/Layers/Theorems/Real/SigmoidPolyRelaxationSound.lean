@@ -12,10 +12,10 @@ import CORALean.NN.Layers.Theorems.Real.SigmoidDerivLoLe
 brackets subtracted bound what `ofSampling` asks about.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

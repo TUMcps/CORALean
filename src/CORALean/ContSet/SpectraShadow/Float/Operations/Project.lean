@@ -9,10 +9,10 @@ the error box projected with `Interval.project`. Selecting coordinates moves sto
 without arithmetic, so nothing rounds. `dims` may repeat or reorder coordinates.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ elsewhere in the step does not exceed the one the bound was computed at, the
 bound taken there still covers it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

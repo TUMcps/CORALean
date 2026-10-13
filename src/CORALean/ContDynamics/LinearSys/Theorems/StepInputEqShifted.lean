@@ -14,10 +14,10 @@ file makes the same one as everything else reasoning about `stepInput` — the
 `l∞` operator norm — or the terms would not match.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

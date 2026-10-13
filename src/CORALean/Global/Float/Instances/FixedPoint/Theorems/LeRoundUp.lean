@@ -11,10 +11,10 @@ exact by `toReal_align`; past it, the ceiling is the floor of the negation,
 and `Int.ediv_mul_le` applied there gives the same fact the other way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

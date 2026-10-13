@@ -9,10 +9,10 @@ The ReLU image of the star set lies in the set the float layer returns, as in
 `Layer.reluStar_sound`, the stored numbers read as reals.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -25,7 +25,7 @@ and a float type the rounded one, with `A`, `u`, `C`, `y`, `σ` the reals the fl
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

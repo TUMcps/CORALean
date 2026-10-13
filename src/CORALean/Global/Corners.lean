@@ -18,10 +18,10 @@ and nothing else. `signEquiv` is the bookkeeping that lets a list indexed by
 `Fin k` hold something indexed by those choices.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   12-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ which `Reach.steps` checked before the run took a step, and `N` steps of it
 span `[tStart, tFinal]` exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

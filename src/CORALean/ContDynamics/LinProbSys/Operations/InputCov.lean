@@ -23,10 +23,10 @@ the covariance is returned as it is.
 * [1] `contDynamics/@linProbSys/private/priv_inputSolution.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

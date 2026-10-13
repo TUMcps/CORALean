@@ -13,10 +13,10 @@ reached by moving every entry the same fraction of the way from `inf` to `sup` (
 Nonemptiness is needed, an empty box having no sums.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

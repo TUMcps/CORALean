@@ -20,10 +20,10 @@ so its own cost is not this one.
       Applications in Formal Neural Network Verification". AAAI, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

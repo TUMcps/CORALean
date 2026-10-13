@@ -12,10 +12,10 @@ minimum of the two `powLo` values, under `min (a ^ k) (b ^ k) ≤ x ^ k`, the re
 applies because the `le` certificates rule out the case `a < 0 < b`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

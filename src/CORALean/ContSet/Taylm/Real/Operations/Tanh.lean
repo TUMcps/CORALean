@@ -9,10 +9,10 @@ CORA's `tanh`: the expansion at the constant part. `tanh' = 1 - tanh²`, so `tan
 a polynomial in `tanh`, of absolute-coefficient bound `odePoly (1 + X²) (N+1)` at `|tanh| ≤ 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ Split out of `Mtimes.lean` (issue #62), matching `Zonotope`, `VPolytope`,
 `ConZonotope` and `ConPolyZono`, which each give this fact its own file too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

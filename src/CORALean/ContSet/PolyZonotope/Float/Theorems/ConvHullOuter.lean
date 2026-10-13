@@ -20,10 +20,10 @@ Both operands must denote a point: the chord of a set with the empty one is empt
 `pZ` when `S` is empty before it gets here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

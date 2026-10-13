@@ -14,10 +14,10 @@ sampled run is a discrete run, the discrete guarantee is the continuous one at
 real whatever the system stores.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

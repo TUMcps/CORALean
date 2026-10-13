@@ -11,10 +11,10 @@ Heine–Borel makes closed and bounded exactly compact.
 At `Vec ℝ n`, since boundedness is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

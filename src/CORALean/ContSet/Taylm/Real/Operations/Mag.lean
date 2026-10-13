@@ -9,10 +9,10 @@ the range lies within it. The derivative bounds of `sinh`, `cosh`, `tanh`, `tan`
 `asin` and `acos` are stated at this one number.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -30,10 +30,10 @@ algebra and knows nothing about where the coefficients came from. It carries no
 needing the same regrouping at its own fields.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

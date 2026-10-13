@@ -13,10 +13,10 @@ its entries are nonnegative, so the inequality holds exactly on the cube, and th
 centre and generators are the zonotope's own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

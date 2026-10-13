@@ -13,10 +13,10 @@ remainder is a nonempty interval (`polyZonotope_exact`); the range set is always
 (`polyZonotope_contains`), a point of it having a remainder value in each interval.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

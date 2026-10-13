@@ -15,10 +15,10 @@ same constraints at the same factors and coefficients, and differs only by the r
 centre sum, which its error box holds. Outer only: never the exact `exactPlus` at float.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

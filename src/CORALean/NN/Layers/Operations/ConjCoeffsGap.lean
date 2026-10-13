@@ -8,10 +8,10 @@ Each exact coefficient lies between its two roundings and the stored one is the 
 difference of the two bounds the deviation, rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

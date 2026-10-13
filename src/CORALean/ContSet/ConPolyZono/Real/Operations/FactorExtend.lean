@@ -9,10 +9,10 @@ dropped factor the value zero — admissible, and read by no monomial of either
 block.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

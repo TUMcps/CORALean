@@ -8,10 +8,10 @@ CORA's `volume_`, the product of the widths, as an upper bound: each width round
 zero (a crossed coordinate denotes `∅` and counts as `0`, as over ℝ), the product rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Theorems.LogExact
 so the theorem asks that of every lower bound. A box with a lower bound below `1` is not covered.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

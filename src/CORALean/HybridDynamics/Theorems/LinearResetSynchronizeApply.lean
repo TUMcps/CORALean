@@ -8,10 +8,10 @@ The synchronized affine reset at a point is the sum of the component resets ther
 pre-jump value at the coordinates `idStates`: exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

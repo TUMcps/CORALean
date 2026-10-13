@@ -8,10 +8,10 @@ error otherwise (a new dimension would have to be held at `0`, which the full sp
 say). Total here; the guarantee is stated for `n = N`, the one case CORA answers.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

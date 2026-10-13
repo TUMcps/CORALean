@@ -13,10 +13,10 @@ any enclosure of `inputReach` encloses every step's input, which is how a float
 input solution, guaranteed against `inputReach`, becomes a sampled one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

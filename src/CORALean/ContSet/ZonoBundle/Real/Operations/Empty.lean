@@ -10,10 +10,10 @@ common, `0` and the first unit vector. That needs a coordinate: at `n = 0` the s
 single point and no bundle of nonempty zonotopes is empty, so the definition takes `0 < n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ the arguments, the normalization being the caller's (it needs a square root of a
 operation is at the real scalar, as it multiplies entries of the supplied normal.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

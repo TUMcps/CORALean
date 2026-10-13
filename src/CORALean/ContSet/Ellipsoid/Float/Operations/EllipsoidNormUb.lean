@@ -15,10 +15,10 @@ when the equation fails, or when `G`, `p` or `u` holds a NaN: `toRat` reads it a
 shape matrix alone); not the norm itself, which is the least such length.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

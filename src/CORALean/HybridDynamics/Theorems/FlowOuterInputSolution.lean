@@ -18,10 +18,10 @@ That is what makes `Invariant.flow`'s universal quantifier over trajectories
 tractable: nothing here depends on which `u` a particular stay picked.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

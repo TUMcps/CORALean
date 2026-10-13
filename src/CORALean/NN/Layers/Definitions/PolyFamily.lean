@@ -10,10 +10,10 @@ CORA's `poly_method` is one witness of many, and soundness answers for every one
 specification over ℝ, as the sampling it rests on is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

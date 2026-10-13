@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Real.Operations.Empty
 The hull of a list of pieces' boxes (`Interval.or`), the empty box for none.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

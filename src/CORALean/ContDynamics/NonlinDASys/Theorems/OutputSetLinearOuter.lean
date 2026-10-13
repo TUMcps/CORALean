@@ -11,10 +11,10 @@ the algebraic variables. An outer statement over the product `R × R_y × U`: th
 variable is determined by `x` and `u`, so the true output set can be smaller.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

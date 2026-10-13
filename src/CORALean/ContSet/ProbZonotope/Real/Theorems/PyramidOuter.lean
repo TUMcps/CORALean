@@ -20,10 +20,10 @@ the level `maxVal(1)` only. `pyramid_not_ge_prob` is a set of probability `1` wi
 Outer, up to the floor: not an enclosure of the probability by `pyramid` itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

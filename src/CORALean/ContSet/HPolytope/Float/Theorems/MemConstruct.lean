@@ -15,10 +15,10 @@ It is the form every operation and every conversion at this layer states its
 obligation in, which is why `Operations/` here reaches back into `Theorems/`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

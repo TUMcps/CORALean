@@ -16,10 +16,10 @@ needs a higher one than the first. So `exp_mem_expEnclosure` asks nothing of
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

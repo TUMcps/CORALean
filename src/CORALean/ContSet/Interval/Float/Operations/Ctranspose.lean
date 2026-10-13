@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.Transpose
 The conjugate transpose is the transpose over the reals a float reads as, so it moves floats only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ inflection point and `f'' ≤ 0` right of it, at the inflection point `0`.
       Certification". NeurIPS 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

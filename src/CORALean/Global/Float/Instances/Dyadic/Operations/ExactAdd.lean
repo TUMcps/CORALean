@@ -8,10 +8,10 @@ the smaller exponent, where both mantissas are integers. `AddUp`/`AddDown`
 round it back to `p` bits.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   02-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

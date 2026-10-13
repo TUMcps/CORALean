@@ -17,10 +17,10 @@ is `(1 - λ)(I - K C) Q`; the result is the level-`σ²` set of it, the shape `�
 `intersectStripLiu1D` is the update as the code computes it, with its counterexample.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ corner has `1 - sup` provably positive in `subDown`, the lower one has `1 + inf`
 sits in `logDown`'s range `2 ^ p / 2`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

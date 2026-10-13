@@ -17,10 +17,10 @@ member of the interval matrix `adaptiveRemainder`: [1, Prop. 11]'s step (18), fo
       2023, pp. 7771–7786.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

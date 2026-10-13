@@ -10,10 +10,10 @@ generators and never in a bundle-wide box. This is what a step against an enclos
 `e^{Ar}` multiplies a bundle by.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

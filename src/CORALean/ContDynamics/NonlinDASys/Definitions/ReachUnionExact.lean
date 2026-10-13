@@ -9,10 +9,10 @@ differential-algebraic system itself, on `[0, tFinal]` from a bare initial set u
 `y t`. Nothing here mentions the reduction: it is how `reach` encloses these sets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

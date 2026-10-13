@@ -6,10 +6,10 @@ import CORALean.ContSet.Polygon.Float.Operations.Plus
 By `SetUnion.plus_outer` at the float polytope's `plus`, whose rounding is in its error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

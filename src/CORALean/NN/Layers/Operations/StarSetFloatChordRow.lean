@@ -12,10 +12,10 @@ that makes the row weaker at the least `α`, and what that costs at the widest `
 is added to the right-hand side, together with `k (c_j - l)` rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

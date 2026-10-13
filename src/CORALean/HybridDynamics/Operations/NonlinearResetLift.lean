@@ -11,10 +11,10 @@ last one wins, as in CORA. CORA's `N` and `M` count one coordinate less than the
 here is `N` and `M` themselves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

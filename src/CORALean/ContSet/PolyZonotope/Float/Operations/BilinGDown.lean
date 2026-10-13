@@ -8,10 +8,10 @@ Generator `(i, j)` of the pairing of two sets over the same factors, `Gᵢᵀ Q 
 first and `Gⱼ` of the second. `quadMapGDown` is the self-pairing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

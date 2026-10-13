@@ -10,10 +10,10 @@ use it as `G`'s do. `E'` is passed rather than computed, so the caller's own
 field is what appears in the result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

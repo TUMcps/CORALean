@@ -12,10 +12,10 @@ precision and never soundness, exactly as `backReachForall` does.
 It is noncomputable because the exact layer's `reduce` is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

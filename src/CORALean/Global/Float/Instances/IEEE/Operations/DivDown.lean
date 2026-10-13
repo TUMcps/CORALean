@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.IEEE.Operations.RoundDown
 `DivUp`'s mirror: `Dyadic.divDown` to `p` bits, then `roundDown` onto the grid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ the coefficient enclosures around `g⁽ᵏ⁾(c) / k!`. `taylor_remainder_abs_le
 by `D |f t - c|ᴺ⁺¹ / (N+1)!`, and each factor is below its rounded counterpart.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

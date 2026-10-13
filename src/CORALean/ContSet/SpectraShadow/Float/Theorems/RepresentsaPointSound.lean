@@ -8,10 +8,10 @@ The set lies in the certified box (`SpectraShadow.interval_contains`), which is 
 its corner reads as, and that point is a member (`SpectraShadow.containsPoint_sound`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

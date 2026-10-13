@@ -9,10 +9,10 @@ which `inputSet U` encloses. The converse is not stated: a run of the converted
 system need not have its window's blocks agree, nor its input be of the form `feed u`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

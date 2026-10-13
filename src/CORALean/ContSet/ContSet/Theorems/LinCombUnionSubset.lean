@@ -6,10 +6,10 @@ import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
 `linComb_outer` and `union_subset_segments`: an enclosure of CORA's `or`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

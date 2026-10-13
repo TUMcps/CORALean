@@ -7,10 +7,10 @@ Unconditional: a member witnesses the box is nonempty on its own, so unlike
 `RecentreZeroMem` this needs no `IsNonempty` hypothesis at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

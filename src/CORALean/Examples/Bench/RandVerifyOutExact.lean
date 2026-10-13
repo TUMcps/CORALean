@@ -13,10 +13,10 @@ product is taken in integers: `2 D` for `R` (twice, for the midpoint and radius 
 for `C`, and `2 D D_C` for `Y`. The result is the set `C · R` denotes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

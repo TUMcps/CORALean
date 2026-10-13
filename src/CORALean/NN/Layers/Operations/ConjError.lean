@@ -10,10 +10,10 @@ the offset gap, all rounded up. At exact scalings both gaps vanish and this is `
 error, which is all the transport costs over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ No `0 ≤ r` hypothesis, as over ℝ: a negative radius denotes `∅`, where the
 vacuous. A capsule has no error box, so nothing is added for one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -27,10 +27,10 @@ as it does in `gainDim_tendsto_pow`.
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ The converse to `mem_ofPoint`: a radius of `0` pins the squared distance to the
 segment to `0`, and the segment of direction `0` is the point itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

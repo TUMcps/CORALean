@@ -14,10 +14,10 @@ space is `1`, not CORA's `0`, so `volume_eq` is stated for `n > 0`. The norm is 
 `Real.sqrt`, as in `Capsule.construct`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

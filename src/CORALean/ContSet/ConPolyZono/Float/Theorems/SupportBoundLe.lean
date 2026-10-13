@@ -8,10 +8,10 @@ bound, the independent block's rounded extent and the error box's, each rounded 
 upper bound only, as over ℝ; equality with CORA's value is not claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ identity `Interval.point 1 : Interval (Mat 𝕋 n n)` reaches it too. Composed w
 for a bias — which is how a linear layer's offset reaches a set here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

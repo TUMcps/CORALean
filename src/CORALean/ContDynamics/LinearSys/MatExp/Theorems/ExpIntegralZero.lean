@@ -8,10 +8,10 @@ For the zero matrix only the zeroth term of the series `∑ᵢ Aⁱ r^{i+1}/(i+1
 moves it by `r u`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

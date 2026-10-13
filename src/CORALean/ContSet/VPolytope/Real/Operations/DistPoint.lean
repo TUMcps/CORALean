@@ -9,10 +9,10 @@ CORA's `aux_distPolyPoint(S, x)` of `polytope/hausdorffDist`: the Euclidean dist
 `min y'y - 2x'y` over `y ∈ S` (`problem.H = 2 I`, `problem.f = -2x`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.NN.Layers.Theorems.AllOverApply
 What the mean value theorem between a sample and a point of the box needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

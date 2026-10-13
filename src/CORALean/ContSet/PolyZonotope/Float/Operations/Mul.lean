@@ -22,10 +22,10 @@ independent block and the box — and run it once, so that a repeated factor's
 freed coefficients stay identified.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

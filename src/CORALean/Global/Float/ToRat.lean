@@ -20,10 +20,10 @@ never says a value is not a number; `isNaN` does, and is `false` at a format wit
 A decision in ℚ that is not a tuning choice tests it first (`NoNaN.lean` tests a result).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

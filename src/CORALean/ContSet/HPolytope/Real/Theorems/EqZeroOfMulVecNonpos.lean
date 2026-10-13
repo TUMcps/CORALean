@@ -12,10 +12,10 @@ set `0 · P`, the reading a convex-hull encoding gives a zero weight; for an emp
 fails, `{H y ≤ 0}` being any cone the rows leave open.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

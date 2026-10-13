@@ -20,10 +20,10 @@ The second example is the guarantee spent: one run, one arbitrary input
 signal, and a state in `T` afterwards.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

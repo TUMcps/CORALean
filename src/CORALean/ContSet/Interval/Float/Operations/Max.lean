@@ -7,10 +7,10 @@ The coordinatewise larger of the bounds. `maximum` is exact, choosing between tw
 nothing is rounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

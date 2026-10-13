@@ -7,10 +7,10 @@ Touching the mantissa alone, which is what `SoundFloatArithmetic.toReal_neg`
 needs from `FixedPoint`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

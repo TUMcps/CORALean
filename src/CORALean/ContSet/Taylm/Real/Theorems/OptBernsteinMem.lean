@@ -21,10 +21,10 @@ attains its extreme coefficients, as at the corners of a multilinear one.
 * [2] `contSet/@taylm/optBernstein.m`, CORA (Sep. 2025).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

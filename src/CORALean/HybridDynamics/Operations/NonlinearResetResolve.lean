@@ -14,10 +14,10 @@ to: input `a` of the product is `v a`. CORA numbers the global inputs differentl
 `NonlinearReset.resolveCORA` and FINDINGS.md.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

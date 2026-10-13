@@ -17,10 +17,10 @@ the ball lies in the rounded box `c ± r`, the real `R J` in the interval produc
 the magnitudes of its residual box, and `R g(c)` in `Interval.mtimes`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

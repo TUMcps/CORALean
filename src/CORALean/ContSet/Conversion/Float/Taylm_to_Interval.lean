@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Float.Interval
 Each coordinate's float `bounds`, outward-rounded; outer, as the exact layer's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

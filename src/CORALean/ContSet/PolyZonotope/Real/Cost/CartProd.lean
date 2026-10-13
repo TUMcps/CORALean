@@ -10,10 +10,10 @@ exponent matrix block-diagonally with `plusE`, whose off-diagonal blocks are
 literal zeros. Everything is placed and nothing computed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

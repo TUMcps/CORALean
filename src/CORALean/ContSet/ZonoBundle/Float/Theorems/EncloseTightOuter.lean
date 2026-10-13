@@ -15,10 +15,10 @@ what `parallelotope_contains` asks. The result is convex, so it holds the convex
 exact layer, nothing is assumed of `W` or `U`, and the bundles may be empty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

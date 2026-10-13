@@ -15,10 +15,10 @@ halves of `mergeBucket`'s conjunction are one-sided bounds on `δ`.
       Formal Verification". TMLR. arXiv:2305.01932.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

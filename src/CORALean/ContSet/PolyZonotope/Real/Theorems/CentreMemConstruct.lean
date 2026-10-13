@@ -11,10 +11,10 @@ zero independent coefficients. Without it a column `0` is a constant monomial `1
 need not lie in the set (one generator `1` with exponent column `0` denotes `{c + 1}`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

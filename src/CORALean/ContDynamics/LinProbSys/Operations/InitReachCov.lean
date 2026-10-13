@@ -16,10 +16,10 @@ diagonal `A = diag(l)`, `V = I`, this is `D_ij/(l_i + l_j) (1 - e^{-(l_i+l_j) r}
       Conference (ECC), pp. 625-630, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

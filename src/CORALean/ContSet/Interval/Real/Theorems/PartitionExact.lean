@@ -10,10 +10,10 @@ pieces share their common face. Each sub-box lies inside `I`, and a point of `I`
 of every coordinate whose range holds it, found by the floor of its relative position.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

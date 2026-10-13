@@ -11,10 +11,10 @@ every index is a sound place to split, so a misranking costs precision alone. `n
 is no generator, where CORA splits nothing either.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

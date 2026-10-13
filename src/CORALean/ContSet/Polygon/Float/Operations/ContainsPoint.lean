@@ -10,10 +10,10 @@ origin (`le` both ways) and whose stored vertices hold the point in one of their
 tolerance and boundary expansion are not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

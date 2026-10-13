@@ -25,10 +25,10 @@ Each gap is the width between the two roundings of one expression, which is what
 monomial or a zonotope coefficient for the two columns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

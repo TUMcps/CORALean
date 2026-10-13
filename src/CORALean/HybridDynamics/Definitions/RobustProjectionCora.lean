@@ -11,10 +11,10 @@ entry of `n_ = Dᵀ n` has `|n_ᵢ| ≥ eps`, the basis is read as orthogonal to
 unit column `D(:, i)` on the hyperplane is `γ / n_ᵢ`, which is `γ n_ᵢ` only for `n_ᵢ = ±1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

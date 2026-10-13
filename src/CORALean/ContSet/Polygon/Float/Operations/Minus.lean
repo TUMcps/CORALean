@@ -10,10 +10,10 @@ polygon at the point `-p`. `neg` is exact, so the point is stored as given; the 
 `Polygon.plus`, whose rounding goes into each piece's error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

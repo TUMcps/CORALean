@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Float.Interval
 `max(1, λ⁻¹ Σⱼ |Wᵢⱼ|)` is bracketed, and so is its reciprocal. Needs `0 < λ` to be sound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

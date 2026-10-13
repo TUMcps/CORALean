@@ -9,10 +9,10 @@ In `‖·‖₂`: coordinatewise a member's distance to the centre is at most th
 (`abs_sub_center_le`), and the Euclidean norm is monotone in magnitudes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ nonnegative factor `f`. Each bound rounds outward: the lower one takes the centr
 centre rounded up (`center`) plus the same product.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ on `[0, t]` even for a merely bounded measurable input. `Trajectory`'s `cont`
 field needs exactly this when the closed form itself is the witness run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       15-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

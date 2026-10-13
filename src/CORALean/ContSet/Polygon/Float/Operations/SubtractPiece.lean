@@ -15,10 +15,10 @@ replaced by one piece per row, the box hull of `r` cut to `-aᵢᵀx ≤ -bᵢ` 
 `Interval.contractHalfspace`. Without such a description `r` is kept whole.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ layer's `project` of the nominal part, so `project_exact` gives the nominal obli
 equality; the box is `Interval.project_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

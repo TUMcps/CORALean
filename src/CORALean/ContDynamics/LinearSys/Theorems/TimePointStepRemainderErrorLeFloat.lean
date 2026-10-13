@@ -10,10 +10,10 @@ Every factor of `2 Σⱼ|U|ⱼ (r E(rA, η))` under its float bound, `r` itself 
 nonnegative, so the products keep the order.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

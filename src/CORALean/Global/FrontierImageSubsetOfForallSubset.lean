@@ -18,10 +18,10 @@ applies to it; [1, Thm. 2] assumes it compact, Prop. 1 does not say so.
       Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

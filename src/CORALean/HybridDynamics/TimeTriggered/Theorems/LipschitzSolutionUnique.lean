@@ -14,10 +14,10 @@ two-sided derivative `f(z)` on `[0, M]` that start together coincide there, for 
       Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ the infimum of `b` is below `b_i`. Only for a `P` without equality constraints, 
 `reduceOverDomain` does not read. An inner approximation over the domain.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

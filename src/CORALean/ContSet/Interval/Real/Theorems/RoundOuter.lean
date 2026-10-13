@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
 not a box: only the outer statement holds, with no hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

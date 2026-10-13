@@ -10,10 +10,10 @@ of the union and `linComb_outer` puts that in the result. Outer only; CORA's `co
 goes through polytopes and is exact, which this is not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

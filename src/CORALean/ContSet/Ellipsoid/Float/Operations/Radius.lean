@@ -9,10 +9,10 @@ of `G` plus the length of the error box's largest magnitudes, rounded up. The el
 the Euclidean ball of this radius about the stored centre; it is not the smallest such ball.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

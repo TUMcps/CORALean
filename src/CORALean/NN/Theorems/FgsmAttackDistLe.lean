@@ -7,10 +7,10 @@ Each coordinate moves by `ε * sign(·)`, and a sign has absolute value at most 
 `‖z - x‖∞ ≤ ε` for `ε ≥ 0`, the guarantee CORA documents.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

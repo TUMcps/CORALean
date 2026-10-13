@@ -7,10 +7,10 @@ The windows `reachFloat` and its input variants return come from a `mapM` over
 `List.range N`; this reads off the length and each entry's own computation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

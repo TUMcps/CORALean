@@ -8,10 +8,10 @@ Through the zonotope. The generators absorb the centre's rounding there, and the
 inequality is the exact diagonal one here, so nothing further is paid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

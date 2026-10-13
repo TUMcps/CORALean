@@ -8,10 +8,10 @@ import CORALean.ContSet.ContSet.ContSet
 difference is `minkDiff`), so the set minus a set is not defined here either.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

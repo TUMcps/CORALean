@@ -8,10 +8,10 @@ state in `reachSet` by construction, namely the one the run ends at, and that
 is exactly what `reachLocations` asks for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       11-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

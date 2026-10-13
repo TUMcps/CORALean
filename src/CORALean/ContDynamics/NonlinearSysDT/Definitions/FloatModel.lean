@@ -10,10 +10,10 @@ computable function at the scalar `𝕋`. `Encloses` ties it to `f`, beside the 
 inside it, so the real system stays what it was.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

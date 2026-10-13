@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/PlusVec.lean` shifts the centre, `n` additions
 the generator and radius are copied.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

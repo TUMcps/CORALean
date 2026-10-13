@@ -8,10 +8,10 @@ Through the box's own zonotope, then `Zonotope.zonoBundle`, exact by
 `Set.iInter_const`. All the loss is the box-to-zonotope step's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

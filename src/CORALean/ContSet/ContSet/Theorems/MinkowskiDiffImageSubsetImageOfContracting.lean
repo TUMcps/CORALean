@@ -21,10 +21,10 @@ at the contraction constant `1`. Convex closed images need no smallness at all
 `B` covers `Ē x - E x`, which for `E = Ē + Δ` is `-Δ x`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

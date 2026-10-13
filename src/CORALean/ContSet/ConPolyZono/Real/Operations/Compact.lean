@@ -15,10 +15,10 @@ The order matters in one direction only — dropping a column can leave a
 factor unused, never the reverse.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

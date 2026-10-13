@@ -23,10 +23,10 @@ per surface (`I`, `0` for switching and bouncing, (17)'s fit for jumps). Whether
       Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ below: its shortfall is the residual the stored box holds.
 No independent generators, as over ℝ, and at least `n + 1` copies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

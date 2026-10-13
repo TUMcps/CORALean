@@ -17,10 +17,10 @@ CORA's `models/Cora/infiniteBus.m`, `[x₂; 15π(1 - 5 sin x₁ - 0.04 x₂)]`, 
       (ARCH22), EPiC Series in Computing, vol. 90, pp. 26-43, 2022.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

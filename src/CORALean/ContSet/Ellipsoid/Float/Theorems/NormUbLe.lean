@@ -9,10 +9,10 @@ A point is `y + e` with `y` in the nominal ellipsoid, bounded by the exact layer
 length of its largest magnitudes. The roundings are all upward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

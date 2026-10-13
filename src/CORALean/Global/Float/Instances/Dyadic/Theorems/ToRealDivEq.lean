@@ -9,10 +9,10 @@ is what leaves an integer quotient facing a real one — the whole content of
 division going the way it says, shared by `quotDown_le_div` and `le_quotUp`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

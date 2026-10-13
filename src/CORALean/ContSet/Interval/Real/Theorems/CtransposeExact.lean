@@ -9,10 +9,10 @@ import Mathlib.LinearAlgebra.Matrix.ConjTranspose
 The conjugate transpose is the transpose over ℝ, so `transpose_exact` carries over.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

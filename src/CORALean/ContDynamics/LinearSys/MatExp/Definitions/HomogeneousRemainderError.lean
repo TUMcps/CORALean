@@ -22,10 +22,10 @@ is CORA's own enclosure, no `F_u` beside it.
       for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

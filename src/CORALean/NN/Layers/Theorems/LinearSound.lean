@@ -9,10 +9,10 @@ the weights over every point of the set and `plus` adds the bias's zero-width bo
 the reading is the identity and this is `W x + b` itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

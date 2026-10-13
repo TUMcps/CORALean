@@ -10,10 +10,10 @@ are joined into `lb`, `ub`, they pass through `aux_robustProjection`
 does. Everything else is as there (no `aux_tightenSet`, the dual bound for the cut).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

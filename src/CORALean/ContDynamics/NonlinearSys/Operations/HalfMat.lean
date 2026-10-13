@@ -7,10 +7,10 @@ import CORALean.Global.Float.FloatOps
 so `mtimes` by it costs the error box nothing it does not already carry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -26,10 +26,10 @@ is one over the sum of the indices, without renumbering into a `Fin`.
       Transactions on Automatic Control, 71(5):3014-3029, 2026.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

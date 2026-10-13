@@ -9,10 +9,10 @@ Increasing, so `asinhDown` at the lower bound and `asinhUp` at the upper one
 bisection and Newton steps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

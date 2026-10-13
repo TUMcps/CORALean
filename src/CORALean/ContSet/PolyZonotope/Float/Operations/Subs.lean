@@ -13,10 +13,10 @@ gap charged to the error box, as in `getSubset`; the replaced factors stay as ze
 exact layer. Sound only where `pZin` has no independent generators and no error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

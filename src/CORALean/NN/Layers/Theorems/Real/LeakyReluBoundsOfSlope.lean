@@ -9,10 +9,10 @@ For a slope `m` in `[α, 1]` through the origin, `leakyRelu α t - m t` is non-n
 `p ≤ 0 ≤ q`, so the first piece is largest at `l` and the second at `u`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ at each step, united. Positional, as the mathematics: `Reach` reads `R₀`, `U` 
 `K = tFinal - tStart` off `params`, the system being time-invariant.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

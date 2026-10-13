@@ -18,10 +18,10 @@ bound is `atanDom N` (`recL [1, 0, 1] (j ↦ 2(j+1)) N`) at the magnitude `Taylm
 `Global/Float/InverseTrig`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ Exact: the family is only rearranged, so the denotation is `Z`'s inflated set in
 the inflated sets of the members other than `index`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

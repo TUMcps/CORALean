@@ -14,10 +14,10 @@ Nothing goes into the error box. The generators already cover the rounding, and
 paying for it twice would only widen the result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

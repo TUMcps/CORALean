@@ -16,10 +16,10 @@ Scalar, so a caller at matrices supplies `c = ‖r A‖` and the matrix norm
 instances stay out of the elaboration.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

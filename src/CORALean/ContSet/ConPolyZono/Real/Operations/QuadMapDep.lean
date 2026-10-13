@@ -12,10 +12,10 @@ of the enclosing polynomial zonotope; the constraint system reads none of
 those, so `A`, `b` and `EC` pass through untouched.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

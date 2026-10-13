@@ -8,10 +8,10 @@ A `true` answer is `le` each way, which is the exact layer's `le_subset` each wa
 denote the same set. `false` refutes nothing, as `le` is certified in one direction only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

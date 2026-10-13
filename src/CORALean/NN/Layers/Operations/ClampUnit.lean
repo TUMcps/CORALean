@@ -9,10 +9,10 @@ rounded whichever way, or a caller's own guess — is brought into range with `m
 `maximum`, both exact, which needs no rounding axiom and no decidable order on ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

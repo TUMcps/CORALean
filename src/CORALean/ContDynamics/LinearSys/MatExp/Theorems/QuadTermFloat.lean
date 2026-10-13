@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 hull of `m · m` and the two directed sums enclose it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

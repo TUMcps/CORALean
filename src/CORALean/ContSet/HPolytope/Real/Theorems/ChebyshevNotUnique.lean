@@ -19,10 +19,10 @@ bounding the second coordinate allow no more — and both `(1/2, 1/2)` and `(3/2
       vol. 103, pp. 163-181, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

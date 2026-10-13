@@ -6,10 +6,10 @@ The box whose entry `i` is the enclosure of the scalar box `[l i, u i]` contains
 entrywise to every vector of the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

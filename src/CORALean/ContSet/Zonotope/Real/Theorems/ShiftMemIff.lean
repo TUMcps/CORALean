@@ -9,10 +9,10 @@ change to a member's defining equation is which point it is read from, `Z.c - w`
 `Z.c` — the algebra `abel` closes both directions of.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

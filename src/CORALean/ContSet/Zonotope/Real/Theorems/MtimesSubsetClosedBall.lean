@@ -12,10 +12,10 @@ straight through, at the `l∞` operator norm `Vec ℝ n`'s own sup norm already
 pairs with.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

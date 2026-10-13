@@ -8,10 +8,10 @@ gap between the rounded-up and rounded-down dot product, plus the generators' ro
 over a row, `radius (matMulDiff M G)`, all rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

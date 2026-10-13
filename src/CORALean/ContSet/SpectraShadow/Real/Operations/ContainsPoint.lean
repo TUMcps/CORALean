@@ -10,10 +10,10 @@ answers `t ≤ tol`. That has a solution exactly when some `β` and some slack `
 membership; for `tol > 0` it admits points slightly outside, which is why CORA has the slack.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

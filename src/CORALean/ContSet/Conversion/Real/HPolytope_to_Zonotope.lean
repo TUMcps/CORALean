@@ -9,10 +9,10 @@ generators. Loses whatever the box lost and nothing further — a zonotope tight
 around a halfspace description would have to know its facets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

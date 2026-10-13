@@ -10,10 +10,10 @@ corner products of the boxes of `cᵢ` and `cⱼ`, and `δ c` in its box, so `mt
 `ofInterval_outer` and `plus_outer` carry it into the result. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

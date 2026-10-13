@@ -19,10 +19,10 @@ The count of [1, Thm. 4]: among the times `0, …, N - 1`, given `d` of them `H`
       reliability". Automatica, 45(2):382-392, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

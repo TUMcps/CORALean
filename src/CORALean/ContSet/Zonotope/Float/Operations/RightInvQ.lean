@@ -7,10 +7,10 @@ An upper bound on the largest absolute row sum of `1 - G H`, rounded up: the cer
 candidate right inverse `H` is good enough (`Zonotope.rightInv_reach`) when it is at most one half.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

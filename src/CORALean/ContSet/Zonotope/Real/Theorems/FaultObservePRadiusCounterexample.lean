@@ -26,10 +26,10 @@ With `ℓ_k` read as the P-radius of `↓_q(H_k)` the bound holds (`Zonotope.fau
       pp. 7230-7235, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

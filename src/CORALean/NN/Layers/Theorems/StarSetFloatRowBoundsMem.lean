@@ -7,10 +7,10 @@ import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
 Every point of the star set has its neuron `j` between the two bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

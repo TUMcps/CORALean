@@ -13,10 +13,10 @@ the stored right-hand side. Outer over the domain: the rounding of the rows, whi
 halfspaces, is paid on the right-hand sides there, as `reduceOverDomain_outer` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -24,10 +24,10 @@ At `intermediateTerms = 2`: every order of `R_rem` is an interval matrix over th
 CORA's above `2`. `η ≥ 2` is what the parts assume.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

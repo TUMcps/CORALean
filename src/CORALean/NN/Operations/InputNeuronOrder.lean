@@ -18,10 +18,10 @@ CORA's ranking of the input neurons, as a list of 0-based neuron indices (CORA's
 Without `inputSize` the neurons are the `n` entries of the point `x`; with it, the first `h * w`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

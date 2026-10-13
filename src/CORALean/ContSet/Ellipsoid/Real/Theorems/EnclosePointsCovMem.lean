@@ -11,10 +11,10 @@ coordinates of the point divided by `ntᵢ · sqrt maxDist`, `‖u‖₂² = Σ�
 by the definition of `maxDist`. Not exact: the ellipsoid is larger than the hull of the points.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

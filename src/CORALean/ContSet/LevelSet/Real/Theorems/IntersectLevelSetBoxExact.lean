@@ -17,10 +17,10 @@ hypothesis than [1] prints: `p_k` must not depend on `x(k)`. The proof "replaces
       Computation and Control (HSCC), 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

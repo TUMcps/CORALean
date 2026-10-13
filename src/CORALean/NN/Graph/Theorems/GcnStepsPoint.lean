@@ -17,10 +17,10 @@ whole goal discharges the difference — as `MessagePassingEnclosureOuter` alrea
 does at a shared factor set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

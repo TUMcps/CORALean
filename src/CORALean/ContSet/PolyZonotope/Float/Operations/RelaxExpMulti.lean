@@ -24,10 +24,10 @@ The centre is untouched, `ξ_c` being zero at `ξ_G = ξ_E`, so this operation a
 the same two gaps to the box that `relaxExp` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

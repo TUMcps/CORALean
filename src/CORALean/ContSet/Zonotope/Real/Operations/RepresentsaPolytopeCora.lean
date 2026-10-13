@@ -10,10 +10,10 @@ CORA's `@zonotope/representsa_.m` initialises its second output as `S = []` (lin
 `~/CORA` requests that second output for `'polytope'`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

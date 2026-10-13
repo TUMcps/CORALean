@@ -50,10 +50,10 @@ representation below is what makes those fire.
 interior point of the set, certified by `ltStrict`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   04-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecAppend
 Both blocks read back by `toRealVec_append`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

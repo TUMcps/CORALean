@@ -8,10 +8,10 @@ intersection of its members, so the result is the intersection of the enlarged m
 the enlargement of the intersection about a common centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

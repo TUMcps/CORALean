@@ -6,10 +6,10 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsPointZeroIff
 At any tolerance `tol ≥ 0` the point test never rejects a member of the set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

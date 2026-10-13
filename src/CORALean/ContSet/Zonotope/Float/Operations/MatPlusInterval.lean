@@ -9,10 +9,10 @@ interval matrix already: the nominal part is untouched and only the box's bounds
 How the exponential's remainder joins its Taylor sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

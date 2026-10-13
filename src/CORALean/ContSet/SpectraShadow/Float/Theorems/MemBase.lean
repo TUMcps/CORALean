@@ -9,10 +9,10 @@ At `β` the base shadow's inequality is the shadow's own, its point is `β` (ide
 centre `0`), and its box is the origin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

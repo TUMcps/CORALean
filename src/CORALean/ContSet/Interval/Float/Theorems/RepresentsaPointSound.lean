@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
 A `true` answer squeezes every coordinate to `toReal (inf j)`, so the box is that single point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

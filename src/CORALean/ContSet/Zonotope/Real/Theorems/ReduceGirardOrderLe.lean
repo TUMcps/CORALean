@@ -14,10 +14,10 @@ At `o = 0` there is nothing to state, as for `PolyZonotope`: CORA floors the
 reduced budget at nothing, so order zero lands at order one in both tools.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

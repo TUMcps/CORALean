@@ -10,10 +10,10 @@ over the dimensions, the set's the smallest such over the windows: positive iff 
 separated from `S`. Exact, over ℚ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

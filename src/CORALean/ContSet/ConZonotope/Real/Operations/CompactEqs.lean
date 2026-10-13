@@ -7,10 +7,10 @@ The equality rows `compact_ 'zeros'` keeps: those that are not the row `0 = 0`, 
 row of `[A b]`. Inequality rows are not touched, CORA's constraint being `A β = b` alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

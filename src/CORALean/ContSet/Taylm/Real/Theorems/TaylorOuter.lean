@@ -13,10 +13,10 @@ between the centre and the model's range, with `|g⁽ᴺ⁺¹⁾| ≤ D` there, 
 is left for each is its derivatives.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

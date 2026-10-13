@@ -8,10 +8,10 @@ which is no format) and `decimal<f>` for fixed point; `NumberType`'s `metaFields
 `IEEE` format's parameters among them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ result's. So a real ratio below every coordinate's upper bound is below the resu
 ratio below the result's lower end is below every coordinate's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

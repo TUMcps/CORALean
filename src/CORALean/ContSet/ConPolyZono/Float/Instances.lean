@@ -20,10 +20,10 @@ costs precision and nothing else. No `CompactSet`, as at no other float
 representation: compactness is a statement about the exact specification.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

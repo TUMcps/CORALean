@@ -14,10 +14,10 @@ only that one: a box whose `sup` falls below its `inf` denotes nothing while the
 ellipsoid built from it denotes the box with the two swapped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ A `true` answer says the stored numbers agree as real numbers, so the nominal po
 same, and so are the denoted sets. `false` refutes nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

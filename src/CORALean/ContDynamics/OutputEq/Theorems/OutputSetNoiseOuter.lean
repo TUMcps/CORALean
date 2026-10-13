@@ -8,10 +8,10 @@ import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
 and `mtimes`. An enclosure, not an equality: each term is enclosed separately.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

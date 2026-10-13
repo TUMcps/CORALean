@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Operations.Uminus
 CORA's definition of `min`, `-max(-I, -Y)`, agrees with the coordinatewise smaller bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ restating it, and so does `Theorems/MergedGenGap.lean`, the gap fact common to
 all of them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

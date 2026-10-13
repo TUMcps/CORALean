@@ -11,10 +11,10 @@ is carried across one more window by `expIntegral_add_mulVec`: `e^{AΔt}` of its
 plus its value over `Δt`, the first in `[e^{[A]Δt}] P̃(t_k)`, the second in `P̃^R(τ_0)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

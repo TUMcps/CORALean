@@ -10,10 +10,10 @@ degree first: the computable form of the derivative polynomials of `tan` and `ta
 (`q = 1 + X²`, `1 - X²`). The theorem is that the two evaluate alike.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

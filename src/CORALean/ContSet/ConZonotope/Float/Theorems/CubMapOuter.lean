@@ -12,10 +12,10 @@ gives coefficients whose linear block is `β`, so they meet the lifted constrain
 are unconstrained, so the result is an outer approximation, not the image.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ its arguments; `gap` is zero exactly when the pivot dominates the window, so a s
 exact. `pivot` is precision and never soundness, as ReLU's slope is, so it may read `le`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

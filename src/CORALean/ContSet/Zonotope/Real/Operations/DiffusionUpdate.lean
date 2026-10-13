@@ -18,10 +18,10 @@ generators of [1, Thm. 1]), and the order reduction `↓_q`, here CORA's `reduce
       360(10):6976-6993, 2023. arXiv:2003.10347.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

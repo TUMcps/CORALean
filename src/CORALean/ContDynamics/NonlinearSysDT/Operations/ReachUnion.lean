@@ -16,10 +16,10 @@ since nothing after it is sound; `List.all` stops at the first `false`.
 The last set, step `K`'s, is tested against nothing: no step starts from it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ bounds is `max` of a coordinate of each box (`aux_max_exists`). Nonemptiness is 
 empty operand has no maxima to fill the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -22,10 +22,10 @@ nilpotent `W = 0`: its set is `{0}` (`GuardMap.abstractionErrorCora_eq_zero`). I
 no `A` with `A² ≠ 0` has `W = 0`, so the witness is three-dimensional.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

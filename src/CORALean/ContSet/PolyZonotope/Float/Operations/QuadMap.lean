@@ -22,10 +22,10 @@ coordinate where `mtimes` holds `h`, which is a reason to `compact` before
 mapping rather than after.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

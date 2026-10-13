@@ -10,10 +10,10 @@ coordinate lies on, so the corners swap and nothing between them is missed. The 
 coordinate are handled by one scalar lemma and its mirror, so a box may mix them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

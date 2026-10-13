@@ -7,10 +7,10 @@ import CORALean.ContSet.Capsule.Real.Instances
 What it denotes is the exact capsule's set, so the exact theorem applies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

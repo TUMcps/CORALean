@@ -7,10 +7,10 @@ Every segment between a point of one polygon and a point of the other lies in th
 some pair of pieces, which the pair's `VPolytope.linComb` encloses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

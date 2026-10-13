@@ -10,10 +10,10 @@ dimension. CORA's `order` argument buys the same bound on the *dependent
 generator* count, by pairing a stronger reduction with the same conversion.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

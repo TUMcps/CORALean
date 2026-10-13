@@ -9,10 +9,10 @@ value and `σ'E` of its derivative; what they enclose is not data but a statemen
 (`IntervalChain.Sound`), as the real functions have no code to run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ writes `µ₂ − µ₁ = (d − 2)(e₂ + e₁)`, but by [1, Eq. 23] it is `(d 
       Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

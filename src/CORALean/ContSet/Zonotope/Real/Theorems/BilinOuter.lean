@@ -15,10 +15,10 @@ enlargement that keeps this an enclosure and not an equality, unlike
 `PolyZonotope.bilin`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

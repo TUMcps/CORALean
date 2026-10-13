@@ -8,10 +8,10 @@ For a positive `ε` the polytope `-a x ≤ -b - ε` is a subset of the complemen
 inner approximation, not the complement (which is open).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

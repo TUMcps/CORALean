@@ -9,10 +9,10 @@ Halving is exact and the rest of the construction is over the exponent matrix, s
 of the float `partZonotope` is the exact layer's `partZonotope` of the original's nominal part.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

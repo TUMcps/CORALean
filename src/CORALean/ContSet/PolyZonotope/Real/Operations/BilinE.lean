@@ -12,10 +12,10 @@ Nothing here reads the ambient types, so the exponent arithmetic of a product
 is the same whatever the two sets hold — `mulE` is this at `Vec`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ feasible set alone, and the verdict is `exitflag ≠ -2`.
 * [1] `contSet/@polytope/isIntersecting_.m`, CORA, ll. 161-183, 197-229.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

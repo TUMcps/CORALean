@@ -10,10 +10,10 @@ they were folded from the statistics is the caller's arithmetic, done once when 
 scales, so nothing rounds but what `mtimes` and `plus` pay.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

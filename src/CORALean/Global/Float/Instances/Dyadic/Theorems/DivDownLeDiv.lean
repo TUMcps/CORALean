@@ -16,10 +16,10 @@ that. The grid rounding on top of the quotient only moves the bound further
 out, which is `roundDown_le` composed on.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

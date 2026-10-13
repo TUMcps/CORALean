@@ -20,10 +20,10 @@ generator-first (in `!![...]` each row is one), and `M i j` is the coefficient o
 gives the hull `[-⅝,⅝] × [-¾,¾]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

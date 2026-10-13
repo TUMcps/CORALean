@@ -8,10 +8,10 @@ CORA's `@interval/tan`: the tangent is increasing on `(-π/2, π/2)`, so it acts
 coordinate by coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

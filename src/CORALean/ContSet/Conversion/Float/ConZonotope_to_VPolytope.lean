@@ -16,10 +16,10 @@ one. Until that exists, the box is what a definition can give, exactly as for
 `HPolytope.vPolytopeBox` at this layer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

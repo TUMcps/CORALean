@@ -32,10 +32,10 @@ computes, from nothing but a system's derivatives and a start set.
       Control, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Real
 

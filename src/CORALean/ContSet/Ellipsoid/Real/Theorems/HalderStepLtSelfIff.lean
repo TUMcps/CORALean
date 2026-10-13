@@ -17,10 +17,10 @@ negative: `g(β) < β` iff `∑ 1/(1+βλᵢ) < β² ∑ λᵢ/(1+βλᵢ)`.
       Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

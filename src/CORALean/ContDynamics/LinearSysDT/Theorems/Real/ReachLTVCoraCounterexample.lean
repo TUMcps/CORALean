@@ -15,10 +15,10 @@ order is the identity), and `x(2) = 1` is missed; `C = 1`, `D = 0` make it the o
 The hypothesis on `uTransVec` only makes `u ≡ 1` the user's input: `B{1} = 0` gives `{0}` for any.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

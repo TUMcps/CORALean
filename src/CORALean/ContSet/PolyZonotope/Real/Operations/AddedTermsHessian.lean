@@ -13,10 +13,10 @@ triangle by symmetry; both leave the value unchanged and are not modelled. The t
 is `0`, and the structure matrix `H_str` is not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

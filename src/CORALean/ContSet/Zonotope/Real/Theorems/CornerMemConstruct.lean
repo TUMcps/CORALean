@@ -6,10 +6,10 @@ import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
 `c + ∑ ±gⱼ` is the point of coefficients `±1`, so it is a point of `construct`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

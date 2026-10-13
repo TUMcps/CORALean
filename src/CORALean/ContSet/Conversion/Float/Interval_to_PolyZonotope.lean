@@ -14,10 +14,10 @@ block are equally excluded from `mul` and `evalPoly`, and `dependent` frees both
 into fresh factors, so the choice costs no precision at any later step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

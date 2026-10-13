@@ -8,10 +8,10 @@ Any real sequence that starts in `B₀` and steps by `x(k+1) = A x(k) + u(k)` wi
 the point run (`simulate_mem_simulateBox`) and the ARX window run use it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

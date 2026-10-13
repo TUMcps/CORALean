@@ -9,10 +9,10 @@ off the range and bounded on it, so it is the padding of its own restriction. An
 `empty N`, which is empty because `proj` of a crossed coordinate makes `0 < N`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

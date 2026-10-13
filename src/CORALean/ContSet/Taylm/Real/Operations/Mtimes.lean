@@ -8,10 +8,10 @@ CORA's `mtimes` of a numeric matrix and an array of models: row `i` is `Σⱼ M 
 the loop CORA runs with `times` and `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

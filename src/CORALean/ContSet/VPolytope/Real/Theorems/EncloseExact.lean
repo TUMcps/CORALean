@@ -12,10 +12,10 @@ convex hull of `P` and `M P + Q`, as CORA's `enclose` computes it.
 Not collected in `Theorems/API.lean`: it needs the instances, which that API feeds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

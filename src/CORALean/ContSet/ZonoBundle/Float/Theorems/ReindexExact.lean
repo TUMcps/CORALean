@@ -14,10 +14,10 @@ An equivalence supplies both halves, so the hypothesis is discharged inline from
 `e` and the statement stays as unconditional as `Zonotope`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

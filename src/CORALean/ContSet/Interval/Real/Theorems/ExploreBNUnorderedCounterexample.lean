@@ -19,10 +19,10 @@ alone: the vertex `(1/2, 1)` of the cut is missed. `Interval.exploreBN_sort` sor
       Problem". INFOCOMP Journal of Computer Science, 8(4):21-27, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

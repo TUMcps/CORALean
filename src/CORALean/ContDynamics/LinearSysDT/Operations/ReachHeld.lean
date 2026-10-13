@@ -10,10 +10,10 @@ a zero-order hold reads off exactly rather than through the jitter a fresh
 point of `U` at every step would add.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       18-August-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

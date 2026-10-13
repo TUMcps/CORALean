@@ -9,10 +9,10 @@ Outer: the image of a law of `P` under the coordinate projection is a law of `P.
 through the selection matrix: `Σ(dims, dims) = S Σ Sᵀ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

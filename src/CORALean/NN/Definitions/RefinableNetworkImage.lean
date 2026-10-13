@@ -6,10 +6,10 @@ import CORALean.NN.Operations.RefinableNetworkEval
 `eval`'s image of an input set: fixed before a level is chosen, so every schedule encloses it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

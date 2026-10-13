@@ -11,10 +11,10 @@ each coordinate that makes `aᵢ eᵢ` smallest — `lowerDot` rounds every term
 below the value at that point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

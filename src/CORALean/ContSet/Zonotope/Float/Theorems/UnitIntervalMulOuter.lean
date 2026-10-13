@@ -9,10 +9,10 @@ all in `[-1, 1]`, about the centre `0`; a point `e` of the box scales to `se`, `
 inside the symmetric hull.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

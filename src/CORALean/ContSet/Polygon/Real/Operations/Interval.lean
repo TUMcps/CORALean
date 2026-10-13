@@ -7,10 +7,10 @@ CORA's `polygon/interval`: the smallest box holding the polygon, here the hull o
 boxes (`Interval.or`), the empty box for no pieces.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ scalar's own `le` and `ltStrict`, whose `true` is a proof, so no exactness is as
       Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

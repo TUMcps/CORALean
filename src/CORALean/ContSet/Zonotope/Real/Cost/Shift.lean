@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/Shift.lean` subtracts `w` from the centre,
 `n` subtractions at `Vec ℝ n`; the generators are untouched.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,10 +20,10 @@ minimum over the windows `index`; `none` is its `-inf`. `meets` stands for `isIn
 'exact',1e-8)` on times, `isectApprox`, `isectExact` for the two set tests of l. 403-404.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

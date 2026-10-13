@@ -19,10 +19,10 @@ on an exponential and so no raw lower bound, and takes its lower bound from the 
 alone. So the exact box is a specification the runnable layer does not reproduce.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

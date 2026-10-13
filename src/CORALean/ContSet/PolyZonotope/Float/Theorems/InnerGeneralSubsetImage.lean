@@ -9,10 +9,10 @@ Both passes of `innerGeneral`, the preconditioned one and the one with `C = eye(
 either; where no columns are found the answer is `false`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

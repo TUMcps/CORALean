@@ -23,10 +23,10 @@ over the ones the horizon would force.
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

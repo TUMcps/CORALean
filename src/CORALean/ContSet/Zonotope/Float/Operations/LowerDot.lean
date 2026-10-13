@@ -10,10 +10,10 @@ term is rounded down, a generator's `|aᵀGⱼ|` through the enclosure `[dotDown
 `aᵀGⱼ`, as `max(0, lo, -hi)`, and the error box's term at its smaller end.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

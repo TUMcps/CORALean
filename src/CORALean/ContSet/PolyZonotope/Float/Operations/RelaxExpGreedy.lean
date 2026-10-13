@@ -17,10 +17,10 @@ The box grows once per step, so the number of steps is what a caller trades
 precision against here, as much as which pairs the selection picks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

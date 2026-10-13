@@ -11,10 +11,10 @@ import Mathlib.Data.Int.ConditionallyCompleteOrder
 way, read back at `f` digits by `div_le_div_iff₀`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

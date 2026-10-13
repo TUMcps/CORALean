@@ -16,10 +16,10 @@ The vertex form of the linear map, [1, Eq. 23].
       vol. 103, pp. 163-181, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

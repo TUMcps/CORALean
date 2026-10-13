@@ -13,10 +13,10 @@ generators does not enter, though the memory traffic does grow with it.
 the *result* is, which is `rfl` against the definition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

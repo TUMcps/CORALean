@@ -14,10 +14,10 @@ at the end to close the polygon; a point capsule returns its centre. The point t
 are on the boundary, not vertices: `Capsule.vertices_mem_frontier`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

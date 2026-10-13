@@ -12,10 +12,10 @@ For the guard `2 x₁ = 4` (normal `(2, 0)`, `γ = 4`, hyperplane `x₁ = 2`) an
 the box it returns contains no point of the hyperplane.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

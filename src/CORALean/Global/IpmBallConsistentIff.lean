@@ -15,10 +15,10 @@ linear in `(c, r, γ)`, and `r, γ ≥ 0`. By [1, Eq. 6] (`ipmBall_eq`).
       reliability". Automatica, 45(2):382-392, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

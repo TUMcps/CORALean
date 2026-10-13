@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Definitions.ScaleRounding
 The mirror of `conjCoeffsUp`, every step rounded down.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

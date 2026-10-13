@@ -9,10 +9,10 @@ product of the boxes is the box of the concatenated bounds, and a box lies in it
 two ellipsoids is not an ellipsoid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

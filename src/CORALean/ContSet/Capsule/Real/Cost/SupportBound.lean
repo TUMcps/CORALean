@@ -11,10 +11,10 @@ the `n` basis evaluations, `n + 2` in all; then `n` squares, `n - 1` additions,
 a `sqrt`, an `abs`, a product and two additions, bounded by `2 * n + 5`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ The entries of `v` placed at the coordinates `σ` of a larger vector, zero elsew
 `x(σ) = v` on a zero vector. `resolve` of a reset writes a block `B(stateBinds{i}, ...)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

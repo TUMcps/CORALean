@@ -11,10 +11,10 @@ real cover `VPolytope.construct_eq_iUnion_triples` splits the hull, and the box 
 over the union. The statement is about the stored float polygon, not the real one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

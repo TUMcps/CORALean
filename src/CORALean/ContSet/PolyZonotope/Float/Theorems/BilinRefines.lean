@@ -12,10 +12,10 @@ are within `bilinGDiff` of the exact ones (`bilinG_close`), so the exact pairing
 factors is the stored point plus a member of the error box. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

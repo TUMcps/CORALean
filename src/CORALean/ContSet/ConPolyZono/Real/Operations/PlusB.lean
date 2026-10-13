@@ -6,10 +6,10 @@ import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 The two right-hand sides side by side, each bound concatenated with its own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

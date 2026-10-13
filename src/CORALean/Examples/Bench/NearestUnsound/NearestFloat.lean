@@ -18,10 +18,10 @@ axiom in `Axioms`. Nothing here is sound: see `Axioms` for what that costs, and
 `scripts/check-axioms.sh` for what keeps it out of the library.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

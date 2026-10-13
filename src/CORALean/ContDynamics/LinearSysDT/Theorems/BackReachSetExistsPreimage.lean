@@ -19,10 +19,10 @@ Stated at the step rather than at the whole run: `backReachSetExists` is already
 the property, and this is the operation that computes it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

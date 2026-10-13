@@ -9,10 +9,10 @@ in no way, and does not have to: `clampUnit` makes any value a legal slope. A ca
 better candidate passes it to `Layer.relu` instead.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

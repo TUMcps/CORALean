@@ -24,10 +24,10 @@ and its on-the-fly reduction `reduceOnTheFly`, then run once each at `Dyadic 24`
 so does one `LinParamSys` step at an interval matrix (`Demo/LinParamStep.lean`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   02-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

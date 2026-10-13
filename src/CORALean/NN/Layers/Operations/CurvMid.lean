@@ -8,10 +8,10 @@ Any value between the two ends would do as the offset, the error being measured 
 stored; the midpoint makes the error smallest, and its own rounding costs nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

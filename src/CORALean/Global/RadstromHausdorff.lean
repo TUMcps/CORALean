@@ -23,10 +23,10 @@ that [1, Lemma 1] uses.
       Proc. Amer. Math. Soc. 3 (1952), pp. 165-169.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

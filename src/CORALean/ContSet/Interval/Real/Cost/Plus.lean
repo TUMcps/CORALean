@@ -9,10 +9,10 @@ two upper bounds entrywise, so at `Vec ℝ n` it is `2 * n` additions and nothin
 else. No rounding enters here — that is the float layer's cost, not this one's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

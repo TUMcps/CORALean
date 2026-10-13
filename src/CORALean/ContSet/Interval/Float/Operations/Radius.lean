@@ -7,10 +7,10 @@ CORA's `rad`, half the width. `half` is exact, so the one rounding is the differ
 rounds up: the stored radius is at least the real one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

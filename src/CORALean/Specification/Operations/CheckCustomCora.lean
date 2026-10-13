@@ -11,10 +11,10 @@ returns `res` and reports a violation when `~res`, l. 261-266), and the sibling 
 that every piece must pass. The loop is recursion on the cell. Pieces are any type `α`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

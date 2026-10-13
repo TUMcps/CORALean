@@ -10,10 +10,10 @@ set's inequality at the first half of the variables, the second the second's at 
 second half, and the off-diagonal blocks vanish.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ A proof device rather than an operation, hence in `Theorems/` and not in
 `reduce` and the float `absorbError` are what need them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

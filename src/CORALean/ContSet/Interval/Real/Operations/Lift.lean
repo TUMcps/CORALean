@@ -9,10 +9,10 @@ bounds are infinite off `proj`, so the result is an `Interval.EBox`. CORA throws
 interval; no throw here, the theorem needs no case split.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

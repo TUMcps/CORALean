@@ -9,10 +9,10 @@ import Mathlib.Analysis.Matrix.Normed
 `⌈‖Δt • A‖⌉₊` alone clears it, `reachOrder_admissible` its proof.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

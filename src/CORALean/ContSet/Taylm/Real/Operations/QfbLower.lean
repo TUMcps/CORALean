@@ -14,10 +14,10 @@ semidefinite `H`; `l(P - Q_{x₀}) + l(I)` is the lower bound of the model `T - 
       Bounders". Transactions on Computers, 11(4):1611-1618, 2005.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

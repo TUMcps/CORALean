@@ -20,10 +20,10 @@ surjective `f` carries that to `univ` in `β` rather than to `range f`.
       European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

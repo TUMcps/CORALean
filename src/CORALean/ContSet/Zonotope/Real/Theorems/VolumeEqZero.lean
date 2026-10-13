@@ -13,10 +13,10 @@ CORA's early `vol = 0` return for `rank(G) < n` (and, as the rank is at most the
 fewer than `n` generators).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

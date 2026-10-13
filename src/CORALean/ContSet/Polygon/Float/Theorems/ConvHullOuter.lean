@@ -10,10 +10,10 @@ list, each step is `VPolytope.convHull_outer` at a piece and the hull of the res
 the same reason as at two pieces.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

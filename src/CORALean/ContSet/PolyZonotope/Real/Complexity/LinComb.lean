@@ -9,10 +9,10 @@ independent block carried over at its combined count. `rfl` against the
 structure instance in `Operations/LinComb.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

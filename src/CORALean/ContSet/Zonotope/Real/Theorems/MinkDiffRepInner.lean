@@ -16,10 +16,10 @@ represents: the same argument at `Mᵢⱼ = μᵢ` on the diagonal and `0` off i
 `hrow` for the bound and `hM` for the equation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

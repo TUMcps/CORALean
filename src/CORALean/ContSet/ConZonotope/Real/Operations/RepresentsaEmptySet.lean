@@ -9,10 +9,10 @@ polytope `[-1, 1]^m ∩ {A ξ = b}`, which CORA decides by a linear program. The
 polytope is `ConZonotope.domain`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

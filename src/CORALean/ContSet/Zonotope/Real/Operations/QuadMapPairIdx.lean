@@ -24,10 +24,10 @@ The count is `Σ_{k < p} k = p(p - 1)/2`: a pair is its larger index `k` and a `
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

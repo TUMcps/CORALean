@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Theorems.UminusExact
 The Taylor model by `Taylm.uminus_outer`, the interval by `Interval.uminus_exact`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

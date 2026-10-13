@@ -6,10 +6,10 @@ import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPoint
 At tolerance `0` the point test is membership, exactly: the slack is forced to `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

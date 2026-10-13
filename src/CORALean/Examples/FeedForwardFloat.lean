@@ -43,10 +43,10 @@ sigmoid and tanh is a plain `def`. `sigmoidPolyNet` is the last chain to join
 them, its relaxation storing floats and naming `Real.sigmoid` only in a proof.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

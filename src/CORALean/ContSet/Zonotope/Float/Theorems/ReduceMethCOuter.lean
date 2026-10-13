@@ -18,10 +18,10 @@ fails, or the order is already low, the zonotope is returned and there is nothin
 Outer, never exact: the parallelotope contains the zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

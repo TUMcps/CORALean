@@ -22,10 +22,10 @@ grows: past `k = o` steps it already exceeds every bound `reach`'s own count
 can ever reach, which is the sharp form of the worry `ReachInner.lean` records.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

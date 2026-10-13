@@ -11,10 +11,10 @@ A point `λ x + (1 - λ) y` of the segments between the two capsules sits, in it
 capsule, and the enclosure is strict in general.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

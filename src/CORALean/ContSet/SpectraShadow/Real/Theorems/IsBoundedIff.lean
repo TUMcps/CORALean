@@ -13,10 +13,10 @@ each coordinate from above and below is a bound on the sup norm, and conversely.
 decides boundedness, up to the solver and the all-`Aᵢ`-zero shortcut of `FINDINGS.md`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

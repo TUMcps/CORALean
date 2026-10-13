@@ -21,10 +21,10 @@ the margin of Eq. 17 and `α₂` the sum of the `|P_ij|`, so `V_{k+1} ≤ α V_k
       64(11):4717-4724, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

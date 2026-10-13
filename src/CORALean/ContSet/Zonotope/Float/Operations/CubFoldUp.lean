@@ -9,10 +9,10 @@ rounded up: the accumulation over identical factors of `Zonotope.listQuadUp`, ev
 the same way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

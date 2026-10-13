@@ -7,10 +7,10 @@ For a system affine in `p` and differentiable in the state, `∂f/∂x (x*, u*, 
 zonotope `zA` of `linearize` for every `p` of the parameter box (`jacobianFamily_mem` at the state).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

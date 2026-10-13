@@ -24,10 +24,10 @@ finding on `Prop. 5` is about: the closed form `minkDiffAligned` computes needs
       arXiv, 2015.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

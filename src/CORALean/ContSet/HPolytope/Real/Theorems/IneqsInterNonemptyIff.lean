@@ -15,10 +15,10 @@ emptiness check, [1, Eq. 9], rather than any intersection being computed.
       vol. 103, pp. 163-181, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

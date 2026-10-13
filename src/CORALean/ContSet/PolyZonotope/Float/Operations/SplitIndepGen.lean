@@ -9,10 +9,10 @@ centre `c - GI(:,j)/2`. Halving is exact; the two centres are rounded down and t
 upper rounding is added to the top of each error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

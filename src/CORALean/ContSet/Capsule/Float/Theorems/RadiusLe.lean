@@ -8,10 +8,10 @@ The exact layer's `norm₂_sub_centre_le` at the nominal capsule, with `√(Σ g
 rounded-up `normUp` and the sum by `addUp`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

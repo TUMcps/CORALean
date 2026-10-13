@@ -9,10 +9,10 @@ Every row's certified comparison, read as reals, is the real test at the bounds 
 bounds are assumed to enclose each row's range, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

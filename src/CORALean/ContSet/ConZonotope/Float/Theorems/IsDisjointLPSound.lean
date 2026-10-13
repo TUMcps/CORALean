@@ -10,10 +10,10 @@ the verdict is sound for every direction the simplex could have proposed; only
 its completeness depends on the simplex, and none is claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

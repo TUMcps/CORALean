@@ -25,10 +25,10 @@ gap at the coefficient that reads it — a monomial, a zonotope coefficient, and
 `1` for the centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

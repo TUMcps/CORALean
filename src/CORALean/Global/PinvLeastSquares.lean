@@ -18,10 +18,10 @@ equations, so `leastSquares_le_of_normal_eq` applies.
       Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

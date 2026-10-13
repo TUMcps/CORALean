@@ -7,10 +7,10 @@ import Mathlib.Tactic.Linarith
 Each row is divided by a positive number, or an equality row by a nonzero one, on both sides.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

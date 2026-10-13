@@ -10,10 +10,10 @@ is the choice of conversion: `guard2polytope conv` applies `conv`, the represent
 already needs no call (`conv = id`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

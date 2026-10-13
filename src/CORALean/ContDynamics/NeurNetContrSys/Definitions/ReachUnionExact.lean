@@ -11,10 +11,10 @@ Positional, as the mathematics: `Reach` reads `Δtc` off the system, CORA's `sys
 and `H = tFinal - tStart` and the initial set off `params`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

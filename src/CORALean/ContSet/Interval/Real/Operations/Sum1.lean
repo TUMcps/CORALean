@@ -8,10 +8,10 @@ column, `sum(I.inf, 1)` and `sum(I.sup, 1)`. CORA keeps the result as a `1 × n`
 the vector of the same entries.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

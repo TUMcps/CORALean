@@ -11,10 +11,10 @@ up below, which needs no `1 ≤ c` as `logDown` would. The rest are `(-1)ᵏ⁺�
 power of `1/c` each way, divided by `k` each way, the ends swapped where the sign is negative.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
 Exact, entry by entry: the bounds of the submatrix are the bounds at the chosen rows and columns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

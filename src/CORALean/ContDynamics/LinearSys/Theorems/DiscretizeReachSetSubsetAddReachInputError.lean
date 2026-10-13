@@ -19,10 +19,10 @@ The recursion on the right is the zero-order-hold reachable set, which
 `discretize_reachSet_subset_inputReach` places inside `inputReach`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

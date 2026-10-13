@@ -17,10 +17,10 @@ and `powUp` of the roundings of `1/c`, and `1 / k!` by `divFact`, the four throu
 products. `q` is the precision of the square root.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

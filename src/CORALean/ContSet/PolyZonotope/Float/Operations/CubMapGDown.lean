@@ -11,10 +11,10 @@ T{i,k} g_c)` through `Zonotope.cubContractDown`. The monomial of the triple is t
 three, so the exponent column is the sum of theirs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

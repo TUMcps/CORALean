@@ -12,10 +12,10 @@ factors. With `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2` in `ℝ¹` the only fea
 has rank `1 = n`, and CORA answers `true`. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

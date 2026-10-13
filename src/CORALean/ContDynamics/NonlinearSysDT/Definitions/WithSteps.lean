@@ -15,10 +15,10 @@ inside `(steps i).R`. `reach` checks against `region i` and proves against
 `(steps i).R`; `region_subset` is what connects the two.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

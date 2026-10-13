@@ -9,10 +9,10 @@ CORA's `nonlinearReset/synchronize` on the interval extensions of the component 
 coordinates `idStates`, each sum rounded outward (`sumDown`, `sumUp`; the added box is exact).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 a ceiling exactly as `roundUp` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

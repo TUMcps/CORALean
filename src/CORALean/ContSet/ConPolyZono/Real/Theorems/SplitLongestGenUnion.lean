@@ -8,10 +8,10 @@ Whichever factor the heuristic picks, `splitDepFactor_union` applies; with no fa
 halves are the set itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

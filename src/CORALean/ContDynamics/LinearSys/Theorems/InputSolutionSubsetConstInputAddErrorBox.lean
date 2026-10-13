@@ -17,10 +17,10 @@ This is the per-step fact a run accumulates. The radius depends on `U` only,
 never on the initial set, so the same box is paid at every step of a run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

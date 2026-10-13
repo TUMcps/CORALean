@@ -20,10 +20,10 @@ sound at every partition and `Relaxation` at every slope. At `Interval`,
 instance; nothing here searches for which coordinate `j` to bisect.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

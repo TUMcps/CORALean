@@ -30,10 +30,10 @@ CORA's `and_` (set intersection) at five representations, each with its own guar
   representation (here a float zonotope), exactly (`EmptySet.and_exact`, `Fullspace.and_exact`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Real.Definitions.Scaled
 A sum of magnitudes over positive powers of a positive `h`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ zonotope's box. An upper bound on `‖x‖₂` over the zonotope, not its norm: 
 maximises a convex function over the zonotope and is not covered.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

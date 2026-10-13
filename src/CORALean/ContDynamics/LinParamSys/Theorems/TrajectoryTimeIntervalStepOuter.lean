@@ -21,10 +21,10 @@ Input-free only; with an input, `…TimeIntervalStepOuterInputSolution`. The flo
 is `…TimeIntervalStepFloatOuter`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

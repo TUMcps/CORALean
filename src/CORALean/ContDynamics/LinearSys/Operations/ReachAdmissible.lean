@@ -12,10 +12,10 @@ being there to decide it. `LinearSys.reachInstance` runs this instead of `reach`
 itself, so it asks its caller for no side condition on `η` at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

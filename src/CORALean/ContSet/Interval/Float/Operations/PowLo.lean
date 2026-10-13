@@ -10,10 +10,10 @@ power is `powDown |a|`; an odd one is `powDown a` for a certified `a ≥ 0`, and
 otherwise, since `a ^ k ≥ -|a| ^ k` for every sign.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

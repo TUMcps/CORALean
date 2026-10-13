@@ -8,10 +8,10 @@ Each lag's term is in its own `mtimes`, so the sum is in the `plus` of them; the
 fold over the lags is an induction that carries the partial sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

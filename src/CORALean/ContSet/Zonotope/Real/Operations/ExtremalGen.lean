@@ -17,10 +17,10 @@ contributes nothing; either choice of its sign gives an extremal point.
       Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

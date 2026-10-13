@@ -7,10 +7,10 @@ Whatever `findRegionRight` returns is a region `[l', u]` enclosing `σ` with err
 tolerance, `l'` being the left end it returns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

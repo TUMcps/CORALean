@@ -18,10 +18,10 @@ read as `2Θ_lΥ_m/Λ`, the reading Prop. 3's `ψ_{c,l} 2Υ_m`, `ψ = Θ/Λ`, co
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

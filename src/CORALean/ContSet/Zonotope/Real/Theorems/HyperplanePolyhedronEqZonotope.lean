@@ -24,10 +24,10 @@ over-approximation can be used as the next initial set, which needs a zonotope.
       Springer, 2008, pp. 215-228.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 slope between two points is `A` and the identity, which the Jacobian boxes hold.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

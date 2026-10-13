@@ -14,10 +14,10 @@ remainder inside the error box and `‖u‖₂ ≤ 1` upward, so factors are bes
 polygon is the hull of the kept vertices, with no error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

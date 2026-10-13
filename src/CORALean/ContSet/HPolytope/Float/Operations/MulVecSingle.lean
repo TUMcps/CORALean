@@ -6,10 +6,10 @@ import CORALean.ContSet.HPolytope.Float.HPolytope
 The sign the entry carries times the coordinate; the other entries are `0` and drop out.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ a computed step, as `LinearSysDT.reachError` is discretely, and what a whole run
 can carry forward through `e^{AΔt}` and accumulate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

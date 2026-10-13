@@ -14,7 +14,7 @@ For `P = {x | x ≤ 0, -x ≤ -1}` (empty) and `S = [0, 1]`, the convex hull of 
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ whatever the machine's own rounding did. A product of two nonzero factors that r
 underflowed, and its exact value is not zero, so it is NaN rather than a zero `stepUp` would keep.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       22-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

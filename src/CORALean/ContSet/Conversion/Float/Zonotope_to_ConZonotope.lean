@@ -13,10 +13,10 @@ empty inequality block and an empty slab, which denotes everything but is not th
 exact layer's `fullspace` term. Membership is the shorter argument anyway.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

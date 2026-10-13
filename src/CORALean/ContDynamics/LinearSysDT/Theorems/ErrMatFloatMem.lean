@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 The real `A - L C` of the real values of the stored matrices lies in `errMatFloat A L C`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ state and inputs, which is what lets one set check every test case at once.
       Systems (ARCH23), EPiC Series in Computing, vol. 96, pp. 9-33, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

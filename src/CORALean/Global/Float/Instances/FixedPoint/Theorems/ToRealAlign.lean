@@ -10,10 +10,10 @@ changes nothing it denotes. What `RoundDownLe`/`LeRoundUp` need for the
 branch that pads rather than cuts.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

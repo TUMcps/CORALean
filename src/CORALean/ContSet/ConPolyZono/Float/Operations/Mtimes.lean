@@ -15,10 +15,10 @@ The dimension variables are `k` and `n` rather than the usual `m` and `n`: the
 structure already has a field named `m`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

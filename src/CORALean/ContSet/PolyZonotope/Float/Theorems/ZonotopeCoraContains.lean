@@ -12,10 +12,10 @@ centre's share; the halved generators are exact, and the centre's rounding `c + 
 at most the gap added to the top of the error box. Outer, not exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ A member would give a `β` with the inequality's matrix `⪰ 0`; against the sem
 trace is nonnegative, but it is `tr(A₀ Y) + Σ βₗ tr(Aₗ Y) = tr(A₀ Y) < 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

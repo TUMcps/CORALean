@@ -9,10 +9,10 @@ set: `holds_of_reach` at the output rather than the state, for the same
 reason `LinearSysDT`'s pair exists — `C` is in general not invertible.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

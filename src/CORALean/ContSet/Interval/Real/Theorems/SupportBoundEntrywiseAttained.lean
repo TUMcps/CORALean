@@ -11,10 +11,10 @@ to whichever endpoint the sign of the direction's weight on it picks, and
 attaining it, so the hypothesis cannot be dropped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

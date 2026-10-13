@@ -10,10 +10,10 @@ rounds: the nominal part is the exact layer's `cartProd` mapped through the appe
 field, and the error box is the stack of the two.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ generators `[0 | M]`. No entry is computed, so the nominal shadow is exact; only
 is multiplied, by `Interval.mtimes`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

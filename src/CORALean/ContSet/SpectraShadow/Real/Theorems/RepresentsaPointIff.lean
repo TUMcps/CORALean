@@ -7,10 +7,10 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
 A member whose coordinates are the support values exists exactly when the set is a singleton.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

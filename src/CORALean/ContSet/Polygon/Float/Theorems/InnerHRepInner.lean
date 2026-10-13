@@ -21,10 +21,10 @@ at most `aᵀvᵢ`, so a point of the halfspace is left of the edge. The hull of
 lies in the piece since its error box holds `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ kept whole. The cut pieces are box hulls, so they may leave the minuend, and the
 outer approximation of the region `closure (interior P₁ \ P₂)`, not a subset of `P₁`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

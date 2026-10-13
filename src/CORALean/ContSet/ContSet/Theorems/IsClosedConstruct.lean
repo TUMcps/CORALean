@@ -6,10 +6,10 @@ import CORALean.ContSet.ContSet.Definitions.CompactSet
 `CompactSet.isClosed_construct`: compactness over a normed space gives closedness for free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

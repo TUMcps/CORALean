@@ -7,10 +7,10 @@ The rows tight at a point, as the choice that names it. Noncomputable, and
 unavoidably so at this layer — whether two reals are equal is not decidable.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

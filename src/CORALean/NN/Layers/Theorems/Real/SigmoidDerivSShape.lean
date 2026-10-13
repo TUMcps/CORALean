@@ -9,10 +9,10 @@ Its derivative `σ(t) σ(-t) = 1 / (2 + 2 cosh t)` is even and non-increasing in
 `sShapeDerBounds_sound` applies to it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

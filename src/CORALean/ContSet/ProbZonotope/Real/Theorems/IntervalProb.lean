@@ -16,10 +16,10 @@ overapproximation of the confidence set, not equal to it.
       Conference (ECC), pp. 625-630, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

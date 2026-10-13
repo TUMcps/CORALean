@@ -20,10 +20,10 @@ Each certain answer is a guarantee, and the theorem instances below apply
 `representsa_emptySet`, and a `true` from `isIntersecting_cell`, decide nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

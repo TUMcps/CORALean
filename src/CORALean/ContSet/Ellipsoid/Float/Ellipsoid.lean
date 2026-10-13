@@ -20,10 +20,10 @@ costs exactly what a zonotope's does; `Theorems/MemGeneratorError` says why the
 tighter bound is the one worth not taking.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

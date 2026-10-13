@@ -9,10 +9,10 @@ appearing four times, so four evaluations are counted, no sharing being
 assumed; then two subtractions-or-additions and two halvings.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

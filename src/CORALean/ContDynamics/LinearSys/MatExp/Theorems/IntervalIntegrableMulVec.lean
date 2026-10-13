@@ -13,10 +13,10 @@ when each coordinate is. Nothing is asked of `A` as a matrix-valued map, which
 under the `l∞` operator norm Mathlib's integral could not be stated for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

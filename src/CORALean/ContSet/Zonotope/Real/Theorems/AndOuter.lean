@@ -7,10 +7,10 @@ Through the exact constrained-zonotope intersection (`ConZonotope.intersection_e
 conversions: an outer statement only, the enclosing zonotope forgets the constraints.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

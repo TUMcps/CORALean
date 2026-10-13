@@ -14,10 +14,10 @@ argument, so this is what `quadMapDepCost` passes and the only thing separating
 a quadratic map's count from a coordinatewise product's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

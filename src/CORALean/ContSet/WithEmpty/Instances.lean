@@ -19,10 +19,10 @@ No `Recentre`: it asks `0 ∈ construct (recentre s)` unconditionally, which
 gets one here at the wrapper instead, as `Zonotope` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

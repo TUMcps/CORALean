@@ -13,10 +13,10 @@ Some schedule is inside any inflation of the exact image, which with
 `encloseAt_outer` squeezes the enclosure onto it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

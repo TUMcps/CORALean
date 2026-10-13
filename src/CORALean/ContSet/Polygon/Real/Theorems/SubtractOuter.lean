@@ -11,10 +11,10 @@ outside it, which meets the interior of `P₁`. It is an outer statement for the
 the result is larger than it only by boundary points of `P₂`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

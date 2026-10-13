@@ -10,10 +10,10 @@ so the splitter's `hcov` is the one proof left to the caller, and `false` says o
 this budget did not verify.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

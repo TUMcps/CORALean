@@ -12,10 +12,10 @@ Loses whatever the zonotope step lost and nothing further; exact only on the
 directions the caller names, as `Zonotope.hPolytope_contains` already is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

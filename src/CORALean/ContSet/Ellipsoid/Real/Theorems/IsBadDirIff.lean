@@ -16,10 +16,10 @@ along which the inner shape fails to be a shape. Stated for `Q₁` of full rank,
 (`isBigger`, which `minkDiff` checks first) and `lᵀ Q₂ l > 0`, with `Q` as its quadratic form.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

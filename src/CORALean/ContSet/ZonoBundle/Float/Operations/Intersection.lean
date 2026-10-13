@@ -9,10 +9,10 @@ box it arrived with — which is why this stays *exact* in the float layer too,
 per `Theorems.AndExact`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

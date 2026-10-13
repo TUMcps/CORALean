@@ -22,10 +22,10 @@ So the run's own accumulated error is exactly what has to come off it, and
 nothing about the system beyond linearity enters.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

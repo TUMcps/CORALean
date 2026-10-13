@@ -9,10 +9,10 @@ ambient space exactly when the span has the ambient dimension, so this is
 `Zonotope.isFullDim_iff` read through `finrank`. At `Vec ℝ n` the dimension is `n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

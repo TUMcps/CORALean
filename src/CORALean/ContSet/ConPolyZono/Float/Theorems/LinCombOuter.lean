@@ -18,10 +18,10 @@ on the factors its operand came with, which are `a₁` and `a₂` themselves.
 Outer only, as over ℝ: the independent coefficients cannot be tied to `λ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Operations.BranchAndBound
 CORA's `optBnbAdv`: as `optBnb`, each sub-box's polynomial re-expanded at its midpoint first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

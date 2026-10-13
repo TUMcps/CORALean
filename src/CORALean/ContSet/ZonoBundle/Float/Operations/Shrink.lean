@@ -19,10 +19,10 @@ own check fails, and its first `n` generators are then the edges.
 * [1] `contSet/@zonoBundle/shrink.m`, CORA (Sep. 2025).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

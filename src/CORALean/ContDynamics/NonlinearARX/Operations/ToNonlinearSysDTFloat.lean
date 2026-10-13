@@ -15,10 +15,10 @@ existing bounds are moved, so no rounding enters beyond the extension's.
 * [1] `contDynamics/@nonlinearARX/nonlinearSysDT.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The stacked box holds exactly the vectors whose first `n₁` coordinates lie in 
 the last `n₂` in the second, which is the image of the pair of boxes under `Fin.append`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

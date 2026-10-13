@@ -19,10 +19,10 @@ monomials being in `[-1,1]`, and the bound moves out by it on both sides. The
 nominal set only *grows*, and the error box does not move.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

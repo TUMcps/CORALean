@@ -8,10 +8,10 @@ for the `A` and the membership `reach_one_outer` now asks for, in place of
 reading `toRealMat sys.A` straight off the equation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

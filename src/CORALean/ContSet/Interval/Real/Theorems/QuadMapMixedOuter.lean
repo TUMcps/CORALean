@@ -9,10 +9,10 @@ outer one: a zonotope's coefficients are free, and `Zonotope.bilin` only over-ap
 products of two of them (`Zonotope.bilin_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

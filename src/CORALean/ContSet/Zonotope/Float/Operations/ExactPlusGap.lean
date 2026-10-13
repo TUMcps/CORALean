@@ -8,10 +8,10 @@ a shared column the stored sum is rounded down, so the exact sum lies above it b
 sum rounded up minus the sum rounded down (`subUp`), and on the copied columns nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

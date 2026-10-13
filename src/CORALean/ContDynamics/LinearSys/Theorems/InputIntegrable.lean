@@ -15,10 +15,10 @@ The statement asks only that the domain cover the window `[a, b]` it speaks
 about.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

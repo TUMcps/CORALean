@@ -19,10 +19,10 @@ iterate keeps the sequence from growing. More fuel buys accuracy only, as `n` do
 is not proven positive. The argument is floored at zero first, so there is no side condition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ generators appended. Halving is exact; the centre's sum is rounded down and the 
 rounding is added to the top of the error box, which is otherwise carried across.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ column `j`; the sign scales the entry (`smul`) and the product with the minor's 
 The matrix is at least `1 × 1`, as CORA's recursion stops there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

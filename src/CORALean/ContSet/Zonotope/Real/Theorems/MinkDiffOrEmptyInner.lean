@@ -14,10 +14,10 @@ which keeps this file clear of the `ContSet` instance: that lives in
 `minkDiffRep_inner` asks for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ Exact and pure Lean: `Dyadic.le` of the same pairs, which aligns the two to
 their common exponent and compares integers.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

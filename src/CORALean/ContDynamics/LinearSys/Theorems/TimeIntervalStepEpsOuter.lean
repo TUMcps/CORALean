@@ -22,10 +22,10 @@ only: over a whole step the convex hull costs a first-order excess that the
 correction matrix, second order, does not pay for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

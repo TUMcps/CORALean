@@ -15,10 +15,10 @@ is a slip for `I₃ ∩ I₂ = ∅`, which is what its argument shows and what i
       Control (CDC), pp. 2130-2137, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

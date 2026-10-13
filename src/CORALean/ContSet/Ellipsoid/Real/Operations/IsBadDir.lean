@@ -14,10 +14,10 @@ semidefinite (it throws otherwise); the tolerance `TOL` is `0`. `L` is a matrix 
 and the result one verdict per column, so this is the verdict of one column.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

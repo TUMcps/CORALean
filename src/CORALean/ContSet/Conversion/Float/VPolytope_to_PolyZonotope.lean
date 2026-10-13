@@ -7,10 +7,10 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
 Through its box's zonotope, whose polynomial-zonotope reading is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

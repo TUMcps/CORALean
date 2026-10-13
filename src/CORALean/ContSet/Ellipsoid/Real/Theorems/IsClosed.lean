@@ -7,10 +7,10 @@ Read off compactness, as for a zonotope and for the same reason: `construct` is
 an affine image, and an affine image of a merely closed set need not be closed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

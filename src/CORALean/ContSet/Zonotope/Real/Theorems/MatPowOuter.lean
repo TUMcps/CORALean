@@ -10,10 +10,10 @@ identity. `pow_succ'` is what matches `A ^ (k + 1) = A * A ^ k` to `matPow`'s
 own recursion, which multiplies the base in on the left.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

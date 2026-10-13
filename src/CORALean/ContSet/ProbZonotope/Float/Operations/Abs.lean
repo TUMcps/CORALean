@@ -9,10 +9,10 @@ and generators in absolute value, exact) and the covariance interval is kept. As
 layer this is a different set of laws, not an enclosure of the input's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

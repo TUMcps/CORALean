@@ -14,10 +14,10 @@ is: `quadMapCost` is `quadMapDepCost` at the sizes this conversion leaves and
 nothing more, only because this file is zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ generator (CORA's `blkdiag(E, I)`), coordinate `i` the polynomial `cᵢ + Σⱼ 
 no remainder. Exact: the box of variables is the box of factors.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

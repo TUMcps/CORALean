@@ -10,10 +10,10 @@ layer's, so that a matrix zonotope of tensors is a `Zonotope` over it and each `
 matrix of `Mat 𝕋 n n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

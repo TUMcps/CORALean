@@ -13,10 +13,10 @@ in `monoBox` (`monoBox_outer`), the generators applied to them in `Interval.mtim
 centre added in `Interval.plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

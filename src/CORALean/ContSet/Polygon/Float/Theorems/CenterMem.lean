@@ -12,10 +12,10 @@ CORA's `polygon/center` for a float polygon: the centroid of the region the floa
 box is convex and holds the region. A box, not the point; the area must be positive.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

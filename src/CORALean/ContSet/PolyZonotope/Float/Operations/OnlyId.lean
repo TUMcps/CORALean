@@ -12,10 +12,10 @@ The generator columns of the other part are zeroed, not deleted. The error box g
 remainder, the first part carries the empty box `Interval.origin`. Nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

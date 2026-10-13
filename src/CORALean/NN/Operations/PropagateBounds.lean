@@ -11,10 +11,10 @@ bounds) are the caller's. The store into `layer_j.l`, `layer_j.u` is the returne
 Generic in the representation: at the intervals of either layer it is CORA's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

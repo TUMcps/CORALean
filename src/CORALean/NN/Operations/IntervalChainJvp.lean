@@ -8,10 +8,10 @@ layer's map is linear in `(l, u)`, the bias dropping out, and the activation sca
 the derivative there. It is the specification `IntervalChain.backprop` is the adjoint of.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

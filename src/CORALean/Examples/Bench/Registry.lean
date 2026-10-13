@@ -39,10 +39,10 @@ else `53` -- `binary64`, so the default agrees with native `Float`.
 of `runAt`: each takes every scalar it needs from their own files, not the one `--type` picks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

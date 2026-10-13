@@ -12,10 +12,10 @@ continuous `g` stays positive is, under the clock `τ(t) = ∫₀ᵗ g(x(r))⁻�
 `y' = g(y) f(y, u ∘ σ)` on `[0, τ(T)]`, with `σ = τ⁻¹`. Both runs visit the same states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

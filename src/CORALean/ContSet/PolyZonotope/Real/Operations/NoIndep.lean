@@ -9,10 +9,10 @@ into dependent generators (and denotes the same set): `noIndep` denotes the part
 dependent factors reach alone, a subset (see `noIndep_construct`, `noIndep_subset`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

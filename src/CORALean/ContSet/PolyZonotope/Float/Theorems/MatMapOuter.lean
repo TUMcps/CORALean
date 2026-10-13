@@ -18,10 +18,10 @@ the nominal sets, whose generators the stored ones miss by at most the rounding 
 interval-matrix products against the operands' hulls (`aux_matMap_hull`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

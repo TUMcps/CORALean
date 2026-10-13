@@ -7,10 +7,10 @@ The factor box `[-1,1]ᵖ` with which CORA's `@conPolyZono/rescale` starts, stor
 `-1` and `1` are exact in the scalar, so the box is the exact layer's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

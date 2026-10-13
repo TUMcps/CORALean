@@ -18,10 +18,10 @@ It returns the new centre, the new shape `Q` of `{x | (x - c)² / Q ≤ 1}` and 
 (`intersectStripLiu1D_counterexample`, `intersectStripLiu`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

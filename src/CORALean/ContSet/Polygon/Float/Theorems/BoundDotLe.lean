@@ -6,10 +6,10 @@ import CORALean.ContSet.Polygon.Float.Operations.BoundDot
 No point of the polygon reads more than the float value, an upper bound only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

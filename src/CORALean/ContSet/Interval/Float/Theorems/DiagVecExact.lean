@@ -8,10 +8,10 @@ Reading the diagonal commutes with reading the floats as reals, so the stored bo
 exact layer's diagonal box of the reading.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

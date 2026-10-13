@@ -14,10 +14,10 @@ differentiates the slope and the approximation errors of an image enclosure with
       Transactions on Machine Learning Research (TMLR), 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

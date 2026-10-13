@@ -13,10 +13,10 @@ for all `x`, `u`, `y`; this is why one is data. `G₁`, `G₂` are the partial d
 at the point, which the theorem asks of `g` (`C¹` supplies them).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

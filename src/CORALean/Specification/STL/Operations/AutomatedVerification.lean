@@ -18,10 +18,10 @@ is `some true` for safe and `some false` for unsafe. `tEnd` of line 1 is the `Δ
       Hybrid Systems, vol. 53, 2024, 101491.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

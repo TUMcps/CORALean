@@ -19,10 +19,10 @@ safe. The pairs of `V` and `W` are all of them, as CORA's `aux_orConstraints` fo
       Hybrid Systems, vol. 53, 2024, 101491.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

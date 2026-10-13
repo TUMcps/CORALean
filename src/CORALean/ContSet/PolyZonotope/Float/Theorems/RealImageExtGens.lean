@@ -8,10 +8,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 zonotope, generator by generator: the centre first, then the dependent generators, on both sides.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

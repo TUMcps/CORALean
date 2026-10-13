@@ -28,10 +28,10 @@ The count is therefore still `h₁ + h₂ + 1`, every rounding having gone into 
 box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   03-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ against a one-point set would append an empty generator block and a factor
 list to merge. So it is its own operation, as it is in CORA.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

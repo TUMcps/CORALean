@@ -15,10 +15,10 @@ difference lies in the `centerResidual`, which the half's box has absorbed. The 
 match entry by entry, the halved one because halving is exact (`toReal_half`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ generators are `Zonotope.cartProd`'s, and its coefficient polytope has the same 
 exact product of the two (`HPolytope.cartProd_exact`). The error box is the stack of the two.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ At the stationary point `a = i^(-1/(i-1))`, `a^(i-1) = 1/i`, so
 least `-(1 - 1/i)²`, which the float value rounds below.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ This is what pins one side of a convex combination to a point as its weight
 vanishes, and so what makes the combination exact at its endpoints.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

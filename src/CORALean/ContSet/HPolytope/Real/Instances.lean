@@ -27,10 +27,10 @@ coordinates — `mapEquiv` backs `Reindex` below, and `comap`, `translate` stay
 named. `OfInterval` would land as it stands, but its class lives in `Conversion`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

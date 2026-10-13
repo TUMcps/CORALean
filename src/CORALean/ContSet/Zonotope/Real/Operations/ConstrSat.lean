@@ -10,10 +10,10 @@ image, `I = interval(C*Z) + (-d)`, and answers `all(supremum(I) < 0)`: every upp
 box lies below `d`. Sufficient, not necessary, as the box over-approximates the image.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

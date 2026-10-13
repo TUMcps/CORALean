@@ -10,10 +10,10 @@ At a positive centre. `aux_log_coef` reads `log⁽ᵏ⁺¹⁾(c)/(k+1)!` as `(-1
 off `iter_deriv_inv`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

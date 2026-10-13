@@ -8,10 +8,10 @@ Through its box. A tighter zonotope enclosure of a vertex list is a fitting
 problem rather than a conversion, so the box is what a definition can give.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

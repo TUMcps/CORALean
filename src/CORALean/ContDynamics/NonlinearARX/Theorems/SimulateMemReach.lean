@@ -8,10 +8,10 @@ import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
 simulated outputs `(y(k), …, y(k+p-1))` lies in the reachable set at step `k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

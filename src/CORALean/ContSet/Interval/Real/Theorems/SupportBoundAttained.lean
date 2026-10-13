@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Operations.SupportBound
 `Interval.supportBoundEntrywise_attained` at the ambient type `Vec ℝ n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ the enclosing radius. The eigenvalues are Mathlib's `eigenvalues₀`, sorted in 
 order. CORA's `zeros(dim(E), 0)` for an empty ellipsoid does not arise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

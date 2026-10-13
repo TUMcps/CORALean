@@ -6,10 +6,10 @@ import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
 The constraint and `unique`: the only solution of `g(x, ·, u) = 0` is `h x u`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

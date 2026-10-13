@@ -17,10 +17,10 @@ of `⊕ᵢ₌₀^η Aⁱ Δt^{i+1}/(i+1)! V`, the terms of [1, Prop. 11].
       2023, pp. 7771–7786.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

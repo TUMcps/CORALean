@@ -11,10 +11,10 @@ is additive: the sum of two such sets is the stack of the sums. What lets a Cart
 inflated sets (a nominal set plus an error box, on each side) be one inflated set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

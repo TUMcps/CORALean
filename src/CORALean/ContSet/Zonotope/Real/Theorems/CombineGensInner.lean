@@ -16,10 +16,10 @@ new generator becomes `β` on `gᵢ` and `±β` on `gⱼ`; the others carry over
       6:1555-1560, 2022.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

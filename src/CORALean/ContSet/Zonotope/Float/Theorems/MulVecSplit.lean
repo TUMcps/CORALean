@@ -8,10 +8,10 @@ import CORALean.ContSet.Zonotope.Float.Zonotope
 split `mtimesIntervalMat` is built on, for a zonotope and a constrained zonotope alike.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       24-September-2026
 -- Last update:   08-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

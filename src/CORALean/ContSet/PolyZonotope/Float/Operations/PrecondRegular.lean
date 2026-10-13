@@ -10,10 +10,10 @@ MATLAB's `inv`; the test it feeds proves a pre-image of `C y` only, so a singula
 nothing about `y`, and this check is what replaces the trust in `inv`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

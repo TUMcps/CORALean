@@ -23,10 +23,10 @@ Cartesian product with the other half's set, which is how a product of sets is
 taken inside one `Vec` rather than in a pair type.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   13-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

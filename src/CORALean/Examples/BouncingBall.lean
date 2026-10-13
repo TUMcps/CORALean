@@ -27,10 +27,10 @@ a zonotope, which is what `R` has to be, and `bounceCut` the guard intersection
 `jump_outer` asks for — both proved against their halfspace counterparts here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

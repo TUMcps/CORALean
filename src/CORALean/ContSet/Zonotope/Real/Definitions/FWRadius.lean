@@ -15,10 +15,10 @@ ignores the centre. At `W = I` it is the F-radius of Combastel's zonotopic Kalma
       zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

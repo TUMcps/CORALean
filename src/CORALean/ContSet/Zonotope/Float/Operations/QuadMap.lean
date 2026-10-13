@@ -12,10 +12,10 @@ read back as a zonotope. The factors of a zonotope are free in `[-1, 1]`, so the
 `αᵢαⱼ` are enclosed rather than tracked, which is why the result is an outer enclosure.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

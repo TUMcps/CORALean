@@ -7,10 +7,10 @@ A real `x` between `lo` and `hi` is within `max 0 (max (hi ⊖ c) (c ⊖ lo))`, 
 the centre `c`: the radius every Taylor remainder bound of `Taylm` starts from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

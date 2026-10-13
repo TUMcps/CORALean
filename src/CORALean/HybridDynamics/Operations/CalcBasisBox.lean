@@ -11,10 +11,10 @@ case (a Gram-Schmidt basis of the flow direction) are not modelled, and `calcBas
 basis per entry of `options.enclose`, of which this is the `'box'` entry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

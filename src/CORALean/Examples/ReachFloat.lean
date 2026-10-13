@@ -37,10 +37,10 @@ operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family. Those
 have their own `reachFloat` (`LinearSys`, `NonlinearSys`, ...), not read off here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,10 +20,10 @@ so: the point being made is that the *layer* half is met at a real activation,
 `Layer.activationPolySigmoid_convergent` being the part with content.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

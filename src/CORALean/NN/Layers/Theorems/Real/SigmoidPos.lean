@@ -7,10 +7,10 @@ import Mathlib.Tactic.Positivity
 A reciprocal of `1 + e⁻ᵗ`, which is positive.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

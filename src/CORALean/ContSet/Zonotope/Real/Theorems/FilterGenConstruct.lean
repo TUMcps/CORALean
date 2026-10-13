@@ -7,10 +7,10 @@ If every generator the predicate drops is the zero vector, `Zonotope.filterGen` 
 set. Exact: a zero generator contributes `β • 0 = 0` whatever its coefficient.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

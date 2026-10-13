@@ -21,10 +21,10 @@ exact set, so nothing compounds: [1, Prop. 1], `LinearSysDT.glmReachBox_eq_hull`
       Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

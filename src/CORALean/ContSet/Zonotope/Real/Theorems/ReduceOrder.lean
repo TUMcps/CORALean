@@ -9,10 +9,10 @@ One line, because `reduce` is Girard's rule under another name, as
 needs nothing about which rule `reduce` runs, only that some bound holds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

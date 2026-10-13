@@ -10,10 +10,10 @@ the floats the caller supplies (a sub-box's `(lo + hi)/2` and `(hi - lo)/2` are 
 scalar); the expansion substitutes one variable after another, in order.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

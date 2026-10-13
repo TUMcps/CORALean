@@ -11,10 +11,10 @@ through two ellipsoids, vertex enumeration for the polytopes, a Grothendieck SDP
 zonotope) and the tolerance are not formalized.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

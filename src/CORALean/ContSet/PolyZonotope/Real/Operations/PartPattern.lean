@@ -7,10 +7,10 @@ The exponent pattern of a dependent generator in the factors `V` (`E(ind_v, :)` 
 the rows outside `V` zeroed. `partZonotope` groups generators by it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

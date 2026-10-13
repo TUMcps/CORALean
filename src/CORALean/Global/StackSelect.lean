@@ -10,10 +10,10 @@ CORA's `[eye(nx) zeros(nx, ny)]` and `[zeros(ny, nx) eye(ny)]` of `computeGO_k`:
 matrices that pick the first `nx` and the last `ny` entries of a stacked vector `L = [L_x; L_y]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

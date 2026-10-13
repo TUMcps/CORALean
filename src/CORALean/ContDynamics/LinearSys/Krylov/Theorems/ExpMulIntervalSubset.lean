@@ -21,10 +21,10 @@ proved: `|Aⁱ| ≤ |A|ⁱ` term by term.
   Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

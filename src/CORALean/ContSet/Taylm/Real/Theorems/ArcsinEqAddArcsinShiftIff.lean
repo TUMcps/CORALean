@@ -15,10 +15,10 @@ reason the printed one is not enough (`ArcsinShiftCounterexample`).
       Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

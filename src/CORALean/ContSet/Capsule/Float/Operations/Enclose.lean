@@ -10,10 +10,10 @@ CORA's `@capsule/enclose.m` with a matrix, as the exact layer reads it: `C2 = M 
 the `Plus`, `Mtimes` and `LinComb` instances of this class now give at float too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

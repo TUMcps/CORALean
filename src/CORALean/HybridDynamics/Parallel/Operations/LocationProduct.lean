@@ -11,10 +11,10 @@ flow, merged, as a `Location` of the single automaton. Built on the fly for one 
 does, so no product over all tuples is formed unless `product` asks for it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

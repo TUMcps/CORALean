@@ -10,10 +10,10 @@ to say the origin is still inside; `Instances.lean`'s docstring says why that
 keeps `Recentre` itself unavailable.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

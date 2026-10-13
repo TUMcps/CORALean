@@ -28,10 +28,10 @@ its generators, and `μ ⊕ E(t_i) ⊆ R(t_i)` for any factors of `E` in `[-1,1]
       Hybrid Systems, vol. 53, 2024, 101491.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ are the one-based inclusive pairs of the same runs, and its one-block shortcut `
 the identity projection, which this gives too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

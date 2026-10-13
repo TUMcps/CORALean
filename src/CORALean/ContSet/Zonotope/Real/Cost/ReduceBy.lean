@@ -11,10 +11,10 @@ over the `r` absorbed generators. The `n * (n - 1)` off-diagonal zeros are
 written, not computed, so `q` and the block's own width do not enter.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

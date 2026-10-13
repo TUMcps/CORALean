@@ -10,10 +10,10 @@ independent generator (`n` products), `ξ_E` itself evaluated twice as written,
 and the two generators added (`n`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

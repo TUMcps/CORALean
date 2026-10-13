@@ -15,10 +15,10 @@ checked to lie in it (`Zonotope.deviation`, rounded upward). No exact solve `G Î
 needed; the box absorbs the rounding. Sufficient only: `true` proves membership.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

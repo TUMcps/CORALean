@@ -29,10 +29,10 @@ section. It needs `γ` on the walk's side of the lowest corner, `0 ≤ σ (γ - 
       Springer, 2008, pp. 215-228.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

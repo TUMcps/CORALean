@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Real.Operations.TermBounds
 The term ranges summed: CORA's `interval` with `opt_method = 'int'`, outer and no tighter.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

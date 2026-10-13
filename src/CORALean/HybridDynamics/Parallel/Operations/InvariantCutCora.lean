@@ -16,10 +16,10 @@ is `invariantCutDocumented`. The two differ (`Theorems.InvariantCutCoraCounterex
 Neither is made by `mergeInvariants` here, which does not cut (#40).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

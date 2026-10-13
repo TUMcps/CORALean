@@ -8,10 +8,10 @@ the box, rounded down. `(lo - λ)(u - l)` is a non-positive factor times a non-n
 the *widest* second factor makes it smallest, which is why the width rounds up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

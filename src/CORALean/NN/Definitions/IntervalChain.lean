@@ -15,10 +15,10 @@ images of `l` and `u` being its bounds). A chain of those two is `IntervalChain`
 carries its function and its derivative as data, `σ'` being what CORA's `df` is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

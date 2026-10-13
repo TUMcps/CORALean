@@ -12,10 +12,10 @@ either the shifted upper end reaches `0`, a maximum of the cosine, and the value
 `(-2π, 0)`, where the cosine falls and then rises, so the maximum is at an end.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

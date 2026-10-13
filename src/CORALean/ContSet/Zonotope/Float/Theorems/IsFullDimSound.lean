@@ -12,10 +12,10 @@ the centre is an interior point. Adding the error box's lower corner, a member o
 box, keeps an interior point (`subset_interior_add_left`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

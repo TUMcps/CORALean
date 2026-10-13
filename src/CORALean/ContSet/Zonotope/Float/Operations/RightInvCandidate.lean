@@ -9,10 +9,10 @@ formed with upward roundings and inverted by `Zonotope.basisInverse`. It is not 
 rounding that spoils the inverse costs the `true` and nothing else.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

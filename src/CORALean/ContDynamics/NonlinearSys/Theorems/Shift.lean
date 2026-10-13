@@ -21,10 +21,10 @@ is what the previous step enclosed, so the caller already has the set and the
 proof, and asking for them is what makes this compose.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

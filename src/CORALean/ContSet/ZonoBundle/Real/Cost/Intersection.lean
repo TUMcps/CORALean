@@ -14,10 +14,10 @@ paid later and elsewhere, in the `k₁ + k₂` members every subsequent operatio
 then runs over, which is exactly what `plusCost` and `mtimesCost` charge for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

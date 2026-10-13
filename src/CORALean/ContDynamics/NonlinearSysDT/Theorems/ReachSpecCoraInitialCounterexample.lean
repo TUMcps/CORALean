@@ -9,10 +9,10 @@ state `0` is unsafe, yet `res = true` (the later sets `{1}` are safe). No other 
 `R0` first: `reach` is the entry point and `check` is called only at l. 87.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

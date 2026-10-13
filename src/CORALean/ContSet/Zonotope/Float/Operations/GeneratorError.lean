@@ -9,10 +9,10 @@ What generators known only to within `G` entrywise cost: coefficients range over
 `Interval.residual`, and the box every operation that rounds `G` pays into.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

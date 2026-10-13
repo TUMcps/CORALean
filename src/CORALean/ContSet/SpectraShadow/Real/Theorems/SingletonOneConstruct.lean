@@ -7,10 +7,10 @@ The inequality `diag(1 - β, β - 1) ⪰ 0` has the diagonal entries `1 - β` an
 only at `β = 1`, and then it is the zero matrix: the set is the point `{1}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

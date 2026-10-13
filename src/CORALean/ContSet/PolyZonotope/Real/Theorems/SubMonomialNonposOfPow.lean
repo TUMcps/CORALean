@@ -21,10 +21,10 @@ the half of `[1, Thm. 1]`'s halving that the exponent matrix decides.
       Its Applications in Formal Neural Network Verification". AAAI, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

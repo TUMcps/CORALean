@@ -9,10 +9,10 @@ The bias row stacked at every node, read at the reals the stored floats denote, 
 `biasPoint`: it has no generators, so its centre is a member.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ nothing rounds and the set is the input's moved by exactly its stored centre,
 widened by the box's hull with `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

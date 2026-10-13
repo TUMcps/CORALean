@@ -15,10 +15,10 @@ of the set it starts at: an enclosure composes with an enclosure.
       Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

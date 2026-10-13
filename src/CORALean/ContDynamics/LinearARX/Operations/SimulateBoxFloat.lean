@@ -11,10 +11,10 @@ step adds `feedBox`. The boxes enclose the stacked window of the real run
 (`simulate_mem_simulateBox`, ruling R-SIM).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

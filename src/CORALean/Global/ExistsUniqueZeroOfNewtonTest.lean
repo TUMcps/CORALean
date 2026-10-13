@@ -22,10 +22,10 @@ below `1` makes `R J` injective (`mulVec_injective_of_residual`), hence `R` inve
 second zero `z'` would give `R J (z - z') = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

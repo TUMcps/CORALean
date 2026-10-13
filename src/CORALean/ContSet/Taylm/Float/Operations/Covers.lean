@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Operations.InBox
 Every point of the box `X` lies in one of the boxes `l`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

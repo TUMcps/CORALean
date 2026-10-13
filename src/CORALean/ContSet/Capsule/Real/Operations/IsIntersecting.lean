@@ -10,10 +10,10 @@ at tolerance `0`). The emptiness test CORA runs first never sees a negative radi
 hyperplane and generic operand types are not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

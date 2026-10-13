@@ -9,10 +9,10 @@ the second leg loses nothing, so all the loss is the ellipsoid's own zonotope
 step. A direct constrained enclosure is a separate piece of mathematics.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

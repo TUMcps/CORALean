@@ -11,10 +11,10 @@ Starting from an accumulator, the loop's network computes what the remaining net
 the accumulated map, exactly: the induction on the layers, one case per layer type.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

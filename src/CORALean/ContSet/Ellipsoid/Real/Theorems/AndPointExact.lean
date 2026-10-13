@@ -7,10 +7,10 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
 denotation of `Ellipsoid.andPoint` equals the intersection, an equality and not an enclosure.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

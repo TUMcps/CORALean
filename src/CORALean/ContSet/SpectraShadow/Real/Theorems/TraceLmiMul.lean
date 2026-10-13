@@ -7,10 +7,10 @@ The trace of the inequality's matrix against `Y` splits into one trace per coeff
 the other half of weak duality for `SpectraShadow`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

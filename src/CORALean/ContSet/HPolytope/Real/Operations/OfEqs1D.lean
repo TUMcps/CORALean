@@ -10,7 +10,7 @@ The polytope `{x ∈ ℝ¹ | Ae i * x = be i for all i}`, no inequality rows: th
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

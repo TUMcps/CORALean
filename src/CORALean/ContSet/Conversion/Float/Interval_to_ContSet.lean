@@ -23,10 +23,10 @@ An exact representation is one at `𝕋 := ℝ`, through its own class, as in
 `ContSet_to_Interval`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

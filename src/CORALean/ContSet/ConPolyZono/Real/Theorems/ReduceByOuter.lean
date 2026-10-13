@@ -24,10 +24,10 @@ the dependent half of `|D|` â€” which is why the two halves may share one box â€
 and `Zonotope.coefficient` handles the rescaling, degenerate `R = 0` included.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

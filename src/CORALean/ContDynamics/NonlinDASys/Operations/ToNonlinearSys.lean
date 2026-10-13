@@ -7,10 +7,10 @@ import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 `ẋ = f(x, h(x,u), u)`: the algebraic variable eliminated through the reduced model.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

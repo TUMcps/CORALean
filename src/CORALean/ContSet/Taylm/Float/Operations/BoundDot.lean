@@ -14,10 +14,10 @@ direction is a float vector `a` and `hc` says the functional `c` reads it, as fo
 `Interval.boundDot`. An upper bound only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

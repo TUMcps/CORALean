@@ -9,10 +9,10 @@ Each shadow lies in its absorbed nominal shadow (`construct_subset_absorb`), and
 contains the intersection of the two nominal shadows (`tieInter_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

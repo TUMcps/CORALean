@@ -27,10 +27,10 @@ outputs `c_tilde` and `d_tilde`, which CORA documents as `?`, are not defined he
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

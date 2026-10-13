@@ -13,10 +13,10 @@ the generators `t j` off a coefficient vector of the zonotope `cubMap`; the cons
 of the old factors, pulled back along it, is the constraint of the result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

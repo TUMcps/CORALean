@@ -7,10 +7,10 @@ import CORALean.ContSet.Polygon.Real.Theorems.MtimesExact
 `mtimes_exact` at the diagonal matrix: the image of the polygon under `x ↦ (v i * x i)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

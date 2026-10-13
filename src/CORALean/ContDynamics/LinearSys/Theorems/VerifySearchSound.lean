@@ -16,10 +16,10 @@ enough for `Alg. 1` when `‖tA‖ < η + 2`. Not claimed: that the loop ever re
       Functions". HSCC, 2023, Article 5.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

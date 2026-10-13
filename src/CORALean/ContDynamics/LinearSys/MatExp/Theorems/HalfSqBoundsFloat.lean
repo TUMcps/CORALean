@@ -7,10 +7,10 @@ import CORALean.Global.Float.SoundFloatArithmetic
 `mulDown`/`mulUp` of `t` with itself bracket `t * t`, and `half` is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

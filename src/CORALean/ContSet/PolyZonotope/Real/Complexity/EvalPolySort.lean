@@ -17,10 +17,10 @@ has `(h₁ + 1)(h₂ + 1)`. So `PZ^(k+1)` has at most `(h + 2)^(k+1) - 1`, and t
       Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

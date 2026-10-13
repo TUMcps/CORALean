@@ -12,10 +12,10 @@ over one factor set, and two sets over independent factors reach it by each
 padding for the other's — this one for the set whose factors come first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

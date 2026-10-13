@@ -6,10 +6,10 @@ import CORALean.Global.Float.Instances.Dyadic.Dyadic
 Exact: flips the mantissa's sign and leaves the exponent alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   02-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

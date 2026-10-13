@@ -31,10 +31,10 @@ and `RecentreSubMem` carry the nonemptiness this class refuses to ask for.
 max of the lower bounds and the pointwise min of the upper ones.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

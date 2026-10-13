@@ -13,10 +13,10 @@ box with no error. The roots are `normUp` (`Global/Float/Sqrt`, `k` Newton steps
 `addUp`, so the radius is rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ domain is closed because its constraint rows are continuous in the factors, and
 the map onto the set is continuous for the same reason.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

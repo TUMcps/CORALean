@@ -10,10 +10,10 @@ Enclosures of the `k`-th Taylor coefficients of `sin` and of `cos` at `c`,
 `k + 1` between its two roundings. `p` is the number of halvings of the sine and cosine.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

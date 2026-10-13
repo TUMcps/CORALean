@@ -10,10 +10,10 @@ the matrix `M a`, with `det ≥ 0` there: the image's volume is at most `∫ det
 if the map is injective on the cube.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

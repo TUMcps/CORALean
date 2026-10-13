@@ -14,10 +14,10 @@ exponential lies in its float enclosure by `exp_mem_expMatZonoEnclosure`. `hε` 
 theorem's side condition, a float comparison a caller can check before running.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

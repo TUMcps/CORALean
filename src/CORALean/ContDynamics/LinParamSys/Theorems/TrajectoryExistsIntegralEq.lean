@@ -15,10 +15,10 @@ entries are bounded, hence integrable; and the flow, an integral, does not see
 the null set where the two differ, nor the endpoint where the input may not vanish.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

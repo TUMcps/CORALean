@@ -11,10 +11,10 @@ centre differs. `hε` asks `1/2`, as there, since `expRemainderBound_le`'s geome
 the fixed constant `2`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

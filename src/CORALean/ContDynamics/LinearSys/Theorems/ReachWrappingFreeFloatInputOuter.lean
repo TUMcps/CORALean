@@ -25,10 +25,10 @@ carries, plus a point of `P̃(t_k) ⊕ P^R(t_k)`, which the accumulation holds b
 induction on `k`, from `{0}` at `t_0 = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

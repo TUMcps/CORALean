@@ -17,10 +17,10 @@ printed formula has no inverse to take. The paper's grid starts at `w = ⌈(v - 
       Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

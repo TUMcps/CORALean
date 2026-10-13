@@ -30,10 +30,10 @@ a value in `[0,1]` and the theorem simply does not apply.
       Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

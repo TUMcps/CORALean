@@ -9,10 +9,10 @@ CORA takes `volume(polytope(zB))`: the bundle's polytope has the bundle's volume
 (`exists_hPolytope`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ can be chosen on their own. An equality, not an enclosure, as `IntervalStackProd
 `HPolytopeStackProdExact` are for the other two stacked sets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

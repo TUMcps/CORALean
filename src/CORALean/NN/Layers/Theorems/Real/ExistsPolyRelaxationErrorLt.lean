@@ -19,10 +19,10 @@ because `polyDerivRadius` is monotone in the box, so one sample count serves eve
       Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

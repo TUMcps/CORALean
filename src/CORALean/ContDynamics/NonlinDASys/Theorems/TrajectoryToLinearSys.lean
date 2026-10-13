@@ -28,10 +28,10 @@ the fact on a set computed under the assumption it checks.
       Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

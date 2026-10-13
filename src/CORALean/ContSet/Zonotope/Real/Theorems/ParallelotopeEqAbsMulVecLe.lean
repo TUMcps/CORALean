@@ -17,10 +17,10 @@ with rows `zᵢ`, which is the reading the rest of the reduction needs: its pola
       Problem". European Journal of Control, 62:84-91, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

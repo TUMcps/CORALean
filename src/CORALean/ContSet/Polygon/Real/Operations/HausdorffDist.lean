@@ -14,10 +14,10 @@ boundary loops (R-PG) and is not defined here. The value is the largest distance
 to the polygon, one direction of the Hausdorff distance, not both (FINDINGS.md).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

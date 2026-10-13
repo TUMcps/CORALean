@@ -14,10 +14,10 @@ the resolved reset (read from the source, not run).
 The example: two components with one state, input and output each, the reset `x'_i = u_i`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

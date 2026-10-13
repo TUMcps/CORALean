@@ -12,10 +12,10 @@ to that product outright, which `m ^ 2` dominates for every `m`, so the bound
 needs no filter condition beyond what `IsBigO.of_bound` always asks for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

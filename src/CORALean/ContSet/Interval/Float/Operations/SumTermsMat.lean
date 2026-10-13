@@ -12,10 +12,10 @@ partial sum materialised: the series of [1] summed as their loops add their term
 * [1] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`, `aux_constantFlow`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

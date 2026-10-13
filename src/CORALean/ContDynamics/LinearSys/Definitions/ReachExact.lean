@@ -16,10 +16,10 @@ room for. `reach_outer` and `reachWrappingFree_outer` put it inside `reach` and
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

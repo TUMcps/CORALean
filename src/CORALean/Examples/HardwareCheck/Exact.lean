@@ -10,10 +10,10 @@ read off the soft-float's own round-down and round-up. `stepBits` is `stepUp`'s 
 step out from the nearest float, NaN out of range", written on bit patterns independently of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

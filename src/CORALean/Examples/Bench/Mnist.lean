@@ -28,10 +28,10 @@ range, an image any layer of which stores a value past it is `overflow` and not
 certified, and `summary.overflowed_images` counts them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -26,10 +26,10 @@ It misses the error (`GuardMap.abstractionErrorCora_counterexample`).
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

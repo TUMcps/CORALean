@@ -6,10 +6,10 @@ import CORALean.ContSet.Polygon.Float.Polygon
 Every pair of pieces summed by the float polytope's own `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

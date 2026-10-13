@@ -8,10 +8,10 @@ Exactly, for the region: a finite union of closed sets has an interior point iff
 (a closed set with empty interior can be dropped from a union without changing its interior).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ two). The mixed form read at an appended pair is `x₁ᵀ Q x₂`, so the image 
 float one. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

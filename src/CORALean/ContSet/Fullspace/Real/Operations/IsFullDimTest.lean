@@ -8,10 +8,10 @@ whole space is itself. Holds no scalar and computes nothing numeric; `Fullspace.
 says it is the interior being nonempty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

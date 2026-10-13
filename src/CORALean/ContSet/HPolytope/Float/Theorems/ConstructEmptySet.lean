@@ -7,10 +7,10 @@ import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 The one row reads `0 ≤ -1`, which no point satisfies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

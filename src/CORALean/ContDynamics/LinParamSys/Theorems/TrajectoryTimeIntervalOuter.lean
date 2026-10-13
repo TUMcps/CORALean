@@ -23,10 +23,10 @@ gives, sound at every `Â` at once and with an input, which that one is not.
 bounding `‖A s - Â‖` uniformly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   02-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

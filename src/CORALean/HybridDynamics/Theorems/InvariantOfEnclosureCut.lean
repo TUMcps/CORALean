@@ -23,10 +23,10 @@ else, and `Examples.BouncingBall` runs it at a zonotope state with halfspace
 guards, `hflow` reading the invariant across the two (#39).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ point of it, so it is outside, however small `δ > 0`. The first half circle has
 the capsule's whole boundary, or that their hull is the capsule; the hull lies inside it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

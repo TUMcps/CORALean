@@ -10,10 +10,10 @@ the function's value at every box point. Outer, not exact: each member is only a
 the Taylor model's is the interval-arithmetic bound `Taylm.bounds`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ definition it replaces: `@[csimp]` reaches only the call sites compiled after
 it, so a use above the attribute would keep the recursion and its cost.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

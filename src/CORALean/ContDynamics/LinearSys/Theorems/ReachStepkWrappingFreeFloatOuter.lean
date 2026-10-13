@@ -12,10 +12,10 @@ of squarings `squaringsFloat_spec` certifies, and `Mtimes.mtimes_outer` carries
 every point of `R(τ_0)` through it. No sign is asked of `Δt`; `2 ≤ η` is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

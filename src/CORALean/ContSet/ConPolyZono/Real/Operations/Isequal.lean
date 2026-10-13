@@ -10,10 +10,10 @@ are compared as zonotopes. Here the tolerance is `0` and the data are compared a
 order, with no compaction, alignment or row sign flips, so the test is sound, not exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

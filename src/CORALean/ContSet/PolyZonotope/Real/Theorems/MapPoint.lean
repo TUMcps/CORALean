@@ -15,10 +15,10 @@ never reaches the independent block. `bilin_point` sits beside `bilin_exact` for
 the same reason, and the two compose only if `map` has both as well.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

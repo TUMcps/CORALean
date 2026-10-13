@@ -9,10 +9,10 @@ representation this contains CORA's hull; it is an enclosure, not an equality, f
 representation whose `linComb` is coarser than the hull.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

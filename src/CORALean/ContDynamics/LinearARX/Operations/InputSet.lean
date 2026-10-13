@@ -8,10 +8,10 @@ from the same `U` but the sum treats the `p+1` draws as independent, which
 encloses every ARX input and is where the conversion is looser than the ARX form.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

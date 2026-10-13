@@ -4,10 +4,10 @@ import CORALean.ContSet.Capsule.Float.Operations.BoundDot
 # `Capsule.boundDot` bounds the capsule, in float too
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

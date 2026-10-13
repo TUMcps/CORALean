@@ -8,10 +8,10 @@ Its own function, on every input set, with no hypothesis: `sound_eval` read thro
 `Sound.image_subset`. This is the guarantee a network gives as an `Enclose` kind.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

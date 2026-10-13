@@ -12,10 +12,10 @@ the products keep the order; the real side is read at the nominal zonotope, whos
 `absBound` the float coordinate reaches cover.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

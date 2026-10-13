@@ -13,10 +13,10 @@ set, handed to `discretizeEnclosureFloat_mem_reach_horizon` for `N` steps. The
 control period is `N` times the real time `toReal Δt` the float step denotes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

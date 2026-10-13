@@ -9,10 +9,10 @@ float hull sits at or over the real one taken at the same four corners.
 Public rather than `aux_`, for the reason `MulLoLe` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

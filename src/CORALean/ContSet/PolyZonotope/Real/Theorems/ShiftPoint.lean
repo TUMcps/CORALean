@@ -8,10 +8,10 @@ The centre is the first summand of `point`, so the translation comes straight
 back out; `add_right_comm` is the whole argument.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

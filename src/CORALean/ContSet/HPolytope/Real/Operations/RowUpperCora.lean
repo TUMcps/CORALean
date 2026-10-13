@@ -13,7 +13,7 @@ This is the value the row proposes for `ub(j)`, tolerance `0`. Read from the sou
 -- Authors:       Claude Sonnet 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

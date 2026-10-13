@@ -10,10 +10,10 @@ as at `bilin`; and the independent block is empty, `mul` being a claim about
 `point`. `rfl` against the structure instance in `Operations/Mul.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

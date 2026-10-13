@@ -9,10 +9,10 @@ the real `probReduce` is the identity on it (`probReduce_eq`), so this is the id
 mean zonotope and the covariance interval are kept.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

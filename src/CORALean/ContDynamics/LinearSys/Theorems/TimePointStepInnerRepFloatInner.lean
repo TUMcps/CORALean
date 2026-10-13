@@ -34,10 +34,10 @@ Only inclusions towards the exact set are chained. The budget is nonempty
 because the float step is (its error box brackets `0`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

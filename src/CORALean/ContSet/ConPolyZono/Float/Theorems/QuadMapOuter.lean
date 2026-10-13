@@ -28,10 +28,10 @@ meets the padded constraints. The quadratic image of that point is the exact lay
 generator's rounding against a monomial, inside the error box. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

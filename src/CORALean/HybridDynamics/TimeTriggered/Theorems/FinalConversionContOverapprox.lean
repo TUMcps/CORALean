@@ -32,10 +32,10 @@ f₂-orbit, is run in `m_either` (and `m₂`), within `t₂` as `τ < t₁ + t�
       Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ to prove reduces to a property of *that* network, so `encloseAt`'s soundness
 is a corollary of `NeuralNetwork.Sound.enclose_outer` rather than a new induction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

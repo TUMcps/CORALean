@@ -8,10 +8,10 @@ lifted, which is `Lifting.inv` of the tuple. CORA also cuts a component's invari
 complement of its guards, for the labels it merges; no label is merged here (#40).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

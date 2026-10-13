@@ -12,10 +12,10 @@ directions contain the facet normals), which is not proved. The region identity 
 the conversion of a piece intersection back to vertices, is `Polygon.and_region`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

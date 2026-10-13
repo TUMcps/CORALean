@@ -10,10 +10,10 @@ too, and converts it exactly to a rational: a number that is not binary stays a 
 and `ExactDyadic` is where one is refused.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

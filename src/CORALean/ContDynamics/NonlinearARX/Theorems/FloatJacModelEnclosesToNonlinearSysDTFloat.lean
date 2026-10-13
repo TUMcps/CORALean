@@ -14,10 +14,10 @@ first block rows and `f_ARX`'s Jacobian, reindexed newest first, in the last (th
 through the reindexing, which is its own inverse).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

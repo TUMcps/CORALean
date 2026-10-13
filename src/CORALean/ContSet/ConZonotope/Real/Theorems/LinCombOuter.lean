@@ -13,10 +13,10 @@ generator. Every row of a scaled constraint is then its unscaled row times a
 nonnegative weight, which is the whole argument.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

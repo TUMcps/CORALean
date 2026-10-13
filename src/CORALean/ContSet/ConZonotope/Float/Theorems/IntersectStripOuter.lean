@@ -21,10 +21,10 @@ so `x` is that plus `e - Λ C e`, plus the rounding of the new centre and genera
 gain `Λ`; outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

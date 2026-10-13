@@ -25,10 +25,10 @@ per-neuron sets [1, Alg. 1] pairs have no independent block at all.
       Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Polygon.Real.Polygon
 `overlaps(pgon.set, S.set)`, here: the regions of the two polyshapes share a point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

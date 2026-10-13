@@ -10,10 +10,10 @@ reuses `a_ij` across every `(k, l)` and `b_kl` across every `(i, j)`, so the res
 matrices that are no Kronecker product of members.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

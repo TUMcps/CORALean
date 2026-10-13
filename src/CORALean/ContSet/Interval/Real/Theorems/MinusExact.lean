@@ -16,10 +16,10 @@ the definition. `minus_outer` is the half that needs no such hypothesis.
       Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

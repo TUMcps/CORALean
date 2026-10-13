@@ -18,10 +18,10 @@ here the constraint is vector-valued, as [1, Prop. 2] produces it.
       Control (CDC), pp. 2130-2137, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

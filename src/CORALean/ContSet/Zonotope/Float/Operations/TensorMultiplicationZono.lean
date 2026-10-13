@@ -11,10 +11,10 @@ caller passes the stored tensors). The result is `tensorMultiplication(Z, M.cent
 loop over the generators, `tensorMultiplication(Z, M.generator{i})` with Minkowski sums.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

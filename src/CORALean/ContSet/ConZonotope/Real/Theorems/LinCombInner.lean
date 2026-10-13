@@ -19,10 +19,10 @@ first has a point to run from. `linComb_outer` needs neither hypothesis, so the
 `LinComb` instance is unaffected.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

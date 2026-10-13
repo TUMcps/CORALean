@@ -10,10 +10,10 @@ the exact fold `Real.batchNorm_sound` proves the layer against. A network read i
 in floats, and verifies the network its folded numbers describe.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

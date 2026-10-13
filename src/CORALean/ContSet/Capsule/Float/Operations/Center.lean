@@ -6,10 +6,10 @@ import CORALean.ContSet.Capsule.Float.Capsule
 CORA returns the field `c`; so does this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

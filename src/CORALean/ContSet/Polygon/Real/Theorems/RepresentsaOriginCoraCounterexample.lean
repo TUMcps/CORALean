@@ -14,7 +14,7 @@ unsound. Read from the source, not run. The same file answers `'emptySet'` by
 -- Authors:       Claude Sonnet 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

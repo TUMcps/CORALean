@@ -10,10 +10,10 @@ Only the steps inside the horizon are enclosed, which is exactly what
 `stepInput_outer` gives from a domain covering them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

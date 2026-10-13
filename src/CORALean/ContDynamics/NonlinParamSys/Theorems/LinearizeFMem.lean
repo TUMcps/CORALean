@@ -11,10 +11,10 @@ affine map, a zonotope, so `zf` is not only an enclosure of it; the statement is
 Without `hAff` it fails (`linearize_f_counterexample`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

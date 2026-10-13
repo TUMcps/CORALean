@@ -15,10 +15,10 @@ set being mapped by `e^{A t_{k+1}}`, known to an interval `Ψ`, so the set must 
 `Ẑ_W(τ_k)` is widened by it before line 11 erodes by it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ generator radius it returns the target exactly. At `R = 0` the hypothesis pins
 `D` to zero, which is what keeps the degenerate branch honest.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

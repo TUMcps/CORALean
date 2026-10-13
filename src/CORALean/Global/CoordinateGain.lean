@@ -20,10 +20,10 @@ which is what makes the parametrization of `Thm. 3`'s fixed-point argument conti
       Letters, 4(4):928-933, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

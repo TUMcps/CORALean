@@ -9,10 +9,10 @@ The converse to `mem_ofPoint`: no generator leaves no coefficient to spend, so
 same unfolding `mem_ofPoint` needs a `show` for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

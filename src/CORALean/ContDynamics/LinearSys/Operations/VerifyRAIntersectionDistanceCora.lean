@@ -10,10 +10,10 @@ the interval hull of the intersection. Here in `ℝ¹`, where the interval hull 
 `[inf S, sup S]` and `rad` its half-width.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

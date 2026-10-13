@@ -8,10 +8,10 @@ The checked rows reach every vector within `B` of the centre with coefficients o
 `δ = 1` (`Zonotope.ballCert_reach`), which is the unit cube of the nominal zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

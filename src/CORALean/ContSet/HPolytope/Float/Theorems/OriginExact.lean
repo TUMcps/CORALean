@@ -7,10 +7,10 @@ import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 The stored identity reads as ℝ's, so the equality rows pin every coordinate to `[0, 0]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

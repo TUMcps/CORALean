@@ -8,10 +8,10 @@ the constraints only shrink the coefficient set, so the bound would be the same
 one, and there is nothing to gain from proving it twice.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

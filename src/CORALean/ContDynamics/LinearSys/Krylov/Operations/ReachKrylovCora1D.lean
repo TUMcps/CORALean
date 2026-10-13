@@ -23,10 +23,10 @@ None of these files reads `c`, `D`, `k`, `E`, `F`, `W` or `V`, so the model has 
       `priv_inputSolution_Krylov.m`, `priv_exponential_Krylov_projected_linSysInput.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

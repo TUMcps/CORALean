@@ -19,10 +19,10 @@ Alg. 2's line 26 takes `[e^{At_{k+1}}] X₀ ⊕ P^u(t_{k+1})`, which is tighter.
       Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ At the reals the stored entries denote, the matrix times the stacked node featur
 `H W`: the entries are those of `W` and the exact zero, so nothing is lost.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

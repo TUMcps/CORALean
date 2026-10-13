@@ -8,10 +8,10 @@ import Mathlib.Algebra.BigOperators.Pi
 `(c + ∑ βⱼ gⱼ)_k = c_k + ∑ βⱼ g_{j,k}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

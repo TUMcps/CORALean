@@ -15,10 +15,10 @@ mapping by `E` and `F`, which this applies, as `isconform_dyn` does.
 * [1] `contDynamics/@linearSysDT/private/priv_conform_reachableHalfspaces.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

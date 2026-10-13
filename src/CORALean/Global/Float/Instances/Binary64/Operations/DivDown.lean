@@ -9,10 +9,10 @@ and why `Theorems` needs the same hypothesis on the divisor that `div_le_divUp`
 carries and no more.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       22-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

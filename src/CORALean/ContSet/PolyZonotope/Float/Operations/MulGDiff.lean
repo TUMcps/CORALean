@@ -8,10 +8,10 @@ Split out of `Mul.lean` (issue #62): read again by `Theorems/EvalPolyOuter.lean`
 `Theorems/MulGClose.lean` and `Theorems/MulOuter.lean`, all outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

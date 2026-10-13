@@ -12,10 +12,10 @@ zonotope: centre zero, and one generator per entry carrying `b` there and nothin
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

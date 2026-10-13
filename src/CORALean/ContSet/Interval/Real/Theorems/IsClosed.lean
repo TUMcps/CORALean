@@ -9,10 +9,10 @@ preimage of a closed ray under an evaluation map. Holds for any bounds: the
 degenerate `sup i < inf i` denotes `∅`, which is closed too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ import Mathlib.Order.BourbakiWitt
 Nothing is rounded, so the stored box reads as exactly the exact layer's `or` of the readings.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

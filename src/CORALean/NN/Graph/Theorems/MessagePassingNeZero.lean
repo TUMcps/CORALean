@@ -9,10 +9,10 @@ nonnegative, but nothing here even needs that) never turns a zero numerator
 nonzero. Off the diagonal `(1 : Mat ℝ N N) i j = 0`, so the numerator is `A i j`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

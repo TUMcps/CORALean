@@ -10,10 +10,10 @@ what `orderIsoOfFin` answers. `orderEmbOfFin_unique` is the only strictly
 increasing enumeration of a finset, and a filtered `finRange` is one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ generator through `M *ᵥ ·` (two `Cost.matVec m n`) and scales the radius (one
 product): `6 * m * n + 2`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

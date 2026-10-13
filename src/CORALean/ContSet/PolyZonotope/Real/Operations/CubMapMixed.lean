@@ -15,10 +15,10 @@ identifier, so two arguments built on a common factor stay tied in CORA; the pro
 them vary independently, which is what the set in the header is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

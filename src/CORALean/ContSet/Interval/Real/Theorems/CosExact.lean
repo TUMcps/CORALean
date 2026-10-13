@@ -8,10 +8,10 @@ Coordinate by coordinate, `Interval.image_cos_Icc`. A crossed coordinate (`ub < 
 a nonempty box for an empty one, so the statement is for a nonempty box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

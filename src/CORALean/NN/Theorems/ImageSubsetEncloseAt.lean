@@ -12,10 +12,10 @@ each of the refinement rules a place too.
 The set-level reading of `encloseAt_outer`: the image of every point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

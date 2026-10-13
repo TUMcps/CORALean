@@ -16,10 +16,10 @@ invariant is cut with where the set it cuts has no `Intersection` instance of
 its own, the float zonotope being one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

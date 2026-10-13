@@ -24,7 +24,7 @@ The gain of strip `i` is column `i` of `Λ Z`, `Z` the set it meets. A gain fixe
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

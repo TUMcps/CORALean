@@ -31,10 +31,10 @@ and what is past `η` (`norm_exp_sub_expTaylor_le`, `norm_expIntegral_sub_taylor
 `hε` is CORA's convergence condition `‖A r‖_∞/(η + 2) < 1`, at the box of `A r`; `η = m + 2`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
 Entry by entry, `abs_le` against `[-b, b]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

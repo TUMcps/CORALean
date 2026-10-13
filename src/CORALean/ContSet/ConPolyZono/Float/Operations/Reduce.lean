@@ -20,10 +20,10 @@ of this operation is: it pays into the error box and into `b` both, and running
 it is what makes the order bound count distinct monomials.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

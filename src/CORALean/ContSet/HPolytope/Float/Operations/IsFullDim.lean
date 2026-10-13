@@ -10,10 +10,10 @@ by `ltStrict`, and every equality row strictly inside its interval, `be.inf < Ae
 rounded each way. `true` proves an interior point; `false` refutes nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

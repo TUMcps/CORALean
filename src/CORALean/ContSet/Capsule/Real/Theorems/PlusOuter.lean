@@ -11,10 +11,10 @@ generator, say `g₁`, it is `(c₁ + c₂) + t₁ g₁` plus `b₁ + b₂ + t�
 strict in general.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

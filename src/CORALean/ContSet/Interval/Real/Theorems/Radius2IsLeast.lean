@@ -11,10 +11,10 @@ centre holds the box. It is the Euclidean ball about `center`; a ball about anot
 smaller still. Nonemptiness is needed, as a crossed box has no corner to reach it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

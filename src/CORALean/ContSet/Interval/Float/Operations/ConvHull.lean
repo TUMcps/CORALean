@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.Or
 CORA's `convHull_` ends in `I | S`, so it is `or`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

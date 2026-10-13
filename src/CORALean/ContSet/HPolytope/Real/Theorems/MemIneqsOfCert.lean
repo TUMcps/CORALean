@@ -17,10 +17,10 @@ The step every encoding in `[1]` rests on, `[1, Thm. 1, Eq. 17]`: nonnegative we
       arXiv:1903.05214.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

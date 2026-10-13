@@ -18,10 +18,10 @@ and the exact `halve`, with `|W|` read as the exact `absolute` of the float entr
 activation's `[σ l, σ u]` by the stored scalar enclosure.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

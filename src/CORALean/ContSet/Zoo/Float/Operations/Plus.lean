@@ -9,10 +9,10 @@ Members combined as in the exact layer: the float Taylor models by `Taylm.plus`,
 `Interval.plus`, kept where both zoos have them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

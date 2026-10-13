@@ -28,10 +28,10 @@ other sets first. `true` is only returned where the error box holds `0`.
       Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

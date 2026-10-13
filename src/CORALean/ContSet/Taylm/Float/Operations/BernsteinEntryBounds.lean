@@ -8,10 +8,10 @@ import CORALean.Global.Float.ListSum
 `bernsteinStep` brackets, the lower ends summed down and the upper ends summed up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

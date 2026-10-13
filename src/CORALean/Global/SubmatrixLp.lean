@@ -21,10 +21,10 @@ in soundness, `μ > 0` does: the printed (16) has `+μ` where (15) has `-μ` and
       Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContSet.Taylm.Float.Theorems.HyperbolicOuter
 hypothesis at the magnitude of the model, as `Taylm.exp_outer` keeps it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

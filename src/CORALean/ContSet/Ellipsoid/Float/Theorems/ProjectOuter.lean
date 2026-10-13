@@ -13,10 +13,10 @@ product, which is `aux_nominal_project`; after it `project_exact` gives the nomi
 as an equality, and the box is `Interval.project_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

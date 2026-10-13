@@ -12,10 +12,10 @@ itself, which `Trajectory` accepts as it accepts any other, as
 horizon with are how it encloses this set, not part of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

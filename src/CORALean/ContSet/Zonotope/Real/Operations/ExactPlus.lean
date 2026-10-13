@@ -11,10 +11,10 @@ generator moves `Z₂`'s too, and the dependency survives. The result is a subse
 smaller one whenever `m > 0`. CORA's optional third argument is `k`; leaving it out is `k = ∞`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

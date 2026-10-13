@@ -9,10 +9,10 @@ the invariant at the location the run ends in: a `true`, found by evaluation, is
 specification on the state it ends at, with nothing left to prove by hand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

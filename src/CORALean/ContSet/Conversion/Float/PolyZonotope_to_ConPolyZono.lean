@@ -9,10 +9,10 @@ Nothing rounds, and nothing is computed: no constraint rows, so the system is
 vacuous, and every other field is carried across.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

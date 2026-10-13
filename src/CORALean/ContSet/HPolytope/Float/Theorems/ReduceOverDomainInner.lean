@@ -12,10 +12,10 @@ from above, so it stays under the lower end of the scaled right-hand sides, whic
 as over ℝ, for a polytope without equality rows.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

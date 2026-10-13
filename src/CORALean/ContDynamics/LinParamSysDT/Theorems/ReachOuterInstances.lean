@@ -15,10 +15,10 @@ and `VPolytope.Real.Instances`; `Mat ℝ` needs no family notation, being alread
 built on a zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean
 

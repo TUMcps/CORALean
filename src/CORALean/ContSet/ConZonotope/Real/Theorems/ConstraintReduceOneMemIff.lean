@@ -14,10 +14,10 @@ and `Z̃` is the zonotope `{G − Λ_G A, c + Λ_G b}`.
       2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ A map `f` that is injective only renames: every factor vector `a` of the origina
 `a' ∘ f` of the extension of `a` by `0` off the range of `f`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

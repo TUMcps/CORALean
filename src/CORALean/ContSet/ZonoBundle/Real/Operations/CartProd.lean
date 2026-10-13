@@ -10,10 +10,10 @@ S.Z{j},'exact')`, with `i` the outer and `j` the inner loop, which is the flatte
 `finProdFinEquiv` of the index pair.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ A single neuron cannot show a miss: for a monotone `f` the band is exact at both
 interval. The shared generator is what makes the error of one neuron visible.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

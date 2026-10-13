@@ -7,10 +7,10 @@ Split out of `Compact.lean` (issue #62): read again by `mergedColUp` in this
 directory and by `Theorems/LeFiberUp.lean`, both outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

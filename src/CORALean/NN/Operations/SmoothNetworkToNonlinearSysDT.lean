@@ -10,10 +10,10 @@ CORA wraps the output function as
 system is the identity update on `n` states with `SmoothNetwork.nu` inputs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

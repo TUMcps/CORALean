@@ -10,10 +10,10 @@ Above the order it is the zonotope's `reduce` composed with forgetting the
 constraints, both enclosures; at or below it, the identity.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ false axiom of `NearestUnsound/Axioms.lean`: only files under `Examples/Bench/` 
 the sound `oracle` must never reach it. Every dtype of the sound oracle is served here too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

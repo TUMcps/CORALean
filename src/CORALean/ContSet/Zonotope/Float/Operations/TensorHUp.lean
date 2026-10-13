@@ -9,10 +9,10 @@ import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
 `Zonotope.tensorHDown` rounded up, for the gap that the box is charged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

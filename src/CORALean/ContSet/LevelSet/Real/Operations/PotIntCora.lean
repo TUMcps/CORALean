@@ -11,10 +11,10 @@ index pairs, 0-based. Not modelled: the skip of transitions into `finalLoc`, and
 that swaps a lone hyperplane hit for the next time-point set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

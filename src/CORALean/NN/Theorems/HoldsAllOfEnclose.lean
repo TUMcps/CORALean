@@ -8,10 +8,10 @@ import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
 the enclosed set holds of the network's own image, with no hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       24-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

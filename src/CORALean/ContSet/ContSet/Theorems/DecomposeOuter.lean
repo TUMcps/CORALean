@@ -9,10 +9,10 @@ Outer, since each block is a `project`; the blocks together enclose the set's pr
 each run, not the set (the product of the blocks is wider in general).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

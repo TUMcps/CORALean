@@ -12,10 +12,10 @@ what makes this an enclosure rather than the set. A constrained polynomial
 zonotope goes through its polynomial zonotope, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

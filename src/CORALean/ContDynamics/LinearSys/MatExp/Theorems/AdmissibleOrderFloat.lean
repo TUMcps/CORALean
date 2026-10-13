@@ -9,10 +9,10 @@ import Mathlib.Tactic.Positivity
 `half` being exact. The entry is `η₀ + k` by construction, so at least `η₀`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

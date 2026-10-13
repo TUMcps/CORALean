@@ -13,10 +13,10 @@ recursion that does so is its file's own, and nothing downstream needs the index
 only that the step is one of the candidates and that the certificate held there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

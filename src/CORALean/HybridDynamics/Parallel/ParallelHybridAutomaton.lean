@@ -20,10 +20,10 @@ input set constrains only the global inputs, as in CORA. A `jump` ends a stay wi
 component taking a transition; simultaneous jumps are consecutive, a zero-length stay between.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

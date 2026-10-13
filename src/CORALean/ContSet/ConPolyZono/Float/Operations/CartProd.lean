@@ -14,10 +14,10 @@ independent generators are each `genBlockDiag` of the two, the constraint matrix
 Nothing is added or multiplied, so nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

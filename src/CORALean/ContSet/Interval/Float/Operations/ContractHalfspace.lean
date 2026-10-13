@@ -15,10 +15,10 @@ passes its upper one is a box no point lies in, which is what the cut is when
 the box misses the halfspace; `representsa_emptySet` is what says so.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

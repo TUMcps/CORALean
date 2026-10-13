@@ -18,10 +18,10 @@ then `{ν < 1}` is open, so interior, and a point with `ν = 1` is a limit of th
       Problem". European Journal of Control, 62:84-91, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

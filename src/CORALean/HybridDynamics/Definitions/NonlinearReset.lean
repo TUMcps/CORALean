@@ -14,10 +14,10 @@ Scalar-free, as `Transition`'s reset is not: a nonlinear function of real number
 coefficients to store, so there is no float counterpart.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

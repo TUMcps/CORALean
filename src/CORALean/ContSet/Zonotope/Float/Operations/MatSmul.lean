@@ -14,10 +14,10 @@ rounded scaling by one exact scalar, which is what `1/i!` and `Δt` need; for a 
 new generator.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

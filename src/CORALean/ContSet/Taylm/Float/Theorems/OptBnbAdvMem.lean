@@ -8,10 +8,10 @@ Outer: a function the float model encloses lies in the result at every point of 
 box; sound for every `ε` and `fuel`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ import CORALean.ContSet.ContSet.Operations.Times
 `S - c`, scaled by the factors, then `+ c` back, with `c` the set's centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

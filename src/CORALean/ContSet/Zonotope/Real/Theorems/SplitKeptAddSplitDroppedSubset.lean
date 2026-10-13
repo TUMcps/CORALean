@@ -15,10 +15,10 @@ which only `⊇` is used. Each part's coefficients are read back onto `Z`'s own 
       Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

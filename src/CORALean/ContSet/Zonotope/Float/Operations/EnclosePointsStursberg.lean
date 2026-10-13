@@ -18,10 +18,10 @@ points lie in the result whenever `U Uᵀ = 1` over the reals. As at the real la
 argument, and at least one point is required.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ point costs `n` equality constraints, one per coordinate — why this
 representation was the one left without an `OfPoint` in the earlier round.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

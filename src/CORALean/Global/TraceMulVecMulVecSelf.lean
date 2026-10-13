@@ -11,10 +11,10 @@ generators `g`, to the trace of `W` against `Σ g gᵀ`, in which the gain-optim
 the zonotopic Kalman observers are written.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

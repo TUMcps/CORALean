@@ -9,10 +9,10 @@ lies left of `0`, `cosh ub` if right of it, and `cosh` of the larger magnitude o
 bounds `cosh` at every range.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

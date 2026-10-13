@@ -21,10 +21,10 @@ What is solved is the *dual* of `max cᵀx` over `A x ≤ b`, namely `min bᵀy`
 minimises `bᵀy`, and a candidate comes back as soon as phase one succeeds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

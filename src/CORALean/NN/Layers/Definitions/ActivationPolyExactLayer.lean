@@ -10,10 +10,10 @@ so the instance is noncomputable and lives here beside the other specifications;
 one is `ActivationPolyLayer`. It keeps the dimension, so it carries `dim`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

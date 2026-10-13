@@ -13,10 +13,10 @@ negation round nothing. Only the upper bounds differ, `b.sup - b.inf / 2` being 
 every row the exact system satisfies the stored one satisfies too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

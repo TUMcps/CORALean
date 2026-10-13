@@ -17,10 +17,10 @@ point, or `none` where the accumulated error has outgrown the run; neither is a
 statement about the system, only about how much the reductions took.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

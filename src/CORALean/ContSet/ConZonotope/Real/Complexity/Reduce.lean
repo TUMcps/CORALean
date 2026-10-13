@@ -15,10 +15,10 @@ than here: it is `reduce`'s own bound, not one operation's size in terms of
 another's, which is what `Complexity/` records.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

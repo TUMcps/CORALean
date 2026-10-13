@@ -12,10 +12,10 @@ line `34 - 3 x` with `d = 27`. The generators cancel, and the output is `[9, 63]
 at `x = 3/2` is `6.75`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

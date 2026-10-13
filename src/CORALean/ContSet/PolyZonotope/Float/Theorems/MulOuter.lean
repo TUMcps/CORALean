@@ -19,10 +19,10 @@ rounded product needs nothing bracketed in between, where `quadMap`'s bilinear
 form has to carry its middle vector as an interval.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

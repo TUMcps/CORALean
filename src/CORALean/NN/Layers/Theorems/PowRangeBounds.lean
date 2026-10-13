@@ -9,10 +9,10 @@ import CORALean.NN.Layers.Theorems.MulRangeDownLe
 By induction on the exponent, each step one product bracket.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

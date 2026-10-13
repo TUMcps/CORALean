@@ -11,10 +11,10 @@ the parallel automaton (`mergeTransitionSets.m` passes `pHA.bindsInputs`). Only 
 is modelled, not the guard, the target or the conversion of linear resets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

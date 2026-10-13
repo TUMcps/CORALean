@@ -7,10 +7,10 @@ Read off compactness rather than proved again: `‖G u‖ ≤ ‖G‖ ‖u‖₂
 operator norm, and the compactness proof already carries everything.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

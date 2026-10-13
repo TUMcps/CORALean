@@ -17,10 +17,10 @@ The step the P-radius bounds of `[1, Eq. 4]` to `[1, Alg. 2]` are chains of.
       estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

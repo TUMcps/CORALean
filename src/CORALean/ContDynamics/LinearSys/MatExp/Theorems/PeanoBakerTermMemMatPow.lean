@@ -21,10 +21,10 @@ A different member at every factor is exactly what `Interval.matPow` admits, so
 this is CORA's `expmIndMixed`'s powers made sound for a matrix that varies in time.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ as `discretizeEnclosure_mem_reach` is at the exact layer: `reach` at the float
 interval-matrix family is the discrete recursion run in floats.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ The centre does not move, so the whole of it is that one sum.
       Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

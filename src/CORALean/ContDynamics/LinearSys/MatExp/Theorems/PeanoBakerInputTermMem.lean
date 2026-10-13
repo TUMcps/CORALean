@@ -20,10 +20,10 @@ continuous. So the induction runs on the hull, and
 `integral_mem_smul_of_mem_smul` carries it through each integral.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

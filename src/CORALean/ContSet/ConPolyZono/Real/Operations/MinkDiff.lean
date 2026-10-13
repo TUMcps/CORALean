@@ -24,10 +24,10 @@ and a zonotope for which the result is not a subset of the difference. The numer
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv, 2015.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ boxes by the same recursion; `reachError` in this directory adds the two.
 Nothing here is reduced, so the generator count grows by `n` per step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

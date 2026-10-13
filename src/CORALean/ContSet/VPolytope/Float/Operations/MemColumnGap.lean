@@ -7,10 +7,10 @@ Storing the lower rounding of one column leaves a residual the gap admits,
 stated per column because that is how a vertex is placed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

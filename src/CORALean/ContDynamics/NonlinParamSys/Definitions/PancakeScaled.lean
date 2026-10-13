@@ -11,10 +11,10 @@ scaling `g(x, p) = (nᵀx − d)/p`, `nᵀx = d` the guard hyperplane, oriented 
 `matlabFunction`; here it is the function itself. The parameter is one-dimensional.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

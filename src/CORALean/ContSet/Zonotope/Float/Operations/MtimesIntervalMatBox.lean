@@ -16,10 +16,10 @@ residual on the nominal part reach `|M - mid(M)| (|c| + Σ|G|)`; both go into on
 symmetric box. The result's own error box is kept whole.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

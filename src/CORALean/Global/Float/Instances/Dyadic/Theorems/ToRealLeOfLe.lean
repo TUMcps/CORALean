@@ -7,10 +7,10 @@ The direction `SoundFloatArithmetic` asks for; the converse holds too
 (`le_iff`), but nothing here needs it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ or `{lowerbound, upperbound}` (CORA's export) of vectors, or an array of `{lb, u
 JSON number or a string `parseRandString` reads.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

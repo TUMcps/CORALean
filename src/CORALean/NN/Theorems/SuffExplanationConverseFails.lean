@@ -30,10 +30,10 @@ box wide enough that the enclosed output ties, though the exact one never does.
 * [2] `CORALean.Layer.linearWithError`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

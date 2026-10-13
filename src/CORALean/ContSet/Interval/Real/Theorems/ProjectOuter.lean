@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Real.Operations.Project
 Reading the same coordinates of a member. No hypothesis, and repeated coordinates are fine.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

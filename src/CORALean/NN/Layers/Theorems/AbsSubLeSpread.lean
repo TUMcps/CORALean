@@ -8,10 +8,10 @@ offset is whatever was stored, and the error is the larger distance to either en
 up. The offset is never rounded in a particular direction, since the error is measured from it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

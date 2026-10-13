@@ -15,10 +15,10 @@ The constraint counts `m` and `s` are outside this: the ranking copies them, so
 `compact` is the only stage that moves them and the only bound they have.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

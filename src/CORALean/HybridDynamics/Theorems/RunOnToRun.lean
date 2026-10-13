@@ -8,10 +8,10 @@ the identity on the run's own shape, by induction with one case per
 constructor, each replayed unchanged under the other family's matching one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

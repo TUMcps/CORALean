@@ -23,10 +23,10 @@ With `x − q = N u`, `(N u)ᵀ Q⁻¹ (N u) = uᵀ u`, since `Q⁻¹ = N⁻¹ N
 * [2] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

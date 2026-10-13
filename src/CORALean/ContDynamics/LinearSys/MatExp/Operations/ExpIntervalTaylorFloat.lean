@@ -17,10 +17,10 @@ the power along instead of rebuilding `Aⁱ` at every order, by `@[csimp]`: the
 same products in the same order, so the same values.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

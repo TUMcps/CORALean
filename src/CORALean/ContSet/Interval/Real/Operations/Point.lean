@@ -10,10 +10,10 @@ and a linearisation offset all reach it through here.
 The membership fact is `Theorems/MemPoint.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

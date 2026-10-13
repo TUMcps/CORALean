@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Operations.DoubleRounding
 Each direction of the self-sum is on its side of `x + x = 2x`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

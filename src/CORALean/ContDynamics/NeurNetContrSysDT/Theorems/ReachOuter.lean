@@ -22,10 +22,10 @@ Reach for `reachSet_subset_reach` for the same guarantee restated on the
 reachable set rather than on one run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

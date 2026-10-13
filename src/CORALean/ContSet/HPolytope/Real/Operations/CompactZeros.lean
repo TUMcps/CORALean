@@ -16,10 +16,10 @@ The tolerance is `0`: CORA's `withinTol(·, 0, tol)` calls a row zero if it is w
 zero, the default being `1e-9`, and an offset `b` with `b < 0` but `|b| < tol` is not infeasible.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

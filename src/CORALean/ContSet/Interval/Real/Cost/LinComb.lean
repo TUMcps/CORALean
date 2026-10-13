@@ -10,10 +10,10 @@ costs the same `2 * n` as `plus` — no interpolating generator to build, a box
 having no generators to pair.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

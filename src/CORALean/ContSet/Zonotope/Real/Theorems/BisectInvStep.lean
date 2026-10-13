@@ -18,10 +18,10 @@ half is nonempty (`splitPivot_spec`), so `G` shrinks, and when `|G| ≤ 1` the p
       Springer, 2008, pp. 215-228.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

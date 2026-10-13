@@ -20,10 +20,10 @@ coordinate — is refined by the same numbers, which is the reason to leave the
 definition unconditional and prove the agreement separately.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

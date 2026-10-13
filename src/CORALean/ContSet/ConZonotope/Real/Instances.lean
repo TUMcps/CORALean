@@ -27,10 +27,10 @@ in for the empty polytope — the singleton the jump reset asks any
 representation to build, one `OfInterval` cheaper.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

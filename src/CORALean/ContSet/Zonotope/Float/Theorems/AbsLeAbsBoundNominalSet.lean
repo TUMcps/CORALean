@@ -9,10 +9,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 The corner bounds the entrywise absolute value of every point of the nominal part of `Z`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

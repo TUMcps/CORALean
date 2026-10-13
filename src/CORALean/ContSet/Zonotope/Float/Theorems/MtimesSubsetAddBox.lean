@@ -15,10 +15,10 @@ for `mtimesResidual`, at the opposite sign. `Z`'s own error box is absorbed at
 `0`, spent the same way `plus_subset_add_box` spends it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

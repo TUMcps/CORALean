@@ -18,10 +18,10 @@ the denoted sets of reals, and `ContSet.neBool_of_construct_ne` to two boxes who
 (the point `3/2` is in one and not the other), getting `neBool = true`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

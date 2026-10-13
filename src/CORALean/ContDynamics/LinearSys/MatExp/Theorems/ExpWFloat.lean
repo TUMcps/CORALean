@@ -12,10 +12,10 @@ its two directed products, `(M²)_ij` between the two directed dot products, `½
 `halfSqBounds`, and the corner hull of the last two.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

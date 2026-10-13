@@ -11,10 +11,10 @@ Every obligation is a theorem in `Theorems`, so this instance rests on Lean's ow
 as `Dyadic`'s does and `Float`'s does not. `zero` and `one` are numbers of every format here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

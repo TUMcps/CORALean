@@ -12,10 +12,10 @@ is what moves, and a permutation of an arbitrary `ι` would need the ambient typ
 to be indexed by it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

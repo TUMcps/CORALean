@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/MinkDiffAligned.lean` subtracts the centres
 and the `h` generators pairwise, `n * (h + 1)` subtractions at `Vec ℝ n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

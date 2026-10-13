@@ -10,10 +10,10 @@ constraint at a point whose dropped coefficients are zero, which is the first ha
 of what `keepRows` does to each row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ ball, closed (the sum of squares is continuous) and bounded (no coordinate of
 a point inside it exceeds `C.r` in size) in the finite-dimensional `Vec ℝ n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

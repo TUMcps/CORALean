@@ -8,10 +8,10 @@ The bracket a box falls back to when its grid fails its checks: one sample at th
 whole width as the spacing, and no certificate needed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Capsule.Real.Operations.OfPoint
 any `t` collapses to `v` and the ball shrinks to `Real.sqrt 0 ≤ 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

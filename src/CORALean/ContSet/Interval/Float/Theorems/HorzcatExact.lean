@@ -8,10 +8,10 @@ Concatenation commutes with reading the floats as reals, so the stored box denot
 layer's concatenation of the readings.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

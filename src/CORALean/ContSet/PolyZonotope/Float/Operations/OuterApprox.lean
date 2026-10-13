@@ -11,10 +11,10 @@ the scan compare rounded sums with the certified `le`; they only choose the gene
 `boxOut_outer` holds for every choice, so the guarantee does not depend on them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

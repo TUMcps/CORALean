@@ -7,10 +7,10 @@ import CORALean.NN.Definitions.MergeBucket
 bounds, so they are within `2δ` of each other.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

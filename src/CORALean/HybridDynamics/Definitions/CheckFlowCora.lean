@@ -20,10 +20,10 @@ as for `Location.checkFlow`); `E*params.w` (no `E`); and `R = B * reduce(B'*Rpro
 which leaves `Rproj` unchanged when it has at most `n` generators and encloses it otherwise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

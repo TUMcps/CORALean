@@ -21,10 +21,10 @@ cwd (`Oracle/GitInfo.lean`), `"unknown"`/`false` when that cannot be told.
 `experiments/oracle/README.md` is the human-facing summary, pointing back here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

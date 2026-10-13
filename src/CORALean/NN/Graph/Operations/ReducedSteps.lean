@@ -15,10 +15,10 @@ and the old columns. `S k` is the node set before step `k`; the features start o
       Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

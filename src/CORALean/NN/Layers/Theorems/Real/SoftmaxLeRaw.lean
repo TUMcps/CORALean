@@ -7,10 +7,10 @@ Each ratio `x j - x i` lies in `[lo j - hi i, hi j - lo i]`, and the denominator
 every one of them: smallest at the box's corner, which bounds softmax above.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ its negative being positive definite; at `W = PL` it is [1, Eq. 17] (`LinearSysD
       pp. 7230-7235, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

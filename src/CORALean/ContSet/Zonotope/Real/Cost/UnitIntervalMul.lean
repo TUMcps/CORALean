@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/UnitIntervalMul.lean` makes the old centre the
 first generator and the new centre zero; both are placed, not computed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

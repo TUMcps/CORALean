@@ -15,10 +15,10 @@ every rounding is exact and this is `|n̂_k/n_k - ρ| ≤ tol` itself.
       Formal Verification". TMLR. arXiv:2305.01932.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

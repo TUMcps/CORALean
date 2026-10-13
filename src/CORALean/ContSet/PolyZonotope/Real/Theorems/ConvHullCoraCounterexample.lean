@@ -21,10 +21,10 @@ chords appear to fill the hull.) Read from the source, not run.
 * [1] `contSet/@polyZonotope/convHull_.m`, CORA (Sep. 2025).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

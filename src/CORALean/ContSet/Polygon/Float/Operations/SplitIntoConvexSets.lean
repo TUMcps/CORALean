@@ -7,10 +7,10 @@ The stored convex pieces, as over ℝ: a float polygon is a list of float convex
 the list is returned as it is, so nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

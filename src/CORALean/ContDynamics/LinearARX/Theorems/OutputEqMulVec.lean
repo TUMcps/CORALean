@@ -7,10 +7,10 @@ import CORALean.ContDynamics.LinearARX.Operations.Simulate
 `outputEq.C` applied to a window is its first block, for a model with at least one lag.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

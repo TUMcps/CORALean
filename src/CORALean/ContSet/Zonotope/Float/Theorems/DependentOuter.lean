@@ -14,10 +14,10 @@ that coordinate's error in its new generator. `errorBound` rounds nothing, so th
 always fits. As `ConZonotope.dependent_nominal`, without the constraints.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

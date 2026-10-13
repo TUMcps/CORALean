@@ -4,10 +4,10 @@ import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
 # The first part of `splitEquality` holds only equalities
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

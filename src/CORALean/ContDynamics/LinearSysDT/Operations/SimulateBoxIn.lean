@@ -15,10 +15,10 @@ without `reduce` (a box has no order to give up); `simulate_mem_simulateBox` say
 the real run lies in these boxes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ The set of `pZ.rmId S` is the set of `pZ` restricted to factor vectors whose coo
 are `1`: the removed factor scaled its generators by `1 ^ e`, and now scales nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

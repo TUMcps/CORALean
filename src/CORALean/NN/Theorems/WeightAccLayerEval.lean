@@ -6,10 +6,10 @@ import CORALean.NN.Operations.WeightLayerEval
 # The flushed layer computes the accumulated map
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

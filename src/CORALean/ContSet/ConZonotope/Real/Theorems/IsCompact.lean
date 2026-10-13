@@ -14,10 +14,10 @@ Stated at `Vec`, unlike the zonotope's: it is the coefficient space that has to
 be finite-dimensional, and `HPolytope.isClosed_construct` asks for that.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.NN.Definitions.Schedule
 What the rest of a network reads, the head layer's pattern dropped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

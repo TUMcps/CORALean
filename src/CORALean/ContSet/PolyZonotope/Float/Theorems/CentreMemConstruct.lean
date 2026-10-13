@@ -12,10 +12,10 @@ zero, so that every monomial vanishes there, and in the whole set once the error
 `0`, which a box built by the operations does and an arbitrary one need not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

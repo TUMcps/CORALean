@@ -7,10 +7,10 @@ import CORALean.NN.Layers.Operations.RelaxationOfAntitone
 The slope-zero relaxation of the antitone `invSqrt` at `invSqrtRootEnclosure`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

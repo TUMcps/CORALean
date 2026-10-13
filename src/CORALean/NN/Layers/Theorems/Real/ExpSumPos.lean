@@ -7,10 +7,10 @@ A coordinate is what makes the denominator positive, so every statement about so
 rather than a `NeZero`: at `n = 0` there is nothing to say and the layer's obligation is vacuous.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ the exact sample `ctr + r (cos a, sin a)` at `a = a₀ + i * step` lies in the b
 operation encloses its exact counterpart (`plus_outer`, `times_outer`, `cos_outer`, `sin_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ At `Vec ℝ n`: a bound on the norm is not a coordinatewise statement, so it nee
 an ambient type whose norm the coordinates determine.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   01-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ A labeled transition is never taken alone: it fires together with the `λ`-label
 every component in `parts λ`, or not at all (`SyncRun`, `mergeTransitionSetsSync`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

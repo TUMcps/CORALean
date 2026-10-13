@@ -20,10 +20,10 @@ filtered shortlist instead, and its cost is [1, Prop. 11]'s, this one at `p = n 
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

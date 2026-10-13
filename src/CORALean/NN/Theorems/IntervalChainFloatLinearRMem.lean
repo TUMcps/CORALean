@@ -9,10 +9,10 @@ The radius `r = |W| (u - l)/2` of the layer's output interval, for `l`, `u` in t
 the box `IntervalChain.fwd` and `backprop` compute it as.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

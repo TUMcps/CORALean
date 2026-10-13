@@ -19,10 +19,10 @@ that is ANY positive multiple of the minuend, in particular a larger one. The `w
 * [1] `contSet/@zonotope/minkDiff.m`, CORA, ll. 522-549.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

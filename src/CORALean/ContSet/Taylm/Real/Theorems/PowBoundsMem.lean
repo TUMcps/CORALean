@@ -10,10 +10,10 @@ An even power is `|t|ᵏ`, monotone in `|t|`, which is at most the larger end's 
 an interval holding `0`, at least the smaller; an odd power is monotone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

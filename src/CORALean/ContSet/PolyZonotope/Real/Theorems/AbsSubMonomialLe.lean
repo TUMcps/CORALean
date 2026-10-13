@@ -21,10 +21,10 @@ that the columns actually differ there — nothing here needs them to.
       Its Applications in Formal Neural Network Verification". AAAI, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

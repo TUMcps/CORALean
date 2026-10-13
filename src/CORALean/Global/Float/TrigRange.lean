@@ -16,10 +16,10 @@ the midpoint form `f(m) ± r`, clamped to `[-1, 1]`: sound, and tight for a narr
 taylm centre or a rotation angle.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

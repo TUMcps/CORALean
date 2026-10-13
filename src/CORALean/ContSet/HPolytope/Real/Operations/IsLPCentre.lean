@@ -10,10 +10,10 @@ radius `r` is feasible with it and no feasible pair has a larger one. Every opti
 centre, and nothing says one exists: an unbounded program (no row bounds `r`) has none.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

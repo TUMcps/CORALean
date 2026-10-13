@@ -21,10 +21,10 @@ A subtrahend moving along an equality direction has no difference at all:
 polytope built with no equality rows (`me = 0`) makes that hypothesis vacuous.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

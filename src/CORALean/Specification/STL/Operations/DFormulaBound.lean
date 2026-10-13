@@ -14,10 +14,10 @@ per operator, so it takes time linear in the length of the formula.
       Proc. of the 53rd IEEE Conference on Decision and Control (CDC), pp. 81-87, 2014.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ It is also the only scalar in the repository an algorithm can be *run* at:
 is what keeps every instance derived from it out of `noncomputable`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ what runs reach by construction, so the proof is the pair itself. All the
 content sits in the other half, `reachSet_subset_reach`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

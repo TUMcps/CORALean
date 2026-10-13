@@ -9,10 +9,10 @@ If `v m ∈ f m` for every `m < N`, then `∑_{m<N} v m ∈ sumTerms f N`: the s
 read exactly, and each `plus` holds the sum of a member of each summand (`Zonotope.plus_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ At step `k` the window moves to `y(k+1..k+p)`, and `y(k+p)` reads the inputs
 `u(k+p), …, u(k)`; `feed u k` stacks them oldest first, block `a` holding `u(k+a)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ families of factors are independent, but the generators `β₃ⱼ β₂ᵦ β₁
 each other. The coefficients are `Zonotope.cubMapMixed_coeff`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -23,10 +23,10 @@ No `reduce` in the loop, where `backReachForall` had nothing for one to bound:
 `k`. It is left out to keep what this asks for down to two classes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

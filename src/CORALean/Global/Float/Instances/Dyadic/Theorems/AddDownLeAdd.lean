@@ -11,10 +11,10 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
 the value (`coarsenDown_le`, `toReal_exactAdd`, `roundDown_le`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

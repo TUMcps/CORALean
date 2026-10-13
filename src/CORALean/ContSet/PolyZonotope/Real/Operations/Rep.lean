@@ -9,10 +9,10 @@ and by every later step of `compact`, and by `ConPolyZono`'s own compaction
 over `EC`, all outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

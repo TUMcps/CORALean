@@ -19,10 +19,10 @@ What one `f` costs is a parameter, as in `PolyZonotope.mapCost` and for the same
 reason: `f` is any linear map.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

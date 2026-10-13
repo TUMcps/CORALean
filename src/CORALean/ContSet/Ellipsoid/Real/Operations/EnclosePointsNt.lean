@@ -13,10 +13,10 @@ of the maximum and the minimum, which is the maximum `m1` whenever the minimum i
 maximum of centred values is non-negative). The columns of `O` are the points.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

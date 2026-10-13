@@ -9,10 +9,10 @@ the intersection over fewer factors is the larger set. No rounding enters: the
 surviving members are the ones that arrived, error boxes included.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

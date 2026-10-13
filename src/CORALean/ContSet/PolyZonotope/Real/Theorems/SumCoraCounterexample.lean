@@ -11,10 +11,10 @@ For `pZ = {0}` and the list `{1}, {2}` (all three are points) the Minkowski sum 
 Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

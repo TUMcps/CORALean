@@ -8,10 +8,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermFloat
 Each endpoint's float upper bound is at least `γ` there, and `max` is monotone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

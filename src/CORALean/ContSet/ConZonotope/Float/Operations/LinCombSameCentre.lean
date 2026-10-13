@@ -17,10 +17,10 @@ Nothing is computed, so nothing rounds, and the error box is the point `0`: what
 is exactly the set its stored numbers describe, which an inner approximation needs of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

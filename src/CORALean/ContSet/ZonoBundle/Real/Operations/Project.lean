@@ -9,10 +9,10 @@ CORA's `@zonoBundle/project`: every member zonotope projected on its own,
 is linear, so this is `map` at the selection map, member by member.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

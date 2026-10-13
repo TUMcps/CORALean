@@ -8,10 +8,10 @@ outside the pattern: the in-pattern entries keep their ranges and the rest are t
 is `tril` and `triu` at their patterns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

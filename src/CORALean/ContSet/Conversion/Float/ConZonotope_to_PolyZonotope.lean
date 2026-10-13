@@ -7,10 +7,10 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
 Through the zonotope, dropping the constraints: nothing rounds at either step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

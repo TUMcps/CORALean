@@ -8,10 +8,10 @@ so `mtimes_outer` gives the padded points. CORA does not check injectivity; a re
 adds the two coordinates instead, and the padding map is no longer the statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

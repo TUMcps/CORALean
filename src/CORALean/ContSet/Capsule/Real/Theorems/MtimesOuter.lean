@@ -11,10 +11,10 @@ Cauchy–Schwarz, and the squares add up to the Frobenius norm. So the linear im
 length at most `‖M‖_F r`. Outer only: the image is a segment thickened by an ellipsoid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

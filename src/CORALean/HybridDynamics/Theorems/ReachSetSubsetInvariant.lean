@@ -13,10 +13,10 @@ algorithm for a hybrid automaton — so unlike `reachSet_subset_reach` this asks
 for the enclosure outright rather than deriving one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       11-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

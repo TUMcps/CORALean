@@ -8,10 +8,10 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitIndepGenOuter
 cover where there is none. Outer, not exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

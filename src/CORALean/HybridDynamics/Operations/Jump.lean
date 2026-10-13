@@ -23,10 +23,10 @@ and `mtimes` but no `OfInterval` instance.
 what they denote: `OfInterval` here is the exact layer's, whatever `𝕋` stores.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

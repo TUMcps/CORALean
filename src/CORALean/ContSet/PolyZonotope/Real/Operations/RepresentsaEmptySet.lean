@@ -7,10 +7,10 @@ CORA's `@polyZonotope/representsa_` at type `emptySet`: `false`. A polynomial zo
 the empty set (the factor vector `0` is always allowed), which `representsa_emptySet_iff` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

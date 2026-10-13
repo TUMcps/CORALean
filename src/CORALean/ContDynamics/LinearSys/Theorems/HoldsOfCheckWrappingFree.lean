@@ -13,10 +13,10 @@ reaches from `X₀` by `tFinal`, at any `η`; `holds_of_check` is the same at th
 `reach`, which `LinearSys.reachInstance` runs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ An outer conversion (`⊆`) gives a guard that contains the old one, so every ju
 transition is a jump of the new one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

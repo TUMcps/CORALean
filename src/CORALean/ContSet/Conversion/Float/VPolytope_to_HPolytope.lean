@@ -14,10 +14,10 @@ something about the *float* rows it stores rather than about rounded versions of
 the caller's intent — which is why nothing here has to round the matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

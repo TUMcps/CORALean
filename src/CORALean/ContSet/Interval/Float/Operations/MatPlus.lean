@@ -10,10 +10,10 @@ matrix case gets its own name rather than overloading the `Vec` one. Each bound
 rounds away from the interval, `inf` down and `sup` up, exactly as `plus` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

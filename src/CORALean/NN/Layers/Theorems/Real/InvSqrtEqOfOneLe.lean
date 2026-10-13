@@ -7,10 +7,10 @@ The agreement with the unclamped function above the clamp point — the whole re
 exists rather than `(Real.sqrt ·)⁻¹` directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

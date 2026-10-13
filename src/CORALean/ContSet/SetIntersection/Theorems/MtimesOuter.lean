@@ -9,10 +9,10 @@ its image under any `A` from `construct M` lies in every branch's own image,
 sides are `univ`, and the image of `univ` sits in `univ` for free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

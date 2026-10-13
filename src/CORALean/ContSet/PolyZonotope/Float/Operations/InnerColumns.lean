@@ -17,10 +17,10 @@ of [1, Alg. 3]; the test's soundness does not depend on it.
       Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

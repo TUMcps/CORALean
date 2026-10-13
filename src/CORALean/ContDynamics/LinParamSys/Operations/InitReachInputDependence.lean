@@ -18,10 +18,10 @@ Not modelled: the time-varying input `params.U` (`sys.RV`, added to both sets by
 (identity), `uTrans` (zero) and the final `reduce` (an outer step).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

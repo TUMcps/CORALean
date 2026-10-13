@@ -16,10 +16,10 @@ Over ℝ, with no float layer: it states what the automaton is, for [1, Thm. 1];
       Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

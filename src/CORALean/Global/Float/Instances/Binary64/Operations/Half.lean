@@ -10,10 +10,10 @@ is the one such input whose half rounds to zero, which `inRange` keeps: it is Na
 (found by `hardwarecheck`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       22-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

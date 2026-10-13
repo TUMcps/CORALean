@@ -16,10 +16,10 @@ optimal value of Problem 1 for each set `F ⊆ {1, …, N}` of constraints, as i
       reliability". Automatica, 45(2):382-392, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ Exact over ℝ, as each intersection is, and it needs a first member, `0 < k`: C
 `conZonotope.empty` for no members, where a bundle of none is the whole space here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

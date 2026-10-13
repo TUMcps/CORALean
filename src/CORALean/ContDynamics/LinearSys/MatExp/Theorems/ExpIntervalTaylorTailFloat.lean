@@ -14,10 +14,10 @@ the sum is empty and the tail is the zero point, and from three on the top order
 `smul_outer` at `invFactorialBounds`'s two facts and `matPow_outer` enclosing it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

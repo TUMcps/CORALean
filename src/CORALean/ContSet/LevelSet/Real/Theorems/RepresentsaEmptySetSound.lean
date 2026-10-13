@@ -8,10 +8,10 @@ on a level set with at least one row means it is empty. One direction: a negativ
 nothing, so no `↔` and no exactness of the test.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/minus` at two intervals: `[a, b] - [c, d] = [a - d, b - c]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ on their mantissas. When the exponents are so far apart that the aligned mantiss
 other one, the sign alone decides (`leShl`, `leShr`), and the alignment is not formed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

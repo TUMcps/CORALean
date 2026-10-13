@@ -27,10 +27,10 @@ Here the integrand is a product of members and an input, and only the closedness
 and convexity of each order's image of `U` keep the average in it. Real only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

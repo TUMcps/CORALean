@@ -14,10 +14,10 @@ CORA scales by `max(eig(M Mᵀ))`, the *square* of the largest singular value, w
 whenever that value is under `1`; see `Capsule.mtimes_cora_counterexample` and FINDINGS.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

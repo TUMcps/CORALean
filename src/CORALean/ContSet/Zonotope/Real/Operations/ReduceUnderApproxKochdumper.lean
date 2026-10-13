@@ -14,10 +14,10 @@ sum, each signed by the sign of its first element (`sign x = -1` if `x < 0`, els
       Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

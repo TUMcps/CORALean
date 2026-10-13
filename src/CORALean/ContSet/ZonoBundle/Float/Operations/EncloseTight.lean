@@ -19,10 +19,10 @@ nor an orthogonal `U` is assumed. The Stursberg box centred on the points' mean 
 as the box in `U`'s coordinates, so the mean is not formed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

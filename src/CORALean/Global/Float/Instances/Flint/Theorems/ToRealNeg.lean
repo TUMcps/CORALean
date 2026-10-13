@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.Flint.Operations.Neg
 `Dyadic.toReal_neg` at the same pair: `neg` builds the pair `Dyadic.neg` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

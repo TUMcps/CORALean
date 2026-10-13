@@ -13,10 +13,10 @@ Stated at `construct`, which is what `ContSet.IsFullDim` unfolds to: the `ContSe
 declared after the theorems. Over any finite-dimensional real normed space, in particular `Vec ℝ n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

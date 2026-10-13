@@ -11,10 +11,10 @@ fact both `LinearSys.reachWrappingFree_outer` and `LinearSys.WithInput.reach_out
 assembled from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

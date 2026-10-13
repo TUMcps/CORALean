@@ -9,10 +9,10 @@ said by `NeuralNetwork.Sound.enclose_outer`, exactly `Layer.Sound` at the same f
 put a network inside another, it is an `Enclose` kind and goes in through `Enclose.pack`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

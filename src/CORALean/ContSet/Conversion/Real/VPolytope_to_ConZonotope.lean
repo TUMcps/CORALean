@@ -16,10 +16,10 @@ This is the direction that makes a constrained zonotope the general
 representation: every bounded polytope is one, with no enclosure anywhere.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

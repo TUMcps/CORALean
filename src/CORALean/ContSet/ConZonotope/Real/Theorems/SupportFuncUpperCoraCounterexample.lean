@@ -15,7 +15,7 @@ not turn this value into a false verdict. Read from the source, not run.
 -- Authors:       Claude Sonnet 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

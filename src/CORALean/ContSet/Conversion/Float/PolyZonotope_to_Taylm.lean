@@ -11,10 +11,10 @@ are the coefficients unchanged, so nothing rounds, and the error box becomes the
 remainder. Exact, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

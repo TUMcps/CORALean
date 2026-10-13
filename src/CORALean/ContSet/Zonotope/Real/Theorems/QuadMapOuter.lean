@@ -21,10 +21,10 @@ One coordinate at a time, `xᵀQ⁽ⁱ⁾x` being the bilinear form `Matrix.toBi
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

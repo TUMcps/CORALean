@@ -8,10 +8,10 @@ if its exponent column is all even (a constant column included, which `zonotopeE
 none of), all of it otherwise. The rest goes to the centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

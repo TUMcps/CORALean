@@ -9,10 +9,10 @@ generator matrices before laying them side by side — `n * q₁` multiplication
 for `s₁ • G₁`, `n * q₂` for `s₂ • G₂` — and `Fin.append` is free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

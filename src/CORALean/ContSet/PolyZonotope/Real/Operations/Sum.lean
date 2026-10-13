@@ -15,10 +15,10 @@ same set (`compact_exact`); it is left out. CORA's centre adds `pZlist{1}.c` on 
 its loop, not `pZlist{i}.c`: see `sumCora`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

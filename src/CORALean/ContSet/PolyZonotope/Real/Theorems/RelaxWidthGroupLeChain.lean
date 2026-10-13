@@ -18,10 +18,10 @@ each member alone, and `relaxExpGroup_not_always_tighter` is where that leaves
 the group merge enclosing strictly more.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

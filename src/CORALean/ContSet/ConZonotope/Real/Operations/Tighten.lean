@@ -22,10 +22,10 @@ separate procedure `Thm. 2` does not ask for; it is `tightenER`, which also retu
       2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       21-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

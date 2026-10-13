@@ -14,10 +14,10 @@ The first term is on the segment `linComb` covers, once `e^{AΔt}` is in
 `OrderAdmissibleFloat` asks of `[Δt, Δt] · A`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

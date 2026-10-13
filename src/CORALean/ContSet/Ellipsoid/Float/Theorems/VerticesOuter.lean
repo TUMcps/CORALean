@@ -8,10 +8,10 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 is between the two rounded ends, which is a point of the segment joining them. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

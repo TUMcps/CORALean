@@ -8,10 +8,10 @@ that inequality becomes a maximum. This is the form a conversion reads, since it
 is what says an interval hull taken off these bounds touches the ellipsoid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

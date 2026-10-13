@@ -8,10 +8,10 @@ that is exact in every format (sign is a bit), so a method that only flips signs
 can ask for it without asking for a rounded `+`: this class is `-` and that it reads as `-`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

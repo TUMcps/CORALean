@@ -20,10 +20,10 @@ centre with the error box a box added by `Zonotope.plus`. `none` when a certific
 enclosure, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ the new centre and shape matrix `Q` of the ellipsoid `{x | (x - c)² / Q ≤ 1}`
 `σ²_prev + δ² > φ` and the choice of `λ` are left to the caller.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

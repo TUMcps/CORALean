@@ -9,10 +9,10 @@ each of the `k` generator columns through one matrix-vector product at
 `m × n`, `M *ᵥ ·` and `M * E.G` being the same operation column by column.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

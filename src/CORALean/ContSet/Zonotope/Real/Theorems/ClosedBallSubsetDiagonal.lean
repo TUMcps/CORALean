@@ -14,10 +14,10 @@ what lets a Minkowski difference by it be computed at a representation.
 Nothing is asked of `ε`: a negative radius leaves the ball empty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

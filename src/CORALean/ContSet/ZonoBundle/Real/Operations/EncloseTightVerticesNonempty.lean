@@ -7,10 +7,10 @@ The vertex polytope `encloseTightVertices` denotes the convex hull of the two bu
 (`VPolytope.convHull_exact`), which holds a point of the first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

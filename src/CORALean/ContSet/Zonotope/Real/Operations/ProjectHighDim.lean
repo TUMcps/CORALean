@@ -11,10 +11,10 @@ selection matrix transposed; it is linear, so this is `map` at it. CORA's assign
 statement of `projectHighDim__exact` assumes `proj` injective, as CORA's callers do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

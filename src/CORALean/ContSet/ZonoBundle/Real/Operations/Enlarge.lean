@@ -11,10 +11,10 @@ enlargement of the intersection about a common centre: the members' centres diff
 and so do the maps `x ↦ cᵢ + f ⊙ (x - cᵢ)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

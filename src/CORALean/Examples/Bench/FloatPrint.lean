@@ -18,10 +18,10 @@ e.g. `1.0 / 2 ^ 49` used to print `"0.0000000002116615374147344e-5"`. The
 (`10 ^ 16`/`17`, `10 ^ -4`/`-5`) and the smallest/largest finite magnitudes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   27-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

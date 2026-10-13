@@ -15,10 +15,10 @@ their diagonal block is zero and the whole inequality is the old one beside it. 
 `Interval.mtimes_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

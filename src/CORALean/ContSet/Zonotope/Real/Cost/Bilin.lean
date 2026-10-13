@@ -12,10 +12,10 @@ and is a parameter. `Complexity/` states the matching size, and the existing
 `bilin_h_isBigO` there reads off the same product.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

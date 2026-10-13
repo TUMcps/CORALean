@@ -7,10 +7,10 @@ The nominal part is `∅`: its single constraint row asks `1 ≤ (A μ)₀ ≤ 0
 read as `1` and `0`. So the sum with the error box is `∅` too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ happen to collide. Quadratic in `h` either way: this is a pairwise merge, and a
 sorted or hashed one would be a different definition and a different count.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

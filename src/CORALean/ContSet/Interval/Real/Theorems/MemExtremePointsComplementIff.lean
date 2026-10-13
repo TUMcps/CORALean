@@ -14,10 +14,10 @@ an equivalence: `x ↦ b - x` maps the box onto itself and edges onto edges.
       Problem". INFOCOMP Journal of Computer Science, 8(4):21-27, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ How far the affine map may miss `invSqrt` over node `j`'s own degree interval
 `[degreeInf, degreeSup]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

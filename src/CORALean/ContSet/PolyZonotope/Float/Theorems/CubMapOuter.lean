@@ -11,10 +11,10 @@ the stored result's nominal point plus the shortfalls in the error box is the cu
 (`cubMapDep_point`). The result is an enclosure, not the image: the rounding is paid into the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

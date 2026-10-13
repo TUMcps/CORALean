@@ -8,10 +8,10 @@ Every axis support is `0` exactly when the set is `{0}`, in a positive dimension
 `0` the loop is empty and CORA's `representsa_emptyObject` answers first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

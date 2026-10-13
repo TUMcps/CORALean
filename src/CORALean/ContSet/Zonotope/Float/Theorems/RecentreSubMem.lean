@@ -8,10 +8,10 @@ The nominal part keeps its coefficients, the centre leaving it exactly, and the
 error point stays where it was, inside the widened box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

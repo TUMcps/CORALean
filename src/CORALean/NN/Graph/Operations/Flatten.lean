@@ -8,10 +8,10 @@ polynomial zonotope has (`Float.PolyZonotope` is vector-shaped). Node `i`, featu
 `finProdFinEquiv (i, j)`. Generic over the entry type, so it flattens a real matrix and a float one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ bundles (`V = vertices([V1, V2])`, `encloseTightVertices`). Both bundles must be
 a member; `W` the transformations and `U` the Stursberg basis, as in `encloseTightPoints`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

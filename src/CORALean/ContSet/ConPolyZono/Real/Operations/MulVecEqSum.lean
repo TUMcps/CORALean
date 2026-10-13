@@ -7,10 +7,10 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
 `EC` names — the form `sum_monomial_merge` merges.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

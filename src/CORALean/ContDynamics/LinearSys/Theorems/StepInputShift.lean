@@ -9,10 +9,10 @@ loop that re-anchors the trajectory at every step state its input hypothesis in
 the original clock while each step is proved on a clock starting at zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

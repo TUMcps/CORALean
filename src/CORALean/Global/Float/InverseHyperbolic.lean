@@ -17,10 +17,10 @@ floored at `1`, which the true one exceeds, and the range is a hypothesis on `x`
 `arsinh` is odd, so the lower bound there is the upper one at `-x`, negated.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

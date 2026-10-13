@@ -7,10 +7,10 @@ Both bounds are one directed subtraction away from the bracket the caller alread
 has. How every float representation reaches its error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

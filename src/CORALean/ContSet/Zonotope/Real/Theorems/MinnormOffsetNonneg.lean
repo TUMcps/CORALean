@@ -7,10 +7,10 @@ A sum of absolute values over a square root: the lower bound `0` that makes `min
 infimum of offsets, a nonnegative number attained.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

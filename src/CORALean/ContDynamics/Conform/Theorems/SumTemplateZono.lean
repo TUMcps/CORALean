@@ -11,10 +11,10 @@ indexed by `Fin k × ι`: one copy of the template per time step, as the disturb
 a reachable set enter one per step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

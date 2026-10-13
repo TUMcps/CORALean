@@ -16,10 +16,10 @@ every `supportBound` this tree defines already has that shape, `Ellipsoid`,
 handed in and none is named here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -23,10 +23,10 @@ centre, which is `Zonotope.pairSum` and `Zonotope.pairDiff` — tighter than
 keeping each `GIⱼ` at full width, at the same count `q₁ + q₂`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   03-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

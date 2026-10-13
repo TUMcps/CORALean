@@ -7,10 +7,10 @@ CORA's `aux_addConst` with nothing to add it to: one term at the zero exponent a
 remainder. `compose` subtracts it to centre a model on its constant part.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

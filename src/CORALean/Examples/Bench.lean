@@ -9,10 +9,10 @@ a `[[lean_lib]]` for `lake build` to elaborate this against every commit, and a
 contract this satisfies and `CORALean.Bench.Cli.CliArgs` for every flag.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

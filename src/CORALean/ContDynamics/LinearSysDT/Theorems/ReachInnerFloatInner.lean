@@ -26,10 +26,10 @@ no guaranteed shape, so the two hypotheses `reach_float_subset_reachSet_add_erro
 needs are asked of the caller here rather than derived.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

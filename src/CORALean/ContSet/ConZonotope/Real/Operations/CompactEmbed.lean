@@ -9,10 +9,10 @@ zero in every dropped coordinate, the kept ones in order. Composing a constraint
 the constraint at a point whose dropped coefficients are zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ is no `map` over floats, a general linear map having no float matrix to be
 applied by, so `reindex` is written out here instead.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

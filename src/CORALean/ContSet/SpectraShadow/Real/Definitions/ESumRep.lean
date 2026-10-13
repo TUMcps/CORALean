@@ -10,10 +10,10 @@ point's own coordinates `x` among the free variables of the inequality and the e
 `y` the remaining ones. Intersections and cones (`and_`, `convHull_`) are built from it in CORA.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

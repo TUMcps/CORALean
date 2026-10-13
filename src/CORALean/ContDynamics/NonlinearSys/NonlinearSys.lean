@@ -23,10 +23,10 @@ field — `LinearSys.classicalTrajectory_iff_nonlinearSys`; `ClassicalTrajectory
 carries a run to `LinearSys.Trajectory`. A bounded `T` makes `linearize` one step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   03-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

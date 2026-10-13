@@ -17,10 +17,10 @@ of those before `j`: one prefix sum instead of a sum per normal. Parallel genera
 same normal twice, which costs nothing but time.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

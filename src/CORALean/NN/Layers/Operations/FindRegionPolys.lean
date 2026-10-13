@@ -9,10 +9,10 @@ the relaxation `F`, standing for `computeApproxPoly` with `'regression'` and
 `computeApproxError`; the progress printing and the final sort by `l` are not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

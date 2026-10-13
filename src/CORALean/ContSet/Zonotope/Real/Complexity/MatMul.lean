@@ -11,10 +11,10 @@ This is what a power of a matrix zonotope pays: `matPow M k` squares the count
 at every step, which is why a Taylor order is a cost as well as a tightness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ against the unit row, and the facet inequalities are the zonotope (`hRep_eq` [1,
       arXiv, 2015.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

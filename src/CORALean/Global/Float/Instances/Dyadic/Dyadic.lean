@@ -19,10 +19,10 @@ so a noncomputable `toReal` would make every generic algorithm called at this
 type noncomputable too. `toReal_def` is the number it denotes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   03-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

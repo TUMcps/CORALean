@@ -9,10 +9,10 @@ import CORALean.Global.ElementaryDerivBounds
 `tanh` is smooth and `|tanh| ≤ 1`, so `abs_iteratedDeriv_tanh_le` applies on all of `ℝ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

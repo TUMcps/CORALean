@@ -19,10 +19,10 @@ circumbody's norm being any `coeffNorm` of a surjective map.
       doi:10.1109/TAC.2025.3583624. arXiv:2404.11185.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

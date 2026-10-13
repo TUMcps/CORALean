@@ -8,10 +8,10 @@ channel, `chan` naming each coordinate's channel. The dimension is kept, so its 
 `dim`, the proof that the two dimensions agree, which `rfl` discharges where a layer is built.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

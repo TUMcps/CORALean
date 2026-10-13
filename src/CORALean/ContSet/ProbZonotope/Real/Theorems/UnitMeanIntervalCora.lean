@@ -9,10 +9,10 @@ Its probabilistic generators are `0` (a zero covariance has the factor `G Gᵀ =
 `interval.m` boxes the centre `0` by `Σ|G| = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

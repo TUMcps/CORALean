@@ -18,10 +18,10 @@ The error box takes `mid(M) E` and the box-times-box product `(M - mid(M)) E`.
 The bound only has to hold: the constraints could tighten it, and are not used to.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

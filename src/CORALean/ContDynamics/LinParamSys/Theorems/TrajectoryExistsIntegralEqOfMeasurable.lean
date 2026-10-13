@@ -16,10 +16,10 @@ everywhere on the window, which the integral does not see. The input is already
 measurable, by `Trajectory.meas`, so nothing is asked of it here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

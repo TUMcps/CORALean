@@ -6,10 +6,10 @@ import CORALean.NN.Definitions.WeightAcc
 CORA's `aux_getLinearLayer`: the identity layer when nothing was fused, the linear layer otherwise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
 Both bounds zero is the single point `0`, and the single point `0` forces both bounds to `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

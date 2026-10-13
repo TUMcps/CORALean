@@ -13,10 +13,10 @@ LMI of `HPolytope.spectraShadow` at `P`, and the box half is the zonotope's own.
 block-diagonal matrix is positive semidefinite exactly when both blocks are.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

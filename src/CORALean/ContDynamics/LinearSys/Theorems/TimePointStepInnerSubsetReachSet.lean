@@ -16,10 +16,10 @@ inner approximation is built on is one admissible input, and its run is a
 `Trajectory` by `closedForm_flow`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

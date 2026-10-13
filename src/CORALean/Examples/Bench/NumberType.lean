@@ -15,10 +15,10 @@ the writers, beside the parameters that go into `meta` as they are.
 Every field defaults to saying nothing, so a call site that passes none reads as before.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

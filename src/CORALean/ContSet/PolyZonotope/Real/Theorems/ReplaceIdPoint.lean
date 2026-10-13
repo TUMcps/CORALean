@@ -12,10 +12,10 @@ on the fibres of `f`; `replaceId_subset` and, for an injective `f` (a plain rena
 `replaceId_exact` follow. Identifying two factors adds a dependency and shrinks the set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

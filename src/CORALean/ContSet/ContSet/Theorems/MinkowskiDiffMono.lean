@@ -12,10 +12,10 @@ by a larger one weakens the difference, so an implementation is free to
 over-approximate the set it subtracts and still under-approximate the result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

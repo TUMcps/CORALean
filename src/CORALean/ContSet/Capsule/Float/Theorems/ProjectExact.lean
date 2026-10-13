@@ -8,10 +8,10 @@ Reading the stored floats commutes with selecting coordinates, so the nominal ca
 projection is the exact layer's projection of the nominal capsule.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

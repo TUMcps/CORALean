@@ -20,10 +20,10 @@ the sublevel set and every support constraint. The proof of [1, Thm. 3] rests on
       reliability". Automatica, 45(2):382-392, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

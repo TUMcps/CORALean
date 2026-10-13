@@ -15,10 +15,10 @@ within `cubMapGDiff` of the stored generator (`cubContract_bracket`), so the sho
 monomials as coefficients in `[-1, 1]`, are in the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

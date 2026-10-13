@@ -13,10 +13,10 @@ share, and the `Ũ`-input's share in the sum `P̂^U_0(t_k) + P̂^U_∞(t_k)` of 
 eq. (27), kept apart.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

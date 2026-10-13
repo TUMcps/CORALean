@@ -10,10 +10,10 @@ Only the sets below `K` are asked about, which is exactly what `reachUnion`
 tests at run time: the set step `K` ends in starts no step of the horizon.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

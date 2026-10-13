@@ -15,10 +15,10 @@ that branch keeps one column per generator, this one keeps `maxExp k + 1` and
 leaves the zeros for `compact`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

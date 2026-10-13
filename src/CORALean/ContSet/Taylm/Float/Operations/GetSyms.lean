@@ -10,10 +10,10 @@ expression and its variable names are not modelled. Nothing is rounded here: the
 stored polynomial itself, and the model's remainder is what `getSyms_mem` adds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

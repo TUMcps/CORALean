@@ -21,10 +21,10 @@ The centre is untouched, `ξ_c` being zero at `ξ_G = ξ_E`, so this operation a
 nothing to the box beyond the two gaps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

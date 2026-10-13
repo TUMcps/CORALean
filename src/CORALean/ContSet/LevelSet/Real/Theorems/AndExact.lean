@@ -7,10 +7,10 @@ import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 Stacking constraints is intersecting the sets, with equality, whatever the operators.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

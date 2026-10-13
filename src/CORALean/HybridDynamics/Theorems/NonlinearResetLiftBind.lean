@@ -9,10 +9,10 @@ For an injective `stateBind`, the lifted reset at coordinate `stateBind j` is th
 of the bound state and input: the exactness statement for CORA's `lift`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

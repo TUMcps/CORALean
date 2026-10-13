@@ -8,10 +8,10 @@ The image of everything under the coordinate selection `dims` is everything, pro
 projection onto the diagonal, which is not the full space of dimension two.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ nominal part, so the set is nonempty (`zeroFeasible_nonempty`). Sufficient, not 
 `false` says only that the centre may be outside.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

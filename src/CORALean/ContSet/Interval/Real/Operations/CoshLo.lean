@@ -9,10 +9,10 @@ the range lies at or left of `0` (`cosh` decreases there), `cosh lb` if at or ri
 minimum `cosh 0 = 1` if `0` lies inside.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

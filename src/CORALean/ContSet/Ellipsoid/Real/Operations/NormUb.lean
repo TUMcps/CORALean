@@ -11,10 +11,10 @@ one, so this is outer, not CORA's exact value; no eigenvalue is computed. CORA's
 empty ellipsoid does not arise, an `Ellipsoid` here always holds its centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

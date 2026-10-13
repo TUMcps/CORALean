@@ -9,10 +9,10 @@ multiplied on its own, so the rounding of the product lands in that member's
 error box and never in a bundle-wide one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

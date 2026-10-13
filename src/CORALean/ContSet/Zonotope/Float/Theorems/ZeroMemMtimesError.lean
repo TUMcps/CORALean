@@ -11,10 +11,10 @@ sign the matrix entry has; `mtimesResidual` keeps it for the same structural
 reason `centerResidual` does, `generatorError` being symmetric outright.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

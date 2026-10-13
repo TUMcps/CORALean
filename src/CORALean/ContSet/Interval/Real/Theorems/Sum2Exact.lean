@@ -9,10 +9,10 @@ The row sums of a matrix are the column sums of its transpose, so `sum₁_exact`
 box gives it, again for a nonempty box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

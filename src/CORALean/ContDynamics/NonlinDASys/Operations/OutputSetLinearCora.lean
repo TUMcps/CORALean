@@ -17,10 +17,10 @@ first. The algebraic set `R_y` and the input set `U` enter only through their ce
 * [1] `contDynamics/@nonlinDASys/outputSet.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ then. The free motion is not carried: [1, Alg. 1] reaches every window from
       for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

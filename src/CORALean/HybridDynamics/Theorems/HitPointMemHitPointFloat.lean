@@ -12,10 +12,10 @@ import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
 `mul_between_corners`, `1/Λ` by `Interval.recip_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

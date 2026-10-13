@@ -11,10 +11,10 @@ real definition, entry by entry. The block `(i, j)` sits at row `i * p + k` and 
 `j * q + l` (`finProdFinEquiv`), CORA's layout.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

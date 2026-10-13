@@ -7,10 +7,10 @@ One round of the refinement CORA's `polygon` runs: every piece the predicate `pi
 split along its longest factor (`splitLongestGen`), the others are kept.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

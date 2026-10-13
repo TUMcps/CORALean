@@ -17,10 +17,10 @@ and the input held at zero, lands in `reach`'s output through `reach_outer` at
 each representation, with no line of `reach` itself touched.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

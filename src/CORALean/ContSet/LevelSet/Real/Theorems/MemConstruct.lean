@@ -6,10 +6,10 @@ import CORALean.ContSet.LevelSet.Real.LevelSet
 The definition, unfolded: a point is in a level set exactly when every component meets its operator.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

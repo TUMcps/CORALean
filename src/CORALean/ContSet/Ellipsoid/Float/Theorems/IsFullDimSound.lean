@@ -13,10 +13,10 @@ Read as reals, `G H` is strictly diagonally dominant, so its determinant is not 
 nonempty box, keeps an interior point (`subset_interior_add_left`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -22,10 +22,10 @@ and `reachExact`, which never mentions `O`, still resolves. `Sys` may sit in
 `Type 1`, as a closed loop storing a `NeuralNetwork` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,7 +21,7 @@ empty set: for `type = 'hyperplane'` it sets `res = true` (l. 68). Otherwise the
 -- Authors:       Claude Sonnet 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

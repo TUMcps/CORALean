@@ -7,10 +7,10 @@ CORA's `nnSoftPlusLayer` applies `log(1 + exp(β t)) / β` for a sharpness `β`,
 `1` by default. A specification over ℝ, never run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

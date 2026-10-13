@@ -10,10 +10,10 @@ thrown into a box. Taking every slope `0` is legal, and is exactly where that de
 lost. `diagonalBlock` only places the stored slopes, so the matrix is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

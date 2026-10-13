@@ -15,10 +15,10 @@ Pascal's rule twice, `C(p + 2, 2) = C(p + 1, 2) + p + 1 = C(p, 2) + p + p + 1`.
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

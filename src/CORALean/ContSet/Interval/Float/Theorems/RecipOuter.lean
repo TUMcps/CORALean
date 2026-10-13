@@ -10,10 +10,10 @@ below `1/b`, for positive `a` and `b`. A negative coordinate is negated first. T
 assumed to avoid `0`, certified by `ltStrict` as the float operations are.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

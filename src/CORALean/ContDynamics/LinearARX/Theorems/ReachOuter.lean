@@ -9,10 +9,10 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 conversion's, with its input set `inputSet U`; reach in the ARX form is separate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

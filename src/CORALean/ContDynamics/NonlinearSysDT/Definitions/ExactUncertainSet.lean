@@ -17,10 +17,10 @@ are `w_0, …, w_{k-1}` and the noises `v_1, …, v_k`, as in the paper. `g` is 
       Automatica, 41(6):1035-1043, 2005.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

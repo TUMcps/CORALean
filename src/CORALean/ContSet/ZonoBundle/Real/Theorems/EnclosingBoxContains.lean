@@ -15,10 +15,10 @@ contains it (`mtimes_outer`, [1, Prop. 1]) and one member's box contains that me
       European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

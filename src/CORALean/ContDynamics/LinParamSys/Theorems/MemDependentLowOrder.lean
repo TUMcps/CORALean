@@ -21,10 +21,10 @@ What `dependentHomSolLowOrder_counterexample` shows CORA's `R_lowOrder` misses i
 what the second and third degree here hold.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

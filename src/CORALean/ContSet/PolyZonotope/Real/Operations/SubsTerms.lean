@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.SubsXprod
 One term per generator of the result: the generator `i` of `pZ` and a term of its `Xprod`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

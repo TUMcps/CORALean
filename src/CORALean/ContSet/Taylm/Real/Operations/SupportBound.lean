@@ -15,10 +15,10 @@ a Taylor model's polynomial is enclosed, not attained. CORA's other types are no
 `lower` and `range` are, its `else` branch being empty).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

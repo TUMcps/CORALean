@@ -7,10 +7,10 @@ CORA's `enclose(E, E2)`, `convHull(E, E2)`: the hull `orOA` of the two ellipsoid
 owing the contract that its result contains both (CORA's SDP-solver `or(E, E2, 'outer')`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

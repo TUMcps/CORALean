@@ -10,10 +10,10 @@ through `expDown`, and held above one by an exact `maximum`, so the quotient tha
 meets a divisor the arithmetic says nothing about.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

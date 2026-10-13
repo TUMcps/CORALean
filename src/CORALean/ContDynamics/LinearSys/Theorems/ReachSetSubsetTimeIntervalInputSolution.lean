@@ -14,10 +14,10 @@ That is what `reachSet` buys over the sampled statements: between `kΔt` and
 `(k+1)Δt` this still speaks, where `reachSet_subset_reach` does not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

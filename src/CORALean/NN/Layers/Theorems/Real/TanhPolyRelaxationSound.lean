@@ -9,10 +9,10 @@ import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 ℝ-only, as the conjugation is: the sigmoid's, transported along the identity.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

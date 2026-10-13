@@ -8,10 +8,10 @@ exactly as `Sound` does, so the relation holds at `eval` with no hypothesis. Eve
 hypothesis-free statement about a network is the relational one read here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

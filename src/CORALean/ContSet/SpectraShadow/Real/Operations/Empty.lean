@@ -7,10 +7,10 @@ CORA's `spectraShadow.empty(n)`: the inequality `-1 ⪰ 0` on a `1 × 1` matrix,
 coefficient meets, over `n` free coefficients that carry the unit vectors (CORA's `[-1 0 … 0]`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

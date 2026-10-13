@@ -22,10 +22,10 @@ being an interval, so theirs goes into `b`, widened outward and hence enclosing.
 as far apart as their error boxes allow, plus the rounding of `c₂ - c₁`, directed outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

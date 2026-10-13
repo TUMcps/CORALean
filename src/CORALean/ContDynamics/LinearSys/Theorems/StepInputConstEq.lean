@@ -19,10 +19,10 @@ the shifted input to `c` there, and `expIntegral_mulVec` read against
 into `expIntegral · Δt` applied to `c`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

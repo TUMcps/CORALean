@@ -29,10 +29,10 @@ of `P̂^U_∞` (lines 17-18). The window's `P̂^U(t_{k+1})` reduces `P̂^U_0` an
 (line 23).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

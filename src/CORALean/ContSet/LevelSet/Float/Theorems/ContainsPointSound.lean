@@ -7,10 +7,10 @@ Each row's value lies between its bounds, and the certified comparison of the bo
 read as reals, places the value on the side its operator asks for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

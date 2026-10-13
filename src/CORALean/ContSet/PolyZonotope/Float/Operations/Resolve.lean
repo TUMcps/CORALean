@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
 Factor `k` fixed at the value `x`: `getSubset` at `[x, x]`, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

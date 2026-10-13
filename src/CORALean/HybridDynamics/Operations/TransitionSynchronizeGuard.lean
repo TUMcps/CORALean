@@ -10,10 +10,10 @@ intersected with each guard in turn, as `and_(guard, transList(i).guard, 'exact'
 polytope guards (the stacked-rows `HPolytope.intersection`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

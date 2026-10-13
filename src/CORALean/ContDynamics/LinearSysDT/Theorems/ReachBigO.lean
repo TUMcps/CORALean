@@ -12,10 +12,10 @@ size independent of how long the run goes — `reach_order_le`'s `o * n`, with n
 `bilin_h_isBigO` set for the rest of `Complexity/`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

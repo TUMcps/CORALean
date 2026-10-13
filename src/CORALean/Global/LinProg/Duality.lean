@@ -19,10 +19,10 @@ Setting the objective to zero turns the same statement into a certificate of
 infeasibility, so the empty case needs nothing new.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ an infinity or a NaN, and a step is `toBits` plus one above zero, minus one belo
 appears either: `0.0` compiles to `Float.ofScientific` on every call, which `nextUp` pays.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ serve as `u` and `p`. `sys.toNonlinearSys.f` unfolds to exactly that split, so
 `flow` needs no rewriting.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

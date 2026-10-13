@@ -20,10 +20,10 @@ Quadratic in `h`, from the merge and the sorts alike, against a `Zonotope`'s
 that can repeat.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

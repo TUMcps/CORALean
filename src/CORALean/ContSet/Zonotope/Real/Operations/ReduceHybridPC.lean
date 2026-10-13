@@ -17,10 +17,10 @@ Ties go to PCA, the robust one of the two. Noncomputable, as `pcaBasis` is.
       5626-5633, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

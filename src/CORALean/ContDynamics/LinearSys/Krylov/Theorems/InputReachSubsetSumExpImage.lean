@@ -21,10 +21,10 @@ the part of the step before `δ`. Line 8 as printed takes `e^{A(k+1)δ}`, one st
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ and the correction `F` the boxed powers give (`matZonoCorrectionMatrix`). `Δt` 
 float and its own value is the step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

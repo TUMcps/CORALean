@@ -9,10 +9,10 @@ The centre and every generator row at the chosen coordinates, the constraint pol
 `Interval.project`. Selecting coordinates does no arithmetic, so nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

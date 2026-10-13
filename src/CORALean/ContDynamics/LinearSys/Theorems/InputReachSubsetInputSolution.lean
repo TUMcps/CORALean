@@ -12,10 +12,10 @@ admissible input at once, which is the form Prop. 3.3 composes with in
 composes with a second time for its intermediate window.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -22,10 +22,10 @@ contains its interior: exact up to boundary points, an inner approximation as it
 A non-convex subtrahend is not covered: `linComb` then also fills its gaps (FINDINGS.md).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

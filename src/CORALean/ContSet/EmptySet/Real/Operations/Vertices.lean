@@ -7,10 +7,10 @@ CORA's `@emptySet/vertices_`: `zeros(dim(O),0)`, an `n × 0` matrix, which is a 
 no vertices in `Vec ℝ n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

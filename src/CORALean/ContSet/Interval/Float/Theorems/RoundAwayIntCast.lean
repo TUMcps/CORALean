@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Operations.RoundAway
 On a rational, read in ℝ, the computable integer is the exact layer's rounding.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

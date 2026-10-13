@@ -7,10 +7,10 @@ Touching the mantissa alone, which is what `SoundFloatArithmetic.toReal_neg`
 needs from `Dyadic`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

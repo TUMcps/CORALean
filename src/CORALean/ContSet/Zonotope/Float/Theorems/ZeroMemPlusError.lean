@@ -14,10 +14,10 @@ Not a fact about `plus` specifically: any two boxes that bracket `0`, added,
 bracket `0`. Stated at `plus` because that is the one call site.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ time-interval sets. Line 17's union is no zonotope, so this is a `Set`.
       Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

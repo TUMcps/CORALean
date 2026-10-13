@@ -7,10 +7,10 @@ CORA's `@interval/mtimes`: each row takes the lower endpoint of every product
 and the upper one, so a negative `M i k` swaps the bounds it multiplies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

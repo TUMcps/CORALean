@@ -8,10 +8,10 @@ With every generator zero the shadow is inside the point `{c}`, which has no int
 positive dimension: the case CORA's `norm(G, 'fro') < 1e-8` shortcut means to catch.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

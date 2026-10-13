@@ -18,10 +18,10 @@ a float, and `subDown_le_sub`/`add_le_addUp` finish widening the Taylor box.
 fixed constant `2`, sound only under the stronger margin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

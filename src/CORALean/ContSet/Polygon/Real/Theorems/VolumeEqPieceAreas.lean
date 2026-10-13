@@ -11,10 +11,10 @@ pairwise almost-everywhere disjoint (interior-disjoint pieces qualify: a polytop
 null, which is not used here, the hypothesis is stated on the measure).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

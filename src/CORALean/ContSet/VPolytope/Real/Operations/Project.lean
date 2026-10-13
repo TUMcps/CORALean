@@ -8,10 +8,10 @@ may repeat or reorder coordinates. Reading coordinates is linear, so this is `ma
 selection map, and `project_exact` is `map_exact`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

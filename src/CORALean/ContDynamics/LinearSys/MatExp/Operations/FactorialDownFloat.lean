@@ -11,10 +11,10 @@ Each partial product is held above `one` by an exact `maximum` — the clamp
 the rounding says nothing about: `k! ≥ 1` always, so it discards nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

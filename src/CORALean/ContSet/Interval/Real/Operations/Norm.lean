@@ -9,10 +9,10 @@ CORA's `@interval/norm_` at `type = 2`: the Euclidean norm of the entrywise larg
 counterpart here: a box over `Vec ℝ 0` denotes the point, not `∅`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

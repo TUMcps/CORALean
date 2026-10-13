@@ -8,10 +8,10 @@ For injective `proj`: `Fin.find` recovers the index of a coordinate in the range
 coordinate is `0`. A box certified empty has no points to pad.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

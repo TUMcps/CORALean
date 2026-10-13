@@ -18,10 +18,10 @@ At `g = 0` step 2 reads `0 / 0`, which the paper leaves undefined and Lean's `x 
       Automatic Control, 61(9):2341-2356, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

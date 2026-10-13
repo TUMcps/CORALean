@@ -9,10 +9,10 @@ above `reachOrder r + 2` puts it strictly under `η + 2`, the denominator
 `timeIntervalStep_outer` divides by. `reach` raises its `η` to exactly such one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

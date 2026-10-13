@@ -9,10 +9,10 @@ The intersection of the members' interval enclosures: the Taylor model's range b
 (`Taylm.interval` at one component) meets the stored interval; a missing member leaves the other.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

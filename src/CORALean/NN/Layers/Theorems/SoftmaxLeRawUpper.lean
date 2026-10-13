@@ -9,10 +9,10 @@ import CORALean.NN.Layers.Theorems.SumOffDownLe
 term by term through `expDown_le` and the reciprocal rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

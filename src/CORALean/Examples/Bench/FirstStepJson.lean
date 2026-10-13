@@ -14,10 +14,10 @@ no rational to give. The shape is the one `Output.stepJson` gives `sets_ti`: `c`
 rows of `h`, and `E` with `inf` and `sup`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

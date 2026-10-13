@@ -19,10 +19,10 @@ At a zonotope the origin end is the generator-free zonotope at `0`, CORA's own
 writes keeps factors only a polynomial zonotope has.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

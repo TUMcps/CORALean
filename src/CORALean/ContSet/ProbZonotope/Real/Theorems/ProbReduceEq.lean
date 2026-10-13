@@ -10,10 +10,10 @@ the covariance and not the generators; in particular it keeps the family of laws
 `probReduce` changes is the representation: the number of single Gaussians, to the dimension.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

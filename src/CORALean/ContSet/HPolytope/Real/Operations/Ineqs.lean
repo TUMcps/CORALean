@@ -6,10 +6,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 CORA's `polytope(A, b)`: one inequality per row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

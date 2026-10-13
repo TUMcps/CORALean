@@ -20,10 +20,10 @@ and an empty range sums to `0`, which the point `0` holds.
       Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ whole number, and positive: at `t_f = 0` the loop does not run and the union is 
       Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

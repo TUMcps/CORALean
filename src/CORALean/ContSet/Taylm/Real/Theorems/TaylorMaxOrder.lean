@@ -8,10 +8,10 @@ import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
 of order `0`; the larger order wins.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

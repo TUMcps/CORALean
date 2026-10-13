@@ -12,10 +12,10 @@ anything, per `ZonoBundle.lean`'s docstring — so the bound holds there too,
 where a zonotope with no generators would have had none to keep.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

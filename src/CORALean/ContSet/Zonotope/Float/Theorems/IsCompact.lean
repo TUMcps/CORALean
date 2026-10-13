@@ -12,10 +12,10 @@ closedness: a sum of two merely closed sets need not be closed, so `IsClosed`
 is read off this and not the other way round.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

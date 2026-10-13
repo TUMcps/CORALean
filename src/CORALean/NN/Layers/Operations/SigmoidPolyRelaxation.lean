@@ -9,10 +9,10 @@ turns into the `M` the sampling bound asks for, and the fit `c` and grid `p`, `d
 any array of stored values is a fit, and a grid that fails its check costs precision only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
 already rounded outward where it was computed, and negating a float is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

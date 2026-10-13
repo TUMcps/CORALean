@@ -13,10 +13,10 @@ quantity brackets its real value (`dotDown_le`, `le_dotUp`, `mul_between_corners
 `Interval.recip_outer`), and `L_il = I_il + A_il(num · Λ⁻¹) + (yᵢΘ_l)(Λ⁻¹Λ⁻¹)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

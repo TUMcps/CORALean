@@ -10,10 +10,10 @@ The matrix of CORA's `@zonotope/rotate(Z, dims, angle)` at a float angle: the 2x
 the exact entries `0` and `1` degenerate intervals. `p` is the number of halvings.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

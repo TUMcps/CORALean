@@ -11,10 +11,10 @@ import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
 bound is zero and `softmax_nonneg` is all that is needed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   08-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

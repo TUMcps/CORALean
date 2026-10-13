@@ -14,10 +14,10 @@ matrix an exponential enclosure is widened by — the radius per entry is the
 vector's bound, not `n` times it, because `Vec` carries the sup norm.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

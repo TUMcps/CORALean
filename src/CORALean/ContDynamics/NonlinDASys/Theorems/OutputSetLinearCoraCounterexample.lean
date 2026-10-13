@@ -9,10 +9,10 @@ For the linear output `h(x, y, u) = y`, `NonlinDASys.outputSetLinearCora` is the
 is not in the set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

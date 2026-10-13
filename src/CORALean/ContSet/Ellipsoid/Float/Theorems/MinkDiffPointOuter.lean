@@ -11,10 +11,10 @@ A point `y + e` of the ellipsoid, `y = q + G u`, moved by `-s` is `(q' + G u) + 
 grows by the rounding, so the result can be larger than the translate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

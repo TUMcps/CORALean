@@ -9,10 +9,10 @@ an `iff` on points, which is the form a constrained zonotope's convex hull needs
 it in: it has the weight in hand and owes the rows.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

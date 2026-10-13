@@ -7,10 +7,10 @@ Exact and pure Lean: the exponent drops by one and the mantissa is untouched,
 as in `Dyadic.half`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

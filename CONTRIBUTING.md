@@ -982,10 +982,19 @@ Content files carry a CORA-style block between the module docstring and the
 code:
 
 ```lean
--- Authors:       Your Name
+-- Authors:       Claude Sonnet 5.5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 ```
+
+`Authors:` names the model that wrote the file, as `Claude <Opus|Sonnet|Fable|Haiku>
+<version>`: an agent writes its own model, and a model that substantially changes a
+file someone else wrote appends itself, comma-separated. `Reviewed:` records human
+reviews only, as lines `DD-Month-YYYY (Name)` oldest first, continuation lines
+aligned to the value column; `---` means not yet reviewed. To review, run
+`python3 scripts/review.py` (`--in ContSet/Zonotope` restricts it, `--main` picks only main-type files,
+`--commit` commits each review) or the VS Code task "Review a random Lean file". A file added in the old
+format is fixed by `python3 scripts/author-blocks.py`.
 
 Files that only collect or re-export do not: every `API.lean`, `CORALean.lean`.

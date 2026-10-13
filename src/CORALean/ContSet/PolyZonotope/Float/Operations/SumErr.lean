@@ -10,10 +10,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
 The sum of `m` error boxes by `Interval.plus`, the error box of `PolyZonotope.sum`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

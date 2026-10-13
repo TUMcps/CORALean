@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Operations.Empty
 CORA's `@emptySet/interval`: `interval.empty(n)`, the crossed box `Interval.empty`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

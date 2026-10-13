@@ -7,10 +7,10 @@ Split out of `QuadMap.lean` (issue #62): read again by `quadMapGDiff` in this
 directory and by `Theorems/QuadMapOuter.lean`, both outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

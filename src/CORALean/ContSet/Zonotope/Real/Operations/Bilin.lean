@@ -17,10 +17,10 @@ coefficients are free in `[-1, 1]`, so the cross block only over-approximates â€
 see `bilin_outer`. There is therefore no `bilin_exact` counterpart.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

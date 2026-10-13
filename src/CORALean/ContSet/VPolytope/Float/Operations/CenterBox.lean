@@ -10,10 +10,10 @@ rounded down (at least `1`), the outer of the two quotients taken each way, whic
 either sign of the sum. The box is not a point of the set; `centerBox_meets` says it holds one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

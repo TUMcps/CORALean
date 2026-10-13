@@ -23,10 +23,10 @@ membership off `Set.mem_iUnion₂` and never a `Finset.sum`-shaped goal.
       Control, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

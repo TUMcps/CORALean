@@ -8,10 +8,10 @@ Outer: the expectation of every law of `P` lies in the mean zonotope. Not exact:
 interval may hold no positive semidefinite matrix, leaving no law at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

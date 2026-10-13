@@ -7,10 +7,10 @@ import Mathlib.Data.Real.Sign
 CORA's `@interval/sign`: `interval(sign(I.inf), sign(I.sup))`, the hull of the image.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

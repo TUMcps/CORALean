@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
 # The same at the constraint block, `appendE`'s right half
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

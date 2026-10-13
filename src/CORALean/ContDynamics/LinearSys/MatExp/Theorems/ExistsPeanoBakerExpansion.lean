@@ -25,10 +25,10 @@ term of the exponential series of `c t`, and their sums are the two remainders.
 `Vec` carries the sup norm, and `‖A(σ)‖` is the `l∞` operator norm it induces.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

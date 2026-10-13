@@ -7,10 +7,10 @@ Read off compactness. This is what a halfspace description cannot have: it
 admits unbounded sets, which is the difference between the two representations.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

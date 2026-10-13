@@ -18,10 +18,10 @@ What it denotes is the exact layer's `construct` of `nominal`, fixed by
 definition rather than by a lemma. Each operation then owes only enclosure.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

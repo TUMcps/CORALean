@@ -8,10 +8,10 @@ QR reduction and `convhulln` to keep only the extreme points, which changes the 
 not the set; the vertex description of the whole family denotes the same hull.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

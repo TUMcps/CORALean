@@ -27,10 +27,10 @@ makes both sums empty and the bound reads `0 ≤ d_H(V, W)`, which holds.
       Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

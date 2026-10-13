@@ -7,10 +7,10 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
 solution is taken at (the paper's `η`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

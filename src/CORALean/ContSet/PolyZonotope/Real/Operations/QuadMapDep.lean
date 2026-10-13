@@ -13,10 +13,10 @@ Its own file (issue #62): read again by the float layer's own `quadMap` and
 independent block is empty, so nothing outside `quadMap` calls it directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

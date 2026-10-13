@@ -10,10 +10,10 @@ at one operation each, on top of `Zonotope.mtimesCost n n h`: the matrix is
 applied dense, the zeros of the rotation not being exploited.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

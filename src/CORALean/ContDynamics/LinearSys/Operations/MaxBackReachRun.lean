@@ -13,10 +13,10 @@ line 2's pre-loop state, so the `k`-th iteration's set is `run (k+1)`'s.
       2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

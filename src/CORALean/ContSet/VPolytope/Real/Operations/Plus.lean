@@ -19,10 +19,10 @@ The vertex form of the Minkowski sum, [1, Eq. 25].
       vol. 103, pp. 163-181, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import Mathlib.Topology.Instances.Real.Lemmas
 A sum of coefficients times products of coordinate powers.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

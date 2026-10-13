@@ -18,10 +18,10 @@ G(i,j) / √S` with `√S = n ‖Y‖_F`. The gradient of [1, Prop. 8] is this a
       Transactions on Machine Learning Research (TMLR), 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

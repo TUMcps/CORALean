@@ -7,10 +7,10 @@ Split out of `QuadMap.lean` (issue #62): shared with `Mul.lean` in this
 directory, and reused by `quadMapE`, all outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

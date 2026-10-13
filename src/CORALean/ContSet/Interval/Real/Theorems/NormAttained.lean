@@ -10,10 +10,10 @@ member whose Euclidean norm is exactly `Interval.norm`. With `Interval.norm_le` 
 box holds no point to attain it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ the frontier alone, along the edges `A i j ≠ 0`, and keeps what has not been r
       Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

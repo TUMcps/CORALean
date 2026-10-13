@@ -9,10 +9,10 @@ appended after the existing ones: CORA's `Ae = [Ae; A(i,:)]`, `be = [be; b(i)]` 
 `A = A(~idxMoveToEq,:)` in `priv_compact_toEquality`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

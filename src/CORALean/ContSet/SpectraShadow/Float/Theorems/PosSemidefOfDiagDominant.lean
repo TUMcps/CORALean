@@ -10,10 +10,10 @@ magnitudes off the diagonal in its row. Each cross term `xᵢ Mᵢⱼ xⱼ` is a
 form is at least `Σᵢ (Mᵢᵢ - Σⱼ≠ᵢ |Mᵢⱼ|) xᵢ² ≥ 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

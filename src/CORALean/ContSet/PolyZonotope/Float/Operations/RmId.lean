@@ -9,10 +9,10 @@ those factors at `1`. Centre, generators and error box are copied, so nothing ro
 factors that stay are read off in order by `orderIsoOfFin`, as at the real layer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

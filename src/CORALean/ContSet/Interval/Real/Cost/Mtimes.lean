@@ -13,10 +13,10 @@ Not `Cost.matVec`, which is one product and one sum per row: an interval
 matrix-vector product does the work of two and compares as well.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

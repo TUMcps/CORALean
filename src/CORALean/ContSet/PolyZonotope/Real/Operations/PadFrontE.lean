@@ -11,10 +11,10 @@ two factor sets out in one order — the left set's first, the right set's after
 and each set has to be read at the same joint indices.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 The raised upper bound is a maximum with the lower one, which `toReal_maximum` reads exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

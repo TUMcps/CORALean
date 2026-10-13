@@ -15,10 +15,10 @@ again. `Complexity/PlusBigO.lean` is the same fact about the *size* of the
 result, in `O`-notation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ bundle's constrained zonotope carries its constraints as a polytope `P`, not in 
 stated for, so that branch is not modelled. `0 < k`: CORA answers `[]` for no members.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

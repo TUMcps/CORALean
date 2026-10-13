@@ -24,10 +24,10 @@ A zonotope rather than a `Set`: nonemptiness and boundedness then come from the
 representation, and `minkDiffRep` can take it as an operand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ staying in `construct U`, and `A k ∈ construct sys.A` at every `k`: `init` and
 `simulate`'s equation at `A k` is one witness of `Trajectory.step`'s `∃ A`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

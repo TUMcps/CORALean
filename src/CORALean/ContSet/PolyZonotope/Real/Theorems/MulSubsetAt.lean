@@ -9,10 +9,10 @@ through `bilin` itself, since `mul` and `bilin Entrywise.hadamardLin` agree at
 every point but are not the same operation term for term.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

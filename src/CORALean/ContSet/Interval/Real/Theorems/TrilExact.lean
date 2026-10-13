@@ -8,10 +8,10 @@ CORA's `tril` of an interval matrix takes MATLAB's `tril` of both bounds. For a 
 entry that is the image of the box under `tril` of the matrix, entry by entry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

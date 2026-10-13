@@ -8,10 +8,10 @@ Exact: the dropped generators are zero, and `Zonotope.filterGen_construct` says 
 generators denotes the same set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

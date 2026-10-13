@@ -20,10 +20,10 @@ whose hulls exhaust the space (`Fullspace.construct_eq_iUnion_truncatedVertices`
 * [1] `contSet/@fullspace/vertices_.m`, CORA (Sep. 2025).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ is a vector, one bound per parameter, as in the paper's example.
       time-varying parameters". IEEE Transactions on Automatic Control, 51(7):1144-1150, 2006.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

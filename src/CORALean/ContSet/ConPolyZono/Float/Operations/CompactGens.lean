@@ -17,10 +17,10 @@ of kept columns, and every entry is read through those: the specification
 summands under it (issue #61). `compactGens_eq_spec` says they are one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   11-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ Every matrix `A` of `M` has `|A i k| ≤ magnitudeMat M i k`, so a vector `x` wi
 has `|(A x) i| ≤ dotUp (magnitudeMat M i) ξ`, the products and the sum rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

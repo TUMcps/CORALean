@@ -21,10 +21,10 @@ The pair stays an argument: `Plus` has no room for it, and fixing it would bury
 a precision choice in an interface, which is why `Instances` leaves it alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

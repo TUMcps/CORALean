@@ -22,10 +22,10 @@ coefficient vector of `Z̃`. Column `j` of `Z̃`'s system is zero, so `β_j` doe
       2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ sum over the generators of an entry of `H G` times a coefficient: at most the su
 magnitudes, each of which lies between its two directed dot products.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ tolerance, `u'` being the right end it returns. The test that accepts a fit is `
 `true` certifies `error ≤ tol`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

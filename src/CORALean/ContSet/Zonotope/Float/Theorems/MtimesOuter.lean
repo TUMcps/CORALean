@@ -20,10 +20,10 @@ fixed vector, which `residual` holds, the generators by an entrywise amount the
 coefficients then scale, which `generatorError` sums.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

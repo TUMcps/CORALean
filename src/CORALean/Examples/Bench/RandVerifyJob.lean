@@ -8,10 +8,10 @@ The instance, the step `dt` (a rational string, read exactly), the algorithm, th
 `η` and the zonotope order `ρ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

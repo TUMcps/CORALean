@@ -16,10 +16,10 @@ zonotope `{[1, 0]ᵀ α₁ + [0, 2]ᵀ α₁² | α₁ ∈ [-1, 1]}`. The first 
       Computation and Control (HSCC), 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

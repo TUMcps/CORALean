@@ -10,10 +10,10 @@ roundings less the stored entry, rounded outward. Over a box `dom` the deviation
 then at least this sum of lower corner products, each rounded down.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

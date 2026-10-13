@@ -11,10 +11,10 @@ are each at most `normUp` of the half-gaps away (`aux_half_gap_le`), and the sto
 both to the larger rounded-up radius. Outer only, as the exact hull.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ it to be continuous in the matrix, not only in the vector. Finite dimension is
 what makes every piece of it continuous.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

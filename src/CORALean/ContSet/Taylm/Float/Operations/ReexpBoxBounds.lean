@@ -11,10 +11,10 @@ becomes `[-1, 1]ⁿ`: the float `Taylm.reexpand`'s bounds. The re-expansion need
 every coordinate, which `le` certifies; where it does not, the range is `polyBoxBounds`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

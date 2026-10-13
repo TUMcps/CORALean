@@ -43,10 +43,10 @@ A kind that keeps the dimension matches on its `dim` to learn the two dimensions
 which is a cast the compiler erases.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

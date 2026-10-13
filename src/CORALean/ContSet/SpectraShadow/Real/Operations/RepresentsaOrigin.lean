@@ -7,10 +7,10 @@ CORA's `@spectraShadow/representsa_` at type `origin`, at tolerance `0` (where `
 equality): every upper support `supportFunc_(SpS, ±eᵢ, 'upper')` is `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
 The bundle is compact, so bounded, so of finite Lebesgue measure.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

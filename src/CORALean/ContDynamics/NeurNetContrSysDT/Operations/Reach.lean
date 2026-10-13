@@ -23,10 +23,10 @@ counted in sampling periods (`ℕ`) with `tFinal - tStart` steps, as there; a
 `Reach.Params`, since the controller, not the caller, supplies the inputs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

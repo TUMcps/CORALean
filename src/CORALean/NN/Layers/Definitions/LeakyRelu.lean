@@ -7,10 +7,10 @@ CORA's `nnLeakyReLULayer` applies `max(α t, t)`. For a slope `α ≤ 1` below z
 convex, which is what its relaxation reads. A specification over ℝ, never run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

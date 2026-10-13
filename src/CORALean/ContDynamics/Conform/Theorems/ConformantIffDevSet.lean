@@ -15,10 +15,10 @@ deviation set `R_a(k)` — `mem_reachOut_iff` once per measurement.
       Transactions on Robotics, 39(5):3776-3790, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

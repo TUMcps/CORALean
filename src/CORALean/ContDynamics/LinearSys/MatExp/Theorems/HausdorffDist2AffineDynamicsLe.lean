@@ -32,10 +32,10 @@ constant exactly, without [1]'s erosion step, which does not compose additively.
       Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ the radius times its rounded-up bound. A negative radius denotes `∅`, so a poi
 has `0 ≤ r`, which the product with the bound needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

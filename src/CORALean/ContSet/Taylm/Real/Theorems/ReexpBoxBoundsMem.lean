@@ -12,10 +12,10 @@ A point `t` of the box is `mid + rad ⊙ s` for `s` in the normalized box (`s = 
 coordinate of radius zero), so `P t` is the re-expanded polynomial at `s` and lies in its bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

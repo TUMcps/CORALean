@@ -7,10 +7,10 @@ Past the bit length of `m`, `|n| * 2 ^ g` exceeds `|m|`, so `m ≤ n * 2 ^ g` is
 it, `leShl` compares directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

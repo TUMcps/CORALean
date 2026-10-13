@@ -21,10 +21,10 @@ own name and signature to the composition on its own, decoupled from that loop.
       Polynomialization and Non-Convex Sets". HSCC 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

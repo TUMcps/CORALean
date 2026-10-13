@@ -8,10 +8,10 @@ generator matrix `H = [s₁ G₁ | s₂ G₂]`, exactly as a zonotope's would. `
 since `Operations/Plus.lean` states `k` directly in the structure instance.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

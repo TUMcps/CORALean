@@ -14,10 +14,10 @@ each input has to maximize, for `x(k)` to be a support vector, is read off here.
       Functions". HSCC, 2023, Article 5.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

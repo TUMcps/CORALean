@@ -11,10 +11,10 @@ the constant is the box the step carries, so it runs at a float scalar as it doe
 at `ℝ`. `u✱` is shifted out as a point box at `-u✱`, exact in either.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       04-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

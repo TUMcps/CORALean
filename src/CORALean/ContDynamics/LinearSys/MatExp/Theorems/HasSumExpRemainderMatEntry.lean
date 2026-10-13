@@ -16,10 +16,10 @@ Reading one entry is `1`-Lipschitz under the `l∞` operator norm the local inst
 `Mat ℝ n n`, which is what carries the matrix series' convergence to the entry's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ scaled range is the range divided by `2^s`. The first test is precision, the
 second soundness; `none` if no `s` passes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

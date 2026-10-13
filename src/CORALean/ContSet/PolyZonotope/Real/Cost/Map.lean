@@ -15,10 +15,10 @@ keeps the count an upper bound rather than a guess, and `mtimesCost` is this at
 either, which is the honest reading of a cost at an arbitrary map.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

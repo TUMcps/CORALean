@@ -16,10 +16,10 @@ step performs, not of what the operation is reducing. Any representation whose
 same conclusion the same way, no induction needed either time.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

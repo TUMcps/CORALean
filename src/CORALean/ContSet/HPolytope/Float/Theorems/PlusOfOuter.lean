@@ -9,10 +9,10 @@ the caller named, and the certificates were composed to speak about the sum. The
 rounding was paid inside that composition, so this proof never mentions it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

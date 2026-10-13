@@ -23,10 +23,10 @@ For the reach sequence `R` that is `Bool` on `(0,1)` and `{false}` elsewhere, `C
       Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

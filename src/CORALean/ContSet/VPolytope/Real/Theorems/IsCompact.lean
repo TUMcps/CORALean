@@ -10,10 +10,10 @@ The hull of a finite set. A halfspace description is closed too but need not be
 bounded, which is why the two get separate proofs rather than one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

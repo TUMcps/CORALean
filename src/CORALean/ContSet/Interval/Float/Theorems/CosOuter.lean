@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.Cos
 For every box and precision: `cosRange_mem` on every coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

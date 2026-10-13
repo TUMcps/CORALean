@@ -14,10 +14,10 @@ true of `R₀`, `U` and the error set `E` — nothing about `reachSet` itself is
 left to discharge.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ import Mathlib.Tactic.Linarith
 zero: how a statement about a re-expanded model reaches the box's points.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

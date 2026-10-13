@@ -10,10 +10,10 @@ at a bare scalar `c`, because the correction matrix bounds a different series
 with exactly this shape and reuses it rather than re-deriving it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ holds (`some`), else `none`; the check that sets it runs in the caller.
       Conference on Decision and Control (CDC), 2008, pp. 4042-4048.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

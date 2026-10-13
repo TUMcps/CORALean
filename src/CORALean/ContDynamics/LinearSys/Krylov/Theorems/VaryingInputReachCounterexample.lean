@@ -29,10 +29,10 @@ former. At `u = 0`, `h₄,₃ = 0`, so with `U = (0₄, w)` [1, Cor. IV.2] fails
   Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

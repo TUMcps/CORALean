@@ -15,10 +15,10 @@ splits at order three into `expTaylor (t • M) 2`, which `expTaylor_two` turns 
 and the orders past it. `2 ≤ κ` is what makes the split legitimate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

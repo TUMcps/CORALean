@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/representsa_` at type `origin` with tolerance `0`: both bounds are zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

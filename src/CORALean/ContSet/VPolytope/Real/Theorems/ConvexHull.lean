@@ -14,10 +14,10 @@ then Mathlib's hull algebra applied to `Set.range V`, with no coefficient
 bookkeeping of their own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

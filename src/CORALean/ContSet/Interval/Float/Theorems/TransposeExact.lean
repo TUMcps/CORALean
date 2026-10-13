@@ -8,10 +8,10 @@ Transposition commutes with reading the floats as reals, so the stored box denot
 transpose of the reading, and `Real.Interval.transpose_exact` carries over.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

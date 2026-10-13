@@ -13,10 +13,10 @@ at any instance of `Reach` and with nothing left to prove by hand. No argument
 fixes `S` for instance search, `P` being an output of it, so `S` is named, `(S := S)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

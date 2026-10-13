@@ -7,10 +7,10 @@ CORA's `@interval/lt`: the strict version of `le`, both bounds of `I` strictly i
 every coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

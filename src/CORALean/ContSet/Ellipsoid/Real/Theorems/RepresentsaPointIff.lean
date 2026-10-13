@@ -9,10 +9,10 @@ the ellipsoid and, if that is `{q}`, `Gⱼ = 0`; conversely `G = 0` leaves only 
 point at `q = 0`. The empty set is never represented: `Ellipsoid.centre_mem_construct`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

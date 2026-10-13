@@ -7,10 +7,10 @@ The largest exponent factor `k` carries over the dependent generators: the exact
 the stored exponent matrix, so the two agree.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

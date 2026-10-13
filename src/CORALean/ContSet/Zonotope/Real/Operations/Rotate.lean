@@ -8,10 +8,10 @@ CORA's `@zonotope/rotate(Z, dims, angle)`: the rotation is applied to the centre
 on the two coordinates `dims`, the others being left alone. That is `mtimes` at `rotMat`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

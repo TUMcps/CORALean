@@ -21,10 +21,10 @@ owes no proof here, exactly as `ConPolyZono.reduceBy_outer` is sound at every
 partition without picking one. No search is implemented.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

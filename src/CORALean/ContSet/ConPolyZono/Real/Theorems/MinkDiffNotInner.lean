@@ -10,10 +10,10 @@ contains `0`; but `0 + ½ ∉ P`, so `0 + Z ⊄ P` and `0 ∉ P ⊖ Z`. CORA lab
 computation `'exact'` and cites a theorem that assumes convexity. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

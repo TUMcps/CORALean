@@ -18,10 +18,10 @@ Only orders `1` and up, `‖A^i‖ ≤ ‖A‖^i` being false at `i = 0`, where 
 is the identity and the operator norm bounds nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

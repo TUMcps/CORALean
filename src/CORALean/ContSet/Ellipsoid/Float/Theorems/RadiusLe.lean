@@ -9,10 +9,10 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
 same error), whose points `norm₂_le_normUb` bounds. An upper bound only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

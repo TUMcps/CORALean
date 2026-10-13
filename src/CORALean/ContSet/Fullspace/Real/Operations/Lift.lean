@@ -7,10 +7,10 @@ CORA's `@fullspace/lift_`: only the dimension changes, to `N`; the new coordinat
 unbounded, as they are in the full space already.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

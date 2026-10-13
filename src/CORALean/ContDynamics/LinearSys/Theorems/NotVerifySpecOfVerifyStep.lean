@@ -15,10 +15,10 @@ Lines 3-25 of [1, Alg. 3]. If the inner approximation's best distance to leaving
       Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
 stated once so nothing downstream redoes the induction on `reach`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

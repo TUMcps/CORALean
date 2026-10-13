@@ -9,10 +9,10 @@ product — quadratic, not linear, in the operands' sizes. `rfl`, since
 `O`-notation, along a family of operands whose sizes grow.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

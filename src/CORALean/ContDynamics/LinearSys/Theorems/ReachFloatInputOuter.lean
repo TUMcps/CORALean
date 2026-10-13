@@ -12,10 +12,10 @@ since `0 ∈ Ũ` lets the later window end bound it (`inputReach_mono`). No
 `0 ∈ U` is asked: the split took the centre out.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

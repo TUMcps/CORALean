@@ -9,10 +9,10 @@ The hull of the two bundles is the hull of the joined vertices, a vertex polytop
 constrained zonotope (`VPolytope.conZonotope_exact`), hence a bounded halfspace description.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

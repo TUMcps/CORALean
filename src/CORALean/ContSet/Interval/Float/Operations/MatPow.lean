@@ -19,10 +19,10 @@ them: `matMul` builds a closure over its two operands, so left unmaterialised
 the recursion would nest `k` closures deep by the time `matPow A k` is read.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

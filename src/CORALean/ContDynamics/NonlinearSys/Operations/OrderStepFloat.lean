@@ -18,10 +18,10 @@ no fixed point. Any `κ` other than `1` is the second order.
       Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

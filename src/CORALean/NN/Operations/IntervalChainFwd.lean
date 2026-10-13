@@ -8,10 +8,10 @@ back as `[mu - r, mu + r]`, the activation's `[σ l, σ u]`. The empty-set appro
 interval `d` the linear layer may carry is not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.Dyadic.Dyadic
 `quotDown_le_div` and `le_quotUp` both rewrite with after computing a quotient.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

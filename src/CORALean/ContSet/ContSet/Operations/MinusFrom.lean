@@ -11,10 +11,10 @@ import CORALean.Global.NegScalar
 `-S + p`, CORA's second case, where a vector is subtracted from a set the other way round.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

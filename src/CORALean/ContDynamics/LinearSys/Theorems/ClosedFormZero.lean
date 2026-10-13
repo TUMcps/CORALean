@@ -8,10 +8,10 @@ integral over a point is `0`, so the formula reduces to its own initial
 point — needed wherever a run built from it has to meet `init`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       15-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

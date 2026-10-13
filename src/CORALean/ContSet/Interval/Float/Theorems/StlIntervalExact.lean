@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.StlInterval
 The set of times is the first coordinate of the box the stored floats denote; nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -4,10 +4,10 @@ import CORALean.ContSet.Interval.Float.Operations.Acosh
 # `Interval.acosh` contains the image under `acosh`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

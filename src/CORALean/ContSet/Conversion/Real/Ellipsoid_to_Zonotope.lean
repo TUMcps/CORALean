@@ -26,10 +26,10 @@ or below the minimum, norm of `Z(S, 0)` and mapped by the ellipsoid's generator.
       2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

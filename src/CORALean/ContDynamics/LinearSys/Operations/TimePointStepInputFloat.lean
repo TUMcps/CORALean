@@ -13,10 +13,10 @@ enclosure `inputSolutionFloat` as its input set, before reducing.
 `timePointStepFloat` is the same step without an input.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

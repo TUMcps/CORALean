@@ -13,10 +13,10 @@ but that equation is `rfl` — `p` is set by a structure literal, so the
 projection reduces without a cast, exactly as `map_subsetAt` needs none.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

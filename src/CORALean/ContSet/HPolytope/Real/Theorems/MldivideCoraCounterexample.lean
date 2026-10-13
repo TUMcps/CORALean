@@ -9,10 +9,10 @@ For `P1 = [0, 2]` and `P2 = [1, 3]` the difference `P1 \ P2` contains `0`, and C
 the difference of `P1` with itself, is empty. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

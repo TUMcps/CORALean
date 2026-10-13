@@ -9,10 +9,10 @@ The stored polytope is the convex hull of the points read as reals, with nothing
 box is the origin, a singleton `{0}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

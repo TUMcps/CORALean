@@ -10,10 +10,10 @@ no float format computes soundly. Since `a^(i-1) = 1/i`, the coefficient is
 is dominated by, and within `0.06` at `i = 3`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

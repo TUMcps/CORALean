@@ -15,10 +15,10 @@ the two pieces — `smul_outer` at `invFactorialBounds`'s two facts rather than
 one exact coefficient.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ Not CORA's test, whose mutual-containment step is not modelled, and which answer
 different member counts (see `ZonoBundle.isequalCora`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

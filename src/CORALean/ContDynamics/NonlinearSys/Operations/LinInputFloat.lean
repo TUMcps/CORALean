@@ -17,10 +17,10 @@ so `u✱` is that centre and nothing is rounded there; `L` is `slopeRemainder`.
 step and `x✱`, `U'` every input and `u✱`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

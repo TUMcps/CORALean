@@ -15,10 +15,10 @@ points, is not taken, so the value is below the Hausdorff distance and can be st
 (`Polygon.hausdorffDist_lt`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

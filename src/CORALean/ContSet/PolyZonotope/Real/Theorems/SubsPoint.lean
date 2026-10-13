@@ -17,10 +17,10 @@ is only bookkeeping: a sum of terms evaluates to the product of the evaluations
 add (`ReplaceIdPoint`). `subs_construct` is the set equality; the independent block is `pZ`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

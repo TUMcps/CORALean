@@ -11,10 +11,10 @@ substituted primitive is what both `closedForm_continuousOn` and
 second to cancel `e^{ρA}` against `e^{-ρA}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       15-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

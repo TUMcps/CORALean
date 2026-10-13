@@ -10,10 +10,10 @@ guarantee); from below, with the root rounded up, floored at zero. The hypothesi
 root positive, is what puts `c` strictly inside `(-1, 1)`. `q` is the precision of the root.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

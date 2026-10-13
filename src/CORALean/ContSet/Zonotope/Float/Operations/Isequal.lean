@@ -9,10 +9,10 @@ certified `le` in both directions. Certified in one direction only: `true` is a 
 refutes nothing. Not CORA's test, which merges parallel generators and ignores their order.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

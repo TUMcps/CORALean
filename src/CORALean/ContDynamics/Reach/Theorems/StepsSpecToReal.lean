@@ -9,10 +9,10 @@ positive real, and `N` of it span the horizon exactly, in the reals the
 guarantees are stated in. `ToRat.toReal_toRat` carries `steps_spec` across.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

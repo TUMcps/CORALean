@@ -22,10 +22,10 @@ computed sets and a fatter `R` than CORA's, never on the trajectory.
 abstraction error, and `hρ` is strict for the reason `confined_of_ball` is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

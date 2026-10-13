@@ -16,10 +16,10 @@ CORA return `false` at once.
 * [1] `contDynamics/@contDynamics/private/priv_isconform_BF.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

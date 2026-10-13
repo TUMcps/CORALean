@@ -12,10 +12,10 @@ The step `maxDist = max(sum(diag(1 ./ nt.^2) * orientedMatrix.^2, 1))` of CORA's
 lengths of the points in the coordinates scaled by `nt`. The columns of `O` are the points.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

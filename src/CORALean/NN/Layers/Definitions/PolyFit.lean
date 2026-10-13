@@ -20,10 +20,10 @@ matrix it returns junk, the fit is a bad one, and the error bound absorbs it.
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

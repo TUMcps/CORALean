@@ -8,10 +8,10 @@ import CORALean.Global.Float.SoundFloatArithmetic
 than assumed exact the way `Real.MatExp.expRemainderBound` reads `‖x‖ ^ (η+1)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

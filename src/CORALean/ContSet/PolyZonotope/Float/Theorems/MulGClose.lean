@@ -11,10 +11,10 @@ per Horner step. `mulDown`/`mulUp` bracket the exact product directly, and
 `subUp` covers the gap between them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

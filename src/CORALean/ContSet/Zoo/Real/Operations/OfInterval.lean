@@ -12,10 +12,10 @@ members a `Zoo` has: the Taylor model at order `N` (`Interval.taylm`) and the in
 `[inf i, sup i]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

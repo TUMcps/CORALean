@@ -13,10 +13,10 @@ of `Ã = A + I` scaled by both endpoints' inverse square-root degrees.
       Convolutional Networks". ICLR, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

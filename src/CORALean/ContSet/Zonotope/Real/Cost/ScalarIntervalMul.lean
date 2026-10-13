@@ -13,10 +13,10 @@ matrices they are, a `plus` and a `unitIntervalMul`. A caller who multiplies by
 a scalar directly would pay less, which is not what this definition does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
 `arrowMat s t w` has `w` in its first row and first column alike, so it is Hermitian.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

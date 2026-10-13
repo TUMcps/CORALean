@@ -13,10 +13,10 @@ its centre and radius, exactly where the format holds both; where it does not (t
 whole interval, checked over ℚ: a larger initial set, which is sound, flagged `x0Enclosed`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

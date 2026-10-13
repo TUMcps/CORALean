@@ -8,10 +8,10 @@ remainder is crossed, its upper end below its lower end by the strict test `ltSt
 remainder interval is empty and the range set is `∅`. `false` refutes nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Real.Operations.Plus
 boxes, not merely as sets, so both `minus_outer` and `minus_exact` reduce to `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

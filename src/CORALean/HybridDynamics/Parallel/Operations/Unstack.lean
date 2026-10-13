@@ -7,10 +7,10 @@ The inverse of `stack`: block `i` of a point of the product space. `Theorems.Sta
 `Theorems.UnstackStack` say the two undo each other.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

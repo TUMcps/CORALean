@@ -14,10 +14,10 @@ positive and the real `max(probZ, m)`, `1 / ((2π)^{n/2} det(Σ)^{1/2}) · exp(-
 under every eigenvalue (`aux_pow_le_det`), and every other step is rounded the safe way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

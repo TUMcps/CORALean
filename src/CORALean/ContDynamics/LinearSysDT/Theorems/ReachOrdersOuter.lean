@@ -14,10 +14,10 @@ file, and `Trajectory`'s fields already hold at every `k` unconditionally, so
 nothing here needs a bound to discharge.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

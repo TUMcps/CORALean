@@ -9,10 +9,10 @@ that over-approximates the polynomial zonotope (`PolyZonotope.zonotope`, then
 `Zonotope.reduceMethC`), which `split` halves along its generators.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

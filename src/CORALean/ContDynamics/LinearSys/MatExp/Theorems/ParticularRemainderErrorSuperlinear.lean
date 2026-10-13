@@ -26,10 +26,10 @@ rather than a junk value; [1]'s `U` is a zonotope. [1] states `Thm. 2` as an ins
       for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

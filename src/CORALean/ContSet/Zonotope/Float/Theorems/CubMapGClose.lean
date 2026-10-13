@@ -10,10 +10,10 @@ Generator `l` of the stored zonotope, rounded down, is off the exact generator o
 the two roundings (`cubFold_bracket`, halved at the pure squares, zero off the sorted triples).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

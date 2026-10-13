@@ -18,10 +18,10 @@ which always holds; it is what a conjunction of `k + 1` atoms needs to be nonemp
       IEEE S&P 2018, pp. 3-18.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

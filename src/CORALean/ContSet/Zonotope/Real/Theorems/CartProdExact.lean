@@ -11,10 +11,10 @@ the other coordinate, so the assembled sum splits along `Prod.fst` and `Prod.snd
 sets' own sums.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

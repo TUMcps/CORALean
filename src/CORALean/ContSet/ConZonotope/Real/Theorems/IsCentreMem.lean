@@ -11,10 +11,10 @@ and puts the centre at `c + G β`: an optimum of a program over the coefficient 
 in it. With no constraint rows the centre is `c`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

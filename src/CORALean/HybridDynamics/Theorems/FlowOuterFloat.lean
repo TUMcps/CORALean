@@ -16,10 +16,10 @@ for `[r, r]`, and the input's contribution, which the caller's `Ud` holds. The
 stay need not last `r`: any `t ≤ r` it reaches is covered.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ rather than asking for a proof, since a reduction computes `E` at run time with 
 The hull is `E` itself whenever `E` is nonempty, so nothing it computes changes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ A pair, as CORA returns both halves at once. Factor `k` is a position here, CORA
 the identifier of a row of `E`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

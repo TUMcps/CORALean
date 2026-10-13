@@ -8,10 +8,10 @@ Strict inequalities are inequalities, so `lt` gives `le` and then `le_subset`. O
 containment can hold with faces touching, which `lt` excludes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ is only the stronger for the larger one. `P` is any set of Euclidean space, with
 and `mArray` is meant to descend, as the steps are negative for an ascending one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

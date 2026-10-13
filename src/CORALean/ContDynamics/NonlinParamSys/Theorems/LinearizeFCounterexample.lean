@@ -10,10 +10,10 @@ that `f` is affine in `p` (the `try` of `aux_parametric` catches symbolic failur
 `f(x*, u*, 2) = 4` is not in it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

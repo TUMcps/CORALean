@@ -25,10 +25,10 @@ to the plan, exactly what a real relaxation's output box always has.
       Formal Verification". TMLR. arXiv:2305.01932.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

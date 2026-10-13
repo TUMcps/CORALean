@@ -8,10 +8,10 @@ For an injective `stateBind`, the lifted affine reset at coordinate `stateBind j
 at `j` of the bound state: the exactness statement for CORA's `lift`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

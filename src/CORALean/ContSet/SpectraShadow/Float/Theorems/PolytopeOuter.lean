@@ -9,10 +9,10 @@ Every kept row is a row of a certified dual bound (`dualBound_le`): `Σ aᵣ x�
 every point of the shadow. Outer: finitely many rows, each rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

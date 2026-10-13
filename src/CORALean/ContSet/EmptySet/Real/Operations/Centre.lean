@@ -7,10 +7,10 @@ CORA's `@emptySet/center`: `double.empty(n, 0)`, an `n × 0` matrix, the answer 
 centre". `none`, which a `Vec ℝ n` cannot say.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

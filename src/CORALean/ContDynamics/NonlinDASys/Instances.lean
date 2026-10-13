@@ -10,10 +10,10 @@ trajectories; `reach` is `reachUnion`, the reduced run; the guarantee is `reachU
 `reach` returns `none` exactly where the reduced run does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

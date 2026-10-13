@@ -8,10 +8,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPow
 The empty product is `1` on both sides, a power is a product with the previous one (`subsMul_rel`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

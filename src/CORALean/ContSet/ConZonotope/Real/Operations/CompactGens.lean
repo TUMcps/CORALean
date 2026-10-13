@@ -8,10 +8,10 @@ that is, a generator that is nonzero or that some constraint reads. A constraint
 row of `P`, equality or inequality, read at the coefficient's unit vector.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

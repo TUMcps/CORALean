@@ -7,10 +7,10 @@ Induction on `r ≤ r'`, read as `Nat.le`'s own constructors: `refl` is
 reflexivity, and `step` chains one more hop through `ball_subset_succ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

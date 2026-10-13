@@ -9,10 +9,10 @@ needed before its terms can be shifted or subtracted term by term, which is
 what subtracting two such series in `ExpDiff` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

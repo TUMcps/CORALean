@@ -11,10 +11,10 @@ across the two dependent blocks, and the fresh factor last, at exponent `1` on
 the second block and `0` on the first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

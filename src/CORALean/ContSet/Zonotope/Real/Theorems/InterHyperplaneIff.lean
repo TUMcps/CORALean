@@ -21,10 +21,10 @@ with `|βᵢ| ≤ 1`, which stays within the sum of the `|gᵢ·n|` of `c·n`; a
       Springer, 2008, pp. 215-228.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

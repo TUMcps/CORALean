@@ -18,10 +18,10 @@ CORA builds for that `U`, and the enclosure holds for every orthogonal `U`
 columns of CORA's `points`, and at least one is required (`NeZero N`), as `nonempty` demands.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

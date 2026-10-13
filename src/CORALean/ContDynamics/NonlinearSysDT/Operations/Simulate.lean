@@ -7,10 +7,10 @@ import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
 a point computation carrying none of `reach`'s set instances.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       04-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

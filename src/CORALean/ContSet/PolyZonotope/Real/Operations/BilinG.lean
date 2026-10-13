@@ -16,10 +16,10 @@ what makes the pairing distribute over the two sums that a point of each set
 is — nothing else about `f` is ever used.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

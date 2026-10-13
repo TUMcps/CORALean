@@ -12,10 +12,10 @@ upward-rounded dot product and the negated downward-rounded one and summed upwar
 `addUp` for the sum. An upper bound for the nominal set only; `supportBound` adds the error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

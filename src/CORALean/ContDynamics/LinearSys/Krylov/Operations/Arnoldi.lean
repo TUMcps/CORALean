@@ -17,10 +17,10 @@ lines 9–11 stops the loop, which here is the caller stopping at `ξ = k`: only
   Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

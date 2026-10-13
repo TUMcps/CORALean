@@ -11,10 +11,10 @@ coefficients and the shortfalls of `tensorMultiplication_coeff` scale together, 
 the generators of a matrix zonotope of tensors (`tensorMultiplication_zono`) needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ A point of the stacked space is in the product of the halfspace descriptions exa
 of its blocks is in its component's. An equality, not an inclusion.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

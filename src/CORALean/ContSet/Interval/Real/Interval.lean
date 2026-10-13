@@ -11,10 +11,10 @@ Over any ambient type that has coordinates, so `Interval (Mat ℝ m n)` is CORA'
 bounds run over changes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

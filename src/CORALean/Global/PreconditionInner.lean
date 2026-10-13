@@ -16,10 +16,10 @@ Jacobian. Stated for any set `Z`, as nothing about a box is used.
       Letters, 4(4):928-933, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ loop and each inner halving, `none` being `CORA:notConverged` or running out of 
 regions come back in the order found, not sorted by `l` as CORA's last line does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ The H-representation of a box (`Interval.hPolytope`) denotes the box (`hPolytope
 volume is the product of the widths, `Interval.volume`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

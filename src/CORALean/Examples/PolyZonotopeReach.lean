@@ -23,10 +23,10 @@ names the family and not the binders — a notation is a lambda, and `𝒫𝒵 n
 standing will not unify against a metavariable applied to `n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Real
 

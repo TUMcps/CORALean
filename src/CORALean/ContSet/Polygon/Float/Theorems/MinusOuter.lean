@@ -9,10 +9,10 @@ The one-piece polygon holds `-p` read as reals (`enclosePoints_exact`, `neg` exa
 `x - p` is a sum `plus_outer` takes into the result. Outer, as the sum is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

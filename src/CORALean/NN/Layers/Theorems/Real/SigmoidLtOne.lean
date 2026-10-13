@@ -7,10 +7,10 @@ import CORALean.NN.Layers.Theorems.Real.SigmoidPos
 `sigmoid_pos` read at the mirrored argument.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

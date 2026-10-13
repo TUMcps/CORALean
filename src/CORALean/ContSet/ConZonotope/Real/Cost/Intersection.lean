@@ -12,10 +12,10 @@ side is `n` subtractions; `HPolytope.eqs` wraps the rows as functionals and is
 free. No linear program is solved: emptiness is not decided here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

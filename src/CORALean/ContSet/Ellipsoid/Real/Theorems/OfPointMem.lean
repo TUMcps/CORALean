@@ -8,10 +8,10 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
 vector a `0`-column `G` admits, in `unitBall₂` because `norm₂_zero ≤ 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

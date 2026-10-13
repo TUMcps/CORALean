@@ -10,10 +10,10 @@ satisfies `SoftplusBox` at each coordinate: the sharpness positive and the argum
 and `logDown` in the ranges those enclosures cover.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

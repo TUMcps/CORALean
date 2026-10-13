@@ -10,10 +10,10 @@ enclosure `expIntervalFloat` at the point range `[Δt, Δt]` applied by
 matrix as a box. The step `reachFloat` iterates.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

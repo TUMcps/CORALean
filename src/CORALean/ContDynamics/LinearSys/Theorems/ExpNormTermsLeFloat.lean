@@ -15,10 +15,10 @@ which bounds `e^{nrm}`, bounds them at `nrm`; the remainder is `expRemainderBoun
 nonnegative because the admissible `η` keeps its geometric factor positive.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

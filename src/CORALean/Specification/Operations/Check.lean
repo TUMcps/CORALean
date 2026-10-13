@@ -9,10 +9,10 @@ unsafe one. Both are the representation pair's instances, as `mtimes` is `Mtimes
 so `check` computes whenever they do; `Theorems.CheckSound` is what a `true` buys.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

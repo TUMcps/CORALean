@@ -28,10 +28,10 @@ The linear program [1, Def. 3] names, with the dual solution kept as a reason.
       Functions". HSCC, 2023, Article 5.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

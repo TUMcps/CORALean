@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/RelaxWidthGroup.lean` is the same sum as
 `relaxWidthMulti`, `p` `eDiff`s and `p` additions, for one grouped generator.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

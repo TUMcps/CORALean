@@ -15,10 +15,10 @@ vector plus the given point of the old error box: the rounding of the generators
 monomials in `[-1, 1]`, is what the box grew by.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

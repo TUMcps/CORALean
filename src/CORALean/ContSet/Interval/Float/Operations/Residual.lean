@@ -8,10 +8,10 @@ lies in `[lo, hi]` but `stored` was written down, so `[lo - stored, hi - stored]
 covers the difference.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

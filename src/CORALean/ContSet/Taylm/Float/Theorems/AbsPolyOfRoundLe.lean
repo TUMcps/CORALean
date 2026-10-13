@@ -9,10 +9,10 @@ the exact one by at most the summed widths on the box, every monomial being in `
 Every float operation that computes a coefficient pays its rounding through this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

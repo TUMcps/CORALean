@@ -21,10 +21,10 @@ bound vacuously, at a `plus` whose generators are all zero.
 Only `_outer`: the sum is not an ellipsoid, so no member of the family is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

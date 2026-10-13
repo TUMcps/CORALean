@@ -13,10 +13,10 @@ ways — as `B̄_ext,i+1 + Ā_ext B̃ᵢ(k)`, and as `B̃ᵢ₊₁(k)` plus its 
   62nd IEEE Conference on Decision and Control (CDC), 2023, pp. 7027-7034.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

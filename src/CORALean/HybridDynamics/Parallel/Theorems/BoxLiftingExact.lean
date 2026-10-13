@@ -9,10 +9,10 @@ a guard each contain exactly the stacks whose blocks lie in the components' sets
 meets `Lifting.Exact`, which the converse of `Run.toProduct` needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

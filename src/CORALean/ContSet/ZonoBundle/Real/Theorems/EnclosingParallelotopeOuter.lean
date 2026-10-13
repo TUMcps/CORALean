@@ -13,10 +13,10 @@ invertible `Γ`: the same argument as `Zonotope.parallelotope_outer`, at the box
 bundle.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

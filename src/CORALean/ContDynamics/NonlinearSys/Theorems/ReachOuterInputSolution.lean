@@ -11,10 +11,10 @@ depending on the trajectory survives into the hypotheses. Its price is that
 `linInput` has to be convex, closed and bounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

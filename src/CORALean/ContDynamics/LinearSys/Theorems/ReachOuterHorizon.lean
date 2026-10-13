@@ -9,10 +9,10 @@ flow on `[0, KΔt]` and nothing beyond. `discretize_horizon` handed to
 `reach_outer_on` — no recursion of its own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

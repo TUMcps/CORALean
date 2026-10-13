@@ -10,10 +10,10 @@ three summands are the constant `c`, `B(u - u✱)` and the abstraction error; th
 `A x✱` terms cancel against the constant `c` encloses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   03-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

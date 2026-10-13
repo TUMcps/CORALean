@@ -11,10 +11,10 @@ survives the composition whole, unlike every other representation's route to
 `ConPolyZono` through the same two lemmas.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

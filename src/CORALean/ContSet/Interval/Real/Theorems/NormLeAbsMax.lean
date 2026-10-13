@@ -11,10 +11,10 @@ is non-negative; summing that domination over a row and taking the sup over
 rows carries it from entries to the whole norm.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

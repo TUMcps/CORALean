@@ -11,10 +11,10 @@ Half the difference, the other half of a pairing; past the shorter block it is
 the second set's surplus generator, whole.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

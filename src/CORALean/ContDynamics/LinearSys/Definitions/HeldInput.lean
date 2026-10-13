@@ -17,10 +17,10 @@ and no null set has to be argued away. `t = 0` reads `v 0`.
       Functions". HSCC, 2023, Article 5.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

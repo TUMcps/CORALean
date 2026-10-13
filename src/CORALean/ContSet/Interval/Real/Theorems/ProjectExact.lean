@@ -9,10 +9,10 @@ which is in range as the box is nonempty. With a repeated coordinate the box can
 larger than the image, so `Function.Injective dims` is needed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

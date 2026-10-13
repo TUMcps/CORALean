@@ -30,10 +30,10 @@ having to enter a computed set, and a parameter rather than a field.
       pp. 4042-4048.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   12-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ the way `Examples/RunnableFloat.lean` runs the other representations:
 below an enclosure and not merely a number.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

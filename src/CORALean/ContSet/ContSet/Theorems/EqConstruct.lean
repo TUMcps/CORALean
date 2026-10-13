@@ -4,10 +4,10 @@ import CORALean.ContSet.ContSet.Operations.Eq
 # `eq` is sound: equal means the same set
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

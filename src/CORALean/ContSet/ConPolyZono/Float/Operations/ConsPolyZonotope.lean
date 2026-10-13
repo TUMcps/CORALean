@@ -10,10 +10,10 @@ generators at the exponents `EC`, no centre, no independent generators, an error
 origin. Whatever is done to its generators is then done to the constraint columns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

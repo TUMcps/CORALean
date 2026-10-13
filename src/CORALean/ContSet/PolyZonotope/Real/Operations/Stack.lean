@@ -12,10 +12,10 @@ embeddings. The shared factor list is `hp : pZ₁.p = pZ₂.p`, as for `exactPlu
 and empty-generator cases return the other padded set, which `exactPlus` already is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

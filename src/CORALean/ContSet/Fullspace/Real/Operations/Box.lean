@@ -7,10 +7,10 @@ CORA's `@fullspace/box`: the full space itself, which is its own smallest enclos
 (an interval with infinite endpoints, which `Interval` cannot hold).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

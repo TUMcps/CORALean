@@ -6,10 +6,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 Nothing here solves a linear program. It consumes the answers.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

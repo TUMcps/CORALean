@@ -8,10 +8,10 @@ certified singleton test (`SpectraShadow.representsa_point`) at a box whose corn
 (`le` both ways). Sufficient only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

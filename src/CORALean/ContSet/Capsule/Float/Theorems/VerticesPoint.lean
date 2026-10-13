@@ -9,10 +9,10 @@ Where the float test certifies a point capsule, the list is the one box `[c, c]`
 `c` is the exact layer's single vertex, on the frontier of the capsule.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

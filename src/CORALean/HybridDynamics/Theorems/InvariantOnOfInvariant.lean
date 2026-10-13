@@ -9,10 +9,10 @@ index by the same set, its two obligations are exactly `Invariant`'s. Both
 fields are supplied unchanged, since neither one's proof ever looks at `k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

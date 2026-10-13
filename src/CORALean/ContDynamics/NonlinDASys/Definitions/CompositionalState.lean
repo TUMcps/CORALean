@@ -15,10 +15,10 @@ returned for it from `Û⁽ⁱ⁾` (line 6): `R⁽ⁱ⁾ᵈ(t_{k+1})` and the lo
       IEEE Transactions on Power Systems, 29(5):2270-2280, 2014.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

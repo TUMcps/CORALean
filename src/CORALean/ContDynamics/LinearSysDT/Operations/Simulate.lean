@@ -7,10 +7,10 @@ import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 computation, carrying none of `reach`'s set instances.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       18-August-2026
 -- Last update:   08-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

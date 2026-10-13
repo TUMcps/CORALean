@@ -20,10 +20,10 @@ meet `H₂ y ≤ 0` — yet `Px` lies neither in `{0}` nor in `∅`.
       arXiv:1903.05214.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

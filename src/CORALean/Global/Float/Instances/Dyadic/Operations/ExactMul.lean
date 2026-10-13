@@ -7,10 +7,10 @@ Closed on dyadics, so this loses nothing; only the mantissa grows, to `2p`
 bits at a `p`-bit product. `MulUp`/`MulDown` round it back down to `p`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   02-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

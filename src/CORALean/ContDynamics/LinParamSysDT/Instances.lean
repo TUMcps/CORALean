@@ -11,10 +11,10 @@ over `tFinal - tStart` steps, the system being time-invariant, `reach` is
 is `reachUnion_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

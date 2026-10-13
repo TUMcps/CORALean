@@ -18,10 +18,10 @@ satisfy is exactly what the original rows said, so nothing is lost; the box is
 only there to supply generators, and drops out.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ the generators stacked over the constraint rows of `A`, so that the last `q` coo
 point `c + G β` read `A β`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

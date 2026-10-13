@@ -27,10 +27,10 @@ gives their reciprocals a finite sum, so the caller states that separately —
 `1/0` is `0` in Lean and would otherwise satisfy the bound vacuously.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

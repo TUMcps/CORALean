@@ -13,10 +13,10 @@ The new polynomial at `s` is the original at `s` with `sₖ` replaced by `m + r 
 in the normalized box, where the original remainder holds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

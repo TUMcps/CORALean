@@ -8,10 +8,10 @@ import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
 unfolding the definition rather than restating `bilin_k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
 In `‖·‖₂`, from the certificate of `Radius2NominalLe`; a member forces the box nonempty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ every inequality row `aᵀx ≤ b` with `b ≠ 0` is divided by `|b|`, so that i
 The other types, `'A'` and `'Ae'`, divide a row by its 2-norm: that is `normalizeRows`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

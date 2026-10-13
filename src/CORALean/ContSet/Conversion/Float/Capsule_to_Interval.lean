@@ -12,10 +12,10 @@ the lower bound down, the upper bound up. An empty capsule (`r < 0`) is boxed al
 whatever the bounds say, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

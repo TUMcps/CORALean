@@ -8,10 +8,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Resolve
 `resolve` is `getSubset` at `[x, x]`, and `0` is exact in the scalar.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

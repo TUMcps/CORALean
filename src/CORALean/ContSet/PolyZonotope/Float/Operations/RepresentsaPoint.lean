@@ -10,10 +10,10 @@ generator entry is `0` and the error box is a single point; `le` answers only `t
 `true` is sound and a `false` decides nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

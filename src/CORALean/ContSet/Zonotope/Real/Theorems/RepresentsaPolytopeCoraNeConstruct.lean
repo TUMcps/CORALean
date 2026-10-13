@@ -9,10 +9,10 @@ output for `'polytope'` (`S = polytope(S)` with `S = []`, line 113) is empty, wh
 centre. Wrong output, not a soundness issue: no caller in `~/CORA` reads it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

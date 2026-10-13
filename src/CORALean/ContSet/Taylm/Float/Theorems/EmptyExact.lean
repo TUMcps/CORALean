@@ -5,10 +5,10 @@ import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
 # `Taylm.empty` denotes `∅`, over a floating-point scalar
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

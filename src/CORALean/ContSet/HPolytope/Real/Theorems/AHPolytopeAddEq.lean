@@ -20,10 +20,10 @@ coefficient vector is `Fin.append` of the two, `(X₁, X₂)` the horizontal sta
       arXiv:1903.05214.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.Global.Float.Instances.IEEE.IEEE
 Exact: every format is symmetric about zero, so the grid is too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

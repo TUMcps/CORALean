@@ -9,10 +9,10 @@ The rotation at the float angle lies in the interval `rotMat` (`rotMat_mem`), an
 `mtimesIntervalMat` encloses the image under every matrix of that interval.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

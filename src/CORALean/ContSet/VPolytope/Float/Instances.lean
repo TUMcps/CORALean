@@ -11,10 +11,10 @@ own exact `intersection`, unlike the exact layer's, which must be handed one. No
 `OfPoint`: it would round a real point into `𝕋`, an operation this layer lacks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

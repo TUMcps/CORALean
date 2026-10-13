@@ -9,10 +9,10 @@ else: the ranking copies `m` and `s`, so the constraint counts are `compact`'s
 to lower and no order argument reaches them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

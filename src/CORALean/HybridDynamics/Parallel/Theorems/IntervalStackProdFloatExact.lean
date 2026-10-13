@@ -8,10 +8,10 @@ The stored box denotes the exact layer's stack of the readings of the component 
 of the stacked space is in it exactly when each of its blocks is in its component's box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

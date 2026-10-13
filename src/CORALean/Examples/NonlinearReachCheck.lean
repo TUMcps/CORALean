@@ -20,10 +20,10 @@ family and the input dimension all fixed, and that a `true` then needs nothing
 further — no confinement of any run — to answer for every trajectory.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Real
 

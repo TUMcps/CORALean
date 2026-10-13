@@ -10,10 +10,10 @@ constraint system, so that last leg adds nothing and is exact. All the loss is
 the box route's, exactly as in `VPolytope.polyZonotope_contains`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

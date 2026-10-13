@@ -13,10 +13,10 @@ else the centre alone if that is certified, else `none`. Sufficient only: `some`
 inner, `none` refutes nothing; the solver's order and Hausdorff optimality are not checked.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

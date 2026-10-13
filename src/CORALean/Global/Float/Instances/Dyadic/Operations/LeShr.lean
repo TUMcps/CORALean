@@ -6,10 +6,10 @@ import CORALean.Global.Float.Instances.Dyadic.Operations.LeShl
 The mirror image of `leShl`, by negating both sides.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

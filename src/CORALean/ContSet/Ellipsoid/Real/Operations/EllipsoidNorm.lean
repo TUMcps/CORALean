@@ -12,10 +12,10 @@ and `sqrt(abs(p' q))`, the norm of `p` with respect to `E` with the centre ignor
 definition reads `Matrix`'s junk inverse and means nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

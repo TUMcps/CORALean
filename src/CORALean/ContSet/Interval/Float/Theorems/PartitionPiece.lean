@@ -10,10 +10,10 @@ The real piece of the box's reading sits inside the float piece of the same inde
 up bounds it below, and the upper bound is `1` less the lower bound of the complement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ equation), and `grad` is the handle `der.grad`, passed in with the property
 and `'split'` use the solved-variable tables) need symbolic data a `LevelSet` does not carry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

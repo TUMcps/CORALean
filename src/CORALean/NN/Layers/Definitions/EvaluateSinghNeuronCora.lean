@@ -26,10 +26,10 @@ The input is a zonotope `c + g ε`, so `[l, u] = [c - |g|, c + |g|]`; the output
       Certification". NeurIPS 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

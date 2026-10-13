@@ -9,10 +9,10 @@ Coefficients `0` meet the unit box, and meet every row because each bound is at 
 each equality's interval holds `0`; the point they name is the centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

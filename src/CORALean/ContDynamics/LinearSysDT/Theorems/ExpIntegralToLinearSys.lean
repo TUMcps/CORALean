@@ -14,10 +14,10 @@ converted system accumulates is the discrete one's, as [1] intends. Only for a r
 * [1] `contDynamics/@linearSysDT/linearSys.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ The centre `mu = W (l + u)/2 + b` of the layer's output interval, for `l`, `u` i
 the box `IntervalChain.fwd` and `backprop` compute it as.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

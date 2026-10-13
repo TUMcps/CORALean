@@ -14,10 +14,10 @@ rounded-up radius. This states that, as an equality of the whole generator sums,
 every coordinate of a lifted zonotope is read at once.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

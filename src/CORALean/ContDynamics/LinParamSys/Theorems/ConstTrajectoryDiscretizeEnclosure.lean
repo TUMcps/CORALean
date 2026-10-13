@@ -22,10 +22,10 @@ propagated it is fixed by the run.
 `hε` is stated at the box, so it is checkable before a member is fixed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

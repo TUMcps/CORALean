@@ -11,10 +11,10 @@ covariance). CORA's second option `'althoff'` ("order set to 1") is not formaliz
 `reduce` it calls has no such method and throws (FINDINGS.md).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

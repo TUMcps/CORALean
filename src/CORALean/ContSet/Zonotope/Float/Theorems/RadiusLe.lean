@@ -9,10 +9,10 @@ lengths it is the triangle inequality, `‖∑ βⱼ Gⱼ‖₂ ≤ ∑ⱼ ‖G�
 box it is coordinatewise, `|∑ⱼ βⱼ Gᵢⱼ| ≤ ∑ⱼ |Gᵢⱼ|` and `|eᵢ| ≤ errᵢ`, then the norm.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

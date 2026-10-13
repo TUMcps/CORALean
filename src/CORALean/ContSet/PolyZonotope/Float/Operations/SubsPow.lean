@@ -7,10 +7,10 @@ CORA's `Y{i,j}` on the stored floats: the `d`-th power of a sum of monomials, by
 `subsMul`, the empty product being the term `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

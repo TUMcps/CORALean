@@ -7,10 +7,10 @@ The factor of the result that `pZin`'s factor `j` is: `pZ`'s own where the ident
 else a new one after `pZ`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

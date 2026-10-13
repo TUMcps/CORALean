@@ -22,10 +22,10 @@ Not necessary (`[1, Example 2]`), and that is what `Contains` asks of it: CORA's
       arXiv:1903.05214.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

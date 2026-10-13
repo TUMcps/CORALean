@@ -20,10 +20,10 @@ set it can hold. The record's `status` is `"ok"`; `"overflow-NaN"` if any stored
 given where they are rational; `"none"` with a `reason` for everything else.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

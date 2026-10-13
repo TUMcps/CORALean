@@ -26,10 +26,10 @@ indexed by the type it stores, as the exact `Interval α` is, not by a dimension
 `Interval (Mat 𝕋 m n)` then denotes an interval matrix with no second type.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

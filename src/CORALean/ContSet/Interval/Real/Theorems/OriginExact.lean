@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 Both bounds are `0`, so the only point is the origin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

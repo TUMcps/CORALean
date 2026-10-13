@@ -19,10 +19,10 @@ The certified regions `(steps i).R` are arbitrary sets, not a representation,
 so the conclusion is `Set` inclusion and no operation class answers for it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

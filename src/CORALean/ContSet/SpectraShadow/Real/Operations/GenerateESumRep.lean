@@ -14,10 +14,10 @@ inequality, so the existential variables are all of `β`. It is a different pair
 set (`Theorems.GenerateESumRepExact`); the cache and the SVD are not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

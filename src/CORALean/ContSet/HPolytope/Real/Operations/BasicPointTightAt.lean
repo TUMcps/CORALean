@@ -5,10 +5,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 # A point no direction is free at is the one its own tight rows name
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

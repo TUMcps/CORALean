@@ -10,10 +10,10 @@ it off the polyshape boundary (R-PG), and the real layer bounds it by the sum of
 areas; this bound is coarser still.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

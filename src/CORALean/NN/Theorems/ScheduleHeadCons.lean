@@ -7,10 +7,10 @@ import CORALean.NN.Operations.ScheduleHead
 Every index of the pattern is under the layer's width, so `cons`'s padding is never read.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

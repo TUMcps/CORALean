@@ -7,10 +7,10 @@ CORA's `polygon/representsa_` at `'emptySet'`: no piece has a vertex. Generic in
 a count of vertices is a natural number.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

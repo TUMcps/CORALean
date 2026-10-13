@@ -12,10 +12,10 @@ the range set and in general more, the dependence between terms being dropped. T
 branch-and-bound methods (`optBnb`, `optLinQuad`, `optBernstein`) are tighter and not here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

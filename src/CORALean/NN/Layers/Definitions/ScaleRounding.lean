@@ -11,10 +11,10 @@ denotes `2` at all. `Sound` is that the two bracket multiplication by `r`, the o
 appears; at `𝕋 := ℝ` the exact rounding is multiplication by `r` itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

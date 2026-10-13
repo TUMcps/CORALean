@@ -8,10 +8,10 @@ Its interior is itself, which is nonempty in every dimension. Stated at `constru
 `ContSet.IsFullDim` unfolds to: the `ContSet` instance is declared after the theorems.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

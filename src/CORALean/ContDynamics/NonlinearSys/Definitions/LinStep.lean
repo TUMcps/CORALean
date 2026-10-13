@@ -18,10 +18,10 @@ a datum of the *system*, a chain of linearizations one of the *analysis*, and
 inductive would put the enclosures inside the proof.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

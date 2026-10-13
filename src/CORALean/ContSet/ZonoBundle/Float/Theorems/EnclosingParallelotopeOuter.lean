@@ -12,10 +12,10 @@ under `H` in the box of the mapped bundle (`mtimes_outer`, `intervalAll_contains
 coordinates within the bundle's box, which is all `parallelotope_contains` asks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

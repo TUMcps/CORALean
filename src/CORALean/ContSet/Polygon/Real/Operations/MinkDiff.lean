@@ -19,10 +19,10 @@ the minuend with `subtract`. The boundary vertex loop `V` of the shifted minuend
 `Polygon.subtract`'s, not a polygon.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

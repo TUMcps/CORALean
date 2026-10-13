@@ -7,10 +7,10 @@ CORA's `sum` of an interval matrix along each row: the lower bounds are summed r
 the upper bounds rounding up, so the stored box holds every column sum the exact one does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

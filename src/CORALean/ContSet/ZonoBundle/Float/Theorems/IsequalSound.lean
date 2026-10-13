@@ -8,10 +8,10 @@ A `true` answer says every member pair is `Zonotope.isequal`, so the members den
 sets and so do the intersections. `false` refutes nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

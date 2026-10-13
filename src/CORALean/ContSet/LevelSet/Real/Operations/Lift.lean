@@ -7,10 +7,10 @@ CORA's `@levelSet/lift_`: the equation on the old variables, substituted by the 
 `x(dims)`. The new coordinates are unconstrained.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

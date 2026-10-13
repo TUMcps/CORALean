@@ -30,10 +30,10 @@ At `Vec ℝ n` only: an ellipsoid is described by a Euclidean norm, which a
 general real module has none of.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

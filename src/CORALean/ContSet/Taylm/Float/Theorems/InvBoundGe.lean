@@ -9,10 +9,10 @@ Wherever `|ξ|` is at least the positive `m`, `|(1/x)⁽ᴺ⁺¹⁾ ξ| = (N+1)!
 `(N+1)! · (1/m)ᴺ⁺²`, which `invBound` rounds up factor by factor.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

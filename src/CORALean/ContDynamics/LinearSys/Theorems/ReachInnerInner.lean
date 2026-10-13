@@ -30,10 +30,10 @@ enough that the exponential's remainder bound converges. `R₀` and `U` are
 zonotopes, so nonempty, convex, compact and bounded without being asked.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

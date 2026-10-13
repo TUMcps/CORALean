@@ -13,10 +13,10 @@ At every factor vector of the box, the Jacobian matrix of the nominal set's depe
 monomials in `monoBox`, and their products summed in `Interval.mtimesIntervalMat`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
 is a centre, the other branches needing a constraint row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ vanishes when no exponent column of `E` (and of `EC`) is zero, so the point is `
 generator `1` with exponent column `0` denotes `{c + 1}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

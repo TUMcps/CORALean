@@ -10,10 +10,10 @@ sign of `Δt` — `addDown`/`addUp` bound a sum whatever its terms — and each
 window's bracket computed from `k` alone, independent of every other window.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ of `Aⁱ *ᵥ v` rather than inside the matrix. That is what lets an input solut
 take the matrix out of an integral over `τ` and leave a scalar weight behind.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

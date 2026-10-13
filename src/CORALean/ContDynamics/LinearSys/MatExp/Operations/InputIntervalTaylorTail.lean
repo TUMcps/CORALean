@@ -14,10 +14,10 @@ arithmetic: CORA's `iPow{i}*(r/factorial(i+1))` in `priv_highOrderMappingMatrix`
 are none.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

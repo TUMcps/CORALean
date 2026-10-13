@@ -6,10 +6,10 @@ import CORALean.ContSet.Conversion.Float.PolyZonotope_to_HPolytope
 Through `ConPolyZono.zonotope`, which drops the constraints, then the zonotope's halfspaces.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

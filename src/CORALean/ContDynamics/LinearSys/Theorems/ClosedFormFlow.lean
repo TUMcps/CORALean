@@ -16,10 +16,10 @@ swap: `∫₀ᵗ∫₀ᵖ = ∫₀ᵗ∫_σ^t` over the triangle `0 ≤ σ ≤ �
 rectangle by an indicator so `intervalIntegral_intervalIntegral_swap` applies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       15-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

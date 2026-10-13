@@ -11,10 +11,10 @@ encloses, and the remainder `unitRemainder_le`, every derivative of `cos` being 
 magnitude. No domain condition and no range hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

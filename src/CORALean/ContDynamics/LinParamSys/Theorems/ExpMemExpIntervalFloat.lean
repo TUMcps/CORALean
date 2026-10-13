@@ -11,10 +11,10 @@ the stored point: `t • A` is in `[tLo, tHi] · sys.A` by `Interval.smul_outer`
 and `MatExp.exp_mem_expIntervalEnclosure` does the rest at an admissible order.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

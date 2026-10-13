@@ -10,10 +10,10 @@ by more than `2ε` times the radius, or when `fuel` runs out. The float comparis
 certifies a `true` only; the bounds stay sound for every stopping rule.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.Global.Float.FloatOps
 `[max 0 l, max 0 u]` of the box `[l, u]`: the activation `max 0` is monotone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

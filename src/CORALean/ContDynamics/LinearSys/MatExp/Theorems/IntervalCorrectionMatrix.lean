@@ -22,10 +22,10 @@ has to be checkable from the interval matrix alone, and `norm_le_absMax` is what
 turns it into the condition the point theorem needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

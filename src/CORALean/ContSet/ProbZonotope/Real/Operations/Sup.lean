@@ -9,10 +9,10 @@ sup norm. Taken here at the box of the confidence set, `interval`; `supCora` is 
 box that leaves out the deterministic generators.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

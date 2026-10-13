@@ -14,10 +14,10 @@ The window `[0, τ]` is any sub-window of `[0, t]`, which is what lets a flow
 equation stated for all `τ ∈ [0, t]` be manipulated at each `τ` separately.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

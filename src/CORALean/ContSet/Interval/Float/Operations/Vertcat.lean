@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Interval
 Stacking the bound matrices moves floats without computing on them, so nothing is rounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

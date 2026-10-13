@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.Atan
 For every box: monotonicity, then `atanDown_le`/`le_atanUp` at the corners.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

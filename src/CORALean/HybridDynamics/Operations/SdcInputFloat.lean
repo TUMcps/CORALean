@@ -26,10 +26,10 @@ the rest to its error.
 * [2] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`, `aux_constantFlow`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

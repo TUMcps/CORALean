@@ -12,10 +12,10 @@ is divided by `σ² = 1 + 4λ + 4λ² > 1` where the enclosure needs `σ² Q'`: 
 `(x - c*)ᵀ Q'⁻¹ (x - c*) ≤ σ²`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

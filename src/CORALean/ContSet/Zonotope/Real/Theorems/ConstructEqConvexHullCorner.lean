@@ -14,10 +14,10 @@ convex function attains its maximum over the zonotope at a corner, which is why
       Problem". European Journal of Control, 62:84-91, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ The scalar exponential the step's error estimates are stated in, at `nrm`, the f
 `p = log₂(η + 2) + 5` is enough, and halves the argument to under `1/32` before squaring.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

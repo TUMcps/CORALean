@@ -12,10 +12,10 @@ proved it. The whole obligation is that each bound rounded the right way:
 `nominal.minkDiff` would give, so the float result stays inside it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

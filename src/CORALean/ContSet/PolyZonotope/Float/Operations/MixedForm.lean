@@ -8,10 +8,10 @@ block of an `(n + n) × (n + n)` matrix, so that the first block of one argument
 second block of the other, and on an appended pair `(x₁, x₂)` it is `x₁ᵀ Qₖ x₂`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

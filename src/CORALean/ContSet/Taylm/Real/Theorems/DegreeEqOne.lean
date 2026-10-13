@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Real.Operations.Degree
 A sum of naturals equal to one has exactly one summand one and the others zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

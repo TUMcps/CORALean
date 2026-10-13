@@ -17,10 +17,10 @@ holds, while `(0, 1) ∈ ∂u` is mapped into `y₁`. The corollary itself holds
       Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

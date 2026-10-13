@@ -20,10 +20,10 @@ with `δ_k ≥ 0` by [1, Lemma 2] (`mulVec_posNeg_bounds`), and stay nonnegative
       64(11):4717-4724, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

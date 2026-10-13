@@ -6,10 +6,10 @@ import CORALean.NN.Graph.Operations.MatMulBilin
 The bundling adds nothing to read back: applying the bilinear map is `rfl`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

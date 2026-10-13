@@ -12,10 +12,10 @@ them in decreasing order, an order that does not enter `G Gᵀ = Q`). The result
 stored `E.G`, a generator matrix with the same `Q` and not in general `n × n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

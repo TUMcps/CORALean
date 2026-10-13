@@ -13,10 +13,10 @@ under the conditions of `Run.ofProductWith`; the outer theorems (`reachFloat_out
 `reachSet_subset_invariant`) enclose either side and are inclusions only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

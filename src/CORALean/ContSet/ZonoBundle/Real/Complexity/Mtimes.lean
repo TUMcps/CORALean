@@ -9,10 +9,10 @@ second-order count also carries over: `Zonotope.mtimes_h` says the image keeps
 each component's generator count too. `rfl` against both structure instances.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

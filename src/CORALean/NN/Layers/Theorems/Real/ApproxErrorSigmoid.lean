@@ -19,10 +19,10 @@ every slope `m` and every `l ≤ u`: that `p` is the secant of [1, Def. 7] is no
       Transactions on Machine Learning Research (TMLR), 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

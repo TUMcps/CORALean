@@ -12,10 +12,10 @@ The binary case a two-part split needs; `HoldsIUnion` is the indexed form
 `NeuralNetwork.holds_of_split` actually applies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ stays and jumps, so a guarantee stated over `RunUntil` speaks of runs of the
 automaton and nothing weaker.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

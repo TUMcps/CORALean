@@ -18,10 +18,10 @@ One `let` per line of the source; the `representsa_` guard (l. 314) only throws.
 * [2] `contSet/@contSet/enlarge.m`, CORA.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

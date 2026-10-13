@@ -7,10 +7,10 @@ import CORALean.ContSet.ContSet.ContSet
 CORA's `@emptySet/convHull_`: the hull of the empty set and `S` is `S`, returned as it is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

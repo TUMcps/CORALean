@@ -12,10 +12,10 @@ algorithm, which linearizes the differential-algebraic system itself, is sound. 
 part is `ReachYUnionSubsetImage`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

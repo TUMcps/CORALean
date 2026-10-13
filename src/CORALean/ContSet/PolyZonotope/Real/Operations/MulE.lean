@@ -9,10 +9,10 @@ type, so there is nothing here beyond the name: `mul` is the entrywise case of
 `Theorems/MulOuter.lean` and `Theorems/MulGClose.lean` cite it by.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

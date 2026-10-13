@@ -12,10 +12,10 @@ line raised by the exact gap, the stored gap bounds the exact one, and halving i
 recentred line is within half the stored gap of ReLU everywhere on the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

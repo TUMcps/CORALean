@@ -8,10 +8,10 @@ An equality: the hull of the concatenated vertices is the hull of the vertex set
 is the hull of the two polytopes, a polytope being the hull of its vertices.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

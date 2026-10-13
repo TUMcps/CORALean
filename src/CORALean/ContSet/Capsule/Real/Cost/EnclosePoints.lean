@@ -12,10 +12,10 @@ comparison), the rejection from the farthest direction (two dot products,
 (`2 * n` and a `sqrt`) with one `max`: `11 * n + 4` per point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

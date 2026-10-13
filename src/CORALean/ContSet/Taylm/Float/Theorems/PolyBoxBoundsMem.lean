@@ -10,10 +10,10 @@ On a box `B` the polynomial of a term list lies in the stored range: each term b
 and the corner products of the coefficient, the sum by the rounded list sums.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

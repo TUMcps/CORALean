@@ -27,10 +27,10 @@ under `u ≡ 1` has `x₂(3) = e³ - 4 > 16`. `E` is `expm(H t)`, quantified ove
 the margin `7` exceeds any floating error, the Arnoldi steps on `0/1` data are exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

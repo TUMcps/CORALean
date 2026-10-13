@@ -18,10 +18,10 @@ The value equation reindexes `cZ₂`'s sum onto `cZ₁`'s count by the same
 `Fin.castOrderIso` bijection `Zonotope.minkDiffAligned_inner` uses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

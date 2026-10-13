@@ -7,10 +7,10 @@ CORA's `polygon/mtimes` at a `2 × 2` matrix: every piece mapped by it. CORA map
 the polyshape.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ bracket, entry by entry, as `dotDown_le`/`le_dotUp` state them; `af` and `e(b + 
 `Interval.matMul_outer` at the two boxes `matInterval_contains` supplies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

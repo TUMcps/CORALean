@@ -26,10 +26,10 @@ without which the range is symmetric and the shift is zero. CORA is unaffected.
       Its Applications in Formal Neural Network Verification". AAAI, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

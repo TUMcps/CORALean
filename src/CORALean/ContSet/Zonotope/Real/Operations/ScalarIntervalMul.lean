@@ -19,10 +19,10 @@ each with a coefficient in `[-1, 1]`: `[a, b] ⊗ Z = c Z ⊕ [-1, 1] ⊗ (g Z)`
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

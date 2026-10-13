@@ -10,10 +10,10 @@ a primitive of a locally integrable function is continuous. Nothing is asked of
 `A` beyond integrability of its entries over every bounded window.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

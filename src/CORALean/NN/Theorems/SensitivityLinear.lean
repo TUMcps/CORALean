@@ -14,10 +14,10 @@ Everything that *is* a linear layer here — convolution, average pooling, batch
 normalization — reads its sensitivity off this one, at its own matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

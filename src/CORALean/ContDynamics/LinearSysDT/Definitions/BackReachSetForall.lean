@@ -20,10 +20,10 @@ and producing an inverse is the computed version's problem, not this one's.
 the dynamics; `Theorems.BackReachForallInner` puts a computed set inside it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ The three cases of CORA's `aux_intPower`: a zero exponent is the constant itself
 all-even one a monomial in `[0, 1]`, any other one in `[-1, 1]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

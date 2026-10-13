@@ -20,10 +20,10 @@ gain and the order. All quantities are the real values of stored floats; an oute
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

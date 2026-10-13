@@ -11,10 +11,10 @@ a ball to apply `isCompact_closedBall`, and `ConZonotope.isCompact_domain` turns
 the ball back into the cube to bound its domain by it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

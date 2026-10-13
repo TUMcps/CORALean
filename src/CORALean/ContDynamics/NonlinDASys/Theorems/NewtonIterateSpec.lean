@@ -8,10 +8,10 @@ stopping test CORA makes, on the step and not on the residual: nothing is said o
 distance to a root, only that the last step was small.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

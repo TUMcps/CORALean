@@ -7,10 +7,10 @@ CORA's `@interval/convHull_` at two intervals: it ends in `I | S`, so it is `or`
 two boxes is not their union, and the box hull is the smallest box containing it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ search finds the instance with the parameter dimension fixed, and that a `true`
 then answers for every constant-parameter trajectory, no confinement assumed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Real
 

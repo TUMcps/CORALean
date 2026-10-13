@@ -9,10 +9,10 @@ single point. For `ẋ = 0` from `X₀ = [-1, 1]` (the reachable set is `X₀`, 
 unsafe set `x ≥ 1`, the reachable state `1` is unsafe, yet the verdict is `true`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Float.Operations.MulHi
 The upper counterpart of `scaleDevLo`: the sum of the upper corner products, each rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

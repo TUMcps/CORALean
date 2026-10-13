@@ -21,10 +21,10 @@ Padding and weighting are one operation rather than two: the weight lives in the
 new coordinate, which is not a block a `padLeft` could add.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

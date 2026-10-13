@@ -28,10 +28,10 @@ the majorant `δ + ∫ₐᵗ (M‖x‖ + ν)`, whose integrand is continuous.
       Mathematics, 20(4):292-296, 1919.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

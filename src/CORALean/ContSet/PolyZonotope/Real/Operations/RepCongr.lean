@@ -9,10 +9,10 @@ therefore impossible, which is what `merge` needs in both directions: a dropped
 column gathers nothing, and two kept columns differ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

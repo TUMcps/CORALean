@@ -21,10 +21,10 @@ turns the containment into `-β + Γ Px ⊆ Py`, an H-in-H containment, and
       arXiv:1903.05214.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

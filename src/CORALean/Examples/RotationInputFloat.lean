@@ -16,10 +16,10 @@ the time-point sets' centres, the second falling at `-x₁ + 1/2`, half the rate
 it falls at without the input.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

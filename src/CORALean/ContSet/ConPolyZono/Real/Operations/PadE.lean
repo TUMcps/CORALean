@@ -14,10 +14,10 @@ readings of one factor vector, so widening that vector is one operation. The
 name is kept because a caller reaching for it here is padding constraints.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

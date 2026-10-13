@@ -8,10 +8,10 @@ A returned zonotope passed `Zonotope.containsZonotope`, so its set lies in the i
 (`containsZonotope_sound`). Inner only: nothing is claimed about order or optimality.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

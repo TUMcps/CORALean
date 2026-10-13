@@ -10,10 +10,10 @@ No solver and no dual certificate — and the value is attained, which
 `Theorems.SupportBoundAttained` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       15-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

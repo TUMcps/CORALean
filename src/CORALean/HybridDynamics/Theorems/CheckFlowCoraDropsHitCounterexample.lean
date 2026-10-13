@@ -24,10 +24,10 @@ invariant and reaches the guard at `t = 1/g`, in `(0, -1)`. The tree's `Location
 `R` (by `Location.checkFlow_dropped`, the flow at `(0, -1)` points out).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

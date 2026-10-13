@@ -10,10 +10,10 @@ The two constraint halves read back as a bound on the magnitude, as over ℝ. A
 row is one coordinate: the sum collapses at the single entry that is not zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

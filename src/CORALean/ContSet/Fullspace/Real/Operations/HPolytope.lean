@@ -8,10 +8,10 @@ CORA's `@fullspace/polytope`, which is `polytope.Inf(n)`: no rows at all
 (`HPolytope.fullspace`). CORA throws at `n = 0`; nothing here does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

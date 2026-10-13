@@ -11,10 +11,10 @@ The product's points are the sums of the two embeddings, each inside its padded 
 `plus_outer` takes the sum of the padded shadows into the result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

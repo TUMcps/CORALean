@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Theorems.NormNominalLe
 With a certificate `σ`, every member of the box has Euclidean norm at most `|σ|`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ selection matrix, through `mtimes_outer`, carries the member holding the pair
 to the one holding its first half, which is the state.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

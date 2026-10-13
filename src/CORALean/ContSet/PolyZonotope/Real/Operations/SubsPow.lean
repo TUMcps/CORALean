@@ -7,10 +7,10 @@ CORA's `Y{i,j}`: the `d`-th power of a sum of monomials, by repeated `priv_multi
 product being the term `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

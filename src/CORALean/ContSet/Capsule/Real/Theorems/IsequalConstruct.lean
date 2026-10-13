@@ -8,10 +8,10 @@ converse fails. CORA's own emptiness test (`representsa_(C,'emptySet')`) does no
 either, and answers by the fields.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

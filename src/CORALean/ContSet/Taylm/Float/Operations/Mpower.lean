@@ -8,10 +8,10 @@ Float analogue of the real `Taylm.mpower`: a positive exponent repeats `mmul`, `
 matrix as constant models.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

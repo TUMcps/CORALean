@@ -8,10 +8,10 @@ CORA's `polygon/mldivide(pgon, S)` subtracts the converted operand `polygon(S)`:
 are the rows of the other classes).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

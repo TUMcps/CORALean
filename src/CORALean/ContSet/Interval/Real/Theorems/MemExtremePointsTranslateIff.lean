@@ -13,10 +13,10 @@ to the solution `c = c⋆ + a` of the former. The vertices of the two cuts corre
       Problem". INFOCOMP Journal of Computer Science, 8(4):21-27, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

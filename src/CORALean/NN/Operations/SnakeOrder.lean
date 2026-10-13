@@ -10,10 +10,10 @@ matrix is a function on `Fin h × Fin w`, so the turn is index arithmetic: row `
 matrix, of which there are `w`, is column `w-1-i` of the old rest, read top to bottom.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

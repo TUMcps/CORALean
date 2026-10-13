@@ -16,10 +16,10 @@ guarantee stated over `Trajectory`. It excludes a zero-order-hold input, whose
 jumps have no two-sided derivative, so nothing reached is stated over it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       18-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

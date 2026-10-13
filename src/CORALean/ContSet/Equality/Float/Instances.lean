@@ -14,10 +14,10 @@ Each float representation's certified structural test is the class's `isequal`, 
 being its soundness theorem; decided by the `Bool` itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ rotation lies in the interval `mtimes`, hence in the box of minima and maxima; t
 to the point, which `plus` moves to the mean. The mean's rounding is irrelevant.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

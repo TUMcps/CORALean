@@ -7,10 +7,10 @@ The scale is positive, so the sign is the mantissa's. Both `quotDown_le_div`
 and `le_quotUp` need the divisor's mantissa positive, to divide by it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

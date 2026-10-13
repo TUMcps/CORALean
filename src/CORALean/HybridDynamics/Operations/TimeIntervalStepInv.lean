@@ -14,10 +14,10 @@ Takes `Ud` for that reason — the cut cannot be stated over `X₀` alone.
 the state's own family: `Location S S L 𝕋 n`, not the general `S G` (#39).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ A fold of `maximum`, which is exact, so no direction is chosen; a layer with no 
       Formal Verification". TMLR. arXiv:2305.01932.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

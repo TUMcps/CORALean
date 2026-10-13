@@ -6,10 +6,10 @@ import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
 `x_ref(:,k+1) = nlnsysDT.mFile(x_ref(:,k), u_ref(:,k))` of `computeGO`, from `x_ref(:,1) = x0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

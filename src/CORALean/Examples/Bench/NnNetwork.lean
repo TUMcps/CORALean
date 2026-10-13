@@ -31,10 +31,10 @@ says what that enclosure is sound for -- the exact map the stored weights denote
 the ReLU exact -- and `network_mem_enclose` is `enclose_outer` read at it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

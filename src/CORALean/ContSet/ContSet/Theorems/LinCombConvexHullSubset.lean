@@ -7,10 +7,10 @@ import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
 `linComb_outer` and `convexHull_union_eq_segments`: an enclosure of CORA's `convHull_`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

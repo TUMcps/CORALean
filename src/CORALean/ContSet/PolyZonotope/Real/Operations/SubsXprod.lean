@@ -9,10 +9,10 @@ the outputs `ii` of `Y{ii, e}`, the `e`-th power of output `ii`'s polynomial, `e
 factor `idu ii` in the generator.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

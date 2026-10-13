@@ -10,10 +10,10 @@ of `0`; the box's `inf ≤ sup` by `le`. Only `true` is certain; CORA's count of
 (R-PG) is not what is tested.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

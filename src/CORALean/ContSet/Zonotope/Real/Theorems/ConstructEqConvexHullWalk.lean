@@ -17,10 +17,10 @@ zonogon, which is convex. The walk is the vertex list [1, Alg. 3] scans (Sec. 3.
       Springer, 2008, pp. 215-228.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

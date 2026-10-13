@@ -10,10 +10,10 @@ range of `proj` reads `zero`; one inside reads the first source coordinate mappe
 for an injective `proj` is the only one. Nothing is computed, so nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

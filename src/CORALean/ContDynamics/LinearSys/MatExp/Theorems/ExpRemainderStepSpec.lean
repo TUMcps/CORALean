@@ -14,10 +14,10 @@ so have no least element. What a tuning algorithm wants of a step is the
 largest admissible one, and nothing here says the chosen one is that.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

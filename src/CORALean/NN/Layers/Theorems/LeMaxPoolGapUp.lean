@@ -8,10 +8,10 @@ At any tap but the pivot, where `subUp` is the one rounding the layer pays, and 
 at least that entry: what `maxPool_bounds` asks of its `g`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

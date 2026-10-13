@@ -18,10 +18,10 @@ both start at `[-1,1]`, so `Eⱼ` stays `Rⱼ` clipped to `[-1,1]` throughout.
       2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       21-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

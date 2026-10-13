@@ -10,10 +10,10 @@ remainder, a point of the Euclidean ball of squared radius `C.r ^ 2`. Shared by
 the two summands with `Convex.add`/`IsCompact.add`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

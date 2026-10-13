@@ -13,10 +13,10 @@ three independent zonotopes, so the image is the trilinear polynomial
 triple. Each product is in `[-1, 1]`, which is the only place the enclosure is lost.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

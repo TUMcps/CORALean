@@ -11,10 +11,10 @@ and is added to the accumulated `P^R`, which is reduced as CORA reduces it.
 Nothing here depends on the system but the two sets it is handed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

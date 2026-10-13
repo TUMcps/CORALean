@@ -11,10 +11,10 @@ This is what every representation's `interval` is once its bounds are in hand,
 so the enclosure is proved once here rather than per representation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

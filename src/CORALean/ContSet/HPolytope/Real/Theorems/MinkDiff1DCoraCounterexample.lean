@@ -16,7 +16,7 @@ not. So `0` is in CORA's result although `0 + (-2) ∉ P`.
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

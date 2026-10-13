@@ -9,10 +9,10 @@ import Mathlib.Analysis.Normed.Ring.Lemmas
 `two_zpow_coarsen` aligns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

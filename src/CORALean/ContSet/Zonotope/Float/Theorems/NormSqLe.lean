@@ -9,10 +9,10 @@ The box contains the zonotope (`Zonotope.interval_contains`) and a certificate `
 tight in general: a box is larger than its zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

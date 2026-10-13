@@ -8,10 +8,10 @@ right inverse reaches, besides the points near the vertices' mean, the weights' 
 what a convex combination fixes at one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

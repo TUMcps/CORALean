@@ -19,10 +19,10 @@ value theorem on the monotone piece that carries the target value. A crossed coo
       Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

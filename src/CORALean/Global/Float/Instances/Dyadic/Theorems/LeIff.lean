@@ -12,10 +12,10 @@ mantissa (`leShl_iff`), and `leAligned_iff` compares aligned integers. Shared by
 only the one `SoundFloatArithmetic` asks for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

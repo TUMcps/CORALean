@@ -10,10 +10,10 @@ pivot, or rounded badly, simply fails. The rows are stored between steps, as the
 otherwise be a closure nested once per step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

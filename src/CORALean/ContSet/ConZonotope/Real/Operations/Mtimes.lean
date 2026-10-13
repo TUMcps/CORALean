@@ -7,10 +7,10 @@ CORA's `@conZonotope/mtimes`: `map` at `A *ᵥ ·`, spelt with `*ᵥ` because th
 the form every caller states its matrix in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

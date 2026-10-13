@@ -10,10 +10,10 @@ facet normals of `Y` -- the perpendiculars `±(-g₂, g₁)` of its generators -
 are those of an unsafe box: together, the facet normals of `Y ⊕ (-S)` for every box `S`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

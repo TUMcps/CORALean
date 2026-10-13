@@ -7,10 +7,10 @@ Nothing rounds: choosing the larger of two stored lower bounds, or the smaller
 of two upper ones, returns one of them, so the intersection is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

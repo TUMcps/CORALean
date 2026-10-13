@@ -10,10 +10,10 @@ simulates nothing, so every returned trajectory is empty. Read from the source, 
 (`FINDINGS.md`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

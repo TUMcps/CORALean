@@ -12,10 +12,10 @@ bookkeeping is done. The order matters — dropping factors is only sound once
 both blocks have been merged onto the columns they keep.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

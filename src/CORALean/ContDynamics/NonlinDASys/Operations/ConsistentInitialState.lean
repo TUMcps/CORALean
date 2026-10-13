@@ -12,10 +12,10 @@ parameter, the Jacobian block CORA generates, and `tol` the `1e-10`. The iterati
 CORA's loop being unbounded; `none` is running out of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

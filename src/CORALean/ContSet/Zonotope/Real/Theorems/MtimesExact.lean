@@ -10,10 +10,10 @@ the float `mtimes` pays its rounding into the error box, so it reproves this
 against the rounded generators rather than composing with it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

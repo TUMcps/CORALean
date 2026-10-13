@@ -13,10 +13,10 @@ column of `[I.inf-c I.sup-c]`), here `Fin 2 → Prop`. `scalingToggle` is set by
 Not modelled: the `n × 2` shapes in higher dimension, `NaN` or `Inf` for a degenerate `I`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

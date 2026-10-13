@@ -11,10 +11,10 @@ halfspaces, where intersection is free: the two operands, on the caller's
 directions, and one operand's own box, so the result is bounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

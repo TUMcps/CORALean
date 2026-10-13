@@ -8,10 +8,10 @@ vertices the piece with those three vertices and the piece's own error box. Noth
 on the vertices, so nothing rounds, and the box stays what it was.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

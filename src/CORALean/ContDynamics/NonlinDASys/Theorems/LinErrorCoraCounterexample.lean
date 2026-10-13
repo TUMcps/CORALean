@@ -18,10 +18,10 @@ CF⁻¹φ) = ½ (0 - (-2)) = 1`; CORA's set is `½ (0 + (-2) [0, 1]) = [-1, 0]` 
       Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

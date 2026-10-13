@@ -8,10 +8,10 @@ whatever the machine's own rounding did. A nonzero dividend whose quotient round
 underflowed, so that is NaN, as `MulUp`'s underflow is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       22-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

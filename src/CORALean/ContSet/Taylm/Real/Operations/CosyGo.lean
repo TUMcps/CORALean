@@ -13,10 +13,10 @@ COSY-GO's box steps with its bound of a box, and the mid-point estimate `P(p) + 
       Bounders". Transactions on Computers, 11(4):1611-1618, 2005.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

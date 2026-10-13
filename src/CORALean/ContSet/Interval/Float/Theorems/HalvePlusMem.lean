@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 The sum is in the `Interval.plus` box, and `Interval.halve` is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

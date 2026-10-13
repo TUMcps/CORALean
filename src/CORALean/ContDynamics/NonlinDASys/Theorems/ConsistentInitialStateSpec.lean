@@ -9,10 +9,10 @@ stopping test, and, when `F` is invertible there, solves `F Δy = -g(x₀, y, u�
 The test is on the step, not the residual, so `g(x₀, y', u₀) = 0` is not claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

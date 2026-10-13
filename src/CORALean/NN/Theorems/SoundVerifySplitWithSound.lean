@@ -20,10 +20,10 @@ At `Interval`, `Interval.splitAt` supplies `splitter` and `Interval.
 splitAt_cover` supplies `hcov`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

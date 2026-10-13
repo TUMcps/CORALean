@@ -9,10 +9,10 @@ A `true` answer makes every generator `0`, so the nominal part is the single poi
 error box is a point: the zonotope is their sum, a point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

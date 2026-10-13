@@ -9,10 +9,10 @@ Newton steps (`Global/Float/Sqrt`). CORA throws below `0`; the enclosure here is
 which is `0` there, and needs no domain.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

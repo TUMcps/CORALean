@@ -8,10 +8,10 @@ import CORALean.NN.Definitions.WeightAcc
 CORA's `W = diag(scale) * W; b = scale .* b + offset`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

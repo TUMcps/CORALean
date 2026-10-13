@@ -27,10 +27,10 @@ equality, which a halfspace description states directly, so the count here is
       constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

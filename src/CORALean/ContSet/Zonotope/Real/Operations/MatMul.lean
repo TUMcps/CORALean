@@ -15,10 +15,10 @@ coefficients are free in `[-1, 1]` and cannot record that a cross coefficient is
 a product — see `bilin`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

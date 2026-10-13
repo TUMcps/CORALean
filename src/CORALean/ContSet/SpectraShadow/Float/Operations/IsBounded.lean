@@ -9,10 +9,10 @@ check, i.e. whether the certified interval hull exists. Sufficient only: `true` 
 bounded, `false` says only that these certificates do not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

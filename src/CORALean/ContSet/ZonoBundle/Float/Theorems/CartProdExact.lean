@@ -10,10 +10,10 @@ member of their bundle. `Fin.append` is injective, so the halves are determined 
 the nonemptiness hypotheses are what let one member of the other bundle stand in for the pair.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

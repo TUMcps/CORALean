@@ -29,10 +29,10 @@ and `ReachSetSubsetTimeIntervalInputSolution` put it inside what is computed.
       Conference (ECC), pp. 625-630, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       07-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

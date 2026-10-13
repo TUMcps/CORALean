@@ -20,10 +20,10 @@ never at `K` — is exactly what `confinement_of_subset` needs to discharge it
 from a check on the computed sets rather than on the trajectory.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

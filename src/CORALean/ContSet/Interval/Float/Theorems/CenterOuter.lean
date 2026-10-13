@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
 The real midpoint of the stored bounds lies between `centerLo` and `center`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

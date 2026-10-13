@@ -18,10 +18,10 @@ it off the float run. Each part is an outer enclosure computed in `𝕋`, so it 
 errs large; `discretizeEnclosureFloat_reach_subset_add_errorFloat` is the guarantee.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

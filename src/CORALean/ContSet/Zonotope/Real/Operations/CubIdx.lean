@@ -8,10 +8,10 @@ import Mathlib.Logic.Equiv.Fin.Basic
 extended column) and of the `N₃ N₂ N₁` generators of `Zonotope.cubMapMixed`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

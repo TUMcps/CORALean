@@ -16,10 +16,10 @@ step. It is a `LinearSysDT.reachSet` of zonotopes, hence convex and compact,
 which is what the inner approximation needs of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

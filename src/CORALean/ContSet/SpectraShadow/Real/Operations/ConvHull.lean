@@ -18,10 +18,10 @@ convex hull of the union. CORA assembles the cones from the SVD form of each sha
 `∅` and `S` is `S`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

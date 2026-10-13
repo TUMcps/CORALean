@@ -8,10 +8,10 @@ The first difference rounded upward is above `x - e - y` because `lo ≤ y`, the
 `y - (x - e)` because `y ≤ hi`, so the larger is above the magnitude.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ of a point matrix's norm: `⌈‖(Interval.smul r sys.A).absMax‖⌉₊`, no se
 `reachOrder_admissible` is its proof, exactly `LinearSys`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

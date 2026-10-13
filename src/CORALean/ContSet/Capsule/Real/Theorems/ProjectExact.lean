@@ -11,10 +11,10 @@ coordinate in `dims` is an equality constraint the capsule does not carry, and t
 proper subset of the projected capsule, so injectivity is a hypothesis; CORA does not check it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

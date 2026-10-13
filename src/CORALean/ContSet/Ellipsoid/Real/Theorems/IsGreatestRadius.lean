@@ -13,10 +13,10 @@ distance `‖x - q‖₂` over the ellipsoid. Bound: for `v = G u`, `‖v‖² �
 `u* = Gᵀ v / sqrt λ₀`, `v` the unit eigenvector of `λ₀`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

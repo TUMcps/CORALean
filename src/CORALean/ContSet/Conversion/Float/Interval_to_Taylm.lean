@@ -8,10 +8,10 @@ CORA's constructor `taylm(int, max_order)`: through the box's zonotope, whose ge
 are the variables, so one variable per coordinate. The range set contains the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

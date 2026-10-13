@@ -20,10 +20,10 @@ matrix: `A β = b` is imposed on the remaining factors alone, which is unsound
 not, as the single-set `quadMap` does. `rescale` (it only tightens) and `ind` are not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

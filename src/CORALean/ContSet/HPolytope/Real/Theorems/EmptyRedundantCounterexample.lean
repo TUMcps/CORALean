@@ -22,10 +22,10 @@ the one-row representation CORA uses has the fewest rows any H-representation of
       vol. 103, pp. 163-181, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

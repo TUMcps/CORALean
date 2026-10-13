@@ -27,10 +27,10 @@ time at all, so both sets are read across every run, unbounded, the way
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       11-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

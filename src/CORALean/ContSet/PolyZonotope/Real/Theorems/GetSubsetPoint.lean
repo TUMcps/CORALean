@@ -17,10 +17,10 @@ Stated over `point` rather than over `construct`, like `map_point` and
 variables, and only the set-level statements need it back.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

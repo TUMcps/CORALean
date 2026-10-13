@@ -8,10 +8,10 @@ The constraints of a level set at a chosen set of indices, in order, each with i
 what CORA's `splitEquality` builds with `ls.eq(ind)` and `ls.compOp(ind)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

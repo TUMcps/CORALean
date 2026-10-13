@@ -16,10 +16,10 @@ The sign is not symmetric — the coefficient is never positive — but a bound 
 the absolute value is what an interval's two endpoints both need.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

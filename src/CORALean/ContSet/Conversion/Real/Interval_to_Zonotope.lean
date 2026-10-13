@@ -22,10 +22,10 @@ in particular, is exactly one zonotope [1, Sec. VI-A (ℓ∞)].
       IEEE S&P 2018, pp. 3-18.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

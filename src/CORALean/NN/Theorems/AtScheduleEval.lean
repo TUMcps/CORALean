@@ -20,10 +20,10 @@ It is also why `encloseAt_outer` needs no induction of its own: this soundness
 is what `NeuralNetwork.Sound.enclose_outer` then answers from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ CORA's `ellipsoid(zonotope)` is the minimum-volume or minimum-trace enclosure, a
 optimisation, and is not what this is: this is the `√h` ball, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

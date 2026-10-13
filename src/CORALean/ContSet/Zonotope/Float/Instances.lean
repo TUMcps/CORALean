@@ -38,10 +38,10 @@ would have to guess which of them a loop calls — `NeuralNetwork.enclose` calls
 neither `reduce` nor `linComb`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

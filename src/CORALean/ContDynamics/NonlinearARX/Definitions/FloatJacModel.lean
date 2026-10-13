@@ -13,10 +13,10 @@ and in the stacked inputs, over a box of each, as computable functions at the sc
 `f_ARX` is differentiable there, which the converted system's Jacobian is assembled from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

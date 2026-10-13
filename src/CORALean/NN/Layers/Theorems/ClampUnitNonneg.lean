@@ -7,10 +7,10 @@ import CORALean.NN.Layers.Operations.ClampUnit
 `maximum` is exact, so the clamp is at least the stored `zero`, which reads as `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

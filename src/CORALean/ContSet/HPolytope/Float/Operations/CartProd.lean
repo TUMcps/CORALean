@@ -11,10 +11,10 @@ lists stacked, `A = [A₁ 0; 0 A₂]`, `b = [b₁; b₂]`. Padding and stacking 
 concatenate entries, so nothing is computed and nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ At or below `f` digits, `roundDown` only pads with zeros -- exact, so
 own fact -- it never overshoots -- read back at `f` digits by `div_le_div_iff₀`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

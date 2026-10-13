@@ -13,10 +13,10 @@ every vector within `B` of zero in that zonotope's span with such coefficients
 Adding the error box's lower corner keeps an interior point (`subset_interior_add_left`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

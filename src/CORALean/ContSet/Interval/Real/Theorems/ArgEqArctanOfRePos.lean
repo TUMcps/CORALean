@@ -8,10 +8,10 @@ For `0 < re z` the argument lies in `(-π/2, π/2)` and has tangent `im z / re z
 `arctan (im z / re z)`. This is `atan2 y x = arctan (y / x)` for `x > 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

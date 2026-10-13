@@ -9,10 +9,10 @@ at most that of every one of them, the full-rank candidate among them, for a com
 that is `<`. Only as good as `err`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

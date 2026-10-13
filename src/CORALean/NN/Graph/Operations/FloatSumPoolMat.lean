@@ -9,10 +9,10 @@ matrix with entry `1` where the position carries that feature and `0` elsewhere:
 `1` and `0`, so nothing rounds in building it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

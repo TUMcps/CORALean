@@ -7,10 +7,10 @@ How far a coordinate of a zonotope can reach from the origin: the interval
 hull's bound, read off without building the hull.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

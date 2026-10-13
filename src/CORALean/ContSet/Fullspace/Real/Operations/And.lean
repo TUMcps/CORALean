@@ -7,10 +7,10 @@ CORA's `@fullspace/and_`: the intersection with anything is that operand, return
 stands. Generic over the other operand, whatever representation it is in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ what its blocks read as, the zero between them being the stored `zero`, which
 about the inequality of a sum apply to the stored one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

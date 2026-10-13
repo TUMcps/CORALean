@@ -12,10 +12,10 @@ width, so the widths summed upward bound the rest, as a symmetric box. Both join
 `E` the operation already owes, and the generator count is the exact one's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

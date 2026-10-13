@@ -9,10 +9,10 @@ A point with independent coefficient `βⱼ ≥ 0` is in the first half at `2β�
 `c ± g - cᵢ ≥ 0` is at most the gap added to the top of the error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

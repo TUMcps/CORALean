@@ -13,10 +13,10 @@ takes (`exp`, `log`, `sqrt`, …), with the coefficients and the remainder bound
 caller. `ComposeOuter` says what `ρ` has to bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

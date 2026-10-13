@@ -13,10 +13,10 @@ weight `lam` is genuinely shared across every pair — only the endpoints vary.
 Whether that makes this tighter than `plus` in practice is not claimed here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

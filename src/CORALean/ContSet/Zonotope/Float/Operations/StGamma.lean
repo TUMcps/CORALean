@@ -6,10 +6,10 @@ import CORALean.ContSet.Zonotope.Float.Zonotope
 The approximate coefficients of the generators, `H G₁`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

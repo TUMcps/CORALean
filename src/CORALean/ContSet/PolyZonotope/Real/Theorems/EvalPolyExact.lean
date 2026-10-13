@@ -19,10 +19,10 @@ It is scalar, so coordinate `i` reads the coefficient list at `i`; that the
 polynomials differ between coordinates costs the induction nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

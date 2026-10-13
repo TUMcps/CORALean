@@ -18,10 +18,10 @@ A caller holding an `l` therefore discharges `plus_outer`'s three hypotheses
 here, and loses nothing to the wider parametrisation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

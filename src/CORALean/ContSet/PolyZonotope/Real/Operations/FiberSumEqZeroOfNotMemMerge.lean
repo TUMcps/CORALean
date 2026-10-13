@@ -12,10 +12,10 @@ fibre is empty and sums to zero. Empty, not merely zero-valued — which is why
 this holds for every generator family and needs no cancellation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

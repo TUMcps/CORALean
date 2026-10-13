@@ -11,10 +11,10 @@ What the reachability theorems consume: an integral valued in the set needs it,
 and it holds whatever `G` is, degenerate ones included.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ fulfilled, that is, `A x ≤ a`, `a ≥ 0`, and `Ae x = 0`" — every inequality
 here. `Theorems.RepresentsaFullspaceIff` says this is the whole space.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

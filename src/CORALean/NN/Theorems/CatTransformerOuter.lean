@@ -16,10 +16,10 @@ the two inclusions chained. `⊥` is never reached, a point being in some case.
       IEEE S&P 2018, pp. 3-18.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

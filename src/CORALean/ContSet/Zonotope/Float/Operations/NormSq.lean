@@ -10,10 +10,10 @@ squared length of the box, rounded up, and `normSq_le` takes a caller's `σ` wit
 `normSq ≤ σ·σ`. An upper bound only, not the norm.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

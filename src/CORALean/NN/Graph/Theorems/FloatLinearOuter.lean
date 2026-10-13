@@ -13,10 +13,10 @@ enclosure: every node-feature matrix `H` whose stack lies in the input set is ma
 layer, read at the reals the stored floats denote, into the output set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ timeIntervalStep Δt η (timePoint Δt X₀ k)`. The statement is
 `reachStepkWrappingFree_outer`'s, word for word.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

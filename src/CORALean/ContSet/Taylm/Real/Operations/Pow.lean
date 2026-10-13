@@ -8,10 +8,10 @@ CORA's `power` and `mpower` at a natural exponent on one model: `times` repeated
 product truncated at the model's order, starting from the constant one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

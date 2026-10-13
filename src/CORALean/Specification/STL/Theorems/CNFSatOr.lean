@@ -14,10 +14,10 @@ result being the merge of a clause of each.
       Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

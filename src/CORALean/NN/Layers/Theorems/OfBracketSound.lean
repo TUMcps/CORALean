@@ -9,10 +9,10 @@ What the bracket buys, and the only place `σ` appears: the recentred fit enclos
 the two ends did. The fit is free and the bracket owes everything.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

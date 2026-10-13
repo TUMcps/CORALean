@@ -12,10 +12,10 @@ At the scale and shift `Real.batchNormScale`/`Real.batchNormShift` fold from the
 layer encloses CORA's inference-time formula `γ (x - μ) / √(σ² + ε) + β` per channel.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

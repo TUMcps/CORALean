@@ -19,10 +19,10 @@ nothing runs here; the example is the closed form and the two theorems about it 
   `(e² - 1)/2 ≈ 3.19`, so the set built from it is too narrow for an unstable `A`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

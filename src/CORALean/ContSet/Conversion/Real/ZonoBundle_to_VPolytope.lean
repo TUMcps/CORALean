@@ -20,10 +20,10 @@ polytope's vertices carried through the generators, not only the extreme points 
 the list may hold interior points: the hull is the bundle, which `vPolytopeAll_exact` proves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

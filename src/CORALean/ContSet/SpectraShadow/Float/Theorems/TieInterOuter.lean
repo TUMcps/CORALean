@@ -11,10 +11,10 @@ A common point `x = c₁ + G₁ β₁ = c₂ + G₂ β₂` is the tied shadow's 
 `(β₁, β₂, x)`: both inequalities hold, and every tie entry is `0`. The box is the origin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

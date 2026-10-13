@@ -12,10 +12,10 @@ reachable set either. Confinement (`hR`) is asked of `simulate` itself, as
 run stayed in the region each step's certificate was issued for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

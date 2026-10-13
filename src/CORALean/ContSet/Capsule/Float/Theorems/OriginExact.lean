@@ -7,10 +7,10 @@ import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
 `zero` reads as `0`, so the stored capsule is the exact layer's point capsule at the origin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

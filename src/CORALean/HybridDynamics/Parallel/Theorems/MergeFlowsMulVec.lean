@@ -10,10 +10,10 @@ So the product's flow is the components' flows with the bound inputs filled in: 
 identity `Stay.trajectory` needs, coordinate by coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

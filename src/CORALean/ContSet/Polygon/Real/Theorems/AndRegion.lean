@@ -6,10 +6,10 @@ import CORALean.ContSet.Polygon.Real.Polygon
 Exactly: the intersection of two unions is the union of the pairwise piece intersections.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

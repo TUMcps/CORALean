@@ -14,10 +14,10 @@ Each inequality row shifts inward by the subtrahend's support in that row's
 own direction; the equality rows are copied unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

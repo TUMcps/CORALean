@@ -20,10 +20,10 @@ at the fixed `p` and the `'linRem'` option adds `lin_error2dAB`; neither is carr
 * [1] `contDynamics/@nonlinParamSys/linearize.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

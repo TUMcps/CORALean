@@ -21,10 +21,10 @@ counterexample carries over: `P₁ = {0}`, `P₂ = {x₁ ≤ -1, -x₁ ≤ -1, x
       arXiv:1903.05214.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

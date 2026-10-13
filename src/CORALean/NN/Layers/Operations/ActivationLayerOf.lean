@@ -10,10 +10,10 @@ original's. `macro_inline`, so `σ`, which the layer never stores, is not compil
 a caller at `Real.sigmoid` still runs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

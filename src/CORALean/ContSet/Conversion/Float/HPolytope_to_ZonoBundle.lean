@@ -8,10 +8,10 @@ Through the zonotope the box gives, then `Zonotope.zonoBundle`, exact. All the
 loss is the box route's; the caller supplies the coordinate bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

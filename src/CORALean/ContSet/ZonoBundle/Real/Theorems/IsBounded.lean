@@ -7,10 +7,10 @@ CORA's `isBounded` is `true`, for a bundle of at least one zonotope; `isCompact_
 needs `0 < k` as the empty family denotes the whole space.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

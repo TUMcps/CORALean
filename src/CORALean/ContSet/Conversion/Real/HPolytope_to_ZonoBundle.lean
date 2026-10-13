@@ -32,10 +32,10 @@ polytope and bases with `Bᵢ Bᵢᵀ = 1` and `aᵢ x = ‖aᵢ‖ (Bᵢᵀ x)�
 gives. (A zero row has `‖aᵢ‖ = 0` and constrains nothing.)
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ rounding the radius absorbs: the radius is the larger magnitude of `I - centre`'
 bounds (`matResidual`), and `maximum`/`absolute` are exact, so the box stays zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

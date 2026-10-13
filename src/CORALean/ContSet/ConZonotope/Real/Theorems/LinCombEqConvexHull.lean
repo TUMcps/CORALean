@@ -12,10 +12,10 @@ convex nonempty sets the segments are the convex hull of the union. So CORA's ex
 other operand, which this does not claim.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

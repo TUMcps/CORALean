@@ -12,10 +12,10 @@ the resets `x'_i = u_i` lifted to the product, the inputs bound to the global in
 the composed reset of CORA gives the first component its first argument, the product its second.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

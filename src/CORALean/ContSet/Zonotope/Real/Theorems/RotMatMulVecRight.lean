@@ -7,10 +7,10 @@ import Mathlib.Data.Matrix.Mul
 On the coordinates `i ≠ j` the matrix is CORA's `R`: the second row is `(sin, cos)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

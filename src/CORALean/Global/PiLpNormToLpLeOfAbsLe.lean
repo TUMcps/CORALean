@@ -6,10 +6,10 @@ import Mathlib.Analysis.Normed.Lp.PiLp
 `|aᵢ| ≤ bᵢ` for all `i` gives `‖a‖_q ≤ ‖b‖_q`, for every `q ≥ 1` including `∞`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

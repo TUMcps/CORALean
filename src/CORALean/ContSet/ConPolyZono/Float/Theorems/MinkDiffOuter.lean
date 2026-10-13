@@ -15,10 +15,10 @@ corners are points of the nominal zonotope; when the error box holds `0` the flo
 holds them too, and the statement is about the whole float subtrahend.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

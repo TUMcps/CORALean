@@ -8,10 +8,10 @@ The union of the two halves is the original set. The independent block is carrie
 into both halves, so the statement holds with it: only the factor domain is split.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

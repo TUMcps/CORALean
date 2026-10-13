@@ -12,10 +12,10 @@ polytope given by halfspaces, which may be unbounded, and not a representation w
 sampled (an ellipsoid, a capsule).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

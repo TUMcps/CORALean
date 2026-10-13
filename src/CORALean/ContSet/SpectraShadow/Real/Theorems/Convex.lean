@@ -15,10 +15,10 @@ This is what makes the representation sit beside the polytopes and ellipsoids as
 convex set, and the reason nothing here needs a convexity hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

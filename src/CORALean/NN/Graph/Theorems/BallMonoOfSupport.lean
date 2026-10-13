@@ -11,10 +11,10 @@ This is what makes a single subgraph usable across every graph in a family that
 shares a support bound — `A` need not be fixed, only its zero pattern.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

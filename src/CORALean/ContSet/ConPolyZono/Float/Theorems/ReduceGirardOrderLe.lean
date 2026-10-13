@@ -17,10 +17,10 @@ At `o = 0` there is nothing to state: CORA's `K = max(0, N·order - N)` floors
 the budget at nothing and the box of `n` is added regardless.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

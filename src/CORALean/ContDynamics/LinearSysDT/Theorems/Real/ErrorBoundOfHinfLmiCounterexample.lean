@@ -20,10 +20,10 @@ need `(e_k, d_k) ≠ 0`; with `≤` the bound holds (`errorBound_of_hinfLmi`).
       64(11):4717-4724, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ ellipsoid is convex, and the polygon is the hull of the kept vertices (`encloseP
 origin error box adding nothing). Nothing is claimed of the vertices dropped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

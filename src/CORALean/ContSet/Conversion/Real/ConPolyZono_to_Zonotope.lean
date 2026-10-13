@@ -17,10 +17,10 @@ A direct zonotope from a constrained polynomial zonotope is a separate piece of
 mathematics and no tighter enclosure is attempted here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

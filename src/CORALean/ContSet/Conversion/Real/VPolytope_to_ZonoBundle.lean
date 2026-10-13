@@ -9,10 +9,10 @@ single-member bundle, exact by `Set.iInter_const`. All the loss is the box
 route's, so this is no worse than `VPolytope → Zonotope` already is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

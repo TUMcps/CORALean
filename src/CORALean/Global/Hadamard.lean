@@ -18,10 +18,10 @@ written by hand — which is exactly what a graph convolutional network needs fo
 `P_ij = Ã_ij ⬝ s_i ⬝ s_j`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

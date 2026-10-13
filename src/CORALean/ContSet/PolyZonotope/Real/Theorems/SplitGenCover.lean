@@ -9,10 +9,10 @@ With a dependent factor to split it is `splitDepFactor_union`; without, the inde
 split, `splitLongestIndepGen_cover`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

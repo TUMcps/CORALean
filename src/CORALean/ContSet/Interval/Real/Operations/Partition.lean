@@ -8,10 +8,10 @@ return the `splits ^ n` sub-boxes, indexed by which piece each coordinate took. 
 a cell array; here the index tuple `Fin n → Fin splits` is the position in it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

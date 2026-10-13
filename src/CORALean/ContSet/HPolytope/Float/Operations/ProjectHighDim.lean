@@ -10,10 +10,10 @@ then one equality `xⱼ = 0` for each coordinate `dims` misses, as a unit row wi
 right-hand side `[0, 0]`. Nothing rounds: the rows are copied, and `0` and `1` are exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

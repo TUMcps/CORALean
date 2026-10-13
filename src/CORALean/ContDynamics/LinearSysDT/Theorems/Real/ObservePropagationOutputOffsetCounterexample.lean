@@ -16,10 +16,10 @@ state stays at `0`, the output is `y₀ = 1`, and the next set of `observePropag
 `y` the same way. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

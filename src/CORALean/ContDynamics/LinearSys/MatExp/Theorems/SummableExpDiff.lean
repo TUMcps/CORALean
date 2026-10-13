@@ -8,10 +8,10 @@ split lemma needs summability of the whole series, and shifting the index by
 two is what drops the constant and linear terms that cancel.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

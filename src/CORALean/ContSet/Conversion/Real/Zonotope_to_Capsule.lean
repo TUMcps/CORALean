@@ -10,10 +10,10 @@ capsule of that box and maps it back by `B`. Here the basis is the identity: the
 capsule is generally a different, often tighter, set), and nothing here claims equality.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

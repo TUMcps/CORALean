@@ -16,10 +16,10 @@ The window `(y_{k-n_p}, …, y_{k-1})` of [1, Cor. 2] is `np` blocks of `ny` coo
       Transactions on Automatic Control, 71(5):3014-3029, 2026.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ reach the other's generators. Named so that its lemmas are stated at the plain
 counts `Fin (p₁ + p₂)` rather than at a projection of `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

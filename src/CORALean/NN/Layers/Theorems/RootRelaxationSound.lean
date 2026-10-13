@@ -8,10 +8,10 @@ import CORALean.NN.Layers.Theorems.OfMonotoneSound
 and `Real.sqrt` is monotone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

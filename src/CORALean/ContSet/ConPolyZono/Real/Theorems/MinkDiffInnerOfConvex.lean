@@ -11,10 +11,10 @@ affine), so `x + Z ⊆ P` when `P` is convex. With `minkDiff_outer` the result i
 convexity this is false: `minkDiff_not_inner`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

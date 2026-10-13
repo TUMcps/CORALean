@@ -21,10 +21,10 @@ nothing, and above it the absorbed blocks are `h` and `q` wide at worst either
 way, so this bounds every `o` at once.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

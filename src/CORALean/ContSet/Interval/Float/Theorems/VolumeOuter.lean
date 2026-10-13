@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
 The denoted box's Lebesgue volume is at most the stored bound, `ofReal`-read.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

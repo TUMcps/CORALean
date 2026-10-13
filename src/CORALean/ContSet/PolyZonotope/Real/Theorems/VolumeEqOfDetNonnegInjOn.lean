@@ -11,10 +11,10 @@ With `det J ≥ 0` on the factor cube and the factor map injective on it, CORA's
 volume of the set, the area formula's equality case.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ If `M k ∈ f k` for every `k < N`, then `∑_{k<N} M k ∈ sumTermsMat f N`: th
 `0`, read exactly, and each `matPlus` holds the sum of a member of each summand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

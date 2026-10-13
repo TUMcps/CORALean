@@ -13,10 +13,10 @@ sum that `InflatedContSet.construct` is: the relabelled nominal part plus the
 relabelled box, with no widening between them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ differences of `getDataPoints` are not modelled. Returns `(A, B, c)`, the record
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

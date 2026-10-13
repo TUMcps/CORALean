@@ -12,10 +12,10 @@ a `reduce`, so `reduce_order_le` bounds it regardless of the controller's own
 output size. No induction, and the controller's enclosure never enters.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       23-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

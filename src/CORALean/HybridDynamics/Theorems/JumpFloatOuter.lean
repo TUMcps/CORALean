@@ -10,10 +10,10 @@ image lands in `jumpFloat Rg`. `Location.guardIntersectFloat` is what computes
 such an `Rg`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

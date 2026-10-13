@@ -10,10 +10,10 @@ Public rather than `aux_`: `MatMulOuter` and `MtimesIntervalMatOuter` both
 need it, not only `MulBetweenCorners`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

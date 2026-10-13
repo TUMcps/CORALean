@@ -8,10 +8,10 @@ The supremum of the norms over the whole space is unbounded in positive dimensio
 with one coordinate `r` has norm `r`, for every `r`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

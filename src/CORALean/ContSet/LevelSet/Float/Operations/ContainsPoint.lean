@@ -11,10 +11,10 @@ interval evaluation, an argument assumed to enclose the value), and each row's c
 (`le` both ways) for `=`. Only `true` is certain.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

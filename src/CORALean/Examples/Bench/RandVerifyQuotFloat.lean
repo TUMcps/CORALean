@@ -10,10 +10,10 @@ any other `a` a nonzero result of its sign. `b = 0` gives `0`. For reporting, ne
 decision.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

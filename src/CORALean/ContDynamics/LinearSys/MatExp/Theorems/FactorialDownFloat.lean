@@ -10,10 +10,10 @@ below `k!` by induction: each factor, clamped at `zero`, lies in `[0, k]`, so a
 product of it with the previous lower bound stays under `k · (k-1)!`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

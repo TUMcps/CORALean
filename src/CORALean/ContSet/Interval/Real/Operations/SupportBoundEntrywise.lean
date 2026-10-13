@@ -13,10 +13,10 @@ out over any `Entrywise` ambient type rather than `Vec ℝ n` alone. This gives
 `Interval (Mat ℝ m n)` a support bound, which the `Vec`-only version could not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

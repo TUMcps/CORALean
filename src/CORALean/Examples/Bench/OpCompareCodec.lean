@@ -17,10 +17,10 @@ binary64 form -- normal or subnormal -- that denotes the same value. `checkRound
 regression: every input hex token survives `hex → Float → IEEE → hex` unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

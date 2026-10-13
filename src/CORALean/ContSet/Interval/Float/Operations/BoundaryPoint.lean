@@ -9,10 +9,10 @@ coordinate is the corner products of the ratio interval and `dir ᵢ`, plus `sta
 outward. `none` when no coordinate of `dir` is certified nonzero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

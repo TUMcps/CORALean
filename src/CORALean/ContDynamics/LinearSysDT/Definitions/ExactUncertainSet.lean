@@ -16,10 +16,10 @@ measurements is `exactUncertainSet_eq`.
       estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

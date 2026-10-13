@@ -9,10 +9,10 @@ zonotope's (`Taylm.polyZonotope_exact`), so `representsa_emptySet` is `true` iff
 `∅`, which never happens: the answer is `false`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

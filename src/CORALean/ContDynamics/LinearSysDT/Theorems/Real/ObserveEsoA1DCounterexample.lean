@@ -16,10 +16,10 @@ the shape `12500000/9713231` (`sigma_sq ≈ 5.81`), which misses `x₁`:
 (`Ellipsoid.intersectStripGollamudi1D_counterexample`). Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

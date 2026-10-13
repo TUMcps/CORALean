@@ -12,10 +12,10 @@ fit runs, and the residual box lands in `Interval.polyZonotope`, which is all de
 the generator count below is the *whole* count.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

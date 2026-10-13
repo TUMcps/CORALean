@@ -13,10 +13,10 @@ bundle cut with them (`intersection_exact`). Outer only: the exact layer's halve
 bundle exactly, the float ones also hold the rounding.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

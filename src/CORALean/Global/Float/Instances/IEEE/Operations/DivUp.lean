@@ -9,10 +9,10 @@ unbounded exponent, and `roundUp` onto the grid. Both round the same way, so the
 the unit checks in `Examples/IEEERounding.lean` compare the result with binary64's own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

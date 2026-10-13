@@ -16,10 +16,10 @@ projection parameter `t` clamped to `[-1, 1]`, so the capsule holds every point 
 roundings. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

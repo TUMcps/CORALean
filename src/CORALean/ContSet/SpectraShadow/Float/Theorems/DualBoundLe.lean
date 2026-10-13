@@ -13,10 +13,10 @@ equalities is `aᵀ G β ≤ tr(A₀ Y)`. The rounded-up sums bound the nominal 
 coordinate of the error lies between its corners, where `aᵣ eᵣ` is largest.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

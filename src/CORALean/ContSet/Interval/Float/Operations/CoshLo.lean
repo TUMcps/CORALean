@@ -9,10 +9,10 @@ lies left of `0`, `cosh lb` if right of it, and `1` if it contains `0`. `le` ans
 reliably, which is enough: the third case is a bound at every range.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

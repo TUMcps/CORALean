@@ -10,10 +10,10 @@ through `RealImage.realImage`, generic over the ambient type as `point` itself
 is, so it reaches `matPow`'s identity at `Mat 𝕋 n n` too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

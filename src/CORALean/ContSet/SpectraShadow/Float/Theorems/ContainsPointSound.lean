@@ -11,10 +11,10 @@ semidefinite (`SpectraShadow.posSemidef_of_diagDominant`). The point `c + G β` 
 nominal shadow, and the remainder `p - c - G β` in the error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ in both `Rti` and `Rtp`; the run from `(0, 1)` is `(t, 1)`, at `x₁(Δt) = Δt`
 index, not the region: `p` lies in the box the tensor is read over.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

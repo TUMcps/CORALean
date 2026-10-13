@@ -16,10 +16,10 @@ each still in `[-1, 1]`. Any weights with a nonzero sum, positive or not; outer 
       European Journal of Control, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

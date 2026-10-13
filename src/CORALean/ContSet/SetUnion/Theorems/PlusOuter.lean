@@ -8,10 +8,10 @@ from each side comes from some branch on that side. `Plus.plus_outer` then
 reads each pairwise sum back into `SetUnion.plus`'s own pairwise branch.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

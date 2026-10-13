@@ -8,10 +8,10 @@ The window `stack p y (k+1)` is `f` of the window `stack p y k` and the input si
 `k + p`, its past windows reindexed by `Fin.rev`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

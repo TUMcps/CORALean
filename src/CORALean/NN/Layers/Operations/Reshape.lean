@@ -11,10 +11,10 @@ the *guarantee*: `Mtimes.mtimes_outer` claims containment and has no room to cla
 no scalar to name and nothing to round, and every representation's `Reindex` is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ declarations there, none used outside the file, so split one file each.
 So does the loop, at every `pick` and every number of steps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

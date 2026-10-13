@@ -16,10 +16,10 @@ lemma), for `σ ≠ 0`; both determinants vanish at `σ = 0`.
       Automatica, 41(6):1035-1043, 2005.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

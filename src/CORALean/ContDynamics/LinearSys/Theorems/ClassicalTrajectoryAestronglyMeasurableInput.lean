@@ -16,10 +16,10 @@ set that quantifies over every admissible input signal — the backward sets of
 over Carathéodory runs. `NonlinearSys` reads it off a classically linearized run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       19-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

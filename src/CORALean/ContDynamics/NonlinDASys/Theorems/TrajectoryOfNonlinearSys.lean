@@ -7,10 +7,10 @@ With `y t := h (x t) (u t)`, which `sound` makes satisfy the constraint. Togethe
 `TrajectoryToNonlinearSys` the elimination of `y` loses no run and adds none.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

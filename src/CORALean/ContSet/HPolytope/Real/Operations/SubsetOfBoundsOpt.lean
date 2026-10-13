@@ -7,10 +7,10 @@ The unanswered directions are exactly the ones that constrain nothing, so the
 enclosure holds without any assumption about how many were answered.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

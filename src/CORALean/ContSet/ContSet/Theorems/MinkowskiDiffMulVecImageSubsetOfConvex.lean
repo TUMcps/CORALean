@@ -17,10 +17,10 @@ the true `e^{AΔt}` and `X` a zonotope, this is the statement to use: `B` is any
 box covering `R |X|`, `R` the interval's radius.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ For every factor in `[alo, ahi]`: the remainder by the corner products, the stor
 coefficients by `abs_polyOf_round_le`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

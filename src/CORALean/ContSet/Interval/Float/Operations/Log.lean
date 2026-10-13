@@ -8,10 +8,10 @@ Monotone, so `logDown` at the lower bound and `logUp` at the upper one. `p` is `
 and `k` the number of bisection steps (`Global/Float/Log`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

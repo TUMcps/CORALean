@@ -11,10 +11,10 @@ joined interval, so in every member of the bundle: the basis, with `B Bᵀ = 1` 
 `x` through its coordinates `Bᵀ x` and back. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

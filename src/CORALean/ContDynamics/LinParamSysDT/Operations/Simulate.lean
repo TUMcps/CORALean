@@ -9,10 +9,10 @@ concrete meaning of `step`'s `∃ A ∈ construct sys.A`; not a field of `sys`,
 since it is chosen afresh each run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

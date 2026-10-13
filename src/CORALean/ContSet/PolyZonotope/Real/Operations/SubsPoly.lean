@@ -7,10 +7,10 @@ Output `ii` of `pZin` as a sum of monomials: CORA's `Gin0 = [cin, Gin]` with `eM
 the centre being the term with exponent `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ in the same direction as over ℝ: a point set the polynomial zonotope contains 
 `false` proves some point is outside; `true` decides nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

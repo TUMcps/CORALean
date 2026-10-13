@@ -9,10 +9,10 @@ lower bounds and a `min` of the two upper bounds entrywise, one comparison
 each, so at `Vec ℝ n` it is `2 * n` comparisons and nothing else.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

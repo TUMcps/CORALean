@@ -9,10 +9,10 @@ particular choice of it, so a layer that chooses its slope in finite precision m
 error against it. Both are what the layer means, over ℝ, and neither is run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

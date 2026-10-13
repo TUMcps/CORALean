@@ -8,10 +8,10 @@ A returned point passed `Zonotope.containsPoint`, so it is a member (`containsPo
 only: no claim that it is the vertex `c ± Σⱼ sign(sᵀ gⱼ) gⱼ` of the real definition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

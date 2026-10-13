@@ -33,10 +33,10 @@ Nothing here evaluates to a number. Over ℝ every operation is noncomputable, a
 `Float` is where the same loops produce bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

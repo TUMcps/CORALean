@@ -7,10 +7,10 @@ import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
 Entry by entry, so the dot product with any point agrees.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

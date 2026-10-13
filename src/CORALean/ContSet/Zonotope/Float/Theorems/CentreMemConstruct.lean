@@ -8,10 +8,10 @@ at the zero coefficients, and in the whole set once the error box holds `0`,
 which a box built by the operations does and an arbitrary one need not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

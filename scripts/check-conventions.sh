@@ -117,6 +117,20 @@ out=$(awk \
   -v FLINT_AXIOM="$FLINT_AXIOM" \
   -v BENCH_DIR="$BENCH_DIR" \
   -v ALLOWLIST="$ALLOWLIST" '
+# One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
+function checkReview(val, ln,    d, nm) {
+  if (val !~ /^[0-9][0-9]-[A-Za-z]+-[0-9][0-9][0-9][0-9] \(.+\)$/) {
+    say(FILENAME ":" ln ": `Reviewed:` is `---` or lines `DD-Month-YYYY (Name)`, not `" val "`")
+    return
+  }
+  d = val; sub(/ .*$/, "", d)
+  nm = val; sub(/^[^(]*\(/, "", nm); sub(/\)$/, "", nm)
+  if (d !~ DATE)
+    say(FILENAME ":" ln ": `Reviewed:` date `" d "` is not a DD-Month-YYYY date")
+  if (nm ~ /^Claude/)
+    say(FILENAME ":" ln ": `Reviewed:` records human reviews — `" nm "` is a model")
+}
+
 BEGIN {
   while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f
   CONT = "[\200-\277]"
@@ -456,7 +470,7 @@ FNR == 1 {
   if (prev != "") check(prev)
   prev = FILENAME
   depth = 0; nimp = 0; docLine = 0; docLen = 0; docEnd = 0
-  authorLine = 0; codeLine = 0; nsLine = 0; ns = ""
+  authorLine = 0; blockEnd = 0; revDash = 0; codeLine = 0; nsLine = 0; ns = ""
   blockKind = ""; blockStart = 0; declDocEnd = 0
   prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
@@ -529,16 +543,29 @@ FNR == 1 {
   if (raw !~ /[^ \t]/) { blanks++; if (blanks == 3) say(FILENAME ":" FNR \
       ": third blank line in a row — one blank line separates, two at most") }
   else blanks = 0
-  if (authorLine == 0 && raw ~ /^-- Authors:/) authorLine = FNR
+  if (authorLine == 0 && raw ~ /^-- Authors:/) { authorLine = FNR; blockEnd = FNR + 3 }
 
   # The author block, field by field, so that a block that is present but
   # malformed is caught rather than counted as present.
+  # `Reviewed:` may continue on further lines, aligned to the value column.
+  if (authorLine > 0 && FNR == blockEnd + 1 && raw ~ /^--[ ]+[0-9][0-9]-[A-Za-z]/) {
+    blockEnd = FNR
+    if (revDash)
+      say(FILENAME ":" FNR ": `Reviewed: ---` stands alone — a review replaces it")
+    else if (substr(raw, 1, 18) != "--" sprintf("%16s", "") || substr(raw, 19) !~ /^[0-9]/)
+      say(FILENAME ":" FNR ": a `Reviewed:` continuation line is `--` and spaces up to" \
+          " the column the dates start in")
+    else {
+      val = substr(raw, 19); sub(/[ \t]+$/, "", val)
+      checkReview(val, FNR)
+    }
+  }
   if (authorLine > 0 && FNR >= authorLine && FNR <= authorLine + 3) {
     field = ""
     if (FNR == authorLine) field = "Authors:      "
     else if (FNR == authorLine + 1) field = "Written:      "
     else if (FNR == authorLine + 2) field = "Last update:  "
-    else field = "Last revision:"
+    else field = "Reviewed:     "
     lbl = field; sub(/[ \t]*$/, "", lbl)
     if (index(raw, "-- " field " ") != 1) {
       say(FILENAME ":" FNR ": the author block reads `-- " lbl \
@@ -547,17 +574,26 @@ FNR == 1 {
       val = substr(raw, length("-- " field " ") + 1)
       sub(/[ \t]+$/, "", val)
       if (FNR == authorLine) {
-        if (val !~ /^[A-Z]/)
-          say(FILENAME ":" FNR ": `Authors:` names a person")
+        n = split(val, who, /, */)
+        for (k = 1; k <= n; k++)
+          if (who[k] !~ /^Claude (Opus|Sonnet|Fable|Haiku) [0-9]+(\.[0-9]+)?$/)
+            say(FILENAME ":" FNR ": `Authors:` lists the models that wrote the file," \
+                " comma-separated, each `Claude <Opus|Sonnet|Fable|Haiku> <version>`," \
+                " not `" who[k] "`")
       } else if (FNR == authorLine + 1) {
         if (val !~ DATE)
           say(FILENAME ":" FNR ": `Written:` is a DD-Month-YYYY date, not `" val "`")
-      } else if (val != "---" && val !~ DATE) {
-        say(FILENAME ":" FNR ": `" lbl "` is a DD-Month-YYYY date or `---`, not `" val "`")
+      } else if (FNR == authorLine + 2) {
+        if (val != "---" && val !~ DATE)
+          say(FILENAME ":" FNR ": `" lbl "` is a DD-Month-YYYY date or `---`, not `" val "`")
+      } else if (val == "---") {
+        revDash = 1
+      } else {
+        checkReview(val, FNR)
       }
     }
   }
-  isAuthorBlock = (authorLine > 0 && FNR >= authorLine && FNR <= authorLine + 3)
+  isAuthorBlock = (authorLine > 0 && FNR >= authorLine && FNR <= blockEnd)
 
   depthBefore = depth
   code = strip(raw)
@@ -615,7 +651,7 @@ FNR == 1 {
   # signature, and only over lines that carry code, so blank lines neither help
   # nor hurt. Reported once per stretch, at the line the stretch began, since
   # that is where the comment goes.
-  if (authorLine > 0 && FNR > authorLine + 3 && firstBodyFound && FNR > firstBodyLine) {
+  if (authorLine > 0 && FNR > blockEnd && firstBodyFound && FNR > firstBodyLine) {
     if (sawComment || lineKind != "") {
       endRun(FILENAME)
     } else if (code ~ /[^ \t]/) {

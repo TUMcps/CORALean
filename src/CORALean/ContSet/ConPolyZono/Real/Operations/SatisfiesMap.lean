@@ -4,10 +4,10 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.Map
 # `ConPolyZono.map` leaves the constraint untouched
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

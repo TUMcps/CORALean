@@ -9,10 +9,10 @@ bracketed and the two subtracted the *crossed* way — the activation's low end 
 high one — which keeps the sampled bracket outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

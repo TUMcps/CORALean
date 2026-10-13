@@ -8,10 +8,10 @@ Nothing is rounded, so the stored box reads as exactly the exact layer's `max` o
 `Real.Interval.max_exact` carries over, under the same nonemptiness of the readings.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

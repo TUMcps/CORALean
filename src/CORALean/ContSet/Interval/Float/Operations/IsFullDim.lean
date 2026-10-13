@@ -7,10 +7,10 @@ A test for full dimension at float: `ltStrict` on `inf i` and `sup i` in every c
 for a positive width, so `true` is certain and `false` only says "not shown".
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

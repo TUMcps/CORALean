@@ -18,10 +18,10 @@ reaches `Flint`, and one thing to discharge should the calls ever be replaced by
 proved Lean — `Dyadic p` already satisfies each conjunct as a theorem.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

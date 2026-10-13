@@ -8,10 +8,10 @@ computed on the entries, so nothing rounds: the vertices and the two bounds of t
 re-indexed into `Mat 𝕋 n 1`. This is a `VPolytope` of the ambient type `Mat 𝕋 n 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

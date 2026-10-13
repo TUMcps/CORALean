@@ -16,10 +16,10 @@ entry read through the tables; `compactCons_eq_spec` says this is
 `compactConsSpec` (issue #61).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   11-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

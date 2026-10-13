@@ -14,10 +14,10 @@ which every float format holds exactly, so it reads back as the real selection m
       Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

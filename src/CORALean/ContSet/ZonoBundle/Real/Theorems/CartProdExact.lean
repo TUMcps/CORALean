@@ -10,10 +10,10 @@ family the left intersection is `univ` while the pairs over a half-empty index a
 the statement assumes `0 < k` for both bundles, as CORA's bundles always have.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

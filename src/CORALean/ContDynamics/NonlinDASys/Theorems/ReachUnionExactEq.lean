@@ -11,10 +11,10 @@ ordinary system, as sets: a trajectory of one is a trajectory of the other
 (`TrajectoryToNonlinearSys`, `TrajectoryOfNonlinearSys`), at the same `x`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

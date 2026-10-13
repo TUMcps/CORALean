@@ -10,10 +10,10 @@ Split out of `Mtimes.lean` (issue #62): read again by
 `Theorems/MtimesOuter.lean`, outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

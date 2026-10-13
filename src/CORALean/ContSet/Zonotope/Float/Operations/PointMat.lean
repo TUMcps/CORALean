@@ -9,10 +9,10 @@ was rounded. The exact layer's `Zonotope.ofPoint`, which `discretizeMatZonotope`
 the system matrix through.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The monomials of the constraint generators at the factors `0`: `1` for an expone
 zero, `0` otherwise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

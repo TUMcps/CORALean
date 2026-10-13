@@ -9,10 +9,10 @@ not rewrite a binder's type. Both directions of the guarantee sum over the
 result, so it is not file-local to either.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

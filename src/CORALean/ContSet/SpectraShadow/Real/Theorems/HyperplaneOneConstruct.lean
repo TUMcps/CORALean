@@ -7,10 +7,10 @@ The inequality `0 ⪰ 0` holds for every `β`, and the point is `(β, 1)`: the s
 `ℝⁿ⁺¹` whose last coordinate is `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

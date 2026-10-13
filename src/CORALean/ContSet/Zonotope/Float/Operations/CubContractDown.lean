@@ -12,10 +12,10 @@ term by `minimum`). `Zonotope.cubMap`, `ConZonotope.cubMap`, `PolyZonotope.cubMa
 `tensorMultiplication` all read their coefficients through it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ square root is only ever checked, never taken.
 Exact over ℝ, and only `_outer` here. That gap is the rounding and nothing else.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

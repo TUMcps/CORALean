@@ -17,10 +17,10 @@ satisfy is unchanged, and it is the same proposition before and after because
 `quadMapDep` copies `A`, `b` and `EC` across.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,10 +20,10 @@ both sides. They are the compacted ones up to unfolding, and writing them so
 keeps each equation to the one sum that actually changes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

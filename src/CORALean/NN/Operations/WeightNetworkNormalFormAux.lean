@@ -11,10 +11,10 @@ identities skipped. At an activation the accumulator is flushed as a layer, and 
 follows; at the end a non-empty accumulator is flushed and an untouched one dropped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

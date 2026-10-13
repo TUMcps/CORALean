@@ -8,10 +8,10 @@ CORA's running `W` and `b` in `getNormalForm`, starting at the scalars `W = 1`, 
 `id` forces the two dimensions equal, which is what lets an untouched accumulator be dropped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

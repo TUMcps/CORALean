@@ -11,10 +11,10 @@ the gap. For an operand far below the other, this is exactly the nudge past the 
 a directed sum needs: one unit at `e`, or nothing. The ceiling is the floor of the negation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

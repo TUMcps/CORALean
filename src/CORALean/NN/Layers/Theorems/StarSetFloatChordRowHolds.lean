@@ -10,10 +10,10 @@ its ReLU satisfies the chord row, whenever `StarSet.chordGuard` accepts the boun
 rounding of `k` and of its products with the generators is paid by the right-hand side.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ polynomial in `tan`, bounded by `odePoly (1 + X²) (N+1)` at `tan` of the magnit
 finite below `π/2`, the domain `TanOuter` assumes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestIndepGen
 factor of the longest dependent generator, else along the longest independent generator.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

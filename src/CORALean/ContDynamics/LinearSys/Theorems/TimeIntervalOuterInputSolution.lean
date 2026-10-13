@@ -9,10 +9,10 @@ assumed. `0 ∈ U` is what buys a single enclosure for the whole step; everythin
 else is a property of `U` that a representation supplies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

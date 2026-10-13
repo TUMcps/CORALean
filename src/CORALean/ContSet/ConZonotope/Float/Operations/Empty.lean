@@ -8,10 +8,10 @@ import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
 The centre `zero`, no generators, and `HPolytope.emptySet` as constraint, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

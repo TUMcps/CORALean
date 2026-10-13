@@ -10,10 +10,10 @@ the dimension of the span of its columns, which is how it is written. The test i
 and not sufficient: `isFullDim_cora_counterexample`. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

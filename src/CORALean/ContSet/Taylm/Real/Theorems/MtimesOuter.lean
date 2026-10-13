@@ -8,10 +8,10 @@ import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
 Row `i` encloses `Σⱼ M i j fⱼ`, the image of the enclosed functions under `M`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

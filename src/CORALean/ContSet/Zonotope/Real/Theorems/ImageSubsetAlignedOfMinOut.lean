@@ -21,10 +21,10 @@ and the index is read as `1, …, N`. The bound `αᵢ ≤ 1` is not needed for 
       6:1555-1560, 2022.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

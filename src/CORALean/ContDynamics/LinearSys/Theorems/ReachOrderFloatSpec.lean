@@ -10,10 +10,10 @@ which is the one `OrderAdmissibleFloat` names; the search starts at `max η 2`,
 so the order is at least `2` and at least `η`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

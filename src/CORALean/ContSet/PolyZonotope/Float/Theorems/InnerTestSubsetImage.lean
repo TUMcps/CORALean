@@ -17,10 +17,10 @@ set-up is that `C` is injective (`precondRegular_injective`), that `x_` lies in 
 `ind`, and that `b` holds `C(y - f(x_))` (`pointBox_outer`, `mtimes_outer`, `minus_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

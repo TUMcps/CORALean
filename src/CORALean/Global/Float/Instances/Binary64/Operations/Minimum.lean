@@ -8,10 +8,10 @@ comparison with a NaN is false: a NaN in the first argument would be dropped, an
 the trusted range could end in a number. This returns the NaN instead.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

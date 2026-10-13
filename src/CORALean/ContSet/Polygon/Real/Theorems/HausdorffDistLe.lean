@@ -11,10 +11,10 @@ distance in one direction only, so it is a lower bound of the Hausdorff distance
 the distance (`Polygon.hausdorffDist_counterexample`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ it is that root. This file is the formula as printed, for `k > 0`; `γ₁ = √(
       doi:10.1109/TAC.2025.3583624. arXiv:2404.11185.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

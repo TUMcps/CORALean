@@ -8,10 +8,10 @@ The nominal part is the exact layer's empty vertex list, and the sum of `∅` wi
 any box is `∅`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

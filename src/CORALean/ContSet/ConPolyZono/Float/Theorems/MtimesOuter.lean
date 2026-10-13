@@ -17,10 +17,10 @@ zonotope's proof used â€” `mulVec_split`, `matMul_close`, `mem_generatorError` â
 is reused rather than restated.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

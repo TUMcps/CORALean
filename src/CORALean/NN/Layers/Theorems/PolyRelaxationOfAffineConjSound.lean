@@ -13,10 +13,10 @@ an exact one that the two roundings bracket, move the polynomial by at most the 
 the gaps at `max(|l|, |u|)`. The two scales arrive here as hypotheses on the roundings.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

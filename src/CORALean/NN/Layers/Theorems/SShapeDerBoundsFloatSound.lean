@@ -9,10 +9,10 @@ lies in `sShapeDerBoundsFloat dfLo dfHi l u` for every real `t` between the real
 and `u`. An outer statement: it holds in the cases the comparison does not decide too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

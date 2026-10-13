@@ -10,10 +10,10 @@ import CORALean.ContSet.VPolytope.Float.Operations.Intersection
 The same three steps as the exact layer's, each already proved here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

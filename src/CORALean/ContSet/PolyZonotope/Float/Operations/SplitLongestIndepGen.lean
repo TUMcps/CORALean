@@ -9,10 +9,10 @@ halved by `splitIndepGen`; the set twice where there is no independent generator
 is sound for the split, so a misranking costs precision alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ answer excludes a common point. `false` refutes nothing: the segment-to-segment 
 quadratic program is not computed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ inequality is certified by `ltStrict` and every weak one by `le`, so `true` is a
 refutes nothing; `g ≠ 0` is a coordinate whose absolute value is certified positive.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

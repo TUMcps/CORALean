@@ -9,10 +9,10 @@ The centre and half-width of a box give its bounds back, so `intervalMatrix(cent
 `I` itself, and denotes the same set, with no hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

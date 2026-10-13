@@ -10,10 +10,10 @@ entrywise: `|vᵀ M w| ≤ aᵀ P b`. CORA's `'lin'` Lagrange bound `0.5 * dz' *
 polynomialization's cross terms are it at two different vectors.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

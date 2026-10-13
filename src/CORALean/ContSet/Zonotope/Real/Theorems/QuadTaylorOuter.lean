@@ -23,10 +23,10 @@ these, a real erratum the page's own `## Findings` records and these coefficient
       Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

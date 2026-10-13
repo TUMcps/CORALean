@@ -12,10 +12,10 @@ CORA's elementwise-affine layer contributes `(f) + offset` and drops its scale, 
 `f(x, 0) = evaluate(net, x)` holds. See `SmoothNetwork.elementwiseAffine_cora_counterexample`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

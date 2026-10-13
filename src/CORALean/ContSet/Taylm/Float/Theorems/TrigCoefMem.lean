@@ -9,10 +9,10 @@ By induction on `k`: `iteratedDeriv (k+1) sin = iteratedDeriv k cos` and
 the previous one of the other function over `k + 1`, which the division encloses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

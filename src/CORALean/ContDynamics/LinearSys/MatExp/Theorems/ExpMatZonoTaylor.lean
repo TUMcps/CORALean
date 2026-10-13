@@ -17,10 +17,10 @@ generators an interval matrix would have thrown away — and every term is bound
 against the *same* `A`, unlike `expIntervalTaylor`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

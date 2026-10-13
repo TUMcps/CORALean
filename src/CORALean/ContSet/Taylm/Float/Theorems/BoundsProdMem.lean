@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 If `x` lies in `I` and each `e k` in `E k`, then `x · ∏ e k` lies in `boundsProd E l I`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

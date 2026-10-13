@@ -15,10 +15,10 @@ and `C` is injective. The converse fails in general, which is why (3) is "more r
       functions". Reliable Computing, 14:1-23, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

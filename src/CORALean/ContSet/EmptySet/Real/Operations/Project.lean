@@ -7,10 +7,10 @@ CORA's `@emptySet/project`: only the dimension changes, to the number of kept co
 `dims` lists the kept coordinates, as in CORA, and `Fin m → Fin n` is its range check.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

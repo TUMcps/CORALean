@@ -4,10 +4,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
 # One generator per coordinate reaches every point of a box
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

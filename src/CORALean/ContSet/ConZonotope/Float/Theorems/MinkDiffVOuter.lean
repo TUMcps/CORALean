@@ -12,10 +12,10 @@ which the float sum encloses (`plus_outer`), and in every intersection of those
 (`intersection_outer`). Outer only, where the exact layer's `minkDiffV_exact` is an equality.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

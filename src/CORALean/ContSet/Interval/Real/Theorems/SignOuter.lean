@@ -10,10 +10,10 @@ is `{-1, 0, 1}` and `[0, 1]` is the hull of `{0, 1}`): only the outer statement 
 hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

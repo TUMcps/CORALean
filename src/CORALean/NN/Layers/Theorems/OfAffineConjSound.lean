@@ -10,10 +10,10 @@ two gaps — the slope's charged against `|t|`, which only the box bounds. The t
 here, as hypotheses on the roundings, and nowhere in what is stored.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

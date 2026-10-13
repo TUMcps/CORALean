@@ -18,10 +18,10 @@ single matrix, states the same `‖Δt • A‖ / (η + 2) < 1` the interval-mat
 enclosure already asks its callers for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

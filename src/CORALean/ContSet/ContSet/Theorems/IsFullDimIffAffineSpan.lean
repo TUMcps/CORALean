@@ -11,10 +11,10 @@ space (Mathlib's `Convex.interior_nonempty_iff_affineSpan_eq_top`), so a class w
 it can read off, as a polytope reads it off its vertices, has its `isFullDim` for free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

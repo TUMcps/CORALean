@@ -16,10 +16,10 @@ zonotope": flipping the sign of a coefficient that ranges over `[-1, 1]` changes
       zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

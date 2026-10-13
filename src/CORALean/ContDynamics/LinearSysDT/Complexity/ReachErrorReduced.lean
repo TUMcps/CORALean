@@ -17,10 +17,10 @@ shape: never reducing, it grows a box per step and reaches `k * n`.
 No induction: the bound is a fact about the last step alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

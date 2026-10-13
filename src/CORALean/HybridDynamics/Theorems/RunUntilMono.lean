@@ -8,10 +8,10 @@ longer than the budget, and the rest of the run is handed the larger
 remainder. So `RunUntil T` reads as "lasting at most `T`", not "exactly `T`".
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

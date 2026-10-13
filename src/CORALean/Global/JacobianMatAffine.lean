@@ -8,10 +8,10 @@ import Mathlib.Topology.Algebra.Module.FiniteDimension
 `jacobianMat` of `z ↦ c + M z` is `M` at every point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

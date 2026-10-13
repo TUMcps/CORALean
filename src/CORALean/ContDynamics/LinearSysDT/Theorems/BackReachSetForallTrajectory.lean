@@ -14,10 +14,10 @@ is stated from time zero. `aux_backReachSetForall_from` is that general form,
 and the theorem below is it at time zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

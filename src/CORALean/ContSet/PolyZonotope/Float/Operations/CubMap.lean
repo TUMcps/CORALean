@@ -10,10 +10,10 @@ then `cubMapDep`. CORA keeps independent generators independent and encloses the
 a zonotope; here the result is an enclosure of the image of the whole set, box included.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

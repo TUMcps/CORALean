@@ -12,10 +12,10 @@ caller's; `s` is checked by one float comparison, and the reading of the point i
 Only `true` is certain; `false` says only that this direction does not separate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

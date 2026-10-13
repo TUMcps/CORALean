@@ -11,10 +11,10 @@ dyadic at `2^-60` on the outward side, then rounded. Per dimension the result is
 and whether rounding moved each (`ToRat.toRat` against the file's exact value).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

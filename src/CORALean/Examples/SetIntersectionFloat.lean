@@ -21,10 +21,10 @@ intersection only shrinks under a branch-wise bound). The point `0`, a member of
 is carried through `plus` to show the guarantee used.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

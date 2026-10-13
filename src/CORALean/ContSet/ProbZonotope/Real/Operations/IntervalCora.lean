@@ -11,10 +11,10 @@ read, although the help says it overapproximates the probabilistic zonotope
 (`Theorems.IntervalCoraNotMem`). `ProbZonotope.interval` is the box that does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

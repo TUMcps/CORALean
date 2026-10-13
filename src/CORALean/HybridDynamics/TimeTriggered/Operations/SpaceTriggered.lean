@@ -16,10 +16,10 @@ leaves the invariant of `m₂` open; here it is the whole space. It is the `H` o
       Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

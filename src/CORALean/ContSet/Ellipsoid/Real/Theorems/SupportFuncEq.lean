@@ -16,10 +16,10 @@ value `Ellipsoid.supportBound` stores and attains.
       IEEE Conference on Decision and Control (CDC), pp. 1498-1503, 2006.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

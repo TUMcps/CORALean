@@ -8,10 +8,10 @@ where no `k` does. Nothing is added, so nothing rounds. The search for `k` is `L
 matrix computes; for an injective `dims` it is the one preimage.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

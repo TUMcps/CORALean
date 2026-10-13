@@ -10,10 +10,10 @@ negating a rounded-down one — and `maximum` is exact, so it is at least `reluG
 values the stored arguments denote.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ the area of the region by it, and `Polygon.volume_eq_pieceAreas` makes it exact 
 overlap in null sets only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,7 +15,7 @@ and `'levelSet'` with `false` for it, which `ℝⁿ` is.) Read from the source, 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

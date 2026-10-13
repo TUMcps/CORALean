@@ -19,10 +19,10 @@ rest, so no derivative is taken at the steps where the input jumps.
       Functions". HSCC, 2023, Article 5.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

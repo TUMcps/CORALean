@@ -14,10 +14,10 @@ Not routed through the exact layer's set but through its *nominal* reading, whic
 conversion of the ellipsoid the stored floats describe, and that shares the exactness proof.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ scalars `α₁ I ≺ P` of a Lyapunov argument). The form attains its minimum `�
 unit sphere `xᵀx = 1`, positive there, and scales by `xᵀx` off it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

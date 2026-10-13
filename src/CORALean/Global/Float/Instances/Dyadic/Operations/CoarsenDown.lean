@@ -7,10 +7,10 @@ The mirror image of `coarsenUp`: `d` rounded down to the grid of exponent `e` by
 the floor of the mantissa at the raised exponent.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

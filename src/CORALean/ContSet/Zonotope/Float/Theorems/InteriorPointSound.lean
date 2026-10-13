@@ -10,10 +10,10 @@ The point minus the error box's lower corner is strictly within `B` of the centr
 the nominal set (`Zonotope.mem_interior`); adding the corner keeps it interior.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

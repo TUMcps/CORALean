@@ -7,10 +7,10 @@ import CORALean.NN.Layers.Operations.SoftmaxDenomUp
 down, where `softmaxExpInRange` licenses `expUp`; zero elsewhere.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   08-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

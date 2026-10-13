@@ -19,10 +19,10 @@ here is `‖Δt • A‖` — `norm_absMax_ofPoint` — so a caller supplies exa
 the interval version already asks of them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ not be a float — `[5, 6]` gives 5.5 — so the gap between the two roundings i
 what `absorbError` leaves behind.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ For `tanh` and the logistic function, `ϕ' = m` is then solved for the points of
       Transactions on Machine Learning Research (TMLR), 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

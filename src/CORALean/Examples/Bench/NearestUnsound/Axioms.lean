@@ -21,10 +21,10 @@ stay in binary64's normal range. CORALean has exactly three axioms: this one,
 `trustedHardware` and `trustedFlint`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Bench
 

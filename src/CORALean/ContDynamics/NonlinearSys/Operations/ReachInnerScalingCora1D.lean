@@ -22,10 +22,10 @@ and restart the boundary loop, keeping `I`; the `while` stops at `factor ≤ 0`,
 The paper's Step 4, the backward simulation (14), is not in the code and not here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

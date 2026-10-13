@@ -14,10 +14,10 @@ broken by Girard's metric, dearest to box first, as `girardSplit` does. The
 ranking is by lexicographic key, sorted ascending, hence both entries negated.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

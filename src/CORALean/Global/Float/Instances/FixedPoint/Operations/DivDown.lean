@@ -14,10 +14,10 @@ which is why `SoundFloatArithmetic` asks for a positive one; a negative
 divisor floors the wrong way, which is why it asks for exactly that.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -28,10 +28,10 @@ own docstring for why) is the same fold as a loop. `k / 255` is not dyadic,
 so `inputBox` encloses it, both bounds rounded outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

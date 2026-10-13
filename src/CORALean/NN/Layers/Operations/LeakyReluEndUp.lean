@@ -6,10 +6,10 @@ import CORALean.Global.Float.FloatOps
 `max (α a) a - m a`, how far leaky ReLU rises above the line of slope `m` at `a`, rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

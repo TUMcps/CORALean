@@ -38,10 +38,10 @@ it inside each step's certified region, and `ReachSetSubsetRelinReach` and
       Control (CDC), pp. 2130-2137, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

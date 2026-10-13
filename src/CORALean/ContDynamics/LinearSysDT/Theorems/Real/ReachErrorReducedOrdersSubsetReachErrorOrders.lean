@@ -17,10 +17,10 @@ theorems, once it has any, transfer to `reachErrorReducedOrders` in the
 direction the error is used, since the error is *added* to the exact set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

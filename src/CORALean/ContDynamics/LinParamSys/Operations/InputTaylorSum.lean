@@ -9,10 +9,10 @@ case gives: `plus` is only an enclosure and never has to be reassociated, and
 the guarantee is then one induction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

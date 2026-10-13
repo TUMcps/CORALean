@@ -11,10 +11,10 @@ coordinate `wᵢ` lies in `[m2ᵢ, m1ᵢ]`, so `wᵢ` is the box centre plus a c
 the result does not depend on `U` being the SVD's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ whole space: `c = mean(points, 2)`, `points = points - c`, `points = T' * points
 algorithm exists here (see `Ellipsoid.enclosePointsCov`). At least one point (`NeZero N`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

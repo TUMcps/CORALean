@@ -7,10 +7,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 The same fibre rounded the other way, which is what bounds the gap.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

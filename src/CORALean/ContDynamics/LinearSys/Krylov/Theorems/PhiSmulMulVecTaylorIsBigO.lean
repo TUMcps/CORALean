@@ -19,10 +19,10 @@ the expansion behind (5.6) of [1, Remark 4]. The series `Σ_k zᵏ/(k + j)!` has
   2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

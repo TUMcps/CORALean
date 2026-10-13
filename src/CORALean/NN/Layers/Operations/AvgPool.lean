@@ -11,10 +11,10 @@ encloses the map its stored weight denotes — exactly averaging for a window of
 weight then `half` iterated from `one`, and every pooling window CORA builds is of that shape.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

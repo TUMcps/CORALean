@@ -14,10 +14,10 @@ Stated with the eigenvalue `lam` as a parameter, since only its value on this `M
 run in CORA; read from the source.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

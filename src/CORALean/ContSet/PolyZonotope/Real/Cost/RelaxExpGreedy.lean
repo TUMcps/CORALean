@@ -12,10 +12,10 @@ and the factor count `p` never changes, a merge keeping it. The generator count
 falls by one a round, which the bound ignores.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

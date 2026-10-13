@@ -21,10 +21,10 @@ at `(θ, s₁, -s₂)` is the inequality; the sign of the last block of `Ψ` aga
       pp. 7230-7235, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

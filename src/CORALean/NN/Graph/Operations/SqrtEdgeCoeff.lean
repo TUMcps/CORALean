@@ -8,10 +8,10 @@ Half that edge's column sum, through the relaxation's slope: the coefficient
 `sqrt_affine` reads `s_j`'s dependence on edge `e`'s factor off.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

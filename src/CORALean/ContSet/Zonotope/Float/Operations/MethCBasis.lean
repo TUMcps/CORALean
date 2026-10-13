@@ -17,10 +17,10 @@ zonotope with fewer than `n` generators has no basis, and the column is then `ze
       paper behind the rule was confirmed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

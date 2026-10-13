@@ -7,10 +7,10 @@ argument: `s ^ i ≤ s ^ 1` already gives it directly, which is also why this
 direction needs `s ≤ 1` where `corrCoeff_le_sub`'s lower bound does not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

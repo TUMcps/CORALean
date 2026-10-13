@@ -7,10 +7,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.PointMat
 The empty generator sum and the zero box each add nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

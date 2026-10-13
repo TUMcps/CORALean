@@ -15,10 +15,10 @@ on every factor of the other, so it constrains the factors it came with and no
 others — which is what makes the sum exact rather than too small.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

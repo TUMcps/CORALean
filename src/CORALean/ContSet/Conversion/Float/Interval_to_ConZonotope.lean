@@ -8,10 +8,10 @@ Through the zonotope. The generators absorb the centre's rounding there, and the
 constraint list stays empty here, so nothing further is paid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

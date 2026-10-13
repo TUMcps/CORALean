@@ -7,10 +7,10 @@ import CORALean.ContSet.ContSet.ContSet
 Intersecting the full space with a set of any representation gives that set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

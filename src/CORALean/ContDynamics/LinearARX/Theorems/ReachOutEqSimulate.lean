@@ -16,10 +16,10 @@ of the admissible signals under it, by `eq_simulate` one way and `simulate` the 
   62nd IEEE Conference on Decision and Control (CDC), 2023, pp. 7027-7034.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

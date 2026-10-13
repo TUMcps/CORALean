@@ -9,10 +9,10 @@ intervals; that is nonempty exactly when every one is. A crossed box is `∅`, s
 coordinate fails the right-hand side too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ of the union; conversely the union is inside, and the result is convex (a shadow
 the hull. Exact, with no closure and no emptiness case: the hull of `∅` and `S` is `S`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

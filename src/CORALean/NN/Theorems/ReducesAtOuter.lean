@@ -16,10 +16,10 @@ pass the trimmed layers as in `merge`, and the bucket's own value `w` is the one
 is read at, layer `k+1`'s sum splitting along the partition exactly as it does there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

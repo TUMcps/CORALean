@@ -4,10 +4,10 @@ import CORALean.ContSet.Interval.Float.Operations.Asinh
 # `Interval.asinh` contains the image under `asinh`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

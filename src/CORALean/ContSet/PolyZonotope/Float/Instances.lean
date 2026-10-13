@@ -25,10 +25,10 @@ columns adds their entries, so it encloses where the exact one is an equality.
 `PolyZonotope.quadMap`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

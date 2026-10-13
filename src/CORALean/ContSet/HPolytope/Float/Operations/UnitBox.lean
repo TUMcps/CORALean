@@ -12,10 +12,10 @@ zonotope keeps outside its `P`; an operation that weights the coefficients has
 to put the two back together and reads the box from here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

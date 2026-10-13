@@ -12,10 +12,10 @@ algorithm reaches ℚ from its scalar through `ToRat`, which reads a NaN `timeSt
 step run with the NaN returns a NaN, which the `…Checked` entry points reject.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

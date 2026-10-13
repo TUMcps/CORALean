@@ -20,10 +20,10 @@ At `α ≥ 0`, `n^T z` with `n = [0, ∑_k ω_k σ^T G̃(I_m, t_k)]` (15) is
       Systems (ARCH23), EPiC Series in Computing, vol. 96, pp. 9-33, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

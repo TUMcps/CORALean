@@ -29,10 +29,10 @@ Nonemptiness of the error ball is read off the enclosure rather than computed,
 so the sign of `timePointStepError` never has to be examined.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

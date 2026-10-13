@@ -13,10 +13,10 @@ places existing bounds, so no rounding enters beyond the extensions'. CORA numbe
 inputs differently, see `NonlinearReset.resolveCORA` and FINDINGS.md.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

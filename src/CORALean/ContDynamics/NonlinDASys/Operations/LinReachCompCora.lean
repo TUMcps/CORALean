@@ -23,10 +23,10 @@ arguments. All `k` subsystems have the same sizes `nx`, `ny`, `nz` (CORA's may d
 split decision are left out.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

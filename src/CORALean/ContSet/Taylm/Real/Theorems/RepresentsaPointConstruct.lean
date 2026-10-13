@@ -8,10 +8,10 @@ When the test holds, and every remainder is a nonempty interval, the range set o
 the one point, the polynomial zonotope's centre. One direction: the test is sufficient only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

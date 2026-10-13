@@ -13,10 +13,10 @@ puts the point in the image of `[-1, 1]ᵖ⁺ᵍ` under the point map of `indepF
 in the nominal set (`indepFactors_point_mem`); the error box holds `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

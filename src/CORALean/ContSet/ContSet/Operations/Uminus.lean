@@ -7,10 +7,10 @@ import CORALean.Global.NegScalar
 `-1 * S`, as CORA's `uminus` has it, through the set's own `mtimes`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

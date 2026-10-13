@@ -17,10 +17,10 @@ depends on which layers the controller runs, which no `Complexity/` fact
 states for `NeuralNetwork.enclose` in general.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

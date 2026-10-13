@@ -18,10 +18,10 @@ That needs `ϕᵢ` to be settled by the trace on its own time set `Tᵢ`, the tw
       Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

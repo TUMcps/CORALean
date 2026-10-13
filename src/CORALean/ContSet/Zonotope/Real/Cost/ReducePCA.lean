@@ -15,10 +15,10 @@ dense symmetric solver would pass an `O(n^3)` count for each. At order `o`
 or below the operation is the identity, so this bounds every `o` at once.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

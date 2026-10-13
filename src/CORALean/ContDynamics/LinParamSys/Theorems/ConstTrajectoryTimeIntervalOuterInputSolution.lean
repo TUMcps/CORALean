@@ -13,10 +13,10 @@ covered every `t ∈ [0, r]`; what was missing was the input half, and
 single enclosure for the whole step rather than one per time.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ Every vertex read at the chosen coordinates, and the error box projected with
 `Interval.project`. Selecting coordinates does no arithmetic, so nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

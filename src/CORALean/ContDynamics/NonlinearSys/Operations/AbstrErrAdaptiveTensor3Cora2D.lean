@@ -18,10 +18,10 @@ all arguments (the order reductions are not modelled; the zonotope is its hull, 
 box `VerrorDyn`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

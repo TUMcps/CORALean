@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Interval
 Transposing both bound matrices moves floats without computing on them, so nothing is rounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

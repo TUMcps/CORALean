@@ -7,10 +7,10 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
 `relinRunAtFloat_outer` at `x✱ = center(R)` for each step's start set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

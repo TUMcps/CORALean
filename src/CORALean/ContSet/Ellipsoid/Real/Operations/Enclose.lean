@@ -12,10 +12,10 @@ Read as printed: the header documents `E2 = M*E + Eplus`, but the code multiplie
 adds nothing (see `Ellipsoid.enclose_cora_counterexample`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

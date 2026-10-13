@@ -17,10 +17,10 @@ is the whole bookkeeping — the two sets share a factor set, so the cast is the
 identity, and only the proof it carries differs from use to use.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ behind a weaker statement. `holds_of_reach_of_subset` is the same corollary
 from `hsub`, the check a caller can run against the computed sets instead.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

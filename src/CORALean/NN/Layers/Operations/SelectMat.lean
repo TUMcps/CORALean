@@ -7,10 +7,10 @@ One input per output — the affine part a pooled window keeps. One stored `one`
 placed rather than computed, so it denotes the selection entry for entry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

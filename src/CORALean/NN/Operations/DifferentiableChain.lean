@@ -14,10 +14,10 @@ Each map is asked at the point the forward pass hands it, which is why this
 recurses through `f x` rather than quantifying over the input.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

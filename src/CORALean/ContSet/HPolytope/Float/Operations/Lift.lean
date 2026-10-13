@@ -9,10 +9,10 @@ of `N` coordinates, the others free. `A(:,dims) = A` is an assignment, so `dims`
 `b`, `Ae`'s right-hand side are unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

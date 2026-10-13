@@ -8,10 +8,10 @@ has no `zero` below the entries, so a negative maximum stays negative, which a v
 that asks whether every distance is `≤ 0` needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

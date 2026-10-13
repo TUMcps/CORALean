@@ -14,10 +14,10 @@ noises as outputs (`s = r`), and `c`, `k`, `E`, `D` zero. `C` is left free, as t
 * [1] `contDynamics/@linearSys/isCanonicalForm.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

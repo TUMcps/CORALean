@@ -11,10 +11,10 @@ CORA's `@interval/quadMap(I₁, I₂, Q)`: the two-box form, `(x₁, x₂) ↦ x
 boxes, bounded through their zonotopes and `Zonotope.bilin`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

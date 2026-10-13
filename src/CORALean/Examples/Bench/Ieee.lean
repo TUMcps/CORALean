@@ -15,10 +15,10 @@ than the largest finite value -- and is rejected rather than rounded otherwise, 
 which the writers find the first step that stores a value past the format's range.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

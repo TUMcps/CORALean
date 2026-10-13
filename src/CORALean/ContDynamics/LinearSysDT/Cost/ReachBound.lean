@@ -18,10 +18,10 @@ The bound is linear in `k` because `reduce` runs every step; without it the
 `plus` would carry `U`'s generators forward and the run would be quadratic.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

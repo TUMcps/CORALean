@@ -17,10 +17,10 @@ unbounded sets. And a bound is a `SupportBound`, which cannot be written down
 without its proof: a solver returning nonsense loses rows and can win none.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 namespace CORALean.Real

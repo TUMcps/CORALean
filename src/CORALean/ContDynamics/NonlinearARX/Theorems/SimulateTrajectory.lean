@@ -8,10 +8,10 @@ From a start window in `Y₀` and inputs in `U`, the sampled outputs are exactly
 window is `y₀` read back through the same block indexing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

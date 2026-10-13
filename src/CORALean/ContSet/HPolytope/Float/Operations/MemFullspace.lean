@@ -4,10 +4,10 @@ import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
 # Every point is in `HPolytope.fullspace`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

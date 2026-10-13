@@ -9,10 +9,10 @@ Asserted, not proved: `Operations/Mtimes.lean` sends the centre and each of the
 unchanged, so the whole count is `mapCost` at `Cost.matVec m n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

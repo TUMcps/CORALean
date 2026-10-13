@@ -13,10 +13,10 @@ computes: `outputSet` of `params.X₀` at l. 64 for `i = 0`, of `linReach`'s res
 initial output set `timePoint.set{1}` is never checked.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

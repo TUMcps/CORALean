@@ -11,10 +11,10 @@ Girard's rule admits the identical bound; it is not stated here, since this
 addition is scoped to Combastel's rule alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ The paper's `z` is the state and the input, and its parameter `p` enters `fᵢ` 
       pp. 4042-4048.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

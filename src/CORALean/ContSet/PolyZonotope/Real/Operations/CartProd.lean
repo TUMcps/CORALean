@@ -13,10 +13,10 @@ The exponent matrices still lay out block-diagonally, exactly as `plus`'s do:
 factors may reach the other's generators.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       11-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

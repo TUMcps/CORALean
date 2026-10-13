@@ -9,10 +9,10 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
 Renaming factors injectively denotes the same set: equality, the error box as it was.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -30,10 +30,10 @@ Boundedness and not compactness of `E`: only `‖eₙ - e₀‖ ≤ 2M` is ever 
       Proc. Amer. Math. Soc. 3 (1952), pp. 165-169.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

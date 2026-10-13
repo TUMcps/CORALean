@@ -8,10 +8,10 @@ import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
 of the hull (it exists, `exists_hPolytope_convHull`) and Gram-Schmidt bases of its rows.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

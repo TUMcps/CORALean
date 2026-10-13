@@ -12,10 +12,10 @@ coordinate by `Zonotope.rightInvQ_bound`, joins the error box by `Interval.plus_
 about `H` is assumed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

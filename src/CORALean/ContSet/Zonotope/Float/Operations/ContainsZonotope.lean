@@ -21,10 +21,10 @@ terms leave, so a set touching the boundary of the other is not accepted. `true`
 `Z₁ ⊆ Z₂`; `false` refutes nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

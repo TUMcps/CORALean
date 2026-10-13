@@ -17,10 +17,10 @@ separate case — unlike `construct_eq_add`, this proof never turns the bound
 around into a squared one, which is the only step that needed `0 ≤ C.r`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ Centre and generator read at `dims`, the radius unchanged, as over ℝ. Nothing 
 nothing is rounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

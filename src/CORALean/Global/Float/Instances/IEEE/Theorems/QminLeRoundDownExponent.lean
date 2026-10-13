@@ -6,10 +6,10 @@ import CORALean.Global.Float.Instances.IEEE.Operations.RoundDown
 `qmin_le_roundUp_exponent`'s counterpart: the shift is the same, only the direction differs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

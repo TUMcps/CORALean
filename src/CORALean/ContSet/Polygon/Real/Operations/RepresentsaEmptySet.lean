@@ -7,10 +7,10 @@ CORA's `polygon/representsa_` at `'emptySet'`: `isempty(vertices_(pgon))`. A pol
 iff every piece has no vertices.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

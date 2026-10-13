@@ -16,10 +16,10 @@ The zonotope of the current-estimation-type observer of Eq. 37 of [1, Thm. 7] an
       zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

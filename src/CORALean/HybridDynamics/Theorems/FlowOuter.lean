@@ -24,10 +24,10 @@ Stated through `Location.timeIntervalStep` rather than the dynamics' own:
 statement its `ℓ` already pinned.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ Dropping the independent generators loses every point that needs a nonzero indep
 the result is a subset of the original set, not the set itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

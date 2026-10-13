@@ -7,10 +7,10 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeOfBound
 Weak duality: a dual certificate `Y` bounds the support function by `c(c₀) + tr(A₀ Y)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

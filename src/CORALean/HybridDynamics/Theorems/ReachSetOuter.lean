@@ -7,10 +7,10 @@ The cheap half, as `LinearSys.Trajectory.reachSet_outer` is: a run is in the
 set of what runs reach by construction, so the proof is the pair itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       11-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

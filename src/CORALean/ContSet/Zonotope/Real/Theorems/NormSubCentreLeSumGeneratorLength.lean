@@ -7,10 +7,10 @@ The triangle inequality over `x - c = Σ βⱼ Gⱼ` with `|βⱼ| ≤ 1`: the b
 takes the smaller of this and a box bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

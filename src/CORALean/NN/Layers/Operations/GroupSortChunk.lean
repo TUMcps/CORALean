@@ -8,10 +8,10 @@ in one column; the last column is padded with `Inf` up to `g` entries and the pa
 after the sort. Here the chunk is taken without padding: its entries as a list, at most `g`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

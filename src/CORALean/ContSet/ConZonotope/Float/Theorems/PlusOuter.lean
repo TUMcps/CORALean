@@ -14,10 +14,10 @@ satisfies its own, which is `mem_intersection_iff` composed with `blockLeft_appe
 the centre rounds, and its residual is what the box absorbs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Real.Taylm
 What `times` truncates against, CORA's hashed first exponent column.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

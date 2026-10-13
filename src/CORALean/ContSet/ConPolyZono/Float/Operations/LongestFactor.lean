@@ -10,10 +10,10 @@ of the generators it appears in, rounded up, and take the first factor of larges
 where there is no factor. Any factor is sound for the split, so a misranking costs precision alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

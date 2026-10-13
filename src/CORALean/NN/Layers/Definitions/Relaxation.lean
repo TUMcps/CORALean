@@ -15,10 +15,10 @@ offset computed in any precision are sound as they stand and only `error` has to
 `𝕋 := ℝ` every rounding is exact and this is CORA's relaxation as printed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

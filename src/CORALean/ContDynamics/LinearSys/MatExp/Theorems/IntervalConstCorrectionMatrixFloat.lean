@@ -12,10 +12,10 @@ of `curvatureEnclosure`: the true object `∫₀ᵗ e^{Mσ}dσ - (t/r)∫₀ʳ e
 box holds is in it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

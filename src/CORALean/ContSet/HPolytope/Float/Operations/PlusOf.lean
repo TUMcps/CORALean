@@ -8,10 +8,10 @@ What a float halfspace description cannot do exactly: the caller names
 directions and the bounds are composed, `addUp` when two extents are added.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

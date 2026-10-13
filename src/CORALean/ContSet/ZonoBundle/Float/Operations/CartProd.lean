@@ -9,10 +9,10 @@ the products of all pairs of members, `k₁ · k₂` of them, member `(i, j)` at
 `i * k₂ + j` (`finProdFinEquiv`). Each product is `Zonotope.cartProd`, which does not round.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

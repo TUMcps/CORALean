@@ -10,10 +10,10 @@ that a ball of that radius in the supremum norm stays inside. Nothing is trusted
 `ConZonotope.interiorCert` checks the margin it is given, and a bad candidate costs the `true`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

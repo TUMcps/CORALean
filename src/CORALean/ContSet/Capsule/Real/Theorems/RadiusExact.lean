@@ -11,10 +11,10 @@ pushed outward by `r` the bound is attained: along `g` if `g ≠ 0`, along any c
 `radius = r` is not attained there; the hypothesis excludes that case.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

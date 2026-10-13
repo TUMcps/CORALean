@@ -11,10 +11,10 @@ that of `|a|`; an odd one is `powUp a` for `a ≥ 0`, and `-(powDown |a|)` for `
 `a ^ k = -|a| ^ k`; when neither sign is certified, `powUp |a|` bounds both.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

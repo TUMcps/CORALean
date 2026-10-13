@@ -14,10 +14,10 @@ the `T` built for the sorted ones; since every row of `T` has `‖·‖₁ ≤ 1
 `Z`, but it is not the paper's reduction. Only the `0/0` is stated.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

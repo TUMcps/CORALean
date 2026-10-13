@@ -11,10 +11,10 @@ Above the clamp the function is `(Real.sqrt ·)⁻¹`, whose derivative `Real.ha
 `HasDerivAt.inv` give; the agreement moves it across on a neighbourhood of `x`, all above `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

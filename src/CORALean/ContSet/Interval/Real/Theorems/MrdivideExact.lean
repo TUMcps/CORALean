@@ -9,10 +9,10 @@ every value between them is reached. The sign of `d` decides which quotient is t
 which is what `min` and `max` absorb.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

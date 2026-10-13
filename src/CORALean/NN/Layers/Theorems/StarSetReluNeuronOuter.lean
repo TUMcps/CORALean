@@ -11,10 +11,10 @@ and between, `β = max (x_j) 0` is the new factor: it is above `0` and above `x_
 chord from `(l, 0)` to `(u, u)`, since `max` is convex.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

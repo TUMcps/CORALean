@@ -8,10 +8,10 @@ The rows `i` with an inverted partner `j ≥ i`, in order: the lesser index of e
 its partner; here each row is listed once.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

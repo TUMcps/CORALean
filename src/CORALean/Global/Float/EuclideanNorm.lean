@@ -22,10 +22,10 @@ Nothing here is specific to an ellipsoid; it is what the layer can say about
 `‖·‖₂` at all, which is why it sits in `Global`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

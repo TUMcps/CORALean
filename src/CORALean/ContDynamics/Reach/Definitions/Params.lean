@@ -15,10 +15,10 @@ exactly by `Reach.steps` and a run refuses a horizon it does not divide; ℕ for
 `LinearSysDT`, whose time is counted in sampling periods (see its `reach`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

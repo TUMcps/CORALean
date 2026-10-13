@@ -9,10 +9,10 @@ guarantee below is sound at every one — `ConPolyZono.reduceBy_outer` is the
 same shape, sound at every partition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

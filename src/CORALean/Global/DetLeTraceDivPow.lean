@@ -17,10 +17,10 @@ what makes `E(nGGᵀ, z̄)` the ellipsoid of least volume around a parallelotope
       2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

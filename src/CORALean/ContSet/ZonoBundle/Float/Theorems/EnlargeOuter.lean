@@ -9,10 +9,10 @@ as the floats read) lies in member `i` of the result, and the result is the inte
 members (`construct_enlarge`). Nothing is claimed for the image of the intersection.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

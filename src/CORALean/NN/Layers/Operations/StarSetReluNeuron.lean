@@ -12,10 +12,10 @@ relaxation, with the neuron's value replaced by a new factor `β` bounded by thr
 The rows use the centre and generators before the neuron's row is cleared, as CORA's do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

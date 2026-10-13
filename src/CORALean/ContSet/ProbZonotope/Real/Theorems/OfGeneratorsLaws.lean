@@ -14,10 +14,10 @@ the G-zonotopes `μ + g N` with certain mean `μ ∈ Z` (`gZonotopeLaw_eq`).
       Conference (ECC), pp. 625-630, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

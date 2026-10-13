@@ -11,10 +11,10 @@ integer, which the scalar does not offer; the real layer's `Interval.sin` does i
 number of halvings of the sine and cosine.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

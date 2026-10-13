@@ -11,10 +11,10 @@ the same (`compact_exact`). Inequality rows stay, as over ℝ; the kept generato
 their order. Tolerance `0`; CORA's `eps` removes columns below it as well.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

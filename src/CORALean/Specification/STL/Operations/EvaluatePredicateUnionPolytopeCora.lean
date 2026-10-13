@@ -23,10 +23,10 @@ zonotope `R = Rc + Rg·[-1,1]^m` and the polytope as sets. The halfspace arm, wh
       Hybrid Systems, vol. 53, 2024, 101491.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

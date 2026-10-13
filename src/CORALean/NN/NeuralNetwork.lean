@@ -20,10 +20,10 @@ some `f`, each layer some function of its own, which a reduced network satisfies
 function of the network it was reduced from rather than for its own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
--- Last revision: 07-September-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

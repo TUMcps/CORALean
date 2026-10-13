@@ -12,10 +12,10 @@ each positive semidefinite `Σ` in the covariance interval. The operations' theo
 every law the real operation produces from laws of the operands is a law of the result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ supremum norm, compact because the coefficient space is finite-dimensional, and
 the map onto the zonotope is continuous.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

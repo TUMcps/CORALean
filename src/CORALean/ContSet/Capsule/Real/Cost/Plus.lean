@@ -12,10 +12,10 @@ operation, like a division. Bounded above by evaluating both lengths and the
 root: `n + 4 * n + 1 + 3 = 5 * n + 4`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

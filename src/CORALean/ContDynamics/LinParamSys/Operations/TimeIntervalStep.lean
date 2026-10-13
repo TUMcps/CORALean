@@ -22,10 +22,10 @@ The order `η` is a choice, sound at any value, subject to the same joint
 condition on step and order the enclosures carry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

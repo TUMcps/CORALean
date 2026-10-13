@@ -9,10 +9,10 @@ The generator count is untouched, the rounding being paid into the box; the old
 box travels through the map as a box, by `Interval.mtimes`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

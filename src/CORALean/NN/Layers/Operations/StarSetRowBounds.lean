@@ -11,10 +11,10 @@ box is `(l + u) / 2`, which is what the row's centre is taken at here. CORA's co
 `StarSet.coraRowBounds`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

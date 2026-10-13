@@ -7,10 +7,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
 The origin is the point whose centre is `0`: `{c} = {0}` iff `c = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

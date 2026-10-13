@@ -13,10 +13,10 @@ augmentation or the linearizations: they are how `reach` encloses this set.
 Positional, as the mathematics: `Reach` reads the horizon off `params`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

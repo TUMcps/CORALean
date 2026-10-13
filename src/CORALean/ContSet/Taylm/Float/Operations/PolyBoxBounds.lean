@@ -7,10 +7,10 @@ import CORALean.Global.Float.ListSum
 The range of a term list over a box `B`: the term ranges summed, each end rounded outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

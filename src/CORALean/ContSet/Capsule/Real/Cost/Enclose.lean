@@ -9,10 +9,10 @@ Asserted, not proved: `Operations/Enclose.lean` is `Capsule.mtimes M Cplus`
 followed by `convHull` of the result with `C`, so the two costs add.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

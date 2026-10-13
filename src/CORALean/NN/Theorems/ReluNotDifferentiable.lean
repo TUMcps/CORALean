@@ -18,10 +18,10 @@ returns where the layer is not differentiable, which is zero and is junk;
 CORA reads the subgradient there instead, and either choice is a heuristic.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

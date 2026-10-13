@@ -14,10 +14,10 @@ step behind the Kalman gains of the zonotopic observers, which the papers take b
 matrix derivative to zero; no derivative is needed, and `W` drops out of the minimizer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

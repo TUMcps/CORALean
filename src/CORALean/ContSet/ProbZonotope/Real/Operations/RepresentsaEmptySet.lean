@@ -7,10 +7,10 @@ CORA's `representsa_(probZ, 'emptySet')`: `isempty(probZ.Z) && isempty(probZ.g)`
 pair. The mean zonotope here has a centre, so the answer is always `false`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

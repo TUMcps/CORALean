@@ -11,10 +11,10 @@ zonotope is a polynomial zonotope, with no enclosure. The pointwise form is `cub
 the point of the result at every factor vector is the cubic map of the original's point there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

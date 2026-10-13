@@ -9,10 +9,10 @@ scales, which is the change of variable in matrix form: `λ = (1 + α)/2` at a
 factor `α` in the unit interval around zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

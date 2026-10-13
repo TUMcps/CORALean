@@ -8,10 +8,10 @@ read the other way round. `Theorems/IsNonempty` gives the equivalence with
 `construct.Nonempty` and its negation, which is every use of this predicate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

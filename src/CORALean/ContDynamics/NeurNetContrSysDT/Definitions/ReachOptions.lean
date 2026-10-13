@@ -15,10 +15,10 @@ default proof closes it at any positive literal, so a literal order costs a
 caller nothing; an order held in a variable brings its own proof.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

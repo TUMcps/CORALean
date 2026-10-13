@@ -7,10 +7,10 @@ import CORALean.ContSet.EmptySet.Real.Instances
 `representsa_(O,'point')` and `'origin'` are `false` for `emptySet`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

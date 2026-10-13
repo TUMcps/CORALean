@@ -10,10 +10,10 @@ A point of the zonotope, as a one-column matrix, is a point of the reshaped matr
 the same coefficients, and the error box moved with it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

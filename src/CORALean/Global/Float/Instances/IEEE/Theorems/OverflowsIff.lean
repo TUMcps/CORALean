@@ -8,10 +8,10 @@ Exactly the values past the format's range: `|x| > maxFinite`, compared through
 `Dyadic.le_iff` with no rounding.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

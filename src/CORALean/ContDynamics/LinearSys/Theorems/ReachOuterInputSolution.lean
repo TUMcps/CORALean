@@ -9,10 +9,10 @@ The same as `reach_outer`, with the input set named rather than assumed:
 input is left to the caller beyond the properties of `U` itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

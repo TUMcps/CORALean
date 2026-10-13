@@ -18,10 +18,10 @@ iteration [2, Eq. 7], with `τ = 1.01` and `μ = 0.9`.
       functions". Reliable Computing, 14:1-23, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

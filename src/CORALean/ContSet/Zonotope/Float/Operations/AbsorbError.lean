@@ -14,10 +14,10 @@ holding what that rounding still owes rather than becoming `[0, 0]`.
 which does this and a reduction in one pass.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

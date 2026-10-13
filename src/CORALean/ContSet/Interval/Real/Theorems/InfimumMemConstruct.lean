@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 Nonempty only: for crossed bounds the set is `∅`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

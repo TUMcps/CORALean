@@ -11,10 +11,10 @@ the same number of generators, the same centre and the same `G`. That is stricte
 not exact. An ellipsoid here always contains its centre, so CORA's emptiness case does not arise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

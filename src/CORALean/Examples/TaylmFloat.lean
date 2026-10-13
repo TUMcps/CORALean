@@ -18,10 +18,10 @@ coordinate functions they came from, and `Taylm.bounds_mem` turns that into a ra
 normalized domain `[-1, 1]²`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ CORA's `nonlinearReset/evaluate` at numeric arguments: `x_ = nonlinReset.f(x, u)
 Taylor enclosure with a Lagrange remainder, which is not here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ encloses the true state (`LinearSysDT.observeEsoB_outer`), on `E(Q, c)` at the l
 `LinearSysDT.observeEsoB1D` is the step as the code computes it, with its counterexample.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

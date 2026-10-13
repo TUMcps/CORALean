@@ -11,10 +11,10 @@ with no error box, and whatever box they are taken at, every point stays in the 
 box decides only how much of the polytope is covered.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

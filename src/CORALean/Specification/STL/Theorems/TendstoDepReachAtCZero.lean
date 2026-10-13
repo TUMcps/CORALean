@@ -30,7 +30,7 @@ to `0` since the terms `[c_j Δt^j, 0] A^j/j!` are continuous and `0` at `Δt = 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

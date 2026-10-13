@@ -9,10 +9,10 @@ with every vertex of the other and adds the pair, `n` additions at `Vec ℝ n`
 each — `k₁ * k₂` pairs in all, `finProdFinEquiv` being index work and free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ scalar stores reads as the entry the same recursion builds over ℝ from the wei
 an equality, with no hypothesis, which is what "a stencil rounds nowhere" means.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

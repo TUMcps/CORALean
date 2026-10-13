@@ -10,10 +10,10 @@ theorem `CORALean.Real.LevelSet.isIntersecting_uniform_outer` does the rest at t
 interval denotes. A `true` says nothing, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

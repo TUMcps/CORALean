@@ -19,10 +19,10 @@ whose `A(σ)` ranges over a box they are what `MatExp.norm_sub_peanoBakerSum_le`
 and `MatExp.peanoBakerTerm_mem_matPow` are about: the series of `'varParam'`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

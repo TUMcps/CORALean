@@ -8,10 +8,10 @@ import CORALean.Global.EvalList
 At every point of the box `[lo, hi]` the polynomial's value lies between the two ends.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

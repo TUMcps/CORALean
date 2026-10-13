@@ -7,10 +7,10 @@ CORA's `@fullspace/enclosePoints`: `fullspace(size(points,1))`, the full space o
 dimension.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

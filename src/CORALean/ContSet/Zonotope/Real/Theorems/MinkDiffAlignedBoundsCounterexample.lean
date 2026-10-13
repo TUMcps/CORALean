@@ -21,10 +21,10 @@ claims for the maximizer of (max-in) built from `W`'s own halfspaces and which f
       6:1555-1560, 2022.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

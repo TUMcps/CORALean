@@ -9,10 +9,10 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PolygonOuter
 Outer, as `Polygon.quadMap_outer`, with the pair of triangles that holds the pair of points.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

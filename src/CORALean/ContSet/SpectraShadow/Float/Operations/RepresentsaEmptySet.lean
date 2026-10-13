@@ -10,10 +10,10 @@ every variable (`dualCertified` along the direction `0`) and `tr(A₀ Y) < 0`, b
 in ℚ. Then no `β` makes the inequality hold. Sufficient only: `true` proves the set empty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

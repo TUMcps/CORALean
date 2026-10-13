@@ -12,10 +12,10 @@ both convex, so for two nonempty ones the segments are the convex hull of the un
 `ConZonotope.linComb_eq_convexHull` says the hull is all there is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

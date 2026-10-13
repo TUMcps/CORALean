@@ -8,10 +8,10 @@ reciprocal of the window size, which the layer encloses the sum scaled by as rea
 weights carry that `tap j` is injective, as a convolution's do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ The image of `∅` under the coordinate selection `dims` is `∅`, which is what
 returned empty set in `m` dimensions denotes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

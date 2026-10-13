@@ -9,10 +9,10 @@ is read (here `C`), and `map` sending each permutation to its combination. No CO
 them (they are a leftover of its third-order reachability code), so they are arguments.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

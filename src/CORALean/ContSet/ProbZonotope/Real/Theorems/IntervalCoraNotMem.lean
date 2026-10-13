@@ -9,10 +9,10 @@ zonotope `[-1, 1]` with covariance `0` has the mean `1`, outside the box `{0}`. 
 overapproximates the probabilistic zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

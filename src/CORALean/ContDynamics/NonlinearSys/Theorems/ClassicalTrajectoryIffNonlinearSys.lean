@@ -12,10 +12,10 @@ domain, same initial condition, same input condition, same derivative. Through
 `ClassicalTrajectory.trajectory`, every such run is a `LinearSys.Trajectory`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

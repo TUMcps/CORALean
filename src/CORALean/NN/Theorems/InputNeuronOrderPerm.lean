@@ -14,10 +14,10 @@ itself, which neuron goes first, is not claimed here: it is `inOrder`'s by defin
 spiral's and the sort's by their own definitions. `snake` needs an `inputSize`, as CORA does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.NN.Definitions.Schedule
 The head layer's own pattern, cut to the width that layer has: a layer reads its width here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

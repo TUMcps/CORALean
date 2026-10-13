@@ -9,10 +9,10 @@ generator came out zero stays, and so does the all-zero column, because
 `merge` is asked to join equal columns and nothing else.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

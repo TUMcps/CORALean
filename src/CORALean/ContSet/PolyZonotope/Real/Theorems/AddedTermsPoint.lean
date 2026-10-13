@@ -12,10 +12,10 @@ point `∑ᵢ lᵢ · (pZ.point a)ᵢ`: each dimension's block is its centre and
 monomial of `a`, and the new factor `lᵢ` enters with exponent `1` and no other.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Operations.Radius
 the real one is `Real.Interval.radius`, the quantity every enclosure proof off a box reads.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

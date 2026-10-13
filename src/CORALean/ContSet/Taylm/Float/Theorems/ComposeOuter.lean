@@ -12,10 +12,10 @@ import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
 As at the exact layer, for any real coefficients `a k` inside the stored enclosures.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

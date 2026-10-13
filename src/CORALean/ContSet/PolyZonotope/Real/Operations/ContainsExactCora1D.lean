@@ -11,10 +11,10 @@ is (`@polyZonotope/representsa_.m` l. 128: `res = n == 1 || aux_isZonotope(pZ,to
 `S = zonotope(pZ)`, an outer enclosure only, and `contains_` of that zonotope decides (l. 186).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

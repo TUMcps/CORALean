@@ -16,10 +16,10 @@ keeps the index a product type; the surplus columns are the ones `getSubsetG`
 gives the coefficient `Nat.choose e j = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

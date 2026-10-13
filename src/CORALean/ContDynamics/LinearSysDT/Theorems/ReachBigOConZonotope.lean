@@ -9,10 +9,10 @@ of a `ConZonotope` reachable set is bounded independent of how long the run
 goes, the same fact `reduce` in the loop buys at either representation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

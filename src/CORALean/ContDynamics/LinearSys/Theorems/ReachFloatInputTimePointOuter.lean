@@ -9,10 +9,10 @@ contribution is in `H(t_{k+1})`, and the rest is one `Ũ`-input's contribution
 by `t_{k+1}` (`Trajectory.sub_mem_inputReach_recentre`), in `P^R(t_{k+1})`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

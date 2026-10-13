@@ -13,10 +13,10 @@ the principal one or not; no claim that CORA's `logm` is the only one.
 * [1] `contDynamics/@linearSysDT/linearSys.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

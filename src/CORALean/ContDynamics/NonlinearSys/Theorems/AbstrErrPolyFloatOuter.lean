@@ -17,10 +17,10 @@ static error at `x(0) - x✱`, a point of the start set, so `quadMap_outer` plac
 each of the other four is bounded by `abs_bilin_le_bilinUp`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

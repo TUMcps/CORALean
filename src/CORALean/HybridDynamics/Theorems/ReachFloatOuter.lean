@@ -18,10 +18,10 @@ invariant and in the guard, so `Location.guardIntersectFloat_outer` and
 starts from, with one jump and less time left.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

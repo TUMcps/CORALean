@@ -12,10 +12,10 @@ For `0 < λ`: a row whose absolute sum `s` exceeds `λ` is divided by `s / λ`, 
 other row is untouched. So the layer is `λ`-Lipschitz in the supremum norm.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

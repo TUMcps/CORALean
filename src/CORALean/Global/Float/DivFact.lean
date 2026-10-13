@@ -9,10 +9,10 @@ every divisor is positive and `div_le_divUp`'s hypothesis holds. The coefficient
 expansion, `g⁽ᵏ⁾(c) / k!`, and `1 / (N+1)!` in a Lagrange remainder, are this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Interval
 The crossed box, lower bound `one` and upper bound `zero` in every coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

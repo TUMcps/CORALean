@@ -8,10 +8,10 @@ Split out of `QuadMap.lean` (issue #62): read by `Theorems/SumExtEqPoint.lean`,
 file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ affine layer is kept, which its conversion drops; see
 `SmoothNetwork.elementwiseAffine_cora_counterexample`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

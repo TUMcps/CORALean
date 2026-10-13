@@ -9,10 +9,10 @@ As `plus`, under the members' own denominator certificates: the Taylor model's m
 (`Taylm.rdivide_outer`) and the interval's strict sign test `hJ` (`Interval.rdivide_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

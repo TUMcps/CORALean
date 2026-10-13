@@ -23,10 +23,10 @@ Nothing is trusted: `α`, `g` are `sqrtUp` of `σ²/(1 - λ)` and `σ²/s`, `β 
 the gaps paid into the box. A failed check, or `λ` not certified in `[0, 1)`, returns `E`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

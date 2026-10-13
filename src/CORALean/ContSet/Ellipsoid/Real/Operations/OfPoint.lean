@@ -8,10 +8,10 @@ CORA's `ellipsoid` at a centre and no generators: a degenerate ellipsoid, its
 every representation with a point operation to supply.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ of the deviation `(s a - ã)ᵀ x` (`scaleDevLo`), an equality's interval widene
 the deviation's range. The scaled polytope contains the original one inside `dom`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

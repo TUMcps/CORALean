@@ -8,10 +8,10 @@ CORA's `@polyZonotope/mtimes`: `map` at `A *ᵥ ·`, spelt with `*ᵥ` because t
 the form every caller states its matrix in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

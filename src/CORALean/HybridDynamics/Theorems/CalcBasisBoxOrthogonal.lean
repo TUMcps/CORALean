@@ -7,10 +7,10 @@ A basis for an enclosure by rotated boxes must be invertible, and an orthogonal 
 inverse's transpose; the identity is orthogonal, so the enclosure is the interval hull itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

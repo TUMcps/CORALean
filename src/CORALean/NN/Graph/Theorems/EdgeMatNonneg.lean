@@ -6,10 +6,10 @@ import CORALean.NN.Graph.Operations.EdgeMat
 An edge only ever adds to a degree, which is what bounds an uncertain one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

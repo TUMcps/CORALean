@@ -15,10 +15,10 @@ CORA also cuts a component's invariant by the complement of the guards of the me
 uncut one. See `FINDINGS.md` for what the cut does in CORA's code.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

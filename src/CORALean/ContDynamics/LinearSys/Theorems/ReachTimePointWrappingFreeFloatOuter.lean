@@ -15,10 +15,10 @@ run used, certified admissible by `reachOrderFloat_spec` exactly as
 `LinParamSys.mapM_eq_some` reads one `mapM` result per `k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

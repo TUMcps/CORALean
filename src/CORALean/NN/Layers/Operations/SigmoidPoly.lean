@@ -8,10 +8,10 @@ That relaxation as a layer, one fit and one grid per neuron: the polynomial acti
 built rather than merely stated, every stored field an expression in the scalar.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

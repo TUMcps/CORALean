@@ -17,10 +17,10 @@ complex `T_k`, `β_{k+1}` and `v_{k+1}` with (6.2); the tridiagonal form of `T_k
   exponentials". SIAM Journal on Matrix Analysis and Applications, 38(1):155-187, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

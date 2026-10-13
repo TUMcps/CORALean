@@ -7,10 +7,10 @@ import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
 (`⟨Mx, t⟩ = ⟨x, Mᵀt⟩`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

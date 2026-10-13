@@ -9,10 +9,10 @@ swap a pair of endpoints, and `absMax` takes the larger absolute value of the
 pair whichever way round it comes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

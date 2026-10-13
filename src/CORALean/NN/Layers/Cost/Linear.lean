@@ -11,10 +11,10 @@ What `mtimes`, `plus` and the embedding cost are parameters, `S` being
 abstract here: `mtimesCost` is this at `cMtimes := Cost.matVec m n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

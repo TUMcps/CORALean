@@ -9,10 +9,10 @@ The nominal part is the exact layer's point zonotope at the stored point read
 into ℝ, and the error box is the origin box, so the sum is `{x} + {0}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

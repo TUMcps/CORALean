@@ -13,10 +13,10 @@ exponential over the compact step. `InputReachSeparation` needs this three
 times over, at the three windows a concatenation splits into.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

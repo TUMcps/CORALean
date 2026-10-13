@@ -9,10 +9,10 @@ read off the certificate: `ltStrict` is a strict inequality, `le` a weak one, an
 positive `|g j|` makes `g` nonzero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

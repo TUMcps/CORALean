@@ -13,10 +13,10 @@ Sorts on the negated rank: `Tuple.sort` is total, so `0` is largest, and ties
 go to the earlier index.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

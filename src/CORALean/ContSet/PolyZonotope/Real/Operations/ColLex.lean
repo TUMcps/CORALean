@@ -12,10 +12,10 @@ carrying it in the type rather than in a comparator is what lets `Tuple.sort`
 supply the permutation and its monotonicity together.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

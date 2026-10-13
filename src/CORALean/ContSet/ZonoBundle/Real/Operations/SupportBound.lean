@@ -12,10 +12,10 @@ this way. Needs the index nonempty, which is exactly
 `k = 0` the bundle is the whole space, unbounded in every nonzero direction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Fullspace.Real.Operations.Volume
 space is a point of volume `1` while CORA answers `NaN`; that case is not claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

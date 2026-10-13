@@ -9,10 +9,10 @@ series; completeness of the matrix algebra turns that absolute bound into
 summability outright, which is all the containment theorems downstream need.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

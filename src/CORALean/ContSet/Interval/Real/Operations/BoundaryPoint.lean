@@ -8,10 +8,10 @@ CORA's `@interval/boundaryPoint.m` in the bounded case: `x = dir * ratio + start
 that stays in `I`; `Interval.boundaryRatio_isGreatest` says so.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

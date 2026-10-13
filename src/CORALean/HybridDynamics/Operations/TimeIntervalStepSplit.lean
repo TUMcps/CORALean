@@ -17,10 +17,10 @@ this is `TimeIntervalOuterSplit`'s form, which asks nothing about where `ℓ.U`
 sits and so is the one a location can actually supply.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

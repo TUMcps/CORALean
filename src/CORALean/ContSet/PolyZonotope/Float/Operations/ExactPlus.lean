@@ -14,10 +14,10 @@ exponents are over ℕ, so only the centre rounds, and its `residual` goes into 
 box together with the two incoming boxes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

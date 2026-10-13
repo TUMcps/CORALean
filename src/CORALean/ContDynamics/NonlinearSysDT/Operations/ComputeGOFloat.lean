@@ -21,10 +21,10 @@ field, `om` the output equation `out_mFile`. Soundness is `computeGOFloat_outer`
 * [2] `global/functions/helper/dynamics/contDynamics/contDynamics/computeGO_k.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

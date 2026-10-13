@@ -9,10 +9,10 @@ the result in a short last chunk is that chunk's entries sorted. The layer has n
 CORA (`evaluateZonotopeBatch` throws), so this is the layer's numeric function.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

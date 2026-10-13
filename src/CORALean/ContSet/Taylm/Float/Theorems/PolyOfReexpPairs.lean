@@ -10,10 +10,10 @@ polynomial at `s` with `sₖ` replaced by `m + r sₖ`: a term's monomial splits
 `sₖ` and the rest, and the factor of `sₖ` is the binomial theorem.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

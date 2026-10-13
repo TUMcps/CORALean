@@ -19,10 +19,10 @@ no eigenvector of `Ā = X' Ṽ Σ̃⁻¹ Ũᵀ`: for `X = [1, 0]ᵀ` and `X' = [
       SIAM Journal on Applied Dynamical Systems, 15(1):142-161, 2016 (arXiv:1409.6358).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

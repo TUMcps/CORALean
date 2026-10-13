@@ -18,10 +18,10 @@ The interval map of a linear layer is linear in `(l, u)` up to the bias, `|W|` b
 matrix, and the activation's is a diagonal map.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

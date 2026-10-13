@@ -4,10 +4,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 # A paired-difference column brackets its exact value between the two directed roundings
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

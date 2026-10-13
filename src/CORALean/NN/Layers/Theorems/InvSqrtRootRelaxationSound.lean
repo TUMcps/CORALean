@@ -9,10 +9,10 @@ The clamp `max a 1` is exact and the root at least `1`, so the divisors are posi
 `sqrtUp` in the divisor of the lower end, `sqrtDown` floored at `1` in the divisor of the upper end.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

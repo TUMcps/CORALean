@@ -10,10 +10,10 @@ exponents of the nominal set and its generator `idx` reads as the exact one; the
 point `0`. (The float set is a vector of length `1`, the exact one a scalar one.)
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

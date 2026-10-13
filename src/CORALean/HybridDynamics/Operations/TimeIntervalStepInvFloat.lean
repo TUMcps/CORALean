@@ -18,10 +18,10 @@ The box is coarser than the zonotope it came from wherever no row cuts, so
 this is the cut a guard test wants, not a set to keep propagating.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ the second is in `P^R(t_{k+1})` (`inputReach_subset_particularSolutionFloat`, wh
 is spent), both at `A`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

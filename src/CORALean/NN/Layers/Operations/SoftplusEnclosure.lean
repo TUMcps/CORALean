@@ -12,10 +12,10 @@ logarithm's. Like `expUp` and `logDown`, the ends bracket the function only wher
 are bounded, which `softplusRelaxation_sound` asks of the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.Global.Float.FloatOps
 `σ' x = 2x` over `[l, u]` is at most `2 u`, rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

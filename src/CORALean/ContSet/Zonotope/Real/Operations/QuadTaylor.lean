@@ -26,10 +26,10 @@ coefficient anywhere — so `κ + κ + κ²` generators denote exactly what [1]'
       Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

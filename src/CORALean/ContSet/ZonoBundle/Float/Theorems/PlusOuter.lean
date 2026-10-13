@@ -10,10 +10,10 @@ that pairwise sum — the exact layer reads it back through `plus_exact` instead
 which is the one step rounding takes away.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

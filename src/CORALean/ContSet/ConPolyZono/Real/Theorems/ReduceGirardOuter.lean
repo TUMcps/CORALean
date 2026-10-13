@@ -10,10 +10,10 @@ pair of partitions like any other, so `reduceBy_outer` closes it. The metric
 never appears, which is what leaves the ranking free to be a heuristic.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ generator Gram matrix `H Hᵀ`, which is how `P₊ = Ĥ₊ Ĥ₊ᵀ` of the zono
 assembled from its blocks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

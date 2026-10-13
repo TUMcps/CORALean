@@ -7,10 +7,10 @@ What `unitCol i e` names: `a i ^ e`, every other factor dropping out at exponent
 zero. `PolyZonotope.monomial_identE` is this at `e = 1` for a whole matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

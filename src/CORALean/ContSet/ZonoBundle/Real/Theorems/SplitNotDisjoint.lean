@@ -16,10 +16,10 @@ hypothesis of `split_union` holds, so this is a split the exactness theorem cove
       European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

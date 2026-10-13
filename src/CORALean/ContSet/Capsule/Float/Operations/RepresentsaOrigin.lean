@@ -6,10 +6,10 @@ import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
 `@capsule/representsa_.m` at `origin`, tolerance `0`: a point whose centre is `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

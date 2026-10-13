@@ -8,10 +8,10 @@ CORA's `nnRootLayer`: `Layer.activation` at `rootRelaxation p`. Sound on every s
 `Real.sqrt` being `0` below `0` and `sqrtUp`/`sqrtDown` total.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

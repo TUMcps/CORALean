@@ -19,10 +19,10 @@ the centre: `c = 5/2`, `G = (3, 3/2, 1)`, `γ₁ = 0`: the set `[0, 5]`, which m
 `β₁ = 1` (read from the source, not run). `ConZonotope.cubMap` keeps every linear generator.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

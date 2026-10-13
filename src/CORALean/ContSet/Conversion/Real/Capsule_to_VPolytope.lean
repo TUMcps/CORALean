@@ -10,10 +10,10 @@ coarser than CORA's conversion. CORA has no capsule-to-vertex conversion: its
 aligned box, which loses the rounded ends and the slant of the segment.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

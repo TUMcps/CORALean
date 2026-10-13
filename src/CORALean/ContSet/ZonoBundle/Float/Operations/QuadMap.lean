@@ -8,10 +8,10 @@ CORA's `zonoBundle`/`quadMap(zB, Q)`: every member is replaced by its zonotope q
 the count unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

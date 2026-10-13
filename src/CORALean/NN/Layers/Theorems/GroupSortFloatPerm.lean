@@ -8,10 +8,10 @@ entries and computes none, so this holds whatever `le` answers, and at the real 
 denote. Under an exact `le` each chunk is also ascending (`groupSortFloat_sorted`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

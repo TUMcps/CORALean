@@ -11,10 +11,10 @@ with the others, and the first generator of maximal score is chosen by a computa
 `List.argmax`. A zonotope with no generator is its own two halves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

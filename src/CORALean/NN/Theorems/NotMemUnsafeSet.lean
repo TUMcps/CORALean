@@ -8,10 +8,10 @@ import CORALean.NN.Theorems.EncloseOuter
 directly off `enclose_outer`, with no `Specification` in sight.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ with `A` the true exponential, the float step minus this box, cancelled by
 Rådström's law (`minkowskiDiff_inner_of_outer`), lies in the exact image.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Real.Operations.Cos
 CORA's `@interval/sin`: `cos (I - π/2)`, the box shifted by `π/2` in every coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

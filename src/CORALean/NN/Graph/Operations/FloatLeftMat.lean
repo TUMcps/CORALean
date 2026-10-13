@@ -9,10 +9,10 @@ where the two positions share a feature and `0` elsewhere. It stores the entries
 exact zero only, so nothing rounds in building it; the rounding is paid by `PolyZonotope.mtimes`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

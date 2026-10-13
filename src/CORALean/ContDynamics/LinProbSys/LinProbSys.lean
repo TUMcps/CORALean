@@ -15,10 +15,10 @@ reads on two steps. The stochastic process itself is not defined here.
 * [1] `contDynamics/@linProbSys/linProbSys.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

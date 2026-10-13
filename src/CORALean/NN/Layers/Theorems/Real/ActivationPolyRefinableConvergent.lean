@@ -14,10 +14,10 @@ neuron covering that neuron's own box and leaving `2 · error` under `ε`: nothi
 widest box in the layer, and padding leaves each neuron's error alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

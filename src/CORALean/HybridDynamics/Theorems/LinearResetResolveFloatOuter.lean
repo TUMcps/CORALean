@@ -16,10 +16,10 @@ Every reset `x ↦ A x + B u + c` with `A`, `B`, `c` in the bounds is a candidat
 among them; `resolve_apply` says what the real one computes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

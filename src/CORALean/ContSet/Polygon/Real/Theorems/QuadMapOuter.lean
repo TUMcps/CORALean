@@ -13,10 +13,10 @@ is. CORA states the result as a tight enclosure and computes the boundary of the
 (`polygon(pZ)`), which `polygon_outer` is the enclosure counterpart of.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

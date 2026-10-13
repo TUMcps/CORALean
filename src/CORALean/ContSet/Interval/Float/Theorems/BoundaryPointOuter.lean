@@ -15,10 +15,10 @@ is at most the greatest ratio; each coordinate's upper bound is at least it. The
 the box's boundary; the float result is a box around it, not a point of the boundary.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

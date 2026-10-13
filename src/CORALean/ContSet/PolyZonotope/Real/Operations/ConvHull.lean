@@ -19,10 +19,10 @@ dimension three and more, and CORA's documentation says "convex hull"). The one-
 converted to a polynomial zonotope first, and an empty second set returns `pZ`, neither modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

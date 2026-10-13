@@ -14,10 +14,10 @@ linearity is the whole reason an affine relaxation of `x ↦ x^(-1/2)` composes
 with a degree at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

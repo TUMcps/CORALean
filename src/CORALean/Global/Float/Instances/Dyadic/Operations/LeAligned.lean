@@ -8,10 +8,10 @@ the specification of `le` rather than what runs: `le` agrees with it (`le_iff`) 
 abort on a huge gap.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

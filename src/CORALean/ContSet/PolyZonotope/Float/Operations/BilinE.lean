@@ -8,10 +8,10 @@ the added exponent column, `pZ₂`'s read at `pZ₁`'s factor indices by `hp`. O
 float counterpart of `Real.PolyZonotope.bilinE`, of which `quadMapE` is the self-pairing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

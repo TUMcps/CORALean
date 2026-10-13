@@ -11,10 +11,10 @@ bounds their distance, and conversely the point at the fraction `r₁ / (r₁ + 
 between the two nearest axis points lies in both.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ rows also carry is subtracted. The two error boxes already fit inside it, which
 is the whole argument for `intersection`'s soundness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

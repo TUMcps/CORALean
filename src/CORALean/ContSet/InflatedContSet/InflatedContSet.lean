@@ -20,10 +20,10 @@ whoever knows what was rounded (`Interval.residual`, `Interval.symmetric`,
 `Zonotope.generatorError`), and none of those mentions this class.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

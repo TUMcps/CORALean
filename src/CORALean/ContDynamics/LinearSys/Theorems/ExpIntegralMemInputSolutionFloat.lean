@@ -12,10 +12,10 @@ outer over every input in `V`, the constant input included; the hypothesis on th
 float order's admissibility, as in that theorem.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

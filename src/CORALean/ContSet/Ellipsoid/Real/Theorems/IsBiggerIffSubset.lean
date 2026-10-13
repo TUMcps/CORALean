@@ -14,10 +14,10 @@ Containment gives `‖G₂ᵀ v‖ ≤ ‖G₁ᵀ v‖` for every `v` through th
 `ellipsoidNorm ≤ 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

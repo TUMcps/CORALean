@@ -11,10 +11,10 @@ that is the form its users need: a constrained zonotope reads its coefficient
 polytope this way, and so does the float halfspace description.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ segment between the two incoming boxes.
 Not an instance of `plus_subset`: one weight is shared by both halves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

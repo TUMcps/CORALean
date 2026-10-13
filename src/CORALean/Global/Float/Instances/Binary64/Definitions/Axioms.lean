@@ -21,10 +21,10 @@ axioms: this one; the opt-in `trustedFlint` (`Flint/`), true of FLINT; and the b
 `nearestUnsound`, FALSE BY DESIGN -- both kept out of the library, which `check-axioms.sh` checks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       22-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Float.Binary64
 

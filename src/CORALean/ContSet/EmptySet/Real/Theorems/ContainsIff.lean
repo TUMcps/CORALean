@@ -9,10 +9,10 @@ no emptiness test for an arbitrary `S`, so there is no `Contains` instance; this
 statement the answer would be sound and complete for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

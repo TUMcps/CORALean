@@ -12,10 +12,10 @@ the time type, `ℝ` for `reach` and the float scalar for `reachFloat`, as in
 `LinearSys.ReachOptions`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       30-September-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ generators, which differ from the exact ones by at most `getSubsetGDiff` entrywi
 difference, scaled by monomials in `[-1, 1]`, lies in the box `generatorError` that was added.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

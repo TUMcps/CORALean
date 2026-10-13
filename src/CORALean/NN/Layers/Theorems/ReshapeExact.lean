@@ -7,10 +7,10 @@ The only standard layer whose guarantee is an equality, at every scalar: a reind
 stored values without arithmetic, so it rounds nothing even at a machine scalar.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

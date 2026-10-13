@@ -10,10 +10,10 @@ is centred at `c` (the half-sum of its bounds), so `Interval.norm₂_sub_center_
 upper bound, not the smallest ball: that is a different quantity, as `radius₂`'s docstring says.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

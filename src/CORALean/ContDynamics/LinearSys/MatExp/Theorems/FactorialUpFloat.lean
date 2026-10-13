@@ -9,10 +9,10 @@ By induction: `le_nsmulUp` at `one` puts each factor at or above `k`, and a
 product of nonnegative upper bounds is one, so `mulUp` stays above `k · (k-1)!`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

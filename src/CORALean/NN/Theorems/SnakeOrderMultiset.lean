@@ -10,10 +10,10 @@ As a multiset the spiral's list is the sum of the singletons of all entries of t
 rearrangement of the entries, none dropped, none repeated.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

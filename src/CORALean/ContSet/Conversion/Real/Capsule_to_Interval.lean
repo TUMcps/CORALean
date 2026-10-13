@@ -10,10 +10,10 @@ the whole Euclidean distance it is a part of, `aux_abs_le_sqrt_sumSq`, and `t`
 ranging over `[-1, 1]` bounds `t * g i` by `|g i|`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

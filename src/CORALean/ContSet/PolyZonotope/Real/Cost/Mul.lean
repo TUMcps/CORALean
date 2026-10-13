@@ -15,10 +15,10 @@ than the model's: `Complexity/Bilin.lean` proves the result carries
 is why `compact` and `reduce` sit between the factors in practice.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

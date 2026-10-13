@@ -24,10 +24,10 @@ a float and leave a residual behind. The price is a generator up to twice as
 wide on an off-centre coordinate, which for a box of rounding error is nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

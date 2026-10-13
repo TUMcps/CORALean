@@ -17,10 +17,10 @@ on (`lipschitzSolution_const_of_zero`), a contradiction. [1, Cor. 1] needs it fo
       Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

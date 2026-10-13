@@ -31,10 +31,10 @@ soundness theorem. No float refinement: the step is the exact `e^{Ar}`.
       European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.Global.Float.Exp
 is at or below `2 ^ k / 2`, which is `expUp k`'s hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   08-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

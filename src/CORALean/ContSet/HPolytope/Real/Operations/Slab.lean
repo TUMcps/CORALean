@@ -13,10 +13,10 @@ names a different hyperplane and a hyperplane has empty interior. Widening the
 right-hand side into an interval is where that rounding can go.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

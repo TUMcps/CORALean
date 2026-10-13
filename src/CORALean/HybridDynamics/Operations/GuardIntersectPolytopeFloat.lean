@@ -24,10 +24,10 @@ its vertices. A bundle of one member is kept a bundle; CORA returns the zonotope
 sets are `R₀ :: Rs`, never empty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

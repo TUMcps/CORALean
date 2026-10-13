@@ -14,10 +14,10 @@ system is `nonlinearSysFloatModel_encloses`, so `NonlinearSys.FloatModel.reachFl
 converted system.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

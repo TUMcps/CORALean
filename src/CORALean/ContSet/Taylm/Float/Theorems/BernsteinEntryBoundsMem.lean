@@ -9,10 +9,10 @@ For `j ≤ N`, `bernsteinEntry N e j` lies between the two floats `bernsteinEntr
 terms lie in their brackets (`bernsteinStep_mem`), and the two sums round outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

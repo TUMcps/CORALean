@@ -11,10 +11,10 @@ this tree already has a representation of. Stated for `safeSet`, and does
 not replace `HoldsAll`, which stays what a heterogeneous list still needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

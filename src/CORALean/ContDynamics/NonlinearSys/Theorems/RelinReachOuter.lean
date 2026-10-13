@@ -31,10 +31,10 @@ Step boundaries only in this file; `relinTimeInterval_outer` covers the time
 between them, each step's enclosure at every time rather than just its ends.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

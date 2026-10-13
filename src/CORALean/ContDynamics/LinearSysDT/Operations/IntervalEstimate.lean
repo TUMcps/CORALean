@@ -14,10 +14,10 @@ is `Zonotope.interval`, exact by [1, Property 4] (`Zonotope.interval_eq_hull`).
       64(11):4717-4724, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

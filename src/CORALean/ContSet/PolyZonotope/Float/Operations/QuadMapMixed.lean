@@ -14,10 +14,10 @@ disjoint, and `bilin` pairs the product with itself over those factors, at the f
 has dimension `n + n`, where the exact layer's lives in `Vec ℝ n × Vec ℝ n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

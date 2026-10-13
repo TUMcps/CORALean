@@ -13,10 +13,10 @@ that is `<`. Only as good as `err`. The source is [1].
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

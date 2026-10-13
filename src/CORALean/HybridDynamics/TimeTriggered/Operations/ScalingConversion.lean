@@ -18,10 +18,10 @@ required Lipschitz by [1, Def. 2], which `g · f` is not made to be. It is the `
       Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

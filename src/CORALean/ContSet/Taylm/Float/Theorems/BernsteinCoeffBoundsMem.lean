@@ -10,10 +10,10 @@ The coefficient of the exact term list the floats read as, at any multi-index, l
 floats `bernsteinCoeffBounds` returns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

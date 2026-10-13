@@ -9,10 +9,10 @@ range bound `u` is an argument as over ℝ, and the error box's own bound, added
 upper bound only: the `le` field of the returned `FloatBound` is the outer theorem.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

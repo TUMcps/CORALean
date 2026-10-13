@@ -9,10 +9,10 @@ CORA's `priv_compact_toEquality`: every pair `aᵀx ≤ b`, `-aᵀx ≤ -b` beco
 in pairs are deleted from the inequalities. Nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

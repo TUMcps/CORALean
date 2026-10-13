@@ -12,10 +12,10 @@ endpoint lower bounds undercut. Otherwise the float returns `-1/2`, which `γ` n
 so it is below either branch of the exact one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

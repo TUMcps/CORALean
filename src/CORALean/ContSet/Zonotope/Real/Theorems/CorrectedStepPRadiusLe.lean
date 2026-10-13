@@ -37,10 +37,10 @@ transposes: its upper-right block has the rows `0` and `[(P - YC)D_w  Y D_v]`. T
       pp. 668-673, 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

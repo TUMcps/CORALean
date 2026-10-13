@@ -7,10 +7,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
 so both sums need a `show`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

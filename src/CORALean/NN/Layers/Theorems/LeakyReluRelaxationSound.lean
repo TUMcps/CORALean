@@ -9,10 +9,10 @@ At whatever slope the caller chose, for a stored `α ≤ 1`: the clamped slope l
 above; halving is exact, so the recentred line is within half the gap everywhere on the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

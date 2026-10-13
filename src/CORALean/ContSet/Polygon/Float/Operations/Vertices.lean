@@ -8,10 +8,10 @@ each piece's vertex matrix). Each piece carries an error box besides, which thes
 include: `Polygon.vertices_outer` says where the polygon lies relative to them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

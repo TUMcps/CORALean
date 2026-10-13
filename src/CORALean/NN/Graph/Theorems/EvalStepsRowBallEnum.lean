@@ -24,10 +24,10 @@ algorithm; soundness here does not depend on which one a caller runs.
       Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

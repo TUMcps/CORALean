@@ -10,10 +10,10 @@ whatever is proved of `reachFloatInput` holds of it, and the NaN test that the t
 asks of the caller has been made.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ as an endpoint and both sides where `s = 0`, any `n ≥ 2` opens both sides wher
 The bounds are infinite, so the result is an `Interval.EBox`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ the columns, as in Mathlib, and `⊗` is the Kronecker product with the identity
       zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

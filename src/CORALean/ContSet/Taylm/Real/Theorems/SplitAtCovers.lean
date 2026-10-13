@@ -8,10 +8,10 @@ The box that is split is covered by its two halves, and every other box keeps it
 whatever the boxes covered before the split, they cover after it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

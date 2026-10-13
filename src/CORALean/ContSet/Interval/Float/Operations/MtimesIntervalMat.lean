@@ -10,10 +10,10 @@ matrix's `(i, k)` interval against the vector's `k`-th one, each hull and the
 row sum rounded away from the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ over `Vec`; this one is the exact layer's `Real.PolyZonotope.extG` read over sto
 set over matrices has it too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

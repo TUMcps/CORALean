@@ -7,10 +7,10 @@ import CORALean.Global.EuclideanNorm
 Translating the point by `v` and the centre by `v` leave the distance to the segment unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

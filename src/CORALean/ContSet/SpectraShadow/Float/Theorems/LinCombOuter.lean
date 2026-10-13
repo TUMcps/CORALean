@@ -10,10 +10,10 @@ puts the hull inside the result. That is the guarantee `LinComb` asks of `convHu
 `enclose` and `or`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

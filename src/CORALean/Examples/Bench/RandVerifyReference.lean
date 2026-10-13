@@ -14,10 +14,10 @@ output of every trajectory over its time interval: a box beyond every `Y_k` alon
 beyond the true reachable set by at least as much.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

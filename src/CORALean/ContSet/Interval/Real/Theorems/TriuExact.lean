@@ -8,10 +8,10 @@ CORA's `triu` of an interval matrix takes MATLAB's `triu` of both bounds. For a 
 entry that is the image of the box under `triu` of the matrix, entry by entry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

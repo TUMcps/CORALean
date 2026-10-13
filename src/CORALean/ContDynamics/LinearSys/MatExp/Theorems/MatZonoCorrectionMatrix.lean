@@ -17,10 +17,10 @@ hence in its box, so each order's term at `A` is inside the boxed term; and the
 member lies in `M`'s box, so its tail bound is under the box's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

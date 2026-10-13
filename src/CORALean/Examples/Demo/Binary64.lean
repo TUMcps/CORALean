@@ -21,10 +21,10 @@ What this does not show is the difference that matters: at `Dyadic` the bounds
 are theorems, and here they rest on the one axiom `Axioms` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       22-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

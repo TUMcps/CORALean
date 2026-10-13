@@ -8,10 +8,10 @@ How far a stored generator of `quadMap` can be from the exact one: the gap betwe
 roundings, which a coefficient in `[-1,1]` then spreads either way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

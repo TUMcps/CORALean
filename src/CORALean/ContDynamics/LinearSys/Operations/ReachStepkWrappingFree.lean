@@ -10,10 +10,10 @@ so a representation that `mtimes` only encloses pays for it once per window,
 not once per step before it — the wrapping effect a recursion would compound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

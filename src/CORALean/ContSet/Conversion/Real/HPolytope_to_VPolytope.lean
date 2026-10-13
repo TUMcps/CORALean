@@ -29,10 +29,10 @@ Neither enumerates facets: nothing here identifies *which* subsets give
 vertices, which is a question of cost the enclosure does not depend on.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

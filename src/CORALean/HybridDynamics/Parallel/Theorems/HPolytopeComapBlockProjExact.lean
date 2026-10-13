@@ -8,10 +8,10 @@ The preimage of a component's guard under the projection onto its block: a const
 block and free elsewhere, which no box can say. `HPolytope.comap_exact` at `blockProj`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

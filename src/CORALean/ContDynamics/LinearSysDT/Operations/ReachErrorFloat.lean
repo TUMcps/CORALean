@@ -27,10 +27,10 @@ construct while `reachSet` advances by its *nominal* construct alone.
 At `k = 0` the error is `R₀`'s own error box, read back as a zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

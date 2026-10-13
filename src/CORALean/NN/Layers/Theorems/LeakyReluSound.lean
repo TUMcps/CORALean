@@ -8,10 +8,10 @@ import CORALean.NN.Layers.Theorems.LeakyReluRelaxationSound
 `Real.leakyRelu` at the stored `α`, coordinatewise, at every slope, for `α ≤ 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

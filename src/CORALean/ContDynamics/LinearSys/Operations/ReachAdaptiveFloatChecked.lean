@@ -10,10 +10,10 @@ A `some` is the unchecked `some` (`reachAdaptiveFloatChecked_eq_some`), so whate
 proved of `reachAdaptiveFloat` holds of it, with the NaN test made.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

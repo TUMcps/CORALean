@@ -10,10 +10,10 @@ solution of the constraint. `g` is asked to be differentiable in `y`, the deriva
 the Jacobian block; it is a hypothesis wherever it is spent, not a field of the class.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ or `NearestDyadic p`, unsound) -- with the same `inst` as `Registry.dispatch`'s,
 `digits`, else `4`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

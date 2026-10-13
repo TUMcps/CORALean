@@ -16,10 +16,10 @@ and `expRemainderBound_le` the remainder. `hε` asks `1/2`, as the float
 remainder bound does, where the exact one asks `< 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ Two scalars with `le` both ways. `le` is sound when `true`, so `true` here says 
 as the same real; `false` says nothing. The exact test `compact_` needs for "equal rows".
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

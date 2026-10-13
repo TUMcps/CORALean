@@ -14,10 +14,10 @@ Not an operation `Reduce`-style, for the same reason `plusBox` is not: only
 `mtimes`'s own definition can say how far it may overshoot its operand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ hypothesis on the theorems that need it, as in `boxDiameter_mono`, and not a
 field on the definition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ radius is read off `sys.A`, `U` and `R₀`.
 and it holds for the ball `norm_drift_le` names.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

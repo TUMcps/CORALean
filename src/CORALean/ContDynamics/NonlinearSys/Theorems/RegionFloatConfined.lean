@@ -13,10 +13,10 @@ applied to the coordinate minus its mid rate, keeps it in
 `X_i + [min(0, ΔtF_i⁻), max(0, ΔtF_i⁺)]` — the Picard step, taken twice.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

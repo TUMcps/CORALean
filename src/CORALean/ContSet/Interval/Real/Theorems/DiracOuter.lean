@@ -11,10 +11,10 @@ value in the result. Outer only: the result is `[0, ∞)` where `δ` takes the t
 nothing is stated there (`dirac_zero_mem` says the result contains `0`, the value off `0`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

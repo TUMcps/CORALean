@@ -18,10 +18,10 @@ the estimate `p_{k+1}`. The fault test [1, Eq. 31] asks whether `0` lies in it.
       pp. 7230-7235, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

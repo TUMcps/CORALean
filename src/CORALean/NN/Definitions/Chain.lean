@@ -14,10 +14,10 @@ It is a specification and never a computation, which is why it may store what
 `c.eval` is the only bridge back, and it is a proposition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       07-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ directory and by `Theorems/CompactFactorsOuter.lean` and
 `Theorems/CompactFactorsNominal.lean`, all outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

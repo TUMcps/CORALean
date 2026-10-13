@@ -9,10 +9,10 @@ The tabulated merge and the one that rescans return the same set: the tables hol
 the very values the specification recomputes, so the two differ in cost alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

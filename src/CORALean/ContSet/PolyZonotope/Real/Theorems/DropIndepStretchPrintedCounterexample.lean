@@ -18,10 +18,10 @@ the set is `α + β·(-1)`, which holds `2` at `α = 1`, `β = -1`. Every hypoth
       Polynomialization and Non-Convex Sets". HSCC 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

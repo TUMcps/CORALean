@@ -9,10 +9,10 @@ member maps into every image, and `Zonotope.mtimesIntervalMat_outer` encloses th
 the member of the mapped bundle it came from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

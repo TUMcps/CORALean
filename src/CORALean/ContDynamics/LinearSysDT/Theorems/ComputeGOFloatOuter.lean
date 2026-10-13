@@ -11,10 +11,10 @@ interval matrix `computeGOFloat` returns for it: `A{k}`, `B{k,j}`, `C{k}` and `D
 statement; the interval matrices are not the parameters.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

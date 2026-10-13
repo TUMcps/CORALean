@@ -9,10 +9,10 @@ enclosed by `Zonotope.quadMap_outer`, and the result is enclosed by its box
 (`interval_contains`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ point genuinely reached, so a specification it violates is genuinely violated.
 Reachability and simulation answer opposite halves of the same question.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ CORA's `gauss` flag, which says whether the covariance or the generators `g` are
 copy, is not modelled: the covariance always is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

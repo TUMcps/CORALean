@@ -7,10 +7,10 @@ CORA's `aux_tayl2int` per term: a constant is exact, a monomial with every expon
 ranges over `[0, 1]`, any other over `[-1, 1]`, scaled by the coefficient.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

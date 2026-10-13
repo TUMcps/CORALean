@@ -8,10 +8,10 @@ intersection it denotes is the zonotope's own set, `Set.iInter_const` at the
 one-element index type `Fin 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

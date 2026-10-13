@@ -8,10 +8,10 @@ lower bound is certified positive, `0` only when the upper bound is certified no
 `[0, 1]` across the kink.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

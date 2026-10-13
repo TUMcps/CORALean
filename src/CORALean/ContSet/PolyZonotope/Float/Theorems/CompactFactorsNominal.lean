@@ -8,10 +8,10 @@ Dropping unused factors is the exact layer's step verbatim: it changes `p` and
 the exponent matrix, both over ℕ, so nothing here rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

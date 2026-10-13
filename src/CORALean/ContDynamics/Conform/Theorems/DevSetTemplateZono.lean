@@ -22,10 +22,10 @@ exact. [1, Eq. 17] and [1, Eq. 18] are the case `X̃₀ = {0}`, `DevSetZeroTempl
       Systems (ARCH23), EPiC Series in Computing, vol. 96, pp. 9-33, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

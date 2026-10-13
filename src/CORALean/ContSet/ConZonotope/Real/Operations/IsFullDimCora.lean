@@ -13,10 +13,10 @@ unit box are not read either, which is why this is only a necessary condition fo
 an interior; see `isFullDim_cora_counterexample`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ And back, so nothing distinguishes the two at order 1: the same data, read as a 
 offset rather than as two coefficients.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

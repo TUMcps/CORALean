@@ -8,10 +8,10 @@ Intersecting `∅` with a set of any representation gives `∅`, so the returned
 denotes the intersection of the two operands, exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

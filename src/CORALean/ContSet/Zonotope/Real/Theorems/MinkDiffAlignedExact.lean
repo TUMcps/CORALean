@@ -30,10 +30,10 @@ witness. Inside it, no hypothesis beyond the paper's alignment is needed.
       6:1555-1560, 2022.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   04-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

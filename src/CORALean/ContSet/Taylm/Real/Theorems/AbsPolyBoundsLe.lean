@@ -7,10 +7,10 @@ Each term's bound lies in `[-|a|, |a|]`, every monomial being in `[-1, 1]` on th
 ends of `polyBounds` are at most the sum of the magnitudes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

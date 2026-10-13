@@ -18,10 +18,10 @@ generator matrix `(τ/ε) (1 / (n_κ ‖Y‖_F)) G_κ` Eq. 9 of [1, Prop. 9], in
       Transactions on Machine Learning Research (TMLR), 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

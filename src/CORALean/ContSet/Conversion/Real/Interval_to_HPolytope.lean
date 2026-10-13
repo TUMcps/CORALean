@@ -11,10 +11,10 @@ Exact, and the only conversion into a halfspace description that costs nothing.
 zonotope's domain names it constantly and should not carry an interval around.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

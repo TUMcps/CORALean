@@ -20,10 +20,10 @@ through the partition's equivalence; `hleft` and `hright` are the two halves of
 its definition and are what `sum_split₂` then needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

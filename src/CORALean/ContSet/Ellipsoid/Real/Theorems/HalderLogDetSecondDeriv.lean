@@ -19,10 +19,10 @@ Differentiating `−(1/(β(1+β))) · S(β)` the term with `S` drops at a root, 
       Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

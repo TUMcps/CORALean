@@ -10,10 +10,10 @@ The nominal parts add inside the exact `Zonotope.plus` (`plus_exact`), which
 two directed sums. The boxes add by `matPlus_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
 The table agrees with the function it tabulates, which is all a reader of it needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

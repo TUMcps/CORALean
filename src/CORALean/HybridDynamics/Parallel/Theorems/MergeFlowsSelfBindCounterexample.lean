@@ -12,10 +12,10 @@ replaces `A_ij`), so `mergeFlows_mulVec` fails here: the hypothesis is needed, n
 the proof (#40).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

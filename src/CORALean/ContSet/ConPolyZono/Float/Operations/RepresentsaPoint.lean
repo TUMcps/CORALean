@@ -8,10 +8,10 @@ The test reads two sizes and no stored number, so it is the same `Bool` as the e
 the nominal set; what it guarantees at float is `construct_subset_of_representsa_point`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

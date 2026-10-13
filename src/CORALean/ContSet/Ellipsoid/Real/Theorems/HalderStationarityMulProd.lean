@@ -15,10 +15,10 @@ the denominators, giving `−∑ᵢ (β²λᵢ − 1) ∏_{j≠i} (βλⱼ + 1)`
       Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

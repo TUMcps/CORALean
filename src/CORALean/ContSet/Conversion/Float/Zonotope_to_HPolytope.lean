@@ -18,10 +18,10 @@ what bounds its magnitude is the larger of the up one and the negated down one â
 neither alone would do, the exact value being free to have either sign.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

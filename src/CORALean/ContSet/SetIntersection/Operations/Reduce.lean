@@ -8,10 +8,10 @@ only ever enlarged by enlarging what it is an intersection of, so reducing
 each branch and re-collecting keeps the shape an intersection already has.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

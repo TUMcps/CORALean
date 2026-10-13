@@ -9,10 +9,10 @@ The selector splits off as a factor of its own, which is what lets the value of
 the whole constraint row be read as a polynomial in `α₁` and the two block means.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ by any stage and so carry no bound of their own. `Finset.card_le_univ` against
 each stage's ambient `Fin` index closes all three.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ The intersection of the members' enclosures contains the function's value at eve
 Taylor model through `Taylm.bounds_mem`, the intersection through `Interval.intersection_exact`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

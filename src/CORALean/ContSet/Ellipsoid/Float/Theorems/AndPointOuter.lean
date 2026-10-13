@@ -13,10 +13,10 @@ has proved `p ∉ E`, so `E ∩ {p}` is empty there. Exact on the two certified 
 branch may return the point for an `E` that misses it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

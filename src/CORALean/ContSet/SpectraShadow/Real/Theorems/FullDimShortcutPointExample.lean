@@ -11,10 +11,10 @@ cache is a handle, so it outlives the call. The point `{0}` of `ℝ¹` (`pointEx
 0`) is nonempty, and the test fires.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

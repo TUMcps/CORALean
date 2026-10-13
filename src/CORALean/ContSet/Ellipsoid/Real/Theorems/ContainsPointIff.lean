@@ -8,10 +8,10 @@ For a full-rank ellipsoid, CORA's point test `ellipsoidNorm(p - c) <= 1` holds e
 lies in the ellipsoid: exact, at tolerance `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

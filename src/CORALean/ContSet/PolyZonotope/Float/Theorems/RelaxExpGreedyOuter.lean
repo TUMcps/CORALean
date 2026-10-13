@@ -17,10 +17,10 @@ The box grows one interval per step and is never re-read by the loop, so a
 caller wanting fewer steps asks for fewer rather than for a different rule.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

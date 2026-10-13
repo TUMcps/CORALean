@@ -8,10 +8,10 @@ The midpoint of the interval either rounding of `ra · rb · λ` could land in, 
 `curvMid` picks one: any value there would do, the error being measured from it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

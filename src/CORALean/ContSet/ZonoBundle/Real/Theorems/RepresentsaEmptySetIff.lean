@@ -8,10 +8,10 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
 `representsa_emptySet` decides, exactly (`representsa_emptySet_iff`), it decides for the bundle.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

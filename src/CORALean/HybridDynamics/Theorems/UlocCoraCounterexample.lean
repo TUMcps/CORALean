@@ -10,10 +10,10 @@ with one location it gives `{u}` instead of `u`. Read from `postProcessing.m` l.
 (`FINDINGS.md`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

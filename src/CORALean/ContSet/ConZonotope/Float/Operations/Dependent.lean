@@ -11,10 +11,10 @@ free. A quadratic map is not additive, so a nominal part and a box cannot travel
 separately; emptying the box first is what `quadMap` needs, as for `PolyZonotope.dependent`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

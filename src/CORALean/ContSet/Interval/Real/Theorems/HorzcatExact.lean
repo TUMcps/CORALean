@@ -7,10 +7,10 @@ A matrix lies in the concatenated box iff its left block is in the first box and
 the second: no hypothesis, an empty operand gives an empty result and conversely.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ exceeds the tolerance. No lower order is tried here, as in CORA. A region narrow
 tolerance, or running out of `fuel`, is `none`. Returns the region and its left end.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

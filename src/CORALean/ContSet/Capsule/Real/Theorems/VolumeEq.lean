@@ -14,10 +14,10 @@ the measure is `2‖g‖` times the measure of the `(n-1)`-ball, plus the integr
 slice lengths, which is the measure of the `n`-ball (the same computation at `g = 0`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

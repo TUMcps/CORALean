@@ -19,10 +19,10 @@ that of the stored generators, which the box `quadMapDep` returns holds. The con
 operand's padded by the two new blocks, so they hold at `β'` exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

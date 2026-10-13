@@ -6,10 +6,10 @@ import CORALean.ContSet.Equality.Float.Operations.EqBool
 `true` says the class's `isequal` holds, which says the two representations denote one set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

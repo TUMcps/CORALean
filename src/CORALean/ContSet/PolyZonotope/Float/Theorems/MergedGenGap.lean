@@ -14,10 +14,10 @@ their own matrix without the fact being proved three times. The row reduces to
 this expression, which is why each reads it by `exact`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

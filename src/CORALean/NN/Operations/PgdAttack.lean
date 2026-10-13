@@ -8,10 +8,10 @@ import CORALean.NN.Operations.PgdStep
 the body has no `rand`. The state after pass `q` is the point and the step size in force.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

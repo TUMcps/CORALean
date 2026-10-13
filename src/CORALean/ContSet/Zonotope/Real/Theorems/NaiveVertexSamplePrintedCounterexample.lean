@@ -17,10 +17,10 @@ an event of probability `0` under any measure on the samples.
       Conference (ECC), 2024. doi:10.23919/ECC64448.2024.10590884.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

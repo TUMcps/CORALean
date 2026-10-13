@@ -21,10 +21,10 @@ float result reaches the original's point. Outer: the exact layer's `rescale_exa
 equality, this is not, and it needs of the contractor only that it keep every solution.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

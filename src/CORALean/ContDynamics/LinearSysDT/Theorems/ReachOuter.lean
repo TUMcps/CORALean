@@ -7,10 +7,10 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
 via `aux_toTrajectoryOn`, so nothing here is proved twice.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

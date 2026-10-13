@@ -18,10 +18,10 @@ semidefinite and any step length `α > 0`. The projection property at `x⁺ = x`
       Bounders". Transactions on Computers, 11(4):1611-1618, 2005.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

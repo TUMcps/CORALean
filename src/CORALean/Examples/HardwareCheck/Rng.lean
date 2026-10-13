@@ -9,10 +9,10 @@ fail -- zeros, subnormals, the ends of the normal range, ties, cancellation, `1 
 about `2 ^ 53` apart, and products and quotients landing on either end of the range.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

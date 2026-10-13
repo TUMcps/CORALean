@@ -17,10 +17,10 @@ convolution's stencil this is [1, Sec. II (Conv to CAT)]: Appendix A's `W^F`, wh
       IEEE S&P 2018, pp. 3-18.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

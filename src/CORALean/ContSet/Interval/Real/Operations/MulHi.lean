@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Real.Interval
 The greatest of the four corner products of two scalar intervals.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Definitions.InvSqrt
 A reciprocal of a monotone square root of a monotone clamp.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

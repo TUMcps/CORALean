@@ -9,10 +9,10 @@ summands, so the relabelled capsule denotes precisely the image of the original 
 `reindexLin e`. An equality, as `Reindex` asks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

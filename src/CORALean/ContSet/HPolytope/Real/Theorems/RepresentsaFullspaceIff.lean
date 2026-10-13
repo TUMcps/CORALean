@@ -9,10 +9,10 @@ point has `a = 0` (else scale a point with `aᵀx ≠ 0` past `b`) and `b ≥ 0`
 equality row `aᵀx = be` that holds at every point has `be = 0` (at `0`) and so `a = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ tolerance `0`, is the Loewner order `Q₂ ⪯ Q₁`, stated here as the quadrati
 `vᵀ Q₂ v ≤ vᵀ Q₁ v` for every `v`. `isBigger_iff_subset` is the link to the sets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
