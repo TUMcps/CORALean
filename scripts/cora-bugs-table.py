@@ -114,6 +114,12 @@ def latex(s):
         part = part.replace("\\", "\\textbackslash{}")
         part = re.sub(r"([&%#_{}])", r"\\\1", part)
         part = part.replace("^", "\\textasciicircum{}")
+        # pdflatex cannot typeset a character outside ASCII in text (`ℝⁿ` broke the paper
+        # once): write it as math, `$\\mathbb{R}^n$`, which passes through above.
+        bad = sorted({c for c in part if ord(c) > 127})
+        if bad:
+            raise SystemExit(f"cora-bugs-table: non-ASCII {''.join(bad)!r} outside $...$ in {s!r}; "
+                             "write it as LaTeX math")
         out.append(part)
     return "".join(out)
 

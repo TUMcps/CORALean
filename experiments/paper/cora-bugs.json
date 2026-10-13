@@ -390,6 +390,11 @@
       "kind": "unsound",
       "cex": "IsIntersectingEllipsoidCoraCounterexample.lean"
     },
+    "isequal": {
+      "description": "idx for idx(i): repeated vertex start never tried",
+      "kind": "other",
+      "cex": "IsequalCoraCounterexample.lean"
+    },
     "minkDiff": {
       "description": "not inner for a nonconvex subtrahend",
       "kind": "unsound"
@@ -430,7 +435,7 @@
       "kind": "other"
     },
     "isIntersecting_": {
-      "description": "H/V test omits V*beta = x; disjoint sets intersect",
+      "description": "H/V omits V*beta = x; zonoBundle drops equalities",
       "kind": "other",
       "cex": "IsIntersectingVPolyCoraCounterexample.lean",
       "fix": "InterIneqsNonemptyIff.lean"
@@ -450,7 +455,7 @@
       "fix": null
     },
     "representsa_": {
-      "description": "empty as point, ℝⁿ as hyperplane, zero rows, halfspace crash",
+      "description": "empty as point, $\\mathbb{R}^n$ as hyperplane, zero rows, halfspace crash",
       "kind": "other",
       "cex": "RepresentsaIntervalCoraCounterexample.lean",
       "findings": [
