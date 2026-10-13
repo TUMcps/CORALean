@@ -235,6 +235,14 @@
     "isFullDim": {
       "description": "rank test ignores factor constraints pinning the set",
       "kind": "other"
+    },
+    "supportFunc_": {
+      "description": "all-zero A read as unconstrained; empty set gets finite value",
+      "kind": "other",
+      "cex": "SupportFuncUpperCoraCounterexample.lean",
+      "findings": [
+        "ConZonotope `supportFunc_`, `'upper'`, infeasible zero constraint"
+      ]
     }
   },
   "contSet/ellipsoid": {
@@ -406,11 +414,13 @@
       "fix": null
     },
     "representsa_": {
-      "description": "cut row rejects point {0}; empty polytope accepted as point",
+      "description": "empty as point, whole space as hyperplane, zero rows skipped",
       "kind": "other",
       "cex": "RepresentsaIntervalCoraCounterexample.lean",
       "findings": [
-        "Polytope `representsa_`, `'point'`, empty polytope"
+        "Polytope `representsa_`, `'point'`, empty polytope",
+        "Polytope `representsa_`, `'hyperplane'`, unconstrained polytope",
+        "Polytope `representsa_`, `'interval'`, infeasible zero row"
       ]
     }
   },
