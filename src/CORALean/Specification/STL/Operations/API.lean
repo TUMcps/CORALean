@@ -25,6 +25,17 @@ import CORALean.Specification.STL.Operations.FactorCheck
 import CORALean.Specification.STL.Operations.FactorMeet
 import CORALean.Specification.STL.Operations.FactorStep
 import CORALean.Specification.STL.Operations.UnsafeFactors
+import CORALean.Specification.STL.Operations.DepCurvatureF
+import CORALean.Specification.STL.Operations.DepCurvatureG
+import CORALean.Specification.STL.Operations.DepBloating
+import CORALean.Specification.STL.Operations.DepBox
+import CORALean.Specification.STL.Operations.DepReachConstsOf
+import CORALean.Specification.STL.Operations.DepReachInit
+import CORALean.Specification.STL.Operations.DepReachStep
+import CORALean.Specification.STL.Operations.DepReachAt
+import CORALean.Specification.STL.Operations.DepReachPoint
+import CORALean.Specification.STL.Operations.DepReachInterval
+import CORALean.Specification.STL.Operations.DepReach
 
 /-!
 # Signal and reachset temporal logic: the operations
@@ -32,5 +43,6 @@ import CORALean.Specification.STL.Operations.UnsafeFactors
 Evaluating a composition `f(φ₁, …, φ_n)`, the STL formula a normal form stands for, and `Υ`
 from sampled time STL to RTL. Beside them the verifier of Kochdumper and Bak: the unsafe factors
 of a polytope, the model checking `factorCheck` that intersects them, and the loop
-`automatedVerification` that halves the time step.
+`automatedVerification` that halves the time step, and its dependency preserving reachability
+analysis `depReach` (Alg. 1) with the sets of Eqs. (14)-(20).
 -/

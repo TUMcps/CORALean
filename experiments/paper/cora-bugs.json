@@ -14,10 +14,14 @@
       "kind": "unsound"
     },
     "observe": {
-      "description": "Hinf-G error set misses initial state off origin",
+      "description": "Hinf-G misses initial state; observers drop U, c, k, E",
       "kind": "unsound",
       "findings": [
-        "LinearSysDT `observe`, `'Hinf-G'`"
+        "LinearSysDT `observe`, `'Hinf-G'`",
+        "LinearSysDT `observe`, input set `U`",
+        "LinearSysDT `observe`, output offset `k` and feedthrough `D u`",
+        "LinearSysDT `observe`, state offset `c`",
+        "LinearSysDT `observe`, disturbance matrices `E`, `F`"
       ],
       "cex": "ObserveIntervalCoraCounterexample.lean",
       "fix": "ObserveInterval.lean"
@@ -72,12 +76,16 @@
   },
   "contDynamics/linearSysDT": {
     "executeObserver": {
-      "description": "Hinf-G, ESO-A and ESO-B estimates miss the true state",
+      "description": "Hinf-G, ESO-A/B miss state; observers drop U, c, k, E",
       "kind": "unsound",
       "findings": [
         "LinearSysDT `observe`, `'Hinf-G'`",
         "LinearSysDT `observe`, `'ESO-A'`",
-        "LinearSysDT `observe`, `'ESO-B'`"
+        "LinearSysDT `observe`, `'ESO-B'`",
+        "LinearSysDT `observe`, input set `U`",
+        "LinearSysDT `observe`, output offset `k` and feedthrough `D u`",
+        "LinearSysDT `observe`, state offset `c`",
+        "LinearSysDT `observe`, disturbance matrices `E`, `F`"
       ],
       "cex": "ObserveEsoA1DCounterexample.lean",
       "fix": "ObserveEsoA.lean"
@@ -137,6 +145,13 @@
       "kind": "unsound"
     }
   },
+  "contDynamics/nonlinearARX": {
+    "reach": {
+      "description": "try/catch swallows errors; empty output passes any spec",
+      "kind": "other",
+      "cex": "ReachStepCoraHoldsOfError.lean"
+    }
+  },
   "contDynamics/nonlinearSys": {
     "linReach_adaptive": {
       "description": "Hessian read over a region missing the linearization point",
@@ -147,6 +162,24 @@
       "description": "'minkdiff' time-interval sets and 'scale' sets are not inner",
       "kind": "unsound",
       "cex": "ReachInnerScalingCora1DCounterexample.lean"
+    }
+  },
+  "contDynamics/nonlinearSysDT": {
+    "executeObserver": {
+      "description": "input set U accepted, never used in prediction",
+      "kind": "unsound",
+      "findings": [
+        "LinearSysDT `observe`, input set `U`"
+      ],
+      "cex": "ObservePropagationInputSetCounterexample.lean"
+    },
+    "reach": {
+      "description": "initial set never checked against specification",
+      "kind": "unsound",
+      "cex": "ReachSpecCoraInitialCounterexample.lean",
+      "findings": [
+        "NonlinearSysDT `reach`, initial set not checked"
+      ]
     }
   },
   "contSet/capsule": {
@@ -452,9 +485,12 @@
       "kind": "other"
     },
     "minkDiff": {
-      "description": "'approx' not inner; 'outer:scaling' ignores subtrahend centre",
+      "description": "'approx' not inner, 'outer:scaling' ignores centre, 'exact' oversize subtrahend",
       "kind": "unsound",
-      "cex": "MinkDiffApproxNotInner.lean"
+      "cex": "MinkDiffApproxNotInner.lean",
+      "findings": [
+        "Zonotope `minkDiff`, 2-D `'exact'`"
+      ]
     },
     "norm_": {
       "description": "'exact' omits centre from program; norm under-estimated",
@@ -574,16 +610,6 @@
       "kind": "other",
       "cex": "SimulateRandomTimesCoraCounterexample.lean",
       "fix": null
-    }
-  },
-  "contDynamics/nonlinearSysDT": {
-    "reach": {
-      "description": "initial set never checked against specification",
-      "kind": "unsound",
-      "cex": "ReachSpecCoraInitialCounterexample.lean",
-      "findings": [
-        "NonlinearSysDT `reach`, initial set not checked"
-      ]
     }
   }
 }

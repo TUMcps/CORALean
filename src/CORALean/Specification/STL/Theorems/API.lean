@@ -106,6 +106,22 @@ import CORALean.Specification.STL.Theorems.MilpCorrectedIff
 import CORALean.Specification.STL.Theorems.MilpPrintedCounterexample
 import CORALean.Specification.STL.Theorems.MilpPrintedInfeasible
 import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactors
+import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactorsPoint
+import CORALean.Specification.STL.Theorems.SumGenPlus
+import CORALean.Specification.STL.Theorems.SumGenMtimes
+import CORALean.Specification.STL.Theorems.SumGenOfPoint
+import CORALean.Specification.STL.Theorems.DepReachAtHh
+import CORALean.Specification.STL.Theorems.DepReachAtPcH
+import CORALean.Specification.STL.Theorems.DepReachAtPcC
+import CORALean.Specification.STL.Theorems.DepReachAtDC
+import CORALean.Specification.STL.Theorems.DepBloatingC
+import CORALean.Specification.STL.Theorems.DepReachAtSum
+import CORALean.Specification.STL.Theorems.DepReachPointDependency
+import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
+import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
+import CORALean.Specification.STL.Theorems.DepReachIntervalDependencyCounterexample
+import CORALean.Specification.STL.Theorems.UnsafeFactorsIntervalCounterexample
+import CORALean.Specification.STL.Theorems.DependencyPreservedOfEncloses
 
 /-!
 # Signal and reachset temporal logic: the theorems
@@ -116,7 +132,9 @@ rewriting rules of [1, Table 1], and the lemmas about traces and sets they use. 
 are re-exported too. Beside them, the mixed-integer encodings of discrete-time STL: each
 constraint gadget, and the encodings deciding the formula and computing its robustness. Of [2]:
 the unsafe factors of a polytope, the soundness of the model checking over them and of the
-automated verifier built on it, and the program (26) of its falsification, infeasible as printed.
+automated verifier built on it, the program (26) of its falsification, infeasible as printed, and
+the reach sequence of its Alg. 1: the generator layout, the state at the time points as the
+solution under a piecewise constant input, and its failure between them.
 
 ## References
 

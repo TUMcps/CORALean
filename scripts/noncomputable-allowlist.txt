@@ -511,3 +511,13 @@ STL.verifySTLKochdumperGloballyCora  real-layer: the first iteration of CORA's `
 STL.robustnessReachSetGloballyCora  real-layer: CORA's `stl/robustness` on a one-branch reach set of a 1-D system against `globally(x(1) > 0,[0,T])`, as printed for that path; read for its counterexample only
 LinearSys.verifyRAIntersectionDistanceCora  real-layer: CORA's `aux_distanceIntersectionZono` in `ℝ¹` (sSup/sInf of the intersection), read for the touching-verdict counterexample only
 LinearSys.verifyRAOuterVerdictCora  real-layer: the verdict of CORA's `priv_verifyRA_zonotope` for one outer set and one unsafe set in `ℝ¹`, no safe set, as printed; its counterexample runs
+STL.depBloating  real-layer: Eq. (15) of Kochdumper-Bak as printed, a Minkowski sum of maps of `U₀` by matrices and an interval matrix over real zonotopes
+STL.depBox  real-layer: `interval(Z)` of Alg. 1 of Kochdumper-Bak, the interval hull as a real zonotope, a sum of absolute values
+STL.depCurvatureF  real-layer: Eq. (18) `F` of Kochdumper-Bak, an interval matrix of real terms and the matrix exponential remainder
+STL.depCurvatureG  real-layer: Eq. (18) `G` of Kochdumper-Bak, an interval matrix of real terms and the matrix exponential remainder
+STL.depReach  real-layer: Alg. 1 of Kochdumper-Bak, the reach sequence over real zonotopes with the matrix exponential
+STL.depReachAt  real-layer: the state of Alg. 1 of Kochdumper-Bak after `i` passes of its loop, over real zonotopes
+STL.depReachConsts  real-layer: line 1 of Alg. 1 of Kochdumper-Bak: `T` is the real series `expIntegral`, `F`, `G`, `D` real sets
+STL.depReachInit  real-layer: lines 2-3 of Alg. 1 of Kochdumper-Bak over real zonotopes and interval matrices
+STL.depReachInterval  real-layer: Eq. (19) `R(τ_i)` of Kochdumper-Bak, the convex hull enclosure of real zonotopes
+STL.depReachStep  real-layer: lines 5-7 of Alg. 1 of Kochdumper-Bak, the matrix exponential applied to real zonotopes
