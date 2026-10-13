@@ -247,13 +247,13 @@ a part is formalized is `—` (or is split, each half classed on its own); it is
 is not a clause of that result: it gets its own row, `<result> (complexity)` or
 `<result> (generators)`, and the result's row states the result alone. The new row is then
 sorted by one rule. A **size** (how many generators or constraints the result has) is a
-theorem about the result, so it is in scope, `—` or formalized under `Complexity/`. A
+theorem about the result, so it is in scope, `—` or formalized under `Complexity/Space/`. A
 **running time** is not: a Lean definition says what is computed and never what computing it
-costs, so the tree can only assert it under `Cost/` (CONTRIBUTING.md, "A size is proved; a
+costs, so the tree can only assert it under `Complexity/Time/` (CONTRIBUTING.md, "A size is proved; a
 running cost is asserted"). A running time is therefore `not-a-claim`, unless the paper
 states it as a result in its own right, a Proposition or Theorem whose statement is the bound
 (Althoff et al. NAHS'10 `Prop. 10`, `Prop. 11`), and then it is in scope and formalized under
-`Cost/` like those two.
+`Complexity/Time/` like those two.
 
 ## Findings
 

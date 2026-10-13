@@ -18,7 +18,7 @@ hypothesis into every step; at a similar pair the summed width is the single
 Fuel rather than a termination proof: each step drops one dependent generator,
 so `pZ.h` steps exhaust the set and the caller says how many to take. The
 `O((h+q)hn + h²p)` of `[1, Thm. 2]` is a complexity claim, and belongs to a
-`Complexity/` development that does not exist here yet.
+`Complexity/Space/` development that does not exist here yet.
 
 ## References
 

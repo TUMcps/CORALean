@@ -3,14 +3,14 @@ import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.API
 import CORALean.ContDynamics.NeurNetContrSysDT.Instances
 import CORALean.ContDynamics.NeurNetContrSysDT.Operations.API
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.API
-import CORALean.ContDynamics.NeurNetContrSysDT.Cost.API
+import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.API
 
 /-!
 # A neural network in the loop of a discrete-time plant, collected
 
 The plant, the controller and what a run of the two is in `NeurNetContrSysDT`,
 the alternating recursion in `Operations`, the set a run reaches in `ReachSet`,
-its guarantee in `Theorems`, its cost in `Cost`, and `Instances`, its `Reach`
+its guarantee in `Theorems`, its cost in `Complexity/Time`, and `Instances`, its `Reach`
 instance: no input set to bundle, the closed loop reading its own off the
 controller.
 

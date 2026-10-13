@@ -2,7 +2,6 @@ import CORALean.ContSet.VPolytope.Real.VPolytope
 import CORALean.ContSet.VPolytope.Real.Operations.API
 import CORALean.ContSet.VPolytope.Real.Theorems.API
 import CORALean.ContSet.VPolytope.Real.Complexity.API
-import CORALean.ContSet.VPolytope.Real.Cost.API
 import CORALean.ContSet.VPolytope.Real.Instances
 import CORALean.ContSet.VPolytope.Real.Theorems.EncloseExact
 

@@ -7,7 +7,7 @@ import Mathlib.Order.BourbakiWitt
 
 `[1, Thm. 2]`, whose soundness content is one sentence — the greedy relaxation
 encloses because `[1, Thm. 1]` does — and whose remainder is a complexity claim
-that belongs to a `Complexity/` development rather than here.
+that belongs to a `Complexity/Space/` development rather than here.
 
 So the whole of it is the loop, and that the loop encloses *whatever* the
 selection: an enclosure composes with an enclosure, and each step is

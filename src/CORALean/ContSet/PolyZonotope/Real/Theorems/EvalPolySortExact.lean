@@ -13,7 +13,7 @@ which is what says the two routes reach the same value.
 
 What is *not* claimed: [1, Prop. 3.5] also gives the result `O(h^o)`
 generators and a running cost, and neither is proved here or asserted under
-`Complexity/` or `Cost/`. Of its regularity only `merge_col_injective` holds,
+`Complexity/`. Of its regularity only `merge_col_injective` holds,
 for the reason `Merge.lean` gives.
 
 ## References

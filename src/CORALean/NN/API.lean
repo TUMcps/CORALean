@@ -1,4 +1,4 @@
-import CORALean.NN.Cost.API
+import CORALean.NN.Complexity.API
 import CORALean.NN.Definitions.API
 import CORALean.NN.Graph.API
 import CORALean.NN.Instances

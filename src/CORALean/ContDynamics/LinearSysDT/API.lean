@@ -1,5 +1,4 @@
 import CORALean.ContDynamics.LinearSysDT.Complexity.API
-import CORALean.ContDynamics.LinearSysDT.Cost.API
 import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachExistsOptions
 import CORALean.ContDynamics.LinearSysDT.Definitions.IsConformDyn
 import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachForallOptions
@@ -44,7 +43,7 @@ The system and what it denotes in `LinearSysDT`, reachability in `Operations`
 at CORA's `options` in `ReachOptions` and its siblings, the set reachability
 encloses in `ReachSet`, what a run of it owes in `ReachError` and the inner approximation
 that buys in `ReachInner`, the guarantees in `Theorems`, how large the owed
-error is in `Complexity`, and in `Cost` what running it costs.
+error is in `Complexity/Space`, and in `Complexity/Time` what running it costs.
 
 `ReachUnionExact` is the set `Reach` asks to be enclosed, every step up to the
 horizon, and `Instances` is the instance itself.

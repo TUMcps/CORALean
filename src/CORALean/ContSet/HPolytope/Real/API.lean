@@ -3,7 +3,6 @@ import CORALean.ContSet.HPolytope.Real.Definitions.API
 import CORALean.ContSet.HPolytope.Real.Operations.API
 import CORALean.ContSet.HPolytope.Real.Theorems.API
 import CORALean.ContSet.HPolytope.Real.Complexity.API
-import CORALean.ContSet.HPolytope.Real.Cost.API
 import CORALean.ContSet.HPolytope.Real.Instances
 
 /-!
