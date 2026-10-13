@@ -154,7 +154,7 @@ import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
 import CORALean.ContSet.Equality.Float.Instances
 import CORALean.ContSet.Equality.Float.Operations.EqBool
 import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
-import CORALean.ContDynamics.NonlinearARX.Operations.FeedFloat
+import CORALean.ContDynamics.NonlinearARX.Operations.Feed
 import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
 import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointApprox
 import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsSetApprox
@@ -183,9 +183,9 @@ here, bar `varInputs` (`pending #1`), which has no float refinement yet;
 `verifyConvex` each ask for a `FloatBound`/`SupportBound` a solver alone can supply.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   01-October-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -1411,7 +1411,7 @@ def arxModel : NonlinearARX.FloatModel D 1 1 1 where
 
 def arxBoxes : ℕ → Interval (Vec D (1 * 1)) :=
   NonlinearSysDT.simulateBoxFloat arxModel.toNonlinearSysDTFloat ![d 1 0]
-    (NonlinearARX.feedFloat 1 fun _ => (![d 1 (-4)] : Vec D 1))
+    (NonlinearARX.feed 1 fun _ => (![d 1 (-4)] : Vec D 1))
 /-! ## A polynomial zonotope's inner approximation and approximate containment
 
 CORA's `innerApprox` example `polyZonotope([0;0],[2 0 2;0 2 2],[0.5;0],[1 0 3;0 1 1])`, inner

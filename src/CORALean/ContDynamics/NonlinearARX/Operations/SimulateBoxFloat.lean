@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
 import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
-import CORALean.ContDynamics.NonlinearARX.Operations.FeedFloat
+import CORALean.ContDynamics.NonlinearARX.Operations.Feed
 import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
 
 /-!
@@ -8,13 +8,13 @@ import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
 
 CORA's `simulate` at a float start window and a float input signal, through the converted
 `NonlinearSysDT`: the float model of its field applied to the box of the stacked window and the
-point box of the stacked inputs `feedFloat`. The boxes enclose the stacked window of the real run;
+point box of the stacked inputs `feed`. The boxes enclose the stacked window of the real run;
 soundness is `simulate_mem_simulateBoxFloat`.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ of the converted system's field. -/
 def NonlinearARX.simulateBoxFloat (_sys : NonlinearARX dy du p)
     (fm : NonlinearSysDT.FloatModel 𝕋 (p * dy) ((p + 1) * du)) (y₀ : Vec 𝕋 (p * dy))
     (u : ℕ → Vec 𝕋 du) : ℕ → Interval (Vec 𝕋 (p * dy)) :=
-  NonlinearSysDT.simulateBoxFloat fm y₀ (NonlinearARX.feedFloat p u)
+  NonlinearSysDT.simulateBoxFloat fm y₀ (NonlinearARX.feed p u)
 
 end CORALean
 
