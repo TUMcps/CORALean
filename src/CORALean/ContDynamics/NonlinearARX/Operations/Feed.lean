@@ -4,12 +4,14 @@ import CORALean.ContDynamics.NonlinearARX.NonlinearARX
 # The input signal of the converted system
 
 At step `k` the window moves to `y(k+1..k+p)`, and `y(k+p)` reads the inputs
-`u(k+p), …, u(k)`; `feed u k` stacks them oldest first, block `a` holding `u(k+a)`.
+`u(k+p), …, u(k)`; `feed u k` stacks them oldest first, block `a` holding `u(k+a)`. It is
+generic in the scalar: at ℝ the input signal of the converted system, at a float type the stored
+values a float run has.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -17,12 +19,12 @@ At step `k` the window moves to `y(k+1..k+p)`, and `y(k+p)` reads the inputs
 
 namespace CORALean
 
-variable {du : ℕ}
+variable {𝕋 : Type} {du : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def NonlinearARX.feed (p : ℕ) (u : ℕ → Vec ℝ du) (k : ℕ) : Vec ℝ ((p + 1) * du) :=
+def NonlinearARX.feed (p : ℕ) (u : ℕ → Vec 𝕋 du) (k : ℕ) : Vec 𝕋 ((p + 1) * du) :=
   fun r => u (k + (finProdFinEquiv.symm r).1) (finProdFinEquiv.symm r).2
 
 end CORALean

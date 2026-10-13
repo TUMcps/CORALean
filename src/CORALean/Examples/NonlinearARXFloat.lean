@@ -24,7 +24,7 @@ step, in the printed box.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -94,7 +94,7 @@ def uIn : ℕ → Vec D 1 := fun _ => ![d 1 (-4)]
 
 /-- The boxes of the stacked windows `(y(k), y(k+1))`, from the converted float model. -/
 def boxes : ℕ → Interval (Vec D 2) :=
-  NonlinearSysDT.simulateBoxFloat model.toNonlinearSysDTFloat y₀ (NonlinearARX.feedFloat 2 uIn)
+  NonlinearSysDT.simulateBoxFloat model.toNonlinearSysDTFloat y₀ (NonlinearARX.feed 2 uIn)
 
 /-- `NonlinearARX.simulateBoxFloat` is that run (it ignores the real system). -/
 theorem boxes_eq : arxSys.simulateBoxFloat model.toNonlinearSysDTFloat y₀ uIn = boxes := rfl

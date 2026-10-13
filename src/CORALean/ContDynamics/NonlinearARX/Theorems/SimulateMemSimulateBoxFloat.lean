@@ -11,9 +11,9 @@ from the real value of a float start window under the real value of a float inpu
 at every step, in the box `simulateBoxFloat` computes. An outer statement.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -66,7 +66,7 @@ theorem NonlinearARX.simulate_mem_simulateBoxFloat (sys : NonlinearARX dy du p)
     exact Interval.mem_point y₀
   | succ k ih =>
     rw [sys.toNonlinearSysDT_step hrec k]
-    exact h.f_mem _ _ _ ih _ (Interval.mem_point (NonlinearARX.feedFloat p u k))
+    exact h.f_mem _ _ _ ih _ (Interval.mem_point (NonlinearARX.feed p u k))
 
 end CORALean
 
