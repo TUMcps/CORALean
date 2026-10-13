@@ -1,27 +1,60 @@
 # Rebuilds CORALean on every push to the default branch and on merge requests.
 #
-# No caches, deliberately. Measured on 2026-09-01:
+# Two caches are declined and one is kept. Measured on 2026-09-01:
 #
 #   .lake/packages        7.6 GB   (Mathlib oleans are 5.8 GB of it)
 #   a Lean toolchain      3.0 GB
 #   .lake/build           1.1 GB   (57 MB of oleans, 1 GB of emitted C)
 #
-# All three are larger than what they would save. `lake exe cache get` is the
+# The first two are larger than what they would save. `lake exe cache get` is the
 # mechanism for Mathlib: it pulls prebuilt oleans from Mathlib's own CDN, which
 # is faster than zipping and unzipping 7.6 GB through GitLab's cache, and it is
 # what keeps a job from compiling Mathlib from source — which would take hours.
 # elan's toolchain download is compressed and costs about a minute.
 #
-# Caching .lake/build would make a job incremental, and is safe (lake's traces
-# are content hashes), but lake regenerates every module when the emitted C is
-# absent — verified 2026-09-01 — so it means carrying the full 1.1 GB, not the
-# 57 MB of oleans. Worth revisiting only if pipeline time starts to matter.
+# `.lake/build` was declined because lake regenerated every module when the
+# emitted C was absent, so it meant carrying the full 1.1 GB. Lake's own
+# artifact cache (`LAKE_ARTIFACT_CACHE`, content-addressed, kept in
+# `LAKE_CACHE_DIR`) changes that, and `build` uses it. Re-measured 2026-10-13
+# on a cold build of the whole 13014-job graph:
 #
-# Expect roughly half an hour: a few minutes to fetch, then ~20 minutes to build.
+#   cold build, 16 threads                     49 min   (niced, on a busy machine)
+#   the same tree from the cache, fresh clone  12 s
+#   cache directory after the build            3.8 GB   (2.4 GB of it Mathlib's)
+#   the same, pruned to this repository        1.2 GB   (oleans and ileans 0.9 GB)
+#   of which emitted C                         77 MB
+#
+# Lake stores the artifacts of every package it touches, Mathlib's included, though
+# `lake exe cache get` supplies those, so `scripts/prune-lake-cache.py` runs after
+# every job and cuts the directory to what the tree just built needs. That also
+# bounds it: lake never removes an artifact, so without the prune a cache that
+# sees a commit a day would only grow.
+#
+# The emitted C stays in. Without it lake finds the entry ("found in package
+# artifact cache, but some output(s) have issues: artifact not found in cache")
+# and recompiles the module, verified 2026-10-13: the 77 MB it would save is not
+# worth a cache that does nothing.
+#
+# The cache is GitLab's `cache:` (the runner's storage, not the repository), keyed
+# by `lean-toolchain` and `lake-manifest.json`, so a toolchain or Mathlib bump
+# starts cold. `.lake/packages` is not in it. `pull-push` in every pipeline,
+# merge requests included: a project with "separate caches for protected
+# branches" would otherwise give every merge request a pull-only view of a cache
+# it cannot see, cold forever; the price of sharing one is that branches prune
+# each other's modules, which costs a recompile of the difference, not a cold build.
+#
+# What the cache cannot do is replay warnings: a restored module carries an empty
+# log. The warning gate of `build` therefore only sees the modules it rebuilt, and
+# `build-cold`, on the nightly schedule and with no cache, is the authoritative one.
+#
+# Expect roughly half an hour cold: a few minutes to fetch, then ~20 minutes to build;
+# a few minutes warm, once the cache holds the last commit's build.
 
 variables:
   ELAN_HOME: "$CI_PROJECT_DIR/.elan"
   GIT_DEPTH: "1"
+  # Pinned, so the build does not depend on how many cores the host reports.
+  LEAN_NUM_THREADS: "16"
   # A rate-limited anonymous clone answers 403, which git reads as "needs
   # credentials" and then blocks asking for them. Fail instead, so the retry
   # below gets a turn rather than the job sitting until timeout.
@@ -127,8 +160,28 @@ conventions:
         sleep $((n * 120))
       done
 
+# The artifact cache that `build` and nothing else uses; see the header for what it holds.
+# `when: always` so that a job failing its warning gate or a check, after a complete build, still
+# saves that build. `after_script` runs on failure too, and before the cache is archived.
+.lake-cache:
+  variables:
+    LAKE_CACHE_DIR: "$CI_PROJECT_DIR/.lake-cache"
+    LAKE_ARTIFACT_CACHE: "true"
+    LAKE_RESTORE_ARTIFACTS: "true"
+  cache:
+    key:
+      files:
+        - lean-toolchain
+        - lake-manifest.json
+    paths:
+      - .lake-cache/
+    policy: pull-push
+    when: always
+  after_script:
+    - if [ -d .lake-cache/outputs ]; then python3 scripts/prune-lake-cache.py .lake-cache; fi
+
 build:
-  extends: .lean-setup
+  extends: [.lean-setup, .lake-cache]
   # A newer push to the same branch cancels this job: the project's "Auto-cancel
   # redundant pipelines" setting acts only on jobs that opt in here, and a build
   # of a superseded commit only holds the shared runner back from the one that
@@ -143,6 +196,11 @@ build:
     # what catch unused hypotheses and stray `Try this` suggestions. Matched on
     # `src/` so that a partial Mathlib cache, which compiles Mathlib and may warn,
     # does not fail the job for someone else's code.
+    #
+    # INCOMPLETE here: a module restored from the artifact cache replays an empty
+    # log, so only the modules this job rebuilt can warn. It still catches the
+    # warnings of everything a commit touches, which is why it stays; `build-cold`
+    # below, with no cache, is the authoritative gate.
     # Builds every target `lakefile.toml` names: the library, the worked
     # examples and the demo.
     - set -o pipefail
@@ -154,10 +212,10 @@ build:
     # demo and diffs it against the committed numbers, so a change that widens
     # one fails here.
     #
-    # In this job rather than one of its own. There are no caches, so a second
-    # job would clone Mathlib again — the step that already fails for reasons
-    # outside the tree — and rebuild the library from scratch, twenty minutes
-    # for the sake of a step that costs under a second once the tree is built.
+    # In this job rather than one of its own. A second job would clone Mathlib
+    # again — the step that already fails for reasons outside the tree — and
+    # restore the whole library from the cache, for the sake of a step that costs
+    # under a second once the tree is built.
     - sh scripts/check-demo.sh
     # Runs every algorithm `Examples/RunnableFloat.lean` only compiles, and fails
     # on a NaN, a missing value, a changed result or a def that is not run. About
@@ -208,8 +266,36 @@ build:
       - hardwarecheck.log
     expire_in: 1 week
   rules:
+    # The nightly pipeline runs `build-cold` instead.
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# The nightly cold build: no cache, so every module is compiled and every warning is replayed.
+# This is the warning gate that means something; `build`'s sees only what it rebuilt (see there).
+# It builds every default target and runs nothing else: the checks of `build` do not depend on
+# how the tree was obtained. A warning that reaches main through a cache hit fails here, the same
+# night, rather than never.
+build-cold:
+  extends: .lean-setup
+  timeout: 120m
+  script:
+    - !reference [.lean-setup, script]
+    - set -o pipefail
+    - lake build 2>&1 | tee build.log
+    - "if grep '^warning: src/' build.log; then exit 1; fi"
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+  artifacts:
+    when: always
+    paths:
+      - build.log
+    expire_in: 1 week
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
 
 # The optional FLINT backend (README, "FLINT backend (optional)"): `trustedFlint` is a claim about C
 # that no proof reaches, and `build` above only elaborates the Lean side of it. This job builds
