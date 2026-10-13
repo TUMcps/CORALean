@@ -7,7 +7,7 @@ paper tables in [../README.md](../README.md) and are checked the same way, by
 
 **The unit is one method file**: `~/CORA/contSet/@<class>/<method>.m`,
 `~/CORA/contDynamics/@<class>/<method>.m`, `~/CORA/hybridDynamics/@<class>/<method>.m` or
-`~/CORA/specification/@<class>/<method>.m`. A class of `specification/` that CORA writes as one
+`~/CORA/specification/@<class>/<method>.m`, and for `others` `~/CORA/matrixSet/@<class>/<method>.m`, `~/CORA/discrDynamics/@<class>/<method>.m` or, for `converter/`, the files of a subdirectory. A class of `specification/` that CORA writes as one
 file (`atomicProposition.m`, `kleene.m`, `signals/kleeneSignal.m`, ...) has no method files: its
 rows are the `function`s of its `methods` blocks, constructor included, and the declarations of
 an `Abstract` block (`logicSignal`); `Access = private` and `protected` methods and local
@@ -23,9 +23,22 @@ classes of `ContSet/ContSet/ContSet.lean` (`Plus`, `Mtimes`, `Intersection`, `Re
 
 The classes tabulated are every class under CORA's `contSet/`, `contDynamics/`,
 `hybridDynamics/` and `specification/` (the group `specification`: `specification`, `stl`,
-`stlInterval`, `rtl`, the signals, the analyzers and the logics `kleene` and `fourValued`), and
-the neural networks of `nn/` (`nn/@neuralNetwork` and `nn/layers/`). `matrixSet/`,
-`discrDynamics/`, `converter/` and `global/` are not part of this count. A class with no counterpart in CORALean is
+`stlInterval`, `rtl`, the signals, the analyzers and the logics `kleene` and `fourValued`), the
+neural networks of `nn/` (`nn/@neuralNetwork` and `nn/layers/`), and the group `others`, which
+the paper shows only as one aggregate bar (no per-class figure): `matrixSet/` (`intervalMatrix`,
+`matZonotope`, `matPolytope`, `matrixSet`), `discrDynamics/` (`markovchain`, `partition`, and
+`ProbOccupancyPrediction`, a traffic-prediction case study that is no class: its `@road` and
+`@simulation` classes are `road` and `simulation`, its other functions the table
+`ProbOccupancyPrediction`, with one row per file; its example inputs `scenarios/`,
+`velocityProfiles/` and `vehicleModels/` have none, as CORA's `examples/` has none) and
+`converter/` (one table per subdirectory, one row per `.m` file however deep, `private/`
+excluded; every row is `io/conversion-to-matlab-objects`, file-format converters from and to
+SpaceEx, CommonRoad, CommonOcean, VNN-LIB and power-system files). `global/` is not tracked:
+it holds helper functions (validation, numerics, printing), not classes. CORALean has no matrix-set classes of its
+own: `matZonotope` is `Zonotope (Mat ℝ m n)`, `intervalMatrix` is `Interval (Mat ℝ m n)` and
+`matPolytope` is `VPolytope (Mat ℝ m n)`, so a row links the generic declaration only where its
+theorem is stated at (or generically over) the matrix ambient type and states the CORA
+operation's result. A class with no counterpart in CORALean is
 tabulated all the same, every method `—` (or out of scope for a reason that holds for it),
 so the denominator is CORA's, not ours. Those are `spectraShadow`, `taylm`, `affine`,
 `levelSet`, `polygon`, `probZonotope`, `zoo`, `linProbSys`, `nonlinDASys`,
@@ -93,7 +106,7 @@ Only these, and the row says which:
 | `plotting/display` | `display`, `plot*`, `print*`, `getPrintSetInfo`, `printSet`, `viewGraph`: output for a person at a MATLAB prompt |
 | `random/sampling` | `randPoint_`, `generateRandom`, `simulateRandom`, `createTestSuite`, `gridPoints`: results that are random draws or sample grids |
 | `solver-dependent` | the method is an encoding for an external solver (`dynamicsEncodingMILP`), not a set operation |
-| `io/conversion-to-matlab-objects` | `full`, `sparse`, `double`, `single`, `string`, `jsonencode`: conversions between MATLAB storage formats |
+| `io/conversion-to-matlab-objects` | `full`, `sparse`, `double`, `single`, `string`, `jsonencode`: conversions between MATLAB storage formats; also the file-format converters of `converter/` (SpaceEx, CommonRoad, CommonOcean, VNN-LIB, power-system case files), which parse an external file into CORA objects or write one |
 | `matlab-runtime` | MATLAB language plumbing: `copy`, `isemptyobject`, `size`, `length`, `subsref`, `subsasgn`, `reshape`, `parfor` variants, function-handle generators; also `eq`, `ne` and `isequal` of system, reset, location, transition and automaton objects, which compare MATLAB objects field by field (structural equality, not a mathematical claim; `isequal`/`eq` of two sets is one and stays in scope) |
 | `deprecated` | the method's own help text says `DEPRECATED` |
 
@@ -185,6 +198,21 @@ Rulings on borderline cases:
 | [syntaxTree](specification/syntaxTree.md) | specification | 27 | 0 | 0 | 27 | 0 | 0 |
 | [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 0 | 0 | 5 | 1 | 0 |
 | [trajectoryAnalyzer](specification/trajectoryAnalyzer.md) | specification | 2 | 0 | 0 | 2 | 0 | 0 |
+| [ProbOccupancyPrediction](others/ProbOccupancyPrediction.md) | others | 25 | 0 | 0 | 21 | 4 | 0 |
+| [commonocean2cora](others/commonocean2cora.md) | others | 1 | 0 | 0 | 0 | 1 | 0 |
+| [commonroad2cora](others/commonroad2cora.md) | others | 1 | 0 | 0 | 0 | 1 | 0 |
+| [cora2spaceex](others/cora2spaceex.md) | others | 1 | 0 | 0 | 0 | 1 | 0 |
+| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 5 | 4 | 20 | 10 | 0 |
+| [markovchain](others/markovchain.md) | others | 12 | 0 | 0 | 7 | 5 | 0 |
+| [matPolytope](others/matPolytope.md) | others | 20 | 3 | 0 | 10 | 7 | 0 |
+| [matZonotope](others/matZonotope.md) | others | 33 | 3 | 2 | 19 | 9 | 0 |
+| [matrixSet](others/matrixSet.md) | others | 3 | 0 | 0 | 0 | 3 | 0 |
+| [neuralnetwork2cora](others/neuralnetwork2cora.md) | others | 1 | 0 | 0 | 0 | 1 | 0 |
+| [partition](others/partition.md) | others | 12 | 0 | 0 | 10 | 2 | 0 |
+| [powerSystem2cora](others/powerSystem2cora.md) | others | 2 | 0 | 0 | 0 | 2 | 0 |
+| [road](others/road.md) | others | 15 | 0 | 0 | 9 | 6 | 0 |
+| [simulation](others/simulation.md) | others | 7 | 0 | 0 | 4 | 3 | 0 |
+| [spaceex2cora](others/spaceex2cora.md) | others | 40 | 0 | 0 | 0 | 40 | 0 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.
