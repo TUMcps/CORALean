@@ -27,7 +27,7 @@ through `expDown`, which carries no hypothesis, so neither does it.
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -38,6 +38,8 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
+
+namespace Log
 
 /-- The bisection midpoint, its one rounding downward so that a bracket under a
 bound stays under it. -/
@@ -58,6 +60,10 @@ def logUpIter (n : ℕ) (a : 𝕋) : ℕ → 𝕋 → 𝕋 → 𝕋
   | k + 1, lo, hi =>
     if le a (expDown n (mid lo hi)) = true then logUpIter n a k lo (mid lo hi)
     else logUpIter n a k (mid lo hi) hi
+
+end Log
+
+open Log
 
 /-- `log a` from below, for `1 ≤ a`. `n` is `expUp`'s precision and `k` the
 number of bisection steps; the bracket `[0, a]` holds `log a`. -/
