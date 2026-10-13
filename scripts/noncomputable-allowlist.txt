@@ -51,6 +51,7 @@ levelSet  real-layer: a worked example over the real layer (reals, trigonometric
 LinearARX.computeGO  real-layer: the GO parameters as real matrices, powers of the real window matrix; the guarantee is a statement about runs over ℝ
 LinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSys.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
+LinearSysDT.reachLTVCora  real-layer: CORA's `reach` loop for a time-varying `linearSysDT` as printed over real zonotopes with `reduceGirard`, the model `reachLTVCora_counterexample` runs; CORALean's `LinearSysDT` is time-invariant
 LinearSysDT.computeGO  real-layer: the GO parameters as real matrices, powers of the real state matrix; the guarantee is a statement about runs over ℝ
 linProbInput  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
 linProbState  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
@@ -346,6 +347,7 @@ NonlinearSys.linReachPoly  real-layer: the `'poly'` step at a supplied Hessian a
 NonlinearSys.linReachCora1D  real-layer: CORA's `'lin'` step as printed over real intervals in one dimension at a supplied Hessian bound, the model `linReachCora1D_hessianRegion_counterexample` runs; the float step checks its region first, see `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.linReachTensor3Cora2D  real-layer: CORA's `'lin'` step at `tensorOrder = 3` as printed over real boxes in two dimensions at supplied interval kernels, the model `linReachTensor3Cora2D_index_counterexample` runs; the float step checks its region first, see `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.abstrErrAdaptiveTensor3Cora2D  real-layer: CORA's `priv_abstractionError_adaptive` ('lin', tensorOrder 3) as printed over real boxes in two dimensions at supplied interval kernels, the model `abstrErrAdaptiveTensor3Cora2D_factor_counterexample` runs; no float refinement
+NonlinearSys.outputSetCora  real-layer: CORA's `aux_outputSet` at `out_isLinear` after `postProcessing`, from real Jacobians (`fderiv`), the model `outputSetCora_counterexample` runs; a statement about a real output function
 NonlinearSys.abstrErrAdaptiveCora1D  real-layer: CORA's `priv_abstractionError_adaptive` ('lin', tensorOrder 2) as printed over real intervals in one dimension at a supplied interval Hessian, for `linReachAdaptiveCora1D`; the float step checks its region first, see `NonlinearSys.FloatHessModel.adaptStepFloat`
 NonlinearSys.adaptErrLoopCora1D  real-layer: the abstraction-error loop of CORA's `linReach_adaptive` as printed, deciding real comparisons, for `linReachAdaptiveCora1D`
 NonlinearSys.optimalDeltatCora  real-layer: CORA's `aux_optimaldeltat` as printed over the reals (real logarithm and powers, a scan for the first minimizer); the float tuning is `NonlinearSys.FloatHessModel.optDeltatFloat`
@@ -440,6 +442,7 @@ LinearSys.oneStep  real-layer: the one-step reachable sets at the real matrix ex
 Krylov.arnoldi  real-layer: the Arnoldi iteration over ℝ (Euclidean norm and division by it), the subject of Althoff's Krylov paper; no float Krylov reachability yet
 Krylov.arnoldiBasis  real-layer: the basis V of the Arnoldi iteration over ℝ, read off `Krylov.arnoldi`; no float Krylov reachability yet
 Krylov.arnoldiHessenberg  real-layer: the Hessenberg matrix H of the Arnoldi iteration over ℝ, read off `Krylov.arnoldi`; no float Krylov reachability yet
+Krylov.reachKrylovCora1D  real-layer: CORA's first `'krylov'` time-point set as printed over the reals in one dimension (real `exp`, the real Arnoldi pass), the model `reachKrylovCora1D_constant_counterexample` runs; no float Krylov reachability yet
 STL.CNF.upsilon  real-layer: time is `ℝ≥0` and `X_{c/2}` divides by two, which `NNReal` cannot compute; the transformation acts on reach sequences indexed by real time
 StarSet.rowBounds  real-layer: the star set of CORA's constrained-zonotope propagation is over ℝ, no scalar-generic form yet; bounds of a neuron over the factor box
 StarSet.coraRowBounds  real-layer: the star set's neuron bounds as CORA's code computes them, kept for the counterexample, ℝ-only for the same reason

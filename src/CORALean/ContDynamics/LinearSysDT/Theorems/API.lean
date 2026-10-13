@@ -50,6 +50,7 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepFloatOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedFloatOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ObservePropagationFloatOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveIntervalFloatOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSpecCoraFinalCounterexample
 
 /-!
 # What `LinearSysDT` guarantees

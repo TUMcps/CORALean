@@ -21,6 +21,11 @@
       ],
       "cex": "ObserveIntervalCoraCounterexample.lean",
       "fix": "ObserveInterval.lean"
+    },
+    "outputSet": {
+      "description": "input-set centre moved to uTrans is never added back",
+      "kind": "unsound",
+      "cex": "OutputSetCoraCounterexample.lean"
     }
   },
   "contDynamics/linParamSys": {
@@ -49,9 +54,12 @@
       "cex": "CanonicalFormCNeOne.lean"
     },
     "reach": {
-      "description": "Krylov bound used off hypothesis; reach misses a trajectory",
+      "description": "Krylov bound used off hypothesis; Krylov drops constant input c",
       "kind": "unsound",
-      "cex": "ReachKrylovCounterexample.lean"
+      "cex": "ReachKrylovCounterexample.lean",
+      "findings": [
+        "LinearSys `reach`, `'krylov'`, dropped terms"
+      ]
     },
     "verify": {
       "description": "STL union keeps last set; RA accepts touching unsafe set",
@@ -73,6 +81,14 @@
       ],
       "cex": "ObserveEsoA1DCounterexample.lean",
       "fix": "ObserveEsoA.lean"
+    },
+    "reach": {
+      "description": "last output set unchecked; violation at tFinal missed",
+      "kind": "unsound",
+      "cex": "ReachSpecCoraFinalCounterexample.lean",
+      "findings": [
+        "LinearSysDT `reach`, specification at `tFinal`"
+      ]
     }
   },
   "contDynamics/nonlinDASys": {
@@ -240,8 +256,12 @@
   },
   "contSet/polyZonotope": {
     "contains_": {
-      "description": "centre accepted although it can lie outside the set",
-      "kind": "unsound"
+      "description": "centre accepted outside set; exact uses zonotope enclosure",
+      "kind": "unsound",
+      "findings": [
+        "polyZonotope `contains_`, `'exact'` in dimension one"
+      ],
+      "cex": "ContainsExactCora1DCounterexample.lean"
     },
     "convHull_": {
       "description": "chord set returned, not the convex hull",
@@ -554,6 +574,16 @@
       "kind": "other",
       "cex": "SimulateRandomTimesCoraCounterexample.lean",
       "fix": null
+    }
+  },
+  "contDynamics/nonlinearSysDT": {
+    "reach": {
+      "description": "initial set never checked against specification",
+      "kind": "unsound",
+      "cex": "ReachSpecCoraInitialCounterexample.lean",
+      "findings": [
+        "NonlinearSysDT `reach`, initial set not checked"
+      ]
     }
   }
 }
