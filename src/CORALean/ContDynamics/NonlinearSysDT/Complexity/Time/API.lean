@@ -1,5 +1,7 @@
-import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.Reach
-import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.ReachBound
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.Reach
+public import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.ReachBound
 
 /-!
 # What running `NonlinearSysDT.reach` costs

@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.API
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.API
 
 /-!
 # Complexity

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
-import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
+public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
+
+@[expose] public section
 
 /-!
 # A simulated window lies in the reach set
@@ -10,7 +14,7 @@ simulated outputs `(y(k), …, y(k+p-1))` lies in the reachable set at step `k`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

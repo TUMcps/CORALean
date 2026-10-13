@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStripBasedFloat
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStepFloatOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStripBasedFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStepFloatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # The nonlinear float strip-based observer holds the true state
@@ -23,7 +27,7 @@ The confinement of the run to each step's region stays a hypothesis, as for
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

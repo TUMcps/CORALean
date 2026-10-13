@@ -1,5 +1,7 @@
-import CORALean.ContSet.Polygon.Real.API
-import CORALean.ContSet.Polygon.Float.API
+module
+
+public import CORALean.ContSet.Polygon.Real.API
+public import CORALean.ContSet.Polygon.Float.API
 
 /-!
 # Polygons, both layers

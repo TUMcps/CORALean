@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.LinStepLinInputOuter
-import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.LinStepLinInputOuter
+public import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # The nonlinear float observer step encloses
@@ -25,7 +29,7 @@ the stored values.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -59,10 +63,17 @@ theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zo
     show Scalar.toRealMat step.A *ᵥ x + (sys.f x u - Scalar.toRealMat step.A *ᵥ x) = sys.f x u
     abel
   rw [heq] at key
-  -- plus the disturbance, then the update
+  -- plus the disturbance, then the update; one step of `reach` is read off `Nat.fold`
+  have hone : sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)
+      = (NonlinearSysDT.linearize step.A).reach (S := fun k => Zonotope (Vec 𝕋 k))
+        ⟨Xhat, step.linInput, 0, 1⟩ ⟨o.ρ, o.hZonotopeOrder⟩ := by
+    show Nat.fold (1 - 0) _ Xhat = _
+    rw [Nat.sub_zero, Nat.fold_succ, Nat.fold_zero]
   have hpred : sys.f x u + w ∈
     ((sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)).plus
-      W).construct := Zonotope.plus_outer _ _ ⟨_, key, w, hw, rfl⟩
+      W).construct := by
+    rw [hone]
+    exact Zonotope.plus_outer _ _ ⟨_, key, w, hw, rfl⟩
   unfold NonlinearSysDT.observeStepFloat
   split
   · exact ContSet.intersectStripSeq_outer (S := fun k => Zonotope (Vec 𝕋 k)) _ _ _ _ _ ⟨hpred, hy⟩

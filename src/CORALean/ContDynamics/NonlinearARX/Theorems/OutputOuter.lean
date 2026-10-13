@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
-import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # The ARX output lies in the output set of the converted reach
@@ -11,7 +15,7 @@ the window is empty and says nothing about `y`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

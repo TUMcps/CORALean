@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A specification checked on the reachable set holds along every trajectory
@@ -13,7 +17,7 @@ from `hsub`, the check a caller can run against the computed sets instead.
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

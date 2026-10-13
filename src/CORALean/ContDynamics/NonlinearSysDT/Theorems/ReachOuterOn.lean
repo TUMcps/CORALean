@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.LinStepLinInputOuter
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
-import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.LinStepLinInputOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # `reach` contains every trajectory known only up to a bound
@@ -22,7 +26,7 @@ from a check on the computed sets rather than on the trajectory.
 
 -- Authors:       Claude Opus 5
 -- Written:       04-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -39,6 +43,26 @@ variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloat
 variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The run's two defining equations, read off `Nat.fold` by its exported
+unfolding lemmas, since a module cannot unfold `Nat.fold` itself. -/
+private theorem aux_reach_zero_eq (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
+    (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) :
+    sys.reach ⟨R₀, U, 0, 0⟩ ⟨o, ho⟩ steps = R₀ := by
+  show Nat.fold (0 - 0) _ R₀ = R₀
+  rw [Nat.sub_self, Nat.fold_zero]
+
+private theorem aux_reach_succ_eq (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
+    (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (k : ℕ) :
+    sys.reach ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ steps
+      = (NonlinearSysDT.linearize (steps k).A).reach
+        ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩ := by
+  show Nat.fold (k + 1 - 0) _ R₀ = _
+  rw [Nat.sub_zero, Nat.fold_succ]
+  rfl
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `reach` contains every trajectory of a run known only up to step `K`, at
@@ -50,12 +74,11 @@ theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} {o : 
   -- the induction is on the step count, one linearization spent per step
   intro k
   induction k with
-  | zero => intro _; exact traj.init
+  | zero => intro _; rw [aux_reach_zero_eq]; exact traj.init
   | succ k ih =>
     intro hk
     have hkK : k < K := Nat.lt_of_succ_le hk
-    show x (k + 1) ∈ construct ((NonlinearSysDT.linearize (steps k).A).reach
-      ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩)
+    rw [aux_reach_succ_eq]
     rw [traj.step k hkK]
     -- the certificate's whole job: `f(x,u) - A x` lies in the widened input
     have hu : sys.f (x k) (u k) - toRealMat (steps k).A *ᵥ x k ∈ construct (steps k).linInput :=

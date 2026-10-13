@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
+
+@[expose] public section
 
 /-!
 # A sampled run stays inside the reachable set
@@ -12,7 +16,7 @@ there.
 
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

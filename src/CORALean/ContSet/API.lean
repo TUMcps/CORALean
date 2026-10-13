@@ -1,28 +1,30 @@
-import CORALean.ContSet.ContSet.API
-import CORALean.ContSet.Equality.API
-import CORALean.ContSet.WithEmpty.API
-import CORALean.ContSet.SetUnion.API
-import CORALean.ContSet.SetIntersection.API
-import CORALean.ContSet.EmptySet.API
-import CORALean.ContSet.Fullspace.API
-import CORALean.ContSet.InflatedContSet.API
-import CORALean.ContSet.Interval.API
-import CORALean.ContSet.Zonotope.API
-import CORALean.ContSet.Polygon.API
-import CORALean.ContSet.ZonoBundle.API
-import CORALean.ContSet.SpectraShadow.API
-import CORALean.ContSet.Ellipsoid.API
-import CORALean.ContSet.Capsule.API
-import CORALean.ContSet.LevelSet.API
-import CORALean.ContSet.HPolytope.API
-import CORALean.ContSet.VPolytope.API
-import CORALean.ContSet.Conversion.API
-import CORALean.ContSet.ConZonotope.API
-import CORALean.ContSet.PolyZonotope.API
-import CORALean.ContSet.ConPolyZono.API
-import CORALean.ContSet.Taylm.API
-import CORALean.ContSet.Zoo.API
-import CORALean.ContSet.ProbZonotope.API
+module
+
+public import CORALean.ContSet.ContSet.API
+public import CORALean.ContSet.Equality.API
+public import CORALean.ContSet.WithEmpty.API
+public import CORALean.ContSet.SetUnion.API
+public import CORALean.ContSet.SetIntersection.API
+public import CORALean.ContSet.EmptySet.API
+public import CORALean.ContSet.Fullspace.API
+public import CORALean.ContSet.InflatedContSet.API
+public import CORALean.ContSet.Interval.API
+public import CORALean.ContSet.Zonotope.API
+public import CORALean.ContSet.Polygon.API
+public import CORALean.ContSet.ZonoBundle.API
+public import CORALean.ContSet.SpectraShadow.API
+public import CORALean.ContSet.Ellipsoid.API
+public import CORALean.ContSet.Capsule.API
+public import CORALean.ContSet.LevelSet.API
+public import CORALean.ContSet.HPolytope.API
+public import CORALean.ContSet.VPolytope.API
+public import CORALean.ContSet.Conversion.API
+public import CORALean.ContSet.ConZonotope.API
+public import CORALean.ContSet.PolyZonotope.API
+public import CORALean.ContSet.ConPolyZono.API
+public import CORALean.ContSet.Taylm.API
+public import CORALean.ContSet.Zoo.API
+public import CORALean.ContSet.ProbZonotope.API
 
 /-!
 # Set representations, collected

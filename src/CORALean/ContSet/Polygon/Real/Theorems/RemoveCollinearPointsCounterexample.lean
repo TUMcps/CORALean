@@ -1,7 +1,11 @@
-import Mathlib.Data.Rat.Defs
-import Mathlib.Algebra.Order.Ring.Rat
-import Mathlib.Data.List.Sort
-import CORALean.ContSet.Polygon.Real.Polygon
+module
+
+public import Mathlib.Data.Rat.Defs
+public import Mathlib.Algebra.Order.Ring.Rat
+public import Mathlib.Data.List.Sort
+public import CORALean.ContSet.Polygon.Real.Polygon
+
+@[expose] public section
 
 /-!
 # `removeCollinearPoints` changes the polygon: the angular sort is not the boundary order
@@ -26,7 +30,7 @@ evaluated. The region of a vertex list is its even-odd (crossing number) region,
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -112,8 +116,29 @@ theorem Polygon.removeCollinearPoints_counterexample :
       Polygon.aux_shoelace (Polygon.aux_removeCollinearVertices2D Polygon.aux_uShape) = 7 ∧
       Polygon.aux_evenOdd (Polygon.aux_removeCollinearVertices2D Polygon.aux_uShape) (3/2, 2)
         = true ∧
-      Polygon.aux_evenOdd Polygon.aux_uShape (3/2, 2) = false := by
-  refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩ <;> with_unfolding_all rfl
+      Polygon.aux_evenOdd Polygon.aux_uShape (3/2, 2) = false := by -- --- PROOF ---
+  -- the sort, by the exported equations of `insertionSort` and `orderedInsert`
+  have hs : Polygon.aux_sortByAngle Polygon.aux_uShape =
+      [(0,0), (1,1), (2,1), (3,0), (3,3), (2,3), (1,3), (0,3)] := by
+    simp [Polygon.aux_sortByAngle, Polygon.aux_uShape, Polygon.aux_meanV,
+      List.insertionSort_nil, List.insertionSort_cons, List.orderedInsert_nil,
+      List.orderedInsert_cons, Polygon.aux_angleLe, Polygon.aux_sector]
+    norm_num
+  -- then the collinear vertices dropped from it
+  have hr : Polygon.aux_removeCollinearVertices2D Polygon.aux_uShape =
+      [(0,0), (1,1), (2,1), (3,0), (3,3), (0,3)] := by
+    simp [Polygon.aux_removeCollinearVertices2D, hs, Polygon.aux_collinearAt, List.zipIdx]
+    norm_num
+  -- the areas and the point test, by evaluating the sums over the rationals
+  refine ⟨hs, hr, ?_, ?_, ?_, ?_⟩
+  · simp [Polygon.aux_shoelace, Polygon.aux_uShape, List.rotate]
+    norm_num
+  · simp [Polygon.aux_shoelace, hr, List.rotate]
+    norm_num
+  · simp [Polygon.aux_evenOdd, hr, Polygon.aux_crosses, List.rotate]
+    norm_num
+  · simp [Polygon.aux_evenOdd, Polygon.aux_uShape, Polygon.aux_crosses, List.rotate]
+    norm_num
 
 end CORALean.Real
 

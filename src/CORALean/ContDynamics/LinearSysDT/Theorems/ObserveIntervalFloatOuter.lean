@@ -33,7 +33,7 @@ stored float. An outer statement.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -123,7 +123,7 @@ theorem LinearSysDT.observeIntervalFloat_outer (sys : LinearSysDT 𝕋 n) (C : M
     refine Zonotope.plus_outer _ _ ⟨toRealMat (fun i j => neg (L i j)) *ᵥ v j,
       Zonotope.mtimes_outer _ V ⟨v j, hv j, rfl⟩, w j, hw j, ?_⟩
     rw [hneg, Matrix.neg_mulVec]
-    abel
+    abel_nf
   -- the nominal estimate and the error's closed form, carried together
   have key : ∀ k, ∃ xh ∈ (sys.observeIntervalStateFloat C L R₀ W V u y k).x.construct,
       ∃ ds : ℕ → Vec ℝ n,

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialStateFloat
-import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialStateFloat
+public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
+
+@[expose] public section
 
 /-!
 # What `consistentInitialStateFloat` returns
@@ -12,7 +16,7 @@ here the test the float run adds (`newtonTestFloat_sound`) makes the claim about
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

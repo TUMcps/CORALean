@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackJac
-import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackRes
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Float.Operations.Norm
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackJac
+public import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackRes
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.Norm
+
+@[expose] public section
 
 /-!
 # `nonlinDASys.steadyState` in floats
@@ -25,7 +29,7 @@ iterate unchecked.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -68,7 +72,7 @@ def NonlinDASys.FloatModel.steadyStateFloat (fm : NonlinDASys.FloatModel 𝕋 n 
     Vector.ofFn delta_z
   -- the convergence check `norm(delta_z) < 1e-10`
   let converged : Vector 𝕋 (n + p) → Bool := fun delta_z =>
-    !le (mulDown tol tol) (Interval.normSq (Interval.point fun i => delta_z[i]))
+    !le (mulDown tol tol) (Interval.normSq (Interval.point fun (i : Fin (n + p)) => delta_z[i]))
   -- the update of `x0` and `y0`
   letI : Add (Vector 𝕋 (n + p)) := ⟨fun a b => Vector.ofFn fun i => addDown a[i] b[i]⟩
   (newtonIterate step converged fuel (Vector.ofFn (Fin.append x₀ y₀))).bind fun zv =>

@@ -1,29 +1,31 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubset
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubsetOn
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfCheck
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReachOfSubset
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.LinStepLinInputOuter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.NotHoldsOfSimulate
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOfSubset
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemReach
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateBoxFloat
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOOutput
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOFloatOuter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyCandidateFit
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyLeCandidate
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStepFloatOuter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStripBasedFloatOuter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConsistentSetInterSubsetStrip
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConsistentSetSubsetIInter
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSubset
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSucc
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachSpecCoraInitialCounterexample
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubset
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubsetOn
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfCheck
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReachOfSubset
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.LinStepLinInputOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.NotHoldsOfSimulate
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOfSubset
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemReach
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateBoxFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOOutput
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOFloatOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyCandidateFit
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.IdentifyLeCandidate
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStepFloatOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ObserveStripBasedFloatOuter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConsistentSetInterSubsetStrip
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConsistentSetSubsetIInter
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSubset
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSucc
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachSpecCoraInitialCounterexample
 
 /-!
 # What `NonlinearSysDT` guarantees

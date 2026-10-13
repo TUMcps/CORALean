@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachUnion
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubsetOn
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachUnion
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubsetOn
+
+@[expose] public section
 
 /-!
 # A union `reachUnion` returns contains every state reached within the horizon
@@ -14,7 +18,7 @@ any run; `none` is where it could not be shown.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

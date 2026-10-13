@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Float.Operations.Norm
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.Norm
+
+@[expose] public section
 
 /-!
 # `nonlinDASys.consistentInitialState` in floats
@@ -23,7 +27,7 @@ layer's addition: CORA returns its last iterate unchecked.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -54,7 +58,7 @@ def NonlinDASys.FloatModel.consistentInitialStateFloat (fm : NonlinDASys.FloatMo
     Vector.ofFn delta_y
   -- the convergence check `norm(delta_y) < 1e-10`
   let converged : Vector 𝕋 p → Bool := fun delta_y =>
-    !le (mulDown tol tol) (Interval.normSq (Interval.point fun i => delta_y[i]))
+    !le (mulDown tol tol) (Interval.normSq (Interval.point fun (i : Fin p) => delta_y[i]))
   -- the update `y0 = y0 + delta_y`
   letI : Add (Vector 𝕋 p) := ⟨fun a b => Vector.ofFn fun i => addDown a[i] b[i]⟩
   (newtonIterate step converged fuel (Vector.ofFn y₀)).bind fun yv =>
