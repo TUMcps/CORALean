@@ -25,7 +25,7 @@ is not proven positive. The argument is floored at zero first, so there is no si
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -38,6 +38,8 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
+namespace Sqrt
+
 /-- One Newton step from `s`, taken only if `s` is provably positive, never growing. -/
 def sqrtStep (a s : 𝕋) : 𝕋 :=
   if ltStrict zero s = true then minimum s (half (addUp s (divUp a s))) else s
@@ -46,6 +48,10 @@ def sqrtStep (a s : 𝕋) : 𝕋 :=
 def sqrtIter (a : 𝕋) : ℕ → 𝕋 → 𝕋
   | 0, s => s
   | k + 1, s => sqrtIter a k (sqrtStep a s)
+
+end Sqrt
+
+open Sqrt
 
 /-- `√a` from above, at every `a`; `p` is the number of Newton steps. -/
 def sqrtUp (p : ℕ) (a : 𝕋) : 𝕋 :=

@@ -22,7 +22,7 @@ taylm centre or a rotation angle.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -34,11 +34,17 @@ open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
 
+namespace TrigRange
+
 /-- A float near the middle of `[l, u]`; any float would be sound. -/
 def midOf (l u : 𝕋) : 𝕋 := half (addUp l u)
 
 /-- At least the distance from `midOf l u` to any point of `[l, u]`. -/
 def radOf (l u : 𝕋) : 𝕋 := maximum (subUp u (midOf l u)) (subUp (midOf l u) l)
+
+end TrigRange
+
+open TrigRange
 
 /-- `cos` over `[l, u]`: falling where the sine is certified non-negative, rising where it is
 certified non-positive, the midpoint form otherwise. -/

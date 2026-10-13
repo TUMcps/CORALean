@@ -29,7 +29,7 @@ accuracy; each doubling at most doubles the width, so beyond `|a|/2ⁿ ≈ 2⁻�
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -41,10 +41,12 @@ open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
 
+namespace SinCos
+
 /-- `a / 2 ^ n`, exactly. -/
-def sinCosHalfIter : ℕ → 𝕋 → 𝕋
+def halfIter : ℕ → 𝕋 → 𝕋
   | 0, a => a
-  | k + 1, a => half (sinCosHalfIter k a)
+  | k + 1, a => half (halfIter k a)
 
 /-- The least corner product of `[a, b]` and `[c, d]`, each rounded down. -/
 def cornerLo (a b c d : 𝕋) : 𝕋 :=
@@ -72,14 +74,14 @@ def sinSeedNonneg (t : 𝕋) : 𝕋 × 𝕋 :=
   let t2 := maximum zero (mulDown t t)                              -- t² from below
   let t3 := (maximum zero (mulDown t2 t), mulUp (mulUp t t) t)      -- t³, both sides
   let d := divFact t3 3                                             -- t³/6, both sides
-  let e := sinCosHalfIter 6 (powUp t 5)                              -- t⁵/64 ≥ t⁵/100
+  let e := halfIter 6 (powUp t 5)                              -- t⁵/64 ≥ t⁵/100
   (subDown (subDown t d.2) e, addUp (subUp t d.1) e)
 
 /-- `cos t` for `0 ≤ t ≤ 1`: from `1 - t²/2` to `1 - t²/2 + t⁴/16`. -/
 def cosSeed (t : 𝕋) : 𝕋 × 𝕋 :=
   let t2l := maximum zero (mulDown t t)
   let t2u := mulUp t t
-  let e := sinCosHalfIter 4 (powUp t 4)                              -- t⁴/16 ≥ 5t⁴/96
+  let e := halfIter 4 (powUp t 4)                              -- t⁴/16 ≥ 5t⁴/96
   (subDown one (half t2u), addUp (subUp one (half t2l)) e)
 
 /-- Both at `y`, for `|y| ≤ 1` certified; the sine by oddness below zero. -/
@@ -111,7 +113,11 @@ def doubleIter : ℕ → SinCosBox 𝕋 → SinCosBox 𝕋
   | k + 1, B => doubleIter k (double B)
 
 /-- Seed at `a / 2ⁿ`, then double `n` times. -/
-def sinCosBox (n : ℕ) (a : 𝕋) : SinCosBox 𝕋 := doubleIter n (seed (sinCosHalfIter n a))
+def sinCosBox (n : ℕ) (a : 𝕋) : SinCosBox 𝕋 := doubleIter n (seed (halfIter n a))
+
+end SinCos
+
+open SinCos
 
 /-- `sin a` from below, at every `a`; `n` is the number of halvings. -/
 def sinDown (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).sl
@@ -135,11 +141,11 @@ private def Holds (θ : ℝ) (B : SinCosBox 𝕋) : Prop :=
     toReal B.cl ≤ Real.cos θ ∧ Real.cos θ ≤ toReal B.cu
 
 private theorem toReal_halfIter (n : ℕ) (a : 𝕋) :
-    toReal (sinCosHalfIter n a) = toReal a / 2 ^ n := by -- --- PROOF ---
+    toReal (halfIter n a) = toReal a / 2 ^ n := by -- --- PROOF ---
   induction n with
-  | zero => rw [sinCosHalfIter, pow_zero, div_one]
+  | zero => rw [halfIter, pow_zero, div_one]
   | succ k ih =>
-    rw [sinCosHalfIter, toReal_half, ih, pow_succ]
+    rw [halfIter, toReal_half, ih, pow_succ]
     ring
 
 /-- `k x` lies between its values at the ends of `[c, d]`. -/
@@ -227,7 +233,7 @@ private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal 
   have h6 : ((Nat.factorial 3 : ℕ) : ℝ) = 6 := by norm_num [Nat.factorial]
   rw [h6] at hd
   -- `t⁵ / 64`, which bounds `t⁵ / 100`
-  have he : x ^ 5 / 100 ≤ toReal (sinCosHalfIter 6 (powUp t 5)) := by
+  have he : x ^ 5 / 100 ≤ toReal (halfIter 6 (powUp t 5)) := by
     rw [toReal_halfIter]
     have := le_powUp (B := t) h0 le_rfl 5
     have h5 : 0 ≤ x ^ 5 := pow_nonneg h0 5
@@ -255,7 +261,7 @@ private theorem cosSeed_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 
   have hu := mul_le_mulUp t t
   have hm : toReal (maximum zero (mulDown t t)) ≤ x * x := by
     rw [toReal_maximum, toReal_zero]; exact max_le (mul_nonneg h0 h0) (mulDown_le_mul t t)
-  have he : x ^ 4 * (5 / 96) ≤ toReal (sinCosHalfIter 4 (powUp t 4)) := by
+  have he : x ^ 4 * (5 / 96) ≤ toReal (halfIter 4 (powUp t 4)) := by
     rw [toReal_halfIter]
     have := le_powUp (B := t) h0 le_rfl 4
     have h4 : 0 ≤ x ^ 4 := pow_nonneg h0 4
@@ -361,7 +367,7 @@ private theorem doubleIter_holds (n : ℕ) {θ : ℝ} {B : SinCosBox 𝕋} (h : 
     exact hstep
 
 private theorem sinCosBox_holds (n : ℕ) (a : 𝕋) : Holds (toReal a) (sinCosBox n a) := by
-  have h := doubleIter_holds n (seed_holds (sinCosHalfIter n a))
+  have h := doubleIter_holds n (seed_holds (halfIter n a))
   rwa [toReal_halfIter, mul_div_cancel₀ _ (pow_ne_zero _ two_ne_zero)] at h
 
 

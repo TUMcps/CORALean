@@ -30,7 +30,7 @@ of the sine and cosine, `k` the number of bisection and Newton steps.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -41,6 +41,8 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
+
+namespace InverseTrig
 
 /-- Into `[-1, 1]`. -/
 def clampOne (a : 𝕋) : 𝕋 := maximum (neg one) (minimum one a)
@@ -74,6 +76,10 @@ def atanDenHi (k : ℕ) (y : 𝕋) : 𝕋 := addUp one (sqrtUp k (addUp one (mul
 def asinDenLo (k : ℕ) (x : 𝕋) : 𝕋 :=
   maximum one (addDown one (sqrtDown k (subDown one (mulUp x x))))
 def asinDenHi (k : ℕ) (x : 𝕋) : 𝕋 := addUp one (sqrtUp k (subUp one (mulDown x x)))
+
+end InverseTrig
+
+open InverseTrig
 
 /-- `arctan y` from below, at every `y`. -/
 def atanDown (n k : ℕ) (y : 𝕋) : 𝕋 :=

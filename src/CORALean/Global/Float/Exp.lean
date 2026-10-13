@@ -42,6 +42,8 @@ open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
 
+namespace Exp
+
 /-- `a / 2 ^ n`, exactly. -/
 def halfIter : ℕ → 𝕋 → 𝕋
   | 0, a => a
@@ -62,6 +64,10 @@ def squareDownIter : ℕ → 𝕋 → 𝕋
 def squareUpIter : ℕ → 𝕋 → 𝕋
   | 0, u => u
   | k + 1, u => squareUpIter k (mulUp u u)
+
+end Exp
+
+open Exp
 
 /-- `exp a` from below, at every `a`. `n` is the reduction depth: the halvings are exact, but each
 of the `n` squarings rounds, so `n` should stay below the scalar's mantissa width (issue #131). -/
