@@ -16,6 +16,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachCora1D
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachTensor3Cora2D
+import CORALean.ContDynamics.NonlinearSys.Operations.OutputSetCora
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveCora1D
 import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveTensor3Cora2D
 import CORALean.ContDynamics.NonlinearSys.Operations.AdaptErrLoopCora1D
@@ -121,9 +122,9 @@ run-time region test fails; `RelinDeltaReach` is CORA's `Rdiff`. `AbstrErrLin` i
 and certified in `Theorems`. `LagrangeRemainder` is the same one order up, once the quadratic term
 is subtracted exactly rather than boxed. `AbstrErrPolySearch` is `linReach`'s while loop for
 `alg = 'poly'`, a fuel-bounded search over the candidates `AbstrErrPolyCandidates` computes, and
-`LinReachPoly` runs both from a start set; `LinReachCora1D` is CORA's `'lin'` step in 1D, as
-printed, `LinReachTensor3Cora2D` at `tensorOrder = 3` in 2D, `LinReachAdaptiveCora1D` the adaptive
-step, `ReachInnerScalingCora1D` `'scale'`; `AbstrErr` is the other paper's error, with `VarInputs`.
+`LinReachPoly` runs both from a start set. As printed: `LinReachCora1D` CORA's `'lin'` step in 1D,
+`LinReachTensor3Cora2D` at `tensorOrder = 3` in 2D, `LinReachAdaptiveCora1D` the adaptive step,
+`ReachInnerScalingCora1D` `'scale'`, `OutputSetCora` outputs. `AbstrErr`/`VarInputs`: other paper.
 
 `LocalAbstrErr` and `GlobalAbstrErr` measure what a step and a run add to the exact answer,
 `AbstrSolInf` the untruncated set of those errors, `GainDim`/`Gain`/`GainMax`/`GainOrder` how much

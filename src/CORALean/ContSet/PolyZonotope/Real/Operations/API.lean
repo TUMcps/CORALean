@@ -154,6 +154,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
 import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
 import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
 import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsPointSet
+import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsExactCora1D
 import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
 import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
 import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon

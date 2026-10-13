@@ -23,6 +23,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConsistentSetInterSubsetStr
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConsistentSetSubsetIInter
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSubset
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSucc
+import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachSpecCoraInitialCounterexample
 
 /-!
 # What `NonlinearSysDT` guarantees

@@ -12,6 +12,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachLTVCora
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStepFloat
@@ -48,6 +49,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
 import CORALean.ContDynamics.LinearSysDT.Operations.GlmReach
 import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
+import CORALean.ContDynamics.LinearSysDT.Operations.ReachSpecCora
 
 /-!
 # What `LinearSysDT` computes
@@ -61,5 +63,6 @@ import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
 inverse rather than the forward dynamics. `ReachError` and its `Reduced`,
 `Orders` and `Float` variants accumulate what a run owes as a zonotope, each
 one an algorithm rather than the `reach` it is measured against. `ReachInnerRep`
-is the inner approximation at a representation.
+is the inner approximation at a representation. `ReachLTVCora` is CORA's loop
+for a time-varying system, as printed.
 -/

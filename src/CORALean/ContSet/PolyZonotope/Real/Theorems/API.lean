@@ -158,6 +158,7 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
 import CORALean.ContSet.PolyZonotope.Real.Theorems.OnlyIdPoint
 import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
+import CORALean.ContSet.PolyZonotope.Real.Theorems.ContainsExactCora1DCounterexample
 import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitGenCover
 import CORALean.ContSet.PolyZonotope.Real.Theorems.ContainsPointSetSound
 import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeNegExample
