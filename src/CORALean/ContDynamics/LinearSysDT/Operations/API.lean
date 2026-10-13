@@ -15,11 +15,8 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachLTVCora
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStepFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBasedFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.ErrMatFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagationFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.IntersectStripSeqFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxFloat
 import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn

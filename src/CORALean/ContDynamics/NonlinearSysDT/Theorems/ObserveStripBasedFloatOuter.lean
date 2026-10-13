@@ -42,7 +42,8 @@ theorem NonlinearSysDT.observeStripBasedFloat_outer (sys : NonlinearSysDT n m)
     {U : Zonotope (Vec 𝕋 m)} (steps : ℕ → sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U)
     (o : NonlinearSysDT.ReachOptions)
     (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W R₀ : Zonotope (Vec 𝕋 n)) (y : ℕ → Vec 𝕋 p)
-    (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) (x w : ℕ → Vec ℝ n)
+    (options : LinearSysDT.ObserveStripOptions 𝕋 (Zonotope (Vec 𝕋 n)) n p)
+    (x w : ℕ → Vec ℝ n)
     (u : ℕ → Vec ℝ m) (h0 : x 0 ∈ R₀.construct) (hu : ∀ k, u k ∈ construct U)
     (hw : ∀ k, w k ∈ W.construct) (hR : ∀ k, x k ∈ (steps k).R)
     (hstep : ∀ k, x (k + 1) = sys.f (x k) (u k) + w k)
@@ -53,7 +54,7 @@ theorem NonlinearSysDT.observeStripBasedFloat_outer (sys : NonlinearSysDT n m)
   | zero =>
     unfold NonlinearSysDT.observeStripBasedFloat
     split
-    · exact LinearSysDT.intersectStripSeqFloat_outer _ _ _ _ _ ⟨h0, hy 0⟩
+    · exact ContSet.intersectStripSeq_outer (S := fun k => Zonotope (Vec 𝕋 k)) _ _ _ _ _ ⟨h0, hy 0⟩
     · exact Zonotope.intersectStrip_outer _ _ _ _ _ ⟨h0, hy 0⟩
   | succ k ih =>
     unfold NonlinearSysDT.observeStripBasedFloat

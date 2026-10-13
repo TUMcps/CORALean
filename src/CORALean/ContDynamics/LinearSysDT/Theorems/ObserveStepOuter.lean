@@ -1,0 +1,67 @@
+import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
+import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
+
+/-!
+# One observer step encloses the states the measurement allows
+
+[1, Alg. 1]: if `X̂` holds every state `X` might be in, the step's result holds every
+`A x + u + ω` with `x ∈ X`, `ω ∈ W`, that lies in the measurement strips. The prediction
+is outer by `mtimes_outer` and `plus_outer` ([1, Eq. 2]; exact at `Real.Zonotope`), the update
+by `intersectStripSeq_outer`, [1, Eq. 3], or `intersectStrip_outer` all at once, for every gain.
+One statement for every representation and scalar: at a float type the matrices, inputs and
+strips are the reals the floats store.
+
+[2, Eq. 4]: the correction keeps `S_p ∩ Ŝ`.
+
+## References
+
+* [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
+      estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+* [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
+      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       13-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open Matrix Pointwise ContSet Scalar Plus Mtimes IntersectStrip
+
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfScalarPoint 𝕋 S]
+variable [IntersectStrip 𝕋 S] {n p : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem LinearSysDT.observeStep_outer (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (σ : Vec 𝕋 p)
+    (W : S n) (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n p) (u : Vec 𝕋 n)
+    (y : Vec 𝕋 p) (Xhat : S n) {X : Set (Vec ℝ n)} (hX : X ⊆ construct Xhat) :
+    ((fun x => toRealMat sys.A *ᵥ x + toRealVec u) '' X + construct W) ∩
+        {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (σ i)} ⊆
+      construct (sys.observeStep C σ W options u y Xhat) := by -- --- PROOF ---
+  -- the prediction holds every predicted state
+  have hpred : (fun x => toRealMat sys.A *ᵥ x + toRealVec u) '' X + construct W ⊆
+      construct (plus (plus (mtimes sys.A Xhat) (OfScalarPoint.ofVec u)) W) := by
+    rintro _ ⟨_, ⟨x, hx, rfl⟩, w, hw, rfl⟩
+    have hA : toRealMat sys.A *ᵥ x ∈ construct (mtimes sys.A Xhat) :=
+      mtimes_outer sys.A Xhat (Set.mem_biUnion (Set.mem_singleton _) ⟨x, hX hx, rfl⟩)
+    exact plus_outer _ _ ⟨_, plus_outer _ _ ⟨_, hA, _, OfScalarPoint.mem_ofVec u, rfl⟩, w, hw,
+      rfl⟩
+  intro x hx
+  unfold LinearSysDT.observeStep
+  split
+  · exact intersectStripSeq_outer _ _ _ _ _ ⟨hpred hx.1, hx.2⟩
+  · exact intersectStrip_outer _ _ _ _ _ ⟨hpred hx.1, hx.2⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

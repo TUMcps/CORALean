@@ -254,7 +254,6 @@ LinearSysDT.observeEsoA  real-layer: the corrected ESO-A observer step over the 
 LinearSysDT.observeEsoA1D  real-layer: CORA's ESO-A observer step at n = 1 as the code computes it, a refuted reference (`observeEsoA1D_counterexample`), never meant to run
 LinearSysDT.observeEsoB  real-layer: the corrected ESO-B observer step over the real ellipsoid (`Real.sqrt`, matrix inverses); no float counterpart yet
 LinearSysDT.observeEsoB1D  real-layer: CORA's ESO-B observer step at n = 1 as the code computes it, a refuted reference (`observeEsoB1D_counterexample`), never meant to run
-LinearSysDT.observeStripBased  real-layer: the strip-based observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observeStripBasedFloat` (`observeStripBasedFloat_outer`)
 LinearSysDT.observePropagation  real-layer: the set-propagation observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observePropagationFloat` (`observePropagationFloat_outer`)
 LinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
 LinearSysDT.reachError  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing

@@ -1,12 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
-import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
+import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
-# `Zonotope.intersectStripSeq` encloses the zonotope's intersection with the strips
+# The strips one at a time enclose the set's intersection with all of them
 
 [1, Eq. 3]: each step is [1, Prop. 6] at one strip (`intersectStrip_outer` at a one-row `C`), and
 a point in every strip is in strip `i`, so it survives each step in turn. For every gain, fixed or
-computed from the zonotope being met.
+computed from the set being met, and for every representation with `IntersectStrip`, float or
+exact.
 
 [2, Eq. 3] and [2, Eq. 4] in one, strip by strip.
 
@@ -19,28 +20,29 @@ computed from the zonotope being met.
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
--- Authors:       Tobias Ladner
--- Written:       04-October-2026
+-- Authors:       Claude Opus 5.5
+-- Written:       13-October-2026
 -- Last update:   ---
 -- Last revision: ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean
 
-open Matrix
+open Matrix ContSet Scalar IntersectStrip
 
-variable {n p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [IntersectStrip 𝕋 S] {n p : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.intersectStripSeq_outer (C : Mat ℝ p n) (φ y : Vec ℝ p)
-    (Λ : Zonotope (Vec ℝ n) → Mat ℝ n p) (Z : Zonotope (Vec ℝ n)) :
-    Z.construct ∩ {x | ∀ i, |(C *ᵥ x - y) i| ≤ φ i} ⊆
-      (Z.intersectStripSeq C φ y Λ).construct := by -- --- PROOF ---
-  unfold Zonotope.intersectStripSeq
+theorem ContSet.intersectStripSeq_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ : S n → Mat 𝕋 n p)
+    (Z : S n) :
+    construct Z ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
+      construct (ContSet.intersectStripSeq C φ y Λ Z) := by -- --- PROOF ---
+  unfold ContSet.intersectStripSeq
   generalize List.finRange p = l
   induction l generalizing Z with
   | nil => exact Set.inter_subset_left
@@ -48,10 +50,10 @@ theorem Zonotope.intersectStripSeq_outer (C : Mat ℝ p n) (φ y : Vec ℝ p)
     intro x hx
     refine ih _ ⟨?_, hx.2⟩
     -- strip `i` alone, as a one-row strip
-    refine Zonotope.intersectStrip_outer _ _ _ _ Z ⟨hx.1, fun _ => ?_⟩
-    simpa [Matrix.mulVec, dotProduct] using hx.2 i
+    refine intersectStrip_outer _ _ _ _ Z ⟨hx.1, fun _ => ?_⟩
+    simpa [Matrix.mulVec, dotProduct, toRealMat_apply, toRealVec_apply] using hx.2 i
 
-end CORALean.Real
+end CORALean
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,5 +1,4 @@
 import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 
 /-!
 # The strip-based observer
@@ -10,6 +9,10 @@ by `reduce` to `ρ` ([1, Prop. 3] is one such reduction). The strip widths are
 CORA's `sigma = supremum(abs(interval(params.V)))`, here `σ`, so a noise `v ∈ V` needs only
 `|vᵢ| ≤ σᵢ`. CORA's estimators `FRad-A`, `FRad-B`, `PRad-A` to `PRad-D` and `VolMin-A` are
 this loop at their own gains; `observeStripBased_outer` holds for every gain.
+
+Written once over the set classes and the scalar: at `Real.Zonotope` and ℝ it is the paper's
+loop, at `Float.Zonotope` and a float type the same loop in directed rounding, and
+`observeStripBased_outer` is the soundness of both.
 
 [2, Eq. 4], over time.
 
@@ -22,8 +25,8 @@ this loop at their own gains; `observeStripBased_outer` holds for every gain.
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
--- Authors:       Tobias Ladner
--- Written:       04-October-2026
+-- Authors:       Claude Opus 5.5
+-- Written:       13-October-2026
 -- Last update:   ---
 -- Last revision: ---
 
@@ -32,23 +35,25 @@ this loop at their own gains; `observeStripBased_outer` holds for every gain.
 
 namespace CORALean
 
-open CORALean.Real
+open ContSet Reduce IntersectStrip
 
-variable {n p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable [OfScalarPoint 𝕋 S] [IntersectStrip 𝕋 S] {n p : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `R k`, the set the observer holds after the measurement `y k`. -/
-noncomputable def LinearSysDT.observeStripBased (sys : LinearSysDT ℝ n) (C : Mat ℝ p n)
-    (σ : Vec ℝ p) (W R₀ : Zonotope (Vec ℝ n)) (u : ℕ → Vec ℝ n) (y : ℕ → Vec ℝ p)
-    (options : LinearSysDT.ObserveStripOptions n p) : ℕ → Zonotope (Vec ℝ n)
+def LinearSysDT.observeStripBased (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (σ : Vec 𝕋 p)
+    (W R₀ : S n) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p)
+    (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n p) : ℕ → S n
   | 0 =>
-    if options.sequential then R₀.intersectStripSeq C σ (y 0) options.gain
-    else R₀.intersectStrip C σ (y 0) (options.gain R₀)
+    if options.sequential then intersectStripSeq C σ (y 0) options.gain R₀
+    else intersectStrip C σ (y 0) (options.gain R₀) R₀
   | k + 1 =>
-    (sys.observeStep C σ W options (u k) (y (k + 1))
-      (sys.observeStripBased C σ W R₀ u y options k)).reduce options.ρ
+    reduce (sys.observeStep C σ W options (u k) (y (k + 1))
+      (sys.observeStripBased C σ W R₀ u y options k)) options.ρ
 
 end CORALean
 

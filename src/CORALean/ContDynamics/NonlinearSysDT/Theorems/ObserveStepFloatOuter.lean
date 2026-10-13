@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
 import CORALean.ContDynamics.NonlinearSysDT.Theorems.LinStepLinInputOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.IntersectStripSeqFloatOuter
+import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 
@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 
 theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zonotope (Vec 𝕋 m)}
     (step : sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U) (o : NonlinearSysDT.ReachOptions)
-    (C : Mat 𝕋 p n) (σ : Vec 𝕋 p)
-    (W : Zonotope (Vec 𝕋 n)) (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) (y : Vec 𝕋 p)
+    (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W : Zonotope (Vec 𝕋 n))
+    (options : LinearSysDT.ObserveStripOptions 𝕋 (Zonotope (Vec 𝕋 n)) n p) (y : Vec 𝕋 p)
     (Xhat : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n} {u : Vec ℝ m} {w : Vec ℝ n}
     (hx : x ∈ Xhat.construct) (hR : x ∈ step.R) (hu : u ∈ construct U) (hw : w ∈ W.construct)
     (hy : ∀ i, |(Scalar.toRealMat C *ᵥ (sys.f x u + w) - Scalar.toRealVec y) i|
@@ -65,7 +65,7 @@ theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zo
       W).construct := Zonotope.plus_outer _ _ ⟨_, key, w, hw, rfl⟩
   unfold NonlinearSysDT.observeStepFloat
   split
-  · exact LinearSysDT.intersectStripSeqFloat_outer _ _ _ _ _ ⟨hpred, hy⟩
+  · exact ContSet.intersectStripSeq_outer (S := fun k => Zonotope (Vec 𝕋 k)) _ _ _ _ _ ⟨hpred, hy⟩
   · exact Zonotope.intersectStrip_outer _ _ _ _ _ ⟨hpred, hy⟩
 
 end CORALean

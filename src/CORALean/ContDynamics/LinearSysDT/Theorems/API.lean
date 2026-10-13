@@ -45,11 +45,10 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.DiscretizeToLinearSys
 import CORALean.ContDynamics.LinearSysDT.Theorems.ExpIntegralToLinearSys
 import CORALean.ContDynamics.LinearSysDT.Theorems.IsConformDynOfModel
 import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
-import CORALean.ContDynamics.LinearSysDT.Theorems.IntersectStripSeqFloatOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepFloatOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedFloatOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ObservePropagationFloatOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveIntervalFloatOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepOuter
+import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSpecCoraFinalCounterexample
 
 /-!

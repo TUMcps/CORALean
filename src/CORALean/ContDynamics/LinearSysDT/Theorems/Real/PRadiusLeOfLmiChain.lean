@@ -53,8 +53,8 @@ theorem LinearSysDT.pRadius_le_of_lmi_chain (G : Fin q → Mat ℝ n n) (F : Mat
     (hL : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ L)
     (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) :
     Real.Zonotope.pRadius P
-        (((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Real.Zonotope (Vec ℝ n))
-          ).intersectStripSeq C φ y (fun _ => Λ))
+        (ContSet.intersectStripSeq (S := fun k => Real.Zonotope (Vec ℝ k)) C φ y (fun _ => Λ)
+          ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Real.Zonotope (Vec ℝ n))))
       ≤ β * L + ψ + ∑ s : Fin p, φ s ^ 2 := by -- --- PROOF ---
   refine Real.Zonotope.pRadius_predict_strips_le A P F C φ y Λ κ u hκ hu β L ψ X ?_ hβ hL hψ
   intro θ γ η

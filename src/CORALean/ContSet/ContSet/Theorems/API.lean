@@ -3,6 +3,7 @@ import CORALean.ContSet.ContSet.Theorems.NeOfConstructNe
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 import CORALean.ContSet.ContSet.Theorems.EncloseOuter
+import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
 import CORALean.ContSet.ContSet.Theorems.EnlargeOuter
 import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
 import CORALean.ContSet.ContSet.Theorems.ProjectHighDimOuter

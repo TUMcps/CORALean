@@ -1,9 +1,11 @@
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.Global.Float.NoNaN
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
+import CORALean.ContSet.ContSet.Definitions.IntersectStrip
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 import CORALean.ContSet.Zonotope.Float.Theorems.Convex
+import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
@@ -111,6 +113,14 @@ instance : Mtimes (Mat 𝕋) (fun k => Zonotope (Vec 𝕋 k)) where
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, Zonotope.materialise_eq]
     exact Zonotope.mtimes_outer M Z
+
+/-- The rounded update, with `I - Λ C` an interval matrix; the guarantee reads the strips at the
+reals they store. -/
+instance : IntersectStrip 𝕋 (fun k => Zonotope (Vec 𝕋 k)) where
+  intersectStrip C φ y Λ Z := (Zonotope.intersectStrip C φ y Λ Z).materialise
+  intersectStrip_outer C φ y Λ Z := by
+    rw [Zonotope.materialise_eq]
+    exact Zonotope.intersectStrip_outer C φ y Λ Z
 
 /-- The same operation at a float interval matrix, which the float
 `expIntervalEnclosure` chain builds towards, exactly as `Real`'s `Mtimes ℐ 𝒵`

@@ -22,7 +22,6 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.API
 import CORALean.ContDynamics.LinearSysDT.Definitions.ConsistentSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
-import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptionsFloat
 import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorPredictSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.MeasurementSet
 import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalState

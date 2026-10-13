@@ -2,11 +2,13 @@ import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.Definitions.CompactSet
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.ContSet.Definitions.ExactVertices
+import CORALean.ContSet.ContSet.Definitions.IntersectStrip
 import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.WithEmpty.WithEmpty
 import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.LmtimesSingletonOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
@@ -104,6 +106,15 @@ instance : Mtimes (Mat ℝ) (fun n => Zonotope (Vec ℝ n)) where
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Zonotope.mtimes_exact M Z).subset
+
+/-- `OfPoint` again, at the family: ℝ is its own scalar, so the point is stored as it is. -/
+instance : OfScalarPoint ℝ (fun n => Zonotope (Vec ℝ n)) where
+  ofVec := Zonotope.ofPoint
+  mem_ofVec := Zonotope.mem_ofPoint
+
+instance : IntersectStrip ℝ (fun n => Zonotope (Vec ℝ n)) where
+  intersectStrip C φ y Λ Z := Zonotope.intersectStrip C φ y Λ Z
+  intersectStrip_outer := Zonotope.intersectStrip_outer
 
 /-- The zonotope family over vectors. A generic theorem quantifies over
 `S : ℕ → Type` and the elaborator cannot read that family off one member, so a
