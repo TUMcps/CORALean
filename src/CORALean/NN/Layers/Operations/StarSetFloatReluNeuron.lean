@@ -12,10 +12,10 @@ which certifies `≤` only, so a bound that is not known to be on one side takes
 whose rows hold wherever the bounds do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

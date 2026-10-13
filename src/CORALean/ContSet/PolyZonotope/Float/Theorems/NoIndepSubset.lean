@@ -9,10 +9,10 @@ Inner: the nominal part is the exact layer's `noIndep` of the original's, which 
 and the error box is the same on both sides.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

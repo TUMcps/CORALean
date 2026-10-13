@@ -13,10 +13,10 @@ The nominal bound is the exact layer's problem, unchanged: the box only pays for
 the rounding that put it there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

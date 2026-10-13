@@ -10,10 +10,10 @@ representation with `LinComb` and `OfPoint` gets the segment for free, and no
 class has to carry a `segment` field of its own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

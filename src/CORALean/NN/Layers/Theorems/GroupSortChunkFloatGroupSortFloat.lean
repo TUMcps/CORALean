@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Operations.GroupSortFloat
 Chunk `k` of `groupSortFloat g x` is chunk `k` of `x` sorted by `le`, for `g > 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

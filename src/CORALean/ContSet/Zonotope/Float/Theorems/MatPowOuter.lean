@@ -9,10 +9,10 @@ Induction on the order, `matMul_outer` at each step, as `Real.Zonotope.matPow_ou
 the base case is the stored identity, which reads back as `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ At every point, `evaluate` of `Transition.toNonlinearReset` is `Transition.reset
 reset class contains the affine one, whatever the input.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

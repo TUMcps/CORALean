@@ -17,10 +17,10 @@ a box with `l(i) > u(i)` is empty and so are its faces, and a flat one is its ow
       Control (CDC), pp. 2130-2137, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

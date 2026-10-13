@@ -13,10 +13,10 @@ is a rounded-up bound `D` of `|g⁽ᴺ⁺¹⁾|` times `Bᴺ⁺¹ / (N+1)!`, `B`
 `c`, each factor rounded up. What is left for each function is its derivatives.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

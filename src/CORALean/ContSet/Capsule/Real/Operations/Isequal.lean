@@ -9,10 +9,10 @@ is `0` and the three fields are equal; the emptiness case CORA tests first (both
 neither) is left to the theorem, since two empty capsules need not have equal fields.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

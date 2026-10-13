@@ -14,10 +14,10 @@ point, the sum of the component resets plus the pre-jump value at `idStates`, wh
 real `Transition.synchronize_reset` says the synchronized reset is. Outer in the reset only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

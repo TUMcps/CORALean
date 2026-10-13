@@ -8,10 +8,10 @@ import Mathlib.Tactic.Linarith
 `constCoef` sums the coefficients of degree zero, whose weight is their magnitude.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

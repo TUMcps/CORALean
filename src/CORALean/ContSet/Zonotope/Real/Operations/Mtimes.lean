@@ -8,10 +8,10 @@ CORA's `@zonotope/mtimes`: `map` at `A *ᵥ ·`, spelt with `*ᵥ` because that 
 the form every caller states its matrix in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   01-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

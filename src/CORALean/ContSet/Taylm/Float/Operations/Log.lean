@@ -11,10 +11,10 @@ Lagrange bound `N!/Lᴺ⁺¹ · Bᴺ⁺¹/(N+1)!`, which is `(B/L)ᴺ⁺¹/(N+1)
 bottom of the hull and `B` the reach. `q` and `s` are `logUp`'s precision and steps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

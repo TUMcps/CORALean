@@ -9,10 +9,10 @@ as the padding rows are zero; the error box is the original's with a zero-width 
 coordinates, so a point of it is a point of the original's with nothing added there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ Every factor at exponent zero collapses the monomial to `1`: the shape a
 concatenation gives the generators it did not come from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

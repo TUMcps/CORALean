@@ -9,10 +9,10 @@ half-plane it is `arctan (b / a)`, in the upper one `π/2 - arctan (a / b)`, in 
 0`, its bounds from `acosDown`, `acosUp`; every end rounds down.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

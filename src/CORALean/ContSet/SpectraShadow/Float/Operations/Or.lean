@@ -6,10 +6,10 @@ import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
 CORA's `or(SpS, S)` of a spectrahedral shadow: `convHull_(SpS, S)`, the convex hull of the union.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

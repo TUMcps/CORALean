@@ -20,10 +20,10 @@ The input dimension `m` is separate from the state dimension `n`, which
 `LinearSys` and `LinearSysDT` are not, their input entering in state coordinates.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

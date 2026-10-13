@@ -9,10 +9,10 @@ The lifted polytope is the set of points whose selected coordinates lie in the o
 exact layer's `lift_exact` states it: nothing rounds, and the stored right-hand sides are unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

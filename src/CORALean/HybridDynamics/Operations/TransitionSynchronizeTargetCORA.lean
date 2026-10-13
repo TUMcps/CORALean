@@ -8,10 +8,10 @@ in CORA: `target(compIdx) = transList(i).target` writes the target of transition
 participating component, so the last one wins. Kept to state the counterexample.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

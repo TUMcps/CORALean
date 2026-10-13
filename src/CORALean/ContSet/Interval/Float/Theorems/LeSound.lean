@@ -7,10 +7,10 @@ A `true` answer chains `toReal_le_of_le` through every coordinate, which is the 
 `le_subset` read at the stored bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

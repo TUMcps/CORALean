@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
 A `true` answer names a coordinate with `toReal sup < toReal inf`, which no point satisfies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

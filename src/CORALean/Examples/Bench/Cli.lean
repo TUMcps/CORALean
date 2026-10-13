@@ -20,10 +20,10 @@ the way `--reps` is, rather than validated here -- neither name means
 anything to `dtdemo` or `nn-float32`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

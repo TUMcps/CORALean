@@ -8,10 +8,10 @@ on each side, `[min inf₁ inf₂, min sup₁ sup₂]`. It is written that way h
 `Theorems/MinEqUminusMax` proves it is `-max(-I, -J)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ right-hand side admits `0`, so every point meets every row. One-sided: `false` d
 nothing, since a `le` may fail on numbers it could have certified.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

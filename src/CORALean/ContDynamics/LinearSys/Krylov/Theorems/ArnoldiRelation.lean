@@ -16,10 +16,10 @@ is not shown here.
   Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   11-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

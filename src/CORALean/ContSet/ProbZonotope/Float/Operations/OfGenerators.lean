@@ -9,10 +9,10 @@ CORA's `probZonotope(Z, g)`: the mean zonotope `Z` and the covariance `g gᵀ`, 
 interval-matrix product of the point matrices `g` and `gᵀ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

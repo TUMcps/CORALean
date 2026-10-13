@@ -7,10 +7,10 @@ import CORALean.Global.MatrixTraceTransposeMulEqSum
 After `X ↦ H X`, a functional `f` is `X ↦ Σ (Hᵀ Z)_{ij} X_{ij}` with `Z_{kj} = f(E_{kj})`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

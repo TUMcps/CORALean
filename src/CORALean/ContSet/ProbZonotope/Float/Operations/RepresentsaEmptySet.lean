@@ -8,10 +8,10 @@ holding its centre; here `true` only if some covariance entry's interval is cros
 its ends), which no matrix lies in, so there is no law. `false` refutes nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

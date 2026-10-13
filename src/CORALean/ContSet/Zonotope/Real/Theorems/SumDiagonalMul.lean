@@ -9,10 +9,10 @@ vanishes, so a sum over the block collapses to a single term. The same fact
 read down a column is `SumDiagonalMulCol.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

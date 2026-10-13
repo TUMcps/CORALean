@@ -5,10 +5,10 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
 # A column that is not its class's representative gathers nothing
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

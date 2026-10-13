@@ -9,10 +9,10 @@ rows are multiplied together entrywise with the float `times`, which rounds each
 the stored box holds every column product the exact one does. The fold starts at the point `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

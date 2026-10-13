@@ -6,10 +6,10 @@ import CORALean.ContSet.SpectraShadow.Real.Operations.LineExample
 The combination of the line example's generators is the diagonal point `(β₁, β₁)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

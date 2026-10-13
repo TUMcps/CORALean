@@ -15,10 +15,10 @@ scalar; the extra bound costs nothing then and is exactly what a scalar known
 only approximately needs otherwise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

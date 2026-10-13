@@ -15,10 +15,10 @@ stored upper end, so the float lower end, a product of a nonpositive and a
 nonnegative bound, only decreases. `smul_outer` and `matPow_outer` finish.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

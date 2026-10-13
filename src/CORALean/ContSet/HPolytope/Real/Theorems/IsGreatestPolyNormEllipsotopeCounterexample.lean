@@ -18,10 +18,10 @@ formula gives, for either facet, `‖G'ᵀλᵢ‖₂ / |bᵢ| = ‖(±1, ±1)�
       Conference (ECC), 2024. doi:10.23919/ECC64448.2024.10590884.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ a difference is a guarantee, so the shifted bound may only come out smaller,
 never larger, and the result stays inside the exact difference.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

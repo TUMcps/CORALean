@@ -21,10 +21,10 @@ CORA enters the branch when `sign(sup k(j)) == sign(inf k(j))`, which also holds
 as it is otherwise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

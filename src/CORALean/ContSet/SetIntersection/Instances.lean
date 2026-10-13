@@ -21,10 +21,10 @@ Computable throughout, for the same reason as `SetUnion`: every field is
 `List.map`/`List.all`/`List.any` over whatever `S`'s own instance computes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

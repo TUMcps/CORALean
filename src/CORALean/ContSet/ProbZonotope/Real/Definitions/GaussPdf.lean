@@ -19,10 +19,10 @@ number `q` of probabilistic generators in place of the dimension `n`.
       Conference (ECC), pp. 625-630, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

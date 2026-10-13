@@ -9,10 +9,10 @@ Each entry of `G Γ` lies between its two directed dot products, so the entry of
 between the two differences, and `mulResidual` takes the larger magnitude of their bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

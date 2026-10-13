@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.Real.Instances
 Named because a generic statement at `𝕋 := ℝ` carries it and a rewrite has to remove it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

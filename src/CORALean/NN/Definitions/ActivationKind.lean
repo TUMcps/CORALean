@@ -7,10 +7,10 @@ The scalar activation functions `getMergeBuckets` is defined for here: ReLU, the
 function and tanh. Their functions are `ActivationKind.fn`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

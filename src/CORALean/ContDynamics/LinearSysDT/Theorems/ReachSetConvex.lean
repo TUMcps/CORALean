@@ -12,10 +12,10 @@ This is the missing hypothesis `minkowskiDiff_inner_of_outer` asks of the exact
 set it turns into an inner approximation; `ReachSetIsCompact` supplies the other.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

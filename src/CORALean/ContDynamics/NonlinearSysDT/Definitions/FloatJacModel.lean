@@ -17,10 +17,10 @@ asked for pointwise: at every point of the boxes, the Jacobian itself lies in th
 matrix, because `computeGO`'s parameters are products of Jacobians at the reference points.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

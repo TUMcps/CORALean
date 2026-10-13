@@ -8,10 +8,10 @@ The lower bounds sum rounding down and the upper bounds rounding up. No nonempti
 needed: the rounding only widens.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

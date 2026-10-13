@@ -8,10 +8,10 @@ A direction along which the first set's upper bound lies strictly below the
 second's lower bound leaves no point for both, whichever direction it is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

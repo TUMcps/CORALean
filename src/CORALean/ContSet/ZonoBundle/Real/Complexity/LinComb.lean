@@ -13,10 +13,10 @@ theirs added plus the one fresh generator, by `Zonotope.linComb_h`. `rfl`
 against both structure instances.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

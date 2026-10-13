@@ -19,10 +19,10 @@ column-gap box (`VPolytope.mem_columnGap`); the zonotope's own box is added. If 
 result is the box's corners, which enclose by `Zonotope.interval_contains`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

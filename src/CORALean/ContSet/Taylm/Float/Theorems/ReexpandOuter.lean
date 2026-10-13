@@ -10,10 +10,10 @@ the whole composite is `s ↦ f (m + r ⊙ s)`. The sub-box `|mₖ| + |rₖ| ≤
 point in the normalized box, where the original remainder holds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

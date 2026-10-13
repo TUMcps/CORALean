@@ -13,10 +13,10 @@ normed space into itself has a fixed point in `K`.
 the unit ball, is `exists_fixedPoint_closedBall`'s case, and its fixed point lies in `K`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

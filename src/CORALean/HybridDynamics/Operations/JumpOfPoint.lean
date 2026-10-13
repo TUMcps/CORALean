@@ -17,10 +17,10 @@ now cuts a non-convex reachable set by a guard exactly. The guard's own
 representation `G` is not read here either, so this asks nothing of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

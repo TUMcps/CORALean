@@ -8,10 +8,10 @@ import CORALean.ContSet.ContSet.ContSet
 (an equality of sets), for the vector branch of CORA's `minkDiff` only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

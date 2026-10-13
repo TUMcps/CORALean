@@ -15,10 +15,10 @@ convex hull of the images of the cube's vertices. With a centre `c`, translate b
       Automatic Control, 61(9):2341-2356, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

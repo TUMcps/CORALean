@@ -20,7 +20,7 @@ import CORALean.Specification.STL.Operations.DepReachAt
 -- Authors:       Claude Sonnet 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

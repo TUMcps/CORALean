@@ -12,10 +12,10 @@ centre's gap is `residual`, the generators' is `generatorError` at their widths,
 join the box `E` the operation already owes; the generator count is the exact one's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

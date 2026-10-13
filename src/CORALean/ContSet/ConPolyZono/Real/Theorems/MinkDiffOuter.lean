@@ -8,10 +8,10 @@ says the result is. So the result is an enclosure of `P ⊖ Z` for every minuend
 it is the whole difference when the minuend is convex (`minkDiff_inner_of_convex`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

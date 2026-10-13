@@ -6,10 +6,10 @@ import CORALean.ContSet.Fullspace.Real.Instances
 # `EmptySet.not` is the complement
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

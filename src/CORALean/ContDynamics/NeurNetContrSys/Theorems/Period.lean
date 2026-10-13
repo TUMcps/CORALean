@@ -26,10 +26,10 @@ Soundness does not need it, precision does; recovering it means a constant-input
 step, which `MatExp` does not yet offer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

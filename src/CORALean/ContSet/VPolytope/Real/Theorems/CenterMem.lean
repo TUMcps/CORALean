@@ -8,10 +8,10 @@ The mean of `k > 0` vertices is the convex combination with every weight `1/k`. 
 the polytope is empty, and CORA returns an empty vector.)
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

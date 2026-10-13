@@ -7,10 +7,10 @@ import CORALean.Global.Float.SoundFloatArithmetic
 end of a Taylor coefficient `r ^ k / k!`, which `powUp` bounds from above.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

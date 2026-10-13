@@ -11,10 +11,10 @@ coordinates keep their value if `id` holds and are `0` otherwise. Returns the ne
 Only places `0`, `1` and entries of `W` and `w`, so it runs at every scalar (route b).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

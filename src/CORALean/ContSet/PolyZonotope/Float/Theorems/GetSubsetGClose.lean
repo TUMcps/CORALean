@@ -10,10 +10,10 @@ rounded-down and the rounded-up product bracket it, so `getSubsetGDiff` covers t
 stored entry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

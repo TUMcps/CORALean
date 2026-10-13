@@ -9,10 +9,10 @@ import CORALean.NN.Layers.Theorems.PowRangeBounds
 Term by term against the power's bracket, and the sum rounded down.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

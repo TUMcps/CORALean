@@ -8,10 +8,10 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 are on the coefficients and a linear map of the ambient space never sees them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

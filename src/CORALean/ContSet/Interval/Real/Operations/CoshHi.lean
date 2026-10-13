@@ -9,10 +9,10 @@ the range lies at or left of `0`, `cosh ub` if at or right of it, and `cosh` at 
 absolute value if `0` lies inside.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

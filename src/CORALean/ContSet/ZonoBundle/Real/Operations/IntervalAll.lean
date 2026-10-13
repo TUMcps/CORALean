@@ -11,10 +11,10 @@ to start from, so the bundle is asked to have one; CORA returns the empty box fo
 here would be wrong, a bundle of no members being the whole space.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

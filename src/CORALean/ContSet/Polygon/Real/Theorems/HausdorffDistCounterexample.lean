@@ -11,10 +11,10 @@ square has to be within the bound of the point (`hausdorffDist₂_exists_mem_dis
 as the compact set). Entered in FINDINGS.md.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ names and boxes the rest, a metric ranks them, and a split turns the ranking
 into the partition. Girard's rule is the one used here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

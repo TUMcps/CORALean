@@ -11,10 +11,10 @@ Each window's maximum over ℝ, `Real.windowMax`: the pivot's value is carried b
 matrix, and what it misses lies in `[0, gap]` by `maxPool_bounds` at the rounded-up gap.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ Makes a non-representative's fibre empty: `rep` unfolds to a `min'` over a
 filter, and the least index of a class is the least index of its own class.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

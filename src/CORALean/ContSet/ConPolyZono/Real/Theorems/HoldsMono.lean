@@ -7,10 +7,10 @@ Widening `b` only admits more factor vectors, never fewer — what makes a
 rounded bound sound, so the float layer can pay its error into `b` through it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

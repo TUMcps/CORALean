@@ -7,10 +7,10 @@ import CORALean.NN.Graph.Operations.Select
 The matrix at a scalar `𝕋` denotes the real selection matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

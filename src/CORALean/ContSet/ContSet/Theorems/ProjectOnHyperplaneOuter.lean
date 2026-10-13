@@ -7,10 +7,10 @@ For the unit normal `c`, `(I - c cᵀ) x + d c = x - (c ⬝ x - d) c`, the foot 
 from `x` to `{y | c ⬝ y = d}`; `mtimes_outer` and `plus_outer` carry it into the result. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

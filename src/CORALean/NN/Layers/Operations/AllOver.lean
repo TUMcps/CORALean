@@ -8,10 +8,10 @@ and `@[csimp]` swaps in the same conjunction as a loop, giving up the early exit
 `false`, which only a check that fails would have reached.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

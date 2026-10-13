@@ -27,10 +27,10 @@ difference itself is nonempty: it holds `0`.
 * [1] `contSet/@zonotope/minkDiff.m`, CORA, ll. 78, 114-138, 291-307.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

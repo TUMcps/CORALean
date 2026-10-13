@@ -19,10 +19,10 @@ the vanishing of [1, Eq. 18], the prefactor being nonzero.
       Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ stencil `tap`, output `j` reading input `tap j l` at kernel entry `l`. The guara
 input read twice by one output, so the weights carry that `tap j` is injective.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

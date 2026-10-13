@@ -12,10 +12,10 @@ both. So `RunUntil T k` is exactly a `Run` together with a duration of at most
 the runs the automaton defines.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

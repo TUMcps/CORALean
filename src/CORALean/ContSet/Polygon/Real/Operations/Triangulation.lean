@@ -12,10 +12,10 @@ triangulation of the boundary (R-PG) is not modelled. It is the cover `linComb` 
 need, which take unions over the triangles.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

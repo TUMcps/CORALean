@@ -9,10 +9,10 @@ import CORALean.Global.Float.SoundFloatArithmetic
 of the hull of the centre and the range, every factor rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

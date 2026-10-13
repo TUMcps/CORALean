@@ -13,10 +13,10 @@ the tail `MatExp.expIntervalEnclosure` already pays for a constant member.
 `Vec` carries the sup norm, and `‖A(σ)‖` is the `l∞` operator norm it induces.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   02-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

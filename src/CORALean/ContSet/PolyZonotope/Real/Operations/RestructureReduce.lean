@@ -19,10 +19,10 @@ keeping, ranking dependent factors by the volume their removal costs. The rankin
 here is Girard's, from `reduce`; what it ranks is the only difference.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

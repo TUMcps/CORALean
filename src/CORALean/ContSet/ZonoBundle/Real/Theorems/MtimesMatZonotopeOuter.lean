@@ -13,10 +13,10 @@ the matrices once, ahead of the intersection, so the enclosure is allowed to
 pick a different `A` per component even though the hypothesis supplies one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

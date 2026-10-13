@@ -11,10 +11,10 @@ the old rows of the factors sent to it. CORA's replacement of a subset of the id
 the identity elsewhere. The generators, the centre and the independent block are untouched.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

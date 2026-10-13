@@ -9,10 +9,10 @@ goes into the box, leaving the count at `h₁ + h₂` as over ℝ. Paying into n
 generators instead would cost `n` more on every addition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ zero where a state is bound), and the flow law (`SelfBindFree` for `mergeFlows`)
 second and third the product has more runs than the parallel automaton.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

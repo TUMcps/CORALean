@@ -29,10 +29,10 @@ borrowed rather than restated, as CORA's `@polyZonotope/linComb` runs
 one-line expressions that happen to coincide.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

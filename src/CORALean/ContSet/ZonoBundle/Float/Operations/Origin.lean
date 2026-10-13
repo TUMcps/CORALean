@@ -7,10 +7,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.Origin
 A bundle of the one zonotope `Zonotope.origin`, as in CORA.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

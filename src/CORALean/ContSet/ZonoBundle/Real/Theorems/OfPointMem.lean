@@ -8,10 +8,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 `Zonotope.mem_ofPoint` at the family's one member.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

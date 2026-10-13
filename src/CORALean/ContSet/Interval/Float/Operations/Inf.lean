@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.EBox
 CORA's `interval.Inf(n)`: `(-∞, ∞)ⁿ`, no bound stored in any coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

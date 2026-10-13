@@ -9,10 +9,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdmissibleOrderFloat
 which is the one `OrderAdmissibleFloat` names, as for `LinearSys`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ A caller wanting the whole of `construct pZ` covered runs `dependent` on `pZ`
 first, which is exact and empties the independent block.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

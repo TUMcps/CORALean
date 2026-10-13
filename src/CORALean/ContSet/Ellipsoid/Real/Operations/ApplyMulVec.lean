@@ -5,10 +5,10 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
 # A functional applied to a generator-space image is the dot product with its pullback
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

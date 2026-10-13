@@ -10,10 +10,10 @@ Girard's is the rule `reduce` runs and this line is the whole of that choice:
 any other ranking would discharge it too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

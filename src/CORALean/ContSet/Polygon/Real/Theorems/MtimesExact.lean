@@ -6,10 +6,10 @@ import CORALean.ContSet.Polygon.Real.Operations.Mtimes
 Exactly: the image of a union is the union of the images, and each piece's image is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The larger of the two ends' absolute values, entry by entry: every matrix of the
 below it entrywise in absolute value (`abs_mulVec_le_magnitudeMat`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

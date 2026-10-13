@@ -20,10 +20,10 @@ most one coordinate strictly inside. Two such coordinates `i`, `j` leave the dir
       Problem". INFOCOMP Journal of Computer Science, 8(4):21-27, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

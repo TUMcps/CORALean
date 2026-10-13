@@ -20,10 +20,10 @@ derivative, times `Bᴺ⁺¹ / (N+1)!` with `B` the reach, each factor rounded u
 of the exponentials (`Global/Float/Exp`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

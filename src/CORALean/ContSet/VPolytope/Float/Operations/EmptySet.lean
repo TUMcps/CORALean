@@ -8,10 +8,10 @@ No vertices, so there is no coefficient family summing to one: the nominal part
 denotes `∅`, and so does its sum with any error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

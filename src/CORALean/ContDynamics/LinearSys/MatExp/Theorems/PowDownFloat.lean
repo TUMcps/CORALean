@@ -7,10 +7,10 @@ Induction on `k`, `mulDown_le_mul` at each step; `toReal a ≥ 0` is what lets
 the step multiply the inductive bound by `toReal a` without flipping it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

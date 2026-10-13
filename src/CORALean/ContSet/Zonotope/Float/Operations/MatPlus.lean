@@ -7,10 +7,10 @@ The exact layer's `Zonotope.plus` at `Mat`: generators concatenate exactly, so o
 centre rounds, and the two boxes add. The count is `h₁ + h₂`, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ generators. The constraint is on the coefficients, which the stored generators k
 witness is the same coefficient family and its membership in `P` is carried over unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

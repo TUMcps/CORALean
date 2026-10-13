@@ -9,10 +9,10 @@ Each end is a rounded evaluation of the same expression: `addDown_le_add` with `
 `add_le_addUp` with `le_dotUp`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

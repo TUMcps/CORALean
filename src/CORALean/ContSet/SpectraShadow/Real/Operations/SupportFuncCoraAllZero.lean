@@ -11,10 +11,10 @@ Formalized as the code computes it, to state the counterexample
 `SpectraShadow.supportFuncCoraAllZero_ne_supportFunc`; see `FINDINGS.md`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

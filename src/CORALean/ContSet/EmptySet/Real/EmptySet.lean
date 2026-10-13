@@ -18,10 +18,10 @@ Real layer only, and not for want of a float one: the representation holds no
 scalar to round, so a `Float` copy would be the same type twice.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

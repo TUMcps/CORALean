@@ -12,10 +12,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.ErrBound
 What everything the coefficients leave over costs in one entry, rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

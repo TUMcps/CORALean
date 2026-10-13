@@ -25,10 +25,10 @@ one-step set. Window `k` is `H(τ_k) ⊕ P^R(t_{k+1})`, time point `k + 1` is
 `H(t_{k+1}) ⊕ P^R(t_{k+1})`. Every input set is `inputSolutionFloat`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

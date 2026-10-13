@@ -8,10 +8,10 @@ The density on the `m`-sigma bound, `K exp(-m²/2)` with `K ≥ 0`, is smaller o
 `pyramid` between consecutive layers non-negative.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

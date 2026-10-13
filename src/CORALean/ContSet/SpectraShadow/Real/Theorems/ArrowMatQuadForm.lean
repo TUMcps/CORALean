@@ -7,10 +7,10 @@ For `x = (a, y)` the quadratic form of `arrowMat s t w` is `t a² + 2 a ⟨w, y�
 completes to `‖s y + a w‖² + a² (s t - ‖w‖²)` over `s` when `s > 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

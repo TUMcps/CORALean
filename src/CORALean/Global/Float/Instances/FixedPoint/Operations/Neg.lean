@@ -6,10 +6,10 @@ import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 Exact: flips the mantissa's sign and leaves the digit count alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

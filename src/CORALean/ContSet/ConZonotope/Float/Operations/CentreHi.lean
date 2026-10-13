@@ -6,10 +6,10 @@ import CORALean.ContSet.ConZonotope.Float.ConZonotope
 An upper end of `y₀ = c + G β₀`, each entry rounded upward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ so it is positive semidefinite exactly when each block is, and each block is one
 set's inequality at its own half of the variables.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ a run of `F` on `[0, S]` that passes through the same states: the original reach
 hit is inside the scaled system's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

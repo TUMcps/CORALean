@@ -20,10 +20,10 @@ The three hypotheses on the remainder product are what the input solution asks
 of `Mtimes` at an interval matrix, and are properties of a representation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

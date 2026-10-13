@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 the nominal part is `{0}`; the error box is the origin box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

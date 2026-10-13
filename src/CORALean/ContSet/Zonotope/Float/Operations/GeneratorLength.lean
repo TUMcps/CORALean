@@ -10,10 +10,10 @@ the stored number is at least the length of the generator the stored floats desc
 box is not part of the generators, as in CORA, where `Z.G` has no error term.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

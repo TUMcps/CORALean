@@ -8,10 +8,10 @@ What `representsa_(Z, 'interval', tol)` decides at tolerance `0`: the zonotope i
 box, the set of an `Interval`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

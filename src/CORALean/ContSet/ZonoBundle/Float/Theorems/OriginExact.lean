@@ -7,10 +7,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 A one-member intersection is that member, which `Zonotope.origin_exact` says is `{0}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

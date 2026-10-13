@@ -21,10 +21,10 @@ box being symmetric; that Eq. 10 is Eq. 7 of [1, Thm. 1] in this notation.
       64(5):2092-2099, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

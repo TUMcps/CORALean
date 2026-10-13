@@ -8,10 +8,10 @@ where the distance to it is `Real.sqrt 0 = 0`, so the only thing that can exclud
 negative radius, which denotes `∅`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

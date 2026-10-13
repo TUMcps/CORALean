@@ -7,10 +7,10 @@ import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
 The inequality rows in `S`, the old equality rows, and the moved rows as equalities.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

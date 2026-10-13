@@ -21,10 +21,10 @@ issue that landed it — so, as in `NeurNetControl.lean`, every operation stays
 over ℝ and `def` would still be `noncomputable`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

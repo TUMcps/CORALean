@@ -10,10 +10,10 @@ empty `[]`; locations are 0-based, so MATLAB's `i = numLoc` is `numLoc - 1`.
 (`Theorems.UlocCoraCounterexample`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

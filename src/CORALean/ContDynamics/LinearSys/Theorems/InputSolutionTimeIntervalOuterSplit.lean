@@ -28,10 +28,10 @@ The split itself is a hypothesis — `ContSet` cannot name a centre — so which
 and which sets is the representation's business.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   02-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

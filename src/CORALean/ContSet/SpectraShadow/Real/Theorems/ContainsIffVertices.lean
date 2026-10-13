@@ -10,10 +10,10 @@ conZonotope or zonoBundle): the point test on each of its `vertices`. A convex h
 in a spectrahedral shadow exactly when the points do, since the shadow is convex.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

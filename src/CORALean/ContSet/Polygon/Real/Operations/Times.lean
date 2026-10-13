@@ -8,10 +8,10 @@ factor is a vector `v` here, the diagonal's entries; a scalar factor is `v = (s,
 `ContSet.times`: a polygon is fixed at dimension two and has no `Mtimes` instance.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

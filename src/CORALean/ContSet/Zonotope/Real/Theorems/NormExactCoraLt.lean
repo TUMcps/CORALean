@@ -11,10 +11,10 @@ otherwise, so every minimiser of CORA's binary program gives `x = (4, -19)` or `
 maximum: whatever solver and `λ` CORA uses, `Zonotope.normExactCora` is strictly below it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

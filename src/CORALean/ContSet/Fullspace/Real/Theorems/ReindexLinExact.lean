@@ -10,10 +10,10 @@ the image is again everything. An equality, which is what `Reindex` asks for —
 the one class in this tree whose obligation is not an inclusion.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

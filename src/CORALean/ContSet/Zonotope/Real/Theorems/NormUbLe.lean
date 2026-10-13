@@ -8,10 +8,10 @@ The box contains the zonotope (`interval_contains`) and `Interval.norm` bounds t
 An upper bound only, and not tight in general: a box is larger than its zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

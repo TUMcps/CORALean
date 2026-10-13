@@ -17,10 +17,10 @@ factor `|h_{k+1,k}|‖v_{k+1}‖₂`.
   exponentials". SIAM Journal on Matrix Analysis and Applications, 38(1):155-187, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

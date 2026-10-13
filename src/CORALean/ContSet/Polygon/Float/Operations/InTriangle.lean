@@ -10,10 +10,10 @@ triangle's orientation, so `true` is certain; a triangle of the other orientatio
 triangle with two corners swapped, which a search over corners also tries.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

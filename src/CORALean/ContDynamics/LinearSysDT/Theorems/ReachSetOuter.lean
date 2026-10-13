@@ -9,10 +9,10 @@ built from the step and nothing else. So this holds at a representation with no
 `plus`, no `mtimes` and no `reduce` — none is mentioned.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

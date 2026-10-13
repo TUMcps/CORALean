@@ -11,10 +11,10 @@ proposes and rounded arithmetic checks. One-sided: `true` proves the intersectio
 empty; `false` decides nothing. A bundle without members is the whole space, so answers `false`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

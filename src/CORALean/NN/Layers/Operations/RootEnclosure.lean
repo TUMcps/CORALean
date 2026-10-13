@@ -8,10 +8,10 @@ import CORALean.Global.Float.Sqrt
 (`Global/Float/Sqrt`), sound for any `p`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

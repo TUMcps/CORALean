@@ -10,10 +10,10 @@ The matrix `A - L C` of the observers' error dynamics, from the stored `A`, `L`,
 the real `A - L C` (`errMatFloat_mem`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ derivative is an argument, as CORA's `lossDer` is (its default, `softmax(y) - t`
 to pass); `idxLayer` is every layer. Real: the gradient is `Chain.backprop`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

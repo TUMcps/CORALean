@@ -22,10 +22,10 @@ is no input set and no free input, so a run is the orbit of `map` from a point o
 `R₀`, which `Theorems.TrajectoryIterate` states rather than leaves implied.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

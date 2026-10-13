@@ -8,10 +8,10 @@ The point `0` as a constrained polynomial zonotope with no generators and an emp
 constraint system, the centre stored as `zero` and both boxes at zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

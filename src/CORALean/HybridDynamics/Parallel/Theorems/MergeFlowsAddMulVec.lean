@@ -9,10 +9,10 @@ is each component's own flow plus the state a coordinate is bound to, the own-co
 binding included, since the entry there is the sum `A_js + 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

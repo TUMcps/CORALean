@@ -10,10 +10,10 @@ Every point of the operand, box included, is a point of the nominal set of `depe
 monomials `β_k β_j β_c` of the factors are tied to each other, and a zonotope frees them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

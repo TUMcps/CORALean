@@ -22,10 +22,10 @@ at every step, so `⨁ A^{k-i} W = ⨁ Aⁱ W` — and so is everything the pape
       Transactions on Robotics, 39(5):3776-3790, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

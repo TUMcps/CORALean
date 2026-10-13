@@ -8,10 +8,10 @@ its negation up. Definitional, so the guarantee in `Theorems` is the upward
 assumption read through `toReal_neg`, needing no axiom of its own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       22-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

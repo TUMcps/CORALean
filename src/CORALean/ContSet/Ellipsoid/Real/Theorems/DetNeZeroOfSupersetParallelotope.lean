@@ -18,10 +18,10 @@ constant on the ellipsoid, so `vᵀ(z̄ ± Geⱼ)` agree and `vᵀG = 0`, `v = 0
       2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

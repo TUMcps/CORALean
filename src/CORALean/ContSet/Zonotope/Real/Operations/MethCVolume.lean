@@ -19,10 +19,10 @@ embeddings ranks the subsets CORA's `combinator(cols,rows,'c')` enumerates.
       (Sep. 2025). No paper behind the rule was confirmed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

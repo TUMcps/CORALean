@@ -21,10 +21,10 @@ correlation of `U` between them and the others.
       IEEE Transactions on Power Systems, 29(5):2270-2280, 2014.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

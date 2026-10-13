@@ -8,10 +8,10 @@ import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 `(-1, 1)`), so from the first derivative on `arccos⁽ᵏ⁾ = -arcsin⁽ᵏ⁾`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

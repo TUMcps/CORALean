@@ -11,10 +11,10 @@ every convex set that holds the region. The centroid itself is not computed; for
 it lies in the region, for a non-convex one (an L-shape, a ring) it may lie outside.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

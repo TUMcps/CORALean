@@ -8,10 +8,10 @@ For an injective `dims`, a row of the lifted matrix against `x` is the row of `M
 `x ∘ dims`: each stored column is read once, and the columns off the range of `dims` are `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

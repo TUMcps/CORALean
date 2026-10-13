@@ -19,10 +19,10 @@ monomial. `compactFactors` changes `p` and the exponent matrix and nothing
 else, all over ℕ, so its nominal part is literally the exact layer's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

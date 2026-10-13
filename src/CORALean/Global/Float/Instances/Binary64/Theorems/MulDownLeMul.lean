@@ -9,10 +9,10 @@ either factor, where a sum needs both. Otherwise the reading is `AddDownLeAdd`'s
 — the upward assumption at `-a`, turned around by `toReal_neg`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       22-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

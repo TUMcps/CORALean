@@ -17,10 +17,10 @@ alike would make `Partition` a keyword. `ofPred` builds one out of a decidable
 predicate, for a caller that only has one of those, such as a merge bucket.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

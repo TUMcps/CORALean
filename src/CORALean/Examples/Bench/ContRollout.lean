@@ -12,10 +12,10 @@ bits, so this never rejects a config that also fits `X0`). `LinearSys.reachWrapp
 `LinearSysDT.reach`, which needs the discretized matrix `buildSystem` builds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

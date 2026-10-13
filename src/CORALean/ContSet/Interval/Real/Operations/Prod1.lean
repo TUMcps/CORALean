@@ -11,10 +11,10 @@ The fold starts at the point `1`, the empty product, where CORA starts at the fi
 agree for `m ≥ 1` since `1 .* r = r`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

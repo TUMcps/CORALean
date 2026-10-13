@@ -15,10 +15,10 @@ semidefinite, which `Ellipsoid.isBadDir_iff` reads as the direction not being ba
 about the nominal ellipsoids, the error boxes aside, under the hypotheses of that theorem.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

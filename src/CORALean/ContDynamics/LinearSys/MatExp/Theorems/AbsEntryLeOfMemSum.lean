@@ -12,10 +12,10 @@ import Mathlib.Tactic.Linarith
 `abs_entry_le_of_mem_inputCorrectionSet`, so it is public rather than `aux_`-named.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

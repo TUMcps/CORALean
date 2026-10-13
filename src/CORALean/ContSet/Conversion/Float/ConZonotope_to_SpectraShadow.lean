@@ -12,10 +12,10 @@ generators and error box are carried over. Nothing rounds, so nothing is paid. T
 contains the constrained zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

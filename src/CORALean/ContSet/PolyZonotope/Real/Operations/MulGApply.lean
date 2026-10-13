@@ -11,10 +11,10 @@ Its own file (#62) because the float layer's `Theorems/MulGClose.lean` is what
 reads it, and that is where the rounding of a product generator is priced.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

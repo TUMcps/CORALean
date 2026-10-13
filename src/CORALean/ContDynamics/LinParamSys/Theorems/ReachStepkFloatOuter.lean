@@ -11,10 +11,10 @@ import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
 and `exp_mem_expSquaringFloat` encloses the rest.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

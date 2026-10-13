@@ -11,10 +11,10 @@ exact reals the stored values denote; what is added is that the two ends, evalua
 rounding, are each pushed outward, and `abs_sub_le_spread` measures from the stored midpoint.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

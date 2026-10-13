@@ -18,10 +18,10 @@ on this trajectory does not exploit that constancy, so the enclosure is looser
 than an exact discretization would be if the exponential could be computed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

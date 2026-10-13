@@ -8,10 +8,10 @@ For an injective `proj`, the result is the set of vectors that read `y` at the c
 `proj` for some member `y`, and are `0` everywhere else. Equality, since padding is linear.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

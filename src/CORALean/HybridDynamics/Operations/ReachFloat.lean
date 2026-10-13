@@ -21,10 +21,10 @@ One branch per transition and jump depth, CORA's `'box'` hull standing for all
 the time steps that meet the guard.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

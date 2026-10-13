@@ -8,10 +8,10 @@ At any factor vector, the resolved set's point is the original's with factor `k`
 value `x`: the factor's own value no longer matters.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

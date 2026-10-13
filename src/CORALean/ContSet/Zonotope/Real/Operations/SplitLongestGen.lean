@@ -8,10 +8,10 @@ CORA's `splitLongestGen`: `split` at the generator `longestGen` picks. A zonotop
 generator is its own two halves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

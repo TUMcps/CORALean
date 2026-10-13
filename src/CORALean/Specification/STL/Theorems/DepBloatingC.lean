@@ -13,10 +13,10 @@ at the image of the centre of `U₀`, so `D` is centred at `0` when `U₀` is, a
       Hybrid Systems, vol. 53, 2024, 101491.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ has to be built and its sum computed, which is three rewrites through
 What the convex-hull characterisation and `linComb`'s enclosure both start from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

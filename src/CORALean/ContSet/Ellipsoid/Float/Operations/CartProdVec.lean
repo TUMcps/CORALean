@@ -7,10 +7,10 @@ CORA's `@ellipsoid/cartProd_.m` with a point operand, which is exact: the centre
 point, the generators by zero rows and the error box by the origin. Nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

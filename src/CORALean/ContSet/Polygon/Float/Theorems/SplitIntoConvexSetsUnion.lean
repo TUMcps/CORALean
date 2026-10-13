@@ -10,10 +10,10 @@ definition. Nothing is computed, so this is a statement about the stored float p
 own pieces, not a claim that the float polygon is the real one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

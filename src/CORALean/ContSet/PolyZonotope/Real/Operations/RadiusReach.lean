@@ -12,10 +12,10 @@ which is exactly `Zonotope.radiusReach` read at the enclosing zonotope, whose
 own generators are `G` and `GI` appended.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

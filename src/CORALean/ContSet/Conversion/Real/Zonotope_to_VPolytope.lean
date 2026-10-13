@@ -29,10 +29,10 @@ sums back to its own coefficient while the rest sum away.
       Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

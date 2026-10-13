@@ -19,10 +19,10 @@ The Lagrange bound is `odePoly (1 + X²) (N+1)` at one (`odeL [1, 0, 1] (N+1)` o
 (`Global/Float/Exp`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

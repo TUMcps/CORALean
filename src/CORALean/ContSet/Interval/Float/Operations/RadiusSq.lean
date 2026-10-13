@@ -8,10 +8,10 @@ CORA's `radius`, the squared Euclidean norm of the stored half-widths `Interval.
 The root is a caller's certificate, as for `Interval.normSq`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

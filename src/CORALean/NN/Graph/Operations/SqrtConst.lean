@@ -10,10 +10,10 @@ import CORALean.NN.Graph.Operations.SqrtSlope
 constant term of `s_j`'s affine form in the edge factors.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

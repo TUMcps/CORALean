@@ -7,10 +7,10 @@ import CORALean.NN.Graph.Theorems.BallEnumIdx
 `Exists.choose_spec` is its proof.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

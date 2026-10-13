@@ -9,10 +9,10 @@ claimed only under the hypothesis that `le` is also complete: `toReal a ≤ toRe
 format does, and no exactness of the entries is claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

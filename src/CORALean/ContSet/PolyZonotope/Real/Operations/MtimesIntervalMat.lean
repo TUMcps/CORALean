@@ -12,10 +12,10 @@ matrix's uncertainty answers to none of the set's dependent factors, so making
 it dependent would misstate where the sharing is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

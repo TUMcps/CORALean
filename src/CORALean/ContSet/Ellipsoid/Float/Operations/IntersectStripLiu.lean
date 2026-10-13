@@ -12,10 +12,10 @@ wrapper: `φ = sqrtUp V` (an upward root only widens the strip) and `λ'` with d
 the float Gollamudi theorem has no hypothesis on its weight, so `λ'` need not be exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

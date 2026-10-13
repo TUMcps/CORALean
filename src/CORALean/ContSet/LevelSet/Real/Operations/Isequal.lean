@@ -14,10 +14,10 @@ modelled. A level set that compacts to `emptySet` is outside CORA's `aux_isequal
 (its `ls.eq` read fails) and is `False` here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

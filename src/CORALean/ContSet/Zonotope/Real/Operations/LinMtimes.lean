@@ -11,10 +11,10 @@ At `Vec` this is `mtimes`; at `Mat` it is matrix multiplication of a matrix
 zonotope, from either side.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

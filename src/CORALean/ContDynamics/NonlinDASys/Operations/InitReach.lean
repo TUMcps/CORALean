@@ -16,10 +16,10 @@ CORA finds by `consistentInitialState` enters through `lin`'s `y*`; the error bo
 (`error_x`, `error_y`) seeds CORA's loop and is not carried.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

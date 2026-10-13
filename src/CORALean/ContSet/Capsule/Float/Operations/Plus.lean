@@ -12,10 +12,10 @@ one. The lengths are compared on the squares rounded up, which is only a choice 
 branches enclose the sum. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

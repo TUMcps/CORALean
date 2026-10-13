@@ -18,10 +18,10 @@ not closed under negation. The meet takes a whole conjunction, as the paper's do
       IEEE S&P 2018, pp. 3-18.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

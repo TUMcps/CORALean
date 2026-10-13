@@ -16,10 +16,10 @@ the new error box holds; and `δ` meets the rescaled rows, whose right-hand side
 the same rounding. Outer: the exact layer's `rescale_exact` is an equality, this is not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

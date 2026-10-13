@@ -11,10 +11,10 @@ bracket against one for `σ'`, at the worse end. A centre and a radius keep orde
 radius is zero there, and the bracket is the one `Relaxation.ofDeriv` works with.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ convex — that second half is all the constraints add over a zonotope, and it i
 `HPolytope.convex_construct` rather than an argument of its own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

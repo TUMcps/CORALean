@@ -9,10 +9,10 @@ cut in each basis, so in every member of the bundle, so in the bundle. The bases
 `B Bᵀ = 1` over ℝ, so `B (Bᵀ x) = x` carries the state through the basis and back. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

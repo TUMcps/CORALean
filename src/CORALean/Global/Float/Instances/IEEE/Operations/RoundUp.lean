@@ -8,10 +8,10 @@ negation, taken `gridShift` bits right. The result has at most `p` bits, one mor
 ceiling carries into the next power of two, and an exponent of at least `qmin`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

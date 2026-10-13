@@ -7,10 +7,10 @@ Coordinate `i` of the list, read as reals, is neuron `i`'s own coefficients: wha
 evaluation carry `n` different polynomials, and what the enclosure states its exact side against.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

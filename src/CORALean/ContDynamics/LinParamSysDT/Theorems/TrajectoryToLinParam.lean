@@ -9,10 +9,10 @@ repackaged as `LinParamSysDT.Trajectory.step`'s existential: the witness is
 membership `rfl`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ it is stated apart from `discretize`, which needs every step at once. The domain
 reaches back to `0`, where the integral equation is anchored.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

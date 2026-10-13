@@ -7,10 +7,10 @@ import CORALean.ContSet.Capsule.Real.Instances
 It is in the capsule exactly when the stored radius is non-negative.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

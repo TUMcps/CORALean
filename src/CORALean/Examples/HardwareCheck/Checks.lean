@@ -16,10 +16,10 @@ one and answering with the failures it saw, tagged by kind:
 A `Stat` counts them per operation and keeps the first failing input's report.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

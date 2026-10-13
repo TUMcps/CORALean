@@ -24,10 +24,10 @@ template's normals still describing a zonotope one of whose generators has vanis
       Transactions on Robotics, 39(5):3776-3790, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

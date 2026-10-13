@@ -6,10 +6,10 @@ import CORALean.ContSet.Polygon.Float.Operations.IntervalOfList
 The hull of the pieces' boxes (`Interval.or`), the empty box for no pieces.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ Written as an unsafe set, since what must not happen is that some other label
 catches up, and then it is checked by the same theorem everything else is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

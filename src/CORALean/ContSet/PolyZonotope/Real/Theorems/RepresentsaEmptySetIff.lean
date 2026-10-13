@@ -7,10 +7,10 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 The point at the factors `0` (`point_mem_construct`) is a member.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

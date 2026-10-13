@@ -5,10 +5,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.CubContractDown
 `Zonotope.cubContractDown` rounded the other way: a float above `Σₖ uₖ · (vᵀ T{i,k} w)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

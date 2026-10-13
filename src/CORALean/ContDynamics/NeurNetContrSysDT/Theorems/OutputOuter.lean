@@ -13,10 +13,10 @@ looser one `reach` itself widens through, as `NeurNetContrSysDT.Operations`
 already notes at the state.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

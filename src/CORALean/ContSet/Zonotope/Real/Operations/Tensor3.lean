@@ -11,10 +11,10 @@ The third-order tensors of CORA's `@zonotope/tensorMultiplication.m`: `M = {M₁
 matrix zonotope of tensors is a `Zonotope` over it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
 member holds the bundle, and so does their intersection.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

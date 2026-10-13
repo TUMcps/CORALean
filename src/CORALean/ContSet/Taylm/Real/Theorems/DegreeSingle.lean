@@ -4,10 +4,10 @@ import CORALean.ContSet.Taylm.Real.Operations.Degree
 # A unit vector has degree one
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

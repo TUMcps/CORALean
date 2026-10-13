@@ -11,10 +11,10 @@ two blocks and then reading them back is `Fin.append` of the two read-back
 blocks, coordinate by coordinate rather than by definition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

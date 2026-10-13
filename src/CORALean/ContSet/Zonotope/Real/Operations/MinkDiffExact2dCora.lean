@@ -16,10 +16,10 @@ here: `none`. The header documents `'exact'` as the exact difference.
 * [1] `contSet/@zonotope/minkDiff.m`, CORA, ll. 117-127.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

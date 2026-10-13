@@ -14,10 +14,10 @@ if that fails, `R(τ_j) ∩ G = ∅`. Nothing about `g` is needed.
       Computation and Control (HSCC), 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

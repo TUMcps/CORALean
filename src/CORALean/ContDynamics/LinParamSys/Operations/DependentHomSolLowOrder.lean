@@ -18,10 +18,10 @@ It is defined to be refuted: the second-order input terms are incomplete
 by all pairs `(i, j)`, zero unless `i < j`, where CORA lists the pairs `i < j`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

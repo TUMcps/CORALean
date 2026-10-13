@@ -11,10 +11,10 @@ shadow that forces `s ≥ 0` and, when `s = 0`, the point `w = 0`. It is linear 
 one `2 × 2` block `[[s, wᵢ], [wᵢ, t]] ⪰ 0` per coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ smallest subnormal's, `qmin`, whichever is more. The second is what makes a resu
 normal range land on the subnormal grid, where IEEE 754 keeps a fixed step rather than `p` bits.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

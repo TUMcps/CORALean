@@ -12,10 +12,10 @@ What an integral valued in the set needs, and a property only some
 representations have — unlike `linComb`, stated so a non-convex one can make it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   01-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

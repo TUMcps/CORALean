@@ -17,10 +17,10 @@ and joins `mid(M) E` in the box. So the box carries rounding and nothing of the
 interval matrix's width — a long product chain wraps only what rounding cost.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

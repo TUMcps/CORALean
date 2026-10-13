@@ -9,10 +9,10 @@ Split out of `Operations/Plus.lean` (issue #62): the mirror of
 alongside it wherever `plusE` is unfolded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ The bundle's points are the enclosed program's (`ZonoBundle.conZonotopeAll_conta
 `true` proves empty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

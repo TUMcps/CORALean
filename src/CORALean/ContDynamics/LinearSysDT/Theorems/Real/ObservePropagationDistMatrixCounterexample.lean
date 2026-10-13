@@ -15,10 +15,10 @@ the gains take `generators(params.W)` as `E`. Here `A = C = 1`, `E = 2`, `W = [-
 it. `F` and `params.V` are dropped alike. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

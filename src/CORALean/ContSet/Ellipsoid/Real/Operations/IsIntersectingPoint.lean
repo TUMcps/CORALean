@@ -10,10 +10,10 @@ contains it, here at `tol = 0` through `Ellipsoid.containsPoint`. The emptiness 
 through `distance` (solver-dependent) and `priv_isIntersectingMixed` are not formalized.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

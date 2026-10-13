@@ -5,10 +5,10 @@ import Mathlib.Tactic.Linarith
 # The hull of a Taylor model lies within its magnitude
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

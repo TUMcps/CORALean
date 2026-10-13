@@ -10,10 +10,10 @@ A coefficient in a term's bracket times the original generator's entry is betwee
 products, which are `subsGDiff` apart, so it is within that of the stored (rounded-down) one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ matching `expIntervalTaylor`'s recursion on the right term by term, and
 `plus_outer`/`smul_outer`/`matPow_outer` cover the two pieces.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ linear map of `k` copies of the range into it, as each `y i = M u_i` is read off
 vector `(i, b) ↦ u_i b`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

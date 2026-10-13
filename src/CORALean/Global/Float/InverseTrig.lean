@@ -24,10 +24,10 @@ on the denominator. `arcsin` and `arccos` clamp their argument to `[-1, 1]` firs
 of the sine and cosine, `k` the number of bisection and Newton steps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

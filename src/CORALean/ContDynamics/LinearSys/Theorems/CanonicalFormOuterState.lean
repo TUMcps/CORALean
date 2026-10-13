@@ -11,10 +11,10 @@ centred sets carry what moves, `u_` the rest. Outer only, as the set operations 
 * [1] `contDynamics/@linearSys/canonicalForm.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

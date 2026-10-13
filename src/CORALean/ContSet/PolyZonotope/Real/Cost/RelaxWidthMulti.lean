@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/RelaxWidthMulti.lean` sums one `eDiff` per
 factor, `p` of them and `p` additions.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

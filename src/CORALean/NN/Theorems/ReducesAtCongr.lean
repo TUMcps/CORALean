@@ -8,10 +8,10 @@ replacing `f` by a map that agrees with it everywhere is one rewrite in that equ
 what lets a caller state the map in its own terms, as `NeuralNetwork.Sound.congr` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

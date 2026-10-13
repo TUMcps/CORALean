@@ -15,10 +15,10 @@ and `G` is carried, by `jumpIntersectionOfPoint_outer`, to the concrete point `(
 in the jumped set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

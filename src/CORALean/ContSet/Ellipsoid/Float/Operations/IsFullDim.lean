@@ -11,10 +11,10 @@ invertible (Gershgorin), so `rank G = n`. The error box must be nonempty (`inf â
 so that the set is a translate-containing sum. Only `true` is certain.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

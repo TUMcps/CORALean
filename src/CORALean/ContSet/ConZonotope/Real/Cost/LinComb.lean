@@ -22,10 +22,10 @@ count carries the constraint sizes `mᵢ`, `meᵢ`, which is what a constrained
 zonotope's hull pays for keeping them exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

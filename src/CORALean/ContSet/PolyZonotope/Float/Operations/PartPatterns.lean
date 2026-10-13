@@ -7,10 +7,10 @@ The distinct exponent patterns of the generators in the factors `V`, first appea
 grouping of CORA's `partZonotope`. It reads the exponent matrix only, which holds naturals.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

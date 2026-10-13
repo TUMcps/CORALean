@@ -6,10 +6,10 @@ import CORALean.ContSet.Polygon.Real.Operations.Or
 Exactly, unlike `VPolytope.or`, which hulls: a polygon holds the union as a list of pieces.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ empty body) and `Reindex` (CORA's `lift_` at a permutation). `ContSet` is in `Ca
 under almost nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

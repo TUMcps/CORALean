@@ -9,10 +9,10 @@ The same as `discretize`, with the input set named rather than assumed.
 Available to a representation that is convex and closed; `Zonotope` is both.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

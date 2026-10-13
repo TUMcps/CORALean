@@ -11,10 +11,10 @@ upper ones rounding up. These bounds are certified by the rounding alone, not by
 radius formula (`Real.StarSet.rowBounds`), whose centre is not the one CORA computes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

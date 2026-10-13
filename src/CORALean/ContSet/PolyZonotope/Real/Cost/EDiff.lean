@@ -9,10 +9,10 @@ equality, takes both modulo two and compares those: four operations on
 exponents, priced at unit like the scalar operations the model counts.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

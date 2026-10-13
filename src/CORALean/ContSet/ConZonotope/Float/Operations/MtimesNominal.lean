@@ -11,10 +11,10 @@ vector (`mtimesNominal_err`), which is all an inner approximation asks of it: th
 makes room for that distance in the set it maps, rather than the result absorbing it in a box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

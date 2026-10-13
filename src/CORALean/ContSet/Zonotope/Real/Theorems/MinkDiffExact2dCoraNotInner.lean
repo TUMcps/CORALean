@@ -12,10 +12,10 @@ So the `'exact'` result is not contained in the difference. The paper-side state
 `Zonotope.minkDiffAligned_not_inner`; this is CORA's guard accepting every positive scaling.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

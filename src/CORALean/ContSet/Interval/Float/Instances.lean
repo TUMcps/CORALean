@@ -36,10 +36,10 @@ guarantee after one rewrite. It is here rather than in `Operations/` because thi
 is where a set is handed back to a caller that may loop.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

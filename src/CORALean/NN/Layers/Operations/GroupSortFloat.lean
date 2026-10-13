@@ -9,10 +9,10 @@ the sorted chunk `⌊i / g⌋`. Sorting only moves entries, so no rounding is in
 can get wrong is the comparison, which is why the sortedness theorem takes `le` to be exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

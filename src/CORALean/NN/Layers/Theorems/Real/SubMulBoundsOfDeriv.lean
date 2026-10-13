@@ -13,10 +13,10 @@ the open one, so a kink at an endpoint costs nothing. It is about the exact `σ`
 reals a scalar's values denote, which is why `Relaxation.ofDeriv` reuses it at every scalar.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

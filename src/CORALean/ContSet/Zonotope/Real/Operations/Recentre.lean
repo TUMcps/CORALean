@@ -8,10 +8,10 @@ origin instead of the centre. What `Recentre` asks a representation with a
 centre to supply, alongside `Zonotope.c` itself as `centre`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

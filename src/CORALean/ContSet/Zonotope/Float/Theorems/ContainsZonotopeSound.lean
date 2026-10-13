@@ -18,10 +18,10 @@ with coefficients of size at most `δ` (`Zonotope.ballCert_reach`), and the budg
 second error box's lower corner, a member of that box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ concludes it from `trueError ≤ appliedError`, which this tree does not reprodu
 `confinement_of_subset` discharges it from the computed sets as for any other step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

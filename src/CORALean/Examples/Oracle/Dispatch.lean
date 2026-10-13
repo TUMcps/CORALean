@@ -18,10 +18,10 @@ every other op goes through `withDtype`, which is where a dtype string becomes
 a type, and `handleOp`, which is where an op name becomes a handler.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

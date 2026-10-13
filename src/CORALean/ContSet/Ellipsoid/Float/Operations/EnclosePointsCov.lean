@@ -19,10 +19,10 @@ is. For points spanning the space with orthogonal `T`, `U` and no vanishing `ntá
 are rounding errors.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -23,10 +23,10 @@ nonempty ball is empty. Filling needs the exact set to be thick, a hypothesis on
 `X₀` and `U` that no step size can buy.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

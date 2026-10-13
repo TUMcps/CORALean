@@ -13,10 +13,10 @@ shows the check can see a taint at all — while the library's own
 `reachFloat_outer`, stated for an arbitrary scalar, does not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

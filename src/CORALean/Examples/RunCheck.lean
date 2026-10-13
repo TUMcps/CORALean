@@ -24,10 +24,10 @@ scalar. `Dyadic 24` is the software scalar. The numbers are the demo's: compare,
 Run: `lake exe runcheck` (links, slow) or `lake env lean --run src/CORALean/Examples/RunCheck.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ the hull of all the stored vertices plus the error box of the piece it came from
 float polygon is the nominal one only up to those boxes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

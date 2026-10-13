@@ -17,10 +17,10 @@ The substitution `s ↦ τ - s` maps the window to itself, which is why
 `inputReach` is stated over `Icc` and no endpoint bookkeeping is needed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

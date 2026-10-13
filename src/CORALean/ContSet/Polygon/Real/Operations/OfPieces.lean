@@ -7,10 +7,10 @@ The constructor: a polygon from convex pieces, which `polygon(V)` of CORA's cons
 from a boundary, after a triangulation this file does not do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

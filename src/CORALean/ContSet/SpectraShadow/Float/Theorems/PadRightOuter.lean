@@ -12,10 +12,10 @@ shadow under `blockPadRight`, so `map_exact` gives the nominal obligation as an 
 box's new coordinates are the exact zeros `padRight` stores.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ error box): in the plane a point of a hull lies in a triangle of three of the ve
 certain; a point on an edge or too close to one for the rounding answers `false`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

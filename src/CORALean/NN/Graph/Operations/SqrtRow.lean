@@ -7,10 +7,10 @@ The left factor of the normalisation `D̃^(-1/2) Ã D̃^(-1/2)`: `sqrtBroadcast`
 indexed by its own row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

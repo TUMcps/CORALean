@@ -7,10 +7,10 @@ Even: `a ^ k = |a| ^ k`. Odd: `le zero a` makes `a` nonnegative (`powDown_le`); 
 `a ^ k ≥ (-|a|) ^ k = -|a| ^ k` by monotonicity of an odd power.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

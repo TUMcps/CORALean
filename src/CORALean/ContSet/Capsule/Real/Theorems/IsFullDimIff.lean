@@ -22,10 +22,10 @@ Stated at `construct`, which is what `ContSet.IsFullDim` unfolds to: the `ContSe
 declared after the theorems.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -24,10 +24,10 @@ overflow handling (issue #48), not a comparison. What `le` buys is
 `(1 + x/2ⁿ)^(2ⁿ)` is `exp (x - x²/2ⁿ⁺¹ + …)`, under `10⁻¹²` relative at `n = 50`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

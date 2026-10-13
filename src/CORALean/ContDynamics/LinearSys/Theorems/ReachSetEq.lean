@@ -11,10 +11,10 @@ among them — drives a run. This is what lets the layer refute as well as prove
 `ReachSetSubset`/`ReachSetSuperset` are the two halves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       15-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
 For `0 < n`: in dimension `0` there is a single point, and a box with no coordinates contains it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

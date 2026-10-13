@@ -9,10 +9,10 @@ enclosure needs no tighter a midpoint than this, only a sound bound on how far
 any denoted matrix can be from it, which `Interval.matResidual` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

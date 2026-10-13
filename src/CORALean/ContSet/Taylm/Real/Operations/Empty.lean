@@ -7,10 +7,10 @@ CORA's `empty(n)`: the model of the empty interval in each coordinate, a polynom
 zero and the crossed remainder `[1, 0]`, which no function can satisfy.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

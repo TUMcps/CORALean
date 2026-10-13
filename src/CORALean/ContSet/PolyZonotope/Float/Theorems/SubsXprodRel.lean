@@ -10,10 +10,10 @@ The fold over the outputs multiplies the powers of the output polynomials (`subs
 `subsPoly_rel`), starting from `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ CORA's `reduce(P, 'girard', o)`: the mean zonotope reduced by `Zonotope.reduceGi
 covariance kept.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

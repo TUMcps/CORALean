@@ -8,10 +8,10 @@ window's blocks. Shared by `simulate_trajectory` (real sets) and
 `simulate_mem_simulateBox` (float boxes).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

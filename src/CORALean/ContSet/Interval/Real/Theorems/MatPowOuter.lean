@@ -16,10 +16,10 @@ know that: `matPow A 2` also contains `M * N` for different members `M`, `N` of
 matrix zonotopes instead.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

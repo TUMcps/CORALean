@@ -9,10 +9,10 @@ import Mathlib.Analysis.Calculus.FDeriv.Mul
 differentiable: the Jacobian is linear in the map. `jacobianMat_sub` is the difference case.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

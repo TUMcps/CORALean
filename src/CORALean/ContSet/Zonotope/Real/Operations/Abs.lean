@@ -8,10 +8,10 @@ the entrywise absolute values of the input's. It is a different set, not an encl
 input (see `Zonotope.abs_corner_mem` for what it does keep).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

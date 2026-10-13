@@ -23,10 +23,10 @@ admit `(10, 0)`, while every point of `P₁ ⊕ P₂` has `x ≤ 2`. The inclusi
       Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

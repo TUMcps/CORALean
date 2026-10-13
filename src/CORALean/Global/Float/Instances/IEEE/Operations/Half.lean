@@ -8,10 +8,10 @@ step finer than the format has: the halved smallest subnormal is no number of `f
 is kept exactly, and the next rounded operation rounds it back onto the grid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ side condition `nrm ≤ (η + 2)/2`, and it is at least `2`: so it is admissible
 enclosures (`OrderAdmissibleFloat`), and `timeIntervalStepFloat_outer` applies at it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

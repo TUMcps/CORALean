@@ -10,10 +10,10 @@ specification's own set about each enclosed output through the representation pa
 no soundness proof for the checker; `Theorems.VerifySplitSound` needs only the splitter's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

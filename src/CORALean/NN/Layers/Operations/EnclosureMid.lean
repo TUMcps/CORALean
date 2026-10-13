@@ -8,10 +8,10 @@ measured from whichever one is written down — so the midpoint is a precision c
 rounding costs nothing. Halving is exact in a binary format.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

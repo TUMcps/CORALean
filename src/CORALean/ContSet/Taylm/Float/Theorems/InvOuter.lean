@@ -12,10 +12,10 @@ is smooth on it, its Taylor coefficients at the centre lie in the rounded interv
 `Taylm.taylor_outer` does the rest. Outer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

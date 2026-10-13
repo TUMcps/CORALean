@@ -18,10 +18,10 @@ In the shape-matrix form this is [1, Lemma 2], `T E(E, ē) = E(T E Tᵀ, T ē)`;
       2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The boxes `softplusEnclosure` brackets softplus on: the sharpness is positive, `
 right end, and `logDown` covers `1 + exp` at the left one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

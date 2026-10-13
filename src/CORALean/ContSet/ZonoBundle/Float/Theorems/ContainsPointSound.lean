@@ -7,10 +7,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
 The bundle is the intersection of its members, and a point in every member is in it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ For `j ≤ N`, the term `C(j, i) / C(N, i) · (C(e, i) 2ⁱ (-1)^(e - i))` of `b
 between the two floats `bernsteinStep` returns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

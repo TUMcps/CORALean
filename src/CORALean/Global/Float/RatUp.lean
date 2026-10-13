@@ -11,10 +11,10 @@ dominates `q`, and nothing needs to, since a caller reads the step it chose
 back through `ToRat` rather than trusting this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

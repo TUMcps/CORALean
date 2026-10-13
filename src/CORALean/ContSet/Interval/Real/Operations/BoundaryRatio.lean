@@ -15,10 +15,10 @@ bounded case arises. The non-emptiness and containment checks on `startPoint` an
 hypotheses of the theorems; here `dir ≠ 0` is what makes the minimum over a non-empty set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

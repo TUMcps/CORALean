@@ -7,10 +7,10 @@ import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
 Any one member, converted, holds the bundle: nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

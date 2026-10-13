@@ -13,10 +13,10 @@ column of `A`. It is what lets `Λ_G (b − Aξ)` be added to `z = Gξ + c` in `
       2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

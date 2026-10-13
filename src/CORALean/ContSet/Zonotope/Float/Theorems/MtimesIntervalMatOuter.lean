@@ -22,10 +22,10 @@ the new diagonal generators, so a coefficient in `[-1, 1]` reaches it
 (`Real.Zonotope.coefficient`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

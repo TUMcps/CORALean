@@ -23,10 +23,10 @@ itself, ignoring the guard entirely, and the step stays correct while losing
 everything the guard would have removed — hence an exact `intersection` pays.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ the specification re-derives the sorted finset at each of the `p · (h + s)` rea
 (issue #61). `compactFactors_eq_spec` says they are one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   11-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

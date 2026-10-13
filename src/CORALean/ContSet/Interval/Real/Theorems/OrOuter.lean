@@ -8,10 +8,10 @@ Where CORA returns the other operand for an empty one, this returns the hull of 
 coarser, so the statement is an enclosure and never an equality.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -23,10 +23,10 @@ Kept for those locations. The fixpoint iteration that would find such an `R` is
 left to CORA, as `NonlinearSysDT.confinement_of_subset` leaves its analogue.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

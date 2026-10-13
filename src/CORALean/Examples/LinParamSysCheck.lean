@@ -25,10 +25,10 @@ that box off the origin, to `[9/10, 11/10] × [-1/10, 1/10]`, as
 `LinParamSys.WithInputSplit`, which asks for no `0 ∈ U` at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Real
 

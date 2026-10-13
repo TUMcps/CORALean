@@ -12,10 +12,10 @@ CORA's `optBernstein`: the least and greatest Bernstein coefficient of the polyn
 the greatest upper end over all multi-indices, and adds the remainder, the ends rounded outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

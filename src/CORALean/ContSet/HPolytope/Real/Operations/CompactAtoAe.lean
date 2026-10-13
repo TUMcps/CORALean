@@ -15,10 +15,10 @@ The test for an inverted pair is exact equality of `[a, b]` and `-[a', b']`; COR
 exits at the end of CORA's `compact_` are not needed here, an empty row set being the fullspace.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ import Mathlib.Data.Real.Basic
 matrices `quadBilin` is applied to in `cubMapDepOn`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

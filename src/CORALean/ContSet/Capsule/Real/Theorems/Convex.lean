@@ -12,10 +12,10 @@ segment `{c + t g | t ∈ [-1, 1]}`, an affine image of `Icc`, and the ball `{y 
 linear functionals and so convex — no norm needed for either part.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

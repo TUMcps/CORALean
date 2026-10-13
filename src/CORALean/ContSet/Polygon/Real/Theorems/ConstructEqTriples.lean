@@ -11,10 +11,10 @@ triangle they span (a degenerate one, a segment or a point, when two coincide). 
 overlap; this is a cover of the piece, not a partition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

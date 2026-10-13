@@ -8,10 +8,10 @@ import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
 and the other fields are unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

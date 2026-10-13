@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
 The Taylor model of `sinh`: `Taylm.hyperbolic` with the even coefficients `sinh`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

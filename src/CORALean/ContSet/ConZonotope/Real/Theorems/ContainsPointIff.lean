@@ -9,10 +9,10 @@ CORA's `aux_containsPoint` for `'exact'`: `p ∈ {c + G β : |β| ≤ 1, A β = 
 equation `p = c + G β`, the lower block the constraint `A β = b`, with the same `β`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

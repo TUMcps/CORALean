@@ -6,10 +6,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 Exact: `split_union` holds at every generator index, and with no generator the two halves are `Z`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ A `true` answer makes `G = 0`, so the nominal part is the single point `q`, and 
 point: the ellipsoid is their sum, a point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

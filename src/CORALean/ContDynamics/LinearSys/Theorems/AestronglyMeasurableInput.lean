@@ -13,10 +13,10 @@ composes this with `inputReach_mono`, and `InputSolutionTimeIntervalOuterSplit`
 subtracts the piece before an intermediate time from it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

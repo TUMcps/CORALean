@@ -12,10 +12,10 @@ site stating the enclosure has to write `(S := 𝒵)` even though `ℓ` already
 pinned the family. Read off `ℓ` instead, the family comes with the location.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ so `d ≠ 0` is an assumption of the exactness theorem. A scalar interval denomi
 `Interval.rdivide`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

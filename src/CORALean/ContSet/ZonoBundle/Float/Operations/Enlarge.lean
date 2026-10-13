@@ -10,10 +10,10 @@ CORA's `@zonoBundle/enlarge.m`: each zonotope enlarged about its own centre, by 
 enlarged members, not the enlargement of the intersection (the centres differ).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

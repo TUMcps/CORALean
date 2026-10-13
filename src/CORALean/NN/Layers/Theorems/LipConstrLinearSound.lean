@@ -8,10 +8,10 @@ The map `x ↦ N (W x + b)` that CORA's `evaluateNumeric` computes; the scaling'
 is `Layer.lipConstrScale_rowSum_le`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

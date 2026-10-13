@@ -9,10 +9,10 @@ which is `f` at `keepEmbed`, and a dropped part `∑ₗ β_{right l} · f e_{rig
 bounded by `keepSlack`; the row's own bound then holds up to that slack.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

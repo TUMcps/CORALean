@@ -17,10 +17,10 @@ documents `y = C x + D u + k + F v`, so the set must be `C x ∈ y - k - D u - V
 same strip. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

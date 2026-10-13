@@ -18,10 +18,10 @@ Pointwise in the factor vector, and public for that reason: the constrained
 representation needs it at a fixed `a`, which a set equality cannot give.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ One step of the fold `rescale` runs: factor `r` re-parametrized onto `cen r ± r
 float `getSubset`, the set left alone when `r` is not a factor.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

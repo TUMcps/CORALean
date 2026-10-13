@@ -11,10 +11,10 @@ lower bound. `g` is arbitrary, which is what lets a layer round its gap up in an
 reuse this unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

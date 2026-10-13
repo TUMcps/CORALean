@@ -15,10 +15,10 @@ absorbing generator per output *coordinate*, not per generator it replaces, so
 the box is `n` generators however many were dropped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

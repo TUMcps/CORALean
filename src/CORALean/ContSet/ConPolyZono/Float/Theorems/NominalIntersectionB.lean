@@ -12,10 +12,10 @@ The two systems' own bounds read back by `toRealVec_append`, twice over, and
 the agreement rows' bound is `intersectionD` by construction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

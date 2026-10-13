@@ -7,10 +7,10 @@ When `LinearSys.entryIsFloat a x` answers `true`, the real value of `x` is that 
 sound when it answers `true`, and both directions hold.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

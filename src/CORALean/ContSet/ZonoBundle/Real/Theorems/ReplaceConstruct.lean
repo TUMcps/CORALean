@@ -7,10 +7,10 @@ Exact: the bundle after replacing member `index` by `Z` denotes `Z` intersected 
 intersection of the other members (those with `i ≠ index`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

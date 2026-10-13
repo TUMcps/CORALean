@@ -8,10 +8,10 @@ least (`minimum`, exact), `none` when no coordinate is certified to have a nonze
 `ratio = min(bound ./ dir)` over the coordinates with `dir ≠ 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

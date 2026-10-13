@@ -8,10 +8,10 @@ import CORALean.NN.Layers.Operations.ActivationLayerOf
 `Sound` relation asks for, so a caller does not unfold the instance to use it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

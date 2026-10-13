@@ -17,10 +17,10 @@ Jacobians are itself and zero. An outer statement; with `computeGO_output` it en
 output deviation of every run, the linearization errors `L_j` aside.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

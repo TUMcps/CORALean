@@ -9,10 +9,10 @@ list, started at `(s₀, [out s₀])`, end at `step^[k] s₀` with the outputs `
 for `j ≤ k`. The reach algorithms of `LinearSys` run this loop over their time windows.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

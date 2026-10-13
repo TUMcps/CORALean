@@ -23,10 +23,10 @@ read of the result walk all of them again, and `reduce` then read the result
 `O(h²)` times. `materialise_eq` makes it invisible to the theorems.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   11-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

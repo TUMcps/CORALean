@@ -14,10 +14,10 @@ interval. One failed step fails the run.
       Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

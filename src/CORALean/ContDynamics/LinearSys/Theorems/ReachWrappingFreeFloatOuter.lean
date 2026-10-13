@@ -17,10 +17,10 @@ window `k`. Nothing is asked of `η`: the order the run used is the one
 it span `[tStart, tFinal]` exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

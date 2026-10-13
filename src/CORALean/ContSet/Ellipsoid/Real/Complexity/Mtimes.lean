@@ -8,10 +8,10 @@ generator count carries over exactly. `rfl`, since `Operations/Mtimes.lean`
 states `k` directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

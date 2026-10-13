@@ -19,10 +19,10 @@ makes it. This is the box `slopeRemainder` replaces when no Hessian is known:
 second order in the deviation from `z✱` where that one is first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

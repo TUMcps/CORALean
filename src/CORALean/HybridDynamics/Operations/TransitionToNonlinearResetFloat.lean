@@ -12,10 +12,10 @@ stored float coefficients, `W X ⊕ w` in directed rounding, independent of the 
 That it encloses the real reset is `toNonlinearResetFloat_encloses`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

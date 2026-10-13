@@ -12,10 +12,10 @@ to miss — `subsetAt_unitBox`. That is what lets a caller discharge the step's
 confinement against a set it can compute, as `confinement_of_subset` asks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

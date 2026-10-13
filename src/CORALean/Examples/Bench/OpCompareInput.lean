@@ -10,10 +10,10 @@ row-major matrices `A100`/`B100`/`A500`/`B500`. `InputHex` keeps every token as 
 `OpCompareCodec.checkRoundTrip`; `decodeInputs` is the one place a token becomes a `Float`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

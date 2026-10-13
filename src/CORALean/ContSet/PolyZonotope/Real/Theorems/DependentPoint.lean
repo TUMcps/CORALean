@@ -19,10 +19,10 @@ factors named, which a chain of steps that keeps one factor vector needs.
       Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

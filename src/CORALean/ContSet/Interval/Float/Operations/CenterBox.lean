@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Float.Operations.CenterLo
 The two roundings of the midpoint as a box, which holds the real midpoint (`Theorems/CenterOuter`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

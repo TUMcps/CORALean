@@ -22,10 +22,10 @@ The fresh factors take exponent zero in every constraint row, which is what
 factors, and a fresh factor appearing in one would silently change them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

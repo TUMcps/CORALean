@@ -15,10 +15,10 @@ what [1, Eq. 12]'s proof uses and does not show.
       Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

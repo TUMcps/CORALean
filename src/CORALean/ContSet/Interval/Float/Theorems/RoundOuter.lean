@@ -11,10 +11,10 @@ box. The bounds are the integers `roundAway` of the scalars' exact values, betwe
 `intUp` of themselves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

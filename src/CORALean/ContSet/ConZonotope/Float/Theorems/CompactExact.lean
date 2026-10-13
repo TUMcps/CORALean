@@ -12,10 +12,10 @@ coefficients, and a point of the compacted set gets `0` at the dropped ones. Not
 rounded, so this is the float set's own equality, not a claim about the exact layer's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

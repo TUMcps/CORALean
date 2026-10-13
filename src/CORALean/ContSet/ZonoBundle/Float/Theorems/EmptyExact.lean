@@ -7,10 +7,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 The two members are the points `0` and `e₀`, which differ in the first coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

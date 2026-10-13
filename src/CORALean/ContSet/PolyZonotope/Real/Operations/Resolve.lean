@@ -12,10 +12,10 @@ CORA removes its `id`, and `compact` is the operation that folds and drops what 
 list of factors is the iteration.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

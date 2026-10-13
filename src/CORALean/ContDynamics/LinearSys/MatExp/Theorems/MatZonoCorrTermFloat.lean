@@ -15,10 +15,10 @@ zonotope: a member's `i`-th power lies in the zonotope's `i`-th power
 `corrCoeff i · r^i/i!` in `[κ·r^i/i!, 0]` scales the box over it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The linear map's associativity read back into the matrix product it packages,
 which is what `Theorems/ConvExact` composes with `PolyZonotope.map_exact`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
 Every entry certified equal to `zero`: CORA's `withinTol(row, 0)` at tolerance zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

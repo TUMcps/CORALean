@@ -12,10 +12,10 @@ column `a'` back into the lag `i = p-1-a'` it carries. Stated at `ℝ`, where
 `toRealMat` is the identity and the block matrices can be read off entrywise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

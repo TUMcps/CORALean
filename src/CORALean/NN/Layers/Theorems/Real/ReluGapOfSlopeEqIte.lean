@@ -18,10 +18,10 @@ first falls in `λ`, the second rises, and both equal `-u l / (u - l)` at the se
       Certification". NeurIPS 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ or `NearestDyadic p`, unsound), with the same readers `firstStepBenchRecord` use
 `flint<p>`, which only `bench-flint` links, and for a label that is no type.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

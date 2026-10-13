@@ -11,10 +11,10 @@ and the remainder `p - q - G u`, bracketed by directed roundings, inside the err
 `true` is certain; `false` says only that this `u` does not show membership.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

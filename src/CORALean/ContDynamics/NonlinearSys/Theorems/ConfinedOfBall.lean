@@ -22,10 +22,10 @@ Strictness in `hρ` is what buys the interior: at `ρ = M(b - a)` the run may
 reach the boundary of `R` exactly at `b`, and nothing keeps it inside after.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

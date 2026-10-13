@@ -7,10 +7,10 @@ The equality test at float: containment each way, by the certified `le`. Certifi
 only, so `true` is a proof and `false` is no refutation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

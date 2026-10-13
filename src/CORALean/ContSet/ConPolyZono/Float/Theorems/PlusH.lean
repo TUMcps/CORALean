@@ -6,10 +6,10 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 The two blocks concatenate, so `h` adds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

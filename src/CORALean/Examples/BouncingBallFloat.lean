@@ -20,10 +20,10 @@ velocity the first stay meets the floor with, `-√(2 g p₀)` for `p₀` near `
 about `-4.4`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

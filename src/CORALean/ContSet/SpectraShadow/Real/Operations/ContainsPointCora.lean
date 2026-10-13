@@ -9,10 +9,10 @@ infeasible. It can: `c + G β = p` has no solution for `p` outside `c + range G`
 code computes it, to state `SpectraShadow.containsPointCora_line`; see `FINDINGS.md`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

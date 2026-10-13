@@ -21,10 +21,10 @@ At a format without a NaN `isNaN` is `false`, `noNaN` is `true`, and a checked e
 returns what the unchecked one does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

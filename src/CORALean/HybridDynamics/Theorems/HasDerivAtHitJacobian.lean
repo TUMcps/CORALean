@@ -23,10 +23,10 @@ printed `Q⁽ⁱ⁾_lm/Λ²`, whose bracket has `l` and `m` the other way round,
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

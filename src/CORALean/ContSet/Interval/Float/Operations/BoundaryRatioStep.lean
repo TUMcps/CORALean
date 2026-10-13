@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
 Folds one coordinate's ratio bounds (or none) into the least so far: ends take `minimum` (exact).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

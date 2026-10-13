@@ -18,10 +18,10 @@ lists evaluate as the real ones (`eval_odePoly_odeL`), and `Interval.evalList_me
 `hp` is `tanhUp`'s range hypothesis at the centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

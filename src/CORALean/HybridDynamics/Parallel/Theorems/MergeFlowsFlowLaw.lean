@@ -7,10 +7,10 @@ import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
 `mergeFlows_mulVec` for every location tuple, in the form `FlowLaw` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ Multiplication by `2` as self-addition, `addUp x x` and `addDown x x`: exact in 
 format, and needing no stored value that denotes `2`, which `FloatOps` does not promise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

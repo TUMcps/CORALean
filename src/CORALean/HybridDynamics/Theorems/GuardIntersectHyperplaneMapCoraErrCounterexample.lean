@@ -24,10 +24,10 @@ hyperplane at `t = 2`, at `(2, 2, 1)`. CORA's error set is `{0}`
 `Location.guardIntersectHyperplaneMap_outer`, with every `err1` summand, holds the hit.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

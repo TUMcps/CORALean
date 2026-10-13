@@ -11,10 +11,10 @@ CORA's `intervalMatrix` is `Interval (Mat ℝ m n)`, so this is the only place t
 pair index has to be taken apart.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

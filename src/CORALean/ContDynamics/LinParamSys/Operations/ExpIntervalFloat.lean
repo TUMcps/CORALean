@@ -11,10 +11,10 @@ stored. The float counterpart of `LinParamSys.expEnclosure`, its order given
 rather than raised; `reachOrderFloat` finds one that is admissible.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

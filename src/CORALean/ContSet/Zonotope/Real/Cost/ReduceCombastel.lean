@@ -14,10 +14,10 @@ No order argument: below order `o` the operation is the identity and costs
 nothing, and above it the absorbed block is at most `h` wide.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

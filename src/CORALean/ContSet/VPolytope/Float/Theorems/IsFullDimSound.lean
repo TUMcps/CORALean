@@ -14,10 +14,10 @@ sum to one because the last row of the product is zero, and combine the vertices
 adding the error box's lower corner keeps an interior point (`subset_interior_add_left`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

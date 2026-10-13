@@ -15,10 +15,10 @@ steps, so the last line it prints and the `enclose` line under it are the same
 computation reached two ways; they agree or the table says so.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

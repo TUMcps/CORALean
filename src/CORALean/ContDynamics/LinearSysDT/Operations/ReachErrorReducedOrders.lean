@@ -19,10 +19,10 @@ Otherwise the recursion of `reachErrorOrders` unchanged, and at the same
 instances: `Zonotope` and `𝕋 = ℝ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

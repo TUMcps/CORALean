@@ -10,10 +10,10 @@ to go through one fixed dominating matrix rather than any one member of it —
 this is that matrix, and `Theorems/NormLeAbsMax` is what it is for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

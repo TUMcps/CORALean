@@ -9,10 +9,10 @@ number type each, as `--type`/`--format`/`--prec`/`--digits` name it on the comm
 run is taken at every `dt`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

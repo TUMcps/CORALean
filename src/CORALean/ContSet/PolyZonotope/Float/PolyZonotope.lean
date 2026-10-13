@@ -22,10 +22,10 @@ The error box is `err` rather than `E`, which the exponent matrix has taken.
 layer's `PolyZonotope α` is; its vector case is `PolyZonotope (Vec 𝕋 n)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

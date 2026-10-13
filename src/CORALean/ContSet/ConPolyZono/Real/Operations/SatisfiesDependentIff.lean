@@ -5,10 +5,10 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
 # `ConPolyZono.dependent`'s constraint reads the original factors
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

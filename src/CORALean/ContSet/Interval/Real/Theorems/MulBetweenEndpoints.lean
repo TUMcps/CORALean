@@ -9,10 +9,10 @@ statement cover both. Every interval product in the tree reduces to this,
 whether the other factor is a matrix entry or an interval matrix's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

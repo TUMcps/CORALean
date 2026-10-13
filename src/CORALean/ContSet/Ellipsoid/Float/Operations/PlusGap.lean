@@ -6,10 +6,10 @@ import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 How far each stored generator can be from its exact scaling.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

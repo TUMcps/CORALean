@@ -8,10 +8,10 @@ The certified interval hull exists and holds the set (`SpectraShadow.interval_co
 float box is compact, so bounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

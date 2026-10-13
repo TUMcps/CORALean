@@ -14,10 +14,10 @@ Only this direction: a run of the product may let the components disagree on a b
 having no one to check them, so the converse is not claimed (#40).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

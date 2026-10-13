@@ -15,10 +15,10 @@ Unrolling gives `ℓ_k ≤ γᵏ ℓ_0 + ε / (1 - γ)` at every `k`, and so, fo
       zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

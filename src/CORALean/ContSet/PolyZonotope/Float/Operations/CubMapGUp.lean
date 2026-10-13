@@ -11,10 +11,10 @@ through `Zonotope.cubContractUp`. The monomial of the triple is the product of t
 exponent column is the sum of theirs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ coefficients `β ∘ left` still satisfy the constraints, which is `keepRows_mem
 and the fresh ones are unconstrained. Whichever partition, as there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

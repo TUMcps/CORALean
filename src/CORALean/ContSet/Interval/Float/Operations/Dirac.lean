@@ -11,10 +11,10 @@ sharp as CORA's sign case analysis, which closes one side when `0` is an endpoin
 certifies a `true` answer, so an endpoint `0` is not told from a box straddling it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

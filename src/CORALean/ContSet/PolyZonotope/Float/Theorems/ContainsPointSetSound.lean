@@ -14,10 +14,10 @@ As over ℝ: every point is in some piece (`splitGen_cover`), whose zonotope
 The converse fails and is not claimed: `true` says only that no enclosure excludes any point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

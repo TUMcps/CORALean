@@ -15,10 +15,10 @@ and the constant input `zf + Ucenter`; that packaging is not carried.
 * [1] `contDynamics/@nonlinParamSys/linearize.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

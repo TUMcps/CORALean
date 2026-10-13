@@ -16,10 +16,10 @@ certifies. A safe set is not of this shape — containment in one needs a bound 
 every direction bounding its faces, which is a list of these, not one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

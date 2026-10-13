@@ -7,10 +7,10 @@ Block `c` of the product space as a linear map, `unstack` at `c`. It is the coor
 a representation closed under preimages lifts a component's guard through (`HPolytope.comap`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

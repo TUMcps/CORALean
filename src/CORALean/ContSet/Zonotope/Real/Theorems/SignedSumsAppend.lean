@@ -17,10 +17,10 @@ boxes' vertices (`A [r]± ⊕ [v]±`), which is how `Zonotope.mspb` enumerates t
       Automatic Control, 61(9):2341-2356, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

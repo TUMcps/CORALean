@@ -22,10 +22,10 @@ No representation is named here. `Zonotope` and `ConZonotope` get their own
 statement by instantiating this, and any later one does the same.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

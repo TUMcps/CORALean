@@ -10,10 +10,10 @@ winner. Shared by `Robustness` and the sufficient-explanation theorems, which
 state the same requirement over an abstract network's output.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

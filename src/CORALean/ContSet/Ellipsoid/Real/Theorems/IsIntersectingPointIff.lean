@@ -8,10 +8,10 @@ For a full-rank ellipsoid, `Ellipsoid.isIntersectingPoint` holds iff `{p}` and t
 not disjoint. Exact for the point, at tolerance `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

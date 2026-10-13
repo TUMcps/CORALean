@@ -9,10 +9,10 @@ CORA's `@interval/quadMap`: the quadratic map of a box, computed as the box of t
 quadratic map of the box's zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

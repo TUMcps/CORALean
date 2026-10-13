@@ -7,10 +7,10 @@ CORA's `@polytope/or`, whose whole body is `convHull_(P,S,varargin{:})`: the uni
 the convex hull.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

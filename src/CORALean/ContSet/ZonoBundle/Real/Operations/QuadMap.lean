@@ -10,10 +10,10 @@ zonotope quadratic map, which is `Zonotope.bilin` at the quadratic-form family
 `PolyZonotope.quadBilin Q` (`x ↦ y ↦ (xᵀ Q_k y)_k`) applied to the member with itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The recentring `computeApproxError` performs, the constant coefficient moved by 
 `addUp`, and the coefficient that lands is the one soundness is then measured against.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ exactly, as a matrix does, and everything the radius allows is boxed into one
 fresh generator per coordinate — so a step costs `n` generators and no more.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

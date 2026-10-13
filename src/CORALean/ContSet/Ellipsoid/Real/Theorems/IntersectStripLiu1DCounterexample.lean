@@ -17,10 +17,10 @@ the code has `(1 - λ)(1 - K C) Q`; here that is `1` at the level `σ² = 15/16`
 inside it (`σ² ≤ 1`), so `x = 1` is missed under either reading.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

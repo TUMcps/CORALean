@@ -9,10 +9,10 @@ whole inequality is then the old part at `v` beside the diagonal of the constrai
 so it holds exactly when the old part holds and every constraint value is nonnegative.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

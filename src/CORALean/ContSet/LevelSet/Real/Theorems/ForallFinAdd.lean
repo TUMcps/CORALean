@@ -7,10 +7,10 @@ A statement about every index of `Fin (a + b)` splits into the first `a` and the
 the stacked constraints of `and_` and the two-sided bounds of `Interval.levelSet` need.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

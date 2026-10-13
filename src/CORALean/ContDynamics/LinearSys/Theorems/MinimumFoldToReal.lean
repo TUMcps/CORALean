@@ -7,10 +7,10 @@ import CORALean.Global.Float.SoundFloatArithmetic
 `minimum` is exact, so the real value of `minimumFold f` is the infimum of the real values.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

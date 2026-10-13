@@ -12,10 +12,10 @@ With `H Hᵀ (H Hᵀ)⁻¹ = 1` the conditions are a line each; the last uses th
 the symmetric `H Hᵀ` is symmetric.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

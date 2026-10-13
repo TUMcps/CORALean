@@ -10,10 +10,10 @@ what a float polynomial zonotope inherits: its error box is compact and
 `IsCompact.add` carries the property across the sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

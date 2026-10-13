@@ -8,10 +8,10 @@ matrix has at least as many rows as columns (`n ≥ h`); the other default, `dom
 `Zonotope.dominantDirections`, whose answer `underapproximate` takes as its `S`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

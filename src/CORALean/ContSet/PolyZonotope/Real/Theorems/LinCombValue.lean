@@ -21,10 +21,10 @@ The unit-box side conditions are what `lam ∈ [0,1]` is needed for, and they ar
 stated where the inclusion is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

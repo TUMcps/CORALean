@@ -9,10 +9,10 @@ coordinates `dims` of the larger space. The padding copies the stored vertices a
 so only the error box needs `Interval.projectHighDim_`, which certifies emptiness in one direction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

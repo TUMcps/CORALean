@@ -10,10 +10,10 @@ A point is in the result iff its coordinates `dims` form a point of `P` and ever
 `dims` does not hit is zero. For an injective `dims` that is the zero-padded image of `P`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

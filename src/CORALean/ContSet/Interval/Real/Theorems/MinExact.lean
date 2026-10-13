@@ -8,10 +8,10 @@ The counterpart of `Interval.max_exact`. Nonemptiness of both operands is needed
 reason: an empty operand has no minima to fill the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ polygon (`Ellipsoid.polygon_inner`) for the others. So the result is
 the difference with `S`: outer, and larger than `P \ S` by the part of `S` the polygon misses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

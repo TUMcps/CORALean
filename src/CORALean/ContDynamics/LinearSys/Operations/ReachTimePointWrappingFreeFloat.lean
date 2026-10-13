@@ -19,10 +19,10 @@ N`; `k = 0` gives (an enclosure of) `X₀` itself, `e^{A · 0} = I`. `params` an
 `ρ` goes unread.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

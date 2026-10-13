@@ -13,10 +13,10 @@ layer's committed centre is measured in — `Layer.linearWithError` over floats
 asks for exactly this of the box a neuron merge computes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

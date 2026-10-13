@@ -14,10 +14,10 @@ witness: a compact set attains its infimum distance, and `≤` on a Hausdorff
 distance gives an actual nearby point only where it does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ CORA's `supportFunc_(O,dir,'lower')` is `Inf`: the infimum of `c` over no point 
 `EReal`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

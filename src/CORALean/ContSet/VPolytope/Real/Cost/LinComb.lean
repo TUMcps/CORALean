@@ -9,10 +9,10 @@ the two vertex lists, which is index work and free under `Global/Cost.lean`'s
 model — no fresh vertex is computed, unlike a zonotope's `linComb`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

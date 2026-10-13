@@ -8,10 +8,10 @@ CORA's `@interval/max` at two intervals: the coordinatewise larger bound on each
 `Interval.supremum`; a numeric second argument is the degenerate box `Interval.point`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

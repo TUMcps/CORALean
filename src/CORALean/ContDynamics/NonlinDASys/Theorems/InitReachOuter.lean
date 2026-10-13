@@ -14,10 +14,10 @@ halves cover the set they came from (`Zonotope.split_union`), so the run's start
 of them, and the induction on the fuel ends in a `linReach` of a set holding it. Outer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

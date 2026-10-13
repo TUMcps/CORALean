@@ -15,10 +15,10 @@ The unit box a constrained zonotope also imposes costs nothing, a nonnegative
 coefficient in a family summing to one being at most one already.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

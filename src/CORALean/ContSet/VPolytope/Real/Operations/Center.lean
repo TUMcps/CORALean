@@ -9,10 +9,10 @@ of a polytope given by vertices first removes the redundant ones (`compact_(P, '
 points. The default method `'chebyshev'` (a linear program) is not here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

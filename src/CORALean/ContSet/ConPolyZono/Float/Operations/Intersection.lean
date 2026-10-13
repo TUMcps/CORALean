@@ -22,10 +22,10 @@ denotes is `y₁ + e₁`, and `cPZ₂` enters through the constraint system alon
 generator columns kept at `zero` so the agreement rows can read the second point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

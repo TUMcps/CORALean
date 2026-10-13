@@ -8,10 +8,10 @@ CORA's constructor `intervalMatrix(C, Δ)` from a centre and a half-width: the b
 another description, and `Theorems/MemOfCenterRadius` reads it back.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

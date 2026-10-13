@@ -8,10 +8,10 @@ of the parameter box, and in place of the zonotopes `zf`, `zA`, `zB` the interva
 the constant term and of the two Jacobians over the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

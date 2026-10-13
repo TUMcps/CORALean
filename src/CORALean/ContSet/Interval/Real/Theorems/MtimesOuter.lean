@@ -10,10 +10,10 @@ Each summand `M i k * x k` lies between the two endpoint products;
 leaving one case split. Summing over `k` finishes it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

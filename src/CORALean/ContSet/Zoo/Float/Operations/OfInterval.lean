@@ -10,10 +10,10 @@ the stored centre `c` and the generator `r` (`Interval.radiusFrom`), as the Tayl
 a nonempty box). The box lies in that interval, so it is as wide as the box or wider.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

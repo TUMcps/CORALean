@@ -12,10 +12,10 @@ scaled right-hand sides less the lower end of the deviation, which is the stored
 over the domain, as over ℝ, for a polytope with a row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

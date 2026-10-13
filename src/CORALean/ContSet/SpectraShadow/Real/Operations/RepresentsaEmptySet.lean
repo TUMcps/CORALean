@@ -7,10 +7,10 @@ CORA's `@spectraShadow/representsa_` at type `emptySet`: `~aux_feasible`, the li
 inequality has no solution.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

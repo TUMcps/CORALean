@@ -10,10 +10,10 @@ ever names it — `DecidableExpEdge.lean`'s own instance search reaches here to
 build `ExpEdge`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

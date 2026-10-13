@@ -7,10 +7,10 @@ For every box, no domain hypothesis: `Real.arccos` is antitone on all of `ℝ`, 
 swap.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

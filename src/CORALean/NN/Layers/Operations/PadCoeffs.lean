@@ -8,10 +8,10 @@ maximum order pays nothing for the neurons above it. A `dite` on the index rathe
 `Fin.castLE`, which maps the smaller index type and so runs the wrong way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

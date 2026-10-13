@@ -14,10 +14,10 @@ the corner products of the two boxes, and `δ c` likewise, so the result holds t
 of every point onto every hyperplane the boxes allow, the meant one among them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

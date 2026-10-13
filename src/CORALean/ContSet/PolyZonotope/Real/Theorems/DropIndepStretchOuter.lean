@@ -20,10 +20,10 @@ g^{(i)}` afterwards: `P *ᵥ γ = g^{(i)}` is the one place it is spent.
       Polynomialization and Non-Convex Sets". HSCC 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       21-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

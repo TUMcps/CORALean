@@ -16,10 +16,10 @@ in place of an observer gain, `p = n`. `Abar i` is `Ā_{i+1}` and `Bbar j` is `B
 * [1] `contDynamics/@linearSysDT/linearARX.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

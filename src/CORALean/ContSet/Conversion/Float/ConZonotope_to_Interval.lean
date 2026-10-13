@@ -7,10 +7,10 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 Constraints dropped, then the zonotope's own box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

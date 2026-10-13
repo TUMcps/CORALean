@@ -7,10 +7,10 @@ The `k`-th chunk of `groupSort g x` is the `k`-th chunk of `x` sorted: the sorte
 entry by entry, at positions `k·g + r` with `r < g`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ In `ℝ¹`, centre `0`, one generator `1`, covariance `0`: the example on which 
 `SupCoraLt`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

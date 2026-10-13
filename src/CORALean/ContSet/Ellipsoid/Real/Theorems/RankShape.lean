@@ -7,10 +7,10 @@ CORA's `rank(E)` counts the singular values of the shape matrix `Q = G Gᵀ`; `r
 so the rank of the stored generator matrix is the same number (at tolerance `0`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

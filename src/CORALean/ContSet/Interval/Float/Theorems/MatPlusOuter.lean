@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Interval
 whole obligation is that each bound rounds the right way, entrywise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

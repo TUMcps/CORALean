@@ -19,10 +19,10 @@ indices; running `dependent` once, on the base set, is the discipline, and this
 theorem is what turns it into a usable factor vector.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

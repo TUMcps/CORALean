@@ -9,10 +9,10 @@ import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
 `ra = rb = 2`, both doublings by self-addition, and `c = -1`, which `neg one` stores exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

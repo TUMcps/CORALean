@@ -8,10 +8,10 @@ A probabilistic zonotope stands for the family of laws `N(μ, Σ)`, `μ ∈ Z`; 
 `Z` is, and `Z` always holds its centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ Above the requested order, the enclosing zonotope is reduced and the constraints
 dropped; at or below it, nothing happens and the constraints survive. As over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   08-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

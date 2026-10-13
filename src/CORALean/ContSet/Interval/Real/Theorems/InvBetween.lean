@@ -9,10 +9,10 @@ For `0 < a ≤ y ≤ b` or `a ≤ y ≤ b < 0` the reciprocal is antitone on the
 lies on, so `b⁻¹ ≤ y⁻¹ ≤ a⁻¹`. The scalar fact behind `Interval.recip`, on both signs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

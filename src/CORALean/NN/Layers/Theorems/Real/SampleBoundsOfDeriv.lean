@@ -11,10 +11,10 @@ import Mathlib.Topology.Algebra.Module.ModuleTopology
 sample nearest it. Sound at every `N`, and tighter as `N` grows.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

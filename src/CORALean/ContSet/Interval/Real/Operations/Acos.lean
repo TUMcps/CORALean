@@ -8,10 +8,10 @@ CORA's `@interval/acos`: the arccosine is strictly decreasing on `[-1, 1]`, so t
 so it acts on the two bounds, coordinate by coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

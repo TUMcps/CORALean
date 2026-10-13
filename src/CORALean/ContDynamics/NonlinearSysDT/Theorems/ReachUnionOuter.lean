@@ -12,10 +12,10 @@ hypothesis `reach_outer_on` places the run with. No confinement is assumed of
 any run; `none` is where it could not be shown.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

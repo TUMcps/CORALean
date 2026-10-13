@@ -10,10 +10,10 @@ sharing, then `Zonotope.zonoBundle` — the single-member bundle, exact by
 `ConPolyZono → Zonotope` already is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

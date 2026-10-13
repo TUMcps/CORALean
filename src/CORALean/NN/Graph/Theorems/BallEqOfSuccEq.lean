@@ -10,10 +10,10 @@ determinism off `ball`'s own recursive equation; the induction on `s` chains
 it against the one hypothesised stable step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,10 +20,10 @@ index a location's set is read at differs. `R` lives in the state's
 representation `S` and the guard in `G`, as at `Invariant` (#39).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

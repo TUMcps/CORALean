@@ -13,10 +13,10 @@ positive, the scaled norm bound `r · nrm` meeting the side condition, and the c
       for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ last block meeting `P`'s rows at the weight `(1 - t) / 2` its trailing coordinat
 inequality's bound and an equality's interval both scaled by it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

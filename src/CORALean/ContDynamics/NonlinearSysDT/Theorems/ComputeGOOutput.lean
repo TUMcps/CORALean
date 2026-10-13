@@ -8,10 +8,10 @@ deviation, plus `E{k,j}` applied to each linearization error `L_j = [L_x; L_y]`,
 of the system. As for the state, an identity: the errors are the `linResidual`s, not bounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

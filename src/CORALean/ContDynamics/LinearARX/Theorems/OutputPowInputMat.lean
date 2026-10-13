@@ -11,10 +11,10 @@ The input enters the last block of the window, and `A_ext` shifts a block one pl
 so it needs `p-1` steps to reach the first block: `C₀ A_ext^a B_ext_j = 0` for `a < p-1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

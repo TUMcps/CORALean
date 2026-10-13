@@ -11,10 +11,10 @@ their enclosure). A scalar base is CORA's `power` (`Taylm.pow`); a non-square ba
 negative exponent is an error there, outside this definition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

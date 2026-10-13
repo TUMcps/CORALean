@@ -12,10 +12,10 @@ import Mathlib.Tactic.Positivity
 step's norm, is precision and not needed here. `2 ≤ η` is the caller's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

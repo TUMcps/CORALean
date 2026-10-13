@@ -16,10 +16,10 @@ holds for every `k`; `Interval.capsule` picks a widest axis as CORA does, by a c
 For `n = 0` there is no axis, the capsule is the point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ algorithm and checked together. `runFor` is the per-type half, `none` for a type
 does not link, so one driver serves `bench` and `bench-flint`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

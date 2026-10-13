@@ -11,10 +11,10 @@ since the constraint system reads none of the enclosing polynomial zonotope.
 `rfl` by unfolding `quadMapDep` and `dependent` rather than restating either.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

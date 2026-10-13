@@ -4,10 +4,10 @@ import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # A row carrying one trailing column reads the parameter it holds
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
 `relinRunAtFloat` with each step linearized at `linPointFloat` of its start set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

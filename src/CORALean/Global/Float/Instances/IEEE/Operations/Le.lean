@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.IEEE.IEEE
 Exact: `Dyadic.le`, which compares the mantissas at the common exponent.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

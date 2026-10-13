@@ -7,10 +7,10 @@ A `true` answer makes every coordinate's polynomial the constant `poly 0` on the
 remainder `[0, 0]`, so the range set is within the point `(poly 0)ᵢ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

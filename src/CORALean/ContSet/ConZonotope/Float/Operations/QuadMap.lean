@@ -11,10 +11,10 @@ are free and the result is an outer approximation, never the exact image. CORA's
 `rescale 'iter'` only tightens it and is not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

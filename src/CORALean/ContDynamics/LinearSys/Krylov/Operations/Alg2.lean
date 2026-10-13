@@ -23,10 +23,10 @@ by `e^{A(k+1)δ}`, one step too far, and line 10 pairs `R*_{h,k}` with an end se
   Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

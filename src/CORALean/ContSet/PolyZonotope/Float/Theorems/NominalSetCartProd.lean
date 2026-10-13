@@ -12,10 +12,10 @@ by field, so its set is the append of the two nominal sets. Its own file: read b
 and by `quadMapMixed_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   08-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

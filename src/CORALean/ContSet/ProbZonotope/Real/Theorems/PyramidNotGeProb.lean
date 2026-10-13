@@ -12,10 +12,10 @@ covariance `1`), `mArray` the single value `1` and the polytope `Q = ℝ`. The s
 `1`-sigma bound to the peak times the length `2` of `[-1, 1]`, which is below `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

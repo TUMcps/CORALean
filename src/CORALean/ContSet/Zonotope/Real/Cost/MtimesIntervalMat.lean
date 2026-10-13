@@ -17,10 +17,10 @@ Asserted, not proved, by reading `Operations/MtimesIntervalMat.lean`:
 * the diagonal generator block places data and is free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

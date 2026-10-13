@@ -7,10 +7,10 @@ The crossed remainder is unsatisfiable, so no point is in the range set. `0 < n`
 `Interval.empty`: with no coordinate there is no remainder to cross.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

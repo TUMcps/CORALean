@@ -13,10 +13,10 @@ output is compared with: `x(k+1) = A x(k) + B u(k) + c`. The record keeps `A` on
 * [1] `contDynamics/@linearSysDT/private/priv_conform_unifyTrajectories.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

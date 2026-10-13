@@ -18,10 +18,10 @@ lets `plus` *keep* a shared factor shared when the two sets are known to have
 one; here `plus` always separates, which is sound and never tighter.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

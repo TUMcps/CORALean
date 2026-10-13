@@ -8,10 +8,10 @@ Both correction matrices bound this quantity by first replacing it with
 `s` alone — reach a claim stated in `t` and `r`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

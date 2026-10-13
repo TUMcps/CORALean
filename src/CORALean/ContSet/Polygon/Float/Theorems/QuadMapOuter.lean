@@ -11,10 +11,10 @@ Outer: the same chain as over ℝ, with the float triangulation (exact), the box
 `PolyZonotope.polygon_outer`. The quadratic map is that of the matrices the floats read as.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ place, interval matrices over `𝕋` that enclose them: the parameters `A{k}`, `
 `D{k,j}` of `computeGO`, each entry rounded outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

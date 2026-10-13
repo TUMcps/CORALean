@@ -8,10 +8,10 @@ import Mathlib.Algebra.Order.Ring.Star
 at or under `reachOrder r`, strictly under the denominator once `4` is added.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

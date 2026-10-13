@@ -11,10 +11,10 @@ The radius is `boxOutRadius`, at least the exact one; centre, error box and the 
 copied, the kept columns being read off in order by `orderEmbOfFin`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

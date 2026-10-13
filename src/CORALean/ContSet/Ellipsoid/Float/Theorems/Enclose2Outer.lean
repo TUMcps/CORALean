@@ -7,10 +7,10 @@ import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
 Both ends of a segment are in the hull by its contract, and the float hull is convex.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

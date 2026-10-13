@@ -7,10 +7,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.StBeta
 What the two kinds of coefficient use of the unit budget, rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

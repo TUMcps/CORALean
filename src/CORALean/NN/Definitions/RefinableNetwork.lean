@@ -9,10 +9,10 @@ schedule off it gives a `NeuralNetwork` back, so nothing downstream — `enclose
 its enclosure, `Specification` — knows a refinement loop exists.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

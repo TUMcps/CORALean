@@ -13,10 +13,10 @@ replaced by the range `[κ·r^i/i!, 0]` it lies in, exactly as `intervalCorrTerm
 does at a box. CORA boxes the powers before the correction, and so does this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

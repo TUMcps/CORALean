@@ -10,10 +10,10 @@ magnitudes `m` are what a float zonotope's `absBoundError` holds, and `‖m‖�
 reading each coordinate's reach as the whole vector's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

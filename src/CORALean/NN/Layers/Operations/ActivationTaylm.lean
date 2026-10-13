@@ -18,10 +18,10 @@ and the coefficients applied as exact factors. CORA stores the fit highest degre
 `PolyRelaxation.coeffs` is lowest first, so `c₀` is CORA's `coeffs(end)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

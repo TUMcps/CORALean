@@ -10,10 +10,10 @@ of its first `n` coordinates and the box `Y` of its last `p`: the block interval
 `[A C; D F]` of the model's four enclosures over `X × Y`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -30,10 +30,10 @@ resting on an assumption this tree can refute.
       Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

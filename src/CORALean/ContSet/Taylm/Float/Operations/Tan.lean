@@ -19,10 +19,10 @@ model, enclosed the same way, times `Bᴺ⁺¹ / (N+1)!`, each factor rounded up
 precision of the sine and cosine (`Global/Float/SinCos`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

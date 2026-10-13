@@ -13,10 +13,10 @@ and the second because it holds `R 0 = 0` for any `R` in the residual box, which
 is nonempty as soon as `IM` holds one matrix `A` (`A - mid(M)` is then in it).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ polytope must be equal field by field, in order, and neither the vertex comparis
 point and emptiness cases are modelled. So the test is sound, not exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Capsule.Float.Operations.PiStep
 The two ends of `piStep` are bounds of the real `π / 499`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

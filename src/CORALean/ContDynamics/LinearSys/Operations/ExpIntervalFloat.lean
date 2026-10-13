@@ -14,10 +14,10 @@ that way, sound at every float `Δt`. Stored once, since a step reads every entr
 `h` times and the enclosure would otherwise be recomputed on each read.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

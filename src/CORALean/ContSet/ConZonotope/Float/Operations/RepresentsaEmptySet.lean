@@ -13,10 +13,10 @@ a certified negative bound (`ltStrict`) leaves no point (Farkas). One-sided: `tr
 empty; `false` decides nothing, a nonempty set and an exhausted simplex budget alike.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

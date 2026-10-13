@@ -7,10 +7,10 @@ import CORALean.ContSet.Taylm.Float.Operations.Smul
 By a float matrix, each entry an exact factor, `smul` at `alo = ahi`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

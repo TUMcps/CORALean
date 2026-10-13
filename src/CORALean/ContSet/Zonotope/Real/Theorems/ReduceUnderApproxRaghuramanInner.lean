@@ -16,10 +16,10 @@ with. So `‖T‖∞ ≤ 1` and [1, Eq. (1)] puts the reduced zonotope inside `Z
       Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

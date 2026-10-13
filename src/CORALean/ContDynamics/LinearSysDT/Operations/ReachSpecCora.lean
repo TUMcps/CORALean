@@ -15,10 +15,10 @@ against the specification (l. 129). After the loop `Rout{end} = Rout{steps+1}` i
 (l. 152) and returned, never checked.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

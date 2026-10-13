@@ -16,10 +16,10 @@ smooth partitions of unity), shrunk by `1 + η` to map the ball into itself, has
 and if `f` moved every point by at least `ε` it could not for `η = ε / 4`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

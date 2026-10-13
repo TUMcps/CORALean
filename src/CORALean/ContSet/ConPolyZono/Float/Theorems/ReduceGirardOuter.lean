@@ -8,10 +8,10 @@ pair of partitions like any other. The metric never appears, which is what lets
 `sortPerm`'s unconstrained comparator rank a float.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

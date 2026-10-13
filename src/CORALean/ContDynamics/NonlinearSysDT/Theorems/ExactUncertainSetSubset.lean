@@ -17,10 +17,10 @@ Thm. 5], [1, Property 1] and [1, Property 2].
       Automatica, 41(6):1035-1043, 2005.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

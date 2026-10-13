@@ -8,10 +8,10 @@ import CORALean.NN.Graph.Operations.BallEnum
 `Set`. `Finset.mem_coe` drops the coercion back to plain membership.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

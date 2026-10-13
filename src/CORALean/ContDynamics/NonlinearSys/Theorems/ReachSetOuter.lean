@@ -14,10 +14,10 @@ nothing beyond `x 0 ∈ R₀`, so the set is large and the theorems that consume
 ask for the window they speak about.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

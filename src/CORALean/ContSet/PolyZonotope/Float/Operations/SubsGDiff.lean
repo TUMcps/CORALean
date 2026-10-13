@@ -7,10 +7,10 @@ What the rounded-down generators of `subs` cost: the rounded-up entry minus the 
 rounded up. Both bracket the exact entry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

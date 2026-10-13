@@ -7,10 +7,10 @@ import Mathlib.Algebra.Polynomial.Eval.Degree
 ℝ-only, as `evalPoly` is: coefficients indexed by degree, up to the natural degree.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

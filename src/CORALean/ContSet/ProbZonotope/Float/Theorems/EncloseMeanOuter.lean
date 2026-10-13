@@ -18,10 +18,10 @@ mean `μ` of `probZ` and `a ∈ [0, 1]`, the float mean zonotope of `enclose(pro
 covariance is nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ map being no more additive than a quadratic one, so `dependent` comes first at e
 `quadMapDep` is this at one set paired with itself, `quadMapMixed` at a product of two.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

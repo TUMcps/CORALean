@@ -9,10 +9,10 @@ a set-valued `sys.A`: reduction is still what holds the generator count
 independent of `k`, and `reach_order_le`'s `o * n` is still the bound behind it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

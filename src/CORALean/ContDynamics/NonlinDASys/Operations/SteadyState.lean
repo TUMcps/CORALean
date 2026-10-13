@@ -12,10 +12,10 @@ until the step has 2-norm below `1e-10`. The blocks are parameters, as in `consi
 the state stacked as `Fin n ⊕ Fin p → ℝ`, and the iteration takes a `fuel`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ coordinatewise form of `absBound_le_of_subset_closedBall`, which asks the same o
 at one radius.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

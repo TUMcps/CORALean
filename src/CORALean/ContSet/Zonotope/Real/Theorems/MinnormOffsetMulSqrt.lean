@@ -8,10 +8,10 @@ import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
 bound the facet inequality of `hRep_eq` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

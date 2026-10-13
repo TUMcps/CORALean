@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.IEEE.Operations.Neg
 It is `Dyadic.neg` on the same pair.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

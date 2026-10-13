@@ -14,10 +14,10 @@ excess over `Tᵢ U`, and `[Tᵢ]` applied to `U`'s error box pays what the nomi
 zonotope leaves out. A summand of `inputTaylorSumBoxFloat`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

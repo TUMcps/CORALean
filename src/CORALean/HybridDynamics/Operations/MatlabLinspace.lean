@@ -8,10 +8,10 @@ The list of the `n` points MATLAB's `linspace(a, b, n)` returns: empty for `n = 
 Used to read the time grids of the `simulateRandom` methods.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Interval
 The bounds at the chosen coordinates; nothing is computed, so nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

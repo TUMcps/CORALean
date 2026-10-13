@@ -16,10 +16,10 @@ point bounded in `𝕋` the same two ways `addDown`/`addUp` already bound it;
 what rounded it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

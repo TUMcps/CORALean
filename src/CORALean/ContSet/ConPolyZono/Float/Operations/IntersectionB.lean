@@ -7,10 +7,10 @@ import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
 The two systems' own bounds, then the agreement rows'.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

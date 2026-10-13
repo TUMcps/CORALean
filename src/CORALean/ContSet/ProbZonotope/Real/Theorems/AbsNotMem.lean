@@ -8,10 +8,10 @@ value is not in `abs` of it, which is the segment `{(t, t)}`: `abs` takes the en
 value of `[c, G]`, a different set and not an enclosure (`AbsLeCorner` is what it keeps).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

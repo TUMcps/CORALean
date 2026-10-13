@@ -6,10 +6,10 @@ import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
 The mirror statement for the right block.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

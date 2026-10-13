@@ -8,10 +8,10 @@ Below the order the zonotope is returned untouched, above it the claim is
 `reduceBy_outer` at the partition Girard's rule chose.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

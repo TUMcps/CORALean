@@ -9,10 +9,10 @@ The point minus the error box's lower corner is within `B` of the centre, so in 
 (`Zonotope.box_subset`); adding the corner, a member of the nonempty box, gives the point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

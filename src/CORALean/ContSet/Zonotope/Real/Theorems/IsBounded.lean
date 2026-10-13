@@ -9,10 +9,10 @@ sum of the generator norms — the quantity `radius` computes at `Vec ℝ n`, he
 only as a bound and never stored.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   01-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

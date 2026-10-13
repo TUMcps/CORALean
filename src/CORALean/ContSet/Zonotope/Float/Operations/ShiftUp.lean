@@ -7,10 +7,10 @@ The box midpoint added to the centre, rounded up — the other side of the gap
 `shiftDown` leaves for `absorbError` to store.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

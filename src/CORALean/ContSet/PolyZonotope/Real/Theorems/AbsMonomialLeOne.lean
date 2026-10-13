@@ -9,10 +9,10 @@ lets every dependent generator be read as an independent one — the bound every
 enclosing conversion out of this representation rests on.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

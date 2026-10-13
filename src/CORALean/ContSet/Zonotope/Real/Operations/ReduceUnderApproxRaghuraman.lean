@@ -18,10 +18,10 @@ maximum is a `0` the printed `P/|P|` is `0/0`, which is `0` here.
       zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

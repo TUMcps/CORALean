@@ -12,10 +12,10 @@ The integer, the two powers and their products each lie between their directed r
 j) · cenᵉ⁻ʲ · radʲ` lies between the two floats `getSubsetCoef` returns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

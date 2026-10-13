@@ -14,10 +14,10 @@ Stated for a bare signal rather than for a run, since the two-signal flow of
 the input of a `Trajectory` on its own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

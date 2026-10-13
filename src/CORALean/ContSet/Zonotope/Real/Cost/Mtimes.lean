@@ -12,10 +12,10 @@ Asserted, not proved: `Operations/Mtimes.lean` sends the centre and each of the
 itself, which is how the reachability bound in `ContDynamics/` is assembled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

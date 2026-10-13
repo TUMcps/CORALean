@@ -7,10 +7,10 @@ CORA's constructor `intervalMatrix(C, Δ)`: the box `[C - Δ, C + Δ]` as an int
 entry's lower bound rounded down and its upper bound up so the stored box contains the exact one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

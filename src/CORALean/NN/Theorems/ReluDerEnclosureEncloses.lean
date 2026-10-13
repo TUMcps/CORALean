@@ -7,10 +7,10 @@ Case split on the two certificates: a certified positive lower bound makes every
 box positive, a certified nonpositive upper bound makes every one nonpositive.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

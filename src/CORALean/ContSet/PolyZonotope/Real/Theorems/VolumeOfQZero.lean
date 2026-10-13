@@ -7,10 +7,10 @@ With no independent generators and as many factors as dimensions, `volume` is th
 of the Jacobian determinant of the set itself (no `dependent` step).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

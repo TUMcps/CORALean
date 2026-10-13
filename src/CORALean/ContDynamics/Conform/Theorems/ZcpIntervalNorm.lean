@@ -16,10 +16,10 @@ generator matrix the set is given by, as [1, Def. 2] defines it.
       Classification Tasks". Journal of Machine Learning Research, 26(294):1-37, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

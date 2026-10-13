@@ -8,10 +8,10 @@ CORA's `isBounded` is `true`. A polynomial zonotope is the constrained one with 
 constraints (`conPolyZono_exact`), which is compact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

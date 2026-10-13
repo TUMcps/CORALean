@@ -7,10 +7,10 @@ The distance from the stored midpoint to the further of the two roundings, round
 slope's share of what storing one value rather than the exact product costs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ collected box at the origin and the disturbance set at `(-L) V ⊕ W`.
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

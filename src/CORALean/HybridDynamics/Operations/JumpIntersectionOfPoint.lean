@@ -12,10 +12,10 @@ As at `jumpIntersection`, `Intersection.intersection` is homogeneous, so the
 guard is asked to be in the state's own family here and nowhere else (#39).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

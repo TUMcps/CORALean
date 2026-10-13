@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Definitions.PolySampling
 ℝ-only, the grid being exact: the last index is `N`, so no sample steps past the right end.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

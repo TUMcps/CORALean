@@ -18,10 +18,10 @@ Identifiers are indices: `idu i` is the factor of `pZ` that output `i` replaces,
 factors are `pZ`'s (the replaced ones left as zero rows) and then `pZin`'s (`subsFactor`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

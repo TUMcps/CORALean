@@ -17,10 +17,10 @@ loses ground in two places, and each has its own accumulated zonotope:
 `minkDiffRep` can take it off the run (`reachInnerRep`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       23-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

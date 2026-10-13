@@ -8,10 +8,10 @@ The bias row repeated at every node, stacked (`GNN.flatten`), as a polynomial zo
 generators: the origin with its centre replaced by it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

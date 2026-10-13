@@ -16,10 +16,10 @@ exponential is taken; the other factors are as in `timeIntervalStepCurvatureErro
       for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

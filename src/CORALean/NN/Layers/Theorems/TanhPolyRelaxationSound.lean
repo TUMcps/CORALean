@@ -10,10 +10,10 @@ import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
 The sigmoid's soundness, transported along the conjugation identity `tanh t = 2 σ(2t) - 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ zonotope `[-1, 1]` with covariance `0` it returns `0`, while the means reach nor
 `sup(‖x‖∞), x ∈ Z`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

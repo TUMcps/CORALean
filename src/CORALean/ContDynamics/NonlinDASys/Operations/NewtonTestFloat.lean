@@ -20,10 +20,10 @@ and that `qᵢ r + |R g(c)|ᵢ ≤ r`: Krawczyk's operator over `B`, bounded by 
 (`NonlinDASys.newtonTestFloat_sound`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ CORA's `@interval/tanh`: the hyperbolic tangent is strictly increasing and conti
 `ℝ`, so it acts on the two bounds, coordinate by coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ algebraic system on `[0, tFinal - tStart]` from `X₀` under inputs in `U` is, a
 window `k`, in the `k`-th set `NonlinDASys.reachFloat` returns. An outer statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

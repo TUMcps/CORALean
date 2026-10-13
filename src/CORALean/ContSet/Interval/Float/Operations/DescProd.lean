@@ -10,10 +10,10 @@ same way. The empty product is the stored identity block `diagonalBlock fun _ =>
 `Interval.matPow`, and each step is `materialiseMat`d before the next multiplication reads it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ Only the constraints whose rows were kept: `x` is in `P.restrict S T` exactly wh
 the inequality rows in `S` and the equality rows in `T`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

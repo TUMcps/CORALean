@@ -13,10 +13,10 @@ the direction `d`: the step `s = 1 / (1 + ∑ᵢ (|(A d)ᵢ| + 1) / (cᵢ - (A z
 every row at once. Explicit, so no topology is needed where a facet argument steps off a point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

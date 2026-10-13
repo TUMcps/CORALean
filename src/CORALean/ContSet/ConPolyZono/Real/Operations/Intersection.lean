@@ -14,10 +14,10 @@ points apart with nothing in the system to forbid it. Freeing the independent
 blocks into factors first is what makes this exact where CORA's `and_` encloses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

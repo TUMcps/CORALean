@@ -23,10 +23,10 @@ set with its tightening loop, which is a parameter here.
 * [2] `contDynamics/@contDynamics/linReach.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

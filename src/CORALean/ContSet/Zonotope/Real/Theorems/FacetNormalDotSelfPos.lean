@@ -7,10 +7,10 @@ import Mathlib.LinearAlgebra.Matrix.DotProduct
 The step every unit-row argument starts with: dividing by `‖C‖₂ = sqrt (C ⬝ C)` needs `C ⬝ C > 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

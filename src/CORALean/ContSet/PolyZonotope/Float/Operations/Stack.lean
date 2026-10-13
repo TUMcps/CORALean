@@ -10,10 +10,10 @@ the first with `n₂` zero rows below and the second with `n₁` above, and adde
 factors they share stay shared. The shared factor list is `hp : pZ₁.p = pZ₂.p`, as for `exactPlus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

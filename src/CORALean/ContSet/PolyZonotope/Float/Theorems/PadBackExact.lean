@@ -9,10 +9,10 @@ An equality: the stored floats are untouched and the nominal part is the exact l
 `padBack` of the original's, so the exact theorem carries over with the error box as it was.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ The position of a globally bound input among the globally bound ones, in the ord
 u_sym(idxGlobalInput), u_sym(1:numGlobalInputs))` replaces it by.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

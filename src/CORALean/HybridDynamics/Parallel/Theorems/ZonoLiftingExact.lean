@@ -9,10 +9,10 @@ block-projection preimage of a guard each contain exactly the stacks whose block
 components' sets, so `zonoLifting` meets `Lifting.Exact`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

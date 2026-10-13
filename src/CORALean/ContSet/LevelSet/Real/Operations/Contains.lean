@@ -8,10 +8,10 @@ every component against its operator. At tolerance `0`, which is what a real poi
 CORA's `tol` and its set-valued branch (an interval enclosure of `funHan`) are not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

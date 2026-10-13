@@ -7,10 +7,10 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
 The origin is the point whose centre is `0`: `{q} = {0}` iff `q = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

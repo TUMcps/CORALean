@@ -11,10 +11,10 @@ The real layer `x ↦ N (W x + b)` at the weights, bias and `λ` the floats deno
 bias box. Needs `0 < λ`, which makes the box a bracket of `N`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

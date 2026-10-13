@@ -25,10 +25,10 @@ and no choice of one can put `0` inside the recentred polytope either.
 since choosing the directions is a precision decision search must not make.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

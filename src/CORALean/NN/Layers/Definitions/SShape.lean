@@ -8,10 +8,10 @@ CORA's `nnSShapeLayer` is an activation with a monotone, unimodal derivative: th
 `df` is any `α → α` over an ordered group, so a bound is stated once for every scalar.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

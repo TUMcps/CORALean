@@ -16,10 +16,10 @@ the reflected `Ioc`, so the two are joined by `aestronglyMeasurable_reflect_Ioc`
 and one endpoint step, exactly as in the point case.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

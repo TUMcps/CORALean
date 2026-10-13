@@ -15,10 +15,10 @@ is `~any`). `perfIndCounter` starts at `1`; `perfInds(1)` is never compared. The
 iteration count, so `fuel` bounds it and running out is `none`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ right-hand side is `[b; be.sup; -be.inf]`. Every entry is an existing entry, a n
 `zero`, `one`: nothing rounds, so the error box is `0`. The shadow contains the polytope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

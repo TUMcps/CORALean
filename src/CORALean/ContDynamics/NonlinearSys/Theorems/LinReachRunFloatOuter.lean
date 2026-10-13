@@ -12,10 +12,10 @@ starts in the set that step returned, which is what the rest of the loop was run
 from, so the hypothesis places it over every later step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

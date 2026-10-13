@@ -15,10 +15,10 @@ Only `plus_outer` and `mtimes_outer` are used, matching what `reachHeld` itself
 names — no `reduce_outer`, since `reachHeld` calls no `reduce`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

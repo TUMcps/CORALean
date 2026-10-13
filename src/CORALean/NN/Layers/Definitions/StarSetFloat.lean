@@ -9,10 +9,10 @@ CORA's `conversionConZonoStarSet`, the constraints kept as a list of rows `(a, b
 Its denotation is `ContSet (StarSet 𝕋 n)`, in `Operations/StarSetFloatContSet.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

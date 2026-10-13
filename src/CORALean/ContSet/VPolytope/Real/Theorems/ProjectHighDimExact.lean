@@ -7,10 +7,10 @@ import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 The vertex form pads each vertex and so denotes the image of `P` under the padding matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

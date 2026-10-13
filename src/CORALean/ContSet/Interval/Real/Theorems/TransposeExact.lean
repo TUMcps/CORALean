@@ -7,10 +7,10 @@ The transposes of the matrices in the box fill the transposed box, with no hypot
 transposition only permutes the entries and so the bounds on them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

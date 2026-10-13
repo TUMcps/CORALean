@@ -16,10 +16,10 @@ as [1] remarks, so the directions are a family `s : Fin ℓ → Vec ℝ n`.
       Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

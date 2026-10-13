@@ -21,10 +21,10 @@ What is returned is the candidate `y'` that passes `newtonTestFloat` for `g(x₀
 layer's addition: CORA returns its last iterate unchecked.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -23,10 +23,10 @@ reached. CORA's `priv_reachInnerProjection` stores that box as its inner approxi
       Computation and Control (HSCC), pp. 1-10, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

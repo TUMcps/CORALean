@@ -9,10 +9,10 @@ is what lets `linearize` be applied to a run over all forward time while asking
 for confinement on one step only: restrict first, linearize second.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

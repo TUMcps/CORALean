@@ -8,10 +8,10 @@ CORA's `isBounded` for the full space is `dim(fs) == 0`: `false` in every positi
 dimension, `true` at `0`, where the one point `Vec ℝ 0` has is all there is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

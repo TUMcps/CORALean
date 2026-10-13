@@ -13,10 +13,10 @@ This is what lets a caller *omit* an isolated node from an enumeration: it
 never joins the ball at any radius, so nothing else has to say so again.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

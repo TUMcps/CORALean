@@ -28,10 +28,10 @@ The analyses' inputs are read back through an `IO.Ref` inside the timed window, 
 the compiler cannot hoist a closed analysis out of the loop and time nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

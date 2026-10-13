@@ -8,10 +8,10 @@ chain of steps composes in: a jump's image feeding the next step's `R` needs a
 subset, not a per-point membership.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

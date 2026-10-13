@@ -9,10 +9,10 @@ For a nonempty compact set `S`, the quadratic program `min y'y - 2x'y` over `y â
 distance is `Metric.infDist` in `EuclideanSpace`, not the supremum-norm one `Vec` carries.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

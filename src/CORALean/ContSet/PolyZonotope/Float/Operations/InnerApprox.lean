@@ -17,10 +17,10 @@ result is empty. `tol` is CORA's (default `max(rad(X))/100`); `inv`, `iter` and 
 the approximate inverse and the caps `innerApproxImage` takes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

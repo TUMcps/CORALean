@@ -9,10 +9,10 @@ coefficients (a product of a monomial and an independent coefficient, or of two 
 range over a box and not independently of the factors.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ of the box, the interval gradient `k` on it and the value `f(m)` are computed on
 coordinates are tightened in turn, each seeing the box the earlier ones have narrowed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ import Mathlib.Tactic.FieldSimp
 integer `sqrtDeriv k = ∏ᵢ<ₖ (1 - 2i)` over `2ᵏ`: the computable form of the real `descPochhammer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

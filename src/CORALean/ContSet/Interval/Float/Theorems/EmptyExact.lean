@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
 `one` reads as `1` and `zero` as `0`, so the stored box is the exact layer's empty one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

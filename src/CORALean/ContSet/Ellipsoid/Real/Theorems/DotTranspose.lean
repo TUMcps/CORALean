@@ -6,10 +6,10 @@ import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 `(Gᵀ w) · a = w · (G a)`, the identity behind the support point and the shape matrix `G Gᵀ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

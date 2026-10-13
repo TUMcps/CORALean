@@ -10,10 +10,10 @@ rounded down and the gap to the upper rounding charged to the box. One box
 covers the whole vertex list, which is what `columnGap` is for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

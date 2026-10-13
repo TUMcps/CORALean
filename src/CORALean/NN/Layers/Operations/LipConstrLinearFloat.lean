@@ -13,10 +13,10 @@ the corner hull of the scaling's box against the stored weight, rounded outward.
 act through `mtimes` at an interval matrix and the bias enters as a box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

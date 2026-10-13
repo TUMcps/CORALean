@@ -9,10 +9,10 @@ an argument, so computing it is the caller's cost and not this operation's. What
 remains is two `Cost.matVec m n` and one product for the radius.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

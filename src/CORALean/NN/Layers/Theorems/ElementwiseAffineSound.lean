@@ -8,10 +8,10 @@ The affine map the stored scale and offset denote, coordinate by coordinate: the
 layer places reads back as `Matrix.diagonal` of the scales, `toReal_diagonalBlock`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

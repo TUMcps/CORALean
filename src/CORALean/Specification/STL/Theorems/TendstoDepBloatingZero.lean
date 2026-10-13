@@ -24,7 +24,7 @@ norm ball of radius `‖Σ_{j≤κ} A^j Δt^{j+1}/(j+1)!‖ r + Σ_{j<κ} ‖A^{
 -- Authors:       Claude Sonnet 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

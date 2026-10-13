@@ -16,10 +16,10 @@ them. A ranking would want to drop whichever component is nearly redundant
 given the others, but that is future work, not this change.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

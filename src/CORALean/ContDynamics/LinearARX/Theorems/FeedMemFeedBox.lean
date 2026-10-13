@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 a matrix times a point, enclosed by `mtimes`, and the fold adds them by `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

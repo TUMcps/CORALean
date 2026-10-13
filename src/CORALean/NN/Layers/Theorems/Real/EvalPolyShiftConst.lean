@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Definitions.EvalPoly
 ℝ-only, the shift being exact: only the constant term is touched, and there `t ^ 0` is one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

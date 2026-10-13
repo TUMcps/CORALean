@@ -8,10 +8,10 @@ line in, one line out (`Dispatch.respond`), until stdin ends. `Oracle.lean` serv
 another executable serves its own `DtypeSet`, for example the unsound one under `Bench/`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

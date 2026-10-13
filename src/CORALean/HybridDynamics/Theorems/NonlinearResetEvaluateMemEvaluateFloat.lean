@@ -8,10 +8,10 @@ For a float model that encloses the reset, `evaluate` at any point of the boxes 
 `evaluateFloat` returns. An outer statement; the box is not the value.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

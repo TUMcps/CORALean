@@ -9,10 +9,10 @@ as `Interval.construct`'s own docstring says, so no `IsNonempty` hypothesis
 belongs here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

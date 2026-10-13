@@ -12,10 +12,10 @@ holds a coefficient *function* per neuron and hands `evalPoly` a list — so the
 two spellings have to meet somewhere, and this is the only place they do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

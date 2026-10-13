@@ -12,10 +12,10 @@ Where the bound state is a state of the coordinate's own component, the entry is
 hypothesis. It needs `ExactAdd`, which holds at `ℝ` and at no float scalar.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

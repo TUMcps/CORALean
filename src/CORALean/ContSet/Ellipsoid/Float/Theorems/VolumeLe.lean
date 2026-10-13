@@ -8,10 +8,10 @@ The checked half-widths make the interval hull hold the ellipsoid (`Ellipsoid.in
 whose Lebesgue measure the rounded-up product bounds (`Interval.volume_le`). An upper bound only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

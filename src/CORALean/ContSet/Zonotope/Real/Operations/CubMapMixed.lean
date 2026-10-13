@@ -12,10 +12,10 @@ its own generator `Σₖ ([c₁,G₁]ᵀ T{i,k} [c₂,G₂])(a, b) · [c₃,G₃
 being the centre (`Zcub(i, 1)`, the first column of `zonotope(Zcub)`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

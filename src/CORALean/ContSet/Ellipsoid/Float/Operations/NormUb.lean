@@ -9,10 +9,10 @@ plus the length of the error box's largest magnitudes, every sum rounded up and 
 Newton steps (`Global/Float/Sqrt`). Outer, as over ℝ: not CORA's `sqrt(max(eig(Q)))`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

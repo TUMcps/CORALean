@@ -26,10 +26,10 @@ the cross terms `2 dᵀ u` cancelling. The left side is at most `(1 - λ) σ²_p
 (`intersectStripLiu1D_counterexample`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

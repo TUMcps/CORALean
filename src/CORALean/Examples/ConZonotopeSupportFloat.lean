@@ -18,10 +18,10 @@ overlap: `ConZonotope.isDisjointLP` finds the separating direction.
 `ConZonotope.isDisjointLP_sound` make each value a guarantee rather than a number.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

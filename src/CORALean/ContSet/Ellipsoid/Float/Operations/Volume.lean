@@ -11,10 +11,10 @@ rounded up. `none` when a half-width fails its check. Not the volume, and coarse
 to the box-to-ellipsoid ratio.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

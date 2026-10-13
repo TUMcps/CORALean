@@ -10,10 +10,10 @@ type of one), so this is not an interval type: only the bound pair, and (`EBox.c
 set it denotes, which the three operations need and nothing else does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

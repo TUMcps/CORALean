@@ -13,10 +13,10 @@ equal. Equality is not an inequality, so it is two: `e ⪰ 0` and `-e ⪰ 0` for
 Over `Vec ℝ n`: the equality is stated per coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

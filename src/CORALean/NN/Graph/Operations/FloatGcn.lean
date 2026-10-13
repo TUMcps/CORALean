@@ -10,10 +10,10 @@ each as one `PolyZonotope.mtimes` at a matrix holding only entries of `P`, `W` a
 The rounding of the two products goes into the error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

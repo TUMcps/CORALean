@@ -9,10 +9,10 @@ generator per output coordinate, `n` — never smaller than `n`, however small
 reduction order. `rfl`, since `Operations/ReduceBy.lean` states `h` directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

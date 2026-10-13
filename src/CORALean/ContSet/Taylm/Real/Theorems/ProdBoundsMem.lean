@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 Entry by entry, each factor in its interval: `mul_between_corners` at each step of the fold.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

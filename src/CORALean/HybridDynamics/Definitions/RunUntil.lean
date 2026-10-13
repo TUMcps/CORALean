@@ -13,10 +13,10 @@ A reachability algorithm run to a finite horizon answers for exactly these,
 forgets the budget, so every such run is one of `RunOn`'s and of `Run`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

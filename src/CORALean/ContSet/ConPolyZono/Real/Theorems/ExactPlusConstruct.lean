@@ -12,10 +12,10 @@ not a hypothesis here, since the statement is exact for the constructed set what
 it is what makes the second operand's own points constrained in the same way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ CORA's stopping test, a last stacked Newton step below `tol`; here the test the 
 the claim about the steady state itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

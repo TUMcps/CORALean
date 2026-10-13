@@ -12,10 +12,10 @@ At one factor vector `a` and independent coefficients `β₁`, `β₂`, the prod
 `β₁ j · β₂ l` and `mₗ · β₂ j` (`mₗ` the extended monomials), all in `[-1, 1]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

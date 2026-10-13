@@ -9,10 +9,10 @@ each half stores the lower directed sum and pays the `centerResidual` into its e
 leaves the generator count unchanged as over ℝ. The halves cover `Z` only after that inflation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

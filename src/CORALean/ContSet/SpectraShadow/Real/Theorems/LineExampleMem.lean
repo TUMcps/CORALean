@@ -8,10 +8,10 @@ Every diagonal point is in the line example: take the coefficient `(t, 0)`, wher
 inequality is `I ⪰ 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ box. The branch and bound's range of the polynomial plus the remainder, the ends
 sound for every `ε` and `fuel`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ predicate. Two obligations, not three: the controller supplies the input, so a
 run is determined by its initial state alone, with nothing for `input` to say.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

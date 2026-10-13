@@ -19,10 +19,10 @@ two operands' — read on the factors they came with, the fresh one at exponent
 zero. The error box is therefore the generator part's, unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

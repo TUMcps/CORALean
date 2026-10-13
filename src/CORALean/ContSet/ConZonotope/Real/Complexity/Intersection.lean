@@ -11,10 +11,10 @@ constraint list `intersection` builds beyond what `plus` needs. `rfl` against th
 structure instance in `Operations/Intersection.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

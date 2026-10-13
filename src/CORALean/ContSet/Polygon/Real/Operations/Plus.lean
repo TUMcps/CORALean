@@ -9,10 +9,10 @@ is what CORA does after triangulating both (the sum of two convex pieces is the 
 vertex sums). `SetUnion.plus` at `VPolytope.plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

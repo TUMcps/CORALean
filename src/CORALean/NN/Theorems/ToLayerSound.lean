@@ -11,10 +11,10 @@ a chain. That is what makes nesting free: a caller who has proved the
 sub-network sound has proved the layer sound, with nothing left to check.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

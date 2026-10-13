@@ -10,10 +10,10 @@ the states reached by runs lasting at most `T` with `k` jumps — the run-level
 `k ≤ K` of this union is what `reachSet_subset_reachFloat` encloses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

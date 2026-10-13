@@ -7,10 +7,10 @@ The row pinning the two points together in one coordinate. Entries are
 copied and `neg` is exact, so nothing here rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

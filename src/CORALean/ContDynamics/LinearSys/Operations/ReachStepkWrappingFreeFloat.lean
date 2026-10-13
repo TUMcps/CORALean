@@ -17,10 +17,10 @@ fresh matrix — rounding compounds `O(s)` times per window, not `O(k)`. No wind
 when no `s` is found.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

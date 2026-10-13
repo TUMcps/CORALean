@@ -27,10 +27,10 @@ Otherwise the recursion of `reachError` unchanged, and at the same instances:
 `Zonotope` and `𝕋 = ℝ`, `mtimes` being exact only there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

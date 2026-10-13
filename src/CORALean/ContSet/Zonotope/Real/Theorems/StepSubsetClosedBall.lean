@@ -17,10 +17,10 @@ against the source zonotope's own reach (crude, but self-contained — see
 against a caller's own tolerance (`step_subset_closedBall_of_reduceBoxOrder`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

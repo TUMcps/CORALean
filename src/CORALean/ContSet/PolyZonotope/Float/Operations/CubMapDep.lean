@@ -15,10 +15,10 @@ symmetrized pairs and `removeRedundantExponents` leaving the polynomial unchange
 the operand's independent block and error box are empty, so nothing outside `cubMap` calls it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

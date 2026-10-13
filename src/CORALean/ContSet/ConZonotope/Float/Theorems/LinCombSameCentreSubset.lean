@@ -24,10 +24,10 @@ The centres are the same and the interpolation column is zero, so the point is
 `λ(c + G₁β₁) + (1 - λ)(c + G₂β₂)` without a remainder.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

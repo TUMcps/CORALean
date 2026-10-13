@@ -19,10 +19,10 @@ which ones the segment point uses. The independent coefficients stay
 existential, nothing reading them but the box `[-1,1]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-September-2026
 -- Last update:   02-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ Asserted, not proved, by reading `Operations/LinComb.lean`: the centre
 one runs on alone — bounded above by pairing every column of both.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

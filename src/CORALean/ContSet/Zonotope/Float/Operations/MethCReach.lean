@@ -8,10 +8,10 @@ How far `H` carries the zonotope's generators: the largest row sum of the magnit
 whichever signs `β` has. Each entry of `H G` is a dot product, in both directions.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

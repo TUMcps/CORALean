@@ -10,10 +10,10 @@ nothing exactly. `rfl` against `Operations/OfBounds.lean`, which `mtimesOf`
 does not otherwise touch.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

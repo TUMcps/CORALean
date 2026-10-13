@@ -10,10 +10,10 @@ zonotope loses nothing (`Zonotope.conPolyZono_exact`), so this is an outer
 approximation too, not an equality.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ The matrix of the Fréchet derivative of `g : ℝⁿ → ℝᵐ` at `x`, the `�
 matrix assumes differentiability where it needs it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ A shadow is convex, so it has an interior point exactly when its affine hull is 
 (`ContSet.IsFullDim` read at `construct`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

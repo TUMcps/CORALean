@@ -7,10 +7,10 @@ import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 `LinearSys` carries a flow this system has none of.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       04-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

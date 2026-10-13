@@ -9,10 +9,10 @@ The point `0` as a constrained zonotope with no generators and no constraints, t
 centre stored as `zero` and the error box at zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

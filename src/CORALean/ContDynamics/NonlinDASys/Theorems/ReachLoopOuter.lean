@@ -23,10 +23,10 @@ from an offset `k₀ r` so that the recursion's relative time is the run's absol
       Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

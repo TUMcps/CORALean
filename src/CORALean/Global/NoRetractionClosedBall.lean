@@ -24,10 +24,10 @@ dimension, so Lagrange interpolation at that many small nodes gives the same at 
 where it is `∫_B det Dr`. But `‖r‖ = 1` makes `Dr` singular everywhere, so `vol B = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

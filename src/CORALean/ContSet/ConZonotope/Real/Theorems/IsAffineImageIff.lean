@@ -27,10 +27,10 @@ too, which an infeasible constrained zonotope denotes.
       constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

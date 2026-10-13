@@ -21,7 +21,7 @@ every `ε > 0`, `S x ⊆ B_ε(0)` eventually. Here the direction the proposition
 -- Authors:       Claude Sonnet 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

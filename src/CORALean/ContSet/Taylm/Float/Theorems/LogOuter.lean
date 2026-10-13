@@ -13,10 +13,10 @@ off the stored floats: `taylor_remainder_abs_le` at `log`, then every piece of t
 its rounding.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

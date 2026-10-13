@@ -24,10 +24,10 @@ quadratic map is exactly a polynomial zonotope.
       Polynomialization and Non-Convex Sets". HSCC 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   12-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

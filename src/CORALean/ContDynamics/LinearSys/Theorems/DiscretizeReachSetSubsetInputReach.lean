@@ -20,10 +20,10 @@ is all the base case needs: holding any one point of `U` over `[0, 0]` is
 admissible and contributes the empty integral, `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       15-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

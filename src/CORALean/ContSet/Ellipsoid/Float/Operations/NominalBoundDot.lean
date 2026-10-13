@@ -9,10 +9,10 @@ float comparison. Through `FloatBound.ofExistsBound`: the exact bound's value
 is a square root, so only an existential keeps it out of the float.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

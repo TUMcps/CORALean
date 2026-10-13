@@ -9,10 +9,10 @@ representation, and a representation that has `LinComb`, `Mtimes` and `Plus` get
 is a `linComb`, which is the hull only where both operands are convex.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

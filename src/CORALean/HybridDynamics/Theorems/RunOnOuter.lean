@@ -13,10 +13,10 @@ invariant at `k + 1`. The `jump` case then owes an index rearrangement,
 `k + (k' + 1) = (k + 1) + k'`, which `omega` settles once it is named.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

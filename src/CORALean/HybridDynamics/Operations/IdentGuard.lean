@@ -15,10 +15,10 @@ Over ℝ, with no float layer: it states the guard for [1, Prop. 1], as CORA's
       Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

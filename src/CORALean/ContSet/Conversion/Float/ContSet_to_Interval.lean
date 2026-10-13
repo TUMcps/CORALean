@@ -34,10 +34,10 @@ An exact representation is one at `𝕋 := ℝ`, through its own class: that is 
 algorithm written once over the scalar run on `Real.Zonotope` as well as on a float one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

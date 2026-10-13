@@ -22,10 +22,10 @@ That `bilin` drops `H`'s independent block is also why the statement reads over
 `H.point` rather than over `H.construct`, as `gcnUncertain_exact` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

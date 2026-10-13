@@ -18,10 +18,10 @@ remainder bound `intervalInputRemainder` is built from. So the float box, `Δt` 
 in every entry, holds the exact one at every member of the interval matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

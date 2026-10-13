@@ -8,10 +8,10 @@ For a matrix `E = e^{AΔt}` that `[e^{AΔt}]` holds, every entry of `(E - I_n) G
 float entry in magnitude.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

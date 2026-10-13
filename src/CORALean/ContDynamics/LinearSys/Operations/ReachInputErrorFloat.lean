@@ -12,10 +12,10 @@ one — the box paid at each step is rounded up, and the exponential is the inte
 holds `e^{AΔt}` — which is the direction an inner approximation needs of what it takes off.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

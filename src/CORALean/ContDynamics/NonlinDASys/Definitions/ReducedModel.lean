@@ -12,10 +12,10 @@ trajectories of the system are those of the ordinary system `ẋ = f(x, h(x,u), 
 (`NonlinDASys.ReducedModel.toNonlinearSys`), with no run lost and none added.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

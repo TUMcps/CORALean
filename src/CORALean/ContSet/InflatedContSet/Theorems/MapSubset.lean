@@ -10,10 +10,10 @@ spill by `D`, and the box must absorb `D` along with its own image.
 Additivity suffices; the map is applied to a sum of two sets and nothing else.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ u_sym(1:numGlobalInputs))` numbers the globally bound inputs `1, 2, ...` in the 
 and ignores the global index they are bound to (FINDINGS.md).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

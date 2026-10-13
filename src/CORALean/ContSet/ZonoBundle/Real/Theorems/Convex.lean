@@ -8,10 +8,10 @@ An intersection of convex sets, `convex_iInter` applied to each component's own
 convexity — which holds vacuously at `k = 0`, `univ` being convex too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

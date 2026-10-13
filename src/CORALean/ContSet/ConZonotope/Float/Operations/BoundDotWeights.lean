@@ -10,10 +10,10 @@ upward. Sound at every weight vector, so this is where a certificate from any
 source, trusted or not, becomes a bound on the stored set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

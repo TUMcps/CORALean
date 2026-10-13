@@ -11,10 +11,10 @@ set satisfies the specification`), and the safe-set and unsafe-set helpers requi
 piece. Read from the source, not run in MATLAB.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

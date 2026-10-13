@@ -11,10 +11,10 @@ import CORALean.NN.Layers.Theorems.SampleDevLoLe
 The left end is in the box and the width covers it, so neither fact is a check.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

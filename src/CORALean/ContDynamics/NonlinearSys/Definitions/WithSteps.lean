@@ -16,10 +16,10 @@ from holds the whole step. `0 ∈ linInput` is `timeInterval_outer`'s own price.
 Neither involves the step width or the horizon, `options` and `params`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

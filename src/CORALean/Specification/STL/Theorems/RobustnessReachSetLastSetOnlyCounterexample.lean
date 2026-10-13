@@ -21,10 +21,10 @@ The time test `meets` is any one true on meeting intervals and false on interval
 comparison holds by a margin of at least `1/2`. Not run in MATLAB.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

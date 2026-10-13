@@ -24,10 +24,10 @@ are tuning, as `Λ` is any matrix here, and the soundness does not depend on it.
       Automatica, 41(6):1035-1043, 2005.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

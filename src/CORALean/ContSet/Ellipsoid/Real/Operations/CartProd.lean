@@ -10,10 +10,10 @@ of the two bounding boxes (the product of two ellipsoids is not an ellipsoid). T
 `'exact'` modes throw. A point operand, which CORA also handles, is `Ellipsoid.cartProdVec`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

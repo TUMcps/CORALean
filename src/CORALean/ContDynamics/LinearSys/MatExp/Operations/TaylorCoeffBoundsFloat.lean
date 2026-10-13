@@ -12,10 +12,10 @@ end is clamped at `zero`, which `1/k! > 0` makes free and which lets the lower
 product be compared without a sign case.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

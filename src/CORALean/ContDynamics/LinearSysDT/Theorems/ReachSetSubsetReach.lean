@@ -13,10 +13,10 @@ bound obtained on `reachSet` by propagation, are bounds on nested sets, so the
 tighter of the two is available at every step without either being trusted.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

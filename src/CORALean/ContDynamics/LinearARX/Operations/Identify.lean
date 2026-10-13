@@ -15,10 +15,10 @@ arguments). The interpolation to a uniform step (`uniformTimeStepSize`) is not m
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

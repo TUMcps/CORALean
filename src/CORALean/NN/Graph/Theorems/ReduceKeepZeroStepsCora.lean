@@ -8,10 +8,10 @@ At `numMPsteps == 0` CORA means to return the network (`% no gnn, return`) but i
 set of node `0` contains node `1`, though a network without message passing needs `{0}` only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

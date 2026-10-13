@@ -11,10 +11,10 @@ witness, so the rounding of `t` costs precision alone. The vector `c + t g - p` 
 directed arithmetic, and its squared length rounded up is compared with `r²` rounded down.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

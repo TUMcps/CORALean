@@ -8,10 +8,10 @@ A weighted average of two numbers never leaves the range spanned by both, so
 each coordinate is handled on its own and the bound is immediate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

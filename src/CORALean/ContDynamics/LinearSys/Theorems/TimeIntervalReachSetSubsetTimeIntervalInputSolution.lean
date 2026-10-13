@@ -10,10 +10,10 @@ this one carry the same content, but this one names no time at all, which is
 the point of having `timeIntervalReachSet` in the first place.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       11-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

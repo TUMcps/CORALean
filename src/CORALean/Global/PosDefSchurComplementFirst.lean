@@ -12,10 +12,10 @@ quadratic form it stands for and back. Mathlib has the semidefinite equivalence
 (`Matrix.schur_complement_eq₁₁`): the form is a square in `A` plus the form of the complement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

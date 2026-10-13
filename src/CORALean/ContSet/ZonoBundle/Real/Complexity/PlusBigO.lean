@@ -11,10 +11,10 @@ family of bundles whose sizes grow as `m`. `plus_k` reduces the left side to
 that product outright, which `m ^ 2` dominates for every `m`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

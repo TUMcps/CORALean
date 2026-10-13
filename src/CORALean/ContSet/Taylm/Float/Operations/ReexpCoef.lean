@@ -8,10 +8,10 @@ The bracket of the new coefficient of a term at one exponent of the variable: th
 times the bracketed binomial one, each corner by directed arithmetic.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

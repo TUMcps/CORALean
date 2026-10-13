@@ -12,10 +12,10 @@ Read back, the stored constraint matrix is the exact layer's on the read-back op
 enclosure, so the stored system admits every factor vector the exact one does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

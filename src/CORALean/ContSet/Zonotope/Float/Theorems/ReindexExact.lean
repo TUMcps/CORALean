@@ -15,10 +15,10 @@ reindexing is linear, so it distributes over the Minkowski sum that
 part plus the relabelled box, with no widening between them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

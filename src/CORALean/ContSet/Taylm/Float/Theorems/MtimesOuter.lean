@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Theorems.SmulOuter
 # `Taylm.mtimes` encloses the matrix image
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

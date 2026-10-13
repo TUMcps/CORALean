@@ -11,10 +11,10 @@ found, or in the fixed outer regions `ext` (CORA's start and end polynomials). A
 the tolerance. The new regions are in front of the old, which stay.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

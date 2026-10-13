@@ -32,10 +32,10 @@ of `U`, `R(τ)` varying with `τ`, exactly as in the point case.
 `[0, r]` is `inputSolution_timeInterval_outer`, and that is where it is paid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The columns whose table entry is themselves, in column order: `repKeep` listed
 instead of re-derived, which is what `keepIdx` does at every call (issue #61).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

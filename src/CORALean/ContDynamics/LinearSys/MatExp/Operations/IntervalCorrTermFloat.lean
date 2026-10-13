@@ -12,10 +12,10 @@ lies in: `corrCoeff i` is in `[corrCoeffLow i, 0]` and `r^i/i!` below
 `taylorCoeffBounds`'s upper end.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

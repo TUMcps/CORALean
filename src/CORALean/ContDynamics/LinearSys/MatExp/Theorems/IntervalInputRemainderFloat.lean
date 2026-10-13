@@ -12,10 +12,10 @@ remainder bound (`expRemainderBound_le` at `norm_smul_le_normUpperBound`),
 rounded up. `hε` asks `1/2`, as every float remainder bound does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

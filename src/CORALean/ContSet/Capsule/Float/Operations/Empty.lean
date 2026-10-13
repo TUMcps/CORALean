@@ -6,10 +6,10 @@ import CORALean.ContSet.Capsule.Float.Capsule
 Radius `-1`, as over ℝ: `neg one` reads as `-1`, which no point is within.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

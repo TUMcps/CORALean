@@ -8,10 +8,10 @@ import CORALean.Global.Float.Instances.IEEE.Theorems.RoundDownLe
 `Dyadic.divDown_le_div` for the first rounding, `roundDown_le` for the second.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

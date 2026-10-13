@@ -8,10 +8,10 @@ A common point lies in a piece of each polygon; the separating direction of that
 `-d`, and the certified gap between the two is a contradiction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

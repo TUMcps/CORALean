@@ -19,10 +19,10 @@ survives an outer approximation, so this one provably does, pinned down to a saf
 `logic`, signal temporal logic, is out of scope: satisfying one is model checking.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

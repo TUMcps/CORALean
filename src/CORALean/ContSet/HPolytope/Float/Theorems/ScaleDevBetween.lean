@@ -10,10 +10,10 @@ For `x` in the domain, `(s v - ṽ)ᵀ x` lies between `scaleDevLo` and `scaleDe
 entry, and each product between its rounded corners (`mul_between_corners`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

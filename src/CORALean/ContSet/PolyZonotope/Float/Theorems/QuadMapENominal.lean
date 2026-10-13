@@ -7,10 +7,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
 `quadMapE` is `rfl`-equal across the layers, being a sum of naturals either way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

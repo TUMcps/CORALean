@@ -18,10 +18,10 @@ or a `construct` — it is a statement about a finite-dimensional real space, on
 a par with `Global/Radstrom.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

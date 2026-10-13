@@ -9,10 +9,10 @@ The stored floats are untouched and the nominal part is the exact layer's `repla
 original's: the renamed set lies in the original (inner), the error box as it was.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

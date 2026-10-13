@@ -13,10 +13,10 @@ pass that tightens one coordinate's bound at a time is exactly such a fold, and 
 what carries "every feasible point stays inside" across the whole pass.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       21-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

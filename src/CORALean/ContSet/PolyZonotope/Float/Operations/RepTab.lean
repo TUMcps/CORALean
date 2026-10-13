@@ -8,10 +8,10 @@ summand of every fibre of every entry. Computed once into an `Array`, the same
 answers cost a lookup (issue #61).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

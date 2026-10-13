@@ -8,10 +8,10 @@ Split out of `LinComb.lean` (issue #62): used again by `ConZonotope.linComb`
 and by `MidpointMemResidual.lean`, both outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ vertex (`ConvexOn.exists_ge_of_mem_convexHull`), and `VPolytope.distPoint_eq` sa
 `aux_distPolyPoint` is that distance.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

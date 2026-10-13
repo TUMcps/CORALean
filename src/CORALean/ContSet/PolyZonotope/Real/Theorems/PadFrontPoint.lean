@@ -13,10 +13,10 @@ The two halves together are what a product over independent factors is read
 through, one set per projection out of `Fin (p₁ + p₂)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -29,10 +29,10 @@ states the conditional fact instead, at `0 < zB.k`. No `MinkDiff` either — tha
 needs `Zonotope.minkDiff`, an open design decision on #85.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

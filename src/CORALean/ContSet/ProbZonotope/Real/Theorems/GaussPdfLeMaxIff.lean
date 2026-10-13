@@ -10,10 +10,10 @@ For a covariance of positive determinant, the density `N(μ, Σ)` at `x` is at m
 over-approximation of the maximum there: it is attained.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

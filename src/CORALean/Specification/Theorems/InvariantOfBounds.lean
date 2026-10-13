@@ -9,10 +9,10 @@ kinds are checked by the identical test (`Specification.holds_invariant`), so th
 per halfspace direction discharges either.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

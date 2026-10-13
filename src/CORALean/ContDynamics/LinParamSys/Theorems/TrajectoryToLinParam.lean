@@ -11,10 +11,10 @@ sys.A`, which `OfPoint` alone does not give: `mem_ofPoint` says the point is
 in the set, never that the set is only the point. Not stated.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

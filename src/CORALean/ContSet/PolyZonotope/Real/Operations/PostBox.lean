@@ -20,10 +20,10 @@ exactly as they were.
       Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

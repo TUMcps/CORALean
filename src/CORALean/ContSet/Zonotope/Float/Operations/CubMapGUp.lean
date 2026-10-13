@@ -9,10 +9,10 @@ The generators of `Zonotope.cubMap` on the stored floats, rounded up, indexed by
 `(0, 0, 0)`, zero elsewhere, halved where it is a pure square `(0, j, j)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

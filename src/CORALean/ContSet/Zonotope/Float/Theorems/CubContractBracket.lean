@@ -8,10 +8,10 @@ Two applications of `quadDown_le` and `le_quadUp`: the middle vector is brackete
 and `le_dotUp`, the quadratic form by the first application, the sum over `k` by the second.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ CORA's `convHull_` of a polygon, and `polytope(pgon)`, the polytope on the verti
 the V-polytope joining every piece's vertex list, with the pieces' error boxes hulled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

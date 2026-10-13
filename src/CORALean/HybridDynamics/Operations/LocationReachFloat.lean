@@ -15,10 +15,10 @@ invariant; `Location.guardIntersectFloat` cuts them where a guard is tested.
 a horizon of zero steps has no window to hold the stay's one state.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ Above the generator count it is `reduceLiftBy_outer` at the partition Girard's r
 for the lifted zonotope; at or below it, the identity.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

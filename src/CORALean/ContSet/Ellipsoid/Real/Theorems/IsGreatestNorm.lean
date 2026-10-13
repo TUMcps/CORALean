@@ -10,10 +10,10 @@ centre `0`. The upper bound `Ellipsoid.normUb` is the float-capable counterpart;
 value.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

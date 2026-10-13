@@ -23,10 +23,10 @@ layer yet — its `Mtimes` is over `Mat 𝕋`, not `Mat ℝ` — so what is reco
 there is that the instance is lawful and that `⊞` reads at a float ellipsoid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

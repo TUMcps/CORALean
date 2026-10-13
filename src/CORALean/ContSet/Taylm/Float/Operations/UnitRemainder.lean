@@ -11,10 +11,10 @@ derivative is at most one in magnitude, as for `sin` and `cos`: `B` the reach of
 hull from the centre, rounded up, and the product rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

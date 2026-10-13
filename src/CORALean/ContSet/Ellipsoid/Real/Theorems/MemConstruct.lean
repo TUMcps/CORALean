@@ -8,10 +8,10 @@ ball point is a point the ellipsoid contains. `Theorems/QMemConstruct` is the
 same statement at `u = 0`, the centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ This is what lets a layer commit its nominal value to a box it was handed —
 zero — without knowing anything about where the box came from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

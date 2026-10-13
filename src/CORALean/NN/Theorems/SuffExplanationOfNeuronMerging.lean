@@ -18,10 +18,10 @@ assumed. The network's weights are in any scalar, the explanation's box real.
 * [2] `CORALean.neuronMerging_network_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

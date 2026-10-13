@@ -29,10 +29,10 @@ constraint systems carried along, outer for the reason that one is.
 `ConPolyZono.quadMap` directly — the one operation `Intersection` (#10) does not cover.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ Nothing here is sound: the six false laws are fields of `NearestUnsound`,
 assumed in `Axioms`, and at `Dyadic` they are refutable, not merely unprovable.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

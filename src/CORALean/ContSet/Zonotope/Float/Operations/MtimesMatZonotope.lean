@@ -13,10 +13,10 @@ as interval products: for `(a + e)(z + f) = az + af + e(z + f)`, `a` in the box 
 the matrix zonotope's nominal part and `z + f` in the zonotope's `interval`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

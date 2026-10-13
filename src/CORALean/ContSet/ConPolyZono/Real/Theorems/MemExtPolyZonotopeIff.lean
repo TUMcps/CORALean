@@ -12,10 +12,10 @@ generators and `A μ(α) = b + t` by the constraint rows. The generators' sum sp
 blocks of `extPolyZonotope`, the monomials of `appendE` being those of either half.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

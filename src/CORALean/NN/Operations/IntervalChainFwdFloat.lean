@@ -14,10 +14,10 @@ range over is carried through each layer by outward-rounded interval arithmetic.
 `[mu - r, mu + r]`; the activation's is the stored scalar enclosure `σE`, entrywise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

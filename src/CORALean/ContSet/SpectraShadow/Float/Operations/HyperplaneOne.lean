@@ -8,10 +8,10 @@ The hyperplane `ℝⁿ × {1}` of `ℝⁿ⁺¹` of `convHull_`: the trivial ineq
 1)` and the unit vectors of the first `n` coordinates as generators. The box is the origin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ constant `e^{‖A‖t}‖v‖`. Termwise `∫₀ᵗ σⁱ/i! dσ = t^{i+1}/(i+1)
 where the shifted factorial in `expIntegral` comes from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

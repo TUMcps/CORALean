@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
 `isPolytopeCex.construct` is the map `(a, b, c) ↦ (2a + b, a c)` on the factor cube.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

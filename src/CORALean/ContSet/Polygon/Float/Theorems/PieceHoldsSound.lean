@@ -8,10 +8,10 @@ The triangle's barycentric coordinates (`Polygon.inTriangle_sound`), put on its 
 and zero elsewhere, are the weights of a convex combination of the piece's vertices.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

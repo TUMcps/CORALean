@@ -7,10 +7,10 @@ CORA's `interval.Inf(n)`: the interval `(-∞, ∞)ⁿ`, lower bound `-Inf(n,1)`
 `Inf(n,1)`. Its bounds are infinite, so the result is an `Interval.EBox`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

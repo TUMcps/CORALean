@@ -6,10 +6,10 @@ import CORALean.NN.Definitions.ScalarEncloses
 The derivative is the constant `1`, and `1` reads as `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

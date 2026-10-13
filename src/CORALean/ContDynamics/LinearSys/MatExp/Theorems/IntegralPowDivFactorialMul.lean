@@ -9,10 +9,10 @@ makes the `k`-th Peano–Baker term `(c s)^k / k!` and the `k`-th box `s^k/k!`
 times a power, rather than `(c s)^k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ That row may itself be deleted, but the dominating rows come down in the lexicog
 the least is kept, and it implies the deleted row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

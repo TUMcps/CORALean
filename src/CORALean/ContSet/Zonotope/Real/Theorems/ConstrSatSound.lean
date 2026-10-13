@@ -9,10 +9,10 @@ The image `C Z` is the zonotope `Zonotope.mtimes C Z` (`mtimes_exact`), its box 
 asks to be below `d`. One direction only: the box over-approximates, so `false` says nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

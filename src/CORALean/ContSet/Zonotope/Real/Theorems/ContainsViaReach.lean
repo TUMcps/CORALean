@@ -10,10 +10,10 @@ the box of vectors a checked right inverse of `G₂` reaches (`Zonotope.rightInv
 coefficients of size at most `δ` that the coefficient budget `|β₀ₖ| + ∑ⱼ |Γₖⱼ| + δ ≤ 1` pays for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

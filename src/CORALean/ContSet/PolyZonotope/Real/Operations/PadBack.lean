@@ -13,10 +13,10 @@ factors and the right set at the front by the left set's, and the two share one
 factor set of `p₁ + p₂` in which each still ignores the other's half.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

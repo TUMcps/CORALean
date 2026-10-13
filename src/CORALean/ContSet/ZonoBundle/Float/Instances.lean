@@ -28,10 +28,10 @@ A bundle and each member in it are closures over what an operation was given, so
 every field below materialises, exactly as `Zonotope`'s do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

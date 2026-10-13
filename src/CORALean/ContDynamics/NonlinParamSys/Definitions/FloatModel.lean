@@ -17,10 +17,10 @@ for a `f` affine in `p` (`NonlinParamSys.linearize_f_counterexample`), an enclos
 parameter box asks nothing of `f` but the enclosure itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

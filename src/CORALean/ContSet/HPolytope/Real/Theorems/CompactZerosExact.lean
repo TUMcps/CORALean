@@ -10,10 +10,10 @@ A zero row `0 ≤ b` with `b ≥ 0` or `0 = 0` holds at every point, so deleting
 an infeasible one empties the set, and the empty set is what is returned.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

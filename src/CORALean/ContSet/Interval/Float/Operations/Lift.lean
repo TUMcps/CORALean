@@ -8,10 +8,10 @@ coordinate unbounded. The first `j` with `proj j = i` supplies coordinate `i` (t
 an injective `proj`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

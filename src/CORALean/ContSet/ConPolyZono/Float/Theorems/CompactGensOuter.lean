@@ -18,10 +18,10 @@ lower is stored, and the gap is a `generatorError` in the ambient box. The
 nominal set only *grows* at this stage, and the error box does not move.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

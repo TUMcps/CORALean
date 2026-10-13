@@ -14,10 +14,10 @@ what keeps this an upper bound; a caller with a per-member count sums those
 instead, and gets something smaller and less composable.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

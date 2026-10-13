@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 A nonempty box contains its two bounds, so if the whole box is `{v}` both bounds are `v`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

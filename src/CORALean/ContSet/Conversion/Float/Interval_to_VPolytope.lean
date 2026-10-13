@@ -9,10 +9,10 @@ copied, so the error box stays at zero and the nominal vertex list is exactly th
 exact layer's corners of the nominal box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

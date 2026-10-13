@@ -7,10 +7,10 @@ The range of one term `c ∏ tₖ ^ eₖ` over a box `B`: the power ranges of th
 multiplied, then the coefficient, every end rounded outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

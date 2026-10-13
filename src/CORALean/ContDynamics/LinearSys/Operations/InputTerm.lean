@@ -8,10 +8,10 @@ over the step. `inputTaylorSum` sums these; `InputSolutionOuter` names the
 same order to state what each summand of the input's Taylor series encloses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

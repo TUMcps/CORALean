@@ -30,10 +30,10 @@ fails (`intersectDescriptorHd_pRadius_counterexample`); its Eq. 20 has no soluti
       64(5):2092-2099, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

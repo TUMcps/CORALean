@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
 No fresh independent factor: the segment's own coefficient is dependent.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

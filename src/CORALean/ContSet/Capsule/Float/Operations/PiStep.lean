@@ -10,10 +10,10 @@ sums `acosDown`, `acosUp` at `0`; the quotient by `499` rounded down with a divi
 itself otherwise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

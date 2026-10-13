@@ -31,10 +31,10 @@ taking it at coefficient `0`.
       Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

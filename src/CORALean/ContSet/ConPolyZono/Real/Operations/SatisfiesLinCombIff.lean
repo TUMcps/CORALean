@@ -10,10 +10,10 @@ constraint monomial, so it constrains nothing — and then `holds_plus_iff` on
 what is left, which is the block-diagonal system `plus` assembles.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

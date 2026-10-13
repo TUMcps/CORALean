@@ -15,10 +15,10 @@ parameters, and the conversion to a polynomial zonotope goes through the triangl
 (`VPolytope.polyZonotope`), so the result is an enclosure, not CORA's tight sampled boundary.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

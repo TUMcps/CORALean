@@ -8,10 +8,10 @@ import Mathlib.Analysis.Convex.Hull
 The points, and their convex hull, lie inside the zonotope: a subset, not a superset.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

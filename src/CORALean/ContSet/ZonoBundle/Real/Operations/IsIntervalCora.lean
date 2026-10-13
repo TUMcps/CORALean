@@ -11,10 +11,10 @@ never used: it tests the first member `Z{1}` `parallelSets` times, so a bundle w
 is a box passes whatever the others are. Read from the source, not run (`IsCoraCounterexample`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

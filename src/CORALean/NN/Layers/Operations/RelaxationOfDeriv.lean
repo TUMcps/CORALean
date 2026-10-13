@@ -12,10 +12,10 @@ all arrive as stored values, `σ` through an `Enclosure`. Nothing constrains `λ
 passing a clamped guess owes only that the clamp lands in the bracket.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

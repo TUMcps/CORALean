@@ -11,10 +11,10 @@ same row sums and the same norm. So `norm_le_absMax`'s bound is attained, and a
 bound on every member's norm bounds `‖absMax‖` too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

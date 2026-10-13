@@ -18,10 +18,10 @@ A member encloses the function on the box: the Taylor model as `Taylm.Encloses`,
 as holding the function's value at every box point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

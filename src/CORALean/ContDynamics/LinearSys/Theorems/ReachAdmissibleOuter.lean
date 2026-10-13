@@ -11,10 +11,10 @@ directly at that raised order, and `2 ≤ max η (reachOrder Δt + 2)` is
 immediate. `LinearSys.reachInstance` states its guarantee through this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

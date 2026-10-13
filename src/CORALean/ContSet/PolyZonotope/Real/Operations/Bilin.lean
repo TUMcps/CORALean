@@ -21,10 +21,10 @@ coefficients to count runs `dependent` first, and once, so that repeated
 pairings keep the freed ones identified.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

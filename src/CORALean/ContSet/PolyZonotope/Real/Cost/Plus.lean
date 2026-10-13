@@ -15,10 +15,10 @@ the generator counts enter. That the *result* carries `p₁ + p₂` factors is a
 size claim and lives in `Complexity/Plus.lean`, where it is proved.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

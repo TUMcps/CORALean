@@ -8,10 +8,10 @@ lies in each intersectand, so CORA's member-wise `'exact:zonotope'` check is exa
 operand `S`: nothing is lost, unlike the zonotope hull of a bundle.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

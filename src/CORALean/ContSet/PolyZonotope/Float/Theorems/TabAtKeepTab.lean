@@ -12,10 +12,10 @@ Reading `keepTab` of a `repTab` at `j` is `keepIdx`'s answer: the columns a
 `repTab` fixes are `repKeep`, listed in order.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

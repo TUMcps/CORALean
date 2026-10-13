@@ -13,10 +13,10 @@ generator (`h₁ * (2 * h₂ + 1 + n)`), and the centre is `n` subtractions. The
 `none` branch pays for the checks only, which this bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

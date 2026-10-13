@@ -8,10 +8,10 @@ operand pair on the `p`-bit grid is coarsened unless the smaller one is far belo
 the sum, yet a constant, so `2 ^ alignGuard p` is small.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

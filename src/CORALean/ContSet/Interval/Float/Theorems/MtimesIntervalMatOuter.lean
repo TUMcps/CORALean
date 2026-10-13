@@ -11,10 +11,10 @@ already proved that. The whole obligation is that each corner and each row sum
 rounds the right way, exactly as `MatMulOuter.lean`'s does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

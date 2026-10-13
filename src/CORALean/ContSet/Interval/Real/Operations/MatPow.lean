@@ -15,10 +15,10 @@ bounds its summands independently and so loses precision at a different place,
 and `Theorems/MatPowOuter` unfolds the left factor to match.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

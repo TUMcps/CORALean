@@ -8,10 +8,10 @@ Where the right end is at most `2ᵏ/2`: `expDown` bounds `exp` from below every
 `le_expUp` from above there, and `exp` is monotone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

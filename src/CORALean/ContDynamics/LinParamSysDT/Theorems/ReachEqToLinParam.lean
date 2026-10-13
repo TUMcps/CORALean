@@ -14,10 +14,10 @@ through the same `mtimes`, and `toLinParam` changes nothing `mtimes`, `plus`
 or `reduce` can see.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

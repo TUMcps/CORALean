@@ -8,10 +8,10 @@ generator counts stand, since only the factor count and the exponent matrix
 move. `rfl` against the structure instance in `Operations/PadFront.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ certified or `0`, so `c + G u` is in the nominal ellipsoid; the remainder lies b
 roundings the error box was hulled from. Not exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

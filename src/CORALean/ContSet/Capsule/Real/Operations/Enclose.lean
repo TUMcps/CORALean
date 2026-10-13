@@ -9,10 +9,10 @@ printed: the header documents `C2 = M*C + Cplus`, but the code multiplies `Cplus
 nothing (see `Capsule.enclose_cora_counterexample`); `ContSet.enclose` is the documented set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

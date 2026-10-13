@@ -7,10 +7,10 @@ import Mathlib.Analysis.Normed.Module.FiniteDimension
 The open box of radius `B` around `c + G β₀` lies in the nominal set (`ConZonotope.box_subset`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

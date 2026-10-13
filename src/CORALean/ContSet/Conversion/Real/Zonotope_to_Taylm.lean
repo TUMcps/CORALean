@@ -9,10 +9,10 @@ CORA's `taylm(zonotope)`: one variable per generator, `c + G t` over `t ∈ [-1,
 remainder. Exact: the box of factors is the zonotope's box of coefficients.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

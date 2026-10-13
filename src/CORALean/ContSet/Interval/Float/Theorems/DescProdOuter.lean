@@ -9,10 +9,10 @@ Induction on the number of factors, against `matMul_outer`; the empty product is
 the stored identity block, read back as `(1 : Mat ℝ n n)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

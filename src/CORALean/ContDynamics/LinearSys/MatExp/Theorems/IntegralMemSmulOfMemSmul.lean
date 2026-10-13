@@ -17,10 +17,10 @@ off by a functional `ℓ` with `ℓ < a` on `K`, and `ℓ(f(σ)) ≤ w(σ) a` in
 nothing is asked of `f` beyond integrability.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

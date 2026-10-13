@@ -15,10 +15,10 @@ Vector-valued, so the integrals are Mathlib's own; only the matrix-valued
 `peanoBakerTerm` has to be taken entry by entry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

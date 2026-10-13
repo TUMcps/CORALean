@@ -21,10 +21,10 @@ The loop is `abstrErrLoop` with factor `1.1` and test `∀ i, trueError i ≤ ap
 MATLAB's `max(trueError./appliedError) ≤ 1` (`max` skips `NaN`, `0/0`); `fuel` bounds it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

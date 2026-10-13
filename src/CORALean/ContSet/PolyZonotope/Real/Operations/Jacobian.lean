@@ -14,10 +14,10 @@ An identifier is an index `k` of `Fin p`; the cell array CORA returns is this fa
 identifiers in `id_diff`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

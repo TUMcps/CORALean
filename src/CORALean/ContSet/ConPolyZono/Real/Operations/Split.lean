@@ -15,10 +15,10 @@ CORA's call without a dimension is this at every `d`, returned as a cell of pair
 map `d ↦ split cPZ d` and is not a separate definition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

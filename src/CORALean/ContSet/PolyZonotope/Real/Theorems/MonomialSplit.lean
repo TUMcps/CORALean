@@ -8,10 +8,10 @@ import Mathlib.Algebra.BigOperators.Fin
 over `V`: what `partZonotope` and `subs` do to a generator's monomial.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

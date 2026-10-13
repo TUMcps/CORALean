@@ -12,10 +12,10 @@ The integer, the two powers and their products each lie between their directed r
 `C(e, j) · mᵉ⁻ʲ · rʲ` lies between the two floats `binomCoef` returns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

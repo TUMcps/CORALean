@@ -9,10 +9,10 @@ part and box together — the centre and the generators' absolute sum, `radius`,
 whichever corner of the box is farther out.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

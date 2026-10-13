@@ -11,10 +11,10 @@ so the nominal part is `projectHighDim_exact`; the error box is `Interval.projec
 Outer, as the box's emptiness test is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

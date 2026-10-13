@@ -18,10 +18,10 @@ What lets a time-varying parameter that `Trajectory` asks nothing of be replaced
 by one an integral can take.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -38,10 +38,10 @@ covariance `enclose` gives it stays in `Rfirst.ti`, `0` for a deterministic `Rin
       `private/priv_inputSolution.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

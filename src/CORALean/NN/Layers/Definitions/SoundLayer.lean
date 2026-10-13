@@ -9,10 +9,10 @@ what lets a network, a `Type 1` kind, go into another as a layer, and a layer wh
 comes from somewhere other than a kind — a refinable layer at a pattern — go into one at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

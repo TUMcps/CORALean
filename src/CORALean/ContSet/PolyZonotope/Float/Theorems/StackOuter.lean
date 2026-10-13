@@ -13,10 +13,10 @@ padded the same way, is `exactPlus_outer` at the padded pair: the factors the tw
 shared, and only the centre sum rounds. Outer, not exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

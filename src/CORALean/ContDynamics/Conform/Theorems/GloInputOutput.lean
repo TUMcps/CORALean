@@ -21,10 +21,10 @@ printed `B_ext,k-j,k-i-j` needs. A linear `h` has `l = 0` and so `ē = 0`.
       Transactions on Automatic Control, 71(5):3014-3029, 2026.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ probabilistic particular solution has the covariance `Σ_s(k r)` of the noise ac
 given as its eigendecomposition. Covariances only, not the law of the process.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

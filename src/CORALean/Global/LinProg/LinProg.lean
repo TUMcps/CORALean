@@ -23,10 +23,10 @@ operations rather than along any particular description of them —
 `SupportWitness` is the dual: a value with a point attaining it; no `ofEmpty`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   15-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

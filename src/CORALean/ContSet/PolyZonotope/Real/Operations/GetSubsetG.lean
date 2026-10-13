@@ -14,10 +14,10 @@ At `rad = 0` only `j = 0` survives and the coefficient is `cenᵉ`, which is
 exactly CORA's separate point branch `aux_getSubsetPoint`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

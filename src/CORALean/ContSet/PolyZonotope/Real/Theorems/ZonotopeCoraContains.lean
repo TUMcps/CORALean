@@ -9,10 +9,10 @@ A column of even exponents has its monomial in `[0,1]`, so `2m - 1` is an admiss
 coefficient on the half that stays free, and the centre's half plus this makes `m`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

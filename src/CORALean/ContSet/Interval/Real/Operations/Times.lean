@@ -9,10 +9,10 @@ four corner products (`mulLo`, `mulHi`). CORA's `NaN` convention for `0 * ∞` h
 `ℝ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

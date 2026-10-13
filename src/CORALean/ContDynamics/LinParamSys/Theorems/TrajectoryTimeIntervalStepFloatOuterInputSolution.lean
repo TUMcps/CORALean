@@ -26,10 +26,10 @@ with no hypothesis, unlike the real theorem, where the representation is generic
 The remainder is a matrix within the float `E(r)·r` applied to a longest point of `U`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

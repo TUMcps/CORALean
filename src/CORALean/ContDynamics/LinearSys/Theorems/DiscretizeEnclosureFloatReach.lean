@@ -10,10 +10,10 @@ interval-matrix family, `LinParamSysDT.reach` is the discrete recursion run in
 floats, and the sampled continuous run is inside it at every sample time.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

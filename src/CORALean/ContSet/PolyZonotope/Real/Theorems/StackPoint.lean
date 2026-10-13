@@ -11,10 +11,10 @@ set's point, the last `n₂` the second's. Stated at the point, as `exactPlus_po
 the set: the factors are shared, so a set-level statement would need the pairing of values.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

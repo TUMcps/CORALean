@@ -9,10 +9,10 @@ compare. Shared by `roundDown_le` and `le_roundUp`, both of which round by
 shifting the mantissa down and reading the result back at the original scale.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

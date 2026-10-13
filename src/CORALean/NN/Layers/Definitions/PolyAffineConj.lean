@@ -13,10 +13,10 @@ the fit or the error bound is redone, which is what makes tanh cost a line. Over
 reweighting is exact; no machine scalar stores a polynomial tanh relaxation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

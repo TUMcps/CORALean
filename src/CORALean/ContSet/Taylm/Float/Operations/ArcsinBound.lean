@@ -11,10 +11,10 @@ integer polynomial `recL [1, 0, 1] (j ↦ 2j+1) N` by `Interval.evalList` on `[m
 of `invSqrtOneSubHi`, the product rounded up. `q` is the precision of the square root.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

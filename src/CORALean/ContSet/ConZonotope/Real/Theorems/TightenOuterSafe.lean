@@ -25,10 +25,10 @@ when it touches a coordinate in `S`": for every `j ∈ S` and row `i` with
       constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       21-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

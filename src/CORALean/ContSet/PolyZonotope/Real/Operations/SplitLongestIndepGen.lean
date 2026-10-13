@@ -9,10 +9,10 @@ centre `c - g/2`, the generator `g/2` in both. With no independent generator bot
 the set itself, where CORA errors.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

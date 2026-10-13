@@ -7,10 +7,10 @@ Split out of `HoldsOfOuter.lean` (issue #62): the same transfer, one
 specification at a time, for `Specification.HoldsAll`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

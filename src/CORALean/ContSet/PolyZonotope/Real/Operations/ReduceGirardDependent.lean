@@ -12,10 +12,10 @@ generators alone against `n·o` and keep every independent one. Tighter per step
 and bounding nothing — the box adds `n` independent generators at every call.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

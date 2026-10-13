@@ -11,10 +11,10 @@ operands, the convex hull since both are convex; it rests on the hull `orOA` enc
 (`Ellipsoid.IsOrOuter`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

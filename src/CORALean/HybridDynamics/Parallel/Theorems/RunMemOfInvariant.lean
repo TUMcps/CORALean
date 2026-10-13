@@ -10,10 +10,10 @@ import CORALean.HybridDynamics.Theorems.RunOuter
 reachable set of a parallel automaton is the single automaton's, with no new analysis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

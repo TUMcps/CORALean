@@ -14,10 +14,10 @@ the tensor, the centre's term is in `tensorMultiplication M.c`, each generator's
 the sum of one point from each summand (`Zonotope.plus_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

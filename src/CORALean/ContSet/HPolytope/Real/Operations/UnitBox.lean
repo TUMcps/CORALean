@@ -8,10 +8,10 @@ coefficient domain a zonotope ranges over, so a constrained zonotope's domain is
 this intersected with its constraints.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

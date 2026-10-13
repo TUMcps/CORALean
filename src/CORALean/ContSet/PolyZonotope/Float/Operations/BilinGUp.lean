@@ -7,10 +7,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.QuadUp
 `bilinGDown`'s generators rounded the other way, for the gap that `bilinGDiff` charges.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ again by `Theorems/RelaxExpGroupOuter.lean` and by the comparison with the
 pairwise merges, both outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

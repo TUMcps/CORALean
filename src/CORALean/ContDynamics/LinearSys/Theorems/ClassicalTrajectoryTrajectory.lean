@@ -17,10 +17,10 @@ form. `T` convex and containing `0`, and `U` bounded, are what a window
 unconditionally measurable, off at most `T`'s greatest element — one point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       15-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

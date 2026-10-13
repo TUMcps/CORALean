@@ -10,10 +10,10 @@ checked by the float comparison `le`, whose `true` is sound; the search is
 bounded by `fuel` and says `none` rather than returning an unchecked order.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

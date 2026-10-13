@@ -10,10 +10,10 @@ not needed: the nominal halves land in the exact `linComb` and the error halves
 in the interval one, each by its own layer's theorem.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

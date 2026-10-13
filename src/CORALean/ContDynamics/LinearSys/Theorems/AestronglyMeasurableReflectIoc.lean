@@ -11,10 +11,10 @@ instance itself sits behind Haar uniqueness, an import far heavier than the
 one fact needed here, so it is taken instead from the scaling law at `-1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

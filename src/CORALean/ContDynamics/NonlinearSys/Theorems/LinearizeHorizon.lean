@@ -10,10 +10,10 @@ for on `[0, τ]` and nowhere else, which is what lets `reach_outer_horizon`
 answer for a bounded horizon without a total run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

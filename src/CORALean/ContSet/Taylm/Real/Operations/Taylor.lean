@@ -14,10 +14,10 @@ remainder is the magnitude form, symmetric about zero, where CORA evaluates the 
 Lagrange term in interval arithmetic: sound either way, coarser here by up to a factor two.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

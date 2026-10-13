@@ -16,10 +16,10 @@ that is not full-dimensional. The measure agrees with CORA on every full-dimensi
 every bounded one; the unbounded lower-dimensional case is not claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

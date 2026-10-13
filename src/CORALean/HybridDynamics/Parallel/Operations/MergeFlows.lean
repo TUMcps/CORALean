@@ -20,10 +20,10 @@ to another component's state is always exact: the block is `0` there.
 CORA's nonlinear branch, symbolic, is not here (#40).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ intersection lies in every branch of that operand, so it sums into every
 pairwise `plus`, `Plus.plus_outer` reading that sum back into the branch.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

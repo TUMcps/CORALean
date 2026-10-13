@@ -16,10 +16,10 @@ coordinate alone) and each float corner value lies beyond its exact one; elsewhe
 cut, which is no enclosure there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

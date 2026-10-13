@@ -27,10 +27,10 @@ overestimation `refErr`: the true gap is in `[ε, ε + refErr]`. CORA's generato
 box to touch CORA's own `ε`-accurate outer set, a true gap in `[0, ε]`: this family is not CORA's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

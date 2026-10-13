@@ -9,10 +9,10 @@ exactly when the generator map `ξ ↦ G ξ` is constant on the coefficient poly
 `ConZonotope.domain`, and the polytope is nonempty (CORA returns `[]` for an empty set).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ import Mathlib.Algebra.CharP.Defs
 `LinearSys.reach` keeps `⌈tFinal / Δt⌉₊`, the same count once `0 < tFinal`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

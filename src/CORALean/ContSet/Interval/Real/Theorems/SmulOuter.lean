@@ -9,10 +9,10 @@ Entrywise, `c • v`'s coordinate sits between the two scaled endpoints by
 through `Entrywise.entry_smul` is the rest.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

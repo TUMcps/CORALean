@@ -8,10 +8,10 @@ import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 Membership splits with the rows, each half read on the polytope it came from.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

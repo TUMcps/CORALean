@@ -8,10 +8,10 @@ At `n = N` and distinct coordinates, `proj` is a bijection, so embedding the coo
 at `proj` (the rest, of which there are none, held at zero) reaches everything.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ Rounded twice, `quotDown`'s mirror: `roundDown` rounds again past the
 rounding `quotDown` already did while dividing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   02-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

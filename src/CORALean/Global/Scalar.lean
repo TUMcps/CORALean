@@ -16,10 +16,10 @@ reading applied to every entry. So a matrix built by placing existing entries, `
 (see `ExactScalar`) reads back as the real matrix of those entries, at any scalar, rounded or not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

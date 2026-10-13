@@ -13,10 +13,10 @@ The derivative is asked for as the continuous linear map a matrix induces rather
 than as an abstract one, which is what makes `toMatrix'` invert it on the nose.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

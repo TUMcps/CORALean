@@ -8,10 +8,10 @@ A point of the higher-dimensional space is in the lifted polytope exactly when i
 `dims` form a point of `P`; the other coordinates are free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

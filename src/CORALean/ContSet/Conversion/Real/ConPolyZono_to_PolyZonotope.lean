@@ -21,10 +21,10 @@ CORA also offers tighter enclosures that first eliminate constraints by solving
 for a factor. Those are separate operations, not this one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

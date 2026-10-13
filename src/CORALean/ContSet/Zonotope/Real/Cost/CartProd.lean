@@ -9,10 +9,10 @@ operand's generators with a zero in the other component. Nothing is computed;
 the zeros are written, not derived, so the count is nil.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

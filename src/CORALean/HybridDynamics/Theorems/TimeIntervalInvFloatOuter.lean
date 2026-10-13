@@ -11,10 +11,10 @@ plus `Ud` by `timeIntervalFloat_outer`, so in its box, and in the invariant by
 `Trajectory.invariant`, so in the box cut by the invariant's rows.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

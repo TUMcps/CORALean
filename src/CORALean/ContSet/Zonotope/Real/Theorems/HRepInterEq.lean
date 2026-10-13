@@ -19,10 +19,10 @@ translate by `-w`, so `Z_o` is `Z.shift h` and `Z_t` is `Z.shift (-h)`.
       arXiv, 2015.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

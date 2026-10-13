@@ -14,10 +14,10 @@ generator, which are stored rounded down: their shortfalls are the midpoint resi
 the selector `t` in `[-1,1]`, the symmetric half-difference box, both of which the stored box holds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

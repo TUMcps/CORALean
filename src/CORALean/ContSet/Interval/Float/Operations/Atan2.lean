@@ -12,10 +12,10 @@ corner hull is not an enclosure across the branch cut; where no half-plane is ce
 here is `[-π, π]`, so the float result encloses `atan2` over every box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

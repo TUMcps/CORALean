@@ -10,10 +10,10 @@ The point need not be the centre `c`: with `c = 0`, `G = [1 0]`, `A = [1 1]`, `b
 `{1}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

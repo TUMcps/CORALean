@@ -12,10 +12,10 @@ The enclosure is strict in general: the cross generators are free, so a product
 of two matrix zonotopes holds pairs the two never take together.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

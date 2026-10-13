@@ -24,10 +24,10 @@ stays in `[0, 1/10] ∪ [9/10, 1]`. The printed proof applies [1, Lemma 1] to
   8:2033-2038, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

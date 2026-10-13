@@ -10,10 +10,10 @@ set, in `EReal`: `⊥` for the empty set, `⊤` for an unbounded direction. A sp
 computed, as the program is not; `SpectraShadow.supportBound` is the certified bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

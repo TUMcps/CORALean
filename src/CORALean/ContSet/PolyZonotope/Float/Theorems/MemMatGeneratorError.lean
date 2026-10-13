@@ -8,10 +8,10 @@ by the generators, with coefficients in `[-1, 1]`, lies in the box. Entry `(i, j
 `abs_sum_le_radius` at row `j` of the generators' `(i, ·)` rows.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

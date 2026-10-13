@@ -8,10 +8,10 @@ is that the polynomial and error enclose `σ` on the region; `Fits` adds that th
 stated one and the error at most the tolerance, all measured on the coefficients stored.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

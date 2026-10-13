@@ -18,10 +18,10 @@ downstream reads the number, and `1` is what the existing global bound gives
 without a second argument about where `σ'` is maximal.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

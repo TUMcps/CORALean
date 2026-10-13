@@ -13,10 +13,10 @@ Every product `[Tᵢ] U` keeps `0` (`[Tᵢ]` holds the exact `Tᵢ`,
 operands when the float sum is bounded from above.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

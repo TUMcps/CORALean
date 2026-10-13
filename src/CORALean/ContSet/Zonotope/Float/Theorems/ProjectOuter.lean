@@ -12,10 +12,10 @@ definitionally the exact layer's `project` of the nominal zonotope, so `project_
 the nominal obligation as an equality; the box is `Interval.project_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

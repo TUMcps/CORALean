@@ -15,10 +15,10 @@ sum of the coefficients' rounding gaps, a monomial being at most `1`, and `union
 that sum rounded up, which is the bound the stored row is held to.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

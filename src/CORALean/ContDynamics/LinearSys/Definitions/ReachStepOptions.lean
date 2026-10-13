@@ -14,10 +14,10 @@ remainder bound admits for `timeStep` and the system matrix, and a theorem asks 
 it. `0 < timeStep` is no field, a theorem asks it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

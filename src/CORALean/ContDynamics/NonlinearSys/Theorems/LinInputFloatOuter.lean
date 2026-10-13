@@ -12,10 +12,10 @@ so `δ = x - x✱` solves `δ̇ = A δ + ũ` with `ũ` there. Split as `f(x✱,u
 its own summand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

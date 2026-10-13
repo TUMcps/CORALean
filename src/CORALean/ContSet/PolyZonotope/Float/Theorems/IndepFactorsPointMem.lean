@@ -14,10 +14,10 @@ nominal set's point at `α` plus `GI β`: the left block of the exponent matrix 
 (`monomial_plusE_right`, `monomial_identE`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

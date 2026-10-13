@@ -21,10 +21,10 @@ magnitudes, `r_i := sumUp_l (maximum (neg lo_il) hi_il)`, subtracted from
 Z'` is an informal claim, not a theorem restated here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

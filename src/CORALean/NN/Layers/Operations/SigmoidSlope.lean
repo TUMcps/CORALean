@@ -9,10 +9,10 @@ width may round to zero, where `divUp` bounds nothing, and the clamp makes that 
 slope in the bracket is sound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

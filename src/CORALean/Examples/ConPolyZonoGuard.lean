@@ -24,10 +24,10 @@ equality is still sayable, as the degenerate interval, and reads back as the
 equation the paper writes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean
 

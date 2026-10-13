@@ -10,10 +10,10 @@ computation from the vertices is given. For a region of zero area (a point, a se
 is `0` by Mathlib's convention where CORA's `centroid` reads the vertices (not covered).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

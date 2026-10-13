@@ -14,10 +14,10 @@ for `p ∈ E`, and `excludesPoint` with a separating direction `a` and the lengt
 answer stays an enclosure, exact on both certified branches.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

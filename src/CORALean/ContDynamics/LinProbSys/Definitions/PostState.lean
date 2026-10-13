@@ -14,10 +14,10 @@ solution `Rhom`, the deterministic particular solution as a box `Rpar_det` and t
 * [1] `contDynamics/@linProbSys/post.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

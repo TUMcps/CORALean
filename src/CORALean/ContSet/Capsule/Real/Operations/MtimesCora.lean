@@ -9,10 +9,10 @@ only so that `Capsule.mtimes_cora_counterexample` can state that it is unsound; 
 is the sound operation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

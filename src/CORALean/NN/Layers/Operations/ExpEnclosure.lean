@@ -9,10 +9,10 @@ for `a ≤ 2ⁿ/2`, so unlike the sigmoid, which gets both ends from `expDown`, 
 total: `expRelaxation_sound` asks of a box that its right end is under that bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

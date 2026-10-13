@@ -9,10 +9,10 @@ knows nothing of what it returns, so its direction is assumed in
 `Definitions/Axioms` and nowhere proved.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ admissible by `reachOrder_admissible` and the raise, and `sound_eval` place it i
 `reach`'s period, landing in its own branch of the `SetUnion`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

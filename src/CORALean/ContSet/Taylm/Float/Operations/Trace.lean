@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Operations.Sum
 The sum of the diagonal, `Taylm.sum` of `A i i`; see the exact layer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

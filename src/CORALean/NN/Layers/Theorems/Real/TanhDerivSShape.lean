@@ -9,10 +9,10 @@ Its derivative `1 - tanh² t = 1 / cosh² t` is even and non-increasing in `|t|`
 `sShapeDerBounds_sound` applies to it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

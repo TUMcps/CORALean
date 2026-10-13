@@ -17,10 +17,10 @@ In `ℝ¹`, `z₁ = 2`: `∑ [-1, 1] z₁ = [-2, 2]`, while `{x | V x ≤ 1}` wi
       Problem". European Journal of Control, 62:84-91, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

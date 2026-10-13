@@ -7,10 +7,10 @@ CORA's `center` of a constrained polynomial zonotope: the stored field `c`, noth
 so nothing rounds. Whether it is a point of the set is `centre_mem_construct`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

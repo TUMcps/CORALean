@@ -7,10 +7,10 @@ The open box of radius `B` around the centre lies in the nominal set (`Zonotope.
 a point strictly inside it is an interior point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

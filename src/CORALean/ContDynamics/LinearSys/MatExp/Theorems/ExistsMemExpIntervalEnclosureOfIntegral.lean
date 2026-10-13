@@ -25,10 +25,10 @@ norm — and `E` is exactly the widening `expIntervalEnclosure` adds.
 `Φ` depends on `x(0)`, as no single matrix maps a time-varying run's every start.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

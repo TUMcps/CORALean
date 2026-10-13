@@ -14,10 +14,10 @@ side condition already asks for — `φ • x` needs no separate check, `φ < 1`
 carrying it down automatically.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

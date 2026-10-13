@@ -12,10 +12,10 @@ generator: `|R_ij|` is below the larger magnitude of its two bounds and `|z_j|` 
 unconstrained one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       24-September-2026
 -- Last update:   08-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

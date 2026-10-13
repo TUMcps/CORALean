@@ -16,10 +16,10 @@ operands: `(N₁ + e₁)(N₂ + e₂) = N₁N₂ + N₁e₂ + e₁(N₂ + e₂)`
 of its generators' absolute values.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

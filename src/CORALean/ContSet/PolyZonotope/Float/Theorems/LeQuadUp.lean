@@ -4,10 +4,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 # A directed sum of per-term maxima never undershoots a bilinear value
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

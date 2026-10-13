@@ -7,10 +7,10 @@ CORA's `mean`: the zonotope of possible means, `Z` itself. `Theorems.MeanExact` 
 exactly the set of the laws' expectations.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

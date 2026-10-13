@@ -9,10 +9,10 @@ identity on a positive semidefinite covariance (`probReduce_eq`) and the laws of
 are those with a positive semidefinite covariance.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

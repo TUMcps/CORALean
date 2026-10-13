@@ -8,10 +8,10 @@ the next window below the last is a block of this one, and the last block is `f_
 window and the inputs, newest first. An outer statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

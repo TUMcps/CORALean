@@ -8,10 +8,10 @@ The certificate for a candidate inverse: the largest absolute row sum of
 `P` that `P` is invertible and its coordinates are bounded (`Zonotope.basis_reach`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

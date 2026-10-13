@@ -14,10 +14,10 @@ at most `N`, which is the direction [1, Thm. 1] can use.
       Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

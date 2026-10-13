@@ -21,10 +21,10 @@ about the input set; `jump` by `Theorems.JumpOuter`, whose one hypothesis is an
 enclosure of the intersection with the guard. Neither is computed here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

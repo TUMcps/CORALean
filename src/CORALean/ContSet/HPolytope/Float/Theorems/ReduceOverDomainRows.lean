@@ -12,10 +12,10 @@ corners (`mul_between_corners`). The float counterpart of the exact layer's
 `reduceOverDomain_rows`; `reduceOverDomain_outer` and `reduceOverDomain_inner` both read it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

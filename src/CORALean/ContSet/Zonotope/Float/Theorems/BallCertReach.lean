@@ -10,10 +10,10 @@ Read as reals, the checked rows are the hypotheses of `Zonotope.rightInv_reach`:
 `mulUp (B + B) (radius H j) ≤ δ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

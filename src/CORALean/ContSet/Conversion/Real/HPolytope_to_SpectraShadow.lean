@@ -15,10 +15,10 @@ With no rows the matrices are `0 × 0`, trivially positive semidefinite, and the
 whole space, which is what CORA's `spectraShadow.Inf(n)` branch returns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

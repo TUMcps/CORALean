@@ -10,10 +10,10 @@ right-hand side (`ltStrict`), or an equal-or-smaller one and a smaller index (`l
 the first. A comparison that is not certified keeps the row. The equality rows are untouched.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 `ℝⁿ × {1}` of `ℝⁿ⁺¹`, the trivial inequality `0 ⪰ 0` with the last coordinate fixed to `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ as a float polynomial zonotope through its box, mapped by the float `PolyZonotop
 rounded generators are charged to its error box) and enclosed by the float `PolyZonotope.polygon`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

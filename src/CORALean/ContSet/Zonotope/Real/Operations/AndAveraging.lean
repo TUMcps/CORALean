@@ -19,10 +19,10 @@ are `[1, Prop. 1]`. It is the diffusion update, Step 2 of [1, Alg. 1] and of [1,
       360(10):6976-6993, 2023. arXiv:2003.10347.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

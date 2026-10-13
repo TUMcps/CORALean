@@ -7,10 +7,10 @@ Equal `A`, `B`, `C`, `X0`, `U` and `tend`, as exact rationals; the unsafe boxes 
 such instances have the same reachable set at every type and setting, so a run reaches it once.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

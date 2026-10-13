@@ -8,10 +8,10 @@ row has the empty constraint matrix (`s = 0`, so `A μ = 0`) and the crossed bou
 so `1 ≤ 0` is required of the zero vector and no factor vector is admitted.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

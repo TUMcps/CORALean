@@ -11,10 +11,10 @@ upper end stored and the width added to the remainder, for the kept and the drop
 alike; the dropped terms are then bounded at their stored values.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

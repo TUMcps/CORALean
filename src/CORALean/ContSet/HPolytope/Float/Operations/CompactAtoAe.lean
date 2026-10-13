@@ -9,10 +9,10 @@ its rounding on the right-hand sides over the box `dom`), then the inverted pair
 equalities (`pairsToEq`, which is exact).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

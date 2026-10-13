@@ -14,10 +14,10 @@ A divisor of zero divides by zero in ℤ, which is `0` — and bounds nothing,
 which is why `SoundFloatArithmetic` asks for a positive one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

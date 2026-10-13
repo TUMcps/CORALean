@@ -18,10 +18,10 @@ specification here, not that it fails; see `Theorems.VerifySplitWithSound`.
 `VerifySplit` is this at `Specification.check`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

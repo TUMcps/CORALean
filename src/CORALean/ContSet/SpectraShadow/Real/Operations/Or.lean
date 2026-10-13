@@ -7,10 +7,10 @@ CORA's `or(SpS, S)` of a spectrahedral shadow: `S_out = convHull_(SpS, S, vararg
 convex hull of the union. A shadow is convex, so the union is closed under nothing smaller.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

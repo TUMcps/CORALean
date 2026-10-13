@@ -12,10 +12,10 @@ so nothing about the inputs changes on passing from states to differences; the
 hypotheses are that theorem's, unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

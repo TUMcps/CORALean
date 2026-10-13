@@ -8,10 +8,10 @@ CORA's `@interval/vertcat`: the two bound matrices are stacked. CORA's `cat(dim,
 (higher `dim` are `n`-d arrays, which CORA's own `interval` methods mostly reject).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

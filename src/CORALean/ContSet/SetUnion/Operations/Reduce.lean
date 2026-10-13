@@ -8,10 +8,10 @@ ever enlarged by enlarging what it is a union of, so reducing each branch and
 re-collecting keeps the shape a union already has.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

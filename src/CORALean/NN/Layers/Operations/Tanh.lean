@@ -8,10 +8,10 @@ CORA's `nnTanhLayer`: `Layer.activation` at `tanhRelaxation k`, the sigmoid rela
 transported; `k` is the reduction depth the sigmoid underneath is built at.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ trajectory: each step's image at every `A ∈ construct sys.A`, plus every input
 `construct U`, is exactly what `reach_one_outer` already bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ is `reachUnion_outer` — nothing new, every field already proved for its own
 sake in `Definitions`, `Operations` and `Theorems`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

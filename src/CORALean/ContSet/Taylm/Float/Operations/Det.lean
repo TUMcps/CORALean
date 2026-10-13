@@ -9,10 +9,10 @@ Expansion along the first row, as in the exact layer. The sign `(-1)^j` is the e
 or `neg one`, by the parity of `j`, scaling the entry as the point interval `[s, s]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

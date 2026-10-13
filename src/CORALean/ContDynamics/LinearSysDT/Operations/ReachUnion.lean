@@ -9,10 +9,10 @@ The steps `0` through `K = tFinal - tStart` of `reach`, one per branch of the
 is: no `reduce`, no new arithmetic, `List.map` over its steps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

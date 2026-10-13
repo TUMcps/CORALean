@@ -8,10 +8,10 @@ Any output sequence satisfying the ARMAX recursion from `p` on, with first windo
 later one is the recursion over earlier ones.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

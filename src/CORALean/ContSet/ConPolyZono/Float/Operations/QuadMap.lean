@@ -15,10 +15,10 @@ exponent rows for the fresh ones (`padE`), so a factor vector meets them exactly
 block does. Outer, never the exact image.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

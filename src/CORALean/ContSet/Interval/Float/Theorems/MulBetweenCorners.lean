@@ -18,10 +18,10 @@ Eq. (3.1) of [1, Def. 5] for `⊗`, proved here from directed rounding.
       Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

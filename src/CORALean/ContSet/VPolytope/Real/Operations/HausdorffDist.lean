@@ -17,10 +17,10 @@ vertices are CORA's when they are the extreme points. The empty and unbounded ca
 or `0` for two empty sets) are not here: a `VPolytope` is bounded, and `k = 0` denotes `∅`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

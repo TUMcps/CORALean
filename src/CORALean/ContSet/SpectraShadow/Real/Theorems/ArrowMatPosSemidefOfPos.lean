@@ -9,10 +9,10 @@ For `s > 0` and `‖w‖² ≤ s t` the arrowhead matrix is positive semidefinit
 form is `‖s y + a w‖² + a² (s t - ‖w‖²)`, a sum of squares and a non-negative multiple of one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

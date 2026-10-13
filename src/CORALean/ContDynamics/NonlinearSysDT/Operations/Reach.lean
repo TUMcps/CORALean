@@ -24,10 +24,10 @@ discrete step itself needs no more than `linInput`, the discrete analogue of
 `NonlinearSys.reach_outer_inputSolution`, folded into the definition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       04-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

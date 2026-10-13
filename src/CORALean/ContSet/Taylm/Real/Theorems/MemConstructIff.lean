@@ -7,10 +7,10 @@ A point of `construct` is the value at one point of the box of functions the mod
 enclose, and conversely: the range-set semantics follows from the functional one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

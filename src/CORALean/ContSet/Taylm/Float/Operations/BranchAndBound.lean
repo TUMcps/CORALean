@@ -9,10 +9,10 @@ The branch and bound of the ARCH 2018 listing over a box `X`: one box `[x]`, bou
 sub-box by interval evaluation of the term list (`polyBoxBounds`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

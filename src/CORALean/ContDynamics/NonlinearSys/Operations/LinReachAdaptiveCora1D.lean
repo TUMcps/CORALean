@@ -23,10 +23,10 @@ error. Branches off the path (halving, a small `varphi`, a shorter tuned step) a
 `fuel` are `none`. The result is `(Rti, Rtp, options.Δt)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

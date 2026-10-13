@@ -12,10 +12,10 @@ allowed to be rectangular: `M G` is `m × k` from an `n × k`, and a square
 generator matrix could not have held it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

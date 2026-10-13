@@ -15,10 +15,10 @@ generator count rests on: a layer's order pattern chooses `coeffs.length`, and
 nothing about the individual neurons' fits reaches this count at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

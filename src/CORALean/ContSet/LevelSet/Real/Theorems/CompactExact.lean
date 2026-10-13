@@ -9,10 +9,10 @@ the set `L` denotes, in every case: a pair of rows `f ⋈₁ 0`, `f ⋈₂ 0` (o
 one row, or to `∅` when the two operators contradict each other.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

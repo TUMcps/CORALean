@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Float.Operations.Times
 As `plus`, with `Taylm.times` and `Interval.times`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

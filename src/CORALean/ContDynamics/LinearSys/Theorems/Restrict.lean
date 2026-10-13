@@ -11,10 +11,10 @@ a run over all forward time is a run over `[0, τ]`, so a one-step guarantee
 applies to it without restating the hypotheses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

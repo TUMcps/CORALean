@@ -26,10 +26,10 @@ the stored centre is then below the exact one, so the same `subUp` difference
 that bounds a column's gap bounds the centre's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

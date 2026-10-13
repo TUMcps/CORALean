@@ -8,10 +8,10 @@ types `Fin p`, `Fin h` and `Fin q` reused rather than grown or shrunk. `rfl`
 against the structure instance in `Operations/Mtimes.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

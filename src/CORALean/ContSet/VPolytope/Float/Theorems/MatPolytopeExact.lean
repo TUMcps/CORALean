@@ -8,10 +8,10 @@ Exact: no entry is rounded, so the set the float `matPolytope` stands for is the
 input's set under `v ↦ (v · ·)`, nominal part and error box alike.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

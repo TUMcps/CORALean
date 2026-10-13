@@ -10,10 +10,10 @@ Inner: the corner `|c| + Σ |gⱼ|` of the stored floats is a point of `abs Z` o
 holds `0`. Like the real one this is not an enclosure of the input.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

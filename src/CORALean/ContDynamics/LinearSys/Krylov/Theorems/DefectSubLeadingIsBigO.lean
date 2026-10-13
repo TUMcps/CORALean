@@ -17,10 +17,10 @@ Taylor series of `e^{σtT_m}` with (2.3) and (2.5); hence `‖D_m(t)v‖ = O(t^{
   2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 `sumErr` encloses: a point from each of `m` boxes sums to a point of their `Interval.plus` fold.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The right-hand side of `intersectionDep`: the two systems' own bounds, then the
 agreement rows' `c₂ − c₁` widened by the tolerance.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

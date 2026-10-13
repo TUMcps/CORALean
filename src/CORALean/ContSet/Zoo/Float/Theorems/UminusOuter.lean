@@ -9,10 +9,10 @@ The Taylor model by `Taylm.uminus_outer`, the interval by `Interval.uminus_exact
 exact in floats).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

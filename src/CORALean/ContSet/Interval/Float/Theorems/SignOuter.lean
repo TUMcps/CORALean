@@ -8,10 +8,10 @@ The certified `le` is all that is needed: `0 ≤ inf` forces `sign x = 0` or `1`
 forces `sign x ≤ 0`. No hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

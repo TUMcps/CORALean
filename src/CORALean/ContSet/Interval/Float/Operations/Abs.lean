@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Interval
 `max 0 (inf, -sup)` and `max (-inf, sup)`; `neg` and `maximum` are exact, so nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

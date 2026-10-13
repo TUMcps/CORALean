@@ -21,10 +21,10 @@ global ones, which `resolve` throws for if they are not, and the columns it read
 non-global ones, so the loop equals the sum of the independent updates written here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

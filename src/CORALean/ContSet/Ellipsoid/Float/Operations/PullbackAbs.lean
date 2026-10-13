@@ -7,10 +7,10 @@ The magnitude of the direction pulled back into generator space, coordinate
 by coordinate. `sqSumUp` of this is what a candidate is checked against.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

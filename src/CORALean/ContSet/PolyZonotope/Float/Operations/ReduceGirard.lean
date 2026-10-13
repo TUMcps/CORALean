@@ -12,10 +12,10 @@ The two blocks are ranked as one, which is what bounds the result:
 off the ranking. `aux_girardKeptDep` is the joint accounting as one number.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

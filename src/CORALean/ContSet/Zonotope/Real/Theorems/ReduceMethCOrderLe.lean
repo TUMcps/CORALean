@@ -12,10 +12,10 @@ At `o = 0` there is nothing to state, as for Girard's rule and Combastel's:
 CORA floors the reduced budget at nothing, so order zero lands at order one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

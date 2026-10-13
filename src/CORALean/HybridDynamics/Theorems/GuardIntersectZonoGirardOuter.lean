@@ -9,10 +9,10 @@ the basis carries `x` through its coordinates `Bᵀ x` and back. Outer only: the
 proved to bound the cut, not to equal it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -29,10 +29,10 @@ under that, because both ends of `IMr` are matrices of `IMf` and so lie in the f
 that its points are its nominal part and the exact `absBound` is at most the float reach.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

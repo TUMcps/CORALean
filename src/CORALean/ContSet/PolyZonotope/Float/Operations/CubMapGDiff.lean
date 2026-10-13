@@ -8,10 +8,10 @@ How far a stored generator of `PolyZonotope.cubMap` can be from the exact one: t
 two roundings, which a monomial in `[-1, 1]` then spreads either way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

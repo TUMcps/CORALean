@@ -9,10 +9,10 @@ the larger taken, then the largest over the entries. What a certified box around
 contain: `x - e` within `B` of `y`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

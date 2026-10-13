@@ -8,10 +8,10 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
 `all_Ai_zero` branch returns `+Inf` while the support is `0`. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

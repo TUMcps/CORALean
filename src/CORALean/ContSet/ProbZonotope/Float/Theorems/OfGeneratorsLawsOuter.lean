@@ -9,10 +9,10 @@ Outer: for every mean `μ` of the zonotope, the law of `μ + g N` (`g` read as r
 the result, whose covariance `g gᵀ` the interval-matrix product encloses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ output is `zᵢ = Σₖ xₖ · (xᵀ T{i,k} x)`. `cubEval` is that map; shared 
 polynomial zonotope and constrained zonotope `cubMap`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ The shared definition of `tril` and `triu`: CORA applies MATLAB's `tril`/`triu` 
 the point `0` at every entry outside the pattern.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

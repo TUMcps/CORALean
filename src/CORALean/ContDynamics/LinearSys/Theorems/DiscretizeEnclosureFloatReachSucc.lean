@@ -11,10 +11,10 @@ takes a step as `timePointStepInputFloat` from the previous set, then reduces:
 proof about the run work with the step's named operations.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

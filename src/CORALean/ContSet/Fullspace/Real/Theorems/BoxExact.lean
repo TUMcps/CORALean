@@ -6,10 +6,10 @@ import CORALean.ContSet.Fullspace.Real.Operations.Box
 The box of the full space denotes the full space.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

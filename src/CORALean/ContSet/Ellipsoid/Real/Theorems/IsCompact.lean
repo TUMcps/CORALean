@@ -9,10 +9,10 @@ inside the supremum-norm ball the ambient type carries because no coordinate
 exceeds the whole — and the affine map onto the ellipsoid is continuous.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

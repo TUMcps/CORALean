@@ -11,10 +11,10 @@ the generators' blocks are independent (`Zonotope.stackProd_value`) and so are t
 the coefficients (`HPolytope.stackProd_exact`). An equality, not an enclosure.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

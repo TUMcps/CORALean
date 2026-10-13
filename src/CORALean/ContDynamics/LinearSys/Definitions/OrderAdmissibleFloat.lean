@@ -14,10 +14,10 @@ where the exact layer's `timeIntervalStep_outer` asks `< 1`. At least `2`, as
 `MatExp.intervalCorrectionMatrix`'s guarantee needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

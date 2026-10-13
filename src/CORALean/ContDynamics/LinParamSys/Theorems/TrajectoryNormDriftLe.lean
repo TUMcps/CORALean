@@ -17,10 +17,10 @@ set has to be, being one set for all of it.
 `δ` is smallest at the box's centre, where it is the box's radius.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Operations.Times
 The product folded from the left, `res = obj(1); res = res .* obj(i)`; at least one factor.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

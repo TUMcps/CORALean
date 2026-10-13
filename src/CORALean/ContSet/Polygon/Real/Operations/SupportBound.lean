@@ -11,10 +11,10 @@ vertex value is convex. A polygon without a vertex is empty, and then `0` is as 
 any (CORA gives `-Inf`, outside ℝ).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

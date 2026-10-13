@@ -17,10 +17,10 @@ series (4.1a); `p ≥ 1` is written `p + 1`. No hypothesis on `A`, `V_m` or `T_m
   2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

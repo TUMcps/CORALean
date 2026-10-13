@@ -10,10 +10,10 @@ are a convex split of the region (`Polygon.splitIntoConvexSets_exact`). The piec
 same (R-PG).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

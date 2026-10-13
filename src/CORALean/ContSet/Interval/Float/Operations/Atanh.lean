@@ -8,10 +8,10 @@ Increasing, so `atanhDown` at the lower bound and `atanhUp` at the upper one
 (`Global/Float/Atanh`). `p` is `logDown`'s range exponent, `k` the number of bisection steps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

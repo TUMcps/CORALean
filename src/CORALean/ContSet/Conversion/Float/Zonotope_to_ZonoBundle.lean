@@ -8,10 +8,10 @@ sets, so a one-member family denotes that member and nothing else
 (`Set.iInter_const` at `Fin 1`). The member keeps its own error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

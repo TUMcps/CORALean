@@ -10,10 +10,10 @@ image, and that image is exact, so the enclosure holds with nothing to spare.
 Stated as an inclusion because that is the shape the interface field has.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

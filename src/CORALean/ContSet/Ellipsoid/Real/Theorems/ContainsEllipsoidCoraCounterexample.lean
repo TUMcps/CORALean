@@ -20,10 +20,10 @@ statement is not vacuous. Sign flips of CORA's `svd` columns leave `Theta'Theta`
 unchanged. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

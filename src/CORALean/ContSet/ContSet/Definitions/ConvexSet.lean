@@ -18,10 +18,10 @@ over what a representation *denotes*, so an algorithm asking for it says exactly
 what it needs of the set rather than of the representation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

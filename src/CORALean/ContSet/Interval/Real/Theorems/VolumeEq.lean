@@ -8,10 +8,10 @@ The box is `Set.Icc inf sup`, whose volume Mathlib gives as the product of the w
 box is empty and so is the product's zero factor: no separate case.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

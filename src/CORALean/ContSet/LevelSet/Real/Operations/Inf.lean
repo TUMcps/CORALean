@@ -6,10 +6,10 @@ import CORALean.ContSet.LevelSet.Real.LevelSet
 CORA's `levelSet.Inf(n)`: the constant `-1 ≤ 0`, true everywhere.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

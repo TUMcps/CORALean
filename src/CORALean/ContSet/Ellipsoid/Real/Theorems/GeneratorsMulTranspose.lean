@@ -11,10 +11,10 @@ ellipsoid built on this matrix is the same set as `E` needs `G Gᵀ = H Hᵀ` to
 image of the unit ball, which is not stated here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

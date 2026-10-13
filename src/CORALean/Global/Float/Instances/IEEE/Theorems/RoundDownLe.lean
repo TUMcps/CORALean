@@ -9,10 +9,10 @@ The floor of the shifted mantissa, shifted back, is at most the mantissa, whatev
 is: `Dyadic.roundDown_le`'s argument at a different shift.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

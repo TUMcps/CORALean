@@ -10,10 +10,10 @@ threshold `s₀ = max 1 ((|b| + |c| + 1) / (-a))`. The S-lemma reads its homogen
 leading form.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

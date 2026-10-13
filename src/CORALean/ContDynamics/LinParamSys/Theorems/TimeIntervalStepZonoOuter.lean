@@ -14,10 +14,10 @@ matrix-zonotope correction matrix holds (`expDiff_mem_matZonoCorrectionMatrix`).
 Two conditions, one per enclosure, each checkable from `sys.A` alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

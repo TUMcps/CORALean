@@ -10,10 +10,10 @@ Entry `(i, j)` encloses the `(i, j)` entry of the product of the matrices of the
 functions, pointwise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

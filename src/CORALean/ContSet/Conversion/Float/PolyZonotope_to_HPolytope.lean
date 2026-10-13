@@ -8,10 +8,10 @@ Through the zonotope enclosure, then that zonotope's own rounded support bounds;
 are the caller's, as in `Zonotope.hPolytope_contains`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ Only `plus_outer`, `mtimes_outer` and `reduce_outer` are used, so it asks for no
 more than `reach` itself does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ one-variable expansion `pow_eq_sum_bernsteinEntry` asks of its degree.
       No paper behind the rule was confirmed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

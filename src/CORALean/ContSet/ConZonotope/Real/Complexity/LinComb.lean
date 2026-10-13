@@ -19,10 +19,10 @@ zero the unit box's own equality count contributes.
       constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

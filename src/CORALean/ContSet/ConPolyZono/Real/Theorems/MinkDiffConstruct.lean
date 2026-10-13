@@ -13,10 +13,10 @@ the zonotope (with its centre), and nowhere else. Each step `(P + g) ∩ (P - g)
 `x + g` to lie in the set so far, and the steps compose over the generators.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

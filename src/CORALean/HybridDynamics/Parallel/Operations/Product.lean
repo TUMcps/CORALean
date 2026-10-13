@@ -8,10 +8,10 @@ each. A `HybridAutomaton`, so everything proved of one — `Run.mem_of_invariant
 applies; `Theorems.RunToProduct` says a parallel run is a run of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

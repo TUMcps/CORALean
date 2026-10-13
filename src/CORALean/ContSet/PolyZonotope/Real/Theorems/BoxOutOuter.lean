@@ -16,10 +16,10 @@ holds for any choice of the removed generators, which is what lets `outerApprox`
 heuristic. It is not an equality: the box is larger than what the removed generators reach.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

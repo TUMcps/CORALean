@@ -20,10 +20,10 @@ The side condition is the one every enclosure here carries; without it the
 geometric series diverges and there is nothing to sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

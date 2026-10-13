@@ -9,10 +9,10 @@ CORA's `simulate` at a float start and a float input signal: the field's interva
 Soundness is `simulate_mem_simulateBoxFloat`; no rounding is claimed exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

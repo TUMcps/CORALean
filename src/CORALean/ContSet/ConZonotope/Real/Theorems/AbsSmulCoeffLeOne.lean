@@ -9,10 +9,10 @@ two sides can be carried at once. Both layers' `linComb` states it of the same
 blocks, which is why it is here rather than inside one of them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

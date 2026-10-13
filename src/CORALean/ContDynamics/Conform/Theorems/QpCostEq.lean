@@ -21,10 +21,10 @@ No sign condition on `α` and no definiteness of `P` is needed for the identity.
       Systems (ARCH23), EPiC Series in Computing, vol. 96, pp. 9-33, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

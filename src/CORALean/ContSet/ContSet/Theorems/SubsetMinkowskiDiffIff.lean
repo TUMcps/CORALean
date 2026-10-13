@@ -17,10 +17,10 @@ No hypotheses at all: it is `Set.mem_add` unfolded against the definition, and
 holds in any module.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

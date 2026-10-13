@@ -9,10 +9,10 @@ certificate is asked for: a bound on `(Aq i) ∘ M` over the source is a bound o
 `Aq i` over the image.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

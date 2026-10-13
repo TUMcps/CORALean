@@ -22,10 +22,10 @@ separately, being about the matrix set's own enclosures. The linear run lives on
 measurable `T' ⊆ T`, where `x`'s continuity makes the drift measurable.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

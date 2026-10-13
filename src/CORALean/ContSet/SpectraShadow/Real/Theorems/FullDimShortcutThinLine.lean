@@ -7,10 +7,10 @@ The shortcut reads the generator matrix alone: `A₀ = 1`, `A₁ = 0`, `c = 0` a
 `ℝ¹`, with an interior, and `norm(G, 'fro') < 1e-8` fires, so CORA caches `emptySet.val = true`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

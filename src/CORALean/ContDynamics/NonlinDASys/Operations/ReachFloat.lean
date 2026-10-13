@@ -11,10 +11,10 @@ through a supplied `ReducedModel` and the ordinary system it leaves is run. Here
 is run. Soundness is `NonlinDASys.reachFloat_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

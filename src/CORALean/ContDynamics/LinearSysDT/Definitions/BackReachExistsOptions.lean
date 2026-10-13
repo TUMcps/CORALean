@@ -7,10 +7,10 @@ The one thing the computed backward set runs on besides the target and the
 negated input set: `Ainv`, the inverse the sets are carried back along.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

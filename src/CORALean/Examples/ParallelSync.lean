@@ -10,10 +10,10 @@ transitions one by one and so has two product transitions, which is what a label
 must not have; `mergeTransitionSetsSync` has exactly one, the synchronized transition of both.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

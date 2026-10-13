@@ -9,10 +9,10 @@ down. Exact wherever the scalar holds the integer, and an enclosure otherwise,
 which `unionConErr` charges to the row's bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

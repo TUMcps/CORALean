@@ -15,10 +15,10 @@ bound certifies 1% from `m = 18`, where the exponent is `17`.
       Over Bounded Regions". Operations Research 32(6), pp. 1296-1308, 1984.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

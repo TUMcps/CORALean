@@ -8,10 +8,10 @@ set is its own hull. So where `LinComb` encloses the segments, a convex operand 
 hull of the union enclosed, which is what CORA's `convHull_` asks for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ full-dimensional zonotopes can meet in a lower-dimensional set), which is why CO
 test of the intersection polytope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

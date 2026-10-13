@@ -10,10 +10,10 @@ term by term (`cubFold_bracket`), the sum by `sumDown_le_sum` and `sum_le_sumUp`
 exact. The stored centre is the lower end, and the gap to the upper is what the box is charged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

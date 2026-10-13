@@ -11,10 +11,10 @@ operator norm, with no side condition on `‖x‖`. `norm_exp_smul_sub_one_le` l
 `t‖A‖e^{t‖A‖}`; the float step error `timeIntervalStepErrorFloat` uses it as it stands.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       18-September-2026
 -- Last update:   08-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

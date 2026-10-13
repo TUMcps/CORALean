@@ -13,10 +13,10 @@ that bracket at every member, with `s ≈ log₂ k` squarings from `squaringsFlo
 so the step's order `η` serves every window. No window when no `s` is found.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

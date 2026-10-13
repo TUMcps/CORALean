@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.Dirac
 In a coordinate the strict tests certify to miss `0`, the result is `{0}`, for every order `n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

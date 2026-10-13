@@ -6,10 +6,10 @@ import CORALean.HybridDynamics.Parallel.Operations.BlockProj
 `blockProj c` applied to a point is its block `c`, by definition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

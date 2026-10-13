@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Taylm
 The largest of `f` over a list, `zero` for the empty list.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

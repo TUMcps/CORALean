@@ -14,10 +14,10 @@ CORA's `zonotope(pZ)`, which halves the all-even columns; its polygon is the flo
 parameter `pick`, as at the real layer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

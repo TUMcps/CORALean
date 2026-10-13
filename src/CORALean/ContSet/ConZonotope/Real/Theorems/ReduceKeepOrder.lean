@@ -8,10 +8,10 @@ Above the order the result has `(o - 1) * n + n` generators, which is `o * n` on
 order `cZ` passes through and the branch condition is the bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

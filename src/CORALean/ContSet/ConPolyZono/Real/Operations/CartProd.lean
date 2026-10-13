@@ -15,10 +15,10 @@ ambient type at zero in the other coordinate: the two operands no longer share
 an ambient type, which is the one place this departs from `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       11-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

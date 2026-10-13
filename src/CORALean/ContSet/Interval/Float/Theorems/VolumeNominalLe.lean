@@ -10,10 +10,10 @@ product rounded up, bounds the product. Read in `ENNReal`, as the exact layer's 
 is, so a crossed coordinate needs no case.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

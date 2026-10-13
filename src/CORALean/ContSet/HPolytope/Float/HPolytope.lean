@@ -22,10 +22,10 @@ It stays at `Vec`, the only place either layer pairs a row with a point, though
 `HPolytope 𝕋 (Vec 𝕋 n)` is the vector case, rows of a matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

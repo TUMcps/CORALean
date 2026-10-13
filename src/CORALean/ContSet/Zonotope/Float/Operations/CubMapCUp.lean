@@ -8,10 +8,10 @@ monomial `(0, 0, 0)`, plus half the sum of the pure squares `β_y²` of `listQua
 0.5 (2β² - 1)`). Halving rounds nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

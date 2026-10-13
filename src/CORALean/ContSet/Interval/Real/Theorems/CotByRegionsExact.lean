@@ -21,10 +21,10 @@ At an end on a pole the printed `[cot z̅, cot z̲]` is not the range: on `[π, 
       Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

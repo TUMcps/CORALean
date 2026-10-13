@@ -9,10 +9,10 @@ encloses a held run, and what `reachHeld` buys over `reach` is precision, not
 soundness: the point of a closed form is losing less, not covering more.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -19,10 +19,10 @@ and `|δ_i| ≤ 1` because `|β_i| ≤ 1` and `|γ_ind| ≤ 1`. That is Chisci e
       2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

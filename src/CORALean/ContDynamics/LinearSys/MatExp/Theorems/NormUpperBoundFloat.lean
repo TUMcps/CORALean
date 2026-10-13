@@ -11,10 +11,10 @@ read back as `A.nominal.absMax`'s own row exactly (`toReal_maximum`/
 the outer `maximum zero` is where nonnegativity comes from, unconditionally.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

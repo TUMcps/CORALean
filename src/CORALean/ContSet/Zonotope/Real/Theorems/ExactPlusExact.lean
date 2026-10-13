@@ -12,10 +12,10 @@ subset. The proof regroups the coefficients of the result, `[shared | rest of Z�
 into `β` and `γ` and back.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

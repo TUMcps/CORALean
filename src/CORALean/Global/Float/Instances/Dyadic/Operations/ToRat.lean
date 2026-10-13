@@ -8,10 +8,10 @@ import CORALean.Global.Float.Instances.Dyadic.Dyadic
 `IEEE`, `Flint` and the native binary64 through its bit decoding.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

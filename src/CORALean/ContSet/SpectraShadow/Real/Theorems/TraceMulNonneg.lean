@@ -8,10 +8,10 @@ The trace of a product of two positive semidefinite matrices is nonnegative: wit
 `tr(M Y) = tr(Z M Zᴴ)`. Half of weak duality for `SpectraShadow`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

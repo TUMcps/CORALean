@@ -10,10 +10,10 @@ returns `v`: the density of `N(c, Σ)` at every `x` on or outside the `m`-sigma 
 density under the real `max`, and `max_le` the real `max` under `v`; an upper bound, not attained.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

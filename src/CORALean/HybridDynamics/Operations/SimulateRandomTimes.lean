@@ -7,10 +7,10 @@ import CORALean.HybridDynamics.Operations.MatlabLinspace
 loops `for g = 1:length(time)-1`: `nrConstInp` segments, one per constant input.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ between `0` (even `k ≠ 0` over a box with `a < 0 < b`) or `min (a ^ k) (b ^ k)
 and `max (a ^ k) (b ^ k)`. Odd `k` is monotone; even `k` is the monotone `|x| ^ k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

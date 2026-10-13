@@ -10,10 +10,10 @@ than the operand's, and the independent block is again empty. `rfl` by
 unfolding `quadMapDep` rather than restating `bilin_h`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

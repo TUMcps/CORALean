@@ -7,10 +7,10 @@ Each of the six products lies between its two roundings, and the rounded sums br
 so the orientation of the points read as reals lies between the two stored bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ reads, and `holds_plus_iff` splits what is left at `toRealMat_plusA` and
 `nominal_plusB`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

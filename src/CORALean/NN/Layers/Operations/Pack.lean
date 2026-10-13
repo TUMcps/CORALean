@@ -7,10 +7,10 @@ A layer of any `Enclose` kind, of any universe, as a `SoundLayer`: the three fie
 the instance, so nothing is lost but the kind.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

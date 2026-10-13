@@ -10,10 +10,10 @@ block `k` holds `y(k)`, and every later one is the recursion
 `y(k+1) = B̄₀ u(k+1) + ∑ᵢ Āᵢ y(k+1-i) + B̄ᵢ u(k+1-i)`, which `Trajectory.step` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

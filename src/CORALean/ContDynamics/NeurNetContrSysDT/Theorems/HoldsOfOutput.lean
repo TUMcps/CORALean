@@ -9,10 +9,10 @@ import CORALean.Specification.Theorems.HoldsOfOuter
 than the state, and for the same reason there — `C` in general not invertible.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

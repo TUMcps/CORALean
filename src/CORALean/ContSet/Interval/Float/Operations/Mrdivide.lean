@@ -8,10 +8,10 @@ A scalar denominator `d`: each endpoint divided by `d` and rounded outward. `div
 (`x / d = (-x) / (-d)`), which swaps the endpoints. The branch is `ltStrict`'s, as in `recip`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.NN.Layers.Operations.ConjOffsetLow
 The midpoint of the two roundings of `ra · offset + c`, as for the slope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

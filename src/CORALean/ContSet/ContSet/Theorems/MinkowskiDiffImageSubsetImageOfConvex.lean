@@ -14,10 +14,10 @@ cover it. Convexity of `g '' X` is what does the work; without it the statement
 needs a contraction (`minkowskiDiff_image_subset_image_of_contracting`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Operations.ListMin
 The least of `f` over a list is at most `f a` for each member `a`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

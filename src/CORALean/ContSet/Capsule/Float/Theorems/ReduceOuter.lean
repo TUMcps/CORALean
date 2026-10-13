@@ -6,10 +6,10 @@ import CORALean.ContSet.Capsule.Float.Operations.Reduce
 `reduce` is the identity, so it encloses trivially.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

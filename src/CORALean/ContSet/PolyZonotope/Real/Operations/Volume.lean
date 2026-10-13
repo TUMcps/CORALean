@@ -15,10 +15,10 @@ more (exactness where `det J ≠ 0`, an over-approximation otherwise); see
 `volume_neg_example`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

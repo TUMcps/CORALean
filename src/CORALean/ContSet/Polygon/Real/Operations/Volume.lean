@@ -9,10 +9,10 @@ of what the pieces denote, bounded and (for null-overlapping pieces) given by th
 pieces' areas `Polygon.pieceAreas`. No formula (shoelace) for a piece's area is given.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

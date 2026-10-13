@@ -13,10 +13,10 @@ nominal zonotope and the box. For injective `proj` the exact layer's padding map
 equality; the box is `Interval.projectHighDim_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ stacked zonotope `ConZonotope.stack`. CORA hands the question to the zonotope's 
 linear program; here it is the membership that program decides.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

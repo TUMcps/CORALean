@@ -8,10 +8,10 @@ this far from `0` in each coordinate (`abs_le_magnitude`), and it is the radius 
 box about the origin that holds the interval.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.HPolytope.Float.Operations.Translate
 Each bound shifts by what its own row reads of the shift, rounded outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

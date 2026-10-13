@@ -18,10 +18,10 @@ of the stored `A` are `Interval.matPow` of its point box, the products with the 
 * [1] `contDynamics/@linearSysDT/computeGO.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

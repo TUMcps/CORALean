@@ -8,10 +8,10 @@ CORA's `@interval/sqrt`: the square root is increasing on `[0, ∞)`, so it acts
 coordinate by coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

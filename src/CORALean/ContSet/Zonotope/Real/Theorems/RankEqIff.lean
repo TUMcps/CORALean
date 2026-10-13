@@ -8,10 +8,10 @@ import Mathlib.Analysis.RCLike.Lemmas
 `Zonotope.rank_eq_finrank_iff` at `Vec ℝ n`, whose dimension is `n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

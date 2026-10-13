@@ -10,10 +10,10 @@ a linear program per direction over the coefficient domain, which is
 `HPolytope.ofBounds` with certificates the caller supplies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

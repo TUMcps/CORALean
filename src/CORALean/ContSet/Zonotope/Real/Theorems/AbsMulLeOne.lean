@@ -9,10 +9,10 @@ terms — it is arithmetic on `ℝ` and nothing else — though no proof in the 
 reaches for it as it stands.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

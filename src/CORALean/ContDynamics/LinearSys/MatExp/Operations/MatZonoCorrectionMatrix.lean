@@ -12,10 +12,10 @@ of `@linParamSys` with `obj.A` a `matZonotope`: orders `2` through `η` from
 CORA's `obj.F` is: CORA boxes the powers before the correction, not after.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

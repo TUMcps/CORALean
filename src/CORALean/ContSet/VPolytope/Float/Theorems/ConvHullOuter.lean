@@ -12,10 +12,10 @@ the second is in the hull of the two boxes; and the joined set, a sum of two con
 convex. Not exact, since the box is a hull of boxes and every nominal vertex is carried as stored.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

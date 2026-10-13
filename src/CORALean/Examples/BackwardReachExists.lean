@@ -20,10 +20,10 @@ admissible input drives `0.7` into the target, which is the second example. The
 third spends the set the other way, turning a point of it into a run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

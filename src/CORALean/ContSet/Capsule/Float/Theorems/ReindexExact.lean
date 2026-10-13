@@ -8,10 +8,10 @@ The exact layer's `reindex` of the nominal capsule is the nominal capsule of the
 `Real.Capsule.reindex_exact` is the equality, as over ℝ: nothing is rounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

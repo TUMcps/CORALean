@@ -11,10 +11,10 @@ arguments; `Theorems.PolytopeInner` holds whichever points of the shifted shadow
 `polytope.Inf` when no direction has a maximiser is not modelled: the vertex list is then empty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

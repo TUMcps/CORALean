@@ -17,10 +17,10 @@ the admissible run `d ≡ 0` has `sup_k ‖d_k‖ = 0`, while `max_{|b| ≤ 1} |
       64(5):2092-2099, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

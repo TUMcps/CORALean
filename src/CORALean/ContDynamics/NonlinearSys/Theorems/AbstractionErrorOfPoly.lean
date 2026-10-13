@@ -24,10 +24,10 @@ the full factor box and `pZ.q = 0` the states it names are all of `construct pZ`
 and not a factor vector.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

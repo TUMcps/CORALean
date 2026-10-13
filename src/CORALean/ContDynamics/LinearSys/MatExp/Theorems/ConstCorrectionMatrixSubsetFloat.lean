@@ -15,10 +15,10 @@ remainder `r E(r M)`. `hε` asks `1/2`, as the float remainder bound does. At th
 `Interval.point A` this is the float `[G]` of `oneStep`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

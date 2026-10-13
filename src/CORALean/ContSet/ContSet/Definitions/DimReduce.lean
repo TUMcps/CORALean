@@ -19,10 +19,10 @@ with the line `L_γ` by `BOUND_INTERSECT_2D` to get `[m_ℓ; M_ℓ]`, and return
       Springer, 2008, pp. 215-228.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

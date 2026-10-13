@@ -8,10 +8,10 @@ The affine map the stored scale and shift denote, coordinate by coordinate: the 
 layer places reads back as `Matrix.diagonal` of the scales, `toReal_diagonalBlock`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ The images of the laws of `P` under `x ↦ (x (dims k))ₖ` are exactly the laws
 must be positive semidefinite.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

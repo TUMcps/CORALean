@@ -8,10 +8,10 @@ The sum rounds up and `half` is exact, so the stored `center` is at least the mi
 stored bounds read as reals.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

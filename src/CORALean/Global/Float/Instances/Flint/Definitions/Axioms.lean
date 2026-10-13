@@ -20,10 +20,10 @@ third `axiom` in CORALean, after `trustedHardware` and the bench's false
 outside this backend, which is opt-in and linked only by `bench-flint`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Float.Flint
 

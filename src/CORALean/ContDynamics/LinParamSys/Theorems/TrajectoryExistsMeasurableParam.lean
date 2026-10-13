@@ -18,10 +18,10 @@ measurable condition on those, and where it fails — a null set inside the wind
 the run's own `A` lying in the box there — the member `A 0` stands in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

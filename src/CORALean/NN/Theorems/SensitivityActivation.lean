@@ -16,10 +16,10 @@ layer carries — so the hypothesis is on `σ` alone, and every layer built on a
 differentiable activation gets this at its own derivative.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

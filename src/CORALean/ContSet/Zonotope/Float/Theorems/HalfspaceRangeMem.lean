@@ -9,10 +9,10 @@ A point is `c + ∑ⱼ βⱼgⱼ + e`: `nᵀc − d` is within its directed brac
 most `∑ⱼ |nᵀgⱼ| ≤ ρ`, and each `nᵢeᵢ` is between the corner products (`mul_between_corners`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

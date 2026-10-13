@@ -8,10 +8,10 @@ If `|M i k| ≤ R i k` and `|x k| ≤ ξ k`, then `|(M x) i| ≤ dotUp (R i) ξ`
 its rounded-up bound, and the sum is below the rounded-up sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

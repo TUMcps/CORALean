@@ -7,10 +7,10 @@ Every set in the chain carries `P`'s factors: the base case through the
 sharing hypothesis, and every step through `gcnShared_p`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

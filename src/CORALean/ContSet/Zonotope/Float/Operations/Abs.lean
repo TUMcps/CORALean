@@ -9,10 +9,10 @@ As at the real layer this is a different set, not an enclosure of the input; the
 the real `abs` of the input's nominal part (`Zonotope.abs_nominal`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

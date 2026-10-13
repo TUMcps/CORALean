@@ -8,10 +8,10 @@ right inverse `H` (`h × n`): the larger of the two directed roundings of the en
 the identity. The rectangular counterpart of `Zonotope.methCResidual`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

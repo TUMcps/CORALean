@@ -20,10 +20,10 @@ the squares keep CORA's half-centre, half-generator split. Mixed generators are 
 pairs, zero unless `i < j`, triples by all ordered triples.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

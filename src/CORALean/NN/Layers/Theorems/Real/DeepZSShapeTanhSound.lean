@@ -17,10 +17,10 @@ and falls away from `0`, so `deepZSShape_sound` applies at `x' = 0`.
       Certification". NeurIPS 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

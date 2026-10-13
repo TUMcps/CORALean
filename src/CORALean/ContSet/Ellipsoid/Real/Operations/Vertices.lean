@@ -9,10 +9,10 @@ the single one when they agree (`withinTol` at the default tolerance, here exact
 dimension the points are `q ∓ ‖G₀‖₂`, the support values of `Ellipsoid.supportBound`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

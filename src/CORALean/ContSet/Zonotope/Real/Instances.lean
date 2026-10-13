@@ -36,10 +36,10 @@ meets that class's obligation; at `WithEmpty (Zonotope α)` it does, `empty`
 being the answer where no generator representation certifies one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

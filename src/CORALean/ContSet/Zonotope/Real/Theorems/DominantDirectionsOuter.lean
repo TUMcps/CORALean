@@ -18,10 +18,10 @@ the score `inf` and still returns the first one when all are), see
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

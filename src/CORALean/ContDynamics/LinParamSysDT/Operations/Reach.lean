@@ -16,10 +16,10 @@ Params and options are CORA's, as in `LinearSysDT.reach`: the problem is a
 `tFinal - tStart`, and `ρ` comes from `LinParamSysDT.ReachOptions`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

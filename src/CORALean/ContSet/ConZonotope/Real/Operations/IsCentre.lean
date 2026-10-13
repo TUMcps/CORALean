@@ -18,10 +18,10 @@ optimum cannot be computed here, so `x` is a centre when a branch of the method 
 Which branch applies depends on `isFullDim(cZ)`, not decided here: any branch's condition suffices.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

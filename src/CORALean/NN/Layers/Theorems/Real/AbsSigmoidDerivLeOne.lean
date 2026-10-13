@@ -7,10 +7,10 @@ A product of two sigmoids, so inside `(0, 1)` on all of ℝ: the global bound a 
 level's fit is chosen against.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

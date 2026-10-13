@@ -6,10 +6,10 @@ gives six decimals and so `0.000000` for every distance of the hard instances. `
 `"inf"` and `"-inf"` as such.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

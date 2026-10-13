@@ -12,10 +12,10 @@ halves are polynomial zonotopes `polyZonotope(c ∓ g/2, G', [])` with identity 
 independent generators (`Zonotope.polyZonotope`). `Theorems.SplitOuter` says the halves cover `pZ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

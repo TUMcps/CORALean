@@ -14,10 +14,10 @@ pay into one, and the one that rounds, `Capsule.interval`, rounds its bounds out
 A negative stored radius denotes `∅`, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

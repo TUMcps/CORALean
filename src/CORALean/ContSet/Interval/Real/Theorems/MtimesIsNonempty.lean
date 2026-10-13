@@ -15,10 +15,10 @@ box a neuron merge builds as `W(·,B) · Y(B)`. The fact is about `mtimes` and
 mentions no network, so it lives here rather than beside that layer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

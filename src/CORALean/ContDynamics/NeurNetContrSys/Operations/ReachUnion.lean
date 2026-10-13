@@ -12,10 +12,10 @@ raised to `reachOrder`'s order where that is higher, since only an order admissi
 for `Δt` and the plant's matrix makes `reach_outer` hold.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

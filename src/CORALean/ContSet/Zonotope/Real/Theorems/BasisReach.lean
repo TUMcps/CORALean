@@ -14,10 +14,10 @@ The invertibility is the contraction at work: `P x = 0` gives `x = K x`, and the
 largest magnitude then shrinks by `q`. The bound is the same step on `w = H d + K w`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

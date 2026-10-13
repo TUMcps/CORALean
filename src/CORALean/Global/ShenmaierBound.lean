@@ -24,10 +24,10 @@ forces `zᵢ χ ≥ 1 - ε`, and the samples all miss that set with probability 
       Conference (ECC), 2024. doi:10.23919/ECC64448.2024.10590884.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

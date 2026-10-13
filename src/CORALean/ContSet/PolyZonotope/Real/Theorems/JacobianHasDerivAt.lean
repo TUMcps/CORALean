@@ -15,10 +15,10 @@ not matter there). In any real normed space, in particular `Vec ℝ n`, where th
 taken in the sup norm.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

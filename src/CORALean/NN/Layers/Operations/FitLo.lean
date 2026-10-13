@@ -8,10 +8,10 @@ The sampled bracket of `σ` minus the fit over one box, at the checked grid wher
 and the fallback where it does not: a grid that fails its checks costs precision, not soundness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

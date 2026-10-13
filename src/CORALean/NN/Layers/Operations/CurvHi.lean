@@ -7,10 +7,10 @@ import CORALean.NN.Layers.Definitions.Enclosure
 so the widest box makes the product largest, and the width rounds up here too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

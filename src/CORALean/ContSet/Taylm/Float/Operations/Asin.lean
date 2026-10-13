@@ -13,10 +13,10 @@ the magnitude `Taylm.magUp`. `p` and `q` are the precisions of `asinDown`/`asinU
 `Global/Float/Sqrt`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

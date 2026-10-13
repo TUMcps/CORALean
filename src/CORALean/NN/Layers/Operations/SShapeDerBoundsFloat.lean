@@ -16,10 +16,10 @@ than CORA's three cases there, never narrower. Not modelled, as at ℝ: the `NaN
 * [1] `nn/@nnSShapeLayer/getDerBounds.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ evaluation function `π_p`: a finite `AP` and its `π` are one such predicate ea
       Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

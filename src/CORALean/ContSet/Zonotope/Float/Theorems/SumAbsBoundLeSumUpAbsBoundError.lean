@@ -10,10 +10,10 @@ comparison is at the nominal zonotope: `|cⱼ| + Σₗ|Gⱼₗ|` is under `absBo
 terms, its error-box term nonnegative, and an upward sum stays above the exact one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

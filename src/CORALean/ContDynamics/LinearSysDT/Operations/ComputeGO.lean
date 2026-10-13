@@ -15,10 +15,10 @@ here as the powers it computes; the time-varying branch (`A` a cell) is not mode
 * [1] `contDynamics/@linearSysDT/computeGO.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

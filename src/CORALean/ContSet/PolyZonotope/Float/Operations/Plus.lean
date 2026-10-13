@@ -13,10 +13,10 @@ The exponent matrix is the exact layer's `plusE`, reused rather than restated:
 it is a matrix of naturals and nothing about it rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

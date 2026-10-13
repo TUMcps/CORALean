@@ -7,10 +7,10 @@ The relabelling itself, `reindexLin e`: `reindex_exact` puts the image of every 
 and more — `reshape_exact` is the equality.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

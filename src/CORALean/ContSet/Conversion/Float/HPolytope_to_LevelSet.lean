@@ -11,10 +11,10 @@ The level set holds its constraint function as data and nothing is rounded: the 
 are read as reals, and the conversion denotes exactly the float polytope's set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

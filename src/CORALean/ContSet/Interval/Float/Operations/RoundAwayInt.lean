@@ -8,10 +8,10 @@ The nearest integer, halves away from zero, as an integer: the computable counte
 layer's `roundAway`, taken on the rational a scalar decodes to.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

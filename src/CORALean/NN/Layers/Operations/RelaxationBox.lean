@@ -9,10 +9,10 @@ Per neuron, the deviation of `σ` from the relaxation's affine map lies in
 `addUp` above — which is the one place an activation layer itself rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

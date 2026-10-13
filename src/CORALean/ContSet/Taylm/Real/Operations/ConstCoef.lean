@@ -7,10 +7,10 @@ CORA's `c_f`, the coefficient at the zero exponent, where the elementary functio
 Summed, as the list may repeat the exponent; any centre is sound and this one is CORA's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

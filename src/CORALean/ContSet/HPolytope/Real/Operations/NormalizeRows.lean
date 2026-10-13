@@ -12,10 +12,10 @@ the right-hand side too, so each such row is a unit vector. A zero row is left a
 The 2-norm of a row is that of the functional's coefficients, `√(Σⱼ (a e_j)²)`, so over `Vec ℝ n`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

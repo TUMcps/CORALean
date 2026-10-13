@@ -11,10 +11,10 @@ counterpart in the tree, so the result is the set of times it denotes, a subset 
 constructor turns `lb > ub` into its empty interval, which `Set.Icc` is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

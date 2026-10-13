@@ -10,10 +10,10 @@ squaring of the box holds `e^{2tA}` for every member `A` because the member is
 the same in both factors — the constant-parameter reading, `ConstTrajectory`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

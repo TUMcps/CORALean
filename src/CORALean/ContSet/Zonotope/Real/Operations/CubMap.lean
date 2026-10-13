@@ -16,10 +16,10 @@ off `k ≤ j ≤ c` and at `(0, 0, 0)`, which is the centre: `N³` generators wh
 column left out is the zero matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

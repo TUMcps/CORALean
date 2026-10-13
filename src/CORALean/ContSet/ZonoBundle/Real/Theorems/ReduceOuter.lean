@@ -8,10 +8,10 @@ surviving index, and `Set.subset_iInter` puts that back together over the
 reduced family — the intersection over fewer factors is the larger set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

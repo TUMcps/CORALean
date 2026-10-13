@@ -21,10 +21,10 @@ Outer and not exact, for the reason `PolyZonotope.linComb_outer` is: the
 independent block is enclosed by the pairing. The constraints give up nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

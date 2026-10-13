@@ -16,10 +16,10 @@ and says `none`: a norm past `(max η 2 + 4097)/2`, or one the float format
 cannot hold (an overflow, a `NaN`), gets no order rather than an unchecked one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

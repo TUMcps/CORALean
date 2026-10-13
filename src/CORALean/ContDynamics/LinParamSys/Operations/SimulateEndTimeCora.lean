@@ -11,10 +11,10 @@ shifted by the last time so far (`t = [t t_'+t(end)]`, l. 120), so the last time
 segments is `i · tFinal`, not `tFinal`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

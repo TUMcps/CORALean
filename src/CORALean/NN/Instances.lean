@@ -8,10 +8,10 @@ a network stores its layers' kinds and lives in `Type 1`. A network, or a block 
 into another as one layer through `Enclose.pack`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

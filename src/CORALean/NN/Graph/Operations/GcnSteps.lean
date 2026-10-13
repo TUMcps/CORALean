@@ -14,10 +14,10 @@ The feature width `F` is fixed across steps, deliberately, so the chain is an
 ordinary recursion rather than a dependent one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

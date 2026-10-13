@@ -18,10 +18,10 @@ interval arithmetic [1, Def. 5] assumes, eq. (3.1) for `⊕`, proved here from d
       Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

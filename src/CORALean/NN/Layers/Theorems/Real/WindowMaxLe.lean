@@ -7,10 +7,10 @@ The other half of the supremum's characterisation, `Finset.sup'_le`: a bound on 
 coordinate bounds the maximum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

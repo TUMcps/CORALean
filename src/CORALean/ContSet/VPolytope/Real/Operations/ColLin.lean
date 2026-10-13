@@ -6,10 +6,10 @@ import CORALean.ContSet.VPolytope.Real.VPolytope
 A vector as an `n × 1` matrix, linearly: the embedding `matPolytope` maps each vertex by.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

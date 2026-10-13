@@ -25,10 +25,10 @@ figure; here every pair is bounded, `g(x) - g(y) ≤ 2 e_S` for `g = ϕ - m x`, 
       Certification". NeurIPS 2018.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

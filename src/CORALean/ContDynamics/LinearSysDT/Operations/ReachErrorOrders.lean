@@ -17,10 +17,10 @@ gives: `mtimes` is exact only there, and a zonotope rather than a `Set` is what
 `minkDiffRep` can take as an operand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

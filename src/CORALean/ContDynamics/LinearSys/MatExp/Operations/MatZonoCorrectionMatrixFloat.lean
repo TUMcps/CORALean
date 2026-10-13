@@ -13,10 +13,10 @@ encloses, as `intervalCorrectionMatrix` takes it at a box. The orders are stored
 once, not per entry, so a read costs a lookup.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

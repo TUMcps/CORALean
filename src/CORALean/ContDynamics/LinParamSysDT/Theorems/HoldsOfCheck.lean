@@ -9,10 +9,10 @@ set `reach` computed, through the pair's `Contains` or `IsDisjoint`: a `true`, f
 evaluation, is the specification on the exact state, with nothing left to prove by hand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

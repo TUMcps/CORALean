@@ -13,10 +13,10 @@ and forgets `β₀ ≤ 0`, ending at `[-4, 4]`; `reduceKeepBy` projects the cons
 the generator it keeps and ends at `[-4, 2]`. Both are outer, only one is tight here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

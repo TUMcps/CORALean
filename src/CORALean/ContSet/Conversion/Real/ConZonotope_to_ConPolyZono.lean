@@ -24,10 +24,10 @@ constrained zonotope is exactly the linear fragment of the representation.
 functional, here a matrix row, and a functional is its values on the unit vectors.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ inside the stored one: the centre is rounded away on each side, the half-width i
 nonnegative factor keeps the product's rounding in the outward direction. Not exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

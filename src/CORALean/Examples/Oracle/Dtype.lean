@@ -24,10 +24,10 @@ operation's own output, so the returned error is exact before it is itself
 rounded outward: an informal soundness claim, not a theorem restated here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

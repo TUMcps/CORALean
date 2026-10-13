@@ -18,10 +18,10 @@ layer's `VPolytope α` is; `VPolytope (Vec 𝕋 n)` is the vector case, and the
 nominal reading copies the family.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

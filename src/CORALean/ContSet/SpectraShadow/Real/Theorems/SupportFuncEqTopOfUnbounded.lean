@@ -6,10 +6,10 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncNeTopIff
 A direction in which the functional exceeds every real number on the set gives `⊤`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

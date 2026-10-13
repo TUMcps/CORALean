@@ -11,10 +11,10 @@ power (`powDown_le`/`le_powUp`) and the reciprocal factorial
 (`invFactorialBounds_mem`), multiplied and then rounded the same way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

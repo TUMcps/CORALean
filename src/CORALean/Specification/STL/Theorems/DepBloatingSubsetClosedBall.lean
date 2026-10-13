@@ -22,7 +22,7 @@ so `D` lies in the ball of the sum (the sup norm of `Vec`, the operator norm of 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

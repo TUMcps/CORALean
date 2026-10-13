@@ -10,10 +10,10 @@ the error box is the hull of the two boxes (`Interval.or`), which is what a conv
 a point of one operand with a point of the other needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

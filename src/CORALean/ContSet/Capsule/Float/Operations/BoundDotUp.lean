@@ -15,10 +15,10 @@ certificate to supply and nothing to prove at the call site. The exact value is
 A negative radius denotes `∅`, where the bound is vacuous, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

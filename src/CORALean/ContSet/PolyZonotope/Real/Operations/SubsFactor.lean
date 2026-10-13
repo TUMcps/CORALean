@@ -7,10 +7,10 @@ The factor of the result that a factor of `pZin` is: the one of `pZ` it shares i
 (`Idx`, given by `share`), or a new one after `pZ`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

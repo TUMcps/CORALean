@@ -8,10 +8,10 @@ the relabelling, the radius unchanged. The stored floats are moved, never comput
 capsule stores its radius rather than an error box, so there is nothing to pay.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

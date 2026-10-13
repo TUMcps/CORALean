@@ -17,10 +17,10 @@ argument; the second- and third-order terms, zero for a linear `h`, are not defi
 * [1] `contDynamics/@nonlinDASys/outputSet.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

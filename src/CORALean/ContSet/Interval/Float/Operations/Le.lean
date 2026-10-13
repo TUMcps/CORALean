@@ -7,10 +7,10 @@ The containment test at float, one `FloatOps.le` per bound. `le` is certified in
 only, so `true` is a proof and `false` is no refutation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

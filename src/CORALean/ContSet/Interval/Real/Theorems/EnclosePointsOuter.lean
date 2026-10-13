@@ -7,10 +7,10 @@ Each coordinate is bounded by the family's minimum and maximum there. Both bound
 the box is the smallest one, but only containment is stated.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

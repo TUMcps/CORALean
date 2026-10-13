@@ -10,10 +10,10 @@ The coefficients of `Zonotope.cubMapMixed_coeff` carry each set's own `p` on its
 so each set's constraint holds there, and every other product factor is unconstrained. Outer only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

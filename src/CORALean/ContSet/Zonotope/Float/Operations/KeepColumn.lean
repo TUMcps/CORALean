@@ -8,10 +8,10 @@ exactly when every entry is certified zero by `le` in both directions. The certi
 proof when it holds, so a dropped column is zero as reals; a zero column it cannot certify is kept.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

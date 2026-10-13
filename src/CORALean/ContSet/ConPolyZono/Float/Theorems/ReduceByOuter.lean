@@ -23,10 +23,10 @@ That is what lets `reduceGirard` rank with `le`, which `SoundFloatArithmetic`
 constrains not at all, and so what makes the rule computable here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

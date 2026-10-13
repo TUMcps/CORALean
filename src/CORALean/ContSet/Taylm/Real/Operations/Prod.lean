@@ -8,10 +8,10 @@ obj(i)`, the product folded from the left. At least one factor: CORA's loop star
 element and an empty array is an error, so the index type is `Fin (m + 1)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ samples is outside `P`. Holds for every finite sample `V` of boundary points. Re
 not run; the modelled and abstracted parts are in `Polygon.sampledHullCora`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

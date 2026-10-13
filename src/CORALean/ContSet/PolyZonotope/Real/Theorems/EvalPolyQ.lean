@@ -12,10 +12,10 @@ Two cases and no induction: the empty accumulator names `0` and a Horner step
 names `mul`'s field, so neither case looks at what is below it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

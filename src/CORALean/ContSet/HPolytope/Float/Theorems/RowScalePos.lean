@@ -7,10 +7,10 @@ The quotient `1 / ‖Aᵢ‖₂` is taken only at a norm certified positive, and
 above a positive number; otherwise the scale is `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

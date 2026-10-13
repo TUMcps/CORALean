@@ -9,10 +9,10 @@ CORA's `nnLeakyReLULayer`: `Layer.activation` at `leakyReluRelaxation α lam`, t
 `leakyReluSlope α` unless the caller names another. `α` is CORA's `alpha`, `0.01` by default.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

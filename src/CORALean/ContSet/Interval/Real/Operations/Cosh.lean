@@ -8,10 +8,10 @@ CORA's `@interval/cosh`, coordinate by coordinate: the three cases (range left o
 `0`, or containing `0`) are `coshLo` and `coshHi`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

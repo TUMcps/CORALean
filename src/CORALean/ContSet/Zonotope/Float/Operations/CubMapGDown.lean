@@ -9,10 +9,10 @@ triples (`Real.Zonotope.cubIdx`): `cubFoldDown` at the sorted triples `k â‰¤ j â
 centre's `(0, 0, 0)`, zero elsewhere, halved where it is a pure square `(0, j, j)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,10 +14,10 @@ state moves at the speeds it starts with, plus a margin for a field that vanishe
 there. A guess that fails costs the run, never its soundness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ its region, and every region found, as opposed to the two given, has error at mo
 Outer: an enclosure of `σ` by polynomial and error, not `σ` itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

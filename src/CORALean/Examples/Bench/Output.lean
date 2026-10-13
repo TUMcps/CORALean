@@ -26,10 +26,10 @@ radius, derived once here so `experiments/plot/` never recomputes them from
 that step on carries `"overflow": true`, its numbers past what the format holds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

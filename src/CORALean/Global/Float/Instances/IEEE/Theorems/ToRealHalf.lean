@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.IEEE.Operations.Half
 It is `Dyadic.half` on the same pair, which is why it may leave the grid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

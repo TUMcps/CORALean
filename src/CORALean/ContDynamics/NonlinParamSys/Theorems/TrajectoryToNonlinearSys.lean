@@ -11,10 +11,10 @@ halves back out of it, which is what turns `sys.toNonlinearSys.f` at that input
 into `sys.f (x t) (u t) (p t)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

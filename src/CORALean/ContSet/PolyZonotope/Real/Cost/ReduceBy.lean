@@ -14,10 +14,10 @@ The `n * (n - 1)` off-diagonal zeros are written, not computed, so neither the
 kept counts nor the block's own width enter.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

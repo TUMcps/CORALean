@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
 Both bounds equal is a single point, and a single point forces both bounds onto it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

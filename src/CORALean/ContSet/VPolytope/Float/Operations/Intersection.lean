@@ -12,10 +12,10 @@ are stored bounds copied — so this operation rounds nowhere, all of its
 imprecision being in the detour rather than in the arithmetic.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

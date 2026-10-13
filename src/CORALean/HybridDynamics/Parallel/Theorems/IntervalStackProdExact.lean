@@ -9,10 +9,10 @@ A point of the stacked space is in the product of the boxes exactly when each of
 its component's box. An equality, not an inclusion: this is the product `ContSet` lacks.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

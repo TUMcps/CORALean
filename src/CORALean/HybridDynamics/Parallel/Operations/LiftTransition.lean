@@ -10,10 +10,10 @@ component `c` moved. CORA's `lift` and `synchronize` for a transition without a 
 labels are not in `Transition` (#40).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

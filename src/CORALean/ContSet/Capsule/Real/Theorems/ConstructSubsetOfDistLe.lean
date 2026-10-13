@@ -10,10 +10,10 @@ at most `r + δc + δg` (`|t| ≤ 1`). This is how a float capsule, whose centre
 rounded, covers an exact one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ The nominal parts of the two results are the exact layer's `onlyId` of the origi
 factor vector is the sum of the first part's point at the factors of `S` and the second's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

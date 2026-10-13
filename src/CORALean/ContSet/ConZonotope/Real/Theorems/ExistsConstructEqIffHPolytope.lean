@@ -26,10 +26,10 @@ the equality-only case, so the theorem covers [1]'s Definition 3 and more.
       A new tool for set-based estimation and fault detection". Automatica, 69:126-136, 2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

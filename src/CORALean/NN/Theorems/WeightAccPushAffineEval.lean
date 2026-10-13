@@ -7,10 +7,10 @@ import CORALean.NN.Operations.WeightAccEval
 `s ⊙ (W x + b) + o = (diag s W) x + (s ⊙ b + o)`, exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

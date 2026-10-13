@@ -11,10 +11,10 @@ At ℝ only: `N` divides and takes absolute values of the stored weights, which 
 round, and the weights it then runs are the computed `N W`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ writes the set as `{x | 1 - (x-q)ᵀ Q⁻¹ (x-q) ≥ 0}` from `chol(inv(Q))`, a
 singular, and has no generators; the generator form needs neither, and no degenerate split.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

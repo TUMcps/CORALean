@@ -17,10 +17,10 @@ steps is a run for `N + 1` and one more step.
       time-varying parameters". IEEE Transactions on Automatic Control, 51(7):1144-1150, 2006.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

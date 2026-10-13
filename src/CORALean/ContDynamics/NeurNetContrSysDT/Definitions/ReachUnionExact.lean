@@ -10,10 +10,10 @@ checked against. Positional, as the mathematics: `Reach` reads `K = tFinal - tSt
 and the initial set off `params`, the closed loop being time-invariant.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

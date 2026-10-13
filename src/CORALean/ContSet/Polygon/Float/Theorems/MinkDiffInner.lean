@@ -12,10 +12,10 @@ kernel), and lies in its minuend piece (`Polygon.innerHRep_inner`), which lies i
 Nothing is assumed of the subtrahend: no convexity, no centre, no boundary loop.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

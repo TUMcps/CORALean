@@ -9,10 +9,10 @@ is an SDP solver's minimum-volume ellipsoid, so the hull is an argument, owing t
 contract as over ℝ: its result contains both operands. Its minimum volume is not claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

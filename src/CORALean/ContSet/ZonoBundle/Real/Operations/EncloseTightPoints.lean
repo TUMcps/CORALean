@@ -16,10 +16,10 @@ is the matrix inverse, which is `pinv` for an invertible `W{i}`; the orthogonal 
 Stursberg enclosure is CORA's `svd(cov(.))`, an argument as in `Zonotope.enclosePointsStursberg`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

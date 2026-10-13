@@ -10,10 +10,10 @@ error box absorbed into its inequality (`absorb`), then the two tied to one poin
 `zero` or `one`. Stated as an enclosure only; the error box of the result is the origin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

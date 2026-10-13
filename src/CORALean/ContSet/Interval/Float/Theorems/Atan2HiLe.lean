@@ -11,10 +11,10 @@ holds it: in each certified half-plane through the monotonicity of `arctan` and 
 quotients, and `π` above every argument.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

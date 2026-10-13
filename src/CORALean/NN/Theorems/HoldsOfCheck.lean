@@ -10,10 +10,10 @@ has nothing left to prove by hand: a `true`, found by evaluation, is the specifi
 everything the network computes on the input set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

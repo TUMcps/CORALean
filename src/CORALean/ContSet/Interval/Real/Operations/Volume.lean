@@ -8,10 +8,10 @@ CORA's `@interval/volume_`: the product of the widths. `ENNReal.ofReal` clips a 
 to `0`, so a crossed box, which denotes `∅`, has volume `0` with no case split.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ is infeasible and the result is the empty set. Otherwise the zero rows certified
 `restrict`; a row whose certificate fails is kept. Nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

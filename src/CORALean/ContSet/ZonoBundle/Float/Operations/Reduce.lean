@@ -13,10 +13,10 @@ Which members survive is a heuristic with no proof obligation of its own —
 `reduce_outer` holds at *any* choice, keeping the first `o` among them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ ratio is for `0 ≤ x`, so the lower bound there is `logDown` of the ratio floor
 whose sign it could not decide, which costs nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ and does nothing of its own, so the count is `k` copies of the zonotope one.
 since the structure carries a family with no common width.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

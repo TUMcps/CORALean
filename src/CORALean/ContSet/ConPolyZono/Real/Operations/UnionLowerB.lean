@@ -17,10 +17,10 @@ Where [1]'s `b` is crisp both ends are `0.5 b`, which is what [1, Thm. 1] writes
       Informatica, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

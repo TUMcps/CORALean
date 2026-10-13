@@ -21,10 +21,10 @@ The domain is explicit: the magnitude below `π/2`, and the cosine certified pos
 `cosDown` at the centre and at the magnitude, which is what `tanDown_le` and `le_tanUp` need.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

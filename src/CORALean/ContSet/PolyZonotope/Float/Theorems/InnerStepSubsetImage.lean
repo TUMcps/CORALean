@@ -25,10 +25,10 @@ step's interval operations outward (`recip_outer`, `times_outer`, `mtimesInterva
 `J₂(U2_ - u2_) ∋ 0`; the slice lies in `X` because `U1_ ⊆ U1` and `x_` is in `X` off `ind`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

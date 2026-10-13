@@ -14,10 +14,10 @@ run's: some step's start, inflated by `2MΔt`, not shown inside its region in
 dimension `n + q` — the parameter's coordinates tested with the state's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

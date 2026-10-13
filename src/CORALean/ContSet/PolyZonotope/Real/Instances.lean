@@ -30,10 +30,10 @@ Noncomputable, twice over: `compact` decides whether a generator of a real
 module is zero, and the ranking orders reals.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

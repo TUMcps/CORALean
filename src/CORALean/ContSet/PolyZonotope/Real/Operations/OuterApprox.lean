@@ -15,10 +15,10 @@ independent generators stay in `GI`, so their radius is counted twice: sound, no
 Identifiers are positional, `id` a `Finset (Fin pZ.p)`, the candidates tagged `Fin h ⊕ Fin q`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

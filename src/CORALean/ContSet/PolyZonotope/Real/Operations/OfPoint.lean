@@ -9,10 +9,10 @@ point operation to supply — `PolyZonotope.point` runs the other way, reading a
 factor vector off an existing set, so it cannot stand in for this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

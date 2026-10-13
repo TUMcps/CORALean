@@ -13,10 +13,10 @@ window's set: `e^{At} = e^{A t_k} e^{Aτ}` with `τ = t - t_k ∈ [0, Δt]`. The
 order is `reachWrappingFree`'s own, `reachOrder_admissible`'s.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

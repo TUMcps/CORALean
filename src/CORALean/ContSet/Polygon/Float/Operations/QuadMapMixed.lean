@@ -11,10 +11,10 @@ float polygons, mapped by the float `PolyZonotope.quadMapMixed` and enclosed by
 `PolyZonotope.polygon`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

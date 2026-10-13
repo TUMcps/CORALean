@@ -8,10 +8,10 @@ but `dim`, the proof that the two dimensions agree, which `rfl` discharges where
 built; `: Type` keeps a structure of one proof out of `Prop`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -15,10 +15,10 @@ that `Δt` divides `dt`, decided in ℝ; the guarantee is `reachUnion_outer`.
 No input set: the closed loop reads its own input off the controller.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

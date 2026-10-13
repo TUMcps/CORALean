@@ -18,10 +18,10 @@ pure ()` looks like it demands `cs` and does not, since both branches reduce
 to the same `pure ()` and the compiler drops the condition. `cs.isNaN`
 in a branch that only sometimes prints is what actually has to be decided. -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

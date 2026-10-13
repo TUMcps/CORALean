@@ -9,10 +9,10 @@ The nominal set of `blockPadRight` is the exact layer's `map` at the block embed
 entry: the padded rows are zero on both sides.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

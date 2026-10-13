@@ -14,10 +14,10 @@ six conjuncts of `trustedFlint`; the exact ones are pure Lean, and theirs are
 operation classes runs here once the executable links FLINT.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

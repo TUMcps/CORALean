@@ -11,10 +11,10 @@ more factor for each earlier input. `descProd A hi d` is that product of `d` fac
 `0`-based, so CORA's `A_lin{k}` is `A (k - 1)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

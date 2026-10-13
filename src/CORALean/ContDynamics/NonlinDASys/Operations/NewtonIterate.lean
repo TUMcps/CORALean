@@ -11,10 +11,10 @@ CORA loops until the test passes, with no bound; this one takes a `fuel` and giv
 runs out. Computable: the step and the test are parameters.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

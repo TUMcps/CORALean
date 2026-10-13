@@ -20,10 +20,10 @@ They are arithmetic, not indexing, and counting them can only make the bound
 larger — which is the safe direction for an upper bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

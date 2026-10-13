@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.AbsExact
 Nothing is rounded, so the stored box reads as the exact layer's `abs` of the readings.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

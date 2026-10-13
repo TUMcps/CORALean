@@ -9,10 +9,10 @@ Stored as a function from the two indices, as `Taylm.mtimes` stores its vector; 
 `obj(1,1)`: the same sum, bracketed differently.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

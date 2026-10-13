@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Interval
 The origin test at float: each bound is `≤ 0` and `≥ 0`. One direction only, as `le`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

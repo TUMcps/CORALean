@@ -7,10 +7,10 @@ The convex combinations of no vertices are empty (the weights must sum to `1`), 
 `VPolytope` has `k ≠ 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

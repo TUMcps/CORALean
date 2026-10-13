@@ -9,10 +9,10 @@ weighted sum of the `gᵢ`: what `inter` uses to write an equality `e = 0` as `e
 and `generateESumRep` the same.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

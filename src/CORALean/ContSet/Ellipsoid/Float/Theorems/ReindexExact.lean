@@ -13,10 +13,10 @@ the relabelling, the matrix `toMatrix' (reindexLin e)` selecting rows; the box
 is relabelled alongside, and a linear map distributes over the sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

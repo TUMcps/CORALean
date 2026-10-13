@@ -11,10 +11,10 @@ assumption about the hardware is needed, which is the point of defining the
 downward operations as mirrors rather than as primitives.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       22-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

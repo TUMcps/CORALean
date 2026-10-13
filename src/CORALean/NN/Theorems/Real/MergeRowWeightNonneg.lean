@@ -7,10 +7,10 @@ import Mathlib.Algebra.Order.BigOperators.Group.Finset
 ℝ-only, the weights being exact: a sum of absolute values.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

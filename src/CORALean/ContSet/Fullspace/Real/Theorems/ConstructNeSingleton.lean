@@ -8,10 +8,10 @@ import Mathlib.Algebra.Order.Archimedean.Real.Basic
 dimension (`R^0` is a point, and CORA's `representsa_emptyObject` answers before this).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

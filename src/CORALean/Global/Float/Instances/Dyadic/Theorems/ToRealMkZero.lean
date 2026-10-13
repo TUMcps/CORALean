@@ -7,10 +7,10 @@ Any exponent, since a zero mantissa reads as zero regardless of the scale it
 is read at — what `SoundFloatArithmetic.toReal_zero` needs from `Dyadic`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

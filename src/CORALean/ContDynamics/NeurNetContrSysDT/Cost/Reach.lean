@@ -23,10 +23,10 @@ never changes, plus `LinearSysDT.reachStepBound` at a caller-supplied bound
 gives, an activation layer's relaxation being free to grow it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

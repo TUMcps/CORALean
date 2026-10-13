@@ -16,10 +16,10 @@ ratio, and the ratio is `1` less the one for `splits - k`. Every piece then hold
 (`Theorems/PartitionCover`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

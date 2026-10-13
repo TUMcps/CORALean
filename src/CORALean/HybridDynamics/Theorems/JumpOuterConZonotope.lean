@@ -22,10 +22,10 @@ Guard and state are the same representation here because `intersection` is what 
 `hinter`. `JumpOuter` itself keeps them apart, `hinter` being an inclusion (#39).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

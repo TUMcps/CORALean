@@ -8,10 +8,10 @@ The synchronized reset at a point is the sum of the component resets there, plus
 value at the coordinates `idStates`: the statement of CORA's `synchronize`, exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

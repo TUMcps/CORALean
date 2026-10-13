@@ -10,10 +10,10 @@ degree is no restriction, and what makes a layer's relaxations `Fin n → PolyRe
 rather than a ragged family.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

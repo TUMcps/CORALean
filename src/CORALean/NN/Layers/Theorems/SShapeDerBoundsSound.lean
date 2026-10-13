@@ -10,10 +10,10 @@ the end nearer to it. Outer, a bound, not the exact range: the bounds are attain
 ends, and for `l ≤ 0 ≤ u` the lower one is `df` at one end.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

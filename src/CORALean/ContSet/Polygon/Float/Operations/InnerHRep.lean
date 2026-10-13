@@ -23,10 +23,10 @@ piece's error box must hold `0`, certified by `le`, so the hull of the stored ve
 the piece. Anything uncertified, or fewer than three vertices, gives `none`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

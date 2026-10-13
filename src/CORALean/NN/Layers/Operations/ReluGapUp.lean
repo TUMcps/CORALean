@@ -8,10 +8,10 @@ computes it rounding up, `(1 - λ) u` from the directed difference and `-λ l` f
 rounded-down product. `reluGapOfSlope_le` is that it bounds the exact gap.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

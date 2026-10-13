@@ -19,10 +19,10 @@ By induction on the pass, `reachFloatInputStep_invariant` the step. The start:
 set are both `P^R(Δt)`, by `inputReach_subset_inputSolutionFloat`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

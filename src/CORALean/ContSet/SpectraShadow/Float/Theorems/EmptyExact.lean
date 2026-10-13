@@ -9,10 +9,10 @@ The stored constant reads as `-1`, and `-1 ⪰ 0` is met by no coefficient famil
 being negative; the nominal part is `∅`, and so is its sum with the error box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

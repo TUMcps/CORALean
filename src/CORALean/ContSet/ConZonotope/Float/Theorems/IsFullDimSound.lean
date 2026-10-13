@@ -12,10 +12,10 @@ corner, a member of the nonempty box, carries that to the set itself. This certi
 property `ContSet.IsFullDim`, not CORA's rank test (`rank(G null(A)) = n`), which is necessary only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ CORA's `center` of the full space: the origin, `zeros(n, 1)`. At `n = 0` CORA re
 `NaN` for want of a vector to return; `Vec ℝ 0` has the one element `0`, which is it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

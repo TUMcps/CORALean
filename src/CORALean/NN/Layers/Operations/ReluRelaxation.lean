@@ -10,10 +10,10 @@ origin and below it raised by the gap, so the relaxation at a clamped slope is t
 recentred, `± gap / 2`. Halving only moves the exponent, so only the gap rounds, and up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

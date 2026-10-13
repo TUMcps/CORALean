@@ -11,10 +11,10 @@ is in the box of the `pinv(W{i}) V` and `W{i} pinv(W{i}) v = v` for an invertibl
 the Stursberg zonotope for every orthogonal `U`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

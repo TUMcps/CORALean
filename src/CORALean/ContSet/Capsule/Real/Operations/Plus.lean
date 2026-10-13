@@ -8,10 +8,10 @@ centres add, the longer of the two generators is kept, and the shorter one is ab
 radius, `r = r₁ + r₂ + ‖shorter g‖₂`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

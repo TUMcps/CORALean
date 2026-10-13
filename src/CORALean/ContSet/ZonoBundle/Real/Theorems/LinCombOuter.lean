@@ -10,10 +10,10 @@ Sound because a point `lam • a + (1 - lam) • b` with `a ∈ ⋂ᵢ Aᵢ` and
 combinations, which `Zonotope.linComb_outer` reads each pair into.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

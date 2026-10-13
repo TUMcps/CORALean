@@ -15,10 +15,10 @@ rounds: the nominal part is the exact layer's `cartProd` mapped through the two 
 and the error box is the product of the two boxes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

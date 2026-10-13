@@ -9,10 +9,10 @@ too: the intersection of two outer sets is an outer set of the points in both. O
 exact: the interval image through the stretch is an enclosure.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

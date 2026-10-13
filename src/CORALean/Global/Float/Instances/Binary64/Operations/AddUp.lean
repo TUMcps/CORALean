@@ -10,10 +10,10 @@ nearest float to it. A sum that rounds to zero is exactly zero, subnormals being
 addition exact near zero, so a zero is kept; a sum outside the normal range is NaN.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       22-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

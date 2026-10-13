@@ -13,10 +13,10 @@ Proofs use it rather than going through `nominal` because through it every count
 is `cZ.h`, where the instance gives the equal-but-distinct `(nominal cZ).h`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

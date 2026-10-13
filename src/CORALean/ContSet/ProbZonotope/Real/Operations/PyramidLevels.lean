@@ -7,10 +7,10 @@ The array `maxVal` of CORA's `pyramid`: the density `max(probZ, mᵢ)` on the `m
 each layer `i`, then the peak `max(probZ, 0)` as `maxVal(end+1)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

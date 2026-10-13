@@ -13,10 +13,10 @@ survives the cut to `-aᵢᵀx ≤ -bᵢ`, which the box hull of `r` and the box
 conversion keep. Outer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

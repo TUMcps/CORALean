@@ -8,10 +8,10 @@ image is monotone in the set mapped. The counterpart of `plus_mono`, and used
 the same way: once per layer of an algorithm written in linear images.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

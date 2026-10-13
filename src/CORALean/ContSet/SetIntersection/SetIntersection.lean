@@ -17,10 +17,10 @@ plain `List.map` computes whenever the member's own operation does.
 fixed arity, and `List` is what lets a caller append rather than reindex.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

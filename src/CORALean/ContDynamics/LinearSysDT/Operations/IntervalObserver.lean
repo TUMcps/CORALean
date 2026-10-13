@@ -18,10 +18,10 @@ interval observer when `A - LC ≥ 0` [1, Thm. 4]. Real only, as the other obser
       64(11):4717-4724, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

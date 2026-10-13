@@ -15,10 +15,10 @@ theorems. `ub < 0` proves the row's function nonzero on `S`, the opposite of `==
 that `LevelSet.containsCellCora_counterexample` can state that it is unsound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

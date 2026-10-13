@@ -10,10 +10,10 @@ settles them everywhere, via `aux_eq_iterate` identifying each with the orbit
 of `map` at its own starting point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ A box with possibly infinite ends, for the results (`Inf`, `lift_`, `dirac`) a f
 scalar cannot store: a bound is a float, or `none` for `-∞` (lower) or `∞` (upper).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

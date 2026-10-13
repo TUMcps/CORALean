@@ -14,10 +14,10 @@ monotonicity happens among sets of points and never among their enclosures —
 `plus` and `mtimes` carry enclosure guarantees, not monotonicity.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   02-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

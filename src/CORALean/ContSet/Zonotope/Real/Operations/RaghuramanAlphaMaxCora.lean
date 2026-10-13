@@ -8,10 +8,10 @@ largest absolute alignment of each small generator with a kept one. Line 276 the
 `G_prod(k, idx)` by it; at `alpha_max = 0` that is `0/0`, which MATLAB evaluates to `NaN`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

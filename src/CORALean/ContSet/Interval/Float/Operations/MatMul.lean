@@ -10,10 +10,10 @@ hull of `A`'s `(i, k)` interval against `B`'s `(k, j)` one, each hull `mulLo`/
 entry, the corner and the row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

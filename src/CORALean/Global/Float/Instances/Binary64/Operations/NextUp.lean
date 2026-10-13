@@ -9,10 +9,10 @@ increment of `toBits` away from zero and a decrement toward it. Each rounded
 operation in the sibling files is the machine's, nudged one step out by this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       22-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

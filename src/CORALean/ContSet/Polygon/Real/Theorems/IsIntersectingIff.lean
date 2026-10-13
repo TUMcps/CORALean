@@ -7,10 +7,10 @@ import CORALean.ContSet.VPolytope.Real.Theorems.InterNonemptyIff
 Exactly: the regions share a point iff some pair of pieces does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

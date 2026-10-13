@@ -10,10 +10,10 @@ the larger sup-norm of the two bounds is not only an upper bound of `‖x‖∞`
 the box that ignores the deterministic generators (`supCora_lt`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

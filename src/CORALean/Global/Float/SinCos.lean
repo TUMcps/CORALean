@@ -23,10 +23,10 @@ undecided sign giving `[-1, 1]` for the sine. A larger `n` buys range (`|a| ≤ 
 accuracy; each doubling at most doubles the width, so beyond `|a|/2ⁿ ≈ 2⁻¹²` it buys nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

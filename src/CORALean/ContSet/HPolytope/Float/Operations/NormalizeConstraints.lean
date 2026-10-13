@@ -13,10 +13,10 @@ absolute value of its lower end; unlike CORA's the divisor is positive, so an eq
 negative right-hand side keeps its sign (`-1` where CORA's is `1`), the same set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

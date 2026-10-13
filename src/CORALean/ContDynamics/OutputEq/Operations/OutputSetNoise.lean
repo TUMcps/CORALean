@@ -11,10 +11,10 @@ Not modelled: the shortcut `Y = R` when `C` is empty (the same set as `C = I`, `
 `F = 0`, which this computes, only coarser), and the optional `reduce` to `saveOrder`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ from it to the first centre, and the larger of the two radii `‖g‖₂ + r`, a
 segment. The hull of two capsules is not a capsule, so this encloses it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

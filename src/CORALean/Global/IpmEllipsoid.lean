@@ -15,10 +15,10 @@ regression `y = ϑᵀϕ + e` with `ϑ` in the ellipsoid `E_{c,P} = {ϑ | (ϑ - c
       reliability". Automatica, 45(2):382-392, 2009.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

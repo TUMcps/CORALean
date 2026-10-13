@@ -12,10 +12,10 @@ linearizations: they are how `reach` encloses this set, not part of it.
 Positional, as the mathematics: `Reach` reads `K = tFinal - tStart` off `params`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

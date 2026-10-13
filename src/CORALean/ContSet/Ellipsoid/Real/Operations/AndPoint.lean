@@ -15,10 +15,10 @@ polytope and ellipsoid branches (`priv_andHyperplane`, `priv_andPolytope`, `priv
 `priv_andEllipsoidIA`) are not formalized.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

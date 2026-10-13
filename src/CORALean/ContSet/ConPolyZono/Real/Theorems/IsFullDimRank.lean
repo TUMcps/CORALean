@@ -10,10 +10,10 @@ one of the polynomial zonotope on the same generators, and `PolyZonotope.isFullD
 applies. The test is necessary and not sufficient.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

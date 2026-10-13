@@ -7,10 +7,10 @@ CORA's `@capsule/project.m`: centre and generator at the chosen coordinates, the
 `C.c(dims)`, `C.g(dims)`, `C.r`. `Capsule.reindex` is the case where `dims` is a permutation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -23,10 +23,10 @@ This is what makes a linear layer convergent for nothing: the enclosed set
 *is* the image, so it lies inside every inflation of it and no level is spent.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

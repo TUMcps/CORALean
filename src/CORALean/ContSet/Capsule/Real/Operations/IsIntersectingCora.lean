@@ -17,10 +17,10 @@ distance is `xᵀMx + 2·(the linear term)` with `M` the bracket, so `H` needs `
 `Capsule.isIntersecting_` is the sound test.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

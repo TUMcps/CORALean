@@ -8,10 +8,10 @@ Same two cases as Girard's rule, at Combastel's partition instead — the metric
 never appears, which is `reduceBy_outer`'s whole point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

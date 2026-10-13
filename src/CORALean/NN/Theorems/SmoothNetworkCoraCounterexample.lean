@@ -8,10 +8,10 @@ CORA's conversion adds `offset` and drops `scale`, though the layer's own `evalu
 `2 x`, so `func(x,0) = evaluate(net,x)`, which CORA states, fails.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

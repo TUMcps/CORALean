@@ -9,10 +9,10 @@ The exact box of the stored centre and radius read as reals: an entry within `r`
 above `subDown c r ≤ c - r` and below `addUp c r ≥ c + r`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

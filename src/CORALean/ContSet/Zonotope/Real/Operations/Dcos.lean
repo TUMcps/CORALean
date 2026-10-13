@@ -14,10 +14,10 @@ of the angle between `sign(gᵢ(1)) gᵢ` and `sign(gⱼ(1)) gⱼ`; see `dcos_ne
       Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

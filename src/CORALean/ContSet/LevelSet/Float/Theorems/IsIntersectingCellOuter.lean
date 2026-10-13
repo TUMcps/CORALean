@@ -9,10 +9,10 @@ For a level set without `=` rows, as the real theorem
 comparison makes the real test fail at the bounds read as reals. A `true` says nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

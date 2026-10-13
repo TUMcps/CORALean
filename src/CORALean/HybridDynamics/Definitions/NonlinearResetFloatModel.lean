@@ -10,10 +10,10 @@ inputs, as a computable function at the scalar `𝕋`. `Encloses` ties it to `f`
 structure rather than inside it, so the real reset stays what it was.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

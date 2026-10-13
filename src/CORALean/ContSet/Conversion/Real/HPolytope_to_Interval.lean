@@ -14,10 +14,10 @@ The only conversion here whose cost is not the enclosure but the bounds: the box
 is exact as soon as every certificate is tight.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

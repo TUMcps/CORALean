@@ -9,10 +9,10 @@ the reach is a sum of absolute values, `e^x ≥ 1 + x`, and the remainder is non
 its geometric factor is bounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

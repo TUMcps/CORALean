@@ -7,10 +7,10 @@ Integer `/` floors for a positive divisor, so dropping `gridShift` bits and rais
 exponent to match rounds toward `-∞`, onto the grid of `fmt`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

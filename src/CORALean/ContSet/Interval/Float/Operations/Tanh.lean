@@ -8,10 +8,10 @@ Increasing, so `tanhDown` at the lower bound and `tanhUp` at the upper one
 (`Global/Float/Hyperbolic`). `p` is the precision of the exponential.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

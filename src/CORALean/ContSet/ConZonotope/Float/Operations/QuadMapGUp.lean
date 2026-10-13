@@ -8,10 +8,10 @@ The generators of `quadMapGDown` rounded up. Their gap to the lower ones is what
 generators can be wrong by.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

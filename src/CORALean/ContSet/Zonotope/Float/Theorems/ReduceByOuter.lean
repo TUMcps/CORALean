@@ -10,10 +10,10 @@ block up only enlarges the result. Composing them gives the nominal inclusion,
 and the box is untouched, hence `mono_subset`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ coefficient space, so only the centre rounds and its `residual` goes into the
 box — exactly as for a zonotope, the constraints adding nothing to pay for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

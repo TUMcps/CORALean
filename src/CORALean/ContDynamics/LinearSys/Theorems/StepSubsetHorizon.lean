@@ -8,10 +8,10 @@ Pure `Set.Icc` arithmetic: a domain covering `[0, KΔt]` covers every step
 one step at a time instead of asking for all of forward time.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

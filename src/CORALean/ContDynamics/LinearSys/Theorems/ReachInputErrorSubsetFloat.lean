@@ -18,10 +18,10 @@ exact (`mtimes_exact`, `plus_exact`), so only the float side loses ground.
 An enclosure is the direction an inner approximation needs of what it takes off.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ The set `{ M_{ijk...l} x_j x_k ... x_l | x ∈ Z }` of CORA's `tensorMultiplicat
 a third-order tensor, component `iDim` is `Σ M{iDim}(a, b, c) xₐ x_b x_c`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

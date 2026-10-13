@@ -10,10 +10,10 @@ roundings' distances from `1ᵢⱼ`, and a row of those summing below `1` gives
 `mulVec_injective_of_residual`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

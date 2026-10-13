@@ -17,10 +17,10 @@ answer has full rank. The statement is about the nominal zonotope, as CORA's `G`
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

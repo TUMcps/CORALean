@@ -10,10 +10,10 @@ zonotope `reachFloat` computes, found by evaluation, is the specification on the
 the period boundary, since `reachFloat_outer` puts that state in the zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

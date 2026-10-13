@@ -9,10 +9,10 @@ the bound is asked for. The matrix is read at its real value, so the rounding
 that produced its entries is not this theorem's business.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

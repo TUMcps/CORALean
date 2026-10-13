@@ -12,10 +12,10 @@ definitionally the exact layer's `project` of the nominal shadow, so `project_ex
 the nominal obligation as an equality; the box is `Interval.project_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

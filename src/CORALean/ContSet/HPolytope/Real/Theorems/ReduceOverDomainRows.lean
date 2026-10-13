@@ -11,10 +11,10 @@ On the domain, the reduced row `A_reduced' x` differs from a normalized row `a_i
 right-hand sides: the outer one is `sup b - prodInf`, the inner one `inf b - prodSup`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

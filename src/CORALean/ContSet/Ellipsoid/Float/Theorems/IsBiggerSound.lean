@@ -13,10 +13,10 @@ and `Δ u + e` in `E₁`'s box by the checked corners. So it is a point of `E₁
 `E₂ - q₂ ⊆ E₁ - q₁`, the inclusion the exact layer's `isBigger_iff_subset` characterises.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

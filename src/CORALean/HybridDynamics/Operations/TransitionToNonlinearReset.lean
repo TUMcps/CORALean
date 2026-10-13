@@ -8,10 +8,10 @@ A transition's affine reset `x ↦ W x + w` as a nonlinear reset, which ignores 
 `linearReset` is a `nonlinearReset` with a function that happens to be affine.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

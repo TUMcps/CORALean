@@ -7,10 +7,10 @@ What separates `roundUp` from `Dyadic.roundUp`: its result is a multiple of `2 ^
 step of the subnormal grid, whatever it rounded, as a number of the format has to be.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

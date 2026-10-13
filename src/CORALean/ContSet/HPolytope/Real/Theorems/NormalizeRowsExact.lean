@@ -7,10 +7,10 @@ import Mathlib.Tactic.Linarith
 Each nonzero row is divided on both sides by its positive 2-norm.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

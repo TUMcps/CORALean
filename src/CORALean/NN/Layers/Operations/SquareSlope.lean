@@ -8,10 +8,10 @@ The chord's slope `l + u`, clamped into the derivative's bracket so that `Relaxa
 requirement on the slope holds whatever the rounding does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

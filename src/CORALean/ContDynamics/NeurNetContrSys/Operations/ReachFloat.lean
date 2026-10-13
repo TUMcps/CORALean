@@ -17,10 +17,10 @@ plant's input set, and runs `N` steps of the plant sampled by
 `η` is the caller's; `reachFloat_outer` asks it to be admissible.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

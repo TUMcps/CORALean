@@ -22,10 +22,10 @@ already in hand. Tight only up to the certificate: over ℝ the box touches the
 ellipsoid on every face, here it touches whatever `s` was worth.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

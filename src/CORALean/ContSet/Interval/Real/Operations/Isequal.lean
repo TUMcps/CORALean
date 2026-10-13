@@ -8,10 +8,10 @@ CORA's `@interval/isequal` at two intervals: both bounds agree, which is contain
 tolerance zero. `Theorems/IsequalIff` says what it decides: equality of the denoted sets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

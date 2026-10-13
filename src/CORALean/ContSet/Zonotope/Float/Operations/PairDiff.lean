@@ -11,10 +11,10 @@ Takes the directed subtraction as an argument rather than fixing one, since
 `linCombGDiff` needs the same column rounded both ways.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

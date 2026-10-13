@@ -12,10 +12,10 @@ and is detected at run time rather than trusted, provided the result is inspecte
 library's theorems do not test for NaN. See the README's trust base.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

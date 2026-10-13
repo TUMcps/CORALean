@@ -8,10 +8,10 @@ every row it marks as moved is an appended row or the inverted partner of one: s
 row is implied by an appended equality, and each appended equality by two inequalities.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

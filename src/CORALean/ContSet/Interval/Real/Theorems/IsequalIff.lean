@@ -9,10 +9,10 @@ For two nonempty boxes equal sets give equal bounds, so `isequal` holds exactly 
 Two crossed boxes are both `∅` and need not have equal bounds, so nonemptiness is needed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

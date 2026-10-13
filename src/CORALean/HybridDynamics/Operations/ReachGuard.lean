@@ -29,10 +29,10 @@ R̄([0, r])`. Generic over the representations and the scalar: one definition, b
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ undefined, and the first is taken, giving `F_1^{(1)} = G`, which is the coeffici
       Conference, pp. 3559-3566, 2012.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

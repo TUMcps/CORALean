@@ -12,10 +12,10 @@ are Mathlib's, `V` orthogonal; MATLAB's `eig` picks its own, and any choice give
 eigenvalue is `0` where MATLAB's is imaginary: a covariance has none.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

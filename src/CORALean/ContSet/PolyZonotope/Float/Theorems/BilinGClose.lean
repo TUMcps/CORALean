@@ -13,10 +13,10 @@ Generator `(i, j)` of the float pairing, rounded down, is off the exact `Gᵢᵀ
 enters as a pair of bounds, picked per term, bracketing the form from both sides.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

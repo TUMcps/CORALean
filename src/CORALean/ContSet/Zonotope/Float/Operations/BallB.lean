@@ -8,10 +8,10 @@ largest absolute row sum of `H`, rounded down. Nothing is trusted about it: `Zon
 checks the radius it is given, so a bad candidate (a zero row sum, say) only costs the `true`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

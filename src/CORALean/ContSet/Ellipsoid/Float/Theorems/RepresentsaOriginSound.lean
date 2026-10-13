@@ -9,10 +9,10 @@ A `true` answer makes `G` and `q` `0`, so the nominal part is `{0}`, and the err
 ellipsoid is `{0}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

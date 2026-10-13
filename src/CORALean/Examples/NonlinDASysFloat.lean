@@ -21,10 +21,10 @@ box, under inputs in the interval, lies at every time of window `k` in `Rs[k]`. 
 shows the run returns `some` (eight windows).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

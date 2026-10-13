@@ -14,10 +14,10 @@ substituted generator index and so has to be pronounceable in a statement.
 set with no dependent generators is constant in every factor.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

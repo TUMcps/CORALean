@@ -10,10 +10,10 @@ with no generator the combination is `0`. The origin is the point whose centre i
 set is never represented: `Zonotope.centre_mem_construct` puts the centre in every zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

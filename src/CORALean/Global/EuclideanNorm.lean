@@ -21,10 +21,10 @@ and that the closed unit ball is convex and compact — and the finite-sum
 triangle inequality a Hausdorff bound asks of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   16-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ them, so the paper's test implies this one. The domain is `ℝʳ × ℝᵐ⁻ʳ`
       Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

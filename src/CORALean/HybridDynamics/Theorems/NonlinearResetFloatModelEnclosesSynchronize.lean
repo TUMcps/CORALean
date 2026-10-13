@@ -10,10 +10,10 @@ idStates`: the pre-jump value at `idStates` plus the sum of the component values
 rounding. An outer statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

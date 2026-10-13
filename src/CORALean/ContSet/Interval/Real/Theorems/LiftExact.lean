@@ -8,10 +8,10 @@ For distinct target coordinates `proj`, the lifted box is the set of points of `
 `proj`-coordinates lie in `I`, the others free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

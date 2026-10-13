@@ -11,10 +11,10 @@ over `R^z`, `u* ∈ U`, `0 ∈ Verror`, and the step admissible for `oneStep` at
 `initReach` asks it of the linearization of the part that holds the run's start.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,10 +20,10 @@ reach rather than its generator count, one step at a time and no induction —
 `reach_subset_closedBall` is where the steps compose into a run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

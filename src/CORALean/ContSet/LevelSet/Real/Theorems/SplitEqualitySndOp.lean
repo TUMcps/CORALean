@@ -4,10 +4,10 @@ import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
 # The second part of `splitEquality` holds no equality
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.Global.Float.SoundFloatArithmetic
 Exact: the bounds are halved exactly (`toReal_half`), so `(1/2) • x` lies in the halved box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

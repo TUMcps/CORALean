@@ -12,10 +12,10 @@ coordinates reading the same input must agree, and an axis-aligned box cannot
 express that — which is why `Reindex` takes an `Equiv`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

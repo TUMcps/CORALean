@@ -19,10 +19,10 @@ radius. `LinComb` is CORA's `convHull_`, also an enclosure: the hull of two caps
 capsule.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

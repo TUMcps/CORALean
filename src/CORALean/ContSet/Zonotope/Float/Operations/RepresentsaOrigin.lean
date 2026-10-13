@@ -8,10 +8,10 @@ CORA's `@zonotope/representsa_` at type `origin` with tolerance `0`: every gener
 centre are `0`, and the error box is `{0}`. A `true` is sound, a `false` decides nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

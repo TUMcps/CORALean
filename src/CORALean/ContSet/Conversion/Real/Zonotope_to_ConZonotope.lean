@@ -9,10 +9,10 @@ unconstrained case: `fullspace` is the unit of the coefficient domain's `interse
 so the empty constraint list denotes the whole coefficient space.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   02-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

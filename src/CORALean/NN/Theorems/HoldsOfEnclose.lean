@@ -11,10 +11,10 @@ is means tightening the enclosure. `Sound.holds_of_enclose` is the same transfer
 function the network is sound at, which a reduced network needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       24-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

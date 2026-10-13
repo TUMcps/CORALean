@@ -10,10 +10,10 @@ rounds — the fields are copied, error box included — so the enclosure is the
 exact layer's, carried across by `mono_subset`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ the first is in `comb(H, H(t_{k+1}))` whenever `h'` is in `H(t_{k+1})`, and the 
 (`curvatureEnclosure_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

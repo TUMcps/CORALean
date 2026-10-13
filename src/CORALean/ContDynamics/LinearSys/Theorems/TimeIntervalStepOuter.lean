@@ -13,10 +13,10 @@ bounds from membership, and `η`'s own `m + 2` witness from `2 ≤ η`, is all
 this adds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

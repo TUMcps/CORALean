@@ -11,10 +11,10 @@ and the independent block is empty, `bilin` being a claim about `point`.
 structure instance in `Operations/Bilin.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

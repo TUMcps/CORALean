@@ -15,10 +15,10 @@ plus the remainder interval. Written as a pair (lower, upper), as `Taylm.bounds`
 * [2] `contSet/@taylm/optBernstein.m`, CORA (Sep. 2025).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

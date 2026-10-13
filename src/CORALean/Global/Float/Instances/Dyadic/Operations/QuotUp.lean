@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.Dyadic.Dyadic
 turning the floor into a ceiling exactly as `roundUp` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import Mathlib.Tactic.Abel
 The centre is the only thing that moves, so the same factors reach `x + v` in both sets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

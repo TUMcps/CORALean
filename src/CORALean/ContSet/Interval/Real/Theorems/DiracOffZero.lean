@@ -8,10 +8,10 @@ Where `0` is outside the interval (`0 < inf` or `sup < 0`, on a nonempty coordin
 vanishes on the whole interval and `dirac` returns the point `0`, for every `n`: exact there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

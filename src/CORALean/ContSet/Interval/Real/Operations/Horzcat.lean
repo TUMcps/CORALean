@@ -8,10 +8,10 @@ CORA's `@interval/horzcat`: the two bound matrices are concatenated side by side
 associative, so two operands are the whole content (a numeric matrix is `Interval.point`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

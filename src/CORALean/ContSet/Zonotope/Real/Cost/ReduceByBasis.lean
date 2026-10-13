@@ -12,10 +12,10 @@ of the `n` output rows sums `r` absolute values (`2 * n * r`), and each column
 of `P` is scaled by its sum (`n * n`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

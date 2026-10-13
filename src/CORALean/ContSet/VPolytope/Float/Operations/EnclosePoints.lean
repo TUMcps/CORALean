@@ -8,10 +8,10 @@ CORA's `enclosePoints`: the polytope spanned by a list of points, the points as 
 The points are stored floats, so the hull of them is exact and the error box is the origin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

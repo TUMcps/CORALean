@@ -10,10 +10,10 @@ factor alike, given the side condition at `η` — which then also holds at
 `Antitone`: the successor case is all the tuning algorithm needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

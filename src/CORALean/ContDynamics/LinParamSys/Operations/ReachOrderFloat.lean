@@ -11,10 +11,10 @@ from `max η 2` that `MatExp.admissibleOrder` certifies against the float norm
 bound of `[tLo, tHi] · sys.A`. `reachOrderFloat_spec` is what it guarantees.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
 `i ≤ tFinal - tStart` in the list.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The generators of `PolyZonotope.subs`, rounded down: the term's coefficient brac
 original generator's entry, through the directed product.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

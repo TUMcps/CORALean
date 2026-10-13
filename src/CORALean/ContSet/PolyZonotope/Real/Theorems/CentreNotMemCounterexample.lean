@@ -13,10 +13,10 @@ CORA's `@polyZonotope/contains_` with `'approx'` nevertheless returns `true` for
 `containsPointApprox` takes the shortcut only where no column is zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

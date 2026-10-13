@@ -12,10 +12,10 @@ substituted factor being the term's index. The coefficients are bracketed by dir
 goes into the error box by `generatorError`, added to the box the set already had.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

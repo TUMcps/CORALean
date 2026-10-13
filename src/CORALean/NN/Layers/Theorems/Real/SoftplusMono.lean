@@ -7,10 +7,10 @@ import Mathlib.Tactic.Positivity
 For a positive sharpness: `exp`, `1 + ·`, `log` and division by `β` are all monotone there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

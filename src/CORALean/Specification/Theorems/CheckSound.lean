@@ -9,10 +9,10 @@ nothing more. Stated on `construct s`, not on the set `s` was computed to enclos
 every system's, takes both steps at once.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

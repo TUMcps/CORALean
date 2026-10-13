@@ -10,10 +10,10 @@ at order `0`, then `A(σ)` against the continuous term one order down — and a
 primitive of a locally integrable function is continuous.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

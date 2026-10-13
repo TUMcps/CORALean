@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/Mtimes.lean` sends each of the `k` vertices
 through `M *ᵥ ·`, one matrix-vector product per vertex and nothing else.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

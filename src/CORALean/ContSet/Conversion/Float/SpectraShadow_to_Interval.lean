@@ -11,10 +11,10 @@ they prove (`SpectraShadow.dualBound`, rounded outward). `none` when a certifica
 enclosure only: the bounds are the solver's, not the support values themselves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

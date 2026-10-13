@@ -14,10 +14,10 @@ extra variable keeps every stored entry a stored float, its exact negation, `zer
 error boxes are ignored: `SpectraShadow.inter` absorbs them first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

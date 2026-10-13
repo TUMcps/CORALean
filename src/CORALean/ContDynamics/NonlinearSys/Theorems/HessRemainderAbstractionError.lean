@@ -18,10 +18,10 @@ their interval products, the last in `[-l, l]` by `abs_bilin_le_bilinUp`, every
 entry of `|dz|` and of `|Hᵢ|` bounded by the larger end of its box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ row of a new factor being the sum of the rows of the factors sent to it (natural
 exact). Centre, generators and error box are copied; nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

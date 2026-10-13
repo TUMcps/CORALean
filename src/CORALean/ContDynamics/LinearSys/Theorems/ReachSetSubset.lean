@@ -15,10 +15,10 @@ from takes no initial set: only here, to place `x 0` in `R₀`.
 `ReachSetSuperset` is the other half.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       15-September-2026
 -- Last update:   19-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ the `j`-th element of the same finset many times builds its elements into an
 index past the table's end, which a table of the right length never reaches.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

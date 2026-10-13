@@ -9,10 +9,10 @@ import Mathlib.Analysis.SpecialFunctions.Sqrt
 `Real.sqrt` is monotone and the exact enclosure is sound, so `Relaxation.ofMonotone_sound` applies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

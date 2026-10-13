@@ -20,10 +20,10 @@ leading `(m-1) × (m-1)` block `T'` of `T_m` satisfies a Krylov identity (2.2) o
   2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

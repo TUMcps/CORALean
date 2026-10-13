@@ -8,10 +8,10 @@ The affine relaxation is the order-1 case: `offset` and `slope` are the two coef
 constant first, and nothing is rounded — the same stored values, read differently.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

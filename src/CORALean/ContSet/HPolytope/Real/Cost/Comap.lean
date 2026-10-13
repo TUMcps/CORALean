@@ -14,10 +14,10 @@ reading `HPolytope.halfScaledCost` states: the new row is the old one copied
 into a longer vector of zeros, which is data movement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

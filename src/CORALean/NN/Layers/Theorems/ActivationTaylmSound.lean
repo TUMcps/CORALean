@@ -15,10 +15,10 @@ evaluated at `f i` and the constant deviation `σ (x i) - p (x i)`, which the er
 are functions the output models enclose, and at `t` they add up to `σ (x i)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

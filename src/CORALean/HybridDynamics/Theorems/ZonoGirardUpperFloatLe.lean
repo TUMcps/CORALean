@@ -8,10 +8,10 @@ the rounded support function bounds in the direction `(-μ, 1)`; `x·ℓ = (x·�
 `μγ` is below `mulUp μ γ`, so every dual value bounds `x·ℓ`, and so does the least of them.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

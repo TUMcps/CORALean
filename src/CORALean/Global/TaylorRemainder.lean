@@ -12,10 +12,10 @@ excludes. Global derivatives keep the statement usable for `log` and `sqrt`, smo
 an open half-line.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

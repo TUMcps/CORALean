@@ -11,10 +11,10 @@ proved that. The whole obligation is that each corner and each row sum rounds
 the right way, exactly as `Mtimes.lean`'s does for a matrix acting on a box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

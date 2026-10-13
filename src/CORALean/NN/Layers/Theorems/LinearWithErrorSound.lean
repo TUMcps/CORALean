@@ -11,10 +11,10 @@ its nominal value, a real number with no reason to be rounded, and pays the rest
 enclosure. That centre is inside `E` only when `E` is nonempty, which is the one hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

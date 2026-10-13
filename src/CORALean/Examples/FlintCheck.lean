@@ -19,10 +19,10 @@ Prints the samples per operation and the first failing input; exits `1` on any v
 side is elaborated on every commit; only the link needs FLINT (CI job `flint-check`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

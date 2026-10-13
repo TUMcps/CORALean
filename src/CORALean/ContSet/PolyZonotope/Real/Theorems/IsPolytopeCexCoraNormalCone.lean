@@ -11,10 +11,10 @@ At a corner `(a, b, c)` with no zero factor the columns are `-sign(a) (2, c)`,
 `-sign(b) (1, 0)`, `-sign(c) (0, a)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

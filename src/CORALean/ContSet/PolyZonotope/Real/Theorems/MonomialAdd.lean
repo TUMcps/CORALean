@@ -7,10 +7,10 @@ Exponent columns add where monomials multiply — what keeps the representation
 closed under a quadratic map, which sums exponent columns pairwise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

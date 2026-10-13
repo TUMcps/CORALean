@@ -14,10 +14,10 @@ This is what lets the closed form — `variation_of_constants` and everything
 resting on it — be used at `'constParam'` without being restated.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

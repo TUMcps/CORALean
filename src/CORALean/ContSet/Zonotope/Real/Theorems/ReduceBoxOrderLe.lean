@@ -13,10 +13,10 @@ that the set is inhabited, so the empty-set branch of `sInf` cannot be the one
 taken — the same shape `MatExp.expRemainderOrder_le` has.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

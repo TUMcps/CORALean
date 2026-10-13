@@ -19,10 +19,10 @@ is all this proof reads of the sort — at fixed `o` that is only `n ^ 2`, so
 neither the sort's shape nor a later tightening of it shows here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

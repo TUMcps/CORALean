@@ -9,10 +9,10 @@ set: `reach_outer` handed to `Specification.holds_of_outer`, the same step a
 network's exact image takes, on the same theorem.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ With no piece the region is empty. Otherwise the piece that holds every piece
 (`VPolytope.convex_construct`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

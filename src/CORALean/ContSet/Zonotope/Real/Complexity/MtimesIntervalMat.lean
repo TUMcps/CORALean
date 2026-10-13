@@ -9,10 +9,10 @@ the row count of the matrix, not a function of the operand's own size. `rfl`,
 since `Operations/MtimesIntervalMat.lean` states `h` directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

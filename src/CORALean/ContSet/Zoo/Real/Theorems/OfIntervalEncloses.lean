@@ -8,10 +8,10 @@ Both members enclose the map the domain's `i`-th variable stands for, `mid + rad
 the normalized box, which ranges over `[inf i, sup i]`; for a nonempty coordinate interval.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

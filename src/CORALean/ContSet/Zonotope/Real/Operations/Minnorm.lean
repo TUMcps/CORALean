@@ -23,10 +23,10 @@ CORA takes `min(b.^2)` and its square root; `b ≥ 0`, so this is the minimum it
 * [2] `contSet/@zonotope/minnorm.m`, CORA (Sep. 2025).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

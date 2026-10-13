@@ -11,10 +11,10 @@ induction `e^{A t 2^j/2^s}` is in the `j`-th square, since
 `e^{2xA} = e^{xA} e^{xA}` and `Interval.matMul_outer` holds a product of members.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

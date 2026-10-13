@@ -7,10 +7,10 @@ import CORALean.NN.Operations.WeightAccEval
 `W₂ (W x + b) + b₂ = (W₂ W) x + (W₂ b + b₂)`, exactly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

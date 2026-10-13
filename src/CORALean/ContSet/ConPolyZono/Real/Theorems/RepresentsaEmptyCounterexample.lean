@@ -13,10 +13,10 @@ constraint `α₁ = 2`, which no `α₁ ∈ [-1, 1]` satisfies. `ConPolyZono.con
 printed check answers `false`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.Global.Float.SoundFloatArithmetic
 The padded slot is the only one that moves, and `zero` reads as `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Float.Interval
 CORA's `@interval/cosh`, coordinate by coordinate, over `coshLo` and `coshHi`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

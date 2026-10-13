@@ -9,10 +9,10 @@ of `⋂` — `(⋃ Aᵢ) + (⋃ Bⱼ)` is exactly `⋃ᵢⱼ (Aᵢ + Bⱼ)`, so 
 loses nothing a union-shaped result could keep.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

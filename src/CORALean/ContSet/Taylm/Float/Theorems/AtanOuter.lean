@@ -16,10 +16,10 @@ the centre are `atanPoly j c · wʲ⁺¹` (`iteratedDeriv_atan`), the polynomial
 bounded by `atanDom N` at the magnitude (`abs_iteratedDeriv_atan_le`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

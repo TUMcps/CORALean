@@ -11,10 +11,10 @@ directions needs bounds for every polytope, and that oracle does not exist here.
 among halfspaces, so keeping the description is the sound stand-in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   07-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

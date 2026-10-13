@@ -11,10 +11,10 @@ no for equal regions (two halves of a square against the square; not proved here
 boundary comparison (R-PG) is not formalized.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

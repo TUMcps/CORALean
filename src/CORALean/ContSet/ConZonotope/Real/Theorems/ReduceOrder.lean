@@ -14,10 +14,10 @@ from Girard's rule, which reserves `n` of its budget for the box it adds. A
 bundle's reduction adds nothing, so it needs no budget and no hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

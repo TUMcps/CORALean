@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
 Every power `t ^ k` of a point of `[l, u]` lies in the stored range, by `Interval.power_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

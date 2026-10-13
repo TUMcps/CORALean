@@ -13,10 +13,10 @@ the dependent point map of the result at `(α, β)` is the nominal set's point a
 `dependent`, the error box is not turned into generators, which would enlarge the set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

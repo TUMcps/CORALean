@@ -7,10 +7,10 @@ The point `0` as a zonotope with no generators, the centre stored as `zero`
 and the error box at zero, as `Interval.origin` is for a box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

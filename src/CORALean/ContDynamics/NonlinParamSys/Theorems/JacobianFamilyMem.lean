@@ -11,10 +11,10 @@ The Jacobian of a map affine in `p` in the variable `z` is affine in `p` as well
 `linearize` builds. `z` is the state or the input: `zA` and `zB` are the two cases.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

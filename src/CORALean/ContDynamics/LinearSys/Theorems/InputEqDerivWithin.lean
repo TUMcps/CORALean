@@ -10,10 +10,10 @@ back to `0` — where `ClassicalTrajectory.trajectory` cannot hand the run to
 `Trajectory`, whose integral equation is anchored there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

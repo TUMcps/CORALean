@@ -17,10 +17,10 @@ Homogeneous only: with a non-zero input the difference also picks up the input
 integral, which is `TrajectoryDeltaReachOuter`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

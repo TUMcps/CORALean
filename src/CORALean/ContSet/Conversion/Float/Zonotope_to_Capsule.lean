@@ -9,10 +9,10 @@ CORA's `capsule(zonotope)` with the SVD basis taken as the identity: the capsule
 outer enclosure, as over ℝ; it is not CORA's rotated capsule.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

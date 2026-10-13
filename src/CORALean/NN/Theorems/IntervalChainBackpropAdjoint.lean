@@ -13,10 +13,10 @@ tangent rule, and the chain composes them in opposite orders. The linear layer's
 activation's is a diagonal map, its own transpose.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ off-diagonal entries of its row, `vᵀ M v ≥ 0`. Each off-diagonal term is bou
 what remains is `Σ_i v_i² (M_ii - Σ_{j≠i} |M_ij|)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

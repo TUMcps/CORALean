@@ -12,10 +12,10 @@ import Mathlib.Analysis.Calculus.Deriv.Add
 of `Fin p → ℝ`: each monomial is a finite product of powers of coordinates.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

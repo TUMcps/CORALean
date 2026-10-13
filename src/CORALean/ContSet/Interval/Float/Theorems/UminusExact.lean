@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.UminusExact
 Negation is exact, so the float box denotes the same set the exact layer's does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

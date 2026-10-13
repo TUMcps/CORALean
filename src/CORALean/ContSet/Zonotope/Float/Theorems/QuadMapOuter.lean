@@ -9,10 +9,10 @@ zonotope's quadratic map is enclosed by `PolyZonotope.quadMap_outer`, and its po
 zonotope's (`zonotope_contains`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

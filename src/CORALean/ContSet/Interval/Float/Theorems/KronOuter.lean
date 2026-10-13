@@ -11,10 +11,10 @@ The real layer has proved the statement for the nominal boxes; what is left is t
 product rounds the right way, `mulLo_le` and `le_mulHi`, exactly as `matMul_outer` does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

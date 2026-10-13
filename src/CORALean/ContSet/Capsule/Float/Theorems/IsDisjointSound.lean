@@ -10,10 +10,10 @@ the other, so by the triangle inequality the Euclidean distance of the centres, 
 their gap in coordinate `i`, would be at most the sum. `false` refutes nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

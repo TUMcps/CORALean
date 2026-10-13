@@ -8,10 +8,10 @@ An equality with no hypothesis: the stored stencil denotes the stencil over ℝ 
 that were read in, entry for entry, `toReal_tapEntry` row by row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

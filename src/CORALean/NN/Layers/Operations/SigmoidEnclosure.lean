@@ -12,10 +12,10 @@ compute each side from: `expUp` needs its argument bounded and `expDown` does no
 below. `k` is the exponential's reduction depth: every `k` is sound, a larger one tighter.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

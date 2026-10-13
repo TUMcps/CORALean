@@ -9,10 +9,10 @@ adds nothing, so the set is `{c}` (nonempty: `point_mem_construct`). Sufficient 
 a point with nonzero generators that cancel (`g α` and `-g α`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

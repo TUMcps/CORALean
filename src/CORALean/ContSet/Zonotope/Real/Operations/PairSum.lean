@@ -11,10 +11,10 @@ Half the sum of a generator and the column it pairs with; past the shorter
 block there is no partner and the generator is kept whole.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ horizon ending before it starts is `0` steps under ℕ's subtraction, where CORA
 refuses it, and every guarantee here is stated at `tStart = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       18-August-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

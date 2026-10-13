@@ -6,10 +6,10 @@ import CORALean.ContSet.LevelSet.Real.Operations.Lift
 The lifted level set is exactly the points whose selected coordinates lie in the original.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

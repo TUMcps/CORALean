@@ -5,10 +5,10 @@ import Mathlib.Tactic.Linarith
 # `HPolytope.emptySet` denotes `∅`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

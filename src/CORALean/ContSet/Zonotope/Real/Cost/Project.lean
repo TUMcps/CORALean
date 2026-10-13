@@ -9,10 +9,10 @@ Asserted, not proved: `Operations/Project.lean` is `Zonotope.map` of
 computes nothing, so one application is free and the count is `mapCost` at zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ Every entry `eqScalar`: the exact test for equal (or, against a negated row, inv
 `compact_` makes, where CORA's is `withinTol` at its tolerance.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

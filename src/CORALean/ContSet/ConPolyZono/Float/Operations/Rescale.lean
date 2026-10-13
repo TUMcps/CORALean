@@ -13,10 +13,10 @@ rounding did; each `getSubset` step pays its own rounding into the error box and
 result is outer, never the exact rescaling.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

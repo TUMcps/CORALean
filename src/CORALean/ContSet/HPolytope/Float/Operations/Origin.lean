@@ -8,10 +8,10 @@ CORA's `polytope.origin(n)` in its halfspace form: no inequalities and the `n` e
 `xᵢ = 0`, the identity matrix against the point box `[0, 0]`. The entries are `one` and `zero`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

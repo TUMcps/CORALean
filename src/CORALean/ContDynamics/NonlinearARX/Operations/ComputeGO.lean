@@ -21,10 +21,10 @@ window `x0` itself and need no linearization, which is CORA's `C{k}`, `D{k,·}` 
 * [1] `contDynamics/@nonlinearARX/computeGO.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

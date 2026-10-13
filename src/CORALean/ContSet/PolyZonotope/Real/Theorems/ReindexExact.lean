@@ -13,10 +13,10 @@ sides. They are the reindexed ones up to unfolding, and writing them so keeps
 the equation to the one sum that actually moves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

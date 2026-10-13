@@ -15,10 +15,10 @@ Nothing here asks for convexity: the claim is about the segments themselves, so
 it is the statement a non-convex representation could also make.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

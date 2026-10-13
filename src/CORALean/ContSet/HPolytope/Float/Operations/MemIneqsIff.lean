@@ -6,10 +6,10 @@ import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 Membership at each shape, the block that is absent discharged by `Fin.elim0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

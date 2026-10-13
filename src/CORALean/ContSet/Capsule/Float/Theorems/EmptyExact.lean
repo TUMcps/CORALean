@@ -7,10 +7,10 @@ import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
 `neg one` reads as `-1`, so the stored capsule is the exact layer's empty one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

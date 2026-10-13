@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.Flint.Operations.Le
 `le` is `Dyadic.le` of the same pairs, so this is `Dyadic.toReal_le_of_le`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

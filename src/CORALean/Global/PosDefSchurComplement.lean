@@ -13,10 +13,10 @@ block matrix at `(x, -D⁻¹ Bᵀ x)`, which is `xᵀ (A - B D⁻¹ Bᵀ) x` by
 `Matrix.schur_complement_eq₂₂` and nonzero with `x`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

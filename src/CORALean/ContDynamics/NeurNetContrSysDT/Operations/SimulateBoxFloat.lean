@@ -14,10 +14,10 @@ real run lies in the boxes by `simulate_mem_simulateBox` (ruling R-SIM). The
 enclosure is outer: `enclose` of a box is not a point even from a point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ CORA's `zonoBundle`/`replace(zB, index, Z)`: the `index`-th zonotope of the bund
 `Z` (`zB.Z{index} = Z`), the others kept and the count unchanged.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

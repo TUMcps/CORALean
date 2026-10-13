@@ -11,10 +11,10 @@ The lifted polytope is `P` read at the coordinates `dims` (`lift_exact`, for an 
 the same two conditions as over ℝ, with nothing rounded.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

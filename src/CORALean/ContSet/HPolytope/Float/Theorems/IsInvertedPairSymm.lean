@@ -6,10 +6,10 @@ import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
 The test checks each direction, so it is symmetric.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

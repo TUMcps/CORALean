@@ -10,10 +10,10 @@ consistent initial algebraic state exists there and is unique in that ball. The 
 here the test the float run adds (`newtonTestFloat_sound`) makes the claim about the root itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ intersection lies in every branch, so it sums into every pairwise `plus`,
 which is what makes the pairwise intersection an outer bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

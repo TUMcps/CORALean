@@ -12,10 +12,10 @@ import CORALean.NN.Theorems.SoundEval
 step, and every step lands in its own branch of the `SetUnion`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

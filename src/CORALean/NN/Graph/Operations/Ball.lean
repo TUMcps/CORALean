@@ -23,10 +23,10 @@ extra hop `[1, §4.3]` needs is for *computing* `P = D̃^(-1/2) Ã D̃^(-1/2)` f
       Structure". TMLR, 2025. arXiv:2404.15065.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 scalar known only to lie in that range rather than an exact one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

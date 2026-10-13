@@ -26,7 +26,7 @@ while the corners `(0,0)` and `(1,0)` both attain the minimum `0` of the square.
 -- Authors:       Claude Sonnet 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

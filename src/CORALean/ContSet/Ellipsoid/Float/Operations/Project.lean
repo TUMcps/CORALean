@@ -8,10 +8,10 @@ The centre and the rows of the generator matrix at the chosen coordinates, and t
 projected with `Interval.project`. Selecting coordinates does no arithmetic, so nothing rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

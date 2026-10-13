@@ -9,10 +9,10 @@ The map of the mixed form `cubMap(S₁, S₂, S₃, T)`: `zᵢ = Σₖ (x₃)ₖ
 arguments independent. `cubEval` is its diagonal `x₁ = x₂ = x₃`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

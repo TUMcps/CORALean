@@ -19,10 +19,10 @@ convention `Interval` uses for a crossed box, and the reason the structure
 below carries no `0 ≤ r` field.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

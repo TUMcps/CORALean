@@ -18,10 +18,10 @@ factor vector back as each set's own. Nothing about the monomials rounds, so
 this is a zonotope's `plus` with an extra block.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

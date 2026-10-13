@@ -8,10 +8,10 @@ import CORALean.Global.Float.Sqrt
 gives a lower bound and `sqrtDown` floored at `1` (the true root is at least `1`) an upper one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

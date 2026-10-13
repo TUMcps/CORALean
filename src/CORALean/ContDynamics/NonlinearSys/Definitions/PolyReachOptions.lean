@@ -10,10 +10,10 @@ the derivative bundle and the two set operations lines 3, 9 and 13 stand for,
 iterations `reach` unions.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

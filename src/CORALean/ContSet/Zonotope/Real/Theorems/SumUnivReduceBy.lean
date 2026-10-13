@@ -9,10 +9,10 @@ rewrite a binder's type, which is also why the float refinement proof reaches
 for it rather than for `Fin.sum_univ_add` directly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

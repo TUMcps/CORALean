@@ -10,10 +10,10 @@ to `[iΔt, (i+1)Δt]`, linearize there, apply `stepInput_outer` — which is why
 shift appears, unlike in `relinReach_outer`'s own induction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

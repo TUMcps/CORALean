@@ -9,10 +9,10 @@ error box is added to every point, so the float set lies in `c` plus the error b
 point unless that box is: the float statement is outer, never that the set is `{c}`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

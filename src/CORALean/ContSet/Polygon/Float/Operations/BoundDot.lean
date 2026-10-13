@@ -10,10 +10,10 @@ with the first piece's, so the bound of a polygon is not pulled up to `0`. A pol
 is empty, and then `zero` is as good a bound as any (CORA gives `-Inf`, outside `𝕋`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

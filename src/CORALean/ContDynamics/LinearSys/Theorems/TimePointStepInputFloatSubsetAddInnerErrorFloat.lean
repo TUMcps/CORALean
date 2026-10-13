@@ -16,10 +16,10 @@ the system reaches at `t = r` (`discretize_reachSet_subset_inputReach`).
 `X₀`'s own error box, which `e^{Ar}` carries into `[e^{Ar}]` applied to it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

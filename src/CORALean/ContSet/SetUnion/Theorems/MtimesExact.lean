@@ -10,10 +10,10 @@ branch itself via `hExact`, and re-covers it as a point of the original union.
 `mtimes_outer` supplies the direction this adds nothing to.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

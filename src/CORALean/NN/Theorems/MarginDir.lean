@@ -11,10 +11,10 @@ of concrete networks in `Examples`, and via `DisjointMisclassifiedOfBounds` and
 `Classifies` at any network's image.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

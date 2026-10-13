@@ -8,10 +8,10 @@ import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
 step starts from, carried half a step along the field.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

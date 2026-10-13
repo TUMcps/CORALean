@@ -14,10 +14,10 @@ bound `exp(max(c, hi)) Bᴺ⁺¹ / (N+1)!` as a product of upward roundings. `p`
 of the two exponentials (`Global/Float/Exp`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

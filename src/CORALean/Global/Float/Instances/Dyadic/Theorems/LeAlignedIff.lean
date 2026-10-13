@@ -8,10 +8,10 @@ Aligned to the common exponent by `toReal_align`, both numbers are a mantissa ti
 positive scale, so comparing them is comparing integers.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

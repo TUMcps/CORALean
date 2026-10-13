@@ -14,10 +14,10 @@ keeps a selection rule free to be a heuristic. At `o = 0` there is nothing to
 state: CORA floors the budget at nothing and adds the box of `n` regardless.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

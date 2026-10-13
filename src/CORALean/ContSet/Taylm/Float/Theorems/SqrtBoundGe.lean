@@ -10,10 +10,10 @@ product `sqrtDeriv (N+1) / 2ᴺ⁺¹` (`eval_descPochhammer_half`), and a negati
 `ξ ≥ m₀` is bounded by `m₀^(1/2 - (N+1)) = √m₀ · (1/m₀)ᴺ⁺¹`. Each factor is below its rounding.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

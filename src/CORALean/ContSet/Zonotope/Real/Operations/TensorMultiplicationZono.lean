@@ -11,10 +11,10 @@ CORA's `@zonotope/tensorMultiplication_zono.m`: the tensor is a matrix zonotope
 M.generator{i})` with Minkowski sums.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

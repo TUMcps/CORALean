@@ -15,10 +15,10 @@ the term `pcaBasis` feeds to `Matrix.IsHermitian.eigenvectorUnitary` to get an
 eigenvector basis at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

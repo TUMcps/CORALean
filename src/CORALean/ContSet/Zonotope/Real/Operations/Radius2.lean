@@ -11,10 +11,10 @@ the centre, so the minimum is one too, but not the smallest such radius: that ne
 `max_β ‖∑ βⱼ Gⱼ‖₂`, which CORA does not compute.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

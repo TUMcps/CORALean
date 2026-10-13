@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 Output `ii` of `pZin` as a sum of monomials, each stored coefficient a degenerate bracket.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

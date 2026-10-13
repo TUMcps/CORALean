@@ -24,10 +24,10 @@ Only `_outer`, as over ℝ, and for the exact layer's reason rather than a
 rounding one: the independent coefficients cannot be tied to the same `λ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   03-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

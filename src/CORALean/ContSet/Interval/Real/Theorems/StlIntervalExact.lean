@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Real.Operations.StlInterval
 The set of times of the STL interval is the set of values of the one coordinate over the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

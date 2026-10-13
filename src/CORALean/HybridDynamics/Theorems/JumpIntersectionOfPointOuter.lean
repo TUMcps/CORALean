@@ -13,10 +13,10 @@ And the same price: the guard is in the state's own family, `Intersection.inters
 nowhere else to put it (#39).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

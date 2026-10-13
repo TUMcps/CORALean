@@ -8,10 +8,10 @@ at all — `Vec ℝ (p * q)` is what a layer sees either way — so this relabel
 content a reshape has. It carries no scalar.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ returns only an `s` its test accepted, and `le`'s `true` is sound, so
 `nrm ≤ half (η + 2)↓ ≤ (η + 2)/2`. `2 ≤ η` is the caller's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ additions at `Vec ℝ n` — and lays every other field block-diagonally, by
 allocation work and free under `Global/Cost.lean`'s model.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

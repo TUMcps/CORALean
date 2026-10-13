@@ -8,10 +8,10 @@ sup norm. Both come from the last clip: `z ∈ [max(l, x - ε), min(u, x + ε)]`
 exactly when the hypothesis holds, and at least one pass has run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

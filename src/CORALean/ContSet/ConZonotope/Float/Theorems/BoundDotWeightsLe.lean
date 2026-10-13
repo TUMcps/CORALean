@@ -8,10 +8,10 @@ the float constrained zonotope reads at most the bound. This is the theorem that
 makes the simplex untrusted: `boundDot` is this at one particular weight vector.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

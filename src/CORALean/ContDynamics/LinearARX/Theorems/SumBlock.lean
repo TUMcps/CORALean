@@ -7,10 +7,10 @@ A sum over the coordinates of `Vec ℝ (p * dy)` is the sum over blocks of the s
 over the coordinates inside, by `finProdFinEquiv`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

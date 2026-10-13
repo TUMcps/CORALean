@@ -7,10 +7,10 @@ An underestimated denominator, so the quotient is an overestimate — the one di
 available without a hypothesis on the exponential's argument.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

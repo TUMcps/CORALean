@@ -8,10 +8,10 @@ Monotone, so `expDown` at the lower bound and `expUp` at the upper one. `p` is t
 the two enclosures (`Global/Float/Exp`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

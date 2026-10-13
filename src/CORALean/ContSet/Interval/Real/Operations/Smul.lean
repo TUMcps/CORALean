@@ -11,10 +11,10 @@ product is the low corner instead of carrying `c • inf` there blindly.
 `t ^ i / i ! • matPow A i`; the enclosure is `Theorems/SmulOuter`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

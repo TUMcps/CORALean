@@ -19,10 +19,10 @@ exact, and the product's labeled transition to be the only way to take a labeled
 holds here since labeled transitions are not lifted alone, but is not proved.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

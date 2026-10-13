@@ -9,10 +9,10 @@ The early exit of CORA's `isFullDim(SpS)` (`@spectraShadow/isFullDim.m`, l.63): 
 nonempty interior (`Theorems.IsFullDimIffAffineSpan`); the tolerance is not part of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

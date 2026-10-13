@@ -15,10 +15,10 @@ the error box; the strip part `Λ (y ⊕ diag(φ) [-1, 1]^p)` is `Zonotope.mtime
 box-shaped zonotope. The choice of `Λ` is not modelled, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

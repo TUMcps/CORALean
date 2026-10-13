@@ -14,10 +14,10 @@ modelled: CORA's `resolve`, which substitutes the output equations into the inpu
 reset's input matrix `B`; `Transition` has no `B` (#40), nor mixed linear and nonlinear resets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ computed only where `softmaxExpInRange` licenses it, and is zero elsewhere. The 
 bound capped at one, the `1` being what the same identity gives at a raw lower bound of zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

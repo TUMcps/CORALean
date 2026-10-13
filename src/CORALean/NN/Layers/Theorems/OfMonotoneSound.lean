@@ -9,10 +9,10 @@ enclosure, so `σ t` lies between two stored values and `abs_sub_le_spread` boun
 from the midpoint by the stored error.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
 The point is the centre, so the origin is the point whose centre is `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

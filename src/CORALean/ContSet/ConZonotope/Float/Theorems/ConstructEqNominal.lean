@@ -9,10 +9,10 @@ itself. This is what an operation that keeps its nominal part exact and drops th
 and what lets its guarantee be read off the coefficients.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

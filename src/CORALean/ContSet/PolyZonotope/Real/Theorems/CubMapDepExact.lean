@@ -9,10 +9,10 @@ On a set with nothing independent the image of the factors is the image of `P`'s
 `cubEval T '' P.construct = (cubMapDep T P).construct`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

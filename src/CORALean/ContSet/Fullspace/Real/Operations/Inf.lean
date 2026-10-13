@@ -6,10 +6,10 @@ import CORALean.ContSet.Fullspace.Real.Fullspace
 CORA's `fullspace.Inf(n)`: the full space in `n` dimensions, the only value of the type.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

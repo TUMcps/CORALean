@@ -10,10 +10,10 @@ is what the linearization `A_k, B_k` leaves out. Unrolled, `Δ(k+1)` is the desc
 `L_j`: the `A{k}`, `B{k,j}` and `F{k,j}` of CORA's `computeGO_k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

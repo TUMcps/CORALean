@@ -23,10 +23,10 @@ Not stated over `Reduce`: the class gives only `construct s ⊆ construct
 (reduce s o)`, which bounds nothing in this direction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ For `0 < n`, as `Interval.empty_exact`: in dimension `0` a box with no coordinat
 one point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

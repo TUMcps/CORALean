@@ -9,10 +9,10 @@ Outer, and of the set the code computes, `M Cplus`: not of the documented `M C â
 it misses (`Capsule.enclose_cora_counterexample`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

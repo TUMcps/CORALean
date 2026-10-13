@@ -7,10 +7,10 @@ import CORALean.Global.EuclideanNorm
 The segment contributes at most `‖g‖₂` (`t ∈ [-1, 1]`), the ball at most `r`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

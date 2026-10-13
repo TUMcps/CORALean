@@ -11,10 +11,10 @@ matrices and the offsets are summed, and the coordinates `idStates` add the iden
 `(W, w)`. Real, since the sum of floats is not exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

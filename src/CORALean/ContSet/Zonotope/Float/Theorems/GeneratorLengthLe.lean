@@ -8,10 +8,10 @@ The nominal zonotope's generator `j` has Euclidean length at most the rounded-up
 `Zonotope.generatorLength`: an outer statement, the stored number is never below the length.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

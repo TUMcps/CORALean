@@ -8,10 +8,10 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
 descriptions (Scott et al.), and a bundle with a member is one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

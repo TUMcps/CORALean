@@ -8,10 +8,10 @@ Outer: every law of `P` is a law of the reduced model, as the mean zonotope grow
 covariance is kept.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

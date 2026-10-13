@@ -8,10 +8,10 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 whichever corner of the box is farther out — the two summed by `abs_add_le`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

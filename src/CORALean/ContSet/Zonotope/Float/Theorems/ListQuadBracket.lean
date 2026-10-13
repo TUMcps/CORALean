@@ -10,10 +10,10 @@ By linearity in `k`: for `a < b` the symmetrized `quadMat k a b + quadMat k b a`
 `(j, a, a)`, and below the diagonal it is `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

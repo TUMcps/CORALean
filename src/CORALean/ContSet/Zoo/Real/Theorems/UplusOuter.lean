@@ -4,10 +4,10 @@ import CORALean.ContSet.Zoo.Real.Operations.Uplus
 # `Zoo.uplus` encloses the function
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

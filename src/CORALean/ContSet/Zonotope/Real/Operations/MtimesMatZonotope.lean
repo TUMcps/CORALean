@@ -17,10 +17,10 @@ a book here and no paper behind it could be confirmed.
       Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

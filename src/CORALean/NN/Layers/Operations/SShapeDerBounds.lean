@@ -8,10 +8,10 @@ Its maximum is `df 0` when `0` lies inside and `df` at the nearer end otherwise;
 `df` at the end farther from `0`. Not modelled: the `NaN` fallback `(0, 0.0001)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

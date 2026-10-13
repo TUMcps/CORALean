@@ -14,10 +14,10 @@ and `z = 0` when `s = 0`. That keeps the cone from adding the shadow's recession
 through the SVD of `G` (`generateESumRep`); here the point is `s c + G β'` as it is stored.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

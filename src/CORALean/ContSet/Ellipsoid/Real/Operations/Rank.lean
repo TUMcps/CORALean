@@ -11,10 +11,10 @@ CORA's `rank` of an empty ellipsoid is `0`; an `Ellipsoid` here is never empty (
 point `q`), so that case does not arise.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

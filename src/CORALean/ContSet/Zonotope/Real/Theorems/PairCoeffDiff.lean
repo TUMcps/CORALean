@@ -11,10 +11,10 @@ A proof device rather than an operation, hence in `Theorems/`: it only ever
 witnesses an existential and is never run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

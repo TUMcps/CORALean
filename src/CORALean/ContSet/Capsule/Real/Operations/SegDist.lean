@@ -13,10 +13,10 @@ bracket, so its minimiser can be wrong (`Capsule.isIntersecting_cora_counterexam
 value it intends. Here the least value is an infimum, attained (`Capsule.segDist_mem`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

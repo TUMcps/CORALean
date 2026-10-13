@@ -16,10 +16,10 @@ extremal function in `[x]`. The search is the argument `root`, held to
       and Practice of Constraint Programming (CP 2010), LNCS 6308, pp. 491-498, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

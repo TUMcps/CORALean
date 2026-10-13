@@ -8,10 +8,10 @@ For `I = interval(1, 3)` and `S = 0`: `c = 2`, `scaling = abs(0)./abs([-1 1]) = 
 (`contSet/contains.m` l. 87-91). Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

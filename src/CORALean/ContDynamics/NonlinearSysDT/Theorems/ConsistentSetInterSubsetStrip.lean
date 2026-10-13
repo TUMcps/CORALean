@@ -17,10 +17,10 @@ offset as `s_i` where it first names a scalar `d_i`; `s_i` is what the proof use
       Automatica, 41(6):1035-1043, 2005.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -4,10 +4,10 @@ import CORALean.ContSet.Taylm.Float.Operations.Uplus
 # `Taylm.uplus` encloses the function, over a floating-point scalar
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

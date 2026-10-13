@@ -10,10 +10,10 @@ result. At `n ≥ 1` the value at `0` is a distribution, not a number, and nothi
 exactness is claimed where `0` is in the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

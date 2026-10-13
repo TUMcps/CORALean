@@ -19,10 +19,10 @@ On a narrow box the bracket is tight and the error quadratic in the width; on a 
 above all across zero, it is loose, and `tighter` falls back on slope zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

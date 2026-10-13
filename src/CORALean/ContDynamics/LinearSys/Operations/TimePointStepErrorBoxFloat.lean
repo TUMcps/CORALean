@@ -10,10 +10,10 @@ with a zero error box, so its denotation is exactly that box: the error is paid 
 rounded up, which is the direction an inner approximation needs of the set it takes off.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ With `z = M (x - c) + w` and `v = N⁻¹ z`, `zᵀ N⁻¹ z = vᵀ z = vᵀ N v`
 sums to `2 vᵀ z ≤ vᵀ N v + (1 - p) + p`, so `vᵀ z ≤ 1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

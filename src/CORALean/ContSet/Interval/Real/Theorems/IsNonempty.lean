@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 in `NotIsNonempty`, it is the claim that crossed bounds denote `∅`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       17-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

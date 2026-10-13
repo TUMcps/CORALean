@@ -14,10 +14,10 @@ additions or scalings around each. Summed, that is at most
 the squared-terms and pair-terms share counted at the pair rate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

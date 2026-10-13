@@ -13,10 +13,10 @@ the windows `reachUnion` covers the horizon with are how it encloses this set,
 not part of it, and `Reach` reads the horizon off `params`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

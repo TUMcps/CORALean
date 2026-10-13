@@ -6,10 +6,10 @@ import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 The two right-hand sides side by side. Copied, so nothing here rounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

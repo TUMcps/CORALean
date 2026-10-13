@@ -10,10 +10,10 @@ separate from the pairing. `rfl`, since `Operations/Bilin.lean` states `k`
 directly. `BilinBigO.lean` puts this in `O`-notation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

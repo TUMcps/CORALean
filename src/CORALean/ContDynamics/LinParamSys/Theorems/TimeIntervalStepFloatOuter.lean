@@ -11,10 +11,10 @@ the stored matrix: `e^{As} x` splits into a point of the segment from `x` to
 interpolation error, which `[F]` at `sys.A` holds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

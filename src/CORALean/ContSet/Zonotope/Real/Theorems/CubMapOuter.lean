@@ -8,10 +8,10 @@ CORA's `@zonotope/cubMap`: `{ (xᵀ T x) * x | x ∈ Z } ⊆ Z.cubMap T`. Outer 
 are `Zonotope.cubMap_coeff`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

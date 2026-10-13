@@ -17,10 +17,10 @@ A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the p
 is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

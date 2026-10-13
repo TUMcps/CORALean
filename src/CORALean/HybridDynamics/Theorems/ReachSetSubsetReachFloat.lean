@@ -11,10 +11,10 @@ the location `ℓ`. Runs longer than the horizon, or with more jumps, are not
 claimed, as CORA's `reach` claims none past `tFinal`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

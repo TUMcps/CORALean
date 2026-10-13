@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Real.Theorems.CtransposeExact
 The same for the conjugate transpose, which over the reals a float reads as is the transpose.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

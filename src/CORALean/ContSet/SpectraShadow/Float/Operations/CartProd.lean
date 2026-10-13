@@ -10,10 +10,10 @@ coordinates of the product, zero in the other's, and the two are added. The padd
 exact zeros, so the only rounding is `plus`'s on the centre, where one summand is zero.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

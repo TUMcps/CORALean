@@ -18,10 +18,10 @@ time-point twin place `δ` over the window and at its end, and adding `x✱` bac
 places `x`. No certificate and no confinement is asked of the caller.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

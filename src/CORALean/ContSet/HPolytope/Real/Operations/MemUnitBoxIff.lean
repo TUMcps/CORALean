@@ -7,10 +7,10 @@ import Mathlib.Tactic.Linarith
 Membership is the two constraint halves read back as a bound on the magnitude.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

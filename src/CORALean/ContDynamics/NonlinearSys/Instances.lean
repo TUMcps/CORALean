@@ -18,10 +18,10 @@ representation, as `NeurNetContrSys`'s instance asks them, and discharge every s
 condition the linear step would otherwise put in `options`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

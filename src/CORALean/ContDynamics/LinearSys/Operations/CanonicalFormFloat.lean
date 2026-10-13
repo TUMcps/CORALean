@@ -23,10 +23,10 @@ sums at ℝ, are boxes here, each sum and product rounded outward. Soundness is
 * [1] `contDynamics/@linearSys/canonicalForm.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

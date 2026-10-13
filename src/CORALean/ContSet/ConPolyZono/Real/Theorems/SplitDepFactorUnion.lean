@@ -8,10 +8,10 @@ The union of the two halves is the original set: the constraints and the indepen
 unchanged into both, and only the domain of factor `r` is cut at `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

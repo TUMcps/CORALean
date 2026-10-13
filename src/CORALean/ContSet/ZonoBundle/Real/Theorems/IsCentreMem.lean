@@ -8,10 +8,10 @@ The centre is `c + G β` for a coefficient vector `β` feasible in the domain of
 which denotes the bundle exactly (`conZonotopeAll_exact`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

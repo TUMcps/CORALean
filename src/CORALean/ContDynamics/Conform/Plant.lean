@@ -29,10 +29,10 @@ is proved is what any feasible point of them guarantees.
       Transactions on Automatic Control, 71(5):3014-3029, 2026.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

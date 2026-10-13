@@ -8,10 +8,10 @@ that is not. `k` orders remain, from `k - 1` down; the fit is the supplied relax
 for `computeApproxPoly` with its error.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

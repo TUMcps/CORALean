@@ -19,10 +19,10 @@ in column `b` of the last row is `A (np - b)`; the window is `p` blocks of `ny`,
       Transactions on Automatic Control, 71(5):3014-3029, 2026.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

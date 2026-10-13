@@ -9,10 +9,10 @@ initial window `y₀`, whose block `k` holds `y(k)`, and every later one is
 `y(k) = f(y(k-1), …, y(k-p), u(k), …, u(k-p))`, which `Trajectory.step` states.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

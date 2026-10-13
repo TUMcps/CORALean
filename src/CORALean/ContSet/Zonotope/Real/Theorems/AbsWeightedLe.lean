@@ -8,10 +8,10 @@ weights of a convex combination sum to one, bounding each half by its own weight
 is what makes their sum land back in `[-1,1]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

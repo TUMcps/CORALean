@@ -16,10 +16,10 @@ on the centre, which its box takes; the shadows' own boxes are absorbed by the c
 `materialise`d (stored, `materialise_eq`), as the fields are function types.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

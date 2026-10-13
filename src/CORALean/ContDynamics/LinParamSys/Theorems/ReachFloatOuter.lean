@@ -15,10 +15,10 @@ first window by `timeIntervalStepFloat_outer` and the outer one carried by
 constant-parameter reading; a `ConstTrajectory` with no input is such a flow.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

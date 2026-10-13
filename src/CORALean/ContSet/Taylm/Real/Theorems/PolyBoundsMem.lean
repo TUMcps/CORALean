@@ -5,10 +5,10 @@ import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
 # A term list stays in `polyBounds` on the box
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

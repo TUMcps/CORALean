@@ -15,10 +15,10 @@ a boundary representation (R-PG) not modelled. A direction with `Gᵀ l = 0` giv
 `q`, as does every direction of a point-ellipsoid (CORA's `representsa_(E,'point')` branch).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

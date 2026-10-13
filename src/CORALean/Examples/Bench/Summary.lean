@@ -15,10 +15,10 @@ a blow-up marker. Both are `none` if the run never crosses either line. At a
 type with a range, the first step storing a value past it, `firstOverflowStep`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   28-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

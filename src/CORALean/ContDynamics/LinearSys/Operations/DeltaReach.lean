@@ -24,10 +24,10 @@ solution, which at this level is an enclosure a caller supplies and
 `exp` needs a norm on `Mat` — a choice, not an instance — the `l∞` operator one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

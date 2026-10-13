@@ -8,10 +8,10 @@ the cubic contraction at `(j, a, b)`, plus the one at `(j, b, a)` for `a < b` (t
 pair), the pure square `a = b` as it is, and `0` below the diagonal.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

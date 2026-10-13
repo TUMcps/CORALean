@@ -19,10 +19,10 @@ enter: the error dynamics `e_{k+1} = (A - LC) e_k + E w_k - L F v_k` [1, Eq. 14]
       64(11):4717-4724, 2019.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ one of them. Nothing is charged to the box: the centre and kept generators are
 copied exactly, and the diagonal block rounds *up*, which only enlarges.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

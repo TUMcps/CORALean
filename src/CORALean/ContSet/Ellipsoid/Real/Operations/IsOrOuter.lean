@@ -8,10 +8,10 @@ CORA returns a minimum-volume such ellipsoid from an SDP solver (MOSEK, SDPT3 or
 bloating degenerate operands; only the enclosure is formalized, not the minimum volume.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

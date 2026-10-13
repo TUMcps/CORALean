@@ -8,10 +8,10 @@ against a continuous one of `P_k` (`MatExp.continuous_peanoBakerTerm`), so it is
 integrable over every bounded window — what each integral the series takes needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

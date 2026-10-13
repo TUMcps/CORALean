@@ -9,10 +9,10 @@ the float piece of the same index (`Interval.partition_piece`), so the float pie
 A cover and not a partition, and the pieces overlap by the rounding.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

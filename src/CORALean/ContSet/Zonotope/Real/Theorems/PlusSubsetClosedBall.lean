@@ -9,10 +9,10 @@ balls sits inside the ball of the summed radius, and `Z₁.plus Z₂` denotes
 exactly that sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

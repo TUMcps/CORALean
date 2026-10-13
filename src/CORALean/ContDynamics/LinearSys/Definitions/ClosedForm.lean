@@ -13,10 +13,10 @@ apart from either use: `Theorems/ClosedFormFlow.lean` and the `⊇` half of
 `reachSet_eq` both build on it, at a point rather than a run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       15-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

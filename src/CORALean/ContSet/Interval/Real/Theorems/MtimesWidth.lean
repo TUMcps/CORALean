@@ -8,10 +8,10 @@ itself a nonempty interval, the absolute value on the right absorbing the
 `I.sup k < I.inf k` case the same way it absorbs a negative `M i k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

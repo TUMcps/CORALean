@@ -7,10 +7,10 @@ The stored system and the factors it ranges over are the same before and
 after the map, so satisfaction transfers by `Iff.rfl`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

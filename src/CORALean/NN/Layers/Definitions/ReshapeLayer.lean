@@ -7,10 +7,10 @@ CORA's `nnReshapeLayer` as an `Enclose` kind: the relabelling `e`, output `i` re
 `e i`. It stores no scalar, so it is one kind at every scalar.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

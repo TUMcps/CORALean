@@ -10,10 +10,10 @@ functional, so a weighted average satisfies every constraint the two endpoints
 do. Holds for any constraints, the infeasible case included.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

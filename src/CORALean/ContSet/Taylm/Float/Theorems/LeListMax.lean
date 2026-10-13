@@ -6,10 +6,10 @@ import CORALean.ContSet.Taylm.Float.Operations.ListMax
 The greatest of `f` over a list is at least `f a` for each member `a`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

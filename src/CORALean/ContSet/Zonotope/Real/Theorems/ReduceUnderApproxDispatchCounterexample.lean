@@ -19,10 +19,10 @@ This file models the control flow only (read from the source, not run): which ro
 reaches for a given `needed` and method, against what the nesting was meant to do.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

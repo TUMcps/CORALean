@@ -32,10 +32,10 @@ nothing is thresholded.
       Academy of Sciences, 113(15):3932-3937, 2016 (arXiv:1509.03580).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

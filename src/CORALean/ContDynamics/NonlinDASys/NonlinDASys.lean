@@ -16,10 +16,10 @@ that `∂g/∂y` is invertible along solutions; the class does not carry it, as 
 `Index1` in `Definitions/` states it, to be assumed where a theorem needs it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

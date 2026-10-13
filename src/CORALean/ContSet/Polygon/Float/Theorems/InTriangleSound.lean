@@ -11,10 +11,10 @@ edge orientations, all nonnegative; divided by `D` they are barycentric coordina
 summing to `1` (the three orientations add up to `D`), and combining the corners to the point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ Split out of `Reduce.lean` (issue #62), no longer `aux_`: `reduceGirard` and
 it file-local.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

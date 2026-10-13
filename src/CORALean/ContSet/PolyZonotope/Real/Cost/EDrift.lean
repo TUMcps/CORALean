@@ -10,10 +10,10 @@ further comparisons and parity tests choose the branch, and a branch returns at
 most two `eDiff`s, which the definition writes out and so evaluates separately.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

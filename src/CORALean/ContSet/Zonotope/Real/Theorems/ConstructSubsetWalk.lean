@@ -15,10 +15,10 @@ generators, which the half-plane makes point the same way. So the signs are `+ â
 reverse, which is the walk's pattern for some `k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

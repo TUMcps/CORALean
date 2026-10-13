@@ -9,10 +9,10 @@ two slope roundings coincide and the transport costs nothing: the bracket carrie
 tanh's own, `tanh' t = 4 σ'(2t)`. A specification, as the exact sigmoid relaxation is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,10 +20,10 @@ derivative, and the entrywise bound. `sqProj` is an `abbrev` so that `simp` stil
 reads a coordinate through it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

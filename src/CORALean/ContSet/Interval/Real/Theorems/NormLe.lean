@@ -8,10 +8,10 @@ Coordinatewise a member sits between the endpoints, so its magnitude is at most 
 endpoint magnitude (`aux_abs_le_max_abs`); the Euclidean norm is monotone in magnitudes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

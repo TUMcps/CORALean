@@ -15,10 +15,10 @@ driving it under `ε` costs a step of order `ε` where the point error, second
 order, needs only `√ε`. The order helps at neither.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

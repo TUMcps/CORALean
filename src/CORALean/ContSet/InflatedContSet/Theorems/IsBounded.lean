@@ -7,10 +7,10 @@ Compact, hence bounded: the nominal part's compactness and the box's are carried
 across the sum by `isCompact_construct`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

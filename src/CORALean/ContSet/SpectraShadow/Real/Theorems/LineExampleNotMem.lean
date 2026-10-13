@@ -6,10 +6,10 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleSum
 No coefficient reaches `(1, 0)`: the line example's points are diagonal.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

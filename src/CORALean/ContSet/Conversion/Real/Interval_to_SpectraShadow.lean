@@ -12,10 +12,10 @@ whose `sup` falls below its `inf` denotes nothing, while the set built from it
 denotes the box with the two swapped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

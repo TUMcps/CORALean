@@ -20,10 +20,10 @@ The condition is the float step's own, `OrderAdmissibleFloat`: the real one it
 implies at every time of the step is read off a member attaining the box's norm.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ would hold `±∞` (IEEE 754) or have no code at all (E4M3, E2M1). This is how t
 `|x| > maxFinite`, compared exactly as `Dyadic.le` compares, at the common exponent.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

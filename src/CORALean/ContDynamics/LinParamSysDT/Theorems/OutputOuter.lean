@@ -14,10 +14,10 @@ system's matrix-set family `𝕄`: an uncertain system matrix paired with an
 exactly-known output map is the normal case here, not an oversight.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

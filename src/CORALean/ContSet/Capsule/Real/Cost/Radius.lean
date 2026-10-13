@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/Radius.lean` is `‖g‖₂ + r`: the squared 
 (`2 * n`), its `sqrt` and one addition.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

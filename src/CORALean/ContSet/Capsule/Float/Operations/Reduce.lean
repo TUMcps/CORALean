@@ -7,10 +7,10 @@ CORA's `@capsule/reduce`, whose body is empty and returns its input. Nothing is 
 capsule stores its radius rather than an error box, so there is nothing to pay.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

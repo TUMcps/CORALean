@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonRound
 The pieces after `splits` rounds of refinement; `pick i` chooses which pieces round `i` splits.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

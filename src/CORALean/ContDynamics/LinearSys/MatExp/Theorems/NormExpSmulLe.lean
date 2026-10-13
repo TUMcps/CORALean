@@ -14,10 +14,10 @@ own `l∞` operator norm, which is at most `1` — exactly `1` except in dimensi
 `0`, where the supremum defining it is over an empty index set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

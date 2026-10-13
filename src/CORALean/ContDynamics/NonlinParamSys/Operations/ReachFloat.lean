@@ -14,10 +14,10 @@ lifted field, and each window is projected back (`Zonotope.project`). Soundness 
 `NonlinParamSys.reachFloat_outer`, against every constant-parameter run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

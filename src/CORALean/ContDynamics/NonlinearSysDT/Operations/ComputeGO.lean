@@ -18,10 +18,10 @@ center of a set), line by line with `computeGO_k` [2]: the Jacobians `A_lin`, `B
 * [2] `global/functions/helper/dynamics/contDynamics/contDynamics/computeGO_k.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

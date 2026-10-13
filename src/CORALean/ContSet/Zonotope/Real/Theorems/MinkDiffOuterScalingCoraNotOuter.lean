@@ -12,10 +12,10 @@ the point `(-1, -1, -1)` of the difference is missing. `n = 3`, as at `n = 2` CO
 `'exact'`; `Z` is full-dimensional and `I` has generators, so no earlier branch returns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

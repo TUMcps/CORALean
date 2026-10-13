@@ -8,10 +8,10 @@ CORA's `mtimes` of two arrays of models, `@taylm/mtimes.m` with both factors Tay
 `(i, j)` is `Σₖ A i k .* B k j`, the loop CORA runs with `times` and `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ moves stored floats without arithmetic. The constraints live on the coefficient
 space, which a relabelling of the coordinates does not touch, so `P` is kept.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

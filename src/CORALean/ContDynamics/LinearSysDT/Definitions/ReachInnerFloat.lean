@@ -21,10 +21,10 @@ box together, which no operation here builds; `reachErrorFloat`'s own
 `Real.Zonotope` values are the model for what one would look like.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Taylm.Float.Operations.Inv
 A model over a model, CORA's `priv_inverse` then `times`: `T₁ · (1/T₂)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

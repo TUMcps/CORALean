@@ -7,10 +7,10 @@ CORA's `nnLinearLayer` as an `Enclose` kind: `W` and `b`, stored in the scalar. 
 encloses the affine map they denote, read as reals: reading a network off a file is exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import Mathlib.Algebra.Group.Pointwise.Set.Basic
 Coordinatewise. Needs no nonemptiness: a crossed box negates to a crossed box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

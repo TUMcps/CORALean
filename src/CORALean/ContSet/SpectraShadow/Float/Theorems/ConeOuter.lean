@@ -15,10 +15,10 @@ of `T.absorb`: every stored entry is a stored float, `zero` or `one`, and reads 
 nominal shadow.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

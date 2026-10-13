@@ -12,10 +12,10 @@ so its volume is `|det G|` times the ball's (`Measure.addHaar_image_linearMap`),
 case `k > n` of full rank (where `Q^(1/2)` replaces `G`) is not proved.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

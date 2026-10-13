@@ -8,10 +8,10 @@ its unused argument says: the lower end of `degreeAt`'s range, read as a pair
 with `degreeSup` by `Theorems/UncertainDegreeBounds.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

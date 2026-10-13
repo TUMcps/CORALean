@@ -12,10 +12,10 @@ equality because the constrained representation needs it at a *fixed* factor
 vector, which is also why it carries no `aux_` prefix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

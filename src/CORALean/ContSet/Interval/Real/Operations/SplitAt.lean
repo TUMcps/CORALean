@@ -13,10 +13,10 @@ Which coordinate to bisect is a heuristic this owes no proof to:
 `NeuralNetwork.holds_of_split` is sound for any choice of `j`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

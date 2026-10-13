@@ -8,10 +8,10 @@ Both budgets are clamped, to their block and to `K = (o-1)·n` between them, so
 the scalar enters — the counts are the `ℕ` fields, which round-off cannot move.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

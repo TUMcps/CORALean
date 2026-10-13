@@ -13,10 +13,10 @@ The enclosure is not exact even here, where `A` holds only diagonal matrices:
 the ordinary interval-arithmetic dependency loss that compounds with `η`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

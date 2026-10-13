@@ -8,10 +8,10 @@ hull. At the region, convex means equal to the convex hull: the hull of the vert
 pieces lies inside the region (`Polygon.isConvex_iff`). The vertex count is not formalized (R-PG).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

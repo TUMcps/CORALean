@@ -9,10 +9,10 @@ the Lebesgue measure of the set the bundle denotes. So the definition is that me
 enumeration and convex hull CORA runs to compute it are not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

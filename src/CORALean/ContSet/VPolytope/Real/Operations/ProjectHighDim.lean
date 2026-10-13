@@ -11,10 +11,10 @@ CORA's assignment overwrites on a repeated index where the matrix sums; the stat
 `projectHighDim_exact` is an image under the matrix, which is what an injective `dims` gives.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

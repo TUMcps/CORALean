@@ -8,10 +8,10 @@ only when its real value is at most the other's, so a `true` here is a proof tha
 values are equal and a `false` claims nothing: a one-sided test, as `le` is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

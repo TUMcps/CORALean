@@ -12,10 +12,10 @@ closed under intersection. CORA's interval shortcut (both operands boxes, `'exac
 intersection) is not covered; the method `'averaging'` is `Zonotope.andAveraging`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

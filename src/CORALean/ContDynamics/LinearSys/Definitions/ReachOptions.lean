@@ -14,10 +14,10 @@ order bound, read only by a scheme that reduces.
 prove it, and a float run checks it itself, with the step count, `Reach.steps`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,10 +20,10 @@ higher: `timeIntervalStep_outer` holds only at an order admissible for `Δt` and
 asks for no side condition on `η` at all.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

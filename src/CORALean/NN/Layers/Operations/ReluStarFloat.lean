@@ -9,10 +9,10 @@ import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
 neurons left, then the step. The bounds are the certified `Float.StarSet.rowBounds`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

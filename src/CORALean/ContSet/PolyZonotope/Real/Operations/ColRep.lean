@@ -7,10 +7,10 @@ Split out of `Compact.lean` (issue #62): used again by `Theorems/RepIdem.lean`
 and by `Theorems/CompactGensExact.lean`, both outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

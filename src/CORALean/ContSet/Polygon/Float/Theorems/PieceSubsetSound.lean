@@ -9,10 +9,10 @@ The first nominal piece is the hull of its vertices, all of them in the second, 
 nominal piece; and the first box is in the second. A sum of subsets is a subset of the sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

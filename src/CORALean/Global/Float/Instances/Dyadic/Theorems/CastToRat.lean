@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.Dyadic.Operations.ToRat
 the product: nothing is rounded on either side.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

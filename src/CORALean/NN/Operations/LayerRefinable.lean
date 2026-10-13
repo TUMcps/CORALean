@@ -7,10 +7,10 @@ Every pattern is the layer itself, which is how a linear layer sits in a refinab
 soundness is the refinable layer's stored obligation.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

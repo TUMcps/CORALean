@@ -10,10 +10,10 @@ import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 The original lies in the Minkowski sum of the two results, the error box being the second's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

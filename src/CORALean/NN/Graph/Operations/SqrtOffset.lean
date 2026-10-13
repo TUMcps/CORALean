@@ -15,10 +15,10 @@ The relaxation's offset read over node `j`'s own degree interval
 `[degreeInf, degreeSup]`, the box its uncertain degree is known to sit in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

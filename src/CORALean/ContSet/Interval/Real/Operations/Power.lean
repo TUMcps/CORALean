@@ -13,10 +13,10 @@ that is `Interval.recip` followed by this), a non-integer exponent (`NaN` below
 `0`, no real counterpart) and an interval exponent.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 `LinearMap.proj i`, so each equality row holds by `LinearMap.proj_apply`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

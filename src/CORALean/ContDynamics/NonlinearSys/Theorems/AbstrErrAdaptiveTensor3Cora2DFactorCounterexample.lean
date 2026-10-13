@@ -17,10 +17,10 @@ of `f₁` is `1`: the error does not enclose it. The row is not the Hessian regi
 box, and `H(p) = 0`, `A = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

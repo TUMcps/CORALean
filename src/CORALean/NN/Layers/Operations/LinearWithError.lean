@@ -13,10 +13,10 @@ centre as its nominal value and pays the rest into `enclose`, the way `Layer.act
 relaxation's error. Nothing rounds beyond the representation's own `plus` and the box's sum.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

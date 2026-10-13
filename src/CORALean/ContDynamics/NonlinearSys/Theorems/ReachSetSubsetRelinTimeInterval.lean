@@ -15,10 +15,10 @@ step's `linInput`, which a representation answers for, and confinement, which
 index stays: `relinTimeInterval` is one set per step by construction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

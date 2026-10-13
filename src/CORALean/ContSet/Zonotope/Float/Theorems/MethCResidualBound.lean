@@ -8,10 +8,10 @@ Each entry of `H P` lies between its two directed dot products, so `1 - (H P)ᵢ
 the two differences, and `methCResidual` takes the larger magnitude of their bounds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

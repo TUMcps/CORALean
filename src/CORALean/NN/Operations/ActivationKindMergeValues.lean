@@ -8,10 +8,10 @@ activation, which are the values its neurons are merged at: `{0}` for ReLU, `{0,
 logistic function and `{-1, 1}` for tanh. Integers, since they are exact there.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

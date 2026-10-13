@@ -8,10 +8,10 @@ The four factor assignments whose corner images `(±3, ±1)` `convhulln` keeps (
 `PolyZonotope.isPolytopeCex`); recomputing the hull is not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

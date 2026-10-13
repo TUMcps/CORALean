@@ -11,10 +11,10 @@ widens by `expRemainderBound` at `A.absMax`. Both are bound once, outside the
 entries, so reading every entry evaluates the Taylor sum once, not per entry.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

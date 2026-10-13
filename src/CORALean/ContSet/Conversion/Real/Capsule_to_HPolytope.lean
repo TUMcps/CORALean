@@ -11,10 +11,10 @@ directions. Here the capsule is first replaced by its axis-aligned box, which lo
 ends and the slant of the segment.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

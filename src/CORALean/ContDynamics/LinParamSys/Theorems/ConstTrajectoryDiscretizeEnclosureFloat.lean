@@ -15,10 +15,10 @@ the frozen member's `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 the real time `toReal Δt` the float denotes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

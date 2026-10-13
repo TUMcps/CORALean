@@ -9,10 +9,10 @@ Shared by `toReal_align` and `toReal_exactAdd`, both of which move a dyadic
 from its own exponent onto a common, smaller one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

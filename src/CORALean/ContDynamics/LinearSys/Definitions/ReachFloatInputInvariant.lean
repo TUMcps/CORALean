@@ -12,10 +12,10 @@ constant's contribution at `t_{k+1}`, `H(τ_k)` the same at every time of window
 across `t_k`. The four sets the loop's state names, and what each must enclose.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

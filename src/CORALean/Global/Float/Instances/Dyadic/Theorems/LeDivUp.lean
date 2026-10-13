@@ -14,10 +14,10 @@ one, `quotDown_le_div`, at a negated dividend; the grid rounding on top,
 `le_roundUp`, only moves the bound further out.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ Zonotope into constrained zonotope (`conZonotope_contains`), the outer float int
 (`ConZonotope.intersection_outer`), and the constraints forgotten (`zonotope_contains`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

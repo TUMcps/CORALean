@@ -15,10 +15,10 @@ the minuend. A wrong `M`, `ρ` or `H` gives `none`, costing precision and never 
 proves the candidate lies in the difference; `none` refutes nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

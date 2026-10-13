@@ -11,10 +11,10 @@ neighbourhood of `t` on the left. `Set.Icc a b ⊆ T` with `t ∈ Ico a b` is wh
 `T` still extends right of `t`, whatever it does on the left.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

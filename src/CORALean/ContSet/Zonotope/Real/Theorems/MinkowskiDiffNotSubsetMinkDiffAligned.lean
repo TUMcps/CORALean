@@ -24,10 +24,10 @@ zonotope. At `A = B = E = I`, `K = 0`, `x = 0` and `U = Z` that is (16) with `‚ä
       6:1555-1560, 2022.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

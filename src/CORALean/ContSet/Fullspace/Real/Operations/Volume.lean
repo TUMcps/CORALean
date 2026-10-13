@@ -8,10 +8,10 @@ CORA's `@fullspace/volume_`: `Inf`. CORA answers `NaN` at `n = 0`, which is not 
 of `ENNReal`, so the guarantee is stated for `0 < n` only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

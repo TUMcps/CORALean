@@ -24,10 +24,10 @@ is "aligned" with all rows; `Ae = [0 0; 1 0]`, `be = [0; 1]`, the set `x₁ = 1`
 `'all'` removes zero rows first (`compactZeros`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Interval
 The box `[-r, r]`, which is what a bound known only in magnitude gives.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

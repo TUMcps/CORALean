@@ -10,10 +10,10 @@ zonotope becomes `Zonotope.abs` of itself, which is a different set and not an e
 input; `Theorems.AbsLeCorner` says what it keeps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

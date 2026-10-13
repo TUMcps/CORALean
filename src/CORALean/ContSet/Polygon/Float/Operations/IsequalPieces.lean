@@ -10,10 +10,10 @@ equal; `false` says nothing (a piece may be covered by several pieces, or by one
 rounding). CORA's comparison of boundary vertex lists (R-PG) is not what is tested.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

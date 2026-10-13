@@ -13,10 +13,10 @@ generators, `((0, 0), a)`, `((0, b), 0)` and `((j, 0), 0)`, and every other fact
 The remark on `removeRedundantExponents` in `ConZonotope.cubMap` applies here as well.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

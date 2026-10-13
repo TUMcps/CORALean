@@ -7,10 +7,10 @@ For positive `d` the quotient of an endpoint is bracketed by the directed divisi
 one; for negative `d` the negated box over `-d` is the same quotient, with the endpoints swapped.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

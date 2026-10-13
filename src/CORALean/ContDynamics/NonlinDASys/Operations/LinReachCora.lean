@@ -23,10 +23,10 @@ time-varying input part `oneStep` takes too. With `NonlinDASys.linError` in `Ver
 this is `NonlinDASys.linReach` up to where the error enters (there, in `oneStep`'s input).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

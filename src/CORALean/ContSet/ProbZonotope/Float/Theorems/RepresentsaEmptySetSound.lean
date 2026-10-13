@@ -7,10 +7,10 @@ A `true` answer exhibits a covariance entry whose interval is crossed, so the in
 matrix and the family of laws is empty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

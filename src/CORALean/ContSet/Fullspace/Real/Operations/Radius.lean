@@ -7,10 +7,10 @@ import Mathlib.Data.ENNReal.Basic
 CORA's `@fullspace/radius`: `Inf`. At dimension `0` CORA answers `NaN`; that case is not claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

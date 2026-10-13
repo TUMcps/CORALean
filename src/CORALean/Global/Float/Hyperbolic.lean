@@ -18,10 +18,10 @@ All three are built on `expUp`/`expDown` and exact halving, and need no division
 total, as in `Global/Float/Exp`. `p` is the exponential's precision.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

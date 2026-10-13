@@ -8,10 +8,10 @@ import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 `one`, `zero` and the exact negation of `one`. The box is the origin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

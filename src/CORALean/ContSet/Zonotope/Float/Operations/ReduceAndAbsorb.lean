@@ -11,10 +11,10 @@ generators `reduceBy` alone would; run separately they cost `q + n + n`. What
 remains in the box is only what the rounded centre shift owes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

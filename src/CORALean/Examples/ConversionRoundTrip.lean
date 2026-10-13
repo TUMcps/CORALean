@@ -23,10 +23,10 @@ directory: these fail to compile if a conversion is renamed, retyped, or
 restated in the other direction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Real
 

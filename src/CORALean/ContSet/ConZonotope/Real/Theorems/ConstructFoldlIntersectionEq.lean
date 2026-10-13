@@ -12,10 +12,10 @@ Generic in the family `g` rather than built around `Prop. 6`'s own one, since a 
 only a Minkowski difference by a polytope's vertices.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

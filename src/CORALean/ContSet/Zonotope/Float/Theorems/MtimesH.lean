@@ -4,10 +4,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 # `mtimes` does not change the generator count
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

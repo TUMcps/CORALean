@@ -7,10 +7,10 @@ Closed on fixed-point values: only the mantissa grows and the digit counts
 add. `MulUp`/`MulDown` round it back down to `f`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

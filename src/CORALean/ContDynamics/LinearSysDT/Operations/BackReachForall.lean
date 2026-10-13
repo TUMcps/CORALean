@@ -22,10 +22,10 @@ No `reduce` in the loop, and so no `0 < o`: at `Zonotope` the count never grows
 order would have nothing to bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ A point of the box lies in the first half if its `β`-coordinate is at most the 
 second otherwise; the other coordinates are untouched.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

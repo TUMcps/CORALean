@@ -8,10 +8,10 @@ Which makes `tapMat` the matrix of a stencil. Injectivity is what a window readi
 twice would break: the matrix holds one weight per entry, the sum two.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

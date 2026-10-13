@@ -8,10 +8,10 @@ The matrix of CORA's `@zonotope/rotate(Z, dims, angle)`: the 2x2 rotation `R = [
 on the two coordinates `dims = (i, j)`, as an `n x n` matrix that is the identity elsewhere.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

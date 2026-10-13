@@ -10,10 +10,10 @@ import Mathlib.Algebra.Order.Archimedean.Real.Basic
 `Relaxation.ofDeriv` works with and no precision is lost.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ component is `compIdx i`, which CORA's loop does not use (`Transition.synchroniz
 `FINDINGS.md`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

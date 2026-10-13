@@ -13,10 +13,10 @@ means the empty set, whose span is `⊥`, never `⊤`. The half-space representa
 implied-equality test, which this does not claim.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

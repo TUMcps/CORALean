@@ -10,10 +10,10 @@ box cannot travel through it separately; emptying the box first is what `cubMap`
 `ConZonotope.dependent` and `PolyZonotope.dependent`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

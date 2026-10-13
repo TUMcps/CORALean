@@ -8,10 +8,10 @@ The merged generator column as stored: the lower of the two directed fibre
 sums, `repKeep` naming the one column per class that survives.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

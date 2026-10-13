@@ -20,10 +20,10 @@ the float image's error box (`Interval.mtimes_outer`, `sub_mem_residual`,
 right-hand side, and `x` is the first set's nominal point at `[β₁; β₂]` plus `e₁`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

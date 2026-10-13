@@ -16,10 +16,10 @@ nonempty. Every `CORAlinprog` that returns `-2` only on an infeasible program th
 `isIntersecting_.m` intercepts (neither set is a fullspace or a halfspace, `n = 2`, no equality).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

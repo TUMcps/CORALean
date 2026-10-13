@@ -18,10 +18,10 @@ The time-interval argument is `timeIntervalStep_outer`'s with an input: `x(t)` i
 `inputF*center(Uconst)` falls short: `u(p)` ranges over `Uconst`, not its centre.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

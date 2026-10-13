@@ -10,10 +10,10 @@ supremum of `b`, `(a_i - A_reduced)' x` at least the infimum of `(A - A_reduced)
 Needs a row to read from. An outer approximation over the domain, not the set `P` itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

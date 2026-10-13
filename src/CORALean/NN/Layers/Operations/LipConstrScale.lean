@@ -11,10 +11,10 @@ absolute row sum over `λ` whenever that exceeds `1`, so the rows of `N W` have 
 most `λ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

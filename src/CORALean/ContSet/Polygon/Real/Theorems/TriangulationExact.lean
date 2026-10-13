@@ -8,10 +8,10 @@ Exactly: every returned set has three vertices and their union is the region of 
 (`VPolytope.construct_eq_iUnion_triples` for each piece). The triangles need not be disjoint.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

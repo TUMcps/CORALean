@@ -24,10 +24,10 @@ into step `i + 1`; without it the induction hypothesis meets `A i` and stops.
       Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

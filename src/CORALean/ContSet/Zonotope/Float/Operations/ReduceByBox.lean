@@ -13,10 +13,10 @@ carrying a degenerate `0` error box of its own, `reduceBy` touching none.
 Not a `Reduce` operation and no class instantiates it, as at `Real`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

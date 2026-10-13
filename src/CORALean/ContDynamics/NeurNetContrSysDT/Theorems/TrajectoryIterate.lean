@@ -11,10 +11,10 @@ runs here is a set of initial states, and the enclosure is still loose,
 `reach` pairing each state with every input rather than with its own.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

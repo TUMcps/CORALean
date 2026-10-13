@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/RelaxWidth.lean` is one `eDiff` at the exponen
 index it names; the factor count does not enter.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

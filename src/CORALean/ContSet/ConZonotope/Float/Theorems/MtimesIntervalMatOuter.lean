@@ -21,10 +21,10 @@ within the new generators' radius, so one new coefficient per coordinate absorbs
 coefficients meet no constraint; on the error box `R e` is in the box-times-box product.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

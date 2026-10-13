@@ -13,10 +13,10 @@ box), and each pairwise column sum, stored rounded down, whose gap to the sum ro
 coefficients range over `[-1, 1]`. A copied column costs nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ divided by the count, whatever the sum's sign), and it is a point of the nominal
 the box is not claimed to be the centre, only to hold it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ The centroid of a polygon of positive area lies in the convex hull of its vertic
 itself is not computed; for a non-convex region (an L-shape, a ring) it may lie outside the region.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

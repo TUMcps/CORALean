@@ -15,10 +15,10 @@ The derivative is taken coordinatewise, `hasDerivWithinAt_pi`, split by
 `Fin.addCases` into the two halves.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

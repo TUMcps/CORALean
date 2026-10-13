@@ -14,10 +14,10 @@ count the order of a set means, and reading it back at `h` alone would hide the
 `restructure_q` half of the specification.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

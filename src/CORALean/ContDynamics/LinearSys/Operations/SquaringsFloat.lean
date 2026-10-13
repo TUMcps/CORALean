@@ -15,10 +15,10 @@ at the scaled range is then as tight as the step's, and sound. `s ≈ log₂ k` 
 certified by `le`. `none` if no `s < 128` passes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

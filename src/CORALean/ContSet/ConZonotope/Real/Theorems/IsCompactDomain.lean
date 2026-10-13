@@ -12,10 +12,10 @@ compact ball. Stated apart from `isCompact_construct` because the conversion to
 a vertex description needs the domain compact and not the set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

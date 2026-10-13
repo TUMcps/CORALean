@@ -10,10 +10,10 @@ the two error boxes let the nominal points differ by — `aux_mem_intersectionD`
 fitting — so the rounding of the centres never has to be pushed anywhere.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

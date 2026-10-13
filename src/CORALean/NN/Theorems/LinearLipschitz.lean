@@ -19,10 +19,10 @@ Stated at the function rather than at `Layer.linear`, which needs three class
 instances to even be written down and none of them to be Lipschitz.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

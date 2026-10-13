@@ -11,10 +11,10 @@ origin otherwise. Assignments run in order, so for a repeated `stateBind` entry 
 as in the real `lift`. It only places existing bounds and `0`, so no rounding enters.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ the whole set once the error box holds `0`, which a box built by the operations 
 arbitrary one need not (as for `Zonotope.centre_mem_construct`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

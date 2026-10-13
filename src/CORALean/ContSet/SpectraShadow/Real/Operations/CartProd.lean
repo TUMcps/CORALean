@@ -12,10 +12,10 @@ does not compute; the sum of the two embeddings is also the block-diagonal
 inequality with the centres and generators stacked, and needs only `plus`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

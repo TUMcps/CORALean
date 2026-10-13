@@ -10,10 +10,10 @@ what `SubmatrixMulOfClosed` needs instead, once the product is a *restriction
 of a larger one* rather than one computed from scratch.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

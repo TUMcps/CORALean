@@ -14,10 +14,10 @@ contributes nothing to the witness, and `|c (Z.G j)| = 0` there too, so the
 same coefficient works whether or not `c` vanishes on a generator.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       15-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

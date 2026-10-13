@@ -9,10 +9,10 @@ import CORALean.NN.Layers.Theorems.ExpRelaxationSound
 The hypothesis is the cost of a machine upper bound on `exp`, which no format has everywhere.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

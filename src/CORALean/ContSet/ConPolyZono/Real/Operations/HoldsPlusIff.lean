@@ -12,10 +12,10 @@ The block-diagonal exponent matrix is what makes the right-to-left direction
 work, neither system's monomials seeing the other's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

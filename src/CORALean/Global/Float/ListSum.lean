@@ -8,10 +8,10 @@ terms are a list whose length an operation does not know in advance. Right-neste
 `sumUp` is, so each bound is one induction.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

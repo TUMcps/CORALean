@@ -9,10 +9,10 @@ ReLU coordinatewise, at every slope: `reluRelaxation_sound` read through the act
 layer's own soundness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

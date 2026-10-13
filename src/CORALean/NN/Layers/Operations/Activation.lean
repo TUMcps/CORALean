@@ -17,10 +17,10 @@ matrix is stored exactly and the propagation rounds inside `mtimes` and `plus`. 
 only in `Layer.activation_sound`: the layer itself never sees it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

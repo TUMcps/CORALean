@@ -21,10 +21,10 @@ contract: the independent block takes no part, and a caller who needs those
 coefficients to count runs `dependent` once, on `pZ`, before evaluating.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

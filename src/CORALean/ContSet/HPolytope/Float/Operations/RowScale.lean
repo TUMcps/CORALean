@@ -10,10 +10,10 @@ up, or `1` when the norm is not certified positive (CORA leaves a zero row as it
 positivity is ever used: a row scaled by a positive number is the same halfspace.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

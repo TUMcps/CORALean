@@ -13,10 +13,10 @@ because [1] reads `B̄ᵢ = 0` for `i < 0` and `i > p` and then sums over shifte
   62nd IEEE Conference on Decision and Control (CDC), 2023, pp. 7027-7034.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

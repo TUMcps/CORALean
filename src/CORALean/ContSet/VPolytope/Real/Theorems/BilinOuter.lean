@@ -13,10 +13,10 @@ enlarges because a zonotope cannot record that `αᵢβⱼ` depends on both `α�
 `βⱼ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ and a row sum never exceeds the norm — the two `Finset` bounds chained here.
 Every entrywise enclosure in this directory reaches its bound through this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

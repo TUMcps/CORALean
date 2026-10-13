@@ -8,10 +8,10 @@ At an admissible order `nrm ≤ (η + 2)/2 < 2^{log₂(η+2)+1}/2`, which is ins
 at `p = log₂(η + 2) + 5`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ word for word the same is the evidence for `reduceBy_outer` being stated at an
 arbitrary partition rather than at either metric.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

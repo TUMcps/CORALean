@@ -9,10 +9,10 @@ import Mathlib.Analysis.Convex.Hull
 A box is convex, so it contains the convex hull of whatever the union of two boxes lies in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

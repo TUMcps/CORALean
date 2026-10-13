@@ -8,10 +8,10 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
 `coarsenUp` and `coarsenDown` use.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

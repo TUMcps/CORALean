@@ -6,10 +6,10 @@ import CORALean.ContSet.ContSet.Definitions.CompactSet
 `CompactSet.isBounded_construct`: compactness over a normed space gives boundedness for free.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

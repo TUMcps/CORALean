@@ -7,10 +7,10 @@ import Mathlib.Tactic.Positivity
 `σ (-t) = 1 - σ t`, which is what makes the derivative a product of two sigmoids.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

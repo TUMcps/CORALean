@@ -7,10 +7,10 @@ CORA's `@ellipsoid/representsa_` at type `point` with tolerance `0`: the shape m
 `Q = 0`. CORALean stores the generator matrix, and `Q = G Gᵀ = 0` iff `G = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

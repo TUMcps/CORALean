@@ -22,10 +22,10 @@ points are the columns of CORA's `points`, and at least one is required (`NeZero
 and the SDP method `'min-vol'` are not formalized.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

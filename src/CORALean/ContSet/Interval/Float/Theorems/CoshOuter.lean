@@ -9,10 +9,10 @@ the theorem takes `sup ≤ 2 ^ p / 2` and `-inf ≤ 2 ^ p / 2` on the box, which
 argument `coshHi` uses.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

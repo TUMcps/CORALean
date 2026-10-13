@@ -8,10 +8,10 @@ that ties them together at the interpolating point. `rfl`, since
 `Operations/LinComb.lean` states `h` directly in the structure instance.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

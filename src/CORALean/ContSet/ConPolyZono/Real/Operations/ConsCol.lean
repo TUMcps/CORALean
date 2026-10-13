@@ -6,10 +6,10 @@ import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 Constraint column `l` as a vector, which is the generator the merge adds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

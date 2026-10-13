@@ -7,10 +7,10 @@ import CORALean.ContSet.Interval.Float.Interval
 floats read as reals, so the statement needs no unfolding at the use site.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

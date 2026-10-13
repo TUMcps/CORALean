@@ -17,10 +17,10 @@ strip zonotope, `y + φ ⊙ γ` with `γ ∈ [-1, 1]^p`. The strips are read as 
 `|C x - y| ≤ φ` at the stored values.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

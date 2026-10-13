@@ -13,10 +13,10 @@ re-parametrized constraint matrix, scaled by monomials in `[-1, 1]`, is a point 
 was widened by.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

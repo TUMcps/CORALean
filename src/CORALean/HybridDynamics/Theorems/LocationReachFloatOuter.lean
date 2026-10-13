@@ -15,10 +15,10 @@ trajectories, so a stay of length `τ ≤ tFinal` is held at each of its times
 in `ℓ.U`, and so in the identity's image of it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

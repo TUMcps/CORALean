@@ -14,10 +14,10 @@ starts from is shown, at run time, inside that step's region, which is what lets
 `reach_outer` hold with no confinement hypothesis on any run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

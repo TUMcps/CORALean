@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Float.Operations.Append
 last `p`, and `(f, g)` is enclosed over it by appending the model's two enclosures over `X × Y`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

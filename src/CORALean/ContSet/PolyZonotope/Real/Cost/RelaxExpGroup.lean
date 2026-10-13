@@ -11,10 +11,10 @@ are each compared against the target index; and each of the `k` merged
 generators gets its width over `p` factors and a scaling (`n`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

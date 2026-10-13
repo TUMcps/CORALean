@@ -7,10 +7,10 @@ import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 The matrices of `matPolytope P` are exactly the vectors of `P` read as columns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

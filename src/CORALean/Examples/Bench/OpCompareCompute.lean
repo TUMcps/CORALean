@@ -17,10 +17,10 @@ multiply-add. `seqSumFO`/`seqDotFO` are generic in `FloatOps`, so the very same 
 row range -- pure, since every entry is a function of `A`/`B` alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

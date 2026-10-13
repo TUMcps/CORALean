@@ -32,10 +32,10 @@ One Lean detail a first use site trips over: `S : ℕ → Type` cannot be read o
 the first layer is enough, the rest of the network following from it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

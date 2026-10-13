@@ -17,10 +17,10 @@ one the checked read of `Rollout.buildX0` gives.
 off the grid: the format's own rounded operation does the rounding.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

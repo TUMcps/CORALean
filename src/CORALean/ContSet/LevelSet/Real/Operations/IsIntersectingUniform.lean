@@ -15,10 +15,10 @@ This is the branch `~iscell(ls.compOp)`, one operator for all rows: the per-row 
 operator (a vector in CORA, read here as all rows).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

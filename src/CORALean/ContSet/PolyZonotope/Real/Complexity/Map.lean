@@ -8,10 +8,10 @@ three counts move, since the monomials are scalars a linear map commutes with.
 `rfl` against the structure instance in `Operations/Map.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

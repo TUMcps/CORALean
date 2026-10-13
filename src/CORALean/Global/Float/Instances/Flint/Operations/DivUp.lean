@@ -12,10 +12,10 @@ A zero divisor, where FLINT returns a special value no pair can hold, comes
 back as `0`: the class constrains a positive divisor only.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

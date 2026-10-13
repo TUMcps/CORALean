@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/uminus`: negation swaps the bounds, `[a, b]` becoming `[-b, -a]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

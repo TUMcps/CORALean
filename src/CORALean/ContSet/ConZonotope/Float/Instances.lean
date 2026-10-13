@@ -9,10 +9,10 @@ The operation classes `Plus`, `LinComb`, `Intersection`, `Reduce` and `Mtimes`, 
 exact: the agreement rows' right-hand side is an interval rounded outward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   02-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

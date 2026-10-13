@@ -14,10 +14,10 @@ of `reducePCA_order_le`, here for [1, Alg. 3]. At `o = 0` there is nothing to st
       5626-5633, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

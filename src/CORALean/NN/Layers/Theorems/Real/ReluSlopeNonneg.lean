@@ -9,10 +9,10 @@ exact order decides, and a machine `le` answering `false` rules out nothing. Els
 `clampUnit` makes a slope legal instead, so no layer depends on this.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

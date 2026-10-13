@@ -9,10 +9,10 @@ centre. For generators in one half-plane, sorted by angle, these are the vertice
 zonotope (`Zonotope.construct_subset_walk`); for any order they are corners.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

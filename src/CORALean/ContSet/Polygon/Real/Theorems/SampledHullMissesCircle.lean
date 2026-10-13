@@ -9,10 +9,10 @@ For every finite `V` of points of the unit circle there is a point of the circle
 convex and holds every `p ∈ V` (as `|p - z|² = 2 - 2 z·p > 0`), hence the hull, but not `z`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

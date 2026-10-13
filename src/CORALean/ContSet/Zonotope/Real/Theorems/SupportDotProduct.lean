@@ -16,10 +16,10 @@ stated as `IsGreatest` and `IsLeast` of the image, so they are attained.
       time-varying parameters". IEEE Transactions on Automatic Control, 51(7):1144-1150, 2006.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The generators of `getSubset`: the column's generator scaled by the bracketed co
 entry rounded down. The exact entry is at most `getSubsetGDiff` above it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

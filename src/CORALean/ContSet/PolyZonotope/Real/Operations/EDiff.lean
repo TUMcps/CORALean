@@ -25,10 +25,10 @@ b = 1` this bound is `1` where the maximum is `≈ 0.385`.
       Its Applications in Formal Neural Network Verification". AAAI, 2024.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ float `M * Eplus` (`Ellipsoid.mtimes_outer`); both ends are in the hull by its c
 float hull is convex (`Ellipsoid.convex_construct`), so the segment is too. Outer, as over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

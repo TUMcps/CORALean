@@ -15,10 +15,10 @@ on any set. Its first step, `R₁(Π) = maxᵢ ‖vᵢ‖₁`, does not
       Problem". European Journal of Control, 62:84-91, 2021.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

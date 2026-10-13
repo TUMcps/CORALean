@@ -8,10 +8,10 @@ reduced bundle has `k = 0`, which denotes `univ` — a sound enclosure of
 anything, per `ZonoBundle.lean`'s docstring, so the bound holds there too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 Through its box, which is what the certificates give.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

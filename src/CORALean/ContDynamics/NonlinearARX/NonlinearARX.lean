@@ -23,10 +23,10 @@ and every input in `U`; the conversion is not used to state it.
 * [1] `contDynamics/@nonlinearARX/nonlinearARX.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

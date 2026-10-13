@@ -21,10 +21,10 @@ being where it becomes one-sided; `Theorems.Period` reads a period as a
 `NeurNetContrSysDT` gives: an actuation matrix is the controller's last layer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

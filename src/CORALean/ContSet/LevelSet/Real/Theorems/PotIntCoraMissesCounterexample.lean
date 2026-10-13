@@ -11,10 +11,10 @@ point `0`, yet the `==` row has bounds `(0, 1)`, which `isIntersecting_` reads a
 source, not run). The bounds are range bounds of the guard function over the set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

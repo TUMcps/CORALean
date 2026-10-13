@@ -9,10 +9,10 @@ Every point of the set is in one of the pieces: the set itself where nothing is 
 one of the two halves (`splitLongestGen_outer`, `splitIndepGen_outer`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

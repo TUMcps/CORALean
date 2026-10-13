@@ -7,10 +7,10 @@ For every box, no domain hypothesis: `Real.arcsin` is monotone on all of `ℝ`, 
 `[-1, 1]`, and `asinDown`/`asinUp` clamp their argument the same way.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

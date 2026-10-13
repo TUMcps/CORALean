@@ -10,10 +10,10 @@ over the whole space are stored floats. A row is infeasible when `0 < lb` (for `
 be, as in the real test. Sufficient only: `true` proves the set empty, `false` says nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

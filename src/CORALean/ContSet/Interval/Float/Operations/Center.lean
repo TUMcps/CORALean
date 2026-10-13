@@ -7,10 +7,10 @@ CORA's `center`, the midpoint of the two bounds. `half` is exact, so the one rou
 and `center` rounds it up: the stored centre is at least the real midpoint (`Theorems/CenterGe`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

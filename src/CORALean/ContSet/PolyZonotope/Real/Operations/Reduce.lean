@@ -12,10 +12,10 @@ dropped dependent generator reaches no further than an independent coefficient.
 CORA is tighter on an all-even column and ranks by `sum(G.^2)`, not Girard's.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

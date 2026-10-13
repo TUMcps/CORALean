@@ -8,10 +8,10 @@ rad([x]) ⊗ [-1, 1]` leaves free, where a coordinate has width `0` taking `β_i
 step from a box to the zonotope with one generator per coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

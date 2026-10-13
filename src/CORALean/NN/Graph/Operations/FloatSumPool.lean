@@ -8,10 +8,10 @@ CORA's `nnGNNGlobalPoolingLayer` at the sum: `PolyZonotope.mtimes` at the poolin
 in `Vec 𝕋 F`, the shape every layer after it reads.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

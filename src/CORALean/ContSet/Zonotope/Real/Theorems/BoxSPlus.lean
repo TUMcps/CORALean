@@ -19,10 +19,10 @@ two bands is false (`ContSet.exists_hyperplanePolyhedron_add_ne`); it contains i
       Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

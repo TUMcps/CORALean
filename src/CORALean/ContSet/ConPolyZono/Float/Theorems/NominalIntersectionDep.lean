@@ -15,10 +15,10 @@ The whole record, field by field, on the two blocks `toRealMat_intersectionA` an
 `nominal_intersectionB` already pin.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

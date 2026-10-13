@@ -17,10 +17,10 @@ apart at `Δt` (`inputReach_separation_subset`): its first step carried across
 `t_{k+1}`, which `P^R(t_{k+1})` holds.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

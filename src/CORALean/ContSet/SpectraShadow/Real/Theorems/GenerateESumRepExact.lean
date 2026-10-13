@@ -8,10 +8,10 @@ import CORALean.ContSet.SpectraShadow.Real.Theorems.EqBlockSum
 with the diagonal pair `x - c - G β ⪰ 0`, `-(x - c - G β) ⪰ 0`, which holds only at `x = c + G β`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -63,7 +63,7 @@ theorem SpectraShadow.aux_lmi_esum (S : SpectraShadow (Vec ℝ n)) (x : Vec ℝ 
   congr 1
   · simp
   · rw [← blockDiag_add, ← blockDiag_add]
-    congr 1 <;> (ext j k; by_cases hjk : j = k <;> simp [hjk] <;> ring)
+    congr 1 <;> (ext j k; by_cases hjk : j = k <;> simp [hjk]; ring)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

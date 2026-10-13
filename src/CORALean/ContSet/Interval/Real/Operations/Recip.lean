@@ -8,10 +8,10 @@ CORA's `1 ./ denominator` for an interval denominator, `res.inf = 1 ./ sup`, `re
 denominator containing `0` have no counterpart in `ℝ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

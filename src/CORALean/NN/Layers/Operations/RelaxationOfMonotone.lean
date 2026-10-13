@@ -10,10 +10,10 @@ endpoint values handed to it, `FloatOps` having no transcendental function; the 
 enclosure's midpoint and the error the larger distance to either end, rounded up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

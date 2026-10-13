@@ -7,10 +7,10 @@ The constraint lists concatenate. Nothing is computed, so nothing rounds: the
 intersection of two float halfspace descriptions is exact, as it is over ℝ.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -16,10 +16,10 @@ miss at `t`, and `MatExp.exists_mem_intervalCorrectionMatrix_of_remainder` is th
 rest: the terms are the interpolation, the miss is the correction's widening.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   02-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

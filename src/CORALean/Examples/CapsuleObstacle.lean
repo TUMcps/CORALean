@@ -22,10 +22,10 @@ that fails to separate proves no intersection, only that this direction did
 not find one.
 -/
 
--- Authors:       Claude
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

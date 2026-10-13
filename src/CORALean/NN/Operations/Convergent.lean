@@ -11,10 +11,10 @@ brings the enclosure inside the exact image widened by any closed `ε`-ball.
 to relate to `construct`, or to prove complete.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   06-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

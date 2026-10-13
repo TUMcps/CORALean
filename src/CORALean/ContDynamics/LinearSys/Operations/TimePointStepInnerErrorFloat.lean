@@ -21,10 +21,10 @@ in `𝕋` and every part is an outer enclosure, so the budget only errs large,
 which costs an inner approximation precision and never soundness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

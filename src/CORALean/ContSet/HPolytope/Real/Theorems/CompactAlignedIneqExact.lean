@@ -8,10 +8,10 @@ import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
 Rows with the same normal vector `a` say `aᵀx ≤ b` for several `b`, which is the smallest one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

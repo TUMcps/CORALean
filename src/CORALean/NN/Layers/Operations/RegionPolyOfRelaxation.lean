@@ -6,10 +6,10 @@ A relaxation stores a polynomial and an error per box; on the box `[l, u]` its r
 box with the polynomial and error stored for it, which is one entry of `findRegionPolys`'s result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

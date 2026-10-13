@@ -13,10 +13,10 @@ each rounding direction, so an ellipsoid costs the layer no new scalar operation
 The whole set's bound adds the nominal bound and the error box's own, upward.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

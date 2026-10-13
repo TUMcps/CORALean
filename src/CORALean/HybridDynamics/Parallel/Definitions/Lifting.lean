@@ -13,10 +13,10 @@ and a preimage under a coordinate projection discharges it; nothing here says wh
 the product through the matrix, and only the global ones are inputs of the product.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

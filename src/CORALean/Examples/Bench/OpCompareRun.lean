@@ -18,10 +18,10 @@ is `experiments/matlab-ops/coralean_results.json`. A `hardware_down`/`_up` resul
 range guard's fixed bit pattern is counted as a NaN, past `Binary64`'s trusted range.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

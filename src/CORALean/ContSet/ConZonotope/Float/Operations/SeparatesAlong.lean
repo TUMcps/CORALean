@@ -10,10 +10,10 @@ Whether direction `a` separates two float constrained zonotopes: the first set's
 may be asked; the check, not the direction, is what a `true` rests on.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

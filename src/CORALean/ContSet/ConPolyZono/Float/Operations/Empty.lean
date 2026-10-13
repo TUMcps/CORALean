@@ -8,10 +8,10 @@ No generators and one constraint row that cannot hold: the empty constraint matr
 crossed bound `[one, zero]`. The centre is `zero` and the error box the point `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

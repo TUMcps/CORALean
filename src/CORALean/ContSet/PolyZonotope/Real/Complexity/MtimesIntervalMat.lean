@@ -9,10 +9,10 @@ coordinate: `m` more, the matrix's row count, unrelated to the operand's own
 size. `rfl` against the structure instance in `Operations/MtimesIntervalMat.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

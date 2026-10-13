@@ -10,10 +10,10 @@ what is stated here, a Prop and not a decision procedure (it needs a linear prog
 tolerance and `overlaps` on the boundary representation (R-PG) are not covered.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

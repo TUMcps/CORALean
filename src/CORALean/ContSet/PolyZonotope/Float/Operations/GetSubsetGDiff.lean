@@ -7,10 +7,10 @@ What the rounded-down generators of `getSubset` cost: the rounded-up entry minus
 one, rounded up. Both bracket the exact entry, so the exact one is within this of the stored one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

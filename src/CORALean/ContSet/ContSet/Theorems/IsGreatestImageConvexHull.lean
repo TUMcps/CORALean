@@ -10,10 +10,10 @@ If `f ≤ m` on `S` and `f s = m` for some `s ∈ S`, then `m` is the greatest v
 support function of a polytope given by vertices is read off a vertex.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ pieces to refine, and each piece lies in its zonotope and that in its float `Zon
 Outer, and no exactness is claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

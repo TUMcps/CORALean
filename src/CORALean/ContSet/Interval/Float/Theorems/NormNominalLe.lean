@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Real.Theorems.NormLe
 layer's `Interval.norm`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

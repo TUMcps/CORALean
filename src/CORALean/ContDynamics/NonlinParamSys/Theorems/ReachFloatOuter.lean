@@ -12,10 +12,10 @@ with one parameter `p ∈ P` is, at every time of window `k`, in the `k`-th set
 `NonlinParamSys.reachFloat` returns. An outer statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

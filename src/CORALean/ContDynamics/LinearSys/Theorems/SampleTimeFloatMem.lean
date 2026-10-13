@@ -9,10 +9,10 @@ By strong induction on `k`: `k = 2 ⌊k/2⌋ + (k mod 2)`, and doubling and addi
 `Δt` are sums, which `addDown_le_add`/`add_le_addUp` bound outward at any sign.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

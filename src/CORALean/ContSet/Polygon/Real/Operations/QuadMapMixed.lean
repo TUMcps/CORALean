@@ -12,10 +12,10 @@ point of each polygon, over every pair of triangles of the two triangulations. C
 pair is `(list1{i}, list2{j})`. Otherwise as `Polygon.quadMap`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -8,10 +8,10 @@ The two round-trip by `rfl`, which is what makes "order 1" a reading of `Relaxat
 than a second notion standing beside it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

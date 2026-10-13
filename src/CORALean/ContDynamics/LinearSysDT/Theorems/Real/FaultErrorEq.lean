@@ -19,10 +19,10 @@ the residual is `r_k = M(y_k - C x̂_k) = M C e_k + M D_y v_k + M E f_k`. At `w_
       pp. 7230-7235, 2017.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

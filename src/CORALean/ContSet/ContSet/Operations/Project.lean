@@ -10,10 +10,10 @@ and each class implements its own, mostly exactly; this is the one that every cl
 has, an enclosure in general, and computable over any scalar that has `0` and `1`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

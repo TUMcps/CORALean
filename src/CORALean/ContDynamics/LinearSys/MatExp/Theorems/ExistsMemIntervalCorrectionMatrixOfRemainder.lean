@@ -28,10 +28,10 @@ So `Φ` is the sum of the `Q_k`, and the correction keeps `(λ^k - λ) Q_k` from
 bound at `t • B` being no larger than at `r • B`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

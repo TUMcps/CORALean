@@ -20,10 +20,10 @@ uniformly at `normUpperBound` of the zonotope's `interval` and rounded to a floa
 geometric factor is the constant `2`. It is checkable from the zonotope alone.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

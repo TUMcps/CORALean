@@ -8,10 +8,10 @@ import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
 `A` and `B` of the GO model are exactly the coefficients of the closed form of the state.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

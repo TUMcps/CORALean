@@ -7,10 +7,10 @@ At step `k` the window moves to `y(k+1..k+p)`, and the input terms of `y(k+p)` a
 `∑_j B̄_{j+1} u(k+p-j)`, placed in the last block by `inputMat`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

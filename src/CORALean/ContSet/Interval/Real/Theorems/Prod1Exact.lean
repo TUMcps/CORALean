@@ -11,10 +11,10 @@ one row from each: each step `times` is exact (`times_exact`) and the rows are i
 holds for the product of independent entries only; a matrix reused twice would not be exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

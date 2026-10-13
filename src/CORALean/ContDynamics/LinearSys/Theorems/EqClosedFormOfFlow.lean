@@ -26,10 +26,10 @@ fundamental theorem, and Grönwall's
 `eq_zero_of_abs_deriv_le_mul_abs_self_of_eq_zero_right` forces `d ≡ 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

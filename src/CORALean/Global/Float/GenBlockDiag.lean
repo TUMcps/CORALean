@@ -10,10 +10,10 @@ The columns, read as real vectors, are the two operands' columns padded with zer
 side, which is what a Cartesian product of generator representations needs.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

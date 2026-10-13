@@ -20,10 +20,10 @@ the sum of its steps, at any bound on each step's input. No enclosure guarantee
 mentions a `Cost`, so a count read wrong makes a bound wrong, never a set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ puts in `[e^{AΔt}] R_k` — the run's step, its matrix computed once — and
 derived, so `N` time steps span `[tStart, tFinal]` exactly (`steps_spec_toReal`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ Exact and pure Lean: the sign of the mantissa flips and nothing is rounded, so
 FLINT is not asked.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

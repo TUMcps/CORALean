@@ -16,10 +16,10 @@ matrix, the monomials come from `monoBox`, and `Interval.mtimesIntervalMat` mult
 evaluation of another form encloses the same values, possibly more tightly.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

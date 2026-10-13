@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/Abs.lean` takes the absolute value of the
 `n` centre coordinates and of the `n * h` generator entries.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

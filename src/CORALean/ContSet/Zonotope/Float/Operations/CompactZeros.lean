@@ -11,10 +11,10 @@ The centre and the error box are copied. Nothing rounds, so the denoted set is t
 (`compactZeros_exact`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

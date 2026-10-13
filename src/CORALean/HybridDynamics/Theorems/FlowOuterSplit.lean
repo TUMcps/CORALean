@@ -18,10 +18,10 @@ a representation carrying those two instances — nothing about `u`, and nothing
 about `ℓ.U`, survives into the statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

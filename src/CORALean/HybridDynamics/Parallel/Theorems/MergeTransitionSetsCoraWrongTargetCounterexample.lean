@@ -12,10 +12,10 @@ builds for the label (`mergeTransitionSets.m:140`, through `synchronize`) target
 Read from the MATLAB code, not run (#40, `FINDINGS.md`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

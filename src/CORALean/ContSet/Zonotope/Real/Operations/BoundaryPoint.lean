@@ -13,10 +13,10 @@ centre: `c + dir / ‖dir‖_Z`) are the same point. Here `t*` is the supremum, 
 attains; the definition is not computable (the solver is replaced by the specification).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

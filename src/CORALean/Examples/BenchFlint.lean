@@ -27,10 +27,10 @@ the mantissa odd, `Dyadic` need not. `reachFloat_outer_flint` is
 file and the `Flint` instances may reach.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

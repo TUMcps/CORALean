@@ -13,10 +13,10 @@ range's enclosure. A squaring roughly doubles the relative width, so the
 enclosure is about `2^s` times as wide, relatively, as the scaled one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -22,10 +22,10 @@ Cauchy–Schwarz bound by `1`. `v = 0` (`ν = 0`) and an empty strip (`S ≤ 0`)
 own in the statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

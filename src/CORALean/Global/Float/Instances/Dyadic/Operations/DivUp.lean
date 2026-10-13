@@ -9,10 +9,10 @@ dyadics is not dyadic, and its shift leaves it at least `p` bits and up to the
 dividend's length more, so `roundUp` returns it to `p`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   25-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

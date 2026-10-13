@@ -24,10 +24,10 @@ arrives already directed. `le` is exact and needs no rounding at all. No bound
 on the mantissa is needed: leaving the grid costs precision, never soundness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

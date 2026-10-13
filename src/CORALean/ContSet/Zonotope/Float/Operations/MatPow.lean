@@ -10,10 +10,10 @@ same way. The identity is `diagonalBlock fun _ => one`, `𝕋` having no `One` (
 `Interval.matPow`). Each power is materialised, or the next product would rebuild it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

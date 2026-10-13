@@ -11,10 +11,10 @@ exactly `n` generators the one `n`-subset is all of them. This is `Zonotope.volu
 `h = n`: the general sum (the tiling by parallelotopes) is not proved.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

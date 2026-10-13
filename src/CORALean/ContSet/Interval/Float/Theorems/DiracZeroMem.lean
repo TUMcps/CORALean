@@ -8,10 +8,10 @@ For every order `n`, the result contains `0` in every coordinate (`δ⁽ⁿ⁾` 
 stored lower bound is at most `0`, each stored upper bound at least `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

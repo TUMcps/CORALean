@@ -9,10 +9,10 @@ import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
 hypothesis: a crossed box is where `plus_exact` needs one, and the inclusion does not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

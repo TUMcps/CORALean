@@ -9,10 +9,10 @@ The stored half-widths bound the exact ones for a nonempty box, so a certificate
 `radiusSq ≤ σ·σ` bounds the exact layer's `Interval.radius₂` by `|σ|`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

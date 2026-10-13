@@ -12,10 +12,10 @@ for every layer `i` it is not in, and at most `L k`, then `v ≤ L 0 + Σ_{i in}
 The layers it is in need not form an initial segment. Induction on `k`, peeling layer `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

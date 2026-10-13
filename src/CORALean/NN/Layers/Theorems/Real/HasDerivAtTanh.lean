@@ -9,10 +9,10 @@ sigmoid relaxation transports to tanh is tanh's own and not merely a sound one. 
 `tanh` derivative is not what this reads.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

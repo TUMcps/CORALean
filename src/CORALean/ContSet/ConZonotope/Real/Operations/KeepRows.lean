@@ -16,10 +16,10 @@ dropped coordinates do not enter, and in particular on a polytope that leaves th
 unconstrained, which is the case `reduceKeep`'s ranking drops first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

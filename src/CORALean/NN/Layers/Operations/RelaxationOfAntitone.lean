@@ -10,10 +10,10 @@ upper end at `l`, and the error the larger distance to either, rounded up. The i
 root a graph network normalises by is the function it exists for.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

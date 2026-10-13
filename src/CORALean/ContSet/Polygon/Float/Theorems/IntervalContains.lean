@@ -8,10 +8,10 @@ import CORALean.ContSet.Interval.Float.Theorems.OrOuter
 Each piece's box holds it (`VPolytope.interval_contains`) and `Interval.or` holds both boxes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

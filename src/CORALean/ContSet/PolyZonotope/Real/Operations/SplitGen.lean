@@ -8,10 +8,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
 (no dependent generator or no factor) being sent to the independent split.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

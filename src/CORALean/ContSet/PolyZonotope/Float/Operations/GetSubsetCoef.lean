@@ -13,10 +13,10 @@ The binomial coefficient `C(e, j) · cenᵉ⁻ʲ · radʲ` that term `j` of the 
 the corner products, so the exact real lies in the pair.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

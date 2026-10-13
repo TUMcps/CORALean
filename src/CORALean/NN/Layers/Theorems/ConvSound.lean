@@ -9,10 +9,10 @@ The convolution the stored kernel denotes, output `j` the weighted sum over its 
 bias: the linear layer's soundness at the stencil, which `tapMat_mulVec` reads row by row.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

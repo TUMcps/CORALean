@@ -6,10 +6,10 @@ import CORALean.ContSet.LevelSet.Real.Operations.Not
 Where CORA's `not` is defined, the result denotes exactly the complement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

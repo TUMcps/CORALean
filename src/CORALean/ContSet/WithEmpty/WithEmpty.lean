@@ -18,10 +18,10 @@ type, where `EmptySet n` fixes it to `Vec ℝ n`, so this extends the matrix and
 module ambient types too — every type `ContSet` is indexed by.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

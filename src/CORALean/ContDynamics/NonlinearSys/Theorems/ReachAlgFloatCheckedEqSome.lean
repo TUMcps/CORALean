@@ -8,10 +8,10 @@ unchecked `some`, and none of its floats is a NaN. Whatever is proved of `reachA
 proved of the checked result, which has passed the NaN test as well.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

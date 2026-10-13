@@ -9,10 +9,10 @@ rounds and the box only has to hold what the two incoming boxes did. The one
 operation a vertex description performs exactly in floating point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

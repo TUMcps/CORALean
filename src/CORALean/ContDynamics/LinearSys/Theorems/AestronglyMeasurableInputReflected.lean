@@ -12,10 +12,10 @@ substitution `τ = c - s` leaves behind. The reflected argument sweeps
 `StepInputOuter` is the one caller, matching `stepInput`'s own reflection.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   10-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -18,10 +18,10 @@ Outer only. At zero error boxes the stored interval still has the width of the
 rounding of `c₂ - c₁`, so the result can hold points of neither operand.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

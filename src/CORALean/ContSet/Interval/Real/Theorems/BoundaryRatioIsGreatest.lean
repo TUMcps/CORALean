@@ -11,10 +11,10 @@ the constraint is `s ≤ bound i / dir i`, the ratio is the least of them, and t
 `dir i = 0` never bind, the start point being in the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

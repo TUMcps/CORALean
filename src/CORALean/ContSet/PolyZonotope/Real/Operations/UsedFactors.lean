@@ -8,10 +8,10 @@ CompactFactorsExact.lean`, and reused unchanged by `ConPolyZono.usedFactors`
 over the joint exponent matrix, both outside this file.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

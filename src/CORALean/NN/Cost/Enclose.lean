@@ -16,10 +16,10 @@ can price a `Layer.linear` and a `Layer.activation` by the same number. It is
 read at `Enclose.toLayer` of each layer, whatever its kind.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

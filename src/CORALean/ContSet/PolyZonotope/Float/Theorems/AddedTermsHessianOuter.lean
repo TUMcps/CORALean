@@ -16,10 +16,10 @@ between their two roundings, the twice-lowered monomials in `monoBox`, and their
 `Interval.mtimesIntervalMat`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

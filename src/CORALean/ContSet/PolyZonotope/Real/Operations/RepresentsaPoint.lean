@@ -9,10 +9,10 @@ generator is `0`. CORA's compaction also merges generators with equal exponent c
 drops the ones that cancel, so it answers `true` for more sets than this does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

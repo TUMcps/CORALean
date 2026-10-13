@@ -23,10 +23,10 @@ the shared variables. `construct` is the range set of an array of models over th
 variables, CORA's `[p₁(t) + e₁; …]` with `t ∈ [-1, 1]ⁿ`, for the conversions.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

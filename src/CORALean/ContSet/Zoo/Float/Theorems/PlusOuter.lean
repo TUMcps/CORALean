@@ -9,10 +9,10 @@ Every member of the result encloses the combined function: the Taylor model by `
 the interval by `Interval.plus_outer` on the two box values (outer: the rounding goes outward).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

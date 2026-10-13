@@ -8,10 +8,10 @@ What CORA's source passes for a numeric operand: `S = [S; ones(m, size(S,2))]`, 
 not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

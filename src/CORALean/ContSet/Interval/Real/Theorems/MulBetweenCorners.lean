@@ -12,10 +12,10 @@ coefficient, once the other way, no case split on signs needed. Was file-local
 to `MtimesIntervalMatOuter`; `matMul_outer` needs it too, hence public here.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

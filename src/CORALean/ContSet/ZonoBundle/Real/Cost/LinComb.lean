@@ -11,10 +11,10 @@ per pair of members, as `plus` does, and does nothing of its own.
 one member's count, for the reason `mtimesCost` gives.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

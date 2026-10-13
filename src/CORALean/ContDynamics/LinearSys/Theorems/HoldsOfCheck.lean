@@ -12,10 +12,10 @@ homogeneous flow reaches from `X₀` by `tFinal`, at an order admissible for `Δ
 reaches this one at `LinearSys`, `reachInstance` now running the same recursive `reach`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

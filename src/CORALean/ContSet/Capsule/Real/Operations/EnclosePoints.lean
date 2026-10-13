@@ -17,10 +17,10 @@ for the farthest point, so the ball it gives is sound but wasteful. Here the rad
 distance from the axis, the rejection `d - (d·g/g·g) g`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

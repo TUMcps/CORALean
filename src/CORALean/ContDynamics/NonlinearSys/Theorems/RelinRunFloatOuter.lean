@@ -7,10 +7,10 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunAtFloatOuter
 `relinRunAtFloat_outer` at the expansion points `linPointFloat` computes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

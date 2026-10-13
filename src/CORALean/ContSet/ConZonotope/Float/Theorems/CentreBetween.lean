@@ -7,10 +7,10 @@ import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
 The two ends are a rounded-down and a rounded-up evaluation of the same expression.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

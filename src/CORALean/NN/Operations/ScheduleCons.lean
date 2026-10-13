@@ -6,10 +6,10 @@ import CORALean.NN.Definitions.Schedule
 How the induction over a network builds a schedule, one layer's pattern at a time.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

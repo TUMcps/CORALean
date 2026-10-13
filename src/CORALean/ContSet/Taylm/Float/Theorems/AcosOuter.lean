@@ -15,10 +15,10 @@ root `√(1 - c²)` positive at the centre and `√(1 - m²)` at the magnitude `
 the range inside `(-1, 1)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

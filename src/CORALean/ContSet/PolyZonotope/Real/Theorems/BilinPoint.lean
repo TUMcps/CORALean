@@ -16,10 +16,10 @@ raises a polynomial abstraction one order needs it at each step and only
 `bilin_exact` needs it over the sets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

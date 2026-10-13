@@ -7,10 +7,10 @@ Every point of the set reads at most the bound in direction `a`; the point reads
 rounded-down reading, which the test found strictly above the bound.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

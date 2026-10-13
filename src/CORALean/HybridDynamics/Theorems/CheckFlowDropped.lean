@@ -10,10 +10,10 @@ invariant through the projection. This is a statement about the projection, not 
 itself, and it says nothing about states that left the invariant by another face.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

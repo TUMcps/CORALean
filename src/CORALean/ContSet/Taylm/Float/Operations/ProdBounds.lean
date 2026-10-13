@@ -9,10 +9,10 @@ The range of a product of factors each known to lie in an interval: the corner p
 running interval with the next factor's, rounded outward (`Interval.mulLo`, `Interval.mulHi`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

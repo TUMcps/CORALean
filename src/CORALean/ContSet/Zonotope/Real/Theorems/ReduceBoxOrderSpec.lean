@@ -15,10 +15,10 @@ is `0`, `o * n` staying `0` throughout, so the witness below would not go
 through — a real restriction, not a formality dodged for convenience.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

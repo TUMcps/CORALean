@@ -8,10 +8,10 @@ range, `maxCos`, and the lower bound the negated largest cosine on the range shi
 `cos (x - π) = -cos x`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

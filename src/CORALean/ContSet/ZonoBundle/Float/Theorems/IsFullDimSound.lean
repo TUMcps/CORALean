@@ -8,10 +8,10 @@ The bundle is the intersection of its members. A point interior to every member 
 intersection of finitely many of them (`interior_iInter_of_finite`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

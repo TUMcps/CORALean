@@ -12,10 +12,10 @@ boundary points is not the shadow. The theorem asks only that each `v` be a poin
 as the solver's maximisers are.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

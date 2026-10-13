@@ -18,10 +18,10 @@ chain machinery, `strictMonoOn_Iic_of_lt_succ`/`StrictMonoOn.Iic_id_le`, not
 hand-rolled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

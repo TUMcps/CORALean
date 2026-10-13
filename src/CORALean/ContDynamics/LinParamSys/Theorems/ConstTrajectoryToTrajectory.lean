@@ -9,10 +9,10 @@ function `fun _ => A`. The converse fails — a trajectory free to pick a fresh
 having no counterexample constructed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,10 +17,10 @@ The error boxes are added rather than threaded through the factors: a box has no
 factors to share, so the sum of two boxes is what any point-wise sum can pick up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

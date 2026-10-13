@@ -8,10 +8,10 @@ import CORALean.NN.Graph.Theorems.MemBallSelf
 existential over indices — `Exists.choose` picks one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

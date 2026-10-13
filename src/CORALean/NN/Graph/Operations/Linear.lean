@@ -9,10 +9,10 @@ at every node. The node features are taken as the matrix `H` itself: CORA's resh
 stacked vector is the same data.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

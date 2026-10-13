@@ -8,10 +8,10 @@ the box of the concatenated bounds, and a box lies in its ellipsoid. Outer only,
 `'outer'` mode: the product of two ellipsoids is not an ellipsoid.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ over the outputs `ii` of the `e`-th power of output `ii`'s polynomial, `e` the e
 `idu ii` in the generator.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

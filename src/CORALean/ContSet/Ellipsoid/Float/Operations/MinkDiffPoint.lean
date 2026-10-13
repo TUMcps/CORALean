@@ -10,10 +10,10 @@ moves, the generators stay. The new centre is rounded down, and what that leaves
 the error box (`centerResidual`, the same box `plus` pays).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

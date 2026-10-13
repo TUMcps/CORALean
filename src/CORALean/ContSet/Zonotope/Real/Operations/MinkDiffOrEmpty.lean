@@ -20,10 +20,10 @@ which `M` is used is a choice made here rather than by the caller. A caller
 holding one calls `minkDiffRep` and keeps the precision that goes with it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

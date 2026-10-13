@@ -6,10 +6,10 @@ import CORALean.ContSet.Interval.Float.Operations.Sum1
 The image of the members of the stored box under the sums lies in the stored result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

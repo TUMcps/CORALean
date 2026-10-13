@@ -8,10 +8,10 @@ CORA's `getNormalForm`: the network with consecutive affine layers fused, `W = W
 return for a network already in that form, which computes the same function.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

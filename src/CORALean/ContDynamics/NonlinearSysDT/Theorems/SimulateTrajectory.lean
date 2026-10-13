@@ -12,10 +12,10 @@ hypotheses handed in, `step` is `rfl`, since `simulate` is `Trajectory.step`'s
 equation read as a recursive definition rather than as a predicate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

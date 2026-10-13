@@ -13,10 +13,10 @@ For corners of `isPolytopeCex` with factors `±1`, the difference of two corner 
 cone of the first corner's columns once two sign conditions hold.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

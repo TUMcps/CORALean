@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Operations.LeakyReluEndUp
 Leaky ReLU is convex, so its gap above a line is the larger of its two end values.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

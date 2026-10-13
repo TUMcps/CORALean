@@ -6,10 +6,10 @@ import CORALean.ContSet.LevelSet.Real.Operations.Contains
 The boolean answer is `true` exactly when the point is in the denoted set.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

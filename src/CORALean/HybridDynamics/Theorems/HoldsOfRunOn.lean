@@ -9,10 +9,10 @@ the start, `k + m` after its `m` jumps. `RunOnOuter` supplies the membership,
 `Specification.holds_of_outer` turns it into an answer, as before.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

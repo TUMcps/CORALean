@@ -7,10 +7,10 @@ The new guard denotes the intersection of the old one and the invariant, with eq
 the rows loses nothing. The reset and the target are untouched.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

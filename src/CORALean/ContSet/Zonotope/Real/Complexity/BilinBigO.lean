@@ -16,10 +16,10 @@ condition — `IsBigO.of_bound` still asks for one only eventually.
 constant `∀ᶠ x in l`, which the whole range `m ≥ 1` clears with room to spare.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -23,10 +23,10 @@ At `𝒵` and `𝕋 = ℝ`, where `LinearSysDT`'s own count is stated, and for t
 reason: `plus` and `reduce` cost what a representation makes them cost.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

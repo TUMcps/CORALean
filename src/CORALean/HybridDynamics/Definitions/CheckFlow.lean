@@ -22,10 +22,10 @@ is meant, so for `n > 1` its test is a vector comparison (see FINDINGS.md). Here
 part of `U`, and the component along `c` is taken of everything.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,10 +11,10 @@ rounded up, or `1` for a row whose norm is not certified positive (CORA leaves a
 and `scaleRows` multiplies by it, paying the rounding on the right-hand side over the box `dom`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

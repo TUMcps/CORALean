@@ -9,10 +9,10 @@ coordinates: `y ↦ x0 + N y` in the unit box, `[N; -N] y ≤ [1 - x0; 1 + x0]`
 (`A_ = A * Neq`, `b_ = b - A * x0` with the box rows `[I; -I]`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

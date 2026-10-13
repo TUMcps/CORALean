@@ -13,10 +13,10 @@ constraint system passes through untouched. So the whole count is
 and `h + q` dependent generators, both proved in `Complexity/QuadMap.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

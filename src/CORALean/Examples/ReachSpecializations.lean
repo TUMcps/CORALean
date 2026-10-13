@@ -23,10 +23,10 @@ instances. It is the one representation here that has to spell its family out â€
 interval *matrix* family, not this one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 namespace CORALean.Real
 

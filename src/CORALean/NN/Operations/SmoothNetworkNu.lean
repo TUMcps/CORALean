@@ -6,10 +6,10 @@ import CORALean.NN.Definitions.SmoothNetwork
 CORA's `dim_u`: one block per linear layer, the size of its bias.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

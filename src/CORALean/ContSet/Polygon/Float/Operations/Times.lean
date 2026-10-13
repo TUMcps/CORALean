@@ -8,10 +8,10 @@ CORA's `@polygon/times`: `diag(M) * pgon`, so `mtimes` at the float diagonal mat
 instance.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

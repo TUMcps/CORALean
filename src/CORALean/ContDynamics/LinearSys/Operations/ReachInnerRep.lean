@@ -12,10 +12,10 @@ representation `M` the caller offers and the operation checks. A wrong `M`
 gives `none`, costing precision and never soundness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       23-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

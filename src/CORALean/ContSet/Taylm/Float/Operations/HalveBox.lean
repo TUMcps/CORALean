@@ -7,10 +7,10 @@ The two halves of a box at coordinate `β`, cut at the midpoint `(l + u) / 2` wi
 up: the halves cover the box wherever the cut lies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

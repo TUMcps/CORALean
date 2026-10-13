@@ -9,10 +9,10 @@ The same floor-division fact as for `roundUp`, `Int.ediv_mul_le` on the negated 
 read at the shift `(e - exponent).toNat` that `two_zpow_coarsen` aligns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

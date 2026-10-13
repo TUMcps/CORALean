@@ -10,10 +10,10 @@ import CORALean.ContSet.Taylm.Float.Operations.InvBound
 centre and the range from zero, `max (min c lo) (-max c hi)` (`invBound`). Sound where `m > 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

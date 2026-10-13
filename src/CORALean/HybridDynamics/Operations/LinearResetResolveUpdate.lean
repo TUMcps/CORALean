@@ -13,10 +13,10 @@ feeds `y = C_c x_c + D_c u_c + q_c` back through the column `B_part` of `B` at t
 Zero for a globally bound input.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

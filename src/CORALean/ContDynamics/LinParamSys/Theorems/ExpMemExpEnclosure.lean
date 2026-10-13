@@ -11,10 +11,10 @@ its order condition met by the raise `expEnclosure` makes: a larger order only
 shrinks `‖(t • sys.A).absMax‖ / (η + 2)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

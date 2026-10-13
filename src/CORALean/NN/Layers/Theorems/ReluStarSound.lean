@@ -10,10 +10,10 @@ visited so far are ReLU'd in the set, the rest untouched, and one more neuron's 
 own ReLU on the set it is given, by `reluNeuron_outer` at the bounds that set satisfies.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

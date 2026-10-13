@@ -12,10 +12,10 @@ its centre into the member's own error box, and — already over ℝ — a sum o
 intersections is not an intersection of sums.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

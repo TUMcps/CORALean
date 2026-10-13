@@ -7,10 +7,10 @@ import CORALean.Global.Float.Instances.Real.Instances
 scalar and read at `𝕋 := ℝ` mentions it, and a proof rewriting there needs it by name.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

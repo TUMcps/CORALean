@@ -13,10 +13,10 @@ Not modelled: the `'conZonotope'` branch, which converts a polytope guard to a c
 leaves the invariant alone, and the conversion of a non-polytope guard to a polytope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ real one: `step` witnesses the exact `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 is the exact one, at the real time `toReal Δt` the float denotes.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

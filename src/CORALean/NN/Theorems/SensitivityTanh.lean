@@ -12,10 +12,10 @@ sigmoid's own, at twice the argument and four times the size — the affine
 conjugation that carries the relaxation carries the heuristic with it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

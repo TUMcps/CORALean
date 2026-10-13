@@ -12,10 +12,10 @@ closure of what is left, `closure (interior P₁ \ P₂)`. So the result is the 
 near-coincident boundaries is not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

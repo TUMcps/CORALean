@@ -10,10 +10,10 @@ value one step on (`affineTimePointNextFloat_outer`): a point of `H(t_k)` under 
 input `ũ` is, after any `τ ∈ [0, Δt]`, in `affineTimeIntervalOuterFloat`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

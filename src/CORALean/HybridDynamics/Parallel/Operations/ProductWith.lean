@@ -9,10 +9,10 @@ the run theorems are proved for any `F` with `FlowLaw`, so that `mergeFlowsAdd` 
 `SelfBindFree`) is covered by the same proof.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

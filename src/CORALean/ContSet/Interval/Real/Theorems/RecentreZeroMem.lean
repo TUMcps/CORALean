@@ -9,10 +9,10 @@ original bounds is exactly what puts `0` between the shifted ones. A crossed
 box has no centre inside it, so this carries no hypothesis beyond that one.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

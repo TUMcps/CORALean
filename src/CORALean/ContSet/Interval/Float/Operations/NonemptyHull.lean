@@ -8,10 +8,10 @@ smallest change that makes the box nonempty, and none at all to one that already
 layer committing to a point of its error box runs on, when nothing proves the box nonempty.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

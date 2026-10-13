@@ -11,10 +11,10 @@ matPow_outer` does; the base case is `mem_point` at the stored identity block,
 read back as `(1 : Mat ℝ n n)`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

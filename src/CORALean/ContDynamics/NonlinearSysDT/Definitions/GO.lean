@@ -14,10 +14,10 @@ the weights of the linearization errors `L = [L_x; L_y]`. Indices are `0`-based,
 * [1] `contDynamics/@nonlinearSysDT/computeGO.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

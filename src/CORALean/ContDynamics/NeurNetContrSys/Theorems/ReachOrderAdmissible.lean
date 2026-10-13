@@ -9,10 +9,10 @@ denominator once `2` is added — `LinearSys.reachOrder_admissible`'s argument,
 one `+ 2` short since `reach_outer` asks for none on the numerator's side.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

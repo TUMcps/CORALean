@@ -11,10 +11,10 @@ error box's own bound, added upward. An upper bound only: the `le` field of the 
 `FloatBound` is the outer theorem.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

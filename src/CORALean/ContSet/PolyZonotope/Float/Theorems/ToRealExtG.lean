@@ -5,10 +5,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 # The extended generator matrix reads back to the exact layer's
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

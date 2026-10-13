@@ -18,10 +18,10 @@ CORALean's `LinearSys` the input `B u + c = 1` is the input set `{1}`. The Arnol
 `[0 0; 0 0]` from `e₂` is exact, and breaks down, so the multiprecision branch is never run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

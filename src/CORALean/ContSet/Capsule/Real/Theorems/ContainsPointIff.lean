@@ -10,10 +10,10 @@ and fails both sides; `g = 0` is the sphere, CORA's `isempty(g)` case). With `v 
 `t ∈ [-1, 1]` is `s` when `|s| < 1` and the nearer end otherwise: CORA's two branches.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

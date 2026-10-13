@@ -12,10 +12,10 @@ columns are `E k i` times the stored ones, which the stored lower multiple is of
 layer's `jacobian_hasDerivAt` says what the exact set is, the derivative of the point along `k`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

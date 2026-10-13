@@ -18,10 +18,10 @@ extremes; both images lie in the open interval `(xloᵢ, xhiᵢ)`, whose width t
       functions". Reliable Computing, 14:1-23, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

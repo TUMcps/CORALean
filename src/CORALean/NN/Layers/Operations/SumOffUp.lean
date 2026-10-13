@@ -7,10 +7,10 @@ import CORALean.Global.Float.FloatOps
 the sum taken over all of `Fin n`, `sumUp` rounding each partial sum up.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

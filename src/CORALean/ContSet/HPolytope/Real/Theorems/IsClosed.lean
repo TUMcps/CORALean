@@ -13,10 +13,10 @@ Not bounded: unbounded halfspace descriptions are exactly what the
 representation admits and a vertex description cannot.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

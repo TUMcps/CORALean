@@ -4,10 +4,10 @@ import CORALean.ContSet.Interval.Float.Operations.Magnitude
 # A point of an interval vector is within its magnitude of the origin
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

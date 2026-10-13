@@ -8,10 +8,10 @@ Each member's box holds the whole bundle (`interval_contains`), and the fold kee
 box held: `Interval.intersection_exact` at each step.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

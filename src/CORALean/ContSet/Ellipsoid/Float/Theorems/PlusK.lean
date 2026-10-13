@@ -4,10 +4,10 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
 # `plus`'s ball dimension is the sum of the two incoming ones
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

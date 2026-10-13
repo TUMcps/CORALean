@@ -23,10 +23,10 @@ is `-2(Ae)ᵀλ̂ - 2μ̂e_j = 0`, and what is left is `‖Ge‖₂² + ‖e‖�
       2016.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

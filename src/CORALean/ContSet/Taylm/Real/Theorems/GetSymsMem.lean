@@ -9,10 +9,10 @@ within the remainder interval of it, at every point of the box: `getSyms` is the
 the remainder dropped, and the remainder is what separates it from the enclosed function.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

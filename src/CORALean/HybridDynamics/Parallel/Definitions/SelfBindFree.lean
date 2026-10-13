@@ -12,10 +12,10 @@ A user with a self-binding at a nonzero `A_ij` can still use the product by fold
 self-loop into the component's own `A` before building the parallel automaton.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

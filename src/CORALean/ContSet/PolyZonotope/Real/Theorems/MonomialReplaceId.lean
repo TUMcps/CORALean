@@ -8,10 +8,10 @@ at `a'`, is the original monomial at `a' ∘ f`: the powers regroup along the fi
 `replaceId` and `subs` (a shared identifier) are stated through it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

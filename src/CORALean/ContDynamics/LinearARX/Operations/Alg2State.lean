@@ -16,10 +16,10 @@ the sets `S_c`, `T_c1`, `T_c2`, the vector `s_v`, and the stored `B̃ᵢ`. Line 
   62nd IEEE Conference on Decision and Control (CDC), 2023, pp. 7027-7034.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

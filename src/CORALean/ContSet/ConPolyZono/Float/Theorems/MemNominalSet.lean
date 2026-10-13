@@ -13,10 +13,10 @@ is `cPZ.h`, where the instance gives the equal-but-distinct `(nominal cPZ).h` th
 `rw` reads apart.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

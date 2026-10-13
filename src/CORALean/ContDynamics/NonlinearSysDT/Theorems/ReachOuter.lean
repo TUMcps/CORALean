@@ -7,10 +7,10 @@ The total case of `reach_outer_on`, `K := k` and `le_rfl` away via
 `aux_toTrajectoryOn`, so nothing about a bounded run is proved twice.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

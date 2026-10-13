@@ -8,10 +8,10 @@ Asserted, not proved: `Operations/ConvHull.lean` forms `c_ = (c + S.c) / 2`
 (`2 * n`), `g_ = c - c_` (`n`), two `Capsule.radius` and their `max` (one).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

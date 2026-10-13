@@ -17,10 +17,10 @@ import Mathlib.Tactic.FieldSimp
       Classification Tasks". Journal of Machine Learning Research, 26(294):1-37, 2025.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

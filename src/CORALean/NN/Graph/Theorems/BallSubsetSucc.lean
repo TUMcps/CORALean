@@ -7,10 +7,10 @@ Immediate from the `i = j` disjunct in `ball`'s successor case: every node
 already in the ball reaches itself, so it stays in at the next radius too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

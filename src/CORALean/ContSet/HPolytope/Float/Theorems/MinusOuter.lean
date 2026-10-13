@@ -8,10 +8,10 @@ Every point of the polytope less the subtrahend lies in the result: negation is
 exact, so this is `translate_outer` at `-v`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -7,10 +7,10 @@ The emptiness test at float: some coordinate with `sup` strictly below `inf`, by
 certifies emptiness only; a box whose crossing is under the margin is not reported.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

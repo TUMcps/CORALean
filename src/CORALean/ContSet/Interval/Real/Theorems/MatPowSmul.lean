@@ -16,10 +16,10 @@ It is what lets a bound proved once against the unscaled box, at every time `s`
 of a step, be read off the box of the step `smul s A` itself.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ exceeds `a` — and `logDown_le_of_le` discharges it by comparison. `logUp` goes
 through `expDown`, which carries no hypothesis, so neither does it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ onto its own block and intersecting costs nothing beyond what each already
 had. `rfl` against the structure instance in `Operations/Plus.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

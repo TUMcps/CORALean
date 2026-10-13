@@ -10,10 +10,10 @@ compute; the replaced value is not required to stay in `[-1, 1]`, so the set is 
 `pZ`'s unless `pZin` stays in the unit box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

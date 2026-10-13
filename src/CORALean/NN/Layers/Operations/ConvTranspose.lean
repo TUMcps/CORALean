@@ -14,10 +14,10 @@ convolution gathers. The helper's stride, padding and dilation never appear, bei
 taps it reads; CORA derives them from the stored fields, here they arrive as the taps.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

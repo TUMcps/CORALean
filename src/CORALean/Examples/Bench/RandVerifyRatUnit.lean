@@ -9,10 +9,10 @@ the unit circle (every point but `(-1, 0)`, approached as `t → ±∞`): `‖�
 `q = a² + b²`, `ℓ = p / q`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

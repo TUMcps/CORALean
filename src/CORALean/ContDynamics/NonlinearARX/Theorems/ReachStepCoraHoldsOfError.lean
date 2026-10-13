@@ -11,10 +11,10 @@ abstracted as an arbitrary error: `Ytrue`, the set the step ought to have produc
 the specification, and the verdict is `true` all the same.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

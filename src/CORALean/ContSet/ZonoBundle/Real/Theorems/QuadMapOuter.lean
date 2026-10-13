@@ -10,10 +10,10 @@ a zonotope with itself is an enclosure (the cross coefficients are free), and th
 makes the image of the bundle smaller still.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

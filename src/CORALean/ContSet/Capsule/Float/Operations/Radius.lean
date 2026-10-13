@@ -8,10 +8,10 @@ CORA's `norm(g, 2) + r` with the norm rounded up: `normUp` of the generator, add
 upward. `k` is the number of Newton steps of the root (`Global/Float/Sqrt`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

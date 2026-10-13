@@ -10,10 +10,10 @@ exactly what `minkowskiDiff` asks for. `MinkDiffExact` is the converse, and it
 does need a hypothesis.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

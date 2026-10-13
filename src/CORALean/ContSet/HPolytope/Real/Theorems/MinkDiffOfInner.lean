@@ -10,10 +10,10 @@ all satisfies the difference along an equality row, so there is nothing weaker
 to assume, and the right answer is not to silently return `∅`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

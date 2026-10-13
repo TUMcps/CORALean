@@ -9,10 +9,10 @@ Every point of the star set has the neuron's value between the two bounds: the r
 plus `Σ G_jk (α_k - mid_k)`, and each factor is within its radius of the middle of its box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

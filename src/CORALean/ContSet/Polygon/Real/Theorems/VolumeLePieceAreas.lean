@@ -9,10 +9,10 @@ The area of the region is at most the sum of the piece areas, and equal to it wh
 pairwise almost-everywhere disjoint (`Polygon.volume_eq_pieceAreas`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -13,10 +13,10 @@ constant `u(p) = U_c + Σ pᵢ U_G⁽ⁱ⁾` at the same `p`. The run is the poi
 the constant's on `[0, t]`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

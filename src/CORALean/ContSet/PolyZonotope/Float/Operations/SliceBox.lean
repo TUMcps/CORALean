@@ -9,10 +9,10 @@ The box `X_` with the coordinates `ind` replaced by the box `U`: CORA's
 `U1_`. The coordinates not in `ind` keep `X_`'s bounds, which is `U2_` in CORA's split.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

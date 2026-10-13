@@ -11,10 +11,10 @@ capsule: the centre is `‖c₁ + c₂ - c‖₂` away, which `rounding` bounds,
 same.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

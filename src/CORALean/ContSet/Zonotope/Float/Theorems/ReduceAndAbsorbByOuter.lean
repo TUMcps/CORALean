@@ -20,10 +20,10 @@ box to box, whereas this moves content *out* of the box into the nominal part.
 What is left in the box is the rounded centre shift, as in `absorbError`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

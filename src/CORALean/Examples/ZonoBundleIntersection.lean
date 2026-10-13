@@ -17,10 +17,10 @@ not compact, so the class's unconditional obligation has no proof to give it. A
 positive `k` is what the theorem asks for instead.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

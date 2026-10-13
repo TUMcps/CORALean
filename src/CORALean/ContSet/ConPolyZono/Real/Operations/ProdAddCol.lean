@@ -7,10 +7,10 @@ import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 matrix, which is the form an assembled column is in.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       13-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

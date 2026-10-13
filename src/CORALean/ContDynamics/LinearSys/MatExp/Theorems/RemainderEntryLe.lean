@@ -14,10 +14,10 @@ Entrywise, an entry never exceeding the norm — the bound is on a norm, and
 nothing sharper per entry is available.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

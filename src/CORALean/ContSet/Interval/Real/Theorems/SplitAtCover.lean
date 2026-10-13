@@ -9,10 +9,10 @@ box is covered by two empty boxes just as well, `le_total` alone deciding
 which half a point's `j`-th coordinate falls into.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

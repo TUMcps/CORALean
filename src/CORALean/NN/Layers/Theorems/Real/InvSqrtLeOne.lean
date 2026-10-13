@@ -6,10 +6,10 @@ import CORALean.NN.Layers.Definitions.InvSqrt
 The clamp puts the square root at `1` or above.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

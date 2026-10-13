@@ -9,10 +9,10 @@ CORA's test on the rounded box `interval(C*Z)`: every upper bound strictly below
 `ltStrict`, which is exact. `true` is certain, `false` only says "not shown".
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ basis values with `s ≠ 0`, the full-rank candidate satisfies it at every point
 dx_j`. Nothing about lower ranks, nor about data no such system produced.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

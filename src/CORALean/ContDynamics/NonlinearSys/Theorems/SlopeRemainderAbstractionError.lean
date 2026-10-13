@@ -15,10 +15,10 @@ an `AbstractionError` for `A`, `B` over `X × U`. The slope at `(x, u)` against
 each factor lies in the interval its operation was given.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

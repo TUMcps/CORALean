@@ -8,10 +8,10 @@ The bundle `{[-1, 1]}` of one member against `{[-1, 1], {2}}` of two: the first 
 returns `true` (`ZonoBundle.isequalCora`). Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -9,10 +9,10 @@ The centre and every generator row at the chosen coordinates, and the error box 
 rounds and the generator count is unchanged. `dims` may repeat or reorder coordinates.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

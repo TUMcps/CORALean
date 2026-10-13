@@ -8,10 +8,10 @@ CORA's `@interval/projectHighDim_`: the box placed into the coordinates `proj` o
 other coordinate `0`; an empty box stays empty. The test is `representsa_emptySet`, as in CORA.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

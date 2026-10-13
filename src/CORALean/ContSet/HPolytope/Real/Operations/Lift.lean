@@ -10,10 +10,10 @@ Row `i` of the lifted polytope reads coordinate `dims k` where row `i` of `P` re
 new coordinates, so only the halfspace form has a lift.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

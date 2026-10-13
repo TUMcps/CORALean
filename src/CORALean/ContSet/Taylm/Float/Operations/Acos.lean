@@ -13,10 +13,10 @@ Lagrange bound `Taylm.arcsinBound` at the magnitude `Taylm.magUp`, the same as `
 `q` are the precisions of `acosDown`/`acosUp` and `Global/Float/Sqrt`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

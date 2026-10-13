@@ -8,10 +8,10 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
 point costing a larger remainder and never soundness.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

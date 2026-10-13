@@ -7,10 +7,10 @@ CORA's `@interval/representsa_` at type `emptySet`: the interval denotes the emp
 that is a zero-size `inf`; here the crossed bounds, which is what `Interval.empty` returns.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

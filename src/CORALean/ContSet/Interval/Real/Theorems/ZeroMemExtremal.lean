@@ -16,10 +16,10 @@ makes `Σᵢ cᵢ hᵢ(x)` vanish, as `cᵢ = fᵢ(y)` does at a solution, then 
       and Practice of Constraint Programming (CP 2010), LNCS 6308, pp. 491-498, 2010.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

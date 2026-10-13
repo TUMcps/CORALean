@@ -13,10 +13,10 @@ then states the constraints it assembles itself over the same factors — the
 sharing the representation is built on, used in the one direction that keeps it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -6,10 +6,10 @@ import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
 The zonotope of possible means: the stored mean zonotope.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

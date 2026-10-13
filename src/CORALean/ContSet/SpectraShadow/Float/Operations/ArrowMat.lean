@@ -9,10 +9,10 @@ the cone that forces `s ≥ 0` and, at `s = 0`, the point `w = 0`. Its entries a
 `zero`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -21,10 +21,10 @@ prefix, the way a table indexed by `k` would. The two agree by that equation;
 it is not reproved here, since this is harness code, not the verified library.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

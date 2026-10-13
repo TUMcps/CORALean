@@ -9,10 +9,10 @@ scalars, broadcast over the neurons; here they are the full vectors, which is wh
 `aux_getScaleAndOffset` pads them to.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

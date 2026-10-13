@@ -11,10 +11,10 @@ from the real value of a float start window under the real value of a float inpu
 at every step, in the box `simulateBoxFloat` computes. An outer statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

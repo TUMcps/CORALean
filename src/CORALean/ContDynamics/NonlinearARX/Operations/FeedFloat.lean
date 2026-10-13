@@ -7,10 +7,10 @@ The input signal the converted system sees: block `a` holds `u(k+a)`, as `feed` 
 on stored `𝕋` values, which is all a float run has.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

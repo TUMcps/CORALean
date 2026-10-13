@@ -19,10 +19,10 @@ the lifted box. Here, with no lifting, every row is a polytope row projected on 
 unconstrained. The two are not comparable as sets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

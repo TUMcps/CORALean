@@ -7,10 +7,10 @@ The stack of the blocks of a point is the point: every point of the product spac
 which is what lets a statement about the product be read off its components.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

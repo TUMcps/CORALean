@@ -9,10 +9,10 @@ amounts to: a general matrix would need the image of a polytope, which is a
 projection and so vertex enumeration, but an invertible one costs nothing.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

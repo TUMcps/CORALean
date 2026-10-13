@@ -8,10 +8,10 @@ counts both grow by the independent count, and the independent block empties.
 `rfl` against the structure instance in `Operations/Dependent.lean`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

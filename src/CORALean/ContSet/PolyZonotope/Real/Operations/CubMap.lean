@@ -12,10 +12,10 @@ where this one is exact; for a set without independent generators the two agree.
 `ind` (the non-zero tensor columns) is not modelled: a column left out is the zero matrix.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

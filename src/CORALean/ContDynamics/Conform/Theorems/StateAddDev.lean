@@ -21,10 +21,10 @@ subtracts the nominal run — [1, Eq. 15], [2, Eq. 8] — rests on this.
       Systems (ARCH23), EPiC Series in Computing, vol. 96, pp. 9-33, 2023.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

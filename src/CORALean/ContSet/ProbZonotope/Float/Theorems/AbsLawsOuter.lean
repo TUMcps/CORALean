@@ -10,10 +10,10 @@ whose covariance is a positive semidefinite matrix of the covariance interval, e
 real `abs` is a law of the float `abs`, provided the error box of the means holds `0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

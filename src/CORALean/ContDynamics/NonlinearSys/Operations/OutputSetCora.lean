@@ -20,10 +20,10 @@ D_lin (U - p_u)`. The sets are zonotopes as in CORA; the set is that of the valu
 * [3] `global/functions/helper/dynamics/checkOptions/postProcessing.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

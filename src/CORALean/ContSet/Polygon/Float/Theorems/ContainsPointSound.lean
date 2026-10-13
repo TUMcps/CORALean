@@ -8,10 +8,10 @@ The point is in the nominal piece (`Polygon.pieceHolds_sound`), plus the origin,
 piece's error box holds; so it is in the piece, and the piece is in the region.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

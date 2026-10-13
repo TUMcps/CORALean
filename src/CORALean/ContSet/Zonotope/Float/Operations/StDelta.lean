@@ -6,10 +6,10 @@ import CORALean.ContSet.Zonotope.Float.Operations.StUsed
 Half of the budget's slack, rounded down: the size of correction the box may use.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

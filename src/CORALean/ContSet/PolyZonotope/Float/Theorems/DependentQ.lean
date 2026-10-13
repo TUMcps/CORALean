@@ -6,10 +6,10 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
 Every one of them was made dependent.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

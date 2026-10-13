@@ -14,10 +14,10 @@ trajectory produced is indexed by all of `ℕ`, and `LinearSysDT.Trajectory` has
 no partial form. A bounded domain goes through `reach_outer_horizon` instead.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   02-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

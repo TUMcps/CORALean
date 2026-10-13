@@ -10,10 +10,10 @@ as `HoldsOfEnclose.lean`, `holds_of_outer` traded for `Specification.
 HoldsAll`'s own `holdsAll_of_outer`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -10,10 +10,10 @@ generator. Stated over `point` because that is what a recursion at shared
 factors argues about; `reindex_exact` reads the same equation as sets.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

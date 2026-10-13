@@ -9,10 +9,10 @@ number by the certified `le` in both directions. Certified in one direction only
 proof, `false` refutes nothing. Not CORA's test, which compacts and reorders first.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

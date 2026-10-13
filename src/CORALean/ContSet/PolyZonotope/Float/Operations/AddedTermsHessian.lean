@@ -14,10 +14,10 @@ at the twice-lowered exponents, and `Interval.mtimesIntervalMat` multiplies the 
 `tol`, `H_str` and the split into `id_diff` and `id_param` are not modelled, as in the real layer.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

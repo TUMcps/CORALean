@@ -8,10 +8,10 @@ The rounded dot product is on the far side of the exact one (`dotDown_le`, `le_d
 `ltStrict`'s `true` is a strict real inequality, so the violated row holds for the exact point.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

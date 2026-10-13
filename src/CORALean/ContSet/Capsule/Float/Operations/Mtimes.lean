@@ -13,10 +13,10 @@ rounded-down `mulVecDown`, and the distance of each from the exact product (from
 up. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

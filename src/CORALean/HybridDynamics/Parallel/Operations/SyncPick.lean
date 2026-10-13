@@ -9,10 +9,10 @@ location tuple `ℓ`: the first `λ`-labeled transition of its current location,
 location, so `find?` takes that one; `none` for a participant is what makes `λ` unavailable.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

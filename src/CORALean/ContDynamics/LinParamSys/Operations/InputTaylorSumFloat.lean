@@ -10,10 +10,10 @@ import CORALean.ContSet.Zonotope.Float.Instances
 at `sys.A` itself, times the input set, summed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

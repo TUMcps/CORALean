@@ -10,10 +10,10 @@ the definition, so the inclusion survives crossed bounds and the equality does
 not. The float layer refines this one for that reason.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   04-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

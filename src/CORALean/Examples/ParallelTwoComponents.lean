@@ -21,10 +21,10 @@ location invariant sitting inside the box, the jump half is the reset landing in
 cannot be assembled there, and no `#eval` of the flow matrix is possible (#40).
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   01-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

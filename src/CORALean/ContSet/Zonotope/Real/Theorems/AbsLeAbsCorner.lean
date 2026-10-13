@@ -11,10 +11,10 @@ box corner: the vertex `|c| + Σ |gⱼ|` of `abs Z` (all coefficients `1`) bound
 entrywise absolute value, and `abs` is idempotent and has the same corner.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

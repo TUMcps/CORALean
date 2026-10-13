@@ -28,7 +28,7 @@ loop, at `Float.Zonotope` and a float type the same loop in directed rounding, a
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

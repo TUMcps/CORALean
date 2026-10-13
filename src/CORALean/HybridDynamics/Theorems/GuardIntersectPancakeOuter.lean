@@ -29,10 +29,10 @@ returns a set that misses the hit. Given a hit time `t*` and `δ > 0`, `t_f = ma
 * [1] `hybridDynamics/@location/guardIntersect_pancake.m`
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

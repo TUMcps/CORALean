@@ -29,10 +29,10 @@ is `8`: `A`'s entries need 4 bits and `R₀`/`U`'s need 1, so the mantissa first
 overflows on the third step and half the rows carry a rounded box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       03-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

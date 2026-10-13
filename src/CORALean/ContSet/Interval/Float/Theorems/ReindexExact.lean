@@ -10,10 +10,10 @@ relabelled interval *is* the relabelled nominal box, by `rfl`, so the exact
 layer's theorem is the whole proof.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

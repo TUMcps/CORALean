@@ -8,10 +8,10 @@ CORA loops over the `n` generators of `P` and errors when `methC` leaves fewer; 
 runs over the generators there are.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

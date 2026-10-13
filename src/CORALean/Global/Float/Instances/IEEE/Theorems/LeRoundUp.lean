@@ -9,10 +9,10 @@ import Mathlib.Analysis.Normed.Ring.Lemmas
 shifted mantissa, shifted back, is at least the mantissa, whatever `gridShift` is.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

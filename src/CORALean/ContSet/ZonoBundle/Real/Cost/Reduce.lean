@@ -14,10 +14,10 @@ A caller who wants the members reduced runs `Zonotope.reduce` on them, and pays
 `Zonotope.reduceGirardCost` per member for it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

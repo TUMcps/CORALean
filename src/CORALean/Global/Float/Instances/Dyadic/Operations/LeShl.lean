@@ -7,10 +7,10 @@ For `n ≠ 0` and `g` above the bit length of `m`, `|n| * 2 ^ g` exceeds `|m|` a
 `n` decides, so the power is formed only when `g` is at most the bit length of `m`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

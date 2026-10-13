@@ -12,10 +12,10 @@ coefficients. CORA's `cartProd_` of two constrained zonotopes is the same, with 
 generators and constraints; `Theorems.ConZonotopeStackProdExact` says it is exactly the product.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

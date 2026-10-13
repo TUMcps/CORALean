@@ -13,10 +13,10 @@ from `π` to `-π + ε`: see `Interval.atan2_cora_counterexample`. Formalized as
 for that reason; no enclosure theorem is claimed.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

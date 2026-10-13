@@ -9,10 +9,10 @@ The real `c` that `LinearReset.synchronize` returns for the real values of the s
 lies, entry by entry, between the bounds `synchronizeFloat` returns. An outer statement.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

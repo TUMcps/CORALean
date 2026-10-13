@@ -18,10 +18,10 @@ halfspace `{x | nᵀx ≤ d}` is closed, and at `ω̲ = 0` the zonotope touches 
       2012, pp. 45-54.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

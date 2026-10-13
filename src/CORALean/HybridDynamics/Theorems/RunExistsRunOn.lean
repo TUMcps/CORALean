@@ -8,10 +8,10 @@ happens to have taken, exhibited by the same induction that forgets it. Kept
 apart from `toRun` since the direction back needs the count, `toRun` does not.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

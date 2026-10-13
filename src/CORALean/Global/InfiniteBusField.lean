@@ -18,10 +18,10 @@ hold. Both lines of Eq. 1 are checked: `δ̇ = ω - ω_s` and
       (ARCH22), EPiC Series in Computing, vol. 90, pp. 26-43, 2022.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

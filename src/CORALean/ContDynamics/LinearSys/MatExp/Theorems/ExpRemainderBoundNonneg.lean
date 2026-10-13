@@ -7,10 +7,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
 `1 - ‖x‖ / (η + 2)`, which is positive as soon as `‖x‖ / (η + 2)` is under `1/2`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

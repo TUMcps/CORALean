@@ -12,10 +12,10 @@ parallel run feeds the product, as `Lifting.mem_input` is.
 `boxLifting` satisfies it (`Theorems.BoxLiftingExact`): all three of its sets are exact.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

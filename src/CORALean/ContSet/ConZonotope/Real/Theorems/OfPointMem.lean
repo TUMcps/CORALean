@@ -8,10 +8,10 @@ the coefficient carries a `show` before the sum and the constraint discharges
 on no row at all — `HPolytope.fullspace` has none.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

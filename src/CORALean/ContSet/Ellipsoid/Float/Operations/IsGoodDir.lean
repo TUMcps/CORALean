@@ -13,10 +13,10 @@ roundings, and `μ² lᵀ Q₁ l ≤ lᵀ Q₂ l`, with `lᵀ Q₁ l` rounded up
 `false` says nothing. Gershgorin is conservative: a `Q₁` far from diagonal needs a larger `μ`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

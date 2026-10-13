@@ -16,10 +16,10 @@ constraint value into the widened `b`: what `A μ` loses to the rounding of `A` 
 box `b` was widened by, so the stored system holds wherever the exact one does.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   12-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -12,10 +12,10 @@ itself is zero at every `(x, u, p)`: `Rerror = {0}` is exact, so the error set c
 miss of `linReachCora_misses_counterexample`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

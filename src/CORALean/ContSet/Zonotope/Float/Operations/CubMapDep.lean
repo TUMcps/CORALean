@@ -15,10 +15,10 @@ a coefficient in `[-1, 1]` spreads either way). Sound only where the operand's o
 so nothing outside `cubMap` calls it.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

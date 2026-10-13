@@ -21,10 +21,10 @@ Any `A`, under (2.2), upper Hessenberg `T_m`, `v = V_me₁`; `φ_p` the series (
   2020.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

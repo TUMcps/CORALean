@@ -15,10 +15,10 @@ dependent zonotope at some factors, and the fits' exact evaluation at those fact
 polynomial there; the deviation from it is in the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

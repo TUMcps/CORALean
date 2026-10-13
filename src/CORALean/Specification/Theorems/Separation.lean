@@ -16,10 +16,10 @@ disjointness, and failing to find one proves nothing, the sets possibly being
 disjoint without a hyperplane between them when neither is convex.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

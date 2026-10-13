@@ -12,10 +12,10 @@ membership in the Minkowski difference. Inner only, the direction `MinkDiff` owe
 is `Real.Zonotope.minkDiffRep`'s result.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

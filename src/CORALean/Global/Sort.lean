@@ -12,10 +12,10 @@ what makes this usable where `Tuple.sort` is not: `Tuple.sort` needs a
 distinct representations of the same value compare equal in both directions.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

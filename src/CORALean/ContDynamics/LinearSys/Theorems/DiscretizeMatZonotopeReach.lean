@@ -15,10 +15,10 @@ matrix zonotope, so the correlations between the entries of `e^{AΔt}` survive
 the step instead of being dropped at the box.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   30-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

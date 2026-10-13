@@ -25,10 +25,10 @@ and the two scalings round, the first into a `residual` and the second into a
 `generatorError`, `u` reaching `[-1,1]` in every coordinate.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

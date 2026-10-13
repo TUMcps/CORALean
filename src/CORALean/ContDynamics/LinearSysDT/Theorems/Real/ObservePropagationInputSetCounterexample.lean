@@ -15,10 +15,10 @@ moves the state to `x₁ = 1`, and the next set of `observePropagation` (`PRad-E
 `FRad-C`) is `{0}` at every gain, which misses it. Read from the source, not run.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

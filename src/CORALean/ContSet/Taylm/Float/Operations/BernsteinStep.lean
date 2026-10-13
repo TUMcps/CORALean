@@ -13,10 +13,10 @@ the bound `1` (`C(j, i) ≤ C(N, i)`); the signed integer from its directed roun
 the corner products. Zero for `i > j`, where `C(j, i) = 0`.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

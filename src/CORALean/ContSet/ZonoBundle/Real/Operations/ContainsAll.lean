@@ -9,10 +9,10 @@ members' own containment is each zonotope's `contains_`; here it is the proposit
 `S ⊆ Zᵢ`. The scaling factor, the maximum of the members' factors, is not modelled.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

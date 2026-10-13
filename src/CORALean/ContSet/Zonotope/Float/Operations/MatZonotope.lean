@@ -8,10 +8,10 @@ which the matrix zonotope's product with a matrix zonotope of conforming shape t
 Nothing is rounded: the entries, and the error box with them, are moved as stored.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   09-October-2026
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

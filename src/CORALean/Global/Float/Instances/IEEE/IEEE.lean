@@ -18,10 +18,10 @@ operation rounds it back. Nothing else departs from the format, and `toReal` is 
 through `toDyadic`, so the exact steps and their proofs are `Dyadic`'s too.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

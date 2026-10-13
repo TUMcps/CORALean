@@ -7,10 +7,10 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 second-order terms in. Its own file, read by the exact and the float `varInputs` theorems.
 -/
 
--- Authors:       Tobias Ladner
+-- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Last revision: ---
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
