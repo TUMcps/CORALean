@@ -4,6 +4,9 @@ import CORALean.Examples.Bench.GitInfo
 import CORALean.Examples.Bench.OpCompareCompute
 import CORALean.Examples.Bench.OpCompareInput
 import Lean.Data.Json
+import CORALean.Examples.Bench.OpCompareCodec
+import CORALean.Global.Float.Instances.Binary64.Instances
+import CORALean.Global.Float.Instances.IEEE.Instances
 
 /-!
 # `lake exe bench opcompare --in FILE [--out FILE]`

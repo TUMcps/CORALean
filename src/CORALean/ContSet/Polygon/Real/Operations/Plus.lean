@@ -1,5 +1,6 @@
 import CORALean.ContSet.Polygon.Real.Polygon
 import CORALean.ContSet.VPolytope.Real.Instances
+import CORALean.ContSet.SetUnion.Operations.Plus
 
 /-!
 # `Polygon.plus`

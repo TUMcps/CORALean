@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Operations.Or
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.or` is the union

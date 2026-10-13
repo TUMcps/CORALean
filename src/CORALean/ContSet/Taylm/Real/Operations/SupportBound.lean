@@ -3,7 +3,8 @@ import CORALean.ContSet.Taylm.Real.Operations.Mtimes
 import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 import CORALean.ContSet.Taylm.Real.Theorems.MtimesOuter
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
+import Mathlib.Algebra.BigOperators.Pi
 
 /-!
 # `Taylm.supportBound`

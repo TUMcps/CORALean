@@ -8,7 +8,7 @@ import CORALean.ContSet.LevelSet.Float.Theorems.ContainsPointSound
 import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 import CORALean.ContSet.EmptySet.Real.Theorems.AndExact
 import CORALean.ContSet.Fullspace.Real.Theorems.AndExact
-import CORALean.Global.Float.Instances.Dyadic.API
+import CORALean.Global.Float.Instances.Dyadic.Instances
 
 /-!
 # The `and_` family, run and applied

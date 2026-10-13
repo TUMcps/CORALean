@@ -1,4 +1,4 @@
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.Composition
 import CORALean.Global.Float.SoundFloatArithmetic
 
 /-!

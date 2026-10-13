@@ -1,5 +1,6 @@
 import CORALean.ContSet.Interval.Real.Interval
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
+import Mathlib.LinearAlgebra.Pi
 
 /-!
 # `Interval.ofBounds`

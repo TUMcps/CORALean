@@ -10,7 +10,7 @@ import CORALean.ContSet.ZonoBundle.Float.Theorems.IsFullDimSound
 import CORALean.ContSet.ZonoBundle.Float.Theorems.RepresentsaEmptySetSound
 import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
 import CORALean.ContSet.Zonotope.Float.Theorems.IsFullDimSound
-import CORALean.Global.Float.Instances.Dyadic.API
+import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.Specification.Instances
 
 /-!

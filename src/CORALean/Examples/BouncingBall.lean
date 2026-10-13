@@ -1,5 +1,6 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
-import CORALean.ContSet.HPolytope.Real.API
+import CORALean.ContSet.HPolytope.Real.Instances
+import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.HybridDynamics.Theorems.FlowOuter
 import CORALean.HybridDynamics.Theorems.HoldsOfRun

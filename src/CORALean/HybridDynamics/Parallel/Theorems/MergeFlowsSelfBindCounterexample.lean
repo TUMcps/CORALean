@@ -1,6 +1,7 @@
 import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddMulVec
 import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
-import CORALean.ContSet.HPolytope.Real.API
+import CORALean.ContSet.HPolytope.Real.Instances
+import CORALean.ContSet.HPolytope.Real.Operations.Slab
 import CORALean.ContSet.Interval.Real.Instances
 
 /-!

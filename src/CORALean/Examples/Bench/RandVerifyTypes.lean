@@ -1,12 +1,18 @@
 import CORALean.Examples.Bench.FirstStepHead
 import CORALean.Examples.Bench.Format
 import CORALean.Examples.Bench.Ieee
-import CORALean.Examples.Bench.NearestUnsound.API
+import CORALean.Examples.Bench.NearestUnsound.Instances
+import CORALean.Examples.Bench.NearestUnsound.NearestDyadic
+import CORALean.Examples.Bench.NearestUnsound.NearestFloat
+import CORALean.Examples.Bench.NumberType
+import CORALean.Examples.Bench.RandVerifyInstance
+import CORALean.Examples.Bench.RandVerifyJob
+import CORALean.Examples.Bench.Rational
+import CORALean.Global.Float.Instances.Binary64.Instances
+import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.Global.Float.Instances.IEEE.Instances
 import CORALean.Examples.Bench.RandVerifyLabel
 import CORALean.Examples.Bench.RandVerifyRecord
-import CORALean.Global.Float.Instances.Binary64.API
-import CORALean.Global.Float.Instances.Dyadic.API
-import CORALean.Global.Float.Instances.IEEE.API
 
 /-!
 # `randverify`: the number types `bench` links

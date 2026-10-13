@@ -1,6 +1,8 @@
-import CORALean.ContSet.LevelSet.Float.API
+import CORALean.ContSet.LevelSet.Float.Theorems.ContainsPointSound
+import CORALean.ContSet.LevelSet.Float.Theorems.IsIntersectingCellOuter
+import CORALean.ContSet.LevelSet.Float.Theorems.RepresentsaEmptySetSound
+import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContSet.Interval.Float.Interval
-import CORALean.Global.Float.Instances.Dyadic.API
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 
 /-!

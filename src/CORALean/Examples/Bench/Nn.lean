@@ -4,8 +4,16 @@ import CORALean.Examples.Bench.Ieee
 import CORALean.Examples.Bench.NearestUnsound.Instances
 import CORALean.Examples.Bench.NnNetwork
 import CORALean.Examples.Bench.Timing
-import CORALean.Global.Float.Instances.Binary64.API
-import CORALean.Global.Float.Instances.Dyadic.API
+import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+import CORALean.Examples.Bench.NearestUnsound.NearestDyadic
+import CORALean.Examples.Bench.NnNaive
+import CORALean.Examples.Bench.Rational
+import CORALean.Global.Float.Instances.Binary64.Instances
+import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.Global.Float.Instances.IEEE.Instances
+import CORALean.NN.Operations.Enclose
+import CORALean.Specification.Instances
+import CORALean.Specification.Operations.Check
 
 /-!
 # `lake exe bench nn-float32 [--reps N] [--out DIR]`

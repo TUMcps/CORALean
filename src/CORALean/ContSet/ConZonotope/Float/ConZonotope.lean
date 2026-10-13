@@ -1,5 +1,5 @@
 import CORALean.ContSet.ConZonotope.Real.Instances
-import CORALean.ContSet.HPolytope.Float.API
+import CORALean.ContSet.HPolytope.Float.HPolytope
 import CORALean.ContSet.Zonotope.Float.Zonotope
 
 /-!

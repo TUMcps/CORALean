@@ -1,8 +1,9 @@
 import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
 import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
-import CORALean.Global.Float.Instances.Binary64.Operations.API
-import CORALean.Global.Float.Instances.Binary64.Theorems.API
+import CORALean.Global.Float.Instances.Binary64.Theorems.AddDownLeAdd
+import CORALean.Global.Float.Instances.Binary64.Theorems.DivDownLeDiv
+import CORALean.Global.Float.Instances.Binary64.Theorems.MulDownLeMul
 
 /-!
 # Native binary64 as a sound float model

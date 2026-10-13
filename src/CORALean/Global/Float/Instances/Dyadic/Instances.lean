@@ -2,7 +2,8 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.AddDownLeAdd
 import CORALean.Global.Float.Instances.Dyadic.Theorems.AddLeAddUp
 import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
 import CORALean.Global.Float.ToRat
-import CORALean.Global.Float.Instances.Dyadic.Operations.API
+import CORALean.Global.Float.Instances.Dyadic.Operations.MulDown
+import CORALean.Global.Float.Instances.Dyadic.Operations.MulUp
 import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
 import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
 import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp

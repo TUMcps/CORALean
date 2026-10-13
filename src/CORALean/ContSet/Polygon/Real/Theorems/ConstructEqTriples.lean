@@ -1,6 +1,8 @@
 import CORALean.ContSet.Polygon.Real.Polygon
 import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 import Mathlib.Analysis.Convex.Caratheodory
+import Mathlib.Analysis.RCLike.Lemmas
+import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
 
 /-!
 # A planar vertex description is the union of its vertex triangles

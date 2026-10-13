@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Polygon
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # The intersection of two polygons, piece by piece

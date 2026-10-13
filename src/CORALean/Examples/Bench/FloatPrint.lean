@@ -1,4 +1,4 @@
-import CORALean.Global.Float.Instances.Binary64.API
+import CORALean.Global.Float.Instances.Binary64.Binary64
 import Lean.Data.Json
 
 /-!

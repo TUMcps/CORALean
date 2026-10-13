@@ -1,7 +1,6 @@
 import CORALean.ContDynamics.LinearSysDT.Cost.Reach
 import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
 import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
-import CORALean.ContSet.Zonotope.Real.Cost.API
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.NN.Cost.Enclose
 

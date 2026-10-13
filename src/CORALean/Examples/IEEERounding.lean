@@ -1,5 +1,6 @@
-import CORALean.Global.Float.Instances.Binary64.API
-import CORALean.Global.Float.Instances.IEEE.API
+import CORALean.Global.Float.Instances.Binary64.Operations.NextUp
+import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
+import CORALean.Global.Float.Instances.IEEE.Instances
 
 /-!
 # The formats of `IEEE`, checked against numbers

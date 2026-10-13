@@ -1,5 +1,5 @@
 import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
 import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!

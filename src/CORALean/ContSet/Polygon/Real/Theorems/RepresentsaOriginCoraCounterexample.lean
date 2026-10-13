@@ -1,5 +1,6 @@
 import CORALean.ContSet.Polygon.Real.Operations.RepresentsaOriginCora
 import CORALean.ContSet.Polygon.Real.Operations.RepresentsaEmptySet
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # CORA's `polygon/representsa_(pgon, 'origin')` accepts the empty polygon

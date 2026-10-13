@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.SpectraShadow.Real.Theorems.API
+import CORALean.ContSet.SpectraShadow.Real.Theorems.LinCombOuter
+import CORALean.ContSet.SpectraShadow.Real.Theorems.MtimesExact
 
 /-!
 # What `SpectraShadow` instantiates

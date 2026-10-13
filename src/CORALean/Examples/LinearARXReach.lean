@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinearARX.API
+import CORALean.ContDynamics.LinearARX.LinearARX
+import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+import CORALean.ContDynamics.LinearARX.Theorems.ReachOuter
 import CORALean.ContDynamics.LinearSysDT.Instances
 import CORALean.ContSet.Interval.Real.Instances
 

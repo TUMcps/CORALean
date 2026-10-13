@@ -1,5 +1,5 @@
-import CORALean.ContSet.SetUnion.API
-import CORALean.ContSet.VPolytope.Real.API
+import CORALean.ContSet.SetUnion.SetUnion
+import CORALean.ContSet.VPolytope.Real.VPolytope
 
 /-!
 # Polygons: finite unions of convex 2-D polytopes

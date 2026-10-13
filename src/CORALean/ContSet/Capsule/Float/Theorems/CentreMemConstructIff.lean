@@ -1,5 +1,6 @@
 import CORALean.ContSet.Capsule.Float.Capsule
 import CORALean.ContSet.Capsule.Real.Instances
+import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
 
 /-!
 # The stored centre of a float capsule

@@ -7,16 +7,25 @@ import CORALean.Examples.Bench.FirstStepRun
 import CORALean.Examples.Bench.FirstStepTypes
 import CORALean.Examples.Bench.Ieee
 import CORALean.Examples.Bench.Mnist
-import CORALean.Examples.Bench.NearestUnsound.API
+import CORALean.Examples.Bench.Config
+import CORALean.Examples.Bench.Format
+import CORALean.Examples.Bench.NearestUnsound.Instances
+import CORALean.Examples.Bench.NearestUnsound.NearestDyadic
+import CORALean.Examples.Bench.NearestUnsound.NearestFloat
+import CORALean.Examples.Bench.NumberType
+import CORALean.Examples.Bench.Rational
+import CORALean.Examples.Bench.Rollout
+import CORALean.Examples.Bench.Timing
+import CORALean.Global.Float.Instances.Binary64.Instances
+import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.Global.Float.Instances.FixedPoint.Instances
+import CORALean.Global.Float.Instances.IEEE.Instances
 import CORALean.Examples.Bench.Nn
 import CORALean.Examples.Bench.OpCompareRun
 import CORALean.Examples.Bench.Output
 import CORALean.Examples.Bench.RandVerifyFamily
 import CORALean.Examples.Bench.RandVerifyRun
 import CORALean.Examples.Bench.RandVerifyTypes
-import CORALean.Global.Float.Instances.Binary64.API
-import CORALean.Global.Float.Instances.Dyadic.API
-import CORALean.Global.Float.Instances.FixedPoint.API
 
 /-!
 # `dtdemo`, `headline-a`, `headline-b`, `exp2-timepoint`

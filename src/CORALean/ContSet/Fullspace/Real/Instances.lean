@@ -1,6 +1,6 @@
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.Fullspace.Real.Operations.Centre
-import CORALean.ContSet.Fullspace.Real.Theorems.API
+import CORALean.ContSet.Fullspace.Real.Theorems.ReindexLinExact
 import CORALean.ContSet.WithEmpty.WithEmpty
 
 /-!

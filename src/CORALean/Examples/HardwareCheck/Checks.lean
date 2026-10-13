@@ -1,4 +1,9 @@
 import CORALean.Examples.HardwareCheck.Rng
+import CORALean.Examples.Bench.OpCompareCodec
+import CORALean.Examples.HardwareCheck.Exact
+import CORALean.Global.Float.Instances.Binary64.Operations.Half
+import CORALean.Global.Float.Instances.Binary64.Operations.Maximum
+import CORALean.Global.Float.Instances.Binary64.Operations.Minimum
 
 /-!
 # The checks

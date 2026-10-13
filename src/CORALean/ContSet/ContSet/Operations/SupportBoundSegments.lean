@@ -1,5 +1,6 @@
 import CORALean.ContSet.ContSet.ContSet
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
+import Mathlib.Tactic.Linarith
 
 /-!
 # The support bound across `segments`

@@ -1,6 +1,4 @@
 import CORALean.Global.Float.FloatOps
-import CORALean.Global.Float.Instances.Binary64.API
-import CORALean.Global.Float.Instances.IEEE.API
 
 /-!
 # `opcompare`: the sequential sum, dot product and matrix product

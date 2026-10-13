@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.Composition
 
 /-!
 # A lower bound on the reachable set — the dual of the upper one

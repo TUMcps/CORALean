@@ -1,6 +1,7 @@
 import CORALean.ContSet.Interval.Real.Interval
 import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # A box answers a direction corner by corner, over any coordinates

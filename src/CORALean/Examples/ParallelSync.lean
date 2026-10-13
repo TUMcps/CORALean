@@ -1,4 +1,9 @@
-import CORALean.HybridDynamics.Parallel.API
+import CORALean.HybridDynamics.Parallel.Definitions.SyncLabels
+import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
+import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsSync
+import CORALean.HybridDynamics.Parallel.Operations.SyncPick
+import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
+import CORALean.HybridDynamics.Parallel.Theorems.BoxSyncLifting
 import CORALean.Examples.ParallelTwoComponents
 
 /-!

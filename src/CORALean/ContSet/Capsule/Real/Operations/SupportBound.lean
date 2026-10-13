@@ -1,6 +1,6 @@
 import CORALean.ContSet.Capsule.Real.Capsule
 import CORALean.Global.EuclideanNorm
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
 
 /-!
 # A capsule answers a direction by its segment and its ball

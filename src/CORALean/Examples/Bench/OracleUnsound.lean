@@ -1,4 +1,4 @@
-import CORALean.Examples.Bench.NearestUnsound.Instances
+import CORALean.Examples.Bench.NearestUnsound.API
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.Examples.Oracle.Run
 

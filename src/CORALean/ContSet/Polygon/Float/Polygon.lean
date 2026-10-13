@@ -1,5 +1,5 @@
-import CORALean.ContSet.SetUnion.API
-import CORALean.ContSet.VPolytope.Float.API
+import CORALean.ContSet.SetUnion.SetUnion
+import CORALean.ContSet.VPolytope.Float.VPolytope
 
 /-!
 # Polygons over a floating-point scalar

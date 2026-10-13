@@ -6,6 +6,7 @@ import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
 import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
+import CORALean.Global.LinProg.Composition
 
 /-!
 # What `HPolytope` instantiates

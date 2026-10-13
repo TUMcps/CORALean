@@ -2,8 +2,11 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
 import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
 import CORALean.Global.Float.Instances.Flint.Definitions.Axioms
-import CORALean.Global.Float.Instances.Flint.Operations.API
-import CORALean.Global.Float.Instances.Flint.Theorems.API
+import CORALean.Global.Float.Instances.Flint.Theorems.ToRealHalf
+import CORALean.Global.Float.Instances.Flint.Theorems.ToRealLeOfLe
+import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMaximum
+import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMinimum
+import CORALean.Global.Float.Instances.Flint.Theorems.ToRealNeg
 
 /-!
 # `Flint p` as a sound float model

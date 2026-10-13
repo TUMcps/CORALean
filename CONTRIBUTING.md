@@ -623,7 +623,8 @@ the work — the rule nearly halved it when it landed, 37 files to 20, on a
 machine with 16 cores that were idle either way.
 
 A file still never imports its own directory's `API.lean`, which would be a
-cycle.
+cycle. Only an `API.lean`, which collects, and a root named in `lakefile.toml`,
+which is an entry point, import a collector; this is checked.
 
 "Collects itself" is checked, and it means every sibling `.lean` file and every
 sub-directory, the latter through its own `API.lean`. A file that some other

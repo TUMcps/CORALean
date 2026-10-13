@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Float.Operations.API
+import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
 
 /-!
 # What the float `HPolytope` instantiates

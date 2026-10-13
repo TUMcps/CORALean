@@ -1,5 +1,6 @@
 import CORALean.ContSet.Polygon.Real.Operations.Triangulation
 import CORALean.ContSet.Polygon.Real.Theorems.ConstructEqTriples
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.triangulation` is a cover by triangles of the same region

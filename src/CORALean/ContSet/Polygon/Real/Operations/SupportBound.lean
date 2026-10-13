@@ -1,5 +1,4 @@
 import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
-import CORALean.Global.LinProg.API
 
 /-!
 # `Polygon.supportBound`

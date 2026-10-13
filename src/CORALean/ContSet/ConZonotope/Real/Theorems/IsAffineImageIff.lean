@@ -4,7 +4,6 @@ import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
 import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
 import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 import CORALean.ContSet.Zonotope.Real.Operations.GenMap
-import CORALean.Global.LinProg.API
 
 /-!
 # A constrained zonotope is exactly a bounded affine image of a polytope

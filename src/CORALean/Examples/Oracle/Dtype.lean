@@ -1,8 +1,9 @@
 import CORALean.Examples.Bench.Ieee
 import CORALean.Examples.Oracle.Codec
-import CORALean.Global.Float.Instances.Dyadic.API
-import CORALean.Global.Float.Instances.FixedPoint.API
-import CORALean.Global.Float.Instances.IEEE.API
+import CORALean.Examples.Bench.Rational
+import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.Global.Float.Instances.FixedPoint.Instances
+import CORALean.Global.Float.Instances.IEEE.Instances
 
 /-!
 # A dtype, as a bundle of checked-exact operations

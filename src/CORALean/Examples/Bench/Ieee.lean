@@ -1,6 +1,6 @@
 import CORALean.Examples.Bench.NumberType
 import CORALean.Examples.Bench.Rational
-import CORALean.Global.Float.Instances.IEEE.API
+import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
 
 /-!
 # `--type ieee`: the formats, and reading a config into one

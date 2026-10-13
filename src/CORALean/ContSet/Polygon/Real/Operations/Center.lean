@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.center`

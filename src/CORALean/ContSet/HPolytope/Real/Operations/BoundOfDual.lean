@@ -1,5 +1,4 @@
 import CORALean.ContSet.HPolytope.Real.Operations.ConstructEqFeasible
-import CORALean.Global.LinProg.API
 
 /-!
 # `HPolytope.boundOfDual`

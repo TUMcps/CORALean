@@ -1,6 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.API
+import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
+import CORALean.HybridDynamics.Parallel.Theorems.ReachSetSubsetInvariant
+import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
 import CORALean.ContSet.Interval.Real.Instances
-import CORALean.HybridDynamics.Parallel.API
 
 /-!
 # Two components, one fed by the other, as a parallel hybrid automaton

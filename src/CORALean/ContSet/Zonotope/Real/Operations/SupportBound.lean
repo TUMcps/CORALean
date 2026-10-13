@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # A zonotope answers a direction without a linear program

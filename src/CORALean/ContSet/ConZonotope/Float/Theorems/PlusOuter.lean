@@ -4,6 +4,9 @@ import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 import CORALean.ContSet.ConZonotope.Float.Operations.Plus
 import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
 
 /-!
 # `ConZonotope.plus` over-approximates the Minkowski sum

@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Operations.Empty
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.empty` is the empty set

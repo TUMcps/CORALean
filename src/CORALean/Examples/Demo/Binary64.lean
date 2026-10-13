@@ -1,5 +1,10 @@
 import CORALean.Examples.Demo.Reach
-import CORALean.Global.Float.Instances.Binary64.API
+import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.Examples.Demo.Decimal
+import CORALean.Global.Float.Instances.Binary64.Instances
+import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
+import CORALean.Global.Float.Instances.Dyadic.Operations.Neg
 import CORALean.Global.Float.NoNaN
 
 /-!

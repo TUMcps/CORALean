@@ -1,5 +1,8 @@
 import CORALean.Global.Float.ToRat
-import CORALean.Global.Float.Instances.FixedPoint.Operations.API
+import CORALean.Global.Float.Instances.FixedPoint.Operations.AddDown
+import CORALean.Global.Float.Instances.FixedPoint.Operations.AddUp
+import CORALean.Global.Float.Instances.FixedPoint.Operations.MulDown
+import CORALean.Global.Float.Instances.FixedPoint.Operations.MulUp
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.DivDownLeDiv
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeDivUp
 import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeRoundUp

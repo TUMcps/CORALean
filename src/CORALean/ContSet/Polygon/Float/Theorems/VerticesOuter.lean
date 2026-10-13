@@ -1,5 +1,4 @@
 import CORALean.ContSet.Polygon.Float.Operations.Vertices
-import CORALean.ContSet.VPolytope.Real.API
 
 /-!
 # The polygon lies in the hull of its stored vertices, inflated by its error box

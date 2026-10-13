@@ -3,10 +3,17 @@ import CORALean.Examples.Bench.FirstStepPrec
 import CORALean.Examples.Bench.FirstStepRecord
 import CORALean.Examples.Bench.FirstStepRun
 import CORALean.Examples.Bench.Ieee
-import CORALean.Examples.Bench.NearestUnsound.API
-import CORALean.Global.Float.Instances.Dyadic.API
-import CORALean.Global.Float.Instances.FixedPoint.API
-import CORALean.Global.Float.Instances.IEEE.API
+import CORALean.Examples.Bench.Config
+import CORALean.Examples.Bench.FirstStepInput
+import CORALean.Examples.Bench.Format
+import CORALean.Examples.Bench.NearestUnsound.Instances
+import CORALean.Examples.Bench.NearestUnsound.NearestDyadic
+import CORALean.Examples.Bench.NearestUnsound.NearestFloat
+import CORALean.Examples.Bench.NumberType
+import CORALean.Examples.Bench.Rational
+import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.Global.Float.Instances.FixedPoint.Instances
+import CORALean.Global.Float.Instances.IEEE.Instances
 
 /-!
 # `firststep`: the number types `bench` links

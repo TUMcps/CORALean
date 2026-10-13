@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Polygon
+import Mathlib.LinearAlgebra.AffineSpace.Combination
 
 /-!
 # `Polygon.isFullDim`

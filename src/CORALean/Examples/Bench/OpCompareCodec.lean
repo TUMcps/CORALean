@@ -1,5 +1,5 @@
-import CORALean.Global.Float.Instances.Binary64.API
-import CORALean.Global.Float.Instances.IEEE.API
+import CORALean.Global.Float.Instances.Binary64.Binary64
+import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
 
 /-!
 # `opcompare`: hex bit patterns, and the exact `Float ↔ IEEE .binary64` conversion

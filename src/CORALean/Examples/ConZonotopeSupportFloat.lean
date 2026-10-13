@@ -1,7 +1,7 @@
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsDisjointLPSound
 import CORALean.ContSet.HPolytope.Float.Operations.RowLin
 import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
-import CORALean.Global.Float.Instances.Dyadic.API
+import CORALean.Global.Float.Instances.Dyadic.Instances
 
 /-!
 # The float LP driver, run

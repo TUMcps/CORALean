@@ -1,5 +1,5 @@
 import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.LevelSet.Real.Theorems.API
+import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 
 /-!
 # What `LevelSet` instantiates
