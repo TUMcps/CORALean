@@ -117,6 +117,7 @@ import CORALean.ContSet.ConPolyZono.Real.Operations.RescaleStep
 import CORALean.ContSet.ConPolyZono.Real.Operations.ExtPolyZonotope
 import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPoint
 import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPointCora
+import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaHyperplaneCora
 
 /-!
 # What `ConPolyZono` computes

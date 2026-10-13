@@ -54,6 +54,7 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.Polygon
 import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
 import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
 import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
+import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaHyperplaneCora
 
 /-!
 # What an ellipsoid computes, collected

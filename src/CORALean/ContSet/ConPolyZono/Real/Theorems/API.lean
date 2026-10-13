@@ -59,6 +59,8 @@ import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointIff
 import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointCoraCounterexample
 import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
 import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaEmptyCounterexample
+import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
+import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointCoraCounterexample
 
 /-!
 # What `ConPolyZono` guarantees

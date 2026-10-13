@@ -92,6 +92,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapMixedOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapCoraNotOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.SupportFuncUpperCoraCounterexample
+import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
 
 /-!
 # What `ConZonotope` guarantees

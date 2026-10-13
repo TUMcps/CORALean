@@ -68,6 +68,7 @@ import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
 import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
 import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
 import CORALean.ContSet.ConZonotope.Real.Operations.SupportFuncUpperCora
+import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaHyperplaneCora
 
 /-!
 # What `ConZonotope` computes

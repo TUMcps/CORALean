@@ -203,6 +203,11 @@
     "mtimes": {
       "description": "radius scaled by squared singular value; too small",
       "kind": "unsound"
+    },
+    "representsa_": {
+      "description": "1-D test is n == 1; segment accepted as hyperplane",
+      "kind": "other",
+      "cex": "RepresentsaHyperplaneCoraCounterexample.lean"
     }
   },
   "contSet/conPolyZono": {
@@ -218,6 +223,11 @@
     "minkDiff": {
       "description": "labelled exact, but not inner for nonconvex minuend",
       "kind": "unsound"
+    },
+    "representsa_": {
+      "description": "hyperplane: any 1-D set; point test ignores constraints",
+      "kind": "other",
+      "cex": "RepresentsaPointCoraCounterexample.lean"
     }
   },
   "contSet/conZonotope": {
@@ -243,6 +253,11 @@
       "findings": [
         "ConZonotope `supportFunc_`, `'upper'`, infeasible zero constraint"
       ]
+    },
+    "representsa_": {
+      "description": "1-D test is n == 1; segment accepted as hyperplane",
+      "kind": "other",
+      "cex": "RepresentsaHyperplaneCoraCounterexample.lean"
     }
   },
   "contSet/ellipsoid": {
@@ -266,6 +281,11 @@
     "isBigger": {
       "description": "always true in dimension 1",
       "kind": "unsound"
+    },
+    "representsa_": {
+      "description": "1-D test is n == 1; segment accepted as hyperplane",
+      "kind": "other",
+      "cex": "RepresentsaHyperplaneCoraCounterexample.lean"
     }
   },
   "contSet/interval": {

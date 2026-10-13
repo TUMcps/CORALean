@@ -6266,7 +6266,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 5,
+        "cora_issues": 6,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -6292,7 +6292,7 @@
           "matlab-runtime": 3,
           "deprecated": 0
         },
-        "cora_issues": 3,
+        "cora_issues": 4,
         "findings": {
           "correct": 12,
           "underspecified": 3,
@@ -6318,7 +6318,7 @@
           "matlab-runtime": 5,
           "deprecated": 1
         },
-        "cora_issues": 4,
+        "cora_issues": 5,
         "findings": {
           "correct": 19,
           "underspecified": 4,
@@ -6370,7 +6370,7 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 4,
+        "cora_issues": 5,
         "findings": {
           "correct": 38,
           "underspecified": 6,
@@ -7298,7 +7298,7 @@
         "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 41,
-        "cora_issues": 73,
+        "cora_issues": 77,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -7395,7 +7395,7 @@
       "not_yet": 14,
       "out_of_scope": 396,
       "needs_float": 73,
-      "cora_issues": 109,
+      "cora_issues": 113,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -7438,9 +7438,9 @@
     "theorems": {
       "paper": 1720,
       "float": 1897,
-      "helper": 1627,
-      "lemma": 2669,
-      "total": 7913,
+      "helper": 1635,
+      "lemma": 2675,
+      "total": 7927,
       "examples": 120
     }
   }
