@@ -122,6 +122,14 @@ import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
 import CORALean.Specification.STL.Theorems.DepReachIntervalDependencyCounterexample
 import CORALean.Specification.STL.Theorems.UnsafeFactorsIntervalCounterexample
 import CORALean.Specification.STL.Theorems.DependencyPreservedOfEncloses
+import CORALean.Specification.STL.Theorems.DepBloatingSubsetClosedBall
+import CORALean.Specification.STL.Theorems.DepBoxSubsetClosedBall
+import CORALean.Specification.STL.Theorems.DepReachAtCSubsetClosedBall
+import CORALean.Specification.STL.Theorems.MtimesIntervalMatSubsetClosedBallInfSup
+import CORALean.Specification.STL.Theorems.TendstoDepBloatingZero
+import CORALean.Specification.STL.Theorems.TendstoDepReachAtCZero
+import CORALean.Specification.STL.Theorems.TendstoSSupNormOfEventuallySubsetClosedBall
+import CORALean.Specification.STL.Theorems.TendstoDepReachLinCombHausdorffZero
 
 /-!
 # Signal and reachset temporal logic: the theorems

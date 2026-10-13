@@ -17,8 +17,8 @@
     "papers": 95,
     "papers_with_findings": 87,
     "in_scope": 1229,
-    "formalized": 1173,
-    "not_formalized": 56,
+    "formalized": 1176,
+    "not_formalized": 53,
     "out_of_scope": 1062,
     "out_of_scope_by_reason": {
       "restated": 396,
@@ -28,18 +28,18 @@
       "not-covered": 86
     },
     "by_class": {
-      "correct": 779,
+      "correct": 780,
       "underspecified": 241,
-      "proof-gap": 35,
+      "proof-gap": 37,
       "fixed": 107,
       "false": 11
     },
     "claims": {
       "in_scope": 471,
-      "formalized": 444,
-      "correct": 266,
+      "formalized": 447,
+      "correct": 267,
       "underspecified": 86,
-      "proof-gap": 35,
+      "proof-gap": 37,
       "fixed": 50,
       "false": 7
     },
@@ -5290,8 +5290,8 @@
       "year": 2024,
       "title": "Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis",
       "in_scope": 15,
-      "formalized": 8,
-      "not_formalized": 7,
+      "formalized": 11,
+      "not_formalized": 4,
       "out_of_scope": 15,
       "out_of_scope_by_reason": {
         "restated": 7,
@@ -5301,18 +5301,18 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 1,
+        "correct": 2,
         "underspecified": 4,
-        "proof-gap": 0,
+        "proof-gap": 2,
         "fixed": 2,
         "false": 1
       },
       "claims": {
         "in_scope": 6,
-        "formalized": 2,
-        "correct": 0,
+        "formalized": 5,
+        "correct": 1,
         "underspecified": 0,
-        "proof-gap": 0,
+        "proof-gap": 2,
         "fixed": 1,
         "false": 1
       },
@@ -5360,6 +5360,16 @@
           "result": "Eq. 26",
           "class": "fixed",
           "reason": "as printed the program has no solution for a polytope of two or more halfspaces: the `λ_jk` sum to 1, an unselected `α̃_jk` is 0 and the strict `0 > 0` fails; true with the inequality required for `λ_jk = 1` only; see Findings"
+        },
+        {
+          "result": "Prop. 4",
+          "class": "proof-gap",
+          "reason": "the printed proof takes `(e^{A·0})^i = I_n`, which holds at a fixed `i` and not for the `i = t/Δt → ∞` steps of the reach sequence that the convergence of `Alg. 1` needs; the conclusion holds uniformly (`STL.tendsto_depReachAt_C_zero`) by the bound `‖e^{AΔt}‖^i ≤ e^{T‖A‖}`, which the proof does not give; see Findings"
+        },
+        {
+          "result": "Prop. 5",
+          "class": "proof-gap",
+          "reason": "the printed proof shows that both `conv(H(t_i), H(t_{i+1}))` and its enclosure tend to the set `H(t_i)` by setting `Δt = 0` in `H(t_{i+1}) = e^{AΔt}H(t_i) ⊕ T r_u`; that the distance between the two vanishes does not follow from equal limit sets without a continuity of the enclosure in the Hausdorff distance (the bound above), and `H(t_i)` depends on `Δt` through the steps; the conclusion holds, uniformly in the steps; see Findings"
         }
       ]
     },
@@ -6542,7 +6552,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 6,
+        "cora_issues": 8,
         "findings": {
           "correct": 46,
           "underspecified": 17,
@@ -7288,7 +7298,7 @@
         "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 41,
-        "cora_issues": 68,
+        "cora_issues": 70,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -7385,7 +7395,7 @@
       "not_yet": 14,
       "out_of_scope": 396,
       "needs_float": 73,
-      "cora_issues": 104,
+      "cora_issues": 106,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -7411,9 +7421,9 @@
         "false": 1
       },
       "specification": {
-        "correct": 23,
+        "correct": 24,
         "underspecified": 12,
-        "proof-gap": 0,
+        "proof-gap": 2,
         "fixed": 9,
         "false": 1
       },
@@ -7426,11 +7436,11 @@
       }
     },
     "theorems": {
-      "paper": 1712,
+      "paper": 1720,
       "float": 1900,
-      "helper": 1608,
-      "lemma": 2659,
-      "total": 7879,
+      "helper": 1611,
+      "lemma": 2663,
+      "total": 7894,
       "examples": 120
     }
   }

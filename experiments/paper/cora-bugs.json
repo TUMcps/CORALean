@@ -360,8 +360,16 @@
   },
   "contSet/polytope": {
     "compact_": {
-      "description": "zero equality rows aligned; nonempty set reported empty",
-      "kind": "unsound"
+      "description": "aligned zero rows empty; 1-D equality merge drops coefficient",
+      "kind": "unsound",
+      "findings": [
+        "polytope `priv_compact_1D`, repeated equality rows"
+      ]
+    },
+    "convHull_": {
+      "description": "empty operand returns the empty set, not the other operand",
+      "kind": "unsound",
+      "cex": "ConvHullCoraCounterexample.lean"
     },
     "isFullDim": {
       "description": "zero row caps Chebyshev radius; qr misses affine hull",
@@ -376,6 +384,11 @@
     "isequal": {
       "description": "repeated rows pass as redundant; unequal sets equal",
       "kind": "unsound"
+    },
+    "minkDiff": {
+      "description": "1-D: one-sided subtrahend offset subtracted from both rows",
+      "kind": "unsound",
+      "cex": "MinkDiff1DCoraCounterexample.lean"
     },
     "mldivide": {
       "description": "P2 overwritten by P1; difference of P1 with itself",
@@ -485,11 +498,12 @@
       "kind": "other"
     },
     "minkDiff": {
-      "description": "'approx' not inner, 'outer:scaling' ignores centre, 'exact' oversize subtrahend",
+      "description": "'approx' not inner; 'exact' oversize; scaling, degenerate lose offsets",
       "kind": "unsound",
       "cex": "MinkDiffApproxNotInner.lean",
       "findings": [
-        "Zonotope `minkDiff`, 2-D `'exact'`"
+        "Zonotope `minkDiff`, 2-D `'exact'`",
+        "Zonotope `minkDiff`, degenerate minuend"
       ]
     },
     "norm_": {

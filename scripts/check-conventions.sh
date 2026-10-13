@@ -1110,35 +1110,20 @@ report "$(printf '%s' "$out" | sed '/^$/d')"
 #   (1) no `structure`/`inductive`/`class`/`abbrev` named `G<Name>` where
 #       `<Name>` is a type the Real layer declares (a `Real/` folder or a
 #       `...Real` namespace);
-#   (2) no type `<Name>Float` where `<Name>` is a declared type — the namespace
-#       says the layer — but for the twins on FLOAT_SUFFIX_PENDING;
+#   (2) no top-level type `<Name>Float` where `<Name>` is a declared type — in
+#       `CORALean`, `CORALean.Float` or `CORALean.Real` the namespace says the
+#       layer — while one nested in another namespace is allowed, as
+#       `LinearSys.AutoStateFloat`: a system namespace is not split by layer,
+#       its plain name is the algorithm of the paper and `...Float` its sound
+#       rounded-arithmetic implementation (`reach`, `reachFloat`);
 #   (3) a representation `ContSet/<S>/` with both `Real/<S>.lean` and
 #       `Float/<S>.lean` declares the same main type in both, the first type
 #       after the MAIN TYPE banner;
 #   (4) no `abbrev` under `Float/` that aliases a representation at `Vec`, a
 #       right-hand side starting with the type (or a `G` of it) and holding `(Vec`.
-#
-# Algorithm-state twins written before the rule, one qualified name per line.
-# The list only shrinks: an entry no longer declared is reported as stale.
-FLOAT_SUFFIX_PENDING="
-LinearARX.GOFloat
-LinearSys.AutoStateFloat
-LinearSys.ManualStateFloat
-LinearSys.MaxBackReachStateFloat
-LinearSys.VerifyIterFloat
-LinearSys.VerifySoundFloat
-LinearSysDT.GOFloat
-LinearSysDT.ObserveIntervalStateFloat
-LinearSysDT.ObserveStripOptionsFloat
-NonlinParamSys.LinearizedFloat
-NonlinearSysDT.GOFloat
-"
-out=$(awk -v LIST="$list" \
-  -v PENDING="$(printf '%s' "$FLOAT_SUFFIX_PENDING" | tr '\n' ' ')" '
+out=$(awk -v LIST="$list" '
 BEGIN {
   while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f
-  n = split(PENDING, pl, " ")
-  for (i = 1; i <= n; i++) if (pl[i] != "") pending[pl[i]] = 1
   DECL = "^(@\\[[^]]*\\][ \t]*)?((private|protected|noncomputable|scoped|partial|unsafe)[ \t]+)*" \
          "(structure|inductive|class|abbrev)[ \t]+"
 }
@@ -1167,7 +1152,7 @@ FNR == 1 {
   for (i = nst; i >= 1; i--) if (st[i] != "§") full = st[i] "." full
   base = lastOf(name)
   real = fileReal || ("." full ".") ~ /\.Real\./
-  nd++; dName[nd] = name; dBase[nd] = base; dLoc[nd] = FILENAME ":" FNR
+  nd++; dName[nd] = name; dFull[nd] = full; dBase[nd] = base; dLoc[nd] = FILENAME ":" FNR
   declared[base] = 1
   if (real) realType[base] = 1
   if (isMain && banner && !((FILENAME) in mainOf)) {
@@ -1189,9 +1174,10 @@ END {
       print dLoc[i] ": `" dName[i] "` — the float layer names this type `" substr(b, 2) \
             "`, as the Real layer does (rule 1, no `G` prefix)"
     if (b ~ /.Float$/ && (substr(b, 1, length(b) - 5) in declared)) {
-      if (dName[i] in pending) { seen[dName[i]] = 1; continue }
+      ns = dFull[i]; if (!sub(/\.[^.]*$/, "", ns)) ns = ""
+      if (ns != "" && ns != "CORALean" && ns != "CORALean.Float" && ns != "CORALean.Real") continue
       print dLoc[i] ": `" dName[i] "` — a float twin of `" substr(b, 1, length(b) - 5) \
-            "` takes its name and the `Float` namespace, not a `Float` suffix (rule 2)"
+            "` takes its name and the `Float` namespace at the top level, not a `Float` suffix (rule 2)"
     }
   }
   for (k in mainKey) {
@@ -1208,10 +1194,6 @@ END {
       print abLoc[i] ": `abbrev " abName[i] "` aliases `" h "` at `Vec` — write `" \
             (h ~ /^G[A-Z]/ ? substr(h, 2) : h) " (Vec 𝕋 n)` at the use instead (rule 4)"
   }
-  for (p in pending)
-    if (!(p in seen))
-      print "scripts/check-conventions.sh: `" p "` is on FLOAT_SUFFIX_PENDING but no such" \
-            " type is declared any more — drop it from the list"
 }
 ' | sort)
 report "$out"
