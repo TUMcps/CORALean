@@ -1,16 +1,16 @@
-import CORALean.ContSet.Polygon.Float.Operations.PieceSubset
+import CORALean.ContSet.Polygon.Float.Operations.SubtractPiece
 import CORALean.ContSet.Polygon.Float.Polygon
 
 /-!
 # `Polygon.subtract`, over a floating-point scalar
 
-The regularized difference of two polygons as a polygon again, by dropping every piece of the
-minuend that one piece of the subtrahend certainly covers (`Polygon.pieceSubset`, sufficient
-only). What is left are whole pieces: a piece only partly covered is kept entire, so the
-result is an outer approximation, coarser than the real region `closure (interior P₁ \ P₂)`
-by the covered part of each kept piece. Cutting a piece along the facets of the subtrahend
-needs the facets of a float vertex description rounded inward, which the float layer does not
-have (`VPolytope.hPolytope` rounds outward at given directions, and `HPolytope.not` is inner).
+The regularized difference of two polygons as a polygon again: the minuend's pieces, taken
+through the subtrahend's pieces one after another, each step replacing a piece `r` by the
+pieces of `Polygon.subtractPiece q r`. A piece the subtrahend's piece certainly covers is
+dropped, and one with a certified inner halfspace description (`Polygon.innerHRep`) is cut
+along its edges, so the pieces exclude the inner description's interior; any other piece is
+kept whole. The cut pieces are box hulls, so they may leave the minuend, and the result is an
+outer approximation of the region `closure (interior P₁ \ P₂)`, not a subset of `P₁`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -30,9 +30,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The pieces of `P` that no single piece of `Q` certainly covers. -/
+/-- The pieces of `P`, each cut by every piece of `Q` in turn. -/
 def Polygon.subtract (P Q : Polygon 𝕋) : Polygon 𝕋 :=
-  ⟨P.sets.filter fun p => !(Q.sets.any fun q => Polygon.pieceSubset p q)⟩
+  ⟨P.sets.flatMap fun p =>
+    Q.sets.foldl (fun L q => L.flatMap (Polygon.subtractPiece q)) [p]⟩
 
 end CORALean.Float
 
