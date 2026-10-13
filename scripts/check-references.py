@@ -519,9 +519,10 @@ INVENTORY = COVERAGE / "cora-inventory.json"
 # The CORA directories whose classes are tabulated: set representations, continuous
 # dynamics, hybrid dynamics, neural networks (`nn/@neuralNetwork`, and `nn/layers/`, one
 # row per layer file) and specifications (`specification/`: the `@` classes, the single-file
-# classes and the signals). `matrixSet/`, `discrDynamics/`, `converter/` and `global/` are not
-# part of the count; the README says why.
-CORA_GROUPS = ("contSet", "contDynamics", "hybridDynamics", "nn", "specification")
+# classes and the signals) and `others` (`matrixSet/`, `discrDynamics/` and `converter/`,
+# shown in the paper only as one aggregate bar). `global/` is not part of the count; the README
+# says why.
+CORA_GROUPS = ("contSet", "contDynamics", "hybridDynamics", "nn", "specification", "others")
 # What a row says about a CORA method: a real-layer definition with a theorem about it
 # (`proved`), additionally a float-layer computable definition with a theorem (`float`),
 # not yet (`—`), or not CORALean's business (`out-of-scope`, with a reason).
@@ -531,8 +532,8 @@ CORA_OUT = ("plotting/display", "random/sampling", "solver-dependent",
 # The groups the paper's overview shows, one bar each.
 REPORT_GROUP = {"contSet": "contSet", "contDynamics": "contDynamics",
                 "hybridDynamics": "hybrid", "nn": "neuralNetworks",
-                "specification": "specification"}
-REPORT_GROUPS = ("contSet", "contDynamics", "hybrid", "neuralNetworks", "specification")
+                "specification": "specification", "others": "others"}
+REPORT_GROUPS = ("contSet", "contDynamics", "hybrid", "neuralNetworks", "specification", "others")
 # A note is `;`- or sentence-separated parts; a row is a cora-issue row iff one part starts
 # `cora-issue —` (wherever it stands in the note), so a leading `route a —` part cannot drop it.
 CORA_ISSUE = re.compile(r"(?:^|[;.]\s+)cora-issue\s+—\s*(.{10,})$")
@@ -807,6 +808,33 @@ def specification_on_disk(cora):
     return dict(sorted(out.items()))
 
 
+# Example inputs of `discrDynamics/ProbOccupancyPrediction/`: scenario scripts, velocity profiles
+# and vehicle models. They have no row, as CORA's `examples/` has none.
+PROB_EXAMPLE_DIRS = ("scenarios", "velocityProfiles", "vehicleModels")
+
+
+def others_on_disk(cora):
+    """CORA's `matrixSet/`, `discrDynamics/` and `converter/` as the inventory has it: the
+    `@`-classes of `matrixSet/` and `discrDynamics/` (`private/` has no row); `road` and
+    `simulation`, the `@`-classes of `discrDynamics/ProbOccupancyPrediction/`; that folder's other
+    functions (not its example inputs) as the class `ProbOccupancyPrediction`; and one class per
+    subdirectory of `converter/`, a row per file however deep."""
+    out = {}
+    prob = cora / "discrDynamics" / "ProbOccupancyPrediction"
+    for base in (cora / "matrixSet", cora / "discrDynamics", prob):
+        for d in sorted(base.glob("@*")):
+            if d.is_dir():
+                out[d.name[1:]] = sorted(f.stem for f in d.glob("*.m"))
+    out["ProbOccupancyPrediction"] = sorted(
+        f.stem for f in prob.rglob("*.m")
+        if not any(x.startswith("@") or x in PROB_EXAMPLE_DIRS or x == "private"
+                   for x in f.relative_to(prob).parts[:-1]))
+    for d in sorted((cora / "converter").iterdir()):
+        if d.is_dir():
+            out[d.name] = sorted(f.stem for f in d.rglob("*.m") if "private" not in f.parts)
+    return dict(sorted(out.items()))
+
+
 def coverage_tables(say):
     return [CoraTable(p, say) for g in CORA_GROUPS for p in sorted((COVERAGE / g).glob("*.md"))]
 
@@ -848,6 +876,8 @@ def check_coverage(say, fix=False):
                        for d in sorted((cora / g).glob("@*")) if d.is_dir()}
             if g == "specification":
                 on_disk = specification_on_disk(cora)
+            if g == "others":
+                on_disk = others_on_disk(cora)
             if g == "nn":
                 # one row per layer file, however deep; `private/` helpers have none
                 on_disk = {"neuralNetwork": on_disk.get("neuralNetwork", []),

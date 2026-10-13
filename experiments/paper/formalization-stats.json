@@ -7782,6 +7782,396 @@
           "fixed": 0,
           "false": 0
         }
+      },
+      {
+        "group": "others",
+        "class": "ProbOccupancyPrediction",
+        "methods": 25,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 21,
+        "out_of_scope": 4,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 4,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "commonocean2cora",
+        "methods": 1,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 0,
+        "out_of_scope": 1,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 1,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "commonroad2cora",
+        "methods": 1,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 0,
+        "out_of_scope": 1,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 1,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "cora2spaceex",
+        "methods": 1,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 0,
+        "out_of_scope": 1,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 1,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "intervalMatrix",
+        "methods": 39,
+        "proved": 5,
+        "float": 4,
+        "not_yet": 20,
+        "out_of_scope": 10,
+        "needs_float": 5,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 2,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 5,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "markovchain",
+        "methods": 12,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 7,
+        "out_of_scope": 5,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 2,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "matPolytope",
+        "methods": 20,
+        "proved": 3,
+        "float": 0,
+        "not_yet": 10,
+        "out_of_scope": 7,
+        "needs_float": 3,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 4,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "matZonotope",
+        "methods": 33,
+        "proved": 3,
+        "float": 2,
+        "not_yet": 19,
+        "out_of_scope": 9,
+        "needs_float": 3,
+        "out_of_scope_by_reason": {
+          "plotting/display": 3,
+          "random/sampling": 1,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 5,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "matrixSet",
+        "methods": 3,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 0,
+        "out_of_scope": 3,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 1,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "neuralnetwork2cora",
+        "methods": 1,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 0,
+        "out_of_scope": 1,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 1,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "partition",
+        "methods": 12,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 10,
+        "out_of_scope": 2,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 2,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "powerSystem2cora",
+        "methods": 2,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 0,
+        "out_of_scope": 2,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 2,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "road",
+        "methods": 15,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 9,
+        "out_of_scope": 6,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 6,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "simulation",
+        "methods": 7,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 4,
+        "out_of_scope": 3,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 1,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 0,
+          "matlab-runtime": 2,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
+      },
+      {
+        "group": "others",
+        "class": "spaceex2cora",
+        "methods": 40,
+        "proved": 0,
+        "float": 0,
+        "not_yet": 0,
+        "out_of_scope": 40,
+        "needs_float": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 0,
+          "random/sampling": 0,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 40,
+          "matlab-runtime": 0,
+          "deprecated": 0
+        },
+        "cora_issues": 0,
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
       }
     ],
     "groups": {
@@ -7904,22 +8294,46 @@
           "fixed": 9,
           "false": 1
         }
+      },
+      "others": {
+        "methods": 212,
+        "proved": 11,
+        "float": 6,
+        "not_yet": 100,
+        "out_of_scope": 95,
+        "needs_float": 11,
+        "cora_issues": 0,
+        "out_of_scope_by_reason": {
+          "plotting/display": 27,
+          "random/sampling": 3,
+          "solver-dependent": 0,
+          "io/conversion-to-matlab-objects": 46,
+          "matlab-runtime": 19,
+          "deprecated": 0
+        },
+        "findings": {
+          "correct": 0,
+          "underspecified": 0,
+          "proof-gap": 0,
+          "fixed": 0,
+          "false": 0
+        }
       }
     },
     "totals": {
-      "methods": 1484,
-      "proved": 78,
-      "float": 778,
-      "not_yet": 208,
-      "out_of_scope": 420,
-      "needs_float": 78,
+      "methods": 1696,
+      "proved": 89,
+      "float": 784,
+      "not_yet": 308,
+      "out_of_scope": 515,
+      "needs_float": 89,
       "cora_issues": 119,
       "out_of_scope_by_reason": {
-        "plotting/display": 102,
-        "random/sampling": 48,
+        "plotting/display": 129,
+        "random/sampling": 51,
         "solver-dependent": 23,
-        "io/conversion-to-matlab-objects": 30,
-        "matlab-runtime": 203,
+        "io/conversion-to-matlab-objects": 76,
+        "matlab-runtime": 222,
         "deprecated": 14
       },
       "findings": {

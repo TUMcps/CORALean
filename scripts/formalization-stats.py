@@ -37,7 +37,8 @@ Writes `experiments/paper/formalization-stats.json` and, under
   segments, the set representations, the continuous dynamics, the hybrid-systems and neural-network
   groups under their headings, and the specification classes (`specification/`: specifications, STL,
   signals, analyzers; about as many classes as the set representations, so not appended to the
-  short `others` figure);
+  short `others` figure; the group `others`, CORA's `matrixSet/`, `discrDynamics/` and `converter/`,
+  is a bar of (a) only and has no per-class figure);
 * `figures/formalization/formalization-findings.tikz`, the appendix's (b): the formalized
   results per group, by segment (correct, proof gap, underspecified, fixed, false);
 * `appendix-formalization.tex`, the appendix: the five figures above, each a figure of its own,
@@ -152,15 +153,18 @@ MIN_SEG = 0.04  # cm: the narrowest a non-empty segment is drawn, so that it sta
 # figure's, `HEADING` the appendix's italic group headings.
 LABEL = {"contSet": "Set representations", "contDynamics": "Cont. dynamics",
          "hybrid": "Hybrid systems", "neuralNetworks": "Neural networks",
-         "specification": "Specification"}
+         "specification": "Specification", "others": "Others"}
 HEADING = {"contSet": "Set representations (\\texttt{contSet})",
            "contDynamics": "Continuous dynamics (\\texttt{contDynamics})",
            "hybridDynamics": "Hybrid systems (\\texttt{hybridDynamics})",
            "nn": "Neural networks (\\texttt{nn})",
            "specification": "Specification (\\texttt{specification})"}
+# Groups shown only as a bar of the overview's (a), with no per-class figure; the findings
+# figure lists them only if a formalized result lands on one of their classes.
+AGGREGATE_ONLY = ("others",)
 REASON_TEXT = {"plotting/display": "plotting and display", "random/sampling": "random sampling",
                "solver-dependent": "solver encodings",
-               "io/conversion-to-matlab-objects": "conversions between MATLAB storage formats",
+               "io/conversion-to-matlab-objects": "conversions between MATLAB storage formats and file converters",
                "matlab-runtime": "MATLAB plumbing", "deprecated": "deprecated"}
 
 
@@ -332,7 +336,7 @@ def tikz(data):
     TAIL = 3 / 28.45 + CHAR_W * len(f"+{results[0][2]}") + 0.03
     xb = 0.59  # (b) and (c) start at this fraction of the line: a clear gap after (a)
     wb = (1 - xb) * LINEWIDTH_CM - TAIL  # what is left after the "+n"
-    p_methods = panel("methods", methods, COVERAGE, "4.2cm", "", "coveragelegend",
+    p_methods = panel("methods", methods, COVERAGE, "5.0cm", "", "coveragelegend",
                       title="(a) CORA functions",
                       at=f"at={{({lab_a}cm,0cm)}}, anchor=north west",
                       width=f"0.50\\linewidth-{lab_a}cm", width_cm=wa,
@@ -418,7 +422,9 @@ def findings_entries(data):
     cov = data_of(data)
     keys = [k for k, *_ in RESULT_CLASSES]
     entries = [(LABEL[g], {k: cov["groups"][g]["findings"][k] for k in keys}, None)
-               for g in cr.REPORT_GROUPS]
+               for g in cr.REPORT_GROUPS
+               # `others` is a bar of (a) only; it appears here only if a result lands on it
+               if g not in AGGREGATE_ONLY or any(cov["groups"][g]["findings"][k] for k in keys)]
     off = {k: sum(f[k] for f in cov["findings_not_on_a_class"].values()) for k in keys}
     entries.append(("Other", off, None))
     return entries
@@ -480,6 +486,9 @@ CORA methods per class and
 Fig.~\\ref{fig:formalization-findings} the formalized results of the papers per group, by how they fared.
 Not in the bars are @COV@ CORA methods that are out of scope, by reason @REASONS@, and @RES@ results
 of the papers, by reason @RESREASONS@.
+The directories \\texttt{matrixSet}, \\texttt{discrDynamics} and \\texttt{converter} of CORA are
+shown only in aggregate, as the bar \\emph{Others} of Fig.~\\ref{fig:formalization} (a), without a
+breakdown per class.
 
 \\begin{figure}[tp]
     \\centering

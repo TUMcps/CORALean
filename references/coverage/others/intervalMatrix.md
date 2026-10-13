@@ -1,0 +1,47 @@
+# others/@intervalMatrix
+
+CORA methods of `matrixSet/@intervalMatrix/`, one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md). The group `others` is shown in the paper only as one bar, so there is no per-class figure.
+
+**CORALean counterpart:** `Interval (Mat ℝ m n)`, the generic `Interval`, `Zonotope` and `MatExp` of `ContSet/` and `ContDynamics/LinearSys/MatExp/`; there is no class of its own.
+
+| Method | State | In CORALean | Note |
+|---|---|---|---|
+| `abs` | — | — | `Interval.absMax` is the entrywise maximum of `\|inf\|` and `\|sup\|`, but no theorem states it as the supremum of the entrywise absolute value |
+| `center` | proved | [`Interval.center`](../../../src/CORALean/ContSet/Interval/Real/Operations/Center.lean), [`Interval.mem_center`](../../../src/CORALean/ContSet/Interval/Real/Theorems/MemCenter.lean), [`Interval.abs_sub_center_le`](../../../src/CORALean/ContSet/Interval/Real/Theorems/AbsSubCenterLe.lean) | generic over the ambient type, used at `Mat ℝ m n`: `(inf + sup) / 2`, a member when the box is nonempty |
+| `contains` | — | — | `Contains` is stated for vector boxes (`Interval (Vec 𝕋 n)`), not for matrices |
+| `dependentTerms` | — | — | partly modelled: the second output `H = I + W(r)` is `MatExp.expIntervalW` with `MatExp.expW_mem_expIntervalW` (outer) and `MatExp.expIntervalW_attained`; the first output `r² A²` (the exact square) is not |
+| `dim` | out-of-scope | n/a — matlab-runtime | dimension query of the stored array |
+| `display` | out-of-scope | n/a — plotting/display |  |
+| `exactSquare` | — | — | the exact square of an interval matrix is not modelled (`MatExp.expIntervalW` contains it only inside `W(t)`) |
+| `expm` | — | — | the dependent evaluation (`dependentTerms` plus interval powers and a remainder) is not assembled; only the pieces `MatExp.expIntervalW` and `MatExp.expIntervalTaylorTail` exist |
+| `expmAbsoluteBound` | — | — | the eigen-decomposition bound is not modelled |
+| `expmDifferentAlgorithms` | — | — | wrapper over the private Taylor, Horner and scaling-and-squaring variants, none modelled |
+| `expmInd` | — | — | three outputs (`eI`, the powers `iPow`, the remainder `E`); `MatExp.expIntervalEnclosure` with `MatExp.exp_mem_expIntervalEnclosure` encloses `e^M` for every member but takes the remainder from the norm bound `expRemainderBound`, not from CORA's `exponentialRemainder`, and returns no powers |
+| `expmIndMixed` | — | — | the mixed independent evaluation is not modelled |
+| `expmMixed` | — | — | the mixed dependent evaluation is not modelled |
+| `expmNormInf` | — | — | the closed-form infinity-norm bound is not modelled |
+| `expmTaylorHornerScaling` | — | — | wrapper over the private Taylor, Horner and scaling-and-squaring variants, none modelled |
+| `exponentialRemainder` | — | — | the remainder `e^{\|A\|}` minus its partial sum is not modelled (`MatExp.expRemainderBound` bounds it differently) |
+| `generateRandom` | out-of-scope | n/a — random/sampling |  |
+| `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
+| `infNorm` | — | — | the maximum infinity norm of the members is not modelled |
+| `infimum` | proved | [`Interval.infimum`](../../../src/CORALean/ContSet/Interval/Real/Operations/Infimum.lean), [`Interval.infimum_mem_construct`](../../../src/CORALean/ContSet/Interval/Real/Theorems/InfimumMemConstruct.lean) | generic over the ambient type, used at `Mat ℝ m n`: a member when the box is nonempty |
+| `interval` | out-of-scope | n/a — matlab-runtime | field getter |
+| `intervalMatrix` | proved | [`Interval.construct`](../../../src/CORALean/ContSet/Interval/Real/Interval.lean), [`Interval.convex_construct`](../../../src/CORALean/ContSet/Interval/Real/Theorems/Convex.lean) | the denotation of the class, `{M : inf ≤ M ≤ sup}` entrywise (`Interval (Mat ℝ m n)`), and its convexity; not CORA's argument parsing |
+| `isempty` | out-of-scope | n/a — matlab-runtime | dimension check of the stored array (`any(dim == 0)`), not an emptiness statement about the set |
+| `matPolytope` | — | — | the conversion of a matrix box to a matrix polytope (its vertices) is not modelled for matrices |
+| `matZonotope` | float | [`Zonotope.ofIntervalMat`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/OfIntervalMat.lean), [`Zonotope.ofIntervalMat_outer`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/OfIntervalMatOuter.lean) | float only, no real-layer counterpart: the centre matrix and one generator per entry carrying that entry's radius; outer, the zonotope contains the box (nothing is lost but rounding of the centre, which the radius absorbs) |
+| `mpower` | float | [`Interval.matPow`](../../../src/CORALean/ContSet/Interval/Real/Operations/MatPow.lean), [`Interval.matPow_outer`](../../../src/CORALean/ContSet/Interval/Real/Theorems/MatPowOuter.lean) · float: [`Interval.matPow`](../../../src/CORALean/ContSet/Interval/Float/Operations/MatPow.lean), [`Interval.matPow_outer`](../../../src/CORALean/ContSet/Interval/Float/Theorems/MatPowOuter.lean) | route a — outer: the repeated interval product, as CORA computes it (`mpower` multiplies `exponent` times) |
+| `mtimes` | float | [`Interval.matMul`](../../../src/CORALean/ContSet/Interval/Real/Operations/MatMul.lean), [`Interval.matMul_outer`](../../../src/CORALean/ContSet/Interval/Real/Theorems/MatMulOuter.lean) · float: [`Interval.matMul`](../../../src/CORALean/ContSet/Interval/Float/Operations/MatMul.lean), [`Interval.matMul_outer`](../../../src/CORALean/ContSet/Interval/Float/Theorems/MatMulOuter.lean) | route a — outer: interval-arithmetic product of two interval matrices, which CORA also returns as an enclosure; a numeric factor is a point box |
+| `norm` | — | — | the maximum norm over all members is not modelled (`Interval.norm_le_absMax` and `Interval.exists_norm_eq_absMax` are for the sup norm of `absMax`) |
+| `plot` | out-of-scope | n/a — plotting/display |  |
+| `plus` | float | [`Interval.plus`](../../../src/CORALean/ContSet/Interval/Real/Operations/Plus.lean), [`Interval.plus_exact`](../../../src/CORALean/ContSet/Interval/Real/Theorems/PlusExact.lean) · float: [`Interval.matPlus`](../../../src/CORALean/ContSet/Interval/Float/Operations/MatPlus.lean), [`Interval.matPlus_outer`](../../../src/CORALean/ContSet/Interval/Float/Theorems/MatPlusOuter.lean) | route a — exact at the real layer for nonempty operands (`plus_exact`), the Minkowski sum of the boxes; float: outer, the bounds round outward. Interval matrix plus numeric matrix is the same with a point box |
+| `powers` | — | — | the list of interval powers is not assembled; each power is `Interval.matPow` |
+| `rad` | proved | [`Interval.radius`](../../../src/CORALean/ContSet/Interval/Real/Operations/Radius.lean), [`Interval.abs_sub_center_le`](../../../src/CORALean/ContSet/Interval/Real/Theorems/AbsSubCenterLe.lean) | generic over the ambient type, used at `Mat ℝ m n`: `(sup - inf) / 2`; every member is within it of the centre, entrywise |
+| `randPoint` | out-of-scope | n/a — random/sampling |  |
+| `representsa` | — | — | the conversion to a vectorised interval and its `representsa` is not modelled for matrices |
+| `size` | out-of-scope | n/a — matlab-runtime |  |
+| `subsref` | out-of-scope | n/a — matlab-runtime |  |
+| `supremum` | proved | [`Interval.supremum`](../../../src/CORALean/ContSet/Interval/Real/Operations/Supremum.lean), [`Interval.supremum_mem_construct`](../../../src/CORALean/ContSet/Interval/Real/Theorems/SupremumMemConstruct.lean) | generic over the ambient type, used at `Mat ℝ m n`: a member when the box is nonempty |
+| `vertices` | — | — | the vertex set of a matrix box is not modelled |
+| `volume` | — | — | `Interval.volume` is stated for vector boxes |
