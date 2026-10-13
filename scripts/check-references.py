@@ -517,10 +517,11 @@ def stats(papers):
 COVERAGE = REFS / "coverage"
 INVENTORY = COVERAGE / "cora-inventory.json"
 # The CORA directories whose classes are tabulated: set representations, continuous
-# dynamics, hybrid dynamics and neural networks (`nn/@neuralNetwork`, and `nn/layers/`, one
-# row per layer file). `matrixSet/`, `specification/`, `discrDynamics/`, `converter/` and
-# `global/` are not part of the count; the README says why.
-CORA_GROUPS = ("contSet", "contDynamics", "hybridDynamics", "nn")
+# dynamics, hybrid dynamics, neural networks (`nn/@neuralNetwork`, and `nn/layers/`, one
+# row per layer file) and specifications (`specification/`: the `@` classes, the single-file
+# classes and the signals). `matrixSet/`, `discrDynamics/`, `converter/` and `global/` are not
+# part of the count; the README says why.
+CORA_GROUPS = ("contSet", "contDynamics", "hybridDynamics", "nn", "specification")
 # What a row says about a CORA method: a real-layer definition with a theorem about it
 # (`proved`), additionally a float-layer computable definition with a theorem (`float`),
 # not yet (`—`), or not CORALean's business (`out-of-scope`, with a reason).
@@ -529,8 +530,9 @@ CORA_OUT = ("plotting/display", "random/sampling", "solver-dependent",
             "io/conversion-to-matlab-objects", "matlab-runtime", "deprecated")
 # The groups the paper's overview shows, one bar each.
 REPORT_GROUP = {"contSet": "contSet", "contDynamics": "contDynamics",
-                "hybridDynamics": "hybrid", "nn": "neuralNetworks"}
-REPORT_GROUPS = ("contSet", "contDynamics", "hybrid", "neuralNetworks")
+                "hybridDynamics": "hybrid", "nn": "neuralNetworks",
+                "specification": "specification"}
+REPORT_GROUPS = ("contSet", "contDynamics", "hybrid", "neuralNetworks", "specification")
 # A note is `;`- or sentence-separated parts; a row is a cora-issue row iff one part starts
 # `cora-issue —` (wherever it stands in the note), so a leading `route a —` part cannot drop it.
 CORA_ISSUE = re.compile(r"(?:^|[;.]\s+)cora-issue\s+—\s*(.{10,})$")
@@ -684,7 +686,7 @@ class CoraTable:
             for m in DECL.finditer(strip_block_comments(t.read_text(encoding="utf-8"))):
                 if m.group(3) == n and "noncomputable" in m.group(1):
                     say(f"{tag}: route b, but `{n}` is `noncomputable`")
-        generic = re.compile(r"Scalar|FloatOps|ExactScalar|ContSet \(S n\)")
+        generic = re.compile(r"Scalar|FloatOps|ExactScalar|ContSet \(S n\)|Contains ContSet S")
         if not any("Real" not in t.parts and generic.search(t.read_text(encoding="utf-8"))
                    for t, n, k in found):
             say(f"{tag}: route b, but no linked declaration is stated for a generic scalar "
@@ -761,6 +763,50 @@ def cora_checkout():
     return None
 
 
+METHODS_HEADER = re.compile(r"^methods\b(.*)$")
+METHOD_FN = re.compile(r"^    function\s+(?:[^=\n(]*=\s*)?(\w+)")
+ABSTRACT_DECL = re.compile(r"^    (?:[\w\[\], ]+?=\s*)?(\w+)\s*(?:\(|%|$)")
+
+
+def classdef_methods(path):
+    """The public methods of a single-file MATLAB class, constructor included: the `function`s
+    (at the class's own indentation) of the `methods` blocks that are not `Access = private` or
+    `protected`, and the declarations of `Abstract` blocks. Local functions after the class and
+    nested functions have no row; `Access = private` helpers are implementation, like `private/`."""
+    names, public, abstract = set(), False, False
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        m = METHODS_HEADER.match(line)
+        if m:
+            attrs = m.group(1)
+            public = not re.search(r"Access\s*=\s*(private|protected)", attrs)
+            abstract = "Abstract" in attrs
+        elif line.startswith("end") and public is not None:
+            public, abstract = False, False
+        elif public and not abstract:
+            f = METHOD_FN.match(line)
+            if f:
+                names.add(f.group(1))
+        elif public and abstract and not line.lstrip().startswith("%"):
+            f = ABSTRACT_DECL.match(line)
+            if f:
+                names.add(f.group(1))
+    return sorted(names)
+
+
+def specification_on_disk(cora):
+    """CORA's `specification/` as the inventory has it: the `@`-classes (their `.m` files, not
+    `private/`) and the single-file classes of `specification/` and `specification/signals/`."""
+    root = cora / "specification"
+    out = {}
+    for base in (root, root / "signals"):
+        for d in sorted(base.glob("@*")):
+            if d.is_dir():
+                out[d.name[1:]] = sorted(f.stem for f in d.glob("*.m"))
+        for f in sorted(base.glob("*.m")):
+            out[f.stem] = classdef_methods(f)
+    return dict(sorted(out.items()))
+
+
 def coverage_tables(say):
     return [CoraTable(p, say) for g in CORA_GROUPS for p in sorted((COVERAGE / g).glob("*.md"))]
 
@@ -800,6 +846,8 @@ def check_coverage(say, fix=False):
         for g in CORA_GROUPS:
             on_disk = {d.name[1:]: sorted(f.stem for f in d.glob("*.m"))
                        for d in sorted((cora / g).glob("@*")) if d.is_dir()}
+            if g == "specification":
+                on_disk = specification_on_disk(cora)
             if g == "nn":
                 # one row per layer file, however deep; `private/` helpers have none
                 on_disk = {"neuralNetwork": on_disk.get("neuralNetwork", []),
@@ -844,11 +892,11 @@ SYS_DIR = {"LinearSys": "linearSys", "LinearSysDT": "linearSysDT", "LinParamSys"
            "NeurNetContrSysDT": "neurNetContrSys", "LinearARX": "linearARX", "NonlinearARX": "nonlinearARX",
            "NonlinParamSys": "nonlinParamSys", "NonlinDASys": "nonlinDASys", "OutputEq": "contDynamics", "Reach": "contDynamics"}
 # Where a result lands when it is not about one CORA class.
-NON_CLASS = ("global", "specification", "examples", "other")
+NON_CLASS = ("global", "examples", "other")
 
 
 def bucket(path):
-    """The CORA class (or `global`, `neuralNetwork`, `specification`) a linked Lean file
+    """The CORA class (or `global`, `neuralNetwork`) a linked Lean file
     belongs to, from its path: `ContSet/Zonotope/...` is `zonotope`, a conversion
     `ContSet/Conversion/Real/Zonotope_to_Interval.lean` is the source's method, `ContSet/`'s
     own directories and unions and intersections are `contSet`, `HybridDynamics/Parallel`
@@ -867,8 +915,9 @@ def bucket(path):
     if top == "HybridDynamics":
         return "parallelHybridAutomaton" if len(parts) > 1 and parts[1] == "Parallel" \
             else "hybridAutomaton"
-    return {"Global": "global", "NN": "neuralNetwork", "Specification": "specification",
-            "Examples": "examples"}.get(top, "other")
+    if top == "Specification":
+        return "stl" if len(parts) > 1 and parts[1] == "STL" else "specification"
+    return {"Global": "global", "NN": "neuralNetwork", "Examples": "examples"}.get(top, "other")
 
 
 def linked_files(papers):
