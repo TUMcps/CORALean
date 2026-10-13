@@ -78,6 +78,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.HitAndRunStep
 import CORALean.ContSet.HPolytope.Real.Operations.FacetNormal
 import CORALean.ContSet.HPolytope.Real.Operations.BilliardEnd
 import CORALean.ContSet.HPolytope.Real.Operations.BilliardStep
+import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaHyperplaneCora
+import CORALean.ContSet.HPolytope.Real.Operations.RowLowerCora
+import CORALean.ContSet.HPolytope.Real.Operations.RowUpperCora
+import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalZeroRowCora
 /-!
 # What `HPolytope` computes
 

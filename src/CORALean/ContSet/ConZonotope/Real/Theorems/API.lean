@@ -91,6 +91,7 @@ import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreIffOfEqZero
 import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapMixedOuter
 import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapCoraNotOuter
+import CORALean.ContSet.ConZonotope.Real.Theorems.SupportFuncUpperCoraCounterexample
 
 /-!
 # What `ConZonotope` guarantees

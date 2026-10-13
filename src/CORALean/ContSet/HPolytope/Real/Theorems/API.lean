@@ -118,6 +118,8 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MemAddSmulIffChord
 import CORALean.ContSet.HPolytope.Real.Theorems.HitAndRunStepMem
 import CORALean.ContSet.HPolytope.Real.Theorems.BilliardEndMem
 import CORALean.ContSet.HPolytope.Real.Theorems.BilliardStepMem
+import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaIntervalZeroRowCoraCounterexample
 /-!
 # What `HPolytope` guarantees
 
