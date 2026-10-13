@@ -25,8 +25,8 @@ src/CORALean/
     Interval/
       Real/        Interval.lean (the type), Operations/ (one per operation),
                    Theorems/ (one per guarantee),
-                   Complexity/ (how large a result is, proved),
-                   Cost/ (what running it costs, asserted),
+                   Complexity/Space/ (how large a result is, proved),
+                   Complexity/Time/ (what running it costs, asserted),
                    Instances.lean (the interface, instantiated),
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
@@ -298,7 +298,7 @@ nothing is `sorry` or a search tactic, that nothing outside the three files
 named in the script is an `axiom` — the second holding `nearestUnsound` alone
 and imported from nowhere outside `Examples/Bench/`, the third holding
 `trustedFlint` alone — that every `maxHeartbeats` bump
-carries a reason, that a `def` under `Cost/` is named for the cost it asserts,
+carries a reason, that a `def` under `Complexity/Time/` is named for the cost it asserts,
 that every `[N]` cited resolves, that the comment lengths and the comment
 density above are respected, that every module is reachable from one of the
 target roots, so a file written but never collected is caught rather than
@@ -461,8 +461,8 @@ models and systems follow the same shape:
 | `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `Trajectory` |
 | `Operations/*.lean` | one operation each, as CORA gives it a file each |
 | `Theorems/*.lean` | one guarantee each, stated and proved together |
-| `Complexity/*.lean` | how large a result is — a theorem, proved from the definition |
-| `Cost/*.lean` | how much running it costs — a `def`, asserted against a model |
+| `Complexity/Space/*.lean` | how large a result is — a theorem, proved from the definition — and its `O` corollary where there is one |
+| `Complexity/Time/*.lean` | how much running it costs — a `def`, asserted against a model — its monotonicity and bounds, and its `O` corollary where there is one |
 | `Instances.lean` | the class instances, whose fields *are* the guarantees |
 
 A file is named after what it declares, not after the role it plays:
@@ -478,8 +478,13 @@ under `Operations/` or `Theorems/` declares exactly one public thing. What it
 needs and nothing else uses is `aux_`; what the tree needs earns a file of its
 own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
 declared with what it denotes, and instances have no names to collect — and so
-do `Complexity/` and `Cost/`, whose files hold a claim per operation rather
-than an operation, and are read as a table.
+do `Complexity/Time/` and `Complexity/Space/`, whose files hold a claim per
+operation rather than an operation, and are read as a table. There the rule is
+relaxed on purpose: one file per operation holds the exact statement (`plus_h`,
+`plusCost`) *and* its `O` corollary (`..._isBigO`), the corollary being derived
+from the exact one. Nowhere else may two public declarations share a file.
+Nothing sits directly in `Complexity/` but `API.lean`, and no `Cost/` directory
+exists; `check-conventions.sh` rejects both.
 
 The rule is what keeps the table above true, and it is checked because a
 convention nobody tests is one the tree drifts out of: a helper that quietly
@@ -487,7 +492,7 @@ grows a second user is the usual way a file stops doing only its own job.
 
 ### A size is proved; a running cost is asserted
 
-`Complexity/` and `Cost/` look alike from outside and only one of them can be
+`Complexity/Space/` and `Complexity/Time/` look alike from outside and only one of them can be
 wrong, so they are kept apart deliberately.
 
 A **size** — how many generators an operation's result has — is a field of the
@@ -501,13 +506,13 @@ definition.
 
 Three things say which a reader is looking at, and the third is checked:
 
-* the directory — `Complexity/` or `Cost/`;
+* the directory — `Complexity/Space/` or `Complexity/Time/`;
 * the form — a `theorem` about `.h`, or a `def` returning a `Cost`, a type that
   is not `ℕ` and so cannot be equated with a size by accident;
-* the name — a public `def` under `Cost/` is `...Cost` or `...Bound`, which
+* the name — a public `def` under `Complexity/Time/` is `...Cost` or `...Bound`, which
   `check-conventions.sh` enforces.
 
-Nothing under `Cost/` is proved `rfl` against an operation. What *is* proved
+Nothing under `Complexity/Time/` is proved `rfl` against an operation. What *is* proved
 there is everything above the assertions: that each count is monotone in the
 operand sizes it takes, and that an algorithm's cost is the sum of its
 operations' — `LinearSysDT.reachCost_le` assembles `reach`'s bound out of the

@@ -9,7 +9,7 @@ adds `U`'s generators (`plus_h`), one `mtimes` keeps the count (`mtimes_h`), so
 nothing shrinks it back. It is reduction alone that holds a reachable set's
 size independent of how long the run goes — `reach_order_le`'s `o * n`, with no
 `k` in it, is that fact; this restates it as growth, the shape
-`bilin_h_isBigO` set for the rest of `Complexity/`.
+`bilin_h_isBigO` set for the rest of `Complexity/Space/`.
 -/
 
 -- Authors:       Claude Opus 5

@@ -3,7 +3,6 @@ import CORALean.ContSet.Ellipsoid.Real.Definitions.API
 import CORALean.ContSet.Ellipsoid.Real.Operations.API
 import CORALean.ContSet.Ellipsoid.Real.Theorems.API
 import CORALean.ContSet.Ellipsoid.Real.Complexity.API
-import CORALean.ContSet.Ellipsoid.Real.Cost.API
 import CORALean.ContSet.Ellipsoid.Real.Instances
 
 /-!

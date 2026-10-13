@@ -318,10 +318,10 @@ class Paper:
     def check_complexity(self, result, says, where):
         """A running time printed beside a result is a row of its own, so no row in scope
         (formalized in any class, or `—`) carries one in its second cell (references/README.md, "A complexity statement is a
-        row of its own"). A result whose statement *is* the bound links its `Cost/` file."""
-        if RUNNING_TIME.search(says) and "/Cost/" not in where:
+        row of its own"). A result whose statement *is* the bound links its `Complexity/Time/` file."""
+        if RUNNING_TIME.search(says) and "/Complexity/Time/" not in where:
             self.say(f"{self.rel}: `{result}` states a running time in its own row; give it a "
-                     f"row `{result} (complexity)` (`not-a-claim`, or `Cost/` if the result is "
+                     f"row `{result} (complexity)` (`not-a-claim`, or `Complexity/Time/` if the result is "
                      "the bound)")
 
     def check_hedge(self, result, where):

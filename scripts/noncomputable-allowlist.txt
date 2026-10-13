@@ -20,7 +20,7 @@
 #   spec:      a specification object — a reachable set defined by
 #              trajectories, a norm, a Hausdorff distance, a real-valued
 #              certificate — never meant to run.
-#   cost:      an asserted running cost under `Cost/`.
+#   cost:      an asserted running cost under `Complexity/Time/`.
 #   real-layer: part of the real (ℝ-valued) half of a representation, or an
 #              ℝ-only part of a directory otherwise written over the scalar,
 #              or reached only from such a definition and nothing runnable.
@@ -255,7 +255,7 @@ LinearSysDT.observeEsoA1D  real-layer: CORA's ESO-A observer step at n = 1 as th
 LinearSysDT.observeEsoB  real-layer: the corrected ESO-B observer step over the real ellipsoid (`Real.sqrt`, matrix inverses); no float counterpart yet
 LinearSysDT.observeEsoB1D  real-layer: CORA's ESO-B observer step at n = 1 as the code computes it, a refuted reference (`observeEsoB1D_counterexample`), never meant to run
 LinearSysDT.observePropagation  real-layer: the set-propagation observer over `Real.Zonotope`, noncomputable because its `reduce` is; runs in floats as `LinearSysDT.observePropagationFloat` (`observePropagationFloat_outer`)
-LinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
+LinearSysDT.reachCost  cost: an asserted running cost under `Complexity/Time/`, never meant to compute
 LinearSysDT.reachError  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachErrorFloat  spec: what a float run owes, summed from the four Box operations' float error terms into a real accumulator; the terms are now computed in 𝕋, this recursion over them is not
 LinearSysDT.reachErrorOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
@@ -321,7 +321,7 @@ NeurNetContrSys.reach  real-layer: the closed loop sampled by the exact `LinearS
 NeurNetContrSys.WithPeriod.reachInstance  real-layer: the `Reach` instance over `NeurNetContrSys.reachUnion`; runs in floats as `NeurNetContrSys.reachUnionFloat` (`reachUnionFloat_outer`), the order from `LinearSys.reachOrderFloat`
 NeurNetContrSys.reachOrder  real-layer: an admissible order by `⌈‖ΔtA‖⌉`; runs in floats as `LinearSys.reachOrderFloat` at `sys.plant`, inside `NeurNetContrSys.reachUnionFloat`
 NeurNetContrSys.reachUnion  real-layer: the periods `0` through `tFinal - tStart` of `reach`; runs in floats as `NeurNetContrSys.reachUnionFloat` (`reachUnionFloat_outer`)
-NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
+NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Complexity/Time/`, never meant to compute
 NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement
 NonlinParamSys.WithSteps.reachUnion  real-layer: the parameter-as-state reduction to `NonlinearSys` at real certificates; runs in floats as `NonlinParamSys.reachFloat` (`reachFloat_outer`)
 NonlinParamSys.reachInstance  real-layer: `Reach` for the parameter-as-state reduction at real certificates; see `NonlinParamSys.WithSteps.reachUnion`
@@ -361,7 +361,7 @@ NonlinearSys.relinDeltaReach  real-layer: CORA's `Rdiff` at supplied certificate
 NonlinearSys.relinReach  real-layer: the re-linearization loop at caller-supplied certificates `LinStep`; runs in floats as `NonlinearSys.FloatModel.reachFloat`, which linearizes itself from a `FloatModel` (`Encloses.reachFloat_outer`)
 NonlinearSys.relinTimeInterval  real-layer: one step's window at a supplied certificate; the float run's is the first set `NonlinearSys.FloatModel.relinStepFloat` returns (`Encloses.relinStepFloat_outer`)
 NonlinearSys.WithSteps.reachUnion  real-layer: the `Reach` union at supplied certificates and regions; runs in floats as `NonlinearSys.FloatModel.reachFloat` (`Encloses.reachFloat_outer`)
-NonlinearSysDT.reachCost  cost: an asserted running cost under `Cost/`, never meant to compute
+NonlinearSysDT.reachCost  cost: an asserted running cost under `Complexity/Time/`, never meant to compute
 Schedule.refineWorst  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 Schedule.refineWorstNeurons  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 abstrErr  real-layer: [Kochdumper 2020, Alg. 2]'s error over `Real.PolyZonotope` at real `D`, `E`; the float step's counterpart is `NonlinearSys.FloatHessModel.abstrErrPolyFloat` (`Encloses.abstrErrPolyFloat_outer`)

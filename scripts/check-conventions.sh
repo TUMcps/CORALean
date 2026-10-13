@@ -385,7 +385,10 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
 
   # One public declaration per file under `Operations/` or `Theorems/`
   # (`API.lean` excepted): the mechanism that keeps `aux_` from drifting into
-  # a name promoted for reuse without earning its own file (issue #62).
+  # a name promoted for reuse without earning its own file (issue #62). The rule
+  # names those two directories and no others, so `Complexity/Time/` and
+  # `Complexity/Space/` may hold an exact statement and its O corollary in one
+  # file (issue #136): that is the one exception, and it stays out of the pattern.
   if (f ~ /\/(Operations|Theorems)\// && !(f ~ /\/API\.lean$/) && npub > MAX_PUBLIC_DECL) {
     decls = pubList[1]
     for (i = 2; i <= npub; i++) decls = decls ", " pubList[i]
@@ -455,7 +458,7 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
       say(f ":" endFNR ": more than one `END OF CODE` marker")
     if (mainishCount == 0)
       say(f ":1: missing the `MAIN ...` marker before the main declaration of the file")
-    else if (mainishCount > 1)
+    else if (mainishCount > 1 && f !~ /\/Complexity\/(Time|Space)\//)
       say(f ":" pendingMainFNR ": more than one `MAIN ...`/`INSTANCES` marker")
 
     if (beginFNR > 0 && nsLine > 0 && beginFNR > nsLine)
@@ -773,11 +776,11 @@ FNR == 1 {
       pendingMain = 0
     }
 
-    # A `Cost/` directory holds asserted running costs and nothing derived from
+    # A `Complexity/Time/` directory holds asserted running costs and nothing derived from
     # a definition; the `...Cost` name is one of the three things that says so,
     # the directory and the `Cost`-valued `def` being the other two.
-    if (FILENAME ~ /\/Cost\// && kind == "def" && b !~ /^aux_/ && b !~ /(Cost|Bound)$/)
-      say(FILENAME ":" FNR ": a `def` under `Cost/` is an asserted cost, named" \
+    if (FILENAME ~ /\/Complexity\/Time\// && kind == "def" && b !~ /^aux_/ && b !~ /(Cost|Bound)$/)
+      say(FILENAME ":" FNR ": a `def` under `Complexity/Time/` is an asserted cost, named" \
           " `...Cost` or `...Bound`, not `" b "`")
 
     # `noncomputable` is free in the `Real/` layer of a representation (rule 1),
@@ -926,6 +929,16 @@ BEGIN {
   while ((getline f < LIST) > 0) {
     if (f == "") continue
     d = dirOf(f); b = baseOf(f)
+    # Complexity is `Complexity/Time/<Op>.lean` (the exact cost and its O corollary) and
+    # `Complexity/Space/<Op>.lean` (the exact result size and its O corollary), nothing else
+    # (issue #136). The exact statement and the O one share a file there and only there.
+    if (f ~ /\/Cost\//)
+      print f ": a `Cost/` directory no longer exists; the cost of an operation is" \
+            " `Complexity/Time/<Op>.lean`"
+    if (f ~ /\/Complexity\/[^\/]*\.lean$/ && b != "API.lean")
+      print f ": a file directly in `Complexity/` — the cost of an operation goes in" \
+            " `Complexity/Time/`, the size of its result in `Complexity/Space/`; only" \
+            " `API.lean` sits directly in `Complexity/`"
     if (b != "API.lean" && b != "Instances.lean") { nextra[d]++; extra[d] = extra[d] " `" b "`" }
     # A directory is a class root once any role folder sits directly in it.
     cur = d

@@ -1,7 +1,7 @@
 import CORALean.NN.Layers.Definitions.ActivationPoly
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Complexity.EvalPoly
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Plus
+import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
+import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPoly
+import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Plus
 import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
 
 /-!
