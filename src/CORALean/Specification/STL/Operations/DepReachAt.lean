@@ -1,0 +1,43 @@
+import CORALean.Specification.STL.Operations.DepReachInit
+import CORALean.Specification.STL.Operations.DepReachStep
+
+/-!
+# The state of the dependency preserving reachability algorithm after `i` steps
+
+[1, Alg. 1]: lines 2-3 give the state at `t₀`, and each pass of the loop, lines 5-7, takes the
+state at `t_i` to that at `t_{i+1}`; this is the state after `i` passes.
+
+## References
+
+* [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+      against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
+      Hybrid Systems, vol. 53, 2024, 101491.
+-/
+
+-- Authors:       Tobias Ladner
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Last revision: ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The state at `t_i = iΔt` of [1, Alg. 1]. -/
+noncomputable def STL.depReachAt (A : Mat ℝ n n) (Δt : ℝ) (cs : STL.DepReachConsts n)
+    (X₀ : Zonotope (Vec ℝ n)) : ℕ → STL.DepReachState n
+  | 0 => STL.depReachInit X₀ cs
+  | i + 1 => STL.depReachStep A Δt cs (STL.depReachAt A Δt cs X₀ i)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

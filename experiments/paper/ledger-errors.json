@@ -466,6 +466,13 @@
     }
   },
   "2024/kochdumper-nahs-stl-lti-verification": {
+    "Prop. 1": {
+      "description": "the dependency $\\mu \\oplus E$ holds at the time points but not between them: the input generators of $P(t_{i+1})$ carry the input's effect at the end of the step"
+    },
+    "Prop. 2": {
+      "description": "the polytope $K_{i2}$ of the time interval is wrong where $\\mu \\oplus E$ of Prop. 1 fails: a factor outside it has a state in the polytope at a time between two time points",
+      "fix": "NotMemOfNotMemUnsafeFactorsPoint.lean"
+    },
     "Eq. 26": {
       "description": "strict $>$ for every row: an unselected row reads $0>0$, so the program is infeasible for two or more halfspaces",
       "fix": "MilpCorrectedIff.lean"

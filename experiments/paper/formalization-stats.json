@@ -17,8 +17,8 @@
     "papers": 95,
     "papers_with_findings": 87,
     "in_scope": 1229,
-    "formalized": 1169,
-    "not_formalized": 60,
+    "formalized": 1173,
+    "not_formalized": 56,
     "out_of_scope": 1062,
     "out_of_scope_by_reason": {
       "restated": 396,
@@ -29,25 +29,25 @@
     },
     "by_class": {
       "correct": 779,
-      "underspecified": 239,
+      "underspecified": 241,
       "proof-gap": 35,
-      "fixed": 106,
-      "false": 10
+      "fixed": 107,
+      "false": 11
     },
     "claims": {
       "in_scope": 471,
-      "formalized": 443,
-      "correct": 267,
+      "formalized": 444,
+      "correct": 266,
       "underspecified": 86,
       "proof-gap": 35,
-      "fixed": 49,
-      "false": 6
+      "fixed": 50,
+      "false": 7
     },
     "definitions": {
       "in_scope": 758,
-      "formalized": 726,
-      "correct": 512,
-      "underspecified": 153,
+      "formalized": 729,
+      "correct": 513,
+      "underspecified": 155,
       "proof-gap": 0,
       "fixed": 57,
       "false": 4
@@ -5290,8 +5290,8 @@
       "year": 2024,
       "title": "Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis",
       "in_scope": 15,
-      "formalized": 4,
-      "not_formalized": 11,
+      "formalized": 8,
+      "not_formalized": 7,
       "out_of_scope": 15,
       "out_of_scope_by_reason": {
         "restated": 7,
@@ -5302,30 +5302,50 @@
       },
       "by_class": {
         "correct": 1,
-        "underspecified": 2,
+        "underspecified": 4,
         "proof-gap": 0,
-        "fixed": 1,
-        "false": 0
+        "fixed": 2,
+        "false": 1
       },
       "claims": {
         "in_scope": 6,
-        "formalized": 1,
-        "correct": 1,
+        "formalized": 2,
+        "correct": 0,
         "underspecified": 0,
         "proof-gap": 0,
-        "fixed": 0,
-        "false": 0
+        "fixed": 1,
+        "false": 1
       },
       "definitions": {
         "in_scope": 9,
-        "formalized": 3,
-        "correct": 0,
-        "underspecified": 2,
+        "formalized": 6,
+        "correct": 1,
+        "underspecified": 4,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
       },
       "findings": [
+        {
+          "result": "Def. 4",
+          "class": "underspecified",
+          "reason": "the definition says what `μ` and `E` must satisfy but not how they are built from `R(t)`; read existentially it excludes nothing (the trivial solution it forbids is `μ = 0`, `E = R`, not `μ = ξ`, `E = {0}`); what [1] means is that `μ` is read off the representation of `R`, as `Prop. 1` does for `Alg. 1`; see Findings"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "`interval(·)` and the products of an interval matrix with a point matrix and a zonotope (`T^(κ) A`, `F X₀`, `G ũ`, `E U₀`) are not defined where they are used, the printed `T = A⁻¹(·)` needs an invertible `A`, and `D₀ = 0`, `P(t₀) = 0` leave the generator count of `R(t₀)` open; read as in `Eq. 14-20`; its soundness is `Prop. 1` and `Eq. 14-20`, which the listing does not state"
+        },
+        {
+          "result": "Prop. 1",
+          "class": "false",
+          "reason": "for `t ∈ τ_i` the input generators of `P(t_{i+1})` carry the effect of the input at the end of the step, and `E(t)` has no generator that absorbs the difference: on `ẋ = u`, `X₀ = {0}`, `U = [-1,1]`, `Δt = 1`, `i = 0`, `t = 1/2` and `α_{u,1} = 1` the solution is `1/2` and `μ ⊕ E = {1}`; the printed `N_i` is also one index too long; the time-point half holds, see Findings"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "fixed",
+          "reason": "the half for `K_i2` is false as printed, because it rests on `Prop. 1` between the time points: on `ẋ = u`, `X₀ = {0}`, `U = [-1,1]`, `Δt = 1`, `i = 0`, `R(τ₀) = [-1,1]` has the generators `(0, 1, 0, 0)` and `N₀ = (2)`, so for `P = {x ≤ 1/2}` the factor `α̃ = 1` is outside `K_i2 = {α̃ ≤ 1/2}` while `ξ(1/4) = 1/4` is in `P`; the half for `K_i1` at the time points holds, and is the corrected statement; the printed `N_i` is also one index too long (`Prop. 1`); see Findings"
+        },
         {
           "result": "Alg. 2",
           "class": "underspecified",
@@ -6938,7 +6958,7 @@
           "matlab-runtime": 0,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -6990,7 +7010,7 @@
           "matlab-runtime": 0,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
           "correct": 4,
           "underspecified": 2,
@@ -7292,7 +7312,7 @@
         "not_yet": 4,
         "out_of_scope": 60,
         "needs_float": 23,
-        "cora_issues": 21,
+        "cora_issues": 23,
         "out_of_scope_by_reason": {
           "plotting/display": 25,
           "random/sampling": 6,
@@ -7365,7 +7385,7 @@
       "not_yet": 14,
       "out_of_scope": 396,
       "needs_float": 73,
-      "cora_issues": 102,
+      "cora_issues": 104,
       "out_of_scope_by_reason": {
         "plotting/display": 86,
         "random/sampling": 47,
@@ -7392,10 +7412,10 @@
       },
       "specification": {
         "correct": 23,
-        "underspecified": 10,
+        "underspecified": 12,
         "proof-gap": 0,
-        "fixed": 8,
-        "false": 0
+        "fixed": 9,
+        "false": 1
       },
       "examples": {
         "correct": 1,
@@ -7406,11 +7426,11 @@
       }
     },
     "theorems": {
-      "paper": 1698,
+      "paper": 1712,
       "float": 1898,
-      "helper": 1592,
-      "lemma": 2650,
-      "total": 7838,
+      "helper": 1608,
+      "lemma": 2659,
+      "total": 7877,
       "examples": 120
     }
   }

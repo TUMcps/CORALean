@@ -16,6 +16,10 @@ import CORALean.Specification.STL.Definitions.MILPEncoding
 import CORALean.Specification.STL.Definitions.Tsupp
 import CORALean.Specification.STL.Definitions.MilpCorrected
 import CORALean.Specification.STL.Definitions.MilpPrinted
+import CORALean.Specification.STL.Definitions.DepReachConsts
+import CORALean.Specification.STL.Definitions.DepReachState
+import CORALean.Specification.STL.Definitions.DependencyPreservedBy
+import CORALean.Specification.STL.Definitions.VerificationProblem
 
 /-!
 # Signal and reachset temporal logic: the definitions
@@ -25,4 +29,6 @@ sound and complete, and the normal form `Υ` is defined on; STL itself is `STL.l
 `DiscreteFormula` is STL over discrete time with its robustness, and `MILPEncoding` the values
 its mixed-integer encodings force. `MilpPrinted` and `MilpCorrected` are the program (26) of
 Kochdumper and Bak's automated verifier, as printed and with its strict inequality repaired.
+`DepReachConsts` and `DepReachState` are what its Alg. 1 carries, `DependencyPreservedBy` its
+Def. 4, `VerificationProblem` its Sec. 3.
 -/
