@@ -9,8 +9,10 @@ One row per `## Results` row of `references/<year>/*.md` classed `false` or `fix
 (references/README.md, "The `Class` column"), sorted by year, then page, then the order of the
 rows in the page's table. Four columns:
 
-* the reference, `\\cite[<result>]{<key>}`, with the page's key from
-  `experiments/paper/ledger-bibkeys.json`; a `false` row is marked with a dagger;
+* the reference, `\\errorcite[<result>]{<key>}`, with the page's key from
+  `experiments/paper/ledger-bibkeys.json`; a `false` row is marked with a dagger. The table
+  `\\providecommand`s `\\errorcite` as `\\cite`; the paper defines it to cite into the
+  appendix's own reference list unless the main text cites the paper too;
 * a few words on what is wrong, from `experiments/paper/ledger-errors.json` (written by hand
   from the row's Class cell and the page's Findings; LaTeX-escaped here outside `$...$`);
 * the Lean counterexample: the linked file that declares the first theorem the row names after
@@ -181,7 +183,7 @@ def table(cr):
             else:
                 counts["no_fix"].append(where)
         mark = "\\textsuperscript{\\dag}" if row["class"] == "false" else ""
-        ref = f"\\cite[{cite_label(label)}]{{{key or 'MISSING'}}}{mark}"
+        ref = f"\\errorcite[{cite_label(label)}]{{{key or 'MISSING'}}}{mark}"
         body.append(f"{ref} & {latex(entry.get('description', ''))} & "
                     f"{link(cr, cex, 'CEX')} & {link(cr, fix, 'FIX')} \\\\")
     for page, entries in descs.items():
@@ -208,6 +210,7 @@ def table(cr):
 % the other order makes pdflatex loop at the table's end. Redefine \\coraleanrepo before the
 % \\input to link a tag or a mirror.
 \\providecommand{{\\coraleanrepo}}{{{REPO_URL}}}
+\\providecommand{{\\errorcite}}[2][]{{\\cite[#1]{{#2}}}}% the paper may send these to a reference list of their own
 \\begingroup
 \\makeatletter\\let\\cite@adjust\\@empty\\makeatother % cite.sty: no space before the \\cite opening a row
 \\footnotesize
