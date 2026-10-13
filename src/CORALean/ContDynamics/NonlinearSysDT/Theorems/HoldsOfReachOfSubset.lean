@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOfSubset
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOfSubset
+
+@[expose] public section
 
 /-!
 # `holds_of_reach`, confinement discharged from the computed sets
@@ -12,7 +16,7 @@ pass that check, exactly as `reach_outer_of_subset` is.
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

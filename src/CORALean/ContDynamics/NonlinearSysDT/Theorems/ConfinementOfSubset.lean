@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
+
+@[expose] public section
 
 /-!
 # Confinement, discharged from the computed sets
@@ -23,7 +27,7 @@ partition without picking one. No search is implemented.
 
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

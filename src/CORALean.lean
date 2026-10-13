@@ -1,10 +1,12 @@
-import CORALean.Global.API
-import CORALean.Global.Float.API
-import CORALean.ContSet.API
-import CORALean.Specification.API
-import CORALean.ContDynamics.API
-import CORALean.HybridDynamics.API
-import CORALean.NN.API
+module
+
+public import CORALean.Global.API
+public import CORALean.Global.Float.API
+public import CORALean.ContSet.API
+public import CORALean.Specification.API
+public import CORALean.ContDynamics.API
+public import CORALean.HybridDynamics.API
+public import CORALean.NN.API
 
 /-!
 # CORALean

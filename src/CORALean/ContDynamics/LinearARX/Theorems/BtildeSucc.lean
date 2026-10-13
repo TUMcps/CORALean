@@ -19,7 +19,7 @@ behind [1, Thm. 1] and [1, Lemma 1].
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +42,7 @@ theorem LinearARX.Btilde_succ (sys : LinearARX 𝕋 dy du p) (k : ℕ) (i : ℤ)
     rw [pow_succ', Matrix.mul_assoc]
     congr 2
     push_cast
-    ring
+    ring_nf
 
 end CORALean
 

@@ -1,20 +1,22 @@
-import CORALean.ContDynamics.Conform.API
-import CORALean.ContDynamics.LinearARX.API
-import CORALean.ContDynamics.NonlinearARX.API
-import CORALean.ContDynamics.LinearSys.API
-import CORALean.ContDynamics.LinearSysDT.API
-import CORALean.ContDynamics.LinParamSys.API
-import CORALean.ContDynamics.LinParamSysDT.API
-import CORALean.ContDynamics.LinProbSys.API
-import CORALean.ContDynamics.NeurNetContrSys.API
-import CORALean.ContDynamics.NeurNetContrSysDT.API
-import CORALean.ContDynamics.NeurNetContrSysNL.API
-import CORALean.ContDynamics.NonlinDASys.API
-import CORALean.ContDynamics.NonlinParamSys.API
-import CORALean.ContDynamics.NonlinearSys.API
-import CORALean.ContDynamics.NonlinearSysDT.API
-import CORALean.ContDynamics.OutputEq.API
-import CORALean.ContDynamics.Reach.API
+module
+
+public import CORALean.ContDynamics.Conform.API
+public import CORALean.ContDynamics.LinearARX.API
+public import CORALean.ContDynamics.NonlinearARX.API
+public import CORALean.ContDynamics.LinearSys.API
+public import CORALean.ContDynamics.LinearSysDT.API
+public import CORALean.ContDynamics.LinParamSys.API
+public import CORALean.ContDynamics.LinParamSysDT.API
+public import CORALean.ContDynamics.LinProbSys.API
+public import CORALean.ContDynamics.NeurNetContrSys.API
+public import CORALean.ContDynamics.NeurNetContrSysDT.API
+public import CORALean.ContDynamics.NeurNetContrSysNL.API
+public import CORALean.ContDynamics.NonlinDASys.API
+public import CORALean.ContDynamics.NonlinParamSys.API
+public import CORALean.ContDynamics.NonlinearSys.API
+public import CORALean.ContDynamics.NonlinearSysDT.API
+public import CORALean.ContDynamics.OutputEq.API
+public import CORALean.ContDynamics.Reach.API
 
 /-!
 # Systems and their reachability, collected

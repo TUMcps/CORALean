@@ -1,16 +1,18 @@
-import CORALean.ContDynamics.NonlinearARX.Theorems.ComputeGOOutput
-import CORALean.ContDynamics.NonlinearARX.Theorems.ComputeGOFloatOuter
-import CORALean.ContDynamics.NonlinearARX.Theorems.OutputOuter
-import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
-import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
-import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
-import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemSimulateBoxFloat
-import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemReach
-import CORALean.ContDynamics.NonlinearARX.Theorems.ReachStepCoraHoldsOfError
-import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
-import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTTrajectory
-import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
-import CORALean.ContDynamics.NonlinearARX.Theorems.FloatJacModelEnclosesToNonlinearSysDTFloat
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ComputeGOOutput
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ComputeGOFloatOuter
+public import CORALean.ContDynamics.NonlinearARX.Theorems.OutputOuter
+public import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
+public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemSimulateBoxFloat
+public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemReach
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachStepCoraHoldsOfError
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTTrajectory
+public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
+public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatJacModelEnclosesToNonlinearSysDTFloat
 
 /-!
 # What the conversion guarantees

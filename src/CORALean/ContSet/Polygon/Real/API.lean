@@ -1,7 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import CORALean.ContSet.Polygon.Real.Operations.API
-import CORALean.ContSet.Polygon.Real.Theorems.API
-import CORALean.ContSet.Polygon.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import CORALean.ContSet.Polygon.Real.Operations.API
+public import CORALean.ContSet.Polygon.Real.Theorems.API
+public import CORALean.ContSet.Polygon.Real.Instances
 
 /-!
 # Polygons, collected

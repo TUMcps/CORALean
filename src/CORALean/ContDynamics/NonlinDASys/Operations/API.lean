@@ -1,39 +1,41 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachUnion
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloat
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloatChecked
-import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
-import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialState
-import CORALean.ContDynamics.NonlinDASys.Operations.SteadyState
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
-import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackRes
-import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackJac
-import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialStateFloat
-import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
-import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
-import CORALean.ContDynamics.NonlinDASys.Operations.LinError
-import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
-import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
-import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearCora
-import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinear
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCora
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCompCora
-import CORALean.ContDynamics.NonlinDASys.Operations.InitReach
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachRepeat
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
-import CORALean.ContDynamics.NonlinDASys.Operations.Reach
-import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
-import CORALean.ContDynamics.NonlinDASys.Operations.AdaptPassLinPoint
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
-import CORALean.ContDynamics.NonlinDASys.Operations.ErrorLoopAdaptive
-import CORALean.ContDynamics.NonlinDASys.Operations.PassAdaptive
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
-import CORALean.ContDynamics.NonlinDASys.Operations.EnlargeInterfaceInput
-import CORALean.ContDynamics.NonlinDASys.Operations.ComposeSubsystems
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachNextCompositional
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachUnion
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloat
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloatChecked
+public import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
+public import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialState
+public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyState
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
+public import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackRes
+public import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackJac
+public import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialStateFloat
+public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
+public import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinError
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
+public import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
+public import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearCora
+public import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinear
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCora
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCompCora
+public import CORALean.ContDynamics.NonlinDASys.Operations.InitReach
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachRepeat
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
+public import CORALean.ContDynamics.NonlinDASys.Operations.Reach
+public import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Operations.AdaptPassLinPoint
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
+public import CORALean.ContDynamics.NonlinDASys.Operations.ErrorLoopAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Operations.PassAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Operations.EnlargeInterfaceInput
+public import CORALean.ContDynamics.NonlinDASys.Operations.ComposeSubsystems
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachNextCompositional
 
 /-!
 # What `NonlinDASys` computes

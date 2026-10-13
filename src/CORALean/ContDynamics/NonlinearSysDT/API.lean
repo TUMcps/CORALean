@@ -1,9 +1,11 @@
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.API
-import CORALean.ContDynamics.NonlinearSysDT.Operations.API
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.API
-import CORALean.ContDynamics.NonlinearSysDT.Complexity.API
-import CORALean.ContDynamics.NonlinearSysDT.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.API
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.API
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.API
+public import CORALean.ContDynamics.NonlinearSysDT.Complexity.API
+public import CORALean.ContDynamics.NonlinearSysDT.Instances
 
 /-!
 # Discrete-time nonlinear systems, collected

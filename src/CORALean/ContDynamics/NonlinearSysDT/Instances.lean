@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.Reach.Reach
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.Reach.Reach
+
+@[expose] public section
 
 /-!
 # `NonlinearSysDT.WithSteps` instantiates `Reach`
@@ -16,7 +20,7 @@ starts from is shown, at run time, inside that step's region, which is what lets
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

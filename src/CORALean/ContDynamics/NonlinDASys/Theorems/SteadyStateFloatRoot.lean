@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
-import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
-import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
-import CORALean.ContSet.Interval.Float.Theorems.HorzcatExact
-import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
+public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
+public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.HorzcatExact
+public import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
+
+@[expose] public section
 
 /-!
 # What `steadyStateFloat` returns
@@ -16,7 +20,7 @@ the claim about the steady state itself.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

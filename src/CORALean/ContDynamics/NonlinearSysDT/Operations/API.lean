@@ -1,17 +1,19 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
-import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachUnion
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
-import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGOFloat
-import CORALean.ContDynamics.NonlinearSysDT.Operations.RefState
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Identify
-import CORALean.ContDynamics.NonlinearSysDT.Operations.IdentifyCandidate
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStripBasedFloat
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachSpecCora
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachUnion
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGOFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.RefState
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Identify
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.IdentifyCandidate
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStripBasedFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachSpecCora
 
 /-!
 # What `NonlinearSysDT` computes

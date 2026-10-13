@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
+
+@[expose] public section
 
 /-!
 # Confinement of a bounded run, discharged from the computed sets
@@ -12,7 +16,7 @@ tests at run time: the set step `K` ends in starts no step of the horizon.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

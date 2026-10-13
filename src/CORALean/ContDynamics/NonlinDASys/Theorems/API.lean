@@ -1,49 +1,51 @@
-import CORALean.ContDynamics.NonlinDASys.Theorems.ExistsLocalReduction
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachFloatOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachFloatCheckedEqSome
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionExactEq
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachYUnionSubsetImage
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryOfNonlinearSys
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
-import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
-import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateSpec
-import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateSpec
-import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
-import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateFloatRoot
-import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateFloatRoot
-import CORALean.ContDynamics.NonlinDASys.Theorems.ExistsLagrangeRemainder
-import CORALean.ContDynamics.NonlinDASys.Theorems.SharedLagrangePointCounterexample
-import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
-import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryDerivMemLinInclusion
-import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorCoraCounterexample
-import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearCoraCounterexample
-import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachCoraCounterexample
-import CORALean.ContDynamics.NonlinDASys.Theorems.InitReachOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinPointCertifiesOfSubset
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachRepeatSpec
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachLoopOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.AbstractionErrorAdaptiveOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAdaptiveOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveLoopOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.EnlargeInterfaceInputSubset
-import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
-import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsEqPreimage
-import CORALean.ContDynamics.NonlinDASys.Theorems.CompositionalLocalErrorCounterexample
-import CORALean.ContDynamics.NonlinDASys.Theorems.CompLocalErrorCoraCounterexample
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachCompCoraCounterexample
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachNextCompositionalSpec
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ExistsLocalReduction
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachFloatOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachFloatCheckedEqSome
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionExactEq
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachYUnionSubsetImage
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryOfNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
+public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateSpec
+public import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateSpec
+public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateFloatRoot
+public import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateFloatRoot
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ExistsLagrangeRemainder
+public import CORALean.ContDynamics.NonlinDASys.Theorems.SharedLagrangePointCounterexample
+public import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
+public import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryDerivMemLinInclusion
+public import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorCoraCounterexample
+public import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearCoraCounterexample
+public import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachCoraCounterexample
+public import CORALean.ContDynamics.NonlinDASys.Theorems.InitReachOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinPointCertifiesOfSubset
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachRepeatSpec
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachLoopOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.AbstractionErrorAdaptiveOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAdaptiveOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveLoopOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.EnlargeInterfaceInputSubset
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsEqPreimage
+public import CORALean.ContDynamics.NonlinDASys.Theorems.CompositionalLocalErrorCounterexample
+public import CORALean.ContDynamics.NonlinDASys.Theorems.CompLocalErrorCoraCounterexample
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachCompCoraCounterexample
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachNextCompositionalSpec
 
 /-!
 # What `NonlinDASys` guarantees

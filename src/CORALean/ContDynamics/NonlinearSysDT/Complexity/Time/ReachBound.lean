@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.ReachBound
-import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.Reach
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.ReachBound
+public import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.Reach
+
+@[expose] public section
 
 /-!
 # `reach` costs at most `k` worst-case linear steps
@@ -22,7 +26,7 @@ count and the re-linearization is free in it.
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -37,13 +41,30 @@ variable {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- The run's two defining equations, read off `Nat.fold` by its exported
+unfolding lemmas, since a module cannot unfold `Nat.fold` itself. -/
+private theorem aux_reach_zero_eq (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)} {o : ℕ}
+    (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n)) :
+    sys.reach (S := 𝒵) ⟨R₀, U, 0, 0⟩ ⟨o, ho⟩ steps = R₀ := by
+  show Nat.fold (0 - 0) _ R₀ = R₀
+  rw [Nat.sub_self, Nat.fold_zero]
+
+private theorem aux_reach_succ_eq (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)} {o : ℕ}
+    (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n)) (k : ℕ) :
+    sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ steps
+      = (NonlinearSysDT.linearize (steps k).A).reach (S := 𝒵)
+        ⟨sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩ := by
+  show Nat.fold (k + 1 - 0) _ R₀ = _
+  rw [Nat.sub_zero, Nat.fold_succ]
+  rfl
+
 /-- Every set the run holds is at order `o`: one linear step ends in a
 `reduce`, and the caller's hypothesis covers the set before the first. -/
 theorem NonlinearSysDT.aux_reach_h_le (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)}
     {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
     (hR₀ : R₀.h ≤ o * n) : ∀ k, (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps).h ≤ o * n
-  | 0 => hR₀
-  | _ + 1 => LinearSysDT.reach_order_le _ ho _ _ 0
+  | 0 => by rw [aux_reach_zero_eq]; exact hR₀
+  | k + 1 => by rw [aux_reach_succ_eq]; exact LinearSysDT.reach_order_le _ ho _ _ 0
 
 /-- The linear step bound is monotone in the input set's generator count, which
 is what lets one `hU` stand for every step's own input set. -/

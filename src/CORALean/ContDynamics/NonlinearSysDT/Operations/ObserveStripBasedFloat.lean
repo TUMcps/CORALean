@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
-import CORALean.ContSet.Zonotope.Float.Operations.Reduce
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # The nonlinear strip-based observer, in floats
@@ -22,7 +26,7 @@ enclosure holds for every gain. Soundness is `observeStripBasedFloat_outer`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

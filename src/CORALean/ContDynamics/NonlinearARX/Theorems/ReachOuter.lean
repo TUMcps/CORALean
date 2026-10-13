@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTTrajectory
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTTrajectory
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # The converted system's reach contains every ARX window
@@ -11,7 +15,7 @@ import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

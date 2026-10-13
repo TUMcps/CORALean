@@ -1,8 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.API
-import CORALean.ContDynamics.NonlinDASys.Instances
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import CORALean.ContDynamics.NonlinDASys.Operations.API
-import CORALean.ContDynamics.NonlinDASys.Theorems.API
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.API
+public import CORALean.ContDynamics.NonlinDASys.Instances
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import CORALean.ContDynamics.NonlinDASys.Operations.API
+public import CORALean.ContDynamics.NonlinDASys.Theorems.API
 
 /-!
 # Nonlinear differential-algebraic systems, collected

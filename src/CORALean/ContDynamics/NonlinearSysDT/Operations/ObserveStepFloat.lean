@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
-import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
-import CORALean.ContDynamics.NonlinearSysDT.Instances
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
-import CORALean.ContSet.Zonotope.Float.Operations.IntersectStrip
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
+public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
+public import CORALean.ContDynamics.NonlinearSysDT.Instances
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
+public import CORALean.ContSet.Zonotope.Float.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # One step of the nonlinear strip-based observer, in floats
@@ -27,7 +31,7 @@ say. `U` is the input set the certificate is issued for (`params.U` with the kno
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

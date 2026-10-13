@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
-import CORALean.Specification.Theorems.CheckSound
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
+public import CORALean.Specification.Theorems.CheckSound
+
+@[expose] public section
 
 /-!
 # A passed check on the reachable set holds along every trajectory
@@ -12,7 +16,7 @@ The trajectory still owes `hR`, staying where each step's linearization was cert
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 

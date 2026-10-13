@@ -23,7 +23,7 @@ nonempty so that the signals past `k`, which `y(k)` does not read, exist.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   13-October-2026
 -- Reviewed:      ---
 
 
@@ -53,7 +53,7 @@ theorem LinearARX.aux_ss_closed (A : Mat ℝ n n) (B : Mat ℝ n m) {x : ℕ →
       intro i _
       rw [mulVec_mulVec, ← pow_succ', show k + 1 - 1 - (i + 1) = k - 1 - i by omega]
     rw [Finset.sum_congr rfl h]
-    abel
+    abel_nf
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
