@@ -6,7 +6,12 @@ paper tables in [../README.md](../README.md) and are checked the same way, by
 `scripts/check-references.py`, which CI runs.
 
 **The unit is one method file**: `~/CORA/contSet/@<class>/<method>.m`,
-`~/CORA/contDynamics/@<class>/<method>.m` or `~/CORA/hybridDynamics/@<class>/<method>.m`.
+`~/CORA/contDynamics/@<class>/<method>.m`, `~/CORA/hybridDynamics/@<class>/<method>.m` or
+`~/CORA/specification/@<class>/<method>.m`. A class of `specification/` that CORA writes as one
+file (`atomicProposition.m`, `kleene.m`, `signals/kleeneSignal.m`, ...) has no method files: its
+rows are the `function`s of its `methods` blocks, constructor included, and the declarations of
+an `Abstract` block (`logicSignal`); `Access = private` and `protected` methods and local
+functions are implementation and have no row, as `private/` has none.
 Files under `private/` are implementation helpers of those methods and have no row. The
 constructor `<class>.m` is one row like any other: it counts for the class definition
 (the structure and its denotation), and is `proved` when a theorem about that
@@ -16,9 +21,11 @@ tabulated too: CORALean's counterparts of their dispatching methods are the inte
 classes of `ContSet/ContSet/ContSet.lean` (`Plus`, `Mtimes`, `Intersection`, `Reduce`,
 ...), whose fields carry the guarantee, so such a row links the class.
 
-The classes tabulated are every class under CORA's `contSet/`, `contDynamics/` and
-`hybridDynamics/`. `matrixSet/`, `nn/`, `specification/`, `discrDynamics/`, `converter/` and
-`global/` are not part of this count. A class with no counterpart in CORALean is
+The classes tabulated are every class under CORA's `contSet/`, `contDynamics/`,
+`hybridDynamics/` and `specification/` (the group `specification`: `specification`, `stl`,
+`stlInterval`, `rtl`, the signals, the analyzers and the logics `kleene` and `fourValued`), and
+the neural networks of `nn/` (`nn/@neuralNetwork` and `nn/layers/`). `matrixSet/`,
+`discrDynamics/`, `converter/` and `global/` are not part of this count. A class with no counterpart in CORALean is
 tabulated all the same, every method `—` (or out of scope for a reason that holds for it),
 so the denominator is CORA's, not ours. Those are `spectraShadow`, `taylm`, `affine`,
 `levelSet`, `polygon`, `probZonotope`, `zoo`, `linProbSys`, `nonlinDASys`,
@@ -92,6 +99,7 @@ Only these, and the row says which:
 
 Rulings on borderline cases:
 
+* **Specification objects: `isequal`, `eq`, `ne` of `specification`, `stl`, `rtl` and `syntaxTree`, and `subsref` of `stl`** are `matlab-runtime` (they compare or index MATLAB objects field by field); `isequal` of `stlInterval` compares two intervals and stays in scope. `disp` and `toStr` are `plotting/display`; `robustnessEncodingMILP` is `solver-dependent`.
 * **eventFcn** (polytope, fullspace, levelSet, location, transition) is `matlab-runtime`, note "ODE event callback": it returns the value, `isterminal` and `direction` of MATLAB's `ode45` event interface.
 * **Field setters and getters** (taylm `set`, `setName`, polytope `setVertices`, nn `getOrderPattern`, probZonotope `center`) are `matlab-runtime`, note "field setter" or "field getter".
 * **Validating wrappers** of an abstract `<m>_` (contSet `cartProd`, `convHull`, `lift`, `projectHighDim`, `volume`, `norm`, `representsa`, `boundaryPoint`) are `matlab-runtime`, note "validating wrapper of `<m>_`": argument checks, defaults, an empty-set fallback in a `try/catch`, and one call to `<m>_` (`boundaryPoint` throws). A wrapper with real per-class content stays in scope.
@@ -158,6 +166,25 @@ Rulings on borderline cases:
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 7 | 1 |
 | [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 4 | 1 |
 | [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 13 | 0 | 41 | 2 |
+| [atomicProposition](specification/atomicProposition.md) | specification | 5 | 0 | 0 | 5 | 0 | 0 |
+| [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 0 | 0 | 4 | 0 | 0 |
+| [finiteSignal](specification/finiteSignal.md) | specification | 10 | 0 | 0 | 9 | 1 | 0 |
+| [fourValued](specification/fourValued.md) | specification | 5 | 0 | 0 | 5 | 0 | 0 |
+| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 0 | 0 | 16 | 2 | 0 |
+| [kleene](specification/kleene.md) | specification | 4 | 0 | 0 | 4 | 0 | 0 |
+| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 0 | 0 | 13 | 2 | 0 |
+| [logicSignal](specification/logicSignal.md) | specification | 10 | 0 | 0 | 9 | 1 | 0 |
+| [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 0 | 0 | 6 | 1 | 0 |
+| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 0 | 0 | 4 | 1 | 0 |
+| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 0 | 0 | 10 | 1 | 0 |
+| [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 0 | 0 | 5 | 0 | 0 |
+| [rtl](specification/rtl.md) | specification | 5 | 0 | 0 | 4 | 1 | 0 |
+| [specification](specification/specification.md) | specification | 14 | 1 | 1 | 6 | 6 | 1 |
+| [stl](specification/stl.md) | specification | 52 | 4 | 0 | 43 | 5 | 1 |
+| [stlInterval](specification/stlInterval.md) | specification | 19 | 0 | 0 | 17 | 2 | 0 |
+| [syntaxTree](specification/syntaxTree.md) | specification | 27 | 0 | 0 | 27 | 0 | 0 |
+| [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 0 | 0 | 5 | 1 | 0 |
+| [trajectoryAnalyzer](specification/trajectoryAnalyzer.md) | specification | 2 | 0 | 0 | 2 | 0 | 0 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.

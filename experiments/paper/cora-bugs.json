@@ -690,5 +690,17 @@
       "cex": "SimulateRandomTimesCoraCounterexample.lean",
       "fix": null
     }
+  },
+  "specification/specification": {
+    "check": {
+      "description": "custom check on a cell passes if any piece passes",
+      "kind": "unsound"
+    }
+  },
+  "specification/stl": {
+    "robustness": {
+      "description": "reach-set window keeps the last set's robustness, not the minimum",
+      "kind": "unsound"
+    }
   }
 }

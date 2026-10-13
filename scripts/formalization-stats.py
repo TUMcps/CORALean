@@ -31,13 +31,16 @@ Writes `experiments/paper/formalization-stats.json` and, under
   results fared (and the in-scope ones not yet formalized), and what the Lean theorems are;
 * `figures/formalization/formalization-caption.tex`, its caption, with the out-of-scope reasons
   and their counts;
-* `figures/formalization/formalization-classes-sets.tikz`, `formalization-classes-contdynamics.tikz`
-  and `formalization-classes-others.tikz`, the appendix's (a), split in three so each can float to
-  its own page: one bar per CORA class in the same three segments, the set representations, the
-  continuous dynamics, and the hybrid-systems and neural-network groups under their headings;
+* `figures/formalization/formalization-classes-sets.tikz`, `formalization-classes-contdynamics.tikz`,
+  `formalization-classes-others.tikz` and `formalization-classes-specification.tikz`, the appendix's
+  (a), split in four so each can float to its own page: one bar per CORA class in the same three
+  segments, the set representations, the continuous dynamics, the hybrid-systems and neural-network
+  groups under their headings, and the specification classes (`specification/`: specifications, STL,
+  signals, analyzers; about as many classes as the set representations, so not appended to the
+  short `others` figure);
 * `figures/formalization/formalization-findings.tikz`, the appendix's (b): the formalized
   results per group, by segment (correct, proof gap, underspecified, fixed, false);
-* `appendix-formalization.tex`, the appendix: the four figures above, each a figure of its own,
+* `appendix-formalization.tex`, the appendix: the five figures above, each a figure of its own,
   and their captions;
 * `figures/formalization/formalization.svg`, a dependency-free preview of the
   overview bars for a quick look without a TeX Live;
@@ -148,11 +151,13 @@ MIN_SEG = 0.04  # cm: the narrowest a non-empty segment is drawn, so that it sta
 # what a bar is called; the groups are CORA's own directories. `LABEL` is the main
 # figure's, `HEADING` the appendix's italic group headings.
 LABEL = {"contSet": "Set representations", "contDynamics": "Cont. dynamics",
-         "hybrid": "Hybrid systems", "neuralNetworks": "Neural networks"}
+         "hybrid": "Hybrid systems", "neuralNetworks": "Neural networks",
+         "specification": "Specification"}
 HEADING = {"contSet": "Set representations (\\texttt{contSet})",
            "contDynamics": "Continuous dynamics (\\texttt{contDynamics})",
            "hybridDynamics": "Hybrid systems (\\texttt{hybridDynamics})",
-           "nn": "Neural networks (\\texttt{nn})"}
+           "nn": "Neural networks (\\texttt{nn})",
+           "specification": "Specification (\\texttt{specification})"}
 REASON_TEXT = {"plotting/display": "plotting and display", "random/sampling": "random sampling",
                "solver-dependent": "solver encodings",
                "io/conversion-to-matlab-objects": "conversions between MATLAB storage formats",
@@ -327,7 +332,7 @@ def tikz(data):
     TAIL = 3 / 28.45 + CHAR_W * len(f"+{results[0][2]}") + 0.03
     xb = 0.59  # (b) and (c) start at this fraction of the line: a clear gap after (a)
     wb = (1 - xb) * LINEWIDTH_CM - TAIL  # what is left after the "+n"
-    p_methods = panel("methods", methods, COVERAGE, "3.4cm", "", "coveragelegend",
+    p_methods = panel("methods", methods, COVERAGE, "4.2cm", "", "coveragelegend",
                       title="(a) CORA functions",
                       at=f"at={{({lab_a}cm,0cm)}}, anchor=north west",
                       width=f"0.50\\linewidth-{lab_a}cm", width_cm=wa,
@@ -469,8 +474,9 @@ def appendix(data):
 \\section{CORA coverage and findings per class}
 \\label{app:formalization}
 
-Figs.~\\ref{fig:formalization-classes-sets}, \\ref{fig:formalization-classes-contdynamics} and
-\\ref{fig:formalization-classes-others} show the CORA methods per class and
+Figs.~\\ref{fig:formalization-classes-sets}, \\ref{fig:formalization-classes-contdynamics},
+\\ref{fig:formalization-classes-others} and \\ref{fig:formalization-classes-specification} show the
+CORA methods per class and
 Fig.~\\ref{fig:formalization-findings} the formalized results of the papers per group, by how they fared.
 Not in the bars are @COV@ CORA methods that are out of scope, by reason @REASONS@, and @RES@ results
 of the papers, by reason @RESREASONS@.
@@ -495,6 +501,14 @@ of the papers, by reason @RESREASONS@.
     \\caption{CORA methods per class of hybrid systems and neural networks; \\emph{+n} counts
     out-of-scope methods.}
     \\label{fig:formalization-classes-others}
+\\end{figure}
+
+\\begin{figure}[tp]
+    \\centering
+    \\includetikz{./figures/formalization/formalization-classes-specification}
+    \\caption{CORA methods per class of specifications (specification objects, signal temporal logic,
+    signals and analyzers); \\emph{+n} counts out-of-scope methods.}
+    \\label{fig:formalization-classes-specification}
 \\end{figure}
 
 \\begin{figure}[t]
@@ -570,6 +584,7 @@ def outputs():
         FIG_DIR / "formalization-classes-sets.tikz": tikz_classes(data, ("contSet",)),
         FIG_DIR / "formalization-classes-contdynamics.tikz": tikz_classes(data, ("contDynamics",)),
         FIG_DIR / "formalization-classes-others.tikz": tikz_classes(data, ("hybridDynamics", "nn")),
+        FIG_DIR / "formalization-classes-specification.tikz": tikz_classes(data, ("specification",)),
         FIG_DIR / "formalization-findings.tikz": tikz_findings(data),
         FIG_DIR / "formalization-caption.tex": caption(data),
         FIG_DIR / "formalization.svg": svg(data),
