@@ -71,7 +71,7 @@ signal, [1, Thm. 1]'s intersection target.
 origin, `WithInputSplit`/`WithInputSplitReachExact` with one anywhere.
 `OrderAdmissibleFloat` is the order the float steps ask for,
 `ReachFloatInputInvariant` what `reachFloatInput`'s loop state owes, and
-`ReachOptions` CORA's `options` for a reach run, `timeStep` and the orders,
+`ReachOptions` CORA's `options` for a reach run, `Δt` and the orders,
 `ReachStepOptions` the two of them a scheme without order reduction reads.
 
 ## References

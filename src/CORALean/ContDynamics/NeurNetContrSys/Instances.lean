@@ -10,8 +10,8 @@ loop reaches depends on it and `reachExact` reads no options. `params` is
 `Reach.Params` counted in control periods, `options` `NeurNetContrSys.ReachOptions`.
 `reachExact` is `reachUnionExact` over `tFinal - tStart` periods of length `dt`, the
 closed loop being time-invariant; `reach` is `reachUnion`, `none` unless
-`0 < timeStep` and the `N` steps of `timeStep` make up exactly `dt` — CORA's check
-that `timeStep` divides `dt`, decided in ℝ; the guarantee is `reachUnion_outer`.
+`0 < Δt` and the `N` steps of `Δt` make up exactly `dt` — CORA's check
+that `Δt` divides `dt`, decided in ℝ; the guarantee is `reachUnion_outer`.
 No input set: the closed loop reads its own input off the controller.
 -/
 
@@ -41,9 +41,9 @@ noncomputable instance NeurNetContrSys.WithPeriod.reachInstance :
     Reach (NeurNetContrSys.WithPeriod 𝕋 S) (fun n => Reach.Params (S n) ℕ)
       (NeurNetContrSys.ReachOptions ℝ) S where
   reachExact sys params := sys.sys.reachUnionExact sys.dt (params.tFinal - params.tStart)
-    (construct params.R0)
+    (construct params.X₀)
   reach sys params options :=
-    if 0 < options.timeStep ∧ (options.N : ℝ) * options.timeStep = sys.dt then
+    if 0 < options.Δt ∧ (options.N : ℝ) * options.Δt = sys.dt then
       some (sys.sys.reachUnion params options)
     else none
   reach_outer sys params options := by

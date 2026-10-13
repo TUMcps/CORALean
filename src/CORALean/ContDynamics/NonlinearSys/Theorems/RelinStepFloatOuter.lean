@@ -30,11 +30,11 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {R Rτ Rt : Zonotope (Vec 𝕋 n)}
     (hstep : fm.relinStepFloat U options R = some (Rτ, Rt)) :
-    0 < toReal options.timeStep ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.timeStep))
+    0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.timeStep), x t ∈ Rτ.construct) ∧
-        x (toReal options.timeStep) ∈ Rt.construct :=
+      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+        x (toReal options.Δt) ∈ Rt.construct :=
   h.relinStepAtFloat_outer hstep
 
 end CORALean

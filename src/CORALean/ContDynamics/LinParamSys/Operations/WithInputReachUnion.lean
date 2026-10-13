@@ -12,7 +12,7 @@ import CORALean.ContSet.SetUnion.SetUnion
 of them and never fewer than one. No `box()` on the accumulated input set: that
 bounds a zonotope's order and is a reduction, which an enclosure need not make.
 
-`η = taylorTerms` is the order asked for, raised to `reachOrder Δt + 2` where that is
+`η = options.η` is the order asked for, raised to `reachOrder Δt + 2` where that is
 higher: `timeIntervalStep` and `inputSolution` both hold only at an order
 admissible for `Δt` and every member of `sys.A`.
 
@@ -43,13 +43,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [Mti
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉` (at least
-one), inputs in `sys.U`, at order `taylorTerms` raised until admissible. -/
+one), inputs in `sys.U`, at order `η` raised until admissible. -/
 noncomputable def LinParamSys.WithInput.reachUnion (sys : LinParamSys.WithInput S n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
-  let X₀ := params.R0                                             -- the paper's symbols
-  let Δt := options.timeStep
+  let X₀ := params.X₀                                             -- the paper's symbols
+  let Δt := options.Δt
   let N := max 1 ⌈(params.tFinal - params.tStart) / Δt⌉₊         -- windows τ_0, …, τ_{N-1}
-  let η' := max options.taylorTerms (sys.sys.reachOrder Δt + 2)   -- η, raised until admissible
+  let η' := max options.η (sys.sys.reachOrder Δt + 2)   -- η, raised until admissible
   ⟨(List.range N).map (sys.reachStepk Δt η' X₀)⟩                  -- ⋃_{k < N} R(τ_k)
 
 end CORALean

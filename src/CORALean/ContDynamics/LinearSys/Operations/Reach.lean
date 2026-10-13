@@ -6,7 +6,7 @@ import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # Reachability over `[tStart, tFinal]`, recursively, one window of width `Δt` at a time
 
-`X₀ = params.R0`, `Δt = options.timeStep`, `η = options.taylorTerms`: the windows
+`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`: the windows
 `τ_0, …, τ_{N-1}`, one `reachStepk` each, collected as a `SetUnion`:
 `N = ⌈(tFinal - tStart) / Δt⌉` of them, so the last may overshoot `tFinal`, which an outer
 enclosure may. The times are real, unlike `Reach.steps`' rational ones: the ceiling is
@@ -51,9 +51,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉`, at order `η`. -/
 noncomputable def LinearSys.reach (sys : LinearSys 𝕋 n) (params : Reach.Params (S n) ℝ)
     (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
-  let X₀ := params.R0                                           -- the paper's symbols
-  let Δt := options.timeStep
-  let η := options.taylorTerms
+  let X₀ := params.X₀                                           -- the paper's symbols
+  let Δt := options.Δt
+  let η := options.η
   let N := ⌈(params.tFinal - params.tStart) / Δt⌉₊              -- windows τ_0, …, τ_{N-1}
   ⟨(List.range N).map (sys.reachStepk Δt η X₀)⟩                -- ⋃_{k < N} R(τ_k)
 

@@ -44,13 +44,13 @@ variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set at time `tFinal`, from `R₀` at `tStart` under the per-step
-linearizations `steps`, held at maximum order `zonotopeOrder`. -/
+linearizations `steps`, held at maximum order `ρ`. -/
 def NonlinearSysDT.reach (sys : NonlinearSysDT n m) (params : Reach.InputParams (S n) (S m) ℕ)
     (options : NonlinearSysDT.ReachOptions) (steps : ℕ → sys.LinStep 𝕋 params.U) : S n :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
   let step := fun (i : ℕ) (R : S n) => (NonlinearSysDT.linearize (steps i).A).reach
-    ⟨R, (steps i).linInput, 0, 1⟩ ⟨options.zonotopeOrder, options.hZonotopeOrder⟩
+    ⟨R, (steps i).linInput, 0, 1⟩ ⟨options.ρ, options.hZonotopeOrder⟩
   Nat.fold N (fun i _ R => step i R) R₀                            -- R_N
 
 end CORALean

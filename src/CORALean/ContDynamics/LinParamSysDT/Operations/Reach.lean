@@ -13,7 +13,7 @@ the point-matrix case, `𝕄 := Mat 𝕋`, needs no class of its own — it is
 
 Params and options are CORA's, as in `LinearSysDT.reach`: the problem is a
 `Reach.InputParams` counted in sampling periods (`ℕ`), the step count is
-`tFinal - tStart`, and `zonotopeOrder` comes from `LinParamSysDT.ReachOptions`.
+`tFinal - tStart`, and `ρ` comes from `LinParamSysDT.ReachOptions`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -39,9 +39,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 inputs `U`, held at maximum order `o`, at a system matrix ranging over `sys.A`. -/
 def LinParamSysDT.reach (sys : LinParamSysDT 𝕄 n)
     (params : Reach.InputParams (S n) (S n) ℕ) (options : LinParamSysDT.ReachOptions) : S n :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
-  let o := options.zonotopeOrder
+  let o := options.ρ
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
   let step := fun R => reduce (plus (mtimes sys.A R) U) o          -- R_{k+1} = reduce(A R_k ⊕ U, o)
   Nat.repeat step N R₀                                              -- R_N

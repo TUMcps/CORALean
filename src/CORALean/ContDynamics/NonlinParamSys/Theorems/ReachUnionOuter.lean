@@ -41,7 +41,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 theorem NonlinParamSys.WithSteps.reachUnion_outer (sys : NonlinParamSys.WithSteps S Rg m q n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
     match sys.reachUnion params options with
-    | some R => sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+    | some R => sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
         ⊆ construct R
     | none => True := by -- --- PROOF ---
   cases hR : sys.reachUnion params options with
@@ -51,12 +51,12 @@ theorem NonlinParamSys.WithSteps.reachUnion_outer (sys : NonlinParamSys.WithStep
     simp only [NonlinParamSys.WithSteps.reachUnion, Option.map_eq_some_iff] at hR
     obtain ⟨Ra, hRa, rfl⟩ := hR
     set Z₀ : S (n + q) :=
-      Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) params.R0 ⊞
+      Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) params.X₀ ⊞
       Mtimes.mtimes (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadRight n q)) sys.P
     -- every pair `(x₀, p)` lies in the product computed, `(x₀, 0) + (0, p)`
-    have hZ : ∀ v ∈ construct params.R0, ∀ w ∈ construct sys.P, Fin.append v w ∈ construct Z₀ := by
+    have hZ : ∀ v ∈ construct params.X₀, ∀ w ∈ construct sys.P, Fin.append v w ∈ construct Z₀ := by
       intro v hv w hw
-      have hE := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) params.R0
+      have hE := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadLeft n q)) params.X₀
         (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hv))
       have hF := Mtimes.mtimes_outer (𝕄 := Mat ℝ) (LinearMap.toMatrix' (blockPadRight n q)) sys.P
         (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hw))

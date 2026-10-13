@@ -39,7 +39,7 @@ variable {n p : ℕ}
 structure LinearSysDT.ObserveStripOptionsFloat (𝕋 : Type) [FloatOps 𝕋] (n p : ℕ) where
   sequential : Bool
   gain : Zonotope (Vec 𝕋 n) → Mat 𝕋 n p
-  zonotopeOrder : ℕ
+  ρ : ℕ
 
 end CORALean
 

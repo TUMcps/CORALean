@@ -32,7 +32,7 @@ theorem LinearSys.reachAdaptiveFloatChecked_eq_some (sys : LinearSys 𝕋 n)
     {Rs : (List (LinearSys.AdaptiveStepInfo 𝕋 n))}
     (h : sys.reachAdaptiveFloatChecked B params options = some Rs) :
     sys.reachAdaptiveFloat B params options = some Rs ∧
-      noNaN (𝕋 := 𝕋) (Rs.map fun r => (r.timeStep, r.R)) = true := by -- --- PROOF ---
+      noNaN (𝕋 := 𝕋) (Rs.map fun r => (r.Δt, r.R)) = true := by -- --- PROOF ---
   unfold LinearSys.reachAdaptiveFloatChecked at h
   cases hr : sys.reachAdaptiveFloat B params options with
   | none => simp [hr] at h

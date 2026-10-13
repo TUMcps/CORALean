@@ -34,7 +34,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 theorem NonlinDASys.WithSteps.reachYUnion_subset_image (sys : NonlinDASys.WithSteps S Rg m p n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
     match sys.reachUnion params options with
-    | some R => sys.reachYUnionExact (params.tFinal - params.tStart) (construct params.R0)
+    | some R => sys.reachYUnionExact (params.tFinal - params.tStart) (construct params.X₀)
         ⊆ (fun xu : Vec ℝ n × Vec ℝ m => sys.red.h xu.1 xu.2) ''
           (construct R ×ˢ construct sys.ode.U)
     | none => True := by -- --- PROOF ---

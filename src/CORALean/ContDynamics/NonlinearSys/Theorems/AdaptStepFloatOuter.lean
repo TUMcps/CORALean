@@ -36,9 +36,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 theorem aux_adaptStep_pick {fm : NonlinearSys.FloatHessModel 𝕋 n m} {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋} {R : Zonotope (Vec 𝕋 n)} {κ : ℕ}
     {F₁ F₂ : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)}
-    (hF₁ : fm.orderStepFloat 1 U { options with timeStep := Δ } R = some F₁)
-    (hF₂ : fm.orderStepFloat 2 U { options with timeStep := Δ } R = some F₂) :
-    fm.orderStepFloat κ U { options with timeStep := Δ } R =
+    (hF₁ : fm.orderStepFloat 1 U { options with Δt := Δ } R = some F₁)
+    (hF₂ : fm.orderStepFloat 2 U { options with Δt := Δ } R = some F₂) :
+    fm.orderStepFloat κ U { options with Δt := Δ } R =
       some (if κ = 1 then F₁ else F₂) := by -- --- PROOF ---
   by_cases hκ : κ = 1
   · -- the first order
@@ -52,14 +52,14 @@ theorem aux_adaptStep_pick {fm : NonlinearSys.FloatHessModel 𝕋 n m} {U : Zono
 theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m}
     (h : fm.Encloses sys) {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋}
     {t₀ : ℚ} {R : Zonotope (Vec 𝕋 n)} {F : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)} {κ : ℕ}
-    (hF : fm.orderStepFloat κ U { options with timeStep := Δ } R = some F) :
+    (hF : fm.orderStepFloat κ U { options with Δt := Δ } R = some F) :
     t₀ < t₀ + ToRat.toRat Δ ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ))
         R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ),
-          x t ∈ (Reduce.reduce F.1 options.zonotopeOrder).construct) ∧
+          x t ∈ (Reduce.reduce F.1 options.ρ).construct) ∧
         x ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ) ∈
-          (Reduce.reduce F.2 options.zonotopeOrder).construct := by -- --- PROOF ---
+          (Reduce.reduce F.2 options.ρ).construct := by -- --- PROOF ---
   -- the time of the step, exactly, is the step size
   have hcast : ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ) = toReal Δ := by
     rw [add_sub_cancel_left, ToRat.toReal_toRat]

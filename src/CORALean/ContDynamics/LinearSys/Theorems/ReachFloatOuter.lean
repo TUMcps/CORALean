@@ -36,10 +36,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 theorem LinearSys.reachFloat_outer (sys : LinearSys 𝕋 n)
     {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
     {Rti Rtp : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloat params options = some (Rti, Rtp)) :
-    ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
-      Rti.length = N ∧ ∀ (k : ℕ) (hk : k < Rti.length), ∀ x₀ ∈ params.R0.construct,
-        ∀ s ∈ Set.Icc 0 (toReal options.timeStep),
-          exp (((k : ℝ) * toReal options.timeStep + s) • Scalar.toRealMat sys.A) *ᵥ x₀
+    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+      Rti.length = N ∧ ∀ (k : ℕ) (hk : k < Rti.length), ∀ x₀ ∈ params.X₀.construct,
+        ∀ s ∈ Set.Icc 0 (toReal options.Δt),
+          exp (((k : ℝ) * toReal options.Δt + s) • Scalar.toRealMat sys.A) *ᵥ x₀
             ∈ Rti[k].construct := by -- --- PROOF ---
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options

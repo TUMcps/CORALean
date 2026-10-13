@@ -35,13 +35,13 @@ theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n) (B : 
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
-    ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
+    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rtp.length = N + 1 ∧ ∀ {x u : ℝ → Vec ℝ n},
         sys.Trajectory (S := fun k => Set (Vec ℝ k))
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.R0.construct
+          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < Rtp.length),
-          x ((k : ℝ) * toReal options.timeStep) ∈ Rtp[k].construct := by -- --- PROOF ---
+          x ((k : ℝ) * toReal options.Δt) ∈ Rtp[k].construct := by -- --- PROOF ---
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant B h
   refine ⟨N, hNΔt, by simp [hlen], fun {x u} traj k hk => ?_⟩
   cases k with
@@ -49,7 +49,7 @@ theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n) (B : 
     -- `R_0 = X₀`
     simpa using traj.init
   | succ k =>
-    set Δ := toReal options.timeStep with hΔ
+    set Δ := toReal options.Δt with hΔ
     set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U with hV
     have hk' : k < S.length := by simpa using hk
     obtain ⟨h1, -, h3, -⟩ := hinv k hk'

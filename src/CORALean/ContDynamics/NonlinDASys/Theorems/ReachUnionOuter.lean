@@ -37,7 +37,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 theorem NonlinDASys.WithSteps.reachUnion_outer (sys : NonlinDASys.WithSteps S Rg m p n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
     match sys.reachUnion params options with
-    | some R => sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+    | some R => sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
         ⊆ construct R
     | none => True := by -- --- PROOF ---
   have h := sys.ode.reachUnion_outer params options

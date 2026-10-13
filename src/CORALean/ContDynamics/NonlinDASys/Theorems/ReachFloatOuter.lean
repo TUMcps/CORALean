@@ -32,13 +32,13 @@ theorem NonlinDASys.reachFloat_outer {sys : NonlinDASys n p m} (red : sys.Reduce
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
     (hR : NonlinDASys.reachFloat red fm params options = some Rs) :
-    ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
+    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m},
         sys.Trajectory (S := fun k => Set (Vec ℝ k))
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.R0.construct
+          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           params.U.construct x y u →
-        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.timeStep)
-          (((k : ℝ) + 1) * toReal options.timeStep), x t ∈ Rs[k].construct := by
+        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by
   obtain ⟨N, hN, hlen, hout⟩ := h.reachFloat_outer hR
   exact ⟨N, hN, hlen, fun {x y u} traj => hout (traj.toNonlinearSys red)⟩
 

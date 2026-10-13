@@ -40,7 +40,7 @@ some step `k < K` starts from is not shown inside `sys.region k`. -/
 def NonlinearSysDT.WithSteps.reachUnion (sys : NonlinearSysDT.WithSteps S Rg 𝕋 m n)
     (params : Reach.Params (S n) ℕ) (options : NonlinearSysDT.ReachOptions) :
     Option (SetUnion (S n)) :=
-  let R₀ := params.R0                                                 -- the paper's symbols
+  let R₀ := params.X₀                                                 -- the paper's symbols
   let K := params.tFinal - params.tStart                             -- steps
   let R := fun k => sys.sys.reach ⟨R₀, sys.U, 0, k⟩ options sys.steps -- R(k), k = 0, 1, …
   let confined := (List.range K).all fun k =>                         -- R(k) ⊆ region k, k < K

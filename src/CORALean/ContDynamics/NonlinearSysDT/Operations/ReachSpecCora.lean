@@ -8,7 +8,7 @@ import Mathlib.Order.Interval.Finset.Nat
 
 The verdict `res` of CORA's `@nonlinearSysDT/reach.m` called with an unsafe-set specification,
 for `ℝ¹`. `R i` stands for the time-point set `timePoint.set{i+1}` (the sets the algorithm
-computes: `outputSet` of `params.R0` at l. 64 for `i = 0`, of `linReach`'s result at l. 80 for
+computes: `outputSet` of `params.X₀` at l. 64 for `i = 0`, of `linReach`'s result at l. 80 for
 `i ≥ 1`). The loop `for i = 1:steps` (l. 69) checks only `timePoint.set{i+1}` (l. 87), so the
 initial output set `timePoint.set{1}` is never checked.
 -/

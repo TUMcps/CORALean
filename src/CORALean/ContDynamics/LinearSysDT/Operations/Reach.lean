@@ -8,7 +8,7 @@ import CORALean.ContDynamics.Reach.Definitions.InputParams
 `reach` is written against `Plus` and `Reduce` alone, so it runs at a
 representation with no `linComb`.
 
-`reduce` is called once per step, at `o = options.zonotopeOrder`, kept positive
+`reduce` is called once per step, at `o = options.ρ`, kept positive
 by `ReachOptions`. The result is the time-point set at `params.tFinal`, CORA's
 last `timePoint.set`; `reachUnion` collects the earlier ones.
 
@@ -44,9 +44,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 inputs `U`, held at maximum order `o`. -/
 def LinearSysDT.reach (sys : LinearSysDT 𝕋 n) (params : Reach.InputParams (S n) (S n) ℕ)
     (options : LinearSysDT.ReachOptions) : S n :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
-  let o := options.zonotopeOrder
+  let o := options.ρ
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
   let step := fun R => reduce (plus (mtimes sys.A R) U) o          -- R_{k+1} = reduce(A R_k ⊕ U, o)
   Nat.repeat step N R₀                                              -- R_N

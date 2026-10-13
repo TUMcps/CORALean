@@ -95,9 +95,9 @@ def handleLinearSysReach {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic �
     let rho ← natField req "zonotopeOrder"
     -- CORA's `params` and `options`, under CORA's own names
     let params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ :=
-      { R0 := X0, tFinal := (aux_toRat tFinal).1 / (aux_toRat tFinal).2 }
+      { X₀ := X0, tFinal := (aux_toRat tFinal).1 / (aux_toRat tFinal).2 }
     let options : LinearSys.ReachOptions 𝕋 :=
-      { timeStep := Δt, taylorTerms := eta, zonotopeOrder := rho }
+      { Δt := Δt, η := eta, ρ := rho }
     match LinearSys.reachFloat (𝕋 := 𝕋) ⟨A⟩ params options with
     | none => throw s!"linearSysReach: reachFloat returned none -- no admissible Taylor order \
         (raised from taylorTerms = {eta}) was found for this timeStep"

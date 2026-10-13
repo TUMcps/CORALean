@@ -50,9 +50,9 @@ previous step's error carries through this step's `A`. -/
 noncomputable def LinearSysDT.reachErrorFloat (sys : LinearSysDT 𝕋 n)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) ℕ)
     (options : LinearSysDT.ReachOptions) : Real.Zonotope (Vec ℝ n) :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
-  let o := options.zonotopeOrder
+  let o := options.ρ
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
   let rec E : ℕ → Real.Zonotope (Vec ℝ n)  -- E_k
     | 0 => R₀.E.nominal.zonotope

@@ -52,18 +52,18 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 inputs in `sys.U`, reaches is in one of `reachUnion`'s windows. -/
 theorem LinParamSys.WithInput.reachUnion_outer (sys : LinParamSys.WithInput S n)
     (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
-    (hΔt : 0 < options.timeStep) :
-    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+    (hΔt : 0 < options.Δt) :
+    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
   rintro _ ⟨A, x, u, traj, t, ht, rfl⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
-  have htk1 : t ≤ ((k + 1 : ℕ) : ℝ) * options.timeStep := by push_cast; linarith
+  have htk1 : t ≤ ((k + 1 : ℕ) : ℝ) * options.Δt := by push_cast; linarith
   -- the order `reachUnion` runs at, `m + 2` in `reachStepk_outer`'s naming
-  obtain ⟨m, hm⟩ : ∃ m, max options.taylorTerms (sys.sys.reachOrder options.timeStep + 2) = m + 2 :=
-    ⟨max options.taylorTerms (sys.sys.reachOrder options.timeStep + 2) - 2, by omega⟩
-  have hε : ‖(Interval.smul options.timeStep sys.sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 := by
-    have hadm := sys.sys.reachOrder_admissible options.timeStep
-    have hle : ((sys.sys.reachOrder options.timeStep + 2 : ℕ) : ℝ) ≤ ((m + 2 : ℕ) : ℝ) := by
+  obtain ⟨m, hm⟩ : ∃ m, max options.η (sys.sys.reachOrder options.Δt + 2) = m + 2 :=
+    ⟨max options.η (sys.sys.reachOrder options.Δt + 2) - 2, by omega⟩
+  have hε : ‖(Interval.smul options.Δt sys.sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 := by
+    have hadm := sys.sys.reachOrder_admissible options.Δt
+    have hle : ((sys.sys.reachOrder options.Δt + 2 : ℕ) : ℝ) ≤ ((m + 2 : ℕ) : ℝ) := by
       exact_mod_cast hm ▸ le_max_right _ _
     exact lt_of_le_of_lt (div_le_div_of_nonneg_left (norm_nonneg _) (by positivity)
       (by linarith)) hadm
@@ -82,12 +82,12 @@ theorem LinParamSys.WithInput.reachUnion_outer (sys : LinParamSys.WithInput S n)
       simp only [Scalar.toRealMat_real]⟩
   -- window `k` is `H^R(τ_k) ⊕ P^R(t_{k+1})`, and `k < N`
   refine SetUnion.mem_construct.mpr
-    ⟨sys.reachStepk options.timeStep (m + 2) params.R0 k, ?_, ?_⟩
+    ⟨sys.reachStepk options.Δt (m + 2) params.X₀ k, ?_, ?_⟩
   · rw [← hm]
     exact List.mem_map.mpr ⟨k, List.mem_range.mpr hk, rfl⟩
   · rw [hvoc]
     refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
-    · exact sys.sys.reachStepk_outer hΔt hε params.R0 traj.param hkt htk
+    · exact sys.sys.reachStepk_outer hΔt hε params.X₀ traj.param hkt htk
         (Set.mem_image_of_mem _ traj.init)
     · exact sys.sys.inputReach_subset_particularSolution hΔt hε traj.param sys.zero_mem_U
         k ht.1 htk1 hin

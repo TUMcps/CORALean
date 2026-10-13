@@ -36,13 +36,13 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAlgFloat_outer
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
     (hR : fm.reachAlgFloat alg params options = some Rs) :
-    ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
+    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
         sys.Trajectory (S := fun k => Set (Vec ℝ k))
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.R0.construct
+          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           params.U.construct x u →
-        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.timeStep)
-          (((k : ℝ) + 1) * toReal options.timeStep), x t ∈ Rs[k].construct := by -- --- PROOF ---
+        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
   unfold NonlinearSys.FloatHessModel.reachAlgFloat at hR
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hR
   obtain ⟨N, hN, hrun⟩ := hR

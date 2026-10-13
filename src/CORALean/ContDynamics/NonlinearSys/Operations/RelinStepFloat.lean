@@ -30,7 +30,7 @@ region check or the linear step fails: `relinStepAtFloat` at `x✱ = linPointFlo
 def NonlinearSys.FloatModel.relinStepFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
     (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) (R : Zonotope (Vec 𝕋 n)) :
     Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) :=
-  let xs := (fm.linPointFloat options.timeStep R U).1                -- 3. x✱, the half-step point
+  let xs := (fm.linPointFloat options.Δt R U).1                -- 3. x✱, the half-step point
   fm.relinStepAtFloat U options R xs
 
 end CORALean

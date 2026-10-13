@@ -52,7 +52,7 @@ or `none` if the region check, the order search or the linear step fails. -/
 def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋)
     (R : Zonotope (Vec 𝕋 n)) : Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
-  let Δt := options.timeStep                                        -- the paper's symbols
+  let Δt := options.Δt                                        -- the paper's symbols
   let Ub := U.interval                                              -- U's box
   let Ω ← fm.regionFloat Δt R.interval Ub                           -- where the step stays
   let xs := (fm.linPointFloat Δt R U).1                             -- 3. x✱
@@ -72,7 +72,7 @@ def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 
   | .lin => NonlinearSys.oneStepFloat A xs Vlin R options
   | .poly errorOrder => do
     let lin : LinearSys 𝕋 n := ⟨A⟩                                  -- linsys
-    let η ← lin.reachOrderFloat Δt Δt options.taylorTerms           -- taylorTerms, admissible
+    let η ← lin.reachOrderFloat Δt Δt options.η           -- η, admissible
     let Rdelta := R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0,  -- Rinit + (-p.x)
       ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))
     let Rdiff := lin.postDeltaFloat Δt η Rdelta Vlin                -- aux_deltaReach

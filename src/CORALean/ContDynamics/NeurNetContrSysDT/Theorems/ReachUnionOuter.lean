@@ -33,12 +33,12 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT 𝕋 S n)
     (params : Reach.Params (S n) ℕ) (options : NeurNetContrSysDT.ReachOptions) :
-    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
   intro y hy
   obtain ⟨k, hk, x₀, hx₀, rfl⟩ := Set.mem_iUnion₂.mp hy
-  refine SetUnion.mem_construct.mpr ⟨sys.reach ⟨params.R0, 0, k⟩ options, ?_,
-    sys.reach_outer options.hZonotopeOrder params.R0 sys.contr.sound_eval
+  refine SetUnion.mem_construct.mpr ⟨sys.reach ⟨params.X₀, 0, k⟩ options, ?_,
+    sys.reach_outer options.hZonotopeOrder params.X₀ sys.contr.sound_eval
       (sys.trajectory_iterate _ hx₀) k⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hk))
 

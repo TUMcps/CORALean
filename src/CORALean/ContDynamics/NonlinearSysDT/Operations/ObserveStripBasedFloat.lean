@@ -7,7 +7,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.Reduce
 CORA's `observe_stripBased` [2, Eq. 4], [1, Alg. 1] for a `nonlinearSysDT`, run over the
 measurements `y 0, y 1, …`: `R k` is the set after the measurement `y k`, each step the
 prediction and update of `observeStepFloat` at the linearization `steps k`, then reduced to
-`options.zonotopeOrder`. CORA's estimators `VolMin-A`, `VolMin-B`, `FRad-A`, `FRad-B` and
+`options.ρ`. CORA's estimators `VolMin-A`, `VolMin-B`, `FRad-A`, `FRad-B` and
 `FRad-C` of `executeObserver` are this loop at their own intersection technique (the gain); the
 enclosure holds for every gain. Soundness is `observeStripBasedFloat_outer`.
 
@@ -48,7 +48,7 @@ def NonlinearSysDT.observeStripBasedFloat (sys : NonlinearSysDT n m) {U : Zonoto
     else Zonotope.intersectStrip C σ (y 0) (options.gain R₀) R₀
   | k + 1 =>
     (sys.observeStepFloat (steps k) o C σ W options (y (k + 1))
-      (sys.observeStripBasedFloat steps o C σ W R₀ y options k)).reduce options.zonotopeOrder
+      (sys.observeStripBasedFloat steps o C σ W R₀ y options k)).reduce options.ρ
 
 end CORALean
 

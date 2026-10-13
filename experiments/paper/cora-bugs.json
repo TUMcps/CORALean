@@ -269,6 +269,11 @@
       "description": "scaling uses abs(S), not abs(S-c); point outside accepted",
       "kind": "unsound",
       "cex": "ContainsScalingCoraCounterexample.lean"
+    },
+    "representsa_": {
+      "description": "capsule/ellipsoid test counts zero widths; unit square accepted",
+      "kind": "other",
+      "cex": "RepresentsaCapsuleCoraCounterexample.lean"
     }
   },
   "contSet/levelSet": {
@@ -356,6 +361,11 @@
     "removeCollinearPoints": {
       "description": "angle sort reorders boundary of non-star-shaped polygons",
       "kind": "unsound"
+    },
+    "representsa_": {
+      "description": "all over no vertices; empty polygon reported as origin",
+      "kind": "other",
+      "cex": "RepresentsaOriginCoraCounterexample.lean"
     }
   },
   "contSet/polytope": {
@@ -396,9 +406,12 @@
       "fix": null
     },
     "representsa_": {
-      "description": "cut row sends point {0} to emptySet test; rejected",
+      "description": "cut row rejects point {0}; empty polytope accepted as point",
       "kind": "other",
-      "cex": "RepresentsaIntervalCoraCounterexample.lean"
+      "cex": "RepresentsaIntervalCoraCounterexample.lean",
+      "findings": [
+        "Polytope `representsa_`, `'point'`, empty polytope"
+      ]
     }
   },
   "contSet/probZonotope": {

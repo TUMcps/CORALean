@@ -53,20 +53,20 @@ whose `f(x, u) - A(x - x✱)` stays in `V` is in `R(τ)` over the step and in `R
 theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n n}
     {xs : Vec 𝕋 n} {V R Rτ Rt : Zonotope (Vec 𝕋 n)} {options : LinearSys.ReachOptions 𝕋}
     (hstep : NonlinearSys.oneStepFloat A xs V R options = some (Rτ, Rt)) :
-    0 < toReal options.timeStep ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.timeStep))
+    0 < toReal options.Δt ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
         R.construct U x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.timeStep),
+      (∀ t ∈ Set.Icc 0 (toReal options.Δt),
         sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs) ∈ V.construct) →
-      (∀ t ∈ Set.Icc 0 (toReal options.timeStep), x t ∈ Rτ.construct) ∧
-        x (toReal options.timeStep) ∈ Rt.construct := by -- --- PROOF ---
+      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+        x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
   -- every `←` of the step succeeded: name what each returned
   unfold NonlinearSys.oneStepFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
   obtain ⟨⟨Rti, Rtp⟩, hS, Δτ, hτ, Δ₁, h₁, hpure⟩ := hstep
   simp only [pure, Option.some.injEq, Prod.mk.injEq] at hpure
   obtain ⟨rfl, rfl⟩ := hpure
-  set Δt := options.timeStep with hΔt_def
+  set Δt := options.Δt with hΔt_def
   obtain ⟨hΔt, -⟩ := LinearSys.reachFloatInput_invariant _ _ hS
   refine ⟨hΔt, fun {U x u} traj hV => ?_⟩
   -- the horizon `reachFloatInput` was given is the step

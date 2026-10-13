@@ -3,7 +3,7 @@ import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
 /-!
 # CORA's `options` for the polynomialization algorithm
 
-CORA's `timeStep` (the paper's `r`) and `taylorTerms` (`η`). The rest is the
+`Δt` (CORA's `timeStep`, the paper's `r`) and `η` (CORA's `taylorTerms`). The rest is the
 paper's and not CORA's: `UΔ` the input set's deviation, `taylor`, `combine`, `post`
 the derivative bundle and the two set operations lines 3, 9 and 13 stand for,
 `sub`, `enlarge` and `fuel` the abstraction-error loop's, and `K` how many
@@ -28,8 +28,8 @@ open Matrix ContSet
 
 /-- The options of `NonlinearSys.polyReachReach`. -/
 structure NonlinearSys.PolyReachOptions (n m o : ℕ) where
-  timeStep : ℝ
-  taylorTerms : ℕ
+  Δt : ℝ
+  η : ℕ
   UΔ : PolyZonotope (Vec ℝ m)
   taylor : NonlinearSys.PolyTaylor n m o
   combine : PolyZonotope (Vec ℝ n) → PolyZonotope (Vec ℝ m) → PolyZonotope (Vec ℝ o)

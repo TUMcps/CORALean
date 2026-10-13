@@ -3,7 +3,7 @@ import Mathlib.Data.Nat.Basic
 /-!
 # CORA's `options` for a discrete-time neural-network-controlled reach
 
-`zonotopeOrder`, as `LinearSysDT.ReachOptions` has it: the order every step of
+`ρ`, as `LinearSysDT.ReachOptions` has it: the order every step of
 the plant is reduced to. CORA's `neurNetContrSys/reach` also reads
 `options.nn`, the settings of its network verifier; `NeuralNetwork.enclose` fixes
 those here, so they are not a field.
@@ -28,10 +28,10 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The maximum order `zonotopeOrder` every step is reduced to, positive. -/
+/-- The maximum order `ρ` every step is reduced to, positive. -/
 structure NeurNetContrSysDT.ReachOptions where
-  zonotopeOrder : ℕ
-  hZonotopeOrder : 0 < zonotopeOrder := by exact Nat.zero_lt_succ _
+  ρ : ℕ
+  hZonotopeOrder : 0 < ρ := by exact Nat.zero_lt_succ _
 
 end CORALean
 

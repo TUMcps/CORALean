@@ -10,7 +10,7 @@ import CORALean.ContSet.SetUnion.SetUnion
 [1, Alg. 4]'s loop at `U = {0}`: the windows `τ_0, …, τ_{N-1}`, one
 `reachStepk` each, collected as `Reach`'s `SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉`
 of them and never fewer than one, exactly `LinearSys.reachWrappingFree`'s count.
-`η = taylorTerms` is the order asked for, raised to `reachOrder Δt + 2` where that
+`η = options.η` is the order asked for, raised to `reachOrder Δt + 2` where that
 is higher: `timeIntervalStep`'s enclosure holds only at an order admissible for `Δt`.
 
 ## References
@@ -40,13 +40,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [Mti
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One homogeneous set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉` (at least
-one), at every member of `sys.A`, at order `taylorTerms` raised until admissible. -/
+one), at every member of `sys.A`, at order `η` raised until admissible. -/
 noncomputable def LinParamSys.reachUnion (sys : LinParamSys ℐ n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
-  let X₀ := params.R0                                             -- the paper's symbols
-  let Δt := options.timeStep
+  let X₀ := params.X₀                                             -- the paper's symbols
+  let Δt := options.Δt
   let N := max 1 ⌈(params.tFinal - params.tStart) / Δt⌉₊         -- windows τ_0, …, τ_{N-1}
-  let η' := max options.taylorTerms (sys.reachOrder Δt + 2)       -- η, raised until admissible
+  let η' := max options.η (sys.reachOrder Δt + 2)       -- η, raised until admissible
   ⟨(List.range N).map (sys.reachStepk Δt η' X₀)⟩                  -- ⋃_{k < N} H^R(τ_k)
 
 end CORALean

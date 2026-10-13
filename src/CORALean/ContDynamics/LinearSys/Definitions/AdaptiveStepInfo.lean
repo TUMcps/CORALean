@@ -36,11 +36,11 @@ structure LinearSys.AdaptiveStepInfo (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) whe
   /-- `t_{i+1}`, absolute and clipped to `tFinal`. -/
   tEnd : ℚ
   /-- `Δt_i`, which may overshoot `tFinal` at the last step. -/
-  timeStep : 𝕋
+  Δt : 𝕋
   /-- `Φ_prop,i`, the truncation order the step ran at. -/
-  taylorTerms : ℕ
+  η : ℕ
   /-- `Φ_set,i`, the order `PR([0,t_{i+1}])` was reduced to. -/
-  zonotopeOrder : ℕ
+  ρ : ℕ
   /-- `R([t_i,t_{i+1}])`. -/
   R : Zonotope (Vec 𝕋 n)
   /-- `ε_H([t_i,t_{i+1}])`, eq. (21). -/

@@ -49,9 +49,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 is in one of `reach`'s windows. -/
 theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S n) ℝ}
     {options : LinearSys.ReachStepOptions ℝ} (htFinal : 0 < params.tFinal - params.tStart)
-    (hΔt : 0 < options.timeStep) (hη : 2 ≤ options.taylorTerms)
-    (hε : ‖options.timeStep • toRealMat sys.A‖ / ((options.taylorTerms : ℝ) + 2) < 1) :
-    sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+    (hΔt : 0 < options.Δt) (hη : 2 ≤ options.η)
+    (hε : ‖options.Δt • toRealMat sys.A‖ / ((options.η : ℝ) + 2) < 1) :
+    sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reach params options) := by -- --- PROOF ---
   unfold LinearSys.reach
   obtain ⟨X₀, tStart, tF⟩ := params

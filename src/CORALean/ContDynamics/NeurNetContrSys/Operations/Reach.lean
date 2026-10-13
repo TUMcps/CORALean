@@ -20,12 +20,12 @@ under that one set, and it is `LinearSys`'s own machinery — `discretize`
 samples the flow, `reach ... N` takes the steps, `inputSolution` encloses what
 the input contributes to each.
 
-`timeStep` and `N` are separate options and the control period is `N Δt`. Nothing
+`Δt` and `N` are separate options and the control period is `N Δt`. Nothing
 new is computed, and only the period boundaries are reachable by this recursion,
 the gap `relinReach` has.
 
 Time is counted in control periods, `tStart` and `tFinal` being ℕ as in
-`LinearSysDT.reach`: `timeStep` is an ℝ that `discretize` needs, so no exact ℚ
+`LinearSysDT.reach`: `Δt` is an ℝ that `discretize` needs, so no exact ℚ
 quotient sets the period count. The count `tFinal - tStart` is exact, and every
 guarantee is stated at `tStart = 0`.
 
@@ -60,14 +60,14 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set at the end of `params.tFinal - params.tStart` control periods,
-each `options.N` steps of length `options.timeStep` under one held input set. -/
+each `options.N` steps of length `options.Δt` under one held input set. -/
 noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n)
     (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions ℝ) : S n :=
-  let R₀ := params.R0                                               -- the paper's symbols
-  let Δt := options.timeStep
+  let R₀ := params.X₀                                               -- the paper's symbols
+  let Δt := options.Δt
   let N := options.N
-  let η := options.taylorTerms
-  let o := options.zonotopeOrder
+  let η := options.η
+  let o := options.ρ
   let H := params.tFinal - params.tStart                           -- control periods
   let period := fun R => (sys.plant.discretize Δt).reach          -- N steps under one held input
     ⟨R, sys.plant.inputSolution Δt η (sys.contr.enclose R), 0, N⟩ ⟨o, options.hZonotopeOrder⟩

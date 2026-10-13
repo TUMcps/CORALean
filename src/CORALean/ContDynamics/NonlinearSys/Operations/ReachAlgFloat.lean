@@ -44,8 +44,8 @@ def NonlinearSys.FloatHessModel.reachAlgFloat (fm : NonlinearSys.FloatHessModel 
     (alg : NonlinearSys.LinReachAlg)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
     (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
-  let X₀ := params.R0                                               -- the paper's symbols
-  let Δt := options.timeStep
+  let X₀ := params.X₀                                               -- the paper's symbols
+  let Δt := options.Δt
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt)  -- (tFinal - tStart) / Δt ∈ ℕ
   fm.linReachRunFloat alg params.U options N X₀                     -- ⋃_{k < N} R(τ_k)
 

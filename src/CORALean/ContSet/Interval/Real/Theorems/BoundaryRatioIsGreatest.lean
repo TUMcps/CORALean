@@ -37,7 +37,7 @@ theorem Interval.boundaryRatio_isGreatest (I : Interval (Vec ℝ n)) (dir start 
   have hB : ∀ i, (I.inf i - start i) + 2 * Interval.radius I i * (if 0 < dir i then (1 : ℝ) else 0)
       = if 0 < dir i then I.sup i - start i else I.inf i - start i := by
     intro i
-    split_ifs <;> simp [Interval.radius] <;> ring
+    split_ifs <;> simp [Interval.radius]
   unfold Interval.boundaryRatio
   simp only [hB]
   -- each bound over `dir i` is non-negative, so the ratio is

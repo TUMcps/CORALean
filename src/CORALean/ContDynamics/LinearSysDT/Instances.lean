@@ -32,7 +32,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 instance LinearSysDT.reachInstance :
     Reach (LinearSysDT 𝕋) (fun n => Reach.InputParams (S n) (S n) ℕ)
       LinearSysDT.ReachOptions S where
-  reachExact sys params := sys.reachUnionExact params.R0 params.U (params.tFinal - params.tStart)
+  reachExact sys params := sys.reachUnionExact params.X₀ params.U (params.tFinal - params.tStart)
   reach sys params options := some (sys.reachUnion params options)
   reach_outer sys params options := sys.reachUnion_outer params options
 

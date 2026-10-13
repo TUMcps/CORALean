@@ -4,7 +4,7 @@ import CORALean.ContDynamics.NonlinDASys.Operations.ErrorLoopAdaptive
 # `NonlinDASys.passAdaptive`
 
 One pass of CORA's `linReach_adaptive` ([1, Alg. 1]) at the step `Δt`: the error loop,
-and the step halved (`options.timeStep * 0.5`) where it did not converge, `fuel` times.
+and the step halved (`options.Δt * 0.5`) where it did not converge, `fuel` times.
 
 ## References
 
@@ -29,7 +29,7 @@ variable {n p m q : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One pass at the step `Δt`: the error loop, and the step halved (`options.timeStep * 0.5`)
+/-- One pass at the step `Δt`: the error loop, and the step halved (`options.Δt * 0.5`)
 where it did not converge. -/
 noncomputable def NonlinDASys.passAdaptive (sys : NonlinDASys n p m)
     (T : NonlinDASys.AdaptTuning n p m q) (L : NonlinDASys.LinPoint n p m)

@@ -33,9 +33,9 @@ theorem NonlinearSys.FloatModel.Encloses.centreAbstrRunFloat_outer
       fm.centreAbstrRunFloat U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
           sys.Trajectory (S := fun k => Set (Vec ℝ k))
-            (Set.Icc 0 ((k : ℝ) * toReal options.timeStep)) R.construct U.construct x u →
-          ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.timeStep)
-            (((j : ℝ) + 1) * toReal options.timeStep), x t ∈ Rs[j].construct :=
+            (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u →
+          ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
+            (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].construct :=
   fun k _ _ hrun => h.relinRunAtFloat_outer k hrun
 
 end CORALean

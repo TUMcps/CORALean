@@ -31,12 +31,12 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearSysDT.reachUnion_outer (sys : LinearSysDT 𝕋 n)
     (params : Reach.InputParams (S n) (S n) ℕ) (options : LinearSysDT.ReachOptions) :
-    sys.reachUnionExact params.R0 params.U (params.tFinal - params.tStart)
+    sys.reachUnionExact params.X₀ params.U (params.tFinal - params.tStart)
       ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
   intro y hy
   obtain ⟨k, hk, hy⟩ := Set.mem_iUnion₂.mp hy
-  refine SetUnion.mem_construct.mpr ⟨sys.reach ⟨params.R0, params.U, 0, k⟩ options, ?_,
-    sys.reachSet_subset_reach options.hZonotopeOrder params.R0 params.U k hy⟩
+  refine SetUnion.mem_construct.mpr ⟨sys.reach ⟨params.X₀, params.U, 0, k⟩ options, ?_,
+    sys.reachSet_subset_reach options.hZonotopeOrder params.X₀ params.U k hy⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hk))
 
 end CORALean

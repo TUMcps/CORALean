@@ -39,16 +39,16 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 is in one of `reachAdmissible`'s windows, at any order `η`. -/
 theorem LinearSys.reachAdmissible_outer (sys : LinearSys 𝕋 n)
     {params : Reach.Params (S n) ℝ} {options : LinearSys.ReachStepOptions ℝ}
-    (htFinal : 0 < params.tFinal - params.tStart) (hΔt : 0 < options.timeStep) :
-    sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+    (htFinal : 0 < params.tFinal - params.tStart) (hΔt : 0 < options.Δt) :
+    sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reachAdmissible params options) := by -- --- PROOF ---
   unfold LinearSys.reachAdmissible
   -- `reachOrder_admissible` gives `hε` at the order `reachAdmissible` runs at directly
-  have hη : 2 ≤ max options.taylorTerms (sys.reachOrder options.timeStep + 2) :=
-    le_trans (Nat.le_add_left 2 (sys.reachOrder options.timeStep)) (le_max_right _ _)
-  have hε := sys.reachOrder_admissible options.timeStep
-    (le_max_right options.taylorTerms (sys.reachOrder options.timeStep + 2))
-  exact sys.reach_outer (options := ⟨options.timeStep, _⟩) htFinal hΔt hη hε
+  have hη : 2 ≤ max options.η (sys.reachOrder options.Δt + 2) :=
+    le_trans (Nat.le_add_left 2 (sys.reachOrder options.Δt)) (le_max_right _ _)
+  have hε := sys.reachOrder_admissible options.Δt
+    (le_max_right options.η (sys.reachOrder options.Δt + 2))
+  exact sys.reach_outer (options := ⟨options.Δt, _⟩) htFinal hΔt hη hε
 
 end CORALean
 

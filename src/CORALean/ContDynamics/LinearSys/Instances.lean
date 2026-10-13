@@ -20,7 +20,7 @@ outputs. Every run is `none` unless `0 < timeStep`, which every theorem here ask
 `LinearSys` is the homogeneous case, kept because it asks for none of these: a
 non-convex representation still reaches. `LinearSys.reachInstance` runs
 `reachAdmissible`, CORA's `standard` scheme and its default — [1, Alg. 4],
-recursively — `none` also unless `tStart < tFinal` keeps a window, `taylorTerms`
+recursively — `none` also unless `tStart < tFinal` keeps a window, `η`
 raised until admissible. `LinearSys.reachWrappingFreeInstance` is the same interface
 at `reachWrappingFree`, [1, Alg. 1]'s window-by-window construction, kept as a
 named `def` rather than an `instance` so resolution stays unambiguous.
@@ -54,9 +54,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 noncomputable instance LinearSys.reachInstance :
     Reach (LinearSys 𝕋) (fun n => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
-    if 0 < params.tFinal - params.tStart ∧ 0 < options.timeStep then
+    if 0 < params.tFinal - params.tStart ∧ 0 < options.Δt then
       some (sys.reachAdmissible params options)
     else none
   reach_outer sys params options := by
@@ -69,9 +69,9 @@ noncomputable instance LinearSys.reachInstance :
 unambiguous between it and `LinearSys.reachInstance`. -/
 @[reducible] noncomputable def LinearSys.reachWrappingFreeInstance :
     Reach (LinearSys 𝕋) (fun n => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
-    if 0 < options.timeStep then some (sys.reachWrappingFree params options) else none
+    if 0 < options.Δt then some (sys.reachWrappingFree params options) else none
   reach_outer sys params options := by
     -- `none` claims nothing, and `some` is the run the side conditions admit
     split_ifs with h
@@ -82,9 +82,9 @@ noncomputable instance LinearSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinearSys.WithInput 𝕋 S) (fun n => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
-    if 0 < options.timeStep then some (sys.reach params options) else none
+    if 0 < options.Δt then some (sys.reach params options) else none
   reach_outer sys params options := by
     -- `none` claims nothing, and `some` is the run the side conditions admit
     split_ifs with h
@@ -96,9 +96,9 @@ noncomputable instance LinearSys.WithInputSplit.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinearSys.WithInputSplit 𝕋 S) (fun n => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
-    if 0 < options.timeStep then some (sys.reach params options) else none
+    if 0 < options.Δt then some (sys.reach params options) else none
   reach_outer sys params options := by
     -- `none` claims nothing, and `some` is the run the side conditions admit
     split_ifs with h

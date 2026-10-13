@@ -71,7 +71,7 @@ theorem Location.Trajectory.reachFloat_outer
   cases hRs
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, -, hinv⟩ :=
     ℓ.dynamics.reachFloatInput_invariant (identityMat 𝕋 n) hreach
-  set Δ := toReal options.timeStep with hΔ
+  set Δ := toReal options.Δt with hΔ
   set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
     (identityMat 𝕋 n) ℓ.U with hV
   simp only [Rat.cast_zero, sub_zero] at hNΔt

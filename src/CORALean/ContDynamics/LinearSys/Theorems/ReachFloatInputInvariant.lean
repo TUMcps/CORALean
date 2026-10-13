@@ -45,14 +45,14 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n) (B : Mat �
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
-    0 < toReal options.timeStep ∧ ∃ N : ℕ,
-      (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
+    0 < toReal options.Δt ∧ ∃ N : ℕ,
+      (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       ∃ S : List (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) ×
         Zonotope (Vec 𝕋 n)),
         S.length = N ∧ Rti = S.map (fun s => s.2.1 ⊞ s.2.2.1) ∧
-        Rtp = params.R0 :: S.map (fun s => s.1 ⊞ s.2.2.1) ∧
-        ∀ (k : ℕ) (hk : k < S.length), sys.ReachFloatInputInvariant (toReal options.timeStep)
-          params.R0.construct (Recentre.centre
+        Rtp = params.X₀ :: S.map (fun s => s.1 ⊞ s.2.2.1) ∧
+        ∀ (k : ℕ) (hk : k < S.length), sys.ReachFloatInputInvariant (toReal options.Δt)
+          params.X₀.construct (Recentre.centre
             (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U))
           (Recentre.recentre (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
             params.U)) k S[k] := by -- --- PROOF ---

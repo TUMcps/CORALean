@@ -41,7 +41,7 @@ noncomputable def LinearSysDT.reachLTVCora (A : ℕ → Mat ℝ n n) (B : ℕ �
   | 0 =>
     let uTrans₁ := uTransVec.elim uTrans (· 1)          -- params.uTrans = params.uTransVec(:,1)
     let Uadd := (U.plus (Zonotope.ofPoint uTrans₁)).mtimes (B 1)  -- Uadd = B{1}*(U+uTrans)
-    let Rnext := R0                                     -- Rnext.tp = params.R0
+    let Rnext := R0                                     -- Rnext.tp = params.X₀
     (Rnext, Uadd)
   | i + 1 =>
     let prev := LinearSysDT.reachLTVCora A B c EW R0 U uTrans uTransVec o i

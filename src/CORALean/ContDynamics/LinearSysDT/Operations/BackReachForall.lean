@@ -45,7 +45,7 @@ image under `Ainv`, and `none` as soon as `diff` cannot certify a step. -/
 def LinearSysDT.backReachForall (_sys : LinearSysDT 𝕋 n)
     (params : Reach.InputParams (S n) (S n) ℕ)
     (options : LinearSysDT.BackReachForallOptions 𝕋 S n) : Option (S n) :=
-  let T := params.R0                                                -- the target
+  let T := params.X₀                                                -- the target
   let U := params.U
   let Ainv := options.Ainv
   let diff := options.diff

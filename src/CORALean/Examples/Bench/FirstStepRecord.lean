@@ -81,9 +81,9 @@ def aux_result (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except 
   | .ok dt, .ok A =>
   let sys : LinearSys 𝕋 2 := ⟨A⟩
   let dtJ := [("dt_represented", ratJson (ToRat.toRat dt))]
-  let params : Reach.Params (Zonotope (Vec 𝕋 2)) ℚ := { R0 := X0, tFinal := ToRat.toRat dt }
+  let params : Reach.Params (Zonotope (Vec 𝕋 2)) ℚ := { X₀ := X0, tFinal := ToRat.toRat dt }
   let options : LinearSys.ReachOptions 𝕋 :=
-    { timeStep := dt, taylorTerms := cfg.eta, zonotopeOrder := cfg.rho }
+    { Δt := dt, η := cfg.eta, ρ := cfg.rho }
   -- the order check ahead of `reachFloat`, as `Registry.aux_runTiTp`, for a clear reason
   match sys.reachOrderFloat dt dt cfg.eta with
   | none => none' s!"no admissible Taylor order (from max {cfg.eta} 2) found within the \

@@ -92,11 +92,11 @@ config's own reading of `steps` (`headline_*.json`'s `steps_comment`), so the ru
 `steps` back from it, `dt` being exact in `𝕋`. -/
 def aux_params {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (X0 : Zonotope (Vec 𝕋 2))
     (dt : 𝕋) (cfg : HeadlineConfig) : Reach.Params (Zonotope (Vec 𝕋 2)) ℚ :=
-  { R0 := X0, tFinal := cfg.steps * ToRat.toRat dt }
+  { X₀ := X0, tFinal := cfg.steps * ToRat.toRat dt }
 
 /-- The config's `dt`, `eta` and `rho` as CORA's `options`, under CORA's own names. -/
 def aux_options {𝕋 : Type} (dt : 𝕋) (cfg : HeadlineConfig) : LinearSys.ReachOptions 𝕋 :=
-  { timeStep := dt, taylorTerms := cfg.eta, zonotopeOrder := cfg.rho }
+  { Δt := dt, η := cfg.eta, ρ := cfg.rho }
 
 /-- Scheme (a), wrapping-free: `reachWrappingFreeFloat`'s time-interval windows beside
 `reachTimePointWrappingFreeFloat`'s time-point sets at the same `X₀`, `dt`, `eta`, `rho`,

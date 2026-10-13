@@ -50,7 +50,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S Rg m n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
     match sys.reachUnion params options with
-    | some R => sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+    | some R => sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
         ⊆ construct R
     | none => True := by -- --- PROOF ---
   cases hR : sys.reachUnion params options with
@@ -58,7 +58,7 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
   | some R =>
     intro y hy
     simp only [NonlinearSys.WithSteps.reachUnion] at hR
-    set Δt := options.timeStep with hΔtdef
+    set Δt := options.Δt with hΔtdef
     set N := ⌈(params.tFinal - params.tStart) / Δt⌉₊ with hNdef
     -- the step count divides the horizon, so `hy` is at the horizon `[0, NΔt]`
     split at hR
@@ -69,7 +69,7 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
     split at hR
     case isFalse => exact absurd hR (by simp)
     rename_i hconf
-    set q := max options.taylorTerms ((Finset.range N).sup fun i =>
+    set q := max options.η ((Finset.range N).sup fun i =>
       (NonlinearSys.linearize (sys.steps i).A).reachOrder Δt) with hq
     -- the order clears every step's matrix
     have hε : ∀ i < N, ‖Δt • (sys.steps i).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1 := by
@@ -95,8 +95,8 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
         (MatExp.inputRemainder (sys.steps i).A Δt (q + 2)) (sys.steps i).linInput)) :=
       fun _ _ => (CompactSet.isCompact_construct _).isBounded
     -- every test passed: the ball of radius `2MΔt` about each start lies in the region
-    have hsub : ∀ i < N, ∀ y ∈ construct (sys.sys.relinReach ⟨params.R0, 0, i⟩
-      ⟨Δt, options.zonotopeOrder, ho⟩ sys.steps (fun i =>
+    have hsub : ∀ i < N, ∀ y ∈ construct (sys.sys.relinReach ⟨params.X₀, 0, i⟩
+      ⟨Δt, options.ρ, ho⟩ sys.steps (fun i =>
         (NonlinearSys.linearize (sys.steps i).A).inputSolution Δt (q + 2) (sys.steps i).linInput)),
         Metric.closedBall y (2 * sys.M * Δt) ⊆ (sys.steps i).R := by
       intro i hi z hz w hw
@@ -109,13 +109,13 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
       exact abs_le.mp (Real.norm_eq_abs _ ▸ hj)
     -- confinement of the whole reachable set, from the ball check
     have hconf' := sys.sys.reachSet_confinement_of_subset (T := Set.Icc 0 ((N : ℝ) * Δt))
-      params.R0 sys.U hΔt subset_rfl (q + 2) hε hconv hclosed hbdd hRconv hRclosed hRbdd
+      params.X₀ sys.U hΔt subset_rfl (q + 2) hε hconv hclosed hbdd hRconv hRclosed hRbdd
       sys.M_pos.le (fun i _ => sys.norm_f_le i) (by nlinarith [sys.M_pos, hΔt]) ho hsub
     -- a run from the bare set `construct R0` is a run from the representation `R0`
     obtain ⟨t, ht, x, u, traj, rfl⟩ := by simpa [NonlinearSys.WithSteps.reachUnionExact] using hy
-    have traj' : sys.sys.Trajectory (Set.Icc 0 ((N : ℝ) * Δt)) params.R0 sys.U x u :=
+    have traj' : sys.sys.Trajectory (Set.Icc 0 ((N : ℝ) * Δt)) params.X₀ sys.U x u :=
       ⟨traj.init, traj.input, traj.flow⟩
-    have hx := sys.sys.reachSet_subset_relinTimeInterval_horizon params.R0 sys.U hΔt hN
+    have hx := sys.sys.reachSet_subset_relinTimeInterval_horizon params.X₀ sys.U hΔt hN
       subset_rfl hconf' q hε hconv hclosed hbdd (fun i _ => sys.zero_mem_linInput i) hRconv
       hRclosed hRbdd ho ht ⟨x, u, traj', rfl⟩
     obtain ⟨i, hi, hxi⟩ := Set.mem_iUnion₂.mp hx

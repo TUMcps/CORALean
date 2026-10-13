@@ -8,7 +8,7 @@ import CORALean.ContDynamics.Reach.Reach
 
 `params` is `Reach.Params` at real time, `options` `LinearSys.ReachStepOptions`, the
 point case's. `reachExact` is `reachUnionExact` on `[0, tFinal - tStart]`, the system
-being time-invariant, `reach` is `reachUnion`, `none` unless `0 < timeStep`, and the
+being time-invariant, `reach` is `reachUnion`, `none` unless `0 < Δt`, and the
 guarantee is `reachUnion_outer`, for each — constant-parameter, in
 `⌈(tFinal - tStart) / Δt⌉` windows. `LinParamSys ℐ` is homogeneous;
 `LinParamSys.WithInput` carries the input set, `0 ∈ U` among its fields, so `U` is the
@@ -43,9 +43,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [Mti
 
 noncomputable instance LinParamSys.reachInstance :
     Reach (LinParamSys ℐ) (fun n => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+  reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
-    if 0 < options.timeStep then some (sys.reachUnion params options) else none
+    if 0 < options.Δt then some (sys.reachUnion params options) else none
   reach_outer sys params options := by
     -- `none` claims nothing, and `some` is the run the side conditions admit
     split_ifs with h
@@ -56,9 +56,9 @@ noncomputable instance LinParamSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinParamSys.WithInput S) (fun n => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+  reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
-    if 0 < options.timeStep then some (sys.reachUnion params options) else none
+    if 0 < options.Δt then some (sys.reachUnion params options) else none
   reach_outer sys params options := by
     -- `none` claims nothing, and `some` is the run the side conditions admit
     split_ifs with h
@@ -70,9 +70,9 @@ noncomputable instance LinParamSys.WithInputSplit.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinParamSys.WithInputSplit S) (fun n => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.R0)
+  reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
-    if 0 < options.timeStep then some (sys.reachUnion params options) else none
+    if 0 < options.Δt then some (sys.reachUnion params options) else none
   reach_outer sys params options := by
     -- `none` claims nothing, and `some` is the run the side conditions admit
     split_ifs with h

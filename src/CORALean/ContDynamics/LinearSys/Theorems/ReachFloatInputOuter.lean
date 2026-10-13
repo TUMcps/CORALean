@@ -38,16 +38,16 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
-    ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
+    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
         sys.Trajectory (S := fun k => Set (Vec ℝ k))
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.R0.construct
+          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
-        ∀ (k : ℕ) (hk : k < Rti.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.timeStep)
-          (((k : ℝ) + 1) * toReal options.timeStep), x t ∈ Rti[k].construct := by -- --- PROOF ---
+        ∀ (k : ℕ) (hk : k < Rti.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rti[k].construct := by -- --- PROOF ---
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant B h
   refine ⟨N, hNΔt, by simp [hlen], fun {x u} traj k hk t ht => ?_⟩
-  set Δ := toReal options.timeStep with hΔ
+  set Δ := toReal options.Δt with hΔ
   set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U with hV
   have hk' : k < S.length := by simpa using hk
   obtain ⟨-, h2, h3, -⟩ := hinv k hk'

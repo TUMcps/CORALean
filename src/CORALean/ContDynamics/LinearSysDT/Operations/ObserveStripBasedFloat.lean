@@ -6,7 +6,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.Reduce
 
 CORA's `observe_stripBased` [2, Eq. 4], [1, Alg. 1] run over the measurements `y 0, y 1, …` in
 directed rounding: `R k` is the set after the measurement `y k`, each prediction and update by
-`observeStepFloat`, then reduced to the order `options.zonotopeOrder`. Soundness is
+`observeStepFloat`, then reduced to the order `options.ρ`. Soundness is
 `observeStripBasedFloat_outer`.
 
 ## References
@@ -44,7 +44,7 @@ def LinearSysDT.observeStripBasedFloat (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 
     else Zonotope.intersectStrip C σ (y 0) (options.gain R₀) R₀
   | k + 1 =>
     (sys.observeStepFloat C σ W options (u k) (y (k + 1))
-      (sys.observeStripBasedFloat C σ W R₀ u y options k)).reduce options.zonotopeOrder
+      (sys.observeStripBasedFloat C σ W R₀ u y options k)).reduce options.ρ
 
 end CORALean
 

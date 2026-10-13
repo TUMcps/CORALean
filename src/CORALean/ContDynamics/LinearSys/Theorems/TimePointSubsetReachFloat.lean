@@ -48,7 +48,7 @@ theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n)
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options = some (Rti, Rtp)) :
     ∀ (k : ℕ) (hk : k < Rtp.length),
-      construct (sys.timePoint (S := fun n => Real.Zonotope (Vec ℝ n)) (toReal options.timeStep)
+      construct (sys.timePoint (S := fun n => Real.Zonotope (Vec ℝ n)) (toReal options.Δt)
         X₀ k) ⊆ Rtp[k].construct := by -- --- PROOF ---
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢

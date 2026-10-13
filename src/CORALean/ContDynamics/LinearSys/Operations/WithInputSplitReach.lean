@@ -12,7 +12,7 @@ each, collected as a `SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and
 than one, exactly `LinearSys.WithInput.reach`'s count. No `box()` on the
 accumulated input set, as there.
 
-`X₀ = params.R0`, `Δt = options.timeStep`, `η = options.taylorTerms`, the Taylor order
+`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`, the Taylor order
 asked for, raised to `reachOrder Δt + 2` where that is higher: `timeIntervalStep`,
 `inputSolution` and `constInputSolution` all hold only at an order admissible for `Δt` and
 `sys.A`. The times are real, as in `LinearSys.reachWrappingFree`.
@@ -49,9 +49,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 inputs in `sys.U` split at its centre, at order `η` raised until admissible. -/
 noncomputable def LinearSys.WithInputSplit.reach (sys : LinearSys.WithInputSplit 𝕋 S n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
-  let X₀ := params.R0                                           -- the paper's symbols
-  let Δt := options.timeStep
-  let η := options.taylorTerms
+  let X₀ := params.X₀                                           -- the paper's symbols
+  let Δt := options.Δt
+  let η := options.η
   let N := max 1 ⌈(params.tFinal - params.tStart) / Δt⌉₊      -- windows τ_0, …, τ_{N-1}
   let η' := max η (sys.sys.reachOrder Δt + 2)                    -- η, raised until admissible
   ⟨(List.range N).map (sys.reachStepk Δt η' X₀)⟩                -- ⋃_{k < N} R(τ_k)

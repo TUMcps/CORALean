@@ -523,8 +523,8 @@ def dyadicRows2 : StateT Nat IO Unit := do
   -- `'poly'` is minutes in the interpreter over the four windows `vdpReachAlg` takes: one window
   row "vdpReachAlg.poly2 (one window)" (ofWindowsBox
     (RunnableFloat.vdpHessModel.reachAlgFloat (.poly 2)
-      { R0 := RunnableFloat.vdpX₀, U := RunnableFloat.vdpU, tFinal := 1 / 32 }
-      { timeStep := RunnableFloat.d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }) 1)
+      { X₀ := RunnableFloat.vdpX₀, U := RunnableFloat.vdpU, tFinal := 1 / 32 }
+      { Δt := RunnableFloat.d 1 (-5), η := 4, ρ := 10 }) 1)
   -- the rest of the nonlinear block: centre linearization, the adaptive loop, the cubic box
   row "vdpCentreReach" (ofWindowsBox RunnableFloat.vdpCentreReach 1)
   row "vdpAdaptRun" (ofWindowsBox (RunnableFloat.vdpAdaptRun.map (List.map (·.Rτ))) 1)

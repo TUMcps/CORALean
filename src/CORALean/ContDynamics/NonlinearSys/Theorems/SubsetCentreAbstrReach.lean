@@ -53,8 +53,8 @@ theorem NonlinearSys.subset_centreAbstrReach (sys : NonlinearSys n m)
     (params : Reach.InputParams (S n) (S m) ℝ) (options : NonlinearSys.AbstrReachOptions S n m)
     {j : ℕ} (hj : j < options.K) {s : NonlinearSys.CentreAbstrState S n}
     (h : sys.centreAbstrRun params.U options.lin options.Φ options.sub options.enlarge
-      options.timeStep (params.tFinal - params.tStart) options.taylorTerms
-      options.taylorTermsAbstr options.zonotopeOrder options.fuel params.R0 (j + 1) = some s) :
+      options.Δt (params.tFinal - params.tStart) options.η
+      options.taylorTermsAbstr options.ρ options.fuel params.X₀ (j + 1) = some s) :
     construct s.Rτ ⊆ sys.centreAbstrReach params options := by
   intro x hx
   simp only [NonlinearSys.centreAbstrReach, Set.mem_iUnion, exists_prop]

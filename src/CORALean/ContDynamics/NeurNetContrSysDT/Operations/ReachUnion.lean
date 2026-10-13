@@ -31,7 +31,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 branch each. -/
 def NeurNetContrSysDT.reachUnion (sys : NeurNetContrSysDT 𝕋 S n) (params : Reach.Params (S n) ℕ)
     (options : NeurNetContrSysDT.ReachOptions) : SetUnion (S n) :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let K := params.tFinal - params.tStart                           -- steps
   ⟨(List.range (K + 1)).map (fun k => sys.reach ⟨R₀, 0, k⟩ options)⟩  -- ⋃_{k ≤ K} R(k)
 

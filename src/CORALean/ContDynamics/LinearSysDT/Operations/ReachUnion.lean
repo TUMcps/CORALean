@@ -32,7 +32,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 `U`, one `SetUnion` branch each. -/
 def LinearSysDT.reachUnion (sys : LinearSysDT 𝕋 n) (params : Reach.InputParams (S n) (S n) ℕ)
     (options : LinearSysDT.ReachOptions) : SetUnion (S n) :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
   let K := params.tFinal - params.tStart                           -- steps
   ⟨(List.range (K + 1)).map (fun k => sys.reach ⟨R₀, U, 0, k⟩ options)⟩  -- ⋃_{k ≤ K} R(k)

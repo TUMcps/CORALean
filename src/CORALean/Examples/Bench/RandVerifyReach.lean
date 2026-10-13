@@ -38,9 +38,9 @@ def randVerifyReach (alg : RandAlg) (S : RandSystem 𝕋) (tFinal : ℚ) (η ρ 
   -- the system, the problem and the algorithm's options, as CORA's `params`/`options`
   let sys : LinearSys 𝕋 5 := ⟨S.A⟩
   let params : Reach.InputParams (Zonotope (Vec 𝕋 5)) (Zonotope (Vec 𝕋 2)) ℚ :=
-    { R0 := S.X0, U := Interval.zonotope S.U, tFinal := tFinal }
+    { X₀ := S.X0, U := Interval.zonotope S.U, tFinal := tFinal }
   let options : LinearSys.ReachOptions 𝕋 :=
-    { timeStep := S.dt, taylorTerms := η, zonotopeOrder := ρ }
+    { Δt := S.dt, η := η, ρ := ρ }
   -- `N = tFinal / Δt` must be a natural number, and `η` admissible, as the algorithms require
   match Reach.steps 0 tFinal (ToRat.toRat S.dt) with
   | none => throw "tFinal / dt is not a natural number"

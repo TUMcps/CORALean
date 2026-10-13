@@ -34,7 +34,7 @@ accumulated per step, so a zero-order hold reads off exactly rather than through
 the jitter a fresh point of `U` at every step would add. -/
 def LinearSysDT.reachHeld (sys : LinearSysDT ℝ n)
     (params : Reach.InputParams (S n) (S n) ℕ) : S n :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
   plus (mtimes (sys.A ^ N) R₀) (mtimes (∑ i ∈ Finset.range N, sys.A ^ i) U)

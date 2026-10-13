@@ -10,7 +10,7 @@ declares its own `…ReachOptions` for the second half.
 
 The horizon is CORA's, and the papers': `[tStart, tFinal]`, `tStart` defaulting
 to `0` as in CORA. `T` is the time type a family measures in — ℚ for a
-continuous run, where the step count `(tFinal - tStart) / timeStep` is derived
+continuous run, where the step count `(tFinal - tStart) / Δt` is derived
 exactly by `Reach.steps` and a run refuses a horizon it does not divide; ℕ for
 `LinearSysDT`, whose time is counted in sampling periods (see its `reach`).
 -/
@@ -28,10 +28,10 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The initial set `R0` and the horizon `[tStart, tFinal]`: CORA's `params.R0`,
+/-- The initial set `X₀` and the horizon `[tStart, tFinal]`: CORA's `params.R0`,
 `params.tStart` (default `0`) and `params.tFinal`. -/
 structure Reach.Params (X T : Type) [Zero T] where
-  R0 : X
+  X₀ : X
   tStart : T := 0
   tFinal : T
 

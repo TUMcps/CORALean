@@ -165,7 +165,7 @@ axiom's inequality, read on the NaN's decoding, fails (for `mulUp`, `divUp`, `ha
   separator): their results are re-checked by a decision above, or by a float checker that accepts
   any weights, and the theorems hold for any tuning choice, so a NaN there costs tightness only.
   This is read against the theorems, not a separate proof. The `Reach.steps` calls in the
-  `reach*Float` functions read a NaN `timeStep` as `1.5 · 2 ^ 1024`; a step count of one or more
+  `reach*Float` functions read a NaN `Δt` as `1.5 · 2 ^ 1024`; a step count of one or more
   then needs `tFinal − tStart` to be a multiple of that, and any step run returns NaN floats, which
   the `…Checked` entry points reject. That last point is argued, not proved.
 * **The final NaN check covers only the entry points that have a `…Checked` form.**

@@ -6,7 +6,7 @@ import Mathlib.Data.Rat.Cast.Defs
 
 `toRat` decodes a scalar into ℚ, computably and exactly, and `toReal_toRat` says
 it is the number `toReal` reads. What an algorithm needs it for is a decision
-the rounded operations cannot make: whether `(tFinal - tStart) / timeStep` is a
+the rounded operations cannot make: whether `(tFinal - tStart) / Δt` is a
 natural number, CORA's integer-steps check, taken exactly rather than to a
 tolerance.
 

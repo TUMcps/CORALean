@@ -7,7 +7,7 @@ CORA's `options` for `observe_stripBased`: `intersectionType` 1 (the strips one 
 [1, Eq. 3]) or 2 (all at once), read here as `sequential`; `intersectionTechnique`, the gain,
 read as a function of the zonotope the strips meet, so that an offline gain ([1, Eq. 9]) is a
 constant and an online one (`'alamo-FRad'`, `'wang-FRad'`, ...) computes it from that zonotope;
-and `zonotopeOrder`, the order each step is reduced to. In the sequential case strip `i` takes
+and `ρ`, the order each step is reduced to. In the sequential case strip `i` takes
 column `i` of the gain, evaluated at the zonotope it meets.
 
 ## References
@@ -36,7 +36,7 @@ variable {n p : ℕ}
 structure LinearSysDT.ObserveStripOptions (n p : ℕ) where
   sequential : Bool
   gain : Zonotope (Vec ℝ n) → Mat ℝ n p
-  zonotopeOrder : ℕ
+  ρ : ℕ
 
 end CORALean
 

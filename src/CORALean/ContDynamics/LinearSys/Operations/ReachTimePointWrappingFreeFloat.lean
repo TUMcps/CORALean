@@ -16,7 +16,7 @@ order search redone once as `reachWrappingFreeFloat` redoes it, `N` derived as i
 derives it. `N + 1` points, `k = 0, …,
 N`; `k = 0` gives (an enclosure of) `X₀` itself, `e^{A · 0} = I`. `params` and
 `options` are read as `reachWrappingFreeFloat` reads them; no set is reduced, so
-`zonotopeOrder` goes unread.
+`ρ` goes unread.
 -/
 
 -- Authors:       Tobias Ladner
@@ -41,9 +41,9 @@ until admissible, each window `[e^{A t_k}] X₀` computed directly from `X₀`. 
 def LinearSys.reachTimePointWrappingFreeFloat (sys : LinearSys 𝕋 n)
     (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n))) := do
-  let X₀ := params.R0                                               -- the paper's symbols
-  let Δt := options.timeStep
-  let η := options.taylorTerms
+  let X₀ := params.X₀                                               -- the paper's symbols
+  let Δt := options.Δt
+  let η := options.η
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   (List.range (N + 1)).mapM (sys.reachStepkWrappingFreeFloat Δt η' X₀)       -- R_k = [e^{A t_k}] X₀

@@ -5,7 +5,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 /-!
 # `reach` at an order raised until admissible
 
-`η = options.taylorTerms` is the order asked for, raised to `reachOrder Δt + 2` where that
+`η = options.η` is the order asked for, raised to `reachOrder Δt + 2` where that
 is higher, the same raise `reachWrappingFree` runs: `reach_outer` needs an order admissible
 for `Δt` and `sys.A`, and `ReachStepOptions` has no field for it, the matrix not
 being there to decide it. `LinearSys.reachInstance` runs this instead of `reach`
@@ -37,8 +37,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 raised until admissible. -/
 noncomputable def LinearSys.reachAdmissible (sys : LinearSys 𝕋 n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
-  let Δt := options.timeStep
-  let η := options.taylorTerms
+  let Δt := options.Δt
+  let η := options.η
   let η' := max η (sys.reachOrder Δt + 2)                        -- η, raised until admissible
   sys.reach params ⟨Δt, η'⟩
 

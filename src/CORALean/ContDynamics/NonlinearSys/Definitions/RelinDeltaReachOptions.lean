@@ -20,9 +20,9 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- `RelinReachOptions`, and the Taylor order `taylorTerms` of the differences. -/
+/-- `RelinReachOptions`, and the Taylor order `η` of the differences. -/
 structure NonlinearSys.RelinDeltaReachOptions extends NonlinearSys.RelinReachOptions where
-  taylorTerms : ℕ
+  η : ℕ
 
 end CORALean
 

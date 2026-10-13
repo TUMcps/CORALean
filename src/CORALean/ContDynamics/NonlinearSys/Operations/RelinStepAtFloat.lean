@@ -53,7 +53,7 @@ fails. -/
 def NonlinearSys.FloatModel.relinStepAtFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
     (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) (R : Zonotope (Vec 𝕋 n))
     (xs : Vec 𝕋 n) : Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
-  let Δt := options.timeStep                                        -- the paper's symbols
+  let Δt := options.Δt                                        -- the paper's symbols
   let Ub := U.interval                                              -- U's box
   let Ω ← fm.regionFloat Δt R.interval Ub                           -- where the step stays
   let us := U.c                                                     -- u✱

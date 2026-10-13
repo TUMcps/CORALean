@@ -37,11 +37,11 @@ sets. The horizon is `params.tFinal - params.tStart`, the loop's clock starting 
 noncomputable def NonlinearSys.polyReachReach
     (params : Reach.InputParams (PolyZonotope (Vec ℝ n)) (PolyZonotope (Vec ℝ m)) ℝ)
     (options : NonlinearSys.PolyReachOptions n m o) : Set (Vec ℝ n) :=
-  let X₀ := params.R0                                               -- the paper's symbols
+  let X₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
   let tf := params.tFinal - params.tStart
   ⋃ j < options.K, ⋃ s ∈ NonlinearSys.polyReachRun U options.UΔ options.taylor options.combine
-    options.post options.sub options.enlarge options.timeStep tf options.taylorTerms options.fuel
+    options.post options.sub options.enlarge options.Δt tf options.η options.fuel
     X₀ (j + 1), construct s.Rτ
 
 end CORALean

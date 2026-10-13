@@ -43,7 +43,7 @@ def NonlinearSys.oneStepFloat (A : Mat 𝕋 n n) (xs : Vec 𝕋 n) (V R : Zonoto
   let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))
   let lin : LinearSys 𝕋 n := ⟨A⟩                                    -- δ̇ = A δ + ũ, ũ ∈ V
   let S ← lin.reachFloatInput (identityMat 𝕋 n)                     -- one step from R - x✱
-    ⟨R ⊞ pt fun i => neg (xs i), V, 0, ToRat.toRat options.timeStep⟩ options
+    ⟨R ⊞ pt fun i => neg (xs i), V, 0, ToRat.toRat options.Δt⟩ options
   let Δτ ← S.1.head?                                                -- R(τ_k) - x✱
   let Δ₁ ← S.2[1]?                                                  -- R(t_{k+1}) - x✱
   pure (Δτ ⊞ pt xs, Δ₁ ⊞ pt xs)                                     -- Rti + p.x, Rtp + p.x

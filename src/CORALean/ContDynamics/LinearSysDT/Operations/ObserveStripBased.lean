@@ -6,7 +6,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 
 CORA's `observe_stripBased`, the loop of [1, Alg. 1]: the initial set `R₀` met with the first
 measurement's strips, then at every step the prediction and update of `observeStep` followed
-by `reduce` to `zonotopeOrder` ([1, Prop. 3] is one such reduction). The strip widths are
+by `reduce` to `ρ` ([1, Prop. 3] is one such reduction). The strip widths are
 CORA's `sigma = supremum(abs(interval(params.V)))`, here `σ`, so a noise `v ∈ V` needs only
 `|vᵢ| ≤ σᵢ`. CORA's estimators `FRad-A`, `FRad-B`, `PRad-A` to `PRad-D` and `VolMin-A` are
 this loop at their own gains; `observeStripBased_outer` holds for every gain.
@@ -48,7 +48,7 @@ noncomputable def LinearSysDT.observeStripBased (sys : LinearSysDT ℝ n) (C : M
     else R₀.intersectStrip C σ (y 0) (options.gain R₀)
   | k + 1 =>
     (sys.observeStep C σ W options (u k) (y (k + 1))
-      (sys.observeStripBased C σ W R₀ u y options k)).reduce options.zonotopeOrder
+      (sys.observeStripBased C σ W R₀ u y options k)).reduce options.ρ
 
 end CORALean
 

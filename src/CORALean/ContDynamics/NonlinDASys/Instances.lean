@@ -36,7 +36,7 @@ noncomputable instance NonlinDASys.reachInstance :
     Reach (NonlinDASys.WithSteps S Rg m p) (fun n => Reach.Params (S n) ℝ)
       (LinearSys.ReachOptions ℝ) S where
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
-    (construct params.R0)
+    (construct params.X₀)
   reach sys params options := sys.reachUnion params options
   reach_outer sys params options := sys.reachUnion_outer params options
 
