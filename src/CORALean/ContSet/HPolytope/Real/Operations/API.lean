@@ -42,6 +42,10 @@ import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 import CORALean.ContSet.HPolytope.Real.Operations.Stack
 import CORALean.ContSet.HPolytope.Real.Operations.Lift
 import CORALean.ContSet.HPolytope.Real.Operations.MldivideCora
+import CORALean.ContSet.HPolytope.Real.Operations.ConvHullCora
+import CORALean.ContSet.HPolytope.Real.Operations.OfEqs1D
+import CORALean.ContSet.HPolytope.Real.Operations.MinkDiff1DCora
+import CORALean.ContSet.HPolytope.Real.Operations.Compact1DEqCora
 import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingVPolyCora
 import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalCora
 import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints

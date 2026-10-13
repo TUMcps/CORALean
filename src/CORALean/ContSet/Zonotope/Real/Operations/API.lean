@@ -31,6 +31,7 @@ import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffApprox
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOuterScalingCora
 import CORALean.ContSet.Zonotope.Real.Operations.AreAlignedCora
 import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffExact2dCora
+import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffDegenerateCora
 import CORALean.ContSet.Zonotope.Real.Operations.Aligned
 import CORALean.ContSet.Zonotope.Real.Operations.BackReachAligned
 import CORALean.ContSet.Zonotope.Real.Operations.CombineGens

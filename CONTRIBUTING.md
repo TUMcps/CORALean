@@ -177,6 +177,15 @@ is named with its layer, `Real.Zonotope`, rather than left to the enclosing
 namespace to supply; a file that needs the scoped family notation `𝒵` or `ℐ`
 says `open CORALean.Real` and that line is the record of which layer it works at.
 
+Systems are not split by layer the way sets are. In a system namespace the
+plain name is the algorithm as the paper describes it, generic over the set
+family and used by the `Reach` class: `LinearSys.reach`. Its sound
+rounded-arithmetic implementation is the `Float` twin, `LinearSys.reachFloat`,
+and the true reachable set is `LinearSys.reachExact`, which is never an
+algorithm. `Exact` and `Real` are not variant suffixes, and a top-level type
+takes the `Float.` namespace (`Float.Zonotope`), never a `Float` suffix; the
+suffix is for twins nested in a system namespace, as `LinearSys.AutoStateFloat`.
+
 ### The ambient type
 
 `ContSet` is indexed by the ambient type, so a representation is written once and
