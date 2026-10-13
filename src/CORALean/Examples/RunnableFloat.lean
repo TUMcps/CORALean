@@ -142,6 +142,7 @@ import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
 import CORALean.ContSet.Zonotope.Float.Operations.And
 import CORALean.ContSet.Polygon.Float.Operations.And
 import CORALean.ContSet.Polygon.Float.Operations.MinkDiff
+import CORALean.ContSet.Polygon.Float.Operations.Subtract
 import CORALean.ContSet.SetIntersection.API
 import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
 import CORALean.ContSet.Taylm.Float.Operations.Times
@@ -1345,6 +1346,12 @@ def zAnd : Zonotope D 2 := Z.and_ Z_plus
 def polyAnd : Polygon D := Polygon.and polyP polyP
 /-- The triangle minus the point `(1, 0)`: its edge halfspaces, shifted to the translate. -/
 def polyMinkDiff : SetUnion (HPolytope D 2) := Polygon.minkDiff polyP polyPt
+/-- The square `[0, 3]²` minus the inner square `[1, 2]²`: one piece per edge of the inner square,
+each a box hull of the minuend cut to the side outside that edge. -/
+def polySubtract : Polygon D :=
+  let sq := fun lo hi : ℤ => (⟨4, ![![d lo 0, d lo 0], ![d hi 0, d lo 0], ![d hi 0, d hi 0],
+    ![d lo 0, d hi 0]], zbox 2⟩ : VPolytope D 2)
+  Polygon.subtract (Polygon.ofPieces [sq 0 3]) (Polygon.ofPieces [sq 1 2])
 def interSum : SetIntersection (Zonotope D 2) :=
   Plus.plus (⟨[Z, Z_plus]⟩ : SetIntersection (Zonotope D 2)) ⟨[Z]⟩
 

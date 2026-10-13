@@ -166,6 +166,10 @@ def ofPolygon {n : ℕ} (P : SetUnion (VPolytope 𝕋 n)) : Out :=
   | none => ⟨"pieces=0", [], true⟩
   | some p => ⟨s!"pieces={P.sets.length} k={p.k}", [], false⟩
 
+/-- A polygon's piece count and every piece's box hull. -/
+def ofPolygonBoxes (P : SetUnion (VPolytope 𝕋 2)) : Out :=
+  ⟨s!"pieces={P.sets.length} " ++ " ".intercalate (P.sets.map fun p => boxS p.interval), [], false⟩
+
 -- probabilistic zonotopes and spectrahedral shadows
 def ofProbZ {n : ℕ} (P : ProbZonotope 𝕋 n) : Out :=
   ⟨s!"mean {(ofZono P.Z).text} cov inf={matS P.cov.inf} sup={matS P.cov.sup}",
@@ -573,6 +577,7 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "zAnd" (ofZono RunnableFloat.zAnd)
   row "polyAnd" (ofPolygon RunnableFloat.polyAnd)
   row "polyMinkDiff" ((RunnableFloat.polyMinkDiff.sets.head?.map ofHP).getD ⟨"pieces=0", [], true⟩)
+  row "polySubtract" (ofPolygonBoxes RunnableFloat.polySubtract)
   row "interSum" (ofUnion ⟨RunnableFloat.interSum.sets⟩)
   row "lsContainsRun" (ofBool RunnableFloat.lsContainsRun)
   row "tlmI" (ofBox RunnableFloat.tlmI)
