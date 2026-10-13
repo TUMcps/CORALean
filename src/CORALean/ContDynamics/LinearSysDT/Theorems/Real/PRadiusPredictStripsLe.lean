@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
 import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
+import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
+import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripDev
 import CORALean.ContSet.Zonotope.Real.Theorems.PredictDev
 import Mathlib.Algebra.BigOperators.Fin
@@ -86,9 +87,10 @@ theorem aux_stripsUpTo_succ (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n
 /-- The strips of `intersectStripSeq` at constant gains are the `p` strips of the chain. -/
 theorem aux_stripsUpTo_full (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
     (Z : Zonotope (Vec ℝ n)) :
-    aux_stripsUpTo C φ y Λ Z p = Zonotope.intersectStripSeq C φ y (fun _ => Λ) Z := by
-  unfold aux_stripsUpTo Zonotope.intersectStripSeq
+    aux_stripsUpTo C φ y Λ Z p = ContSet.intersectStripSeq (S := 𝒵) C φ y (fun _ => Λ) Z := by
+  unfold aux_stripsUpTo ContSet.intersectStripSeq
   rw [List.take_of_length_le (by simp)]
+  rfl
 
 /-- A point after `s` strips is the deviation chain of a point of the zonotope before them. -/
 theorem aux_stripsUpTo_dev (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
@@ -134,11 +136,11 @@ theorem Zonotope.pRadius_predict_strips_le (A P : Mat ℝ n n) (F : Mat ℝ n m)
         + ∑ s : Fin p, φ s ^ 2 * η s ^ 2)
     (hβ : 0 ≤ β) (hL : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ L)
     (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) :
-    Zonotope.pRadius P (((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))
-        ).intersectStripSeq C φ y (fun _ => Λ))
+    Zonotope.pRadius P (ContSet.intersectStripSeq (S := 𝒵) C φ y (fun _ => Λ)
+        ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))))
       ≤ β * L + ψ + ∑ s : Fin p, φ s ^ 2 := by -- --- PROOF ---
   set X' := (X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n)) with hX'
-  set Xk := X'.intersectStripSeq C φ y (fun _ => Λ) with hXk
+  set Xk := ContSet.intersectStripSeq (S := 𝒵) C φ y (fun _ => Λ) X' with hXk
   refine csSup_le ⟨_, Xk.c, ⟨0, by simp, by simp⟩, rfl⟩ ?_
   rintro _ ⟨z, hz, rfl⟩
   -- the point is a deviation chain over a prediction point

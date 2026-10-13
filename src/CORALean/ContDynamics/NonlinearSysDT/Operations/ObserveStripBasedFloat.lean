@@ -42,9 +42,11 @@ def NonlinearSysDT.observeStripBasedFloat (sys : NonlinearSysDT n m) {U : Zonoto
     (steps : ℕ → sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U)
     (o : NonlinearSysDT.ReachOptions) (C : Mat 𝕋 p n)
     (σ : Vec 𝕋 p) (W R₀ : Zonotope (Vec 𝕋 n)) (y : ℕ → Vec 𝕋 p)
-    (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) : ℕ → Zonotope (Vec 𝕋 n)
+    (options : LinearSysDT.ObserveStripOptions 𝕋 (Zonotope (Vec 𝕋 n)) n p) :
+    ℕ → Zonotope (Vec 𝕋 n)
   | 0 =>
-    if options.sequential then LinearSysDT.intersectStripSeqFloat C σ (y 0) options.gain R₀
+    if options.sequential then
+      ContSet.intersectStripSeq (S := fun k => Zonotope (Vec 𝕋 k)) C σ (y 0) options.gain R₀
     else Zonotope.intersectStrip C σ (y 0) (options.gain R₀) R₀
   | k + 1 =>
     (sys.observeStepFloat (steps k) o C σ W options (y (k + 1))

@@ -1,10 +1,6 @@
 import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
+import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
 
 /-!
 # One step of the strip-based observer
@@ -14,6 +10,10 @@ import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
 `intersectStripSeq` [1, Eq. 3], or, as CORA's `intersectionType = 2` does, all at once by
 `intersectStrip`. CORA's prediction also adds the known input, `u` here in state coordinates
 (`B u` folded, as `LinearSysDT` folds it); the paper's system has none, `u = 0`.
+
+Written once over the set classes and the scalar: at `Real.Zonotope` and ℝ it is the paper's
+step, at `Float.Zonotope` and a float type the same step in directed rounding. Soundness, for
+both, is `observeStep_outer`.
 
 [2, Eq. 4]: the strip-based observer's prediction and correction, steps 1 and 3 of its Sec. 2.1.
 
@@ -26,8 +26,8 @@ import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 -/
 
--- Authors:       Tobias Ladner
--- Written:       04-October-2026
+-- Authors:       Claude Opus 5.5
+-- Written:       13-October-2026
 -- Last update:   ---
 -- Last revision: ---
 
@@ -36,19 +36,21 @@ import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripSeq
 
 namespace CORALean
 
-open CORALean.Real
+open ContSet Plus Mtimes IntersectStrip
 
-variable {n p : ℕ}
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfScalarPoint 𝕋 S]
+variable [IntersectStrip 𝕋 S] {n p : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.observeStep (sys : LinearSysDT ℝ n) (C : Mat ℝ p n) (σ : Vec ℝ p)
-    (W : Zonotope (Vec ℝ n)) (options : LinearSysDT.ObserveStripOptions n p) (u : Vec ℝ n)
-    (y : Vec ℝ p) (Xhat : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ n) :=
-  let Xbar := ((Xhat.mtimes sys.A).plus (Zonotope.ofPoint u)).plus W  -- Step 1, prediction X̄
-  if options.sequential then Xbar.intersectStripSeq C σ y options.gain  -- Step 2, update X̂_k
-  else Xbar.intersectStrip C σ y (options.gain Xbar)
+def LinearSysDT.observeStep (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W : S n)
+    (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n p) (u : Vec 𝕋 n) (y : Vec 𝕋 p)
+    (Xhat : S n) : S n :=
+  let Xbar := plus (plus (mtimes sys.A Xhat) (OfScalarPoint.ofVec u)) W  -- Step 1, prediction X̄
+  if options.sequential then intersectStripSeq C σ y options.gain Xbar  -- Step 2, update X̂_k
+  else intersectStrip C σ y (options.gain Xbar) Xbar
 
 end CORALean
 
