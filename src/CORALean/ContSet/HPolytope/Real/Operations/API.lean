@@ -47,6 +47,8 @@ import CORALean.ContSet.HPolytope.Real.Operations.OfEqs1D
 import CORALean.ContSet.HPolytope.Real.Operations.MinkDiff1DCora
 import CORALean.ContSet.HPolytope.Real.Operations.Compact1DEqCora
 import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingVPolyCora
+import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingZonoBundleCora
+import CORALean.ContSet.HPolytope.Real.Operations.ZonoBundleVar
 import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalCora
 import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaPointCora
 import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints

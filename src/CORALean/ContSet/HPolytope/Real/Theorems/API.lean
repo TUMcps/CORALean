@@ -84,6 +84,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.InteriorRestrictNonempty
 import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedIffSimplexSupportFunc
 import CORALean.ContSet.HPolytope.Real.Theorems.IsFullDimCoraCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.IsIntersectingVPolyCoraCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.IsIntersectingZonoBundleCoraCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegDuplicateCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegIff
 import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegPrintedCounterexample

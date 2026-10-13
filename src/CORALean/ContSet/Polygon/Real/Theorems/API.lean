@@ -14,6 +14,7 @@ import CORALean.ContSet.Polygon.Real.Theorems.ProjectExact
 import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
 import CORALean.ContSet.Polygon.Real.Theorems.ConvHullExact
 import CORALean.ContSet.Polygon.Real.Theorems.RepresentsaEmptySetIff
+import CORALean.ContSet.Polygon.Real.Theorems.IsequalCoraCounterexample
 import CORALean.ContSet.Polygon.Real.Theorems.RepresentsaOriginCoraCounterexample
 import CORALean.ContSet.Polygon.Real.Theorems.IntervalContains
 import CORALean.ContSet.Polygon.Real.Theorems.TimesExact
