@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
-import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A float constrained zonotope's `linComb` holds both operands, and their convex hull

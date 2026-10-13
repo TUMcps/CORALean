@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 4-31 in floats: the main loop

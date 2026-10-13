@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
+
+@[expose] public section
 
 /-!
 # `Interval.ofCenterRadius` denotes the matrices within the half-width

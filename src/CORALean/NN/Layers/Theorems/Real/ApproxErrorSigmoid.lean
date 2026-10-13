@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorTanh
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
-import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
-import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+module
+
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorTanh
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+public import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
+public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+
+@[expose] public section
 
 /-!
 # The approximation errors of the logistic sigmoid

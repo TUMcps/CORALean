@@ -1,5 +1,9 @@
-import CORALean.ContSet.WithEmpty.WithEmpty
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
+module
+
+public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffOrEmpty`

@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
-import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
-import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
+public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
+public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+
+@[expose] public section
 
 /-!
 # The remainder certificate gives one step of the inner algorithm what it needs

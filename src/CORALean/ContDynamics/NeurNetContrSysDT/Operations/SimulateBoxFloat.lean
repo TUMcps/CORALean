@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # An interval-valued `simulate` of the closed loop

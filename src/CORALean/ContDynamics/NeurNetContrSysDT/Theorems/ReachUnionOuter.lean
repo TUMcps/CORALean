@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.ReachUnion
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
-import CORALean.NN.Theorems.SoundEval
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.ReachUnion
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
+public import CORALean.NN.Theorems.SoundEval
+
+@[expose] public section
 
 /-!
 # `reachUnion` encloses `reachUnionExact`

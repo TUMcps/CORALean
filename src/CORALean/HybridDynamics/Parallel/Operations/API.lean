@@ -1,30 +1,32 @@
-import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
-import CORALean.HybridDynamics.Parallel.Operations.LiftTransition
-import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
-import CORALean.HybridDynamics.Parallel.Operations.MergeInvariants
-import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
-import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
-import CORALean.HybridDynamics.Parallel.Operations.Product
-import CORALean.HybridDynamics.Parallel.Operations.ReachFloat
-import CORALean.HybridDynamics.Parallel.Operations.ReachFloatChecked
-import CORALean.HybridDynamics.Parallel.Operations.Unstack
-import CORALean.HybridDynamics.Parallel.Operations.BlockProj
-import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
-import CORALean.HybridDynamics.Parallel.Operations.HPolytopeStackProd
-import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProdFloat
-import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsAdd
-import CORALean.HybridDynamics.Parallel.Operations.ProductWith
-import CORALean.HybridDynamics.Parallel.Operations.ProductAdd
-import CORALean.HybridDynamics.Parallel.Operations.SyncPick
-import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
-import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsCoraTarget
-import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsSync
-import CORALean.HybridDynamics.Parallel.Operations.ProductSync
-import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd
-import CORALean.HybridDynamics.Parallel.Operations.ConZonotopeStackProd
-import CORALean.HybridDynamics.Parallel.Operations.InvariantCutCora
-import CORALean.HybridDynamics.Parallel.Operations.InvariantCutDocumented
-import CORALean.HybridDynamics.Parallel.Operations.SimulateRandomTimesCora
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
+public import CORALean.HybridDynamics.Parallel.Operations.LiftTransition
+public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
+public import CORALean.HybridDynamics.Parallel.Operations.MergeInvariants
+public import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
+public import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
+public import CORALean.HybridDynamics.Parallel.Operations.Product
+public import CORALean.HybridDynamics.Parallel.Operations.ReachFloat
+public import CORALean.HybridDynamics.Parallel.Operations.ReachFloatChecked
+public import CORALean.HybridDynamics.Parallel.Operations.Unstack
+public import CORALean.HybridDynamics.Parallel.Operations.BlockProj
+public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
+public import CORALean.HybridDynamics.Parallel.Operations.HPolytopeStackProd
+public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProdFloat
+public import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsAdd
+public import CORALean.HybridDynamics.Parallel.Operations.ProductWith
+public import CORALean.HybridDynamics.Parallel.Operations.ProductAdd
+public import CORALean.HybridDynamics.Parallel.Operations.SyncPick
+public import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
+public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsCoraTarget
+public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsSync
+public import CORALean.HybridDynamics.Parallel.Operations.ProductSync
+public import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd
+public import CORALean.HybridDynamics.Parallel.Operations.ConZonotopeStackProd
+public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutCora
+public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutDocumented
+public import CORALean.HybridDynamics.Parallel.Operations.SimulateRandomTimesCora
 
 /-!
 # What a parallel hybrid automaton computes, collected

@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
-import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+
+@[expose] public section
 
 /-!
 # A shadow with every generator zero has no interior

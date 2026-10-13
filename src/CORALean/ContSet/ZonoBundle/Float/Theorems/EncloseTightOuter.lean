@@ -1,10 +1,14 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.EncloseTight
-import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
-import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
-import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
-import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
-import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.EncloseTight
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.encloseTight` encloses the convex hull of the two bundles

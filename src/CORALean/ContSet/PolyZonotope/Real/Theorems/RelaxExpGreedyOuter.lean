@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
-import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # Relaxing along a selection over-approximates

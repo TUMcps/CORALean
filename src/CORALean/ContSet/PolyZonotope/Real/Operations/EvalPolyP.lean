@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
+
+@[expose] public section
 
 /-!
 # `evalPoly`'s recursion, paired with its factor-count proof

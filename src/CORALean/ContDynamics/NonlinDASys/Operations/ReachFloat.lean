@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloat
-import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloat
+public import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+
+@[expose] public section
 
 /-!
 # Differential-algebraic reachability in floats

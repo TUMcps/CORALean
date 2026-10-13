@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
+
+@[expose] public section
 
 /-!
 # An unbounded set lies in no V-polytope

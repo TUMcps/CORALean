@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
+
+@[expose] public section
 
 /-!
 # `ConZonotope.keepRows`

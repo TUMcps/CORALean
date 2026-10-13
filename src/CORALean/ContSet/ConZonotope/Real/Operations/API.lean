@@ -1,74 +1,76 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Isequal
-import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
-import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
-import CORALean.ContSet.ConZonotope.Real.Operations.Plus
-import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
-import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
-import CORALean.ContSet.ConZonotope.Real.Operations.Map
-import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.ConZonotope.Real.Operations.MtimesEqMap
-import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
-import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepInvolvement
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepMetric
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepSplit
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
-import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLift
-import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
-import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
-import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectHalfspace
-import CORALean.ContSet.ConZonotope.Real.Operations.RowBound
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenRow
-import CORALean.ContSet.ConZonotope.Real.Operations.Tighten
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeffER
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenPassER
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
-import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
-import CORALean.ContSet.ConZonotope.Real.Operations.Project
-import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce
-import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamG
-import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamA
-import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
-import CORALean.ContSet.ConZonotope.Real.Operations.Rescale
-import CORALean.ContSet.ConZonotope.Real.Operations.Lift
-import CORALean.ContSet.ConZonotope.Real.Operations.Empty
-import CORALean.ContSet.ConZonotope.Real.Operations.CartProd
-import CORALean.ContSet.ConZonotope.Real.Operations.Compact
-import CORALean.ContSet.ConZonotope.Real.Operations.CompactEmbed
-import CORALean.ContSet.ConZonotope.Real.Operations.CompactEqs
-import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
-import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
-import CORALean.ContSet.ConZonotope.Real.Operations.Split
-import CORALean.ContSet.ConZonotope.Real.Operations.StripMat
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStripFamily
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectMany
-import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
-import CORALean.ContSet.ConZonotope.Real.Operations.SupportBound
-import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.ConZonotope.Real.Operations.IsFullDimCora
-import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
-import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
-import CORALean.ContSet.ConZonotope.Real.Operations.Stack
-import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
-import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
-import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
-import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
-import CORALean.ContSet.ConZonotope.Real.Operations.SupportFuncUpperCora
-import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaHyperplaneCora
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Isequal
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Operations.Plus
+public import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
+public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
+public import CORALean.ContSet.ConZonotope.Real.Operations.Map
+public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesEqMap
+public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
+public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepInvolvement
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepMetric
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSplit
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
+public import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLift
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
+public import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectHalfspace
+public import CORALean.ContSet.ConZonotope.Real.Operations.RowBound
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenRow
+public import CORALean.ContSet.ConZonotope.Real.Operations.Tighten
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeffER
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenPassER
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
+public import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
+public import CORALean.ContSet.ConZonotope.Real.Operations.Project
+public import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce
+public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamG
+public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamA
+public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
+public import CORALean.ContSet.ConZonotope.Real.Operations.Rescale
+public import CORALean.ContSet.ConZonotope.Real.Operations.Lift
+public import CORALean.ContSet.ConZonotope.Real.Operations.Empty
+public import CORALean.ContSet.ConZonotope.Real.Operations.CartProd
+public import CORALean.ContSet.ConZonotope.Real.Operations.Compact
+public import CORALean.ContSet.ConZonotope.Real.Operations.CompactEmbed
+public import CORALean.ContSet.ConZonotope.Real.Operations.CompactEqs
+public import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
+public import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
+public import CORALean.ContSet.ConZonotope.Real.Operations.Split
+public import CORALean.ContSet.ConZonotope.Real.Operations.StripMat
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStripFamily
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectMany
+public import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.ConZonotope.Real.Operations.SupportBound
+public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.ConZonotope.Real.Operations.IsFullDimCora
+public import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
+public import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
+public import CORALean.ContSet.ConZonotope.Real.Operations.Stack
+public import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
+public import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
+public import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
+public import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
+public import CORALean.ContSet.ConZonotope.Real.Operations.SupportFuncUpperCora
+public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaHyperplaneCora
 
 /-!
 # What `ConZonotope` computes

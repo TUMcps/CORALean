@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGO
-import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
-import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOOutput
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGO
+public import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOOutput
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # `computeGO` gives the output of every ARX run

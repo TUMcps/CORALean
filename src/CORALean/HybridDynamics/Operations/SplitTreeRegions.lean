@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.IdentHA
+module
+
+public import CORALean.HybridDynamics.Definitions.IdentHA
+
+@[expose] public section
 
 /-!
 # The invariants of the identified automaton

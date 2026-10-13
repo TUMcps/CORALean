@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # An interval-valued `simulate`

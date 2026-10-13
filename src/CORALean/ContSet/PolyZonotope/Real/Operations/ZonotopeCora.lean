@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraWeight
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraWeight
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.zonotopeCora`

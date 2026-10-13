@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.pool`: the generators of every member

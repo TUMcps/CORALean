@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.MinusFromScalar
-import CORALean.ContSet.ContSet.Theorems.UminusOuter
+module
+
+public import CORALean.ContSet.ContSet.Operations.MinusFromScalar
+public import CORALean.ContSet.ContSet.Theorems.UminusOuter
+
+@[expose] public section
 
 /-!
 # `minusFromScalar` encloses the reflected translate

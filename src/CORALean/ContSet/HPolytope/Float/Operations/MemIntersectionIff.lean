@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.intersection`, over a floating-point scalar

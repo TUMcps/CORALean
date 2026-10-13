@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.SigmoidRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.SigmoidRelaxation
+
+@[expose] public section
 
 /-!
 # The sigmoid layer

@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Order.Round
-import Mathlib.Analysis.Real.Sqrt
+module
+
+public import Mathlib.Algebra.Order.Round
+public import Mathlib.Analysis.Real.Sqrt
+
+@[expose] public section
 
 /-!
 # `robustnessReachSetGloballyCora`, CORA's robustness of `G_[0,T] x > 0` on a reach set

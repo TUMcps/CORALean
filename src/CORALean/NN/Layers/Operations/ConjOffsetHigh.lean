@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Definitions.ScaleRounding
+module
+
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Definitions.ScaleRounding
+
+@[expose] public section
 
 /-!
 # An affine conjugate's offset, rounded up

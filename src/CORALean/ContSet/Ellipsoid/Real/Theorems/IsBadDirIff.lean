@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
-import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
+
+@[expose] public section
 
 /-!
 # A direction is bad iff the inner difference shape is not positive semidefinite

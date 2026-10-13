@@ -1,41 +1,43 @@
-import CORALean.ContSet.LevelSet.Real.Theorems.ForallFinAdd
-import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
-import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
-import CORALean.ContSet.LevelSet.Real.Theorems.ContainsIff
-import CORALean.ContSet.LevelSet.Real.Theorems.ConstructEmpty
-import CORALean.ContSet.LevelSet.Real.Theorems.ConstructInf
-import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
-import CORALean.ContSet.LevelSet.Real.Theorems.PlusExact
-import CORALean.ContSet.LevelSet.Real.Theorems.NotExact
-import CORALean.ContSet.LevelSet.Real.Theorems.RestrictConstruct
-import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityExact
-import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityFstOp
-import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualitySndOp
-import CORALean.ContSet.LevelSet.Real.Theorems.LiftExact
-import CORALean.ContSet.LevelSet.Real.Theorems.MtimesExact
-import CORALean.ContSet.LevelSet.Real.Theorems.TaylorSeriesMem
-import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxSubset
-import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxExact
-import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxCounterexample
-import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxParabola
-import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectSolvableSubset
-import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectUnsolvableSubset
-import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectUnsolvableCounterexample
-import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinCounterexample
-import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinOfNeZero
-import CORALean.ContSet.LevelSet.Real.Theorems.OutsideInvariantOfRangeBound
-import CORALean.ContSet.LevelSet.Real.Theorems.GuardDisjointOfRangeBound
-import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingUniformOuter
-import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellOuter
-import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellCounterexample
-import CORALean.ContSet.LevelSet.Real.Theorems.ContainsCellCoraCounterexample
-import CORALean.ContSet.LevelSet.Real.Theorems.PotIntCoraMissesCounterexample
-import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaEmptySetSound
-import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound
-import CORALean.ContSet.LevelSet.Real.Theorems.CompactExact
-import CORALean.ContSet.LevelSet.Real.Theorems.IsequalSound
-import CORALean.ContSet.LevelSet.Real.Theorems.IsequalCoraCounterexample
-import CORALean.ContSet.LevelSet.Real.Theorems.TightenDomainLinearIsContractor
+module
+
+public import CORALean.ContSet.LevelSet.Real.Theorems.ForallFinAdd
+public import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
+public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.ContainsIff
+public import CORALean.ContSet.LevelSet.Real.Theorems.ConstructEmpty
+public import CORALean.ContSet.LevelSet.Real.Theorems.ConstructInf
+public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+public import CORALean.ContSet.LevelSet.Real.Theorems.PlusExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.NotExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityFstOp
+public import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualitySndOp
+public import CORALean.ContSet.LevelSet.Real.Theorems.LiftExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.MtimesExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.TaylorSeriesMem
+public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxSubset
+public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxCounterexample
+public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxParabola
+public import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectSolvableSubset
+public import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectUnsolvableSubset
+public import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectUnsolvableCounterexample
+public import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinCounterexample
+public import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinOfNeZero
+public import CORALean.ContSet.LevelSet.Real.Theorems.OutsideInvariantOfRangeBound
+public import CORALean.ContSet.LevelSet.Real.Theorems.GuardDisjointOfRangeBound
+public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingUniformOuter
+public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellOuter
+public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellCounterexample
+public import CORALean.ContSet.LevelSet.Real.Theorems.ContainsCellCoraCounterexample
+public import CORALean.ContSet.LevelSet.Real.Theorems.PotIntCoraMissesCounterexample
+public import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound
+public import CORALean.ContSet.LevelSet.Real.Theorems.CompactExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.IsequalSound
+public import CORALean.ContSet.LevelSet.Real.Theorems.IsequalCoraCounterexample
+public import CORALean.ContSet.LevelSet.Real.Theorems.TightenDomainLinearIsContractor
 
 /-!
 # What a level set guarantees, collected

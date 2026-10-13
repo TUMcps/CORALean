@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # Appending two float vectors and reading back commutes

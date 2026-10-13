@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # `MatExp.expIntervalTaylor` encloses the Taylor truncation, over a float

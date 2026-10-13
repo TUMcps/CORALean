@@ -1,13 +1,17 @@
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
-import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
-import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
-import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
-import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
-import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
-import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # What the float `ZonoBundle` instantiates

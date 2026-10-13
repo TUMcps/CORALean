@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Real.Operations.BoxMid
-import CORALean.ContSet.Taylm.Real.Operations.BoxRad
-import CORALean.ContSet.Taylm.Real.Definitions.Box
-import CORALean.ContSet.Taylm.Real.Taylm
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BoxMid
+public import CORALean.ContSet.Taylm.Real.Operations.BoxRad
+public import CORALean.ContSet.Taylm.Real.Definitions.Box
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A point of a box in normalized coordinates

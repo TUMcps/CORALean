@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.IsFullDim
-import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.IsFullDim
+public import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
+
+@[expose] public section
 
 /-!
 # `Capsule.isFullDim` is sound

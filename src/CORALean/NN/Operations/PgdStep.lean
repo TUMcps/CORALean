@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.FgsmAttack
+module
+
+public import CORALean.NN.Operations.FgsmAttack
+
+@[expose] public section
 
 /-!
 # One iteration of CORA's `computePGDAttack`

@@ -1,8 +1,12 @@
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Order.Disjoint
-import Mathlib.Order.Interval.Set.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Order.Disjoint
+public import Mathlib.Order.Interval.Set.Basic
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # [1, Sec. 2.2]'s falsification test `y ∉ R ⊕ V` falsifies conformant measurements

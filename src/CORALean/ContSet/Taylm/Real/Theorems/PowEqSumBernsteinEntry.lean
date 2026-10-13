@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
-import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinBasis
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
+public import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinBasis
+
+@[expose] public section
 
 /-!
 # A monomial on `[-1, 1]` in the Bernstein basis

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import Mathlib.Algebra.BigOperators.Group.Finset.Defs
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The sum of reciprocals in Halder's iteration

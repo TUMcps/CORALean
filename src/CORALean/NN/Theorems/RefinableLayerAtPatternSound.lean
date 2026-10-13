@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Operations.RefinableLayerAtPattern
+module
+
+public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Operations.RefinableLayerAtPattern
+
+@[expose] public section
 
 /-!
 # Every pattern's layer is sound

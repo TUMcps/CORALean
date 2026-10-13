@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mtimesMatZonotope`

@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
-import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
+public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
+
+@[expose] public section
 
 /-!
 # Every parallel run is a run of the product

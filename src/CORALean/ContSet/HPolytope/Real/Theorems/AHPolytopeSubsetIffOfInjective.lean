@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
-import Mathlib.Analysis.Normed.Group.Basic
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Topology.MetricSpace.Pseudo.Defs
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
+public import Mathlib.Analysis.Normed.Group.Basic
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # AH-polytope in AH-polytope, exactly, when `Y` is injective

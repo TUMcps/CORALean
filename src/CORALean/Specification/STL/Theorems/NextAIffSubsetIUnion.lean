@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.Halfspace
-import CORALean.Specification.STL.Definitions.RTL
+module
+
+public import CORALean.Specification.STL.Definitions.Halfspace
+public import CORALean.Specification.STL.Definitions.RTL
+
+@[expose] public section
 
 /-!
 # Checking `Aϱ` at a time is a polytope inclusion

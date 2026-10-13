@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMapMatZono
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapMatZono
+public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
+
+@[expose] public section
 
 /-!
 # The quadratic map at a matrix zonotope is enclosed by `Zonotope.quadMapMatZono`

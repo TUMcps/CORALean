@@ -1,7 +1,11 @@
-import CORALean.NN.Operations.ActivationKindMergeValues
-import CORALean.NN.Definitions.ActivationKindFn
-import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
-import Mathlib.Analysis.SpecialFunctions.Exp
+module
+
+public import CORALean.NN.Operations.ActivationKindMergeValues
+public import CORALean.NN.Definitions.ActivationKindFn
+public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+public import Mathlib.Analysis.SpecialFunctions.Exp
+
+@[expose] public section
 
 /-!
 # The merge values are the finite limits

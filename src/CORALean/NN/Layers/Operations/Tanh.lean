@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.TanhRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.TanhRelaxation
+
+@[expose] public section
 
 /-!
 # The tanh layer

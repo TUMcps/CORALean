@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # An affine image of a polyhedron is a polyhedron

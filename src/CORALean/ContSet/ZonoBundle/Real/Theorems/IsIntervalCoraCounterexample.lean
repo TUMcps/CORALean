@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # CORA's `zonoBundle/representsa_` calls a segment an interval

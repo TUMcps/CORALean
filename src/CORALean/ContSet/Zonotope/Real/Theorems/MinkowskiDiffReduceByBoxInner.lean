@@ -1,10 +1,14 @@
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # Reduction's own box turns the reduced zonotope back into an inner approximation

@@ -1,11 +1,15 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Polygon
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
-import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
-import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Polygon
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
+public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
+public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.polygon` encloses the zonotope

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStepFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStepFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
+
+@[expose] public section
 
 /-!
 # One float step linearized at the centre holds every run of the real system

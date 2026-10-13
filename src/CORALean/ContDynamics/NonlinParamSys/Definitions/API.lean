@@ -1,9 +1,11 @@
-import CORALean.ContDynamics.NonlinParamSys.Definitions.Linearized
-import CORALean.ContDynamics.NonlinParamSys.Definitions.FloatModel
-import CORALean.ContDynamics.NonlinParamSys.Definitions.LinearizedFloat
-import CORALean.ContDynamics.NonlinParamSys.Definitions.PancakeScaled
-import CORALean.ContDynamics.NonlinParamSys.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NonlinParamSys.Definitions.WithSteps
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.Linearized
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.FloatModel
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.LinearizedFloat
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.PancakeScaled
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.WithSteps
 
 /-!
 # What `NonlinParamSys` means beyond the system itself

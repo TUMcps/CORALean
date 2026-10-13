@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Module.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Module.Basic
+
+@[expose] public section
 
 /-!
 # The `1`-norm against the supremum norm

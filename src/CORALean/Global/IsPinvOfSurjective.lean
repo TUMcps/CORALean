@@ -1,6 +1,10 @@
-import CORALean.Global.DmdPinv
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.Global.DmdPinv
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # The pseudo-inverse of a matrix that is onto

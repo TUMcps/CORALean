@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.EvalPoly
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.NN.Layers.Definitions.EvalPoly
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # A polynomial relaxation carried along an affine conjugation, over ℝ

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.Times
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Times
+
+@[expose] public section
 
 /-!
 # `Taylm.prod`, over a floating-point scalar

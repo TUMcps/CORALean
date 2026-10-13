@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.ContSet.Taylm.Real.Operations.GetSyms
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Taylm.Real.Operations.GetSyms
+
+@[expose] public section
 
 /-!
 # `Taylm.getSyms`, over a floating-point scalar

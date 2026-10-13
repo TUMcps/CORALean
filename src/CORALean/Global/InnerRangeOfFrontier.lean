@@ -1,5 +1,9 @@
-import CORALean.Global.SubmersionFrontier
-import Mathlib.Topology.Connected.Basic
+module
+
+public import CORALean.Global.SubmersionFrontier
+public import Mathlib.Topology.Connected.Basic
+
+@[expose] public section
 
 /-!
 # A connected set the frontier's image misses is inside the image

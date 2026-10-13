@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceKeepBy`

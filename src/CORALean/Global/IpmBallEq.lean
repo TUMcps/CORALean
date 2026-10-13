@@ -1,6 +1,10 @@
-import CORALean.Global.IpmBall
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+module
+
+public import CORALean.Global.IpmBall
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # The interval of the ball predictor

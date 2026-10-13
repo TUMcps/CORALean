@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+
+@[expose] public section
 
 /-!
 # An exponent column under the lexicographic order

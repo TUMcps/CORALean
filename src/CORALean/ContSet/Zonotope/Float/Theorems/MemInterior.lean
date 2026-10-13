@@ -1,5 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.BoxSubset
-import Mathlib.Analysis.Normed.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.BoxSubset
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+
+@[expose] public section
+
 /-!
 # A point strictly inside the certified box is interior to the nominal set
 

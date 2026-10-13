@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # A positive fixed-point value has a positive mantissa

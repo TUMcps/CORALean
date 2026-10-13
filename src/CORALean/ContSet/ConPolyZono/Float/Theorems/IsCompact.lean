@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Instances
-import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Instances
+public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A float con poly zono is compact

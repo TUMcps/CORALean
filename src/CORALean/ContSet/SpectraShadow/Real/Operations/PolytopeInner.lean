@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.polytopeInner`

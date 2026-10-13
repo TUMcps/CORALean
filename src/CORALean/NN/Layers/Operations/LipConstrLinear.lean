@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.LipConstrScale
-import CORALean.NN.Layers.Operations.Linear
+module
+
+public import CORALean.NN.Layers.Operations.LipConstrScale
+public import CORALean.NN.Layers.Operations.Linear
+
+@[expose] public section
 
 /-!
 # The Lipschitz-constrained linear layer

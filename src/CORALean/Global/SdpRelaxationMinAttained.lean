@@ -1,10 +1,14 @@
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Data.Matrix.Block
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Topology.Order.Compact
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+module
+
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Data.Matrix.Block
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Topology.Instances.Matrix
+public import Mathlib.Topology.Order.Compact
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # The semidefinite relaxations are minima

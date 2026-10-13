@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BoundaryPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BoundaryPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+
+@[expose] public section
 
 /-!
 # `Zonotope.boundaryPoint` lies on the boundary

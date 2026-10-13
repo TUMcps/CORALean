@@ -1,6 +1,8 @@
-import CORALean.ContDynamics.NeurNetContrSysNL.NeurNetContrSysNL
-import CORALean.ContDynamics.NeurNetContrSysNL.Operations.API
-import CORALean.ContDynamics.NeurNetContrSysNL.Theorems.API
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysNL.NeurNetContrSysNL
+public import CORALean.ContDynamics.NeurNetContrSysNL.Operations.API
+public import CORALean.ContDynamics.NeurNetContrSysNL.Theorems.API
 
 /-!
 # A neural network in the loop of a nonlinear plant, collected

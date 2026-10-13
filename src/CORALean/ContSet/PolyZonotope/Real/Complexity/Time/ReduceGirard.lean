@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.ReduceBy
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirard
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.ReduceBy
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirard
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.reduceGirardCost`

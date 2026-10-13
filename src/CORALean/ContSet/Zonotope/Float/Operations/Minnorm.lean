@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MinnormOffset
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MinnormOffset
+
+@[expose] public section
 
 /-!
 # `Zonotope.minnorm`, over a floating-point scalar

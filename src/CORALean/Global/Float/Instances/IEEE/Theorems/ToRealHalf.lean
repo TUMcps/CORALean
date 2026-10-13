@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealHalf
-import CORALean.Global.Float.Instances.IEEE.Operations.Half
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealHalf
+public import CORALean.Global.Float.Instances.IEEE.Operations.Half
+
+@[expose] public section
 
 /-!
 # Halving is exact

@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContSet.ConZonotope.Float.Instances
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 1-6 in floats: the loop state before the first iteration

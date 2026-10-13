@@ -1,5 +1,9 @@
-import Mathlib.Analysis.LocallyConvex.Separation
-import Mathlib.Analysis.Real.Sqrt
+module
+
+public import Mathlib.Analysis.LocallyConvex.Separation
+public import Mathlib.Analysis.Real.Sqrt
+
+@[expose] public section
 
 /-!
 # The homogeneous S-lemma

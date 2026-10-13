@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.Global.Float.EuclideanNorm
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.Global.Float.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.containsPoint`, over a floating-point scalar

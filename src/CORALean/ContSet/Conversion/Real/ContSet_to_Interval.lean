@@ -1,16 +1,20 @@
-import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
-import CORALean.ContSet.Conversion.Real.ConPolyZono_to_Interval
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
-import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Capsule.Real.Instances
-import CORALean.ContSet.ConPolyZono.Real.Instances
-import CORALean.ContSet.ConZonotope.Real.Instances
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.PolyZonotope.Real.Instances
-import CORALean.ContSet.VPolytope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
+public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_Interval
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Capsule.Real.Instances
+public import CORALean.ContSet.ConPolyZono.Real.Instances
+public import CORALean.ContSet.ConZonotope.Real.Instances
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+public import CORALean.ContSet.VPolytope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # Enclosing itself in a box, asked for as a class

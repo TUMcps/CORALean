@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+
+@[expose] public section
 
 /-!
 # The constant input's interpolation error lies in `constCorrectionMatrix`

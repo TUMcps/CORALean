@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.WeightLayer
+module
+
+public import CORALean.NN.Definitions.WeightLayer
+
+@[expose] public section
 
 /-!
 # The fused affine map being accumulated

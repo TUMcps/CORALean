@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Affine
-import CORALean.ContSet.Zonotope.Real.Theorems.DerivLine
-import CORALean.ContSet.Zonotope.Real.Theorems.FderivEqGradient
-import CORALean.ContSet.Zonotope.Real.Theorems.UpdateEqAddSingle
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Affine
+public import CORALean.ContSet.Zonotope.Real.Theorems.DerivLine
+public import CORALean.ContSet.Zonotope.Real.Theorems.FderivEqGradient
+public import CORALean.ContSet.Zonotope.Real.Theorems.UpdateEqAddSingle
+
+@[expose] public section
 
 /-!
 # The gradient set through a linear layer

@@ -1,5 +1,9 @@
-import CORALean.Specification.Specification
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.Specification.Specification
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # The origin in the hull of differences forces an intersection

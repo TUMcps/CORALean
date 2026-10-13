@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # `HPolytope.isequalNondeg` needs the minimal representation

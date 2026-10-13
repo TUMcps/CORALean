@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNEqExtremePoints
-import Mathlib.Data.Fin.Tuple.Sort
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNEqExtremePoints
+public import Mathlib.Data.Fin.Tuple.Sort
+
+@[expose] public section
 
 /-!
 # Sorting the box first makes `EXPLORE BN` complete

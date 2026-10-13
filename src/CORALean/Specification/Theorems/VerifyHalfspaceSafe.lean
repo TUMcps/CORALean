@@ -1,6 +1,10 @@
-import CORALean.Specification.Operations.VerifyHalfspace
-import CORALean.Specification.Theorems.Containment
-import CORALean.Specification.Theorems.HoldsIUnion
+module
+
+public import CORALean.Specification.Operations.VerifyHalfspace
+public import CORALean.Specification.Theorems.Containment
+public import CORALean.Specification.Theorems.HoldsIUnion
+
+@[expose] public section
 
 /-!
 # `[1, Alg. 2]`: `safe` proves the whole horizon never leaves the safe halfspaces

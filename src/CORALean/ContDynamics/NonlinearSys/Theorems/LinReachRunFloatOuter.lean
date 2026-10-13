@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachRunFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
-import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachRunFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+
+@[expose] public section
 
 /-!
 # The float `linReach` loop holds every run over every step

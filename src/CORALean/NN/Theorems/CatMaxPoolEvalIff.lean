@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.CatMaxPool
-import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
+module
+
+public import CORALean.NN.Operations.CatMaxPool
+public import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
+
+@[expose] public section
 
 /-!
 # The CAT form of max pooling is max pooling

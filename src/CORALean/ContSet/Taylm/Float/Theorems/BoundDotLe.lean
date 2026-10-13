@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.BoundDot
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BoundDot
+
+@[expose] public section
 
 /-!
 # `Taylm.boundDot` bounds the support function

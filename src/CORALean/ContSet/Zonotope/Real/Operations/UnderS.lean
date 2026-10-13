@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ExtremalGen
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ExtremalGen
+
+@[expose] public section
 
 /-!
 # The under-approximation of a zonotope by its extremal points along `S`

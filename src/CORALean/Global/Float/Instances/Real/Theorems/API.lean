@@ -1,6 +1,8 @@
-import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
-import CORALean.Global.Float.Instances.Real.Theorems.ToRealReal
-import CORALean.Global.Float.Instances.Real.Theorems.ToRealVecReal
+module
+
+public import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
+public import CORALean.Global.Float.Instances.Real.Theorems.ToRealReal
+public import CORALean.Global.Float.Instances.Real.Theorems.ToRealVecReal
 
 /-!
 # ℝ as a float model: reading it back, collected

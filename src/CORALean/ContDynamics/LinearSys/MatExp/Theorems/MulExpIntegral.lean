@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
+
+@[expose] public section
 
 /-!
 # The integrated exponential against `A`

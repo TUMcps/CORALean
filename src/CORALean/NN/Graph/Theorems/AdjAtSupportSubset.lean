@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Operations.AdjMax
-import CORALean.NN.Graph.Theorems.EdgeMatNonneg
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.NN.Graph.Operations.AdjMax
+public import CORALean.NN.Graph.Theorems.EdgeMatNonneg
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The maximal adjacency's support dominates every admissible one

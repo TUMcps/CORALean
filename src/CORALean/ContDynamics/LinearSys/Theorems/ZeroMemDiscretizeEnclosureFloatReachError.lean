@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReachSucc
-import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemTimePointStepInputFloatError
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReachSucc
+public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemTimePointStepInputFloatError
+
+@[expose] public section
 
 /-!
 # The float sampled run keeps the origin in its error box

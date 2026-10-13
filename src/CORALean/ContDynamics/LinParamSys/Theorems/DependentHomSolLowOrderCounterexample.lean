@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # CORA's dependent low-order solution misses the solution's second order

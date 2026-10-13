@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureOuter
+
+@[expose] public section
 
 /-!
 # `restructureReduce` over-approximates the set

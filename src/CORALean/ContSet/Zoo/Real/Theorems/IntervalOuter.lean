@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Real.Operations.Interval
-import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
+module
+
+public import CORALean.ContSet.Zoo.Real.Operations.Interval
+public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
+
+@[expose] public section
 
 /-!
 # `Zoo.interval` encloses the range

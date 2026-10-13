@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
-import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
+public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
+
+@[expose] public section
 
 /-!
 # `constInputSolution` holds what the constant contributes, at every time of the step

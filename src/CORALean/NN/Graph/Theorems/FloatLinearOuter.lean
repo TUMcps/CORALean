@@ -1,8 +1,12 @@
-import CORALean.NN.Graph.Operations.FloatLinear
-import CORALean.NN.Graph.Operations.Linear
-import CORALean.NN.Graph.Theorems.FloatBiasPointMem
-import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
+module
+
+public import CORALean.NN.Graph.Operations.FloatLinear
+public import CORALean.NN.Graph.Operations.Linear
+public import CORALean.NN.Graph.Theorems.FloatBiasPointMem
+public import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # The float graph linear layer over-approximates the exact one

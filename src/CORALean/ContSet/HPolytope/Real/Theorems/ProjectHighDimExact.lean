@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import CORALean.ContSet.HPolytope.Real.Theorems.LiftExact
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.LiftExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+
+@[expose] public section
 
 /-!
 # `projectHighDim` is the lift with the new coordinates zero, exactly

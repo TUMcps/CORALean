@@ -1,7 +1,11 @@
-import CORALean.Global.ThetaUniform
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
-import Mathlib.Probability.Independence.Basic
-import Mathlib.Analysis.Normed.Module.FiniteDimension
+module
+
+public import CORALean.Global.ThetaUniform
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+public import Mathlib.Probability.Independence.Basic
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # Shenmaier's sampling bound

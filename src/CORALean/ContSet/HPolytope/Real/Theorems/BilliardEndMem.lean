@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.BilliardEnd
-import CORALean.Global.BilliardReflectLaw
-import Mathlib.Tactic.Linarith
-import Mathlib.Data.List.MinMax
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.BilliardEnd
+public import CORALean.Global.BilliardReflectLaw
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Data.List.MinMax
+
+@[expose] public section
 
 /-!
 # The billiard walk never leaves the polytope

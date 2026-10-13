@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
-import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetOuter
-import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetOuter
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.splitDepFactor` covers the set

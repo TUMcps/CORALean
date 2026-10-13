@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # The coefficient hits its target

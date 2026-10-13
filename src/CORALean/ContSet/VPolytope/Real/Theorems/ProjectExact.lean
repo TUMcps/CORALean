@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Project
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Project
+public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `VPolytope.project` is exactly the projected set

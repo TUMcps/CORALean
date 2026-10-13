@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Empty
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Empty
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.empty` denotes the empty set

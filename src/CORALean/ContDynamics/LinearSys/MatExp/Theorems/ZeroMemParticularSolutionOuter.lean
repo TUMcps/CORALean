@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+
+@[expose] public section
 
 /-!
 # `0 ∈ P̂^U(Δt)` when `0 ∈ U₀`

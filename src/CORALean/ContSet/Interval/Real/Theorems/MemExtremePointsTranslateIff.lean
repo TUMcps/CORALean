@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+
+@[expose] public section
 
 /-!
 # Translating a box to the origin

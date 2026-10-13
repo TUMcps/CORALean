@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.OutputEq.OutputEq
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.OutputEq.OutputEq
+
+@[expose] public section
 
 /-!
 # The canonical form of a linear system

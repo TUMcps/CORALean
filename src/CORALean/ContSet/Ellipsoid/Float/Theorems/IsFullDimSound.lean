@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsFullDimIff
-import Mathlib.LinearAlgebra.Matrix.Gershgorin
-import Mathlib.Topology.Algebra.Group.Pointwise
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsFullDimIff
+public import Mathlib.LinearAlgebra.Matrix.Gershgorin
+public import Mathlib.Topology.Algebra.Group.Pointwise
+
+@[expose] public section
 
 /-!
 # A `true` from `Ellipsoid.isFullDim` proves an interior point

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
-import CORALean.ContSet.PolyZonotope.Float.Operations.IndepFactors
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
-import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
-import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGenAll
+module
+
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+public import CORALean.ContSet.PolyZonotope.Float.Operations.IndepFactors
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
+public import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGenAll
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.containsSetApprox`

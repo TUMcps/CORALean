@@ -1,5 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.HalfspaceRange
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.HalfspaceRange
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # What `[ω̲, ω̄]` says about a zonotope and a halfspace

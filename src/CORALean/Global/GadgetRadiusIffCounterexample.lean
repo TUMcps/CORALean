@@ -1,6 +1,10 @@
-import CORALean.Global.CoeffNorm
-import CORALean.Global.CoeffNormHalfGadgetH
-import CORALean.Global.GadgetGA
+module
+
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.CoeffNormHalfGadgetH
+public import CORALean.Global.GadgetGA
+
+@[expose] public section
 
 /-!
 # The printed circumbody `Z(H)` of the reduction is too large

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Triu
-import CORALean.ContSet.Interval.Float.Theorems.MaskExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Triu
+public import CORALean.ContSet.Interval.Float.Theorems.MaskExact
+
+@[expose] public section
 
 /-!
 # `Interval.triu` over floats is exact

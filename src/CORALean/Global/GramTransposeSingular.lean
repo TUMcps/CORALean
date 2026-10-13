@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The Gram matrix (5) inverts is singular for more data points than templates

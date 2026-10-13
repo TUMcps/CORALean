@@ -1,6 +1,10 @@
-import CORALean.ContSet.LevelSet.Real.Operations.PotIntCora
-import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.PotIntCora
+public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # CORA's `potInt` misses a guard that is hit

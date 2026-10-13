@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Float.Operations.IsFullDimWith
-import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Topology.Algebra.Group.Pointwise
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDimWith
+public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Topology.Algebra.Group.Pointwise
+
+@[expose] public section
 
 /-!
 # A `true` from `VPolytope.isFullDim` proves an interior point

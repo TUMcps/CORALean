@@ -1,8 +1,12 @@
-import CORALean.Global.CoeffNorm
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.LinearAlgebra.Matrix.Trace
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.Global.CoeffNorm
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.LinearAlgebra.Matrix.Trace
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # The linear relaxation is exact for a parallelotope circumbody

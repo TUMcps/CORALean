@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `ConZonotope.plus` is exactly the Minkowski sum

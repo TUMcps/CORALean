@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BoundIntersect2DBisect
-import CORALean.ContSet.Zonotope.Real.Theorems.BisectLowIsLeast
-import CORALean.ContSet.Zonotope.Real.Theorems.MemMirrorYConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.SectionConvex
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BoundIntersect2DBisect
+public import CORALean.ContSet.Zonotope.Real.Theorems.BisectLowIsLeast
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemMirrorYConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.SectionConvex
+
+@[expose] public section
 
 /-!
 # [1, Alg. 4] returns the section of the zonogon

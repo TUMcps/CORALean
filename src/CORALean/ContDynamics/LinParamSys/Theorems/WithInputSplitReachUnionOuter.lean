@@ -1,19 +1,23 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplitReachUnionExact
-import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachUnion
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolution
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagate
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplitReachUnionExact
+public import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachUnion
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagate
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # `reachUnion` with the input set split encloses every constant-parameter run

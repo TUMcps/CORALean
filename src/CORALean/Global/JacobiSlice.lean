@@ -1,6 +1,11 @@
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The slice of a box through a point

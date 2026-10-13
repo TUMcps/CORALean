@@ -1,6 +1,10 @@
-import CORALean.Global.InnerRangeTest
-import Mathlib.Topology.Algebra.Module.FiniteDimension
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.Global.InnerRangeTest
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # The preconditioned inclusion test

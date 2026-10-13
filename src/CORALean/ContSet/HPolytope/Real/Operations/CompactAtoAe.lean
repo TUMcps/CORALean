@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
-import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
-import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
+public import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
+public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
+
+@[expose] public section
 
 /-!
 # `HPolytope.compactAtoAe`

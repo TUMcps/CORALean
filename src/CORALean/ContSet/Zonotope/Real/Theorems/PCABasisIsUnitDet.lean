@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
+
+@[expose] public section
 
 /-!
 # The principal-axis basis is invertible

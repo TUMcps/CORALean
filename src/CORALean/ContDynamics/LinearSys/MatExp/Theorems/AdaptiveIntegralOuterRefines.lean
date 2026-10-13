@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveRemainderSubsetIntervalInputRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularCoeffSumMemFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveRemainderSubsetIntervalInputRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularCoeffSumMemFloat
+
+@[expose] public section
 
 /-!
 # The float `eAtInt` holds the exact one

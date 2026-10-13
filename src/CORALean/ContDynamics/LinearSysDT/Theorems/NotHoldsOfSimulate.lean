@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
+public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+
+@[expose] public section
 
 /-!
 # One sampled run can falsify what reachability can only fail to prove

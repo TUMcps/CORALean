@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import Mathlib.Algebra.Module.BigOperators
-import Mathlib.Data.Nat.Choose.Sum
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import Mathlib.Algebra.Module.BigOperators
+public import Mathlib.Data.Nat.Choose.Sum
+
+@[expose] public section
 
 /-!
 # `getSubset`'s point is the original's at the re-parametrized factor

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+
+@[expose] public section
 
 /-!
 # Raising one label adds its bound

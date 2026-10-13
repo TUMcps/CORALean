@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.DualBound
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.DualBound
+
+@[expose] public section
 
 /-!
 # `HPolytope.boundOfDual` bounds the support function

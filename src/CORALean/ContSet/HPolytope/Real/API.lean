@@ -1,9 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.HPolytope.Real.Definitions.API
-import CORALean.ContSet.HPolytope.Real.Operations.API
-import CORALean.ContSet.HPolytope.Real.Theorems.API
-import CORALean.ContSet.HPolytope.Real.Complexity.API
-import CORALean.ContSet.HPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.HPolytope.Real.Definitions.API
+public import CORALean.ContSet.HPolytope.Real.Operations.API
+public import CORALean.ContSet.HPolytope.Real.Theorems.API
+public import CORALean.ContSet.HPolytope.Real.Complexity.API
+public import CORALean.ContSet.HPolytope.Real.Instances
 
 /-!
 # Polytopes by halfspaces, collected

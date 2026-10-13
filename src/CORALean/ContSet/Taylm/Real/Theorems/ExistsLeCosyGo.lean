@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.CosyGo
-import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeGlobalMin
-import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
+public import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeGlobalMin
+public import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # COSY-GO's upper end is above the minimum

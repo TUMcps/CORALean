@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGap
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGen
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGap
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGen
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxExp`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefOfPos
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefZero
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefNecessary
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefOfPos
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefZero
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefNecessary
+
+@[expose] public section
 
 /-!
 # The cone of a shadow is the perspective cone with its apex

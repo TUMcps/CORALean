@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
+
+@[expose] public section
 
 /-!
 # A monomial read against an extended factor vector

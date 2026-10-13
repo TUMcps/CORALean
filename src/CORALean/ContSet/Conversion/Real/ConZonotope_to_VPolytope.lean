@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
-import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+
+@[expose] public section
 
 /-!
 # A constrained zonotope as its vertices

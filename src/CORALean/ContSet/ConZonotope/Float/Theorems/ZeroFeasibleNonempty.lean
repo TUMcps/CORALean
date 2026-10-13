@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # A constrained zonotope that passes `zeroFeasible` is nonempty

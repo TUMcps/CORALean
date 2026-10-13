@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
-import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
+public import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The joint reachable set holds every consistent state

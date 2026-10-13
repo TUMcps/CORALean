@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+
+@[expose] public section
 
 /-!
 # Sampling a system with a set-valued matrix, in floats

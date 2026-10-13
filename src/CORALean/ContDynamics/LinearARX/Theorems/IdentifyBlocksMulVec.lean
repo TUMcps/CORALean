@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyBlocks
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyBlocks
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
+
+@[expose] public section
 
 /-!
 # The blocks of a matrix act on the regressor as the ARX recursion

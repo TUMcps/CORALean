@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveCora1D
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptErrLoopCora1D
-import CORALean.ContDynamics.NonlinearSys.Operations.OptimalDeltatCora
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveCora1D
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptErrLoopCora1D
+public import CORALean.ContDynamics.NonlinearSys.Operations.OptimalDeltatCora
+
+@[expose] public section
 
 /-!
 # `linReachAdaptiveCora1D`, the first step of CORA's `linReach_adaptive` in one dimension

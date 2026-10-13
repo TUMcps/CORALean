@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Exp
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.Global.Float.Exp
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.exp`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Polygon.times`, over a floating-point scalar

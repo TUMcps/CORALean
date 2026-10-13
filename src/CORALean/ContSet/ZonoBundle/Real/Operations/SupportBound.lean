@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+
+@[expose] public section
 
 /-!
 # The tightest of a bundle's component bounds

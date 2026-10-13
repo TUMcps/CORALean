@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+
+@[expose] public section
 
 /-!
 # Do two H-polytopes intersect?

@@ -1,4 +1,8 @@
-import Mathlib.Logic.Basic
+module
+
+public import Mathlib.Logic.Basic
+
+@[expose] public section
 
 /-!
 # CORA's `reduceUnderApprox` never runs its legacy methods when it should

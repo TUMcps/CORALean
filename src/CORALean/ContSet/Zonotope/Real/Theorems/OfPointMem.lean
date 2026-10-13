@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # A generator-free zonotope contains its own centre

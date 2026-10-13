@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Dirac
-import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
-import Mathlib.Data.EReal.Basic
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Dirac
+public import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.dirac` encloses, over a floating-point scalar

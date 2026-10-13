@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.OnePlusExpDown
+module
+
+public import CORALean.NN.Layers.Operations.OnePlusExpDown
+
+@[expose] public section
 
 /-!
 # What a box must satisfy for softplus

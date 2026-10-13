@@ -1,5 +1,9 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Group.Nat.Even
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Group.Nat.Even
+
+@[expose] public section
 
 /-!
 # `[l, u]ᵏ`

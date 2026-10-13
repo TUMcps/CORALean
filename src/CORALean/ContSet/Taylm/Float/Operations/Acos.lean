@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Float.Operations.Taylor
-import CORALean.ContSet.Taylm.Float.Operations.MagUp
-import CORALean.ContSet.Taylm.Float.Operations.ArcsinCoef
-import CORALean.ContSet.Taylm.Float.Operations.ArcsinBound
-import CORALean.Global.Float.InverseTrig
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Taylor
+public import CORALean.ContSet.Taylm.Float.Operations.MagUp
+public import CORALean.ContSet.Taylm.Float.Operations.ArcsinCoef
+public import CORALean.ContSet.Taylm.Float.Operations.ArcsinBound
+public import CORALean.Global.Float.InverseTrig
+
+@[expose] public section
 
 /-!
 # `Taylm.acos`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import Mathlib.Analysis.Normed.Ring.Lemmas
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+
+@[expose] public section
 
 /-!
 # `plus` adds the two sup-norm ball radii

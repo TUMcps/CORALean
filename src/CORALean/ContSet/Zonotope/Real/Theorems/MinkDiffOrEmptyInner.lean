@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffOrEmpty` is an inner approximation of the Minkowski difference

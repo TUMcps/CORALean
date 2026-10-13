@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GlobalAbstrErr
-import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GlobalAbstrErr
+public import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+public import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # The two forms `[1, Def. 4]` gives the local abstraction error

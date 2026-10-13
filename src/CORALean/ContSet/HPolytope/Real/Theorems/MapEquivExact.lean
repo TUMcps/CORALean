@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+
+@[expose] public section
 
 /-!
 # `HPolytope.mapEquiv` is exactly the image

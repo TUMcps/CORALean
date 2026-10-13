@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.ZcpSetEq
-import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ZcpSetEq
+public import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
+
+@[expose] public section
 
 /-!
 # The interval norm of a rotated prediction set is linear in the stretch factors

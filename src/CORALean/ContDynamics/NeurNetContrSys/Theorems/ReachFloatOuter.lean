@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatHorizon
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatHorizon
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+
+@[expose] public section
 
 /-!
 # `NeurNetContrSys.reachFloat` contains every sampled run at the period boundaries

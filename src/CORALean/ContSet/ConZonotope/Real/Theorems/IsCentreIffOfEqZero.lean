@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
+
+@[expose] public section
 
 /-!
 # With no constraint rows the centre is `c`

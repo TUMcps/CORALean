@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Convex.SpecificFunctions.Basic
-import Mathlib.Analysis.Convex.Slope
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Convex.SpecificFunctions.Basic
+public import Mathlib.Analysis.Convex.Slope
+
+@[expose] public section
 
 /-!
 # The a-posteriori Krylov error bound is linear in time

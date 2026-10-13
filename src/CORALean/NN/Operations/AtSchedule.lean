@@ -1,12 +1,16 @@
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Definitions.RefinableNetwork
-import CORALean.NN.Definitions.Schedule
-import CORALean.NN.Layers.Layer
-import CORALean.NN.NeuralNetwork
-import CORALean.NN.Operations.RefinableLayerAtPattern
-import CORALean.NN.Operations.ScheduleCons
-import CORALean.NN.Operations.ScheduleHead
-import CORALean.NN.Operations.ScheduleTail
+module
+
+public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Definitions.RefinableNetwork
+public import CORALean.NN.Definitions.Schedule
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.NeuralNetwork
+public import CORALean.NN.Operations.RefinableLayerAtPattern
+public import CORALean.NN.Operations.ScheduleCons
+public import CORALean.NN.Operations.ScheduleHead
+public import CORALean.NN.Operations.ScheduleTail
+
+@[expose] public section
 
 /-!
 # Reading a schedule against a network

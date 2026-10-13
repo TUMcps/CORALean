@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
+
+@[expose] public section
 
 /-!
 # CORA's `nonlinDASys` linearization error misses the error

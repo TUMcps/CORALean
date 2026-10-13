@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Operations.MaxPool
-import CORALean.NN.Layers.Theorems.LeMaxPoolGapUp
-import CORALean.NN.Layers.Theorems.Real.MaxPoolBounds
-import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg
-import CORALean.NN.Layers.Theorems.SelectMatMulVec
+module
+
+public import CORALean.NN.Layers.Operations.MaxPool
+public import CORALean.NN.Layers.Theorems.LeMaxPoolGapUp
+public import CORALean.NN.Layers.Theorems.Real.MaxPoolBounds
+public import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg
+public import CORALean.NN.Layers.Theorems.SelectMatMulVec
+
+@[expose] public section
 
 /-!
 # What the max pooling layer encloses

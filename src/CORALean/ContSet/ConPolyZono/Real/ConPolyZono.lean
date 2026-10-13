@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # Constrained polynomial zonotopes: the representation

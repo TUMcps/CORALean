@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Lift
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Lift
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+
+@[expose] public section
 
 /-!
 # `HPolytope.lift_` is exactly the preimage under the coordinate selection

@@ -1,5 +1,7 @@
-import CORALean.ContSet.HPolytope.Real.API
-import CORALean.ContSet.HPolytope.Float.API
+module
+
+public import CORALean.ContSet.HPolytope.Real.API
+public import CORALean.ContSet.HPolytope.Float.API
 
 /-!
 # Polytopes by halfspaces, both layers

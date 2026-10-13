@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.Interval.Real.Operations.Center
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Interval.Real.Operations.Center
+
+@[expose] public section
 
 /-!
 # `Interval.recentre`

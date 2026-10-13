@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.MinkDiffPoint
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.MinkDiffPoint
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # The Minkowski difference of an ellipsoid and a point is exactly the shifted ellipsoid

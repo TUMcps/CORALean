@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Lt
-import CORALean.ContSet.Interval.Real.Theorems.LeSubset
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Lt
+public import CORALean.ContSet.Interval.Real.Theorems.LeSubset
+
+@[expose] public section
 
 /-!
 # `Interval.lt` implies containment

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
+
+@[expose] public section
 
 /-!
 # What a successful search hands back

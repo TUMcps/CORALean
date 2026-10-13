@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.addedTerms`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.ReduceKeep
-import CORALean.NN.Graph.Operations.ReducedSteps
+module
+
+public import CORALean.NN.Graph.Operations.ReduceKeep
+public import CORALean.NN.Graph.Operations.ReducedSteps
+
+@[expose] public section
 
 /-!
 # `reduceGNNForNode`: the network on the nodes node `v` needs

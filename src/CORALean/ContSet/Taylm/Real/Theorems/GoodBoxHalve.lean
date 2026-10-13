@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
-import CORALean.ContSet.Taylm.Real.Operations.HalveBox
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
+public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Halving keeps a sub-box of the normalized box

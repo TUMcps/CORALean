@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.Global.ExactScalar
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.Global.ExactScalar
+
+@[expose] public section
 
 /-!
 # CORA's `project`: reading some coordinates of a set

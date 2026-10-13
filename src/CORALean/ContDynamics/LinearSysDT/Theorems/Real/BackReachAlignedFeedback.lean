@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedControl
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedControl
+
+@[expose] public section
 
 /-!
 # A feedback that reaches `Z₀` from `Z̲_k` in `k` steps

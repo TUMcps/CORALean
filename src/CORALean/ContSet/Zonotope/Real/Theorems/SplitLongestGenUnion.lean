@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SplitLongestGen
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitLongestGen
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+
+@[expose] public section
 
 /-!
 # Splitting at the longest generator loses nothing

@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
-import Mathlib.Data.EReal.Basic
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # `EmptySet.supportFunc`

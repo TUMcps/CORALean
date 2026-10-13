@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Theorems.LeSound
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApprox
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerApproxImageSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.LeSound
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApprox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerApproxImageSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `innerApprox` is an inner approximation

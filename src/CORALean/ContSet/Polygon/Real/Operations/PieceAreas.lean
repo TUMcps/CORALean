@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Operations.Volume
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Volume
+
+@[expose] public section
 
 /-!
 # `Polygon.pieceAreas`

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import Mathlib.Analysis.RCLike.Lemmas
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import Mathlib.Analysis.RCLike.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # Matrix-vector multiplication as a continuous linear map

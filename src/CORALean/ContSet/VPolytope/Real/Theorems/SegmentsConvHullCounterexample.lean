@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `[1, Eq. 30]` and `[1, Eq. 37]` at an empty operand

@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
-import CORALean.ContSet.Interval.Real.Instances
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
+public import CORALean.ContSet.Interval.Real.Instances
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # A twice-differentiable field supplies its own certificate

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VertexSign
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VertexSign
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermFloat
+
+@[expose] public section
 
 /-!
 # The float `quadTermLo` is at most the exact one

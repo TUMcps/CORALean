@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # Verification by recursively splitting the input set, at any checker

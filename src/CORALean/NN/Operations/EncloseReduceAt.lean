@@ -1,6 +1,10 @@
-import CORALean.NN.Definitions.RefinableNetwork
-import CORALean.NN.Operations.ScheduleHead
-import CORALean.NN.Operations.ScheduleTail
+module
+
+public import CORALean.NN.Definitions.RefinableNetwork
+public import CORALean.NN.Operations.ScheduleHead
+public import CORALean.NN.Operations.ScheduleTail
+
+@[expose] public section
 
 /-!
 # The network evaluation of the refinement loop

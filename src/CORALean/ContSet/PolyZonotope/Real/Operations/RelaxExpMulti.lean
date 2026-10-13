@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxExpMulti`

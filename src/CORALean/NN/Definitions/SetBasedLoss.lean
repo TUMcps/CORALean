@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
+
+@[expose] public section
 
 /-!
 # The set-based loss

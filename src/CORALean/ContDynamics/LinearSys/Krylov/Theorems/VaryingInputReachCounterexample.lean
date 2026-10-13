@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiBasis
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiHessenberg
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiBasis
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiHessenberg
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+
+@[expose] public section
 
 /-!
 # The varying-input enclosure fails with Prop. B.1's error bound

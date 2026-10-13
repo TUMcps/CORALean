@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Lift
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Lift
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # The lifted zonotope decides membership

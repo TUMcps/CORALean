@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Theorems.BallSubsetBallFloat
-import CORALean.NN.Graph.Theorems.BallFloatSubsetSucc
-import CORALean.NN.Graph.Operations.ReduceKeepFloat
+module
+
+public import CORALean.NN.Graph.Theorems.BallSubsetBallFloat
+public import CORALean.NN.Graph.Theorems.BallFloatSubsetSucc
+public import CORALean.NN.Graph.Operations.ReduceKeepFloat
+
+@[expose] public section
 
 /-!
 # The float kept set contains the ball of the steps that remain

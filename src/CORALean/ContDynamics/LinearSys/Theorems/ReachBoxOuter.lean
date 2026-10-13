@@ -1,15 +1,19 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachBox
-import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
-import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachBox
+public import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2] encloses the reachable set on every time interval

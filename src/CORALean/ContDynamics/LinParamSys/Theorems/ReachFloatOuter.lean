@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
-import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+
+@[expose] public section
 
 /-!
 # `LinParamSys.reachFloat` holds every member's flow at every time of every window

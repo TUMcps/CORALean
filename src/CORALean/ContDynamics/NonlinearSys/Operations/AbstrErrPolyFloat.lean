@@ -1,16 +1,20 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
-import CORALean.ContSet.Interval.Float.Operations.CentreMat
-import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Interval.Float.Operations.NormMag
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.Global.Float.BilinUp
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.MatPlus
+public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Interval.Float.Operations.NormMag
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.Global.Float.BilinUp
+
+@[expose] public section
 
 /-!
 # The abstraction error of a conservative polynomialization, in floats

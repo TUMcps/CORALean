@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.TermBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.TermBounds
+
+@[expose] public section
 
 /-!
 # The range of a term list over the box

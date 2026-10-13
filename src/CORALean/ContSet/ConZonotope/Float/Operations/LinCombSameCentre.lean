@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
-import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `ConZonotope.linCombSameCentre`: the hull of two sets that share a centre, with nothing rounded

@@ -1,5 +1,9 @@
-import Mathlib.Analysis.SpecialFunctions.Complex.Arg
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Complex.Arg
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The planar cross product is the product of the norms and the sine

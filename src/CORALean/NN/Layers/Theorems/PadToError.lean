@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
+
+@[expose] public section
 
 /-!
 # Padding leaves the error alone

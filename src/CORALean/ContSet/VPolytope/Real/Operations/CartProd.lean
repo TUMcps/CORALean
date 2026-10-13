@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # `VPolytope.cartProd`

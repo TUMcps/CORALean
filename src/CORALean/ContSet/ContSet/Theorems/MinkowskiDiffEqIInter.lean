@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # A convex subtrahend only has to be subtracted at the points that span it

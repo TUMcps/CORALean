@@ -1,5 +1,9 @@
-import CORALean.Global.DmdcFit
-import CORALean.Global.DmdReduced
+module
+
+public import CORALean.Global.DmdcFit
+public import CORALean.Global.DmdReduced
+
+@[expose] public section
 
 /-!
 # The reduced-order model and the dynamic modes of the dynamic mode decomposition with control

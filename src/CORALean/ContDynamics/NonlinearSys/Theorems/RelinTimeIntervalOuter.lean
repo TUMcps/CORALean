@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
-import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
-import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+
+@[expose] public section
 
 /-!
 # The re-linearization loop, over the whole of a step rather than its ends

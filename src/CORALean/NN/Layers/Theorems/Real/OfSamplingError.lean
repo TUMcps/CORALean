@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.PolyOfSampling
+module
+
+public import CORALean.NN.Layers.Definitions.PolyOfSampling
+
+@[expose] public section
 
 /-!
 # The sampled relaxation's error is the sampling error

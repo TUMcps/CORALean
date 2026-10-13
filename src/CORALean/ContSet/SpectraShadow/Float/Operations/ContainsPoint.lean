@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.containsPoint`, over a floating-point scalar

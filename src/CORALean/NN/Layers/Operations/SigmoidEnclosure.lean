@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Operations.OnePlusExpDown
+module
+
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Operations.OnePlusExpDown
+
+@[expose] public section
 
 /-!
 # The logistic function at a stored value

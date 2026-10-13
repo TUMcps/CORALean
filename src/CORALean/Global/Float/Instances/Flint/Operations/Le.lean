@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Le
-import CORALean.Global.Float.Instances.Flint.Flint
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Le
+public import CORALean.Global.Float.Instances.Flint.Flint
+
+@[expose] public section
 
 /-!
 # Comparison

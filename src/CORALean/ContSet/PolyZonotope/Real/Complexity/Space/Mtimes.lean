@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mtimes`'s counts

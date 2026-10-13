@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Float.Zoo
-import CORALean.ContSet.Taylm.Float.Operations.Times
-import CORALean.ContSet.Interval.Float.Operations.Times
+module
+
+public import CORALean.ContSet.Zoo.Float.Zoo
+public import CORALean.ContSet.Taylm.Float.Operations.Times
+public import CORALean.ContSet.Interval.Float.Operations.Times
+
+@[expose] public section
 
 /-!
 # `Zoo.times`, over a floating-point scalar

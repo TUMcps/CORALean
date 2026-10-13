@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The affine image of an ellipsoid

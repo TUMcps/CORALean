@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubOneLeExpNorm
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepErrorFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpNormTermsLeFloat
-import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoundError
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubOneLeExpNorm
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepErrorFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpNormTermsLeFloat
+public import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoundError
+
+@[expose] public section
 
 /-!
 # `timeIntervalStepErrorFloat` bounds `timeIntervalStepError`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.Times
-import CORALean.Global.ExactScalar
+module
+
+public import CORALean.ContSet.ContSet.Operations.Times
+public import CORALean.Global.ExactScalar
+
+@[expose] public section
 
 /-!
 # `times` encloses the elementwise product

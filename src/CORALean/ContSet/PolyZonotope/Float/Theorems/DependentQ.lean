@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+
+@[expose] public section
 
 /-!
 # `dependent` has no independent generators left

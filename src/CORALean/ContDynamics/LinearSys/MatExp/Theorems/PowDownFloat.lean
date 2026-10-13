@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowDownFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowDownFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.powDown` bounds a nonnegative power from below

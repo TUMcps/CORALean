@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # What a point of `halfScaledLeft` says about its first block

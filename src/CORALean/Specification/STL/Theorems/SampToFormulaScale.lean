@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.FormulaScale
-import CORALean.Specification.STL.Operations.SampToFormula
-import CORALean.Specification.STL.Theorems.ScaleOfPform
+module
+
+public import CORALean.Specification.STL.Operations.FormulaScale
+public import CORALean.Specification.STL.Operations.SampToFormula
+public import CORALean.Specification.STL.Theorems.ScaleOfPform
+
+@[expose] public section
 
 /-!
 # A sampled time formula at step 1 scales to step c

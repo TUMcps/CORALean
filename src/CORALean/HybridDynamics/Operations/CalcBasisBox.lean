@@ -1,5 +1,9 @@
-import CORALean.Global.ExactScalar
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.Global.ExactScalar
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `Location.calcBasisBox`

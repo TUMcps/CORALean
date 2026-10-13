@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import CORALean.Global.EuclideanNorm
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.ellipsoidNorm`

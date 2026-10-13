@@ -1,6 +1,10 @@
-import CORALean.Global.BlockDiag
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+module
+
+public import CORALean.Global.BlockDiag
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.mtimes`

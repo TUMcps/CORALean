@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+
+@[expose] public section
 
 /-!
 # The exponent bookkeeping of `quadMap` is the same term in both layers

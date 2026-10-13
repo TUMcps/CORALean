@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # `IsNonempty` is nonemptiness

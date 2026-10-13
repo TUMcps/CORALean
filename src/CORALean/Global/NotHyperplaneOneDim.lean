@@ -1,9 +1,13 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.FinCases
-import Mathlib.Data.Fintype.Basic
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Algebra.Module.Pi
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Data.Fintype.Basic
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Algebra.Module.Pi
+
+@[expose] public section
 
 /-!
 # A set with two points is no hyperplane of the line

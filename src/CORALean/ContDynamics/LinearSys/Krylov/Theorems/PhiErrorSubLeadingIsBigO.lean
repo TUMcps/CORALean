@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorEqIntegral
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorEqIntegral
+
+@[expose] public section
 
 /-!
 # The leading term of the Krylov error of a φ-function

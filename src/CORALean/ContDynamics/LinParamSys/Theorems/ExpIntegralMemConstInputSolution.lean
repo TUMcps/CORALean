@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolution
-import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
-import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
+
+@[expose] public section
 
 /-!
 # `constInputSolution` holds what the constant contributes, at every member

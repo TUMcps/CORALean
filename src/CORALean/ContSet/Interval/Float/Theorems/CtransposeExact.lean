@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Ctranspose
-import CORALean.ContSet.Interval.Real.Theorems.CtransposeExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Ctranspose
+public import CORALean.ContSet.Interval.Real.Theorems.CtransposeExact
+
+@[expose] public section
 
 /-!
 # `Interval.ctranspose` is exactly the conjugate-transposed set

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.Radius
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Radius
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # Every point of a capsule is within `radius` of the centre

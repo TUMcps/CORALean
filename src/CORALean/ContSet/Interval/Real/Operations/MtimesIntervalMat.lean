@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import CORALean.ContSet.Interval.Real.Operations.MulLo
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+
+@[expose] public section
 
 /-!
 # Intervals: multiplication by an interval matrix

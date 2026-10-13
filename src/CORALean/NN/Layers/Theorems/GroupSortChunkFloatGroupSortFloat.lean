@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.GroupSortFloat
+module
+
+public import CORALean.NN.Layers.Operations.GroupSortFloat
+
+@[expose] public section
 
 /-!
 # The chunk of the sorted vector is the sorted chunk

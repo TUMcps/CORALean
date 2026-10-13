@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
-import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffStepSubsetReachSet
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetReachSetAdd
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffStepSubsetReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetReachSetAdd
+
+@[expose] public section
 
 /-!
 # The time-point sets of the inner algorithm are inner approximations

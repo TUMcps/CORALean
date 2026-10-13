@@ -1,7 +1,11 @@
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.ContSet.Capsule.Real.Instances
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.Capsule.Real.Instances
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
+
+@[expose] public section
 
 /-!
 # A capsule as a box, over a floating-point scalar

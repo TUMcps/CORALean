@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.isequal` is sound

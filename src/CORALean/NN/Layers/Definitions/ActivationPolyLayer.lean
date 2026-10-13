@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.PolyRelaxation
+module
+
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+
+@[expose] public section
 
 /-!
 # The weights of a polynomial activation layer

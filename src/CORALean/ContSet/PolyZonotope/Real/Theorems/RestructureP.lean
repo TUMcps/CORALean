@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
+
+@[expose] public section
 
 /-!
 # `restructure` adds one factor per coordinate

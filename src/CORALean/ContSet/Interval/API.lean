@@ -1,5 +1,7 @@
-import CORALean.ContSet.Interval.Real.API
-import CORALean.ContSet.Interval.Float.API
+module
+
+public import CORALean.ContSet.Interval.Real.API
+public import CORALean.ContSet.Interval.Float.API
 
 /-!
 # Intervals, both layers

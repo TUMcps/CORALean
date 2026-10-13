@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # A zonotope is centrally symmetric

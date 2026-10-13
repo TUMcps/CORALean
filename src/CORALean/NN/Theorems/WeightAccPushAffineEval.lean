@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.WeightAccPushAffine
-import CORALean.NN.Operations.WeightAccEval
+module
+
+public import CORALean.NN.Operations.WeightAccPushAffine
+public import CORALean.NN.Operations.WeightAccEval
+
+@[expose] public section
 
 /-!
 # Fusing an elementwise affine layer composes the maps

@@ -1,30 +1,32 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
-import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
-import CORALean.ContSet.ZonoBundle.Float.Operations.LinComb
-import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
-import CORALean.ContSet.ZonoBundle.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
-import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
-import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
-import CORALean.ContSet.ZonoBundle.Float.Operations.BoundDotLP
-import CORALean.ContSet.ZonoBundle.Float.Operations.Project
-import CORALean.ContSet.ZonoBundle.Float.Operations.Empty
-import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
-import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
-import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMap
-import CORALean.ContSet.ZonoBundle.Float.Operations.CartProd
-import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
-import CORALean.ContSet.ZonoBundle.Float.Operations.Isequal
-import CORALean.ContSet.ZonoBundle.Float.Operations.Split
-import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
-import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.ZonoBundle.Float.Operations.ContainsPoint
-import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
-import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
-import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
-import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
-import CORALean.ContSet.ZonoBundle.Float.Operations.Shrink
-import CORALean.ContSet.ZonoBundle.Float.Operations.EncloseTight
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
+public import CORALean.ContSet.ZonoBundle.Float.Operations.LinComb
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
+public import CORALean.ContSet.ZonoBundle.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
+public import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
+public import CORALean.ContSet.ZonoBundle.Float.Operations.BoundDotLP
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Project
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Empty
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
+public import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMap
+public import CORALean.ContSet.ZonoBundle.Float.Operations.CartProd
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Isequal
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Split
+public import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
+public import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.ZonoBundle.Float.Operations.ContainsPoint
+public import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
+public import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
+public import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Shrink
+public import CORALean.ContSet.ZonoBundle.Float.Operations.EncloseTight
 
 /-!
 # What a float zonotope bundle computes, collected

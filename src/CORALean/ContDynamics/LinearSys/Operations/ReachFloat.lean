@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.ContDynamics.Reach.Operations.Steps
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.ContDynamics.Reach.Operations.Steps
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # Recursive reachability in floats: `R_{k+1} = reduce([e^{AΔt}] R_k, ρ)`

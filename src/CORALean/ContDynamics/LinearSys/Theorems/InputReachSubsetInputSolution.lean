@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
+
+@[expose] public section
 
 /-!
 # `inputSolution` contains everything the input can contribute over a step

@@ -1,9 +1,13 @@
-import CORALean.Global.CoordinatePath
-import CORALean.Global.Tensor
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Analysis.Convex.Topology
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.Global.CoordinatePath
+public import CORALean.Global.Tensor
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Analysis.Convex.Topology
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The inner range of a flow component in Kaucher arithmetic

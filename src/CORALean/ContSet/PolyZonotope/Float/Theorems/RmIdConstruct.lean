@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RmId
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RmId
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
+
+@[expose] public section
 
 /-!
 # `rmId` pins the removed factors at `1`, in float too

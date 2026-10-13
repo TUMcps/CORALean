@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
+
+@[expose] public section
 
 /-!
 # What a float step owes, for an inner approximation

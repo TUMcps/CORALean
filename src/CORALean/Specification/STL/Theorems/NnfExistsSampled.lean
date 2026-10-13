@@ -1,9 +1,13 @@
-import CORALean.Specification.STL.Operations.NnfWeight
-import CORALean.Specification.STL.Theorems.NnfRewriteLit
-import CORALean.Specification.STL.Theorems.NnfRewriteAnd
-import CORALean.Specification.STL.Theorems.NnfRewriteOr
-import CORALean.Specification.STL.Theorems.NnfRewriteUntil
-import CORALean.Specification.STL.Theorems.NnfRewriteRelease
+module
+
+public import CORALean.Specification.STL.Operations.NnfWeight
+public import CORALean.Specification.STL.Theorems.NnfRewriteLit
+public import CORALean.Specification.STL.Theorems.NnfRewriteAnd
+public import CORALean.Specification.STL.Theorems.NnfRewriteOr
+public import CORALean.Specification.STL.Theorems.NnfRewriteUntil
+public import CORALean.Specification.STL.Theorems.NnfRewriteRelease
+
+@[expose] public section
 
 /-!
 # Every normal form rewrites to sampled time

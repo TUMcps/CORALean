@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
-import Mathlib.Tactic.Ring
-import Mathlib.Data.Fintype.BigOperators
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
+public import Mathlib.Tactic.Ring
+public import Mathlib.Data.Fintype.BigOperators
+
+@[expose] public section
 
 /-!
 # `tensorMultiplication` encloses the tensor images

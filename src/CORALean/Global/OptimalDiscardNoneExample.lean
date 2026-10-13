@@ -1,6 +1,10 @@
-import CORALean.Global.OptimalDiscardLe
-import Mathlib.Data.Fintype.Powerset
-import Mathlib.Data.Fintype.Fin
+module
+
+public import CORALean.Global.OptimalDiscardLe
+public import Mathlib.Data.Fintype.Powerset
+public import Mathlib.Data.Fintype.Fin
+
+@[expose] public section
 
 /-!
 # Algorithm A* can have nothing to return

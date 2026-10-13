@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
-import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # The homogeneous flow over `[tStart, tFinal]`, one window of width `Δt` at a time

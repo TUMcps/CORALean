@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.CubMap
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapDepPoint
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CubMap
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapDepPoint
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMap` over-approximates the cubic map, over a floating-point scalar

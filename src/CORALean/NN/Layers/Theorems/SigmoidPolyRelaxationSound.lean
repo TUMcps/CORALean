@@ -1,10 +1,14 @@
-import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
-import CORALean.NN.Layers.Theorems.AbsSubEvalPolyDerivLe
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
-import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
-import CORALean.NN.Layers.Theorems.OfSamplingSound
-import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
-import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
+module
+
+public import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
+public import CORALean.NN.Layers.Theorems.AbsSubEvalPolyDerivLe
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+public import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
+public import CORALean.NN.Layers.Theorems.OfSamplingSound
+public import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
+public import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
+
+@[expose] public section
 
 /-!
 # The polynomial sigmoid relaxation is sound

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Asin
-import CORALean.ContSet.Taylm.Real.Operations.Const
-import CORALean.ContSet.Taylm.Real.Operations.Minus
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Asin
+public import CORALean.ContSet.Taylm.Real.Operations.Const
+public import CORALean.ContSet.Taylm.Real.Operations.Minus
+
+@[expose] public section
 
 /-!
 # `Taylm.acosPrinted`

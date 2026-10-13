@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+
+@[expose] public section
 
 /-!
 # `HPolytope.ofEqs1D`: a one-dimensional polytope from equality rows

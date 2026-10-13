@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Polygon
-import CORALean.ContSet.VPolytope.Float.Operations.Project
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.VPolytope.Float.Operations.Project
+
+@[expose] public section
 
 /-!
 # `Polygon.project`, over a floating-point scalar

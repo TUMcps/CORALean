@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import Mathlib.Data.Finset.Max
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import Mathlib.Data.Finset.Max
+
+@[expose] public section
 
 /-!
 # `Interval.boundaryRatio`

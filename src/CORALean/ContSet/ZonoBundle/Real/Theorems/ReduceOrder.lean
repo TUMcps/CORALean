@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.reduce` bounds the bundle size

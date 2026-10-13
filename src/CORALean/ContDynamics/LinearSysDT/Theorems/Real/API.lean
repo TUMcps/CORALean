@@ -1,83 +1,85 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachForallInnerZonotope
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustSucc
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuterCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedControl
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedFeedback
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedContainsReachError
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedOrdersSubsetReachErrorOrders
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachHeldOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerReducedInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerReducedSubsetReachInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerRepInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachOrdersStepClosedBallOfReduceBoxOrder
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachStepSubsetClosedBall
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetClosedBall
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddError
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddErrorReduced
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ExactUncertainSetEq
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveIntervalOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmi
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorObserverDecay
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveIntervalCoraCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachLTVCoraCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoA1DCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoB1DCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationInputSetCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationOutputOffsetCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveCznAOutputOffsetCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationStateOffsetCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationDistMatrixCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoAOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoBOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LuenbergerErrorMemReachErrorSet
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateErrorEqHull
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorSetSuccSubset
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeOfBounds
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeZonotope
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalObserverOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserver
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeObserverCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalObserverTransformedOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserverTransformed
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DissipationOfHinfLmi
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HinfOfLmi
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ErrorBoundOfHinfLmi
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ErrorBoundOfHinfLmiCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorHdOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.RadiusLmiInfeasible
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.RadiusLeOfContraction
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PeakDisturbanceCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PeakDisturbanceLe
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LpvLmiOfVertices
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LpvLmiOfVerticesCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorLPVOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultErrorEq
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultObserveOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultObserveCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ZeroMemFaultResidual
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfFaultRadiusLmi
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusOfLmi
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiCoraCounterexample
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.RadiusUltimateBoundOfContraction
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorDecoupleDynamic
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorDecoupleOfRank
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiGainIff
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusLmiGainIffHMinusLmi
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusLmiPhiIffGain
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusStepPositiveIffPhi
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PRadiusLeOfLmiChain
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PRadiusPredictStripsLe
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmiChain
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.GlmReachEq
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.GlmReachBoxEqHull
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ControlOfMemUnderS
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachForallInnerZonotope
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustSucc
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedInner
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuterCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedControl
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedFeedback
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedContainsReachError
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedOrdersSubsetReachErrorOrders
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachHeldOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerInner
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerReducedInner
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerReducedSubsetReachInner
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerRepInner
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachOrdersStepClosedBallOfReduceBoxOrder
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachStepSubsetClosedBall
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetClosedBall
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddError
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddErrorReduced
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ExactUncertainSetEq
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveIntervalOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmi
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorObserverDecay
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveIntervalCoraCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachLTVCoraCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoA1DCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoB1DCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationInputSetCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationOutputOffsetCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveCznAOutputOffsetCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationStateOffsetCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObservePropagationDistMatrixCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoAOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveEsoBOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LuenbergerErrorMemReachErrorSet
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateErrorEqHull
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorSetSuccSubset
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeOfBounds
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeZonotope
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalObserverOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserver
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeObserverCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalObserverTransformedOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserverTransformed
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DissipationOfHinfLmi
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HinfOfLmi
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ErrorBoundOfHinfLmi
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ErrorBoundOfHinfLmiCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorHdOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.RadiusLmiInfeasible
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.RadiusLeOfContraction
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PeakDisturbanceCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PeakDisturbanceLe
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LpvLmiOfVertices
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LpvLmiOfVerticesCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ObserveDescriptorLPVOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultErrorEq
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultObserveOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultObserveCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ZeroMemFaultResidual
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfFaultRadiusLmi
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusOfLmi
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiCoraCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.RadiusUltimateBoundOfContraction
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorDecoupleDynamic
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DescriptorDecoupleOfRank
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.FaultRadiusLmiGainIff
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusLmiGainIffHMinusLmi
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusLmiPhiIffGain
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.HMinusStepPositiveIffPhi
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PRadiusLeOfLmiChain
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PRadiusPredictStripsLe
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmiChain
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.GlmReachEq
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.GlmReachBoxEqHull
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ControlOfMemUnderS
 
 /-!
 # What holds of `LinearSysDT` only at `𝕋 := ℝ`, collected

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Operations.TimePoint
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
+
+@[expose] public section
 
 /-!
 # One window of `reach`, enclosed from its own time point: `HR(τ_k) = HR(t_k, t_{k+1})`

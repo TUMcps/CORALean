@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
-import CORALean.Global.Float.FloatOps
+module
+
+public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
+public import CORALean.Global.Float.FloatOps
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.lift` for a float model

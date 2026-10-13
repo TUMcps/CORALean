@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GirardSplit
-import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceBy
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GirardSplit
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceBy
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.reduceGirardDependent`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `linComb`'s independent generator count is the sum of the two incoming ones

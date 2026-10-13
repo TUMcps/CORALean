@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonposOfPow
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonposOfPow
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos
+
+@[expose] public section
 
 /-!
 # Two monomials that agree off one even factor drift only downwards

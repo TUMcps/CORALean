@@ -1,10 +1,14 @@
-import CORALean.ContSet.Interval.Real.Operations.PolyBoxRevise
-import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseLeftLe
-import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseRightGe
-import CORALean.ContSet.Interval.Real.Theorems.ZeroMemExtremal
-import CORALean.ContSet.LevelSet.Real.Definitions.Contractor
-import Mathlib.Topology.Algebra.Order.Field
-import Mathlib.Topology.Algebra.Monoid
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.PolyBoxRevise
+public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseLeftLe
+public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseRightGe
+public import CORALean.ContSet.Interval.Real.Theorems.ZeroMemExtremal
+public import CORALean.ContSet.LevelSet.Real.Definitions.Contractor
+public import Mathlib.Topology.Algebra.Order.Field
+public import Mathlib.Topology.Algebra.Monoid
+
+@[expose] public section
 
 /-!
 # `polyBoxRevise` is a contractor

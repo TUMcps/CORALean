@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Exp
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
+module
+
+public import CORALean.Global.Float.Exp
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+
+@[expose] public section
 
 /-!
 # A directed-rounding logarithm
@@ -37,11 +41,11 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- The bisection midpoint, its one rounding downward so that a bracket under a
 bound stays under it. -/
-private def mid (lo hi : 𝕋) : 𝕋 := half (addDown lo hi)
+def mid (lo hi : 𝕋) : 𝕋 := half (addDown lo hi)
 
 /-- Bisecting for a lower bound: the midpoint becomes the new `lo` where `expUp`
 clears it against `a`, and caps the bracket where it does not. -/
-private def logDownIter (n : ℕ) (a : 𝕋) : ℕ → 𝕋 → 𝕋 → 𝕋
+def logDownIter (n : ℕ) (a : 𝕋) : ℕ → 𝕋 → 𝕋 → 𝕋
   | 0, lo, _ => lo
   | k + 1, lo, hi =>
     if le (expUp n (mid lo hi)) a = true then logDownIter n a k (mid lo hi) hi
@@ -49,7 +53,7 @@ private def logDownIter (n : ℕ) (a : 𝕋) : ℕ → 𝕋 → 𝕋 → 𝕋
 
 /-- The reflection: `expDown` clearing the midpoint from the other side is what
 lets it replace `hi`. -/
-private def logUpIter (n : ℕ) (a : 𝕋) : ℕ → 𝕋 → 𝕋 → 𝕋
+def logUpIter (n : ℕ) (a : 𝕋) : ℕ → 𝕋 → 𝕋 → 𝕋
   | 0, _, hi => hi
   | k + 1, lo, hi =>
     if le a (expDown n (mid lo hi)) = true then logUpIter n a k lo (mid lo hi)

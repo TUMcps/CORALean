@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubFoldDown
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubFoldDown
+
+@[expose] public section
 
 /-!
 # `Zonotope.cubMapCDown`

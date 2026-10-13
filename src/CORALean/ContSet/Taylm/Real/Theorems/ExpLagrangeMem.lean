@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
-import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-import Mathlib.Analysis.Calculus.Taylor
-import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+public import Mathlib.Analysis.Calculus.Taylor
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+
+@[expose] public section
 
 /-!
 # The exponential's expansion and its Lagrange term, as printed

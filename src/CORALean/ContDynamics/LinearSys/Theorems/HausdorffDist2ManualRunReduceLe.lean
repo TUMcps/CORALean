@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ManualRunTEq
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2ReduceLe
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.Global.EuclideanHausdorffDistAddLe
-import CORALean.Global.EuclideanHausdorffDistTriangle
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ManualRunTEq
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2ReduceLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.Global.EuclideanHausdorffDistAddLe
+public import CORALean.Global.EuclideanHausdorffDistTriangle
+
+@[expose] public section
 
 /-!
 # [1, Prop. 4]'s eq. (28): the reduction error accumulated over the horizon

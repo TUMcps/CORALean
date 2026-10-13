@@ -1,8 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ImageEnclosure
-import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
-import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetDepth
-import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetMaxWidth
-import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetNeurons
+module
+
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ImageEnclosure
+public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
+public import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetDepth
+public import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetMaxWidth
+public import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetNeurons
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `SetBasedNet.forwardCost`

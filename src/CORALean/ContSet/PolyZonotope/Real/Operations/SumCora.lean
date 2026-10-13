@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.sumCora`: `sum` as CORA's code computes it

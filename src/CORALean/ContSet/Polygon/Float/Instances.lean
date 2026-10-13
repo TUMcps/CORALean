@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # What the float `Polygon` instantiates

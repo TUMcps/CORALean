@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
-import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
-import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
-import Mathlib.LinearAlgebra.BilinearMap
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+public import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+public import Mathlib.LinearAlgebra.BilinearMap
+
+@[expose] public section
 
 /-!
 # `Zonotope.matSmul` over-approximates scaling by every scalar in `[cLo, cHi]`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionDep
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionDep
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
+
+@[expose] public section
 
 /-!
 # `intersectionDep` over-approximates the intersection

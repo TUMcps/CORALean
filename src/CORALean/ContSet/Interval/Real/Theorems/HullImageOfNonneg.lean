@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Definitions.Hull
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.Hull
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # The interval hull of a box under a nonnegative matrix

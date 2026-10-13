@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesLinCombIff
-import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
-import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesLinCombIff
+public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
+public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.linComb` contains every segment between the two sets

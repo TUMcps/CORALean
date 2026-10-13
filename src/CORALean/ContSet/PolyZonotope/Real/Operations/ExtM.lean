@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
+
+@[expose] public section
 
 /-!
 # The monomial read against the widened exponent matrix

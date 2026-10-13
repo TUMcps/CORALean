@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
-import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
+
+@[expose] public section
 
 /-!
 # An edge of the generator graph recentres

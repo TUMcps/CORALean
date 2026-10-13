@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
-import CORALean.ContSet.Zonotope.Float.Operations.BallB
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
+public import CORALean.ContSet.Zonotope.Float.Operations.BallB
+
+@[expose] public section
 
 /-!
 # `ConZonotope.isFullDim`, over a floating-point scalar

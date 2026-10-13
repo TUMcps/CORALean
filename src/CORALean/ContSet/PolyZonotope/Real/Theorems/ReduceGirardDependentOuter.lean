@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # The dependent-only reduction over-approximates

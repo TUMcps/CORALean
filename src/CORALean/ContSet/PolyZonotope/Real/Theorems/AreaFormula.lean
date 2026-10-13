@@ -1,6 +1,10 @@
-import Mathlib.MeasureTheory.Function.Jacobian
-import Mathlib.MeasureTheory.Integral.Bochner.Set
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import Mathlib.MeasureTheory.Function.Jacobian
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # The area formula on the factor cube, for a matrix derivative

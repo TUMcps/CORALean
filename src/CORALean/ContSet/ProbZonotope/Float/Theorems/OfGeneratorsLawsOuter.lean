@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.OfGenerators
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.OfGenerators
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
+
+@[expose] public section
 
 /-!
 # The laws of `ofGenerators` hold those of `μ + g N`

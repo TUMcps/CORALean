@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+
+@[expose] public section
 
 /-!
 # The output of a closed-loop run lies in the output set of its reachable set

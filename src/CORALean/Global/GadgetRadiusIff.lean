@@ -1,7 +1,11 @@
-import CORALean.Global.CoeffNormHalfGadgetH
-import CORALean.Global.GadgetGA
-import Mathlib.Analysis.Convex.SpecificFunctions.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.Global.CoeffNormHalfGadgetH
+public import CORALean.Global.GadgetGA
+public import Mathlib.Analysis.Convex.SpecificFunctions.Basic
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # The reduction's containment radius is one iff the `p ↦ 1` norm is

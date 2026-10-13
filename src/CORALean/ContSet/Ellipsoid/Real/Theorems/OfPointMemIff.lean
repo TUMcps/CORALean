@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
-import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.ofPoint` denotes exactly one point

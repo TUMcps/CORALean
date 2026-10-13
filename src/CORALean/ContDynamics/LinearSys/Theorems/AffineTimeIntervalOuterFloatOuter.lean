@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.AffineTimeIntervalOuterFloat
-import CORALean.ContDynamics.LinearSys.Theorems.AffineTimePointNextFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.AffineWindowFloatOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AffineTimeIntervalOuterFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.AffineTimePointNextFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.AffineWindowFloatOuter
+
+@[expose] public section
 
 /-!
 # The float affine time-interval set holds the affine flow over the step

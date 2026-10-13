@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu1D
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu1D
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # CORA's `intersectStrip` (Liu) does not enclose the intersection

@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
-import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
-import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
-import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+
+@[expose] public section
 
 /-!
 # The re-linearization loop encloses the run at every step boundary

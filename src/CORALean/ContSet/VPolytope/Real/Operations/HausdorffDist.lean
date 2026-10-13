@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # `VPolytope.hausdorffDist`

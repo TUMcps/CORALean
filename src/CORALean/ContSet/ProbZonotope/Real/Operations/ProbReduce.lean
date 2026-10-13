@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
-import CORALean.ContSet.ProbZonotope.Real.Operations.OfGenerators
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
+public import CORALean.ContSet.ProbZonotope.Real.Operations.OfGenerators
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.probReduce`

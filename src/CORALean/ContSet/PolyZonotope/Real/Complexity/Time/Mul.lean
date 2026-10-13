@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mulCost`

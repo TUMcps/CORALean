@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Calculus.Deriv.ZPow
-import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.ZPow
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+
+@[expose] public section
 
 /-!
 # The Taylor coefficients of `1/x`

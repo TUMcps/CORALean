@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Data.Real.Sign
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Data.Real.Sign
+
+@[expose] public section
 
 /-!
 # The exposed face of a zonotope in a direction

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope is bounded

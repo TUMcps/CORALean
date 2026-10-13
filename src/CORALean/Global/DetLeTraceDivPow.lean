@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Analysis.MeanInequalities
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.Order.Star.Real
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Analysis.MeanInequalities
+
+@[expose] public section
 
 /-!
 # The determinant of a positive semidefinite matrix is at most `(tr/n)ⁿ`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
-import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter
-import CORALean.ContSet.Zonotope.Float.Operations.ProjectHighDim
-import CORALean.ContSet.Zonotope.Real.Theorems.ProjectHighDimExact
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
+public import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter
+public import CORALean.ContSet.Zonotope.Float.Operations.ProjectHighDim
+public import CORALean.ContSet.Zonotope.Real.Theorems.ProjectHighDimExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.projectHighDim_` over-approximates the zero-padded set

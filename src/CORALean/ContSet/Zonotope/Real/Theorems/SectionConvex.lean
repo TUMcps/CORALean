@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.Global.Tensor
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # The section of a zonotope by a vertical line is an interval

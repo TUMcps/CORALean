@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+
+@[expose] public section
 
 /-!
 # A box as a constrained zonotope

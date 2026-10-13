@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamD
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamD
+
+@[expose] public section
 
 /-!
 # `MatExp.oneParamF`

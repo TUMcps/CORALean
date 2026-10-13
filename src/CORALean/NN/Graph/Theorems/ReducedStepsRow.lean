@@ -1,8 +1,12 @@
-import CORALean.NN.Graph.Operations.EvalSteps
-import CORALean.NN.Graph.Operations.ReducedSteps
-import CORALean.NN.Graph.Theorems.BallSubsetSucc
-import CORALean.NN.Graph.Theorems.MemBallSelf
-import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
+module
+
+public import CORALean.NN.Graph.Operations.EvalSteps
+public import CORALean.NN.Graph.Operations.ReducedSteps
+public import CORALean.NN.Graph.Theorems.BallSubsetSucc
+public import CORALean.NN.Graph.Theorems.MemBallSelf
+public import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
+
+@[expose] public section
 
 /-!
 # Dropping nodes the receptive field does not reach changes nothing at `v`

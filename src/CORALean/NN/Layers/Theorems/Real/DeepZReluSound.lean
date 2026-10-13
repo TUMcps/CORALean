@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Theorems.ReluRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.DeepZReluEq
+module
+
+public import CORALean.NN.Layers.Theorems.ReluRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.DeepZReluEq
+
+@[expose] public section
 
 /-!
 # DeepZ's ReLU transformer is sound

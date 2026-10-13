@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Centre
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Centre
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # The stored centre is a point of the ellipsoid

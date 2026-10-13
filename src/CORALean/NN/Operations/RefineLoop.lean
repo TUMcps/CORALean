@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.Refine
+module
+
+public import CORALean.NN.Operations.Refine
+
+@[expose] public section
 
 /-!
 # The refinement loop's schedule

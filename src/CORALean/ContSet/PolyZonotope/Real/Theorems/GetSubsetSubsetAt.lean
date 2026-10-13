@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+
+@[expose] public section
 
 /-!
 # `getSubset` carries a factor sub-box to the corresponding subset

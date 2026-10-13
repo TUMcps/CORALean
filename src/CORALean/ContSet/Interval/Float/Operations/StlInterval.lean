@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import Mathlib.Order.Interval.Set.Defs
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import Mathlib.Order.Interval.Set.Defs
+
+@[expose] public section
 
 /-!
 # `Interval.stlInterval`, over a floating-point scalar

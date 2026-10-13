@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+
+@[expose] public section
 
 /-!
 # `Zonotope.errOp`

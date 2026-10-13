@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOrderLe
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOrderLe
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.reduce` bounds the generator count

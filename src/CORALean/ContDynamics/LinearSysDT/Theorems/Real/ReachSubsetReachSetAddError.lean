@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
+
+@[expose] public section
 
 /-!
 # The computed run reaches no further than the exact set plus its own error

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.UnderS
-import Mathlib.Algebra.BigOperators.Option
-import Mathlib.Algebra.Module.BigOperators
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.UnderS
+public import Mathlib.Algebra.BigOperators.Option
+public import Mathlib.Algebra.Module.BigOperators
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The under-approximation is the convex hull of the extremal points

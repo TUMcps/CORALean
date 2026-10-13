@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Order.Lattice.Nat
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Order.Lattice.Nat
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.maxExp`

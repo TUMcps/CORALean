@@ -1,5 +1,9 @@
-import Mathlib.Analysis.RCLike.Lemmas
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Analysis.RCLike.Lemmas
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # Where a linear form is positive on a pointed cone

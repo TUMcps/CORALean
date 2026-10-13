@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.RightInvReach
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.RightInvReach
+
+@[expose] public section
 
 /-!
 # A zonotope inside another, from approximate coefficients and a reached box

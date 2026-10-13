@@ -1,9 +1,13 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.LinearAlgebra.Matrix.ToLin
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # An ellipsoid is full-dimensional iff its generator matrix has full rank

@@ -1,7 +1,11 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
-import CORALean.Global.Float.Instances.Dyadic.Operations.RoundUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealShift
-import Mathlib.Analysis.Normed.Ring.Lemmas
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
+public import CORALean.Global.Float.Instances.Dyadic.Operations.RoundUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealShift
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+
+@[expose] public section
 
 /-!
 # Rounding up never undershoots

@@ -1,4 +1,6 @@
-import CORALean.ContSet.ContSet.Float.Operations.SupportBound
+module
+
+public import CORALean.ContSet.ContSet.Float.Operations.SupportBound
 
 /-!
 # What the set interface computes over the floating-point scalar

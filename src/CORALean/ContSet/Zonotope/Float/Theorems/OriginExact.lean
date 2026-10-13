@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Origin
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Origin
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+
+@[expose] public section
 
 /-!
 # `Zonotope.origin` is exactly the origin

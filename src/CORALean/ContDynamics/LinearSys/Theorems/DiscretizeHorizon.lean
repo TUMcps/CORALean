@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+
+@[expose] public section
 
 /-!
 # The run sampled from a bounded horizon alone

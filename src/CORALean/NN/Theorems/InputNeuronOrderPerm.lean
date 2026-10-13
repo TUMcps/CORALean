@@ -1,8 +1,12 @@
-import CORALean.NN.Operations.InputNeuronOrder
-import CORALean.NN.Theorems.SnakeOrderMultiset
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Fintype.Prod
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.NN.Operations.InputNeuronOrder
+public import CORALean.NN.Theorems.SnakeOrderMultiset
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Fintype.Prod
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # `getInputNeuronOrder` ranks every input neuron once

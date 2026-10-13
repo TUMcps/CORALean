@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.RefineVerifyFrom
-import CORALean.NN.Theorems.EncloseReduceAtOuter
+module
+
+public import CORALean.NN.Operations.RefineVerifyFrom
+public import CORALean.NN.Theorems.EncloseReduceAtOuter
+
+@[expose] public section
 
 /-!
 # The refinement loop is sound from any order pattern

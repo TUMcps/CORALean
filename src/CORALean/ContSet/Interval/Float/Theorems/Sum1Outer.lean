@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Sum1
-import CORALean.ContSet.Interval.Real.Operations.Sum1
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Sum1
+public import CORALean.ContSet.Interval.Real.Operations.Sum1
+
+@[expose] public section
 
 /-!
 # `Interval.sum₁` holds the exact layer's box

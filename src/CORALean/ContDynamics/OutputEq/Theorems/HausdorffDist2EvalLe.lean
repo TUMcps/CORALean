@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.OutputEq.OutputEq
-import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
-import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.ContDynamics.OutputEq.OutputEq
+public import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
+public import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # The output-set error a state-space error induces, at the Euclidean norm

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Local `C F⁻¹` blocks miss the coupling of the linearization error

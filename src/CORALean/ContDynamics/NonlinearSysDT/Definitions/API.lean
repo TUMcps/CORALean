@@ -1,13 +1,15 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatModel
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.GOFloat
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ExactUncertainSet
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatModel
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.GOFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ExactUncertainSet
 
 /-!
 # What `NonlinearSysDT` means beyond the system itself

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `mtimes` does not change the dependent generator count

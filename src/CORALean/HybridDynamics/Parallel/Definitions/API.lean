@@ -1,15 +1,18 @@
-import CORALean.Global.ExactScalar
-import CORALean.HybridDynamics.Parallel.Definitions.Lifting
-import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
-import CORALean.HybridDynamics.Parallel.Definitions.ReachSet
-import CORALean.Global.ExactAdd
-import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
-import CORALean.HybridDynamics.Parallel.Definitions.GlobalsDistinct
-import CORALean.HybridDynamics.Parallel.Definitions.InputsGlobalOnly
-import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
-import CORALean.HybridDynamics.Parallel.Definitions.SyncLabels
-import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
-import CORALean.HybridDynamics.Parallel.Definitions.SyncRun
+module
+
+public import CORALean.Global.ExactScalar
+public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
+public import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
+public import CORALean.HybridDynamics.Parallel.Definitions.ReachSet
+public import CORALean.Global.ExactAdd
+public import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
+public import CORALean.HybridDynamics.Parallel.Definitions.GlobalsDistinct
+public import CORALean.HybridDynamics.Parallel.Definitions.InputsGlobalOnly
+public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
+public import CORALean.HybridDynamics.Parallel.Definitions.SyncLabels
+public import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
+public import CORALean.HybridDynamics.Parallel.Definitions.SyncRun
+
 /-!
 # What a parallel hybrid automaton means
 

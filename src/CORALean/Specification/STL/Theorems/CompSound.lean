@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.CompEval
-import CORALean.Specification.STL.Theorems.SatAnd
-import CORALean.Specification.STL.Theorems.SatNext
+module
+
+public import CORALean.Specification.STL.Operations.CompEval
+public import CORALean.Specification.STL.Theorems.SatAnd
+public import CORALean.Specification.STL.Theorems.SatNext
+
+@[expose] public section
 
 /-!
 # Rewriting the parts of a composition is sound

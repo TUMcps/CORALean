@@ -1,5 +1,7 @@
-import CORALean.ContDynamics.NeurNetContrSysNL.Theorems.PeriodExtended
-import CORALean.ContDynamics.NeurNetContrSysNL.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysNL.Theorems.PeriodExtended
+public import CORALean.ContDynamics.NeurNetContrSysNL.Theorems.ReachOuter
 
 /-!
 # What `NeurNetContrSysNL` guarantees

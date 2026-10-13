@@ -1,8 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Algebra.Module.BigOperators
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Algebra.Module.BigOperators
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Tactic.Abel
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # A diagonally-scaled zonotope, robust positively invariant

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
+
+@[expose] public section
 
 /-!
 # The Krylov identity is exact below the Krylov order

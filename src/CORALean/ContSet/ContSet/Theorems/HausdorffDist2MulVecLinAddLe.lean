@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.Global.EuclideanHausdorffDistZero
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.Global.EuclideanHausdorffDistZero
+
+@[expose] public section
 
 /-!
 # Perturbing a linear image moves it no further than the perturbation reaches, at `‖·‖₂`

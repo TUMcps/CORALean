@@ -1,5 +1,9 @@
-import CORALean.Specification.Operations.VerifyConvex
-import CORALean.Specification.Theorems.VerifyConvexFoldInv
+module
+
+public import CORALean.Specification.Operations.VerifyConvex
+public import CORALean.Specification.Theorems.VerifyConvexFoldInv
+
+@[expose] public section
 
 /-!
 # A `violated` verdict from `verifyConvex` names a witnessing hull

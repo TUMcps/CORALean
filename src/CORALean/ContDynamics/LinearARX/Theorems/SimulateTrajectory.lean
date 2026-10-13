@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Operations.Simulate
-import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Simulate
+public import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
+
+@[expose] public section
 
 /-!
 # A simulated run is a trajectory

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
-import CORALean.ContSet.Interval.Float.Operations.MatMul
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+
+@[expose] public section
 
 /-!
 # `[e^{At}]` by scaling and squaring at every member, over a float time range

@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEqOfMeasurable
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerInputTermMem
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Theorems.Convex
-import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEqOfMeasurable
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerInputTermMem
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A time-varying run with an input stays in the float step and input solution

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.exactPlus`

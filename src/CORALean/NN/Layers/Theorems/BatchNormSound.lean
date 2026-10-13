@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.BatchNorm
-import CORALean.NN.Layers.Theorems.LinearSound
+module
+
+public import CORALean.NN.Layers.Operations.BatchNorm
+public import CORALean.NN.Layers.Theorems.LinearSound
+
+@[expose] public section
 
 /-!
 # What the batch normalization layer encloses

@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.FormulaScale
+module
+
+public import CORALean.Specification.STL.Operations.FormulaScale
+
+@[expose] public section
 
 /-!
 # A non-temporal formula does not scale

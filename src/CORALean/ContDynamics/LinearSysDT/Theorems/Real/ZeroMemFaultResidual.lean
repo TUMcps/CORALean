@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FaultResidual
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FaultResidual
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # No fault, no alarm

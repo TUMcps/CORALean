@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import Mathlib.Analysis.Convex.Combination
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import Mathlib.Analysis.Convex.Combination
+
+@[expose] public section
 
 /-!
 # Moving the vertices moves the hull no further

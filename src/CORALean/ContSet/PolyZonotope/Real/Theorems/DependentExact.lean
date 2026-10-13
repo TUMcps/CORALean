@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # Making the independent generators dependent loses nothing

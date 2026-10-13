@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Split
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Split
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
+
+@[expose] public section
 
 /-!
 # What the halves of a split bundle share

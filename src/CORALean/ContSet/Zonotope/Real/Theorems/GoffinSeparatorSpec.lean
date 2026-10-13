@@ -1,13 +1,17 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GoffinSeparator
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
-import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-import Mathlib.Analysis.Normed.Group.Pointwise
-import Mathlib.LinearAlgebra.Matrix.DotProduct
-import Mathlib.Topology.Algebra.Group.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GoffinSeparator
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
+public import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+public import Mathlib.Analysis.Normed.Group.Pointwise
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+public import Mathlib.Topology.Algebra.Group.Basic
+
+@[expose] public section
 
 /-!
 # Goffin's separator separates

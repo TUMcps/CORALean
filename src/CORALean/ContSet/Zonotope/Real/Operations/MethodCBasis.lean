@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Fin.Tuple.Sort
-import Mathlib.Data.List.MinMax
-import Mathlib.Data.List.Sort
-import Mathlib.Data.List.Sublists
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Fin.Tuple.Sort
+public import Mathlib.Data.List.MinMax
+public import Mathlib.Data.List.Sort
+public import Mathlib.Data.List.Sublists
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `Zonotope.methodCBasis`: method C's choice of `Γ`

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.TapMat
-import CORALean.NN.Layers.Theorems.ToRealTapEntry
+module
+
+public import CORALean.NN.Layers.Operations.TapMat
+public import CORALean.NN.Layers.Theorems.ToRealTapEntry
+
+@[expose] public section
 
 /-!
 # A stencil matrix reads back exactly

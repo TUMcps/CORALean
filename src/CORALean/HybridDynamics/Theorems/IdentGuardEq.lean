@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.IdentGuard
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.HybridDynamics.Operations.IdentGuard
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The guard of Prop. 1 is exactly the states the reset maps into the target invariant

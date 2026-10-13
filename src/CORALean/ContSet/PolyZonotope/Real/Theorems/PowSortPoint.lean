@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.PowSort
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PowSort
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPoint
+
+@[expose] public section
 
 /-!
 # The powers [1, Alg. 2] builds are the powers

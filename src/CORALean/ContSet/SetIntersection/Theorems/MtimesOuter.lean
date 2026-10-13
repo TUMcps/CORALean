@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetIntersection.Operations.Mtimes
+module
+
+public import CORALean.ContSet.SetIntersection.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `SetIntersection.mtimes` over-approximates the linear image

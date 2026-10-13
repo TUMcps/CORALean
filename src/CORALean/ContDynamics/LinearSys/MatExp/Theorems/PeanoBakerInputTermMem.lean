@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerInputTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralMemSmulOfMemSmul
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralPowDivFactorialMul
-import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
-import Mathlib.Analysis.Convex.Topology
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerInputTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralMemSmulOfMemSmul
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralPowDivFactorialMul
+public import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+public import Mathlib.Analysis.Convex.Topology
+
+@[expose] public section
 
 /-!
 # The `k`-th Peano–Baker term of an input, inside the `k`-th box power of its set

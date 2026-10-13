@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
+
+@[expose] public section
 
 /-!
 # Multiplication, rounded down

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+
+@[expose] public section
 
 /-!
 # The exponential integral over a joined window

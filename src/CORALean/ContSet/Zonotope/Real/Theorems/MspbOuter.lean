@@ -1,10 +1,14 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.Mspb
-import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeMem
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetOfSignedSums
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Mspb
+public import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetOfSignedSums
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.mspb` contains every solution domain

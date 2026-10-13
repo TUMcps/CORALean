@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
-import CORALean.ContSet.Conversion.Real.HPolytope_to_ZonoBundle
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_ZonoBundle
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.convHull`

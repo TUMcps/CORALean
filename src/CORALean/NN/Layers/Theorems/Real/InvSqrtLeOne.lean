@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.InvSqrt
+module
+
+public import CORALean.NN.Layers.Definitions.InvSqrt
+
+@[expose] public section
 
 /-!
 # The clamped inverse square root is at most one

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuousOfConvex
-import Mathlib.Analysis.ODE.Gronwall
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Topology.Instances.Matrix
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuousOfConvex
+public import Mathlib.Analysis.ODE.Gronwall
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Topology.Instances.Matrix
+
+@[expose] public section
 
 /-!
 # The Minkowski difference as an inner time-point reachable set

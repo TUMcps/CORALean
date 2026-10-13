@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdPoint
+
+@[expose] public section
 
 /-!
 # Renaming factors can only shrink the set

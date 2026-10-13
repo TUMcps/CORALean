@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Compact1DEqCora
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Compact1DEqCora
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # CORA's `priv_compact_1D` moves a repeated equality constraint

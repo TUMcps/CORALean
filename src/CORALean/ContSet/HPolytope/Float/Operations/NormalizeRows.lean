@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
-import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
+public import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
+
+@[expose] public section
 
 /-!
 # `HPolytope.normalizeRows` over a floating-point scalar

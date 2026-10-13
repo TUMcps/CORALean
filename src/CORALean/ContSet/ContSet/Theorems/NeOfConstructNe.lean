@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.Ne
+module
+
+public import CORALean.ContSet.ContSet.Operations.Ne
+
+@[expose] public section
 
 /-!
 # `ne` holds on sets that differ

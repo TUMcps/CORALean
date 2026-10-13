@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.SplitReach
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.SplitReach
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+
+@[expose] public section
 
 /-!
 # Splitting loses no start: `splitReach_outer`

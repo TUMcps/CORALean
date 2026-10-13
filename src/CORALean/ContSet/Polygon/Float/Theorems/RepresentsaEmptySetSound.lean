@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # `Polygon.representsaEmptySet` is sound

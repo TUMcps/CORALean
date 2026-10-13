@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.ToLayer
-import CORALean.NN.Theorems.EncloseOuter
+module
+
+public import CORALean.NN.Operations.ToLayer
+public import CORALean.NN.Theorems.EncloseOuter
+
+@[expose] public section
 
 /-!
 # A sub-network is sound as a layer

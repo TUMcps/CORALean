@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Theorems.RunOnOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.HybridDynamics.Theorems.RunOnOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A specification checked on the indexed invariant holds along a bounded run

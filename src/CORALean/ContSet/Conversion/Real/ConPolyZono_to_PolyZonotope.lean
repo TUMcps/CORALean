@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+
+@[expose] public section
 
 /-!
 # A constrained polynomial zonotope as a polynomial zonotope

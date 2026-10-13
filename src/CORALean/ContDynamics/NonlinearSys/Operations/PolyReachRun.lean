@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachInit
-import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachStep
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachInit
+public import CORALean.ContDynamics.NonlinearSys.Operations.PolyReachStep
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 2 and 17: the loop

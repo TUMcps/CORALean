@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointSubset
-import CORALean.ContSet.ConPolyZono.Float.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointSubset
+public import CORALean.ContSet.ConPolyZono.Float.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # A float constrained polynomial zonotope without generators lies in its centre's box

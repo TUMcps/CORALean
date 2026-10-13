@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRAIntersectionDistanceCora
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRAIntersectionDistanceCora
+
+@[expose] public section
 
 /-!
 # `LinearSys.verifyRAOuterVerdictCora`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubMap
-import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
-import CORALean.ContSet.Zonotope.Float.Theorems.DependentOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubMap
+public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
+public import CORALean.ContSet.Zonotope.Float.Theorems.DependentOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.cubMap` over-approximates the cubic map, over a floating-point scalar

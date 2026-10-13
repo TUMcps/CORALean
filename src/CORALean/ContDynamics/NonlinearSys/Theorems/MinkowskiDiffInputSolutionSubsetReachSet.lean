@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
-import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+
+@[expose] public section
 
 /-!
 # The inner time-point set of one linearized step

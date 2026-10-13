@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Real.Operations.Plus
-import CORALean.ContSet.Interval.Real.Theorems.PlusExact
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Theorems.PlusExact
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # `Interval.plus` contains the Minkowski sum

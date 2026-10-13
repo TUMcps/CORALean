@@ -1,29 +1,31 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrState
-import CORALean.ContDynamics.NonlinearSys.Definitions.AdaptState
-import CORALean.ContDynamics.NonlinearSys.Definitions.CentreAbstrState
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.NonlinearSys.Definitions.RobustReachSet
-import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
-import CORALean.ContDynamics.NonlinearSys.Definitions.RelinDeltaReachOptions
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReachOptions
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAlg
-import CORALean.ContDynamics.NonlinearSys.Definitions.AdmissibleLinError
-import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
-import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps
-import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffState
-import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerOps
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerState
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrState
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AdaptState
+public import CORALean.ContDynamics.NonlinearSys.Definitions.CentreAbstrState
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NonlinearSys.Definitions.RobustReachSet
+public import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
+public import CORALean.ContDynamics.NonlinearSys.Definitions.RelinDeltaReachOptions
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReachOptions
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAlg
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AdmissibleLinError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
+public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps
+public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffState
+public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerOps
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerState
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
 
 /-!
 # What `NonlinearSys` means beyond the system itself

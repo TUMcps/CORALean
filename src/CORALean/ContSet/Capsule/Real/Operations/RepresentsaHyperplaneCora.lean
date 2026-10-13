@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Capsule
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+
+@[expose] public section
 
 /-!
 # `Capsule.representsaHyperplaneCora`: the `'hyperplane'` test as CORA's code computes it

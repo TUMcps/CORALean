@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
-import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
+public import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMapGUp`

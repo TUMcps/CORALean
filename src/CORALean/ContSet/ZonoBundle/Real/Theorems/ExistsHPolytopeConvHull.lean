@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
-import CORALean.ContSet.Conversion.Real.VPolytope_to_ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+
+@[expose] public section
 
 /-!
 # The convex hull of two bundles has a halfspace description

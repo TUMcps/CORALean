@@ -1,5 +1,9 @@
-import CORALean.ContSet.Equality.Float.Operations.EqBool
-import CORALean.ContSet.ContSet.Operations.Ne
+module
+
+public import CORALean.ContSet.Equality.Float.Operations.EqBool
+public import CORALean.ContSet.ContSet.Operations.Ne
+
+@[expose] public section
 
 /-!
 # CORA's `ne`, as a `Bool`

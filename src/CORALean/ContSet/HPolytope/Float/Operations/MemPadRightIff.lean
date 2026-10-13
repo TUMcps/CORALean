@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.padRight`

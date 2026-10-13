@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinProbSys.LinProbSys
+module
+
+public import CORALean.ContDynamics.LinProbSys.LinProbSys
+
+@[expose] public section
 
 /-!
 # The covariance of `initReach`'s probabilistic input solution

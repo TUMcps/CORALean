@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Float.Operations.Times
-import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+module
+
+public import CORALean.ContSet.Zoo.Float.Operations.Times
+public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `Zoo.times` encloses

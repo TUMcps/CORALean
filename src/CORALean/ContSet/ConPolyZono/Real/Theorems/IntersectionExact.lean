@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionDepExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionDepExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.intersection` is exactly the intersection

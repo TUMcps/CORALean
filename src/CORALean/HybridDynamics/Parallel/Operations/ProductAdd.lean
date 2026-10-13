@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.ProductWith
-import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsAdd
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.ProductWith
+public import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsAdd
+
+@[expose] public section
 
 /-!
 # `productAdd`

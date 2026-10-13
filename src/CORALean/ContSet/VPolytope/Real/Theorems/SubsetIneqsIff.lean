@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.HPolytope.Real.Theorems.Convex
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # V-polytope in H-polytope

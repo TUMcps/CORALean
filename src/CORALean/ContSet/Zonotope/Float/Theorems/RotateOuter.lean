@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Rotate
-import CORALean.ContSet.Zonotope.Float.Theorems.RotMatMem
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Rotate
+public import CORALean.ContSet.Zonotope.Float.Theorems.RotMatMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+
+@[expose] public section
 
 /-!
 # Rotating a float zonotope encloses the rotated set

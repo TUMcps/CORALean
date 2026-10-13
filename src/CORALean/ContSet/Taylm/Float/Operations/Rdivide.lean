@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Times
-import CORALean.ContSet.Taylm.Float.Operations.Inv
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Times
+public import CORALean.ContSet.Taylm.Float.Operations.Inv
+
+@[expose] public section
 
 /-!
 # `Taylm.rdivide`, over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+
+@[expose] public section
 
 /-!
 # `intersect(I, LS)` encloses the cut

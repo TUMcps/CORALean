@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.Data.Real.Basic
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.Data.Real.Basic
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+
+@[expose] public section
 
 /-!
 # The basis of the affine hull from a QR decomposition, with pivoting

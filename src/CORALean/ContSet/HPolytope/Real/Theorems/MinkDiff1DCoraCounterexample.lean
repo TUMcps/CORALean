@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.HPolytope.Real.Operations.MinkDiff1DCora
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiff1DCora
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's 1-D polytope `minkDiff` with a one-sided subtrahend is not inner

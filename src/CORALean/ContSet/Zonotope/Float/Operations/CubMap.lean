@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
-import CORALean.ContSet.Zonotope.Float.Operations.Dependent
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
+public import CORALean.ContSet.Zonotope.Float.Operations.Dependent
+
+@[expose] public section
 
 /-!
 # `Zonotope.cubMap`, over a floating-point scalar

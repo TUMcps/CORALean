@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Theorems.HalveMinusMem
-import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
-import CORALean.NN.Theorems.ToRealMatMapAbsolute
-import CORALean.NN.Operations.IntervalChainFwdFloat
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.HalveMinusMem
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
+public import CORALean.NN.Theorems.ToRealMatMapAbsolute
+public import CORALean.NN.Operations.IntervalChainFwdFloat
+
+@[expose] public section
 
 /-!
 # The linear layer's radius is in its float box

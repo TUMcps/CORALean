@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Float.Operations.Exp
-import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
-import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-import CORALean.Global.TaylorRemainder
-import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Exp
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
+public import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.Global.TaylorRemainder
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+
+@[expose] public section
 
 /-!
 # `Taylm.exp` encloses `exp ∘ f`

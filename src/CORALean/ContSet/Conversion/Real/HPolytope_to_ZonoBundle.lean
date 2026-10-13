@@ -1,18 +1,22 @@
-import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
-import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
-import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
-import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalExact
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import Mathlib.Tactic.Linarith
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
+public import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import Mathlib.Tactic.Linarith
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # A halfspace description as a bundle of one

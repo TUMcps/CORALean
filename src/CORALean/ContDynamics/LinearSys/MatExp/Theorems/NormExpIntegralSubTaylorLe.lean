@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralTermLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralTermLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
+
+@[expose] public section
 
 /-!
 # Truncating the integrated exponential costs one step times the remainder

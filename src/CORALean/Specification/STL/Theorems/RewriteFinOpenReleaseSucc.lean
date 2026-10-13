@@ -1,7 +1,11 @@
-import CORALean.Specification.STL.STL
-import CORALean.Specification.STL.Theorems.SatNext
-import CORALean.Specification.STL.Theorems.SatRelease
-import CORALean.Specification.STL.Theorems.ShiftShift
+module
+
+public import CORALean.Specification.STL.STL
+public import CORALean.Specification.STL.Theorems.SatNext
+public import CORALean.Specification.STL.Theorems.SatRelease
+public import CORALean.Specification.STL.Theorems.ShiftShift
+
+@[expose] public section
 
 /-!
 # Rewriting, `F_I` of `R[i,j]`

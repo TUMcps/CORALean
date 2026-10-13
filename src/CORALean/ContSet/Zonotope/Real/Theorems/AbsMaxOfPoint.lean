@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.AbsMax
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.AbsMax
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # A point matrix zonotope is dominated by the matrix itself

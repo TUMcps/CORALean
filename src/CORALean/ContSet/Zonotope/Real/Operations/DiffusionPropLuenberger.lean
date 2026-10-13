@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
-import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerUpdate
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
+public import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerUpdate
+
+@[expose] public section
 
 /-!
 # `Zonotope.diffusionPropLuenberger`

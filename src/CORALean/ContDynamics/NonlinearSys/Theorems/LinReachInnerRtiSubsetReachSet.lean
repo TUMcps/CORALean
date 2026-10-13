@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerSubsetReachSet
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetReachSetAdd
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerSubsetReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetReachSetAdd
+
+@[expose] public section
 
 /-!
 # CORA's inner linearized step: the time-interval set is inside the reachable set

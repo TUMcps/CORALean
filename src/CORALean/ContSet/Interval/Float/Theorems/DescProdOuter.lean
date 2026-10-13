@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.DescProd
-import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-import CORALean.Global.DescProd
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.DescProd
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.Global.DescProd
+
+@[expose] public section
 
 /-!
 # `Interval.descProd` encloses the product of any matrices in the boxes

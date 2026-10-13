@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Point
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
-import CORALean.HybridDynamics.Operations.Jump
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+public import CORALean.HybridDynamics.Operations.Jump
+
+@[expose] public section
 
 /-!
 # `Transition.jump` contains the states that leave through the transition

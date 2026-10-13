@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.Sum
-import CORALean.ContSet.Taylm.Float.Operations.Smul
-import CORALean.ContSet.Taylm.Float.Operations.Times
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Sum
+public import CORALean.ContSet.Taylm.Float.Operations.Smul
+public import CORALean.ContSet.Taylm.Float.Operations.Times
+
+@[expose] public section
 
 /-!
 # `Taylm.det`, over a floating-point scalar

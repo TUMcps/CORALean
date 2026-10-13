@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Float.Operations.QuadMapMixed
-import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.QuadMapMixed
+public import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.quadMapMixed` encloses the image of the product of the float polygons

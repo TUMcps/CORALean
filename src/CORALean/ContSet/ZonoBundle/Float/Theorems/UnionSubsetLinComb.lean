@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
-import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
-import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # A float bundle's `linComb` holds both operands, and their convex hull

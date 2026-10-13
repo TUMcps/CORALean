@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
-import CORALean.ContSet.Zonotope.Float.Operations.UnderapproximateCandidate
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Zonotope.Float.Operations.UnderapproximateCandidate
+
+@[expose] public section
 
 /-!
 # `Zonotope.underapproximate`, over a floating-point scalar

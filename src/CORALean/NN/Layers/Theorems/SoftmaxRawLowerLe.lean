@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Operations.SoftmaxRawLower
-import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
-import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
-import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
+module
+
+public import CORALean.NN.Layers.Operations.SoftmaxRawLower
+public import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
+public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
+
+@[expose] public section
 
 /-!
 # Softmax above its rounded raw lower bound

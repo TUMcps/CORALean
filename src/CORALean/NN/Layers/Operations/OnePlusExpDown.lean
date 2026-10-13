@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Exp
+module
+
+public import CORALean.Global.Float.Exp
+
+@[expose] public section
 
 /-!
 # `1 + eᵃ` from below, never below one

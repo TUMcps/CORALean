@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Sum
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Sum
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # The sum of points of boxes is a point of the summed box

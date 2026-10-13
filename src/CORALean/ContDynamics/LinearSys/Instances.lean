@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachAdmissibleOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
-import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
-import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
-import CORALean.ContDynamics.Reach.Reach
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachAdmissibleOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
+public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # `LinearSys` and `LinearSys.WithInput` instantiate `Reach`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Finset.Sort
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Finset.Sort
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.volume`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # Facet lifting: `HPolytope.facetLift`

@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Float.Operations.Times
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
-import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
-import CORALean.ContSet.Taylm.Float.Theorems.PolyBoundsMem
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Times
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
+public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoundsMem
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `Taylm.times` encloses the product

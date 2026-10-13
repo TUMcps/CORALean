@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersectStrip` is exactly the intersection with the strip

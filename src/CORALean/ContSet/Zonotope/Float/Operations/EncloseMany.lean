@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasisInv
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasisInv
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `Zonotope.encloseMany`, over a floating-point scalar

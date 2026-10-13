@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Extended
-import CORALean.NN.Theorems.EncloseOuter
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Extended
+public import CORALean.NN.Theorems.EncloseOuter
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # One control period is a run of the extended system

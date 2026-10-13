@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Partition
-import CORALean.Global.Sort
-import Mathlib.Data.Fin.Tuple.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Partition
+public import CORALean.Global.Sort
+public import Mathlib.Data.Fin.Tuple.Sort
+
+@[expose] public section
 
 /-!
 # `Zonotope.girardSplit`

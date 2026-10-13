@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+
+@[expose] public section
 
 /-!
 # `HPolytope.ZonoBundleVar`: the variable of CORA's polytope/zonotope-bundle program

@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The slice of a set by a hyperplane is a slice of its plane projection

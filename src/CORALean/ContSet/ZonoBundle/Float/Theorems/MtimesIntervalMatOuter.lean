@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mtimesIntervalMat` over-approximates every image

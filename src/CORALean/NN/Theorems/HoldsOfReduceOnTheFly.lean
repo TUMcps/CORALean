@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.ReduceOnTheFlyOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.NN.Theorems.ReduceOnTheFlyOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1] for what [1, Alg. 2] actually returns

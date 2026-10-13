@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
-import Mathlib.Algebra.Ring.CharZero
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
+public import Mathlib.Algebra.Ring.CharZero
+
+@[expose] public section
 
 /-!
 # Splitting a power of two across an exponent shift

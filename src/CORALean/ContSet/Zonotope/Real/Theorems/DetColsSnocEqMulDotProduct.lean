@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+
+@[expose] public section
 
 /-!
 # A determinant with a unit vector normal to the other columns

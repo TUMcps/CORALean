@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.isBigger`

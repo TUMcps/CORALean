@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.composeSubsystems`

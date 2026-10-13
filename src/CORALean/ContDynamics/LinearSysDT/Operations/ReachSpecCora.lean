@@ -1,7 +1,11 @@
-import Mathlib.Data.Set.Disjoint
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.NormNum
-import Mathlib.Order.Interval.Finset.Nat
+module
+
+public import Mathlib.Data.Set.Disjoint
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Order.Interval.Finset.Nat
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.reachSpecCora`

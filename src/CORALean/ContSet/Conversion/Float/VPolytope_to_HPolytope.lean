@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
-import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
+public import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # Vertices to halfspaces, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
-import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclose₂` encloses the hull of `E` and `E2`

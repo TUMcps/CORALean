@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.intersection` denotes exactly the intersection

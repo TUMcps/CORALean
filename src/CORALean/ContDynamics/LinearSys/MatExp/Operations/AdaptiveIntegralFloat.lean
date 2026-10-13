@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
+
+@[expose] public section
 
 /-!
 # The integrated exponential as a float interval matrix

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Analysis.Normed.Ring.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Analysis.Normed.Ring.Basic
+
+@[expose] public section
 
 /-!
 # A per-coordinate bound on `absBound` is a bound on the whole zonotope

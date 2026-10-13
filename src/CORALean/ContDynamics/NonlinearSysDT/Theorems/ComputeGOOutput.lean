@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
+
+@[expose] public section
 
 /-!
 # `computeGO` gives the output of every run

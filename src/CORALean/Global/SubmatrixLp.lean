@@ -1,5 +1,9 @@
-import CORALean.Global.HMatrixRegular
-import Mathlib.LinearAlgebra.Matrix.Rank
+module
+
+public import CORALean.Global.HMatrixRegular
+public import Mathlib.LinearAlgebra.Matrix.Rank
+
+@[expose] public section
 
 /-!
 # The linear programs that extract a regular sub-matrix

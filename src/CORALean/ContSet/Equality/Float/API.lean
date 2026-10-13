@@ -1,6 +1,8 @@
-import CORALean.ContSet.Equality.Float.Operations.API
-import CORALean.ContSet.Equality.Float.Theorems.API
-import CORALean.ContSet.Equality.Float.Instances
+module
+
+public import CORALean.ContSet.Equality.Float.Operations.API
+public import CORALean.ContSet.Equality.Float.Theorems.API
+public import CORALean.ContSet.Equality.Float.Instances
 
 /-!
 # `eq` and `ne`, over the floating-point representations

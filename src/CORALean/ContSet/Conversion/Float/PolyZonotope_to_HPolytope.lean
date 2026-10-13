@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+module
+
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope as halfspaces, over a floating-point scalar

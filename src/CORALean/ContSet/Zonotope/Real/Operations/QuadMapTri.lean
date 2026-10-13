@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMapPairIdx
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapPairIdx
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMapTri`

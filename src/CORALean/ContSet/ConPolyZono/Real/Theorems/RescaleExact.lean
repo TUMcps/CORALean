@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Rescale
-import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Rescale
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # `rescale` does not change the set

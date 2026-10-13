@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Eqs
-import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-import CORALean.ContSet.HPolytope.Float.Operations.Lift
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.Lift
+
+@[expose] public section
 
 /-!
 # `HPolytope.projectHighDim`, over a floating-point scalar

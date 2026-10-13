@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Rdivide
-import CORALean.ContSet.Interval.Real.Theorems.RecipExact
-import CORALean.ContSet.Interval.Real.Theorems.TimesExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Rdivide
+public import CORALean.ContSet.Interval.Real.Theorems.RecipExact
+public import CORALean.ContSet.Interval.Real.Theorems.TimesExact
+
+@[expose] public section
 
 /-!
 # `Interval.rdivide` is exactly the set of entrywise quotients

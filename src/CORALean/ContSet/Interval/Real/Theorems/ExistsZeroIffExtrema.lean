@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Order.Bounds.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Order.Bounds.Basic
+
+@[expose] public section
 
 /-!
 # A zero exists exactly when `0` lies between the extrema

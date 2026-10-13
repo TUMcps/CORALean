@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Operations.SplitIntoConvexSets
-import CORALean.ContSet.VPolytope.Real.Theorems.Convex
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.SplitIntoConvexSets
+public import CORALean.ContSet.VPolytope.Real.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.splitIntoConvexSets` is a convex split

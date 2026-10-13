@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # The flow as a right derivative

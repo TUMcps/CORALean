@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.VPolytope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+module
+
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+
+@[expose] public section
 
 /-!
 # A hull as an ellipsoid

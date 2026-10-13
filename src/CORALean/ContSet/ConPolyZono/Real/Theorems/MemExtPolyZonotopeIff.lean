@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ExtPolyZonotope
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ExtPolyZonotope
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # The extended point is in the extended polynomial zonotope iff the constraint reads `A μ = b + t`

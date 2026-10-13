@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactMul
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMk
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactMul
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMk
+
+@[expose] public section
 
 /-!
 # Multiplication is exact

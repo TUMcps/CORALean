@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDown
-import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDown
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGUp
+
+@[expose] public section
 
 /-!
 # How far a stored `bilin` generator can be from the exact bilinear form

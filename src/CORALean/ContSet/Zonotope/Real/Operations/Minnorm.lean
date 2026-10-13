@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinnormOffset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinnormOffset
+
+@[expose] public section
 
 /-!
 # `Zonotope.minnorm`

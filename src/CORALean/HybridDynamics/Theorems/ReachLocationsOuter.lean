@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Theorems.ReachSetOuter
+module
+
+public import CORALean.HybridDynamics.Theorems.ReachSetOuter
+
+@[expose] public section
 
 /-!
 # `reachLocations` contains every location a run ends in

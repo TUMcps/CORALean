@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
-import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-import CORALean.ContSet.Taylm.Real.Operations.Degree
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Operations.MulHi
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+public import CORALean.ContSet.Taylm.Real.Operations.Degree
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+
+@[expose] public section
 
 /-!
 # `Taylm.antideriv`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Bounds
-import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Bounds
+public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # An array of Taylor models as a box

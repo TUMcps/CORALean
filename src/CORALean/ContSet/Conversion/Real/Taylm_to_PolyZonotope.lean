@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Taylm
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+module
+
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # An array of Taylor models as a polynomial zonotope

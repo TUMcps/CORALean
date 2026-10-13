@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioStep
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioStep
+
+@[expose] public section
 
 /-!
 # `Interval.boundaryRatio`, over a floating-point scalar

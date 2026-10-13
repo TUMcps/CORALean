@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.ReducibleNetwork
+module
+
+public import CORALean.NN.Definitions.ReducibleNetwork
+
+@[expose] public section
 
 /-!
 # An instance network computes an instance

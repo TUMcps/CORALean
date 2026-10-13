@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
+
+@[expose] public section
 
 /-!
 # A step's inner approximation, at a representation

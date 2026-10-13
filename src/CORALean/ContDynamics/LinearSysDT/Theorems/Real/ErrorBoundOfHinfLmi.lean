@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DissipationOfHinfLmi
-import CORALean.Global.UltimateBoundOfRecurrence
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DissipationOfHinfLmi
+public import CORALean.Global.UltimateBoundOfRecurrence
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # The `H∞` gain bounds the estimation error

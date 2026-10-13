@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxExpMid`

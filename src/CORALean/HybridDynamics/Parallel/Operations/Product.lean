@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
+
+@[expose] public section
 
 /-!
 # `product`

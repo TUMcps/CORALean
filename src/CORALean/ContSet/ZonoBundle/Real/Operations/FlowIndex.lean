@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.List.MinMax
-import Mathlib.Data.List.FinRange
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.List.MinMax
+public import Mathlib.Data.List.FinRange
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.flowIndex`: the axis most aligned with the flow

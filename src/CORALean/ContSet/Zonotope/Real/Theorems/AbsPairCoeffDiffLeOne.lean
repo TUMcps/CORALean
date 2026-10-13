@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
-import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffDiff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffDiff
+
+@[expose] public section
 
 /-!
 # The paired-difference coefficient is admissible

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
-import CORALean.HybridDynamics.Theorems.LinearEmbedding
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+
+@[expose] public section
 
 /-!
 # A stay is enclosed by the float time-interval step

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Project
-import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Project
+public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.project` over-approximates the projection

@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Probability.Distributions.Gaussian.Multivariate
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Probability.Distributions.Gaussian.Multivariate
+
+@[expose] public section
 
 /-!
 # G-zonotopes with certain mean

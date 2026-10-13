@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Interval.Real.Operations.MatPow
-import CORALean.ContSet.Interval.Real.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Interval.Real.Operations.MatPow
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+
+@[expose] public section
 
 /-!
 # The matrix set order `i` contributes to the input solution

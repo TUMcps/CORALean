@@ -1,6 +1,10 @@
-import CORALean.NN.Operations.GreedyAbstractExplanation
-import CORALean.NN.Theorems.ExplanationRefineLoopIff
-import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
+module
+
+public import CORALean.NN.Operations.GreedyAbstractExplanation
+public import CORALean.NN.Theorems.ExplanationRefineLoopIff
+public import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
+
+@[expose] public section
 
 /-!
 # [1, Prop. 5]: the abstraction-refinement search, and where it lands

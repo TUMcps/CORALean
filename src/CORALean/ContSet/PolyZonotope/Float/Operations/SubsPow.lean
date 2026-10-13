@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsMul
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsMul
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.subsPow`

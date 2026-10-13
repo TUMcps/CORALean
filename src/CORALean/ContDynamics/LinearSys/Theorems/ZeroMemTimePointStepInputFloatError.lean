@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputSolutionFloatError
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputSolutionFloatError
+
+@[expose] public section
 
 /-!
 # The float step keeps the origin in its error box

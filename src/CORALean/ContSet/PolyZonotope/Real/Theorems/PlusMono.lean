@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `plus` grows with both operands

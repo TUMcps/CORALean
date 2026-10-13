@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
-import CORALean.ContSet.Zonotope.Float.Operations.MethCBasis
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
+public import CORALean.ContSet.Zonotope.Float.Operations.MethCBasis
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.reduceCombined`, over a floating-point scalar

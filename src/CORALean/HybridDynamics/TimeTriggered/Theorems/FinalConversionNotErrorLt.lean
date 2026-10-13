@@ -1,11 +1,15 @@
-import CORALean.HybridDynamics.TimeTriggered.Definitions.FinalConversion
-import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
-import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
-import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
-import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
-import CORALean.HybridDynamics.TimeTriggered.Theorems.ExecFlowTimer
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
-import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredExecOrbit
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.FinalConversion
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
+public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.ExecFlowTimer
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredExecOrbit
+
+@[expose] public section
 
 /-!
 # The error of the combined transformation does not go to zero

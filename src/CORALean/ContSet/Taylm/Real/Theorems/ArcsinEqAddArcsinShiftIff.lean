@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.ArcsinShift
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ArcsinShift
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+
+@[expose] public section
 
 /-!
 # When the arcsine addition formula holds

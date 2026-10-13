@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Real.Operations.Uminus
-import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
-import CORALean.ContSet.Interval.Real.Theorems.UminusExact
+module
+
+public import CORALean.ContSet.Zoo.Real.Operations.Uminus
+public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.UminusExact
+
+@[expose] public section
 
 /-!
 # `Zoo.uminus` encloses the negation

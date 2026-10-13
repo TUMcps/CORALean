@@ -1,7 +1,11 @@
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.NormNum
-import CORALean.NN.Layers.Operations.StarSetCoraRowBounds
-import CORALean.NN.Layers.Operations.StarSetReluNeuron
+module
+
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.NormNum
+public import CORALean.NN.Layers.Operations.StarSetCoraRowBounds
+public import CORALean.NN.Layers.Operations.StarSetReluNeuron
+
+@[expose] public section
 
 /-!
 # CORA's neuron bounds make the ReLU step unsound

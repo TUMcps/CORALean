@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Float.Operations.BnbLoop
-import CORALean.ContSet.Taylm.Float.Operations.Covers
-import CORALean.ContSet.Taylm.Float.Theorems.SplitAtCovers
-import CORALean.ContSet.Taylm.Float.Theorems.ListMinLe
-import CORALean.ContSet.Taylm.Float.Theorems.LeListMax
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BnbLoop
+public import CORALean.ContSet.Taylm.Float.Operations.Covers
+public import CORALean.ContSet.Taylm.Float.Theorems.SplitAtCovers
+public import CORALean.ContSet.Taylm.Float.Theorems.ListMinLe
+public import CORALean.ContSet.Taylm.Float.Theorems.LeListMax
+
+@[expose] public section
 
 /-!
 # `Taylm.bnbLoop` brackets the function

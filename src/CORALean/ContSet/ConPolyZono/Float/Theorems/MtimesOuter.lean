@@ -1,10 +1,14 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.mtimes` over-approximates the image under a linear map

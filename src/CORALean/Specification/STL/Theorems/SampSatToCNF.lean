@@ -1,11 +1,15 @@
-import CORALean.Specification.STL.Operations.SampToCNF
-import CORALean.Specification.STL.Theorems.CNFSatAppend
-import CORALean.Specification.STL.Theorems.CNFSatOr
-import CORALean.Specification.STL.Theorems.CNFSatNext
-import CORALean.Specification.STL.Theorems.SatOfPform
-import CORALean.Specification.STL.Theorems.SatOr
-import CORALean.Specification.STL.Theorems.SatAnd
-import CORALean.Specification.STL.Theorems.SatNext
+module
+
+public import CORALean.Specification.STL.Operations.SampToCNF
+public import CORALean.Specification.STL.Theorems.CNFSatAppend
+public import CORALean.Specification.STL.Theorems.CNFSatOr
+public import CORALean.Specification.STL.Theorems.CNFSatNext
+public import CORALean.Specification.STL.Theorems.SatOfPform
+public import CORALean.Specification.STL.Theorems.SatOr
+public import CORALean.Specification.STL.Theorems.SatAnd
+public import CORALean.Specification.STL.Theorems.SatNext
+
+@[expose] public section
 
 /-!
 # The normal form is equivalent

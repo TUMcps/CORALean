@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.FloatRightMat
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.NN.Graph.Operations.FloatRightMat
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `rightMat` reads back as `H ↦ H W`

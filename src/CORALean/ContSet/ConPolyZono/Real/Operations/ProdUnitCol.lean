@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
+
+@[expose] public section
 
 /-!
 # The monomial of a one-factor column

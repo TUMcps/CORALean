@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.Specification.STL.Definitions.DepReachConsts
-import CORALean.Specification.STL.Definitions.DepReachState
-import CORALean.Specification.STL.Operations.DepBox
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.Specification.STL.Definitions.DepReachConsts
+public import CORALean.Specification.STL.Definitions.DepReachState
+public import CORALean.Specification.STL.Operations.DepBox
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # Lines 5-7 of the dependency preserving reachability algorithm

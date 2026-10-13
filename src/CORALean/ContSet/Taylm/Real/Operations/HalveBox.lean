@@ -1,5 +1,9 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Logic.Function.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Logic.Function.Basic
+
+@[expose] public section
 
 /-!
 # Halving a box

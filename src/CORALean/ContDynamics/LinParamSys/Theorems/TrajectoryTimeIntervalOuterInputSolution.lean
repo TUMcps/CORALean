@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+
+@[expose] public section
 
 /-!
 # A time-varying run's whole step, both halves computed from the two sets

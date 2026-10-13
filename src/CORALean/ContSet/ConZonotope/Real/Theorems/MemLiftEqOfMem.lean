@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # A point of `cZ` lifts to a point of `liftEq`

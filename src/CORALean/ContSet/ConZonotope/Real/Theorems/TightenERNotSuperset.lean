@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `R_j` of [1, Alg. 1 (R)] need not contain `{ξ_j | Aξ = b, |ξ_i| ≤ 1 ∀ i ≠ j}`

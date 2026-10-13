@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.IEEE.IEEE
+module
+
+public import CORALean.Global.Float.Instances.IEEE.IEEE
+
+@[expose] public section
 
 /-!
 # Halving

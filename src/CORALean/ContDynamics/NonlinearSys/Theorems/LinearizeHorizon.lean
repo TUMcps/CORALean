@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+
+@[expose] public section
 
 /-!
 # A nonlinear run is a linear run over a widened input, one step at a time

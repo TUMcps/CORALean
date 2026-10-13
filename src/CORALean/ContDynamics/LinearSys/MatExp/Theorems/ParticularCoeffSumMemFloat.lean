@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSum
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSum
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import Mathlib.Algebra.BigOperators.Intervals
+
+@[expose] public section
 
 /-!
 # `Σᵢ Ãᵢ` lies in its float box

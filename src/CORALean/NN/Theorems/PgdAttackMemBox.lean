@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.PgdAttack
+module
+
+public import CORALean.NN.Operations.PgdAttack
+
+@[expose] public section
 
 /-!
 # The PGD attack stays in the box and within `ε` of its input

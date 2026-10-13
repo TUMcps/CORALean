@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Float.Operations.PiStep
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.PiStep
+
+@[expose] public section
 
 /-!
 # `Capsule.piStep` brackets `π / 499`

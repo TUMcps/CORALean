@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Recentre
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Recentre
+
+@[expose] public section
 
 /-!
 # A member shifted by the centre lies in the recentred box

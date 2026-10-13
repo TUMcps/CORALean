@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStripDet
-import Mathlib.Analysis.Convex.Function
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStripDet
+public import Mathlib.Analysis.Convex.Function
+
+@[expose] public section
 
 /-!
 # The volume of the intersection bound is convex in the gain

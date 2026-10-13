@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactCons
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
-import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactCons
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
+
+@[expose] public section
 
 /-!
 # `compactCons` is its specification

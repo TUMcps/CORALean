@@ -1,4 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
+
 /-!
 # `s^i - s ≤ 0` on `[0,1]`
 

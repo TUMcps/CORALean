@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.HullPdf
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.HullPdf
+
+@[expose] public section
 
 /-!
 # The enclosing probabilistic hull over a time interval

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
-import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduce`

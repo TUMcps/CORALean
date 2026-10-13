@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.PartZonotope
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialSplit
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PartZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialSplit
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `partZonotope` encloses

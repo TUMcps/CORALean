@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
+
+@[expose] public section
 
 /-!
 # A G-zonotope with certain mean is the Gaussian `N(c, G Gᵀ)`

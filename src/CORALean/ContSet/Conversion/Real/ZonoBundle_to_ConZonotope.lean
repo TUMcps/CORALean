@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+module
+
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+
+@[expose] public section
 
 /-!
 # A bundle's constrained zonotope, at one component

@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.SoundLayer
+module
+
+public import CORALean.NN.Layers.Definitions.SoundLayer
+
+@[expose] public section
 
 /-!
 # Packing a layer of any kind

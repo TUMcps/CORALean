@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearchFloat
-import CORALean.Global.Float.RatUp
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearchFloat
+public import CORALean.Global.Float.RatUp
+
+@[expose] public section
 
 /-!
 # `Alg. 2` in floats: the step size and the truncation order for one step

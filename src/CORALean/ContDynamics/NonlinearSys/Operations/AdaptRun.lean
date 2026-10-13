@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStep
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStep
+
+@[expose] public section
 
 /-!
 # `Alg. 2`, iterated

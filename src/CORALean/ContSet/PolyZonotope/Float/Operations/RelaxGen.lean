@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxWidth
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxWidth
+
+@[expose] public section
 
 /-!
 # The new independent generator `relaxExp` stores

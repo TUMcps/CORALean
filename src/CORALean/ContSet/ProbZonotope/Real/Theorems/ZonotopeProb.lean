@@ -1,7 +1,11 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
-import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianBox
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianBox
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # Every law of a probabilistic zonotope puts `erf(m/√2)ⁿ` on its confidence set

@@ -1,5 +1,7 @@
-import CORALean.ContSet.Conversion.Real.API
-import CORALean.ContSet.Conversion.Float.API
+module
+
+public import CORALean.ContSet.Conversion.Real.API
+public import CORALean.ContSet.Conversion.Float.API
 
 /-!
 # Conversions between representations, both layers

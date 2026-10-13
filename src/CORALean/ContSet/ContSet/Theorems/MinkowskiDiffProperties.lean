@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Analysis.Normed.Group.Pointwise
-import Mathlib.Topology.Algebra.Group.Pointwise
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Analysis.Normed.Group.Pointwise
+public import Mathlib.Topology.Algebra.Group.Pointwise
+
+@[expose] public section
 
 /-!
 # What a Minkowski difference does to emptiness, degeneracy and boundedness

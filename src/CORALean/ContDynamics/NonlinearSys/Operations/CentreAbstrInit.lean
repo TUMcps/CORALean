@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.CentreAbstrState
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.CentreAbstrState
+
+@[expose] public section
 
 /-!
 # `Alg. 1` line 1, linearizing at the centre

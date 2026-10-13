@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Box
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Box
+
+@[expose] public section
 
 /-!
 # `Fullspace.box` is exact

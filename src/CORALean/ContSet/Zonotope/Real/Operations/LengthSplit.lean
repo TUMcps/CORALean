@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
-import CORALean.Global.Partition
-import Mathlib.Data.Fin.Tuple.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+public import CORALean.Global.Partition
+public import Mathlib.Data.Fin.Tuple.Sort
+
+@[expose] public section
 
 /-!
 # `Zonotope.lengthSplit`

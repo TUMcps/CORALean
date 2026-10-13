@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Operations.Feed
-import CORALean.ContDynamics.LinearARX.Operations.InputSet
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContDynamics.LinearARX.Operations.InputSet
+
+@[expose] public section
 
 /-!
 # The input signal stays in the converted input set

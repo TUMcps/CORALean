@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetConvex
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetConvex
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+
+@[expose] public section
 
 /-!
 # The support vectors' convex hull is an inner approximation

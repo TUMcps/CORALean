@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Operations.TanhPolyRelaxation
-import CORALean.NN.Layers.Theorems.DoubleRoundingSound
-import CORALean.NN.Layers.Theorems.PolyRelaxationOfAffineConjSound
-import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
-import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.TanhPolyRelaxation
+public import CORALean.NN.Layers.Theorems.DoubleRoundingSound
+public import CORALean.NN.Layers.Theorems.PolyRelaxationOfAffineConjSound
+public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+public import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
+
+@[expose] public section
 
 /-!
 # The polynomial tanh relaxation is sound

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.BoxSTight
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.BoxSTight
+
+@[expose] public section
 
 /-!
 # `Box_S(Z)` meets a guard whose normal is in `S` exactly when `Z` does

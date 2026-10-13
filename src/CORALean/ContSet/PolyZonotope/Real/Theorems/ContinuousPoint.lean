@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.DifferentiablePoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.DifferentiablePoint
+
+@[expose] public section
 
 /-!
 # The point map is continuous

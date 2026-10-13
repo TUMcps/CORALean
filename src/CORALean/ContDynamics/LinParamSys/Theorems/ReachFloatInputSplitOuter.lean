@@ -1,16 +1,20 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagateFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagateFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # `LinParamSys.reachFloatInputSplit` holds every member's run at every time of every window

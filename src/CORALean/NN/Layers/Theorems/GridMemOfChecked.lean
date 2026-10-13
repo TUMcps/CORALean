@@ -1,6 +1,10 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Operations.GridChecked
-import CORALean.NN.Layers.Theorems.AllOverApply
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Operations.GridChecked
+public import CORALean.NN.Layers.Theorems.AllOverApply
+
+@[expose] public section
 
 /-!
 # A checked grid samples inside the box

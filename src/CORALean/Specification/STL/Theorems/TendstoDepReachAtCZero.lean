@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
-import CORALean.Specification.STL.Operations.DepReachConstsOf
-import CORALean.Specification.STL.Theorems.DepBoxSubsetClosedBall
-import CORALean.Specification.STL.Theorems.DepReachAtCSubsetClosedBall
-import CORALean.Specification.STL.Theorems.MtimesIntervalMatSubsetClosedBallInfSup
-import CORALean.Specification.STL.Theorems.TendstoSSupNormOfEventuallySubsetClosedBall
-import CORALean.Specification.STL.Operations.DepReachInit
-import CORALean.Specification.STL.Operations.DepReachAt
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
+public import CORALean.Specification.STL.Operations.DepReachConstsOf
+public import CORALean.Specification.STL.Theorems.DepBoxSubsetClosedBall
+public import CORALean.Specification.STL.Theorems.DepReachAtCSubsetClosedBall
+public import CORALean.Specification.STL.Theorems.MtimesIntervalMatSubsetClosedBallInfSup
+public import CORALean.Specification.STL.Theorems.TendstoSSupNormOfEventuallySubsetClosedBall
+public import CORALean.Specification.STL.Operations.DepReachInit
+public import CORALean.Specification.STL.Operations.DepReachAt
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
+
+@[expose] public section
 
 /-!
 # [1, Prop. 4]: the curvature set vanishes with the step

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.Minus
-import CORALean.ContSet.Interval.Real.Operations.Minus
-import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Minus
+public import CORALean.ContSet.Interval.Real.Operations.Minus
+public import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # `Interval.minus` contains the pointwise difference of the sets

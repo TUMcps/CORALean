@@ -1,12 +1,16 @@
-import CORALean.ContSet.ConZonotope.Float.Instances
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Or
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectNondetFloat`

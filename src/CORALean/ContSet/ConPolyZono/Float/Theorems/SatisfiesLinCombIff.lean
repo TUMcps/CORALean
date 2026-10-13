@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.linComb`'s constraint reads each side's own factors

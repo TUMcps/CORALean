@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.StepInput
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+
+@[expose] public section
 
 /-!
 # A sampled trajectory is a trajectory of the sampled system

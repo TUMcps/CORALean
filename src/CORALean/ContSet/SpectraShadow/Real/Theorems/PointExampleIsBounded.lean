@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
-import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.pointExample_isBounded`

@@ -1,7 +1,11 @@
-import Mathlib.Order.Interval.Set.Basic
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Order.Interval.Set.Basic
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The inclusion test (5), read over real matrices

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.PieceHolds
-import CORALean.ContSet.Polygon.Float.Theorems.InTriangleSound
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.PieceHolds
+public import CORALean.ContSet.Polygon.Float.Theorems.InTriangleSound
+
+@[expose] public section
 
 /-!
 # A `true` from `Polygon.pieceHolds` is a point of the nominal piece

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Operations.ActivationLayerOf
+module
+
+public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Layers.Operations.ActivationLayerOf
+
+@[expose] public section
 
 /-!
 # An activation layer is sound at the `σ` it was built from

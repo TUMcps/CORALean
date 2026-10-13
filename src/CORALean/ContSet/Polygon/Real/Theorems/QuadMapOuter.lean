@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Real.Operations.QuadMap
-import CORALean.ContSet.Polygon.Real.Theorems.TriangulationExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PolygonOuter
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.QuadMap
+public import CORALean.ContSet.Polygon.Real.Theorems.TriangulationExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PolygonOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.quadMap` encloses the image of the region

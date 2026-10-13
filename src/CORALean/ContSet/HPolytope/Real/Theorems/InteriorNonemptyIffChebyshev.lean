@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Theorems.InteriorEqEmptyIffForallBall
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+module
+
+public import CORALean.ContSet.ContSet.Theorems.InteriorEqEmptyIffForallBall
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # Non-degeneracy by the Chebyshev ball

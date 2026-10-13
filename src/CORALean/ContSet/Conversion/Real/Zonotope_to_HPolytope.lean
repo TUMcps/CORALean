@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
-import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
+public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # A zonotope as halfspaces

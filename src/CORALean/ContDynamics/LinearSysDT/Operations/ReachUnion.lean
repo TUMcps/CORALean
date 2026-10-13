@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.reach`, packaged as `Reach`'s `SetUnion`

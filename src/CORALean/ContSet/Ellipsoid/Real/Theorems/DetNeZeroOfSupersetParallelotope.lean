@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.Global.EuclideanNorm
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+
+@[expose] public section
 
 /-!
 # An ellipsoid around a full-dimensional parallelotope has an invertible generator

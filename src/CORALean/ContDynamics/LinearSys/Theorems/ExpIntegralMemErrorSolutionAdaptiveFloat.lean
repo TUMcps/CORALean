@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptiveFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptiveFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+
+@[expose] public section
 
 /-!
 # `errorSolutionAdaptiveFloat` holds what a held input contributes

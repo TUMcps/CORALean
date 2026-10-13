@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+public import CORALean.ContSet.Interval.Float.Operations.MatPlus
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `Alg. 2` line 3 in floats: the curvature radius `μ`

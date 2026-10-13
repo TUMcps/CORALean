@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeInner
-import CORALean.ContSet.SpectraShadow.Real.Theorems.TranslateMem
-import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Combination
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeInner
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.TranslateMem
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Combination
+
+@[expose] public section
 
 /-!
 # The inner polytope of a shadow is inside it

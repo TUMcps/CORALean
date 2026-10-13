@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Scaling a hyperplane to `Σᵢ xᵢ = α`

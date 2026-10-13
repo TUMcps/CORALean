@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
+
+@[expose] public section
 
 /-!
 # `ConZonotope.empty`, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
-import Mathlib.Data.Real.Sign
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import Mathlib.Data.Real.Sign
+
+@[expose] public section
 
 /-!
 # `Interval.maxCos`

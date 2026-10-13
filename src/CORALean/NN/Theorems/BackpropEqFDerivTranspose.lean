@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.BackpropEqTranspose
-import CORALean.NN.Theorems.SensitivityFDeriv
+module
+
+public import CORALean.NN.Theorems.BackpropEqTranspose
+public import CORALean.NN.Theorems.SensitivityFDeriv
+
+@[expose] public section
 
 /-!
 # Backpropagation is the transposed derivative wherever the layers are differentiable

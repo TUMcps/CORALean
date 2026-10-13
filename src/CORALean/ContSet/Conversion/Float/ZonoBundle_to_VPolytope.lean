@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+module
+
+public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+
+@[expose] public section
 
 /-!
 # A bundle's corners, at one component, over a floating-point scalar

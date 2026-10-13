@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.SmoothNetworkEval
-import CORALean.NN.Operations.SmoothNetworkNu
+module
+
+public import CORALean.NN.Operations.SmoothNetworkEval
+public import CORALean.NN.Operations.SmoothNetworkNu
+
+@[expose] public section
 
 /-!
 # CORA's `neuralNetwork/nonlinearSysDT`: the output function

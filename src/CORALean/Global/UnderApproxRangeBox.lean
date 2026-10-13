@@ -1,4 +1,8 @@
-import CORALean.Global.RobustUnderApproxBox
+module
+
+public import CORALean.Global.RobustUnderApproxBox
+
+@[expose] public section
 
 /-!
 # The product of the mean-value AE extensions of the components is inside the range

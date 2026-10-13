@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.Global.Float.RatUp
-import CORALean.Global.Float.ToRat
-import CORALean.Global.LinProg.Simplex
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.Global.Float.RatUp
+public import CORALean.Global.Float.ToRat
+public import CORALean.Global.LinProg.Simplex
+
+@[expose] public section
 
 /-!
 # `HPolytope.dualWeights`

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinDeltaReach
-import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
-import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinDeltaReach
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+
+@[expose] public section
 
 /-!
 # The loop's state differences, over the whole of a step

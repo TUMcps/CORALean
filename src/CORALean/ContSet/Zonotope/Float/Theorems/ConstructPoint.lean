@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.point` denotes exactly the point it stores

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.CurvHi
-import CORALean.NN.Layers.Operations.CurvLo
+module
+
+public import CORALean.NN.Layers.Operations.CurvHi
+public import CORALean.NN.Layers.Operations.CurvLo
+
+@[expose] public section
 
 /-!
 # The offset a derivative bracket stores

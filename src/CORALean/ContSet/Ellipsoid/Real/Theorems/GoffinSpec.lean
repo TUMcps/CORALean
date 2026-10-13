@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
-import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeContains
-import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsApproxLownerJohnOfSandwich
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeContains
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsApproxLownerJohnOfSandwich
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+
+@[expose] public section
 
 /-!
 # Goffin's algorithm keeps `Z` inside, and stops at an approximate Löwner–John ellipse

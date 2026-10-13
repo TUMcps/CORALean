@@ -1,6 +1,10 @@
-import CORALean.Global.IpmEllipsoid
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.Global.IpmEllipsoid
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # The interval of the ellipsoid predictor

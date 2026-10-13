@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceBy
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceBy
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.restructure` over a floating-point scalar

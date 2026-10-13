@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
-import CORALean.HybridDynamics.Parallel.Operations.Product
+module
+
+public import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
+public import CORALean.HybridDynamics.Parallel.Operations.Product
+
+@[expose] public section
 
 /-!
 # What the merged matrix does to a stack

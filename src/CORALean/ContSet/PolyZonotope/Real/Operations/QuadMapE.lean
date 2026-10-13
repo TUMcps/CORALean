@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
+
+@[expose] public section
 
 /-!
 # The exponent matrix of `quadMap`

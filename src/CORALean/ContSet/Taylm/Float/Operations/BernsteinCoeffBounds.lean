@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.BernsteinEntryBounds
-import CORALean.ContSet.Taylm.Float.Operations.BoundsProd
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BernsteinEntryBounds
+public import CORALean.ContSet.Taylm.Float.Operations.BoundsProd
+
+@[expose] public section
 
 /-!
 # `Taylm.bernsteinCoeffBounds`

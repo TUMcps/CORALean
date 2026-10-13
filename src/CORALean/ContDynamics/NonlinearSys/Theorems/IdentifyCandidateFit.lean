@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.IdentifyCandidate
-import CORALean.Global.DmdCandidateFit
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.IdentifyCandidate
+public import CORALean.Global.DmdCandidateFit
+
+@[expose] public section
 
 /-!
 # The full-rank DMD candidate fits consistent data

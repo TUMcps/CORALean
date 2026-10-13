@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
+
+@[expose] public section
 
 /-!
 # The input part of Alg. 2, with the exponent of (24)

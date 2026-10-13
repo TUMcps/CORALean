@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+
+@[expose] public section
 
 /-!
 # The extended generator matrix reads back to the exact layer's

@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # `[1, Lemma 1]` fails at an empty inbody

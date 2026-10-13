@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
+
+@[expose] public section
 
 /-!
 # The float bounds of a neuron hold

@@ -1,4 +1,8 @@
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # The foot of the perpendicular lies on the hyperplane

@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Float.Operations.LinComb
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `linComb`'s nominal part is the exact layer's `linComb`

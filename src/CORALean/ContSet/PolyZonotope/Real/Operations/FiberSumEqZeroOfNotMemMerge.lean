@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
-import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
-import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
+
+@[expose] public section
 
 /-!
 # A column `merge` drops gathers nothing

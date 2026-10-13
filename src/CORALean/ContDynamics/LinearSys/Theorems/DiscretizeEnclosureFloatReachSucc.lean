@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
-import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+
+@[expose] public section
 
 /-!
 # One step of the float sampled run

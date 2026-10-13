@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
-import CORALean.ContSet.Polygon.Real.Operations.OverlapsRegionCora
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+module
+
+public import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
+public import CORALean.ContSet.Polygon.Real.Operations.OverlapsRegionCora
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+@[expose] public section
 
 /-!
 # CORA's `polygon/isIntersecting_` misses an ellipsoid it intersects

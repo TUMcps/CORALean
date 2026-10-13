@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortTailP
-import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortTailP
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2]'s recursion, paired with its factor-count proof

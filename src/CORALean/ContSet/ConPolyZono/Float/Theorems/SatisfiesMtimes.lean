@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `mtimes` does not touch the constraint system

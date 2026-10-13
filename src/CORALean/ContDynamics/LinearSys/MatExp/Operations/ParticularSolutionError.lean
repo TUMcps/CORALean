@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuterCorrelated
-import CORALean.Global.Err
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuterCorrelated
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # `Δε^U_k`, eq. (25)

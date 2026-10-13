@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+
+@[expose] public section
 
 /-!
 # `backReachForall` at `Zonotope`, with both operation hypotheses discharged

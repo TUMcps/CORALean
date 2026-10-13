@@ -1,14 +1,18 @@
-import CORALean.ContSet.Zonotope.Real.Operations.CorrectedStep
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.CorrectedStep
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+public import Mathlib.Topology.Instances.Matrix
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The P-radius contraction of the corrected zonotope

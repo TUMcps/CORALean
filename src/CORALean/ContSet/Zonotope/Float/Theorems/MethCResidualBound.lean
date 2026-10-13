@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MethCResidual
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MethCResidual
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `methCResidual` bounds `|1 - H P|`

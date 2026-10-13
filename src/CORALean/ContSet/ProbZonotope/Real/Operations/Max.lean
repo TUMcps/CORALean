@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Analysis.SpecialFunctions.Exp
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Analysis.SpecialFunctions.Exp
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.max`

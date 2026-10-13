@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Neg
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Neg
+
+@[expose] public section
 
 /-!
 # Negation is exact

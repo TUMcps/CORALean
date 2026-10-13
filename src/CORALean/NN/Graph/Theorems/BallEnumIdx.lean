@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Theorems.MemBallEnumIff
-import CORALean.NN.Graph.Theorems.MemBallSelf
+module
+
+public import CORALean.NN.Graph.Theorems.MemBallEnumIff
+public import CORALean.NN.Graph.Theorems.MemBallSelf
+
+@[expose] public section
 
 /-!
 # `v`'s own index in the enumeration

@@ -1,8 +1,12 @@
-import CORALean.Global.BlockDiag
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
-import Mathlib.Data.Fin.Tuple.Basic
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.Global.BlockDiag
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+public import Mathlib.Data.Fin.Tuple.Basic
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # A polytope as a spectrahedral shadow

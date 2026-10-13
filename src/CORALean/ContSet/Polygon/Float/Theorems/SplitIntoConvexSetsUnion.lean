@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.SplitIntoConvexSets
-import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.SplitIntoConvexSets
+public import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # `Polygon.splitIntoConvexSets` splits the float polygon into convex sets

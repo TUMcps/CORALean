@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceByOuter
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceByOuter
+
+@[expose] public section
 
 /-!
 # Girard's reduction encloses

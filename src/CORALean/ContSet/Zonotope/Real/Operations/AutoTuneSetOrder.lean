@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
-import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
-import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 19-22: the zonotope order for one step

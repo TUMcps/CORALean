@@ -1,10 +1,14 @@
-import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
-import CORALean.ContSet.Taylm.Real.Operations.Reexpand
-import CORALean.ContSet.Taylm.Real.Operations.Bounds
-import CORALean.ContSet.Taylm.Real.Operations.Ldb
-import CORALean.ContSet.Taylm.Real.Operations.QfbLower
-import CORALean.ContSet.Taylm.Real.Operations.Hessian
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
+public import CORALean.ContSet.Taylm.Real.Operations.Reexpand
+public import CORALean.ContSet.Taylm.Real.Operations.Bounds
+public import CORALean.ContSet.Taylm.Real.Operations.Ldb
+public import CORALean.ContSet.Taylm.Real.Operations.QfbLower
+public import CORALean.ContSet.Taylm.Real.Operations.Hessian
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # COSY-GO's bound of a box

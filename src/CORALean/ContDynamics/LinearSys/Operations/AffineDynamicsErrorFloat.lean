@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinusFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
-import CORALean.Global.Float.GenOpNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinusFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
+public import CORALean.Global.Float.GenOpNorm
+
+@[expose] public section
 
 /-!
 # `Δε^h_k(Δt, η)`, eq. (23), in floats

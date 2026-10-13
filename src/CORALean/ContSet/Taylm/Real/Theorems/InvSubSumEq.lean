@@ -1,7 +1,11 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The remainder of `1/x`'s Taylor polynomial in closed form

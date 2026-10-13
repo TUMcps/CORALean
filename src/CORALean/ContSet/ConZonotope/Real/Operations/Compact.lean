@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
-import CORALean.ContSet.ConZonotope.Real.Operations.CompactEqs
-import CORALean.ContSet.ConZonotope.Real.Operations.CompactEmbed
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
+public import CORALean.ContSet.ConZonotope.Real.Operations.CompactEqs
+public import CORALean.ContSet.ConZonotope.Real.Operations.CompactEmbed
+
+@[expose] public section
 
 /-!
 # `ConZonotope.compact`

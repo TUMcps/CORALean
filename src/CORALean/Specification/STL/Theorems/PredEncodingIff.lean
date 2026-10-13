@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Algebra.Order.AbsoluteValue.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Algebra.Order.AbsoluteValue.Basic
+
+@[expose] public section
 
 /-!
 # The predicate constraints decide the predicate

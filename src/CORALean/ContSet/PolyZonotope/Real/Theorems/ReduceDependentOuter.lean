@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceDependent
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardDependentOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceDependent
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardDependentOuter
+
+@[expose] public section
 
 /-!
 # The tighter reduction over-approximates

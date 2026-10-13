@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
-import CORALean.Global.Err
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # Every point of `particularRemainderSet` is within an explicit bound of the origin

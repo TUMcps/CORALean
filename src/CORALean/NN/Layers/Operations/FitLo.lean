@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.CoarseLo
-import CORALean.NN.Layers.Operations.GridChecked
+module
+
+public import CORALean.NN.Layers.Operations.CoarseLo
+public import CORALean.NN.Layers.Operations.GridChecked
+
+@[expose] public section
 
 /-!
 # A fit's sampled bracket, lower end

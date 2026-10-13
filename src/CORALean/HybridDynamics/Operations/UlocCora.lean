@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # The per-location input trajectory of `hybridAutomaton/reach`, as CORA writes it
 

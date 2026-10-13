@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinProbSys.Definitions.PostState
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.Plus
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+module
+
+public import CORALean.ContDynamics.LinProbSys.Definitions.PostState
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+
+@[expose] public section
 
 /-!
 # One step of the probabilistic reach loop

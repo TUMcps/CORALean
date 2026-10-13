@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderInvSumPos
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLamSumPos
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityEq
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderInvSumPos
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLamSumPos
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityEq
+
+@[expose] public section
 
 /-!
 # Above the fixed point of Halder's step

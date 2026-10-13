@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Flint.Operations.Le
+module
+
+public import CORALean.Global.Float.Instances.Flint.Operations.Le
+
+@[expose] public section
 
 /-!
 # The lesser of two values

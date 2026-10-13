@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.IsFullDimCora
-import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimRank
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.IsFullDimCora
+public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimRank
+
+@[expose] public section
 
 /-!
 # Full dimension implies CORA's rank test

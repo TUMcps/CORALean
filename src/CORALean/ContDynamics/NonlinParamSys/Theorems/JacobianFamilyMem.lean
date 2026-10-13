@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
-import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
-import CORALean.Global.JacobianMatParam
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
+public import CORALean.Global.JacobianMatParam
+
+@[expose] public section
 
 /-!
 # The matrix zonotope of the Jacobians holds the Jacobian at every parameter of the box

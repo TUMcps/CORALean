@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.vPolytope`, over a floating-point scalar

@@ -1,6 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The cubic map of a weighted sum of vectors, expanded

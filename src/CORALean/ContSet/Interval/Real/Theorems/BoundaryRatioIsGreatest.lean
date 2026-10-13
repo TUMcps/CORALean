@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.BoundaryPoint
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.BoundaryPoint
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `Interval.boundaryPoint` is the exit point of the ray

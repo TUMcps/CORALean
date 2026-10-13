@@ -1,130 +1,132 @@
-import CORALean.NN.Layers.Theorems.AbsSubEvalPolyDerivLe
-import CORALean.NN.Layers.Theorems.AbsSubLeBracketError
-import CORALean.NN.Layers.Theorems.AbsSubLeSpread
-import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
-import CORALean.NN.Layers.Theorems.ActivationOuterWhere
-import CORALean.NN.Layers.Theorems.ActivationPolySound
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.ActivationTaylmSound
-import CORALean.NN.Layers.Theorems.AllOverApply
-import CORALean.NN.Layers.Theorems.AtPatternSound
-import CORALean.NN.Layers.Theorems.AvgPoolSound
-import CORALean.NN.Layers.Theorems.BatchNormSound
-import CORALean.NN.Layers.Theorems.ClampUnitLeOne
-import CORALean.NN.Layers.Theorems.ClampUnitNonneg
-import CORALean.NN.Layers.Theorems.CoarseBounds
-import CORALean.NN.Layers.Theorems.CoeffListCoord
-import CORALean.NN.Layers.Theorems.ConvSound
-import CORALean.NN.Layers.Theorems.ConvTransposeSound
-import CORALean.NN.Layers.Theorems.DegLeDegOf
-import CORALean.NN.Layers.Theorems.DoubleRoundingSound
-import CORALean.NN.Layers.Theorems.ElementwiseAffineSound
-import CORALean.NN.Layers.Theorems.EvalPolyDownLe
-import CORALean.NN.Layers.Theorems.EvalPolyShiftConst
-import CORALean.NN.Layers.Theorems.ExistsGridClose
-import CORALean.NN.Layers.Theorems.ExpRelaxationSound
-import CORALean.NN.Layers.Theorems.ExpSound
-import CORALean.NN.Layers.Theorems.FindRegionLeftFits
-import CORALean.NN.Layers.Theorems.FindRegionLoopCover
-import CORALean.NN.Layers.Theorems.FindRegionPolysCover
-import CORALean.NN.Layers.Theorems.FindRegionRightFits
-import CORALean.NN.Layers.Theorems.GeneratorReductionSound
-import CORALean.NN.Layers.Theorems.GridMemOfChecked
-import CORALean.NN.Layers.Theorems.GroupSortChunkFloatGroupSortFloat
-import CORALean.NN.Layers.Theorems.GroupSortChunkGroupSort
-import CORALean.NN.Layers.Theorems.GroupSortFloatPerm
-import CORALean.NN.Layers.Theorems.GroupSortFloatSorted
-import CORALean.NN.Layers.Theorems.GroupSortPerm
-import CORALean.NN.Layers.Theorems.GroupSortSorted
-import CORALean.NN.Layers.Theorems.InvSqrtRootRelaxationSound
-import CORALean.NN.Layers.Theorems.InvSqrtRootSound
-import CORALean.NN.Layers.Theorems.LeEvalPolyUp
-import CORALean.NN.Layers.Theorems.LeMaxPoolGapUp
-import CORALean.NN.Layers.Theorems.LeMulRangeUp
-import CORALean.NN.Layers.Theorems.LeSampleDevUp
-import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
-import CORALean.NN.Layers.Theorems.LeakyReluRelaxationSound
-import CORALean.NN.Layers.Theorems.LeakyReluSound
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.LinearWithErrorMem
-import CORALean.NN.Layers.Theorems.LinearWithErrorSound
-import CORALean.NN.Layers.Theorems.LipConstrLinearFloatSound
-import CORALean.NN.Layers.Theorems.LipConstrLinearSound
-import CORALean.NN.Layers.Theorems.LipConstrScaleFloatMem
-import CORALean.NN.Layers.Theorems.LipConstrScaleRowSumLe
-import CORALean.NN.Layers.Theorems.LowerRegionOrderFits
-import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg
-import CORALean.NN.Layers.Theorems.MaxPoolSound
-import CORALean.NN.Layers.Theorems.MulRangeDownLe
-import CORALean.NN.Layers.Theorems.OfAffineConjSound
-import CORALean.NN.Layers.Theorems.OfAntitoneSound
-import CORALean.NN.Layers.Theorems.OfBracketSound
-import CORALean.NN.Layers.Theorems.OfDerivSound
-import CORALean.NN.Layers.Theorems.OfMonotoneSound
-import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
-import CORALean.NN.Layers.Theorems.OfSamplingSound
-import CORALean.NN.Layers.Theorems.PadToError
-import CORALean.NN.Layers.Theorems.PadToSound
-import CORALean.NN.Layers.Theorems.PolyDerivRadiusLe
-import CORALean.NN.Layers.Theorems.PolyRelaxationOfAffineConjSound
-import CORALean.NN.Layers.Theorems.PowRangeBounds
-import CORALean.NN.Layers.Theorems.Real.API
-import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
-import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
-import CORALean.NN.Layers.Theorems.ReluRelaxationSound
-import CORALean.NN.Layers.Theorems.ReluSound
-import CORALean.NN.Layers.Theorems.ReluStarFloatSound
-import CORALean.NN.Layers.Theorems.ReluStarSound
-import CORALean.NN.Layers.Theorems.ReshapeExact
-import CORALean.NN.Layers.Theorems.ReshapeSound
-import CORALean.NN.Layers.Theorems.RootRelaxationSound
-import CORALean.NN.Layers.Theorems.RootSound
-import CORALean.NN.Layers.Theorems.SShapeDerBoundsFloatSound
-import CORALean.NN.Layers.Theorems.SShapeDerBoundsSound
-import CORALean.NN.Layers.Theorems.SShapeUnimodal
-import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
-import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
-import CORALean.NN.Layers.Theorems.SampleDevLoLe
-import CORALean.NN.Layers.Theorems.SelectMatMulVec
-import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
-import CORALean.NN.Layers.Theorems.SigmoidCurvatureRelaxationSound
-import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
-import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
-import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
-import CORALean.NN.Layers.Theorems.SigmoidPolySound
-import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
-import CORALean.NN.Layers.Theorems.SigmoidSound
-import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
-import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
-import CORALean.NN.Layers.Theorems.SoftmaxSound
-import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
-import CORALean.NN.Layers.Theorems.SoftplusSound
-import CORALean.NN.Layers.Theorems.SquareRelaxationSound
-import CORALean.NN.Layers.Theorems.SquareSound
-import CORALean.NN.Layers.Theorems.StarSetCoraRowBoundsUnsound
-import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
-import CORALean.NN.Layers.Theorems.StarSetFloatReluNeuronOuter
-import CORALean.NN.Layers.Theorems.StarSetFloatRowBoundsMem
-import CORALean.NN.Layers.Theorems.StarSetReluNeuronOuter
-import CORALean.NN.Layers.Theorems.StarSetRowBoundsMem
-import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
-import CORALean.NN.Layers.Theorems.SumIteZero
-import CORALean.NN.Layers.Theorems.SumOffDownLe
-import CORALean.NN.Layers.Theorems.TanhPolyRelaxationSound
-import CORALean.NN.Layers.Theorems.TanhRelaxationSound
-import CORALean.NN.Layers.Theorems.TanhSound
-import CORALean.NN.Layers.Theorems.TapEntryDot
-import CORALean.NN.Layers.Theorems.TapEntryEqZero
-import CORALean.NN.Layers.Theorems.TapMatMulVec
-import CORALean.NN.Layers.Theorems.TighterSound
-import CORALean.NN.Layers.Theorems.ToPolySound
-import CORALean.NN.Layers.Theorems.ToPolyToRelaxation
-import CORALean.NN.Layers.Theorems.ToRealIteZero
-import CORALean.NN.Layers.Theorems.ToRealMatTapMat
-import CORALean.NN.Layers.Theorems.ToRealPadCoeffs
-import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
-import CORALean.NN.Layers.Theorems.ToRealTapEntry
-import CORALean.NN.Layers.Theorems.ToRelaxationSound
+module
+
+public import CORALean.NN.Layers.Theorems.AbsSubEvalPolyDerivLe
+public import CORALean.NN.Layers.Theorems.AbsSubLeBracketError
+public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+public import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
+public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
+public import CORALean.NN.Layers.Theorems.ActivationPolySound
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.ActivationTaylmSound
+public import CORALean.NN.Layers.Theorems.AllOverApply
+public import CORALean.NN.Layers.Theorems.AtPatternSound
+public import CORALean.NN.Layers.Theorems.AvgPoolSound
+public import CORALean.NN.Layers.Theorems.BatchNormSound
+public import CORALean.NN.Layers.Theorems.ClampUnitLeOne
+public import CORALean.NN.Layers.Theorems.ClampUnitNonneg
+public import CORALean.NN.Layers.Theorems.CoarseBounds
+public import CORALean.NN.Layers.Theorems.CoeffListCoord
+public import CORALean.NN.Layers.Theorems.ConvSound
+public import CORALean.NN.Layers.Theorems.ConvTransposeSound
+public import CORALean.NN.Layers.Theorems.DegLeDegOf
+public import CORALean.NN.Layers.Theorems.DoubleRoundingSound
+public import CORALean.NN.Layers.Theorems.ElementwiseAffineSound
+public import CORALean.NN.Layers.Theorems.EvalPolyDownLe
+public import CORALean.NN.Layers.Theorems.EvalPolyShiftConst
+public import CORALean.NN.Layers.Theorems.ExistsGridClose
+public import CORALean.NN.Layers.Theorems.ExpRelaxationSound
+public import CORALean.NN.Layers.Theorems.ExpSound
+public import CORALean.NN.Layers.Theorems.FindRegionLeftFits
+public import CORALean.NN.Layers.Theorems.FindRegionLoopCover
+public import CORALean.NN.Layers.Theorems.FindRegionPolysCover
+public import CORALean.NN.Layers.Theorems.FindRegionRightFits
+public import CORALean.NN.Layers.Theorems.GeneratorReductionSound
+public import CORALean.NN.Layers.Theorems.GridMemOfChecked
+public import CORALean.NN.Layers.Theorems.GroupSortChunkFloatGroupSortFloat
+public import CORALean.NN.Layers.Theorems.GroupSortChunkGroupSort
+public import CORALean.NN.Layers.Theorems.GroupSortFloatPerm
+public import CORALean.NN.Layers.Theorems.GroupSortFloatSorted
+public import CORALean.NN.Layers.Theorems.GroupSortPerm
+public import CORALean.NN.Layers.Theorems.GroupSortSorted
+public import CORALean.NN.Layers.Theorems.InvSqrtRootRelaxationSound
+public import CORALean.NN.Layers.Theorems.InvSqrtRootSound
+public import CORALean.NN.Layers.Theorems.LeEvalPolyUp
+public import CORALean.NN.Layers.Theorems.LeMaxPoolGapUp
+public import CORALean.NN.Layers.Theorems.LeMulRangeUp
+public import CORALean.NN.Layers.Theorems.LeSampleDevUp
+public import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
+public import CORALean.NN.Layers.Theorems.LeakyReluRelaxationSound
+public import CORALean.NN.Layers.Theorems.LeakyReluSound
+public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
+public import CORALean.NN.Layers.Theorems.LinearWithErrorSound
+public import CORALean.NN.Layers.Theorems.LipConstrLinearFloatSound
+public import CORALean.NN.Layers.Theorems.LipConstrLinearSound
+public import CORALean.NN.Layers.Theorems.LipConstrScaleFloatMem
+public import CORALean.NN.Layers.Theorems.LipConstrScaleRowSumLe
+public import CORALean.NN.Layers.Theorems.LowerRegionOrderFits
+public import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg
+public import CORALean.NN.Layers.Theorems.MaxPoolSound
+public import CORALean.NN.Layers.Theorems.MulRangeDownLe
+public import CORALean.NN.Layers.Theorems.OfAffineConjSound
+public import CORALean.NN.Layers.Theorems.OfAntitoneSound
+public import CORALean.NN.Layers.Theorems.OfBracketSound
+public import CORALean.NN.Layers.Theorems.OfDerivSound
+public import CORALean.NN.Layers.Theorems.OfMonotoneSound
+public import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
+public import CORALean.NN.Layers.Theorems.OfSamplingSound
+public import CORALean.NN.Layers.Theorems.PadToError
+public import CORALean.NN.Layers.Theorems.PadToSound
+public import CORALean.NN.Layers.Theorems.PolyDerivRadiusLe
+public import CORALean.NN.Layers.Theorems.PolyRelaxationOfAffineConjSound
+public import CORALean.NN.Layers.Theorems.PowRangeBounds
+public import CORALean.NN.Layers.Theorems.Real.API
+public import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
+public import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
+public import CORALean.NN.Layers.Theorems.ReluRelaxationSound
+public import CORALean.NN.Layers.Theorems.ReluSound
+public import CORALean.NN.Layers.Theorems.ReluStarFloatSound
+public import CORALean.NN.Layers.Theorems.ReluStarSound
+public import CORALean.NN.Layers.Theorems.ReshapeExact
+public import CORALean.NN.Layers.Theorems.ReshapeSound
+public import CORALean.NN.Layers.Theorems.RootRelaxationSound
+public import CORALean.NN.Layers.Theorems.RootSound
+public import CORALean.NN.Layers.Theorems.SShapeDerBoundsFloatSound
+public import CORALean.NN.Layers.Theorems.SShapeDerBoundsSound
+public import CORALean.NN.Layers.Theorems.SShapeUnimodal
+public import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
+public import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
+public import CORALean.NN.Layers.Theorems.SampleDevLoLe
+public import CORALean.NN.Layers.Theorems.SelectMatMulVec
+public import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
+public import CORALean.NN.Layers.Theorems.SigmoidCurvatureRelaxationSound
+public import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
+public import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
+public import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
+public import CORALean.NN.Layers.Theorems.SigmoidPolySound
+public import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
+public import CORALean.NN.Layers.Theorems.SigmoidSound
+public import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
+public import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
+public import CORALean.NN.Layers.Theorems.SoftmaxSound
+public import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
+public import CORALean.NN.Layers.Theorems.SoftplusSound
+public import CORALean.NN.Layers.Theorems.SquareRelaxationSound
+public import CORALean.NN.Layers.Theorems.SquareSound
+public import CORALean.NN.Layers.Theorems.StarSetCoraRowBoundsUnsound
+public import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
+public import CORALean.NN.Layers.Theorems.StarSetFloatReluNeuronOuter
+public import CORALean.NN.Layers.Theorems.StarSetFloatRowBoundsMem
+public import CORALean.NN.Layers.Theorems.StarSetReluNeuronOuter
+public import CORALean.NN.Layers.Theorems.StarSetRowBoundsMem
+public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
+public import CORALean.NN.Layers.Theorems.SumIteZero
+public import CORALean.NN.Layers.Theorems.SumOffDownLe
+public import CORALean.NN.Layers.Theorems.TanhPolyRelaxationSound
+public import CORALean.NN.Layers.Theorems.TanhRelaxationSound
+public import CORALean.NN.Layers.Theorems.TanhSound
+public import CORALean.NN.Layers.Theorems.TapEntryDot
+public import CORALean.NN.Layers.Theorems.TapEntryEqZero
+public import CORALean.NN.Layers.Theorems.TapMatMulVec
+public import CORALean.NN.Layers.Theorems.TighterSound
+public import CORALean.NN.Layers.Theorems.ToPolySound
+public import CORALean.NN.Layers.Theorems.ToPolyToRelaxation
+public import CORALean.NN.Layers.Theorems.ToRealIteZero
+public import CORALean.NN.Layers.Theorems.ToRealMatTapMat
+public import CORALean.NN.Layers.Theorems.ToRealPadCoeffs
+public import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
+public import CORALean.NN.Layers.Theorems.ToRealTapEntry
+public import CORALean.NN.Layers.Theorems.ToRelaxationSound
 
 /-!
 # What the standard layers enclose, collected

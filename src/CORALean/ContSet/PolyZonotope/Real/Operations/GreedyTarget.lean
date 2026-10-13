@@ -1,6 +1,10 @@
-import Mathlib.Data.List.Defs
-import Mathlib.Data.Fin.Basic
-import Mathlib.Order.Defs.Unbundled
+module
+
+public import Mathlib.Data.List.Defs
+public import Mathlib.Data.Fin.Basic
+public import Mathlib.Order.Defs.Unbundled
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.greedyTarget`

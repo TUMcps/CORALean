@@ -1,8 +1,12 @@
-import CORALean.ContSet.Capsule.Float.Operations.ArcBox
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.CosOuter
-import CORALean.ContSet.Interval.Float.Theorems.SinOuter
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.ArcBox
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.CosOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SinOuter
+
+@[expose] public section
 
 /-!
 # `Capsule.arcBox` holds the sampled point

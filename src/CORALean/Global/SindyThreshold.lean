@@ -1,9 +1,13 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Order.Group.Unbundled.Abs
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Fintype.Prod
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Order.Group.Unbundled.Abs
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Fintype.Prod
+
+@[expose] public section
 
 /-!
 # Sequential thresholded least squares

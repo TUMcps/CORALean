@@ -1,8 +1,12 @@
-import CORALean.Global.Cost
-import Mathlib.Data.Nat.Choose.Basic
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Data.Nat.Choose.Bounds
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Cost
+public import Mathlib.Data.Nat.Choose.Basic
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Data.Nat.Choose.Bounds
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.exhaustiveSearchCost`

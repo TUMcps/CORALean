@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Operations.SegDist
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.SegDist
+
+@[expose] public section
 
 /-!
 # The axis distance is attained

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersectionCost`

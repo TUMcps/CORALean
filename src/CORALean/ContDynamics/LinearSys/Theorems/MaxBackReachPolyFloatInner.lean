@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPolyFloat
-import CORALean.ContSet.Capsule.Real.Capsule
-import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPolyFloat
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
+
+@[expose] public section
 
 /-!
 # The float eroded polytope is inside the exact one

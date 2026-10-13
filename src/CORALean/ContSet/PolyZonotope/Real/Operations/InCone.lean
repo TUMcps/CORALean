@@ -1,6 +1,10 @@
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Module.Defs
+module
+
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Module.Defs
+
+@[expose] public section
 
 /-!
 # Cone membership

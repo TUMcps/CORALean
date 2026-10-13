@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexPoint
+
+@[expose] public section
 
 /-!
 # `sort` moves no point

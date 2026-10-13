@@ -1,4 +1,8 @@
-import Mathlib.Analysis.ODE.ExistUnique
+module
+
+public import Mathlib.Analysis.ODE.ExistUnique
+
+@[expose] public section
 
 /-!
 # A Lipschitz field has a solution on a fixed window around any point

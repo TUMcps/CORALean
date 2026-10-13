@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # The input set a float linearization widens to

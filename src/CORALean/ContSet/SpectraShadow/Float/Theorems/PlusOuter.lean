@@ -1,12 +1,16 @@
-import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LmiAppend
-import CORALean.ContSet.SpectraShadow.Real.Theorems.PosSemidefPlusIff
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LmiAppend
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PosSemidefPlusIff
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.plus` over-approximates the Minkowski sum

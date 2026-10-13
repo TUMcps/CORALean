@@ -1,23 +1,27 @@
-import CORALean.HybridDynamics.Operations.AbstractionErrorFloat
-import CORALean.HybridDynamics.Theorems.AbstractionErrorDecomp
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundNonneg
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.Convex
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
-import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
+module
+
+public import CORALean.HybridDynamics.Operations.AbstractionErrorFloat
+public import CORALean.HybridDynamics.Theorems.AbstractionErrorDecomp
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundNonneg
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
+
+@[expose] public section
 
 /-!
 # The float abstraction error encloses the difference of a run and the constant flow

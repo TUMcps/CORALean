@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Radius2
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Radius2
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+
+@[expose] public section
 
 /-!
 # Every member of a box is within `Interval.radius₂` of the centre

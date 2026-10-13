@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Asin
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Asin
+
+@[expose] public section
 
 /-!
 # `Interval.asin` contains the image under `arcsin`

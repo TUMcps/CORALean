@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Float.Operations.Origin
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
-import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
-import CORALean.ContSet.VPolytope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.Origin
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `VPolytope.origin` denotes exactly the origin, over a floating-point scalar

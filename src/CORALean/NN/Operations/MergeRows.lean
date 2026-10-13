@@ -1,5 +1,9 @@
-import CORALean.Global.Partition
-import CORALean.NN.Definitions.ReducibleNetwork
+module
+
+public import CORALean.Global.Partition
+public import CORALean.NN.Definitions.ReducibleNetwork
+
+@[expose] public section
 
 /-!
 # [1, Prop. 4] at layer `k-1`: keeping the surviving rows

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `ξ_E` from one grouped generator to the target it is merged onto

@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
-import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
-import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import CORALean.ContDynamics.LinearSys.Theorems.HeldInputMeasurable
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Theorems.HeldInputMeasurable
+
+@[expose] public section
 
 /-!
 # The held-input run, sampled, is the discrete-time system

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+
+@[expose] public section
 
 /-!
 # The generators of `quadMap`

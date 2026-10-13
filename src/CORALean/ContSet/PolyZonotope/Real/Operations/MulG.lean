@@ -1,5 +1,9 @@
-import CORALean.Global.Hadamard
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
+module
+
+public import CORALean.Global.Hadamard
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
+
+@[expose] public section
 
 /-!
 # The generators of `mul`

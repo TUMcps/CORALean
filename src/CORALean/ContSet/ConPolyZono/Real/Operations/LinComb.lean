@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
-import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
-import CORALean.ContSet.ConPolyZono.Real.Operations.ToPolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ToPolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.linComb`

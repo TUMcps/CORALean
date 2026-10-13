@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceGirardOuter
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceGirardOuter
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduce` encloses the set

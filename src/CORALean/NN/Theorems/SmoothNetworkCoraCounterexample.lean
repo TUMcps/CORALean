@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.SmoothNetworkEval
+module
+
+public import CORALean.NN.Operations.SmoothNetworkEval
+
+@[expose] public section
 
 /-!
 # CORA's `nonlinearSysDT` drops the scale of an elementwise affine layer

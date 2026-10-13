@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Abs
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Abs
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMemNominalSet
+
+@[expose] public section
 
 /-!
 # The corner of `abs` is a point of `abs Z`

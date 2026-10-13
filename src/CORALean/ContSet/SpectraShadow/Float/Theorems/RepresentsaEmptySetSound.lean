@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PosSemidefOfDiagDominant
-import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceMulNonneg
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PosSemidefOfDiagDominant
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceMulNonneg
+
+@[expose] public section
 
 /-!
 # A `true` from `SpectraShadow.representsa_emptySet` proves the set empty

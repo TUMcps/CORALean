@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
-import CORALean.ContSet.SpectraShadow.Float.Theorems.TieInterOuter
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.TieInterOuter
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.inter` contains the intersection

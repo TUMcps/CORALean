@@ -1,7 +1,9 @@
-import CORALean.ContDynamics.Reach.Definitions.API
-import CORALean.ContDynamics.Reach.Operations.API
-import CORALean.ContDynamics.Reach.Reach
-import CORALean.ContDynamics.Reach.Theorems.API
+module
+
+public import CORALean.ContDynamics.Reach.Definitions.API
+public import CORALean.ContDynamics.Reach.Operations.API
+public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Reach.Theorems.API
 
 /-!
 # The reachability interface, collected

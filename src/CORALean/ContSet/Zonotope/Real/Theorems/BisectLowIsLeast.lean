@@ -1,12 +1,16 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BisectLow
-import CORALean.ContSet.Zonotope.Real.Theorems.BisectInvStep
-import CORALean.ContSet.Zonotope.Real.Theorems.EdgePointLeast
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfHorizontal
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerBottomLe
-import CORALean.ContSet.Zonotope.Real.Theorems.ReachLe
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructPointUp
-import CORALean.ContSet.Zonotope.Real.Theorems.PointUpHalfPlane
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BisectLow
+public import CORALean.ContSet.Zonotope.Real.Theorems.BisectInvStep
+public import CORALean.ContSet.Zonotope.Real.Theorems.EdgePointLeast
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfHorizontal
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerBottomLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReachLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructPointUp
+public import CORALean.ContSet.Zonotope.Real.Theorems.PointUpHalfPlane
+
+@[expose] public section
 
 /-!
 # The bisection of [1, Alg. 4] finds the lowest point of the section

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ShiftExact
-import CORALean.NN.Graph.Operations.LinearPolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ShiftExact
+public import CORALean.NN.Graph.Operations.LinearPolyZonotope
+
+@[expose] public section
 
 /-!
 # The graph linear layer on a polynomial zonotope is exact

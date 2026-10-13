@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.Plus
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Plus
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Capsule.plusCost`

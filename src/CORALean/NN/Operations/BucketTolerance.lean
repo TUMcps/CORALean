@@ -1,7 +1,11 @@
-import CORALean.NN.Operations.BisectBucketTolerance
-import CORALean.NN.Operations.GrowBucketTolerance
-import CORALean.NN.Operations.MaxOver
-import CORALean.NN.Operations.MinOver
+module
+
+public import CORALean.NN.Operations.BisectBucketTolerance
+public import CORALean.NN.Operations.GrowBucketTolerance
+public import CORALean.NN.Operations.MaxOver
+public import CORALean.NN.Operations.MinOver
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1]: the bucket tolerance a reduction rate asks for

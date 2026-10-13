@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
+
+@[expose] public section
 
 /-!
 # Every run from the backward reachable set lands in the target

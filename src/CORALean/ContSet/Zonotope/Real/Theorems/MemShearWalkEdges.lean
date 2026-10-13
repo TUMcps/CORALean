@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Shear
-import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
-import CORALean.ContSet.Zonotope.Real.Theorems.ShearComb
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Ring.Finset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Shear
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.ShearComb
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # The walk edges of a sheared zonogon are the sheared walk edges

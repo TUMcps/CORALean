@@ -1,10 +1,15 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The product of an interval matrix and a real matrix, entry by entry

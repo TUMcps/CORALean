@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxYang
-import CORALean.ContSet.Zonotope.Real.Theorems.CombineGensInner
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxYang
+public import CORALean.ContSet.Zonotope.Real.Theorems.CombineGensInner
+
+@[expose] public section
 
 /-!
 # `reduceUnderApproxYang` returns a subset

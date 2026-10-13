@@ -1,5 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Aligned
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A feasible point of (max-in) gives an aligned zonotope inside the halfspaces

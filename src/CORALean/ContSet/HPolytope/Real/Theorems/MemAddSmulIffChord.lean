@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.ChordHigh
-import CORALean.ContSet.HPolytope.Real.Operations.ChordLow
-import Mathlib.Tactic.Linarith
-import Mathlib.Data.List.MinMax
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordHigh
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordLow
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Data.List.MinMax
+
+@[expose] public section
 
 /-!
 # The Boundary Oracle's segment is exactly the chord

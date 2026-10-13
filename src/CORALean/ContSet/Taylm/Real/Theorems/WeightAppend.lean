@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+module
+
+public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+
+@[expose] public section
 
 /-!
 # The weight of a concatenation

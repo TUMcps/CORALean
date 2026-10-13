@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachError
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachError
+
+@[expose] public section
 
 /-!
 # An inner approximation of a continuous reachable set, over a whole run

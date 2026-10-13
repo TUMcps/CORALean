@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
-import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
+public import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # [1]'s Eq. (20) as printed does not reach the support vector

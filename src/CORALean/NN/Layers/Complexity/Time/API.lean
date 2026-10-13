@@ -1,4 +1,6 @@
-import CORALean.NN.Layers.Complexity.Time.Linear
+module
+
+public import CORALean.NN.Layers.Complexity.Time.Linear
 
 /-!
 # What running a layer costs

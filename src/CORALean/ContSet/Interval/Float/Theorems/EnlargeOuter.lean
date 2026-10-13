@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Operations.Enlarge
-import CORALean.ContSet.Interval.Float.Theorems.CenterGe
-import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
-import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
-import CORALean.ContSet.Interval.Real.Operations.Enlarge
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Enlarge
+public import CORALean.ContSet.Interval.Float.Theorems.CenterGe
+public import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
+public import CORALean.ContSet.Interval.Real.Operations.Enlarge
+
+@[expose] public section
 
 /-!
 # `Interval.enlarge` holds the exact layer's enlargement

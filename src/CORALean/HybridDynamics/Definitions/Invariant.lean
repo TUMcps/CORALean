@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.HybridAutomaton
+module
+
+public import CORALean.HybridDynamics.HybridAutomaton
+
+@[expose] public section
 
 /-!
 # A set per location that a run cannot leave

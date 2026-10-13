@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Cos
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Cos
+
+@[expose] public section
 
 /-!
 # `Interval.sin`

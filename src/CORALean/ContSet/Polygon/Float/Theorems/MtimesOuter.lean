@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.Mtimes
-import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Mtimes
+public import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.mtimes` encloses the image

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+
+@[expose] public section
 
 /-!
 # The zonotope norm is a norm

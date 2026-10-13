@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.CorrectedKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpCorrectedApplyLastLe
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.CorrectedKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpCorrectedApplyLastLe
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
+
+@[expose] public section
 
 /-!
 # The error bound for the corrected Krylov approximation of φ-functions

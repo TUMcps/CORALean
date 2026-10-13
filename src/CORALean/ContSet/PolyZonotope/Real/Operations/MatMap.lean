@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinOuter
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinOuter
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.matMap`

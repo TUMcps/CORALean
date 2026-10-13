@@ -1,6 +1,10 @@
-import CORALean.Global.ShenmaierVertex
-import CORALean.Global.Tensor
-import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
+module
+
+public import CORALean.Global.ShenmaierVertex
+public import CORALean.Global.Tensor
+public import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
+
+@[expose] public section
 
 /-!
 # `[1, Thm. 4.6]`'s probability claim fails

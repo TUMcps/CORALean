@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemDependentErr
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemDependentErr
+
+@[expose] public section
 
 /-!
 # `dependent` loses no point

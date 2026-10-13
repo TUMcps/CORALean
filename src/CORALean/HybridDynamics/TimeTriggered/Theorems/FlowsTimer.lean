@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+
+@[expose] public section
 
 /-!
 # A flow carries a time variable along

@@ -1,8 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `addedTerms` is the weighted sum

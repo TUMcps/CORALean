@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Theorems.SampSatToCNF
-import CORALean.Specification.STL.Theorems.SampNodupToCNF
-import CORALean.Specification.STL.Theorems.CNFUpsilonSoundComplete
+module
+
+public import CORALean.Specification.STL.Theorems.SampSatToCNF
+public import CORALean.Specification.STL.Theorems.SampNodupToCNF
+public import CORALean.Specification.STL.Theorems.CNFUpsilonSoundComplete
+
+@[expose] public section
 
 /-!
 # Model checking a sampled time formula is complete

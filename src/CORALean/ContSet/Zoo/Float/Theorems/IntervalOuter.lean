@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Float.Operations.Interval
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+module
+
+public import CORALean.ContSet.Zoo.Float.Operations.Interval
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+
+@[expose] public section
 
 /-!
 # `Zoo.interval` encloses

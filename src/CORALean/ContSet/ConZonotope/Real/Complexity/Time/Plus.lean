@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
+
+@[expose] public section
 
 /-!
 # `ConZonotope.plusCost`

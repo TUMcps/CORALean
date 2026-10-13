@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Operations.ClampUnit
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Operations.ClampUnit
+
+@[expose] public section
 
 /-!
 # A clamped slope is at most one

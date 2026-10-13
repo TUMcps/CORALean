@@ -1,7 +1,11 @@
-import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2] with eq. (11) as printed misses part of the guard

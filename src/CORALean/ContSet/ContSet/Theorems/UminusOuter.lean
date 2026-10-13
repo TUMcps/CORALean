@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.Uminus
+module
+
+public import CORALean.ContSet.ContSet.Operations.Uminus
+
+@[expose] public section
 
 /-!
 # `uminus` encloses the negation

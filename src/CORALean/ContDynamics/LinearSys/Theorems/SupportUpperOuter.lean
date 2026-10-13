@@ -1,17 +1,21 @@
-import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+
+@[expose] public section
 
 /-!
 # Lines 12 and 13 bound the support function of the reachable set

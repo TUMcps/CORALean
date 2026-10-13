@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
+
+@[expose] public section
 
 /-!
 # Joining equal exponent columns loses nothing

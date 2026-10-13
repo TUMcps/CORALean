@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexInCone
-import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCexCorners
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraAccepts
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexInCone
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCexCorners
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraAccepts
+
+@[expose] public section
 
 /-!
 # CORA's `isPolytope` accepts a non-polytope

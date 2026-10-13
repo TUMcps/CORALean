@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputOneParam
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.OneParamSumPowEq
-import CORALean.ContSet.Zonotope.Real.Theorems.OfOneParamPolyContains
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputOneParam
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.OneParamSumPowEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfOneParamPolyContains
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # `MatExp.inputOneParam` holds the partial input solution's Taylor part

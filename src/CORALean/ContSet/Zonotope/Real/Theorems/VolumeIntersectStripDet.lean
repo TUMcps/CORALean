@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Volume
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.Zonotope.Real.Theorems.VolumeSumSnoc
-import CORALean.ContSet.Zonotope.Real.Theorems.DetColsSnocOneSubVecMulVec
-import Mathlib.LinearAlgebra.Matrix.SchurComplement
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Volume
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Real.Theorems.VolumeSumSnoc
+public import CORALean.ContSet.Zonotope.Real.Theorems.DetColsSnocOneSubVecMulVec
+public import Mathlib.LinearAlgebra.Matrix.SchurComplement
+
+@[expose] public section
 
 /-!
 # The volume of the zonotope that bounds a zonotope-strip intersection, with determinants

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ConvHull
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ConvHull
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+
+@[expose] public section
 
 /-!
 # `convHull` contains both operands

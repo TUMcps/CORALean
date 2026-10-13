@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.SqrtMulVecMemZonotope
-import Mathlib.Analysis.CStarAlgebra.Matrix
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.SqrtMulVecMemZonotope
+public import Mathlib.Analysis.CStarAlgebra.Matrix
+
+@[expose] public section
 
 /-!
 # The open `m`-sigma ellipsoid around a mean lies in the confidence set

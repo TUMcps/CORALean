@@ -1,9 +1,13 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The slices of a lifted zonotope

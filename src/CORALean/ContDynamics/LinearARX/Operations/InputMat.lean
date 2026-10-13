@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.LinearARX
-import CORALean.Global.ExactScalar
+module
+
+public import CORALean.ContDynamics.LinearARX.LinearARX
+public import CORALean.Global.ExactScalar
+
+@[expose] public section
 
 /-!
 # The input matrices of the converted system

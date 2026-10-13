@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
-import CORALean.ContSet.HPolytope.Real.Operations.TightAt
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
+public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
+
+@[expose] public section
 
 /-!
 # A point no direction is free at is the one its own tight rows name

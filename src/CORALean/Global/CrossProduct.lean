@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The `n`-dimensional cross product

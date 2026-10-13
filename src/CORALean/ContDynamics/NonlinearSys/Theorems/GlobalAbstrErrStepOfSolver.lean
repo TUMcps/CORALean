@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
-import CORALean.Global.BoxDiameterMulVecImageLe
-import CORALean.Global.BoxDiameterAddLe
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
+public import CORALean.Global.BoxDiameterMulVecImageLe
+public import CORALean.Global.BoxDiameterAddLe
+
+@[expose] public section
 
 /-!
 # `hstep`, derived from (10) at a single fixed linearization matrix

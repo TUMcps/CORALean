@@ -1,15 +1,19 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
-import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
-import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Real.Instances
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
-import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
-import CORALean.Global.Block
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
+public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # The candidates `linReach`'s `alg = 'poly'` loop tries

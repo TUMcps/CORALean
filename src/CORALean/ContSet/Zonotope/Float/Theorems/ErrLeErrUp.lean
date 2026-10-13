@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
-import CORALean.Global.ErrLeNormOfAbsLe
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
+public import CORALean.Global.ErrLeNormOfAbsLe
+
+@[expose] public section
 
 /-!
 # `errUp` bounds `err`

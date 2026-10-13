@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderInvSum
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLamSum
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderInvSum
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLamSum
+
+@[expose] public section
 
 /-!
 # Halder's stationarity function as the difference of two sums

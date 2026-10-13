@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.AffineHullBasis
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.AffineHullBasis
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # What `HPolytope.affineHullBasis` returns

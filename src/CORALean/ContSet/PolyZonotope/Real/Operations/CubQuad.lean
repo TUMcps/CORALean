@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Logic.Equiv.Fin.Basic
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Logic.Equiv.Fin.Basic
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The tensor of `cubMap` as one quadratic form per pair

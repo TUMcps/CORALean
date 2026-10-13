@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Tactic.Abel
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Tactic.Abel
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The Luenberger estimation error lies in its reachable set

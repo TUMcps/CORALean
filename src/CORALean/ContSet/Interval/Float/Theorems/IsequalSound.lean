@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Isequal
-import CORALean.ContSet.Interval.Float.Theorems.LeSound
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Isequal
+public import CORALean.ContSet.Interval.Float.Theorems.LeSound
+
+@[expose] public section
 
 /-!
 # `Interval.isequal` is sound

@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.WeightAccPushLinear
-import CORALean.NN.Operations.WeightAccEval
+module
+
+public import CORALean.NN.Operations.WeightAccPushLinear
+public import CORALean.NN.Operations.WeightAccEval
+
+@[expose] public section
 
 /-!
 # Fusing a linear layer composes the maps

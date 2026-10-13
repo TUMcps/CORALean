@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.IEEE.Operations.GridShift
+module
+
+public import CORALean.Global.Float.Instances.IEEE.Operations.GridShift
+
+@[expose] public section
 
 /-!
 # Rounding onto the grid, down

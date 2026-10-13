@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeDotUp
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeDotUp
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # A matrix of an interval matrix applied to a bounded vector

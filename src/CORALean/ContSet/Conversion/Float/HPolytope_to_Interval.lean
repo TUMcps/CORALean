@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.DualBound
-import CORALean.ContSet.Interval.Float.Operations.OfBounds
-import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.DualBound
+public import CORALean.ContSet.Interval.Float.Operations.OfBounds
+public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # A halfspace description as a box, over a floating-point scalar

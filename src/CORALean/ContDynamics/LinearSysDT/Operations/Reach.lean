@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContDynamics.Reach.Definitions.InputParams
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+
+@[expose] public section
 
 /-!
 # Discrete-time linear systems: reachability

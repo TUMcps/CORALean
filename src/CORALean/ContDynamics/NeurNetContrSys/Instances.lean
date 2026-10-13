@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NeurNetContrSys.Definitions.WithPeriod
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.Reach.Reach
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.WithPeriod
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.Reach.Reach
+
+@[expose] public section
 
 /-!
 # `NeurNetContrSys.WithPeriod` instantiates `Reach`

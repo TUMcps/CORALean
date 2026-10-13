@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Power
-import CORALean.ContSet.Interval.Float.Operations.Prod1
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Power
+public import CORALean.ContSet.Interval.Float.Operations.Prod1
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.monoBox`

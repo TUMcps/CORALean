@@ -1,16 +1,20 @@
-import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplitReachExact
-import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemConstInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplitReachExact
+public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemConstInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # `reach` with the input set split encloses every run, one window at a time

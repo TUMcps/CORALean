@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinProbSys.LinProbSys
-import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+module
+
+public import CORALean.ContDynamics.LinProbSys.LinProbSys
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+
+@[expose] public section
 
 /-!
 # Computing the enclosing probabilistic hulls

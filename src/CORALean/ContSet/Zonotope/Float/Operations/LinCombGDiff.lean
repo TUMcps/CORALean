@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.LinCombG
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.LinCombG
+
+@[expose] public section
 
 /-!
 # The gap `linComb`'s generators fall short by

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic
+
+@[expose] public section
 
 /-!
 # The affine hull of a zonotope is spanned by its generators

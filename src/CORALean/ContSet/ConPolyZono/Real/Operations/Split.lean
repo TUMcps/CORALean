@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
-import CORALean.ContSet.Conversion.Real.ConPolyZono_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_ConPolyZono
-import CORALean.ContSet.Interval.Real.Operations.SplitAt
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
+public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_ConPolyZono
+public import CORALean.ContSet.Interval.Real.Operations.SplitAt
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.split`

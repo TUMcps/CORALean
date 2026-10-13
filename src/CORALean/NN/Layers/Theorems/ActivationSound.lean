@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.ActivationOuterWhere
+module
+
+public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
+
+@[expose] public section
 
 /-!
 # What an activation layer encloses

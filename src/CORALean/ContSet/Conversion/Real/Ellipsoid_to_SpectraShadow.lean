@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a spectrahedral shadow

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.Global.DropIdx
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.Global.DropIdx
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduceConB`

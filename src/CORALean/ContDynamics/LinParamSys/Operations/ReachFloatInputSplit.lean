@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInputSplit
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInputSplit
+
+@[expose] public section
 
 /-!
 # Reachability with the input set split, of a set-valued-matrix system in floats

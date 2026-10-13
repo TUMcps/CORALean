@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Operations.Kron
-import CORALean.ContSet.Interval.Real.Theorems.KronOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Kron
+public import CORALean.ContSet.Interval.Real.Theorems.KronOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+
+@[expose] public section
 
 /-!
 # `Interval.kron` holds every Kronecker product of members

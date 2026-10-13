@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+
+@[expose] public section
 
 /-!
 # The interpolation-error series is summable, shifted past order two

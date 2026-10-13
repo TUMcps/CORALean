@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AreaFormula
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructOfQZero
-import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AreaFormula
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructOfQZero
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousPoint
+
+@[expose] public section
 
 /-!
 # Where the signed integral is the volume: equality

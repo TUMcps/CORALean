@@ -1,12 +1,16 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
-import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
-import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
-import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
+public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
+public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.plus` encloses the Minkowski sum

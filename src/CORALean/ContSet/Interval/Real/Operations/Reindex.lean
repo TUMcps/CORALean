@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.reindex`

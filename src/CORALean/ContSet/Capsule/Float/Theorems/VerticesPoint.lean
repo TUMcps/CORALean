@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Float.Operations.Vertices
-import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
-import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Vertices
+public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
+public import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
+
+@[expose] public section
 
 /-!
 # `Capsule.vertices` of a point capsule

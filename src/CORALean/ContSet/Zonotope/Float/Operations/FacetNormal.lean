@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.DetCandidate
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.DetCandidate
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.facetNormal`, over a floating-point scalar

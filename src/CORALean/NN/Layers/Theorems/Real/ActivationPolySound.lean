@@ -1,10 +1,14 @@
-import CORALean.NN.Layers.Definitions.ActivationPoly
-import CORALean.NN.Layers.Theorems.CoeffListCoord
-import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+module
+
+public import CORALean.NN.Layers.Definitions.ActivationPoly
+public import CORALean.NN.Layers.Theorems.CoeffListCoord
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+
+@[expose] public section
 
 /-!
 # What the exact polynomial activation layer encloses

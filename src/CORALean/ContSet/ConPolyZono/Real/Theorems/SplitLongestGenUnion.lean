@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.SplitLongestGen
-import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SplitLongestGen
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
+
+@[expose] public section
 
 /-!
 # The halves of `splitLongestGen` cover the set, exactly

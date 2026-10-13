@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.ContainsPoint
-import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.ContainsPoint
+public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+
+@[expose] public section
 
 /-!
 # `Capsule.containsPoint` is exact

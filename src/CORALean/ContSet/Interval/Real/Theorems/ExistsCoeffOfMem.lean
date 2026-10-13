@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+
+@[expose] public section
 
 /-!
 # A point of a box is its centre plus a multiple of its radius

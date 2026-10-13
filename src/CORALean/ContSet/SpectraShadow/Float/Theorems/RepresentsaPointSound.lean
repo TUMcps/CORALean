@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ContainsPointSound
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ContainsPointSound
+
+@[expose] public section
 
 /-!
 # A `true` from `SpectraShadow.representsa_point` proves a singleton

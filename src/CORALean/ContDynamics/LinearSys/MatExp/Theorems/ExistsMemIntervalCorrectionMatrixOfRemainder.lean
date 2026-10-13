@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulVecEqOfNormLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RescaledPeanoBakerTermMemMatPow
-import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulVecEqOfNormLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RescaledPeanoBakerTermMemMatPow
+public import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # The truncated Peano–Baker series plus a short remainder is CORA's interpolation

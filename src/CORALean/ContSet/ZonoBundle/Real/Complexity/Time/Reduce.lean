@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.reduceCost`

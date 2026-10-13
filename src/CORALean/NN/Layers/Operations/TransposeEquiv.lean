@@ -1,4 +1,8 @@
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # Reading a two-dimensional array the other way round

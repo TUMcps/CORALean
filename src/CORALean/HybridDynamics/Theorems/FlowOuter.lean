@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
-import CORALean.HybridDynamics.Operations.TimeIntervalStep
-import CORALean.HybridDynamics.Theorems.LinearEmbedding
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
+public import CORALean.HybridDynamics.Operations.TimeIntervalStep
+public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+
+@[expose] public section
 
 /-!
 # A stay is enclosed by the linear time-interval step

@@ -1,9 +1,11 @@
-import CORALean.Specification.Operations.Check
-import CORALean.Specification.Operations.CheckCustomCora
-import CORALean.Specification.Operations.DiffPoint
-import CORALean.Specification.Operations.VerifyConvex
-import CORALean.Specification.Operations.VerifyConvexStep
-import CORALean.Specification.Operations.VerifyHalfspace
+module
+
+public import CORALean.Specification.Operations.Check
+public import CORALean.Specification.Operations.CheckCustomCora
+public import CORALean.Specification.Operations.DiffPoint
+public import CORALean.Specification.Operations.VerifyConvex
+public import CORALean.Specification.Operations.VerifyConvexStep
+public import CORALean.Specification.Operations.VerifyHalfspace
 
 /-!
 # Checking a specification, and the two verification decision procedures

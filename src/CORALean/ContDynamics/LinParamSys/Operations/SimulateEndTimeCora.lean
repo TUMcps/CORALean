@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+
+@[expose] public section
 
 /-!
 # `LinParamSys.simulateEndTimeCora`, the last time stamp CORA's `linParamSys/simulate` returns

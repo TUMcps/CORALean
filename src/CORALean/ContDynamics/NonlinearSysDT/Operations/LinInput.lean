@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
+
+@[expose] public section
 
 /-!
 # The input set one discrete linearization step has to be given

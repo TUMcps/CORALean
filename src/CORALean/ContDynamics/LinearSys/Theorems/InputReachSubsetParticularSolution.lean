@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+
+@[expose] public section
 
 /-!
 # `particularSolution` holds everything the input contributes by a window's end

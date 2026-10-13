@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Instances
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Instances
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # Constrained zonotopes over a floating-point scalar: the representation

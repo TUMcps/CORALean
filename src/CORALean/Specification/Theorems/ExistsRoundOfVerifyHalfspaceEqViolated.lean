@@ -1,4 +1,8 @@
-import CORALean.Specification.Operations.VerifyHalfspace
+module
+
+public import CORALean.Specification.Operations.VerifyHalfspace
+
+@[expose] public section
 
 /-!
 # `[1, Alg. 2]` answers `unsafe` only from a round whose lower bound crossed

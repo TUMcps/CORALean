@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Reindex
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Reindex
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reindex` over a floating-point scalar

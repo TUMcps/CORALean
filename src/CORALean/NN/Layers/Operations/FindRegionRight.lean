@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
+
+@[expose] public section
 
 /-!
 # The right polynomial of a step of `findRegionPolys`

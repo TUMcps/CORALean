@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirFil
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
+public import CORALean.ContSet.ZonoBundle.Real.Operations.DirFil
+
+@[expose] public section
 
 /-!
 # Splitting by the fil heuristic is exact

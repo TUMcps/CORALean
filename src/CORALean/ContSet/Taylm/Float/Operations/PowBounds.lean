@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.ContSet.Interval.Float.Operations.Power
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Interval.Float.Operations.Power
+
+@[expose] public section
 
 /-!
 # `Taylm.powBounds`, over a floating-point scalar

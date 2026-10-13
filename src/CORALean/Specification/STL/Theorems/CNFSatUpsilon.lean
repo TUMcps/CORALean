@@ -1,7 +1,11 @@
-import CORALean.Specification.STL.Operations.CNFUpsilon
-import CORALean.Specification.STL.Theorems.RTLSatBigOr
-import CORALean.Specification.STL.Theorems.RTLSatBigAnd
-import CORALean.Specification.STL.Theorems.ShiftShift
+module
+
+public import CORALean.Specification.STL.Operations.CNFUpsilon
+public import CORALean.Specification.STL.Theorems.RTLSatBigOr
+public import CORALean.Specification.STL.Theorems.RTLSatBigAnd
+public import CORALean.Specification.STL.Theorems.ShiftShift
+
+@[expose] public section
 
 /-!
 # What `Υ` of a normal form says of a reach sequence

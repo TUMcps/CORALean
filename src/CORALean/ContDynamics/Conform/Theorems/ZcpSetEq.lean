@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The prediction set of a zono-conformal predictor is a zonotope

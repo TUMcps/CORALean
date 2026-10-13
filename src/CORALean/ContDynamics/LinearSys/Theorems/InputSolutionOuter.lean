@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+
+@[expose] public section
 
 /-!
 # `inputSolution` contains everything the input can contribute over a step

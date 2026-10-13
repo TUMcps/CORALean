@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MethCBasis
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MethCBasis
+
+@[expose] public section
 
 /-!
 # The `methC` search returns a maximizer

@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.Global.Scalar
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.Scalar
+
+@[expose] public section
 
 /-!
 # A scalar whose `0` and `1` are exact

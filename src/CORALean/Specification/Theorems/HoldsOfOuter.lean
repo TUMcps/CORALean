@@ -1,4 +1,8 @@
-import CORALean.Specification.Specification
+module
+
+public import CORALean.Specification.Specification
+
+@[expose] public section
 
 /-!
 # An outer approximation is enough to check a specification against

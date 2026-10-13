@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ReplaceId
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ReplaceId
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
+
+@[expose] public section
 
 /-!
 # An injective renaming changes nothing, in float too

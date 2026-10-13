@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectMany
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import CORALean.Global.Entrywise
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectMany
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.Global.Entrywise
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersectMany` is exactly the intersection of the sets

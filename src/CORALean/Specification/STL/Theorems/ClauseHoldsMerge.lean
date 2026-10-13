@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.ClauseMerge
-import CORALean.Specification.STL.Theorems.ClauseHoldsInsert
+module
+
+public import CORALean.Specification.STL.Operations.ClauseMerge
+public import CORALean.Specification.STL.Theorems.ClauseHoldsInsert
+
+@[expose] public section
 
 /-!
 # The disjunction of two clauses

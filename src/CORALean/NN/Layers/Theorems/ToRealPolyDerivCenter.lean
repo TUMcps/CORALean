@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.PolyDerivBound
-import CORALean.NN.Layers.Operations.PolyDerivCenter
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.NN.Layers.Definitions.PolyDerivBound
+public import CORALean.NN.Layers.Operations.PolyDerivCenter
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # A stored centre reads back exactly

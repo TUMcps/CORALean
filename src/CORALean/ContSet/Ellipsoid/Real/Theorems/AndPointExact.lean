@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
+
+@[expose] public section
 
 /-!
 # `and_` of an ellipsoid and a point is exact

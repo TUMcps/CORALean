@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # A generator-free zonotope contains nothing else

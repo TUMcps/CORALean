@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
+
+@[expose] public section
 
 /-!
 # `reach` encloses the set the dynamics reach

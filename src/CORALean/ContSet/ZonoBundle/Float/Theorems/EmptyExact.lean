@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Empty
-import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Empty
+public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.empty` denotes the empty set

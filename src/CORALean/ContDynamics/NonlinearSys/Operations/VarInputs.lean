@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
+
+@[expose] public section
 
 /-!
 # `varInputs`, the time-varying part of a polynomialized input

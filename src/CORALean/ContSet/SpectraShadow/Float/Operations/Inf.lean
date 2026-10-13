@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.Inf`, over a floating-point scalar

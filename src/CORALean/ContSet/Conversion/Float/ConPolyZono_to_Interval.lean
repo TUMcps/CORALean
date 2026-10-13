@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+module
+
+public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+
+@[expose] public section
 
 /-!
 # A constrained polynomial zonotope as a box, over a floating-point scalar

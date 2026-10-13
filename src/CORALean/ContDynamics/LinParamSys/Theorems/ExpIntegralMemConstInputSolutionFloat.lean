@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+
+@[expose] public section
 
 /-!
 # `constInputSolutionFloat` holds what a constant input contributes

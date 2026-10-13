@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
+
+@[expose] public section
 
 /-!
 # The next parameter from the last

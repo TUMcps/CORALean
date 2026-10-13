@@ -1,9 +1,13 @@
-import CORALean.NN.Definitions.IntervalChainFloat
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Minus
-import CORALean.ContSet.Interval.Float.Operations.Times
-import CORALean.ContSet.Interval.Float.Operations.Halve
+module
+
+public import CORALean.NN.Definitions.IntervalChainFloat
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Minus
+public import CORALean.ContSet.Interval.Float.Operations.Times
+public import CORALean.ContSet.Interval.Float.Operations.Halve
+
+@[expose] public section
 
 /-!
 # The forward pass of a float interval chain

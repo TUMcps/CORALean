@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # `NeurNetContrSysDT.reach`, packaged as `Reach`'s `SetUnion`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+
+@[expose] public section
 
 /-!
 # `HPolytope.restrict`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # A set-valued continuous-time system paired with its input set

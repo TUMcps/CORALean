@@ -1,7 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Dyadic
-import CORALean.Global.Float.Instances.Dyadic.Operations.API
-import CORALean.Global.Float.Instances.Dyadic.Theorems.API
-import CORALean.Global.Float.Instances.Dyadic.Instances
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Dyadic
+public import CORALean.Global.Float.Instances.Dyadic.Operations.API
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.API
+public import CORALean.Global.Float.Instances.Dyadic.Instances
 
 /-!
 # Dyadic numbers, collected

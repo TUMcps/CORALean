@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.RelaxationToPoly
-import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationToPoly
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
+
+@[expose] public section
 
 /-!
 # An affine relaxation is sound as a polynomial one

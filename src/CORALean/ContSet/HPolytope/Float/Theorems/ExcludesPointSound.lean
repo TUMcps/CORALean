@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `HPolytope.excludesPoint` proves the point outside

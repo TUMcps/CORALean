@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.ContainsPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
+
+@[expose] public section
 
 /-!
 # A `true` from `ZonoBundle.containsPoint` proves membership

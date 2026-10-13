@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Algebra.BigOperators.Ring.Finset
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import Mathlib.Algebra.Order.Field.Basic
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # Where an edge meets the hyperplane

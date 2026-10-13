@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import Mathlib.Analysis.RCLike.Lemmas
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import Mathlib.Analysis.RCLike.Lemmas
+
+@[expose] public section
 
 /-!
 # `reachSet` is compact

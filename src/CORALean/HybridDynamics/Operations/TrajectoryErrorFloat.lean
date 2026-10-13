@@ -1,18 +1,22 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Interval.Float.Operations.MatPow
-import CORALean.ContSet.Interval.Float.Operations.PowHi
-import CORALean.ContSet.Interval.Float.Operations.PowLo
-import CORALean.ContSet.Interval.Float.Operations.Smul
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Float.Operations.Recentre
-import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
-import CORALean.Global.Float.PowDown
-import CORALean.Global.Float.PowUp
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.MatPow
+public import CORALean.ContSet.Interval.Float.Operations.PowHi
+public import CORALean.ContSet.Interval.Float.Operations.PowLo
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
+public import CORALean.Global.Float.PowDown
+public import CORALean.Global.Float.PowUp
+
+@[expose] public section
 
 /-!
 # The error between a linear solution and a constant-derivative one, over a floating-point scalar

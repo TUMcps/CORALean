@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
-import CORALean.ContSet.Ellipsoid.Real.Theorems.NormUbLe
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormUbLe
+
+@[expose] public section
 
 /-!
 # The float `Ellipsoid.normUb` bounds every point's Euclidean norm

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStep
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 6-13: the loop

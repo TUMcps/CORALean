@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
-import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
+
+@[expose] public section
 
 /-!
 # A weighted point meets the weighted constraints

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.ConZonotope.Float.Theorems.RepresentsaEmptySetSound
-import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.ConZonotope.Float.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
+
+@[expose] public section
 
 /-!
 # A `true` from `ZonoBundle.representsa_emptySet` proves the intersection empty

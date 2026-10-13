@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.Smul
-import CORALean.ContSet.Taylm.Real.Definitions.Scaled
-import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Smul
+public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+public import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `Taylm.smul` keeps the scaling

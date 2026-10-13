@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # A matrix under entrywise bounds applied to a bounded vector

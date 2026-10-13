@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.Data.EReal.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # `HPolytope.rowLowerCora`: the lower-bound update of `aux_isInterval`

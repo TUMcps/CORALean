@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+@[expose] public section
 
 /-!
 # `g ⬝ᵥ w` rounded up, `w` known only to lie in an interval

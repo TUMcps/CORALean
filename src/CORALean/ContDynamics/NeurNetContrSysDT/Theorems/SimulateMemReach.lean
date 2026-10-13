@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
+
+@[expose] public section
 
 /-!
 # A sampled run stays inside the reachable set

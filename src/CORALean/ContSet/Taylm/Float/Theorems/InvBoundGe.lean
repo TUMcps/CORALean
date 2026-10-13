@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.InvBound
-import Mathlib.Analysis.Calculus.Deriv.ZPow
-import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.InvBound
+public import Mathlib.Analysis.Calculus.Deriv.ZPow
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+
+@[expose] public section
 
 /-!
 # The derivative bound of `1/x` holds

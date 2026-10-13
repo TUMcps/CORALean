@@ -1,18 +1,20 @@
-import CORALean.Global.Float.Instances.IEEE.Operations.AddDown
-import CORALean.Global.Float.Instances.IEEE.Operations.AddUp
-import CORALean.Global.Float.Instances.IEEE.Operations.DivDown
-import CORALean.Global.Float.Instances.IEEE.Operations.DivUp
-import CORALean.Global.Float.Instances.IEEE.Operations.GridShift
-import CORALean.Global.Float.Instances.IEEE.Operations.Half
-import CORALean.Global.Float.Instances.IEEE.Operations.Le
-import CORALean.Global.Float.Instances.IEEE.Operations.Maximum
-import CORALean.Global.Float.Instances.IEEE.Operations.Minimum
-import CORALean.Global.Float.Instances.IEEE.Operations.MulDown
-import CORALean.Global.Float.Instances.IEEE.Operations.MulUp
-import CORALean.Global.Float.Instances.IEEE.Operations.Neg
-import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
-import CORALean.Global.Float.Instances.IEEE.Operations.RoundDown
-import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
+module
+
+public import CORALean.Global.Float.Instances.IEEE.Operations.AddDown
+public import CORALean.Global.Float.Instances.IEEE.Operations.AddUp
+public import CORALean.Global.Float.Instances.IEEE.Operations.DivDown
+public import CORALean.Global.Float.Instances.IEEE.Operations.DivUp
+public import CORALean.Global.Float.Instances.IEEE.Operations.GridShift
+public import CORALean.Global.Float.Instances.IEEE.Operations.Half
+public import CORALean.Global.Float.Instances.IEEE.Operations.Le
+public import CORALean.Global.Float.Instances.IEEE.Operations.Maximum
+public import CORALean.Global.Float.Instances.IEEE.Operations.Minimum
+public import CORALean.Global.Float.Instances.IEEE.Operations.MulDown
+public import CORALean.Global.Float.Instances.IEEE.Operations.MulUp
+public import CORALean.Global.Float.Instances.IEEE.Operations.Neg
+public import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
+public import CORALean.Global.Float.Instances.IEEE.Operations.RoundDown
+public import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
 
 /-!
 # The formats of IEEE 754 and OCP MX: the operations, collected

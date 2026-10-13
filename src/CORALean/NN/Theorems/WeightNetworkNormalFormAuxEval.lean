@@ -1,8 +1,12 @@
-import CORALean.NN.Operations.WeightNetworkNormalFormAux
-import CORALean.NN.Operations.WeightNetworkEval
-import CORALean.NN.Theorems.WeightAccPushLinearEval
-import CORALean.NN.Theorems.WeightAccPushAffineEval
-import CORALean.NN.Theorems.WeightAccLayerEval
+module
+
+public import CORALean.NN.Operations.WeightNetworkNormalFormAux
+public import CORALean.NN.Operations.WeightNetworkEval
+public import CORALean.NN.Theorems.WeightAccPushLinearEval
+public import CORALean.NN.Theorems.WeightAccPushAffineEval
+public import CORALean.NN.Theorems.WeightAccLayerEval
+
+@[expose] public section
 
 /-!
 # `getNormalForm`'s loop keeps the function

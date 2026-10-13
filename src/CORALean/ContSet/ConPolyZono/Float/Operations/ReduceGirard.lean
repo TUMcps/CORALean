@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ReduceBy
-import CORALean.Global.Sort
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ReduceBy
+public import CORALean.Global.Sort
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduceGirard`, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderStep
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulExpRemainderBoundLt
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderStep
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulExpRemainderBoundLt
+
+@[expose] public section
 
 /-!
 # The chosen step meets the error it was chosen for

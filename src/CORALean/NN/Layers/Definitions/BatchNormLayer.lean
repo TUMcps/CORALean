@@ -1,4 +1,8 @@
-import CORALean.Global.Tensor
+module
+
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The weights of a batch normalisation layer

@@ -1,8 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Intersection
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Plus
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Mtimes
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Compact
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.QuadMap
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Intersection
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Plus
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Mtimes
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Compact
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.QuadMap
 
 /-!
 # What `ConPolyZono` costs

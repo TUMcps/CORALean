@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+
+@[expose] public section
 
 /-!
 # `ConZonotope.ofMat`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
+
+@[expose] public section
 
 /-!
 # `Zonotope.raghuramanGProdCora`, CORA's `G_prod` in the `'raghuraman'` reduction

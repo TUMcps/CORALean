@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Sqrt
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
-import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Sqrt
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
+public import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # `Taylm.sqrt` encloses `sqrt ∘ f`

@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.BackpropEnclose
-import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
-import CORALean.ContSet.Zonotope.Real.Theorems.FderivEqGradient
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.Deriv.Pi
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Add
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.BackpropEnclose
+public import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
+public import CORALean.ContSet.Zonotope.Real.Theorems.FderivEqGradient
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.Deriv.Pi
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Add
+
+@[expose] public section
 
 /-!
 # The gradient set through an image enclosure

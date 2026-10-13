@@ -1,7 +1,11 @@
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.InnerProductSpace.Projection.Basic
-import Mathlib.Analysis.InnerProductSpace.PiL2
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.InnerProductSpace.Projection.Basic
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # The nearest point of a closed convex set separates

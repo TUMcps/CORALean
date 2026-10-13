@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
-import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+module
+
+public import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
+public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectZonoGirardFloat` holds every state that meets the guard

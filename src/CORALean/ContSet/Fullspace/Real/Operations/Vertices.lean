@@ -1,6 +1,10 @@
-import CORALean.ContSet.Fullspace.Real.Fullspace
-import CORALean.Global.Corners
-import Mathlib.Data.EReal.Basic
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+public import CORALean.Global.Corners
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # `Fullspace.vertices`

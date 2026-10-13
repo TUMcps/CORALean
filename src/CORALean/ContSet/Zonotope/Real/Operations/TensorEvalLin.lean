@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorEvalLin`

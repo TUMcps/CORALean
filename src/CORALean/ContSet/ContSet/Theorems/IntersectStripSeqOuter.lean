@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The strips one at a time enclose the set's intersection with all of them

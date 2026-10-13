@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.MatMul
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MatMul
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `Interval.matMul` over-approximates every product of two matrices in the boxes

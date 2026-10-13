@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Order.Interval.Finset.Nat
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Order.Interval.Finset.Nat
+
+@[expose] public section
 
 /-!
 # `Zonotope.ofOneParamPoly`

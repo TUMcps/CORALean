@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
+
+@[expose] public section
 
 /-!
 # The input reach set grows with time, once the origin is available

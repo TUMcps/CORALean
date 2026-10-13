@@ -1,7 +1,11 @@
-import CORALean.NN.Theorems.MarginDir
-import CORALean.NN.Theorems.Misclassified
-import CORALean.Global.LinProg.LinProg
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.NN.Theorems.MarginDir
+public import CORALean.NN.Theorems.Misclassified
+public import CORALean.Global.LinProg.LinProg
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A bound per rival separates the exact output from misclassification

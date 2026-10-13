@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Float.Operations.QuadMapMatZono
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
-import CORALean.ContSet.Zonotope.Float.Theorems.UnitIntervalMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadMapMatZono
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.UnitIntervalMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+
+@[expose] public section
 
 /-!
 # The float `quadMapMatZono` encloses the quadratic map over the matrix zonotopes

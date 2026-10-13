@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.StepTestFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.StepTestFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+
+@[expose] public section
 
 /-!
 # A step passing `stepTest` is admissible

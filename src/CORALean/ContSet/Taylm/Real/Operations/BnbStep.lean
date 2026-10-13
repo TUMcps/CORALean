@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.ArgMaxIdx
-import CORALean.ContSet.Taylm.Real.Operations.SplitAt
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ArgMaxIdx
+public import CORALean.ContSet.Taylm.Real.Operations.SplitAt
+
+@[expose] public section
 
 /-!
 # One step of branch and bound

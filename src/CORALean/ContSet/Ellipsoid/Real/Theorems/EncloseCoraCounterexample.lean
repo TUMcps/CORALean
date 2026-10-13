@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # CORA's `ellipsoid/enclose` misses the set its header documents

@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
-import Mathlib.Data.EReal.Basic
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # `LevelSet.representsa_emptySet`

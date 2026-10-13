@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # Merge buckets

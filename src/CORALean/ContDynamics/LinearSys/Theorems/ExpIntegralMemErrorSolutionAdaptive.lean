@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptive
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptive
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
+
+@[expose] public section
 
 /-!
 # `errorSolution_adaptive` holds what a held input contributes

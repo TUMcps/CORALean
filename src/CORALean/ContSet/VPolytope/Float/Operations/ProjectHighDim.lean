@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Float.VPolytope
-import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
+module
+
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+public import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
+
+@[expose] public section
 
 /-!
 # `VPolytope.projectHighDim`, over a floating-point scalar

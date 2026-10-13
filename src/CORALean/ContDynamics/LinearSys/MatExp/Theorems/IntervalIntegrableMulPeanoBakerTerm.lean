@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerTerm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerTerm
+
+@[expose] public section
 
 /-!
 # The integrand of the next Peano–Baker term is integrable

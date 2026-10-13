@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
+
+@[expose] public section
 
 /-!
 # What the loop of `compact_(P, 'AtoAe')` guarantees

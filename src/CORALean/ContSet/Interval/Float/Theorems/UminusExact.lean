@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Uminus
-import CORALean.ContSet.Interval.Real.Theorems.UminusExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Uminus
+public import CORALean.ContSet.Interval.Real.Theorems.UminusExact
+
+@[expose] public section
 
 /-!
 # `Interval.uminus` is exactly the negated set

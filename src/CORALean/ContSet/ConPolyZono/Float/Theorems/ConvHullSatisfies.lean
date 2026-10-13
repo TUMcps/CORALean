@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsMono
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
-import CORALean.Global.Float.IntRound
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsMono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
+public import CORALean.Global.Float.IntRound
+
+@[expose] public section
 
 /-!
 # The stored hull's constraints hold wherever the exact hull's do

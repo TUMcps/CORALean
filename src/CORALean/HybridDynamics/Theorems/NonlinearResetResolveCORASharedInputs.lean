@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
+
+@[expose] public section
 
 /-!
 # CORA's `nonlinearReset/resolve` has too many inputs for shared global inputs

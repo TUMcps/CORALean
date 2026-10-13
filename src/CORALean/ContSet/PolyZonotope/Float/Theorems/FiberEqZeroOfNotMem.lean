@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
+
+@[expose] public section
 
 /-!
 # A column that is not its class's representative gathers nothing

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.Reindex
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Reindex
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `Capsule.reindex` is exactly the relabelled set

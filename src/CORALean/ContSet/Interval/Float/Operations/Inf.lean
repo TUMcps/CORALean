@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.EBox
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.EBox
+
+@[expose] public section
 
 /-!
 # `Interval.Inf`, over a floating-point scalar

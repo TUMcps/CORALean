@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Shift
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Shift
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # `Zonotope.shift` moves the set, not merely the representation

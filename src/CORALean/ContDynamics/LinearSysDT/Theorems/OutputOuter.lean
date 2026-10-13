@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+
+@[expose] public section
 
 /-!
 # The output of a discrete run lies in the output set of its reachable set

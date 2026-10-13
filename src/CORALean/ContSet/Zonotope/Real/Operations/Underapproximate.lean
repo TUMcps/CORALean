@@ -1,6 +1,10 @@
-import Mathlib.Data.Sign.Basic
-import Mathlib.Data.Matrix.Mul
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import Mathlib.Data.Sign.Basic
+public import Mathlib.Data.Matrix.Mul
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.underapproximate`

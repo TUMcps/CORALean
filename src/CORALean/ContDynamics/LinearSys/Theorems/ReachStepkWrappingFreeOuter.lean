@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+
+@[expose] public section
 
 /-!
 # One window of `reachWrappingFree` holds the homogeneous flow over the whole window

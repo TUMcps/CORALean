@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+
+@[expose] public section
 
 /-!
 # `Alg. 3`: the set representation size for one step

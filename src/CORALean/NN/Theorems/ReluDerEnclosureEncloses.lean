@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.ReluDerEnclosure
-import CORALean.NN.Definitions.ScalarEncloses
+module
+
+public import CORALean.NN.Operations.ReluDerEnclosure
+public import CORALean.NN.Definitions.ScalarEncloses
+
+@[expose] public section
 
 /-!
 # `reluDerEnclosure` encloses the derivative of ReLU

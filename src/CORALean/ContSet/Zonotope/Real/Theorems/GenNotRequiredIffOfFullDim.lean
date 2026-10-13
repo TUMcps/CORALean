@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIffOfSpan
-import CORALean.ContSet.Zonotope.Real.Theorems.RowsEqDropRedundant
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIffOfSpan
+public import CORALean.ContSet.Zonotope.Real.Theorems.RowsEqDropRedundant
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2] with the redundant rows computed, not assumed

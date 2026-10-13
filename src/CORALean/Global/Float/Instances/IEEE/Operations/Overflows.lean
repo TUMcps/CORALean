@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Le
-import CORALean.Global.Float.Instances.IEEE.IEEE
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Le
+public import CORALean.Global.Float.Instances.IEEE.IEEE
+
+@[expose] public section
 
 /-!
 # Whether a value is past the format's range

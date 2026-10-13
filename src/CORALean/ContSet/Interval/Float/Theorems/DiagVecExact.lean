@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.DiagVec
-import CORALean.ContSet.Interval.Real.Theorems.DiagVecExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.DiagVec
+public import CORALean.ContSet.Interval.Real.Theorems.DiagVecExact
+
+@[expose] public section
 
 /-!
 # `Interval.diagVec` over floats is exact

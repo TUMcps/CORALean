@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Float.Polygon
-import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Or
-import CORALean.ContSet.Interval.Float.Operations.Empty
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Interval.Float.Operations.Empty
+
+@[expose] public section
 
 /-!
 # `Polygon.intervalOfList`, over a floating-point scalar

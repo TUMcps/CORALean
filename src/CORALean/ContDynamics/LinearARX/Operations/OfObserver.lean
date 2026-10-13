@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.LinearARX
+module
+
+public import CORALean.ContDynamics.LinearARX.LinearARX
+
+@[expose] public section
 
 /-!
 # From a state-space model to an ARMAX model

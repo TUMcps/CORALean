@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.Global.DoubleSumPosDef
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.Module.BigOperators
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.Global.DoubleSumPosDef
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.Module.BigOperators
+
+@[expose] public section
 
 /-!
 # The vertex conditions of the LPV estimator, corrected

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripFamily
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Module.BigOperators
-import Mathlib.LinearAlgebra.Matrix.ToLin
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStripFamily
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Module.BigOperators
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `Zonotope.intersectStripFamily` encloses the intersection with the family of strips

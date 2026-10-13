@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Topology.MetricSpace.Thickening
-import Mathlib.Topology.Homeomorph.Lemmas
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Topology.MetricSpace.Thickening
+public import Mathlib.Topology.Homeomorph.Lemmas
+
+@[expose] public section
 
 /-!
 # The largest cube in the lifted zonotope touches it low down

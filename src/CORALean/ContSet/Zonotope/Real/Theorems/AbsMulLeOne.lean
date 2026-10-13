@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # Weighting a coefficient keeps it a coefficient

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # One step of the homogeneous flow at every member, as a float zonotope

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffAligned
-import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffAligned
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # The float `minkDiffAligned` is an inner approximation

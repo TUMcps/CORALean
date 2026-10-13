@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceLiftBy` over a floating-point scalar

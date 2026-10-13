@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.VectorSpanConstruct
-import Mathlib.Analysis.Convex.Intrinsic
-import Mathlib.Analysis.Normed.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.VectorSpanConstruct
+public import Mathlib.Analysis.Convex.Intrinsic
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # The centre of a zonotope is in its relative interior

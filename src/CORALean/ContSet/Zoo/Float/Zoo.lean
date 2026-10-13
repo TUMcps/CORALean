@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # Zoos over a floating-point scalar: the representation

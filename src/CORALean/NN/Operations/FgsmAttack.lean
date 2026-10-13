@@ -1,6 +1,10 @@
-import CORALean.NN.Operations.Backprop
-import CORALean.NN.Operations.ChainEval
-import Mathlib.Data.Real.Sign
+module
+
+public import CORALean.NN.Operations.Backprop
+public import CORALean.NN.Operations.ChainEval
+public import Mathlib.Data.Real.Sign
+
+@[expose] public section
 
 /-!
 # CORA's `computeFGSMAttack`: one signed gradient step

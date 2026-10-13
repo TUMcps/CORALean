@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.StlInterval
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.StlInterval
+
+@[expose] public section
 
 /-!
 # `Interval.stlInterval` is exact, over a floating-point scalar

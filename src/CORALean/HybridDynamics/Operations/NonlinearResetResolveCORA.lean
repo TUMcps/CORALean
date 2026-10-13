@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Definitions.NonlinearReset
-import CORALean.HybridDynamics.Definitions.ResolveSource
-import Mathlib.Algebra.BigOperators.Fin
-import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
-import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
+module
+
+public import CORALean.HybridDynamics.Definitions.NonlinearReset
+public import CORALean.HybridDynamics.Definitions.ResolveSource
+public import Mathlib.Algebra.BigOperators.Fin
+public import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
+public import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.resolveCORA`

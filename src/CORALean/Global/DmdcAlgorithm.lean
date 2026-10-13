@@ -1,4 +1,8 @@
-import CORALean.Global.DmdcReduced
+module
+
+public import CORALean.Global.DmdcReduced
+
+@[expose] public section
 
 /-!
 # The algorithm of the dynamic mode decomposition with control

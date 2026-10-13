@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Mul
-import Mathlib.LinearAlgebra.Matrix.Diagonal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.LinearAlgebra.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceScottStep`

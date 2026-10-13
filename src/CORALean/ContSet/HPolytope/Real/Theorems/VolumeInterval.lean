@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Volume
-import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
-import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Volume
+public import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+public import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
+
+@[expose] public section
 
 /-!
 # The volume of a box's halfspace form

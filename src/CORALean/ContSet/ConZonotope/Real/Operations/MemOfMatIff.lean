@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+
+@[expose] public section
 
 /-!
 # Membership in `ConZonotope.ofMat`

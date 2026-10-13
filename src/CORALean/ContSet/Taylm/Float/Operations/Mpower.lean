@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Mmul
-import CORALean.ContSet.Taylm.Float.Operations.Const
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Mmul
+public import CORALean.ContSet.Taylm.Float.Operations.Const
+
+@[expose] public section
 
 /-!
 # `Taylm.mpower`, float

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Cos
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorScaled
-import CORALean.Global.ElementaryDerivBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Cos
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorScaled
+public import CORALean.Global.ElementaryDerivBounds
+
+@[expose] public section
 
 /-!
 # `Taylm.cos` keeps the `(n+1)`-st order scaling

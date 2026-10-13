@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEqWithDensity
-import Mathlib.Analysis.CStarAlgebra.Matrix
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEqWithDensity
+public import Mathlib.Analysis.CStarAlgebra.Matrix
+
+@[expose] public section
 
 /-!
 # The density of a G-zonotope with certain mean

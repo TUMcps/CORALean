@@ -1,5 +1,9 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.List.FinRange
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.List.FinRange
+
+@[expose] public section
 
 /-!
 # The coordinate of largest radius

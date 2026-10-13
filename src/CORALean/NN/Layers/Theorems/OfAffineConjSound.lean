@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
-import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
+public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+
+@[expose] public section
 
 /-!
 # A relaxation carried along an affine conjugation is sound

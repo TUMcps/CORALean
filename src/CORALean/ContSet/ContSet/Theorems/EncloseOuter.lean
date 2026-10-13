@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.Enclose
+module
+
+public import CORALean.ContSet.ContSet.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # `enclose` encloses the segments from `S` to `M S + S₂`

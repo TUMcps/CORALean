@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
-import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mul`

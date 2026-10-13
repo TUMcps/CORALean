@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrInit
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrStep
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrInit
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrStep
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 2 and 17: the loop

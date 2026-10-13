@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
+
+@[expose] public section
 
 /-!
 # `Alg. 2` line 14: the maximal time-interval backward reachable set

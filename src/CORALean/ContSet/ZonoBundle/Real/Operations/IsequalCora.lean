@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # The quick check of CORA's `zonoBundle/isequal`, as coded

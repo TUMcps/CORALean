@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
-import CORALean.Global.LinProg.LinProg
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
+public import CORALean.Global.LinProg.LinProg
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # A vertex description answers a linear program without solving one

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Sigmoid
-import CORALean.NN.Layers.Operations.SigmoidEnclosure
+module
+
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Operations.SigmoidEnclosure
+
+@[expose] public section
 
 /-!
 # The logistic function's enclosure is sound

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
-import CORALean.ContSet.Zonotope.Float.Theorems.CubFoldBracket
-import CORALean.ContSet.Zonotope.Real.Operations.CubMap
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
+public import CORALean.ContSet.Zonotope.Float.Theorems.CubFoldBracket
+public import CORALean.ContSet.Zonotope.Real.Operations.CubMap
+
+@[expose] public section
 
 /-!
 # The exact centre of `cubMap` lies between the two stored roundings

@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.InvariantCutCora
-import CORALean.HybridDynamics.Parallel.Operations.InvariantCutDocumented
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutCora
+public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutDocumented
+
+@[expose] public section
 
 /-!
 # CORA's invariant cut is not the one it documents

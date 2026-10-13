@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.LdbLoop
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.LdbLoop
+
+@[expose] public section
 
 /-!
 # `Taylm.ldb`

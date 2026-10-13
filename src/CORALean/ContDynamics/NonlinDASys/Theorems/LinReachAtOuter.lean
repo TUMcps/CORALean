@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
+
+@[expose] public section
 
 /-!
 # `linReachAt` holds every certified run

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.BranchAndBound
-import CORALean.ContSet.Taylm.Real.Theorems.BnbLoopMem
-import CORALean.ContSet.Taylm.Real.Theorems.PolyBoxBoundsMem
-import CORALean.ContSet.Taylm.Real.Theorems.ReexpBoxBoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BranchAndBound
+public import CORALean.ContSet.Taylm.Real.Theorems.BnbLoopMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoxBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.ReexpBoxBoundsMem
+
+@[expose] public section
 
 /-!
 # Branch and bound encloses the polynomial's range

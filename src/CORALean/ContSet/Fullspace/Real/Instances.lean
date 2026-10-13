@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.Fullspace.Real.Operations.Centre
-import CORALean.ContSet.Fullspace.Real.Theorems.ReindexLinExact
-import CORALean.ContSet.WithEmpty.WithEmpty
+module
+
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.Fullspace.Real.Operations.Centre
+public import CORALean.ContSet.Fullspace.Real.Theorems.ReindexLinExact
+public import CORALean.ContSet.WithEmpty.WithEmpty
+
+@[expose] public section
 
 /-!
 # What `Fullspace` instantiates

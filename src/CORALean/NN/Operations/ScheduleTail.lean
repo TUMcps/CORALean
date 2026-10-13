@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.Schedule
+module
+
+public import CORALean.NN.Definitions.Schedule
+
+@[expose] public section
 
 /-!
 # A schedule's tail

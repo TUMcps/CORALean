@@ -1,7 +1,11 @@
-import CORALean.NN.Operations.SnakeOrder
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Multiset.Basic
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+module
+
+public import CORALean.NN.Operations.SnakeOrder
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Multiset.Basic
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+
+@[expose] public section
 
 /-!
 # The spiral visits every entry once

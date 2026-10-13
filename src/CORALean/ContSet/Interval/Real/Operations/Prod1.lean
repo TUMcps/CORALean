@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Times
-import CORALean.ContSet.Interval.Real.Operations.Point
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Times
+public import CORALean.ContSet.Interval.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `Interval.prod₁`

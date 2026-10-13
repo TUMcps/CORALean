@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.RowScale
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.MulHi
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.RowScale
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+
+@[expose] public section
 
 /-!
 # `HPolytope.reduceOverDomain` over a floating-point scalar

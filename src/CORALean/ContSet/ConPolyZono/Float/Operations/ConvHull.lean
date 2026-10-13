@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
-import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
+public import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.convHull`

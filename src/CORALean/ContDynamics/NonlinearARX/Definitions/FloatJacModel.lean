@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearARX.NonlinearARX
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.Global.Jacobian
+module
+
+public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.Global.Jacobian
+
+@[expose] public section
 
 /-!
 # What a float run is told about a nonlinear ARX model and its Jacobians

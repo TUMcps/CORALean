@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.IsBounded
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.IsBounded
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.isBounded` is boundedness

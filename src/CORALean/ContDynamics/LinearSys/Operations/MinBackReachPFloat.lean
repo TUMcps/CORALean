@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupportFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupportFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 4 and 14 in floats: the accumulated support value

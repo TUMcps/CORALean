@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.EphMtimesExp
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.EphMtimesExp
+
+@[expose] public section
 
 /-!
 # The hull's values over `[0, r]` peak at `t = 0` or `t = r`

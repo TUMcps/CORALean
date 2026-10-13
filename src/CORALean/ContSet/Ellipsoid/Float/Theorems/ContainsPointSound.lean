@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # A `true` from `Ellipsoid.containsPoint` proves membership

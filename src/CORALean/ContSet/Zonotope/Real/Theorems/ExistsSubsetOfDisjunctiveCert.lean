@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # Disjunctive zonotope containment, sufficiently

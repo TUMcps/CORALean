@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Operations.Enclose
-import CORALean.ContSet.Capsule.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.Capsule.Real.Complexity.Time.ConvHull
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Enclose
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.ConvHull
+
+@[expose] public section
 
 /-!
 # `Capsule.encloseCost`

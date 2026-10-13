@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
+
+@[expose] public section
 
 /-!
 # Membership in the error box of a family of matrix generators

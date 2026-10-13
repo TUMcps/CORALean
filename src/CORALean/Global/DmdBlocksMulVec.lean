@@ -1,6 +1,11 @@
-import CORALean.Global.DmdBlocks
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.Global.DmdBlocks
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The blocks act on the regressor as the matrix does

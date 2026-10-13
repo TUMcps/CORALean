@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Operations.Mtimes
-import CORALean.Global.EuclideanNorm
-import Mathlib.Algebra.Order.Chebyshev
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Mtimes
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Algebra.Order.Chebyshev
+
+@[expose] public section
 
 /-!
 # `Capsule.mtimes` encloses the image

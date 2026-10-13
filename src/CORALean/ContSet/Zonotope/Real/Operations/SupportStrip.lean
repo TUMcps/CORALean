@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
+
+@[expose] public section
 
 /-!
 # The support strip of a zonotope

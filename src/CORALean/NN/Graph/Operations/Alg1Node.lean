@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
-import CORALean.NN.Graph.Operations.GcnActSteps
-import CORALean.NN.Graph.Operations.MessagePassingEnclosure
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
+public import CORALean.NN.Graph.Operations.GcnActSteps
+public import CORALean.NN.Graph.Operations.MessagePassingEnclosure
+
+@[expose] public section
 
 /-!
 # `Alg. 1` for a node-level output

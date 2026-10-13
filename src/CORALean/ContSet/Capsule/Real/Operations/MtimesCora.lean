@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Capsule
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # CORA's `capsule/mtimes` radius, as printed

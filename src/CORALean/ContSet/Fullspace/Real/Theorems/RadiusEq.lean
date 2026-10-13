@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Radius
-import Mathlib.Analysis.Normed.Ring.Basic
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Radius
+public import Mathlib.Analysis.Normed.Ring.Basic
+
+@[expose] public section
 
 /-!
 # `Fullspace.radius` is the radius of the set

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 1-2 in floats: the loop state before the first iteration

@@ -1,7 +1,11 @@
-import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
-import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import Mathlib.Analysis.CStarAlgebra.Matrix
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+public import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import Mathlib.Analysis.CStarAlgebra.Matrix
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.zonotope`

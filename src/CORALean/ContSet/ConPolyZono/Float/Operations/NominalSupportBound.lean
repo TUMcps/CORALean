@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Operations.SupportBound
-import CORALean.Global.Float.FloatBound
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SupportBound
+public import CORALean.Global.Float.FloatBound
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.nominalSupportBound` over a floating-point scalar

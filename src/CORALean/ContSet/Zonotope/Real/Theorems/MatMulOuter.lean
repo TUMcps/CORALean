@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MatMul
-import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MatMul
+public import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
+
+@[expose] public section
 
 /-!
 # A product of two matrix zonotopes over-approximates every product it denotes

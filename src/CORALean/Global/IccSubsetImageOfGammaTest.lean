@@ -1,12 +1,16 @@
-import CORALean.Global.HMatrixRegular
-import CORALean.Global.IsHMatrixOfGammaTest
-import CORALean.Global.SubsetImageOfDisjointBoundarySingular
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.Calculus.FDeriv.Prod
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Convex.Topology
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.Global.HMatrixRegular
+public import CORALean.Global.IsHMatrixOfGammaTest
+public import CORALean.Global.SubsetImageOfDisjointBoundarySingular
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.Calculus.FDeriv.Prod
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Convex.Topology
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # The inclusion test (2) proves a box inside the range

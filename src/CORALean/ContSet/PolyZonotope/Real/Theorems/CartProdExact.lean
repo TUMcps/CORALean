@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Algebra.Module.Prod
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Algebra.Module.Prod
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cartProd` is exactly the Cartesian product

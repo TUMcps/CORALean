@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.CartProd
-import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.CartProd
+public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.cartProd` is exact

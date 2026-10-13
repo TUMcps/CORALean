@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Le
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Le
+
+@[expose] public section
 
 /-!
 # `Interval.le` implies containment

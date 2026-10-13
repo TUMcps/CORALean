@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.GreedyAbstractExplanation
-import CORALean.NN.Theorems.ExplanationRefineLoopIff
+module
+
+public import CORALean.NN.Operations.GreedyAbstractExplanation
+public import CORALean.NN.Theorems.ExplanationRefineLoopIff
+
+@[expose] public section
 
 /-!
 # [1, Prop. 5]'s second clause: [1, Alg. 2] ends where [1, Alg. 1] ends

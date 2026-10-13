@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
-import CORALean.ContDynamics.Conform.Plant
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
+public import CORALean.ContDynamics.Conform.Plant
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]: the linear program's objective is the interval-norm cost

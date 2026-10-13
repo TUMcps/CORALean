@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.Times
-import CORALean.ContSet.Polygon.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Times
+public import CORALean.ContSet.Polygon.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # `Polygon.times` is the image

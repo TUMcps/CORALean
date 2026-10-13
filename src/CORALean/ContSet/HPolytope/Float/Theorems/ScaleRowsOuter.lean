@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.HPolytope.Float.Theorems.ScaleDevBetween
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleDevBetween
+
+@[expose] public section
 
 /-!
 # `HPolytope.scaleRows` keeps every point of the polytope inside the domain

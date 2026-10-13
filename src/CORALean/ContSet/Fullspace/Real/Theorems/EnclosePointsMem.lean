@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Operations.EnclosePoints
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.EnclosePoints
+
+@[expose] public section
 
 /-!
 # `Fullspace.enclosePoints` encloses the points

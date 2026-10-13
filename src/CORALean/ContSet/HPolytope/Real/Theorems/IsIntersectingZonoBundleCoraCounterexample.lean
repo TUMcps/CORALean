@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
-import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingZonoBundleCora
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingZonoBundleCora
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's polytope/zonotope-bundle intersection test ignores equality constraints

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMapInt`

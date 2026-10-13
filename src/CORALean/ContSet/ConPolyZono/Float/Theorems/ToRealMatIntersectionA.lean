@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
-import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionA
-import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealAgreeRow
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealAgreeRow
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+
+@[expose] public section
 
 /-!
 # The constraint matrix `intersectionA` reads back to the exact layer's

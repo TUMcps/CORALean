@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `plusA`'s block-diagonal product, read on the left block

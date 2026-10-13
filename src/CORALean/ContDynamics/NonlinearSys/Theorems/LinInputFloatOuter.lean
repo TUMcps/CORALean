@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinInputFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.SlopeRemainderAbstractionError
-import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinInputFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.SlopeRemainderAbstractionError
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+
+@[expose] public section
 
 /-!
 # `linInputFloat` holds every input the linearized system needs

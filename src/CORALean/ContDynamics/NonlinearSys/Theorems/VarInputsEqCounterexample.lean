@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # `varInputs` is not the set of `[1, Eq. 7]`

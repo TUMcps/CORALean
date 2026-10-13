@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.IdentityDerEnclosure
-import CORALean.NN.Definitions.ScalarEncloses
+module
+
+public import CORALean.NN.Operations.IdentityDerEnclosure
+public import CORALean.NN.Definitions.ScalarEncloses
+
+@[expose] public section
 
 /-!
 # `identityDerEnclosure` encloses the derivative of the identity

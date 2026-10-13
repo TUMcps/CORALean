@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
+
+@[expose] public section
 
 /-!
 # A larger sub-box of the factors evaluates to a larger set

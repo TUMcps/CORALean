@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
+module
+
+public import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
+
+@[expose] public section
 
 /-!
 # A capsule as an ellipsoid, over a floating-point scalar

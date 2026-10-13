@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Rotate
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Rotate
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
+
+@[expose] public section
 
 /-!
 # `Zonotope.rotateCost`

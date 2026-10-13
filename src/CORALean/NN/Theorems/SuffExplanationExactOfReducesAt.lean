@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.ReducesAtOuter
-import CORALean.NN.Theorems.SuffExplanationExactOfRefined
+module
+
+public import CORALean.NN.Theorems.ReducesAtOuter
+public import CORALean.NN.Theorems.SuffExplanationExactOfRefined
+
+@[expose] public section
 
 /-!
 # The refinement hypothesis, discharged by neuron merging

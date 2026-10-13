@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.RootRelaxation
-import CORALean.NN.Layers.Theorems.OfMonotoneSound
-import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.NN.Layers.Definitions.RootRelaxation
+public import CORALean.NN.Layers.Theorems.OfMonotoneSound
+public import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # The square root relaxation over ℝ is sound

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
-import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormEquivNorm
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormEquivNorm
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The containment radius is attained at a corner

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Float.Operations.Uminus
-import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
-import CORALean.ContSet.Interval.Float.Theorems.UminusExact
+module
+
+public import CORALean.ContSet.Zoo.Float.Operations.Uminus
+public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.UminusExact
+
+@[expose] public section
 
 /-!
 # `Zoo.uminus` encloses

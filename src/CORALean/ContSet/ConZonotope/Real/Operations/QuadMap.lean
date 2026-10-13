@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+
+@[expose] public section
 
 /-!
 # `ConZonotope.quadMap`

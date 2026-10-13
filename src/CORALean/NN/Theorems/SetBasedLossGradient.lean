@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.SetBasedLoss
-import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusGradient
+module
+
+public import CORALean.NN.Definitions.SetBasedLoss
+public import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusGradient
+
+@[expose] public section
 
 /-!
 # The gradient of the set-based loss

@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetIntersection.SetIntersection
+module
+
+public import CORALean.ContSet.SetIntersection.SetIntersection
+
+@[expose] public section
 
 /-!
 # `SetIntersection.reduce`

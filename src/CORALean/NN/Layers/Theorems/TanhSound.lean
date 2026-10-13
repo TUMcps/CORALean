@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Tanh
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.TanhRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.Tanh
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.TanhRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the tanh layer encloses

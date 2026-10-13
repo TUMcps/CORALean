@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.SoftmaxRawLower
-import CORALean.NN.Layers.Operations.SoftmaxRawUpper
-import CORALean.NN.Layers.Operations.SumOffUp
+module
+
+public import CORALean.NN.Layers.Operations.SoftmaxRawLower
+public import CORALean.NN.Layers.Operations.SoftmaxRawUpper
+public import CORALean.NN.Layers.Operations.SumOffUp
+
+@[expose] public section
 
 /-!
 # Softmax's box

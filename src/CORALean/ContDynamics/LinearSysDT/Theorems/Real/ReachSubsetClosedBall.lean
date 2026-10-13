@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachStepSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAbsBoundLe
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachStepSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAbsBoundLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
+
+@[expose] public section
 
 /-!
 # The reachable set's sup-norm ball over a whole run, at a fixed order

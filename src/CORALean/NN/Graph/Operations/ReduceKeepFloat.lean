@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.BallFloat
+module
+
+public import CORALean.NN.Graph.Operations.BallFloat
+
+@[expose] public section
 
 /-!
 # The node sets `reduceGNNForNode` keeps, on an edge test

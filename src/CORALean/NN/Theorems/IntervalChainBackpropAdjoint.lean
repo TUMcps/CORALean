@@ -1,6 +1,10 @@
-import CORALean.NN.Operations.IntervalChainBackprop
-import CORALean.NN.Operations.IntervalChainJvp
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.NN.Operations.IntervalChainBackprop
+public import CORALean.NN.Operations.IntervalChainJvp
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The interval backpropagation is the adjoint of the tangent propagation

@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Data.Fin.Tuple.Basic
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Data.Fin.Tuple.Basic
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # Reading one block of a concatenated vector

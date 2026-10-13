@@ -1,12 +1,16 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # `reduceBox` shrinks as the order rises

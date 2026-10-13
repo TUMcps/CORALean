@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Theorems.SelectMatToReal
-import CORALean.NN.Graph.Theorems.SelectMul
+module
+
+public import CORALean.NN.Graph.Theorems.SelectMatToReal
+public import CORALean.NN.Graph.Theorems.SelectMul
+
+@[expose] public section
 
 /-!
 # `selectMat` multiplies out to row selection

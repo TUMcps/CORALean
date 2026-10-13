@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaFullspace
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaFullspace
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `representsaFullspace` is exactly "the set is the whole space"

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainderFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainderFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+
+@[expose] public section
 
 /-!
 # Every matrix within the bound lies in the float remainder box

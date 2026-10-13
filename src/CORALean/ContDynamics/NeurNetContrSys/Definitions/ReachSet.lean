@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+
+@[expose] public section
 
 /-!
 # The set a sampled closed-loop run actually reaches

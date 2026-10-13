@@ -1,5 +1,7 @@
-import CORALean.ContSet.PolyZonotope.Real.API
-import CORALean.ContSet.PolyZonotope.Float.API
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.API
+public import CORALean.ContSet.PolyZonotope.Float.API
 
 /-!
 # Sparse polynomial zonotopes

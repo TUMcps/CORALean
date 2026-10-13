@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Theorems.GloSetTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.GloSetTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
+
+@[expose] public section
 
 /-!
 # [1, Lemma 3]: containment in `Ȳ` as halfspace constraints

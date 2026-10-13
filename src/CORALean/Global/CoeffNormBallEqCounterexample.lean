@@ -1,4 +1,8 @@
-import CORALean.Global.CoeffNorm
+module
+
+public import CORALean.Global.CoeffNorm
+
+@[expose] public section
 
 /-!
 # The unit circle of an ellipsotope norm is not the ellipsotope

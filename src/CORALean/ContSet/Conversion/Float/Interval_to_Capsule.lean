@@ -1,9 +1,13 @@
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.ContSet.Capsule.Real.Instances
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_Capsule
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.Capsule.Real.Instances
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_Capsule
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # A box as a capsule, over a floating-point scalar

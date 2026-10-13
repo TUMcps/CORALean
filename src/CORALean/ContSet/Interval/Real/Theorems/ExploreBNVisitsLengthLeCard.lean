@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Operations.ExploreBN
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumMono
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExploreBN
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumMono
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+
+@[expose] public section
 
 /-!
 # The loop of `EXPLORE BN` runs at most once per solution

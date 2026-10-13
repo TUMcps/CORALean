@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadRight
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadRight
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # The right-padded set denotes the padded nominal set

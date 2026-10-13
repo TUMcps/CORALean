@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Cos
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Cos
+
+@[expose] public section
 
 /-!
 # `Interval.cos` contains the image under `cos`

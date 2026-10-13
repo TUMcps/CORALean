@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Theorems.ClassesVecSingleSubsetIff
-import Mathlib.Algebra.BigOperators.Ring.Finset
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ClassesVecSingleSubsetIff
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # Zono-conformal classification with outliers is a mixed-integer program

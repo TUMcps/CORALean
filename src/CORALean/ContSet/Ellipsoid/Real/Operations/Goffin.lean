@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
+
+@[expose] public section
 
 /-!
 # Goffin's algorithm for zonotopes

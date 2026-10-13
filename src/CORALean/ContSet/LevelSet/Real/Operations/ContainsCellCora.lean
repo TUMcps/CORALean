@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+
+@[expose] public section
 
 /-!
 # CORA's `levelSet/contains_` at a set, a cell of operators, as printed

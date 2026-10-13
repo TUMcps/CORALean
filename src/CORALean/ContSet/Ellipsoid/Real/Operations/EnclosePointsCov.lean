@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsOriented
-import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsNt
-import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsMaxDist
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsOriented
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsNt
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsMaxDist
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclosePointsCov`

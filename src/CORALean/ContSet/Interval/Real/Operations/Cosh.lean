@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.CoshLo
-import CORALean.ContSet.Interval.Real.Operations.CoshHi
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.CoshLo
+public import CORALean.ContSet.Interval.Real.Operations.CoshHi
+
+@[expose] public section
 
 /-!
 # `Interval.cosh`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
+
+@[expose] public section
 
 /-!
 # Reordering the dependent block moves no point

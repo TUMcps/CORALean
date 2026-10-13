@@ -1,8 +1,10 @@
-import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
-import CORALean.HybridDynamics.TimeTriggered.Definitions.FinalConversion
-import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
-import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
-import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.FinalConversion
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
 
 /-!
 # What the time-triggered conversion is measured by

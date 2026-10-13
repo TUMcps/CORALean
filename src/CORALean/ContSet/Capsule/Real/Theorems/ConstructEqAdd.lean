@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Capsule
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+
+@[expose] public section
 
 /-!
 # A non-degenerate capsule as a sum of sets

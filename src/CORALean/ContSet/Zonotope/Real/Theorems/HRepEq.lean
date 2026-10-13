@@ -1,10 +1,14 @@
-import CORALean.Global.ConeEdge
-import CORALean.Global.EqSmulNCross
-import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Analysis.LocallyConvex.Separation
+module
+
+public import CORALean.Global.ConeEdge
+public import CORALean.Global.EqSmulNCross
+public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Analysis.LocallyConvex.Separation
+
+@[expose] public section
 
 /-!
 # [1, Thm. 2]: a zonotope is its cross-product halfspaces

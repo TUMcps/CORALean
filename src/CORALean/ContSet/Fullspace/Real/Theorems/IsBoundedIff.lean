@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Operations.IsBounded
-import CORALean.ContSet.Fullspace.Real.Theorems.IsBoundedConstructIff
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.IsBounded
+public import CORALean.ContSet.Fullspace.Real.Theorems.IsBoundedConstructIff
+
+@[expose] public section
 
 /-!
 # `Fullspace.isBounded` is boundedness

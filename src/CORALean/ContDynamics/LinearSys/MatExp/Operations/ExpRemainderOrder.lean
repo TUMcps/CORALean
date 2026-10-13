@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+
+@[expose] public section
 
 /-!
 # Choosing the truncation order from an admissible error

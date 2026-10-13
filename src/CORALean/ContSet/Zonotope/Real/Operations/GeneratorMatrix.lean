@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # `Zonotope.generatorMatrix`

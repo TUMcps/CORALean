@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.Index1
-import Mathlib.Analysis.Calculus.ImplicitFunction.Bivariate
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.Index1
+public import Mathlib.Analysis.Calculus.ImplicitFunction.Bivariate
+
+@[expose] public section
 
 /-!
 # An index-1 system has a local reduced model

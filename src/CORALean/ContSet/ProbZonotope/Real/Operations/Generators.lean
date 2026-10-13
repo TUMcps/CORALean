@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
-import Mathlib.Analysis.Matrix.Spectrum
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+public import Mathlib.Analysis.Matrix.Spectrum
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.generators`

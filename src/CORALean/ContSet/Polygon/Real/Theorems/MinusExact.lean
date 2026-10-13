@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import CORALean.ContSet.Polygon.Real.Operations.Minus
-import CORALean.ContSet.Polygon.Real.Theorems.PlusExact
-import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+module
+
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import CORALean.ContSet.Polygon.Real.Operations.Minus
+public import CORALean.ContSet.Polygon.Real.Theorems.PlusExact
+public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+
+@[expose] public section
 
 /-!
 # `Polygon.minus` is the translate

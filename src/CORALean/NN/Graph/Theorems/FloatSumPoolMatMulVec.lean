@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Operations.FloatSumPoolMat
-import CORALean.NN.Graph.Operations.SumPoolLin
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.NN.Graph.Operations.FloatSumPoolMat
+public import CORALean.NN.Graph.Operations.SumPoolLin
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `sumPoolMat` reads back as the pooling map

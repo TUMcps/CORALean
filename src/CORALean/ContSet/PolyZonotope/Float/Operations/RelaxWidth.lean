@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `ξ_E`, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
+
+@[expose] public section
 
 /-!
 # `∫₀ʳ e^{As} ds` against `r I`

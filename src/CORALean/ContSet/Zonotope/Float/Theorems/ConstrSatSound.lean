@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ConstrSat
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ConstrSat
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+
+@[expose] public section
 
 /-!
 # `constrSat` is sound at float

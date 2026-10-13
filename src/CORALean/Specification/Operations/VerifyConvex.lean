@@ -1,4 +1,8 @@
-import CORALean.Specification.Operations.VerifyConvexStep
+module
+
+public import CORALean.Specification.Operations.VerifyConvexStep
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3 (exits)]: a GJK-style search for a separating or an intersecting direction

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Fullspace.Real.Fullspace
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+
+@[expose] public section
 
 /-!
 # Relabelling the full space gives the full space

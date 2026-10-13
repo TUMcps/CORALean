@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.MergeErrorWidthLeRow
-import CORALean.NN.Theorems.Real.MergeRowWeightNonneg
+module
+
+public import CORALean.NN.Theorems.MergeErrorWidthLeRow
+public import CORALean.NN.Theorems.Real.MergeRowWeightNonneg
+
+@[expose] public section
 
 /-!
 # A tolerance meeting any error budget

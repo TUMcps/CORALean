@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.isequal`, over a floating-point scalar

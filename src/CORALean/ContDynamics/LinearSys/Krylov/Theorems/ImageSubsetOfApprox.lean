@@ -1,5 +1,9 @@
-import CORALean.Global.EuclideanNorm
-import Mathlib.Algebra.BigOperators.Ring.Finset
+module
+
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # A linear image of a zonotope from approximate images of its generators

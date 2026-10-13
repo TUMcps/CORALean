@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.PostBox
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesEvalOn
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusEvalOn
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceEvalOn
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PostBox
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesEvalOn
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusEvalOn
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceEvalOn
+
+@[expose] public section
 
 /-!
 # [1, Lemma 4]: the post operator preserves dependencies

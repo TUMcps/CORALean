@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
-import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
+public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+
+@[expose] public section
 
 /-!
 # `HPolytope.compactZeros` over a floating-point scalar

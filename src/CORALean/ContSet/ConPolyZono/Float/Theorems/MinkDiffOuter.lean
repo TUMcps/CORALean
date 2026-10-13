@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.MinkDiff
-import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.MinkDiff
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # The float `minkDiff` of a constrained polynomial zonotope encloses the difference

@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.TransitionConvGuard
+module
+
+public import CORALean.HybridDynamics.Operations.TransitionConvGuard
+
+@[expose] public section
 
 /-!
 # `Transition.convGuard` is exactly guard and invariant

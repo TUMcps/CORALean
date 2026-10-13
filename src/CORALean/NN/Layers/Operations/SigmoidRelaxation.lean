@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Operations.RelaxationOfMonotone
-import CORALean.NN.Layers.Operations.RelaxationTighter
-import CORALean.NN.Layers.Operations.SigmoidCurvatureRelaxation
-import CORALean.NN.Layers.Operations.SigmoidEnclosure
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+public import CORALean.NN.Layers.Operations.RelaxationTighter
+public import CORALean.NN.Layers.Operations.SigmoidCurvatureRelaxation
+public import CORALean.NN.Layers.Operations.SigmoidEnclosure
+
+@[expose] public section
 
 /-!
 # The sigmoid relaxation

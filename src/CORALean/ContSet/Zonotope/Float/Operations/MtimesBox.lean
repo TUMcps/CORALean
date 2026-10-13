@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Zonotope.mtimesBox`

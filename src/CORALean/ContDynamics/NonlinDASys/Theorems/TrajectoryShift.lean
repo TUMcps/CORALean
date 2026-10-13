@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import CORALean.ContSet.Zonotope.Real.Instances
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Comp
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+
+@[expose] public section
 
 /-!
 # A run of the DAE, restarted at a later time

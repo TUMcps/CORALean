@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
+
+@[expose] public section
 
 /-!
 # A constraint matrix applied to a factor vector is a sum of columns

@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.MilpPrinted
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Specification.STL.Definitions.MilpPrinted
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The program (26) as printed has no solution for two rows or more

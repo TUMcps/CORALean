@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.SigmoidPoly
-import CORALean.NN.Layers.Theorems.Real.PolyOfAffineConjSound
-import CORALean.NN.Layers.Theorems.Real.SigmoidPolyRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+module
+
+public import CORALean.NN.Layers.Definitions.SigmoidPoly
+public import CORALean.NN.Layers.Theorems.Real.PolyOfAffineConjSound
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+
+@[expose] public section
 
 /-!
 # The exact polynomial tanh relaxation is sound

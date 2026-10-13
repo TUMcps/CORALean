@@ -1,19 +1,21 @@
-import CORALean.Global.Float.Instances.IEEE.Theorems.AddDownLeAdd
-import CORALean.Global.Float.Instances.IEEE.Theorems.AddLeAddUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.DivDownLeDiv
-import CORALean.Global.Float.Instances.IEEE.Theorems.DivLeDivUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.LeIff
-import CORALean.Global.Float.Instances.IEEE.Theorems.LeRoundUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.MulDownLeMul
-import CORALean.Global.Float.Instances.IEEE.Theorems.MulLeMulUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.OverflowsIff
-import CORALean.Global.Float.Instances.IEEE.Theorems.QminLeRoundDownExponent
-import CORALean.Global.Float.Instances.IEEE.Theorems.QminLeRoundUpExponent
-import CORALean.Global.Float.Instances.IEEE.Theorems.RoundDownLe
-import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealHalf
-import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMaximum
-import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMinimum
-import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealNeg
+module
+
+public import CORALean.Global.Float.Instances.IEEE.Theorems.AddDownLeAdd
+public import CORALean.Global.Float.Instances.IEEE.Theorems.AddLeAddUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.DivDownLeDiv
+public import CORALean.Global.Float.Instances.IEEE.Theorems.DivLeDivUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.LeIff
+public import CORALean.Global.Float.Instances.IEEE.Theorems.LeRoundUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.MulDownLeMul
+public import CORALean.Global.Float.Instances.IEEE.Theorems.MulLeMulUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.OverflowsIff
+public import CORALean.Global.Float.Instances.IEEE.Theorems.QminLeRoundDownExponent
+public import CORALean.Global.Float.Instances.IEEE.Theorems.QminLeRoundUpExponent
+public import CORALean.Global.Float.Instances.IEEE.Theorems.RoundDownLe
+public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealHalf
+public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMaximum
+public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMinimum
+public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealNeg
 
 /-!
 # What `IEEE` guarantees

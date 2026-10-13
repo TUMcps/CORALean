@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Abs
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Abs
+
+@[expose] public section
 
 /-!
 # `Interval.abs` is exactly the image under the absolute value

@@ -1,9 +1,13 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
-import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
-import CORALean.Global.NearestPointSeparates
-import Mathlib.Topology.Algebra.Group.Pointwise
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+public import CORALean.Global.NearestPointSeparates
+public import Mathlib.Topology.Algebra.Group.Pointwise
+
+@[expose] public section
 
 /-!
 # The distance between two ellipsoids

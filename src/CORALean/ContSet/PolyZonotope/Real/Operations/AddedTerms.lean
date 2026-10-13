@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.addedTerms`

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
+
+@[expose] public section
 
 /-!
 # An inner approximation of a reachable set

@@ -1,4 +1,6 @@
-import CORALean.ContSet.Fullspace.Real.API
+module
+
+public import CORALean.ContSet.Fullspace.Real.API
 
 /-!
 # The full space

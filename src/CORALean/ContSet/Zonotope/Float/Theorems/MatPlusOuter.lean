@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MatPlus
-import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPlus
+public import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.matPlus` over-approximates the Minkowski sum

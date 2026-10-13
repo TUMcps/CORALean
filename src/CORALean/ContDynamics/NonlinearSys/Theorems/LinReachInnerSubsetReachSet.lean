@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
-import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
+public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
+
+@[expose] public section
 
 /-!
 # CORA's inner linearized step: the time-point set is inside the reachable set

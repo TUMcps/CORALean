@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # A sampled `'constParam'` run lands in the float-sampled system's `reach`

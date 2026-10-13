@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import CORALean.Global.EuclideanNorm
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import CORALean.Global.EuclideanNorm
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.hausdorffDist`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
-import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
+
+@[expose] public section
 
 /-!
 # The greedy relaxation of `Alg. 2` over-approximates

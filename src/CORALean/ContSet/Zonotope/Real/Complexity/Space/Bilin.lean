@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Bilin
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `Zonotope.bilin_h`

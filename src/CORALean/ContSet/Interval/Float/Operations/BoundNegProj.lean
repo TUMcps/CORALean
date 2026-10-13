@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.Global.Float.FloatBound
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.Float.FloatBound
+
+@[expose] public section
 
 /-!
 # `Interval.boundNegProj`

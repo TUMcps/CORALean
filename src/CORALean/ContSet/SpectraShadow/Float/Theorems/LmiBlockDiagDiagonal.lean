@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+
+@[expose] public section
 
 /-!
 # An inequality beside a diagonal block, at a point

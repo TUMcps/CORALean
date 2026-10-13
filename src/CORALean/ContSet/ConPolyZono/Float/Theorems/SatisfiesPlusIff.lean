@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
-import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
-import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+
+@[expose] public section
 
 /-!
 # Two constraint systems side by side hold exactly when each does

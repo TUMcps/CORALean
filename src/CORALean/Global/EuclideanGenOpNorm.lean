@@ -1,5 +1,9 @@
-import Mathlib.Analysis.CStarAlgebra.Matrix
-import CORALean.Global.EuclideanNorm
+module
+
+public import Mathlib.Analysis.CStarAlgebra.Matrix
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `‖G‖₂`, the induced `‖·‖₂` norm of a family of generators read as a linear map

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
-import CORALean.NN.Definitions.MergeBucket
-import CORALean.NN.Theorems.Real.MergeBucketWidth
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
+public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Theorems.Real.MergeBucketWidth
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # What the tolerance buys

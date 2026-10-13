@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.Analysis.Calculus.FDeriv.Measurable
-import Mathlib.MeasureTheory.Integral.Prod
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.Analysis.Calculus.FDeriv.Measurable
+public import Mathlib.MeasureTheory.Integral.Prod
+
+@[expose] public section
 
 /-!
 # A classical run's input is measurable, in the reflected form a step needs

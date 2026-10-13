@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.GoLoop
-import CORALean.ContSet.Taylm.Real.Operations.ListMin
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.GoLoop
+public import CORALean.ContSet.Taylm.Real.Operations.ListMin
+
+@[expose] public section
 
 /-!
 # A verified enclosure of the minimum

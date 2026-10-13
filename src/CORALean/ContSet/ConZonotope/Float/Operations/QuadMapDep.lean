@@ -1,10 +1,14 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCDown
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCUp
-import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCDown
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCUp
+public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # `ConZonotope.quadMapDep`

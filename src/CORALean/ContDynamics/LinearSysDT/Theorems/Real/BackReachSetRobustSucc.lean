@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetRobust
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetRobust
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # One robust backward step is a Minkowski difference, a sum and a preimage

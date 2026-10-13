@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
-import CORALean.Global.LinProg.LinProg
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
+public import CORALean.Global.LinProg.LinProg
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.supportFunc_le_of_bound`

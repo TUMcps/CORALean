@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import CORALean.Global.Tensor
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.representsaCapsuleCora`: the `'capsule'` test as CORA's code runs

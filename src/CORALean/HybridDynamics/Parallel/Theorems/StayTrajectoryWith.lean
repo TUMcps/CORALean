@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
-import CORALean.HybridDynamics.Parallel.Operations.ProductWith
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
+public import CORALean.HybridDynamics.Parallel.Operations.ProductWith
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # A shared stay is a stay of the product

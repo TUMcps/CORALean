@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IdentifyStep
-import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.SupportDotProduct
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IdentifyStep
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.SupportDotProduct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+
+@[expose] public section
 
 /-!
 # The identification step encloses the next parameter set

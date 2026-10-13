@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.OnlyId
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.OnlyIdPoint
-import CORALean.ContSet.PolyZonotope.Float.Theorems.OnlyIdPoint
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.OnlyId
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.OnlyIdPoint
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.OnlyIdPoint
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.onlyId` encloses the original

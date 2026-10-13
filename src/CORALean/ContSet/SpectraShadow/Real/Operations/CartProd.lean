@@ -1,6 +1,10 @@
-import CORALean.Global.Block
-import CORALean.ContSet.SpectraShadow.Real.Operations.Map
-import CORALean.ContSet.SpectraShadow.Real.Operations.Plus
+module
+
+public import CORALean.Global.Block
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Map
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.cartProd`

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.ConformantIffDevSet
-import CORALean.ContDynamics.Conform.Theorems.DevSetZeroTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ConformantIffDevSet
+public import CORALean.ContDynamics.Conform.Theorems.DevSetZeroTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]: reachset conformance is linear in the identified parameters

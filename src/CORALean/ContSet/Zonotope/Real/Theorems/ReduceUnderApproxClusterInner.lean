@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxCluster
-import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
-import CORALean.ContSet.Zonotope.Real.Theorems.SumAbsLeOneOfSubsingletonSupport
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxCluster
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumAbsLeOneOfSubsingletonSupport
+
+@[expose] public section
 
 /-!
 # `reduceUnderApproxCluster` returns a subset

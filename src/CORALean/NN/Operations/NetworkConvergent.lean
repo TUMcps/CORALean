@@ -1,9 +1,13 @@
-import CORALean.NN.Definitions.RefinableNetwork
-import CORALean.NN.Layers.Layer
-import CORALean.NN.Operations.Convergent
-import CORALean.NN.Operations.RefinableNetworkEval
-import Mathlib.Topology.EMetricSpace.Lipschitz
-import Mathlib.Topology.MetricSpace.Basic
+module
+
+public import CORALean.NN.Definitions.RefinableNetwork
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Operations.Convergent
+public import CORALean.NN.Operations.RefinableNetworkEval
+public import Mathlib.Topology.EMetricSpace.Lipschitz
+public import Mathlib.Topology.MetricSpace.Basic
+
+@[expose] public section
 
 /-!
 # What it takes for a whole network's refinement to converge

@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Test
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Test
+
+@[expose] public section
 
 /-!
 # `LevelSet.contains`

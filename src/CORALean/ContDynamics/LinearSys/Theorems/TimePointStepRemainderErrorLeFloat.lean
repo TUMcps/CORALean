@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderErrorFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpNormTermsLeFloat
-import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoundError
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderErrorFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpNormTermsLeFloat
+public import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoundError
+
+@[expose] public section
 
 /-!
 # `timePointStepRemainderErrorFloat` bounds `timePointStepRemainderError`

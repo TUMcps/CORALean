@@ -1,5 +1,9 @@
-import CORALean.Global.HMatrix
-import Mathlib.LinearAlgebra.Matrix.Gershgorin
+module
+
+public import CORALean.Global.HMatrix
+public import Mathlib.LinearAlgebra.Matrix.Gershgorin
+
+@[expose] public section
 
 /-!
 # H-matrices are regular

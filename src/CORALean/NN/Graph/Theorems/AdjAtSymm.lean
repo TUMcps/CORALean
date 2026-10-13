@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.AdjAt
-import CORALean.NN.Graph.Theorems.EdgeMatSymm
+module
+
+public import CORALean.NN.Graph.Operations.AdjAt
+public import CORALean.NN.Graph.Theorems.EdgeMatSymm
+
+@[expose] public section
 
 /-!
 # `adjAt` is symmetric when `A` is

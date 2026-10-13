@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.or`, over a floating-point scalar

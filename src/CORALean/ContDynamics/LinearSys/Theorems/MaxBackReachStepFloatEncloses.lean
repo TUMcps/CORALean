@@ -1,29 +1,33 @@
-import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloatEncloses
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStep
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemAdaptiveIntegralFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
-import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
-import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCentreSubset
-import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesNominalErr
-import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
-import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
-import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeMagnitudeMat
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
-import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatError
-import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemPlusError
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloatEncloses
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStep
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemAdaptiveIntegralFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
+public import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCentreSubset
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesNominalErr
+public import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
+public import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeMagnitudeMat
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
+public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatError
+public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemPlusError
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # One iteration of `Alg. 2` in floats stays inside the exact one

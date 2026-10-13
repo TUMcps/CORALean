@@ -1,11 +1,15 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Analysis.Normed.Ring.Basic
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Analysis.Normed.Ring.Basic
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # An interval matrix of small entries moves a zonotope only a little

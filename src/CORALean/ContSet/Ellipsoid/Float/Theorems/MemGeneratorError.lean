@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # What a rounded generator costs an ellipsoid

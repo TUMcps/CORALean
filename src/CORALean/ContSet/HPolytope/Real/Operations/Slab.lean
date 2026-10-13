@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
-import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+
+@[expose] public section
 
 /-!
 # `HPolytope.slab`

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+
+@[expose] public section
 
 /-!
 # The reference run of a discrete-time system

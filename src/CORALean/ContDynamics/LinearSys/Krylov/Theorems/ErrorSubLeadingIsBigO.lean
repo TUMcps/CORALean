@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpSmulMulVecTaylorIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyLastEqProd
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfKrylovIdentity
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpSmulMulVecTaylorIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyLastEqProd
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfKrylovIdentity
+
+@[expose] public section
 
 /-!
 # The leading term of the Krylov error, for any `A`

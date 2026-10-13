@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+module
+
+public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+
+@[expose] public section
 
 /-!
 # The states a parallel run actually reaches

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.IsFullDim
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Interval.Real.Theorems.IsFullDimIff
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.IsFullDim
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Interval.Real.Theorems.IsFullDimIff
+
+@[expose] public section
 
 /-!
 # `Interval.isFullDim` is sound

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.ExtremalLoIsLeast
-import CORALean.ContSet.Interval.Real.Theorems.ExtremalHiIsGreatest
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.ExtremalLoIsLeast
+public import CORALean.ContSet.Interval.Real.Theorems.ExtremalHiIsGreatest
+
+@[expose] public section
 
 /-!
 # A solution passes the extremal test

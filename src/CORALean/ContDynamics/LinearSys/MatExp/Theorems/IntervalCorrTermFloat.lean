@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # Every member's correction term lies in the float box

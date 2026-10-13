@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CorrectedStepDistributedOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CorrectedStepDistributedOuter
+
+@[expose] public section
 
 /-!
 # The distributed set-membership estimator encloses every agent's state

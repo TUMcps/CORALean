@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryDiscretizeStep
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PostEvalOn
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryDiscretizeStep
+public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PostEvalOn
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]: a reachable subset read off the computed set

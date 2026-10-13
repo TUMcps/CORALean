@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.UnitIntervalMul
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.UnitIntervalMul
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `[-1, 1] ⊗ Z` holds every `s z`, `|s| ≤ 1`, `z ∈ Z`

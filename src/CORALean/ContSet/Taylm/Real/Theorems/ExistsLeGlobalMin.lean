@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
-import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxSub
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
+public import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxSub
+
+@[expose] public section
 
 /-!
 # The optimizer's upper end is attained or exceeded

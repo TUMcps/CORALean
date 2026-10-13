@@ -1,4 +1,8 @@
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # An outer approximation is enough to check a whole list of specifications

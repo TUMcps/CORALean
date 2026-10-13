@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.SampleBoundsOfDeriv
+module
+
+public import CORALean.NN.Layers.Theorems.Real.SampleBoundsOfDeriv
+
+@[expose] public section
 
 /-!
 # Sampling costs one padding over the true half-range

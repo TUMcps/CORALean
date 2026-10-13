@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Theorems.JumpOuter
+module
+
+public import CORALean.HybridDynamics.Theorems.JumpOuter
+
+@[expose] public section
 
 /-!
 # The image of a jump, as a set inclusion

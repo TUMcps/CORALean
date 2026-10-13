@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
+
+@[expose] public section
 
 /-!
 # `Zonotope.interiorPoint`, over a floating-point scalar

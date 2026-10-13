@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Half
-import Mathlib.Algebra.Ring.CharZero
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Half
+public import Mathlib.Algebra.Ring.CharZero
+
+@[expose] public section
 
 /-!
 # Halving is exact

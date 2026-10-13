@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
-import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import Mathlib.Analysis.Calculus.FDeriv.Const
-import Mathlib.Analysis.Calculus.FDeriv.Prod
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
+public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import Mathlib.Analysis.Calculus.FDeriv.Const
+public import Mathlib.Analysis.Calculus.FDeriv.Prod
+
+@[expose] public section
 
 /-!
 # The converted float model with Jacobians encloses the converted system

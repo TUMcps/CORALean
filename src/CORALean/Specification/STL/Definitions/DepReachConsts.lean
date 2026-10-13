@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Tensor
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The constants of line 1 of the dependency preserving reachability algorithm

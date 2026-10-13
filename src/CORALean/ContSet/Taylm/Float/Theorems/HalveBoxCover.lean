@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.HalveBox
-import CORALean.ContSet.Taylm.Float.Operations.InBox
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.HalveBox
+public import CORALean.ContSet.Taylm.Float.Operations.InBox
+
+@[expose] public section
 
 /-!
 # `Taylm.halveBox` covers

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.UnitRemainder
-import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-import CORALean.Global.TaylorRemainder
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.UnitRemainder
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.Global.TaylorRemainder
+
+@[expose] public section
 
 /-!
 # `Taylm.unitRemainder` bounds the Lagrange remainder of a function with bounded derivative

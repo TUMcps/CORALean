@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRunFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRunFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
+
+@[expose] public section
 
 /-!
 # The float run linearized at the centre holds every run of the real system

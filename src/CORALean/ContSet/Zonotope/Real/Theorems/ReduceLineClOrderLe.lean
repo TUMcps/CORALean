@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceLineCl` bounds the generator count

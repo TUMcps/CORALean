@@ -1,6 +1,11 @@
-import CORALean.HybridDynamics.Definitions.ConstFlowHitSet
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.HybridDynamics.Definitions.ConstFlowHitSet
+public import Mathlib.Algebra.Order.Field.Basic
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A guard hit within `E` of the constant flow lies in eq. (1)'s set

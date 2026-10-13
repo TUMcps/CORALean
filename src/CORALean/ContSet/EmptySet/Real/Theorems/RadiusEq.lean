@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Radius
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Radius
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.radius` is the radius of the set

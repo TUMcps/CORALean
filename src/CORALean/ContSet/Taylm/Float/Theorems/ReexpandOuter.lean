@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Reexpand
-import CORALean.ContSet.Taylm.Float.Theorems.ReexpandAtOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Reexpand
+public import CORALean.ContSet.Taylm.Float.Theorems.ReexpandAtOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.reexpand` encloses the function on the sub-box

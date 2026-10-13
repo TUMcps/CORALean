@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3 (search)]: from line 1

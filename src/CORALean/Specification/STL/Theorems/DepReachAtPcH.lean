@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.DepReachAt
+module
+
+public import CORALean.Specification.STL.Operations.DepReachAt
+
+@[expose] public section
 
 /-!
 # The particular solution has `γ_u` generators per step

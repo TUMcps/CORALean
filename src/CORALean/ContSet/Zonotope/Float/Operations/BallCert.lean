@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
+
+@[expose] public section
 
 /-!
 # `Zonotope.ballCert`

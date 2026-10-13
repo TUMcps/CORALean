@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.Theorems.DualBoundLe
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.DualBoundLe
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # A spectrahedral shadow's interval hull, over a floating-point scalar

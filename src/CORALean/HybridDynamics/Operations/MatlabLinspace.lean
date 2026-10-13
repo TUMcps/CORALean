@@ -1,4 +1,8 @@
-import Mathlib.Algebra.Field.Basic
+module
+
+public import Mathlib.Algebra.Field.Basic
+
+@[expose] public section
 
 /-!
 # MATLAB's `linspace(a, b, n)`

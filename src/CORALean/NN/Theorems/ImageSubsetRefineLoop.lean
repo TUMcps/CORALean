@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.RefineLoop
-import CORALean.NN.Theorems.ImageSubsetEncloseAt
+module
+
+public import CORALean.NN.Operations.RefineLoop
+public import CORALean.NN.Theorems.ImageSubsetEncloseAt
+
+@[expose] public section
 
 /-!
 # The refinement loop keeps the enclosure

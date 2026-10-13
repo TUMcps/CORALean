@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.HybridDynamics.Operations.JumpFloat
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.HybridDynamics.Operations.JumpFloat
+
+@[expose] public section
 
 /-!
 # `Transition.jumpFloat` holds the reset image

@@ -1,13 +1,17 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+
+@[expose] public section
 
 /-!
 # `ConZonotope.conIntersect` over-approximates the constrained intersection

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
+
+@[expose] public section
 
 /-!
 # What the float `HPolytope` instantiates

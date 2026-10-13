@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.Verify
-import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyRun
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Verify
+public import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyRun
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3]: `verify` answering `false` is sound

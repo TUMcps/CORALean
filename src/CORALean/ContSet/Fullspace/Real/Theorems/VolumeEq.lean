@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Volume
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Volume
+
+@[expose] public section
 
 /-!
 # `Fullspace.volume` is the Lebesgue volume

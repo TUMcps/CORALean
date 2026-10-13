@@ -1,5 +1,9 @@
-import CORALean.Specification.Specification
-import CORALean.ContSet.SetIntersection.SetIntersection
+module
+
+public import CORALean.Specification.Specification
+public import CORALean.ContSet.SetIntersection.SetIntersection
+
+@[expose] public section
 
 /-!
 # `HoldsAll` over safe sets alone is `Holds` on their `SetIntersection`

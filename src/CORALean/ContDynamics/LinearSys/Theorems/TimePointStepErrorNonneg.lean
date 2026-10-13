@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundNonneg
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundNonneg
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
+
+@[expose] public section
 
 /-!
 # A step's error radius is non-negative

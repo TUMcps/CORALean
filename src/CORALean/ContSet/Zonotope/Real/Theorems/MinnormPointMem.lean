@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MinnormPointDist
-import CORALean.ContSet.Zonotope.Real.Theorems.MinnormBallSubset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormPointDist
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormBallSubset
+
+@[expose] public section
 
 /-!
 # `minnormPoint` lies in the zonotope

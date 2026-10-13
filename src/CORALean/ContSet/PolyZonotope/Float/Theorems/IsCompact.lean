@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Instances
-import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A float poly zonotope is compact

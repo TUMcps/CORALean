@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
-import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
+public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+
+@[expose] public section
 
 /-!
 # When the zonotope norm is defined

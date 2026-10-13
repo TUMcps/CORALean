@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Mask
-import CORALean.ContSet.Interval.Real.Theorems.MaskExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mask
+public import CORALean.ContSet.Interval.Real.Theorems.MaskExact
+
+@[expose] public section
 
 /-!
 # `Interval.mask` over floats is exact

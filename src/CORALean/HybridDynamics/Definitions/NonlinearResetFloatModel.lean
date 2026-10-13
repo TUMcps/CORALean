@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.NonlinearReset
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.HybridDynamics.Definitions.NonlinearReset
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # What a float run is told about a nonlinear reset

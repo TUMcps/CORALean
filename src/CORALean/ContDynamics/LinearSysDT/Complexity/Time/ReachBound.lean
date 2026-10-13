@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
+
+@[expose] public section
 
 /-!
 # `reach` costs at most `k` worst-case steps

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.BoxOut
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BoxOut
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.outerApprox`

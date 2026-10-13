@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
+
+@[expose] public section
 
 /-!
 # `convHull_` of two bundles is exact

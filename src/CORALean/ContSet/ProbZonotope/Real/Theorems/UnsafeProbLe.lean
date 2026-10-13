@@ -1,5 +1,9 @@
-import Mathlib.MeasureTheory.Measure.WithDensity
-import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
+module
+
+public import Mathlib.MeasureTheory.Measure.WithDensity
+public import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # The probability of an unsafe set, bounded by heights times volumes

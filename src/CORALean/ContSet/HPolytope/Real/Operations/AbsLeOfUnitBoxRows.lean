@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+
+@[expose] public section
 
 /-!
 # The box read at a weight

@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # A vertex description is convex

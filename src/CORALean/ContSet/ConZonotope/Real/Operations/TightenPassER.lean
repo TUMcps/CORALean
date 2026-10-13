@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeffER
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeffER
+
+@[expose] public section
 
 /-!
 # `ConZonotope.tightenPassER`

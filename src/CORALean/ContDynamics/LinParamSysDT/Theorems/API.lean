@@ -1,21 +1,23 @@
-import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfCheck
-import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfOutput
-import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.LinParamSysDT.Theorems.NotHoldsOfSimulate
-import CORALean.ContDynamics.LinParamSysDT.Theorems.OutputOuter
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachEqToLinParam
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachBigO
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOrderLe
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterInstances
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateMemReach
-import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
-import CORALean.ContDynamics.LinParamSysDT.Theorems.TrajectoryToLinParam
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfCheck
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfOutput
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.NotHoldsOfSimulate
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.OutputOuter
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachEqToLinParam
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachBigO
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOrderLe
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterInstances
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateMemReach
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.TrajectoryToLinParam
 
 /-!
 # What `LinParamSysDT` guarantees

@@ -1,5 +1,7 @@
-import CORALean.ContSet.ConPolyZono.Real.API
-import CORALean.ContSet.ConPolyZono.Float.API
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.API
+public import CORALean.ContSet.ConPolyZono.Float.API
 
 /-!
 # Constrained polynomial zonotopes

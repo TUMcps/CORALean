@@ -1,12 +1,16 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
-import CORALean.ContSet.Zonotope.Real.Theorems.DerivLine
-import Mathlib.Analysis.Calculus.FDeriv.Prod
-import Mathlib.Analysis.Calculus.FDeriv.Basic
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.Calculus.Deriv.Shift
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
+public import CORALean.ContSet.Zonotope.Real.Theorems.DerivLine
+public import Mathlib.Analysis.Calculus.FDeriv.Prod
+public import Mathlib.Analysis.Calculus.FDeriv.Basic
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.Calculus.Deriv.Shift
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The derivative of a set function is its gradient set

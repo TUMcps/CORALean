@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Empty
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Empty
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.empty` denotes the empty set

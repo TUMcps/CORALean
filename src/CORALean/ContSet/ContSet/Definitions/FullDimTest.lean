@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Definitions.IsFullDim
+module
+
+public import CORALean.ContSet.ContSet.Definitions.IsFullDim
+
+@[expose] public section
 
 /-!
 # `FullDimTest`

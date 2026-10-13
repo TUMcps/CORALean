@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContDynamics.Conform.Definitions.Conformant
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContDynamics.Conform.Definitions.Conformant
+
+@[expose] public section
 
 /-!
 # The brute-force conformance check

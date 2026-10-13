@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Operations.EvalSteps
-import CORALean.NN.Graph.Operations.GcnSteps
-import CORALean.NN.Graph.Theorems.GcnSharedExact
-import CORALean.NN.Graph.Theorems.GcnSharedPoint
+module
+
+public import CORALean.NN.Graph.Operations.EvalSteps
+public import CORALean.NN.Graph.Operations.GcnSteps
+public import CORALean.NN.Graph.Theorems.GcnSharedExact
+public import CORALean.NN.Graph.Theorems.GcnSharedPoint
+
+@[expose] public section
 
 /-!
 # The chain is exactly what it computes

@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # What one step of the inner Minkowski-difference algorithm computes

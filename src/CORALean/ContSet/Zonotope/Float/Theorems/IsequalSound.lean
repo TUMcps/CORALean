@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Isequal
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Isequal
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.isequal` is sound

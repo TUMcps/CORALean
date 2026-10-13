@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Face
-import CORALean.ContSet.Zonotope.Real.Theorems.MemArgmaxIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Face
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemArgmaxIff
+
+@[expose] public section
 
 /-!
 # Every exposed face of a zonotope is the zonotope of a subset of its generators

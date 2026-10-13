@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # `innerMinkDiffRemainder`, the Lagrange remainder loop of the inner algorithm

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Point
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `Zonotope.origin`, over a floating-point scalar

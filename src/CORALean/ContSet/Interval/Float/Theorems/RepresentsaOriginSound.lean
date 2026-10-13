@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaOrigin
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaOrigin
+
+@[expose] public section
 
 /-!
 # `Interval.representsa_origin` is sound

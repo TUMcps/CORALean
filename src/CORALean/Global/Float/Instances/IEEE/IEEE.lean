@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Dyadic
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Dyadic
+
+@[expose] public section
 
 /-!
 # The formats of IEEE 754 and OCP MX: the representation

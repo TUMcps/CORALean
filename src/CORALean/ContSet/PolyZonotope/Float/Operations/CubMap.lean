@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapDep
-import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapDep
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMap`, over a floating-point scalar

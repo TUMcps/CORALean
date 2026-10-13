@@ -1,4 +1,8 @@
-import Mathlib.Analysis.Real.Sqrt
+module
+
+public import Mathlib.Analysis.Real.Sqrt
+
+@[expose] public section
 
 /-!
 # The inverse square root, clamped at the degree bound the self-loop gives

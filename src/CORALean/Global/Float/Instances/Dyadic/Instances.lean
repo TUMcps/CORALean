@@ -1,20 +1,24 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.AddDownLeAdd
-import CORALean.Global.Float.Instances.Dyadic.Theorems.AddLeAddUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
-import CORALean.Global.Float.ToRat
-import CORALean.Global.Float.Instances.Dyadic.Operations.MulDown
-import CORALean.Global.Float.Instances.Dyadic.Operations.MulUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealHalf
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealLeOfLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealNeg
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.AddDownLeAdd
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.AddLeAddUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Instances.Dyadic.Operations.MulDown
+public import CORALean.Global.Float.Instances.Dyadic.Operations.MulUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealHalf
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealLeOfLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealNeg
+
+@[expose] public section
 
 /-!
 # `Dyadic` as a sound float model

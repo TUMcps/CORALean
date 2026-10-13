@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Mtimes
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Mtimes
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `Interval.mtimes` over-approximates the image under a linear map

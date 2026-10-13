@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+module
+
+public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+
+@[expose] public section
 
 /-!
 # The dual bound of `Location.zonoGirardUpperFloat` holds

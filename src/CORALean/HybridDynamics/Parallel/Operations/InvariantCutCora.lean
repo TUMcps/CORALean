@@ -1,3 +1,6 @@
+module
+
+@[expose] public section
 
 /-!
 # When CORA cuts an invariant by a guard's complement

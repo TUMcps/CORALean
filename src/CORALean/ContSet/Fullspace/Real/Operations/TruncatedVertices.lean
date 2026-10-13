@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Vertices
-import CORALean.ContSet.VPolytope.Real.VPolytope
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Vertices
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+
+@[expose] public section
 
 /-!
 # `Fullspace.truncatedVertices`

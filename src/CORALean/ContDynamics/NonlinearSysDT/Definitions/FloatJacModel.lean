@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.Global.Jacobian
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.Global.Jacobian
+
+@[expose] public section
 
 /-!
 # What a float run is told about a map and its Jacobians

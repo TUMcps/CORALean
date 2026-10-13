@@ -1,7 +1,11 @@
-import Mathlib.Data.Finset.Sort
-import CORALean.NN.Graph.Operations.ReduceKeepFloat
-import CORALean.NN.Graph.Operations.ReducedStepsFloat
-import CORALean.NN.Graph.Operations.SupportFloat
+module
+
+public import Mathlib.Data.Finset.Sort
+public import CORALean.NN.Graph.Operations.ReduceKeepFloat
+public import CORALean.NN.Graph.Operations.ReducedStepsFloat
+public import CORALean.NN.Graph.Operations.SupportFloat
+
+@[expose] public section
 
 /-!
 # `reduceGNNForNode`, at float

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+
+@[expose] public section
 
 /-!
 # The time-point reachable set is convex

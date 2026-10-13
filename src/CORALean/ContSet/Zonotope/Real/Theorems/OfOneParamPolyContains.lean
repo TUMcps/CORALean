@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfOneParamPoly
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Algebra.Order.Ring.Abs
-import Mathlib.Algebra.Ring.Parity
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfOneParamPoly
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Algebra.Order.Ring.Abs
+public import Mathlib.Algebra.Ring.Parity
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Zonotope.ofOneParamPoly` holds its polynomial

@@ -1,8 +1,12 @@
-import Mathlib.Algebra.Order.Floor.Ring
-import Mathlib.Data.Nat.Choose.Basic
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
+module
+
+public import Mathlib.Algebra.Order.Floor.Ring
+public import Mathlib.Data.Nat.Choose.Basic
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # The scenario bound (9) gives split conformal prediction its marginal coverage

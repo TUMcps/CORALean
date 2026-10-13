@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # How far the generators `reduceBy` drops can reach, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Tan
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Tan
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+
+@[expose] public section
 
 /-!
 # `Interval.tan` is exactly the image under `Real.tan`

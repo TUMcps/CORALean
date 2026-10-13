@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubFoldDown
-import CORALean.ContSet.Zonotope.Float.Operations.CubFoldUp
-import CORALean.ContSet.Zonotope.Float.Theorems.ListQuadBracket
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.CubFold
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubFoldDown
+public import CORALean.ContSet.Zonotope.Float.Operations.CubFoldUp
+public import CORALean.ContSet.Zonotope.Float.Theorems.ListQuadBracket
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.CubFold
+
+@[expose] public section
 
 /-!
 # `cubFoldDown` and `cubFoldUp` bracket the coefficients of `Zonotope.cubFold`

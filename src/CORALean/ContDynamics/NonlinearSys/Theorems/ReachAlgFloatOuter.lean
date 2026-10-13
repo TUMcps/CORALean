@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachRunFloatOuter
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachRunFloatOuter
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+
+@[expose] public section
 
 /-!
 # `reachAlgFloat` holds every run of the real system over every window

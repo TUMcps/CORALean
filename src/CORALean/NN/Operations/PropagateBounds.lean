@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # Propagating a layer's bounds to the next activation layer

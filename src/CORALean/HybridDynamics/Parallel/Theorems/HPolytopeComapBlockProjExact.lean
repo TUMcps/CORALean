@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.BlockProj
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.BlockProj
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+
+@[expose] public section
 
 /-!
 # A guard lifted through a block, exactly

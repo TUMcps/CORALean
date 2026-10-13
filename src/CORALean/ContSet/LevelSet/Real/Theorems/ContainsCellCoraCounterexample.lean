@@ -1,10 +1,14 @@
-import CORALean.ContSet.LevelSet.Real.Operations.ContainsCellCora
-import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.ContainsCellCora
+public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # CORA's `levelSet/contains_` accepts a box outside an equality constraint

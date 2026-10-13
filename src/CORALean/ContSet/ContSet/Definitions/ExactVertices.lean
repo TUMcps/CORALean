@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.VPolytope.Real.VPolytope
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+
+@[expose] public section
 
 /-!
 # Representations with exact vertices

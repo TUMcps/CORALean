@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Zonotope.Real.Theorems.SignSumCovariance
-import CORALean.Global.EuclideanNorm
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.LinearAlgebra.Matrix.Trace
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Zonotope.Real.Theorems.SignSumCovariance
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.LinearAlgebra.Matrix.Trace
+
+@[expose] public section
 
 /-!
 # The vertices of a parallelotope inside an ellipsoid, summed

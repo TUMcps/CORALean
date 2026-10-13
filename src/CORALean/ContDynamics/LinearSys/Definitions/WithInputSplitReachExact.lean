@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
-import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
+
+@[expose] public section
 
 /-!
 # The exact set `Reach LinearSys.WithInputSplit` is asked to enclose

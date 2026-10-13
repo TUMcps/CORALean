@@ -1,14 +1,18 @@
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
-import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesMatZonotopeOuter
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesMatZonotopeOuter
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # What `ZonoBundle` instantiates

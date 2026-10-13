@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuter
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachAlignedOuter
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # (13) with (max-in) over `W`'s halfspaces does not enclose the robust backward reachable set

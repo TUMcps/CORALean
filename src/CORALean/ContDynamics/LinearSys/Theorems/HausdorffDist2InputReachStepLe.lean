@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLeOfConvex
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import CORALean.Global.EuclideanHausdorffDistAddLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLeOfConvex
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.Global.EuclideanHausdorffDistAddLe
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2]: one step of the time-point error in the particular solution

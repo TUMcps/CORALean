@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.Minus
+module
+
+public import CORALean.ContSet.ContSet.Operations.Minus
+
+@[expose] public section
 
 /-!
 # `minus` encloses the translate

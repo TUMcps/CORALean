@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
-import CORALean.ContSet.HPolytope.Real.Instances
-import CORALean.Specification.Specification
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
+public import CORALean.ContSet.HPolytope.Real.Instances
+public import CORALean.Specification.Specification
+
+@[expose] public section
 
 /-!
 # `Alg. 3`'s specification

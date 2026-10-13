@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.Project
-import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Project
+public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.project` encloses the image

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+
+@[expose] public section
 
 /-!
 # What a constant input contributes over a step, in closed form

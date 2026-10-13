@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+
+@[expose] public section
 
 /-!
 # `affineTimePointNextFloat` holds `H(t_{k+1})`

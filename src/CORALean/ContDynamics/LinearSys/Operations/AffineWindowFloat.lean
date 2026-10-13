@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosureFloat
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `comb(H(t_k), H(t_{k+1})) ⊕ C` in floats: lines 8-9 of [1, Alg. 1], lines 27-28 of [1, Alg. 2]

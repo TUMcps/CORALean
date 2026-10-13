@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
-import CORALean.Global.TraceMulVecMulVecSelf
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
+public import CORALean.Global.TraceMulVecMulVecSelf
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The squared F_W-radius is a trace

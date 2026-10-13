@@ -1,10 +1,12 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
-import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
-import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeFloat
-import CORALean.ContDynamics.NonlinParamSys.Operations.LinReachCora
-import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
-import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloat
-import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloatChecked
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
+public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeFloat
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinReachCora
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloat
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloatChecked
 
 /-!
 # What `NonlinParamSys` computes

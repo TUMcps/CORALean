@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Operations.SearchOutliers
-import CORALean.ContDynamics.Conform.Theorems.NotIsBoundaryPointIff
-import CORALean.ContDynamics.Conform.Theorems.ConvexFitsUnder
+module
+
+public import CORALean.ContDynamics.Conform.Operations.SearchOutliers
+public import CORALean.ContDynamics.Conform.Theorems.NotIsBoundaryPointIff
+public import CORALean.ContDynamics.Conform.Theorems.ConvexFitsUnder
+
+@[expose] public section
 
 /-!
 # The boundary-point search finds the optimal outliers

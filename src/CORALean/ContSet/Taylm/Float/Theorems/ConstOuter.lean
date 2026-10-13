@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.Const
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Const
+
+@[expose] public section
 
 /-!
 # `Taylm.const` encloses the constant

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Real.Zoo
-import CORALean.ContSet.Taylm.Real.Operations.Minus
-import CORALean.ContSet.Interval.Real.Operations.Minus
+module
+
+public import CORALean.ContSet.Zoo.Real.Zoo
+public import CORALean.ContSet.Taylm.Real.Operations.Minus
+public import CORALean.ContSet.Interval.Real.Operations.Minus
+
+@[expose] public section
 
 /-!
 # `Zoo.minus`

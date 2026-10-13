@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Not
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Not
+
+@[expose] public section
 
 /-!
 # `LevelSet.not` is the complement

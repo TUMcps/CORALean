@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullA
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.convHullSingle`

@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.PropagateBounds
-import CORALean.NN.Theorems.EncloseOuter
+module
+
+public import CORALean.NN.Operations.PropagateBounds
+public import CORALean.NN.Theorems.EncloseOuter
+
+@[expose] public section
 
 /-!
 # The propagated bounds contain the stretch's image

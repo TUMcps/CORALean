@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Operations.Vertices
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Vertices
+
+@[expose] public section
 
 /-!
 # The points `Capsule.vertices` returns lie on the boundary

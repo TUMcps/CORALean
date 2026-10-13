@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.RefinableNetworkRefinableLayers
+module
+
+public import CORALean.NN.Operations.RefinableNetworkRefinableLayers
+
+@[expose] public section
 
 /-!
 # The refinable layers are exactly the flagged ones

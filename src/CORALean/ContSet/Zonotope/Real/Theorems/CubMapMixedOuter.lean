@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedCoeff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedCoeff
+
+@[expose] public section
 
 /-!
 # The mixed cubic map of zonotopes is enclosed by `Zonotope.cubMapMixed`

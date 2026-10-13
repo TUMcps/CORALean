@@ -1,7 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A point of one strip intersection, from the deviation of a point before it

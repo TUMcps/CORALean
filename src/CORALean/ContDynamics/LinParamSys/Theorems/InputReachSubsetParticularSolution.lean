@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+
+@[expose] public section
 
 /-!
 # `particularSolution` holds what the input contributes at one member

@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.SampledTime
+module
+
+public import CORALean.Specification.STL.Definitions.SampledTime
+
+@[expose] public section
 
 /-!
 # Merging two branches

@@ -1,10 +1,14 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraNormalCone
-import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraNormalCone
+public import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # A corner difference lies in the normal cone

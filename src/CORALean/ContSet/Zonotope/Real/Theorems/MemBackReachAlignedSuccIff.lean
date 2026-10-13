@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BackReachAligned
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BackReachAligned
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
+
+@[expose] public section
 
 /-!
 # A step of `backReachAligned`, pointwise

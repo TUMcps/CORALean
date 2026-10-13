@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectWeighted
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Module.BigOperators
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectWeighted
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Module.BigOperators
+
+@[expose] public section
 
 /-!
 # `Zonotope.intersectWeighted` encloses the intersection of the zonotopes

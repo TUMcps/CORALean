@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
-import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
+public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+
+@[expose] public section
 
 /-!
 # `ConZonotope.dependent`

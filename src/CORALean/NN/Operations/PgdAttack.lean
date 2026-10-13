@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.PgdStep
+module
+
+public import CORALean.NN.Operations.PgdStep
+
+@[expose] public section
 
 /-!
 # CORA's `computePGDAttack`: projected gradient descent

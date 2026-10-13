@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Operations.TransitionToNonlinearResetFloat
-import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.HybridDynamics.Operations.TransitionToNonlinearResetFloat
+public import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The float model of an affine reset encloses it

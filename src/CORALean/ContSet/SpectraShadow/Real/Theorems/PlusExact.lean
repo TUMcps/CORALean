@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.PosSemidefPlusIff
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PosSemidefPlusIff
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.plus` is exactly the Minkowski sum

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.BallCert
-import CORALean.ContSet.Zonotope.Float.Theorems.RightInvQBound
-import CORALean.ContSet.Zonotope.Real.Theorems.RightInvReach
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+public import CORALean.ContSet.Zonotope.Float.Theorems.RightInvQBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.RightInvReach
+
+@[expose] public section
 
 /-!
 # `Zonotope.ballCert` makes a box of vectors reachable

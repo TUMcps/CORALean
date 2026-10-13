@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.ReducedLinearToLayer
-import CORALean.NN.Layers.Instances
+module
+
+public import CORALean.NN.Operations.ReducedLinearToLayer
+public import CORALean.NN.Layers.Instances
+
+@[expose] public section
 
 /-!
 # The network [1, Eq. 2]'s layers form

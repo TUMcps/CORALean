@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Le
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Le
+
+@[expose] public section
 
 /-!
 # The greater of two fixed-point values

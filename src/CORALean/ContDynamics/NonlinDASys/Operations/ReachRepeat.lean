@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.ErrorLoopResult
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.ErrorLoopResult
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1]'s linearization-error loop

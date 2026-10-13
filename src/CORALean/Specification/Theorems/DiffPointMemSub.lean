@@ -1,4 +1,8 @@
-import CORALean.Specification.Operations.DiffPoint
+module
+
+public import CORALean.Specification.Operations.DiffPoint
+
+@[expose] public section
 
 /-!
 # The witness difference lies in `O - U`

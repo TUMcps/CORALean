@@ -1,30 +1,32 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.AddDownLeAdd
-import CORALean.Global.Float.Instances.Dyadic.Theorems.AddLeAddUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
-import CORALean.Global.Float.Instances.Dyadic.Theorems.CoarsenDownLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeAlignedIff
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeCoarsenUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeShlIff
-import CORALean.Global.Float.Instances.Dyadic.Theorems.MantissaPos
-import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealAlign
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDivEq
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealHalf
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealLeOfLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMk
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealNeg
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealShift
-import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
-import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowCoarsen
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.AddDownLeAdd
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.AddLeAddUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.CoarsenDownLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeAlignedIff
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeCoarsenUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeShlIff
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.MantissaPos
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealAlign
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDivEq
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealHalf
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealLeOfLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMk
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealNeg
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealShift
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowCoarsen
 
 /-!
 # What `Dyadic` guarantees

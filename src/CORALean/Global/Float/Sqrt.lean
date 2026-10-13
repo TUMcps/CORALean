@@ -1,7 +1,11 @@
-import CORALean.Global.Float.EuclideanNorm
-import CORALean.Global.Float.SoundFloatArithmetic
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.Global.Float.EuclideanNorm
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # A square root rounded in either direction
@@ -35,11 +39,11 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 
 /-- One Newton step from `s`, taken only if `s` is provably positive, never growing. -/
-private def sqrtStep (a s : 𝕋) : 𝕋 :=
+def sqrtStep (a s : 𝕋) : 𝕋 :=
   if ltStrict zero s = true then minimum s (half (addUp s (divUp a s))) else s
 
 /-- `p` steps. -/
-private def sqrtIter (a : 𝕋) : ℕ → 𝕋 → 𝕋
+def sqrtIter (a : 𝕋) : ℕ → 𝕋 → 𝕋
   | 0, s => s
   | k + 1, s => sqrtIter a k (sqrtStep a s)
 

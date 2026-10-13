@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+
+@[expose] public section
 
 /-!
 # Membership in a float halfspace description, in the stored fields

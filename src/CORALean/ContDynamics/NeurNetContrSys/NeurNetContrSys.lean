@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.NN.NeuralNetwork
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.NN.NeuralNetwork
+
+@[expose] public section
 
 /-!
 # A neural network in the loop of a continuous-time plant: the representation

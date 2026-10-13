@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.DiscreteFormula
-import CORALean.Specification.STL.Operations.DFormulaBound
+module
+
+public import CORALean.Specification.STL.Definitions.DiscreteFormula
+public import CORALean.Specification.STL.Operations.DFormulaBound
+
+@[expose] public section
 
 /-!
 # A bounded formula is decided by the window of its bound

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GenMap
-import CORALean.Global.CoeffNorm
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
+public import CORALean.Global.CoeffNorm
+
+@[expose] public section
 
 /-!
 # The zonotope norm

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetSubsetLinCombPlusCube
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetDistLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetSubsetLinCombPlusCube
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetDistLe
+
+@[expose] public section
 
 /-!
 # The first time interval: the enclosure converges

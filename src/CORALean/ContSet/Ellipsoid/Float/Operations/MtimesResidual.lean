@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.mtimesResidual`

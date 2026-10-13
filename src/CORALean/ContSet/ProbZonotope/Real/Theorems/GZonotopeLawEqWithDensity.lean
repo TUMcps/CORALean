@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
-import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianEqWithDensity
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianEqWithDensity
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # A G-zonotope with an invertible square generator matrix has a density

@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Definitions.NnfRewrite
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenOr
-import CORALean.Specification.STL.Theorems.RewriteFinOpenOr
+module
+
+public import CORALean.Specification.STL.Definitions.NnfRewrite
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenOr
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenOr
+
+@[expose] public section
 
 /-!
 # A disjunction rewrites to sampled time

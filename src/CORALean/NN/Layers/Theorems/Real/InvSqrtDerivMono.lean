@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The inverse square root's derivative bracket is nonempty

@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.Refine
-import CORALean.NN.Theorems.ImageSubsetEncloseAt
+module
+
+public import CORALean.NN.Operations.Refine
+public import CORALean.NN.Theorems.ImageSubsetEncloseAt
+
+@[expose] public section
 
 /-!
 # Refining one neuron keeps the enclosure

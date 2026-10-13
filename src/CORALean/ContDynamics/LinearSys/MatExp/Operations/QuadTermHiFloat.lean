@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
+
+@[expose] public section
 
 /-!
 # The second-order Taylor term's diagonal factor, greatest value on a box, in floats

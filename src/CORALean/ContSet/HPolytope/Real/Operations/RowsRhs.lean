@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Rows
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Rows
+
+@[expose] public section
 
 /-!
 # `HPolytope.rowsRhs`

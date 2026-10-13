@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
+
+@[expose] public section
 
 /-!
 # Folding `intersection` computes the whole intersection

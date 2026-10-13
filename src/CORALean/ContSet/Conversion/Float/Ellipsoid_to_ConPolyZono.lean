@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.Ellipsoid_to_ConPolyZono
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+module
+
+public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a constrained polynomial zonotope, over a floating-point scalar

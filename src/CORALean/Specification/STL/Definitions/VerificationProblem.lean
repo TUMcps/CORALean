@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Specification.STL.STL
-import Mathlib.MeasureTheory.Function.StronglyMeasurable.AEStronglyMeasurable
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Specification.STL.STL
+public import Mathlib.MeasureTheory.Function.StronglyMeasurable.AEStronglyMeasurable
+
+@[expose] public section
 
 /-!
 # The verification problem for a linear system

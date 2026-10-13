@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.RefinableNetworkLayers
+module
+
+public import CORALean.NN.Operations.RefinableNetworkLayers
+
+@[expose] public section
 
 /-!
 # `neuralNetwork.getRefinableLayers`

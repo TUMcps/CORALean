@@ -1,6 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # Powers of the augmented matrix on the last unit vector

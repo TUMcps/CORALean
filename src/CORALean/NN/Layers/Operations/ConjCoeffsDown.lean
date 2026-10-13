@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.ScaleRounding
+module
+
+public import CORALean.NN.Layers.Definitions.ScaleRounding
+
+@[expose] public section
 
 /-!
 # The conjugated coefficients, rounded down

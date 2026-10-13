@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zoo.Float.Operations.Uplus
+module
+
+public import CORALean.ContSet.Zoo.Float.Operations.Uplus
+
+@[expose] public section
 
 /-!
 # `Zoo.uplus` encloses

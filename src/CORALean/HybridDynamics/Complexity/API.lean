@@ -1,4 +1,6 @@
-import CORALean.HybridDynamics.Complexity.Time.API
+module
+
+public import CORALean.HybridDynamics.Complexity.Time.API
 
 /-!
 # Complexity

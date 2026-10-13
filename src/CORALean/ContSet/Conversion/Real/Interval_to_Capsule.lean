@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Capsule
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # A box as a capsule

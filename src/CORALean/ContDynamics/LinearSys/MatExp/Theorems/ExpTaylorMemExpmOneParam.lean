@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmOneParam
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.OneParamSumPowEq
-import CORALean.ContSet.Zonotope.Real.Theorems.OfOneParamPolyContains
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmOneParam
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.OneParamSumPowEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfOneParamPolyContains
+
+@[expose] public section
 
 /-!
 # The Taylor polynomial of every member lies in `MatExp.expmOneParam`

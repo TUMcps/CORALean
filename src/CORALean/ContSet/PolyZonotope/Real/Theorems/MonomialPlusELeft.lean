@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # A left-block generator's monomial under `plusE`

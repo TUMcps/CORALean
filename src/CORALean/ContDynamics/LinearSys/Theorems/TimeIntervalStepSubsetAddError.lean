@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
+
+@[expose] public section
 
 /-!
 # What the step encloses beyond what the flow visits

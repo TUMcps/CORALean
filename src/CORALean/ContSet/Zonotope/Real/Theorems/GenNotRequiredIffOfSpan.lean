@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIff
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffRowsEq
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.GenNotRequiredIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffRowsEq
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2]: when a generator is no longer required, without the `Thm. 3` hypothesis

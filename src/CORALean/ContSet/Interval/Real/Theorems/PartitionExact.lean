@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Partition
-import Mathlib.Algebra.CharP.Defs
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Partition
+public import Mathlib.Algebra.CharP.Defs
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.partition` covers the box it cuts

@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Binary64.Binary64
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Binary64
+
+@[expose] public section
 
 /-!
 # The next binary64 above a value

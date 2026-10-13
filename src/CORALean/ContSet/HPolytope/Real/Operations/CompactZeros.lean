@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
-import CORALean.ContSet.HPolytope.Real.Operations.Restrict
-import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
+public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+
+@[expose] public section
 
 /-!
 # `HPolytope.compactZeros`

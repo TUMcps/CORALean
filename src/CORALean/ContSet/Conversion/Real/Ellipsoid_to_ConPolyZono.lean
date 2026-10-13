@@ -1,12 +1,16 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-import CORALean.ContSet.Interval.Real.Operations.Point
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a constrained polynomial zonotope

@@ -1,5 +1,7 @@
-import CORALean.ContDynamics.OutputEq.Operations.OutputSet
-import CORALean.ContDynamics.OutputEq.Operations.OutputSetNoise
+module
+
+public import CORALean.ContDynamics.OutputEq.Operations.OutputSet
+public import CORALean.ContDynamics.OutputEq.Operations.OutputSetNoise
 
 /-!
 # What an `OutputEq` computes

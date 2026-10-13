@@ -1,5 +1,9 @@
-import CORALean.Global.ExactScalar
-import Mathlib.Data.List.FinRange
+module
+
+public import CORALean.Global.ExactScalar
+public import Mathlib.Data.List.FinRange
+
+@[expose] public section
 
 /-!
 # `LinearReset.lift`

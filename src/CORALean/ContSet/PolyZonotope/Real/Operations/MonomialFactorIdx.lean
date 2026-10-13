@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+
+@[expose] public section
 
 /-!
 # A monomial reads only the kept factors

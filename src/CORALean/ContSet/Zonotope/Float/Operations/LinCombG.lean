@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.PairDiff
-import CORALean.ContSet.Zonotope.Float.Operations.PairSum
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.PairDiff
+public import CORALean.ContSet.Zonotope.Float.Operations.PairSum
+
+@[expose] public section
 
 /-!
 # The whole generator matrix of a linear combination, at one rounding

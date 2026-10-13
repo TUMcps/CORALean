@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Project
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Project
+
+@[expose] public section
 
 /-!
 # `Interval.project` contains the projected points

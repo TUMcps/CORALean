@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+module
+
+public import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # The shared remainder factor lies in the bounds of `1/Λ²`

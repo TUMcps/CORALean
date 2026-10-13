@@ -1,5 +1,9 @@
-import CORALean.Global.CrossProduct
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.Global.CrossProduct
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # One row of [1, Thm. 2]'s `C`

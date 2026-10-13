@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.RefineVerifyFrom
+module
+
+public import CORALean.NN.Operations.RefineVerifyFrom
+
+@[expose] public section
 
 /-!
 # Automatic abstraction refinement, the whole loop

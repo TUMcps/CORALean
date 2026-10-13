@@ -1,6 +1,10 @@
-import Mathlib.Order.Filter.AtTopBot.Defs
-import Mathlib.Topology.Defs.Filter
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Order.Filter.AtTopBot.Defs
+public import Mathlib.Topology.Defs.Filter
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The region of attraction of a set

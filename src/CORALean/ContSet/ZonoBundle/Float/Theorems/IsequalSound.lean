@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Isequal
-import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Isequal
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.isequal` is sound

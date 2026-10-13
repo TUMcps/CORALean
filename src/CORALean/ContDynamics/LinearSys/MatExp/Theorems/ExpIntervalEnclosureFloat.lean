@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryExpSubExpTaylorLeFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryExpSubExpTaylorLeFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+
+@[expose] public section
 
 /-!
 # The matrix exponential lies in its float interval enclosure

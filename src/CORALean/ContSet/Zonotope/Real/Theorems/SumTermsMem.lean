@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # A sum of members is a member of the sum

@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetEvaluateFloat
-import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluateFloat
+public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+
+@[expose] public section
 
 /-!
 # The real reset value lies in the float box

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.exactPlus` encloses the exact one at the nominal sets

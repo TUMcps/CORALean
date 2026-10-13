@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.ProdUp
-import CORALean.ContSet.Interval.Float.Operations.WidthUp
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.ProdUp
+public import CORALean.ContSet.Interval.Float.Operations.WidthUp
+
+@[expose] public section
 
 /-!
 # `Interval.volume` over floats

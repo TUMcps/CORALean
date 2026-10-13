@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
-import CORALean.Specification.Theorems.CheckSound
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
+public import CORALean.Specification.Theorems.CheckSound
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A passed check on `reachWrappingFree` holds at every time of `[0, tFinal]`

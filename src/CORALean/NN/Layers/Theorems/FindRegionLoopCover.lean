@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.FindRegionLoop
-import CORALean.NN.Layers.Theorems.FindRegionLeftFits
-import CORALean.NN.Layers.Theorems.FindRegionRightFits
+module
+
+public import CORALean.NN.Layers.Operations.FindRegionLoop
+public import CORALean.NN.Layers.Theorems.FindRegionLeftFits
+public import CORALean.NN.Layers.Theorems.FindRegionRightFits
+
+@[expose] public section
 
 /-!
 # The loop leaves nothing uncovered

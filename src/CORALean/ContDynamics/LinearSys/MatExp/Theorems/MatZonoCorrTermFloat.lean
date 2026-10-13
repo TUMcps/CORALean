@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
+
+@[expose] public section
 
 /-!
 # Every member's correction term lies in the float matrix-zonotope term

@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalFloat
-import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalFloat
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+
+@[expose] public section
 
 /-!
 # The float interval observer holds the true state

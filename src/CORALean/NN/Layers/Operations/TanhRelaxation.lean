@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.DoubleRounding
-import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
-import CORALean.NN.Layers.Operations.SigmoidRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.DoubleRounding
+public import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
+public import CORALean.NN.Layers.Operations.SigmoidRelaxation
+
+@[expose] public section
 
 /-!
 # The tanh relaxation

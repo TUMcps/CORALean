@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.BoxMid
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BoxMid
+
+@[expose] public section
 
 /-!
 # `Taylm.boxRad`, over a floating-point scalar

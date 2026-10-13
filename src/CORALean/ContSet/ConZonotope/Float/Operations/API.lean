@@ -1,52 +1,54 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Isequal
-import CORALean.ContSet.ConZonotope.Float.Operations.Plus
-import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
-import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
-import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
-import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
-import CORALean.ContSet.ConZonotope.Float.Operations.Split
-import CORALean.ContSet.ConZonotope.Float.Operations.Project
-import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
-import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
-import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
-import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
-import CORALean.ContSet.ConZonotope.Float.Operations.Empty
-import CORALean.ContSet.ConZonotope.Float.Operations.Origin
-import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
-import CORALean.ContSet.ConZonotope.Float.Operations.NominalBoundWeights
-import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
-import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
-import CORALean.ContSet.ConZonotope.Float.Operations.IsDisjointLP
-import CORALean.ContSet.ConZonotope.Float.Operations.CartProd
-import CORALean.ContSet.ConZonotope.Float.Operations.MinkDiffV
-import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
-import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
-import CORALean.ContSet.ConZonotope.Float.Operations.Compact
-import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
-import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDown
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGUp
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCDown
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCUp
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapDep
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMap
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
-import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
-import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
-import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
-import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
-import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
-import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
-import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
-import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
-import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Isequal
+public import CORALean.ContSet.ConZonotope.Float.Operations.Plus
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
+public import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+public import CORALean.ContSet.ConZonotope.Float.Operations.Split
+public import CORALean.ContSet.ConZonotope.Float.Operations.Project
+public import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
+public import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
+public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
+public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
+public import CORALean.ContSet.ConZonotope.Float.Operations.Empty
+public import CORALean.ContSet.ConZonotope.Float.Operations.Origin
+public import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
+public import CORALean.ContSet.ConZonotope.Float.Operations.NominalBoundWeights
+public import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
+public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+public import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
+public import CORALean.ContSet.ConZonotope.Float.Operations.IsDisjointLP
+public import CORALean.ContSet.ConZonotope.Float.Operations.CartProd
+public import CORALean.ContSet.ConZonotope.Float.Operations.MinkDiffV
+public import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
+public import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
+public import CORALean.ContSet.ConZonotope.Float.Operations.Compact
+public import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
+public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDown
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGUp
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCDown
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCUp
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapDep
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
+public import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
+public import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
+public import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
+public import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
+public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
+public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
+public import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
+public import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
 
 /-!
 # What the float `ConZonotope` computes

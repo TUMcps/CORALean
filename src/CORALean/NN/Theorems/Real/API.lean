@@ -1,11 +1,13 @@
-import CORALean.NN.Theorems.Real.BucketToleranceNone
-import CORALean.NN.Theorems.Real.InstanceOfInstanceNetwork
-import CORALean.NN.Theorems.Real.LinearConvergent
-import CORALean.NN.Theorems.Real.LinearExact
-import CORALean.NN.Theorems.Real.LinearWithErrorZero
-import CORALean.NN.Theorems.Real.MergeBucketWidth
-import CORALean.NN.Theorems.Real.MergeRowWeightNonneg
-import CORALean.NN.Theorems.Real.ReduceOnTheFlyReducesAt
+module
+
+public import CORALean.NN.Theorems.Real.BucketToleranceNone
+public import CORALean.NN.Theorems.Real.InstanceOfInstanceNetwork
+public import CORALean.NN.Theorems.Real.LinearConvergent
+public import CORALean.NN.Theorems.Real.LinearExact
+public import CORALean.NN.Theorems.Real.LinearWithErrorZero
+public import CORALean.NN.Theorems.Real.MergeBucketWidth
+public import CORALean.NN.Theorems.Real.MergeRowWeightNonneg
+public import CORALean.NN.Theorems.Real.ReduceOnTheFlyReducesAt
 
 /-!
 # What holds of a network only at `𝕋 := ℝ`, collected

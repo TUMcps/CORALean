@@ -1,4 +1,8 @@
-import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Interval
+module
+
+public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Interval
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.isBounded`, over a floating-point scalar

@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Instances
-import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
-import CORALean.HybridDynamics.Operations.TimeIntervalStepInvFloat
-import CORALean.HybridDynamics.Theorems.FlowOuterFloat
+module
+
+public import CORALean.ContSet.HPolytope.Float.Instances
+public import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
+public import CORALean.HybridDynamics.Operations.TimeIntervalStepInvFloat
+public import CORALean.HybridDynamics.Theorems.FlowOuterFloat
+
+@[expose] public section
 
 /-!
 # A stay is enclosed by the invariant-cut float step

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentArnoldiPow
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentArnoldiPow
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # The Krylov Taylor sets are convex below the Krylov order

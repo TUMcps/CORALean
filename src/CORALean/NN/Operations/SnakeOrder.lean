@@ -1,5 +1,9 @@
-import Mathlib.Data.Fin.Basic
-import Mathlib.Data.Fin.Rev
+module
+
+public import Mathlib.Data.Fin.Basic
+public import Mathlib.Data.Fin.Rev
+
+@[expose] public section
 
 /-!
 # The inward spiral over a matrix

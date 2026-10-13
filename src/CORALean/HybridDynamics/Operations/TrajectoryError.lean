@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Recentre
-import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
-import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
+public import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
+
+@[expose] public section
 
 /-!
 # The error between a linear solution and a constant-derivative one

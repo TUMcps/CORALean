@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.SoundEval
-import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
+module
+
+public import CORALean.NN.Theorems.SoundEval
+public import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
+
+@[expose] public section
 
 /-!
 # Verification against a whole list, at the enclosed set

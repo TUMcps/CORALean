@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
-import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
+public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
+
+@[expose] public section
 
 /-!
 # A point of `mtimesNominal` is within `mtimesNominalErr` of the exact image of a nominal point

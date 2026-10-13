@@ -1,7 +1,11 @@
-import CORALean.ContSet.WithEmpty.WithEmpty
-import CORALean.ContSet.Ellipsoid.Float.Operations.OfPoint
-import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
-import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
+module
+
+public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.Ellipsoid.Float.Operations.OfPoint
+public import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.andPoint`, over a floating-point scalar

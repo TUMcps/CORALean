@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Minimum
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Minimum
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
+
+@[expose] public section
 
 /-!
 # `minimum` is exact

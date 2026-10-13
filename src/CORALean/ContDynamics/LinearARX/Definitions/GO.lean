@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.LinearARX
+module
+
+public import CORALean.ContDynamics.LinearARX.LinearARX
+
+@[expose] public section
 
 /-!
 # The output parameters of a general output model of an ARX system

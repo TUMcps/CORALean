@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumCora
-import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SumPoint
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumCora
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumPoint
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # CORA's `polyZonotope/sum` has the wrong centre

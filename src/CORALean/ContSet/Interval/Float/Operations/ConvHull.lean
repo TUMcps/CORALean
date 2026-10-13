@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Or
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Or
+
+@[expose] public section
 
 /-!
 # `Interval.convHull`

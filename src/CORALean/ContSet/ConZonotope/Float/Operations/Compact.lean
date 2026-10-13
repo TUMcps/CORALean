@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+
+@[expose] public section
 
 /-!
 # `ConZonotope.compact` over a floating-point scalar

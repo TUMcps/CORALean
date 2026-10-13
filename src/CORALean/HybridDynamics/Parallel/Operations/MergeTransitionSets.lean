@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Operations.LiftTransition
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.LiftTransition
+
+@[expose] public section
 
 /-!
 # `mergeTransitionSets`

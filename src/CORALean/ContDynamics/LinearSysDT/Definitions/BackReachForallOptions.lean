@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+
+@[expose] public section
 
 /-!
 # The settings of a discrete-time linear backward reach, `∀` reading

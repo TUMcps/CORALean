@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.FactorStep
+module
+
+public import CORALean.Specification.STL.Operations.FactorStep
+
+@[expose] public section
 
 /-!
 # A factor that enters a polytope stays in the pass of [1, Alg. 2]

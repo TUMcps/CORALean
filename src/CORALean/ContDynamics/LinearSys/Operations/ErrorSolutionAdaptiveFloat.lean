@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
+
+@[expose] public section
 
 /-!
 # The error solution of the adaptive scheme, in floats

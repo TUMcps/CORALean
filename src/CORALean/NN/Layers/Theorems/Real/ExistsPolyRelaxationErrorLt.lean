@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.PolyOfSampling
-import CORALean.NN.Layers.Theorems.Real.AbsSubEvalPolyDerivLe
-import CORALean.NN.Layers.Theorems.Real.ExistsEvalPolyNear
-import CORALean.NN.Layers.Theorems.Real.OfSamplingSound
-import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
+module
+
+public import CORALean.NN.Layers.Definitions.PolyOfSampling
+public import CORALean.NN.Layers.Theorems.Real.AbsSubEvalPolyDerivLe
+public import CORALean.NN.Layers.Theorems.Real.ExistsEvalPolyNear
+public import CORALean.NN.Layers.Theorems.Real.OfSamplingSound
+public import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
+
+@[expose] public section
 
 /-!
 # One relaxation small on every box in a range

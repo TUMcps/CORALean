@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Operations.Convergent
-import CORALean.NN.Operations.LayerRefinable
-import CORALean.NN.Theorems.Real.LinearExact
+module
+
+public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Operations.Convergent
+public import CORALean.NN.Operations.LayerRefinable
+public import CORALean.NN.Theorems.Real.LinearExact
+
+@[expose] public section
 
 /-!
 # The linear layer converges, at every level

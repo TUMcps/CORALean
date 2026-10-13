@@ -1,6 +1,10 @@
-import CORALean.Global.EuclideanNorm
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.LinearCombination
+module
+
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.LinearCombination
+
+@[expose] public section
 
 /-!
 # A point of the unit ball in a strip, in the factored Gollamudi ellipsoid

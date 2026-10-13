@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.SupportBoundEntrywise
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.SupportBoundEntrywise
+
+@[expose] public section
 
 /-!
 # A box answers a direction corner by corner, at `Vec ℝ n`

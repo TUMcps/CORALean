@@ -1,12 +1,16 @@
-import CORALean.ContSet.Interval.Real.Operations.ExtremalLo
-import CORALean.ContSet.Interval.Real.Operations.ExtremalHi
-import Mathlib.Analysis.Complex.Exponential
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Analysis.Real.Pi.Bounds
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExtremalLo
+public import CORALean.ContSet.Interval.Real.Operations.ExtremalHi
+public import Mathlib.Analysis.Complex.Exponential
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Analysis.Real.Pi.Bounds
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The worked example of the extremal functions

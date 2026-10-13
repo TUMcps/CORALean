@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.or`, over a floating-point scalar

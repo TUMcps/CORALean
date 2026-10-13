@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
+
+@[expose] public section
 
 /-!
 # `Interval.boundaryRatioAt` brackets the coordinate's ratio

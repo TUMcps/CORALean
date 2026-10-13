@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMap` is exact

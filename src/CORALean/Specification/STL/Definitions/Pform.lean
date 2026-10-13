@@ -1,4 +1,8 @@
-import Mathlib.Order.Basic
+module
+
+public import Mathlib.Order.Basic
+
+@[expose] public section
 
 /-!
 # Propositional formulas

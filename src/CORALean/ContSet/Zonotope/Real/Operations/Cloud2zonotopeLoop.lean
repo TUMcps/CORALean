@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeCompress
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeCompress
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # The loop of `Zonotope.cloud2zonotope`

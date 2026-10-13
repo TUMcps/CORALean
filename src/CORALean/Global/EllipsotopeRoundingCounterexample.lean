@@ -1,6 +1,10 @@
-import CORALean.Global.NormTwoSqEqDotProduct
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+module
+
+public import CORALean.Global.NormTwoSqEqDotProduct
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+
+@[expose] public section
 
 /-!
 # `[1, App. B]`'s rounding is by the dimension of the coefficients, not of the image

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
+
+@[expose] public section
 
 /-!
 # The whole factor box evaluates to the whole set

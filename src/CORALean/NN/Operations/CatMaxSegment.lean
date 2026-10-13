@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.Cat
-import CORALean.NN.Layers.Operations.SelectMat
+module
+
+public import CORALean.NN.Definitions.Cat
+public import CORALean.NN.Layers.Operations.SelectMat
+
+@[expose] public section
 
 /-!
 # One max-pooling step as a CAT function

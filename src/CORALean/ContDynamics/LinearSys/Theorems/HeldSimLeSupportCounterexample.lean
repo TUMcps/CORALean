@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
-import CORALean.ContDynamics.LinearSys.Theorems.HeldSimEq
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
+public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimEq
+
+@[expose] public section
 
 /-!
 # The corrected counterexample is a support vector of the held-input reach set

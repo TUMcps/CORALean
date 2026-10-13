@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneOrderSpecFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneOrderSpecFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # An enclosure whose order a computable search chose

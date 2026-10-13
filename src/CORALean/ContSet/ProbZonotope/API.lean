@@ -1,5 +1,7 @@
-import CORALean.ContSet.ProbZonotope.Float.API
-import CORALean.ContSet.ProbZonotope.Real.API
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.API
+public import CORALean.ContSet.ProbZonotope.Real.API
 
 /-!
 # Probabilistic zonotopes

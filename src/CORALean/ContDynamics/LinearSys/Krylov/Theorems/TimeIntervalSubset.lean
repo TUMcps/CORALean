@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InterpMemCorrection
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Analysis.Convex.Segment
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InterpMemCorrection
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Analysis.Convex.Segment
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The homogeneous solution over the first step, corrected

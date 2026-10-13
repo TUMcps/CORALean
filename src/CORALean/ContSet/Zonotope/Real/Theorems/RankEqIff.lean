@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.RankEqFinrankIff
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Analysis.RCLike.Lemmas
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.RankEqFinrankIff
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Analysis.RCLike.Lemmas
+
+@[expose] public section
 
 /-!
 # `Zonotope.rank_eq_iff`

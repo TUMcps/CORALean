@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ZeroMonomials
-import CORALean.ContSet.Zonotope.Float.Operations.BallCert
-import CORALean.ContSet.Zonotope.Float.Operations.BallB
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ZeroMonomials
+public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+public import CORALean.ContSet.Zonotope.Float.Operations.BallB
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.isFullDimWith`, over a floating-point scalar

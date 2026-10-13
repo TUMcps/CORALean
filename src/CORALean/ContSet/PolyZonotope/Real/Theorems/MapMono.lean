@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `map` grows with its operand

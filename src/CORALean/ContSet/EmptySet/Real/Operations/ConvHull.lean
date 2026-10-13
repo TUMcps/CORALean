@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `EmptySet.convHull`

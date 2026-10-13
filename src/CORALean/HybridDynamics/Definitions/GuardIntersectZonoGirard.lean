@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.Location
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectZonoGirard`: the Girard and Le Guernic guard enclosure

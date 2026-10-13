@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinSubsetAt
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinSubsetAt
+
+@[expose] public section
 
 /-!
 # `bilin`'s subset at `B` sits inside the pairwise image

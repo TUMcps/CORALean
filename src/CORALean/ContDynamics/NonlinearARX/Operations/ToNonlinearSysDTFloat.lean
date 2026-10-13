@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearARX.Definitions.FloatModel
-import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatModel
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Definitions.FloatModel
+public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatModel
+
+@[expose] public section
 
 /-!
 # The conversion to a discrete-time system, on a float model

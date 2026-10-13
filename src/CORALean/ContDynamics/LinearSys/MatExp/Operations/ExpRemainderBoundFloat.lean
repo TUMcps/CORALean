@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialDownFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowUpFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialDownFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowUpFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.expRemainderBound`, a float bound on the Taylor tail

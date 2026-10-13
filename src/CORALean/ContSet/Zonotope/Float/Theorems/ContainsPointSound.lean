@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.BoxSubset
-import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.BoxSubset
+public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
+
+@[expose] public section
 
 /-!
 # A `true` from `Zonotope.containsPoint` proves membership

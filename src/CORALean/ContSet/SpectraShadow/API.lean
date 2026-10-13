@@ -1,5 +1,7 @@
-import CORALean.ContSet.SpectraShadow.Real.API
-import CORALean.ContSet.SpectraShadow.Float.API
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.API
+public import CORALean.ContSet.SpectraShadow.Float.API
 
 /-!
 # Spectrahedral shadows, both layers

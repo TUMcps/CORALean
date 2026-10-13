@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Tighten
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
-import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Tighten
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+public import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `ConZonotope.tighten` is sound

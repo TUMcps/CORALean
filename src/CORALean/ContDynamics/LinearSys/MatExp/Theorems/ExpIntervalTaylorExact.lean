@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExact
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTail
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExact
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTail
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # `expIntervalTaylorExact` encloses the truncation of every member

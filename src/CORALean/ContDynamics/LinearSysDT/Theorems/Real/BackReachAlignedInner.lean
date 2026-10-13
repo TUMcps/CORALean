@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustSucc
-import CORALean.ContSet.Zonotope.Real.Theorems.MemBackReachAlignedSuccIff
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustSucc
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemBackReachAlignedSuccIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+
+@[expose] public section
 
 /-!
 # (12) runs inside the robust backward reachable sets

@@ -1,10 +1,14 @@
-import CORALean.HybridDynamics.Operations.SdcFlow
-import CORALean.HybridDynamics.Definitions.SdcInput
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-import Mathlib.Topology.Instances.Matrix
+module
+
+public import CORALean.HybridDynamics.Operations.SdcFlow
+public import CORALean.HybridDynamics.Definitions.SdcInput
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+public import Mathlib.Topology.Instances.Matrix
+
+@[expose] public section
 
 /-!
 # [1, Prop. 1]: the state difference vanishes as the order grows

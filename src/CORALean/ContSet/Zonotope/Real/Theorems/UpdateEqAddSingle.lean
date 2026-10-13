@@ -1,7 +1,11 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Module.Pi
-import Mathlib.Data.Fintype.Basic
-import Mathlib.Algebra.Group.Pi.Lemmas
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Module.Pi
+public import Mathlib.Data.Fintype.Basic
+public import Mathlib.Algebra.Group.Pi.Lemmas
+
+@[expose] public section
 
 /-!
 # Setting one entry is adding a multiple of a basis vector

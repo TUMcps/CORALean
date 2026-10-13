@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.RefinableLayer
+module
+
+public import CORALean.NN.Definitions.RefinableLayer
+
+@[expose] public section
 
 /-!
 # A network whose layers can each be refined

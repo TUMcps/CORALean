@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Inf
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Inf
+
+@[expose] public section
 
 /-!
 # `LevelSet.Inf` denotes the whole space

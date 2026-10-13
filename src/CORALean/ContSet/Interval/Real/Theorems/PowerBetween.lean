@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Power
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Power
+
+@[expose] public section
 
 /-!
 # `x ^ k` lies between the bounds `Interval.power` computes

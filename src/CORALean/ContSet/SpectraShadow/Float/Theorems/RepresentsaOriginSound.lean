@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaOrigin
-import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSound
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSound
+
+@[expose] public section
 
 /-!
 # A `true` from `SpectraShadow.representsa_origin` proves the set is `{0}`

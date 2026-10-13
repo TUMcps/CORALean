@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Operations.PostDelta
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
-import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
-import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
-import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PostDelta
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
+public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
+public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
+public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 3-16: one iteration of the main loop

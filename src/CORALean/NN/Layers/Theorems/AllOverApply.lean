@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.AllOver
+module
+
+public import CORALean.NN.Layers.Operations.AllOver
+
+@[expose] public section
 
 /-!
 # A passed conjunction passes at every index

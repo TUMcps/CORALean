@@ -1,10 +1,14 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Algebra.Module.Pi
-import Mathlib.Algebra.Module.Prod
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Algebra.Module.Pi
+public import Mathlib.Algebra.Module.Prod
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The gadget matrix of the inapproximability reduction

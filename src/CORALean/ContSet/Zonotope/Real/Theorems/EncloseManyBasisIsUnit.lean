@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyBasis
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyBasis
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+
+@[expose] public section
 
 /-!
 # `encloseMany`'s rotation is invertible

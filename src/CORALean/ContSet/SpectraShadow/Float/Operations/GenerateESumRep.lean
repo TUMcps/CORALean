@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.Definitions.ESumRep
-import CORALean.Global.Float.GenBlockDiag
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Definitions.ESumRep
+public import CORALean.Global.Float.GenBlockDiag
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.generateESumRep`, over a floating-point scalar

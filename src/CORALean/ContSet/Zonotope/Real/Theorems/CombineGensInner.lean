@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.CombineGens
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.CombineGens
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # Combining two generators stays inside the zonotope

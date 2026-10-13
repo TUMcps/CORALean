@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GenSelection
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GenSelection
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 11-13: growing the selection until it covers

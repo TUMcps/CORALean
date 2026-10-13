@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Real.Operations.CodeEval
-import CORALean.ContSet.Taylm.Real.Theorems.IntrinsicEncloses
-import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
-import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
-import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
-import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.CodeEval
+public import CORALean.ContSet.Taylm.Real.Theorems.IntrinsicEncloses
+public import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
+
+@[expose] public section
 
 /-!
 # The fundamental theorem of Taylor model arithmetic

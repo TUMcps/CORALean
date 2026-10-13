@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStepFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.OrderStepFloatOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStepFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.OrderStepFloatOuter
+
+@[expose] public section
 
 /-!
 # One adaptively-tuned float step holds every run of the real system

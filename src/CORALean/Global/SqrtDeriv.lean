@@ -1,6 +1,10 @@
-import Mathlib.RingTheory.Polynomial.Pochhammer
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.FieldSimp
+module
+
+public import Mathlib.RingTheory.Polynomial.Pochhammer
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # The factors of the derivatives of `√`

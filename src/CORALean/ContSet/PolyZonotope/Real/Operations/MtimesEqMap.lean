@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mtimes` is `map` at the matrix's linear map

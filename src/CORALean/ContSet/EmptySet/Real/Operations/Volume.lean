@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # `EmptySet.volume`

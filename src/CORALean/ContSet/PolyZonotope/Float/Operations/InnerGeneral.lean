@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerColumns
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerColumns
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.innerGeneral`

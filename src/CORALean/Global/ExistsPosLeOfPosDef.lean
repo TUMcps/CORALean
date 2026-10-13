@@ -1,8 +1,12 @@
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Topology.MetricSpace.ProperSpace
-import Mathlib.Analysis.Normed.Group.Basic
-import Mathlib.Topology.Algebra.Module.FiniteDimension
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Topology.MetricSpace.ProperSpace
+public import Mathlib.Analysis.Normed.Group.Basic
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # A positive definite form is bounded below by a multiple of the square

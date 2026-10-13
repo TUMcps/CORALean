@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.ConvHullCora
-import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ConvHullCora
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # CORA's `ellipsoid/convHull_` errors on an empty second operand

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.CartProd
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Algebra.Module.Prod
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.CartProd
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Algebra.Module.Prod
+
+@[expose] public section
 
 /-!
 # `Zonotope.cartProd` is exactly the Cartesian product

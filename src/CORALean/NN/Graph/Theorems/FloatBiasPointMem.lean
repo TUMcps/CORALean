@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
-import CORALean.NN.Graph.Operations.FloatBiasPoint
-import CORALean.NN.Graph.Operations.LinearBias
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
+public import CORALean.NN.Graph.Operations.FloatBiasPoint
+public import CORALean.NN.Graph.Operations.LinearBias
+
+@[expose] public section
 
 /-!
 # The bias point contains the bias

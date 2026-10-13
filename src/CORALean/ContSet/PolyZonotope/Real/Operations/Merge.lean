@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
-import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.merge`

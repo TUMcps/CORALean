@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.StGamma
-import CORALean.ContSet.Zonotope.Float.Operations.StBeta
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.StGamma
+public import CORALean.ContSet.Zonotope.Float.Operations.StBeta
+
+@[expose] public section
 
 /-!
 # `Zonotope.stUsed`

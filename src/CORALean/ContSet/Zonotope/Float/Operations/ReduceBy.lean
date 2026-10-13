@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceBy`

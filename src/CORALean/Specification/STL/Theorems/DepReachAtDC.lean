@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.DepReachAt
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.Specification.STL.Operations.DepReachAt
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # The interval bloating is centred at the origin

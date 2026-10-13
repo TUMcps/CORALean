@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # What the float `VPolytope` instantiates

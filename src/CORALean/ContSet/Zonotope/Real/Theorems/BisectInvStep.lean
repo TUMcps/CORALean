@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.BisectInv
-import CORALean.ContSet.Zonotope.Real.Operations.BisectStep
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitPivotSpec
-import CORALean.ContSet.Zonotope.Real.Theorems.SegmentMeetsVlineIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.BisectInv
+public import CORALean.ContSet.Zonotope.Real.Operations.BisectStep
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitPivotSpec
+public import CORALean.ContSet.Zonotope.Real.Theorems.SegmentMeetsVlineIff
+
+@[expose] public section
 
 /-!
 # A pass of the dichotomic search keeps the invariant and shrinks `G`

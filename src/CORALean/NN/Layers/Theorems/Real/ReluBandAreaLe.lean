@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.DeepZRelu
-import CORALean.NN.Layers.Definitions.Relu
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.NN.Layers.Definitions.DeepZRelu
+public import CORALean.NN.Layers.Definitions.Relu
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # DeepZ's ReLU band has the least area

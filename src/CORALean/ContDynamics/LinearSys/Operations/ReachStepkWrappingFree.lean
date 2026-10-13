@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+
+@[expose] public section
 
 /-!
 # One window of `reachWrappingFree`: the set over `τ_k = [t_k, t_k + Δt]`

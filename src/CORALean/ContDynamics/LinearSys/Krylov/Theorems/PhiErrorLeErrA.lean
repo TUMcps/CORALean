@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeErrA
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeErrA
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
+
+@[expose] public section
 
 /-!
 # Err_a for the Krylov approximation of φ-functions

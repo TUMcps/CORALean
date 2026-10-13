@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.ContSet.PolyZonotope.Real.Operations.PowSort
-import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
-import CORALean.Global.Hadamard
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PowSort
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
+public import CORALean.Global.Hadamard
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2]'s sum over the powers

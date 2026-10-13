@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.StepTestFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.StepTestFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.tuneStep`, the step selector as a computable search

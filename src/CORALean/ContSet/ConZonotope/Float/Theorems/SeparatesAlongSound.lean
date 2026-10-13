@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
-import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotLe
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
+public import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotLe
+
+@[expose] public section
 
 /-!
 # `ConZonotope.separatesAlong` is sound when `true`

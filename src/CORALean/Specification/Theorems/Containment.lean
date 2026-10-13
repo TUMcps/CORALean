@@ -1,5 +1,9 @@
-import CORALean.Specification.Specification
-import CORALean.Global.LinProg.LinProg
+module
+
+public import CORALean.Specification.Specification
+public import CORALean.Global.LinProg.LinProg
+
+@[expose] public section
 
 /-!
 # Bounds certify that a safe set is stayed inside

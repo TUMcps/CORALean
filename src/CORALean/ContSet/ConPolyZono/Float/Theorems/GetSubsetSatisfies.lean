@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
-import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
+public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+
+@[expose] public section
 
 /-!
 # The constraints of the float `ConPolyZono.getSubset`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripMeasurement
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionTimeUpdate
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionUpdate
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripMeasurement
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionTimeUpdate
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionUpdate
+
+@[expose] public section
 
 /-!
 # `Zonotope.diffusionStripStep`

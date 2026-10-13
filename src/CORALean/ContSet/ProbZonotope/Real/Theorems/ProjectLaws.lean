@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Project
-import CORALean.ContSet.ProbZonotope.Real.Theorems.MtimesLaws
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Project
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.MtimesLaws
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.project` maps the laws by the coordinate projection

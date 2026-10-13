@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
+
+@[expose] public section
 
 /-!
 # What `Ellipsoid` instantiates

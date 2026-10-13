@@ -1,7 +1,9 @@
-import CORALean.ContSet.SetUnion.Theorems.MtimesExact
-import CORALean.ContSet.SetUnion.Theorems.MtimesOuter
-import CORALean.ContSet.SetUnion.Theorems.PlusOuter
-import CORALean.ContSet.SetUnion.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.SetUnion.Theorems.MtimesExact
+public import CORALean.ContSet.SetUnion.Theorems.MtimesOuter
+public import CORALean.ContSet.SetUnion.Theorems.PlusOuter
+public import CORALean.ContSet.SetUnion.Theorems.ReduceOuter
 
 /-!
 # `SetUnion`'s guarantees, collected

@@ -1,10 +1,14 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
-import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.ConZonotope.Real.Instances
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.PolyZonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.ConZonotope.Real.Instances
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # Absorbing a box, asked for as a class

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.methCVolume`

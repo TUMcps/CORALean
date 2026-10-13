@@ -1,7 +1,11 @@
-import CORALean.NN.Operations.Raise
-import CORALean.NN.Operations.RefinementRank
-import CORALean.NN.Operations.Sensitivity
-import CORALean.NN.Operations.WorstIndex
+module
+
+public import CORALean.NN.Operations.Raise
+public import CORALean.NN.Operations.RefinementRank
+public import CORALean.NN.Operations.Sensitivity
+public import CORALean.NN.Operations.WorstIndex
+
+@[expose] public section
 
 /-!
 # Which neuron to refine next

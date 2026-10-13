@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.IsBounded
-import CORALean.ContSet.Interval.Real.Theorems.IsClosed
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.IsBounded
+public import CORALean.ContSet.Interval.Real.Theorems.IsClosed
+
+@[expose] public section
 
 /-!
 # An interval is compact

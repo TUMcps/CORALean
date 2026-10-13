@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
-import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+
+@[expose] public section
 
 /-!
 # The first radius is the largest distance from the centre

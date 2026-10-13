@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Reach
-import CORALean.ContDynamics.NeurNetContrSysNL.Theorems.PeriodExtended
-import CORALean.NN.Theorems.EncloseOuter
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Reach
+public import CORALean.ContDynamics.NeurNetContrSysNL.Theorems.PeriodExtended
+public import CORALean.NN.Theorems.EncloseOuter
+
+@[expose] public section
 
 /-!
 # `Alg. 2` encloses the reachable set of the closed loop

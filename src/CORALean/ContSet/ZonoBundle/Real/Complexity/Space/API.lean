@@ -1,8 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.Intersection
-import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.Plus
-import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.LinComb
-import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.Mtimes
-import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.MtimesMatZonotope
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.Intersection
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.Plus
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.LinComb
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.Mtimes
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.MtimesMatZonotope
 
 /-!
 # What `ZonoBundle` costs

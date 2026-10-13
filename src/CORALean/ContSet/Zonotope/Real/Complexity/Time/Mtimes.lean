@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Zonotope.mtimesCost`

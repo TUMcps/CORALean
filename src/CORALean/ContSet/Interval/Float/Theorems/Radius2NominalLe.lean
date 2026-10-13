@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.RadiusSq
-import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
-import CORALean.ContSet.Interval.Real.Operations.Radius2
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.RadiusSq
+public import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
+public import CORALean.ContSet.Interval.Real.Operations.Radius2
+
+@[expose] public section
 
 /-!
 # `Interval.radiusSq` bounds the exact `radius₂`

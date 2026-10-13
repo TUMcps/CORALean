@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Operations.Btilde
-import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Btilde
+public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+
+@[expose] public section
 
 /-!
 # Alg. 2, its loop state

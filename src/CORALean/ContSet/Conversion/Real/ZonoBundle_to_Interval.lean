@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # A bundle's box, at one component

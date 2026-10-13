@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The Minkowski sum of two AH-polytopes

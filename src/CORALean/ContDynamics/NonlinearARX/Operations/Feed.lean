@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+module
+
+public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+
+@[expose] public section
 
 /-!
 # The input signal of the converted system

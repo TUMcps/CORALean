@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixFloat
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixFloat
+
+@[expose] public section
 
 /-!
 # The float step holds the flow of every member at every time of the step

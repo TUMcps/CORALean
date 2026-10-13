@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.Polygon.Float.Operations.InnerHRep
-import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Polygon.Float.Operations.InnerHRep
+public import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # The edge halfspaces of `Polygon.innerHRep` lie inside the piece

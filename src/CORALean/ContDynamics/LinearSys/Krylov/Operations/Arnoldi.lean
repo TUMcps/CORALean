@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.GramSchmidtStep
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.GramSchmidtStep
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # The Arnoldi iteration

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.Rdivide
-import CORALean.ContSet.Taylm.Float.Theorems.InvOuter
-import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Rdivide
+public import CORALean.ContSet.Taylm.Float.Theorems.InvOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.rdivide` encloses `f / g`, over a floating-point scalar

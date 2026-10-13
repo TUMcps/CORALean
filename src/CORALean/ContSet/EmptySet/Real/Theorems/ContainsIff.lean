@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Instances
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.EmptySet.Real.Instances
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # The empty set contains exactly the empty sets

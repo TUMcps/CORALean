@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Polygon
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PolygonContains
-import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Polygon
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PolygonContains
+public import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
+
+@[expose] public section
 
 /-!
 # The float `polygon` encloses the polynomial zonotope

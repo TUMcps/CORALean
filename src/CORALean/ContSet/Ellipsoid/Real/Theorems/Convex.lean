@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
+
+@[expose] public section
 
 /-!
 # An ellipsoid is convex

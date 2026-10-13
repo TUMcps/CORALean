@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
+
+@[expose] public section
 
 /-!
 # One computed set encloses the whole reachable set over a step

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
-import CORALean.ContSet.Zonotope.Real.Theorems.HRepLinSubset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.HRepLinSubset
+
+@[expose] public section
 
 /-!
 # [1, Thm. 4] at `Thm. 2`'s own directions

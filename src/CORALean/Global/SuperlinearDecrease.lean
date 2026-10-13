@@ -1,4 +1,8 @@
-import Mathlib.Analysis.Asymptotics.Defs
+module
+
+public import Mathlib.Analysis.Asymptotics.Defs
+
+@[expose] public section
 
 /-!
 # Def. 1: superlinear decrease

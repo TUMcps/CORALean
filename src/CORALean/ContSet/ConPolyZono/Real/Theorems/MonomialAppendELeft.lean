@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.monomial_appendE_left`

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.InvRemS
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.InvRemS
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The recursion gives the exact remainder

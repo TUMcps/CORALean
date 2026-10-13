@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.HalveBox
-import CORALean.ContSet.Taylm.Float.Operations.WidestCoord
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.HalveBox
+public import CORALean.ContSet.Taylm.Float.Operations.WidestCoord
+
+@[expose] public section
 
 /-!
 # `Taylm.splitAt`, over a floating-point scalar

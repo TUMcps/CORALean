@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.AdaptTimeStepBudget
-import CORALean.ContDynamics.LinearSys.Operations.TunedRun
-import CORALean.ContSet.Zonotope.Real.Theorems.AdaptSetOrderBudget
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.AdaptTimeStepBudget
+public import CORALean.ContDynamics.LinearSys.Operations.TunedRun
+public import CORALean.ContSet.Zonotope.Real.Theorems.AdaptSetOrderBudget
+
+@[expose] public section
 
 /-!
 # `Thm. 1`, the error half: a tuned run stays inside its error budget

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Map
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Map
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Map
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Map
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mapCost`

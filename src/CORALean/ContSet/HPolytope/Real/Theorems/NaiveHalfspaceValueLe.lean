@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.NaiveHalfspaceValue
-import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotope
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.NaiveHalfspaceValue
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotope
+
+@[expose] public section
 
 /-!
 # Naive halfspace sampling under-approximates

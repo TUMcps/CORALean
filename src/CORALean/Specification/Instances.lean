@@ -1,33 +1,37 @@
-import CORALean.ContSet.Capsule.Float.Instances
-import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
-import CORALean.ContSet.ContSet.Definitions.FullDimTest
-import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
-import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
-import CORALean.ContSet.HPolytope.Float.Instances
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
-import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.VPolytope.Float.Instances
-import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
-import CORALean.ContSet.VPolytope.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.ZonoBundle.Float.Instances
-import CORALean.ContSet.ConPolyZono.Float.Instances
-import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDim
-import CORALean.ContSet.ConPolyZono.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.ConZonotope.Float.Instances
-import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.HPolytope.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.PolyZonotope.Float.Instances
-import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
-import CORALean.ContSet.PolyZonotope.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.ZonoBundle.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
-import CORALean.ContSet.Zonotope.Float.Operations.IsFullDim
-import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
-import CORALean.ContSet.Zonotope.Float.Theorems.IsFullDimSound
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.ContSet.Capsule.Float.Instances
+public import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
+public import CORALean.ContSet.ContSet.Definitions.FullDimTest
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
+public import CORALean.ContSet.HPolytope.Float.Instances
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
+public import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.VPolytope.Float.Instances
+public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
+public import CORALean.ContSet.VPolytope.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.ZonoBundle.Float.Instances
+public import CORALean.ContSet.ConPolyZono.Float.Instances
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDim
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.PolyZonotope.Float.Instances
+public import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.IsFullDim
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsFullDimSound
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # What a specification set can be checked against, computed

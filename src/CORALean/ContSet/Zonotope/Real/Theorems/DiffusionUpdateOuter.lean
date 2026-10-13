@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionUpdate
-import CORALean.ContSet.Zonotope.Real.Theorems.AndAveragingOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.AveragingWeightsOptimal
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionUpdate
+public import CORALean.ContSet.Zonotope.Real.Theorems.AndAveragingOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.AveragingWeightsOptimal
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # The diffusion update encloses the intersection

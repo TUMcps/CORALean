@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LengthSplit
-import CORALean.ContSet.Zonotope.Real.Operations.SplitKept
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LengthSplit
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitKept
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceUnderApproxNLP`

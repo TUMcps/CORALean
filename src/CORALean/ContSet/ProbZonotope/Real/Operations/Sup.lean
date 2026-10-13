@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.sup`

@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # A preconditioned inclusion implies the original one

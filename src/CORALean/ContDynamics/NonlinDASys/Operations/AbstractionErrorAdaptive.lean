@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinError
-import CORALean.ContDynamics.NonlinDASys.Definitions.HessData
-import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinError
+public import CORALean.ContDynamics.NonlinDASys.Definitions.HessData
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.abstractionErrorAdaptive`

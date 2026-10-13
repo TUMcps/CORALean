@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddErrorReduced
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddErrorReduced
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # The inner approximation at the reduced error

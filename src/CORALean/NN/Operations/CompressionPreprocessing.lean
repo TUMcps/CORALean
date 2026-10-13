@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.ReduceOnTheFly
-import CORALean.NN.Operations.ReducedLinearIdentity
+module
+
+public import CORALean.NN.Operations.ReduceOnTheFly
+public import CORALean.NN.Operations.ReducedLinearIdentity
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3]: compressing the input before verifying

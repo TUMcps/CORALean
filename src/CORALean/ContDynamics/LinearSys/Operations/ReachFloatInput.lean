@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
-import CORALean.ContDynamics.Reach.Definitions.InputParams
-import CORALean.ContDynamics.Reach.Operations.Steps
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+public import CORALean.ContDynamics.Reach.Operations.Steps
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # Recursive reachability with inputs in floats: CORA's `priv_reach_standard`

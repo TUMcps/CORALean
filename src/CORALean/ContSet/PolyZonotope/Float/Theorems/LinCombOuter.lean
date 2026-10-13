@@ -1,7 +1,11 @@
-import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
-import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
+public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.linComb` contains every segment between the two sets

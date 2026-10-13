@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitDepFactor
-import CORALean.ContSet.PolyZonotope.Real.Operations.LongestFactor
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitDepFactor
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LongestFactor
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.splitLongestGen`

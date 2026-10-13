@@ -1,4 +1,8 @@
-import CORALean.Global.DropIdx
+module
+
+public import CORALean.Global.DropIdx
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduceConE`

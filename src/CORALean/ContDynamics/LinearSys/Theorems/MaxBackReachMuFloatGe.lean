@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMuFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMuFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # The float `μ` is an upper bound of the exact one

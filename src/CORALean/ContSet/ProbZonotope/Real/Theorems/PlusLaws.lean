@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.ConvMultivariateGaussian
-import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.ConvMultivariateGaussian
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.plus` adds the laws

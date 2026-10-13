@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
-import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]'s convergence bound, as printed, is false

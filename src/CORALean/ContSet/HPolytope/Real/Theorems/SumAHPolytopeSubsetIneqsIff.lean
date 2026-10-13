@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.Global.LinProg.Farkas
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.LinProg.Farkas
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # A Minkowski sum of AH-polytopes in an H-polytope, exactly

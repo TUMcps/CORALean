@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
-import CORALean.ContSet.ConZonotope.Float.Instances
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.HybridDynamics.Definitions.Transition
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.HybridDynamics.Definitions.Transition
+
+@[expose] public section
 
 /-!
 # The jump step at a float constrained zonotope, with nothing assumed

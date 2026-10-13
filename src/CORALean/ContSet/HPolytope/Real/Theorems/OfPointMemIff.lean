@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
-import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
+public import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # `HPolytope.ofPoint` denotes exactly one point

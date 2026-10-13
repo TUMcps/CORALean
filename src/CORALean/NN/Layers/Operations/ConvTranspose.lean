@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Operations.TapMat
+module
+
+public import CORALean.NN.Layers.Operations.Linear
+public import CORALean.NN.Layers.Operations.TapMat
+
+@[expose] public section
 
 /-!
 # The transposed convolution layer

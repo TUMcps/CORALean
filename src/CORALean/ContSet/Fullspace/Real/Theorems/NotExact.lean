@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Not
-import CORALean.ContSet.EmptySet.Real.EmptySet
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Not
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+
+@[expose] public section
 
 /-!
 # `Fullspace.not` is the complement

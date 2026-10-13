@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.bilinCost`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # A point of an edge on the line is the lowest point of the section

@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Real.Operations.Reach
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
-import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe
-import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Reach
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe
+public import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # A scaled model's range is within `O(h)` of its centre

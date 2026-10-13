@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachExcessFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachExcessFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
+
+@[expose] public section
 
 /-!
 # What a float sampled run owes, as a float zonotope

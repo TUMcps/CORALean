@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Operations.Triangulation
-import CORALean.ContSet.Polygon.Real.Theorems.ConstructEqTriples
-import CORALean.ContSet.VPolytope.Float.VPolytope
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Triangulation
+public import CORALean.ContSet.Polygon.Real.Theorems.ConstructEqTriples
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+
+@[expose] public section
 
 /-!
 # `Polygon.triangulation` covers the float polygon's region

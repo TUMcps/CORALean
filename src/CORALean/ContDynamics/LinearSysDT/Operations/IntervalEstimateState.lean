@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateStep
-import CORALean.ContSet.Interval.Real.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateStep
+public import CORALean.ContSet.Interval.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # The reachability-based interval estimator's state after `k` steps

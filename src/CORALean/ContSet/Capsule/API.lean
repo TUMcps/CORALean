@@ -1,5 +1,7 @@
-import CORALean.ContSet.Capsule.Real.API
-import CORALean.ContSet.Capsule.Float.API
+module
+
+public import CORALean.ContSet.Capsule.Real.API
+public import CORALean.ContSet.Capsule.Float.API
 
 /-!
 # Capsules

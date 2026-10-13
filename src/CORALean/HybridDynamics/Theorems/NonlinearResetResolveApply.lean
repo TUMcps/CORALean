@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.resolve` applies to the closed-loop input

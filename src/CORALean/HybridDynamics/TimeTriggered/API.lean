@@ -1,7 +1,9 @@
-import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
-import CORALean.HybridDynamics.TimeTriggered.Definitions.API
-import CORALean.HybridDynamics.TimeTriggered.Operations.API
-import CORALean.HybridDynamics.TimeTriggered.Theorems.API
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.API
+public import CORALean.HybridDynamics.TimeTriggered.Operations.API
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.API
 
 /-!
 # Time-triggered conversion of guards, collected

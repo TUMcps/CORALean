@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Operations.StepInput
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # A sampled `'constParam'` run of the float-sampled system

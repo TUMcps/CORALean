@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose
-import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclose` contains the segments

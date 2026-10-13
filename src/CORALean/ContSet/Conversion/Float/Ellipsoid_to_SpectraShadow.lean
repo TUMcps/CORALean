@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.Ellipsoid_to_SpectraShadow
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_SpectraShadow
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a spectrahedral shadow, over a floating-point scalar

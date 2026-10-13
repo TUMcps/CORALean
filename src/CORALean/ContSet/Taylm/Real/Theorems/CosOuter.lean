@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Cos
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
-import CORALean.Global.ElementaryDerivBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Cos
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
+public import CORALean.Global.ElementaryDerivBounds
+
+@[expose] public section
 
 /-!
 # `Taylm.cos` encloses `cos ∘ f`

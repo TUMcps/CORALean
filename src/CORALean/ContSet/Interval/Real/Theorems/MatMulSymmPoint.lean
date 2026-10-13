@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import CORALean.ContSet.Interval.Real.Operations.MatMul
-import CORALean.ContSet.Interval.Real.Operations.Point
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import CORALean.ContSet.Interval.Real.Operations.MatMul
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # A symmetric interval matrix times a point matrix, in closed form

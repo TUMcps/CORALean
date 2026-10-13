@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.TimeIntervalStep
+module
+
+public import CORALean.HybridDynamics.Operations.TimeIntervalStep
+
+@[expose] public section
 
 /-!
 # `Location.timeIntervalStepInv`

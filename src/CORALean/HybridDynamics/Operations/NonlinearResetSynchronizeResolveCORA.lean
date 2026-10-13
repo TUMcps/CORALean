@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetSynchronize
-import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronize
+public import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.synchronizeResolveCORA`

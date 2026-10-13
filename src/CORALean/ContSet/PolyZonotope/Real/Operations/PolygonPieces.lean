@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonRound
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonRound
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.polygonPieces`

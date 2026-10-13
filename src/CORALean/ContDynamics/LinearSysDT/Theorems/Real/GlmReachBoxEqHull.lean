@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.GlmReachEq
-import CORALean.ContSet.Zonotope.Real.Theorems.IntervalEqHull
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.GlmReachEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalEqHull
+
+@[expose] public section
 
 /-!
 # `glmReachBox` returns the interval hulls of the reachable sets

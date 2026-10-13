@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceLiftBy`

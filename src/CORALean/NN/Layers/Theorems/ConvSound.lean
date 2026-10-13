@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Conv
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.TapMatMulVec
+module
+
+public import CORALean.NN.Layers.Operations.Conv
+public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.TapMatMulVec
+
+@[expose] public section
 
 /-!
 # What the convolution layer encloses

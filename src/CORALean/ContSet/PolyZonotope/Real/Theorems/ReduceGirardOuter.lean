@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # Girard's reduction over-approximates

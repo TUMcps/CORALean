@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.ToNonlinearSysDT
+module
+
+public import CORALean.NN.Operations.ToNonlinearSysDT
+
+@[expose] public section
 
 /-!
 # `f(x, 0)` is the network's evaluation

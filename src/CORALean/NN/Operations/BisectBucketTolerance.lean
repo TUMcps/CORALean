@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.InitMergeBuckets
-import CORALean.NN.Operations.Ratio
+module
+
+public import CORALean.NN.Operations.InitMergeBuckets
+public import CORALean.NN.Operations.Ratio
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1, lines 7-17]: bisecting the bucket tolerance

@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.dependent`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConInt
-import CORALean.Global.Float.IntRound
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConInt
+public import CORALean.Global.Float.IntRound
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.unionConErr`

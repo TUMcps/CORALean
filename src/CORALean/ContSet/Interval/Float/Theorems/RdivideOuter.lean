@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Rdivide
-import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
-import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Rdivide
+public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
+public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `Interval.rdivide` over-approximates the entrywise quotients, over a floating-point scalar

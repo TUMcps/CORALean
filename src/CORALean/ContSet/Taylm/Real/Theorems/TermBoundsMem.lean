@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.TermBounds
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.TermBounds
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # One term stays in `termBounds` on the box

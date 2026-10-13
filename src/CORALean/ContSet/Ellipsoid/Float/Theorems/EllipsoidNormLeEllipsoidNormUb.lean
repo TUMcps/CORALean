@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.EllipsoidNormUb
-import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.EllipsoidNormUb
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.ellipsoidNormUb` bounds the ellipsoid norm

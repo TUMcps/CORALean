@@ -1,4 +1,8 @@
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+
+@[expose] public section
 
 /-!
 # DeepZ's S-shape band is sound when the derivative rises and then falls

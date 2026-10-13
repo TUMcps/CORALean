@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.FgsmAttack
+module
+
+public import CORALean.NN.Operations.FgsmAttack
+
+@[expose] public section
 
 /-!
 # The FGSM attack stays within `ε` of its input

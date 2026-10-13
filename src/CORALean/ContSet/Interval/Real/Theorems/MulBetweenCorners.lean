@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+
+@[expose] public section
 
 /-!
 # A product of two bounded factors stays between the four corner products

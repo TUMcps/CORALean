@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.polyBoxReviseLeft`

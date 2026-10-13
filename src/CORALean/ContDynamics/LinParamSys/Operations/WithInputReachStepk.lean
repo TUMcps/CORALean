@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInput
-import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInput
+public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
+
+@[expose] public section
 
 /-!
 # One window of `reachUnion` with inputs: the set over `τ_k = [t_k, t_k + Δt]`

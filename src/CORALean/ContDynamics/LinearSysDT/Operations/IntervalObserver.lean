@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The interval observer without coordinate transformation

@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCorrectionMatrix
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCorrectionMatrix
+
+@[expose] public section
 
 /-!
 # [1, Eq. 6]'s unscaled `ΔR = (e^{Ar} - I + F) η(R(0), γ)` misses `Δx(0) = 0`

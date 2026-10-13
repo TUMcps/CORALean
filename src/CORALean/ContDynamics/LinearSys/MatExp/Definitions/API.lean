@@ -1,15 +1,17 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineDynamicsErrorBound
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineTimeIntervalSolution
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpDiffMatrices
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRemainderError
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionErrorBound
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionTauErrorBound
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerInputTerm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineDynamicsErrorBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineTimeIntervalSolution
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpDiffMatrices
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRemainderError
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionErrorBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionTauErrorBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerInputTerm
 
 /-!
 # What enclosing a matrix exponential means

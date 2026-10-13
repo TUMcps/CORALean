@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Theorems.ReachOutEqSimulate
-import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachOutEqSimulate
+public import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The reachable windows are not the product of the reachable outputs

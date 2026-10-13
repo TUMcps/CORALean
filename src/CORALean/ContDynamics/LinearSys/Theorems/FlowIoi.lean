@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
+
+@[expose] public section
 
 /-!
 # The flow as a right derivative, the point itself dropped

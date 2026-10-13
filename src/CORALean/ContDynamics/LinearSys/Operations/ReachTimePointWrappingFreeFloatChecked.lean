@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # `reachTimePointWrappingFreeFloatChecked`, without a NaN

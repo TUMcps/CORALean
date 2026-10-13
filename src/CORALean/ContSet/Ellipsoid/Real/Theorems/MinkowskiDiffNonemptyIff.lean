@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # When the Minkowski difference of two ellipsoids is nonempty

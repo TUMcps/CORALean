@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.CompactZeros
-import CORALean.ContSet.HPolytope.Float.Theorems.DropZerosExact
-import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.CompactZeros
+public import CORALean.ContSet.HPolytope.Float.Theorems.DropZerosExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
+
+@[expose] public section
 
 /-!
 # The float `compactZeros` keeps every point of the polytope in the domain

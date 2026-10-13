@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
-import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
-import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+
+@[expose] public section
 
 /-!
 # Two constraint systems side by side hold exactly when each holds on its own factors

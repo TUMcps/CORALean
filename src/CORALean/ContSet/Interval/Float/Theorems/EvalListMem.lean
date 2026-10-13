@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.EvalList
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.Global.EvalList
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.EvalList
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.Global.EvalList
+
+@[expose] public section
 
 /-!
 # `Interval.evalList` encloses the polynomial

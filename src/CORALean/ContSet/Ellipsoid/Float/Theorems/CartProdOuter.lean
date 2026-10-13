@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.CartProd
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.CartProd
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.cartProd` encloses the product

@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Theorems.NonlinearResetLiftOfNotMem
-import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
-import Mathlib.Data.List.FinRange
+module
+
+public import CORALean.HybridDynamics.Theorems.NonlinearResetLiftOfNotMem
+public import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
+public import Mathlib.Data.List.FinRange
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.lift` restricted to the bound coordinates is the old reset

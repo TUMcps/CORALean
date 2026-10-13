@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
-import CORALean.ContSet.Interval.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.minkDiffPoint`, over a floating-point scalar

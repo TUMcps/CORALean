@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # `[1, Eq. 20]` without pivoting

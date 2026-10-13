@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Float.Operations.CenterLo
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.CenterLo
+
+@[expose] public section
 
 /-!
 # `Interval.centerBox` over floats

@@ -1,25 +1,29 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Definitions.ExactVertices
-import CORALean.ContSet.ContSet.Definitions.IntersectStrip
-import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.WithEmpty.WithEmpty
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.LmtimesSingletonOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
-import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.ExactVertices
+public import CORALean.ContSet.ContSet.Definitions.IntersectStrip
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.LmtimesSingletonOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # What `Zonotope` instantiates

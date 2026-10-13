@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerApply
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerApply
+
+@[expose] public section
 
 /-!
 # A sign corner is the lowest corner plus the generators it flips

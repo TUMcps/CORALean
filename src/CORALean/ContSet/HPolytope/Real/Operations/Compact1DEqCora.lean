@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.OfEqs1D
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.OfEqs1D
+
+@[expose] public section
 
 /-!
 # `HPolytope.compact1DEqCora`: the equality half of CORA's `priv_compact_1D`

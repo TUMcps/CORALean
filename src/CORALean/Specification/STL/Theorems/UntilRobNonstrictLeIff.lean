@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.MILPEncoding
-import Mathlib.Order.MinMax
+module
+
+public import CORALean.Specification.STL.Definitions.MILPEncoding
+public import Mathlib.Order.MinMax
+
+@[expose] public section
 
 /-!
 # A threshold under the robust unbounded until

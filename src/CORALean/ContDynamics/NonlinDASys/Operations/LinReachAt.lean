@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.linReachAt`

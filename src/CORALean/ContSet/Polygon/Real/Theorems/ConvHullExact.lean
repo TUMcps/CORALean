@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.ConvHull
-import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.ConvHull
+public import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
+
+@[expose] public section
 
 /-!
 # `Polygon.convHull` is the convex hull

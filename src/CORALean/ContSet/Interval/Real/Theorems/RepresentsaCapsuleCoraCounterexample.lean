@@ -1,11 +1,15 @@
-import CORALean.ContSet.Interval.Real.Operations.RepresentsaCapsuleCora
-import CORALean.ContSet.Interval.Real.Operations.RepresentsaEllipsoidCora
-import CORALean.ContSet.Capsule.Real.Capsule
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.Global.EuclideanNorm
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.RepresentsaCapsuleCora
+public import CORALean.ContSet.Interval.Real.Operations.RepresentsaEllipsoidCora
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `interval/representsa_(I, 'capsule')` accepts the unit square

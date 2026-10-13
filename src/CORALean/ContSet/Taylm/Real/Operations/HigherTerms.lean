@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.Degree
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Degree
+
+@[expose] public section
 
 /-!
 # The terms of degree two and more

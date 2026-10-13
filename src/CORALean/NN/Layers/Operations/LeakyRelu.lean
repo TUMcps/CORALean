@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.LeakyReluRelaxation
-import CORALean.NN.Layers.Operations.LeakyReluSlope
+module
+
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.LeakyReluRelaxation
+public import CORALean.NN.Layers.Operations.LeakyReluSlope
+
+@[expose] public section
 
 /-!
 # The leaky ReLU layer

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Origin
-import CORALean.NN.Graph.Operations.Flatten
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Origin
+public import CORALean.NN.Graph.Operations.Flatten
+
+@[expose] public section
 
 /-!
 # The bias `1 bᵀ` as a point

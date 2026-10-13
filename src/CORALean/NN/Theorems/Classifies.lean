@@ -1,6 +1,10 @@
-import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
-import CORALean.NN.Theorems.MarginDir
-import CORALean.NN.Theorems.EncloseOuter
+module
+
+public import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
+public import CORALean.NN.Theorems.MarginDir
+public import CORALean.NN.Theorems.EncloseOuter
+
+@[expose] public section
 
 /-!
 # Every input in the set is classified the same

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.halfScaled`

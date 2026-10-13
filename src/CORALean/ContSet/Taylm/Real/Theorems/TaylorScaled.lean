@@ -1,13 +1,17 @@
-import CORALean.ContSet.Taylm.Real.Operations.Taylor
-import CORALean.ContSet.Taylm.Real.Theorems.PlusScaled
-import CORALean.ContSet.Taylm.Real.Theorems.PowScaled
-import CORALean.ContSet.Taylm.Real.Theorems.SmulScaled
-import CORALean.ContSet.Taylm.Real.Theorems.SumScaled
-import CORALean.ContSet.Taylm.Real.Theorems.ReachLe
-import CORALean.ContSet.Taylm.Real.Theorems.AbsConstCoefLe
-import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Taylor
+public import CORALean.ContSet.Taylm.Real.Theorems.PlusScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.PowScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.SmulScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.SumScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.ReachLe
+public import CORALean.ContSet.Taylm.Real.Theorems.AbsConstCoefLe
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The intrinsics keep the `(n+1)`-st order scaling

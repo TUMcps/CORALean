@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
-import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffSum
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffSum
+
+@[expose] public section
 
 /-!
 # The paired-sum coefficient is admissible

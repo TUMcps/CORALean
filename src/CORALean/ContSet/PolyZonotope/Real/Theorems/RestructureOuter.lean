@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
-import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByOuter
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # `restructure` over-approximates the set

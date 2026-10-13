@@ -1,6 +1,10 @@
-import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
-import CORALean.HybridDynamics.Operations.GuardTransitionLevelSet
-import CORALean.HybridDynamics.Theorems.GuardIntersectLevelSetOuter
+module
+
+public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+public import CORALean.HybridDynamics.Operations.GuardTransitionLevelSet
+public import CORALean.HybridDynamics.Theorems.GuardIntersectLevelSetOuter
+
+@[expose] public section
 
 /-!
 # The transition through a nonlinear guard encloses every jump

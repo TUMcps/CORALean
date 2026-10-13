@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # A rounded image box still has its bounds in order

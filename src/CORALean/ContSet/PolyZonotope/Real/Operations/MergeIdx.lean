@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # The kept columns, indexed by a plain count

@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The intersection of two AH-polytopes

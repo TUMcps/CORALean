@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
+
+@[expose] public section
 
 /-!
 # A run of the DAE solves the abstracting inclusion

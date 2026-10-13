@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.DiscreteFormula
+module
+
+public import CORALean.Specification.STL.Definitions.DiscreteFormula
+
+@[expose] public section
 
 /-!
 # The values the MILP encodings force

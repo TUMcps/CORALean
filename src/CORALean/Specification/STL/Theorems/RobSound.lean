@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.DiscreteFormula
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Specification.STL.Definitions.DiscreteFormula
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Positive robustness implies satisfaction

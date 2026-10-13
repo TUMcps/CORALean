@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Taylm
-import Mathlib.Topology.Algebra.Monoid
-import Mathlib.Topology.Instances.Real.Lemmas
+module
+
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import Mathlib.Topology.Algebra.Monoid
+public import Mathlib.Topology.Instances.Real.Lemmas
+
+@[expose] public section
 
 /-!
 # A term list evaluates to a continuous function

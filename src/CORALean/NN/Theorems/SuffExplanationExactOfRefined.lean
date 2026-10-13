@@ -1,7 +1,11 @@
-import CORALean.NN.Theorems.Misclassified
-import CORALean.NN.Theorems.SuffExplanationAbstract
-import CORALean.NN.Theorems.SuffExplanationExact
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.NN.Theorems.Misclassified
+public import CORALean.NN.Theorems.SuffExplanationAbstract
+public import CORALean.NN.Theorems.SuffExplanationExact
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # Refinement keeps a sufficient explanation sufficient, as [1, Prop. 3] states it

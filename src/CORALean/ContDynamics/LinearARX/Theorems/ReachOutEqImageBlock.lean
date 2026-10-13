@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Definitions.ReachOut
-import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
+module
+
+public import CORALean.ContDynamics.LinearARX.Definitions.ReachOut
+public import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
+
+@[expose] public section
 
 /-!
 # Each block of the window set is a reachable output set

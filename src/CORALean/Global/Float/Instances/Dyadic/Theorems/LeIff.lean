@@ -1,7 +1,11 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Le
-import CORALean.Global.Float.Instances.Dyadic.Operations.LeAligned
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeAlignedIff
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeShlIff
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Le
+public import CORALean.Global.Float.Instances.Dyadic.Operations.LeAligned
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeAlignedIff
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeShlIff
+
+@[expose] public section
 
 /-!
 # Comparison agrees with ℝ

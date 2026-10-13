@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.JumpOfPoint
-import CORALean.HybridDynamics.Theorems.JumpOuter
+module
+
+public import CORALean.HybridDynamics.Operations.JumpOfPoint
+public import CORALean.HybridDynamics.Theorems.JumpOuter
+
+@[expose] public section
 
 /-!
 # `Transition.jumpOfPoint` contains the states that leave through the transition

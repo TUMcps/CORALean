@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
-import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
-import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
+public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+
+@[expose] public section
 
 /-!
 # A spectrahedral shadow is full-dimensional iff its affine hull is everything

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Radius
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Radius
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
+
+@[expose] public section
 
 /-!
 # The float `Ellipsoid.radius` bounds the distance to the centre

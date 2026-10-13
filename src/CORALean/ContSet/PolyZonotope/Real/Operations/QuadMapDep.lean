@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+
+@[expose] public section
 
 /-!
 # `quadMap` at a set whose coefficients are all dependent

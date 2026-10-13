@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
-import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
+public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # The re-linearization loop as one union, or a run-time failure

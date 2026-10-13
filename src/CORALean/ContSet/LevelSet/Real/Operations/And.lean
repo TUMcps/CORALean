@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # `LevelSet.and_`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
-import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # `HPolytope.ofBounds` encloses, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactFactorsExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactGensExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactFactorsExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactGensExact
+
+@[expose] public section
 
 /-!
 # Compaction loses nothing

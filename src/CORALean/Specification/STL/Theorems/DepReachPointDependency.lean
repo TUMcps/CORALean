@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.Specification.STL.Operations.DepReachPoint
-import CORALean.Specification.STL.Theorems.DepBloatingC
-import CORALean.Specification.STL.Theorems.DepReachAtDC
-import CORALean.Specification.STL.Theorems.DepReachAtHh
-import CORALean.Specification.STL.Theorems.DepReachAtPcC
-import CORALean.Specification.STL.Theorems.DepReachAtPcH
-import CORALean.Specification.STL.Theorems.DepReachAtSum
-import CORALean.Specification.STL.Theorems.SumGenPlus
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.Specification.STL.Operations.DepReachPoint
+public import CORALean.Specification.STL.Theorems.DepBloatingC
+public import CORALean.Specification.STL.Theorems.DepReachAtDC
+public import CORALean.Specification.STL.Theorems.DepReachAtHh
+public import CORALean.Specification.STL.Theorems.DepReachAtPcC
+public import CORALean.Specification.STL.Theorems.DepReachAtPcH
+public import CORALean.Specification.STL.Theorems.DepReachAtSum
+public import CORALean.Specification.STL.Theorems.SumGenPlus
+
+@[expose] public section
 
 /-!
 # [1, Prop. 1] at the time points

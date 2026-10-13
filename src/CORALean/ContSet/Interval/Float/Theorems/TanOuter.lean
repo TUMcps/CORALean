@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Tan
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Tan
+
+@[expose] public section
 
 /-!
 # `Interval.tan` contains the image under `tan`

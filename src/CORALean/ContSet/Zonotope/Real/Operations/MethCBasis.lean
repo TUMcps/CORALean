@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MethCVolume
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MethCVolume
+
+@[expose] public section
 
 /-!
 # `Zonotope.methCBasis`

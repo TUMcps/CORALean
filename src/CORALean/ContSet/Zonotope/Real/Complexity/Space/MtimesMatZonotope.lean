@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.mtimesMatZonotope_h`

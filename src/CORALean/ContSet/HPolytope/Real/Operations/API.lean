@@ -1,89 +1,91 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
-import CORALean.ContSet.HPolytope.Real.Operations.TightAt
-import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
-import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructEqFeasible
-import CORALean.ContSet.HPolytope.Real.Operations.BoundOfDual
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructEqEmptyOfDual
-import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
-import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructFullspace
-import CORALean.ContSet.HPolytope.Real.Operations.LinComb
-import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
-import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
-import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
-import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
-import CORALean.ContSet.HPolytope.Real.Operations.OfBoundsOpt
-import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
-import CORALean.ContSet.HPolytope.Real.Operations.Rows
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.Plus
-import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
-import CORALean.ContSet.HPolytope.Real.Operations.Slab
-import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
-import CORALean.ContSet.HPolytope.Real.Operations.MemSlabSelfIff
-import CORALean.ContSet.HPolytope.Real.Operations.Translate
-import CORALean.ContSet.HPolytope.Real.Operations.Minus
-import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
-import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
-import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
-import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
-import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
-import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComap
-import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
-import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
-import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Real.Operations.Stack
-import CORALean.ContSet.HPolytope.Real.Operations.Lift
-import CORALean.ContSet.HPolytope.Real.Operations.MldivideCora
-import CORALean.ContSet.HPolytope.Real.Operations.ConvHullCora
-import CORALean.ContSet.HPolytope.Real.Operations.OfEqs1D
-import CORALean.ContSet.HPolytope.Real.Operations.MinkDiff1DCora
-import CORALean.ContSet.HPolytope.Real.Operations.Compact1DEqCora
-import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingVPolyCora
-import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingZonoBundleCora
-import CORALean.ContSet.HPolytope.Real.Operations.ZonoBundleVar
-import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalCora
-import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaPointCora
-import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints
-import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
-import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
-import CORALean.ContSet.HPolytope.Real.Operations.ReduceOverDomain
-import CORALean.ContSet.HPolytope.Real.Operations.AffineHullBasis
-import CORALean.ContSet.HPolytope.Real.Operations.GenerateRandomH
-import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
-import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
-import CORALean.ContSet.HPolytope.Real.Operations.Restrict
-import CORALean.ContSet.HPolytope.Real.Operations.CompactZeros
-import CORALean.ContSet.HPolytope.Real.Operations.CompactAlignedIneq
-import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
-import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
-import CORALean.ContSet.HPolytope.Real.Operations.CompactAtoAe
-import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaFullspace
-import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
-import CORALean.ContSet.HPolytope.Real.Operations.Volume
-import CORALean.ContSet.HPolytope.Real.Operations.RowsRhs
-import CORALean.ContSet.HPolytope.Real.Operations.RowNorm
+module
 
-import CORALean.ContSet.HPolytope.Real.Operations.HitTime
-import CORALean.ContSet.HPolytope.Real.Operations.ChordHighIndex
-import CORALean.ContSet.HPolytope.Real.Operations.ChordLowIndex
-import CORALean.ContSet.HPolytope.Real.Operations.ChordHigh
-import CORALean.ContSet.HPolytope.Real.Operations.ChordLow
-import CORALean.ContSet.HPolytope.Real.Operations.HitAndRunStep
-import CORALean.ContSet.HPolytope.Real.Operations.FacetNormal
-import CORALean.ContSet.HPolytope.Real.Operations.BilliardEnd
-import CORALean.ContSet.HPolytope.Real.Operations.BilliardStep
-import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaHyperplaneCora
-import CORALean.ContSet.HPolytope.Real.Operations.RowLowerCora
-import CORALean.ContSet.HPolytope.Real.Operations.RowUpperCora
-import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalZeroRowCora
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
+public import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
+public import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEqFeasible
+public import CORALean.ContSet.HPolytope.Real.Operations.BoundOfDual
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEqEmptyOfDual
+public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructFullspace
+public import CORALean.ContSet.HPolytope.Real.Operations.LinComb
+public import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
+public import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
+public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
+public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.HPolytope.Real.Operations.OfBoundsOpt
+public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
+public import CORALean.ContSet.HPolytope.Real.Operations.Rows
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Plus
+public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
+public import CORALean.ContSet.HPolytope.Real.Operations.Slab
+public import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+public import CORALean.ContSet.HPolytope.Real.Operations.MemSlabSelfIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Translate
+public import CORALean.ContSet.HPolytope.Real.Operations.Minus
+public import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
+public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
+public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
+public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
+public import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComap
+public import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
+public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
+public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Real.Operations.Stack
+public import CORALean.ContSet.HPolytope.Real.Operations.Lift
+public import CORALean.ContSet.HPolytope.Real.Operations.MldivideCora
+public import CORALean.ContSet.HPolytope.Real.Operations.ConvHullCora
+public import CORALean.ContSet.HPolytope.Real.Operations.OfEqs1D
+public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiff1DCora
+public import CORALean.ContSet.HPolytope.Real.Operations.Compact1DEqCora
+public import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingVPolyCora
+public import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingZonoBundleCora
+public import CORALean.ContSet.HPolytope.Real.Operations.ZonoBundleVar
+public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalCora
+public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaPointCora
+public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints
+public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
+public import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
+public import CORALean.ContSet.HPolytope.Real.Operations.ReduceOverDomain
+public import CORALean.ContSet.HPolytope.Real.Operations.AffineHullBasis
+public import CORALean.ContSet.HPolytope.Real.Operations.GenerateRandomH
+public import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
+public import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
+public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+public import CORALean.ContSet.HPolytope.Real.Operations.CompactZeros
+public import CORALean.ContSet.HPolytope.Real.Operations.CompactAlignedIneq
+public import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
+public import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
+public import CORALean.ContSet.HPolytope.Real.Operations.CompactAtoAe
+public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaFullspace
+public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+public import CORALean.ContSet.HPolytope.Real.Operations.Volume
+public import CORALean.ContSet.HPolytope.Real.Operations.RowsRhs
+public import CORALean.ContSet.HPolytope.Real.Operations.RowNorm
+public import CORALean.ContSet.HPolytope.Real.Operations.HitTime
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordHighIndex
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordLowIndex
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordHigh
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordLow
+public import CORALean.ContSet.HPolytope.Real.Operations.HitAndRunStep
+public import CORALean.ContSet.HPolytope.Real.Operations.FacetNormal
+public import CORALean.ContSet.HPolytope.Real.Operations.BilliardEnd
+public import CORALean.ContSet.HPolytope.Real.Operations.BilliardStep
+public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaHyperplaneCora
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLowerCora
+public import CORALean.ContSet.HPolytope.Real.Operations.RowUpperCora
+public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalZeroRowCora
+
 /-!
 # What `HPolytope` computes
 

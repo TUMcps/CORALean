@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.DiagVec
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.DiagVec
+
+@[expose] public section
 
 /-!
 # `Interval.diagVec` is exactly the set of diagonals of the box

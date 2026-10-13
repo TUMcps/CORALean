@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetIntersection.Operations.Reduce
+module
+
+public import CORALean.ContSet.SetIntersection.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `SetIntersection.reduce` over-approximates the intersection

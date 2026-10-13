@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Real.Zoo
-import CORALean.ContSet.Taylm.Real.Operations.Rdivide
-import CORALean.ContSet.Interval.Real.Operations.Rdivide
+module
+
+public import CORALean.ContSet.Zoo.Real.Zoo
+public import CORALean.ContSet.Taylm.Real.Operations.Rdivide
+public import CORALean.ContSet.Interval.Real.Operations.Rdivide
+
+@[expose] public section
 
 /-!
 # `Zoo.rdivide`

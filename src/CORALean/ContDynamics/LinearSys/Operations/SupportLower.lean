@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.SupportLowerState
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.SupportLowerState
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1 (lower bounds)]'s lower bounds on the support function of the reachable set

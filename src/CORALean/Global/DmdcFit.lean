@@ -1,6 +1,10 @@
-import CORALean.Global.DmdcData
-import CORALean.Global.DmdCandidateFit
-import CORALean.Global.DmdCandidateLeastSquares
+module
+
+public import CORALean.Global.DmdcData
+public import CORALean.Global.DmdCandidateFit
+public import CORALean.Global.DmdCandidateLeastSquares
+
+@[expose] public section
 
 /-!
 # The dynamic mode decomposition with control fits consistent data and is least squares

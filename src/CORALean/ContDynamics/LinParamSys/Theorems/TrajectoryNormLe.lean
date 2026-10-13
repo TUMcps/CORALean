@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.ODE.Gronwall
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.ODE.Gronwall
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # How far a time-varying run can get, a priori

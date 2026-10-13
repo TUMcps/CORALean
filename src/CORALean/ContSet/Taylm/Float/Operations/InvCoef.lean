@@ -1,6 +1,10 @@
-import CORALean.Global.Float.PowDown
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.Float.PowDown
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # The coefficients of `1/x` at the centre, from both sides

@@ -1,9 +1,13 @@
-import CORALean.NN.Layers.Operations.LipConstrScale
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Data.Matrix.Diagonal
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.NN.Layers.Operations.LipConstrScale
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Matrix.Diagonal
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The rows of `N W` have absolute sum at most `λ`

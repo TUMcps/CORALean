@@ -1,12 +1,16 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
-import CORALean.ContSet.HPolytope.Real.Operations.Rows
-import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
-import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
-import CORALean.Global.LinProg.Composition
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.ContSet.HPolytope.Real.Operations.Rows
+public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
+public import CORALean.Global.LinProg.Composition
+
+@[expose] public section
 
 /-!
 # What `HPolytope` instantiates

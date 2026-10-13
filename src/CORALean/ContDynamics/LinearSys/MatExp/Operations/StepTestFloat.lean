@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.stepTest`, the float test one candidate step passes

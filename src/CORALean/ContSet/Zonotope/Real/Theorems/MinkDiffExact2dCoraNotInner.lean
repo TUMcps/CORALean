@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffExact2dCora
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffExact2dCora
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # CORA's 2-D `minkDiff` returns a nonempty set where the difference is empty

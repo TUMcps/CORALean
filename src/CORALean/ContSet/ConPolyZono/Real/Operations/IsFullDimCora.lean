@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import Mathlib.LinearAlgebra.Dimension.Finrank
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.isFullDimCora`: CORA's test for full dimension

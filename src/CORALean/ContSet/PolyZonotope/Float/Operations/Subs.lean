@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDiff
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsFactor
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.Interval.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsFactor
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.subs`

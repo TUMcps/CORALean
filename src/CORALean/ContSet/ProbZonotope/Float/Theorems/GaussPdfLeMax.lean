@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Float.Theorems.MaxLe
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfLeMaxIff
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.MaxLe
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfLeMaxIff
+
+@[expose] public section
 
 /-!
 # The float `max` bounds the density outside the `m`-sigma ellipsoid

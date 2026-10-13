@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.SquareRelaxation
-import CORALean.NN.Layers.Theorems.OfDerivSound
-import Mathlib.Analysis.Calculus.Deriv.Pow
+module
+
+public import CORALean.NN.Layers.Operations.SquareRelaxation
+public import CORALean.NN.Layers.Theorems.OfDerivSound
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+
+@[expose] public section
 
 /-!
 # The square relaxation is sound

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Rank
-import CORALean.ContSet.Zonotope.Real.Operations.Volume
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Rank
+public import CORALean.ContSet.Zonotope.Real.Operations.Volume
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # A zonotope of rank below `n` has volume zero

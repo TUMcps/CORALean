@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBadDirIff
-import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
-import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBadDirIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
+
+@[expose] public section
 
 /-!
 # A `true` from `Ellipsoid.isGoodDir` proves the direction is not bad

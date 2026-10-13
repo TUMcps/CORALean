@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.IsequalPieces
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.IsequalPieces
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.isequalPieces` implies equal regions

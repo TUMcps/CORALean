@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxSadraddini
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxSadraddini
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+
+@[expose] public section
 
 /-!
 # `reduceUnderApproxSadraddini` is an inner approximation

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Lift
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Lift
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+
+@[expose] public section
 
 /-!
 # The lifted zonotope at the trivial partition

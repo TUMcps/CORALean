@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpEqSumAddPhiMul
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyLastEqProd
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorEqIntegral
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfKrylovIdentity
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpEqSumAddPhiMul
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyLastEqProd
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorEqIntegral
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfKrylovIdentity
+
+@[expose] public section
 
 /-!
 # The remainder of the leading Krylov error term, explicitly

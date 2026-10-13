@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
-import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
+
+@[expose] public section
 
 /-!
 # Searching for an applied error the certificate accepts

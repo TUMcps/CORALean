@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Polygon.mtimes`

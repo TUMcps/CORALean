@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # `evaluatePredicateUnionCora`, the union-of-unsafe-sets branch of CORA's `aux_evaluatePredicate`

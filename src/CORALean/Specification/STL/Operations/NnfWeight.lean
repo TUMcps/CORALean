@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.Nnf
+module
+
+public import CORALean.Specification.STL.Definitions.Nnf
+
+@[expose] public section
 
 /-!
 # The weight of a normal form

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.NormLe
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.NormLe
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.norm` is attained

@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Algebra.Order.GroupWithZero.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Order.Field.Basic
+public import Mathlib.Algebra.Order.GroupWithZero.Basic
+
+@[expose] public section
 
 /-!
 # A point's reciprocal lies between the reciprocals of the bounds

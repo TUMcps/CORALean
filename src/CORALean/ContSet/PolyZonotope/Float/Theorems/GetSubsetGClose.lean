@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDiff
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetCoefMem
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetCoefMem
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+
+@[expose] public section
 
 /-!
 # What a rounded `getSubset` generator costs

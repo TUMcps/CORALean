@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Tril
-import CORALean.ContSet.Interval.Real.Theorems.MaskExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Tril
+public import CORALean.ContSet.Interval.Real.Theorems.MaskExact
+
+@[expose] public section
 
 /-!
 # `Interval.tril` is exactly the image under `tril`

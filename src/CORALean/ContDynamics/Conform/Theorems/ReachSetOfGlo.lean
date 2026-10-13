@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Definitions.Glo
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.Glo
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]: (7) is the exact reachable set of the GLO approximation

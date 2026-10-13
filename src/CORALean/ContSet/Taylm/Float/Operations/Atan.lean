@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Float.Operations.Taylor
-import CORALean.ContSet.Taylm.Float.Operations.MagUp
-import CORALean.ContSet.Interval.Float.Operations.EvalList
-import CORALean.Global.RecList
-import CORALean.Global.Float.InverseTrig
-import CORALean.Global.Float.PowDown
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Taylor
+public import CORALean.ContSet.Taylm.Float.Operations.MagUp
+public import CORALean.ContSet.Interval.Float.Operations.EvalList
+public import CORALean.Global.RecList
+public import CORALean.Global.Float.InverseTrig
+public import CORALean.Global.Float.PowDown
+
+@[expose] public section
 
 /-!
 # `Taylm.atan`

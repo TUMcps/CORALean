@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Polygon
-import CORALean.ContSet.VPolytope.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.VPolytope.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `Polygon.and`, over a floating-point scalar

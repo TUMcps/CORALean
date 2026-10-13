@@ -1,9 +1,13 @@
-import CORALean.ContSet.Conversion.Real.VPolytope_to_HPolytope
-import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
-import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
-import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.VPolytope.Real.Operations.IntersectionH
+module
+
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionH
+
+@[expose] public section
 
 /-!
 # `VPolytope.intersectionH` is compact

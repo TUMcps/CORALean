@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ProjectHighDim
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ProjectHighDim
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.projectHighDim_` is exactly the zero-padded set

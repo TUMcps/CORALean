@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `HPolytope.mtimesOf`'s counts

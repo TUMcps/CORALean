@@ -1,6 +1,10 @@
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.NN.Layers.Definitions.BatchNorm
-import CORALean.NN.Layers.Theorems.BatchNormSound
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.NN.Layers.Definitions.BatchNorm
+public import CORALean.NN.Layers.Theorems.BatchNormSound
+
+@[expose] public section
 
 /-!
 # The batch normalization layer at the exact fold

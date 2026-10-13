@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
+
+@[expose] public section
 
 /-!
 # `evalPolyReal` on a `List.ofFn` is the monomial sum

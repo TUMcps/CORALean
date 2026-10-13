@@ -1,5 +1,9 @@
-import CORALean.Global.Float.InverseTrig
-import CORALean.Global.Float.IntRound
+module
+
+public import CORALean.Global.Float.InverseTrig
+public import CORALean.Global.Float.IntRound
+
+@[expose] public section
 
 /-!
 # `Capsule.piStep`: bounds of `π / 499`

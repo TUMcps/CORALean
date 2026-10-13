@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Definitions.StarSet
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Definitions.StarSet
+
+@[expose] public section
 
 /-!
 # The star set over a float scalar

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
+module
+
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimesIntervalMat`

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.LipConstrScaleFloat
-import CORALean.NN.Layers.Operations.LipConstrScale
+module
+
+public import CORALean.NN.Layers.Operations.LipConstrScaleFloat
+public import CORALean.NN.Layers.Operations.LipConstrScale
+
+@[expose] public section
 
 /-!
 # The float scaling box contains the exact scaling

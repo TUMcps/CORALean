@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `reachOrder` clears `timeIntervalStep_outer`'s side condition

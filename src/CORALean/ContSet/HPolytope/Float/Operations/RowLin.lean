@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `rowLin`, over a floating-point scalar

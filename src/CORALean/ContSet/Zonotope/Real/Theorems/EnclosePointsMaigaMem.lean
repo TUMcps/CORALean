@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsMaiga
-import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeMem
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsMaiga
+public import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeMem
+
+@[expose] public section
 
 /-!
 # `Zonotope.enclosePointsMaiga` contains every point

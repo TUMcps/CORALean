@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGen
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitDepFactorOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGen
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitDepFactorOuter
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.splitLongestGen` covers the set

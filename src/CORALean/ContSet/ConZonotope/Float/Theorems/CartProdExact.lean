@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.CartProd
-import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.HPolytope.Float.Theorems.CartProdExact
-import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.CartProd
+public import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.CartProdExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+
+@[expose] public section
 
 /-!
 # `ConZonotope.cartProd` is exact

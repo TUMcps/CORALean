@@ -1,6 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Data.Real.Sign
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Data.Real.Sign
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The extent of a zonotope in a direction is attained

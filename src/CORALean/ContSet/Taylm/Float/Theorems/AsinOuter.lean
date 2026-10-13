@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Float.Operations.Asin
-import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
-import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
-import CORALean.ContSet.Taylm.Float.Theorems.ArcsinCoefMem
-import CORALean.ContSet.Taylm.Float.Theorems.ArcsinBoundGe
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Asin
+public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
+public import CORALean.ContSet.Taylm.Float.Theorems.ArcsinCoefMem
+public import CORALean.ContSet.Taylm.Float.Theorems.ArcsinBoundGe
+
+@[expose] public section
 
 /-!
 # `Taylm.asin` encloses `arcsin ∘ f`

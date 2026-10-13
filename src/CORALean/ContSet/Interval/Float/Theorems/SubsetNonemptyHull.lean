@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
+
+@[expose] public section
 
 /-!
 # The nonempty hull contains the box

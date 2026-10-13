@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
+module
+
+public import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
+
+@[expose] public section
 
 /-!
 # Rounding up never goes finer than the smallest subnormal

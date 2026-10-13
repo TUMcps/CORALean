@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactAdd
-import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundDown
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactAdd
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundDown
+
+@[expose] public section
 
 /-!
 # Addition, rounded down

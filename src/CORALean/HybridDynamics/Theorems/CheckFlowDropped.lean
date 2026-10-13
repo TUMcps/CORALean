@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.CheckFlow
+module
+
+public import CORALean.HybridDynamics.Definitions.CheckFlow
+
+@[expose] public section
 
 /-!
 # A reach set `Location.checkFlow` drops has no outward flow on its projection

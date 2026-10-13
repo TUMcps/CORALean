@@ -1,55 +1,57 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachExistsOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsPreimage
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
-import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOFloatOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOOutput
-import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOState
-import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToTrajectory
-import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfCheck
-import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
-import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfSeparating
-import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
-import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
-import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigO
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigOConZonotope
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatSubsetReachSetAddError
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatZeroMemError
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachInnerFloatInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLeConZonotope
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersConstEqReach
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetConvex
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetWitness
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.API
-import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
-import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemSimulateBoxFloat
-import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
-import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
-import CORALean.ContDynamics.LinearSysDT.Theorems.IdentifyCandidateFit
-import CORALean.ContDynamics.LinearSysDT.Theorems.IdentifyLeCandidate
-import CORALean.ContDynamics.LinearSysDT.Theorems.DiscretizeToLinearSys
-import CORALean.ContDynamics.LinearSysDT.Theorems.ExpIntegralToLinearSys
-import CORALean.ContDynamics.LinearSysDT.Theorems.IsConformDynOfModel
-import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
-import CORALean.ContDynamics.LinearSysDT.Theorems.ObservePropagationFloatOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveIntervalFloatOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSpecCoraFinalCounterexample
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachExistsOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
+public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsPreimage
+public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOFloatOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOOutput
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOState
+public import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfCheck
+public import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
+public import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
+public import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfSeparating
+public import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
+public import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
+public import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigO
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigOConZonotope
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatSubsetReachSetAddError
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatZeroMemError
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachInnerFloatInner
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLe
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrderLeConZonotope
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersConstEqReach
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetConvex
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetWitness
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.API
+public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
+public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemSimulateBoxFloat
+public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
+public import CORALean.ContDynamics.LinearSysDT.Theorems.IdentifyCandidateFit
+public import CORALean.ContDynamics.LinearSysDT.Theorems.IdentifyLeCandidate
+public import CORALean.ContDynamics.LinearSysDT.Theorems.DiscretizeToLinearSys
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ExpIntegralToLinearSys
+public import CORALean.ContDynamics.LinearSysDT.Theorems.IsConformDynOfModel
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ObservePropagationFloatOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveIntervalFloatOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSpecCoraFinalCounterexample
 
 /-!
 # What `LinearSysDT` guarantees

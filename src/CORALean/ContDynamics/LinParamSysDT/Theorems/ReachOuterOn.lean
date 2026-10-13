@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
+
+@[expose] public section
 
 /-!
 # `reach` contains every trajectory known only up to a bound

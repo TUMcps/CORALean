@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetLift
-import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
-import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetLift
+public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+public import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.lift` is the identity off the bound coordinates

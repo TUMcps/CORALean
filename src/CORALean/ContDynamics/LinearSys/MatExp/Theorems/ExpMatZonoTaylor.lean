@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # The Taylor truncation lies in the matrix zonotope's Taylor truncation

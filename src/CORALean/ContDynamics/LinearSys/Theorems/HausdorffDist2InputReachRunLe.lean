@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachStepLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachStepLe
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2]'s eq. (21): the time-point error accumulated over the horizon

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetTimeIntervalInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetTimeIntervalInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
+
+@[expose] public section
 
 /-!
 # One computed set encloses the whole interval's reachable set at once

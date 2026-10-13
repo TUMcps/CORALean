@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BisectLow
-import CORALean.ContSet.Zonotope.Real.Operations.MirrorY
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BisectLow
+public import CORALean.ContSet.Zonotope.Real.Operations.MirrorY
+
+@[expose] public section
 
 /-!
 # [1, Alg. 4]: `BOUND_INTERSECT_2D` by dichotomic search

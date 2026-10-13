@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.CenterBox
-import CORALean.ContSet.Interval.Float.Theorems.CenterGe
-import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.CenterBox
+public import CORALean.ContSet.Interval.Float.Theorems.CenterGe
+public import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
+
+@[expose] public section
 
 /-!
 # `Interval.centerBox` holds the real midpoint

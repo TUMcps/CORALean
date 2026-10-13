@@ -1,4 +1,8 @@
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+module
+
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+
+@[expose] public section
 
 /-!
 # An orthant of the `ℓ₁` ball has `2⁻ᵐ` of its volume

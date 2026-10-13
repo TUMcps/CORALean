@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Bounds
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Bounds
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+
+@[expose] public section
 
 /-!
 # The magnitude of a Taylor model

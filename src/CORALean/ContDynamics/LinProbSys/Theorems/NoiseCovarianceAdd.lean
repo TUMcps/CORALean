@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
+
+@[expose] public section
 
 /-!
 # The noise covariance over two steps

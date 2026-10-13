@@ -1,8 +1,12 @@
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
-import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
-import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
-import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsTimer
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
+public import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
+public import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsTimer
+
+@[expose] public section
 
 /-!
 # The scaled automaton is not a zero-error overapproximation within the time bound

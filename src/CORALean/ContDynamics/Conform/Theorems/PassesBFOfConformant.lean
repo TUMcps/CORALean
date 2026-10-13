@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.Conform.Definitions.PassesBF
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.PassesBF
+
+@[expose] public section
 
 /-!
 # A conformant system passes the brute-force check

@@ -1,9 +1,13 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Operations.SampleHi
-import CORALean.NN.Layers.Operations.SampleLo
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Operations.SampleHi
+public import CORALean.NN.Layers.Operations.SampleLo
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # A sampled range brackets a function

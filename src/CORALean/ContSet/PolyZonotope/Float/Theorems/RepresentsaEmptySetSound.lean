@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.representsa_emptySet` is sound

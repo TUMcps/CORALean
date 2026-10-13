@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.Isequal
-import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Isequal
+public import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
+
+@[expose] public section
 
 /-!
 # `Capsule.isequal` is sound

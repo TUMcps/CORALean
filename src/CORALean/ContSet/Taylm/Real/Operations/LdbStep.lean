@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.LinCoef
-import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
-import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.LinCoef
+public import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+
+@[expose] public section
 
 /-!
 # One step of the linear dominated bounder

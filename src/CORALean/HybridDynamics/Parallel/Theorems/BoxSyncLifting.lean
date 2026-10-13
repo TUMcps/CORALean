@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
-import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructFullspace
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
+public import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructFullspace
+
+@[expose] public section
 
 /-!
 # `boxSyncLifting`: `boxLifting` with conjoined guards

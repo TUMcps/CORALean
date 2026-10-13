@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputStepInvariant
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputStepInvariant
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+
+@[expose] public section
 
 /-!
 # Every state of `reachFloatInput`'s loop holds what it owes

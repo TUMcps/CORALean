@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
-import CORALean.Global.Float.GenBlockDiag
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CartProdExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
+public import CORALean.Global.Float.GenBlockDiag
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CartProdExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+
+@[expose] public section
 
 /-!
 # The nominal set of `PolyZonotope.cartProd`

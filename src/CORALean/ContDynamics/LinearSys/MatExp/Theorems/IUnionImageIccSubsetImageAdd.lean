@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMulVecImageSubsetAddImage2
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccEqImage
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMulVecImageSubsetAddImage2
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccEqImage
+
+@[expose] public section
 
 /-!
 # The reach set over `[kr, (k+1)r]` lies in `e^{Akr}(Z + ΔR)`

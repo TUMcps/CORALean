@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.SupportLower
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
-import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.SupportLower
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
+public import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1 (upper bounds)]'s line 13 is no upper bound for a centre outside `U`

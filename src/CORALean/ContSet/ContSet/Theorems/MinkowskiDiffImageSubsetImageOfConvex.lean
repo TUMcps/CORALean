@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+module
+
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+
+@[expose] public section
 
 /-!
 # A perturbed image, inner-approximated by cancellation

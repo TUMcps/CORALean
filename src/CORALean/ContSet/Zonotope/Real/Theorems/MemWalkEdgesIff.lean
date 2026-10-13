@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.WalkEdges
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.WalkEdges
+
+@[expose] public section
 
 /-!
 # The walk edges, spelt in sign corners

@@ -1,6 +1,10 @@
-import CORALean.NN.Operations.GreedyMinimalExplanation
-import CORALean.NN.Theorems.MinSuffExplanation
-import CORALean.NN.Theorems.SuffExplanationMono
+module
+
+public import CORALean.NN.Operations.GreedyMinimalExplanation
+public import CORALean.NN.Theorems.MinSuffExplanation
+public import CORALean.NN.Theorems.SuffExplanationMono
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1] returns a minimal sufficient explanation

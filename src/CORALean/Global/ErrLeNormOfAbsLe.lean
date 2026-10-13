@@ -1,4 +1,8 @@
-import CORALean.Global.Err
+module
+
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # `err` against a coordinatewise bound on magnitudes

@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.LocationPotInt
+module
+
+public import CORALean.HybridDynamics.Operations.LocationPotInt
+
+@[expose] public section
 
 /-!
 # `Location.potInt` lists every pair that meets

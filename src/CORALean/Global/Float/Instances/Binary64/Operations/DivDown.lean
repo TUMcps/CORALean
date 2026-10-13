@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
+
+@[expose] public section
 
 /-!
 # Division, rounded down

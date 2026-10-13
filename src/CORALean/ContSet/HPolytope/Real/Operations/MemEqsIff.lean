@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.eqs`

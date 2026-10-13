@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
+module
+
+public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a polynomial zonotope, over a floating-point scalar

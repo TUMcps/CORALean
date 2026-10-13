@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `Zonotope.splitDropped`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Theorems.IsequalConstructEq
-import CORALean.ContSet.Interval.Real.Theorems.LeIffSubset
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.IsequalConstructEq
+public import CORALean.ContSet.Interval.Real.Theorems.LeIffSubset
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # `Interval.isequal` decides equality of the denoted sets

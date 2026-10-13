@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Order.Interval.Set.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Order.Interval.Set.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The fixed-point inclusion needs a continuous error

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GainOrder
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GainOrder
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # A method has zero abstraction error exactly when its gain order is infinite

@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeFloat
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+module
+
+public import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeFloat
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectPolytopeFloat` holds every state that meets the guard

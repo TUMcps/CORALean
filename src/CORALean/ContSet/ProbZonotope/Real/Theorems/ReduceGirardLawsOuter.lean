@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.ReduceGirard
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.ReduceGirard
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.reduceGirard` over-approximates the family of laws

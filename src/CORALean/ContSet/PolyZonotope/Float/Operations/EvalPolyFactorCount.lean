@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
-import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyP
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyP
+
+@[expose] public section
 
 /-!
 # `evalPoly` never leaves the shared factor count, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # The input's contribution accumulated up to the end of a window

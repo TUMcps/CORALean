@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Float.Operations.Radius
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Radius
+
+@[expose] public section
 
 /-!
 # `Capsule.convHull`, over a floating-point scalar

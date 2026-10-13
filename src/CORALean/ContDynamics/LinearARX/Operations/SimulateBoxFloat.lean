@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Operations.FeedBox
-import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
-import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.FeedBox
+public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
+
+@[expose] public section
 
 /-!
 # An interval-valued `simulate` of the ARX model

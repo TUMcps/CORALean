@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
-import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
+public import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.inter`

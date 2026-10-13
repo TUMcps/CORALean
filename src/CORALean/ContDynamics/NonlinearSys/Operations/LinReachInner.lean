@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerState
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInnerErr
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerState
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInnerErr
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
+@[expose] public section
 
 /-!
 # `linReachInner`, CORA's inner linearized step

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
+
+@[expose] public section
 
 /-!
 # The second-order Taylor term's diagonal factor, least value on a box

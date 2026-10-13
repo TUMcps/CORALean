@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Instances
-import CORALean.NN.Graph.Operations.FloatLeftMat
-import CORALean.NN.Graph.Operations.FloatRightMat
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Instances
+public import CORALean.NN.Graph.Operations.FloatLeftMat
+public import CORALean.NN.Graph.Operations.FloatRightMat
+
+@[expose] public section
 
 /-!
 # The graph convolutional layer on a float polynomial zonotope

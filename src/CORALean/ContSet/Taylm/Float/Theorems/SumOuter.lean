@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Sum
-import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Sum
+public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.sum` encloses the sum

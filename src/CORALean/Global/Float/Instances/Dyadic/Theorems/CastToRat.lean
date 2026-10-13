@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.ToRat
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.ToRat
+
+@[expose] public section
 
 /-!
 # `Dyadic.toRat` is the number `toReal` reads

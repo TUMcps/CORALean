@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceUnderApproxKochdumper`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Project
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Project
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.project` over a floating-point scalar

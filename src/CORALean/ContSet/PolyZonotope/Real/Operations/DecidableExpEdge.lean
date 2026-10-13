@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdgeAt
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdgeAt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+
+@[expose] public section
 
 /-!
 # `ExpEdge` decides

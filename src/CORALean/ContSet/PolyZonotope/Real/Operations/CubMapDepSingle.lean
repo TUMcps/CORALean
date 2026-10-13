@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMapDep`

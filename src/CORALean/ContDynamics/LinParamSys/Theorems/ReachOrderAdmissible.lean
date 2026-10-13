@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
-import Mathlib.Algebra.Order.Ring.Star
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
+public import Mathlib.Algebra.Order.Ring.Star
+
+@[expose] public section
 
 /-!
 # `reachOrder` clears `timeIntervalStep_outer`'s side condition

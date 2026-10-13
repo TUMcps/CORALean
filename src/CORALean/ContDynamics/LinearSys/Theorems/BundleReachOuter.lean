@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Operations.BundleReach
-import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
-import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.BundleReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1] encloses the reachable set on every time interval

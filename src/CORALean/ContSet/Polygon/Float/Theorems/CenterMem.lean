@@ -1,8 +1,12 @@
-import CORALean.ContSet.Polygon.Float.Theorems.IntervalContains
-import CORALean.ContSet.Polygon.Float.Theorems.IsCompact
-import CORALean.ContSet.Polygon.Real.Theorems.RegionCenterMem
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.IsClosed
+module
+
+public import CORALean.ContSet.Polygon.Float.Theorems.IntervalContains
+public import CORALean.ContSet.Polygon.Float.Theorems.IsCompact
+public import CORALean.ContSet.Polygon.Real.Theorems.RegionCenterMem
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.IsClosed
+
+@[expose] public section
 
 /-!
 # The centroid of a float polygon lies in its interval hull

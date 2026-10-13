@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
+
+@[expose] public section
 
 /-!
 # The powers [1, Alg. 2] builds

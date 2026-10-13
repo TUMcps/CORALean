@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
-import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+
+@[expose] public section
 
 /-!
 # How far `timePointStep` reaches past the run, in floats

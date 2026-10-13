@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerInner
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+
+@[expose] public section
 
 /-!
 # `reachInnerRep` is an inner approximation, as a representation

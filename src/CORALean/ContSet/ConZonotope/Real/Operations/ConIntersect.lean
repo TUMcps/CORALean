@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `ConZonotope.conIntersect`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+module
+
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+
+@[expose] public section
 
 /-!
 # A bundle's ellipsoid, at one component

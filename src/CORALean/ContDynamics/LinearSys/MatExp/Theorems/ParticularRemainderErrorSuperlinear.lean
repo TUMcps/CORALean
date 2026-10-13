@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IsBoundedParticularRemainderSet
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreaseExpRemainderMat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IsBoundedParticularRemainderSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreaseExpRemainderMat
+
+@[expose] public section
 
 /-!
 # `Thm. 2`: `ε_P` of eq. (22) decreases superlinearly

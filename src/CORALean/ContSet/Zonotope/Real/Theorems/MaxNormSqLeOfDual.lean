@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
-import CORALean.ContSet.Zonotope.Real.Theorems.SqNormSumEqGram
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
+public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormSumEqGram
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # An upper bound on the maximum norm by duality

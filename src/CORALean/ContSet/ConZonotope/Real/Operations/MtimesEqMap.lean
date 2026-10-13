@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Map
-import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Map
+public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimes` is `map` at the matrix's linear map

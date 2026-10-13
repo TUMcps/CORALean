@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.ConvHullCora
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.ConvHullCora
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's polytope `convHull` with an empty operand returns the empty set

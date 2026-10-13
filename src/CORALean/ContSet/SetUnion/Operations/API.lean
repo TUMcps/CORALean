@@ -1,6 +1,8 @@
-import CORALean.ContSet.SetUnion.Operations.Mtimes
-import CORALean.ContSet.SetUnion.Operations.Plus
-import CORALean.ContSet.SetUnion.Operations.Reduce
+module
+
+public import CORALean.ContSet.SetUnion.Operations.Mtimes
+public import CORALean.ContSet.SetUnion.Operations.Plus
+public import CORALean.ContSet.SetUnion.Operations.Reduce
 
 /-!
 # `SetUnion`'s operations, collected

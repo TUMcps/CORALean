@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # Membership in the nominal constrained polynomial zonotope

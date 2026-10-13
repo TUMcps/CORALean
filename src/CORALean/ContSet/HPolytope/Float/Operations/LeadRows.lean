@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
+
+@[expose] public section
 
 /-!
 # `HPolytope.leadRows`: one row of each inverted pair

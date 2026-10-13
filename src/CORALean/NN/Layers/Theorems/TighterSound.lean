@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.RelaxationTighter
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationTighter
+
+@[expose] public section
 
 /-!
 # The tighter of two sound relaxations is sound

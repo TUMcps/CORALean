@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.SoftmaxSound
+module
+
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxSound
+
+@[expose] public section
 
 /-!
 # The exact softmax layer, as an `Enclose` kind

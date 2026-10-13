@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.Zonotope.Float.Operations.InteriorPoint
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Zonotope.Float.Operations.InteriorPoint
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.isFullDim`, over a floating-point scalar

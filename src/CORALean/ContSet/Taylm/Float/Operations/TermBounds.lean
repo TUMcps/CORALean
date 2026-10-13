@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.ContSet.Taylm.Real.Operations.Degree
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Taylm.Real.Operations.Degree
+
+@[expose] public section
 
 /-!
 # The range of one term over the box

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Float.Operations.CenterLo
-import CORALean.ContSet.Interval.Float.Operations.Radius
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.CenterLo
+public import CORALean.ContSet.Interval.Float.Operations.Radius
+
+@[expose] public section
 
 /-!
 # `Interval.enlarge` over floats

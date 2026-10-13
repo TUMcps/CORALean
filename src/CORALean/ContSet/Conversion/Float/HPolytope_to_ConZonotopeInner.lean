@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # A halfspace description as a constrained zonotope from the inside, over a floating-point scalar

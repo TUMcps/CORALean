@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 3-6: the linear pass, in floats

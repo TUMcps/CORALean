@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.PowHi
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.PowHi
+
+@[expose] public section
 
 /-!
 # `Interval.powHi` is an upper bound on the power

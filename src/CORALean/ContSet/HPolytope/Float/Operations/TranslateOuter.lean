@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Translate
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Translate
+
+@[expose] public section
 
 /-!
 # `HPolytope.translate` encloses

@@ -1,61 +1,63 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import CORALean.ContSet.Ellipsoid.Real.Operations.CartProd
-import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
-import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
-import CORALean.ContSet.Ellipsoid.Real.Operations.Map
-import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
-import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
-import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
-import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
-import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
-import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyMulVec
-import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
-import CORALean.ContSet.Ellipsoid.Real.Operations.Project
-import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
-import CORALean.ContSet.Ellipsoid.Real.Operations.ConvHullCora
-import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsEllipsoidCora
-import CORALean.ContSet.Ellipsoid.Real.Operations.Vertices
-import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
-import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
-import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
-import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsBiggerCora
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi1D
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu1D
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
-import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
-import CORALean.ContSet.Ellipsoid.Real.Operations.MinkDiffPoint
-import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
-import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
-import CORALean.ContSet.Ellipsoid.Real.Operations.NormExact
-import CORALean.ContSet.Ellipsoid.Real.Operations.Generators
-import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
-import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsOriented
-import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsNt
-import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsMaxDist
-import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsIntersectingPoint
-import CORALean.ContSet.Ellipsoid.Real.Operations.CutPrecision
-import CORALean.ContSet.Ellipsoid.Real.Operations.CutShape
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderElemSymm
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderInvSum
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLamSum
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderMu
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
-import CORALean.ContSet.Ellipsoid.Real.Operations.Polygon
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
-import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
-import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
-import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaHyperplaneCora
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProd
+public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Map
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyMulVec
+public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Project
+public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ConvHullCora
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsEllipsoidCora
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Vertices
+public import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBiggerCora
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi1D
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu1D
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
+public import CORALean.ContSet.Ellipsoid.Real.Operations.MinkDiffPoint
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
+public import CORALean.ContSet.Ellipsoid.Real.Operations.NormExact
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Generators
+public import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsOriented
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsNt
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsMaxDist
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsIntersectingPoint
+public import CORALean.ContSet.Ellipsoid.Real.Operations.CutPrecision
+public import CORALean.ContSet.Ellipsoid.Real.Operations.CutShape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderElemSymm
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderInvSum
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLamSum
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderMu
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Polygon
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
+public import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
+public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaHyperplaneCora
 
 /-!
 # What an ellipsoid computes, collected

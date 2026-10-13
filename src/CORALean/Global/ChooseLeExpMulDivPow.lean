@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import Mathlib.Analysis.SpecialFunctions.Exp
-import Mathlib.Data.Nat.Choose.Bounds
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.Analysis.SpecialFunctions.Exp
+public import Mathlib.Data.Nat.Choose.Bounds
+
+@[expose] public section
 
 /-!
 # A binomial bound

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Data.Fintype.Prod
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Data.Fintype.Prod
+
+@[expose] public section
 
 /-!
 # A sum of stretched templates over `Fin k`

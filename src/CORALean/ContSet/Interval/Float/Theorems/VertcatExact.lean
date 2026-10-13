@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Vertcat
-import CORALean.ContSet.Interval.Real.Theorems.VertcatExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Vertcat
+public import CORALean.ContSet.Interval.Real.Theorems.VertcatExact
+
+@[expose] public section
 
 /-!
 # `Interval.vertcat` over floats is exact

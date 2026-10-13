@@ -1,5 +1,9 @@
-import CORALean.Global.OptimalDiscard
-import Mathlib.Data.Finset.Card
+module
+
+public import CORALean.Global.OptimalDiscard
+public import Mathlib.Data.Finset.Card
+
+@[expose] public section
 
 /-!
 # Algorithm A* discards optimally

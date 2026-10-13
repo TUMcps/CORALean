@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.EncloseAtInflate
-import CORALean.NN.Theorems.LinearSigmoidConverges
+module
+
+public import CORALean.NN.Theorems.EncloseAtInflate
+public import CORALean.NN.Theorems.LinearSigmoidConverges
+
+@[expose] public section
 
 /-!
 # The output of `σ(W x + b)` converges to the exact image

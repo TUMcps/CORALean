@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubmatrixMem
-import CORALean.NN.Graph.Operations.EvalSteps
-import CORALean.NN.Graph.Operations.ReducedStepsFloat
-import CORALean.NN.Graph.Theorems.MemBallSelf
-import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubmatrixMem
+public import CORALean.NN.Graph.Operations.EvalSteps
+public import CORALean.NN.Graph.Operations.ReducedStepsFloat
+public import CORALean.NN.Graph.Theorems.MemBallSelf
+public import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
+
+@[expose] public section
 
 /-!
 # The float reduced chain encloses row `v` of the whole-graph chain

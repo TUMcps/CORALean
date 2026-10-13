@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import CORALean.ContSet.VPolytope.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `Polygon.and`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingBox
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingBox
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # The enclosing box encloses `Λ⁻¹ Z_∩`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.ReexpTerms
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Data.Nat.Choose.Sum
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ReexpTerms
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Data.Nat.Choose.Sum
+
+@[expose] public section
 
 /-!
 # Re-expansion is exact

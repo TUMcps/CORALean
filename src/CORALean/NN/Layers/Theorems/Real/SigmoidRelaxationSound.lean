@@ -1,10 +1,14 @@
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
-import CORALean.NN.Layers.Theorems.OfDerivSound
-import CORALean.NN.Layers.Theorems.OfMonotoneSound
-import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
-import CORALean.NN.Layers.Theorems.Real.LeSigmoidDerivHi
-import CORALean.NN.Layers.Theorems.Real.SigmoidDerivLoLe
-import CORALean.NN.Layers.Theorems.TighterSound
+module
+
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+public import CORALean.NN.Layers.Theorems.OfDerivSound
+public import CORALean.NN.Layers.Theorems.OfMonotoneSound
+public import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
+public import CORALean.NN.Layers.Theorems.Real.LeSigmoidDerivHi
+public import CORALean.NN.Layers.Theorems.Real.SigmoidDerivLoLe
+public import CORALean.NN.Layers.Theorems.TighterSound
+
+@[expose] public section
 
 /-!
 # The sigmoid relaxation over ℝ is sound

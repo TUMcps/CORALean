@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Instances
-import Mathlib.Analysis.Normed.Algebra.Exponential
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import Mathlib.Topology.Instances.Matrix
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # `G^{(-)}_h`, eq. (23)

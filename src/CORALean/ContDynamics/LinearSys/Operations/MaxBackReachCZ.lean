@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
-import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
-import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+module
+
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
+public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `Alg. 2` line 11: the eroded polytope, converted

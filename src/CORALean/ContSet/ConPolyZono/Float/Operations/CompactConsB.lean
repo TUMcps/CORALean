@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsGap
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsGap
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.compactConsB`

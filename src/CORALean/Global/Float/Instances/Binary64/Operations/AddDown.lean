@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
+
+@[expose] public section
 
 /-!
 # Addition, rounded down

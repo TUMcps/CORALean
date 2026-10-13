@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
-import Mathlib.Analysis.Calculus.Deriv.Add
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
+public import Mathlib.Analysis.Calculus.Deriv.Add
+
+@[expose] public section
 
 /-!
 # A parametric trajectory is its combined-input embedding's

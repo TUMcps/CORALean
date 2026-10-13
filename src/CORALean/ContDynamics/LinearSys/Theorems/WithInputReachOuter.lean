@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Definitions.WithInputReachExact
-import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.WithInputReachExact
+public import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # `reach` with inputs encloses every run, one window at a time

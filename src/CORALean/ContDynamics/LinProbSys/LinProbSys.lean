@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
+
+@[expose] public section
 
 /-!
 # Linear systems with white noise: the representation

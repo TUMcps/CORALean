@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.ContSet.Operations.EnlargeScalar
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.ContSet.Operations.EnlargeScalar
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.enlarge`, over a floating-point scalar

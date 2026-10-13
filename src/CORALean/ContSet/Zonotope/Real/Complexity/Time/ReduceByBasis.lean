@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceBy
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceBy
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceByBasisCost`

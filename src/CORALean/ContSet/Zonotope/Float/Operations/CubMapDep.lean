@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubMapGDiff
-import CORALean.ContSet.Zonotope.Float.Operations.CubMapCDown
-import CORALean.ContSet.Zonotope.Float.Operations.CubMapCUp
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubMapGDiff
+public import CORALean.ContSet.Zonotope.Float.Operations.CubMapCDown
+public import CORALean.ContSet.Zonotope.Float.Operations.CubMapCUp
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+
+@[expose] public section
 
 /-!
 # `Zonotope.cubMapDep`

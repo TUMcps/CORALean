@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Operations.Interval
-import CORALean.ContSet.Polygon.Float.Operations.IntervalOfList
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Interval
+public import CORALean.ContSet.Polygon.Float.Operations.IntervalOfList
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.interval` holds the polygon

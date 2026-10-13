@@ -1,10 +1,14 @@
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
-import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
-import CORALean.NN.Theorems.Real.InstanceOfInstanceNetwork
-import CORALean.NN.Theorems.ReduceOnTheFlyOuter
-import CORALean.NN.Theorems.ReducesAtCongr
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
+public import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
+public import CORALean.NN.Theorems.Real.InstanceOfInstanceNetwork
+public import CORALean.NN.Theorems.ReduceOnTheFlyOuter
+public import CORALean.NN.Theorems.ReducesAtCongr
+
+@[expose] public section
 
 /-!
 # What [1, Alg. 2] returns is a reduction, and computes its own output set

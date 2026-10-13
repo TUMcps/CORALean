@@ -1,7 +1,11 @@
-import CORALean.Global.Brouwer
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import CORALean.Global.Brouwer
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # The interval Jacobi test proves a zero, with a closed inclusion

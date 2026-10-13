@@ -1,9 +1,13 @@
-import CORALean.Global.Brouwer
-import CORALean.Global.MulVecInjectiveOfResidual
-import CORALean.Global.Tensor
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Analysis.Normed.Group.Constructions
-import Mathlib.Topology.EMetricSpace.Lipschitz
+module
+
+public import CORALean.Global.Brouwer
+public import CORALean.Global.MulVecInjectiveOfResidual
+public import CORALean.Global.Tensor
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Analysis.Normed.Group.Constructions
+public import Mathlib.Topology.EMetricSpace.Lipschitz
+
+@[expose] public section
 
 /-!
 # A Newton test proves a unique zero in a ball

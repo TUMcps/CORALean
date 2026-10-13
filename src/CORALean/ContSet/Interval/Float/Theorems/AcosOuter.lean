@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Acos
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Acos
+
+@[expose] public section
 
 /-!
 # `Interval.acos` contains the image under `arccos`

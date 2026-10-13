@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionSet
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorLe
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorLe
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+
+@[expose] public section
 
 /-!
 # A step of the outer approximation is within `O(Δt²)` of the inner one

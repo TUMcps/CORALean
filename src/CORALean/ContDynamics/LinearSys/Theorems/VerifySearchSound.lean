@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
-import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchLoopSound
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchLoopSound
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3 (search)]: `safe` and `unsafe` are right

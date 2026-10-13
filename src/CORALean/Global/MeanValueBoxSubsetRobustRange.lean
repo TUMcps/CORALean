@@ -1,5 +1,9 @@
-import CORALean.Global.RobustUnderApproxBox
-import CORALean.Global.RobustRangeVec
+module
+
+public import CORALean.Global.RobustUnderApproxBox
+public import CORALean.Global.RobustRangeVec
+
+@[expose] public section
 
 /-!
 # The product of the mean-value AE extensions is inside the robust range

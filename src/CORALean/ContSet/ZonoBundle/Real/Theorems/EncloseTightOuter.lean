@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
-import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # The tight enclosure of two bundles contains both

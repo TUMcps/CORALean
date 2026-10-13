@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SplitPivot
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossPosOfArgLt
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitPivot
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossPosOfArgLt
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # The pivot split of [1, Alg. 4] divides the generators in angle order

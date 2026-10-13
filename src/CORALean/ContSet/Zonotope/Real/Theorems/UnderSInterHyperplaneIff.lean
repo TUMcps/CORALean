@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.UnderSSubset
-import CORALean.ContSet.Zonotope.Real.Theorems.BoxSInterHyperplaneIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.UnderSSubset
+public import CORALean.ContSet.Zonotope.Real.Theorems.BoxSInterHyperplaneIff
+
+@[expose] public section
 
 /-!
 # Under- and over-approximation meet a guard exactly when the zonotope does

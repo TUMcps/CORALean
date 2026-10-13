@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The approximate Löwner-John ellipse

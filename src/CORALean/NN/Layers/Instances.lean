@@ -1,35 +1,39 @@
-import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.NN.Layers.Definitions.ActivationLayer
-import CORALean.NN.Layers.Definitions.ActivationPolyLayer
-import CORALean.NN.Layers.Definitions.AvgPoolLayer
-import CORALean.NN.Layers.Definitions.BatchNormLayer
-import CORALean.NN.Layers.Definitions.ConvLayer
-import CORALean.NN.Layers.Definitions.IdentityLayer
-import CORALean.NN.Layers.Definitions.LinearLayer
-import CORALean.NN.Layers.Definitions.LinearWithErrorLayer
-import CORALean.NN.Layers.Definitions.MaxPoolLayer
-import CORALean.NN.Layers.Definitions.ReluLayer
-import CORALean.NN.Layers.Definitions.ReshapeLayer
-import CORALean.NN.Layers.Definitions.SigmoidLayer
-import CORALean.NN.Layers.Definitions.SigmoidPolyLayer
-import CORALean.NN.Layers.Definitions.SoundLayer
-import CORALean.NN.Layers.Definitions.SoftmaxLayer
-import CORALean.NN.Layers.Definitions.TanhLayer
-import CORALean.NN.Layers.Theorems.ActivationPolySound
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.AvgPoolSound
-import CORALean.NN.Layers.Theorems.BatchNormSound
-import CORALean.NN.Layers.Theorems.ConvSound
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.LinearWithErrorSound
-import CORALean.NN.Layers.Theorems.MaxPoolSound
-import CORALean.NN.Layers.Theorems.ReluSound
-import CORALean.NN.Layers.Theorems.ReshapeSound
-import CORALean.NN.Layers.Theorems.SigmoidPolySound
-import CORALean.NN.Layers.Theorems.SigmoidSound
-import CORALean.NN.Layers.Theorems.SoftmaxSound
-import CORALean.NN.Layers.Theorems.TanhSound
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.NN.Layers.Definitions.ActivationLayer
+public import CORALean.NN.Layers.Definitions.ActivationPolyLayer
+public import CORALean.NN.Layers.Definitions.AvgPoolLayer
+public import CORALean.NN.Layers.Definitions.BatchNormLayer
+public import CORALean.NN.Layers.Definitions.ConvLayer
+public import CORALean.NN.Layers.Definitions.IdentityLayer
+public import CORALean.NN.Layers.Definitions.LinearLayer
+public import CORALean.NN.Layers.Definitions.LinearWithErrorLayer
+public import CORALean.NN.Layers.Definitions.MaxPoolLayer
+public import CORALean.NN.Layers.Definitions.ReluLayer
+public import CORALean.NN.Layers.Definitions.ReshapeLayer
+public import CORALean.NN.Layers.Definitions.SigmoidLayer
+public import CORALean.NN.Layers.Definitions.SigmoidPolyLayer
+public import CORALean.NN.Layers.Definitions.SoundLayer
+public import CORALean.NN.Layers.Definitions.SoftmaxLayer
+public import CORALean.NN.Layers.Definitions.TanhLayer
+public import CORALean.NN.Layers.Theorems.ActivationPolySound
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.AvgPoolSound
+public import CORALean.NN.Layers.Theorems.BatchNormSound
+public import CORALean.NN.Layers.Theorems.ConvSound
+public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.LinearWithErrorSound
+public import CORALean.NN.Layers.Theorems.MaxPoolSound
+public import CORALean.NN.Layers.Theorems.ReluSound
+public import CORALean.NN.Layers.Theorems.ReshapeSound
+public import CORALean.NN.Layers.Theorems.SigmoidPolySound
+public import CORALean.NN.Layers.Theorems.SigmoidSound
+public import CORALean.NN.Layers.Theorems.SoftmaxSound
+public import CORALean.NN.Layers.Theorems.TanhSound
+
+@[expose] public section
 
 /-!
 # Every standard layer kind, as an `Enclose` instance

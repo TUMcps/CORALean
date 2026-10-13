@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # `reachAdaptiveFloatChecked`, without a NaN

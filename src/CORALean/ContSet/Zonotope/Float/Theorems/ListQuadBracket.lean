@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ListQuadUp
-import CORALean.ContSet.Zonotope.Float.Operations.ListQuadDown
-import CORALean.ContSet.Zonotope.Float.Theorems.CubContractBracket
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ListQuadUp
+public import CORALean.ContSet.Zonotope.Float.Operations.ListQuadDown
+public import CORALean.ContSet.Zonotope.Float.Theorems.CubContractBracket
+
+@[expose] public section
 
 /-!
 # `listQuadDown` and `listQuadUp` bracket `listQuad`

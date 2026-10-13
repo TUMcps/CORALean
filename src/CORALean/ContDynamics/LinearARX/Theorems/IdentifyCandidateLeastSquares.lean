@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyCandidate
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
-import CORALean.Global.DmdCandidateLeastSquares
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyCandidate
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
+public import CORALean.Global.DmdCandidateLeastSquares
+
+@[expose] public section
 
 /-!
 # The full-rank DMD candidate is a least-squares fit of the ARX recursion

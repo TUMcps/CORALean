@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Definitions.NonlinearReset
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.HybridDynamics.Definitions.NonlinearReset
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.synchronize`

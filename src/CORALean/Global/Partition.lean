@@ -1,6 +1,10 @@
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Finset.Sort
-import Mathlib.Data.Matrix.Mul
+module
+
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Finset.Sort
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # Splitting an index type into parts

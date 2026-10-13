@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.observeEsoB`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.Linarith
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The centre need not lie in the set

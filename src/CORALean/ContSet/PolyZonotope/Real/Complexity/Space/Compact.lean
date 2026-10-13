@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+
+@[expose] public section
 
 /-!
 # How large `compact`'s result is

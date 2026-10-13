@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
+
+@[expose] public section
 
 /-!
 # The correction's coefficient

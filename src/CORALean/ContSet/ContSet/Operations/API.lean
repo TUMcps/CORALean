@@ -1,24 +1,26 @@
-import CORALean.ContSet.ContSet.Operations.Eq
-import CORALean.ContSet.ContSet.Operations.Ne
-import CORALean.ContSet.ContSet.Operations.Enclose
-import CORALean.ContSet.ContSet.Operations.Enlarge
-import CORALean.ContSet.ContSet.Operations.EnlargeScalar
-import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
-import CORALean.ContSet.ContSet.Operations.Minus
-import CORALean.ContSet.ContSet.Operations.MinusFromScalar
-import CORALean.ContSet.ContSet.Operations.MinusScalar
-import CORALean.ContSet.ContSet.Operations.MinusFrom
-import CORALean.ContSet.ContSet.Operations.ProjectHighDim
-import CORALean.ContSet.ContSet.Operations.Project
-import CORALean.ContSet.ContSet.Operations.Decompose
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneFloat
-import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
-import CORALean.ContSet.ContSet.Operations.Times
-import CORALean.ContSet.ContSet.Operations.Uminus
-import CORALean.ContSet.ContSet.Operations.Uplus
-import CORALean.ContSet.ContSet.Operations.Polygon
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
+module
+
+public import CORALean.ContSet.ContSet.Operations.Eq
+public import CORALean.ContSet.ContSet.Operations.Ne
+public import CORALean.ContSet.ContSet.Operations.Enclose
+public import CORALean.ContSet.ContSet.Operations.Enlarge
+public import CORALean.ContSet.ContSet.Operations.EnlargeScalar
+public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
+public import CORALean.ContSet.ContSet.Operations.Minus
+public import CORALean.ContSet.ContSet.Operations.MinusFromScalar
+public import CORALean.ContSet.ContSet.Operations.MinusScalar
+public import CORALean.ContSet.ContSet.Operations.MinusFrom
+public import CORALean.ContSet.ContSet.Operations.ProjectHighDim
+public import CORALean.ContSet.ContSet.Operations.Project
+public import CORALean.ContSet.ContSet.Operations.Decompose
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneFloat
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.ContSet.ContSet.Operations.Times
+public import CORALean.ContSet.ContSet.Operations.Uminus
+public import CORALean.ContSet.ContSet.Operations.Uplus
+public import CORALean.ContSet.ContSet.Operations.Polygon
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
 
 /-!
 # What the set interface computes

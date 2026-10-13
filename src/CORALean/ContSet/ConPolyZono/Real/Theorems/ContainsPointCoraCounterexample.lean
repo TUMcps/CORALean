@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPointCora
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPointCora
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
+
+@[expose] public section
 
 /-!
 # CORA's `conPolyZono/contains_` extends a numeric operand by ones

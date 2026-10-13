@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LmiAppend
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LmiAppend
+
+@[expose] public section
 
 /-!
 # The inequality of a sum holds exactly when both do

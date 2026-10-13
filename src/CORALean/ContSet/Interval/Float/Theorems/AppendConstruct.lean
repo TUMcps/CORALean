@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Append
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Append
+
+@[expose] public section
 
 /-!
 # `Interval.append` is the product box

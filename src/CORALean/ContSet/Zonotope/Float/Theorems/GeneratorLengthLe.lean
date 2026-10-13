@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorLength
-import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorLength
+public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+
+@[expose] public section
 
 /-!
 # The float generator length bounds the real one

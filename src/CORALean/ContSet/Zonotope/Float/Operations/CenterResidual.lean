@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.centerResidual`

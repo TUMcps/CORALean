@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
-import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
-import Mathlib.Analysis.Convex.Integral
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
+public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+public import Mathlib.Analysis.Convex.Integral
+
+@[expose] public section
 
 /-!
 # `Polygon.regionCenter` lies in every closed convex set holding the region

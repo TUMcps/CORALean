@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_Capsule
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_Capsule
+
+@[expose] public section
 
 /-!
 # A zonotope as a capsule, over a floating-point scalar

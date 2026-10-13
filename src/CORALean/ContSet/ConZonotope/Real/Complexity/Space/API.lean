@@ -1,8 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Complexity.Space.Intersection
-import CORALean.ContSet.ConZonotope.Real.Complexity.Space.Plus
-import CORALean.ContSet.ConZonotope.Real.Complexity.Space.Mtimes
-import CORALean.ContSet.ConZonotope.Real.Complexity.Space.LinComb
-import CORALean.ContSet.ConZonotope.Real.Complexity.Space.Reduce
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Space.Intersection
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Space.Plus
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Space.Mtimes
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Space.LinComb
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Space.Reduce
 
 /-!
 # What `ConZonotope` costs

@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.Global.EllipsotopeSupport
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.EllipsotopeSupport
+
+@[expose] public section
 
 /-!
 # An ellipsotope's distance from a zonotope, facet by facet

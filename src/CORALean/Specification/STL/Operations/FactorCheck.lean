@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.FactorStep
+module
+
+public import CORALean.Specification.STL.Operations.FactorStep
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2]: the model checking by unsafe factors

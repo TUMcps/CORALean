@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.ImageSubset
-import CORALean.NN.Theorems.SuffExplanationTransfer
+module
+
+public import CORALean.NN.Theorems.ImageSubset
+public import CORALean.NN.Theorems.SuffExplanationTransfer
+
+@[expose] public section
 
 /-!
 # Transfer at the loop's fixed point

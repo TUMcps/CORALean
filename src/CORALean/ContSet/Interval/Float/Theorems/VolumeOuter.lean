@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
+
+@[expose] public section
 
 /-!
 # `Interval.volume` bounds the Lebesgue volume

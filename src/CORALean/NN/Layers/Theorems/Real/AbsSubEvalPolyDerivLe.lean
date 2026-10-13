@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.AbsEvalPolyDerivSubCenterLe
+module
+
+public import CORALean.NN.Layers.Theorems.Real.AbsEvalPolyDerivSubCenterLe
+
+@[expose] public section
 
 /-!
 # The derivative bound a bracket for σ' buys

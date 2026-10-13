@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Aligned
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # A feasible point of (min-out) gives an aligned zonotope around `EW`

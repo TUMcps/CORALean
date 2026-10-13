@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
-import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
+public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+
+@[expose] public section
 
 /-!
 # `isIntersecting_` of CORA's cell branch is unsound at `==`

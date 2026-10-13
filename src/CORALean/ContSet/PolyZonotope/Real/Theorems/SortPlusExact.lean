@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MergeExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SortExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MergeExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortExact
+
+@[expose] public section
 
 /-!
 # `sortPlus` is the exact sum written differently

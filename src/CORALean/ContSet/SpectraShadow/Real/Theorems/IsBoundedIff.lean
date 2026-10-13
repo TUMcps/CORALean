@@ -1,9 +1,13 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.IsBounded
-import Mathlib.Analysis.Normed.Group.Bounded
-import Mathlib.Analysis.Normed.Group.Constructions
-import Mathlib.Analysis.Normed.Field.Basic
-import Mathlib.Topology.MetricSpace.Pseudo.Pi
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncNeTopIff
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.IsBounded
+public import Mathlib.Analysis.Normed.Group.Bounded
+public import Mathlib.Analysis.Normed.Group.Constructions
+public import Mathlib.Analysis.Normed.Field.Basic
+public import Mathlib.Topology.MetricSpace.Pseudo.Pi
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncNeTopIff
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.isBounded` is boundedness

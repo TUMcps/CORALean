@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SignedSums
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SignedSums
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # `Z±` of concatenated generators is the sum of the `Z±`

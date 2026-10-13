@@ -1,10 +1,14 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
-import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
-import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
-import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxGreedy`

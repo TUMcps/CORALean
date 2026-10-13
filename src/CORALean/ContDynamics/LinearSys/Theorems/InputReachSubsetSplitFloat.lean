@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputRemainderSubsetFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputTaylorSumTailSubsetFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputRemainderSubsetFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputTaylorSumTailSubsetFloat
+
+@[expose] public section
 
 /-!
 # The input's share over a step lies in `bPU_0 ⊕ bPU_∞`

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Operations.LeakyReluGapUp
+module
+
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Operations.LeakyReluGapUp
+
+@[expose] public section
 
 /-!
 # The leaky ReLU relaxation

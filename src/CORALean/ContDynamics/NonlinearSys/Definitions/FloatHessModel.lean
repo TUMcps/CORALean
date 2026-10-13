@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # What a float run is told about the field's second derivative

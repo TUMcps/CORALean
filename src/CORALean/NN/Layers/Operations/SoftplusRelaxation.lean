@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SoftplusEnclosure
-import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+module
+
+public import CORALean.NN.Layers.Operations.SoftplusEnclosure
+public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+
+@[expose] public section
 
 /-!
 # The softplus relaxation

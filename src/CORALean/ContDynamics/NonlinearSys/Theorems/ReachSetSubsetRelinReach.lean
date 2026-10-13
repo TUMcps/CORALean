@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
+
+@[expose] public section
 
 /-!
 # `relinReach` encloses the reachable set at the step boundaries

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MergeSorted
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SortSorted
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MergeSorted
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortSorted
+
+@[expose] public section
 
 /-!
 # `sortPlus` returns a sorted matrix

@@ -1,8 +1,12 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.Plus
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Plus
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.plus`'s counts

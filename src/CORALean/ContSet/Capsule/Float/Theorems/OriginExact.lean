@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.Origin
-import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Origin
+public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
+
+@[expose] public section
 
 /-!
 # `Capsule.origin` is exactly the origin

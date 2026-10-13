@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Cosh
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Cosh
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+public import Mathlib.Topology.Order.IntermediateValue
+
+@[expose] public section
 
 /-!
 # `Interval.cosh` is exactly the image under `Real.cosh`

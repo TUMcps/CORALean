@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.NominalBoundWeights
-import CORALean.ContSet.InflatedContSet.Operations.Bound
-import CORALean.ContSet.Interval.Float.Operations.BoundDot
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.NominalBoundWeights
+public import CORALean.ContSet.InflatedContSet.Operations.Bound
+public import CORALean.ContSet.Interval.Float.Operations.BoundDot
+
+@[expose] public section
 
 /-!
 # `ConZonotope.boundDotWeights`

@@ -1,4 +1,8 @@
-import CORALean.Global.BilliardReflect
+module
+
+public import CORALean.Global.BilliardReflect
+
+@[expose] public section
 
 /-!
 # The reflection law of the billiard

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # Raising a label raises the vertex sum

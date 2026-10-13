@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
+
+@[expose] public section
 
 /-!
 # The combined-input embedding's trajectories are the parametric system's

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
-import Mathlib.LinearAlgebra.Matrix.RowCol
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
+public import Mathlib.LinearAlgebra.Matrix.RowCol
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.dirFlow`: the flow heuristic

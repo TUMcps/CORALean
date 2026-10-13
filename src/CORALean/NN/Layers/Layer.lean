@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Data.Erased
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Data.Erased
+
+@[expose] public section
 
 /-!
 # What a layer is

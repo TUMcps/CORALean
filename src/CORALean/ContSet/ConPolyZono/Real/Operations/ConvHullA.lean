@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.convHullA`

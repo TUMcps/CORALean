@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.Prod1
-import CORALean.ContSet.Interval.Real.Theorems.TimesExact
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Prod1
+public import CORALean.ContSet.Interval.Real.Theorems.TimesExact
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `Interval.prod₁` is exactly the set of column products

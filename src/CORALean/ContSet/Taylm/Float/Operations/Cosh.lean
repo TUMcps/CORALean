@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
+
+@[expose] public section
 
 /-!
 # `Taylm.cosh`

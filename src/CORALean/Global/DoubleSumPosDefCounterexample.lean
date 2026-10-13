@@ -1,7 +1,11 @@
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.Order.Star.Real
+module
+
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.Order.Star.Real
+
+@[expose] public section
 
 /-!
 # The double-sum relaxation as printed

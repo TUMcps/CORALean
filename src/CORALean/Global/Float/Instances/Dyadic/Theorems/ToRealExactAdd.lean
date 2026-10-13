@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
-import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
+
+@[expose] public section
 
 /-!
 # Addition is exact

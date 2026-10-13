@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderInvSumPos
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLamSumPos
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderInvSumPos
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLamSumPos
+
+@[expose] public section
 
 /-!
 # Halder's step is continuous on the positive reals

@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Operations.MemFullspace
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Operations.MemFullspace
+
+@[expose] public section
 
 /-!
 # A zonotope as a constrained one, over a floating-point scalar

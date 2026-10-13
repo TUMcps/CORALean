@@ -1,5 +1,10 @@
-import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
-import Mathlib.Algebra.BigOperators.Ring.Finset
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A non-negative stretch comes out of the interval norm

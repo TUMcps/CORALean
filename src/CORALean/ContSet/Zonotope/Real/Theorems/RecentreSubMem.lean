@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Recentre
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # A member shifted by the centre is a member of the recentred zonotope

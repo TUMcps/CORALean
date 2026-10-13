@@ -1,6 +1,10 @@
-import CORALean.Global.PiLpHolder
-import Mathlib.Data.Matrix.Block
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.Global.PiLpHolder
+public import Mathlib.Data.Matrix.Block
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # The matrix inequality of the semidefinite relaxations bounds the bilinear form

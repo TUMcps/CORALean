@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
-import Mathlib.Analysis.Calculus.Deriv.Slope
-import Mathlib.Order.Filter.AtTopBot.Basic
+module
+
+public import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
+public import Mathlib.Analysis.Calculus.Deriv.Slope
+public import Mathlib.Order.Filter.AtTopBot.Basic
+
+@[expose] public section
 
 /-!
 # DeepZ's S-shape band has the least area of its family

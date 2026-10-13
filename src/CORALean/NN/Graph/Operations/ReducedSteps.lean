@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.MessagePassing
+module
+
+public import CORALean.NN.Graph.Operations.MessagePassing
+
+@[expose] public section
 
 /-!
 # Message passing on a shrinking node set, `reduceGNNForNode`'s network

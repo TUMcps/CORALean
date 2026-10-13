@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
-import CORALean.ContDynamics.NonlinParamSys.Definitions.PancakeScaled
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.PancakeScaled
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
+
+@[expose] public section
 
 /-!
 # `NonlinearSys.WithSteps.guardIntersectPancake`, the time-scaling guard intersection

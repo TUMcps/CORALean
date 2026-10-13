@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+
+@[expose] public section
 
 /-!
 # The backward reachable set under one fixed input trajectory

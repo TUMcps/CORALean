@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
-import CORALean.ContSet.Polygon.Real.Theorems.ConstructOfPieces
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
+public import CORALean.ContSet.Polygon.Real.Theorems.ConstructOfPieces
+
+@[expose] public section
 
 /-!
 # The polygon of a polynomial zonotope contains it

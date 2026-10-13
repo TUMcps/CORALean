@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.IsCentre
-import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IsCentre
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
+
+@[expose] public section
 
 /-!
 # The centre of a zonotope bundle lies in it

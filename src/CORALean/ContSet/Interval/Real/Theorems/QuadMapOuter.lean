@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.QuadMap
-import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.QuadMap
+public import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
+
+@[expose] public section
 
 /-!
 # `Interval.quadMap` encloses the quadratic map over the box

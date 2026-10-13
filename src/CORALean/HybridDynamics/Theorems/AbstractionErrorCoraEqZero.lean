@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Operations.AbstractionErrorCora
-import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.Radius
+module
+
+public import CORALean.HybridDynamics.Operations.AbstractionErrorCora
+public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+
+@[expose] public section
 
 /-!
 # CORA's printed error set collapses to `{0}` when `Aᵑ = 0`

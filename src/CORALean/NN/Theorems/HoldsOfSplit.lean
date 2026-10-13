@@ -1,6 +1,10 @@
-import CORALean.NN.Theorems.ImageSubset
-import CORALean.Specification.Theorems.HoldsOfOuter
-import CORALean.Specification.Theorems.HoldsIUnion
+module
+
+public import CORALean.NN.Theorems.ImageSubset
+public import CORALean.Specification.Theorems.HoldsOfOuter
+public import CORALean.Specification.Theorems.HoldsIUnion
+
+@[expose] public section
 
 /-!
 # Verification by splitting the input set

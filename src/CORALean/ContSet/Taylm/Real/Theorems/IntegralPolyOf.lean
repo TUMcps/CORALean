@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
-import CORALean.ContSet.Taylm.Real.Theorems.ContinuousPolyOf
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
+public import CORALean.ContSet.Taylm.Real.Theorems.ContinuousPolyOf
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # Integrating a term list in one variable

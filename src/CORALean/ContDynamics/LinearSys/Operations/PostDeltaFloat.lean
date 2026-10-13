@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.DeltaReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.DeltaReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+
+@[expose] public section
 
 /-!
 # `postΔ` in floats

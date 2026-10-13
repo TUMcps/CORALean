@@ -1,5 +1,9 @@
-import CORALean.ContSet.Equality.Float.Operations.NeBool
-import CORALean.ContSet.Equality.Float.Theorems.EqBoolSound
+module
+
+public import CORALean.ContSet.Equality.Float.Operations.NeBool
+public import CORALean.ContSet.Equality.Float.Theorems.EqBoolSound
+
+@[expose] public section
 
 /-!
 # `ContSet.neBool` holds of sets that differ

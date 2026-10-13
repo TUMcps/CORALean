@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # With Algorithm 1's `R`, `r_j = 0` does not make the partial solve exact

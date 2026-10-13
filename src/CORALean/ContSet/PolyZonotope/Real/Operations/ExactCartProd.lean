@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import Mathlib.LinearAlgebra.Prod
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import Mathlib.LinearAlgebra.Prod
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.exactCartProd`

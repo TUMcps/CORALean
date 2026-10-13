@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.LogCoef
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Analysis.SpecialFunctions.Log.Deriv
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.LogCoef
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
+
+@[expose] public section
 
 /-!
 # `logCoef` encloses the Taylor coefficients of `log`

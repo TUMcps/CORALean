@@ -1,4 +1,8 @@
-import Mathlib.Analysis.Calculus.FDeriv.Extend
+module
+
+public import Mathlib.Analysis.Calculus.FDeriv.Extend
+
+@[expose] public section
 
 /-!
 # A solution of `ẋ = V(x)` on `(0, t)` has the right derivative at `0`

@@ -1,6 +1,10 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
-import CORALean.Global.Float.Instances.IEEE.Operations.DivUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.LeRoundUp
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
+public import CORALean.Global.Float.Instances.IEEE.Operations.DivUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.LeRoundUp
+
+@[expose] public section
 
 /-!
 # Division, rounded up, never undershoots

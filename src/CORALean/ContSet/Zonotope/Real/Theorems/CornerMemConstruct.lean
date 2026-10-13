@@ -1,4 +1,8 @@
-import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+module
+
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+
+@[expose] public section
 
 /-!
 # A sign corner lies in its zonotope

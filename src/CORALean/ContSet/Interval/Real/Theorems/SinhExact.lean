@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import CORALean.ContSet.Interval.Real.Operations.Sinh
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+public import CORALean.ContSet.Interval.Real.Operations.Sinh
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+
+@[expose] public section
 
 /-!
 # `Interval.sinh` is exactly the image under `Real.sinh`

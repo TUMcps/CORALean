@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # Intervals over a floating-point scalar: the representation

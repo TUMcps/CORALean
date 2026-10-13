@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Definitions.GO
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContDynamics.LinearARX.Definitions.GO
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # The output GO parameters as interval matrices

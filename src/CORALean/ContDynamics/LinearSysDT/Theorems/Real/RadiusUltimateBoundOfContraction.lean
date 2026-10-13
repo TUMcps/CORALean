@@ -1,6 +1,10 @@
-import CORALean.Global.UltimateBoundOfRecurrence
-import Mathlib.Topology.Algebra.Order.LiminfLimsup
-import Mathlib.Topology.Algebra.Algebra
+module
+
+public import CORALean.Global.UltimateBoundOfRecurrence
+public import Mathlib.Topology.Algebra.Order.LiminfLimsup
+public import Mathlib.Topology.Algebra.Algebra
+
+@[expose] public section
 
 /-!
 # The ultimate bound of the P-radius of the corrected zonotopes

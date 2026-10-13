@@ -1,6 +1,10 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Not
-import CORALean.ContSet.EmptySet.Real.Instances
-import CORALean.ContSet.Fullspace.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Not
+public import CORALean.ContSet.EmptySet.Real.Instances
+public import CORALean.ContSet.Fullspace.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.not` is the complement

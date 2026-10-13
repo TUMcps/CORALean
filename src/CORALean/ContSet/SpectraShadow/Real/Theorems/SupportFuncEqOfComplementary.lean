@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeSupportBound
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeSupportBound
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.supportFunc_eq_of_complementary`

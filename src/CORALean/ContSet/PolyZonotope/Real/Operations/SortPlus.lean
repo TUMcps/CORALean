@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
-import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.sortPlus`

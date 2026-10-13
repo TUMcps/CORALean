@@ -1,7 +1,9 @@
-import CORALean.ContDynamics.LinProbSys.Definitions.API
-import CORALean.ContDynamics.LinProbSys.LinProbSys
-import CORALean.ContDynamics.LinProbSys.Operations.API
-import CORALean.ContDynamics.LinProbSys.Theorems.API
+module
+
+public import CORALean.ContDynamics.LinProbSys.Definitions.API
+public import CORALean.ContDynamics.LinProbSys.LinProbSys
+public import CORALean.ContDynamics.LinProbSys.Operations.API
+public import CORALean.ContDynamics.LinProbSys.Theorems.API
 
 /-!
 # Linear systems with white noise, collected

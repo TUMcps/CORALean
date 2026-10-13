@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Venum
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetIffZonotopeNormLe
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Venum
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetIffZonotopeNormLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # `venum` decides containment

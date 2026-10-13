@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+
+@[expose] public section
 
 /-!
 # The nominal part's coordinate reaches, summed, never exceed the float sum

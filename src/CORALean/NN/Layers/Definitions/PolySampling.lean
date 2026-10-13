@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.EvalPoly
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Data.Finset.Lattice.Fold
+module
+
+public import CORALean.NN.Layers.Definitions.EvalPoly
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Data.Finset.Lattice.Fold
+
+@[expose] public section
 
 /-!
 # The error a fit leaves, bounded by sampling over ℝ

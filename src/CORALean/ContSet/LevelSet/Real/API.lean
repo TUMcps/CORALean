@@ -1,8 +1,10 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
-import CORALean.ContSet.LevelSet.Real.Operations.API
-import CORALean.ContSet.LevelSet.Real.Theorems.API
-import CORALean.ContSet.LevelSet.Real.Instances
-import CORALean.ContSet.LevelSet.Real.Definitions.API
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import CORALean.ContSet.LevelSet.Real.Operations.API
+public import CORALean.ContSet.LevelSet.Real.Theorems.API
+public import CORALean.ContSet.LevelSet.Real.Instances
+public import CORALean.ContSet.LevelSet.Real.Definitions.API
 
 /-!
 # Level sets, collected

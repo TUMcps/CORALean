@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+
+@[expose] public section
 
 /-!
 # An inner approximation at a tolerance the caller names

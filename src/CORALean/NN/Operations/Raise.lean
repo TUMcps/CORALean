@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.Schedule
-import CORALean.NN.Layers.Layer
+module
+
+public import CORALean.NN.Definitions.Schedule
+public import CORALean.NN.Layers.Layer
+
+@[expose] public section
 
 /-!
 # Raising one layer's orders, neuron by neuron

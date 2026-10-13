@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinParamSys.Definitions.WithSteps
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.WithSteps
+
+@[expose] public section
 
 /-!
 # Every state a constant-parameter run reaches within the horizon

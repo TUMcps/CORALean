@@ -1,22 +1,26 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.QuadMap
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.QuadMap
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+
+@[expose] public section
 
 /-!
 # The float `quadMap` of a constrained polynomial zonotope encloses the image

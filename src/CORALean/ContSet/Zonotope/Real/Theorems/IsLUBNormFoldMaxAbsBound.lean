@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import Mathlib.Data.Finset.Fold
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import Mathlib.Data.Finset.Fold
+
+@[expose] public section
 
 /-!
 # A zonotope's largest sup norm, computed

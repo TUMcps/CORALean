@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
-import CORALean.Global.Float.Instances.IEEE.Operations.Le
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+public import CORALean.Global.Float.Instances.IEEE.Operations.Le
+
+@[expose] public section
 
 /-!
 # Comparison is exact

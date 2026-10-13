@@ -1,11 +1,15 @@
-import CORALean.ContSet.Taylm.Float.Operations.Atan
-import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
-import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
-import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import CORALean.Global.ElementaryDerivBounds
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Atan
+public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
+public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.Global.ElementaryDerivBounds
+
+@[expose] public section
 
 /-!
 # `Taylm.atan` encloses `atan ∘ f`

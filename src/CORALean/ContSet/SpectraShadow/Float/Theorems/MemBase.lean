@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.Base
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Base
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # The base spectrahedron holds every feasible `β`

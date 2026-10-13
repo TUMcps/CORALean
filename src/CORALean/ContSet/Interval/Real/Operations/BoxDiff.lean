@@ -1,7 +1,11 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Interval.Set.Defs
-import Mathlib.Data.List.MinMax
-import Mathlib.Data.List.FinRange
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Interval.Set.Defs
+public import Mathlib.Data.List.MinMax
+public import Mathlib.Data.List.FinRange
+
+@[expose] public section
 
 /-!
 # An inner approximation of the difference of two boxes

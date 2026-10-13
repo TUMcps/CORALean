@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CartProd
-import CORALean.ContSet.Zonotope.Real.Operations.CartProd
-import CORALean.Global.AppendLinear
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CartProd
+public import CORALean.ContSet.Zonotope.Real.Operations.CartProd
+public import CORALean.Global.AppendLinear
+
+@[expose] public section
 
 /-!
 # The nominal generators of `Zonotope.cartProd`

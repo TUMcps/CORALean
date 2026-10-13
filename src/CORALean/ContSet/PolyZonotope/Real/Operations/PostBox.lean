@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBox
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBox
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.postBox`: what a sub-box of the factors becomes under `post`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Exp
-import CORALean.ContSet.Interval.Real.Theorems.ExpExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Exp
+public import CORALean.ContSet.Interval.Real.Theorems.ExpExact
+
+@[expose] public section
 
 /-!
 # `Interval.exp` contains the image under the exponential

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
-import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
+public import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
+
+@[expose] public section
 
 /-!
 # An inverted pair of rows has opposite values

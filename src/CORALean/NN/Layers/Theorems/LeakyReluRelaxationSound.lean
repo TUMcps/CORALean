@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.LeakyReluRelaxation
-import CORALean.NN.Layers.Theorems.Real.LeakyReluBoundsOfSlope
+module
+
+public import CORALean.NN.Layers.Operations.LeakyReluRelaxation
+public import CORALean.NN.Layers.Theorems.Real.LeakyReluBoundsOfSlope
+
+@[expose] public section
 
 /-!
 # The leaky ReLU relaxation is sound

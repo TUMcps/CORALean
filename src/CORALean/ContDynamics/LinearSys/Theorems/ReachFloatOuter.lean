@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatTimePointOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatTimePointOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+
+@[expose] public section
 
 /-!
 # `reachFloat` holds the exact flow over every window

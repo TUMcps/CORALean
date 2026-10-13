@@ -1,5 +1,9 @@
-import CORALean.Global.CoeffNorm
-import CORALean.Global.PiLpHolder
+module
+
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.PiLpHolder
+
+@[expose] public section
 
 /-!
 # A functional is bounded by the ellipsotope norm and the dual norm of its pull-back

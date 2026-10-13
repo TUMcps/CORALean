@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.Bext
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Bext
+
+@[expose] public section
 
 /-!
 # The extended input matrices vanish outside the lags

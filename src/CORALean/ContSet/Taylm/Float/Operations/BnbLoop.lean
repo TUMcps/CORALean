@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.BnbStep
-import CORALean.ContSet.Taylm.Float.Operations.ListMax
-import CORALean.ContSet.Taylm.Float.Operations.ListMin
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BnbStep
+public import CORALean.ContSet.Taylm.Float.Operations.ListMax
+public import CORALean.ContSet.Taylm.Float.Operations.ListMin
+
+@[expose] public section
 
 /-!
 # `Taylm.bnbLoop`, over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `mtimes` does not change the generator count

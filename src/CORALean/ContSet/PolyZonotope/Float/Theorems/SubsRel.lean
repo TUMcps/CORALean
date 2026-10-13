@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsMul
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsMul
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsMul
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsMul
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # A term list brackets an exact one

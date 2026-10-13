@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Plus
-import CORALean.ContSet.Taylm.Real.Operations.Uminus
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Plus
+public import CORALean.ContSet.Taylm.Real.Operations.Uminus
+
+@[expose] public section
 
 /-!
 # `Taylm.minus`

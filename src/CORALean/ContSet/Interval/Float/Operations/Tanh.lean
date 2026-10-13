@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Hyperbolic
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.Global.Float.Hyperbolic
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.tanh`

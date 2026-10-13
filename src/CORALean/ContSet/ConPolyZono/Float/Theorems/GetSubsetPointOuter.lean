@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
-import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.getSubset`, one factor vector at a time

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+
+@[expose] public section
 
 /-!
 # A step's inner approximation lands in the exact reachable set

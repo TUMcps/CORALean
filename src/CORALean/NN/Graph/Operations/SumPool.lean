@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.NN.Graph.Operations.SumPoolLin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.NN.Graph.Operations.SumPoolLin
+
+@[expose] public section
 
 /-!
 # Summation pooling on a matrix polynomial zonotope

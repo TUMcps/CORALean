@@ -1,8 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Definitions.GO
-import CORALean.ContDynamics.LinearARX.LinearARX
-import CORALean.ContDynamics.LinearARX.Definitions.API
-import CORALean.ContDynamics.LinearARX.Operations.API
-import CORALean.ContDynamics.LinearARX.Theorems.API
+module
+
+public import CORALean.ContDynamics.LinearARX.Definitions.GO
+public import CORALean.ContDynamics.LinearARX.LinearARX
+public import CORALean.ContDynamics.LinearARX.Definitions.API
+public import CORALean.ContDynamics.LinearARX.Operations.API
+public import CORALean.ContDynamics.LinearARX.Theorems.API
 
 /-!
 # Linear ARX models, collected

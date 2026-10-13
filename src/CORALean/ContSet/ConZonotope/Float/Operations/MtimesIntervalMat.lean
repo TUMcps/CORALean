@@ -1,9 +1,13 @@
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
-import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
-import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
-import CORALean.ContSet.Interval.Float.Operations.CentreMat
-import CORALean.ContSet.Interval.Float.Operations.MatResidual
-import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+module
+
+public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
+public import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.MatResidual
+public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimesIntervalMat`, over a floating-point scalar

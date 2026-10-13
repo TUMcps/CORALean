@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Convex.Exposed
-import Mathlib.Analysis.Normed.Group.Basic
-import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic
-import Mathlib.LinearAlgebra.Dimension.Finrank
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Convex.Exposed
+public import Mathlib.Analysis.Normed.Group.Basic
+public import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+
+@[expose] public section
 
 /-!
 # The degree of a point of a zonotope

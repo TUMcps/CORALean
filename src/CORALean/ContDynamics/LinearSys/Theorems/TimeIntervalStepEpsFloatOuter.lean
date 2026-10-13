@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEpsFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEpsFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+
+@[expose] public section
 
 /-!
 # `timeIntervalStepEpsFloat` holds the flow over the step

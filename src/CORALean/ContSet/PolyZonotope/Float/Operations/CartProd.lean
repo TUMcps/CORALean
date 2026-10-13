@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
-import CORALean.ContSet.Interval.Float.Operations.Append
-import CORALean.Global.Float.GenBlockDiag
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+public import CORALean.ContSet.Interval.Float.Operations.Append
+public import CORALean.Global.Float.GenBlockDiag
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cartProd`, over a floating-point scalar

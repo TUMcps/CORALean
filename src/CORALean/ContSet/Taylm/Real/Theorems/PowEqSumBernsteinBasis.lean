@@ -1,12 +1,16 @@
-import Mathlib.Data.Nat.Choose.Sum
-import Mathlib.Algebra.BigOperators.Intervals
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinBasis
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.BigOperators.Ring.Finset
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.Positivity
+module
+
+public import Mathlib.Data.Nat.Choose.Sum
+public import Mathlib.Algebra.BigOperators.Intervals
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinBasis
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # A monomial in the Bernstein basis

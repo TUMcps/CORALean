@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
-import CORALean.ContSet.Zonotope.Float.Operations.MatPow
-import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+
+@[expose] public section
 
 /-!
 # `MatExp.expMatZonoTerm`, over a floating-point scalar

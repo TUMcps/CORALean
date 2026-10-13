@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.HRepLinSubset
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.HRepLinSubset
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+
+@[expose] public section
 
 /-!
 # A zonotope with stretched generators, cut out by its template's halfspaces

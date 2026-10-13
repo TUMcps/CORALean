@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Dyadic
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Dyadic
+
+@[expose] public section
 
 /-!
 # Native binary64: what a `Float` denotes

@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.CatMaxSegment
+module
+
+public import CORALean.NN.Operations.CatMaxSegment
+
+@[expose] public section
 
 /-!
 # Max pooling over a row of windows as a CAT function

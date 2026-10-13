@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Slab
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Slab
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # Halfspace descriptions over a floating-point scalar: the representation

@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import Mathlib.Logic.Equiv.Fin.Basic
-import Mathlib.LinearAlgebra.BilinearMap
-import Mathlib.Algebra.BigOperators.Ring.Finset
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import Mathlib.Logic.Equiv.Fin.Basic
+public import Mathlib.LinearAlgebra.BilinearMap
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # The pairing of `cubMap`

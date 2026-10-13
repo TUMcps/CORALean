@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.ConvHullOfList
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.ConvHullOfList
+
+@[expose] public section
 
 /-!
 # `Polygon.convHull` over floats

@@ -1,10 +1,14 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Subs
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialReplaceId
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Ring
-import Mathlib.Algebra.BigOperators.Pi
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialSplit
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Subs
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialReplaceId
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Ring
+public import Mathlib.Algebra.BigOperators.Pi
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialSplit
+
+@[expose] public section
 
 /-!
 # `subs` is the substitution

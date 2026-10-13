@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Empty
-import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Empty
+public import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
+
+@[expose] public section
 
 /-!
 # `Taylm.empty` denotes `∅`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # The empty set is not a point

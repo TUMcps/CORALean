@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrix
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrix
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # What a constant input contributes at every time of one step, at every member

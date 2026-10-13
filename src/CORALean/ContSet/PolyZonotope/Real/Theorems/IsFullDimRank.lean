@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.IsFullDimCora
-import Mathlib.Analysis.Normed.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsFullDimCora
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # Full dimension implies CORA's rank test

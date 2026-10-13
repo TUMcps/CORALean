@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.MtimesMatZonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.MtimesMatZonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mtimesMatZonotope` over-approximates every matrix it denotes

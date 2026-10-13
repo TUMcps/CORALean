@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.NN.Graph.Operations.MatMulBilin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.NN.Graph.Operations.MatMulBilin
+
+@[expose] public section
 
 /-!
 # One convolution step at a shared factor set

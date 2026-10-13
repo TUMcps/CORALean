@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.StripMat
-import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.StripMat
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersectStrip`

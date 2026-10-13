@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStepFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStepFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 1`'s loop, linearizing at the centre, in floats

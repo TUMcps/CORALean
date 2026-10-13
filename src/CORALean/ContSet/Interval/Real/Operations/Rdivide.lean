@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Recip
-import CORALean.ContSet.Interval.Real.Operations.Times
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Recip
+public import CORALean.ContSet.Interval.Real.Operations.Times
+
+@[expose] public section
 
 /-!
 # `Interval.rdivide`

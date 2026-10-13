@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Data.EReal.Operations
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Data.EReal.Operations
+
+@[expose] public section
 
 /-!
 # The Minkowski difference of an H-polytope, exactly

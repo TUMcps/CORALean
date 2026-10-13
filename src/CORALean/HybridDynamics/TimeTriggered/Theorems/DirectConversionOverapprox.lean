@@ -1,10 +1,14 @@
-import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
-import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
-import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
-import CORALean.HybridDynamics.TimeTriggered.Operations.DirectConversion
-import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
-import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsSplit
-import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsTimer
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
+public import CORALean.HybridDynamics.TimeTriggered.Operations.DirectConversion
+public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsSplit
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsTimer
+
+@[expose] public section
 
 /-!
 # The direct time-triggered conversion overapproximates

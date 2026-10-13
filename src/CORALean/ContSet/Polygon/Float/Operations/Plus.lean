@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Polygon
-import CORALean.ContSet.SetUnion.Operations.Plus
-import CORALean.ContSet.VPolytope.Float.Instances
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.SetUnion.Operations.Plus
+public import CORALean.ContSet.VPolytope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.plus`, over a floating-point scalar

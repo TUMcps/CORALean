@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.OutputEq.OutputEq
+module
+
+public import CORALean.ContDynamics.OutputEq.OutputEq
+
+@[expose] public section
 
 /-!
 # The parameters of a general output model

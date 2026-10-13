@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Normed.Group.Basic
-import Mathlib.Topology.MetricSpace.Contracting
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import Mathlib.Analysis.Normed.Group.Basic
+public import Mathlib.Topology.MetricSpace.Contracting
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # A perturbed image, inner-approximated by a fixed point

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerInputTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerInputTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # Every Peano–Baker term of an input is continuous in time

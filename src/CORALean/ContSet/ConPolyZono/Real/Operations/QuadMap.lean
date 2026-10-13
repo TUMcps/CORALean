@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
-import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
+public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.quadMap`

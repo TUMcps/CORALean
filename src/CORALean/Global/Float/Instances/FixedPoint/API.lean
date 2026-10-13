@@ -1,7 +1,9 @@
-import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
-import CORALean.Global.Float.Instances.FixedPoint.Operations.API
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.API
-import CORALean.Global.Float.Instances.FixedPoint.Instances
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.API
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.API
+public import CORALean.Global.Float.Instances.FixedPoint.Instances
 
 /-!
 # Decimal fixed-point numbers, collected

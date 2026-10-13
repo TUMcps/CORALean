@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
-import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.contains_iff_vertices`

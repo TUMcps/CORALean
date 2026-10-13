@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # The largest value of a linear function on an ellipsoid

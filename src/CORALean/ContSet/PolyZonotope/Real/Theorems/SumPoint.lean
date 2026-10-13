@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `sum` is the sum over shared factors, exactly

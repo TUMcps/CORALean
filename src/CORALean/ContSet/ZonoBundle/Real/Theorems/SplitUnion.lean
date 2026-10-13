@@ -1,8 +1,12 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Split
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Split
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # Splitting a bundle is exact

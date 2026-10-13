@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Le
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Le
+
+@[expose] public section
 
 /-!
 # `Interval.le` is sound

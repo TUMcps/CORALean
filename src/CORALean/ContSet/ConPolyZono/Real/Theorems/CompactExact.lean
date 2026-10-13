@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactConsExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactFactorsExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactGensExact
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactConsExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactFactorsExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactGensExact
+
+@[expose] public section
 
 /-!
 # Compaction loses nothing

@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.ImageSubset
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.NN.Theorems.ImageSubset
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # Verification: the check on the enclosed set answers for the network

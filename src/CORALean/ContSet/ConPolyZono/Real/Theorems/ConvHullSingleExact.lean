@@ -1,5 +1,9 @@
-import CORALean.Global.Caratheodory
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
+module
+
+public import CORALean.Global.Caratheodory
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
+
+@[expose] public section
 
 /-!
 # `convHullSingle` is the convex hull of one set

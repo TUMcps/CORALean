@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleProb
-import CORALean.Global.Tensor
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleProb
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # `[1, Cor. 4.7]`'s probability claim fails

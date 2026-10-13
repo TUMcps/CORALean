@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.MinusScalar
-import CORALean.ContSet.ContSet.Operations.Times
+module
+
+public import CORALean.ContSet.ContSet.Operations.MinusScalar
+public import CORALean.ContSet.ContSet.Operations.Times
+
+@[expose] public section
 
 /-!
 # CORA's `enlarge` at any scalar

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Transpose
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Transpose
+
+@[expose] public section
 
 /-!
 # `Interval.ctranspose`

@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.ActivationPoly
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPoly
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Plus
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
+module
+
+public import CORALean.NN.Layers.Definitions.ActivationPoly
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPoly
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Plus
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
+
+@[expose] public section
 
 /-!
 # No independent generator survives the exact polynomial activation layer

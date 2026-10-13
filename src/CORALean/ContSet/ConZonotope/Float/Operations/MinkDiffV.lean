@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Operations.Point
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `ConZonotope.minkDiffV` over a floating-point scalar

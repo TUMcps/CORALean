@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
-import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
+
+@[expose] public section
 
 /-!
 # An agreement row reads back to the exact layer's

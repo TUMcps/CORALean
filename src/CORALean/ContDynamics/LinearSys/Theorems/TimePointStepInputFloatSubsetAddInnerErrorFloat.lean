@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddExcess
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddExcess
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+
+@[expose] public section
 
 /-!
 # A float step lies in the exact held-input step, plus its budget

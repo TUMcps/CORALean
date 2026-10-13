@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.PartZonotope
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PartZonotopeOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PartZonotope
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PartZonotopeOuter
+
+@[expose] public section
 
 /-!
 # The nominal part of `partZonotope` is the exact layer's

@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.EvalPoly
+module
+
+public import CORALean.NN.Layers.Definitions.EvalPoly
+
+@[expose] public section
 
 /-!
 # Bounding a fit's derivative over ℝ

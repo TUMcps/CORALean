@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.mtimes`

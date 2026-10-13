@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Plant
-import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.Conform.Plant
+public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The deviation set: the reachable outputs, the nominal run subtracted

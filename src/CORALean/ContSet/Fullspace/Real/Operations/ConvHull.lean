@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Fullspace
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `Fullspace.convHull`

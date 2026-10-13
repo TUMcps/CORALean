@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.Pform
-import CORALean.Specification.STL.Definitions.Shift
+module
+
+public import CORALean.Specification.STL.Definitions.Pform
+public import CORALean.Specification.STL.Definitions.Shift
+
+@[expose] public section
 
 /-!
 # Signal temporal logic

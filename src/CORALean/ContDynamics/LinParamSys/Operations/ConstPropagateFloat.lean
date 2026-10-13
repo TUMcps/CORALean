@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+
+@[expose] public section
 
 /-!
 # What a constant input contributes up to the start of a window at every member, in floats

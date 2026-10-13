@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # CORA's `conZonotope/cubMap` loses the constraint on a factor it does not see

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Analysis.MeanInequalities
-import Mathlib.Analysis.Convex.Function
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Analysis.MeanInequalities
+public import Mathlib.Analysis.Convex.Function
+
+@[expose] public section
 
 /-!
 # The `n`-th root of the box volume is concave

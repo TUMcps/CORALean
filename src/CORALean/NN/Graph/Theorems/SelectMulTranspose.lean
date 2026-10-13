@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Theorems.SelectMul
+module
+
+public import CORALean.NN.Graph.Theorems.SelectMul
+
+@[expose] public section
 
 /-!
 # `select` multiplies out to row-and-column selection

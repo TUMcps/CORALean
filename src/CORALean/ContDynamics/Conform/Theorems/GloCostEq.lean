@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # [1, Lemma 2]: the cost is linear in the stretch factors

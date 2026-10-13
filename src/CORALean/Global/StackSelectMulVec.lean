@@ -1,4 +1,8 @@
-import CORALean.Global.StackSelect
+module
+
+public import CORALean.Global.StackSelect
+
+@[expose] public section
 
 /-!
 # The selection matrices pick their block

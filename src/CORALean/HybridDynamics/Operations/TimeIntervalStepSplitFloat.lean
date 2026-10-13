@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+
+@[expose] public section
 
 /-!
 # `Location.timeIntervalStepSplitFloat`

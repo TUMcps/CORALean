@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
-import CORALean.NN.Layers.Operations.SigmoidPolyDerivBound
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
+public import CORALean.NN.Layers.Operations.SigmoidPolyDerivBound
+
+@[expose] public section
 
 /-!
 # The polynomial relaxation at the sigmoid

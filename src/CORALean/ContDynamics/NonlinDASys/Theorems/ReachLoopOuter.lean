@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinPointCertifiesOfSubset
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachRepeatSpec
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinPointCertifiesOfSubset
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachRepeatSpec
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
+
+@[expose] public section
 
 /-!
 # The time loop of [1, Alg. 1] holds every certified run

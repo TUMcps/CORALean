@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Operations.OnePlusExpDown
-import CORALean.Global.Float.Log
+module
+
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Operations.OnePlusExpDown
+public import CORALean.Global.Float.Log
+
+@[expose] public section
 
 /-!
 # The softplus enclosure

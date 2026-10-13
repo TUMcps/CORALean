@@ -1,4 +1,8 @@
-import Mathlib.Data.List.NodupEquivFin
+module
+
+public import Mathlib.Data.List.NodupEquivFin
+
+@[expose] public section
 
 /-!
 # Ordering indices by a comparator

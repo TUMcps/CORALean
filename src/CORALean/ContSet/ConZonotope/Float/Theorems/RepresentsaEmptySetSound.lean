@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # A `true` from `ConZonotope.representsa_emptySet` proves the set empty

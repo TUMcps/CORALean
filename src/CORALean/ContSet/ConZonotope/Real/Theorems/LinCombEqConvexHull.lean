@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
-import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
-import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
-import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # `linComb` of two nonempty constrained zonotopes is the convex hull of the union

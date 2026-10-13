@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.BernsteinEntryBounds
-import CORALean.ContSet.Taylm.Float.Theorems.BernsteinStepMem
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BernsteinEntryBounds
+public import CORALean.ContSet.Taylm.Float.Theorems.BernsteinStepMem
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
+
+@[expose] public section
 
 /-!
 # A Bernstein entry lies in its bracket

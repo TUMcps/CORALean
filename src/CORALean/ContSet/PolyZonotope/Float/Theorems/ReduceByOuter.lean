@@ -1,10 +1,14 @@
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsDroppedLeDropRadius
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsDroppedLeDropRadius
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+
+@[expose] public section
 
 /-!
 # `reduceBy` over-approximates, dropping a chosen pair of blocks

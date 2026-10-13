@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadBilinApply
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadBilinApply
+
+@[expose] public section
 
 /-!
 # `varInputsFloat` holds every value the varying input part can take

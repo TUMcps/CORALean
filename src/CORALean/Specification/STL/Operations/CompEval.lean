@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.Composition
+module
+
+public import CORALean.Specification.STL.Definitions.Composition
+
+@[expose] public section
 
 /-!
 # Evaluating a composition

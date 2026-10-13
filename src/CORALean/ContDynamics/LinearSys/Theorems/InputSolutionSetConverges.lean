@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerConverges
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerSubsetInputSolutionSet
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetDistInner
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerConverges
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerSubsetInputSolutionSet
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetDistInner
+
+@[expose] public section
 
 /-!
 # The outer approximation converges to the exact particular solution

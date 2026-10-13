@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
-import Mathlib.Analysis.Convex.Combination
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+public import Mathlib.Analysis.Convex.Combination
+
+@[expose] public section
 
 /-!
 # The interpolated counterexample of [1, Alg. 3 (exits)]

@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
-import CORALean.NN.Layers.Theorems.Real.ActivationPolyRefinableConvergent
-import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
+module
+
+public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyRefinableConvergent
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
+
+@[expose] public section
 
 /-!
 # The sigmoid activation layer converges under refinement

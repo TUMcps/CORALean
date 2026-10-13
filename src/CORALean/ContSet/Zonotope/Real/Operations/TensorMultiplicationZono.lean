@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorMultiplication_zono`

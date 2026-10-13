@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStack
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStack
+
+@[expose] public section
 
 /-!
 # Props. 3 and 4 combined

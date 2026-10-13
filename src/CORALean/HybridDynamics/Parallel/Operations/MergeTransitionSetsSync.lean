@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
-import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
+public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
+
+@[expose] public section
 
 /-!
 # `mergeTransitionSetsSync`

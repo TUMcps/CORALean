@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.GroupSortChunkGroupSort
+module
+
+public import CORALean.NN.Layers.Theorems.GroupSortChunkGroupSort
+
+@[expose] public section
 
 /-!
 # Group sort permutes each chunk and sorts it

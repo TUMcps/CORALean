@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
-import CORALean.HybridDynamics.Parallel.Theorems.StackApply
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
+public import CORALean.HybridDynamics.Parallel.Theorems.StackApply
+
+@[expose] public section
 
 /-!
 # What the synchronized transition's reset does to a stack

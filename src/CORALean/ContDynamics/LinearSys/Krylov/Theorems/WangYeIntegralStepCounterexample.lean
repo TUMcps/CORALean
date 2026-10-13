@@ -1,5 +1,9 @@
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The integration step of Wang and Ye's Theorem 5.2 fails for a positive exponent

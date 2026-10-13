@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.Reduction
+module
+
+public import CORALean.NN.Definitions.Reduction
+
+@[expose] public section
 
 /-!
 # Doing nothing is a reduction

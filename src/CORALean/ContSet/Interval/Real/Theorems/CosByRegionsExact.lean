@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.CosByRegions
-import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.CosByRegions
+public import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
+public import Mathlib.Topology.Order.IntermediateValue
+
+@[expose] public section
 
 /-!
 # `Interval.cosByRegions` is exactly the cosine's range

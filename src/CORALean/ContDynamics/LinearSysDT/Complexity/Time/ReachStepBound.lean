@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.Asymptotics.Defs
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Asymptotics.Defs
+
+@[expose] public section
 
 /-!
 # A step of `reach` is `O(n ^ 3)`

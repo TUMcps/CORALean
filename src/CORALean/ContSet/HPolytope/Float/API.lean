@@ -1,7 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.ContSet.HPolytope.Float.Operations.API
-import CORALean.ContSet.HPolytope.Float.Theorems.API
-import CORALean.ContSet.HPolytope.Float.Instances
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.HPolytope.Float.Operations.API
+public import CORALean.ContSet.HPolytope.Float.Theorems.API
+public import CORALean.ContSet.HPolytope.Float.Instances
 
 /-!
 # Halfspace descriptions over a floating-point scalar, collected

@@ -1,7 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.ReachUnion
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.SimulateBoxFloat
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.ReachUnion
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.SimulateBoxFloat
 
 /-!
 # What `NeurNetContrSysDT` computes

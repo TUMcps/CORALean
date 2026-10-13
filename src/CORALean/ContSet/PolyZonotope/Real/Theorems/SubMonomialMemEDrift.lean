@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonposOfPow
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonposOfPow
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos
+
+@[expose] public section
 
 /-!
 # `eDrift` brackets the drift of one monomial from another

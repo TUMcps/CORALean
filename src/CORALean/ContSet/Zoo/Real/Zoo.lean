@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Taylm
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # Zoos: the representation

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.eDrift`

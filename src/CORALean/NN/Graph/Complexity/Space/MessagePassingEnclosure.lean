@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Operations.MessagePassingEnclosure
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.NN.Graph.Operations.MessagePassingEnclosure
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `GNN.messagePassingEnclosure`'s counts

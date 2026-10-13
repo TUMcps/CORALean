@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+
+@[expose] public section
 
 /-!
 # `isequal` of CORA's levelSet equates level sets that differ

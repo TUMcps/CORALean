@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.ConjSlopeHigh
-import CORALean.NN.Layers.Operations.ConjSlopeLow
+module
+
+public import CORALean.NN.Layers.Operations.ConjSlopeHigh
+public import CORALean.NN.Layers.Operations.ConjSlopeLow
+
+@[expose] public section
 
 /-!
 # The slope an affine conjugate stores

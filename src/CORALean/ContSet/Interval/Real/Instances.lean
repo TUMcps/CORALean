@@ -1,16 +1,20 @@
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.IsCompact
-import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
-import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
-import CORALean.ContSet.Interval.Real.Theorems.PlusExact
-import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.IsCompact
+public import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
+public import CORALean.ContSet.Interval.Real.Theorems.PlusExact
+public import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # What `Interval` instantiates

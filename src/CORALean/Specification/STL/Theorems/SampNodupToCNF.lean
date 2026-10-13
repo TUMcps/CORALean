@@ -1,6 +1,10 @@
-import Mathlib.Data.List.Nodup
-import CORALean.Specification.STL.Operations.SampToCNF
-import CORALean.Specification.STL.Theorems.ClauseNodupMerge
+module
+
+public import Mathlib.Data.List.Nodup
+public import CORALean.Specification.STL.Operations.SampToCNF
+public import CORALean.Specification.STL.Theorems.ClauseNodupMerge
+
+@[expose] public section
 
 /-!
 # The normal form has distinct powers

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputMemInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputMemInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+
+@[expose] public section
 
 /-!
 # The float-sampled `reach` contains a run over a bounded horizon, inputs and all

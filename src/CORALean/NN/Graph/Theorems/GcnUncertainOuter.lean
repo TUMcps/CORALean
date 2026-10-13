@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-import CORALean.NN.Graph.Theorems.ConvUncertainExact
-import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.NN.Graph.Theorems.ConvUncertainExact
+public import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
+
+@[expose] public section
 
 /-!
 # The uncertain-graph layer contains what the graph actually computes

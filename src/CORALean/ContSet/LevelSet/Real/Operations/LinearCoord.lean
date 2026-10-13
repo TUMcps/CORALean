@@ -1,6 +1,10 @@
-import CORALean.ContSet.LevelSet.Real.Definitions.GradEnclosure
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import CORALean.ContSet.Interval.Real.Operations.MulLo
+module
+
+public import CORALean.ContSet.LevelSet.Real.Definitions.GradEnclosure
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+
+@[expose] public section
 
 /-!
 # `LevelSet.linearCoord`

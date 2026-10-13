@@ -1,5 +1,9 @@
-import Mathlib.LinearAlgebra.Matrix.Gershgorin
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Gershgorin
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # H-matrices

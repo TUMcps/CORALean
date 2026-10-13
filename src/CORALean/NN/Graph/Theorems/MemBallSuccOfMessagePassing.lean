@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.Ball
-import CORALean.NN.Graph.Theorems.MessagePassingNeZero
+module
+
+public import CORALean.NN.Graph.Operations.Ball
+public import CORALean.NN.Graph.Theorems.MessagePassingNeZero
+
+@[expose] public section
 
 /-!
 # The lemma the locality proof actually runs on

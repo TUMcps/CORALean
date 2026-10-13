@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
-import CORALean.ContSet.HPolytope.Float.Operations.DualWeights
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
+public import CORALean.ContSet.HPolytope.Float.Operations.DualWeights
+
+@[expose] public section
 
 /-!
 # `ConZonotope.boundDot`: a float constrained zonotope answers a direction

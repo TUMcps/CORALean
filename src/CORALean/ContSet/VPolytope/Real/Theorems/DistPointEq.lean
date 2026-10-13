@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # `aux_distPolyPoint` is the Euclidean distance to the polytope

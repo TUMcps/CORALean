@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.Zonotope.Float.Operations.PairDiff
-import CORALean.ContSet.Zonotope.Float.Operations.PairSum
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.PairDiff
+public import CORALean.ContSet.Zonotope.Float.Operations.PairSum
+
+@[expose] public section
 
 /-!
 # `linComb`'s independent block, at one rounding

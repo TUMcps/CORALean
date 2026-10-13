@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `Zonotope.errUp`

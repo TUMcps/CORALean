@@ -1,5 +1,9 @@
-import CORALean.Global.GammaTest
-import CORALean.Global.HMatrix
+module
+
+public import CORALean.Global.GammaTest
+public import CORALean.Global.HMatrix
+
+@[expose] public section
 
 /-!
 # The inclusion (2) makes the interval Jacobian an H-matrix

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropStep
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropStep
+
+@[expose] public section
 
 /-!
 # `Zonotope.diffusionProp`

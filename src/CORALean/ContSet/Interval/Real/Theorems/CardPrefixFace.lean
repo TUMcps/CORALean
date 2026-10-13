@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import Mathlib.Data.Fintype.Pi
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Data.Fintype.Fin
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import Mathlib.Data.Fintype.Pi
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Data.Fintype.Fin
+
+@[expose] public section
 
 /-!
 # An s-face with `j` defined labels holds `2^(n-j)` vertices

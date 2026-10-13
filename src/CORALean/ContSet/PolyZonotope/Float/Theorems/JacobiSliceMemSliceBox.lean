@@ -1,6 +1,10 @@
-import CORALean.Global.JacobiSlice
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
+module
+
+public import CORALean.Global.JacobiSlice
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
+
+@[expose] public section
 
 /-!
 # The slice through a point lies in `sliceBox`

@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
-import CORALean.ContSet.Zonotope.Float.Theorems.CubMapCBetween
-import CORALean.ContSet.Zonotope.Float.Theorems.CubMapGClose
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Zonotope.Real.Theorems.CubMapCoeff
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
+public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapCBetween
+public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapGClose
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Zonotope.Real.Theorems.CubMapCoeff
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+
+@[expose] public section
 
 /-!
 # The cubic image of a point of `cubMapDep`'s operand, coefficient by coefficient

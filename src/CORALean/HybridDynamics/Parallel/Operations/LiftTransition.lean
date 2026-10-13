@@ -1,5 +1,9 @@
-import CORALean.Global.ExactScalar
-import CORALean.HybridDynamics.Parallel.Definitions.Lifting
+module
+
+public import CORALean.Global.ExactScalar
+public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
+
+@[expose] public section
 
 /-!
 # `liftTransition`

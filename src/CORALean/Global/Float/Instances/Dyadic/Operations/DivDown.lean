@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.QuotDown
-import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.QuotDown
+public import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
+
+@[expose] public section
 
 /-!
 # Division, rounded down

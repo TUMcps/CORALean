@@ -1,7 +1,9 @@
-import CORALean.Specification.STL.Definitions.API
-import CORALean.Specification.STL.Operations.API
-import CORALean.Specification.STL.STL
-import CORALean.Specification.STL.Theorems.API
+module
+
+public import CORALean.Specification.STL.Definitions.API
+public import CORALean.Specification.STL.Operations.API
+public import CORALean.Specification.STL.STL
+public import CORALean.Specification.STL.Theorems.API
 
 /-!
 # Signal temporal logic model checking, collected

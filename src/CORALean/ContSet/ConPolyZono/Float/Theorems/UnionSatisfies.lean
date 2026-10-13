@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Union
-import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionUpperHolds
-import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionLowerHolds
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.Union
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Union
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionUpperHolds
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionLowerHolds
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
+
+@[expose] public section
 
 /-!
 # The stored union's constraints hold wherever the exact union's do

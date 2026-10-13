@@ -1,4 +1,8 @@
-import Mathlib.Analysis.ODE.ExistUnique
+module
+
+public import Mathlib.Analysis.ODE.ExistUnique
+
+@[expose] public section
 
 /-!
 # Two solutions of a Lipschitz field from one point agree

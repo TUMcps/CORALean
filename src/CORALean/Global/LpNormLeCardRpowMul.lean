@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Analysis.MeanInequalities
+module
+
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Analysis.MeanInequalities
+
+@[expose] public section
 
 /-!
 # The `ℓ_p` norm is below `m^{1/p - 1/q}` times the `ℓ_q` norm

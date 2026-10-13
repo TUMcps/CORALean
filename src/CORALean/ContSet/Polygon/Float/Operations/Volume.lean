@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.Interval
-import CORALean.ContSet.Interval.Float.Operations.Volume
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Interval
+public import CORALean.ContSet.Interval.Float.Operations.Volume
+
+@[expose] public section
 
 /-!
 # `Polygon.volume`, over a floating-point scalar

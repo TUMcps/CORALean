@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateErrorEqHull
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LuenbergerErrorMemReachErrorSet
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateErrorEqHull
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.LuenbergerErrorMemReachErrorSet
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The reachability-based interval estimator holds the true state

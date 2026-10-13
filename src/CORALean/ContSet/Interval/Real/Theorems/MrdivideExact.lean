@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Mrdivide
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Mrdivide
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.mrdivide` is exactly the image under division by `d`

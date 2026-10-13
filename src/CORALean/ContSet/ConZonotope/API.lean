@@ -1,5 +1,7 @@
-import CORALean.ContSet.ConZonotope.Real.API
-import CORALean.ContSet.ConZonotope.Float.API
+module
+
+public import CORALean.ContSet.ConZonotope.Real.API
+public import CORALean.ContSet.ConZonotope.Float.API
 
 /-!
 # Constrained zonotopes, both layers

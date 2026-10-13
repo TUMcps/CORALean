@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `plus`'s generator count is the sum of the two incoming ones

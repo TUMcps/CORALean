@@ -1,6 +1,8 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachSet
-import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachUnionExact
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachOptions
+public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachUnionExact
 
 /-!
 # What `NeurNetContrSysDT` means

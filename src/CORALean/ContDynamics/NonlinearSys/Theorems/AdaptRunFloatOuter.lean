@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRunFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptStepFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
-import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRunFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptStepFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+
+@[expose] public section
 
 /-!
 # The adaptive float loop holds every run of the real system

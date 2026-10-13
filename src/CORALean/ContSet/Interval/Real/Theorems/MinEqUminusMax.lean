@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Min
-import CORALean.ContSet.Interval.Real.Operations.Max
-import CORALean.ContSet.Interval.Real.Operations.Uminus
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Min
+public import CORALean.ContSet.Interval.Real.Operations.Max
+public import CORALean.ContSet.Interval.Real.Operations.Uminus
+
+@[expose] public section
 
 /-!
 # `Interval.min` is `-max(-I, -J)`

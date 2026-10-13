@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.VPolytope
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.VPolytope
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.vPolytope` is the zonotope of possible means

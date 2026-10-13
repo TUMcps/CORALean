@@ -1,13 +1,15 @@
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
-import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
-import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
-import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
-import CORALean.ContSet.InflatedContSet.Theorems.Convex
-import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
-import CORALean.ContSet.InflatedContSet.Theorems.IsBounded
-import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
-import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
+public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
+public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
+public import CORALean.ContSet.InflatedContSet.Theorems.Convex
+public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+public import CORALean.ContSet.InflatedContSet.Theorems.IsBounded
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
 
 /-!
 # What the error box guarantees

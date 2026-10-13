@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
-import CORALean.Global.DropIdx
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+public import CORALean.Global.DropIdx
+
+@[expose] public section
 
 /-!
 # `ConZonotope.eliminate`

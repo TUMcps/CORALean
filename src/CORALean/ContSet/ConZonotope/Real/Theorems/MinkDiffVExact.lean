@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
-import CORALean.ContSet.VPolytope.Real.Theorems.MinkowskiDiffEqIInter
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+public import CORALean.ContSet.VPolytope.Real.Theorems.MinkowskiDiffEqIInter
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
+
+@[expose] public section
 
 /-!
 # `minkDiffV` is exactly the Minkowski difference

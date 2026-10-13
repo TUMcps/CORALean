@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.dropRadius`, over a floating-point scalar

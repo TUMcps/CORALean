@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Sum
-import CORALean.ContSet.Taylm.Real.Operations.Smul
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Sum
+public import CORALean.ContSet.Taylm.Real.Operations.Smul
+
+@[expose] public section
 
 /-!
 # `Taylm.mtimes`

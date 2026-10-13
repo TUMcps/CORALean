@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.SupportBoundEntrywiseAttained
-import CORALean.ContSet.Interval.Real.Operations.SupportBound
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.SupportBoundEntrywiseAttained
+public import CORALean.ContSet.Interval.Real.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # A nonempty box's support bound over `Vec ℝ n` is its support function

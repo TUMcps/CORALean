@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.TensorHDown
-import CORALean.ContSet.Zonotope.Float.Operations.TensorHUp
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.TensorHDown
+public import CORALean.ContSet.Zonotope.Float.Operations.TensorHUp
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorHDiff`

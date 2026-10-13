@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
-import Mathlib.Analysis.Normed.Module.Basic
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
+public import Mathlib.Analysis.Normed.Module.Basic
+
+@[expose] public section
 
 /-!
 # A bundle is not the whole space

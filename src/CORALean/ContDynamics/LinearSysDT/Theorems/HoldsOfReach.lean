@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A specification checked on the reachable set holds along every trajectory

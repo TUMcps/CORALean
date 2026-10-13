@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenEvenUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenEvenUp
+
+@[expose] public section
 
 /-!
 # `relaxExpEven`'s recentred centre, as stored

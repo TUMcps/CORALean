@@ -1,6 +1,10 @@
-import CORALean.ContSet.WithEmpty.WithEmpty
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
-import CORALean.ContSet.Ellipsoid.Real.Instances
+module
+
+public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
+public import CORALean.ContSet.Ellipsoid.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.andPoint`

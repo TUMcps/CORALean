@@ -1,6 +1,10 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.Global.MulVecInjectiveOfResidual
-import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.MulVecInjectiveOfResidual
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
+
+@[expose] public section
 
 /-!
 # `precondRegular` certifies an injective preconditioner

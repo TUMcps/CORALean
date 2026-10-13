@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Magnitude
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Magnitude
+
+@[expose] public section
 
 /-!
 # A point of an interval vector is within its magnitude of the origin

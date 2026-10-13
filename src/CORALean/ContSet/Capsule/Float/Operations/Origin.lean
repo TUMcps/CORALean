@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Float.Capsule
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+
+@[expose] public section
 
 /-!
 # `Capsule.origin` over a floating-point scalar

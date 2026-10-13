@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.IsDisjoint
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.IsDisjoint
+
+@[expose] public section
 
 /-!
 # A `true` from `Polygon.isDisjoint` proves the regions disjoint

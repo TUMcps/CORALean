@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Compact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Compact
+
+@[expose] public section
 
 /-!
 # `compact` loses nothing, exactly

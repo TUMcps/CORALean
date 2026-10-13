@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `ConZonotope.keepEmbed`

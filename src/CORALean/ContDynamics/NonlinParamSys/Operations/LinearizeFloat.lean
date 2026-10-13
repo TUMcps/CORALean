@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinParamSys.Definitions.LinearizedFloat
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.LinearizedFloat
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `NonlinParamSys.FloatModel.linearizeFloat`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Infimum
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Infimum
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # The infimum of a nonempty interval lies in it

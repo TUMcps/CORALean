@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Abs
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Abs
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
+
+@[expose] public section
 
 /-!
 # `Zonotope.abs` is exact on the nominal part

@@ -1,19 +1,23 @@
-import CORALean.HybridDynamics.Operations.TrajectoryError
-import CORALean.HybridDynamics.Definitions.SdcInput
-import CORALean.HybridDynamics.Operations.SdcFlow
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRemainderInterval
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
-import CORALean.ContSet.Zonotope.Real.Theorems.ScalarIntervalMulOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
+module
+
+public import CORALean.HybridDynamics.Operations.TrajectoryError
+public import CORALean.HybridDynamics.Definitions.SdcInput
+public import CORALean.HybridDynamics.Operations.SdcFlow
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRemainderInterval
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.ScalarIntervalMulOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
+
+@[expose] public section
 
 /-!
 # `E_err` encloses the error between the linear solution and the constant-derivative one

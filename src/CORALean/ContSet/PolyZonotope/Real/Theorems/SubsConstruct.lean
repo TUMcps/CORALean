@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsPoint
+
+@[expose] public section
 
 /-!
 # `subs` denotes the substituted set

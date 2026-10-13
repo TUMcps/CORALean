@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # A point's own coordinates satisfy its equality rows

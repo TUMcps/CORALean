@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
+
+@[expose] public section
 
 /-!
 # Naive vertex sampling's `False` is certain

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.MatPow
-import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MatPow
+public import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # `Interval.matPow` encloses every power of a matrix in the box

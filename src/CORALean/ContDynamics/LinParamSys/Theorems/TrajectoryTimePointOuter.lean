@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMemExpIntervalEnclosure
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMemExpIntervalEnclosure
+
+@[expose] public section
 
 /-!
 # Where an input-free time-varying run is at a time of its window

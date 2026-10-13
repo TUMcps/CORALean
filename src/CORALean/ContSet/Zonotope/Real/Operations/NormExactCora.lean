@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Zonotope.normExactCora`, CORA's `norm(Z,2,'exact')`

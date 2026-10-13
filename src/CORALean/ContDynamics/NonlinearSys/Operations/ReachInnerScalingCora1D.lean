@@ -1,6 +1,10 @@
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Interval.Set.Defs
+module
+
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Interval.Set.Defs
+
+@[expose] public section
 
 /-!
 # `reachInnerScalingCora1D`, CORA's `'scale'` inner approximation in one dimension

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinnormOffset
-import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinnormOffset
+public import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
+
+@[expose] public section
 
 /-!
 # The unit-row offset times the row length is the offset

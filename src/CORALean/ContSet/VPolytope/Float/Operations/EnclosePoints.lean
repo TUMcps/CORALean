@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Float.VPolytope
-import CORALean.ContSet.Interval.Float.Operations.Origin
+module
+
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+
+@[expose] public section
 
 /-!
 # `VPolytope.enclosePoints`

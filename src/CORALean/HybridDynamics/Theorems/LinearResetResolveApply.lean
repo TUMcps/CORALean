@@ -1,5 +1,10 @@
-import CORALean.HybridDynamics.Operations.LinearResetResolve
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.HybridDynamics.Operations.LinearResetResolve
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `LinearReset.resolve` applies to the closed-loop input

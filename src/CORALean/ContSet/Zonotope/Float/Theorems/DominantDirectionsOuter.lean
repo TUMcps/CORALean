@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.DominantDirections
-import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.DominantDirections
+public import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeOuter
+
+@[expose] public section
 
 /-!
 # The dominant directions enclose, when they are invertible

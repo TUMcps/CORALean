@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+
+@[expose] public section
 
 /-!
 # A box as a level set

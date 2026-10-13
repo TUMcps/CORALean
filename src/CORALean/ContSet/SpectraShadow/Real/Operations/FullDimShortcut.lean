@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.GFro
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.GFro
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.fullDimShortcut`

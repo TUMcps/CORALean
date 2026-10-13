@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrRun
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
-import CORALean.ContDynamics.Reach.Definitions.InputParams
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrRun
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+
+@[expose] public section
 
 /-!
 # `Alg. 1` line 18: the reachable set

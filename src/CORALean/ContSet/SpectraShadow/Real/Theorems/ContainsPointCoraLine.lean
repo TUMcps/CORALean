@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPointCora
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleNotMem
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPointCora
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleNotMem
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.containsPointCora_line`

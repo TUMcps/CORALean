@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The step's widened input holds every input the field can demand

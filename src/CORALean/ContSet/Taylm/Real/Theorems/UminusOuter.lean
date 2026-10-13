@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Uminus
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Uminus
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Taylm.uminus` encloses the negation

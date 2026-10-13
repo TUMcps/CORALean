@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # Representations that carry a rounding error

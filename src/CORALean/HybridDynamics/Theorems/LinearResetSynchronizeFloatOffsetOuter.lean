@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Operations.LinearResetSynchronizeFloat
-import CORALean.HybridDynamics.Operations.LinearResetSynchronize
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.HybridDynamics.Operations.LinearResetSynchronizeFloat
+public import CORALean.HybridDynamics.Operations.LinearResetSynchronize
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # The float `synchronize` encloses the real offset

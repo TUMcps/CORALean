@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionBoxFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputTaylorSumFloatError
-import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemIntervalInputRemainder
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionBoxFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputTaylorSumFloatError
+public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemIntervalInputRemainder
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `inputSolutionFloat` reaches no further than the exact input solution, plus a box

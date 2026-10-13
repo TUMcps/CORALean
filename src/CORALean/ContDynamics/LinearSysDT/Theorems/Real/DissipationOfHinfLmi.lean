@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
-import CORALean.Global.PosDefSchurComplement
-import CORALean.Global.ExistsPosLeOfPosDef
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
+public import CORALean.Global.PosDefSchurComplement
+public import CORALean.Global.ExistsPosLeOfPosDef
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The dissipation inequality of the `H∞` design

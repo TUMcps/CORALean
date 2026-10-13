@@ -1,11 +1,15 @@
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.MatMap
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulDownClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemMatGeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MatMapOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MatMap
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulDownClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemMatGeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MatMapOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+
+@[expose] public section
 
 /-!
 # `matMap` encloses the matrix product at shared factors, over a floating-point scalar

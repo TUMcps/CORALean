@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeOfQZero
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeOfQZero
+
+@[expose] public section
 
 /-!
 # CORA's polynomial-zonotope volume can be negative

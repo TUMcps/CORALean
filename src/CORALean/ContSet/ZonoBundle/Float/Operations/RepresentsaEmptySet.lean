@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConZonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConZonotope
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.representsa_emptySet`, over a floating-point scalar

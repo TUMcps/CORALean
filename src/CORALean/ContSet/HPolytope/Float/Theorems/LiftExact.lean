@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.HPolytope.Float.Operations.Lift
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecLiftCols
+module
+
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Operations.Lift
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecLiftCols
+
+@[expose] public section
 
 /-!
 # `HPolytope.lift_` is exact

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+
+@[expose] public section
 
 /-!
 # Sampling a continuous-time system in floats

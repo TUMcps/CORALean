@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
-import CORALean.ContSet.Taylm.Real.Theorems.SinOuter
-import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SinOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
+
+@[expose] public section
 
 /-!
 # `tan` as `sin / cos`

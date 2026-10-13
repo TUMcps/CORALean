@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
-import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
+public import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
+
+@[expose] public section
 
 /-!
 # A matrix polytope times a vertex set encloses every matrix's image

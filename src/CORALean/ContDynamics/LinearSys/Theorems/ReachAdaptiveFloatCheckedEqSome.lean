@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloatChecked
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloatChecked
+
+@[expose] public section
 
 /-!
 # A checked `reachAdaptiveFloat` that returns a result returns the unchecked one

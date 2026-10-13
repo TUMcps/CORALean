@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
-import CORALean.Global.Float.NoNaN
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
+public import CORALean.Global.Float.NoNaN
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `reachBoxFloatChecked`, without a NaN

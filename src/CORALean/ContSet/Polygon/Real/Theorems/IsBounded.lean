@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A polygon is bounded

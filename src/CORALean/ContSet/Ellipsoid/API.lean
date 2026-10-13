@@ -1,5 +1,7 @@
-import CORALean.ContSet.Ellipsoid.Real.API
-import CORALean.ContSet.Ellipsoid.Float.API
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.API
+public import CORALean.ContSet.Ellipsoid.Float.API
 
 /-!
 # Ellipsoids, collected

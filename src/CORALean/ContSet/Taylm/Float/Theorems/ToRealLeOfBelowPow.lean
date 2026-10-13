@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.BelowPow
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BelowPow
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # What `belowPow` certifies

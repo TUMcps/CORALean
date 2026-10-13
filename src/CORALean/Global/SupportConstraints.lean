@@ -1,6 +1,10 @@
-import Mathlib.Data.List.Range
-import Mathlib.Data.Finset.Basic
-import Mathlib.Order.Basic
+module
+
+public import Mathlib.Data.List.Range
+public import Mathlib.Data.Finset.Basic
+public import Mathlib.Order.Basic
+
+@[expose] public section
 
 /-!
 # `supportConstraints`

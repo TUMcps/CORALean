@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
+
+@[expose] public section
 
 /-!
 # The upward masked sum never undershoots the exact fibre sum

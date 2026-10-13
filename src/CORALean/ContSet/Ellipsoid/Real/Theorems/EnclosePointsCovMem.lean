@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `enclosePoints` with `'cov'` encloses the points

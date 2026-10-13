@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.BoundDot
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.BoundDot
+
+@[expose] public section
 
 /-!
 # `Polygon.boundDot` bounds the support function

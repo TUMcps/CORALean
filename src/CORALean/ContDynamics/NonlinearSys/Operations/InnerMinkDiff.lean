@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
+
+@[expose] public section
 
 /-!
 # `innerMinkDiff`, the inner Minkowski-difference algorithm

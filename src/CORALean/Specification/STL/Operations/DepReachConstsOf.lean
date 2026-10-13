@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.Specification.STL.Definitions.DepReachConsts
-import CORALean.Specification.STL.Operations.DepBloating
-import CORALean.Specification.STL.Operations.DepCurvatureF
-import CORALean.Specification.STL.Operations.DepCurvatureG
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.Specification.STL.Definitions.DepReachConsts
+public import CORALean.Specification.STL.Operations.DepBloating
+public import CORALean.Specification.STL.Operations.DepCurvatureF
+public import CORALean.Specification.STL.Operations.DepCurvatureG
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # Line 1 of the dependency preserving reachability algorithm

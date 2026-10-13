@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Real.Operations.LinComb
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.LinComb
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `VPolytope.linComb` encloses every segment between the two

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # A one-dimensional float ellipsoid lies in the hull of its vertices

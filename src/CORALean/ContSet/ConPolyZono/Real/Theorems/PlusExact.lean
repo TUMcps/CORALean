@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
-import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesPlusIff
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesPlusIff
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.plus` is exactly the Minkowski sum

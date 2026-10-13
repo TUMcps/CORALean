@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Real.Operations.Volume
-import CORALean.ContSet.Polygon.Real.Operations.PieceAreas
-import CORALean.ContSet.Polygon.Real.Theorems.VolumeLePieceAreas
-import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Volume
+public import CORALean.ContSet.Polygon.Real.Operations.PieceAreas
+public import CORALean.ContSet.Polygon.Real.Theorems.VolumeLePieceAreas
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # `Polygon.volume` equals the piece areas for null-overlapping pieces

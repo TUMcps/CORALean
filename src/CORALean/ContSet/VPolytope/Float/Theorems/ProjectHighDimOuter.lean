@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Float.Operations.ProjectHighDim
-import CORALean.ContSet.VPolytope.Real.Theorems.ProjectHighDimExact
-import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
-import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.ProjectHighDim
+public import CORALean.ContSet.VPolytope.Real.Theorems.ProjectHighDimExact
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
+public import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter
+
+@[expose] public section
 
 /-!
 # `VPolytope.projectHighDim` over-approximates the padded image

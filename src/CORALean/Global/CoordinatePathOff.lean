@@ -1,4 +1,8 @@
-import CORALean.Global.CoordinatePath
+module
+
+public import CORALean.Global.CoordinatePath
+
+@[expose] public section
 
 /-!
 # Moving only some coordinates from the centre of a box

@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.BranchHolds
-import CORALean.Specification.STL.Theorems.ShiftShift
+module
+
+public import CORALean.Specification.STL.Definitions.BranchHolds
+public import CORALean.Specification.STL.Theorems.ShiftShift
+
+@[expose] public section
 
 /-!
 # A raised power reads the shifted trace

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # Every scaled row is within the reduced row's reach over the domain

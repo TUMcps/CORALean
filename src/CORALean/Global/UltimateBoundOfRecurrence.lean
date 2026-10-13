@@ -1,4 +1,8 @@
-import Mathlib.Analysis.SpecificLimits.Basic
+module
+
+public import Mathlib.Analysis.SpecificLimits.Basic
+
+@[expose] public section
 
 /-!
 # The ultimate bound of a contracting recurrence

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # The GO parameters of a nonlinear discrete-time system as intervals

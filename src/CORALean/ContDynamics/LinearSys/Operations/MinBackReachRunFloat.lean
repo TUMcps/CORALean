@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInitFloat
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStepFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 6-13 in floats: the loop

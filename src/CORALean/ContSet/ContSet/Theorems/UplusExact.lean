@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.Uplus
+module
+
+public import CORALean.ContSet.ContSet.Operations.Uplus
+
+@[expose] public section
 
 /-!
 # `uplus` is exact

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
-import CORALean.ContSet.ConPolyZono.Float.Operations.LongestFactor
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
+public import CORALean.ContSet.ConPolyZono.Float.Operations.LongestFactor
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.splitLongestGen`, over a floating-point scalar

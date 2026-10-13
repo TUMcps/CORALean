@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Definitions.Invariant
-import CORALean.HybridDynamics.Theorems.FlowOuterSplit
-import CORALean.HybridDynamics.Theorems.JumpOuter
+module
+
+public import CORALean.HybridDynamics.Definitions.Invariant
+public import CORALean.HybridDynamics.Theorems.FlowOuterSplit
+public import CORALean.HybridDynamics.Theorems.JumpOuter
+
+@[expose] public section
 
 /-!
 # `Invariant` from the enclosures, cut down by the location's invariant

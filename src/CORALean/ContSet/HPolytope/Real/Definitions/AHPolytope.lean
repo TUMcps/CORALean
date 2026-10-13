@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # AH-polytopes

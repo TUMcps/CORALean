@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorPredictSet
-import CORALean.ContDynamics.LinearSysDT.Definitions.MeasurementSet
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorPredictSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.MeasurementSet
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The intersection zonotope holds the exact uncertain set

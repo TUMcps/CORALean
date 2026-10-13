@@ -1,5 +1,9 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Lattice
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Lattice
+
+@[expose] public section
 
 /-!
 # `abstrErrAdaptiveCora1D`, CORA's `priv_abstractionError_adaptive` in one dimension

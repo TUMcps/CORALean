@@ -1,14 +1,18 @@
-import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
-import CORALean.ContSet.Capsule.Real.Theorems.Convex
-import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
-import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
-import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
-import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
-import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.Convex
+public import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
+public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # What `Capsule` instantiates

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
+
+@[expose] public section
 
 /-!
 # The composed set is the set whose every subsystem part is in place

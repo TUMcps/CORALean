@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.ExploreBNVisits
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExploreBNVisits
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # What line 6 of `EXPLORE BN` computes

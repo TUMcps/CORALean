@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # A paired-difference column brackets its exact value between the two directed roundings

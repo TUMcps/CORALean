@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
-import Mathlib.Data.Fintype.BigOperators
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
+public import Mathlib.Data.Fintype.BigOperators
+
+@[expose] public section
 
 /-!
 # The monomial of a block-diagonal column

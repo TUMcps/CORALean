@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDelta
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDelta
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # The last entry of the first column of `e^{σsT_m}`, for a Hessenberg `T_m` with `W(σT_m) ⊆ ℂ⁻`

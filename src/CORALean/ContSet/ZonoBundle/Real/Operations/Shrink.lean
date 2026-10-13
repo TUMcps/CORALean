@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.shrink`

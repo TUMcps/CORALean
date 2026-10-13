@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+module
+
+public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+
+@[expose] public section
 
 /-!
 # One sampled run of a nonlinear ARX model

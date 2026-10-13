@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Operations.FeedBox
-import CORALean.ContDynamics.LinearARX.Operations.Feed
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.FeedBox
+public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The real input feed lies in the float feed box

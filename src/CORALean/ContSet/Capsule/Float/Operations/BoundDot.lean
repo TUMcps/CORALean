@@ -1,7 +1,11 @@
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.ContSet.Capsule.Real.Operations.SupportBound
-import CORALean.Global.Float.EuclideanNorm
-import CORALean.Global.Float.FloatBound
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.Capsule.Real.Operations.SupportBound
+public import CORALean.Global.Float.EuclideanNorm
+public import CORALean.Global.Float.FloatBound
+
+@[expose] public section
 
 /-!
 # A capsule answers a direction in floats, without a linear program or a square root

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Operations.TruncatedVertices
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.TruncatedVertices
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+
+@[expose] public section
 
 /-!
 # The full space is the union of its truncated vertex hulls

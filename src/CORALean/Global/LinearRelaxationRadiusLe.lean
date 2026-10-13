@@ -1,10 +1,14 @@
-import CORALean.Global.CoeffNorm
-import CORALean.Global.PiLpNormToLpLeOfAbsLe
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Data.Matrix.Mul
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.PiLpNormToLpLeOfAbsLe
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # The linear relaxation bounds the containment radius

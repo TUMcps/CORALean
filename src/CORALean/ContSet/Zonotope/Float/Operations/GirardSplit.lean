@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.Global.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.Global.Sort
+
+@[expose] public section
 
 /-!
 # `Zonotope.girardSplit`

@@ -1,40 +1,42 @@
-import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOFloatOuter
-import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOOutput
-import CORALean.ContDynamics.LinearARX.Theorems.SumRangeFloatMem
-import CORALean.ContDynamics.LinearARX.Theorems.FeedMemFeedBox
-import CORALean.ContDynamics.LinearARX.Theorems.Alg1EqReachWindow
-import CORALean.ContDynamics.LinearARX.Theorems.Alg2EqReachWindow
-import CORALean.ContDynamics.LinearARX.Theorems.Alg2NeReachWindow
-import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLe
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLt
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeSuccIndex
-import CORALean.ContDynamics.LinearARX.Theorems.EqSimulate
-import CORALean.ContDynamics.LinearARX.Theorems.OfObserverStep
-import CORALean.ContDynamics.LinearARX.Theorems.ReachOutEqImageBlock
-import CORALean.ContDynamics.LinearARX.Theorems.ReachOutEqSimulate
-import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowEq
-import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowNeProd
-import CORALean.ContDynamics.LinearARX.Theorems.SsReachEq
-import CORALean.ContDynamics.LinearARX.Theorems.StackEqTvp
-import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
-import CORALean.ContDynamics.LinearARX.Theorems.OutputEqMulVec
-import CORALean.ContDynamics.LinearARX.Theorems.OutputOuter
-import CORALean.ContDynamics.LinearARX.Theorems.OutputPowInputMat
-import CORALean.ContDynamics.LinearARX.Theorems.ReachOuter
-import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemReach
-import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemSimulateBoxFloat
-import CORALean.ContDynamics.LinearARX.Theorems.SimulateTrajectory
-import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
-import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
-import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
-import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
-import CORALean.ContDynamics.LinearARX.Theorems.OfCharpolyStep
-import CORALean.ContDynamics.LinearARX.Theorems.IdentifyBlocksMulVec
-import CORALean.ContDynamics.LinearARX.Theorems.IdentifyCandidateFit
-import CORALean.ContDynamics.LinearARX.Theorems.IdentifyCandidateLeastSquares
-import CORALean.ContDynamics.LinearARX.Theorems.IdentifyLeCandidate
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOFloatOuter
+public import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOOutput
+public import CORALean.ContDynamics.LinearARX.Theorems.SumRangeFloatMem
+public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemFeedBox
+public import CORALean.ContDynamics.LinearARX.Theorems.Alg1EqReachWindow
+public import CORALean.ContDynamics.LinearARX.Theorems.Alg2EqReachWindow
+public import CORALean.ContDynamics.LinearARX.Theorems.Alg2NeReachWindow
+public import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLe
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLt
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSuccIndex
+public import CORALean.ContDynamics.LinearARX.Theorems.EqSimulate
+public import CORALean.ContDynamics.LinearARX.Theorems.OfObserverStep
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachOutEqImageBlock
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachOutEqSimulate
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowEq
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowNeProd
+public import CORALean.ContDynamics.LinearARX.Theorems.SsReachEq
+public import CORALean.ContDynamics.LinearARX.Theorems.StackEqTvp
+public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
+public import CORALean.ContDynamics.LinearARX.Theorems.OutputEqMulVec
+public import CORALean.ContDynamics.LinearARX.Theorems.OutputOuter
+public import CORALean.ContDynamics.LinearARX.Theorems.OutputPowInputMat
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachOuter
+public import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemReach
+public import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemSimulateBoxFloat
+public import CORALean.ContDynamics.LinearARX.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
+public import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
+public import CORALean.ContDynamics.LinearARX.Theorems.OfCharpolyStep
+public import CORALean.ContDynamics.LinearARX.Theorems.IdentifyBlocksMulVec
+public import CORALean.ContDynamics.LinearARX.Theorems.IdentifyCandidateFit
+public import CORALean.ContDynamics.LinearARX.Theorems.IdentifyCandidateLeastSquares
+public import CORALean.ContDynamics.LinearARX.Theorems.IdentifyLeCandidate
 
 /-!
 # What the conversion guarantees

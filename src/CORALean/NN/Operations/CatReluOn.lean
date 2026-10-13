@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.Cat
+module
+
+public import CORALean.NN.Definitions.Cat
+
+@[expose] public section
 
 /-!
 # ReLU as a CAT function

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
+
+@[expose] public section
 
 /-!
 # The Euclidean norm of a point of an ellipsoid is at most `Ellipsoid.normUb`

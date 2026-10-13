@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.CalcBasisBox
+module
+
+public import CORALean.HybridDynamics.Operations.CalcBasisBox
+
+@[expose] public section
 
 /-!
 # The `'box'` basis is orthogonal

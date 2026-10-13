@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # The convex hull of two zonotopes lies in their `linComb`

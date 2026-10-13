@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.append`

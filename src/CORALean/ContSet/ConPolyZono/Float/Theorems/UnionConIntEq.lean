@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConInt
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.FieldSimp
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConInt
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.FieldSimp
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
+
+@[expose] public section
 
 /-!
 # The integer selector row is the exact one, scaled

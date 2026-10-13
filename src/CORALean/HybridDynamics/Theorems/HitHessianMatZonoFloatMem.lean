@@ -1,10 +1,14 @@
-import CORALean.HybridDynamics.Operations.HitHessianMatZono
-import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+module
+
+public import CORALean.HybridDynamics.Operations.HitHessianMatZono
+public import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # The float matrix zonotope holds `Q⁽ⁱ⁾` at the centre's factors

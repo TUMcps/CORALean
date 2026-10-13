@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.innerSpecial`

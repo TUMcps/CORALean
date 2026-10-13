@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
+
+@[expose] public section
 
 /-!
 # `Zonotope.ofEchelon_reduceScottStep_h`

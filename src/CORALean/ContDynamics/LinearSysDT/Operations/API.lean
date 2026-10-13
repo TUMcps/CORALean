@@ -1,52 +1,54 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.BackReachExists
-import CORALean.ContDynamics.LinearSysDT.Operations.BackReachForall
-import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGO
-import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGOFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReducedOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachLTVCora
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
-import CORALean.ContDynamics.LinearSysDT.Operations.ErrMatFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagationFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
-import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStep
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalState
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStateFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStepFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA1D
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB1D
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB
-import CORALean.ContDynamics.LinearSysDT.Operations.Identify
-import CORALean.ContDynamics.LinearSysDT.Operations.IdentifyCandidate
-import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
-import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
-import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
-import CORALean.ContDynamics.LinearSysDT.Operations.ConformAdd
-import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateStep
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateState
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimate
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserver
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverCoord
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
-import CORALean.ContDynamics.LinearSysDT.Operations.GlmReach
-import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachSpecCora
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.BackReachExists
+public import CORALean.ContDynamics.LinearSysDT.Operations.BackReachForall
+public import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGO
+public import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGOFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReducedOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachLTVCora
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
+public import CORALean.ContDynamics.LinearSysDT.Operations.ErrMatFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagationFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStep
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalState
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStateFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStepFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA1D
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB1D
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB
+public import CORALean.ContDynamics.LinearSysDT.Operations.Identify
+public import CORALean.ContDynamics.LinearSysDT.Operations.IdentifyCandidate
+public import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
+public import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
+public import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
+public import CORALean.ContDynamics.LinearSysDT.Operations.ConformAdd
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateStep
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateState
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimate
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserver
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverCoord
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
+public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReach
+public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSpecCora
 
 /-!
 # What `LinearSysDT` computes

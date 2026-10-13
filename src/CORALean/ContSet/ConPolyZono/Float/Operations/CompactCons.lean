@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsSpec
-import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
-import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
-import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
-import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsSpec
+public import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
+public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
+public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.compactCons`

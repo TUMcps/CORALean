@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
-import CORALean.NN.Graph.Operations.GcnShared
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
+public import CORALean.NN.Graph.Operations.GcnShared
+
+@[expose] public section
 
 /-!
 # The graph convolutional layer at an uncertain graph

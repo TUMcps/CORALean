@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.VPolytope_to_HPolytope
-import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
-import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+module
+
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+
+@[expose] public section
 
 /-!
 # `VPolytope.intersectionH`

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # The box a layer's fits leave

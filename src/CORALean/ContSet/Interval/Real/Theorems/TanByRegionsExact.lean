@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.TanByRegions
-import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
-import CORALean.ContSet.Interval.Real.Theorems.TanUnboundedOfPole
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.TanByRegions
+public import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
+public import CORALean.ContSet.Interval.Real.Theorems.TanUnboundedOfPole
+public import Mathlib.Topology.Order.IntermediateValue
+
+@[expose] public section
 
 /-!
 # `Interval.tanByRegions` is the tangent's range, or its hull `]-∞, ∞[`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.minkDiffPoint` encloses the translate

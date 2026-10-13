@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.HalveBox
-import CORALean.ContSet.Taylm.Real.Definitions.Box
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
+public import CORALean.ContSet.Taylm.Real.Definitions.Box
+
+@[expose] public section
 
 /-!
 # The two halves cover the box

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationCoeff
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationCoeff
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorMultiplication` encloses the tensor images, over a floating-point scalar

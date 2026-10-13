@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MrdivideOuter
-import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasisInv
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MrdivideOuter
+public import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasisInv
+
+@[expose] public section
 
 /-!
 # The box holds the inverse of the rotation

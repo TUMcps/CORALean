@@ -1,12 +1,16 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapDep
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapCBetween
-import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapGClose
-import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapDep
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapCBetween
+public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapGClose
+public import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+
+@[expose] public section
 
 /-!
 # The quadratic image of the nominal set, on the factors of `quadMapDep`

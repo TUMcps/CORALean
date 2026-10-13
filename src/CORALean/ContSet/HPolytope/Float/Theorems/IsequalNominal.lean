@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Isequal
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # `HPolytope.isequal` is sound

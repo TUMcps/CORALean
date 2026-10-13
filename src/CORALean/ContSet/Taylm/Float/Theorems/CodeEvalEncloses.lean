@@ -1,10 +1,14 @@
-import CORALean.ContSet.Taylm.Float.Operations.CodeEval
-import CORALean.ContSet.Taylm.Float.Theorems.IntrinsicEncloses
-import CORALean.ContSet.Taylm.Real.Operations.CodeListMap
-import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
-import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
-import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
-import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.CodeEval
+public import CORALean.ContSet.Taylm.Float.Theorems.IntrinsicEncloses
+public import CORALean.ContSet.Taylm.Real.Operations.CodeListMap
+public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
+
+@[expose] public section
 
 /-!
 # The Taylor model enclosure theorem

@@ -1,6 +1,8 @@
-import CORALean.Global.Float.Instances.Binary64.Theorems.AddDownLeAdd
-import CORALean.Global.Float.Instances.Binary64.Theorems.DivDownLeDiv
-import CORALean.Global.Float.Instances.Binary64.Theorems.MulDownLeMul
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Theorems.AddDownLeAdd
+public import CORALean.Global.Float.Instances.Binary64.Theorems.DivDownLeDiv
+public import CORALean.Global.Float.Instances.Binary64.Theorems.MulDownLeMul
 
 /-!
 # What binary64 is proved to do

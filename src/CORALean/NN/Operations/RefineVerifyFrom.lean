@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.EncloseReduceAt
+module
+
+public import CORALean.NN.Operations.EncloseReduceAt
+
+@[expose] public section
 
 /-!
 # The refinement loop from a given order pattern

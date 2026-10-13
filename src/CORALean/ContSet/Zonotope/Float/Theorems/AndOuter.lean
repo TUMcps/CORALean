@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.And
-import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.And
+public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+
+@[expose] public section
 
 /-!
 # The float `'conZonotope'` intersection of zonotopes encloses the intersection

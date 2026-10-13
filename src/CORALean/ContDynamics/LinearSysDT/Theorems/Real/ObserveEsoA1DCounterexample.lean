@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA1D
-import Mathlib.Tactic.NormNum.RealSqrt
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA1D
+public import Mathlib.Tactic.NormNum.RealSqrt
+
+@[expose] public section
 
 /-!
 # CORA's observer `ESO-A` misses the true state

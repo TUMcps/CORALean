@@ -1,12 +1,14 @@
-import CORALean.ContDynamics.Conform.Definitions.Conformant
-import CORALean.ContDynamics.Conform.Definitions.DevSet
-import CORALean.ContDynamics.Conform.Definitions.Glo
-import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
-import CORALean.ContDynamics.Conform.Definitions.PassesBF
-import CORALean.ContDynamics.Conform.Definitions.ReachOut
-import CORALean.ContDynamics.Conform.Definitions.State
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.Conformant
+public import CORALean.ContDynamics.Conform.Definitions.DevSet
+public import CORALean.ContDynamics.Conform.Definitions.Glo
+public import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
+public import CORALean.ContDynamics.Conform.Definitions.PassesBF
+public import CORALean.ContDynamics.Conform.Definitions.ReachOut
+public import CORALean.ContDynamics.Conform.Definitions.State
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
 
 /-!
 # What a reachset-conformance statement is about

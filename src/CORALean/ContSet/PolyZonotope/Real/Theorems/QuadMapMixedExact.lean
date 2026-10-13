@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CartProdExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CartProdExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+
+@[expose] public section
 
 /-!
 # `quadMapMixed` is exactly the pairing over two independent ranges

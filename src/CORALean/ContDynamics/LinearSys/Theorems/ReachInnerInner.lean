@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
-import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetAddError
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetAddError
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # An inner approximation of a continuous reachable set, over a whole run

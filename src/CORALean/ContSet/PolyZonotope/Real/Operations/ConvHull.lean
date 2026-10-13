@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
-import CORALean.ContSet.PolyZonotope.Real.Operations.NoIndep
-import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+public import CORALean.ContSet.PolyZonotope.Real.Operations.NoIndep
+public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.convHull`

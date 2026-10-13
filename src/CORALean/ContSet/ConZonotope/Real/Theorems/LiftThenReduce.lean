@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.LiftIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LiftIff
+
+@[expose] public section
 
 /-!
 # Lift-then-reduce is an enclosure

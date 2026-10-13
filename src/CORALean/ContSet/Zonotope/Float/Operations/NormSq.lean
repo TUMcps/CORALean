@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Norm
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Norm
+
+@[expose] public section
 
 /-!
 # `Zonotope.normSq` over a floating-point scalar

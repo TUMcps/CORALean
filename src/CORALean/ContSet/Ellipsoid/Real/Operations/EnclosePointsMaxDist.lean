@@ -1,8 +1,12 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Data.Fintype.Basic
-import CORALean.Global.Tensor
-import Mathlib.Data.Finset.Max
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Data.Fintype.Basic
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Finset.Max
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclosePointsMaxDist`

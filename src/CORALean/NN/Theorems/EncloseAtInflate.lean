@@ -1,15 +1,19 @@
-import CORALean.NN.Definitions.RefinableLayer
-import CORALean.NN.Definitions.RefinableNetwork
-import CORALean.NN.Definitions.RefinableNetworkImage
-import CORALean.NN.Definitions.Schedule
-import CORALean.NN.Layers.Layer
-import CORALean.NN.Operations.EncloseAt
-import CORALean.NN.Operations.NetworkConvergent
-import CORALean.NN.Operations.RefinableNetworkEval
-import CORALean.NN.Operations.ScheduleCons
-import CORALean.NN.Operations.ScheduleHead
-import CORALean.NN.Operations.ScheduleTail
-import CORALean.NN.Theorems.ScheduleHeadCons
+module
+
+public import CORALean.NN.Definitions.RefinableLayer
+public import CORALean.NN.Definitions.RefinableNetwork
+public import CORALean.NN.Definitions.RefinableNetworkImage
+public import CORALean.NN.Definitions.Schedule
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Operations.EncloseAt
+public import CORALean.NN.Operations.NetworkConvergent
+public import CORALean.NN.Operations.RefinableNetworkEval
+public import CORALean.NN.Operations.ScheduleCons
+public import CORALean.NN.Operations.ScheduleHead
+public import CORALean.NN.Operations.ScheduleTail
+public import CORALean.NN.Theorems.ScheduleHeadCons
+
+@[expose] public section
 
 /-!
 # Refinement converges to the exact image

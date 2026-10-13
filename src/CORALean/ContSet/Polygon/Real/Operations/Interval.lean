@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
+
+@[expose] public section
 
 /-!
 # `Polygon.interval`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.Plus
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Plus
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # The sum of two capsules, against the first one's generator

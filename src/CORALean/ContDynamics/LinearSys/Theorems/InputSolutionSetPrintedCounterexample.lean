@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Operations.InputTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
-import CORALean.ContSet.Zonotope.Real.Instances
-import Mathlib.Analysis.Normed.Algebra.Exponential
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Operations.InputTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
+@[expose] public section
 
 /-!
 # [1, Prop. 1]'s printed (23) does not enclose the particular solution

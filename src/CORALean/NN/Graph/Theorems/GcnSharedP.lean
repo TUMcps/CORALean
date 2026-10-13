@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.GcnShared
+module
+
+public import CORALean.NN.Graph.Operations.GcnShared
+
+@[expose] public section
 
 /-!
 # `gcnShared` keeps the factor set

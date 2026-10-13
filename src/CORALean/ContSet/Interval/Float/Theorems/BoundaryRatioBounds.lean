@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.BoundaryRatio
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatio
+
+@[expose] public section
 
 /-!
 # `Interval.boundaryRatio` is the least of the coordinates' bounds

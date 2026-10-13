@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContSet.ConZonotope.Float.Instances
-import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 8-11 in floats: one iteration of the main loop

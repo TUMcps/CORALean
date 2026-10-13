@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.StepTestSpecFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.StepTestSpecFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
+
+@[expose] public section
 
 /-!
 # The step `tuneStep` returns is admissible

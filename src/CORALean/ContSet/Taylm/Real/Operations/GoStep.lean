@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.HalveBox
-import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
-import CORALean.ContSet.Taylm.Real.Operations.BoxMid
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
+public import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
+public import CORALean.ContSet.Taylm.Real.Operations.BoxMid
+
+@[expose] public section
 
 /-!
 # One box step of COSY-GO

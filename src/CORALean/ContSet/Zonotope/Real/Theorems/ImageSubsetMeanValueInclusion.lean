@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MeanValueInclusion
-import CORALean.ContSet.Zonotope.Real.Theorems.InclusionOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MeanValueInclusion
+public import CORALean.ContSet.Zonotope.Real.Theorems.InclusionOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # The mean-value inclusion function encloses the image of a zonotope

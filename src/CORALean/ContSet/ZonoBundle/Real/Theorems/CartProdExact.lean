@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.CartProd
-import CORALean.ContSet.Zonotope.Real.Theorems.CartProdExact
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.CartProd
+public import CORALean.ContSet.Zonotope.Real.Theorems.CartProdExact
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.cartProd` is exactly the Cartesian product

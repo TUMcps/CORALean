@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
+module
+
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
+
+@[expose] public section
 
 /-!
 # `Transition.synchronizeGuard` is the intersection

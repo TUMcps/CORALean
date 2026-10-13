@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.PowLo
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.PowLo
+
+@[expose] public section
 
 /-!
 # `Interval.powLo` is a lower bound on the power

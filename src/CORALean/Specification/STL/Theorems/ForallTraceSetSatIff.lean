@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.ReachSequence
-import CORALean.Specification.STL.Definitions.Pform
+module
+
+public import CORALean.Specification.STL.Definitions.ReachSequence
+public import CORALean.Specification.STL.Definitions.Pform
+
+@[expose] public section
 
 /-!
 # A predicate holds of every trace at a time iff it holds of the whole set

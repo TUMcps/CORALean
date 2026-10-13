@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu1D
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu1D
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.observeEsoB1D`

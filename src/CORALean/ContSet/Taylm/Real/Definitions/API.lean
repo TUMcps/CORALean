@@ -1,10 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Definitions.Box
-import CORALean.ContSet.Taylm.Real.Definitions.CodeList
-import CORALean.ContSet.Taylm.Real.Definitions.CodeScale
-import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
-import CORALean.ContSet.Taylm.Real.Definitions.IsTaylorModel
-import CORALean.ContSet.Taylm.Real.Definitions.Scaled
-import CORALean.ContSet.Taylm.Real.Definitions.TaylorModelOn
+module
+
+public import CORALean.ContSet.Taylm.Real.Definitions.Box
+public import CORALean.ContSet.Taylm.Real.Definitions.CodeList
+public import CORALean.ContSet.Taylm.Real.Definitions.CodeScale
+public import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
+public import CORALean.ContSet.Taylm.Real.Definitions.IsTaylorModel
+public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+public import CORALean.ContSet.Taylm.Real.Definitions.TaylorModelOn
 
 /-!
 # What a Taylor model means beyond its own construction

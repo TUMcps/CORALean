@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.LinCombOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
+
+@[expose] public section
 
 /-!
 # What `ConPolyZono` instantiates

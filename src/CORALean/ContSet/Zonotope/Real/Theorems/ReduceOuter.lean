@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduce` over-approximates the zonotope

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsBlockDiagEq
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsBlockDiagEq
+
+@[expose] public section
 
 /-!
 # The Minkowski sum of two H-polytopes, as a projection

@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.GenerateESumRep
-import CORALean.ContSet.SpectraShadow.Real.Theorems.EqBlockSum
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.GenerateESumRep
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.EqBlockSum
+
+@[expose] public section
 
 /-!
 # The existential sum representation denotes the same set

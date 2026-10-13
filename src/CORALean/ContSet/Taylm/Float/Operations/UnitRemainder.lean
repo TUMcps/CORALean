@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.ConstCoef
-import CORALean.ContSet.Taylm.Float.Operations.Bounds
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.DivFact
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ConstCoef
+public import CORALean.ContSet.Taylm.Float.Operations.Bounds
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.DivFact
+
+@[expose] public section
 
 /-!
 # `Taylm.unitRemainder`

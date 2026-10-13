@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinProbSys.Operations.ReachCovCora
-import CORALean.ContDynamics.LinProbSys.Theorems.InitReachCovLt
-import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+module
+
+public import CORALean.ContDynamics.LinProbSys.Operations.ReachCovCora
+public import CORALean.ContDynamics.LinProbSys.Theorems.InitReachCovLt
+public import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+
+@[expose] public section
 
 /-!
 # CORA's reach loop keeps the too-small covariance for an unstable `A`

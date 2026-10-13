@@ -1,6 +1,10 @@
-import CORALean.NN.Theorems.MinSuffExplanation
-import CORALean.NN.Theorems.MinSuffExplanationAbstract
-import CORALean.NN.Theorems.SuffExplanationTransfer
+module
+
+public import CORALean.NN.Theorems.MinSuffExplanation
+public import CORALean.NN.Theorems.MinSuffExplanationAbstract
+public import CORALean.NN.Theorems.SuffExplanationTransfer
+
+@[expose] public section
 
 /-!
 # Minimality transfers from a network to its abstraction

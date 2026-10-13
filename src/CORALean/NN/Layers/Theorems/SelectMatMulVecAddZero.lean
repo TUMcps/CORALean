@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.SelectMatMulVec
+module
+
+public import CORALean.NN.Layers.Theorems.SelectMatMulVec
+
+@[expose] public section
 
 /-!
 # A selection with a zero offset

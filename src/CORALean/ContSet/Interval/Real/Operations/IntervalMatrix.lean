@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
+
+@[expose] public section
 
 /-!
 # `Interval.intervalMatrix`

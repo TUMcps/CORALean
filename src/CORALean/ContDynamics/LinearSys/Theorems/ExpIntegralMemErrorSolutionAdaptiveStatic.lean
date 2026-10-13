@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptive
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptive
+
+@[expose] public section
 
 /-!
 # `errorSolution_adaptive` with a static input

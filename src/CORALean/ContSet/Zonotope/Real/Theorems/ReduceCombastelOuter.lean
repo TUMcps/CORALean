@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # Combastel's reduction over-approximates

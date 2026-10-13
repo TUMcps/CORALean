@@ -1,11 +1,15 @@
-import CORALean.HybridDynamics.Definitions.HitEnclosure
-import CORALean.HybridDynamics.Definitions.HitSet
-import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.HybridDynamics.Theorems.HitPointAddEq
-import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
+module
+
+public import CORALean.HybridDynamics.Definitions.HitEnclosure
+public import CORALean.HybridDynamics.Definitions.HitSet
+public import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
+public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.HybridDynamics.Theorems.HitPointAddEq
+public import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
+
+@[expose] public section
 
 /-!
 # `R_g` encloses every `R_h(x₀)`, with `Θ/Λ` enclosed as a vector

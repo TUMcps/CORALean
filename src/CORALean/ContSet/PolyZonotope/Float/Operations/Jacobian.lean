@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianGap
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianGap
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.jacobian`, over a floating-point scalar

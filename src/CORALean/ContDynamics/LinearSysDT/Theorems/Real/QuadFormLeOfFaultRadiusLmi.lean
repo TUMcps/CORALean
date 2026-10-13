@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
-import CORALean.Global.PosDefSchurComplement
-import Mathlib.LinearAlgebra.Matrix.SchurComplement
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
+public import CORALean.Global.PosDefSchurComplement
+public import Mathlib.LinearAlgebra.Matrix.SchurComplement
+
+@[expose] public section
 
 /-!
 # The fault-observer LMI bounds the P-norm of a step

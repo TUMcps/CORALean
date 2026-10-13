@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
-import CORALean.NN.Graph.Operations.GcnShared
-import CORALean.NN.Graph.Theorems.MatMulBilinApply
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
+public import CORALean.NN.Graph.Operations.GcnShared
+public import CORALean.NN.Graph.Theorems.MatMulBilinApply
+
+@[expose] public section
 
 /-!
 # A shared-factor convolution, at one factor vector

@@ -1,18 +1,22 @@
-import CORALean.ContSet.Taylm.Real.Operations.Intrinsic
-import CORALean.ContSet.Taylm.Real.Theorems.ExpOuter
-import CORALean.ContSet.Taylm.Real.Theorems.LogOuter
-import CORALean.ContSet.Taylm.Real.Theorems.InvOuter
-import CORALean.ContSet.Taylm.Real.Theorems.SqrtOuter
-import CORALean.ContSet.Taylm.Real.Theorems.InvSqrtOuter
-import CORALean.ContSet.Taylm.Real.Theorems.SinOuter
-import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
-import CORALean.ContSet.Taylm.Real.Theorems.SinhOuter
-import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
-import CORALean.ContSet.Taylm.Real.Theorems.AsinOuter
-import CORALean.ContSet.Taylm.Real.Theorems.AcosOuter
-import CORALean.ContSet.Taylm.Real.Theorems.AtanOuter
-import CORALean.ContSet.Taylm.Real.Theorems.TanOuter
-import CORALean.ContSet.Taylm.Real.Theorems.TanhOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Intrinsic
+public import CORALean.ContSet.Taylm.Real.Theorems.ExpOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.LogOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.InvOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SqrtOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.InvSqrtOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SinOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SinhOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.AsinOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.AcosOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.AtanOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.TanOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.TanhOuter
+
+@[expose] public section
 
 /-!
 # An intrinsic encloses its function

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import Mathlib.Order.Nat
-import Mathlib.Data.Nat.Find
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import Mathlib.Order.Nat
+public import Mathlib.Data.Nat.Find
+
+@[expose] public section
 
 /-!
 # `Interval.exploreBNVisits`

@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Calculus.Deriv.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+
+@[expose] public section
 
 /-!
 # Hybrid automata with nonlinear flows, guards and resets

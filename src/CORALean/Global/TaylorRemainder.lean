@@ -1,4 +1,8 @@
-import Mathlib.Analysis.Calculus.Taylor
+module
+
+public import Mathlib.Analysis.Calculus.Taylor
+
+@[expose] public section
 
 /-!
 # The Lagrange remainder, bounded

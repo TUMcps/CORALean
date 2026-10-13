@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
-import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
+public import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
+
+@[expose] public section
 
 /-!
 # `ConZonotope.centreLo` and `centreHi` bracket `c + G β₀`

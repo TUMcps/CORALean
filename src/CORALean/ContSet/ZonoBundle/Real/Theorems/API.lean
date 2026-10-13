@@ -1,66 +1,68 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.BoxOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
-import CORALean.ContSet.ZonoBundle.Real.Theorems.DirPcaCovarianceIsHermitian
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingBoxContains
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IntervalAllContains
-import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStack
-import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStackOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.FlowIndexMax
-import CORALean.ContSet.ZonoBundle.Real.Theorems.GuardIntersectOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.HullOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectsOfIntersects
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCompact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesMatZonotopeOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.NotIntersectsImp
-import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
-import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOrder
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceCombinedOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ShrinkOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitBoxUnion
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFilUnion
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFlowUnion
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EmptyExact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitInter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitNotDisjoint
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitPcaUnion
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnion
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ProjectOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ReplaceConstruct
-import CORALean.ContSet.ZonoBundle.Real.Theorems.QuadMapOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.CartProdExact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EnlargeOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEnlarge
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalCoraCounterexample
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsFullDimAllMembers
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCentreMem
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ContainsAllIff
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsIntervalCoraCounterexample
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBoxOfForall
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightOuter
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ConvHullExact
-import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaEmptySetIff
-import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaOriginIff
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsConZonotope
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytope
-import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaConvexSet
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructNeUniv
-import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeEqHPolytope
-import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLtTop
-import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLeMember
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytopeConvHull
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.BoxOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.DirPcaCovarianceIsHermitian
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingBoxContains
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntervalAllContains
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStack
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStackOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.FlowIndexMax
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.GuardIntersectOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.HullOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectsOfIntersects
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCompact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesMatZonotopeOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.NotIntersectsImp
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOrder
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceCombinedOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ShrinkOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitBoxUnion
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFilUnion
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFlowUnion
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EmptyExact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitNotDisjoint
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitPcaUnion
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnion
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ProjectOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReplaceConstruct
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.QuadMapOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.CartProdExact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnlargeOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEnlarge
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalCoraCounterexample
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsFullDimAllMembers
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCentreMem
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ContainsAllIff
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsIntervalCoraCounterexample
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBoxOfForall
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightOuter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaEmptySetIff
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaOriginIff
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsConZonotope
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytope
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaConvexSet
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructNeUniv
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeEqHPolytope
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLtTop
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLeMember
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytopeConvHull
 
 /-!
 # What a zonotope bundle guarantees, collected

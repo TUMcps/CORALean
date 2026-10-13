@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Operations.InteriorPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.MemInterior
-import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
-import Mathlib.Topology.Algebra.Group.Pointwise
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.InteriorPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemInterior
+public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
+public import Mathlib.Topology.Algebra.Group.Pointwise
+
+@[expose] public section
 
 /-!
 # A `true` from `Zonotope.interiorPoint` proves the point interior

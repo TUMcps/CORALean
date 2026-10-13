@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.LayerRelaxationCoeffVec
+module
+
+public import CORALean.NN.Layers.Operations.LayerRelaxationCoeffVec
+
+@[expose] public section
 
 /-!
 # A layer's fits as an evaluation takes them

@@ -1,42 +1,44 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
-import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
-import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
-import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
-import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
-import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
-import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
-import CORALean.ContSet.Ellipsoid.Float.Operations.Project
-import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
-import CORALean.ContSet.Ellipsoid.Float.Operations.AbsPullbackLe
-import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot
-import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
-import CORALean.ContSet.Ellipsoid.Float.Operations.Origin
-import CORALean.ContSet.Ellipsoid.Float.Operations.Centre
-import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
-import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
-import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
-import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
-import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
-import CORALean.ContSet.Ellipsoid.Float.Operations.CartProd
-import CORALean.ContSet.Ellipsoid.Float.Operations.CartProdVec
-import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
-import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
-import CORALean.ContSet.Ellipsoid.Float.Operations.Radius
-import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
-import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose
-import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose2
-import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
-import CORALean.ContSet.Ellipsoid.Float.Operations.EllipsoidNormUb
-import CORALean.ContSet.Ellipsoid.Float.Operations.Volume
-import CORALean.ContSet.Ellipsoid.Float.Operations.Polygon
-import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
-import CORALean.ContSet.Ellipsoid.Float.Operations.OfPoint
-import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
-import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
-import CORALean.ContSet.Ellipsoid.Float.Operations.EnclosePointsCov
-import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
-import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripLiu
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+public import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
+public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
+public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Project
+public import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
+public import CORALean.ContSet.Ellipsoid.Float.Operations.AbsPullbackLe
+public import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot
+public import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Origin
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Centre
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
+public import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
+public import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
+public import CORALean.ContSet.Ellipsoid.Float.Operations.CartProd
+public import CORALean.ContSet.Ellipsoid.Float.Operations.CartProdVec
+public import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Radius
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose2
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
+public import CORALean.ContSet.Ellipsoid.Float.Operations.EllipsoidNormUb
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Volume
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Polygon
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
+public import CORALean.ContSet.Ellipsoid.Float.Operations.OfPoint
+public import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
+public import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
+public import CORALean.ContSet.Ellipsoid.Float.Operations.EnclosePointsCov
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripLiu
 
 /-!
 # What a float ellipsoid computes, collected

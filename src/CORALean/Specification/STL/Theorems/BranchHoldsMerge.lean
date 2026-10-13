@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.BranchMerge
-import CORALean.Specification.STL.Definitions.BranchHolds
+module
+
+public import CORALean.Specification.STL.Operations.BranchMerge
+public import CORALean.Specification.STL.Definitions.BranchHolds
+
+@[expose] public section
 
 /-!
 # A merged branch holds iff one of the two does

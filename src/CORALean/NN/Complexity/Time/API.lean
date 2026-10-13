@@ -1,4 +1,6 @@
-import CORALean.NN.Complexity.Time.Enclose
+module
+
+public import CORALean.NN.Complexity.Time.Enclose
 
 /-!
 # What running a network's `enclose` costs

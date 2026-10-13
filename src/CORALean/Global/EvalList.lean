@@ -1,5 +1,9 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Order.Ring.Cast
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Order.Ring.Cast
+
+@[expose] public section
 
 /-!
 # A polynomial given by its integer coefficients, evaluated

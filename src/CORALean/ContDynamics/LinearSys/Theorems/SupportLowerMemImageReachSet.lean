@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
-import CORALean.ContDynamics.LinearSys.Theorems.HeldSimSupportCounterexample
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
+public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimSupportCounterexample
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+
+@[expose] public section
 
 /-!
 # Line 15's lower bound is a value the reachable set takes

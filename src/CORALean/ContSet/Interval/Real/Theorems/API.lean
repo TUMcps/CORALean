@@ -1,202 +1,204 @@
-import CORALean.ContSet.Interval.Real.Theorems.ContainsScalingCoraCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
-import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
-import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
-import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfImPos
-import CORALean.ContSet.Interval.Real.Theorems.ArgEqNegPiDivTwoSubArctanOfImNeg
-import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfX
-import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfY
-import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfNegSupY
-import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.IsBounded
-import CORALean.ContSet.Interval.Real.Theorems.IsClosed
-import CORALean.ContSet.Interval.Real.Theorems.IsCompact
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
-import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
-import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.PlusExact
-import CORALean.ContSet.Interval.Real.Theorems.MinkDiffInner
-import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
-import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemCenter
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
-import CORALean.ContSet.Interval.Real.Theorems.RecentreZeroMem
-import CORALean.ContSet.Interval.Real.Theorems.RecentreSubMem
-import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Real.Theorems.MatMulSymmPoint
-import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
-import CORALean.ContSet.Interval.Real.Theorems.SupportBoundEntrywiseAttained
-import CORALean.ContSet.Interval.Real.Theorems.SupportBoundAttained
-import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
-import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
-import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
-import CORALean.ContSet.Interval.Real.Theorems.HausdorffDist2AddLeBoxRadius
-import CORALean.ContSet.Interval.Real.Theorems.UminusExact
-import CORALean.ContSet.Interval.Real.Theorems.UplusExact
-import CORALean.ContSet.Interval.Real.Theorems.MinusEqPlusUminus
-import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
-import CORALean.ContSet.Interval.Real.Theorems.MinusExact
-import CORALean.ContSet.Interval.Real.Theorems.InfimumMemConstruct
-import CORALean.ContSet.Interval.Real.Theorems.SupremumMemConstruct
-import CORALean.ContSet.Interval.Real.Theorems.OrOuter
-import CORALean.ContSet.Interval.Real.Theorems.ConvHullOuter
-import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
-import CORALean.ContSet.Interval.Real.Theorems.OriginExact
-import CORALean.ContSet.Interval.Real.Theorems.AbsExact
-import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
-import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
-import CORALean.ContSet.Interval.Real.Theorems.ExistsMulEq
-import CORALean.ContSet.Interval.Real.Theorems.ExpExact
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
-import CORALean.ContSet.Interval.Real.Theorems.AntitoneImageExact
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
-import CORALean.ContSet.Interval.Real.Theorems.SqrtExact
-import CORALean.ContSet.Interval.Real.Theorems.LogExact
-import CORALean.ContSet.Interval.Real.Theorems.AtanExact
-import CORALean.ContSet.Interval.Real.Theorems.SinhExact
-import CORALean.ContSet.Interval.Real.Theorems.AsinhExact
-import CORALean.ContSet.Interval.Real.Theorems.TanhExact
-import CORALean.ContSet.Interval.Real.Theorems.AsinExact
-import CORALean.ContSet.Interval.Real.Theorems.AcosExact
-import CORALean.ContSet.Interval.Real.Theorems.SignMonotone
-import CORALean.ContSet.Interval.Real.Theorems.SignOuter
-import CORALean.ContSet.Interval.Real.Theorems.RoundOuter
-import CORALean.ContSet.Interval.Real.Theorems.LeIffSubset
-import CORALean.ContSet.Interval.Real.Theorems.LeSubset
-import CORALean.ContSet.Interval.Real.Theorems.LtSubset
-import CORALean.ContSet.Interval.Real.Theorems.ProjectExact
-import CORALean.ContSet.Interval.Real.Theorems.ProjectHighDimExact
-import CORALean.ContSet.Interval.Real.Theorems.ProjectOuter
-import CORALean.ContSet.Interval.Real.Theorems.RepresentsaCapsuleCoraCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.RepresentsaEmptySetIff
-import CORALean.ContSet.Interval.Real.Theorems.RepresentsaOriginIff
-import CORALean.ContSet.Interval.Real.Theorems.RepresentsaPointIff
-import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
-import CORALean.ContSet.Interval.Real.Theorems.TimesExact
-import CORALean.ContSet.Interval.Real.Theorems.TimesOuter
-import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
-import CORALean.ContSet.Interval.Real.Theorems.IsFullDimIff
-import CORALean.ContSet.Interval.Real.Theorems.NormLe
-import CORALean.ContSet.Interval.Real.Theorems.NormAttained
-import CORALean.ContSet.Interval.Real.Theorems.MaxExact
-import CORALean.ContSet.Interval.Real.Theorems.MinExact
-import CORALean.ContSet.Interval.Real.Theorems.MinEqUminusMax
-import CORALean.ContSet.Interval.Real.Theorems.EnlargeExact
-import CORALean.ContSet.Interval.Real.Theorems.CenterSubRadius
-import CORALean.ContSet.Interval.Real.Theorems.CenterAddRadius
-import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
-import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
-import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
-import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
-import CORALean.ContSet.Interval.Real.Theorems.SupSubCenter
-import CORALean.ContSet.Interval.Real.Theorems.Radius2IsLeast
-import CORALean.ContSet.Interval.Real.Theorems.IsequalConstructEq
-import CORALean.ContSet.Interval.Real.Theorems.IsequalIff
-import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
-import CORALean.ContSet.Interval.Real.Theorems.CtransposeExact
-import CORALean.ContSet.Interval.Real.Theorems.Sum1Exact
-import CORALean.ContSet.Interval.Real.Theorems.Sum2Exact
-import CORALean.ContSet.Interval.Real.Theorems.AcoshExact
-import CORALean.ContSet.Interval.Real.Theorems.AtanhExact
-import CORALean.ContSet.Interval.Real.Theorems.TanExact
-import CORALean.ContSet.Interval.Real.Theorems.MaskExact
-import CORALean.ContSet.Interval.Real.Theorems.TrilExact
-import CORALean.ContSet.Interval.Real.Theorems.TriuExact
-import CORALean.ContSet.Interval.Real.Theorems.HorzcatExact
-import CORALean.ContSet.Interval.Real.Theorems.VertcatExact
-import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
-import CORALean.ContSet.Interval.Real.Theorems.DiagExact
-import CORALean.ContSet.Interval.Real.Theorems.DiagVecExact
-import CORALean.ContSet.Interval.Real.Theorems.QuadMapOuter
-import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
-import CORALean.ContSet.Interval.Real.Theorems.CoshExact
-import CORALean.ContSet.Interval.Real.Theorems.ImageCosIcc
-import CORALean.ContSet.Interval.Real.Theorems.CosExact
-import CORALean.ContSet.Interval.Real.Theorems.SinExact
-import CORALean.ContSet.Interval.Real.Theorems.Prod1Exact
-import CORALean.ContSet.Interval.Real.Theorems.KronOuter
-import CORALean.ContSet.Interval.Real.Theorems.RecipExact
-import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
-import CORALean.ContSet.Interval.Real.Theorems.MrdivideExact
-import CORALean.ContSet.Interval.Real.Theorems.InvBetween
-import CORALean.ContSet.Interval.Real.Theorems.MatPowSmul
-import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
-import CORALean.ContSet.Interval.Real.Theorems.ExistsMeasurableMulVecEq
-import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
-import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
-import CORALean.ContSet.Interval.Real.Theorems.PowerExact
-import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraGuardMissed
-import CORALean.ContSet.Interval.Real.Theorems.MulMatEntryImage
-import CORALean.ContSet.Interval.Real.Theorems.ConstructSubsetConvexHullVertices
-import CORALean.ContSet.Interval.Real.Theorems.InfExact
-import CORALean.ContSet.Interval.Real.Theorems.LiftExact
-import CORALean.ContSet.Interval.Real.Theorems.DiracOuter
-import CORALean.ContSet.Interval.Real.Theorems.DiracOffZero
-import CORALean.ContSet.Interval.Real.Theorems.StlIntervalExact
-import CORALean.ContSet.Interval.Real.Theorems.DiracZeroMem
-import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
-import CORALean.ContSet.Interval.Real.Theorems.SinByRegionsExact
-import CORALean.ContSet.Interval.Real.Theorems.CosByRegionsExact
-import CORALean.ContSet.Interval.Real.Theorems.TanUnboundedOfPole
-import CORALean.ContSet.Interval.Real.Theorems.TanByRegionsExact
-import CORALean.ContSet.Interval.Real.Theorems.CotByRegionsExact
-import CORALean.ContSet.Interval.Real.Theorems.InvImageIccCases
-import CORALean.ContSet.Interval.Real.Theorems.HullIsLeast
-import CORALean.ContSet.Interval.Real.Theorems.HullAdd
-import CORALean.ContSet.Interval.Real.Theorems.HullImageOfNonneg
-import CORALean.ContSet.Interval.Real.Theorems.ImageOfNonnegCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.ExtremalLoIsLeast
-import CORALean.ContSet.Interval.Real.Theorems.ExtremalHiIsGreatest
-import CORALean.ContSet.Interval.Real.Theorems.ZeroMemExtremal
-import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseLeftLe
-import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseRightGe
-import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseIsContractor
-import CORALean.ContSet.Interval.Real.Theorems.ExistsZeroIffExtrema
-import CORALean.ContSet.Interval.Real.Theorems.ExistsZeroIffExtremaCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.NaturalExtensionDependency
-import CORALean.ContSet.Interval.Real.Theorems.ExtremalExample
-import CORALean.ContSet.Interval.Real.Theorems.PolyBoxRewriteRemarks
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsSumLe
-import CORALean.ContSet.Interval.Real.Theorems.MemExploreBNVisits
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNEqExtremePoints
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumAddLe
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumMono
-import CORALean.ContSet.Interval.Real.Theorems.EdgeMemHyperplaneIff
-import CORALean.ContSet.Interval.Real.Theorems.CardPrefixFace
-import CORALean.ContSet.Interval.Real.Theorems.ExistsUniqueBorderVertex
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsComplementIff
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsTranslateIff
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsScaleIff
-import CORALean.ContSet.Interval.Real.Theorems.ScaleBoxCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNNegCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNUnorderedCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNSort
-import CORALean.ContSet.Interval.Real.Theorems.VertexEdgeSolutionIff
-import CORALean.ContSet.Interval.Real.Theorems.VertexEdgeSolutionCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.ExtremePointsFaceEq5
-import CORALean.ContSet.Interval.Real.Theorems.FaceInterHyperplaneNonempty
-import CORALean.ContSet.Interval.Real.Theorems.PrefixFacePartition
-import CORALean.ContSet.Interval.Real.Theorems.PieceHasBorderVertex
-import CORALean.ContSet.Interval.Real.Theorems.PieceSolutionCounterexample
-import CORALean.ContSet.Interval.Real.Theorems.BoxPlaneIntersectNaiveEq
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsLengthLeCard
-import CORALean.ContSet.Interval.Real.Theorems.BoxDiffSubsetDiff
-import CORALean.ContSet.Interval.Real.Theorems.BoxDiffExample
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.ContainsScalingCoraCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
+public import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
+public import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
+public import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfImPos
+public import CORALean.ContSet.Interval.Real.Theorems.ArgEqNegPiDivTwoSubArctanOfImNeg
+public import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfX
+public import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfY
+public import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfNegSupY
+public import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.IsBounded
+public import CORALean.ContSet.Interval.Real.Theorems.IsClosed
+public import CORALean.ContSet.Interval.Real.Theorems.IsCompact
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+public import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
+public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.PlusExact
+public import CORALean.ContSet.Interval.Real.Theorems.MinkDiffInner
+public import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+public import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Real.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Interval.Real.Theorems.RecentreSubMem
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MatMulSymmPoint
+public import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
+public import CORALean.ContSet.Interval.Real.Theorems.SupportBoundEntrywiseAttained
+public import CORALean.ContSet.Interval.Real.Theorems.SupportBoundAttained
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
+public import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
+public import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
+public import CORALean.ContSet.Interval.Real.Theorems.HausdorffDist2AddLeBoxRadius
+public import CORALean.ContSet.Interval.Real.Theorems.UminusExact
+public import CORALean.ContSet.Interval.Real.Theorems.UplusExact
+public import CORALean.ContSet.Interval.Real.Theorems.MinusEqPlusUminus
+public import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MinusExact
+public import CORALean.ContSet.Interval.Real.Theorems.InfimumMemConstruct
+public import CORALean.ContSet.Interval.Real.Theorems.SupremumMemConstruct
+public import CORALean.ContSet.Interval.Real.Theorems.OrOuter
+public import CORALean.ContSet.Interval.Real.Theorems.ConvHullOuter
+public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
+public import CORALean.ContSet.Interval.Real.Theorems.OriginExact
+public import CORALean.ContSet.Interval.Real.Theorems.AbsExact
+public import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
+public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsMulEq
+public import CORALean.ContSet.Interval.Real.Theorems.ExpExact
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+public import CORALean.ContSet.Interval.Real.Theorems.AntitoneImageExact
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
+public import CORALean.ContSet.Interval.Real.Theorems.SqrtExact
+public import CORALean.ContSet.Interval.Real.Theorems.LogExact
+public import CORALean.ContSet.Interval.Real.Theorems.AtanExact
+public import CORALean.ContSet.Interval.Real.Theorems.SinhExact
+public import CORALean.ContSet.Interval.Real.Theorems.AsinhExact
+public import CORALean.ContSet.Interval.Real.Theorems.TanhExact
+public import CORALean.ContSet.Interval.Real.Theorems.AsinExact
+public import CORALean.ContSet.Interval.Real.Theorems.AcosExact
+public import CORALean.ContSet.Interval.Real.Theorems.SignMonotone
+public import CORALean.ContSet.Interval.Real.Theorems.SignOuter
+public import CORALean.ContSet.Interval.Real.Theorems.RoundOuter
+public import CORALean.ContSet.Interval.Real.Theorems.LeIffSubset
+public import CORALean.ContSet.Interval.Real.Theorems.LeSubset
+public import CORALean.ContSet.Interval.Real.Theorems.LtSubset
+public import CORALean.ContSet.Interval.Real.Theorems.ProjectExact
+public import CORALean.ContSet.Interval.Real.Theorems.ProjectHighDimExact
+public import CORALean.ContSet.Interval.Real.Theorems.ProjectOuter
+public import CORALean.ContSet.Interval.Real.Theorems.RepresentsaCapsuleCoraCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.RepresentsaEmptySetIff
+public import CORALean.ContSet.Interval.Real.Theorems.RepresentsaOriginIff
+public import CORALean.ContSet.Interval.Real.Theorems.RepresentsaPointIff
+public import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
+public import CORALean.ContSet.Interval.Real.Theorems.TimesExact
+public import CORALean.ContSet.Interval.Real.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
+public import CORALean.ContSet.Interval.Real.Theorems.IsFullDimIff
+public import CORALean.ContSet.Interval.Real.Theorems.NormLe
+public import CORALean.ContSet.Interval.Real.Theorems.NormAttained
+public import CORALean.ContSet.Interval.Real.Theorems.MaxExact
+public import CORALean.ContSet.Interval.Real.Theorems.MinExact
+public import CORALean.ContSet.Interval.Real.Theorems.MinEqUminusMax
+public import CORALean.ContSet.Interval.Real.Theorems.EnlargeExact
+public import CORALean.ContSet.Interval.Real.Theorems.CenterSubRadius
+public import CORALean.ContSet.Interval.Real.Theorems.CenterAddRadius
+public import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
+public import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
+public import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
+public import CORALean.ContSet.Interval.Real.Theorems.SupSubCenter
+public import CORALean.ContSet.Interval.Real.Theorems.Radius2IsLeast
+public import CORALean.ContSet.Interval.Real.Theorems.IsequalConstructEq
+public import CORALean.ContSet.Interval.Real.Theorems.IsequalIff
+public import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
+public import CORALean.ContSet.Interval.Real.Theorems.CtransposeExact
+public import CORALean.ContSet.Interval.Real.Theorems.Sum1Exact
+public import CORALean.ContSet.Interval.Real.Theorems.Sum2Exact
+public import CORALean.ContSet.Interval.Real.Theorems.AcoshExact
+public import CORALean.ContSet.Interval.Real.Theorems.AtanhExact
+public import CORALean.ContSet.Interval.Real.Theorems.TanExact
+public import CORALean.ContSet.Interval.Real.Theorems.MaskExact
+public import CORALean.ContSet.Interval.Real.Theorems.TrilExact
+public import CORALean.ContSet.Interval.Real.Theorems.TriuExact
+public import CORALean.ContSet.Interval.Real.Theorems.HorzcatExact
+public import CORALean.ContSet.Interval.Real.Theorems.VertcatExact
+public import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
+public import CORALean.ContSet.Interval.Real.Theorems.DiagExact
+public import CORALean.ContSet.Interval.Real.Theorems.DiagVecExact
+public import CORALean.ContSet.Interval.Real.Theorems.QuadMapOuter
+public import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
+public import CORALean.ContSet.Interval.Real.Theorems.CoshExact
+public import CORALean.ContSet.Interval.Real.Theorems.ImageCosIcc
+public import CORALean.ContSet.Interval.Real.Theorems.CosExact
+public import CORALean.ContSet.Interval.Real.Theorems.SinExact
+public import CORALean.ContSet.Interval.Real.Theorems.Prod1Exact
+public import CORALean.ContSet.Interval.Real.Theorems.KronOuter
+public import CORALean.ContSet.Interval.Real.Theorems.RecipExact
+public import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
+public import CORALean.ContSet.Interval.Real.Theorems.MrdivideExact
+public import CORALean.ContSet.Interval.Real.Theorems.InvBetween
+public import CORALean.ContSet.Interval.Real.Theorems.MatPowSmul
+public import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsMeasurableMulVecEq
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
+public import CORALean.ContSet.Interval.Real.Theorems.PowerExact
+public import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraGuardMissed
+public import CORALean.ContSet.Interval.Real.Theorems.MulMatEntryImage
+public import CORALean.ContSet.Interval.Real.Theorems.ConstructSubsetConvexHullVertices
+public import CORALean.ContSet.Interval.Real.Theorems.InfExact
+public import CORALean.ContSet.Interval.Real.Theorems.LiftExact
+public import CORALean.ContSet.Interval.Real.Theorems.DiracOuter
+public import CORALean.ContSet.Interval.Real.Theorems.DiracOffZero
+public import CORALean.ContSet.Interval.Real.Theorems.StlIntervalExact
+public import CORALean.ContSet.Interval.Real.Theorems.DiracZeroMem
+public import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
+public import CORALean.ContSet.Interval.Real.Theorems.SinByRegionsExact
+public import CORALean.ContSet.Interval.Real.Theorems.CosByRegionsExact
+public import CORALean.ContSet.Interval.Real.Theorems.TanUnboundedOfPole
+public import CORALean.ContSet.Interval.Real.Theorems.TanByRegionsExact
+public import CORALean.ContSet.Interval.Real.Theorems.CotByRegionsExact
+public import CORALean.ContSet.Interval.Real.Theorems.InvImageIccCases
+public import CORALean.ContSet.Interval.Real.Theorems.HullIsLeast
+public import CORALean.ContSet.Interval.Real.Theorems.HullAdd
+public import CORALean.ContSet.Interval.Real.Theorems.HullImageOfNonneg
+public import CORALean.ContSet.Interval.Real.Theorems.ImageOfNonnegCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.ExtremalLoIsLeast
+public import CORALean.ContSet.Interval.Real.Theorems.ExtremalHiIsGreatest
+public import CORALean.ContSet.Interval.Real.Theorems.ZeroMemExtremal
+public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseLeftLe
+public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseRightGe
+public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseIsContractor
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsZeroIffExtrema
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsZeroIffExtremaCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.NaturalExtensionDependency
+public import CORALean.ContSet.Interval.Real.Theorems.ExtremalExample
+public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxRewriteRemarks
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsSumLe
+public import CORALean.ContSet.Interval.Real.Theorems.MemExploreBNVisits
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNEqExtremePoints
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumAddLe
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumMono
+public import CORALean.ContSet.Interval.Real.Theorems.EdgeMemHyperplaneIff
+public import CORALean.ContSet.Interval.Real.Theorems.CardPrefixFace
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsUniqueBorderVertex
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsComplementIff
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsTranslateIff
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsScaleIff
+public import CORALean.ContSet.Interval.Real.Theorems.ScaleBoxCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNNegCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNUnorderedCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNSort
+public import CORALean.ContSet.Interval.Real.Theorems.VertexEdgeSolutionIff
+public import CORALean.ContSet.Interval.Real.Theorems.VertexEdgeSolutionCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.ExtremePointsFaceEq5
+public import CORALean.ContSet.Interval.Real.Theorems.FaceInterHyperplaneNonempty
+public import CORALean.ContSet.Interval.Real.Theorems.PrefixFacePartition
+public import CORALean.ContSet.Interval.Real.Theorems.PieceHasBorderVertex
+public import CORALean.ContSet.Interval.Real.Theorems.PieceSolutionCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.BoxPlaneIntersectNaiveEq
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsLengthLeCard
+public import CORALean.ContSet.Interval.Real.Theorems.BoxDiffSubsetDiff
+public import CORALean.ContSet.Interval.Real.Theorems.BoxDiffExample
 
 /-!
 # What `Interval` guarantees

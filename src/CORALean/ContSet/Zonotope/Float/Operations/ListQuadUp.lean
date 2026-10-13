@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
+
+@[expose] public section
 
 /-!
 # `Zonotope.listQuadUp`

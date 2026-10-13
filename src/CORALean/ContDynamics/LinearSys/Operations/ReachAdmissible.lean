@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
-import CORALean.ContDynamics.LinearSys.Operations.Reach
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
+public import CORALean.ContDynamics.LinearSys.Operations.Reach
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
+
+@[expose] public section
 
 /-!
 # `reach` at an order raised until admissible

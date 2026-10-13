@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Subs
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsTermsRel
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Operations.Subs
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Subs
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsTermsRel
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Subs
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.subs` over-approximates the exact substitution

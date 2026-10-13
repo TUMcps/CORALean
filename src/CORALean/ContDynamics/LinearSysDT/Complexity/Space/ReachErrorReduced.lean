@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.reachErrorReduced` bounds the generator count

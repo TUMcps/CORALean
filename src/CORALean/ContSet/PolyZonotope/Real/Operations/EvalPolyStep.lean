@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+
+@[expose] public section
 
 /-!
 # One step of Horner's rule

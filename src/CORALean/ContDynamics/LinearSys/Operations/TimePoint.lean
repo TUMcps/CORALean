@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+
+@[expose] public section
 
 /-!
 # The homogeneous flow at the sample times `k Δt`, recursively

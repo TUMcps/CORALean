@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.Reach.Operations.Steps
+module
+
+public import CORALean.ContDynamics.Reach.Operations.Steps
+
+@[expose] public section
 
 /-!
 # What a step count `Reach.steps` returns means

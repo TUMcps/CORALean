@@ -1,5 +1,9 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.Interval.Float.Operations.OfBounds
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.Interval.Float.Operations.OfBounds
+
+@[expose] public section
 
 /-!
 # Bounding an inflated representation in a direction

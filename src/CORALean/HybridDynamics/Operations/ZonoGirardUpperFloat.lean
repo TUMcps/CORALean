@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # `Location.zonoGirardUpperFloat`: the upper end of a zonotope's cut by a hyperplane

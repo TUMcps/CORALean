@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `plus`'s ball dimension is the sum of the two incoming ones

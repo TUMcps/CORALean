@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # The noise covariance of a diagonal system, in closed form

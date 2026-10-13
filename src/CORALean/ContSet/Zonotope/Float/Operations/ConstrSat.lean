@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Supremum
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Supremum
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Zonotope.constrSat`, over a floating-point scalar

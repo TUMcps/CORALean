@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
-import CORALean.Specification.Theorems.Separation
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+public import CORALean.Specification.Theorems.Separation
+
+@[expose] public section
 
 /-!
 # A specification discharged by support evaluations alone

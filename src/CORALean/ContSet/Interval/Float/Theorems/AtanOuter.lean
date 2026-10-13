@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Atan
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Atan
+
+@[expose] public section
 
 /-!
 # `Interval.atan` contains the image under `arctan`

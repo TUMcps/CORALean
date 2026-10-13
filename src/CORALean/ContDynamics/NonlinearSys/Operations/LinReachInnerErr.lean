@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerOps
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerOps
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # `linReachInnerErr`, the abstraction error loop of CORA's inner linearized step

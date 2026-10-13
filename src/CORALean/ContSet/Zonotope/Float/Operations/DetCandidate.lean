@@ -1,5 +1,9 @@
-import CORALean.Global.Float.FloatOps
-import Mathlib.Order.Fin.Basic
+module
+
+public import CORALean.Global.Float.FloatOps
+public import Mathlib.Order.Fin.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.detCandidate`

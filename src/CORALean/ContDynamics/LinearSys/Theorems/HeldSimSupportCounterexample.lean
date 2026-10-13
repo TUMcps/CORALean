@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.HeldSimEq
-import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
-import CORALean.ContDynamics.LinearSys.Operations.SupportLower
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimEq
+public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
+public import CORALean.ContDynamics.LinearSys.Operations.SupportLower
+public import Mathlib.Algebra.BigOperators.Intervals
+
+@[expose] public section
 
 /-!
 # The corrected counterexample reaches the lower bound exactly

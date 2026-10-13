@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
-import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
-import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
+public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
+
+@[expose] public section
 
 /-!
 # One step of the inner algorithm stays inside the reachable set

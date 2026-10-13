@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.Calculus.Deriv.Mul
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+
+@[expose] public section
 
 /-!
 # The limit of the gain's derivative as the time span shrinks

@@ -1,5 +1,9 @@
-import CORALean.Specification.Specification
-import CORALean.Global.LinProg.LinProg
+module
+
+public import CORALean.Specification.Specification
+public import CORALean.Global.LinProg.LinProg
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3 (exits), l. 10]: the witness difference along a direction

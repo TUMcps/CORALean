@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The P-radius of the fault-detection observer's zonotope

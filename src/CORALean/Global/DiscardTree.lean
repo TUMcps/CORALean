@@ -1,4 +1,8 @@
-import CORALean.Global.SupportConstraints
+module
+
+public import CORALean.Global.SupportConstraints
+
+@[expose] public section
 
 /-!
 # `discardTree`

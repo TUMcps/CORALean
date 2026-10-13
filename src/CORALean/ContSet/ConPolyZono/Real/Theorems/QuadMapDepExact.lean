@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
-import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
+public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+
+@[expose] public section
 
 /-!
 # `quadMapDep` is exact where every coefficient is dependent

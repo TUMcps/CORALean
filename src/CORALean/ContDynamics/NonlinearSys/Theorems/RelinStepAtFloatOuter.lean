@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
-import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # One float re-linearization step, at a given point, holds every run of the real system

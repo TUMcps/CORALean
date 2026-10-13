@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.Global.Float.Exp
-import CORALean.NN.Layers.Operations.SumOffDown
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.Float.Exp
+public import CORALean.NN.Layers.Operations.SumOffDown
+
+@[expose] public section
 
 /-!
 # Softmax's denominator from below

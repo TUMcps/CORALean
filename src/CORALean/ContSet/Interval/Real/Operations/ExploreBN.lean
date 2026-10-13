@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.ExploreBNVisits
-import CORALean.ContSet.Interval.Real.Operations.FindSolutions
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExploreBNVisits
+public import CORALean.ContSet.Interval.Real.Operations.FindSolutions
+
+@[expose] public section
 
 /-!
 # `Interval.exploreBN`

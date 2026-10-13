@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_origin`, over a floating-point scalar

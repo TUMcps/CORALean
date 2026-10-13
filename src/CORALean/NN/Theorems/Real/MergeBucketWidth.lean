@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.MergeBucket
+module
+
+public import CORALean.NN.Definitions.MergeBucket
+
+@[expose] public section
 
 /-!
 # A bucketed neuron's width

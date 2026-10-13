@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.ListMax
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ListMax
+
+@[expose] public section
 
 /-!
 # `Taylm.listMax` is an upper bound

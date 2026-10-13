@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Definitions.IsFullDim
-import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+module
+
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.IsFullDim
+public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+
+@[expose] public section
 
 /-!
 # A convex set is full-dimensional iff its affine hull is everything

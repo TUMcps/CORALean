@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Reexpand
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Reexpand
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Taylm.reexpand` encloses the function on the sub-box

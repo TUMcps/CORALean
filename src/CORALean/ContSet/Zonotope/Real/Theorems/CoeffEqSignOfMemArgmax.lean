@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Data.Real.Sign
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Data.Real.Sign
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # On an exposed face, the coefficients off the annihilated generators are signs

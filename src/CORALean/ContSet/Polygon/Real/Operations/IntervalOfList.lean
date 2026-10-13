@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.Or
-import CORALean.ContSet.Interval.Real.Operations.Empty
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.Or
+public import CORALean.ContSet.Interval.Real.Operations.Empty
+
+@[expose] public section
 
 /-!
 # `Polygon.intervalOfList`

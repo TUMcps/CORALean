@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+
+@[expose] public section
 
 /-!
 # The quadratic form of an ellipsoid's shape is a squared norm

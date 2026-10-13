@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.MatMul
-import CORALean.ContSet.Interval.Real.Operations.Point
-import Mathlib.Data.Matrix.Diagonal
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MatMul
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import Mathlib.Data.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # `Interval.matPow`

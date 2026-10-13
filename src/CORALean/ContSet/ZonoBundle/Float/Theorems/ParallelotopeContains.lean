@@ -1,7 +1,11 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.RightInvQBound
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.RightInvQBound
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.parallelotope` holds every point it is built for

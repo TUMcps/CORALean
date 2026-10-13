@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # A generator-free ellipsoid contains its own centre

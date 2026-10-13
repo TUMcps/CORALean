@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.RunUntil
+module
+
+public import CORALean.HybridDynamics.Definitions.RunUntil
+
+@[expose] public section
 
 /-!
 # A time budget is a bound

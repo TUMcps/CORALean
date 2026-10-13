@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import CORALean.ContSet.Interval.Real.Operations.MulLo
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+
+@[expose] public section
 
 /-!
 # Interval matrices: the second-order Taylor term, exactly

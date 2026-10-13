@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
-import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
+
+@[expose] public section
 
 /-!
 # The real run lies in the float boxes

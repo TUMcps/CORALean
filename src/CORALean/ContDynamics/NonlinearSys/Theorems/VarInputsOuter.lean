@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadBilinApply
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
-import Mathlib.LinearAlgebra.QuadraticForm.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadBilinApply
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
+public import Mathlib.LinearAlgebra.QuadraticForm.Basic
+
+@[expose] public section
 
 /-!
 # `varInputs` holds every value the varying input part can take

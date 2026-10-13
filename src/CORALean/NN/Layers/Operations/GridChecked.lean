@@ -1,5 +1,9 @@
-import CORALean.Global.Float.FloatOps
-import CORALean.NN.Layers.Operations.AllOver
+module
+
+public import CORALean.Global.Float.FloatOps
+public import CORALean.NN.Layers.Operations.AllOver
+
+@[expose] public section
 
 /-!
 # A proposed sample grid, certified

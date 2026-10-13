@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Project
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Project
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.project` is exactly the projected set

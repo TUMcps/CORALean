@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
+module
+
+public import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
+
+@[expose] public section
 
 /-!
 # A `true` from `LevelSet.containsPoint` proves membership

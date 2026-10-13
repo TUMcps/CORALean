@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Taylm
+module
+
+public import CORALean.ContSet.Taylm.Real.Taylm
+
+@[expose] public section
 
 /-!
 # The range set is the union of the enclosed functions' images

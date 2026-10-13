@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOut
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOut
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.outerApprox`, over a floating-point scalar

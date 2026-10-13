@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.TermBounds
-import CORALean.ContSet.Taylm.Real.Operations.TermBounds
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.TermBounds
+public import CORALean.ContSet.Taylm.Real.Operations.TermBounds
+
+@[expose] public section
 
 /-!
 # The float term range reads as the exact one

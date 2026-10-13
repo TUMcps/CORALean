@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.IsFullDimWith
-import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.IsFullDimWith
+public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
+
+@[expose] public section
 
 /-!
 # `Zonotope.isFullDim`, over a floating-point scalar

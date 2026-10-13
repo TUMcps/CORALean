@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Shrink
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Shrink
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.shrink` over-approximates the bundle

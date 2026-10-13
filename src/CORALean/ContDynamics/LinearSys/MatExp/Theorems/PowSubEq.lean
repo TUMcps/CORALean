@@ -1,5 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
+
 /-!
 # `t^m - (t/r) r^m`, factored through `s = t/r`
 

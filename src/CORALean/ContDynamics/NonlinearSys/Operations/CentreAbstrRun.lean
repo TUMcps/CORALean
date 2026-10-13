@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrInit
-import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStep
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrInit
+public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStep
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 2 and 16, linearizing at the centre

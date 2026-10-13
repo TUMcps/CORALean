@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorDecoupleRank
-import CORALean.Global.RankOneKroneckerGe
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorDecoupleRank
+public import CORALean.Global.RankOneKroneckerGe
+
+@[expose] public section
 
 /-!
 # The rank condition decouples the unknown input

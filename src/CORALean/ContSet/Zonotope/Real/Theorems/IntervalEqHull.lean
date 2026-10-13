@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.IntervalAttained
-import CORALean.ContSet.Interval.Real.Definitions.Hull
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalAttained
+public import CORALean.ContSet.Interval.Real.Definitions.Hull
+
+@[expose] public section
 
 /-!
 # The box of a zonotope is its interval hull

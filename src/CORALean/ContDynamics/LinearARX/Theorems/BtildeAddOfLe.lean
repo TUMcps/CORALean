@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
+
+@[expose] public section
 
 /-!
 # Later parameters from earlier ones

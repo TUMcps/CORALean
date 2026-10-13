@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Dependent
-import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Dependent
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.intersectionCost`

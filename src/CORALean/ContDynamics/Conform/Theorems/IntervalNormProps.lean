@@ -1,5 +1,10 @@
-import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # [1, Eq. 11]: the interval norm's four properties

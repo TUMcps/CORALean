@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.Nnf
-import CORALean.Specification.STL.STL
+module
+
+public import CORALean.Specification.STL.Definitions.Nnf
+public import CORALean.Specification.STL.STL
+
+@[expose] public section
 
 /-!
 # A normal form as an STL formula

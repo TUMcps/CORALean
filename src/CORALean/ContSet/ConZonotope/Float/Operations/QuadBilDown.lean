@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+
+@[expose] public section
 
 /-!
 # `ConZonotope.quadBilDown`

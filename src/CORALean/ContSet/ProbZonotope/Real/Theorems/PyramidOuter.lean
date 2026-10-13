@@ -1,10 +1,14 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Pyramid
-import CORALean.ContSet.ProbZonotope.Real.Theorems.MemZonotopeOfQuadLt
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfLeMaxIff
-import CORALean.ContSet.ProbZonotope.Real.Theorems.MaxAnti
-import CORALean.ContSet.ProbZonotope.Real.Theorems.LeAddSumOfLevels
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawDensity
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Pyramid
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.MemZonotopeOfQuadLt
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfLeMaxIff
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.MaxAnti
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.LeAddSumOfLevels
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawDensity
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # The pyramid bounds the probability of a set, up to its floor

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.NN.Graph.Operations.EdgeMat
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.NN.Graph.Operations.EdgeMat
+
+@[expose] public section
 
 /-!
 # `Ã = A(λ) + I`, over the padded factor set

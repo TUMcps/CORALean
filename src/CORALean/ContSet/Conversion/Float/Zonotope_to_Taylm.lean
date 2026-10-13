@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # A zonotope as an array of Taylor models, over a floating-point scalar

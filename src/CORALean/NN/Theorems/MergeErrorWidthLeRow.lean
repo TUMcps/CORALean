@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.MergeRowWeight
-import CORALean.NN.Theorems.MergeErrorWidthLe
+module
+
+public import CORALean.NN.Operations.MergeRowWeight
+public import CORALean.NN.Theorems.MergeErrorWidthLe
+
+@[expose] public section
 
 /-!
 # The tolerance's cost, without knowing the bucket first

@@ -1,4 +1,8 @@
-import Mathlib.Analysis.Normed.Order.Lattice
+module
+
+public import Mathlib.Analysis.Normed.Order.Lattice
+
+@[expose] public section
 
 /-!
 # A minimax inequality over two compact sets

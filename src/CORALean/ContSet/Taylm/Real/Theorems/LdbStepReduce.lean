@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.LdbStep
-import CORALean.ContSet.Taylm.Real.Definitions.Box
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqLinAddHigher
-import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.LdbStep
+public import CORALean.ContSet.Taylm.Real.Definitions.Box
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqLinAddHigher
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+
+@[expose] public section
 
 /-!
 # What LDB cuts off is above `Min`

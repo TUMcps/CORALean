@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.PolytopeOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.DualBoundLe
-import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.PolytopeOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.DualBoundLe
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # The float outer polytope of a shadow encloses it

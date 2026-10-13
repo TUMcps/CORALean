@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.WindowMax
-import CORALean.NN.Layers.Theorems.Real.LeWindowMax
-import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
-import CORALean.NN.Layers.Theorems.SelectMatMulVec
-import CORALean.NN.Operations.CatMaxSegment
+module
+
+public import CORALean.NN.Layers.Definitions.WindowMax
+public import CORALean.NN.Layers.Theorems.Real.LeWindowMax
+public import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
+public import CORALean.NN.Layers.Theorems.SelectMatMulVec
+public import CORALean.NN.Operations.CatMaxSegment
+
+@[expose] public section
 
 /-!
 # One max-pooling step replaces its window by the maximum

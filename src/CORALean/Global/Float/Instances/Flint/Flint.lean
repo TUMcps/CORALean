@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Dyadic
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Dyadic
+
+@[expose] public section
 
 /-!
 # FLINT-rounded dyadics: the representation

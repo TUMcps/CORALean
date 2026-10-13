@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
-import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingVPolyCora
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+public import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingVPolyCora
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's H/V-polytope intersection test reports disjoint polytopes as intersecting

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.EBox
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.EBox
+
+@[expose] public section
 
 /-!
 # `Interval.EBox.construct`

@@ -1,11 +1,15 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.CompactCons
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
-import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
-import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
-import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.CompactCons
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
+
+@[expose] public section
 
 /-!
 # Merging equal constraint exponent columns loses nothing

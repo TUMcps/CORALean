@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+
+@[expose] public section
 
 /-!
 # A closed loop, bundled with its control period

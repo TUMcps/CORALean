@@ -1,9 +1,13 @@
-import CORALean.ContSet.Capsule.Float.Operations.BoundDotUp
-import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
-import CORALean.ContDynamics.LinearSys.LinearSys
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.BoundDotUp
+public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContDynamics.LinearSys.LinearSys
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 4-5 in floats: the eroded polytope

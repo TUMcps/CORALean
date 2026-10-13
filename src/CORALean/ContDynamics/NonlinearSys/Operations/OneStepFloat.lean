@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
-import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
+public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+
+@[expose] public section
 
 /-!
 # One step of a linearization, in deviation coordinates

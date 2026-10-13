@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.RelaxationOfMonotone
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # The square root's relaxation over ℝ

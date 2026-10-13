@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverCoord
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverCoord
+
+@[expose] public section
 
 /-!
 # The interval observer based on a coordinate transformation

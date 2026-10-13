@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+
+@[expose] public section
 
 /-!
 # One window of `reachUnion`: the homogeneous set over `τ_k = [t_k, t_k + Δt]`

@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.CatDomain
+module
+
+public import CORALean.NN.Definitions.CatDomain
+
+@[expose] public section
 
 /-!
 # The abstract transformer of a CAT function

@@ -1,5 +1,9 @@
-import CORALean.Global.EuclideanGenOpNorm
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.Global.EuclideanGenOpNorm
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # The induced Euclidean norm of generators, bounded from above in floats

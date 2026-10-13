@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Float.VPolytope
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+module
+
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+
+@[expose] public section
 
 /-!
 # A box as its corners, over a floating-point scalar

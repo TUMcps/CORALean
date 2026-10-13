@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGen
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGen
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.polygonRound`, over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.representsa_origin`

@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.IEEE.Operations.Maximum
-import CORALean.Global.Float.Instances.IEEE.Theorems.LeIff
+module
+
+public import CORALean.Global.Float.Instances.IEEE.Operations.Maximum
+public import CORALean.Global.Float.Instances.IEEE.Theorems.LeIff
+
+@[expose] public section
 
 /-!
 # The greater of two numbers is exact

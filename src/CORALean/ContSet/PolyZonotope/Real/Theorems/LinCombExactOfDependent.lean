@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
+
+@[expose] public section
 
 /-!
 # `linComb` is exactly [1, Def. 7] where neither set has independent generators

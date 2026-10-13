@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+
+@[expose] public section
 
 /-!
 # A directed sum of per-term minima never overshoots a bilinear value

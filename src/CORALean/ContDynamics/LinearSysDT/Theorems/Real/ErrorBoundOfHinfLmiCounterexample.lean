@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Order.ConditionallyCompleteLattice.Indexed
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Order.ConditionallyCompleteLattice.Indexed
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # The strict error bound of the `H∞` design fails at the zero run

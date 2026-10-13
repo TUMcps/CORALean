@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.ArcsinBound
-import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
-import CORALean.Global.ElementaryDerivBounds
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ArcsinBound
+public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.Global.ElementaryDerivBounds
+
+@[expose] public section
 
 /-!
 # `Taylm.arcsinBound` bounds the derivative of `arcsin`

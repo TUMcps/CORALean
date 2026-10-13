@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
-import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
+public import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `ConZonotope.eliminate`, exactly — under the closure [1, Thm. 2]'s own proof uses

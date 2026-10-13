@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.RangeBound
-import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalEncloses
-import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.RangeBound
+public import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalEncloses
+public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+
+@[expose] public section
 
 /-!
 # Range bounding encloses the range

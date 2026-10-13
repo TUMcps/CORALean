@@ -1,4 +1,8 @@
-import CORALean.Global.DmdBlocks
+module
+
+public import CORALean.Global.DmdBlocks
+
+@[expose] public section
 
 /-!
 # `[A c B]` from its blocks

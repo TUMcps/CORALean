@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Operations.Vertices
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Vertices
+
+@[expose] public section
 
 /-!
 # `Polygon.representsaOriginCora`: the `'origin'` test as CORA's code computes it

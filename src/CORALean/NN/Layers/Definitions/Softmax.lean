@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
-import CORALean.NN.Layers.Layer
-import Mathlib.Analysis.Complex.Exponential
+module
+
+public import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.NN.Layers.Layer
+public import Mathlib.Analysis.Complex.Exponential
+
+@[expose] public section
 
 /-!
 # Softmax, and its exact box

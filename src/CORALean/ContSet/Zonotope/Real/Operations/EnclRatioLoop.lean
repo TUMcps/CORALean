@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.RatioExceeds
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.RatioExceeds
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 6-10: growing the selection by the ratio test

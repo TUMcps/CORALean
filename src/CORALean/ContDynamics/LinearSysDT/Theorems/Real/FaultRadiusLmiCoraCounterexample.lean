@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfFaultRadiusLmi
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfFaultRadiusLmi
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # CORA's `PRad-E` matrix is not [1, Eq. 17]

@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
-import CORALean.ContSet.ConPolyZono.Real.Operations.ProdBlkDiag
-import CORALean.ContSet.ConPolyZono.Real.Operations.SumRep
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdBlkDiag
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SumRep
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The generator sum of the convex hull

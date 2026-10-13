@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
-import Mathlib.Topology.MetricSpace.ProperSpace
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
+public import Mathlib.Topology.MetricSpace.ProperSpace
+
+@[expose] public section
 
 /-!
 # The inradius is the reciprocal of a containment radius

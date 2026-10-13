@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyCandidate
-import CORALean.ContDynamics.LinearARX.Theorems.IdentifyBlocksMulVec
-import CORALean.Global.DmdCandidateFit
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyCandidate
+public import CORALean.ContDynamics.LinearARX.Theorems.IdentifyBlocksMulVec
+public import CORALean.Global.DmdCandidateFit
+
+@[expose] public section
 
 /-!
 # The full-rank DMD candidate fits consistent ARX data

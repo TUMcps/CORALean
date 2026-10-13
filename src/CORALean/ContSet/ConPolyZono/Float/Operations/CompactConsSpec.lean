@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsB
-import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsCol
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsCol
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.compactConsSpec`

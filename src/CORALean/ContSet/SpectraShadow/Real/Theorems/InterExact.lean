@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Inter
-import CORALean.ContSet.SpectraShadow.Real.Theorems.EqBlockSum
-import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Inter
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.EqBlockSum
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.inter` is exactly the intersection

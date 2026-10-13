@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStep
-import CORALean.ContSet.Interval.Real.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStep
+public import CORALean.ContSet.Interval.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # The interval observer's state after `k` steps

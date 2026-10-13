@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+
+@[expose] public section
 
 /-!
 # The dependent generator map splits over a union of factor domains

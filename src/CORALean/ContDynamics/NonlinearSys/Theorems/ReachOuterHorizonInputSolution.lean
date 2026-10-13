@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
+
+@[expose] public section
 
 /-!
 # The nonlinear reachable set over a horizon, the input set named

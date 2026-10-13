@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.ofPoint`

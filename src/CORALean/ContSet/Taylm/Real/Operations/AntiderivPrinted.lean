@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
-import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-import CORALean.ContSet.Taylm.Real.Operations.Degree
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+public import CORALean.ContSet.Taylm.Real.Operations.Degree
+
+@[expose] public section
 
 /-!
 # `Taylm.antiderivPrinted`

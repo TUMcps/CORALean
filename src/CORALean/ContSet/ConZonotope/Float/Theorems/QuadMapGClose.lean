@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
-import CORALean.ContSet.ConZonotope.Float.Theorems.QuadBilBracket
-import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
+public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadBilBracket
+public import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
+
+@[expose] public section
 
 /-!
 # A stored generator of `quadMap` is within its gap of the exact one

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsTerms
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsTerms
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.subsGDown`

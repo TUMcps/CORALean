@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
-import CORALean.ContSet.VPolytope.Float.Operations.PairSum
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+public import CORALean.ContSet.VPolytope.Float.Operations.PairSum
+
+@[expose] public section
 
 /-!
 # `VPolytope.plus`

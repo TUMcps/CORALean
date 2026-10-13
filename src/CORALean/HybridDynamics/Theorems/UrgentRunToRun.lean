@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.UrgentRun
+module
+
+public import CORALean.HybridDynamics.Definitions.UrgentRun
+
+@[expose] public section
 
 /-!
 # An urgent run is a run

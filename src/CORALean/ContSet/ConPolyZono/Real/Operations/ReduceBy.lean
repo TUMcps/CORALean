@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduceBy`

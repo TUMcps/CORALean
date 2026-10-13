@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
-import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveStepFloatOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveStepFloatOuter
+
+@[expose] public section
 
 /-!
 # An adaptive float run covers what is left of the horizon, soundly

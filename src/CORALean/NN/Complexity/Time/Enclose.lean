@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.Enclose
-import CORALean.Global.Cost
+module
+
+public import CORALean.NN.Operations.Enclose
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `NeuralNetwork.encloseCost`

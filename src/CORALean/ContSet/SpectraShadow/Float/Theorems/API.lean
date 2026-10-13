@@ -1,33 +1,35 @@
-import CORALean.ContSet.SpectraShadow.Float.Theorems.GenerateESumRepExact
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
-import CORALean.ContSet.SpectraShadow.Float.Theorems.EmptyExact
-import CORALean.ContSet.SpectraShadow.Float.Theorems.InfExact
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MtimesOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ProjectOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PadLeftOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PadRightOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
-import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
-import CORALean.ContSet.SpectraShadow.Float.Theorems.TieInterOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ContainsPointSound
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PosSemidefOfDiagDominant
-import CORALean.ContSet.SpectraShadow.Float.Theorems.DualBoundLe
-import CORALean.ContSet.SpectraShadow.Float.Theorems.IsBoundedSound
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemBase
-import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaEmptySetSound
-import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaOriginSound
-import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSound
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.OrOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.LinCombOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PolytopeOuter
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.GenerateESumRepExact
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.EmptyExact
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.InfExact
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PadLeftOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PadRightOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.TieInterOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PosSemidefOfDiagDominant
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.DualBoundLe
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.IsBoundedSound
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemBase
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaOriginSound
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSound
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.OrOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PolytopeOuter
 
 /-!
 # What a float spectrahedral shadow guarantees, collected

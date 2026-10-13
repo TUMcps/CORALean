@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # The nonempty hull is nonempty

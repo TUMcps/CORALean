@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
+
+@[expose] public section
 
 /-!
 # Discretizing the converted system gives the system back

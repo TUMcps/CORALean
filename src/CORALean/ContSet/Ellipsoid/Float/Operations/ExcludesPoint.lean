@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.excludesPoint`, over a floating-point scalar

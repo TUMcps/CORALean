@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
+
+@[expose] public section
 
 /-!
 # A continuous successor of a Lipschitz flow is the solution

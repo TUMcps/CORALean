@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # A padded row reads only the block it came from, on the left

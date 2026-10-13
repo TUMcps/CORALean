@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.TailEnclose
+module
+
+public import CORALean.NN.Graph.Operations.TailEnclose
+
+@[expose] public section
 
 /-!
 # The enclosed tail's count

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
+
+@[expose] public section
 
 /-!
 # An inner approximation whose subtrahend has a bounded description

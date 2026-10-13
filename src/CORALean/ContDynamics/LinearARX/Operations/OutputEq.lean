@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.LinearARX
-import CORALean.Global.ExactScalar
-import CORALean.ContDynamics.OutputEq.OutputEq
+module
+
+public import CORALean.ContDynamics.LinearARX.LinearARX
+public import CORALean.Global.ExactScalar
+public import CORALean.ContDynamics.OutputEq.OutputEq
+
+@[expose] public section
 
 /-!
 # The output equation of the converted system

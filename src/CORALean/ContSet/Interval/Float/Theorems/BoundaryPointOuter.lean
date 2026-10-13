@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Operations.BoundaryPoint
-import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioBounds
-import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioAtMem
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryPoint
+public import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioBounds
+public import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioAtMem
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
+
+@[expose] public section
 
 /-!
 # `Interval.boundaryPoint` encloses the exact boundary point

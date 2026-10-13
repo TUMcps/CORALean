@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemInterior
-import CORALean.ContSet.ConZonotope.Float.Theorems.CornerMem
-import Mathlib.Topology.Algebra.Group.Pointwise
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemInterior
+public import CORALean.ContSet.ConZonotope.Float.Theorems.CornerMem
+public import Mathlib.Topology.Algebra.Group.Pointwise
+
+@[expose] public section
 
 /-!
 # A `true` from `ConZonotope.isFullDim` proves an interior point

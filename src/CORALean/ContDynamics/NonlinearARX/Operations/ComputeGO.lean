@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.Feed
-import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
-import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.Feed
+public import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
+public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # `NonlinearARX.computeGO`

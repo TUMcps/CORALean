@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Interval.plus` is exactly the Minkowski sum

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Volume
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Volume
+
+@[expose] public section
 
 /-!
 # The volume of a zonotope with `n` generators

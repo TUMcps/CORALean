@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Definitions.SupportFunc
+module
+
+public import CORALean.ContSet.ContSet.Definitions.SupportFunc
+
+@[expose] public section
 
 /-!
 # `supportFunc_le_coe_iff`

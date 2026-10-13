@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SignedSums
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SignedSums
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+
+@[expose] public section
 
 /-!
 # The zonotope is the convex hull of `Z±(R)`

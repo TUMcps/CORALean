@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.Interval.Real.Operations.BoxDiffBounds
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.Interval.Real.Operations.BoxDiffBounds
+
+@[expose] public section
 
 /-!
 # The factor bounds of a non-convex inner approximation

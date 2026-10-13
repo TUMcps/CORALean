@@ -1,99 +1,101 @@
-import CORALean.NN.Operations.AtSchedule
-import CORALean.NN.Operations.BisectBucketTolerance
-import CORALean.NN.Operations.Bucketed
-import CORALean.NN.Operations.BucketTolerance
-import CORALean.NN.Operations.ChainEval
-import CORALean.NN.Operations.CompressionPreprocessing
-import CORALean.NN.Operations.Convergent
-import CORALean.NN.Operations.DifferentiableChain
-import CORALean.NN.Operations.DynamicMergeBuckets
-import CORALean.NN.Operations.Enclose
-import CORALean.NN.Operations.EncloseAt
-import CORALean.NN.Operations.Eval
-import CORALean.NN.Operations.ExplainBox
-import CORALean.NN.Operations.ExplanationRefineLoop
-import CORALean.NN.Operations.GreedyAbstractExplanation
-import CORALean.NN.Operations.GreedyExplanationStep
-import CORALean.NN.Operations.GreedyMinimalExplanation
-import CORALean.NN.Operations.GrowBucketTolerance
-import CORALean.NN.Operations.InitMergeBuckets
-import CORALean.NN.Operations.InMergeBucket
-import CORALean.NN.Operations.IntervalChainBackprop
-import CORALean.NN.Operations.IntervalChainFwd
-import CORALean.NN.Operations.IntervalChainJvp
-import CORALean.NN.Operations.LayerRefinable
-import CORALean.NN.Operations.LayerSensitivity
-import CORALean.NN.Operations.MaxOver
-import CORALean.NN.Operations.MergeCols
-import CORALean.NN.Operations.MergeRows
-import CORALean.NN.Operations.MergeRowWeight
-import CORALean.NN.Operations.MinOver
-import CORALean.NN.Operations.NetworkConvergent
-import CORALean.NN.Operations.PropagateBounds
-import CORALean.NN.Operations.Raise
-import CORALean.NN.Operations.Ratio
-import CORALean.NN.Operations.ReducedLinearIdentity
-import CORALean.NN.Operations.ReducedLinearToLayer
-import CORALean.NN.Operations.ReduceOnTheFly
-import CORALean.NN.Operations.ReduceOnTheFlyFrom
-import CORALean.NN.Operations.ReducibleNetworkToNetwork
-import CORALean.NN.Operations.RefinableLayerAtPattern
-import CORALean.NN.Operations.RefinableNetworkEval
-import CORALean.NN.Operations.RefinableNetworkLength
-import CORALean.NN.Operations.Refine
-import CORALean.NN.Operations.RefineLayer
-import CORALean.NN.Operations.RefineLoop
-import CORALean.NN.Operations.EncloseReduceAt
-import CORALean.NN.Operations.RefineVerifyFrom
-import CORALean.NN.Operations.RefineVerify
-import CORALean.NN.Operations.RefinementLipschitz
-import CORALean.NN.Operations.RefinementNeuron
-import CORALean.NN.Operations.RefinementRank
-import CORALean.NN.Operations.RefinementRankAll
-import CORALean.NN.Operations.RefinementRankApproxError
-import CORALean.NN.Operations.RefinementRankLayerBias
-import CORALean.NN.Operations.RefinementRankSensitivity
-import CORALean.NN.Operations.RefineWorst
-import CORALean.NN.Operations.ScheduleCons
-import CORALean.NN.Operations.ScheduleHead
-import CORALean.NN.Operations.ScheduleTail
-import CORALean.NN.Operations.Backprop
-import CORALean.NN.Operations.FgsmAttack
-import CORALean.NN.Operations.PgdAttack
-import CORALean.NN.Operations.PgdStep
-import CORALean.NN.Operations.Sensitivity
-import CORALean.NN.Operations.StaticMergeBuckets
-import CORALean.NN.Operations.ToLayer
-import CORALean.NN.Operations.VerifySplit
-import CORALean.NN.Operations.VerifySplitWith
-import CORALean.NN.Operations.SmoothNetworkEval
-import CORALean.NN.Operations.SmoothNetworkNu
-import CORALean.NN.Operations.SmoothNetworkToNonlinearSysDT
-import CORALean.NN.Operations.ToNonlinearSysDT
-import CORALean.NN.Operations.WorstIndex
-import CORALean.NN.Operations.SnakeOrder
-import CORALean.NN.Operations.InputNeuronOrder
-import CORALean.NN.Operations.WeightLayerEval
-import CORALean.NN.Operations.WeightNetworkEval
-import CORALean.NN.Operations.WeightAccEval
-import CORALean.NN.Operations.WeightAccPushLinear
-import CORALean.NN.Operations.WeightAccPushAffine
-import CORALean.NN.Operations.WeightAccLayer
-import CORALean.NN.Operations.WeightNetworkNormalFormAux
-import CORALean.NN.Operations.WeightNetworkNormalForm
-import CORALean.NN.Operations.RefinableNetworkLayers
-import CORALean.NN.Operations.RefinableNetworkRefinableLayers
-import CORALean.NN.Operations.ActivationKindMergeValues
-import CORALean.NN.Operations.CatTransformer
-import CORALean.NN.Operations.CatReluOn
-import CORALean.NN.Operations.CatMaxSegment
-import CORALean.NN.Operations.CatMaxSegments
-import CORALean.NN.Operations.CatMaxPool
-import CORALean.NN.Operations.IntervalChainFwdFloat
-import CORALean.NN.Operations.IntervalChainBackpropFloat
-import CORALean.NN.Operations.ReluEnclosure
-import CORALean.NN.Operations.ReluDerEnclosure
-import CORALean.NN.Operations.IdentityDerEnclosure
+module
+
+public import CORALean.NN.Operations.AtSchedule
+public import CORALean.NN.Operations.BisectBucketTolerance
+public import CORALean.NN.Operations.Bucketed
+public import CORALean.NN.Operations.BucketTolerance
+public import CORALean.NN.Operations.ChainEval
+public import CORALean.NN.Operations.CompressionPreprocessing
+public import CORALean.NN.Operations.Convergent
+public import CORALean.NN.Operations.DifferentiableChain
+public import CORALean.NN.Operations.DynamicMergeBuckets
+public import CORALean.NN.Operations.Enclose
+public import CORALean.NN.Operations.EncloseAt
+public import CORALean.NN.Operations.Eval
+public import CORALean.NN.Operations.ExplainBox
+public import CORALean.NN.Operations.ExplanationRefineLoop
+public import CORALean.NN.Operations.GreedyAbstractExplanation
+public import CORALean.NN.Operations.GreedyExplanationStep
+public import CORALean.NN.Operations.GreedyMinimalExplanation
+public import CORALean.NN.Operations.GrowBucketTolerance
+public import CORALean.NN.Operations.InitMergeBuckets
+public import CORALean.NN.Operations.InMergeBucket
+public import CORALean.NN.Operations.IntervalChainBackprop
+public import CORALean.NN.Operations.IntervalChainFwd
+public import CORALean.NN.Operations.IntervalChainJvp
+public import CORALean.NN.Operations.LayerRefinable
+public import CORALean.NN.Operations.LayerSensitivity
+public import CORALean.NN.Operations.MaxOver
+public import CORALean.NN.Operations.MergeCols
+public import CORALean.NN.Operations.MergeRows
+public import CORALean.NN.Operations.MergeRowWeight
+public import CORALean.NN.Operations.MinOver
+public import CORALean.NN.Operations.NetworkConvergent
+public import CORALean.NN.Operations.PropagateBounds
+public import CORALean.NN.Operations.Raise
+public import CORALean.NN.Operations.Ratio
+public import CORALean.NN.Operations.ReducedLinearIdentity
+public import CORALean.NN.Operations.ReducedLinearToLayer
+public import CORALean.NN.Operations.ReduceOnTheFly
+public import CORALean.NN.Operations.ReduceOnTheFlyFrom
+public import CORALean.NN.Operations.ReducibleNetworkToNetwork
+public import CORALean.NN.Operations.RefinableLayerAtPattern
+public import CORALean.NN.Operations.RefinableNetworkEval
+public import CORALean.NN.Operations.RefinableNetworkLength
+public import CORALean.NN.Operations.Refine
+public import CORALean.NN.Operations.RefineLayer
+public import CORALean.NN.Operations.RefineLoop
+public import CORALean.NN.Operations.EncloseReduceAt
+public import CORALean.NN.Operations.RefineVerifyFrom
+public import CORALean.NN.Operations.RefineVerify
+public import CORALean.NN.Operations.RefinementLipschitz
+public import CORALean.NN.Operations.RefinementNeuron
+public import CORALean.NN.Operations.RefinementRank
+public import CORALean.NN.Operations.RefinementRankAll
+public import CORALean.NN.Operations.RefinementRankApproxError
+public import CORALean.NN.Operations.RefinementRankLayerBias
+public import CORALean.NN.Operations.RefinementRankSensitivity
+public import CORALean.NN.Operations.RefineWorst
+public import CORALean.NN.Operations.ScheduleCons
+public import CORALean.NN.Operations.ScheduleHead
+public import CORALean.NN.Operations.ScheduleTail
+public import CORALean.NN.Operations.Backprop
+public import CORALean.NN.Operations.FgsmAttack
+public import CORALean.NN.Operations.PgdAttack
+public import CORALean.NN.Operations.PgdStep
+public import CORALean.NN.Operations.Sensitivity
+public import CORALean.NN.Operations.StaticMergeBuckets
+public import CORALean.NN.Operations.ToLayer
+public import CORALean.NN.Operations.VerifySplit
+public import CORALean.NN.Operations.VerifySplitWith
+public import CORALean.NN.Operations.SmoothNetworkEval
+public import CORALean.NN.Operations.SmoothNetworkNu
+public import CORALean.NN.Operations.SmoothNetworkToNonlinearSysDT
+public import CORALean.NN.Operations.ToNonlinearSysDT
+public import CORALean.NN.Operations.WorstIndex
+public import CORALean.NN.Operations.SnakeOrder
+public import CORALean.NN.Operations.InputNeuronOrder
+public import CORALean.NN.Operations.WeightLayerEval
+public import CORALean.NN.Operations.WeightNetworkEval
+public import CORALean.NN.Operations.WeightAccEval
+public import CORALean.NN.Operations.WeightAccPushLinear
+public import CORALean.NN.Operations.WeightAccPushAffine
+public import CORALean.NN.Operations.WeightAccLayer
+public import CORALean.NN.Operations.WeightNetworkNormalFormAux
+public import CORALean.NN.Operations.WeightNetworkNormalForm
+public import CORALean.NN.Operations.RefinableNetworkLayers
+public import CORALean.NN.Operations.RefinableNetworkRefinableLayers
+public import CORALean.NN.Operations.ActivationKindMergeValues
+public import CORALean.NN.Operations.CatTransformer
+public import CORALean.NN.Operations.CatReluOn
+public import CORALean.NN.Operations.CatMaxSegment
+public import CORALean.NN.Operations.CatMaxSegments
+public import CORALean.NN.Operations.CatMaxPool
+public import CORALean.NN.Operations.IntervalChainFwdFloat
+public import CORALean.NN.Operations.IntervalChainBackpropFloat
+public import CORALean.NN.Operations.ReluEnclosure
+public import CORALean.NN.Operations.ReluDerEnclosure
+public import CORALean.NN.Operations.IdentityDerEnclosure
 
 /-!
 # What a network does, collected

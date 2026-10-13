@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
-import CORALean.Global.Err
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # `Δε^{U,τ}_k`, eq. (26)

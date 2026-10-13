@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.Decompose
-import CORALean.ContSet.ContSet.Theorems.ProjectOuter
+module
+
+public import CORALean.ContSet.ContSet.Operations.Decompose
+public import CORALean.ContSet.ContSet.Theorems.ProjectOuter
+
+@[expose] public section
 
 /-!
 # `ContSet.decompose` encloses every block's projection

@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.CompactAtoAe
-import CORALean.ContSet.HPolytope.Float.Theorems.PairsToEqExact
-import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.CompactAtoAe
+public import CORALean.ContSet.HPolytope.Float.Theorems.PairsToEqExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
+
+@[expose] public section
 
 /-!
 # The float `compactAtoAe` keeps every point of the polytope in the domain

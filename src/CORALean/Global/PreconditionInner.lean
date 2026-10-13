@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # An inner box of a preconditioned function gives an inner parallelotope

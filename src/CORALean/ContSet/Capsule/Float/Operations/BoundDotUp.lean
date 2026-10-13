@@ -1,8 +1,12 @@
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.ContSet.Capsule.Real.Operations.SupportBound
-import CORALean.Global.Float.EuclideanNorm
-import CORALean.Global.Float.FloatBound
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.Capsule.Real.Operations.SupportBound
+public import CORALean.Global.Float.EuclideanNorm
+public import CORALean.Global.Float.FloatBound
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # A capsule answers a direction in floats, the root computed

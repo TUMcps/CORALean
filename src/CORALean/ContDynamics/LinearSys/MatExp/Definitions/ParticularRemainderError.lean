@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
-import CORALean.Global.Err
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # `ε_P([t_i,t_i+Δt_i])`, eq. (22)

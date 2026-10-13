@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullSignedSums
-import Mathlib.Analysis.Convex.Extreme
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullSignedSums
+public import Mathlib.Analysis.Convex.Extreme
+
+@[expose] public section
 
 /-!
 # The vertices of a zonotope are among `Z±(R)`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Antideriv
-import CORALean.ContSet.Taylm.Real.Theorems.IntegralPolyOf
-import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Antideriv
+public import CORALean.ContSet.Taylm.Real.Theorems.IntegralPolyOf
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
+
+@[expose] public section
 
 /-!
 # `Taylm.antideriv` encloses the antiderivative

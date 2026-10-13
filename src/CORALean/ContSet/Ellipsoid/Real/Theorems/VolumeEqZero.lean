@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
-import CORALean.ContSet.Ellipsoid.Real.Theorems.RankShape
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.RankShape
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # A rank-deficient ellipsoid has volume zero

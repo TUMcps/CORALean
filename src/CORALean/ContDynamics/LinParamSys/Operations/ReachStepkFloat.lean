@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinParamSys.Operations.SquaringsFloat
-import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.SquaringsFloat
+public import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # One window at every member, in floats: `H^R(τ_k) = [e^{[A] t_k}] H^R(τ_0)`

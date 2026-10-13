@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.FactorCheck
-import CORALean.Specification.STL.Theorems.FactorStepMem
+module
+
+public import CORALean.Specification.STL.Operations.FactorCheck
+public import CORALean.Specification.STL.Theorems.FactorStepMem
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2] is sound: factors outside `L` satisfy the formula

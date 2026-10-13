@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HalfSqBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermHiFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermLoFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HalfSqBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermHiFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermLoFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `W(t)` of every member of a float interval matrix lies in `expIntervalW`

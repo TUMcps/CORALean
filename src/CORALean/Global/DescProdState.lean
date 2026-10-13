@@ -1,5 +1,9 @@
-import CORALean.Global.DescProd
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.Global.DescProd
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # A recursion `Δ(k+1) = A_k Δ(k) + B_k δ(k) + L_k` in closed form

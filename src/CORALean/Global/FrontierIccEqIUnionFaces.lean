@@ -1,6 +1,10 @@
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Topology.Constructions
-import Mathlib.Order.Interval.Set.Pi
+module
+
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Topology.Constructions
+public import Mathlib.Order.Interval.Set.Pi
+
+@[expose] public section
 
 /-!
 # The boundary of a box is the union of its faces

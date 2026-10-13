@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Operations.DegreeAt
-import CORALean.NN.Graph.Operations.SqrtConst
-import CORALean.NN.Graph.Operations.SqrtEdgeCoeff
-import CORALean.NN.Graph.Theorems.DegreeAtEq
+module
+
+public import CORALean.NN.Graph.Operations.DegreeAt
+public import CORALean.NN.Graph.Operations.SqrtConst
+public import CORALean.NN.Graph.Operations.SqrtEdgeCoeff
+public import CORALean.NN.Graph.Theorems.DegreeAtEq
+
+@[expose] public section
 
 /-!
 # `D̃^(-1/2)` at an uncertain degree, as an affine function of the edge factors

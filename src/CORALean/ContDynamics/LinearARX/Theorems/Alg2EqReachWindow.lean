@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearARX.Operations.Alg2
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLe
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLt
-import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowEq
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Alg2
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLe
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLt
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowEq
+public import Mathlib.Algebra.BigOperators.Intervals
+
+@[expose] public section
 
 /-!
 # Alg. 2 computes the reachable windows, started at `k_init = p`

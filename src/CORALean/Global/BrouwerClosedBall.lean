@@ -1,6 +1,10 @@
-import CORALean.Global.NoRetractionClosedBall
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Geometry.Manifold.PartitionOfUnity
+module
+
+public import CORALean.Global.NoRetractionClosedBall
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Geometry.Manifold.PartitionOfUnity
+
+@[expose] public section
 
 /-!
 # Brouwer's fixed-point theorem on the closed unit ball

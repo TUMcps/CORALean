@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.Center
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Center
+
+@[expose] public section
 
 /-!
 # `Interval.center` is at least the real midpoint

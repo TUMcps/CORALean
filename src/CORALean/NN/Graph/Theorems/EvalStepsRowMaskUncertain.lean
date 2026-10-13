@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
-import CORALean.NN.Graph.Theorems.BallMonoOfSupport
-import CORALean.NN.Graph.Theorems.EvalStepsRowMask
+module
+
+public import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
+public import CORALean.NN.Graph.Theorems.BallMonoOfSupport
+public import CORALean.NN.Graph.Theorems.EvalStepsRowMask
+
+@[expose] public section
 
 /-!
 # `[1, §4.3]`'s locality, uniform in the graph's own uncertainty

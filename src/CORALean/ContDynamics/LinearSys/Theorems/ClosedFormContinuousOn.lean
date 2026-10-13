@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormEq
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormEq
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+
+@[expose] public section
 
 /-!
 # The closed form is continuous, whatever the input looks like

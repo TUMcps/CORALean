@@ -1,17 +1,21 @@
-import CORALean.ContDynamics.LinearSys.Definitions.AutoInvariantFloat
-import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
-import CORALean.ContDynamics.LinearSys.Theorems.AffineWindowFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetSplitFloat
-import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.AutoInvariantFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.AffineWindowFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetSplitFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+
+@[expose] public section
 
 /-!
 # One `Alg. 2` iteration keeps its invariant and its window holds every run

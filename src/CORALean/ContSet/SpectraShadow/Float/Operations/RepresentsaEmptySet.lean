@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.DualCertified
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.DualCertified
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_emptySet`, over a floating-point scalar

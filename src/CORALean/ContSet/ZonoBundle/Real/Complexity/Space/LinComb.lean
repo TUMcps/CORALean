@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.LinComb
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.LinComb
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.linComb`'s counts

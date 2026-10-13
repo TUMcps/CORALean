@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Reindex
-import CORALean.ContSet.Interval.Real.Operations.Reindex
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Reindex
+public import CORALean.ContSet.Interval.Real.Operations.Reindex
+
+@[expose] public section
 
 /-!
 # A relabelled box's nominal part is the relabelled nominal box

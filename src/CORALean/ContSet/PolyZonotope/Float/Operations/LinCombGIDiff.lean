@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.LinCombGI
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.LinCombGI
+
+@[expose] public section
 
 /-!
 # What `linComb`'s stored independent generators fall short by

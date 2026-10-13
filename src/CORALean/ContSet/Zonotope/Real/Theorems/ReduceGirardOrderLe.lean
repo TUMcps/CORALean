@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceGirard` bounds the generator count

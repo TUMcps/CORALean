@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.GetSyms
-import CORALean.ContSet.Taylm.Real.Theorems.GetSymsMem
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.GetSyms
+public import CORALean.ContSet.Taylm.Real.Theorems.GetSymsMem
+
+@[expose] public section
 
 /-!
 # `Taylm.getSyms` brackets the function, over a floating-point scalar

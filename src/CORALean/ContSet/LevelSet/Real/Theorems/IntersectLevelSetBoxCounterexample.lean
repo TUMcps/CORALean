@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]'s exactness fails when `p_k` depends on `x(k)`

@@ -1,8 +1,12 @@
-import CORALean.ContSet.ContSet.Definitions.DimReduce
-import CORALean.ContSet.ContSet.Definitions.IsBoundIntersect2D
-import CORALean.ContSet.ContSet.Theorems.HyperplaneSliceEq
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.ContSet.Definitions.DimReduce
+public import CORALean.ContSet.ContSet.Definitions.IsBoundIntersect2D
+public import CORALean.ContSet.ContSet.Theorems.HyperplaneSliceEq
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # Dimension reduction over-approximates the hyperplane intersection

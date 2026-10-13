@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # The convolution of two Gaussians

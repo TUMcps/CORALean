@@ -1,7 +1,11 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.mtimes` maps the laws

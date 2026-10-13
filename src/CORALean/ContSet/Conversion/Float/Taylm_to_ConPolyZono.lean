@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
-import CORALean.ContSet.Conversion.Float.Taylm_to_PolyZonotope
+module
+
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Float.Taylm_to_PolyZonotope
+
+@[expose] public section
 
 /-!
 # An array of Taylor models as a constrained polynomial zonotope, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.InvSqrtRootEnclosure
-import CORALean.NN.Layers.Operations.RelaxationOfAntitone
+module
+
+public import CORALean.NN.Layers.Operations.InvSqrtRootEnclosure
+public import CORALean.NN.Layers.Operations.RelaxationOfAntitone
+
+@[expose] public section
 
 /-!
 # The inverse square root relaxation (machine)

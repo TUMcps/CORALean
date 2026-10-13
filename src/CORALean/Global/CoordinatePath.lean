@@ -1,8 +1,12 @@
-import Mathlib.Analysis.Calculus.Darboux
-import Mathlib.Analysis.Calculus.Deriv.Pi
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Calculus.FDeriv.Comp
+module
+
+public import Mathlib.Analysis.Calculus.Darboux
+public import Mathlib.Analysis.Calculus.Deriv.Pi
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Calculus.FDeriv.Comp
+
+@[expose] public section
 
 /-!
 # Moving one coordinate at a time through a box

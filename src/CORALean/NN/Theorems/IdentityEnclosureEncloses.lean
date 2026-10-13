@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.ScalarEncloses
+module
+
+public import CORALean.NN.Definitions.ScalarEncloses
+
+@[expose] public section
 
 /-!
 # The box itself encloses the identity

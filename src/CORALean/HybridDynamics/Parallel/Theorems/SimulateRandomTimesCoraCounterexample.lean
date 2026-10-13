@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.SimulateRandomTimesCora
-import CORALean.HybridDynamics.Operations.SimulateRandomTimes
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.SimulateRandomTimesCora
+public import CORALean.HybridDynamics.Operations.SimulateRandomTimes
+
+@[expose] public section
 
 /-!
 # CORA's parallel `simulateRandom` has one input segment too few

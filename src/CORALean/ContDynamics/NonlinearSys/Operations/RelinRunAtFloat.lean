@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
+
+@[expose] public section
 
 /-!
 # The float re-linearization loop, at given points

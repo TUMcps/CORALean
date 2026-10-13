@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
-import CORALean.Global.MulVecPosNegBounds
-import CORALean.Global.NonnegOfNonnegRecurrence
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
+public import CORALean.Global.MulVecPosNegBounds
+public import CORALean.Global.NonnegOfNonnegRecurrence
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The interval observer based on a coordinate transformation holds the true state

@@ -1,9 +1,13 @@
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorIsExtreme
-import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfTanh
-import CORALean.NN.Layers.Theorems.Real.ExistsCriticalExtreme
-import CORALean.Global.ElementaryDerivBounds
-import Mathlib.Analysis.SpecialFunctions.Artanh
-import Mathlib.Data.Set.Finite.Basic
+module
+
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorIsExtreme
+public import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfTanh
+public import CORALean.NN.Layers.Theorems.Real.ExistsCriticalExtreme
+public import CORALean.Global.ElementaryDerivBounds
+public import Mathlib.Analysis.SpecialFunctions.Artanh
+public import Mathlib.Data.Set.Finite.Basic
+
+@[expose] public section
 
 /-!
 # The approximation errors of the hyperbolic tangent

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.OptLinQuad
-import CORALean.ContSet.Taylm.Real.Theorems.CosyGoLe
-import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.OptLinQuad
+public import CORALean.ContSet.Taylm.Real.Theorems.CosyGoLe
+public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Taylm.optLinQuad` bounds the enclosed function

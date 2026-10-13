@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.Specification.STL.Definitions.DepReachState
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.Specification.STL.Definitions.DepReachState
+
+@[expose] public section
 
 /-!
 # The time point reachable set of the dependency preserving reachability algorithm

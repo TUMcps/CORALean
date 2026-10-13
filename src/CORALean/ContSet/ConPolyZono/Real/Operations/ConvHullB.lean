@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.RepVec
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.RepVec
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.convHullB`

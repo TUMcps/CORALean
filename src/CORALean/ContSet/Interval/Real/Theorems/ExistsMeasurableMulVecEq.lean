@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import Mathlib.Data.Matrix.Mul
-import Mathlib.MeasureTheory.Constructions.BorelSpace.Order
-import Mathlib.MeasureTheory.MeasurableSpace.Pi
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.MeasureTheory.Constructions.BorelSpace.Order
+public import Mathlib.MeasureTheory.MeasurableSpace.Pi
+
+@[expose] public section
 
 /-!
 # A measurable member of a box mapping a measurable vector to a measurable one

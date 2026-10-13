@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `VPolytope.enclosePoints` is exactly the convex hull of the points

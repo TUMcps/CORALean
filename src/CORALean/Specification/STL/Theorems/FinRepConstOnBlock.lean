@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.ReachSequence
+module
+
+public import CORALean.Specification.STL.Definitions.ReachSequence
+
+@[expose] public section
 
 /-!
 # A c-divisible reach sequence is constant between sample times

@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqImageRestrict
-import CORALean.ContSet.HPolytope.Real.Theorems.Convex
-import Mathlib.Analysis.Normed.Affine.AddTorsorBases
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqImageRestrict
+public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # The restriction of a polytope to its affine hull is non-degenerate

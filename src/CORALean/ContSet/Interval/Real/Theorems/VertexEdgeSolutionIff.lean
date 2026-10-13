@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A vertex and the solutions on the edges it raises

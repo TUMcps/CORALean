@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
-import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalFormCanonical
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
+public import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalFormCanonical
+
+@[expose] public section
 
 /-!
 # `canonicalForm` keeps `C`, which `isCanonicalForm` tests against the identity

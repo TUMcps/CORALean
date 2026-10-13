@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Volume
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Volume
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
+
+@[expose] public section
 
 /-!
 # `Interval.volume` bounds the exact volume

@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Lift
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Lift
+
+@[expose] public section
 
 /-!
 # `LevelSet.lift_` is a preimage

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.IsDisjoint
-import CORALean.ContSet.Capsule.Float.Theorems.RadiusLe
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.IsDisjoint
+public import CORALean.ContSet.Capsule.Float.Theorems.RadiusLe
+
+@[expose] public section
 
 /-!
 # `Capsule.isDisjoint` is sound

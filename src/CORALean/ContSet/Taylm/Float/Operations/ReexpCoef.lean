@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.BinomCoef
-import CORALean.ContSet.Taylm.Float.Operations.ReexpPairs
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BinomCoef
+public import CORALean.ContSet.Taylm.Float.Operations.ReexpPairs
+
+@[expose] public section
 
 /-!
 # `Taylm.reexpCoef`

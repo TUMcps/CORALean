@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
+
+@[expose] public section
 
 /-!
 # What a sampled run owes, as a zonotope

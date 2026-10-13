@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropLuenberger
-import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerUpdateOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropLuenberger
+public import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerUpdateOuter
+
+@[expose] public section
 
 /-!
 # The Luenberger update of the diffusion observer holds the next state

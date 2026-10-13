@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.MulHi
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+
+@[expose] public section
 
 /-!
 # `Zonotope.halfspaceRange`, over a floating-point scalar

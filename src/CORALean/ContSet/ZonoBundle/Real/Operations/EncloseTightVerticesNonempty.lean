@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVertices
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVertices
+
+@[expose] public section
 
 /-!
 # The joined vertices of two nonempty bundles span a nonempty set

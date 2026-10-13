@@ -1,5 +1,9 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.PolyZonotope.Real.Instances
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # Sparse polynomial zonotopes over a floating-point scalar: the representation

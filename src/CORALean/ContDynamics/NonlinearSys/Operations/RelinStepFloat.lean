@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
+
+@[expose] public section
 
 /-!
 # One step of the float re-linearization loop, at the half-step point

@@ -1,6 +1,10 @@
-import CORALean.NN.Definitions.IntervalChainFloat
-import CORALean.NN.Definitions.IntervalChain
-import CORALean.NN.Definitions.ScalarEncloses
+module
+
+public import CORALean.NN.Definitions.IntervalChainFloat
+public import CORALean.NN.Definitions.IntervalChain
+public import CORALean.NN.Definitions.ScalarEncloses
+
+@[expose] public section
 
 /-!
 # A float interval chain stands for a real one

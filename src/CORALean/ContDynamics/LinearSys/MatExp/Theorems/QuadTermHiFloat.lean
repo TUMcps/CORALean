@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermFloat
+
+@[expose] public section
 
 /-!
 # The float `quadTermHi` is at least the exact one

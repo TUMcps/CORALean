@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
+
+@[expose] public section
 
 /-!
 # One window of `reach` holds the homogeneous flow over the whole window

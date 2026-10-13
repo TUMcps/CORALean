@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+
+@[expose] public section
 
 /-!
 # The second-order Taylor term, at one float matrix

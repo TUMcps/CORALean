@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
-import CORALean.ContDynamics.LinearSys.Operations.OneStep
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
+public import CORALean.ContDynamics.LinearSys.Operations.OneStep
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.linReachCompCora`

@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.Order.Star.Real
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # Spectrahedral shadows: the representation

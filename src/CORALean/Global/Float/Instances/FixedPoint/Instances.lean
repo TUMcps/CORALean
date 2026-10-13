@@ -1,20 +1,24 @@
-import CORALean.Global.Float.ToRat
-import CORALean.Global.Float.Instances.FixedPoint.Operations.AddDown
-import CORALean.Global.Float.Instances.FixedPoint.Operations.AddUp
-import CORALean.Global.Float.Instances.FixedPoint.Operations.MulDown
-import CORALean.Global.Float.Instances.FixedPoint.Operations.MulUp
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.DivDownLeDiv
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeDivUp
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeRoundUp
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.RoundDownLe
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactAdd
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactMul
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealHalf
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealLeOfLe
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMaximum
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMinimum
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMkZero
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealNeg
+module
+
+public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.AddDown
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.AddUp
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.MulDown
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.MulUp
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.DivDownLeDiv
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeDivUp
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeRoundUp
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.RoundDownLe
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactAdd
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactMul
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealHalf
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealLeOfLe
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMaximum
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMinimum
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMkZero
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealNeg
+
+@[expose] public section
 
 /-!
 # `FixedPoint` as a sound float model

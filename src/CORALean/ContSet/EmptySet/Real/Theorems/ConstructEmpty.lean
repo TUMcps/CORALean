@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Empty
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Empty
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.empty` denotes `∅`

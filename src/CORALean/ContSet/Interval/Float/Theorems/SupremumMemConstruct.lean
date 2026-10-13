@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Supremum
-import CORALean.ContSet.Interval.Real.Theorems.SupremumMemConstruct
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Supremum
+public import CORALean.ContSet.Interval.Real.Theorems.SupremumMemConstruct
+
+@[expose] public section
 
 /-!
 # The supremum of a nonempty interval lies in it

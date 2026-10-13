@@ -1,10 +1,14 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepEqIff
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepPos
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepContinuousAt
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepMonotoneOn
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityStrictAntiOn
-import Mathlib.Topology.Order.MonotoneConvergence
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepEqIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepPos
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepContinuousAt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepMonotoneOn
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityStrictAntiOn
+public import Mathlib.Topology.Order.MonotoneConvergence
+
+@[expose] public section
 
 /-!
 # Halder's fixed-point iteration converges

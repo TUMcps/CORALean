@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Compact
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.ReduceGirard
-import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Compact
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.ReduceGirard
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.reduceCost`

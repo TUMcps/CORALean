@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.CentreMat
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # A matrix of an interval matrix acts through its centre and the leftover

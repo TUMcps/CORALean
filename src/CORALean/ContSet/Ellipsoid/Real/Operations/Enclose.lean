@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclose`

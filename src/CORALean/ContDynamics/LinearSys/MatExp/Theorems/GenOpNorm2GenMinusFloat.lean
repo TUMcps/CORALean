@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.GenMinusFloat
-import CORALean.Global.Float.GenOpNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.GenMinusFloat
+public import CORALean.Global.Float.GenOpNorm
+
+@[expose] public section
 
 /-!
 # `genOpNorm₂` of the true `G^{(-)}_h` is under the float upper bound

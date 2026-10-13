@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
-import CORALean.ContSet.HPolytope.Float.Operations.PadRight
-import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.PadRight
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `HPolytope.cartProd`, over a floating-point scalar

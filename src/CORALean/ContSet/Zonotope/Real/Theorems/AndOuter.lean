@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.And
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.And
+
+@[expose] public section
 
 /-!
 # The `'conZonotope'` intersection of zonotopes encloses the intersection

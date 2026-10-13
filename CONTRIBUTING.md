@@ -294,6 +294,8 @@ type is named as its exact twin, the layer being the namespace — no `GZonotope
 no `StarSetFloat`, no abbreviation of a representation at `Vec` — that every
 file carries a module docstring and
 — unless it is a collector — a well-formed author block one line under it, that
+every file outside `Examples/` and the short list of exceptions is a `module`
+with its header at fixed lines (see "The module header"), that
 nothing is `sorry` or a search tactic, that nothing outside the three files
 named in the script is an `axiom` — the second holding `nearestUnsound` alone
 and imported from nowhere outside `Examples/Bench/`, the third holding
@@ -981,6 +983,50 @@ the thesis *is* the source and citing it is correct, not a fallback. A book is
 equally fine where no paper stands behind the result — CORA cites one for the
 matrix zonotope product, and so do we. Where none can be confirmed, leave the
 section out; a blank is honest and a wrong citation is not.
+
+## The module header
+
+Every file under `src/` is a Lean module, and its header sits at fixed lines:
+
+```lean
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
+
+/-!
+# An interval is convex
+…
+-/
+
+-- Authors:       …
+```
+
+`module` on line 1, one blank line, the imports from line 3 on, one blank line,
+`@[expose] public section`, one blank line, then the module docstring and the
+author block as below. A collector (`API.lean`) declares nothing, so it is
+`module` and its `public import`s only, with no section.
+
+Why: in a module a proof is private, so the `.olean` a file exports holds its
+statements and definitions but not its proofs. A change that touches only a
+proof leaves that interface unchanged and rebuilds the file alone rather than
+every file that imports it. `public` keeps every declaration visible as before,
+and `@[expose]` keeps every definition unfoldable downstream, so `rfl`,
+`decide` and `simp [f]` see what they saw. What a module changes for itself: it
+sees only what Mathlib exports publicly, so a tactic it uses (`ring`,
+`norm_num`) is imported in the file itself rather than reached through another
+import; and a `private` definition cannot be used by an exposed one, so such a
+helper is public, under a name that does not clash.
+
+A file stays a non-module only when its proofs unfold a definition that core or
+Mathlib does not expose (`Nat.fold`, a list sort by `rfl`), or when it imports
+such a file, since a module cannot import a non-module (the reverse is fine).
+Those files are listed with a reason in `scripts/non-module-allowlist.txt`,
+which only shrinks; everything under `Examples/` stays non-module too, since
+`#eval` in a module needs `meta import`. `check-conventions.sh` checks the
+header lines and refuses any other file that is not a module.
 
 ## Author blocks
 

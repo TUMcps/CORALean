@@ -1,5 +1,9 @@
-import CORALean.Global.BlockDiag
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+module
+
+public import CORALean.Global.BlockDiag
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+
+@[expose] public section
 
 /-!
 # The diagonal pair is linear in the vector it carries

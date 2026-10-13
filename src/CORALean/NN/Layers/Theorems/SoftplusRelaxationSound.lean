@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.SoftplusBox
-import CORALean.NN.Layers.Operations.SoftplusRelaxation
-import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
-import CORALean.NN.Layers.Theorems.Real.SoftplusMono
+module
+
+public import CORALean.NN.Layers.Definitions.SoftplusBox
+public import CORALean.NN.Layers.Operations.SoftplusRelaxation
+public import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
+public import CORALean.NN.Layers.Theorems.Real.SoftplusMono
+
+@[expose] public section
 
 /-!
 # The softplus relaxation is sound

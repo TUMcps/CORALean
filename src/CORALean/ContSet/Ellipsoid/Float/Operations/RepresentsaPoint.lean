@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.representsa_point`, over a floating-point scalar

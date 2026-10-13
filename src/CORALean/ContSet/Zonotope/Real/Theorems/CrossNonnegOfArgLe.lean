@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossEqNormMulSin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossEqNormMulSin
+
+@[expose] public section
 
 /-!
 # Angle order gives the sign of a cross product

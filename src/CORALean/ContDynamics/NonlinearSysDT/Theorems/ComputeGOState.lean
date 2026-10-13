@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
-import CORALean.Global.DescProdState
-import CORALean.Global.LinResidual
-import CORALean.Global.StackSelectMulVec
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
+public import CORALean.Global.DescProdState
+public import CORALean.Global.LinResidual
+public import CORALean.Global.StackSelectMulVec
+
+@[expose] public section
 
 /-!
 # `computeGO` gives the state of every run

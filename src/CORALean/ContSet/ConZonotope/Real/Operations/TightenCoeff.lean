@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.RowBound
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.RowBound
+
+@[expose] public section
 
 /-!
 # `ConZonotope.tightenCoeff`

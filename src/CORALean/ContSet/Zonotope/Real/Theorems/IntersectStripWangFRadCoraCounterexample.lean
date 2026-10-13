@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
+
+@[expose] public section
 
 /-!
 # CORA's `'wang-FRad'` gain is not the F-radius minimizer

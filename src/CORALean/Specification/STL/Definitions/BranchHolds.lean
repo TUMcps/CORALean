@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Definitions.SampledTime
-import CORALean.Specification.STL.Definitions.Pform
-import Mathlib.Data.NNReal.Defs
+module
+
+public import CORALean.Specification.STL.Definitions.SampledTime
+public import CORALean.Specification.STL.Definitions.Pform
+public import Mathlib.Data.NNReal.Defs
+
+@[expose] public section
 
 /-!
 # What a branch says of a trace

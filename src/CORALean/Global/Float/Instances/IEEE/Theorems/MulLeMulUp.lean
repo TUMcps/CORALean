@@ -1,6 +1,10 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
-import CORALean.Global.Float.Instances.IEEE.Operations.MulUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.LeRoundUp
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
+public import CORALean.Global.Float.Instances.IEEE.Operations.MulUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.LeRoundUp
+
+@[expose] public section
 
 /-!
 # Multiplication, rounded up, never undershoots

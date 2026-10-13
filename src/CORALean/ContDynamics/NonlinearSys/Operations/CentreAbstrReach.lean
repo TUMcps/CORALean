@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRun
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
-import CORALean.ContDynamics.Reach.Definitions.InputParams
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRun
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+
+@[expose] public section
 
 /-!
 # `Alg. 1` line 17, linearizing at the centre

@@ -1,5 +1,9 @@
-import Mathlib.Data.NNReal.Defs
-import Mathlib.Tactic.Ring
+module
+
+public import Mathlib.Data.NNReal.Defs
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A predicate on three blocks of time

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.representsa_point` is sound

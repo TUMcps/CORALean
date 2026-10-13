@@ -1,11 +1,15 @@
-import CORALean.Global.InnerRangeOfFrontier
-import CORALean.Global.InnerTest
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.Calculus.FDeriv.Prod
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Order.Interval.Set.Pi
+module
+
+public import CORALean.Global.InnerRangeOfFrontier
+public import CORALean.Global.InnerTest
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.Calculus.FDeriv.Prod
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Order.Interval.Set.Pi
+
+@[expose] public section
 
 /-!
 # The inclusion test for an inner box of the first `r` components

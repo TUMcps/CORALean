@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Float.Instances
-import CORALean.HybridDynamics.Definitions.RunUntil
-import CORALean.HybridDynamics.Operations.ReachFloat
-import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
-import CORALean.HybridDynamics.Theorems.JumpFloatOuter
-import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter
+module
+
+public import CORALean.ContSet.HPolytope.Float.Instances
+public import CORALean.HybridDynamics.Definitions.RunUntil
+public import CORALean.HybridDynamics.Operations.ReachFloat
+public import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
+public import CORALean.HybridDynamics.Theorems.JumpFloatOuter
+public import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter
+
+@[expose] public section
 
 /-!
 # `HybridAutomaton.reachFloat` holds every run it was asked about

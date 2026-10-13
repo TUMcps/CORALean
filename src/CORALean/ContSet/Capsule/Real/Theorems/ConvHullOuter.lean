@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Operations.ConvHull
-import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.ConvHull
+public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `Capsule.convHull` encloses the hull

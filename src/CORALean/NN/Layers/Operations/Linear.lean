@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.NN.Layers.Layer
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.NN.Layers.Layer
+
+@[expose] public section
 
 /-!
 # The linear layer

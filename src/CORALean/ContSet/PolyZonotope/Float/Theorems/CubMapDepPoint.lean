@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapDep
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CubEvalExpand
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.Zonotope.Float.Theorems.CubContractBracket
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapDep
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubEvalExpand
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.Zonotope.Float.Theorems.CubContractBracket
+
+@[expose] public section
 
 /-!
 # The cubic image of a point of `cubMapDep`'s operand, over a floating-point scalar

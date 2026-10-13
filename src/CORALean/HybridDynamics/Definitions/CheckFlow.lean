@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Definitions.Location
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+module
+
+public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+
+@[expose] public section
 
 /-!
 # `Location.checkFlow`: dropping the reach sets the flow does not carry to the guard

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 6 and 9: the ratio test, cross-multiplied

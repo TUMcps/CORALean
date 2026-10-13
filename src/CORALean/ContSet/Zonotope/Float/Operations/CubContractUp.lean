@@ -1,4 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubContractDown
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubContractDown
+
+@[expose] public section
+
 /-!
 # `Zonotope.cubContractUp`, the cubic contraction of three vectors rounded up
 

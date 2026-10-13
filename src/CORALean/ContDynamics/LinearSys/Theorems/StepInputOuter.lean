@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.StepInput
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+
+@[expose] public section
 
 /-!
 # `inputSolution` contains what the input contributed over a step

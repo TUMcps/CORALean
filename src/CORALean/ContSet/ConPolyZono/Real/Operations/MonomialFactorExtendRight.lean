@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+
+@[expose] public section
 
 /-!
 # The same at the constraint block

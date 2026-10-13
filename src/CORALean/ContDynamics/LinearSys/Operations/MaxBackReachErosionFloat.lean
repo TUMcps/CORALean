@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
-import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
-import CORALean.ContDynamics.LinearSys.LinearSys
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
+public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
+public import CORALean.ContDynamics.LinearSys.LinearSys
+
+@[expose] public section
 
 /-!
 # `Alg. 2` line 12 in floats: how much the erosion has to leave room for

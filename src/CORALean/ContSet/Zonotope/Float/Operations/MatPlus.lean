@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
+
+@[expose] public section
 
 /-!
 # `Zonotope.matPlus`

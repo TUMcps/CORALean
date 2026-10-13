@@ -1,13 +1,17 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Union
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsUnionUpperIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerLeft
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerRight
-import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
-import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsUnionUpperIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerLeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerRight
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The union, exactly — under the hypothesis [1, Thm. 1] leaves out

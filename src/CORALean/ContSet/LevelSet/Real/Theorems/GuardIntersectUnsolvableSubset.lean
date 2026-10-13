@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
-import CORALean.ContSet.LevelSet.Real.Theorems.TaylorSeriesMem
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
+public import CORALean.ContSet.LevelSet.Real.Theorems.TaylorSeriesMem
+
+@[expose] public section
 
 /-!
 # The unsolvable-guard model encloses the guard intersection

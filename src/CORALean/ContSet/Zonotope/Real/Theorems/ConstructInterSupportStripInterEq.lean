@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SupportStrip
-import CORALean.ContSet.Zonotope.Real.Theorems.SupportDotProduct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportStrip
+public import CORALean.ContSet.Zonotope.Real.Theorems.SupportDotProduct
+
+@[expose] public section
 
 /-!
 # Meeting the support strip first changes nothing

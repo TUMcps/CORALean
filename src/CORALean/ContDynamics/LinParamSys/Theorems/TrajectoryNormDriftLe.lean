@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryNormLe
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryNormLe
+
+@[expose] public section
 
 /-!
 # How large the enlarged input of a frozen step has to be

@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.PostDelta
-import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
-import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
-import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Instances
-import CORALean.Global.Block
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PostDelta
+public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
+public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
+public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # `abstrErr`, the abstraction error of one step

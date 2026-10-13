@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.PointUp
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.PointUp
+
+@[expose] public section
 
 /-!
 # Turning generators upward does not change the zonogon

@@ -1,4 +1,8 @@
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # The triangle inequality for the Euclidean Hausdorff distance

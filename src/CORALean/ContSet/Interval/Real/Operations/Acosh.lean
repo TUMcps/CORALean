@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.SpecialFunctions.Arcosh
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.SpecialFunctions.Arcosh
+
+@[expose] public section
 
 /-!
 # `Interval.acosh`

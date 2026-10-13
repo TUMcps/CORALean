@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.IsCanonicalFormFloat
-import CORALean.ContDynamics.LinearSys.Theorems.EntryIsFloatSound
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.IsCanonicalFormFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.EntryIsFloatSound
+
+@[expose] public section
 
 /-!
 # A `true` from the float `isCanonicalForm` is a proof

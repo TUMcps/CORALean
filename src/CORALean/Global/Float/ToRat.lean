@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import Mathlib.Data.Rat.Cast.Defs
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import Mathlib.Data.Rat.Cast.Defs
+
+@[expose] public section
 
 /-!
 # The exact rational a float denotes

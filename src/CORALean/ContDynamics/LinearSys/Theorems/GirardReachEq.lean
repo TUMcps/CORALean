@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.GirardReach
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.GirardReach
+
+@[expose] public section
 
 /-!
 # What `girardReach` returns, in closed form

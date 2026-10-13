@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
-import Mathlib.Data.ENNReal.Basic
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import Mathlib.Data.ENNReal.Basic
+
+@[expose] public section
 
 /-!
 # `EmptySet.radius`

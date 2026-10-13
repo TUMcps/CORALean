@@ -1,39 +1,41 @@
-import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
-import CORALean.ContSet.Polygon.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.Polygon.Float.Theorems.EmptyExact
-import CORALean.ContSet.Polygon.Float.Theorems.IntervalContains
-import CORALean.ContSet.Polygon.Float.Theorems.IsCompact
-import CORALean.ContSet.Polygon.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Polygon.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Polygon.Float.Theorems.OrExact
-import CORALean.ContSet.Polygon.Float.Theorems.PlusOuter
-import CORALean.ContSet.Polygon.Float.Theorems.ProjectOuter
-import CORALean.ContSet.Polygon.Float.Theorems.TimesOuter
-import CORALean.ContSet.Polygon.Float.Theorems.BoundDotLe
-import CORALean.ContSet.Polygon.Float.Theorems.VerticesOuter
-import CORALean.ContSet.Polygon.Float.Theorems.RepresentsaEmptySetSound
-import CORALean.ContSet.Polygon.Float.Theorems.AndOuter
-import CORALean.ContSet.Polygon.Float.Theorems.MinusOuter
-import CORALean.ContSet.Polygon.Float.Theorems.SplitIntoConvexSetsUnion
-import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.Polygon.Float.Theorems.ContainsPointSound
-import CORALean.ContSet.Polygon.Float.Theorems.InTriangleSound
-import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
-import CORALean.ContSet.Polygon.Float.Theorems.IsequalPiecesSound
-import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
-import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
-import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
-import CORALean.ContSet.Polygon.Float.Theorems.IsConvexSound
-import CORALean.ContSet.Polygon.Float.Theorems.VolumeLe
-import CORALean.ContSet.Polygon.Float.Theorems.CenterMem
-import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
-import CORALean.ContSet.Polygon.Float.Theorems.QuadMapOuter
-import CORALean.ContSet.Polygon.Float.Theorems.QuadMapMixedOuter
-import CORALean.ContSet.Polygon.Float.Theorems.SubtractPieceOuter
-import CORALean.ContSet.Polygon.Float.Theorems.SubtractOuter
-import CORALean.ContSet.Polygon.Float.Theorems.MldivideOuter
-import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
-import CORALean.ContSet.Polygon.Float.Theorems.MinkDiffInner
+module
+
+public import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
+public import CORALean.ContSet.Polygon.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.EmptyExact
+public import CORALean.ContSet.Polygon.Float.Theorems.IntervalContains
+public import CORALean.ContSet.Polygon.Float.Theorems.IsCompact
+public import CORALean.ContSet.Polygon.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.OrExact
+public import CORALean.ContSet.Polygon.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.BoundDotLe
+public import CORALean.ContSet.Polygon.Float.Theorems.VerticesOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.Polygon.Float.Theorems.AndOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.MinusOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.SplitIntoConvexSetsUnion
+public import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.Polygon.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.Polygon.Float.Theorems.InTriangleSound
+public import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
+public import CORALean.ContSet.Polygon.Float.Theorems.IsequalPiecesSound
+public import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
+public import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
+public import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
+public import CORALean.ContSet.Polygon.Float.Theorems.IsConvexSound
+public import CORALean.ContSet.Polygon.Float.Theorems.VolumeLe
+public import CORALean.ContSet.Polygon.Float.Theorems.CenterMem
+public import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
+public import CORALean.ContSet.Polygon.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.QuadMapMixedOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.SubtractPieceOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.SubtractOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.MldivideOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
+public import CORALean.ContSet.Polygon.Float.Theorems.MinkDiffInner
 
 /-!
 # Float polygon theorems, collected

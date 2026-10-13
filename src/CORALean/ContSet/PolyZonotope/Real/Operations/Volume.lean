@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.volume`

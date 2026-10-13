@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Fullspace
-import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+
+@[expose] public section
 
 /-!
 # `Fullspace.hPolytope`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A vertex description is closed

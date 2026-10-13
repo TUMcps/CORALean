@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroCol
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroRow
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatDropIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroCol
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroRow
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatDropIff
+
+@[expose] public section
 
 /-!
 # Partial solve, then drop, is `eliminate`

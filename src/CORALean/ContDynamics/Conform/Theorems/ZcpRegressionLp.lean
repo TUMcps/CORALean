@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.MemZcpSetIff
-import CORALean.ContDynamics.Conform.Theorems.ZcpIntervalNorm
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.MemZcpSetIff
+public import CORALean.ContDynamics.Conform.Theorems.ZcpIntervalNorm
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Zono-conformal regression is a linear program

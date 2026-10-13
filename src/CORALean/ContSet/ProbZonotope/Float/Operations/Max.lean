@@ -1,8 +1,12 @@
-import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
-import CORALean.Global.Float.Exp
-import CORALean.Global.Float.InverseTrig
-import CORALean.Global.Float.PowDown
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
+public import CORALean.Global.Float.Exp
+public import CORALean.Global.Float.InverseTrig
+public import CORALean.Global.Float.PowDown
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.max`, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.PadBack
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackExact
-import CORALean.ContSet.PolyZonotope.Real.Instances
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PadBack
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackExact
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.padBack` denotes the same set, in float too

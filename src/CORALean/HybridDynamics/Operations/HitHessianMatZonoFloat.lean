@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Operations.Smul
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import Mathlib.Data.Fin.VecNotation
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.MatPlus
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import Mathlib.Data.Fin.VecNotation
+
+@[expose] public section
 
 /-!
 # The matrix zonotope of `y_h`'s second derivatives, over a floating-point scalar

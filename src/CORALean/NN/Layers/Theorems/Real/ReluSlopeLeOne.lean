@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.NN.Layers.Operations.ReluSlope
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.NN.Layers.Operations.ReluSlope
+
+@[expose] public section
 
 /-!
 # The default ReLU slope is at most one at ℝ

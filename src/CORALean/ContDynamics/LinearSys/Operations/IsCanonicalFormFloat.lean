@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalForm
-import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalForm
+public import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
+
+@[expose] public section
 
 /-!
 # `isCanonicalForm` at float matrices

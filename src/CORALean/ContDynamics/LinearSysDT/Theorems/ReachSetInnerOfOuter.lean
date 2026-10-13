@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetConvex
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetConvex
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # The bridge, discharged: an outer approximation of `reachSet` inverts

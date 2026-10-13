@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
-import CORALean.ContDynamics.Reach.Definitions.InputParams
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+
+@[expose] public section
 
 /-!
 # Adaptive reachability in floats: [1, Alg. 1], CORA's `priv_reach_adaptive`

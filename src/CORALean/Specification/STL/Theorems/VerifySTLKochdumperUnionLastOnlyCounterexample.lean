@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.VerifySTLKochdumperGloballyCora
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Specification.STL.Operations.VerifySTLKochdumperGloballyCora
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's STL verifier returns `verified` for a violated `G_[0,1] ((-1 ≤ x ≤ 1) ∨ x ≥ 10)`

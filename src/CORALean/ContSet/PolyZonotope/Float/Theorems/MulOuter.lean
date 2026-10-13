@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mul` encloses the exact product over shared factors

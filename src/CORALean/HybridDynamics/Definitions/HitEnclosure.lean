@@ -1,9 +1,13 @@
-import CORALean.HybridDynamics.Definitions.HitPoint
-import CORALean.HybridDynamics.Definitions.HitJacobian
-import CORALean.HybridDynamics.Operations.HitHessianMatZono
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMapMatZono
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Algebra.Group.Pointwise.Set.Scalar
+module
+
+public import CORALean.HybridDynamics.Definitions.HitPoint
+public import CORALean.HybridDynamics.Definitions.HitJacobian
+public import CORALean.HybridDynamics.Operations.HitHessianMatZono
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapMatZono
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Algebra.Group.Pointwise.Set.Scalar
+
+@[expose] public section
 
 /-!
 # The enclosure `R_g` of the guard intersection

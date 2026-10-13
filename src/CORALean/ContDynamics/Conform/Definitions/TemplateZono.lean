@@ -1,6 +1,10 @@
-import CORALean.Global.CrossProduct
-import Mathlib.Algebra.Order.AbsoluteValue.Basic
-import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+module
+
+public import CORALean.Global.CrossProduct
+public import Mathlib.Algebra.Order.AbsoluteValue.Basic
+public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+
+@[expose] public section
 
 /-!
 # Zonotopes stretched from a template

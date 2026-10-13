@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Definitions.Shift
-import Mathlib.Data.Finset.Basic
-import Mathlib.Order.Interval.Set.UnorderedInterval
+module
+
+public import CORALean.Specification.STL.Definitions.Shift
+public import Mathlib.Data.Finset.Basic
+public import Mathlib.Order.Interval.Set.UnorderedInterval
+
+@[expose] public section
 
 /-!
 # Reach sequences and the traces they stand for

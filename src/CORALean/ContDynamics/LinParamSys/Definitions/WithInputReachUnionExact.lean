@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInput
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInput
+
+@[expose] public section
 
 /-!
 # The exact set `Reach LinParamSys.WithInput` is asked to enclose

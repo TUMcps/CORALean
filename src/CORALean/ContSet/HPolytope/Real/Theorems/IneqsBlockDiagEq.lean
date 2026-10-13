@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The Cartesian product of two H-polytopes

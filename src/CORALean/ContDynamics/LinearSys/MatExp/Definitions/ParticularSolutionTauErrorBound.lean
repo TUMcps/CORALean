@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.Global.Err
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.Global.Err
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # `particularSolutionTauError`'s explicit bound

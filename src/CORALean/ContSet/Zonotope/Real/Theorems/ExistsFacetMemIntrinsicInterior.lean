@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.Degree
-import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemIntrinsicInterior
-import CORALean.ContSet.Zonotope.Real.Theorems.ExistsFacetSuperset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.Degree
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemIntrinsicInterior
+public import CORALean.ContSet.Zonotope.Real.Theorems.ExistsFacetSuperset
+
+@[expose] public section
 
 /-!
 # A point of degree at most `n - 1` shares a facet with a point interior to it

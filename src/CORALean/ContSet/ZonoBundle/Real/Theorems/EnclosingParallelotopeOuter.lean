@@ -1,9 +1,13 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IntervalAllContains
-import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntervalAllContains
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.enclosingParallelotope` over-approximates the bundle

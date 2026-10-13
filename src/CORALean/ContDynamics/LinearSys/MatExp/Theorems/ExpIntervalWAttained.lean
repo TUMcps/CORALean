@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermAttained
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermAttained
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+
+@[expose] public section
 
 /-!
 # `expIntervalW` attains both of its bounds

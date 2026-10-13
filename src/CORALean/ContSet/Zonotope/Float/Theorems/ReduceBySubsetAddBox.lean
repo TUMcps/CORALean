@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+
+@[expose] public section
 
 /-!
 # `reduceBy` reaches no further than its operand plus `reduceByBox`

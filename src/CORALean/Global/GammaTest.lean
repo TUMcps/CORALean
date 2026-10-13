@@ -1,7 +1,11 @@
-import Mathlib.Order.Interval.Set.Pi
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+module
+
+public import Mathlib.Order.Interval.Set.Pi
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+
+@[expose] public section
 
 /-!
 # The inclusion `x̃ + Γ(J, x - x̃, y - f(x̃)) ⊆ int x`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mean
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mean
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.mean` is the set of expectations

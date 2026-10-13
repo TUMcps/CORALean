@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.MergedCol
-import CORALean.ContSet.PolyZonotope.Float.Operations.MergedColUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedCol
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedColUp
+
+@[expose] public section
 
 /-!
 # What a merged column can be off by

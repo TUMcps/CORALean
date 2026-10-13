@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowMask
-import CORALean.NN.Graph.Theorems.EvalStepsLayersSubmatrix
+module
+
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowMask
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersSubmatrix
+
+@[expose] public section
 
 /-!
 # `[1, Sec. 4.3]`'s locality for the layered network: a ball's `κ` needs no `hclosed`

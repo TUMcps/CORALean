@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UsedFactors
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UsedFactors
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.factorIdx`

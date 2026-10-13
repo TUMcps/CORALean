@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Isequal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # Zonotopes passing `isequal` denote the same set

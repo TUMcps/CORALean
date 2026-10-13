@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.ReachSet
-import CORALean.HybridDynamics.Theorems.RunOuter
+module
+
+public import CORALean.HybridDynamics.Definitions.ReachSet
+public import CORALean.HybridDynamics.Theorems.RunOuter
+
+@[expose] public section
 
 /-!
 # `reachSet` is inside what an invariant supplies

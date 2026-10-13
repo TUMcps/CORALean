@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+
+@[expose] public section
 
 /-!
 # When one power of a factor never exceeds another on `[-1,1]`

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveTensor3Cora2D
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveTensor3Cora2D
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # CORA's adaptive third-order remainder multiplies by the wrong factor

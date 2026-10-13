@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # A data point's containment constraint is convex in the stretch factors

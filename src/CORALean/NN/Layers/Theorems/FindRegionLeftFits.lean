@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.FindRegionLeft
-import CORALean.NN.Layers.Theorems.LowerRegionOrderFits
+module
+
+public import CORALean.NN.Layers.Operations.FindRegionLeft
+public import CORALean.NN.Layers.Theorems.LowerRegionOrderFits
+
+@[expose] public section
 
 /-!
 # The left region found fits

@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Definitions.EvalPoly
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Definitions.EvalPoly
+
+@[expose] public section
 
 /-!
 # What a polynomial activation has to supply

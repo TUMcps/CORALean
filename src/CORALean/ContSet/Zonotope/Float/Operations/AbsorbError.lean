@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Zonotope.Float.Operations.ErrorRadius
-import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
-import CORALean.ContSet.Zonotope.Float.Operations.ShiftUp
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrorRadius
+public import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
+public import CORALean.ContSet.Zonotope.Float.Operations.ShiftUp
+
+@[expose] public section
 
 /-!
 # `Zonotope.absorbError`

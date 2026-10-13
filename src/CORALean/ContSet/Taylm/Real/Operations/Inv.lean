@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Taylor
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Taylor
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+
+@[expose] public section
 
 /-!
 # `Taylm.inv`

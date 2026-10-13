@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
-import CORALean.ContSet.PolyZonotope.Float.Operations.Centre
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Centre
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # The stored centre is a point of the polynomial zonotope

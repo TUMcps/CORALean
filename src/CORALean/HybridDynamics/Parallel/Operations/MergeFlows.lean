@@ -1,5 +1,9 @@
-import CORALean.Global.ExactScalar
-import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+module
+
+public import CORALean.Global.ExactScalar
+public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+
+@[expose] public section
 
 /-!
 # `mergeFlows`

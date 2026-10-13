@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+
+@[expose] public section
 
 /-!
 # `HPolytope.mldivideCora`: `mldivide` as CORA's code computes it

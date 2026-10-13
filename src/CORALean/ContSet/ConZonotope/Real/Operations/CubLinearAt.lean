@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Module.LinearMap.Defs
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Module.LinearMap.Defs
+
+@[expose] public section
 
 /-!
 # Reading coefficients off the generators of `Zonotope.cubMap`

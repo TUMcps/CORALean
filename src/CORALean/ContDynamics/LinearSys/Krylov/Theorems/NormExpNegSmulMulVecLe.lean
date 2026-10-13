@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecLe
+
+@[expose] public section
 
 /-!
 # A matrix with `Re(x*Ax) ≥ ν‖x‖²` gives `‖e^{-rA}x‖₂ ≤ e^{-rν}‖x‖₂`

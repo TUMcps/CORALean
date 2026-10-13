@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
-import CORALean.ContSet.Zonotope.Real.Operations.MethCBasis
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+public import CORALean.ContSet.Zonotope.Real.Operations.MethCBasis
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceMethC`

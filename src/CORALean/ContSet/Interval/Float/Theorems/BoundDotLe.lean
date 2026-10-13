@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.BoundDot
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.BoundDot
+
+@[expose] public section
 
 /-!
 # `Interval.boundDot` bounds the support function

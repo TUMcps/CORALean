@@ -1,4 +1,8 @@
-import CORALean.Global.Float.InverseTrig
+module
+
+public import CORALean.Global.Float.InverseTrig
+
+@[expose] public section
 
 /-!
 # `Interval.atan2Lo`: `atan2` at a corner, from below

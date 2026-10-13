@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
-import CORALean.ContDynamics.LinearSys.Operations.OneStep
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
+public import CORALean.ContDynamics.LinearSys.Operations.OneStep
+
+@[expose] public section
 
 /-!
 # What makes a linearization sound for one run over one step

@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Definitions.Transformation
-import CORALean.Specification.STL.Definitions.Tsupp
-import CORALean.Specification.STL.Theorems.SatOr
+module
+
+public import CORALean.Specification.STL.Definitions.Transformation
+public import CORALean.Specification.STL.Definitions.Tsupp
+public import CORALean.Specification.STL.Theorems.SatOr
+
+@[expose] public section
 
 /-!
 # Eq. 12 fails: `tsupp(ϕ)` need not decide `ϕ`

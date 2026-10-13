@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
-import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
+public import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+
+@[expose] public section
 
 /-!
 # `minnorm` is attained

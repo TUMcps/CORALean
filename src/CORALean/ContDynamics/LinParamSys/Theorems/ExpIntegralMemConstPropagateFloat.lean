@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+
+@[expose] public section
 
 /-!
 # `constPropagateFloat` holds what a constant input contributes by each window start

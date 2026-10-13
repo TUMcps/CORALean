@@ -1,4 +1,8 @@
-import CORALean.Global.OdeList
+module
+
+public import CORALean.Global.OdeList
+
+@[expose] public section
 
 /-!
 # The derivative polynomials of `atan` and `asin` on integer coefficient lists

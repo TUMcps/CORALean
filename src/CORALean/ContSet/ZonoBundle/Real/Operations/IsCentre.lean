@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
-import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+module
+
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.IsCentre`

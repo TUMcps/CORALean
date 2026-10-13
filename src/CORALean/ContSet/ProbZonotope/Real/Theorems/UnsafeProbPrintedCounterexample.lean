@@ -1,5 +1,9 @@
-import Mathlib.Probability.Distributions.Gaussian.Real
-import Mathlib.Probability.Moments.Variance
+module
+
+public import Mathlib.Probability.Distributions.Gaussian.Real
+public import Mathlib.Probability.Moments.Variance
+
+@[expose] public section
 
 /-!
 # [1, Eq. 7] as printed under-estimates the probability

@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonpos
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonpos
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # The recentred relaxation over-approximates

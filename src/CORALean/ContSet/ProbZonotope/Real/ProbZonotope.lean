@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Probability.Distributions.Gaussian.Multivariate
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Probability.Distributions.Gaussian.Multivariate
+
+@[expose] public section
 
 /-!
 # Probabilistic zonotopes: the representation

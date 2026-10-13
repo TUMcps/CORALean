@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+
+@[expose] public section
 
 /-!
 # One sampled run, at a chosen matrix per step

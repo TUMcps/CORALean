@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.Global.LinProg.Composition
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.Global.LinProg.Composition
+
+@[expose] public section
 
 /-!
 # A support bound on the reachable set, term for term

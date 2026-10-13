@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
-import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
+
+@[expose] public section
 
 /-!
 # A step's inner approximation, over a floating-point scalar

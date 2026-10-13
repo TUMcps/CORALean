@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Submatrix
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Submatrix
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+
+@[expose] public section
 
 /-!
 # A submatrix of a matrix in a box lies in the submatrix of the box

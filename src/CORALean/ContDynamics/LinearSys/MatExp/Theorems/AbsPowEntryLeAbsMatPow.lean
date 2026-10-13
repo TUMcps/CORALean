@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+
+@[expose] public section
 
 /-!
 # `|Aⁱ_{jk}| ≤ (|A|ⁱ)_{jk}`, entrywise

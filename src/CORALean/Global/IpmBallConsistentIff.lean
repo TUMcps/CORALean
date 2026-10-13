@@ -1,4 +1,8 @@
-import CORALean.Global.IpmBallEq
+module
+
+public import CORALean.Global.IpmBallEq
+
+@[expose] public section
 
 /-!
 # Consistency of the ball predictor is linear

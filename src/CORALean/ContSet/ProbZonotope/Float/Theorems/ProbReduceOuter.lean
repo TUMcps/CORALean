@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.ProbReduce
-import CORALean.ContSet.ProbZonotope.Real.Theorems.ProbReduceEq
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.ProbReduce
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.ProbReduceEq
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.probReduce` keeps the laws

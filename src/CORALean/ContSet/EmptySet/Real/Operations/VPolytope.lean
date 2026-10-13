@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
-import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
+
+@[expose] public section
 
 /-!
 # `EmptySet.vPolytope`

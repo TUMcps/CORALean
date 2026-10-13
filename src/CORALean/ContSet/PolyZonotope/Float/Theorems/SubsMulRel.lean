@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
+
+@[expose] public section
 
 /-!
 # `subsMul` keeps the bracket

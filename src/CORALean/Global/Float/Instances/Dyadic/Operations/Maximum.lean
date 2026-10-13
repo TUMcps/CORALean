@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Le
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Le
+
+@[expose] public section
 
 /-!
 # The greater of two dyadics

@@ -1,7 +1,9 @@
-import CORALean.ContSet.Interval.Real.Definitions.Hull
-import CORALean.ContSet.Interval.Real.Definitions.RootBound
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import CORALean.ContSet.Interval.Real.Definitions.IsBoundsContractor
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.Hull
+public import CORALean.ContSet.Interval.Real.Definitions.RootBound
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import CORALean.ContSet.Interval.Real.Definitions.IsBoundsContractor
 
 /-!
 # What an interval means beyond its own construction

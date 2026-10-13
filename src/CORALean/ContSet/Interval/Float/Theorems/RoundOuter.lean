@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Round
-import CORALean.ContSet.Interval.Float.Theorems.RoundAwayIntCast
-import CORALean.ContSet.Interval.Real.Operations.Round
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Round
+public import CORALean.ContSet.Interval.Float.Theorems.RoundAwayIntCast
+public import CORALean.ContSet.Interval.Real.Operations.Round
+
+@[expose] public section
 
 /-!
 # `Interval.round` encloses the exact rounding

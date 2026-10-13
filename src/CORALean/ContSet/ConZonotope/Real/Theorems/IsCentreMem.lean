@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
+
+@[expose] public section
 
 /-!
 # The centre of a constrained zonotope lies in it

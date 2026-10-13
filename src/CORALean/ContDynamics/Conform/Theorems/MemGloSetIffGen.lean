@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.GloSetTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIffGen
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.GloSetTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIffGen
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # [1, Lemma 4]: containment in `Ȳ` as generator constraints

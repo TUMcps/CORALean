@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+
+@[expose] public section
 
 /-!
 # One box covers what both dropped blocks of `reduceBy` contribute

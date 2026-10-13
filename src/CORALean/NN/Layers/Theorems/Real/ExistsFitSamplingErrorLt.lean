@@ -1,9 +1,13 @@
-import CORALean.NN.Layers.Theorems.Real.AbsSubEvalPolyDerivLe
-import CORALean.NN.Layers.Theorems.Real.ExistsEvalPolyNear
-import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import CORALean.NN.Layers.Theorems.Real.AbsSubEvalPolyDerivLe
+public import CORALean.NN.Layers.Theorems.Real.ExistsEvalPolyNear
+public import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # Refinement by order converges

@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.CatTransformerOuter
+module
+
+public import CORALean.NN.Theorems.CatTransformerOuter
+
+@[expose] public section
 
 /-!
 # Proving a property by abstract interpretation

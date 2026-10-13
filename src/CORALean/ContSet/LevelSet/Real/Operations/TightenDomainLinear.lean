@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.LinearSweep
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.LinearSweep
+
+@[expose] public section
 
 /-!
 # `LevelSet.tightenDomainLinear`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.Global.Jacobian
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.Global.Jacobian
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.outputSetLinear`

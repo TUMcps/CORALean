@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.Volume
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.Volume
+
+@[expose] public section
 
 /-!
 # The volume of a bundle is that of its polytope

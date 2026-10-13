@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.EqVec
-import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
+public import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
+
+@[expose] public section
 
 /-!
 # Rows certified equal read equal

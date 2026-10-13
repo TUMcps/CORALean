@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.Global.Float.FloatBound
+module
+
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.Global.Float.FloatBound
+
+@[expose] public section
 
 /-!
 # Where a float halfspace description's own bounds come from

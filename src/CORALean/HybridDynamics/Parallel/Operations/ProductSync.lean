@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsSync
-import CORALean.HybridDynamics.Parallel.Operations.ProductWith
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsSync
+public import CORALean.HybridDynamics.Parallel.Operations.ProductWith
+
+@[expose] public section
 
 /-!
 # `productSync`

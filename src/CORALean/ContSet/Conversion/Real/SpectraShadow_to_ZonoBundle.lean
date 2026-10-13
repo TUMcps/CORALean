@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.SpectraShadow_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+module
+
+public import CORALean.ContSet.Conversion.Real.SpectraShadow_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+
+@[expose] public section
 
 /-!
 # A spectrahedral shadow as a zonoBundle

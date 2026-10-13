@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
+
+@[expose] public section
 
 /-!
 # `Interval.projectHighDim_` contains the zero-padded points

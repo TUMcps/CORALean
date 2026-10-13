@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Order.Filter.Tendsto
-import Mathlib.Topology.MetricSpace.Pseudo.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+public import Mathlib.Order.Filter.Tendsto
+public import Mathlib.Topology.MetricSpace.Pseudo.Basic
+
+@[expose] public section
 
 /-!
 # A family of sets that eventually lies in every ball has radius tending to `0`

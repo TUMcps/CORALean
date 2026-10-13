@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.ExplanationRefineLoop
-import CORALean.NN.Operations.GreedyMinimalExplanation
+module
+
+public import CORALean.NN.Operations.ExplanationRefineLoop
+public import CORALean.NN.Operations.GreedyMinimalExplanation
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2]: the abstraction-refinement search

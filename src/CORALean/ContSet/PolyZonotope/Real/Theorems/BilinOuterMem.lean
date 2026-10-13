@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `bilinOuter` encloses the product of the two sets at shared factors

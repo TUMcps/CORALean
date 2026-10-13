@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Theorems.IdentGuardEq
-import CORALean.HybridDynamics.Operations.SplitTreeRegions
-import Mathlib.Topology.Algebra.Module.FiniteDimension
-import Mathlib.Topology.Order.Basic
+module
+
+public import CORALean.HybridDynamics.Theorems.IdentGuardEq
+public import CORALean.HybridDynamics.Operations.SplitTreeRegions
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+public import Mathlib.Topology.Order.Basic
+
+@[expose] public section
 
 /-!
 # The identified automaton has no execution errors

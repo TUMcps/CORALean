@@ -1,8 +1,10 @@
-import CORALean.Global.Float.Instances.Flint.Flint
-import CORALean.Global.Float.Instances.Flint.Definitions.API
-import CORALean.Global.Float.Instances.Flint.Operations.API
-import CORALean.Global.Float.Instances.Flint.Theorems.API
-import CORALean.Global.Float.Instances.Flint.Instances
+module
+
+public import CORALean.Global.Float.Instances.Flint.Flint
+public import CORALean.Global.Float.Instances.Flint.Definitions.API
+public import CORALean.Global.Float.Instances.Flint.Operations.API
+public import CORALean.Global.Float.Instances.Flint.Theorems.API
+public import CORALean.Global.Float.Instances.Flint.Instances
 
 /-!
 # FLINT-rounded dyadics, collected

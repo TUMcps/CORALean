@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Atanh
-import CORALean.ContSet.Interval.Real.Theorems.AtanhExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Atanh
+public import CORALean.ContSet.Interval.Real.Theorems.AtanhExact
+
+@[expose] public section
 
 /-!
 # `Interval.atanh` contains the image under `artanh`

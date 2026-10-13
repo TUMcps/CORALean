@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.LowerRegionOrder
+module
+
+public import CORALean.NN.Layers.Operations.LowerRegionOrder
+
+@[expose] public section
 
 /-!
 # The left polynomial of a step of `findRegionPolys`

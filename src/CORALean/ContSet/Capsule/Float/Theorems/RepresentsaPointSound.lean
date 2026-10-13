@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
+
+@[expose] public section
 
 /-!
 # `Capsule.representsa_point` is sound

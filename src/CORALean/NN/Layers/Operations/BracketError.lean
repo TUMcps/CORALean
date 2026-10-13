@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.BracketShift
+module
+
+public import CORALean.NN.Layers.Operations.BracketShift
+
+@[expose] public section
 
 /-!
 # The radius a recentred bracket leaves

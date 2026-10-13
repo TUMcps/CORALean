@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # A simulated run is a trajectory

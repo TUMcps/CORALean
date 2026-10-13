@@ -1,21 +1,25 @@
-import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.ScaleRounding
-import CORALean.NN.Layers.Definitions.Sigmoid
-import CORALean.NN.Layers.Definitions.SigmoidNetworks
-import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
-import CORALean.NN.Layers.Definitions.SigmoidRelaxation
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.ActivationPolyRefinable
-import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Operations.Sigmoid
-import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
-import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
-import CORALean.NN.Operations.NetworkConvergent
-import CORALean.NN.Theorems.ActivationLipschitz
-import CORALean.NN.Theorems.EvalLipschitz
-import CORALean.NN.Theorems.Real.LinearConvergent
-import CORALean.NN.Theorems.SigmoidLipschitz
+module
+
+public import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Definitions.ScaleRounding
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Definitions.SigmoidNetworks
+public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
+public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.ActivationPolyRefinable
+public import CORALean.NN.Layers.Operations.Linear
+public import CORALean.NN.Layers.Operations.Sigmoid
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
+public import CORALean.NN.Operations.NetworkConvergent
+public import CORALean.NN.Theorems.ActivationLipschitz
+public import CORALean.NN.Theorems.EvalLipschitz
+public import CORALean.NN.Theorems.Real.LinearConvergent
+public import CORALean.NN.Theorems.SigmoidLipschitz
+
+@[expose] public section
 
 /-!
 # The two-layer network is convergent

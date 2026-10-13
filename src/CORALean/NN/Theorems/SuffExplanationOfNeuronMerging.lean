@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.NeuronMergingNetworkOuter
-import CORALean.NN.Theorems.SuffExplanationTransfer
+module
+
+public import CORALean.NN.Theorems.NeuronMergingNetworkOuter
+public import CORALean.NN.Theorems.SuffExplanationTransfer
+
+@[expose] public section
 
 /-!
 # Transfer at a network the abstraction actually produces

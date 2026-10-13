@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Or
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Or
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectLevelSet`, the box it intersects

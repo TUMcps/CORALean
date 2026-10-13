@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Max
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Max
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.max` is exactly the set of entrywise maxima

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 4-11 in floats: the loop

@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerInputTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralPowDivFactorialMul
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulPeanoBakerTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
-import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import Mathlib.Topology.Algebra.Order.Floor
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerInputTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralPowDivFactorialMul
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulPeanoBakerTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
+public import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import Mathlib.Topology.Algebra.Order.Floor
+
+@[expose] public section
 
 /-!
 # The Peano–Baker expansion of a run with an input, and what it leaves

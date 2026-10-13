@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Definitions.ResetTaylor
-import Mathlib.Analysis.Calculus.FDeriv.Pow
-import Mathlib.Analysis.Calculus.FDeriv.Prod
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.HybridDynamics.Definitions.ResetTaylor
+public import Mathlib.Analysis.Calculus.FDeriv.Pow
+public import Mathlib.Analysis.Calculus.FDeriv.Prod
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # [1, Eq. 14] with one `ξ` for all coordinates fails

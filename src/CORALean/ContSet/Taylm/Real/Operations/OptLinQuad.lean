@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.CosyGo
-import CORALean.ContSet.Taylm.Real.Operations.Uminus
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
+public import CORALean.ContSet.Taylm.Real.Operations.Uminus
+
+@[expose] public section
 
 /-!
 # `Taylm.optLinQuad`

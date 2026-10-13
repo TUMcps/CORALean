@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.TimeTriggered.Theorems.ScalingConversionContOverapprox
-import CORALean.HybridDynamics.TimeTriggered.Theorems.ScalingConversionSubsetReach
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScalingConversionContOverapprox
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScalingConversionSubsetReach
+
+@[expose] public section
 
 /-!
 # The scaled automaton: overapproximation, and zero error against the unbounded reachable set

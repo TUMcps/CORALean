@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowOffset
-import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalCompPermAbs
-import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalEqZeroOfNotInjective
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffHRepEq
-import Mathlib.LinearAlgebra.Matrix.Dual
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowOffset
+public import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalCompPermAbs
+public import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalEqZeroOfNotInjective
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffHRepEq
+public import Mathlib.LinearAlgebra.Matrix.Dual
+
+@[expose] public section
 
 /-!
 # [1, Thm. 3] at the `Bool × Finset` indexing of its rows

@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
-import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
-import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
-import CORALean.ContSet.Zonotope.Real.Operations.GenMap
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
+public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
+
+@[expose] public section
 
 /-!
 # A constrained zonotope is exactly a bounded affine image of a polytope

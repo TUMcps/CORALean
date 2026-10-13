@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+
+@[expose] public section
 
 /-!
 # [1, Example 2]'s solved form, away from `x₁ = 0`

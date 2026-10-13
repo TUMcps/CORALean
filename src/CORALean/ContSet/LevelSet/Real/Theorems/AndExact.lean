@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.Operations.And
-import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.And
+public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+
+@[expose] public section
 
 /-!
 # `LevelSet.and_` is exact

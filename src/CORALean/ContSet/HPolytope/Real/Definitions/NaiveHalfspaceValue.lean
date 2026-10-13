@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.ExtendedRow
-import Mathlib.Analysis.Normed.Operator.NormedSpace
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.ExtendedRow
+public import Mathlib.Analysis.Normed.Operator.NormedSpace
+
+@[expose] public section
 
 /-!
 # Naive halfspace sampling's value

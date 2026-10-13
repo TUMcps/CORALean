@@ -1,5 +1,9 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Nat.Choose.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Nat.Choose.Basic
+
+@[expose] public section
 
 /-!
 # `Taylm.bernsteinBasis`

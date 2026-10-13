@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.StarSetFloat
+module
+
+public import CORALean.NN.Layers.Definitions.StarSetFloat
+
+@[expose] public section
 
 /-!
 # The denotation of a float star set

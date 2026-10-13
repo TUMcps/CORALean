@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Instances
-import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
-import CORALean.NN.Graph.Operations.FloatBiasPoint
-import CORALean.NN.Graph.Operations.FloatRightMat
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Instances
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
+public import CORALean.NN.Graph.Operations.FloatBiasPoint
+public import CORALean.NN.Graph.Operations.FloatRightMat
+
+@[expose] public section
 
 /-!
 # CORA's `nnGNNLinearLayer` on a float polynomial zonotope

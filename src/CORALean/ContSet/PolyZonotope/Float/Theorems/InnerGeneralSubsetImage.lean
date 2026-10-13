@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
+
+@[expose] public section
 
 /-!
 # `innerGeneral` proves an inner box

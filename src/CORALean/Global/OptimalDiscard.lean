@@ -1,5 +1,9 @@
-import CORALean.Global.DiscardTree
-import Mathlib.Data.List.MinMax
+module
+
+public import CORALean.Global.DiscardTree
+public import Mathlib.Data.List.MinMax
+
+@[expose] public section
 
 /-!
 # `optimalDiscard`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.ContSet.Interval.Float.Operations.MulHi
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+
+@[expose] public section
 
 /-!
 # `HPolytope.scaleDevHi`, the upper end of what rounding a scaled row costs over a domain

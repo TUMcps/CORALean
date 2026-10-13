@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Taylm
-import Mathlib.Data.Fintype.Pi
-import Mathlib.Data.Nat.Choose.Basic
+module
+
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import Mathlib.Data.Fintype.Pi
+public import Mathlib.Data.Nat.Choose.Basic
+
+@[expose] public section
 
 /-!
 # A term list re-expanded about a point

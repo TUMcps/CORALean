@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionLocal
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionLocal
+
+@[expose] public section
 
 /-!
 # A Lipschitz field has a solution for every horizon

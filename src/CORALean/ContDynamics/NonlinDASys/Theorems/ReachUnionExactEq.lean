@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryOfNonlinearSys
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryOfNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
+
+@[expose] public section
 
 /-!
 # The reachable states are the reduced system's, exactly

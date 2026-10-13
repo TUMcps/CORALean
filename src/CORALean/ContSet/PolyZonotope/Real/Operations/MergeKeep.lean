@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
+
+@[expose] public section
 
 /-!
 # The columns `merge` keeps

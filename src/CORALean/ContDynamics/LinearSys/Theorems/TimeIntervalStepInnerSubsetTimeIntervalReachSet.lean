@@ -1,15 +1,19 @@
-import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
-import CORALean.ContDynamics.LinearSys.Definitions.StepInner
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.StepInner
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # The whole-step inner approximation lands in the exact tube

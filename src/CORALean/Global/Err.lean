@@ -1,5 +1,10 @@
-import CORALean.Global.BoxDiameter
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.Global.BoxDiameter
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Algebra.Order.Group.Pointwise.CompleteLattice
+
+@[expose] public section
 
 /-!
 # `err(S) := rad(box(S))`, the Euclidean radius of the smallest ball at the origin enclosing `S`

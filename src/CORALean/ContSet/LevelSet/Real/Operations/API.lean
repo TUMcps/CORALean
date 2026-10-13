@@ -1,28 +1,30 @@
-import CORALean.ContSet.LevelSet.Real.Operations.And
-import CORALean.ContSet.LevelSet.Real.Operations.Contains
-import CORALean.ContSet.LevelSet.Real.Operations.Empty
-import CORALean.ContSet.LevelSet.Real.Operations.Inf
-import CORALean.ContSet.LevelSet.Real.Operations.Plus
-import CORALean.ContSet.LevelSet.Real.Operations.Test
-import CORALean.ContSet.LevelSet.Real.Operations.Lift
-import CORALean.ContSet.LevelSet.Real.Operations.Mtimes
-import CORALean.ContSet.LevelSet.Real.Operations.Not
-import CORALean.ContSet.LevelSet.Real.Operations.Restrict
-import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
-import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
-import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectSolvable
-import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
-import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingUniform
-import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
-import CORALean.ContSet.LevelSet.Real.Operations.ContainsCellCora
-import CORALean.ContSet.LevelSet.Real.Operations.PotIntCora
-import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaFullspace
-import CORALean.ContSet.LevelSet.Real.Operations.Compact
-import CORALean.ContSet.LevelSet.Real.Operations.Isequal
-import CORALean.ContSet.LevelSet.Real.Operations.LinearCoord
-import CORALean.ContSet.LevelSet.Real.Operations.LinearSweep
-import CORALean.ContSet.LevelSet.Real.Operations.TightenDomainLinear
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.And
+public import CORALean.ContSet.LevelSet.Real.Operations.Contains
+public import CORALean.ContSet.LevelSet.Real.Operations.Empty
+public import CORALean.ContSet.LevelSet.Real.Operations.Inf
+public import CORALean.ContSet.LevelSet.Real.Operations.Plus
+public import CORALean.ContSet.LevelSet.Real.Operations.Test
+public import CORALean.ContSet.LevelSet.Real.Operations.Lift
+public import CORALean.ContSet.LevelSet.Real.Operations.Mtimes
+public import CORALean.ContSet.LevelSet.Real.Operations.Not
+public import CORALean.ContSet.LevelSet.Real.Operations.Restrict
+public import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
+public import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+public import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectSolvable
+public import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
+public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingUniform
+public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
+public import CORALean.ContSet.LevelSet.Real.Operations.ContainsCellCora
+public import CORALean.ContSet.LevelSet.Real.Operations.PotIntCora
+public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaFullspace
+public import CORALean.ContSet.LevelSet.Real.Operations.Compact
+public import CORALean.ContSet.LevelSet.Real.Operations.Isequal
+public import CORALean.ContSet.LevelSet.Real.Operations.LinearCoord
+public import CORALean.ContSet.LevelSet.Real.Operations.LinearSweep
+public import CORALean.ContSet.LevelSet.Real.Operations.TightenDomainLinear
 
 /-!
 # Level set operations, collected

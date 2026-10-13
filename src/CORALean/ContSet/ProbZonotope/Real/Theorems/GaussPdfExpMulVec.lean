@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DetExpSmul
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DetExpSmul
+
+@[expose] public section
 
 /-!
 # The PDF value of a point under the linear flow

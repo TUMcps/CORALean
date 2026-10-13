@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Generators
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Algebra.Order.Star.Real
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Generators
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Algebra.Order.Star.Real
+
+@[expose] public section
 
 /-!
 # `generators(E)` has the shape matrix of `E`

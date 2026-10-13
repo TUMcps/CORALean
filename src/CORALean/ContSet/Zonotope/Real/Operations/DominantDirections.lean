@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DominantShortlist
-import CORALean.ContSet.Zonotope.Real.Operations.DominantScore
-import Mathlib.Data.List.MinMax
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DominantShortlist
+public import CORALean.ContSet.Zonotope.Real.Operations.DominantScore
+public import Mathlib.Data.List.MinMax
+
+@[expose] public section
 
 /-!
 # `Zonotope.dominantDirections`

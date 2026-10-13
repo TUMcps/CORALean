@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Parallel.Operations.ReachFloat
-import CORALean.HybridDynamics.Parallel.Theorems.RunToProduct
-import CORALean.HybridDynamics.Theorems.ReachFloatOuter
-import CORALean.HybridDynamics.Theorems.RunIffExistsRunUntil
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.ReachFloat
+public import CORALean.HybridDynamics.Parallel.Theorems.RunToProduct
+public import CORALean.HybridDynamics.Theorems.ReachFloatOuter
+public import CORALean.HybridDynamics.Theorems.RunIffExistsRunUntil
+
+@[expose] public section
 
 /-!
 # The float run of the product encloses every run of the parallel automaton

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Prod
-import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Prod
+public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.prod` encloses the product

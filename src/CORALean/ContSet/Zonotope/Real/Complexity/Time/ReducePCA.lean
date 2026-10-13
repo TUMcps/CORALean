@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceByBasis
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceByBasis
+
+@[expose] public section
 
 /-!
 # `Zonotope.reducePCACost`

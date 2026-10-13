@@ -1,4 +1,8 @@
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # A member of a set is no further from the origin than the set's Euclidean distance to `{0}`

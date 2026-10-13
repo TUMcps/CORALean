@@ -1,7 +1,11 @@
-import CORALean.Global.Brouwer
-import CORALean.Global.CoordinateGain
-import CORALean.Global.CoordinatePathOff
-import Mathlib.Analysis.Calculus.ContDiff.Basic
+module
+
+public import CORALean.Global.Brouwer
+public import CORALean.Global.CoordinateGain
+public import CORALean.Global.CoordinatePathOff
+public import Mathlib.Analysis.Calculus.ContDiff.Basic
+
+@[expose] public section
 
 /-!
 # Boxes inside the range of a vector-valued function from mean-value AE extensions

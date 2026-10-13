@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Radius2
-import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Radius2
+public import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
+
+@[expose] public section
 
 /-!
 # A zonotope lies in the ball of radius `radius₂` about its centre

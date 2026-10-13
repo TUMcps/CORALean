@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.Global.Float.EuclideanNorm
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.Global.Float.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Capsule.containsPoint`, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.QuadTerms
-import Mathlib.Algebra.BigOperators.Field
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.QuadTerms
+public import Mathlib.Algebra.BigOperators.Field
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The quadratic form's terms evaluate to it

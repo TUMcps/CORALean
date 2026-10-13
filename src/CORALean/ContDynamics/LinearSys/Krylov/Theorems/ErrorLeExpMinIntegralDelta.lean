@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaExpWeight
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaExpWeight
+
+@[expose] public section
 
 /-!
 # The a posteriori error bound of Wang and Ye for the Arnoldi approximation of `e^{-τA}v`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mtimesCost`

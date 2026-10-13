@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The product of two intervals is as small as their magnitudes

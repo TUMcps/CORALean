@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+
+@[expose] public section
 
 /-!
 # `mul` is exactly the product over shared factors

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.RescaleStep
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnitBox
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.RescaleStep
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitBox
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.rescale`

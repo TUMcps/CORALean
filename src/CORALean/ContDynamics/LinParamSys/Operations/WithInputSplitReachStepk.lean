@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplit
-import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
-import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplit
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
+public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
+
+@[expose] public section
 
 /-!
 # One window of `reachUnion` with the input set split: the set over `τ_k`

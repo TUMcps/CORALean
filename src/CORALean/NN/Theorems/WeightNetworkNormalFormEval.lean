@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.WeightNetworkNormalForm
-import CORALean.NN.Theorems.WeightNetworkNormalFormAuxEval
+module
+
+public import CORALean.NN.Operations.WeightNetworkNormalForm
+public import CORALean.NN.Theorems.WeightNetworkNormalFormAuxEval
+
+@[expose] public section
 
 /-!
 # The normal form computes the same function

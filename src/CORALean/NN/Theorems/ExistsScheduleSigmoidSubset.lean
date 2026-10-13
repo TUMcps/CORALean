@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.SigmoidRefinementConverges
+module
+
+public import CORALean.NN.Theorems.SigmoidRefinementConverges
+
+@[expose] public section
 
 /-!
 # The loop converges at a single sigmoid layer

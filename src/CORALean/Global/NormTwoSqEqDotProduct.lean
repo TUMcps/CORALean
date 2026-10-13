@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.InnerProductSpace.PiL2
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+
+@[expose] public section
 
 /-!
 # The squared Euclidean norm is the dot product with itself

@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
-import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # The segments between two shadows are inside their convex hull

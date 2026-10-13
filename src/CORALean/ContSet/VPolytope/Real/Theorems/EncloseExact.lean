@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Instances
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
-import CORALean.ContSet.ContSet.Operations.Enclose
+module
+
+public import CORALean.ContSet.VPolytope.Real.Instances
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.ContSet.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # `enclose` of V-polytopes is exactly the convex hull

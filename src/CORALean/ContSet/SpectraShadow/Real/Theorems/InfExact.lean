@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Inf
-import CORALean.ContSet.SpectraShadow.Real.Theorems.A0AddSumEq
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Inf
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.A0AddSumEq
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.Inf` denotes everything

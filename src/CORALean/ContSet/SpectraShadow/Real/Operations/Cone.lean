@@ -1,6 +1,10 @@
-import CORALean.Global.BlockDiag
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
-import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
+module
+
+public import CORALean.Global.BlockDiag
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+public import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.cone`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+
+@[expose] public section
 
 /-!
 # `VPolytope.mtimes`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MaxNormSqEqSign
-import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
-import CORALean.Global.DiagSdpStrongDuality
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MaxNormSqEqSign
+public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
+public import CORALean.Global.DiagSdpStrongDuality
+
+@[expose] public section
 
 /-!
 # The maximum zonotope norm as a rank-one semidefinite program, and its relaxation

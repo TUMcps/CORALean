@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Aligned
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+
+@[expose] public section
 
 /-!
 # Two aligned differences bound `Z ⊖ S` from both sides

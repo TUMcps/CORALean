@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
+
+@[expose] public section
 
 /-!
 # The discrete-time system in closed form

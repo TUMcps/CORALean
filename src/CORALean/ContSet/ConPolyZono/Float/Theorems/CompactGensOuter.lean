@@ -1,14 +1,18 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
-import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensEqSpec
-import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
-import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensEqSpec
+public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
+public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+
+@[expose] public section
 
 /-!
 # `compactGens` over-approximates, merging generator columns

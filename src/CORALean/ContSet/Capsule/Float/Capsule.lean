@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Instances
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Capsule.Real.Instances
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # Capsules over a floating-point scalar: the representation

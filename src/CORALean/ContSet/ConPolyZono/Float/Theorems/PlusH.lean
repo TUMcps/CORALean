@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `plus` does not change the total dependent generator count

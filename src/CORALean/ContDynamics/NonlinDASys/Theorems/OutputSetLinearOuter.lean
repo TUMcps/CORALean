@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinear
-import CORALean.Global.JacobianMatAffine
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinear
+public import CORALean.Global.JacobianMatAffine
+
+@[expose] public section
 
 /-!
 # The linear output set holds the output of every state, algebraic variable and input

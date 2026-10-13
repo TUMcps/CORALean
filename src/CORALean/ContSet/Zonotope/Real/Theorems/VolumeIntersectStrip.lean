@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStripDet
-import CORALean.ContSet.Zonotope.Real.Theorems.DetColsSnocEqMulDotProduct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.VolumeIntersectStripDet
+public import CORALean.ContSet.Zonotope.Real.Theorems.DetColsSnocEqMulDotProduct
+
+@[expose] public section
 
 /-!
 # The volume of the zonotope that bounds a zonotope-strip intersection

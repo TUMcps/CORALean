@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BisectLow
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BisectLow
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # [1, Alg. 4], lines 1-28 with "smaller" in the printed order on both sides

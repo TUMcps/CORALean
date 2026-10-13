@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.Radius
-import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Radius
+public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+
+@[expose] public section
 
 /-!
 # Every point of a float capsule is within `radius` of the nominal centre

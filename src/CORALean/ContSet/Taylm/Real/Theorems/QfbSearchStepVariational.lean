@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.QfbSearchStep
-import CORALean.ContSet.Taylm.Real.Taylm
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.QfbSearchStep
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The search step is the projection onto the box

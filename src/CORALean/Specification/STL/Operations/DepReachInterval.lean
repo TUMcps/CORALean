@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LinComb
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.Specification.STL.Definitions.DepReachState
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.Specification.STL.Definitions.DepReachState
+
+@[expose] public section
 
 /-!
 # The time interval reachable set of the dependency preserving reachability algorithm

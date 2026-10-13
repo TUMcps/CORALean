@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
+
+@[expose] public section
 
 /-!
 # The product's inputs vanish where a state is bound

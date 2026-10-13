@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `conPolyZono/representsa_(cPZ, 'point')` ignores the constraints

@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Theorems.BallSubsetSucc
-import Mathlib.Data.Nat.SuccPred
-import Mathlib.Order.Interval.Set.Monotone
+module
+
+public import CORALean.NN.Graph.Theorems.BallSubsetSucc
+public import Mathlib.Data.Nat.SuccPred
+public import Mathlib.Order.Interval.Set.Monotone
+
+@[expose] public section
 
 /-!
 # The ball always stabilises, in at most `N` rounds

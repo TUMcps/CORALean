@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsClosed
-import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
-import CORALean.Global.NearestPointSeparates
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsClosed
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+public import CORALean.Global.NearestPointSeparates
+
+@[expose] public section
 
 /-!
 # The distance from a point to an ellipsoid

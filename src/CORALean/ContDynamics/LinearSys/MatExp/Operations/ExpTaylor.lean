@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # The matrix exponential's Taylor truncation

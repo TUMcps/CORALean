@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
-import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetNeurons
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
+public import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetNeurons
+
+@[expose] public section
 
 /-!
 # `SetBasedNet.forward_h_le`

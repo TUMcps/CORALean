@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.Empty
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Empty
+
+@[expose] public section
 
 /-!
 # `Polygon.empty` is the empty set

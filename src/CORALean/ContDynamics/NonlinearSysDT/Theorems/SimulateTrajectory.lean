@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
-import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # `simulate` samples a trajectory

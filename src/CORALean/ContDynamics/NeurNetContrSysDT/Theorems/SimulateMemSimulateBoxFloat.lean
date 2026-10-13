@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.SimulateBoxFloat
-import CORALean.NN.Theorems.EncloseOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.SimulateBoxFloat
+public import CORALean.NN.Theorems.EncloseOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The real closed-loop run lies in the float boxes

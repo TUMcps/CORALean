@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderDiagonalizable
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderDiagonalizable
+
+@[expose] public section
 
 /-!
 # The ratio of two shape matrices has positive eigenvalues

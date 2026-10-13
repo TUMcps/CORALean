@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
-import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
-import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimePointOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimePointOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+
+@[expose] public section
 
 /-!
 # `linReach` holds every confined run of the DAE over the step

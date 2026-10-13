@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
-import CORALean.ContSet.Interval.Real.Operations.MatPow
-import CORALean.ContSet.Interval.Real.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+public import CORALean.ContSet.Interval.Real.Operations.MatPow
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+
+@[expose] public section
 
 /-!
 # Interval matrices: one order's contribution to the integrated correction over a box

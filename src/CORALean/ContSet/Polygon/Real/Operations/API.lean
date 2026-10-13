@@ -1,39 +1,41 @@
-import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
-import CORALean.ContSet.Polygon.Real.Operations.ContainsRegionCora
-import CORALean.ContSet.Polygon.Real.Operations.OverlapsRegionCora
-import CORALean.ContSet.Polygon.Real.Operations.OfPieces
-import CORALean.ContSet.Polygon.Real.Operations.Empty
-import CORALean.ContSet.Polygon.Real.Operations.Plus
-import CORALean.ContSet.Polygon.Real.Operations.Mtimes
-import CORALean.ContSet.Polygon.Real.Operations.LinComb
-import CORALean.ContSet.Polygon.Real.Operations.Or
-import CORALean.ContSet.Polygon.Real.Operations.Project
-import CORALean.ContSet.Polygon.Real.Operations.Vertices
-import CORALean.ContSet.Polygon.Real.Operations.ConvHull
-import CORALean.ContSet.Polygon.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.Polygon.Real.Operations.IsequalCora
-import CORALean.ContSet.Polygon.Real.Operations.RepresentsaOriginCora
-import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
-import CORALean.ContSet.Polygon.Real.Operations.Interval
-import CORALean.ContSet.Polygon.Real.Operations.Times
-import CORALean.ContSet.Polygon.Real.Operations.SupportBound
-import CORALean.ContSet.Polygon.Real.Operations.Minus
-import CORALean.ContSet.Polygon.Real.Operations.IsFullDim
-import CORALean.ContSet.Polygon.Real.Operations.And
-import CORALean.ContSet.Polygon.Real.Operations.IsConvex
-import CORALean.ContSet.Polygon.Real.Operations.IsIntersecting
-import CORALean.ContSet.Polygon.Real.Operations.IsequalPieces
-import CORALean.ContSet.Polygon.Real.Operations.SplitIntoConvexSets
-import CORALean.ContSet.Polygon.Real.Operations.Volume
-import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
-import CORALean.ContSet.Polygon.Real.Operations.Center
-import CORALean.ContSet.Polygon.Real.Operations.PieceAreas
-import CORALean.ContSet.Polygon.Real.Operations.Triangulation
-import CORALean.ContSet.Polygon.Real.Operations.QuadMap
-import CORALean.ContSet.Polygon.Real.Operations.QuadMapMixed
-import CORALean.ContSet.Polygon.Real.Operations.Subtract
-import CORALean.ContSet.Polygon.Real.Operations.MinkDiff
-import CORALean.ContSet.Polygon.Real.Operations.HausdorffDist
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
+public import CORALean.ContSet.Polygon.Real.Operations.ContainsRegionCora
+public import CORALean.ContSet.Polygon.Real.Operations.OverlapsRegionCora
+public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
+public import CORALean.ContSet.Polygon.Real.Operations.Empty
+public import CORALean.ContSet.Polygon.Real.Operations.Plus
+public import CORALean.ContSet.Polygon.Real.Operations.Mtimes
+public import CORALean.ContSet.Polygon.Real.Operations.LinComb
+public import CORALean.ContSet.Polygon.Real.Operations.Or
+public import CORALean.ContSet.Polygon.Real.Operations.Project
+public import CORALean.ContSet.Polygon.Real.Operations.Vertices
+public import CORALean.ContSet.Polygon.Real.Operations.ConvHull
+public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.Polygon.Real.Operations.IsequalCora
+public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaOriginCora
+public import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
+public import CORALean.ContSet.Polygon.Real.Operations.Interval
+public import CORALean.ContSet.Polygon.Real.Operations.Times
+public import CORALean.ContSet.Polygon.Real.Operations.SupportBound
+public import CORALean.ContSet.Polygon.Real.Operations.Minus
+public import CORALean.ContSet.Polygon.Real.Operations.IsFullDim
+public import CORALean.ContSet.Polygon.Real.Operations.And
+public import CORALean.ContSet.Polygon.Real.Operations.IsConvex
+public import CORALean.ContSet.Polygon.Real.Operations.IsIntersecting
+public import CORALean.ContSet.Polygon.Real.Operations.IsequalPieces
+public import CORALean.ContSet.Polygon.Real.Operations.SplitIntoConvexSets
+public import CORALean.ContSet.Polygon.Real.Operations.Volume
+public import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
+public import CORALean.ContSet.Polygon.Real.Operations.Center
+public import CORALean.ContSet.Polygon.Real.Operations.PieceAreas
+public import CORALean.ContSet.Polygon.Real.Operations.Triangulation
+public import CORALean.ContSet.Polygon.Real.Operations.QuadMap
+public import CORALean.ContSet.Polygon.Real.Operations.QuadMapMixed
+public import CORALean.ContSet.Polygon.Real.Operations.Subtract
+public import CORALean.ContSet.Polygon.Real.Operations.MinkDiff
+public import CORALean.ContSet.Polygon.Real.Operations.HausdorffDist
 
 /-!
 # Polygon operations, collected

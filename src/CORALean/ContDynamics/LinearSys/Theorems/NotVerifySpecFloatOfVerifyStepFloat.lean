@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
-import CORALean.ContDynamics.LinearSys.Definitions.VerifySoundFloat
-import CORALean.ContDynamics.LinearSys.Theorems.MaximumFoldToReal
-import CORALean.ContDynamics.LinearSys.Theorems.MinimumFoldToReal
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySoundFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.MaximumFoldToReal
+public import CORALean.ContDynamics.LinearSys.Theorems.MinimumFoldToReal
+
+@[expose] public section
 
 /-!
 # One falsified iteration refutes the specification

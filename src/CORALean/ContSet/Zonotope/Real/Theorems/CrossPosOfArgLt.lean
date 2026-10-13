@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossEqNormMulSin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossEqNormMulSin
+
+@[expose] public section
 
 /-!
 # A strictly smaller angle gives a positive cross product

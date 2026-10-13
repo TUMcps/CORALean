@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Sigmoid
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.Sigmoid
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the sigmoid layer encloses

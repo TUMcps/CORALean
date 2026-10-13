@@ -1,7 +1,11 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfExpMulVec
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.ProbZonotope.Real.Definitions.Eph
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfExpMulVec
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.Eph
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # The hull's value of a point under the linear flow

@@ -1,8 +1,12 @@
-import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
-import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
-import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
-import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.ConZonotope.Real.Instances
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
+public import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
+public import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.ConZonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reindex` is exactly the relabelled set, in float too

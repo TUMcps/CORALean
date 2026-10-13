@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Map
-import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Map
+public import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `VPolytope.mtimes` is `map` at the matrix's linear map

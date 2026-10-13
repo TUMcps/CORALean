@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Instances
-import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
-import CORALean.ContSet.Polygon.Float.Operations.MinkDiff
-import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
+module
+
+public import CORALean.ContSet.HPolytope.Float.Instances
+public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
+public import CORALean.ContSet.Polygon.Float.Operations.MinkDiff
+public import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
+
+@[expose] public section
 
 /-!
 # The float `Polygon.minkDiff` lies in the Minkowski difference

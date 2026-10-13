@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.dependent`'s constraint reads the original factors

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsIntersectingPoint
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsIntersectingPoint
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
+
+@[expose] public section
 
 /-!
 # A point intersects an ellipsoid iff the ellipsoid contains it

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # `Capsule.representsa_origin`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Bounds
-import CORALean.ContSet.Taylm.Float.Operations.ConstCoef
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Bounds
+public import CORALean.ContSet.Taylm.Float.Operations.ConstCoef
+
+@[expose] public section
 
 /-!
 # `Taylm.magUp`

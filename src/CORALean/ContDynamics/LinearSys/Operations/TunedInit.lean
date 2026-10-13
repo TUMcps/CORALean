@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.TunedState
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.TunedState
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 1-3: the loop state before the first iteration

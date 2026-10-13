@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Operations.SimulateEndTimeCora
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.SimulateEndTimeCora
+
+@[expose] public section
 
 /-!
 # CORA's `linParamSys/simulate` returns times beyond `tFinal`

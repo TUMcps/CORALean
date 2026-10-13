@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
-import Mathlib.Analysis.Convex.Mul
+module
+
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
+public import Mathlib.Analysis.Convex.Mul
+
+@[expose] public section
 
 /-!
 # A capsule is convex

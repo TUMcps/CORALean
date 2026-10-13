@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Theorems.CNFSatToFormula
-import CORALean.Specification.STL.Theorems.CNFSatUpsilon
-import CORALean.Specification.STL.Definitions.ReachSequence
+module
+
+public import CORALean.Specification.STL.Theorems.CNFSatToFormula
+public import CORALean.Specification.STL.Theorems.CNFSatUpsilon
+public import CORALean.Specification.STL.Definitions.ReachSequence
+
+@[expose] public section
 
 /-!
 # Lemma 2 needs the powers `j` of a clause to be distinct

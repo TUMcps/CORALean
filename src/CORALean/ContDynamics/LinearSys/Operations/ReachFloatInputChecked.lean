@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # `reachFloatInputChecked`: `reachFloatInput`, reported only without a NaN

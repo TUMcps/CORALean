@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.AdaptPass.linPoint`

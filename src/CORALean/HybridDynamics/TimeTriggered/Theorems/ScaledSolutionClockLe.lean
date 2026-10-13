@@ -1,7 +1,11 @@
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.Topology.Order.IntermediateValue
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionConstOfZero
-import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionEqOrbit
+module
+
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.Topology.Order.IntermediateValue
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionConstOfZero
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionEqOrbit
+
+@[expose] public section
 
 /-!
 # The scaled solution does not pass a zero of the scaling function

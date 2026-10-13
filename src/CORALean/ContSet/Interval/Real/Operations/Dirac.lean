@@ -1,6 +1,10 @@
-import Mathlib.Data.Sign.Basic
-import CORALean.ContSet.Interval.Real.Operations.EBox
-import Mathlib.Data.EReal.Basic
+module
+
+public import Mathlib.Data.Sign.Basic
+public import CORALean.ContSet.Interval.Real.Operations.EBox
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.dirac`

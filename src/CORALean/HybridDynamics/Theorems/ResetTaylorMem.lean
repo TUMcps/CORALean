@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Definitions.ResetTaylor
-import CORALean.ContSet.LevelSet.Real.Definitions.TaylorSeries
-import CORALean.Global.TaylorLagrangeConvex
+module
+
+public import CORALean.HybridDynamics.Definitions.ResetTaylor
+public import CORALean.ContSet.LevelSet.Real.Definitions.TaylorSeries
+public import CORALean.Global.TaylorLagrangeConvex
+
+@[expose] public section
 
 /-!
 # The reset's Taylor expansion encloses it, coordinate by coordinate

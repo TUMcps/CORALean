@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+
+@[expose] public section
 
 /-!
 # Every vertex is a point of the polytope

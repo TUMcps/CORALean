@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Interval.Float.Operations.Center
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.Center
+
+@[expose] public section
 
 /-!
 # A box as a zonotope, over a floating-point scalar

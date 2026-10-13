@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmiGain
-import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmiGain
+public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
+
+@[expose] public section
 
 /-!
 # The two forms of the P-radius inequality agree

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
-import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
+public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
+
+@[expose] public section
 
 /-!
 # One step of the strip-based observer

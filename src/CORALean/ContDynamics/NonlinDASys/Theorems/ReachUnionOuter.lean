@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachUnion
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionExactEq
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachUnion
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionExactEq
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+
+@[expose] public section
 
 /-!
 # A union `reachUnion` returns contains every state the system reaches

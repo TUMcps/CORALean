@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Atanh
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.Global.Float.Atanh
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.atanh`

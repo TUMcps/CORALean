@@ -1,7 +1,11 @@
-import CORALean.NN.Theorems.Misclassified
-import CORALean.NN.Theorems.SuffExplanationAbstract
-import CORALean.NN.Theorems.SuffExplanationOfExact
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.NN.Theorems.Misclassified
+public import CORALean.NN.Theorems.SuffExplanationAbstract
+public import CORALean.NN.Theorems.SuffExplanationOfExact
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # Transfer: sufficient for the abstract network is sufficient for the original

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+
+@[expose] public section
 
 /-!
 # `HPolytope.intersection` is exactly the intersection

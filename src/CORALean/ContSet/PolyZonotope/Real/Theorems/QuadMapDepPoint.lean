@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+
+@[expose] public section
 
 /-!
 # `quadMapDep`'s point is the quadratic form at the point

@@ -1,7 +1,11 @@
-import CORALean.NN.Operations.RefineLayer
-import CORALean.NN.Operations.RefinementRank
-import CORALean.NN.Operations.Sensitivity
-import CORALean.NN.Operations.WorstIndex
+module
+
+public import CORALean.NN.Operations.RefineLayer
+public import CORALean.NN.Operations.RefinementRank
+public import CORALean.NN.Operations.Sensitivity
+public import CORALean.NN.Operations.WorstIndex
+
+@[expose] public section
 
 /-!
 # Which layer to refine next

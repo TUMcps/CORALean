@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
-import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.cartProd`

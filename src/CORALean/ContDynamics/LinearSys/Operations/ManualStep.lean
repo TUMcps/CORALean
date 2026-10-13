@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ManualState
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ManualState
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 5-11: one iteration of the main loop

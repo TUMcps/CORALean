@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetUnion.Operations.Mtimes
+module
+
+public import CORALean.ContSet.SetUnion.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `SetUnion.mtimes` over-approximates the linear image

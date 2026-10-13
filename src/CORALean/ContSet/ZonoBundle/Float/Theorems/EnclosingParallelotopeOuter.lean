@@ -1,8 +1,12 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
-import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
-import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
-import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
-import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
+public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.enclosingParallelotope` encloses the bundle

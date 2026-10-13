@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.vertices`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExactCartProd
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExactCartProd
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
+
+@[expose] public section
 
 /-!
 # `exactCartProd` pairs the two points

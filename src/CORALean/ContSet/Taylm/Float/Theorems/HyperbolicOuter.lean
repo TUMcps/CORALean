@@ -1,12 +1,16 @@
-import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
-import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
-import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import CORALean.Global.ElementaryDerivBounds
-import CORALean.Global.TaylorRemainder
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
+public import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.Global.ElementaryDerivBounds
+public import CORALean.Global.TaylorRemainder
+
+@[expose] public section
 
 /-!
 # `Taylm.hyperbolic` encloses `sinh ∘ f` and `cosh ∘ f`

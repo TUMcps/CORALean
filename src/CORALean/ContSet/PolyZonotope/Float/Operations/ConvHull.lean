@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
-import CORALean.ContSet.PolyZonotope.Float.Operations.NoIndep
-import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
+public import CORALean.ContSet.PolyZonotope.Float.Operations.NoIndep
+public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.convHull`, over a floating-point scalar

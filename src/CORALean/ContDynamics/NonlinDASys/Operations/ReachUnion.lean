@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
+
+@[expose] public section
 
 /-!
 # The reduced re-linearization loop

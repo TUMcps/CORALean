@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDown
-import CORALean.ContSet.PolyZonotope.Float.Operations.MulGUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDown
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MulGUp
+
+@[expose] public section
 
 /-!
 # How far a stored `mul` generator can be from the exact product

@@ -1,6 +1,10 @@
-import CORALean.NN.Operations.VerifySplit
-import CORALean.NN.Theorems.SoundVerifySplitWithSound
-import CORALean.Specification.Theorems.CheckSound
+module
+
+public import CORALean.NN.Operations.VerifySplit
+public import CORALean.NN.Theorems.SoundVerifySplitWithSound
+public import CORALean.Specification.Theorems.CheckSound
+
+@[expose] public section
 
 /-!
 # `verifySplit` is sound, at any function the network is sound at

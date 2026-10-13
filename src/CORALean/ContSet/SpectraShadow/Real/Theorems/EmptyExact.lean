@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Empty
-import CORALean.ContSet.SpectraShadow.Real.Theorems.A0AddSumEq
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Empty
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.A0AddSumEq
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.empty` denotes the empty set

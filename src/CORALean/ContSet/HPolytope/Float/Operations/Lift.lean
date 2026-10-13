@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
+
+@[expose] public section
 
 /-!
 # `HPolytope.lift_`, over a floating-point scalar

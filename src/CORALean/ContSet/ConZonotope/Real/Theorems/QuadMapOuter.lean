@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
-import Mathlib.LinearAlgebra.Matrix.BilinearForm
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
+public import Mathlib.LinearAlgebra.Matrix.BilinearForm
+
+@[expose] public section
 
 /-!
 # The quadratic map of a constrained zonotope is enclosed by `ConZonotope.quadMap`

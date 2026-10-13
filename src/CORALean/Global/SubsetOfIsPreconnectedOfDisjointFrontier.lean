@@ -1,4 +1,8 @@
-import Mathlib.Topology.Connected.Basic
+module
+
+public import Mathlib.Topology.Connected.Basic
+
+@[expose] public section
 
 /-!
 # A connected set missing a boundary enclosure and meeting the set is inside it

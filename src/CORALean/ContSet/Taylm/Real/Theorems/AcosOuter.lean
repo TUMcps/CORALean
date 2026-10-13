@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Acos
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
-import CORALean.ContSet.Taylm.Real.Theorems.AbsLeMag
-import CORALean.Global.ElementaryDerivBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Acos
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.AbsLeMag
+public import CORALean.Global.ElementaryDerivBounds
+
+@[expose] public section
 
 /-!
 # `Taylm.acos` encloses `acos ∘ f`

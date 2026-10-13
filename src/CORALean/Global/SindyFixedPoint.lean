@@ -1,4 +1,8 @@
-import CORALean.Global.SindyThreshold
+module
+
+public import CORALean.Global.SindyThreshold
+
+@[expose] public section
 
 /-!
 # What a fixed point of sequential thresholded least squares is

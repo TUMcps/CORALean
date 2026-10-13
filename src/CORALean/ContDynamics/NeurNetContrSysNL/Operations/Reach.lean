@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Extended
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Extended
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # `Alg. 2`: reachable sets of a neural network controlled system

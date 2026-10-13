@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SquareDerivLo
-import CORALean.NN.Layers.Operations.SquareDerivHi
+module
+
+public import CORALean.NN.Layers.Operations.SquareDerivLo
+public import CORALean.NN.Layers.Operations.SquareDerivHi
+
+@[expose] public section
 
 /-!
 # The slope of the square relaxation

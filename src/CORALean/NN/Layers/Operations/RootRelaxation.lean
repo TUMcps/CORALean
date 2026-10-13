@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.RootEnclosure
-import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+module
+
+public import CORALean.NN.Layers.Operations.RootEnclosure
+public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+
+@[expose] public section
 
 /-!
 # The square root relaxation

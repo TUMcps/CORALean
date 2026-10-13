@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # [1, Thm. 2]'s normal at a selection that repeats a generator

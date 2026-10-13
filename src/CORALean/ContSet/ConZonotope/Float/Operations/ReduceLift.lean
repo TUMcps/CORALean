@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
-import CORALean.ContSet.Zonotope.Float.Operations.GirardSplit
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
+public import CORALean.ContSet.Zonotope.Float.Operations.GirardSplit
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceLift` over a floating-point scalar

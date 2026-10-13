@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
-import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnionWithSel
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnionWithSel
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # What the selector constraint's row evaluates to

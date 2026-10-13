@@ -1,9 +1,13 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.intersectStripGollamudi`, over a floating-point scalar

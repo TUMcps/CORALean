@@ -1,7 +1,11 @@
-import Mathlib.Data.Matrix.Mul
-import CORALean.ContSet.Taylm.Float.Operations.Mpower
-import CORALean.ContSet.Taylm.Float.Theorems.MmulOuter
-import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import CORALean.ContSet.Taylm.Float.Operations.Mpower
+public import CORALean.ContSet.Taylm.Float.Theorems.MmulOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.mpower` encloses the matrix power, float

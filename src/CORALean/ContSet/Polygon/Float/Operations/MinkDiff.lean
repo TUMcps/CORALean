@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
-import CORALean.ContSet.Polygon.Float.Operations.BoundDot
-import CORALean.ContSet.Polygon.Float.Operations.InnerHRep
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
+public import CORALean.ContSet.Polygon.Float.Operations.BoundDot
+public import CORALean.ContSet.Polygon.Float.Operations.InnerHRep
+
+@[expose] public section
 
 /-!
 # `Polygon.minkDiff`

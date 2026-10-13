@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoStep
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoTuneDeltaT
-import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoStep
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoTuneDeltaT
+public import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
+
+@[expose] public section
 
 /-!
 # `Thm. 1`: one iteration of `Alg. 2` always completes, for every `ε_max > 0`

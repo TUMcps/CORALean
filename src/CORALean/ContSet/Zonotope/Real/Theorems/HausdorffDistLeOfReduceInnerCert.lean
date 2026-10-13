@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistLeOfReduceCert
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDistLeOfReduceCert
+
+@[expose] public section
 
 /-!
 # Inner order reduction with a certified Hausdorff bound

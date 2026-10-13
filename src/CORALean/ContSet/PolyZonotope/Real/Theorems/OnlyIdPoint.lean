@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.OnlyId
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.OnlyId
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.onlyId` splits the point exactly

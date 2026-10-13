@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.BoundOfDual
-import CORALean.Global.LinProg.Simplex
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.BoundOfDual
+public import CORALean.Global.LinProg.Simplex
+
+@[expose] public section
 
 /-!
 # `HPolytope.supportBound`

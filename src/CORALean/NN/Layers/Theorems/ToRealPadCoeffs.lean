@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.EvalPoly
-import CORALean.NN.Layers.Operations.PadCoeffs
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.NN.Layers.Definitions.EvalPoly
+public import CORALean.NN.Layers.Operations.PadCoeffs
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # Padded coefficients read back as the exact padding

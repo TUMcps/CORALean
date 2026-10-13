@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.NoIndep
-import CORALean.ContSet.PolyZonotope.Real.Theorems.NoIndepSubset
-import CORALean.ContSet.PolyZonotope.Real.Instances
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.NoIndep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.NoIndepSubset
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.noIndep` is inside the set, in float too

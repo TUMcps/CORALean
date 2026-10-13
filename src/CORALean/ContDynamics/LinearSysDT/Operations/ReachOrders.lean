@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
+
+@[expose] public section
 
 /-!
 # `reach` with a per-step order

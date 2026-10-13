@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # An AH-polytope in a Minkowski sum of AH-polytopes, sufficiently

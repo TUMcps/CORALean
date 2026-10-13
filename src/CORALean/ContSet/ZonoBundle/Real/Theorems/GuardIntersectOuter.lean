@@ -1,10 +1,14 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.GuardIntersect
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.GuardIntersect
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # The guard intersection of a bundle is enclosed

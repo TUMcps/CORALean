@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Finset.Powerset
-import Mathlib.Data.Fintype.Card
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Finset.Powerset
+public import Mathlib.Data.Fintype.Card
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2]: the generator-removal count

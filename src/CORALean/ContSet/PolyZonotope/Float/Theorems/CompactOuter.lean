@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
+
+@[expose] public section
 
 /-!
 # `compact` over-approximates

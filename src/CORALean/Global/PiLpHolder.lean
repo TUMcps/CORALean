@@ -1,5 +1,9 @@
-import Mathlib.Analysis.MeanInequalities
-import Mathlib.Analysis.Normed.Lp.PiLp
+module
+
+public import Mathlib.Analysis.MeanInequalities
+public import Mathlib.Analysis.Normed.Lp.PiLp
+
+@[expose] public section
 
 /-!
 # Hölder's inequality for the `q`-norms on `ℝᵏ`

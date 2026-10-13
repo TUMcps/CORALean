@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinProbSys.Operations.EnclosingHull
-import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+module
+
+public import CORALean.ContDynamics.LinProbSys.Operations.EnclosingHull
+public import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+
+@[expose] public section
 
 /-!
 # The loop of `[1, Alg. 1]` computes the covariance of the hull

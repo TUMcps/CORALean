@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.NN.Definitions.Cat
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.NN.Definitions.Cat
+
+@[expose] public section
 
 /-!
 # What AI2 asks of an abstract domain

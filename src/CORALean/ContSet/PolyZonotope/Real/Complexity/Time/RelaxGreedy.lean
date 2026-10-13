@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpMulti
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Filter.AtTopBot.Prod
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpMulti
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Filter.AtTopBot.Prod
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxGreedyCost`

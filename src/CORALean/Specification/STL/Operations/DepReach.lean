@@ -1,7 +1,11 @@
-import CORALean.Specification.STL.Operations.DepReachAt
-import CORALean.Specification.STL.Operations.DepReachConstsOf
-import CORALean.Specification.STL.Operations.DepReachInterval
-import CORALean.Specification.STL.Operations.DepReachPoint
+module
+
+public import CORALean.Specification.STL.Operations.DepReachAt
+public import CORALean.Specification.STL.Operations.DepReachConstsOf
+public import CORALean.Specification.STL.Operations.DepReachInterval
+public import CORALean.Specification.STL.Operations.DepReachPoint
+
+@[expose] public section
 
 /-!
 # Dependency preserving reachability analysis

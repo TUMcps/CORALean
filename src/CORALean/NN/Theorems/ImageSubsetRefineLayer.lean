@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.RefineLayer
-import CORALean.NN.Theorems.ImageSubsetEncloseAt
+module
+
+public import CORALean.NN.Operations.RefineLayer
+public import CORALean.NN.Theorems.ImageSubsetEncloseAt
+
+@[expose] public section
 
 /-!
 # Refining a whole layer keeps the enclosure

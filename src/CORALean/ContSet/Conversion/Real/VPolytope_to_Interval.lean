@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # A hull as a box

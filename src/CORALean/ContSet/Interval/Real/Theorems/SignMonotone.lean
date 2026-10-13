@@ -1,5 +1,9 @@
-import Mathlib.Data.Real.Sign
-import Mathlib.Tactic.Linarith
+module
+
+public import Mathlib.Data.Real.Sign
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Real.sign` is monotone

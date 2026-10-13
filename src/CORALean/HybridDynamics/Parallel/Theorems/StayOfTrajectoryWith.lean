@@ -1,9 +1,13 @@
-import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
-import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
-import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
-import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
-import CORALean.HybridDynamics.Parallel.Definitions.GlobalsDistinct
-import CORALean.HybridDynamics.Parallel.Definitions.InputsGlobalOnly
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
+public import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
+public import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
+public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
+public import CORALean.HybridDynamics.Parallel.Definitions.GlobalsDistinct
+public import CORALean.HybridDynamics.Parallel.Definitions.InputsGlobalOnly
+
+@[expose] public section
 
 /-!
 # A stay of the product is a shared stay

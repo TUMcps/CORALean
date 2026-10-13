@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zoo.Real.Zoo
+module
+
+public import CORALean.ContSet.Zoo.Real.Zoo
+
+@[expose] public section
 
 /-!
 # `Zoo.uplus`

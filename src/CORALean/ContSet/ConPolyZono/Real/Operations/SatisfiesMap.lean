@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Map
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.map` leaves the constraint untouched

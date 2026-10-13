@@ -1,12 +1,16 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
-import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
-import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
+public import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
+
+@[expose] public section
 
 /-!
 # `linCombSameCentre` is no larger than the hull

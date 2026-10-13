@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearch
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearch
+
+@[expose] public section
 
 /-!
 # `Alg. 2`: the step size and the truncation order for one step

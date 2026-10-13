@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+
+@[expose] public section
 
 /-!
 # A zonotope as a bundle of one, over a floating-point scalar

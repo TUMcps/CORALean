@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
-import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `HPolytope.generateRandomH`

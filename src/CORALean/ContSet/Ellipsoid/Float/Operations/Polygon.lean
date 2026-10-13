@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
-import CORALean.ContSet.Polygon.Float.Operations.OfPieces
-import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Polygon.Float.Operations.OfPieces
+public import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.polygon`, over a floating-point scalar

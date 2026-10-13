@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Reach.Theorems.StepsSpec
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpec
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `Reach.steps` at a float time step, read in ℝ

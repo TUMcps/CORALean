@@ -1,5 +1,7 @@
-import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Extended
-import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Reach
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Extended
+public import CORALean.ContDynamics.NeurNetContrSysNL.Operations.Reach
 
 /-!
 # What `NeurNetContrSysNL` computes

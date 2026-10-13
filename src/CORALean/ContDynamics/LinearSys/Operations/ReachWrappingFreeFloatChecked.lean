@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # `reachWrappingFreeFloatChecked`, without a NaN

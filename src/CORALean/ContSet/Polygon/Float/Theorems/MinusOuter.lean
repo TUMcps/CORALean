@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Operations.Minus
-import CORALean.ContSet.Polygon.Float.Theorems.PlusOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Minus
+public import CORALean.ContSet.Polygon.Float.Theorems.PlusOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
+
+@[expose] public section
 
 /-!
 # `Polygon.minus` encloses the translate

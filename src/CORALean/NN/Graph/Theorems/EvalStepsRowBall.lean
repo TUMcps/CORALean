@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Theorems.EvalStepsRowMask
-import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
+module
+
+public import CORALean.NN.Graph.Theorems.EvalStepsRowMask
+public import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
+
+@[expose] public section
 
 /-!
 # `[1, §4.3]`'s locality, assembled: a ball's `κ` needs no `hclosed` hypothesis

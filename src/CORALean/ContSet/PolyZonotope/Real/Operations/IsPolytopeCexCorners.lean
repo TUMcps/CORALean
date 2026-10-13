@@ -1,5 +1,9 @@
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The hull vertices of `isPolytopeCex`

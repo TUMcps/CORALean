@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.FacetNormal
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.FacetNormal
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `Zonotope.minnormOffset`, over a floating-point scalar

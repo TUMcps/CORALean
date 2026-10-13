@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SampleDevLo
-import CORALean.NN.Layers.Theorems.LeEvalPolyUp
+module
+
+public import CORALean.NN.Layers.Operations.SampleDevLo
+public import CORALean.NN.Layers.Theorems.LeEvalPolyUp
+
+@[expose] public section
 
 /-!
 # A sampled deviation's lower bound

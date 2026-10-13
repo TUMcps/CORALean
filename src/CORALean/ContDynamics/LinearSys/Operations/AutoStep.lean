@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Definitions.AutoState
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
-import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.AutoState
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
+public import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 4-31: one iteration of the main loop

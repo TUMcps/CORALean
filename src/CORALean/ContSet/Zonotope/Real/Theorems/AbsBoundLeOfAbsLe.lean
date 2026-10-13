@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # A coordinate's `absBound` is the largest `|x j|` a zonotope reaches

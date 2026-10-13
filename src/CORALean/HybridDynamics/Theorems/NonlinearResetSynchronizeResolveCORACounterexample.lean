@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeResolveCORA
-import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeResolveCORA
+public import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+
+@[expose] public section
 
 /-!
 # The bug in `resolve` reaches `transition/synchronize`

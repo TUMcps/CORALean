@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Not
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Not
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `HPolytope.not` lies inside the complement

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.QuadTerms
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.QuadTerms
+
+@[expose] public section
 
 /-!
 # `Q_{x₀}` as a Taylor model

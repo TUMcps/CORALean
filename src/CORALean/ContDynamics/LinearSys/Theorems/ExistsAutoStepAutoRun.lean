@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.AutoRunBudget
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.AutoRunBudget
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
+
+@[expose] public section
 
 /-!
 # `Thm. 1` along the whole run: every iteration of `Alg. 2` inside the horizon completes

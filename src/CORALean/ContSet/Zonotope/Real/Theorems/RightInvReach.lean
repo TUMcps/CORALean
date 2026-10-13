@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.BasisReach
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.BasisReach
+
+@[expose] public section
 
 /-!
 # A checked approximate right inverse reaches a whole box of vectors

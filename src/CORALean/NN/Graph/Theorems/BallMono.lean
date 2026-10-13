@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Theorems.BallSubsetSucc
+module
+
+public import CORALean.NN.Graph.Theorems.BallSubsetSucc
+
+@[expose] public section
 
 /-!
 # The ball is monotone in the radius

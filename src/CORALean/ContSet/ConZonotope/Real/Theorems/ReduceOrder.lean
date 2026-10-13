@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduce` bounds the generator count

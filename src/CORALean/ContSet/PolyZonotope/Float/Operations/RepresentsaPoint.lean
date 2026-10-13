@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.representsa_point`, over a floating-point scalar

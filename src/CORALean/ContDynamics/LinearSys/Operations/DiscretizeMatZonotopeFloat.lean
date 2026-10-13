@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
-import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
+public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+
+@[expose] public section
 
 /-!
 # Sampling a continuous-time system in floats, the exponential a matrix zonotope

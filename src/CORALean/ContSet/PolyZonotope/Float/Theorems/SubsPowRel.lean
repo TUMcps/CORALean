@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsMulRel
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPow
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPow
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsMulRel
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPow
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPow
+
+@[expose] public section
 
 /-!
 # `subsPow` keeps the bracket

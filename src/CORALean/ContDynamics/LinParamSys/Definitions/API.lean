@@ -1,9 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.ReachUnionExact
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInput
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInputReachUnionExact
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplit
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplitReachUnionExact
-import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInput
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInputReachUnionExact
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplit
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplitReachUnionExact
+public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
 
 /-!
 # What `Reach (LinParamSys ℐ)` means

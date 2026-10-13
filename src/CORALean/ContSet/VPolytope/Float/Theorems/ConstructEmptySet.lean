@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
-import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
+public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
+
+@[expose] public section
 
 /-!
 # `VPolytope.emptySet` denotes `∅`

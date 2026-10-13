@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
-import CORALean.NN.Operations.Eval
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.NN.Operations.Eval
+
+@[expose] public section
 
 /-!
 # The exact set `Reach NeurNetContrSysDT` is asked to enclose

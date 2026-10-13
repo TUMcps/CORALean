@@ -1,14 +1,18 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
-import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
-import Mathlib.Analysis.Matrix.Order
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The Minkowski sum of two ellipsoids is not an ellipsoid

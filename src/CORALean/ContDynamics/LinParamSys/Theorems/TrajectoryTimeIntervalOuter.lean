@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinearSys
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinearSys
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # A time-varying run stays in the step enclosure, the drift paid as input

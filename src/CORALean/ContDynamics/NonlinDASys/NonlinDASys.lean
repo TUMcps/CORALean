@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.Calculus.Deriv.Basic
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+
+@[expose] public section
 
 /-!
 # Continuous-time nonlinear differential-algebraic systems: the representation

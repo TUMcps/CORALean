@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+
+@[expose] public section
 
 /-!
 # `Zonotope.mtimesIntervalMat_h`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Fullspace
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+
+@[expose] public section
 
 /-!
 # `Fullspace.Inf`

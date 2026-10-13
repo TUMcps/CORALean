@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Operations.ReduceGNNForNodeFloat
-import CORALean.NN.Graph.Theorems.BallSubsetReduceKeepFloat
-import CORALean.NN.Graph.Theorems.ReducedStepsFloatOuter
-import CORALean.NN.Graph.Theorems.SupportFloatOfNeZero
+module
+
+public import CORALean.NN.Graph.Operations.ReduceGNNForNodeFloat
+public import CORALean.NN.Graph.Theorems.BallSubsetReduceKeepFloat
+public import CORALean.NN.Graph.Theorems.ReducedStepsFloatOuter
+public import CORALean.NN.Graph.Theorems.SupportFloatOfNeZero
+
+@[expose] public section
 
 /-!
 # The float reduced network encloses the whole-graph answer at `v`

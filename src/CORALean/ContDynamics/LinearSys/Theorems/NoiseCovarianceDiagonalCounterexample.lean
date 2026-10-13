@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
+
+@[expose] public section
 
 /-!
 # [1, Sec. II]'s closed form for `Σ*_s` is the one for `-A`

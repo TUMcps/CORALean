@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.StarSet
+module
+
+public import CORALean.NN.Layers.Definitions.StarSet
+
+@[expose] public section
 
 /-!
 # The bounds of one neuron of a star set

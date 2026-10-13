@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Taylm.Float.Taylm
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope as an array of Taylor models, over a floating-point scalar

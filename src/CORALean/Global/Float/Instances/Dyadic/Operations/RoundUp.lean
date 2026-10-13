@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
+
+@[expose] public section
 
 /-!
 # Rounding a mantissa up to `p` bits

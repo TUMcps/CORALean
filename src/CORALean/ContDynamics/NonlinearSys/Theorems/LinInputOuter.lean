@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
-import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
-import CORALean.ContSet.Interval.Real.Operations.Point
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The widened input set holds every input the field can demand

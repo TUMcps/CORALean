@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Mtimes
-import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Mtimes
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # A matrix times a spectrahedral shadow is exact

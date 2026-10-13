@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Map
-import CORALean.ContSet.ConPolyZono.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Map
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.mtimesCost`

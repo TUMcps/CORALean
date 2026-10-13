@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.LipConstrLinear
-import CORALean.NN.Layers.Theorems.LinearSound
+module
+
+public import CORALean.NN.Layers.Operations.LipConstrLinear
+public import CORALean.NN.Layers.Theorems.LinearSound
+
+@[expose] public section
 
 /-!
 # What the Lipschitz-constrained linear layer encloses

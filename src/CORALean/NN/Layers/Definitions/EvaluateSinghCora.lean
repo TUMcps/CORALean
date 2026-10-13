@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.EvaluateSinghNeuronCora
+module
+
+public import CORALean.NN.Layers.Definitions.EvaluateSinghNeuronCora
+
+@[expose] public section
 
 /-!
 # A two-neuron network through CORA's `'singh'` neuron step

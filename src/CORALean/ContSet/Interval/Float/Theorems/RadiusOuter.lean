@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Radius
-import CORALean.ContSet.Interval.Real.Operations.Radius
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Radius
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+
+@[expose] public section
 
 /-!
 # `Interval.radius` bounds the real half-width

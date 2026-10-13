@@ -1,4 +1,8 @@
-import CORALean.Global.DmdStack
+module
+
+public import CORALean.Global.DmdStack
+
+@[expose] public section
 
 /-!
 # The blocks of a stacked matrix are the blocks

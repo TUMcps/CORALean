@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSet
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSet
+
+@[expose] public section
 
 /-!
 # CORA's `'minkdiff'` inner reachability: the result is inside the reachable set

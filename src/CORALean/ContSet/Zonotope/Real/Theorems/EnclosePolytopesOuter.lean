@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.EnclosePolytopes
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePolytopes
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # The enclosing zonotope of polytopes encloses them

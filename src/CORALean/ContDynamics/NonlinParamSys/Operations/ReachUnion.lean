@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinParamSys.Definitions.WithSteps
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
-import CORALean.Global.Block
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.WithSteps
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # The augmented re-linearization loop, projected back, or a run-time failure

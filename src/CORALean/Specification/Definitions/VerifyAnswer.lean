@@ -1,3 +1,6 @@
+module
+
+@[expose] public section
 
 /-!
 # What a verification run concludes

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.PieceSubset
-import CORALean.ContSet.Polygon.Float.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.PieceSubset
+public import CORALean.ContSet.Polygon.Float.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.isequalPieces`, over a floating-point scalar

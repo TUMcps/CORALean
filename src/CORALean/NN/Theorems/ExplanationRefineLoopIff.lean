@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.ExplanationRefineLoop
-import CORALean.NN.Theorems.MinSuffExplanation
+module
+
+public import CORALean.NN.Operations.ExplanationRefineLoop
+public import CORALean.NN.Theorems.MinSuffExplanation
+
+@[expose] public section
 
 /-!
 # The refinement loop decides the exact query

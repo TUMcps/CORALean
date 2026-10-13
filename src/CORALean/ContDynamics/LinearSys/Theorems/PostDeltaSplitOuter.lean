@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.PostDeltaSplit
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PostDeltaSplit
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
+
+@[expose] public section
 
 /-!
 # `postΔ` contains every state difference a step can span, at any input set

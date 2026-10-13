@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.LinearAlgebra.Dimension.Finrank
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+
+@[expose] public section
 
 /-!
 # `Zonotope.rank`

@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeExact
-import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
-import CORALean.ContSet.HPolytope.Real.Instances
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeExact
+public import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+public import CORALean.ContSet.HPolytope.Real.Instances
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Transition.guard2polytope` of a box guard

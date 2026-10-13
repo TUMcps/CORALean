@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
+
+@[expose] public section
 
 /-!
 # The two roundings bracket the bilinear form

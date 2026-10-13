@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
+
+@[expose] public section
 
 /-!
 # `mul`'s subset at `B` is the product of the two points, ranged together

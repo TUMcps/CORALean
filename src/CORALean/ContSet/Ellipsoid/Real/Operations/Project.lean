@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Map
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.project`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.FrontierSubsetWalkEdges
-import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetFrontier
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.FrontierSubsetWalkEdges
+public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetFrontier
+
+@[expose] public section
 
 /-!
 # The boundary of a zonogon is the union of the walk edges

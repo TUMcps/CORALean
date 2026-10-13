@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.ActivationPoly
-import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.ActivationPoly
+public import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
+
+@[expose] public section
 
 /-!
 # The polynomial sigmoid layer

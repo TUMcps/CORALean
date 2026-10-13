@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.EvalList
-import CORALean.Global.RecList
-import CORALean.Global.Float.InvSqrtOneSub
-import CORALean.Global.Float.PowUp
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.EvalList
+public import CORALean.Global.RecList
+public import CORALean.Global.Float.InvSqrtOneSub
+public import CORALean.Global.Float.PowUp
+
+@[expose] public section
 
 /-!
 # A bound of the `(N+1)`-th derivative of `arcsin` and `arccos`, rounded up

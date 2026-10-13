@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Zonotope.Real.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.quadMap`

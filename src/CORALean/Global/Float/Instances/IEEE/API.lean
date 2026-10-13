@@ -1,7 +1,9 @@
-import CORALean.Global.Float.Instances.IEEE.IEEE
-import CORALean.Global.Float.Instances.IEEE.Operations.API
-import CORALean.Global.Float.Instances.IEEE.Theorems.API
-import CORALean.Global.Float.Instances.IEEE.Instances
+module
+
+public import CORALean.Global.Float.Instances.IEEE.IEEE
+public import CORALean.Global.Float.Instances.IEEE.Operations.API
+public import CORALean.Global.Float.Instances.IEEE.Theorems.API
+public import CORALean.Global.Float.Instances.IEEE.Instances
 
 /-!
 # The formats of IEEE 754 and OCP MX, collected

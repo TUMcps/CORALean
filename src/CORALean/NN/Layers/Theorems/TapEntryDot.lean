@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Theorems.TapEntryEqZero
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Theorems.TapEntryEqZero
+
+@[expose] public section
 
 /-!
 # A stencil row against a vector is the weighted sum over its taps

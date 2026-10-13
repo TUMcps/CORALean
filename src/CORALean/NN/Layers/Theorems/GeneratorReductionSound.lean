@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.GeneratorReduction
+module
+
+public import CORALean.NN.Layers.Operations.GeneratorReduction
+
+@[expose] public section
 
 /-!
 # What the generator reduction layer encloses

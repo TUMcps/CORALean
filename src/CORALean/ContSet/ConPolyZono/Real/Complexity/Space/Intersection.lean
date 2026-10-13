@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.intersection`'s counts

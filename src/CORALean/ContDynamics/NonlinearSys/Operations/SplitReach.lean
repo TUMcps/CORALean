@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Split
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Split
+
+@[expose] public section
 
 /-!
 # `splitReach`, one time step of conservative linearization with splitting

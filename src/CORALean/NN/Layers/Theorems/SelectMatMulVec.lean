@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SelectMat
-import CORALean.NN.Layers.Theorems.TapMatMulVec
+module
+
+public import CORALean.NN.Layers.Operations.SelectMat
+public import CORALean.NN.Layers.Theorems.TapMatMulVec
+
+@[expose] public section
 
 /-!
 # A selection matrix times a vector

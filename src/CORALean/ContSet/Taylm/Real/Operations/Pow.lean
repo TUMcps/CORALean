@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Times
-import CORALean.ContSet.Taylm.Real.Operations.Const
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Times
+public import CORALean.ContSet.Taylm.Real.Operations.Const
+
+@[expose] public section
 
 /-!
 # `Taylm.pow`

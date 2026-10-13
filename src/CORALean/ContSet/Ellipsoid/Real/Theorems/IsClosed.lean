@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # An ellipsoid is closed

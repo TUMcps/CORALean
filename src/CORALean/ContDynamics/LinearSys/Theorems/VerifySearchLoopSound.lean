@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
-import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSet
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetConvex
-import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperOuter
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
+public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetConvex
+public import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperOuter
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+
+@[expose] public section
 
 /-!
 # The two exits of [1, Alg. 3 (search)] are sound, whatever the search does

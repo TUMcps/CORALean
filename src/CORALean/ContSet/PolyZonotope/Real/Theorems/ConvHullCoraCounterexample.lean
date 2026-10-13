@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # The one-argument `convHull_` is not the convex hull

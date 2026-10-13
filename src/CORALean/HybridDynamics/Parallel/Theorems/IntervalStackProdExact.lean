@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
-import CORALean.HybridDynamics.Parallel.Theorems.StackApply
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
+public import CORALean.HybridDynamics.Parallel.Theorems.StackApply
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Interval.stackProd` is the Cartesian product, exactly

@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.WindowMax
+module
+
+public import CORALean.NN.Layers.Definitions.WindowMax
+
+@[expose] public section
 
 /-!
 # Every coordinate of a window is at most its maximum

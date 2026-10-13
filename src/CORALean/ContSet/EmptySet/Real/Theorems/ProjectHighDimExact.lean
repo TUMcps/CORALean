@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.ProjectHighDim
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.ProjectHighDim
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.projectHighDim_` is exact

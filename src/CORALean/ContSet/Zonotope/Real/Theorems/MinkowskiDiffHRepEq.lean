@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
+
+@[expose] public section
 
 /-!
 # [1, Thm. 3]: the Minkowski difference's own halfspace representation

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceBy
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+module
+
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceBy
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceGirardCost`

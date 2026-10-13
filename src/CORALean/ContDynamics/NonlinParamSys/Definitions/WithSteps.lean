@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
-import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
+public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+
+@[expose] public section
 
 /-!
 # A parametric system, bundled with its augmented `Reach` run

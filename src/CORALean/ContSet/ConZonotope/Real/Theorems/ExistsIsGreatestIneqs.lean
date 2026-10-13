@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # Eq. (45)'s linear programs really do have optima

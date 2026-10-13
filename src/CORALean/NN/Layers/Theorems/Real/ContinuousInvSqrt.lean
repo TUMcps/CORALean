@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.InvSqrt
-import Mathlib.Analysis.Normed.Order.Lattice
+module
+
+public import CORALean.NN.Layers.Definitions.InvSqrt
+public import Mathlib.Analysis.Normed.Order.Lattice
+
+@[expose] public section
 
 /-!
 # The clamped inverse square root is continuous

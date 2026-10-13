@@ -1,25 +1,27 @@
-import CORALean.NN.Definitions.Chain
-import CORALean.NN.Definitions.IntervalChain
-import CORALean.NN.Definitions.MergeBucket
-import CORALean.NN.Definitions.ReducibleNetwork
-import CORALean.NN.Definitions.Reduction
-import CORALean.NN.Definitions.RefinableLayer
-import CORALean.NN.Definitions.RefinableNetwork
-import CORALean.NN.Definitions.RefinableNetworkImage
-import CORALean.NN.Definitions.Schedule
-import CORALean.NN.Definitions.SmoothNetwork
-import CORALean.NN.Definitions.WeightAcc
-import CORALean.NN.Definitions.WeightLayer
-import CORALean.NN.Definitions.WeightNetwork
-import CORALean.NN.Definitions.InputOrderMethod
-import CORALean.NN.Definitions.ActivationKind
-import CORALean.NN.Definitions.ActivationKindFn
-import CORALean.NN.Definitions.Cat
-import CORALean.NN.Definitions.CatDomain
-import CORALean.NN.Definitions.SetBasedLoss
-import CORALean.NN.Definitions.IntervalChainFloat
-import CORALean.NN.Definitions.ScalarEncloses
-import CORALean.NN.Definitions.IntervalChainFloatSound
+module
+
+public import CORALean.NN.Definitions.Chain
+public import CORALean.NN.Definitions.IntervalChain
+public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Definitions.ReducibleNetwork
+public import CORALean.NN.Definitions.Reduction
+public import CORALean.NN.Definitions.RefinableLayer
+public import CORALean.NN.Definitions.RefinableNetwork
+public import CORALean.NN.Definitions.RefinableNetworkImage
+public import CORALean.NN.Definitions.Schedule
+public import CORALean.NN.Definitions.SmoothNetwork
+public import CORALean.NN.Definitions.WeightAcc
+public import CORALean.NN.Definitions.WeightLayer
+public import CORALean.NN.Definitions.WeightNetwork
+public import CORALean.NN.Definitions.InputOrderMethod
+public import CORALean.NN.Definitions.ActivationKind
+public import CORALean.NN.Definitions.ActivationKindFn
+public import CORALean.NN.Definitions.Cat
+public import CORALean.NN.Definitions.CatDomain
+public import CORALean.NN.Definitions.SetBasedLoss
+public import CORALean.NN.Definitions.IntervalChainFloat
+public import CORALean.NN.Definitions.ScalarEncloses
+public import CORALean.NN.Definitions.IntervalChainFloatSound
 
 /-!
 # What a network means, collected

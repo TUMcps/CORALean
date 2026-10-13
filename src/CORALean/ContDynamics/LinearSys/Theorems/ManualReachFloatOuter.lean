@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
-import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ManualRunFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+public import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ManualRunFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+
+@[expose] public section
 
 /-!
 # `manualReachFloat` holds every run over every window

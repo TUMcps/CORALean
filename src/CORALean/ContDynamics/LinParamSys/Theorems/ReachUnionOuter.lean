@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.ReachUnionExact
-import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # `reachUnion` encloses `reachUnionExact`, one window at a time

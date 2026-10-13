@@ -1,8 +1,12 @@
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.Analysis.Normed.Group.Bounded
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.Analysis.Normed.Group.Bounded
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # Boundedness by the `n + 1` normals of a simplex

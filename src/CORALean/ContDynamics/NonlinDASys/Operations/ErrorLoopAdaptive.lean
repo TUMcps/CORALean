@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
-import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
-import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
+public import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.errorLoopAdaptive`

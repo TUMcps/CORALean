@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Calculus.Deriv.Shift
-import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Shift
+public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+
+@[expose] public section
 
 /-!
 # A continuous successor splits at any interior time

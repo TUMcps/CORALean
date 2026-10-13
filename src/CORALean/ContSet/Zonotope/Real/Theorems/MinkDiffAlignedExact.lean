@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffAligned` computes the Minkowski difference exactly

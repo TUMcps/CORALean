@@ -1,9 +1,14 @@
-import CORALean.Global.CoeffNormLeDual
-import CORALean.Global.DiagBlockSdpDual
-import CORALean.Global.DotProductLeCoeffNorm
-import CORALean.Global.GaussianNormMomentLe
-import CORALean.Global.PosSemidefGram
-import CORALean.Global.SdpRelaxationQuadLe
+module
+
+public import CORALean.Global.CoeffNormLeDual
+public import CORALean.Global.DiagBlockSdpDual
+public import CORALean.Global.DotProductLeCoeffNorm
+public import CORALean.Global.GaussianNormMomentLe
+public import CORALean.Global.PosSemidefGram
+public import CORALean.Global.SdpRelaxationQuadLe
+public import Mathlib.Probability.Distributions.Gaussian.Fernique
+
+@[expose] public section
 
 /-!
 # The semidefinite relaxation of ellipsotope-in-ellipsotope containment

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
-import CORALean.ContSet.Zonotope.Float.Operations.DetCandidate
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+public import CORALean.ContSet.Zonotope.Float.Operations.DetCandidate
+
+@[expose] public section
 
 /-!
 # `Zonotope.dominantScore`, over a floating-point scalar

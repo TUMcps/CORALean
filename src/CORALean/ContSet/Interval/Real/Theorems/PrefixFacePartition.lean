@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import Mathlib.Data.Nat.Find
-import Mathlib.Order.Interval.Finset.Nat
-import Mathlib.Order.CompleteLattice.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import Mathlib.Data.Nat.Find
+public import Mathlib.Order.Interval.Finset.Nat
+public import Mathlib.Order.CompleteLattice.Basic
+
+@[expose] public section
 
 /-!
 # The partition of an s-face around a sub-face

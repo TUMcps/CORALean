@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.LinearAlgebra.Matrix.SchurComplement
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Algebra.Order.Star.Real
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.LinearAlgebra.Matrix.SchurComplement
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Algebra.Order.Star.Real
+
+@[expose] public section
 
 /-!
 # The matrix inequality of the P-radius gains, one output after another

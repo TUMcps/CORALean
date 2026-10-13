@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.Conform.Operations.NarxAext
-import CORALean.ContDynamics.Conform.Operations.NarxBext
-import CORALean.ContDynamics.Conform.Operations.NarxE
-import CORALean.ContDynamics.Conform.Theorems.SumWindow
-import CORALean.ContDynamics.NonlinearARX.NonlinearARX
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.Conform.Operations.NarxAext
+public import CORALean.ContDynamics.Conform.Operations.NarxBext
+public import CORALean.ContDynamics.Conform.Operations.NarxE
+public import CORALean.ContDynamics.Conform.Theorems.SumWindow
+public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The window deviation of a linearized NARX model

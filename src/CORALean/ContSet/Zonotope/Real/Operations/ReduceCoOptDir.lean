@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceCoOptDir`: CoOpt_dir of [1, Alg. 4]

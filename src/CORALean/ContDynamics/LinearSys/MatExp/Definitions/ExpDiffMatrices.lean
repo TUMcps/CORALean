@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-import Mathlib.Analysis.SpecialFunctions.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+
+@[expose] public section
 
 /-!
 # The matrices `s (e^{Ar} - I) + F` that enclose the variation of a point over `[0, r]`

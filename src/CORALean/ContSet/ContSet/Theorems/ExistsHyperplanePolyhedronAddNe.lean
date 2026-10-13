@@ -1,9 +1,13 @@
-import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # The sum of two `S`-band intersections need not be the band of the summed bounds

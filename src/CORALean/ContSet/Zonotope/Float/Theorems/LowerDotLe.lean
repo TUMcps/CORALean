@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `Zonotope.lowerDot` is attained from below

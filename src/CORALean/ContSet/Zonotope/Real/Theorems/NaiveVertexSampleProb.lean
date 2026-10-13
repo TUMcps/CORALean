@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
-import CORALean.Global.ShenmaierHalfspace
-import Mathlib.MeasureTheory.Measure.Real
-import Mathlib.Probability.Independence.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
+public import CORALean.Global.ShenmaierHalfspace
+public import Mathlib.MeasureTheory.Measure.Real
+public import Mathlib.Probability.Independence.Basic
+
+@[expose] public section
 
 /-!
 # Naive vertex sampling's accuracy, at a fixed `ε`

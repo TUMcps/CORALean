@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+
+@[expose] public section
 
 /-!
 # The float `rescale` encloses the constrained zonotope

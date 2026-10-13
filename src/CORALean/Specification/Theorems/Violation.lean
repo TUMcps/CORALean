@@ -1,4 +1,8 @@
-import CORALean.Specification.Specification
+module
+
+public import CORALean.Specification.Specification
+
+@[expose] public section
 
 /-!
 # A witness outside a safe set falsifies it

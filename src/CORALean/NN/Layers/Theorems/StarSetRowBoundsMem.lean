@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.StarSetRowBounds
-import Mathlib.Tactic.Linarith
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.NN.Layers.Operations.StarSetRowBounds
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # The bounds of a neuron hold

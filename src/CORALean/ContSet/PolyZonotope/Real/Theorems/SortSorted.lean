@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+
+@[expose] public section
 
 /-!
 # `sort` sorts

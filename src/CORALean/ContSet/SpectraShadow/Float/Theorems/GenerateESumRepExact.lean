@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.GenerateESumRep
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
-import CORALean.ContSet.SpectraShadow.Real.Theorems.GenerateESumRepExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.GenerateESumRep
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.GenerateESumRepExact
+
+@[expose] public section
 
 /-!
 # The float `generateESumRep` denotes the nominal shadow exactly

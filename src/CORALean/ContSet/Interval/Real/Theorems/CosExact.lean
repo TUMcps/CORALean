@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Cos
-import CORALean.ContSet.Interval.Real.Theorems.ImageCosIcc
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Cos
+public import CORALean.ContSet.Interval.Real.Theorems.ImageCosIcc
+
+@[expose] public section
 
 /-!
 # `Interval.cos` is exactly the image under `Real.cos`

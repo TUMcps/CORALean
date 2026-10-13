@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ExistsMinnormFacet
-import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
-import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
-import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ExistsMinnormFacet
+public import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
+
+@[expose] public section
 
 /-!
 # No larger ball fits

@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.ReachSequence
+module
+
+public import CORALean.Specification.STL.Definitions.ReachSequence
+
+@[expose] public section
 
 /-!
 # A disjunction over independent time blocks distributes over the traces

@@ -1,5 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGen
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGen
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+
+@[expose] public section
+
 /-!
 # The halves of `Zonotope.splitFirstGen` are the zonotope
 

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Float.Operations.Radius
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Radius
+
+@[expose] public section
 
 /-!
 # `Capsule.isDisjoint`: a certificate that two capsules share no point

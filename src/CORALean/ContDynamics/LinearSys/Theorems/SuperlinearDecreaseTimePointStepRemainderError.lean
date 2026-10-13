@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
-import CORALean.Global.SuperlinearDecrease
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
+public import CORALean.Global.SuperlinearDecrease
+
+@[expose] public section
 
 /-!
 # `Thm. 2`: `ε_P` decreases superlinearly

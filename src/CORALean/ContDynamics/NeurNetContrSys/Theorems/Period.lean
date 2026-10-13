@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
-import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
-import CORALean.NN.Theorems.EncloseOuter
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import CORALean.NN.Theorems.EncloseOuter
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # One control period is a linear run under the enclosed input set

@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
-import CORALean.NN.Layers.Theorems.Real.EvalPolyPadCoeffs
-import CORALean.NN.Layers.Theorems.ToRealPadCoeffs
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyPadCoeffs
+public import CORALean.NN.Layers.Theorems.ToRealPadCoeffs
+
+@[expose] public section
 
 /-!
 # A padded relaxation is sound

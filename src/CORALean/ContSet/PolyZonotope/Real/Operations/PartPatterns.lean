@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.PartPattern
-import Mathlib.Data.List.Dedup
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PartPattern
+public import Mathlib.Data.List.Dedup
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.partPatterns`

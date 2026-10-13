@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaOrigin
-import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaOriginIff
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaOriginIff
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
+
+@[expose] public section
 
 /-!
 # `Zonotope.representsa_origin` is sound

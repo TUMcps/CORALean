@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.ReexpTerms
-import CORALean.ContSet.Taylm.Real.Operations.BoxMid
-import CORALean.ContSet.Taylm.Real.Operations.BoxRad
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ReexpTerms
+public import CORALean.ContSet.Taylm.Real.Operations.BoxMid
+public import CORALean.ContSet.Taylm.Real.Operations.BoxRad
+
+@[expose] public section
 
 /-!
 # `Taylm.reexpand`

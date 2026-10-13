@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import CORALean.ContSet.Zonotope.Real.Theorems.MemScaleIff
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemScaleIff
+
+@[expose] public section
 
 /-!
 # A stretched template, by its template's halfspaces

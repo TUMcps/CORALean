@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
+
+@[expose] public section
 
 /-!
 # `reach` contains every trajectory over a bounded horizon

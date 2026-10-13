@@ -1,9 +1,13 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
-import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaEmptySetIff
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeOfBound
-import CORALean.ContSet.Interval.Real.Operations.Empty
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaEmptySetIff
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeOfBound
+public import CORALean.ContSet.Interval.Real.Operations.Empty
+
+@[expose] public section
 
 /-!
 # A spectrahedral shadow's interval hull

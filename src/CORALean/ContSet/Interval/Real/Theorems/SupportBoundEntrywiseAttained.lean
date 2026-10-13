@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.SupportBoundEntrywise
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.SupportBoundEntrywise
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # A nonempty box's support bound is its support function

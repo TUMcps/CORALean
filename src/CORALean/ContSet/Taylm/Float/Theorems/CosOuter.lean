@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.Cos
-import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
-import CORALean.ContSet.Taylm.Float.Theorems.TrigCoefMem
-import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Cos
+public import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.TrigCoefMem
+public import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
+
+@[expose] public section
 
 /-!
 # `Taylm.cos` encloses `cos ∘ f`

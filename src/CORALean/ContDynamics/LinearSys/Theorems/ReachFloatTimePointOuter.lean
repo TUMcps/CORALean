@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
+
+@[expose] public section
 
 /-!
 # `reachFloat`'s time-point sets hold the exact flow at `k Δt`

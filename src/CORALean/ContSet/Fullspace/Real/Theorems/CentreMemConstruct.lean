@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Centre
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Centre
+
+@[expose] public section
 
 /-!
 # The full space contains its centre

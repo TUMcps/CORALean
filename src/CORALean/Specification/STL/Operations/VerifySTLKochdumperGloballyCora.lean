@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.EvaluatePredicateUnionPolytopeCora
-import CORALean.Specification.STL.Operations.SafeToUnsafeCora
+module
+
+public import CORALean.Specification.STL.Operations.EvaluatePredicateUnionPolytopeCora
+public import CORALean.Specification.STL.Operations.SafeToUnsafeCora
+
+@[expose] public section
 
 /-!
 # `verifySTLKochdumperGloballyCora`, CORA's STL verifier on `ẋ = 0` and `G_[0,T] (∨ clauses)`

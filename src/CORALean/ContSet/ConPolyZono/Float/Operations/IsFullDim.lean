@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDimWith
-import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDimWith
+public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.isFullDim`, over a floating-point scalar

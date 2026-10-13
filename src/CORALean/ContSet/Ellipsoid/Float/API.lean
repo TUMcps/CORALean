@@ -1,7 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Float.Operations.API
-import CORALean.ContSet.Ellipsoid.Float.Theorems.API
-import CORALean.ContSet.Ellipsoid.Float.Instances
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Float.Operations.API
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.API
+public import CORALean.ContSet.Ellipsoid.Float.Instances
 
 /-!
 # Ellipsoids over a floating-point scalar, collected

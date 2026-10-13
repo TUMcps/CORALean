@@ -1,13 +1,17 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
-import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
-import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The volume of an ellipsoid in shape-matrix form

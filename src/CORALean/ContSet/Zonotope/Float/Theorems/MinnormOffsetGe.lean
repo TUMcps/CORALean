@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MinnormOffset
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MinnormOffset
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # The rounded offset bounds every ball around the centre

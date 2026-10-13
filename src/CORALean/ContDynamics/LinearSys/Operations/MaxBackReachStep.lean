@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInit
-import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
-import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInit
+public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
+public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 7-12: one iteration of the main loop

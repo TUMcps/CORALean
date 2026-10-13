@@ -1,7 +1,11 @@
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.NN.Layers.Definitions.ApproxError
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Definitions.SecantSlope
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.NN.Layers.Definitions.ApproxError
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Definitions.SecantSlope
+
+@[expose] public section
 
 /-!
 # The image enclosure of a nonlinear layer, as a relaxation

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The linear image of a stretched template

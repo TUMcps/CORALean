@@ -1,13 +1,17 @@
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpEven
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MergedGenGap
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonpos
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpEven
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MergedGenGap
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonpos
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+
+@[expose] public section
 
 /-!
 # The recentred relaxation over-approximates, at the stored columns

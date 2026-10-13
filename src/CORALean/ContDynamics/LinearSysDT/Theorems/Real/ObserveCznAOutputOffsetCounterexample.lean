@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConIntersectExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConIntersectExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # CORA's `CZN-A` meets the measurement without the output offset `k`

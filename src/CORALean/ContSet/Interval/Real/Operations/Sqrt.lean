@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.Real.Sqrt
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.Real.Sqrt
+
+@[expose] public section
 
 /-!
 # `Interval.sqrt`

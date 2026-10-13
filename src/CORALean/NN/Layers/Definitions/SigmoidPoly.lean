@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.PolyAffineConj
-import CORALean.NN.Layers.Definitions.PolyDerivBound
-import CORALean.NN.Layers.Definitions.PolyFit
-import CORALean.NN.Layers.Definitions.PolyOfSampling
-import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+module
+
+public import CORALean.NN.Layers.Definitions.PolyAffineConj
+public import CORALean.NN.Layers.Definitions.PolyDerivBound
+public import CORALean.NN.Layers.Definitions.PolyFit
+public import CORALean.NN.Layers.Definitions.PolyOfSampling
+public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+
+@[expose] public section
 
 /-!
 # The polynomial relaxations at the sigmoid and at tanh, over ℝ

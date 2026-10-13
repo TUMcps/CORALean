@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.EvalSteps
-import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
+module
+
+public import CORALean.NN.Graph.Operations.EvalSteps
+public import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
+
+@[expose] public section
 
 /-!
 # A closed subgraph computes the same chain, not an enclosure of it

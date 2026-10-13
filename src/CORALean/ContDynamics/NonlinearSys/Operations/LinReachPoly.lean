@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyCandidates
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
-import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyCandidates
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+
+@[expose] public section
 
 /-!
 # One step of `linReach` at `alg = 'poly'`, end to end

@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The P-radius after one prediction and one strip

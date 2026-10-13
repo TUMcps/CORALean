@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Vertcat
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Vertcat
+
+@[expose] public section
 
 /-!
 # `Interval.vertcat` is exactly the set of stacked matrices

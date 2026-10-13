@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.LinearARX
+module
+
+public import CORALean.ContDynamics.LinearARX.LinearARX
+
+@[expose] public section
 
 /-!
 # One sampled run of an ARX model

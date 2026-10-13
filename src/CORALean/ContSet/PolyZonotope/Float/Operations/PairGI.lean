@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtGens
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtGens
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # The independent generators of a pairing, over a floating-point scalar

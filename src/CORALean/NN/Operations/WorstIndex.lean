@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Fin.Tuple.Sort
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Fin.Tuple.Sort
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The largest-ranked of a fixed number of candidates

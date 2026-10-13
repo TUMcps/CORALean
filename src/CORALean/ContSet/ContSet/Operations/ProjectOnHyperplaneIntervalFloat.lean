@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.MulHi
+module
+
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
+public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+
+@[expose] public section
 
 /-!
 # CORA's `projectOnHyperplane`, at an interval normal and offset

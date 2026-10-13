@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # Degeneracy of a V-polytope, by a rank

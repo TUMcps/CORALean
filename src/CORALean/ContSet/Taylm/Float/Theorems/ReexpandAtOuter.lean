@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
-import CORALean.ContSet.Taylm.Float.Theorems.BinomCoefMem
-import CORALean.ContSet.Taylm.Float.Theorems.PolyOfReexpPairs
-import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
+public import CORALean.ContSet.Taylm.Float.Theorems.BinomCoefMem
+public import CORALean.ContSet.Taylm.Float.Theorems.PolyOfReexpPairs
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `Taylm.reexpandAt` encloses the function with one variable substituted

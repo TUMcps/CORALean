@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_point` is a singleton

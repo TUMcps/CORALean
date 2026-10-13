@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
+
+@[expose] public section
 
 /-!
 # The matrix-zonotope correction matrix contains every member's interpolation error

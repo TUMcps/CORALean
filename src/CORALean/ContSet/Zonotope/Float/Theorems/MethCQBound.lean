@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.MethCResidualBound
-import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.MethCResidualBound
+public import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
+
+@[expose] public section
 
 /-!
 # `methCQ` bounds every absolute row sum of `1 - H P`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
-import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
+
+@[expose] public section
 
 /-!
 # A full-dimensional bundle has full-dimensional members

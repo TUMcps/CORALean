@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiBasis
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiHessenberg
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiBasis
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiHessenberg
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # The varying-input remainder does not follow from the error bound

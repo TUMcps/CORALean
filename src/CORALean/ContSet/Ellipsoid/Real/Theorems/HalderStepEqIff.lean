@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepLtIff
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepLtSelfIff
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepLtIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepLtSelfIff
+
+@[expose] public section
 
 /-!
 # The fixed points of Halder's step are the roots of the stationarity equation

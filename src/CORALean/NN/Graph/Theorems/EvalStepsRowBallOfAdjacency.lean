@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
-import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
+module
+
+public import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
+public import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
+
+@[expose] public section
 
 /-!
 # `[1, §4.3]`'s locality, end to end: row `v` needs only `A`'s own `(L + 1)`-ball

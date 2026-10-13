@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+
+@[expose] public section
 
 /-!
 # The support bound is the support function

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTailFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTailFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
+
+@[expose] public section
 
 /-!
 # Interval matrices: the Taylor truncation with an exact second order, in floats

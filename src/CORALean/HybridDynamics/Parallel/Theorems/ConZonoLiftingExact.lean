@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.ConZonoLifting
-import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.ConZonoLifting
+public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
+
+@[expose] public section
 
 /-!
 # `conZonoLifting` is exact

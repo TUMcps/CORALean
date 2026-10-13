@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.CorrectedKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSmulMulVecTaylorIsBigO
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.CorrectedKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSmulMulVecTaylorIsBigO
+
+@[expose] public section
 
 /-!
 # The leading terms `τt e_m*φ_{p+1}(σtT_m)e₁` of the Krylov errors

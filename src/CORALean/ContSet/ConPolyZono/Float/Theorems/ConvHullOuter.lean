@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHull
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSingleOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHull
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSingleOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.convHull` contains the convex hull of the union

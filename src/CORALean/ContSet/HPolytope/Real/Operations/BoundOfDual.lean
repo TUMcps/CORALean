@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructEqFeasible
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEqFeasible
+
+@[expose] public section
 
 /-!
 # `HPolytope.boundOfDual`

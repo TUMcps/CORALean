@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Data.Real.Basic
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # A sum over a window reads block by block

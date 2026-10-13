@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.PCACovariance
-import Mathlib.Data.Real.Star
-import Mathlib.LinearAlgebra.Matrix.Hermitian
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.PCACovariance
+public import Mathlib.Data.Real.Star
+public import Mathlib.LinearAlgebra.Matrix.Hermitian
+
+@[expose] public section
 
 /-!
 # The scatter matrix is Hermitian

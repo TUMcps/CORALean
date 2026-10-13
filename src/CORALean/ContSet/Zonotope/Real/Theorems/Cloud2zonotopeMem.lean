@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
-import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeCompressMem
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
+public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeCompressMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.cloud2zonotope` contains every point

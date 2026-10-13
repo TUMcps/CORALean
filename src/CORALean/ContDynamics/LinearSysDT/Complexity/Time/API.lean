@@ -1,6 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.ReachBound
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.ReachStepBound
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.ReachBound
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.ReachStepBound
 
 /-!
 # What running `LinearSysDT.reach` costs

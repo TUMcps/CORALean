@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachState
-import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachState
+public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
+
+@[expose] public section
 
 /-!
 # A float state of `Alg. 2` that stands for an exact one

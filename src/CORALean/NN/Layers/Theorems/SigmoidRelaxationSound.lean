@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Operations.SigmoidRelaxation
-import CORALean.NN.Layers.Theorems.OfMonotoneSound
-import CORALean.NN.Layers.Theorems.SigmoidCurvatureRelaxationSound
-import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
-import CORALean.NN.Layers.Theorems.TighterSound
+module
+
+public import CORALean.NN.Layers.Operations.SigmoidRelaxation
+public import CORALean.NN.Layers.Theorems.OfMonotoneSound
+public import CORALean.NN.Layers.Theorems.SigmoidCurvatureRelaxationSound
+public import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
+public import CORALean.NN.Layers.Theorems.TighterSound
+
+@[expose] public section
 
 /-!
 # The sigmoid relaxation is sound

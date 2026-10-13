@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LongestGen
-import CORALean.ContSet.Zonotope.Real.Operations.Split
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LongestGen
+public import CORALean.ContSet.Zonotope.Real.Operations.Split
+
+@[expose] public section
 
 /-!
 # `Zonotope.splitLongestGen`

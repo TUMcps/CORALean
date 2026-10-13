@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import Mathlib.Data.Finset.Sort
-import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOutRadius
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import Mathlib.Data.Finset.Sort
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOutRadius
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.boxOut`, over a floating-point scalar

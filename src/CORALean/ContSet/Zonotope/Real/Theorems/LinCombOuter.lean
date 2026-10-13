@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffDiffLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffSumLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffDiffLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffSumLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
+
+@[expose] public section
 
 /-!
 # `linComb` contains every segment between the two zonotopes

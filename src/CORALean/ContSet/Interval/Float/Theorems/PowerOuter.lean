@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Theorems.PowHiLe
-import CORALean.ContSet.Interval.Float.Theorems.PowLoLe
-import CORALean.ContSet.Interval.Float.Operations.Power
-import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.PowHiLe
+public import CORALean.ContSet.Interval.Float.Theorems.PowLoLe
+public import CORALean.ContSet.Interval.Float.Operations.Power
+public import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
+
+@[expose] public section
 
 /-!
 # `Interval.power` encloses the powers of the points of the box

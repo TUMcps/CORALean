@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
+module
+
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.representsa_origin`

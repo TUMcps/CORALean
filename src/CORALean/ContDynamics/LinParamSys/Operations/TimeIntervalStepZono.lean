@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrix
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.Map
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrix
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # One step of the homogeneous flow at a matrix zonotope, as a set

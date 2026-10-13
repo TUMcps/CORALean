@@ -1,6 +1,10 @@
-import CORALean.Global.SLemma
-import Mathlib.Data.Matrix.Block
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.Global.SLemma
+public import Mathlib.Data.Matrix.Block
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # The S-lemma as a linear matrix inequality

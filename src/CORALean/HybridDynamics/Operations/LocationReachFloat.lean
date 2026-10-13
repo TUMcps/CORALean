@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
-import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
+public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # `Location.reachFloat`

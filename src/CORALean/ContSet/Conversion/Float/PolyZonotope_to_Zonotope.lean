@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope as a zonotope, over a floating-point scalar

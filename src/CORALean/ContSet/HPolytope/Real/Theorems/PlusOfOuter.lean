@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Plus
-import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Plus
+public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # The certified Minkowski sum encloses

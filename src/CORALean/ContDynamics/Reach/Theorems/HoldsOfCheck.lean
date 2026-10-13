@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Reach.Operations.Check
-import CORALean.Specification.Theorems.CheckSound
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.Reach.Operations.Check
+public import CORALean.Specification.Theorems.CheckSound
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A passed check on `reach` holds on `reachExact`, for every system class

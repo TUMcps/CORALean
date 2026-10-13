@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # The set-propagation observer holds the true state

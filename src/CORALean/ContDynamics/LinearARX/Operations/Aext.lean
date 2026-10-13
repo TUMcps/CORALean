@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+
+@[expose] public section
 
 /-!
 # The extended output matrix

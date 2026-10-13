@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
-import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
+public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+
+@[expose] public section
 
 /-!
 # A linear system's classical runs are its embedding's

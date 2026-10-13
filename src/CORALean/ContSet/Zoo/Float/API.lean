@@ -1,6 +1,8 @@
-import CORALean.ContSet.Zoo.Float.Zoo
-import CORALean.ContSet.Zoo.Float.Operations.API
-import CORALean.ContSet.Zoo.Float.Theorems.API
+module
+
+public import CORALean.ContSet.Zoo.Float.Zoo
+public import CORALean.ContSet.Zoo.Float.Operations.API
+public import CORALean.ContSet.Zoo.Float.Theorems.API
 
 /-!
 # Float zoos, collected

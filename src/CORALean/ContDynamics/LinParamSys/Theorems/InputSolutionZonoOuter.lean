@@ -1,17 +1,21 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
-import Mathlib.Algebra.Order.Ring.Star
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
+public import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
+public import Mathlib.Algebra.Order.Ring.Star
+
+@[expose] public section
 
 /-!
 # `inputSolutionZono` contains what the input contributes at every matrix of the set

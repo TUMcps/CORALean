@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
-import Mathlib.Analysis.Matrix.PosDef
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
+public import Mathlib.Analysis.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # The generators reproduce the covariance

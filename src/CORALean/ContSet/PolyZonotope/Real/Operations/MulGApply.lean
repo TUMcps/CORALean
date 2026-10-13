@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
+
+@[expose] public section
 
 /-!
 # A coordinate of a product generator

@@ -1,12 +1,16 @@
-import CORALean.NN.Operations.IntervalChainJvp
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.FDeriv.Pi
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.FDeriv.Prod
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.NN.Operations.IntervalChainJvp
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.FDeriv.Pi
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.FDeriv.Prod
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The tangent propagation is the derivative of the forward pass

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyP
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyP
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.evalPoly`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
-import CORALean.ContSet.ConZonotope.Real.Operations.Plus
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
+public import CORALean.ContSet.ConZonotope.Real.Operations.Plus
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersection`

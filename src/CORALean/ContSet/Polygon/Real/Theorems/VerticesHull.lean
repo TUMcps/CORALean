@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.Vertices
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Vertices
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # The vertices of a polygon hold its hull

@@ -1,4 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMapTri
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapTri
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMapTri_h`

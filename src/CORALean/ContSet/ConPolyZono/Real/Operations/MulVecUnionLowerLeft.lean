@@ -1,15 +1,19 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
-import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # A row of the first operand's block of the union's lower constraint

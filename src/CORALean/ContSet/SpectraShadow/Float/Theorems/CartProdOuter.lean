@@ -1,8 +1,12 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.CartProd
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PadLeftOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PadRightOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.CartProd
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PadLeftOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PadRightOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.cartProd` contains the Cartesian product

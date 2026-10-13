@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeInputSolution
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeInputSolution
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # `reach` contains every trajectory, inputs and all

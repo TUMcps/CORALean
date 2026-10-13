@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConA
-import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConB
-import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConE
-import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConG
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConG
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduceCon`

@@ -62,6 +62,14 @@ BENCH_DIR=src/CORALean/Examples/Bench/
 # does, because the whole point of the float layer is that it runs.
 ALLOWLIST=scripts/noncomputable-allowlist.txt
 
+# Every file under `src/` is a Lean `module` (CONTRIBUTING, "The module
+# header") except the worked examples under `Examples/`, whose `#eval`s would
+# need `meta import`, and the files listed here with a reason: proofs that
+# unfold a definition Mathlib or core does not expose, and the files that import
+# one (a module cannot import a non-module). The list only shrinks: an entry
+# that is a module now, or is gone, is reported as stale.
+NONMODULE_LIST=scripts/non-module-allowlist.txt
+
 # Rule A. A class root, a directory holding an `Operations/`, `Theorems/` or
 # `Definitions/` folder, holds its class file, `Instances.lean` and `API.lean`
 # and nothing else: every other file has a role folder beside them. Which of
@@ -123,6 +131,7 @@ out=$(awk \
   -v FLINT_AXIOM="$FLINT_AXIOM" \
   -v BENCH_DIR="$BENCH_DIR" \
   -v LAKE_ROOTS="$lake_roots" \
+  -v NONMOD="$NONMODULE_LIST" \
   -v ALLOWLIST="$ALLOWLIST" '
 # One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
 function checkReview(val, ln,    d, nm) {
@@ -162,6 +171,27 @@ BEGIN {
     allowLine[name] = allowFNR
   }
   close(ALLOWLIST)
+
+  # The non-module list: `<path>  <reason>` per line, as the allowlist above.
+  while ((getline nline < NONMOD) > 0) {
+    nmFNR++
+    line = nline
+    sub(/^[ \t]+/, "", line)
+    if (line == "" || line ~ /^#/) continue
+    p = line; sub(/[ \t].*$/, "", p)
+    r = line; sub(/^[^ \t]+[ \t]*/, "", r)
+    if (p in nonmodOK)
+      say(NONMOD ":" nmFNR ": duplicate entry `" p "` (first at line " nonmodLine[p] ")")
+    if (r == "")
+      say(NONMOD ":" nmFNR ": `" p "` carries no reason — say why it cannot be a module")
+    nonmodOK[p] = 1
+    nonmodLine[p] = nmFNR
+  }
+  close(NONMOD)
+
+  # An import line in any of the forms a module may write it; the prefixes are
+  # what `public`/`meta` add, and a non-module may use neither.
+  IMPORT = "^(public[ \t]+)?(meta[ \t]+)?import[ \t]+"
 
   # A declaration, optionally carrying one attribute — `@[simp] theorem …` is as
   # much a declaration as `theorem …`, and every rule that scans for one needs to
@@ -368,6 +398,43 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
         " docstring, which ends at line " docEnd)
   }
 
+  # The module header, at fixed lines (CONTRIBUTING, "The module header"):
+  # `module`, one blank line, the imports from line 3 on, one blank line, then
+  # `@[expose] public section` and, one blank line under it, the module
+  # docstring. A collector holds no declarations and so no section.
+  seenFile[f] = 1
+  if (isModule) {
+    seenModule[f] = 1
+    if (line2 != "")
+      say(f ":2: `module` is followed by one blank line, then the imports")
+    if (firstImpFNR > 0 && firstImpFNR != 3)
+      say(f ":" firstImpFNR ": the imports start on line 3, one blank line under `module`")
+    want = (lastImpFNR > 0) ? lastImpFNR + 2 : 3
+    if (collector) {
+      if (exposeCount > 0)
+        say(f ":" exposeFNR ": a collector holds nothing but imports — no" \
+            " `@[expose] public section`")
+    } else if (exposeCount == 0) {
+      say(f ":1: a module opens with `@[expose] public section`, one blank line under" \
+          " the imports")
+    } else {
+      if (exposeCount > 1)
+        say(f ":" exposeFNR ": more than one `@[expose] public section`")
+      if (exposeFNR != want)
+        say(f ":" exposeFNR ": `@[expose] public section` goes on line " want \
+            ", one blank line under the last import")
+      if (docLine > 0 && docLine != exposeFNR + 2)
+        say(f ":" docLine ": the module docstring goes one blank line under" \
+            " `@[expose] public section`, on line " exposeFNR + 2)
+    }
+  } else {
+    if (exposeCount > 0)
+      say(f ":" exposeFNR ": `@[expose] public section` in a file that is not a `module`")
+    if (f !~ /^src\/CORALean\/Examples\// && !(f in nonmodOK))
+      say(f ":1: not a module — a file opens with `module` (CONTRIBUTING, \"The module" \
+          " header\"); only `Examples/` and the files in " NONMOD " stay non-module")
+  }
+
   # Every `[N]` cited is defined and every one defined is cited, so a reference
   # cannot rot into a number with nothing behind it.
   for (i in refCite)
@@ -496,6 +563,8 @@ FNR == 1 {
   beginFNR = 0; endFNR = 0
   afterPending = 0; afterLabel = ""; afterMarkerFNR = 0; afterBlanks = 0
   pendingMain = 0; pendingMainLabel = ""; pendingMainFNR = 0; pendingMainIsInstances = 0
+  isModule = ($0 == "module"); line2 = ""; firstImpFNR = 0; lastImpFNR = 0
+  exposeCount = 0; exposeFNR = 0
   # `split("", a)` rather than `delete a`, which older mawk does not have
   split("", declAux); split("", useAux); split("", imp); split("", impLine)
   split("", refDef); split("", refCite); split("", pubList)
@@ -550,9 +619,14 @@ FNR == 1 {
         " canonical form — check the width and the fill either side of the label")
   }
 
-  if (charlen(raw) > MAX_LINE)
-    say(FILENAME ":" FNR ": line is " charlen(raw) " characters, over the limit of " \
+  # An import cannot be wrapped, so the `public `/`meta ` a module adds to one
+  # is not counted: `import <name>` alone must fit, as it did before.
+  lenLine = raw
+  if (raw ~ IMPORT) sub(/^(public[ \t]+)?(meta[ \t]+)?/, "", lenLine)
+  if (charlen(lenLine) > MAX_LINE)
+    say(FILENAME ":" FNR ": line is " charlen(lenLine) " characters, over the limit of " \
         MAX_LINE " — wrap it")
+  if (FNR == 2) line2 = raw
   if (raw ~ /[ \t]$/)
     say(FILENAME ":" FNR ": trailing whitespace — strip it")
   if (raw ~ /\t/)
@@ -677,12 +751,24 @@ FNR == 1 {
     }
   }
 
-  if (code ~ /^import /) {
+  if (code ~ IMPORT) {
     nimp++
     imp[nimp] = code
-    sub(/^import[ \t]+/, "", imp[nimp])
+    sub(IMPORT, "", imp[nimp])
     sub(/[ \t]+$/, "", imp[nimp])
     impLine[nimp] = FNR
+    if (firstImpFNR == 0) firstImpFNR = FNR
+    lastImpFNR = FNR
+    if (!isModule && code ~ /^(public|meta)[ \t]/)
+      say(FILENAME ":" FNR ": `public`/`meta` import in a file that is not a `module`")
+  } else if (code == "module") {
+    if (FNR != 1)
+      say(FILENAME ":" FNR ": `module` is the first line of a file, or absent")
+  } else if (raw == "@[expose] public section") {
+    exposeCount++
+    if (exposeFNR == 0) exposeFNR = FNR
+  } else if (code ~ /public[ \t]+section/) {
+    say(FILENAME ":" FNR ": the section of a module is `@[expose] public section`, exactly")
   } else if (code ~ /[^ \t]/) {
     if (codeLine == 0) codeLine = FNR
   }
@@ -872,6 +958,15 @@ END {
     if (!(name in usedAllow))
       say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
           "` — no longer matches any `noncomputable` declaration the rules do not already allow")
+  for (p in nonmodOK) {
+    if (p ~ /^src\/CORALean\/Examples\//)
+      say(NONMOD ":" nonmodLine[p] ": `" p "` is under `Examples/`, which needs no entry")
+    else if (!(p in seenFile))
+      say(NONMOD ":" nonmodLine[p] ": stale entry `" p "` — no such file")
+    else if (p in seenModule)
+      say(NONMOD ":" nonmodLine[p] ": stale entry `" p "` — it is a module now; the list" \
+          " only shrinks")
+  }
 }
 ')
 report "$out"
@@ -894,8 +989,8 @@ function moduleOf(path,   m) {
   return m
 }
 FNR == 1 { mod = moduleOf(FILENAME); known[mod] = 1; depth = 0 }
-/^import / {
-  dep = $0; sub(/^import[ \t]+/, "", dep); sub(/[ \t]+$/, "", dep)
+/^(public[ \t]+)?(meta[ \t]+)?import[ \t]/ {
+  dep = $0; sub(/^(public[ \t]+)?(meta[ \t]+)?import[ \t]+/, "", dep); sub(/[ \t]+$/, "", dep)
   edge[mod] = edge[mod] " " dep
 }
 END {
@@ -999,8 +1094,8 @@ function dirOf(path,   d) { d = path; sub(/\/[^\/]*$/, "", d); return d }
 function baseOf(path,   b) { b = path; sub(/^.*\//, "", b); return b }
 
 FNR == 1 { mod = moduleOf(FILENAME) }
-/^import / {
-  dep = $0; sub(/^import[ \t]+/, "", dep); sub(/[ \t]+$/, "", dep)
+/^(public[ \t]+)?(meta[ \t]+)?import[ \t]/ {
+  dep = $0; sub(/^(public[ \t]+)?(meta[ \t]+)?import[ \t]+/, "", dep); sub(/[ \t]+$/, "", dep)
   imp[mod, dep] = 1
 }
 # The one form the marker takes, so that finding it needs no judgement.
@@ -1071,7 +1166,7 @@ END {
     for (j = 1; j <= nwant; j++) {
       m = wantMod[j]
       if ((curMod, m) in imp || excused(curMod, wantLbl[m])) continue
-      print c ":1: does not collect `" wantLbl[m] "` — add `import " m "`, or say in the" \
+      print c ":1: does not collect `" wantLbl[m] "` — import `" m "`, or say in the" \
             " module docstring that `" wantLbl[m] "` is deliberately not collected here"
     }
     for (k in excuse) {
@@ -1159,7 +1254,9 @@ FNR == 1 { if (n > 0 && other == 0) print prev ": holds only `import Mathlib.*` 
   }
   sub(/--.*$/, "", s)
   if (s ~ /^[ \t]*$/) next
-  if (s ~ /^import Mathlib\./) n++; else other++
+  # `module` and the section a module opens are header, not content.
+  if (s == "module" || s ~ /^@\[expose\] public section/) next
+  if (s ~ /^(public[ \t]+)?(meta[ \t]+)?import[ \t]+Mathlib\./) n++; else other++
 }
 END { if (n > 0 && other == 0) print prev ": holds only `import Mathlib.*` lines —" \
         " import Mathlib modules in the file that uses them" }
@@ -1265,7 +1362,7 @@ report "$out"
 # repeated `import` lines in the collector files.
 out=$(awk '
 FNR == 1 { delete seen }
-/^import / { if (seen[$0]++) print FILENAME ": duplicate import " $2 }
+/^(public[ \t]+)?(meta[ \t]+)?import[ \t]/ { if (seen[$NF]++) print FILENAME ": duplicate import " $NF }
 ' $files)
 report "$out"
 

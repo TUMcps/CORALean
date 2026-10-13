@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
-import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrInit
-import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
+public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrInit
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 3-15, linearizing at the centre

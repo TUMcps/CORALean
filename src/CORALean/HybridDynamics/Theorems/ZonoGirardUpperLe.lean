@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirard
-import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+module
+
+public import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirard
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # The dual bound of `Location.zonoGirardUpper` holds

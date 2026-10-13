@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.NN.Layers.Operations.ExpUpLimit
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.NN.Layers.Operations.ExpUpLimit
+
+@[expose] public section
 
 /-!
 # Where softmax's `expUp` is licensed

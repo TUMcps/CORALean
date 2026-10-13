@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.Mtimes
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Mtimes
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.mtimes` is the image

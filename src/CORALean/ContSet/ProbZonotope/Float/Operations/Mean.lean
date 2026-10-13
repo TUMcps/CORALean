@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.mean`, over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Mrdivide
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mrdivide
+
+@[expose] public section
 
 /-!
 # `Interval.mrdivide` over-approximates division by a scalar, over a floating-point scalar

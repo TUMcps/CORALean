@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.GcnActSteps
+module
+
+public import CORALean.NN.Graph.Operations.GcnActSteps
+
+@[expose] public section
 
 /-!
 # `GNN.gcnActSteps` leaves no independent generators

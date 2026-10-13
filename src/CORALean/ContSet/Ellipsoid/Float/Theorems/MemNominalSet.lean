@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+
+@[expose] public section
 
 /-!
 # Membership in the nominal ellipsoid, in the stored fields

@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Binary64.Operations.InRange
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Operations.InRange
+
+@[expose] public section
 
 /-!
 # Halving

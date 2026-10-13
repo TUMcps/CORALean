@@ -1,11 +1,15 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.union`

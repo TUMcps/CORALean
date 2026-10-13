@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PRadiusPredictStripsLe
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmiChain
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.PRadiusPredictStripsLe
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.QuadFormLeOfLmiChain
+
+@[expose] public section
 
 /-!
 # The P-radius gains of `Alg. 2`

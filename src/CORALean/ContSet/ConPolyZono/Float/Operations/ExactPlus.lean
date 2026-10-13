@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.exactPlus` over a floating-point scalar

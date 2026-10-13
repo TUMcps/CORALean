@@ -1,11 +1,15 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.SectionEqIccWalkEdges
-import CORALean.ContSet.Zonotope.Real.Theorems.MemShearConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.MemShearWalkEdges
-import CORALean.ContSet.Zonotope.Real.Theorems.ShearHalfPlane
-import CORALean.ContSet.Zonotope.Real.Theorems.ShearCross
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
-import Mathlib.Analysis.Normed.Group.Basic
-import Mathlib.Topology.MetricSpace.Pseudo.Pi
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.SectionEqIccWalkEdges
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearWalkEdges
+public import CORALean.ContSet.Zonotope.Real.Theorems.ShearHalfPlane
+public import CORALean.ContSet.Zonotope.Real.Theorems.ShearCross
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import Mathlib.Analysis.Normed.Group.Basic
+public import Mathlib.Topology.MetricSpace.Pseudo.Pi
+
+@[expose] public section
 
 /-!
 # The boundary of a sorted zonogon lies on the walk edges

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.Uplus
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Uplus
+
+@[expose] public section
 
 /-!
 # `Taylm.uplus` encloses the function

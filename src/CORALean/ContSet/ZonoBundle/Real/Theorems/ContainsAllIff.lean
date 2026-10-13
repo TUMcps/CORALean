@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.ContainsAll
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.ContainsAll
+
+@[expose] public section
 
 /-!
 # A bundle contains a set iff every member does

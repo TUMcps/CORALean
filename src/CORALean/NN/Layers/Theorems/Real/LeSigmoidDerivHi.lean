@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.SigmoidRelaxation
-import CORALean.NN.Layers.Theorems.Real.SigmoidMono
-import CORALean.NN.Layers.Theorems.Real.SigmoidPos
+module
+
+public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+public import CORALean.NN.Layers.Theorems.Real.SigmoidMono
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPos
+
+@[expose] public section
 
 /-!
 # The exact derivative bracket's upper end

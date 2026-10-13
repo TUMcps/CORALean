@@ -1,6 +1,10 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Interval
-import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Interval
+public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.interval` denotes the empty set

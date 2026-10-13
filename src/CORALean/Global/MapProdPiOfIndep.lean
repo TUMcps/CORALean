@@ -1,5 +1,9 @@
-import Mathlib.Probability.Independence.Basic
-import Mathlib.MeasureTheory.Constructions.Pi
+module
+
+public import Mathlib.Probability.Independence.Basic
+public import Mathlib.MeasureTheory.Constructions.Pi
+
+@[expose] public section
 
 /-!
 # Independent samples beside a block: the law is a product

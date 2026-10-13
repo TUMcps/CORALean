@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.EvaluatePredicateUnionCora
+module
+
+public import CORALean.Specification.STL.Operations.EvaluatePredicateUnionCora
+
+@[expose] public section
 
 /-!
 # CORA's `aux_evaluatePredicate` reports a set meeting an earlier unsafe set as disjoint

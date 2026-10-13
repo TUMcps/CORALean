@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Project
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Project
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.project` is exactly the projected set

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.mean`

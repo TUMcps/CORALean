@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
-import CORALean.ContSet.Zonotope.Real.Operations.CubMapMixed
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
+public import CORALean.ContSet.Zonotope.Real.Operations.CubMapMixed
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `ConZonotope.cubMapMixed`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Mul
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Mul
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.evalPolySort`'s dependent-generator count

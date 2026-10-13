@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+
+@[expose] public section
 
 /-!
 # The shape of the enclosing ellipsoid of a Minkowski sum

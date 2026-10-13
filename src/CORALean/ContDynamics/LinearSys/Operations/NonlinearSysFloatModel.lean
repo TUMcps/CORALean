@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # A linear system as a nonlinear one, for a float run

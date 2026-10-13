@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
-import CORALean.ContSet.Interval.Float.Operations.Append
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
+public import CORALean.ContSet.Interval.Float.Operations.Append
+
+@[expose] public section
 
 /-!
 # A float model's residual on the stacked state

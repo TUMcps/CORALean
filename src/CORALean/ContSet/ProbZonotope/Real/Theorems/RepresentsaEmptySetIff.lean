@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.representsaEmptySet` says whether there are no laws

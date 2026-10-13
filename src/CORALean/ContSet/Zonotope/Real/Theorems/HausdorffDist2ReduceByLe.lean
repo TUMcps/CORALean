@@ -1,11 +1,15 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceByDropped
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
-import CORALean.Global.EuclideanHausdorffDist
-import CORALean.Global.Err
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByDropped
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+public import CORALean.Global.EuclideanHausdorffDist
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # What one order reduction costs, as a Hausdorff distance

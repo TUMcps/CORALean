@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.Deriv.Add
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.Add
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.jacobian` is the derivative of the dependent point

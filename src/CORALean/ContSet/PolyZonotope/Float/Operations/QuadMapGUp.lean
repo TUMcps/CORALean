@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGUp
+
+@[expose] public section
 
 /-!
 # `quadMap`'s generators, rounded up

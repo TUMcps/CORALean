@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.SShape
-import CORALean.NN.Layers.Definitions.Sigmoid
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+module
+
+public import CORALean.NN.Layers.Definitions.SShape
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+
+@[expose] public section
 
 /-!
 # The logistic function is S-shaped

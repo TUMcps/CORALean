@@ -1,7 +1,11 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Data.Fintype.Basic
-import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Data.Fintype.Basic
+public import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorEval`

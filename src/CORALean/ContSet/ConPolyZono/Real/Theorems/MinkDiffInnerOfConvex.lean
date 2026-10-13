@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.minkDiff` is exact for a convex minuend

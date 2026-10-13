@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+
+@[expose] public section
 
 /-!
 # Choosing the step size from an admissible error

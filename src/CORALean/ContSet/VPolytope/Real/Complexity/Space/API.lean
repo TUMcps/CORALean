@@ -1,9 +1,11 @@
-import CORALean.ContSet.VPolytope.Real.Complexity.Space.Plus
-import CORALean.ContSet.VPolytope.Real.Complexity.Space.LinComb
-import CORALean.ContSet.VPolytope.Real.Complexity.Space.Mtimes
-import CORALean.ContSet.VPolytope.Real.Complexity.Space.Bilin
-import CORALean.ContSet.VPolytope.Real.Complexity.Space.MtimesMatPolytope
-import CORALean.ContSet.VPolytope.Real.Complexity.Space.Intersection
+module
+
+public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Plus
+public import CORALean.ContSet.VPolytope.Real.Complexity.Space.LinComb
+public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Mtimes
+public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Bilin
+public import CORALean.ContSet.VPolytope.Real.Complexity.Space.MtimesMatPolytope
+public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Intersection
 
 /-!
 # What `VPolytope` costs

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # What storing a midpoint leaves to pay

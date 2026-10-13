@@ -1,98 +1,100 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOneMemIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceSumSmulMulVec
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
-import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
-import CORALean.ContSet.ConZonotope.Real.Theorems.EliminateExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.EliminateOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.EncloseOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
-import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeast
-import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsIsGreatestIneqs
-import CORALean.ContSet.ConZonotope.Real.Theorems.IneqsContainsIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.InterIneqsNonemptyIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectHalfspaceExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectsHyperplaneIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsAffineImageIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsClosed
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
-import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
-import CORALean.ContSet.ConZonotope.Real.Theorems.LiftIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.LiftThenReduce
-import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
-import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombEqConvexHull
-import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemIffIsLeast
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftZeroIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatDropIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.MinkDiffVExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.NonemptyIffIsLeast
-import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqEliminate
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMul
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamGMulVec
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroCol
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroRow
-import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.ProjectExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOrder
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftEqOfMem
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftByOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOrder
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.RescaleExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEROuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERZeroFst
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEREmpty
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERRefine
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERNotSuperset
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRowIndep
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqOfRZero
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRZeroCounterexample
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqComapLift
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveHausdorffEq
-import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateIsMinOn
-import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateReducedIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.EmptyExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.CompactExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConIntersectExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.SplitUnion
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripFamilyExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectManyExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaPointIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsFullDimCoraCounterexample
-import CORALean.ContSet.ConZonotope.Real.Theorems.ContainsPointIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreMem
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreIffOfEqZero
-import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapMixedOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapCoraNotOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.SupportFuncUpperCoraCounterexample
-import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOneMemIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceSumSmulMulVec
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+public import CORALean.ContSet.ConZonotope.Real.Theorems.EliminateExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.EliminateOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.EncloseOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeast
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsIsGreatestIneqs
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IneqsContainsIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.InterIneqsNonemptyIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectHalfspaceExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectsHyperplaneIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsAffineImageIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
+public import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LiftIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LiftThenReduce
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombEqConvexHull
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemIffIsLeast
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftZeroIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatDropIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MinkDiffVExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.NonemptyIffIsLeast
+public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqEliminate
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMul
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamGMulVec
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroCol
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroRow
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ProjectExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOrder
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftEqOfMem
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftByOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOrder
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.RescaleExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEROuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERZeroFst
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEREmpty
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERRefine
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERNotSuperset
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRowIndep
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqOfRZero
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRZeroCounterexample
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqComapLift
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveHausdorffEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateIsMinOn
+public import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateReducedIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.EmptyExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.CompactExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConIntersectExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.SplitUnion
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripFamilyExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectManyExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaPointIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsFullDimCoraCounterexample
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ContainsPointIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreMem
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreIffOfEqZero
+public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapMixedOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapCoraNotOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.SupportFuncUpperCoraCounterexample
+public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
 
 /-!
 # What `ConZonotope` guarantees

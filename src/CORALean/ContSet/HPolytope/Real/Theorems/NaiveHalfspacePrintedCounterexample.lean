@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceNotSubset
-import CORALean.Global.ShenmaierHalfspace
-import CORALean.Global.Tensor
-import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceNotSubset
+public import CORALean.Global.ShenmaierHalfspace
+public import CORALean.Global.Tensor
+public import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
+
+@[expose] public section
 
 /-!
 # `[1, Cor. 4.8]`'s probability claim fails

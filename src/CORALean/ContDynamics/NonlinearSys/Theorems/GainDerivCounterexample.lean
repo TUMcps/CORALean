@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
-import CORALean.ContDynamics.NonlinearSys.Theorems.BoxDiameterAbstrSolInf
-import Mathlib.Analysis.Calculus.Deriv.Abs
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.Calculus.Deriv.Mul
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
+public import CORALean.ContDynamics.NonlinearSys.Theorems.BoxDiameterAbstrSolInf
+public import Mathlib.Analysis.Calculus.Deriv.Abs
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+
+@[expose] public section
 
 /-!
 # The gain's derivative need not have a non-positive limit

@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Project
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Project
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.project` is exact

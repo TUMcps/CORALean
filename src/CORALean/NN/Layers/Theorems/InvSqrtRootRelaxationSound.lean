@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.InvSqrtRootRelaxation
-import CORALean.NN.Layers.Theorems.OfAntitoneSound
-import CORALean.NN.Layers.Theorems.Real.AntitoneInvSqrt
+module
+
+public import CORALean.NN.Layers.Operations.InvSqrtRootRelaxation
+public import CORALean.NN.Layers.Theorems.OfAntitoneSound
+public import CORALean.NN.Layers.Theorems.Real.AntitoneInvSqrt
+
+@[expose] public section
 
 /-!
 # The inverse square root relaxation (machine) is sound

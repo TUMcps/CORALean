@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Abs
-import CORALean.ContSet.Interval.Real.Theorems.AbsExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Abs
+public import CORALean.ContSet.Interval.Real.Theorems.AbsExact
+
+@[expose] public section
 
 /-!
 # `Interval.abs` is exactly the image under the absolute value

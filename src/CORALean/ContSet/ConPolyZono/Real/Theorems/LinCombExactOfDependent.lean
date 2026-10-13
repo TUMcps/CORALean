@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesLinCombIff
-import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesLinCombIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
+
+@[expose] public section
 
 /-!
 # `linComb` is exactly the linear combination where neither set has independent generators

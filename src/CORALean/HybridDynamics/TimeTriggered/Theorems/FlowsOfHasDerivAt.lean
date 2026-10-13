@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+
+@[expose] public section
 
 /-!
 # A curve with a derivative on a closed interval is a continuous successor

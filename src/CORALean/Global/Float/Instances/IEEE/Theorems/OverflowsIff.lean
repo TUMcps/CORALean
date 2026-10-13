@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
-import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+public import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
+
+@[expose] public section
 
 /-!
 # What `overflows` detects

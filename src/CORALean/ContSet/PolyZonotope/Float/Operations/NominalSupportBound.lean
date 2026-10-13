@@ -1,7 +1,11 @@
-import CORALean.ContSet.InflatedContSet.Operations.Bound
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.SupportBound
-import CORALean.Global.Float.FloatBound
+module
+
+public import CORALean.ContSet.InflatedContSet.Operations.Bound
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SupportBound
+public import CORALean.Global.Float.FloatBound
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.nominalSupportBound` over a floating-point scalar

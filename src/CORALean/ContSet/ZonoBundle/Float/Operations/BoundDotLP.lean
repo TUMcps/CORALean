@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConZonotope
-import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
+module
+
+public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+public import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # A float bundle's bound by CORA's linear program

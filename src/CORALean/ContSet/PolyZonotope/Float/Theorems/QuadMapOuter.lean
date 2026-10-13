@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.quadMap` over-approximates the image under a quadratic map

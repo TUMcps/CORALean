@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
-import CORALean.NN.Graph.Definitions.ActLayer
-import CORALean.NN.Graph.Operations.GcnShared
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+public import CORALean.NN.Graph.Definitions.ActLayer
+public import CORALean.NN.Graph.Operations.GcnShared
+
+@[expose] public section
 
 /-!
 # The graph part of `Alg. 1`, on matrix polynomial zonotopes

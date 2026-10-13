@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
-import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
-import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
+public import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
+public import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+
+@[expose] public section
 
 /-!
 # One window of `reach` with the input set split: the set over `τ_k`

@@ -1,6 +1,10 @@
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
-import CORALean.NN.Layers.Operations.StarSetReluNeuron
+module
+
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FieldSimp
+public import CORALean.NN.Layers.Operations.StarSetReluNeuron
+
+@[expose] public section
 
 /-!
 # What one ReLU neuron on a star set encloses

@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.RefinementLipschitz
+module
+
+public import CORALean.NN.Operations.RefinementLipschitz
+
+@[expose] public section
 
 /-!
 # A chain of Lipschitz layers is Lipschitz

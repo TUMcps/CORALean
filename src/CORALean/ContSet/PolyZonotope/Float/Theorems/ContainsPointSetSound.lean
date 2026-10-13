@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ZonotopeCoraContains
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.ExcludesPointSound
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZonotopeCoraContains
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.ExcludesPointSound
+
+@[expose] public section
 
 /-!
 # `containsPointSet` never rejects a point set the polynomial zonotope contains

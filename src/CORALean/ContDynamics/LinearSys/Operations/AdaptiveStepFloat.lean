@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveOptions
-import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveState
-import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveStepInfo
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrder
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveState
+public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveStepInfo
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrder
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 5-10 in floats: one iteration of the main loop

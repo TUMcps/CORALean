@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Operations.IsIntersecting
-import CORALean.ContSet.Capsule.Real.Theorems.SegDistMem
-import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.IsIntersecting
+public import CORALean.ContSet.Capsule.Real.Theorems.SegDistMem
+public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+
+@[expose] public section
 
 /-!
 # `Capsule.isIntersecting_` is exact

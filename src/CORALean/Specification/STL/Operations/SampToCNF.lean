@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.CNFOr
-import CORALean.Specification.STL.Operations.CNFNext
-import CORALean.Specification.STL.Operations.SampToFormula
+module
+
+public import CORALean.Specification.STL.Operations.CNFOr
+public import CORALean.Specification.STL.Operations.CNFNext
+public import CORALean.Specification.STL.Operations.SampToFormula
+
+@[expose] public section
 
 /-!
 # Sampled time formulas to normal form

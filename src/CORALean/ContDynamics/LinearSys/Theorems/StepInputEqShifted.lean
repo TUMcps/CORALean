@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.StepInput
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+
+@[expose] public section
 
 /-!
 # One step of the input, read on a clock of its own

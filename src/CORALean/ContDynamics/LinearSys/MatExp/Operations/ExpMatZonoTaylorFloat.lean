@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTermFloat
-import CORALean.ContSet.Zonotope.Float.Operations.MatPlus
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTermFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPlus
+
+@[expose] public section
 
 /-!
 # `MatExp.expMatZonoTaylor`, over a floating-point scalar

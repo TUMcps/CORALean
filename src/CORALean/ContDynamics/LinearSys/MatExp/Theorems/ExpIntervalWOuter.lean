@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `W(t)` of every member of an interval matrix lies in `expIntervalW`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
+
+@[expose] public section
 
 /-!
 # `VPolytope.mtimesMatPolytope_k`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.RowNorm
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.RowNorm
+
+@[expose] public section
 
 /-!
 # `HPolytope.IsLPCentre`

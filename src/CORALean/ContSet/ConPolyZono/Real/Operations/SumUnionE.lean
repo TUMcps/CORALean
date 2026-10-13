@@ -1,11 +1,15 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
-import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+
+@[expose] public section
 
 /-!
 # The union's generator sum, split into its three pieces

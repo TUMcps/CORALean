@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationToRelaxation
-import CORALean.NN.Layers.Operations.RelaxationToPoly
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationToRelaxation
+public import CORALean.NN.Layers.Operations.RelaxationToPoly
+
+@[expose] public section
 
 /-!
 # Order 1 is a reading of an affine relaxation

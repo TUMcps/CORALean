@@ -1,12 +1,16 @@
-import CORALean.ContSet.Capsule.Float.Operations.Vertices
-import CORALean.ContSet.Capsule.Float.Theorems.ArcBoxMem
-import CORALean.ContSet.Capsule.Float.Theorems.PiStepMem
-import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
-import CORALean.ContSet.Interval.Float.Theorems.Atan2LoLe
-import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
-import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Vertices
+public import CORALean.ContSet.Capsule.Float.Theorems.ArcBoxMem
+public import CORALean.ContSet.Capsule.Float.Theorems.PiStepMem
+public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
+public import CORALean.ContSet.Interval.Float.Theorems.Atan2LoLe
+public import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
+public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
+
+@[expose] public section
 
 /-!
 # Every box of `Capsule.vertices` holds a boundary point

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.replace`, over a floating-point scalar

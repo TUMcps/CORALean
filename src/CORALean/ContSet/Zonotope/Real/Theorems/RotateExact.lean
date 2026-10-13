@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Rotate
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Rotate
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # Rotating a zonotope is exact

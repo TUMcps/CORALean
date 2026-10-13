@@ -1,13 +1,17 @@
-import CORALean.ContSet.Capsule.Float.Theorems.Convex
-import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
-import CORALean.ContSet.Capsule.Float.Theorems.IsCompact
-import CORALean.ContSet.Capsule.Float.Theorems.ReduceOuter
-import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
-import CORALean.ContSet.Capsule.Float.Theorems.PlusOuter
-import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Definitions.CompactSet
+module
+
+public import CORALean.ContSet.Capsule.Float.Theorems.Convex
+public import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
+public import CORALean.ContSet.Capsule.Float.Theorems.IsCompact
+public import CORALean.ContSet.Capsule.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Capsule.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+
+@[expose] public section
 
 /-!
 # What a float `Capsule` instantiates

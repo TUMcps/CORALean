@@ -1,5 +1,7 @@
-import CORALean.ContSet.ConZonotope.Real.Complexity.Time.API
-import CORALean.ContSet.ConZonotope.Real.Complexity.Space.API
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.API
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Space.API
 
 /-!
 # Complexity

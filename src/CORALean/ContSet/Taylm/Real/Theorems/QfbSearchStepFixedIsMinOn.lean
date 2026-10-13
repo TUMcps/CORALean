@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchStepVariational
-import CORALean.ContSet.Taylm.Real.Theorems.QfbQuadExpand
-import Mathlib.Order.Filter.Extr
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchStepVariational
+public import CORALean.ContSet.Taylm.Real.Theorems.QfbQuadExpand
+public import Mathlib.Order.Filter.Extr
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # A point the search does not move is the minimizer of `P₂`

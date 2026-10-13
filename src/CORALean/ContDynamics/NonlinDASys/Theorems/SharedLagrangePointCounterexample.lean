@@ -1,7 +1,11 @@
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Tactic.Linarith
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # One Lagrange point for all coordinates misses the linearization error

@@ -1,6 +1,10 @@
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Analysis.Normed.Order.Lattice
-import Mathlib.Tactic.Positivity
+module
+
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Analysis.Normed.Order.Lattice
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `Prop. 2`: a particular-solution error budget over a fixed horizon

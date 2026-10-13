@@ -1,8 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
+module
 
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.ContSet.Operations.Minus
+public import CORALean.ContSet.ContSet.Operations.Times
 
-import CORALean.ContSet.ContSet.Operations.Minus
-import CORALean.ContSet.ContSet.Operations.Times
+@[expose] public section
 
 /-!
 # CORA's `enlarge`: scaling about the centre

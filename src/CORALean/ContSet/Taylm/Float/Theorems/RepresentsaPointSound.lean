@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # `Taylm.representsa_point` is sound

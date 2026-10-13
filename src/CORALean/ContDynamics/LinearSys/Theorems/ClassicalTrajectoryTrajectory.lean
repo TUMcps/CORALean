@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
-import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
+public import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # Every classical run is a Carathéodory one

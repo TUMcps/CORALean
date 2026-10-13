@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
-import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
+public import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # `Alg. 1` line 1: the loop state before the first iteration

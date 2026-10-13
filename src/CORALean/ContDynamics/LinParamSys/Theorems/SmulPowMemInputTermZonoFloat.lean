@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
-import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+
+@[expose] public section
 
 /-!
 # A member's order-`i` input matrix lies in `inputTermZonoFloat`

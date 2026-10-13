@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.Taylor
-import CORALean.ContSet.Taylm.Float.Operations.InvCoef
-import CORALean.ContSet.Taylm.Float.Operations.InvBound
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Taylor
+public import CORALean.ContSet.Taylm.Float.Operations.InvCoef
+public import CORALean.ContSet.Taylm.Float.Operations.InvBound
+
+@[expose] public section
 
 /-!
 # `Taylm.inv`, over a floating-point scalar

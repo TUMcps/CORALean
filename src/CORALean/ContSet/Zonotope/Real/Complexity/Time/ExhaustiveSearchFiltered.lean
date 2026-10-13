@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ExhaustiveSearch
+module
+
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ExhaustiveSearch
+
+@[expose] public section
 
 /-!
 # [1, Prop. 11]: searching the `n + κ` longest generators is `O(κⁿ⁺¹)`

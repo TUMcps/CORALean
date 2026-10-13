@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.Global.Err
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # Every point of `bPU`/`bPU_∞` is within an explicit polynomial of the origin

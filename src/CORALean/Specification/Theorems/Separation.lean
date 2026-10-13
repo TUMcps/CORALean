@@ -1,6 +1,10 @@
-import CORALean.Specification.Specification
-import CORALean.Global.LinProg.LinProg
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Specification.Specification
+public import CORALean.Global.LinProg.LinProg
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A direction certifies that an unsafe set is avoided

@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Definitions.CorrectionSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Definitions.CorrectionSet
 
 /-!
 # What the Krylov enclosures are held to

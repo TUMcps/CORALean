@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.BoundDot
-import CORALean.ContSet.PolyZonotope.Float.Operations.NominalSupportBound
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.BoundDot
+public import CORALean.ContSet.PolyZonotope.Float.Operations.NominalSupportBound
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.supportBound` over a floating-point scalar

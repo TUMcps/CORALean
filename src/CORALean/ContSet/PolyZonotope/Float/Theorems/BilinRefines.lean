@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.bilin` contains the exact pairing of its operands' nominal parts

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import Mathlib.Order.ConditionallyCompleteLattice.Indexed
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import Mathlib.Order.ConditionallyCompleteLattice.Indexed
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.isBadDir`

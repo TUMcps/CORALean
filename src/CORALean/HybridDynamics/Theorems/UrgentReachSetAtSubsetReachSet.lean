@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Definitions.ReachSet
-import CORALean.HybridDynamics.Definitions.UrgentReachSetAt
-import CORALean.HybridDynamics.Theorems.UrgentRunToRun
+module
+
+public import CORALean.HybridDynamics.Definitions.ReachSet
+public import CORALean.HybridDynamics.Definitions.UrgentReachSetAt
+public import CORALean.HybridDynamics.Theorems.UrgentRunToRun
+
+@[expose] public section
 
 /-!
 # The reachable set at a time lies in the reachable set

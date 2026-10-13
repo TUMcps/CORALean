@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.FitHi
-import CORALean.NN.Layers.Operations.FitLo
-import CORALean.NN.Layers.Operations.PolyRelaxationOfBracket
+module
+
+public import CORALean.NN.Layers.Operations.FitHi
+public import CORALean.NN.Layers.Operations.FitLo
+public import CORALean.NN.Layers.Operations.PolyRelaxationOfBracket
+
+@[expose] public section
 
 /-!
 # The polynomial relaxation a fit and a checked grid buy

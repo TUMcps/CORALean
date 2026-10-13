@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.RelaxationOfAntitone
-import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationOfAntitone
+public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+
+@[expose] public section
 
 /-!
 # An antitone function's slope-zero relaxation is sound

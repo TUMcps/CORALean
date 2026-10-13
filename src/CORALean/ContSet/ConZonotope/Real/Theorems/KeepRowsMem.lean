@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
+
+@[expose] public section
 
 /-!
 # `keepRows` admits what the dropped coordinates leave behind

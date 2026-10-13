@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.TermBoxBounds
-import CORALean.Global.Float.ListSum
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.TermBoxBounds
+public import CORALean.Global.Float.ListSum
+
+@[expose] public section
 
 /-!
 # `Taylm.polyBoxBounds`, over a floating-point scalar

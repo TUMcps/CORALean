@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Operations.Plus
-import CORALean.ContSet.Capsule.Real.Theorems.PlusOuterKeepLeft
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Plus
+public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuterKeepLeft
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Capsule.plus` encloses the sum

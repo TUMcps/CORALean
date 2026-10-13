@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpEqSumAddPhiMul
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpApplyLastLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpEqSumAddPhiMul
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpApplyLastLe
+
+@[expose] public section
 
 /-!
 # The last entry of the first column of `e^{σsT⁺_m}`

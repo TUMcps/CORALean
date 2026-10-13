@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.MergeBucketMono
+module
+
+public import CORALean.NN.Theorems.MergeBucketMono
+
+@[expose] public section
 
 /-!
 # So the counts move monotonically

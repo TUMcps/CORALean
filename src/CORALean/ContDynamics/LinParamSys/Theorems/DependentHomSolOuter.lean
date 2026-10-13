@@ -1,19 +1,23 @@
-import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
-import CORALean.ContDynamics.LinParamSys.Theorems.MemDependentLowOrder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTail
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InputIntervalTaylorTail
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
+public import CORALean.ContDynamics.LinParamSys.Theorems.MemDependentLowOrder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTail
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InputIntervalTaylorTail
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpIntegralSubTaylorLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # The corrected `priv_dependentHomSol` holds the solution at the end of the step

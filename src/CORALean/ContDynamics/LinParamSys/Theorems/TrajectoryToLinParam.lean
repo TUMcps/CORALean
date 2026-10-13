@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.ToLinParam
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.ToLinParam
+
+@[expose] public section
 
 /-!
 # A `LinearSys` trajectory is a `toLinParam` trajectory at the constant matrix

@@ -1,4 +1,8 @@
-import CORALean.Specification.Specification
+module
+
+public import CORALean.Specification.Specification
+
+@[expose] public section
 
 /-!
 # A specification holds of an indexed union when it holds of each part

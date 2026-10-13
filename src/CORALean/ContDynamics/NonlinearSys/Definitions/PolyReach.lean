@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.ContSet.PolyZonotope.Real.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Alg. 1`'s vocabulary: the linearization bundle, the combination step, the state

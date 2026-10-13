@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Operations.Radius
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Radius
+
+@[expose] public section
 
 /-!
 # `Capsule.convHull`

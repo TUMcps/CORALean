@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowNormal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowNormal
+
+@[expose] public section
 
 /-!
 # The offset of one signed row of [1, Thm. 3]

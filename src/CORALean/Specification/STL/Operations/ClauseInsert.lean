@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.BranchMerge
+module
+
+public import CORALean.Specification.STL.Operations.BranchMerge
+
+@[expose] public section
 
 /-!
 # Adding a branch to a clause

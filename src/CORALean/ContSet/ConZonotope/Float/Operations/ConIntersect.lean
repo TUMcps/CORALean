@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `ConZonotope.conIntersect` over a floating-point scalar

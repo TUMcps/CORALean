@@ -1,10 +1,14 @@
-import CORALean.ContSet.Taylm.Real.Operations.LdbLoop
-import CORALean.ContSet.Taylm.Real.Theorems.LdbStepLower
-import CORALean.ContSet.Taylm.Real.Theorems.LdbStepReduce
-import CORALean.ContSet.Taylm.Real.Theorems.LdbStepWitness
-import CORALean.ContSet.Taylm.Real.Theorems.LdbStepSub
-import CORALean.ContSet.Taylm.Real.Theorems.ExistsNormalized
-import CORALean.ContSet.Taylm.Real.Theorems.ReexpandOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.LdbLoop
+public import CORALean.ContSet.Taylm.Real.Theorems.LdbStepLower
+public import CORALean.ContSet.Taylm.Real.Theorems.LdbStepReduce
+public import CORALean.ContSet.Taylm.Real.Theorems.LdbStepWitness
+public import CORALean.ContSet.Taylm.Real.Theorems.LdbStepSub
+public import CORALean.ContSet.Taylm.Real.Theorems.ExistsNormalized
+public import CORALean.ContSet.Taylm.Real.Theorems.ReexpandOuter
+
+@[expose] public section
 
 /-!
 # The LDB iteration bounds the minimum

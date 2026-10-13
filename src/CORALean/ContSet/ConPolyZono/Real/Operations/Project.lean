@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Map
-import Mathlib.Algebra.Module.Equiv.Basic
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Map
+public import Mathlib.Algebra.Module.Equiv.Basic
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.project`

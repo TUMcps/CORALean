@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Operations.Mask
-import CORALean.NN.Graph.Operations.MessagePassing
-import CORALean.NN.Graph.Theorems.BallSubsetSucc
-import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
+module
+
+public import CORALean.NN.Graph.Operations.Mask
+public import CORALean.NN.Graph.Operations.MessagePassing
+public import CORALean.NN.Graph.Theorems.BallSubsetSucc
+public import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
+
+@[expose] public section
 
 /-!
 # Where the ball and the mask meet

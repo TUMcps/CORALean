@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Theorems.ReachOuter
-import CORALean.ContDynamics.LinearARX.Theorems.SimulateTrajectory
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachOuter
+public import CORALean.ContDynamics.LinearARX.Theorems.SimulateTrajectory
+
+@[expose] public section
 
 /-!
 # A simulated window lies in the reach set

@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
-import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
+public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+
+@[expose] public section
 
 /-!
 # `NonlinearSysDT.reachCost`

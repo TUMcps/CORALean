@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.RotMat
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.RotMat
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `rotMat` on the first coordinate

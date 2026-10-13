@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveCora1D
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.ODE.ExistUnique
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveCora1D
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.ODE.ExistUnique
+
+@[expose] public section
 
 /-!
 # CORA's adaptive `'lin'` step accepts a set that misses a reachable state

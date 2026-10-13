@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRAOuterVerdictCora
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRAOuterVerdictCora
+
+@[expose] public section
 
 /-!
 # CORA's `reachavoid:zonotope` verifies a set touching the unsafe set

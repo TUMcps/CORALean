@@ -1,7 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Definitions.GO
-import CORALean.ContDynamics.LinearARX.Definitions.GOFloat
-import CORALean.ContDynamics.LinearARX.Definitions.ReachOut
-import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
+module
+
+public import CORALean.ContDynamics.LinearARX.Definitions.GO
+public import CORALean.ContDynamics.LinearARX.Definitions.GOFloat
+public import CORALean.ContDynamics.LinearARX.Definitions.ReachOut
+public import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
 
 /-!
 # What the ARMAX reachable sets mean

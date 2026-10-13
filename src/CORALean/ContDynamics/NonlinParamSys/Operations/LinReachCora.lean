@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
-import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
+public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # `NonlinParamSys.linReachCora`, one step of `linReach` with an interval `paramInt`

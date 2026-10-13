@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Theorems.GenRemovableIff
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.GenRemovableIff
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2]: when a generator is no longer required

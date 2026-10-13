@@ -1,10 +1,14 @@
-import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTermsHessian
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
-import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTermsHessian
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
+
+@[expose] public section
 
 /-!
 # `addedTermsHessian` encloses the Hessian of the weighted sum

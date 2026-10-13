@@ -1,5 +1,9 @@
-import CORALean.Global.LinProg.Composition
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.LinProg.Composition
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # Bounds whose value is machine-representable

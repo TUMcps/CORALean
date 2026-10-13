@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.SinByRegions
-import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.SinByRegions
+public import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
+public import Mathlib.Topology.Order.IntermediateValue
+
+@[expose] public section
 
 /-!
 # `Interval.sinByRegions` is exactly the sine's range

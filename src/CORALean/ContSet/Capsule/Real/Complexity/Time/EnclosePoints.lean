@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.EnclosePoints
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.EnclosePoints
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Capsule.enclosePointsCost`

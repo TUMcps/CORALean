@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Float.Operations.StGamma
-import CORALean.ContSet.Zonotope.Float.Operations.StBeta
-import CORALean.ContSet.Zonotope.Float.Operations.PointLo
-import CORALean.ContSet.Zonotope.Float.Operations.PointHi
-import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
-import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
-import CORALean.ContSet.Zonotope.Float.Operations.ErrBound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.StGamma
+public import CORALean.ContSet.Zonotope.Float.Operations.StBeta
+public import CORALean.ContSet.Zonotope.Float.Operations.PointLo
+public import CORALean.ContSet.Zonotope.Float.Operations.PointHi
+public import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
+public import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrBound
+
+@[expose] public section
 
 /-!
 # `Zonotope.stLeftover`

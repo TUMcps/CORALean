@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.EncloseOuter
+module
+
+public import CORALean.NN.Theorems.EncloseOuter
+
+@[expose] public section
 
 /-!
 # A network is a layer

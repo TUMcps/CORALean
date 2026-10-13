@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.DropRadius
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.DropRadius
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduceBy`, over a floating-point scalar

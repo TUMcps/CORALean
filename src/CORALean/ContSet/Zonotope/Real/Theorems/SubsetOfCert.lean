@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Algebra.Order.Chebyshev
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Algebra.Order.Chebyshev
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # Zonotope in zonotope, sufficiently

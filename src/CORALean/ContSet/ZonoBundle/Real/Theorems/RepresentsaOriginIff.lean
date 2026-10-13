@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
+
+@[expose] public section
 
 /-!
 # The bundle is the origin exactly when its constrained zonotope is

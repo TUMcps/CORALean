@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
-import CORALean.ContSet.Zonotope.Real.Theorems.LineClBasisIsUnitDet
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
+public import CORALean.ContSet.Zonotope.Real.Theorems.LineClBasisIsUnitDet
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
+
+@[expose] public section
 
 /-!
 # `lineCl` over-approximates

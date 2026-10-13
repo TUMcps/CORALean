@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.Global.Float.FloatBound
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.Global.Float.FloatBound
+
+@[expose] public section
 
 /-!
 # A float constrained zonotope's nominal set, bounded at any dual weights

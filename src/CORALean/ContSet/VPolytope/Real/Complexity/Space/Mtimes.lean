@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `VPolytope.mtimes_k`

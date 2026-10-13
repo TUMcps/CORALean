@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
-import Mathlib.Topology.Order.OrderClosed
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+public import Mathlib.Topology.Order.OrderClosed
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The unit ball of the zonotope norm is the zonotope

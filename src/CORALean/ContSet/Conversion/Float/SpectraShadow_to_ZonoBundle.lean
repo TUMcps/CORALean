@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+module
+
+public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+
+@[expose] public section
 
 /-!
 # A spectrahedral shadow as a zonotope bundle, over a floating-point scalar

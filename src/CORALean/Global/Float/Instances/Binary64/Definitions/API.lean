@@ -1,5 +1,7 @@
-import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
-import CORALean.Global.Float.Instances.Binary64.Definitions.TrustedHardware
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
+public import CORALean.Global.Float.Instances.Binary64.Definitions.TrustedHardware
 
 /-!
 # What trusting native binary64 means, collected

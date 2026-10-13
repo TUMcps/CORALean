@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+
+@[expose] public section
 
 /-!
 # A polynomial's bounds are at most its coefficients' magnitudes

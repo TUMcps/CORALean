@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
-import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipSucc
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipSucc
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The first block of the walk adds `2 g_k` at step `k`

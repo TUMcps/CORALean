@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearARX.Definitions.GOFloat
-import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
-import CORALean.ContDynamics.LinearARX.Operations.SumRangeFloat
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.MatPow
+module
+
+public import CORALean.ContDynamics.LinearARX.Definitions.GOFloat
+public import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
+public import CORALean.ContDynamics.LinearARX.Operations.SumRangeFloat
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.MatPow
+
+@[expose] public section
 
 /-!
 # `LinearARX.computeGOFloat`

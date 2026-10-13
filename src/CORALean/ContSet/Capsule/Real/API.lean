@@ -1,9 +1,11 @@
-import CORALean.ContSet.Capsule.Real.Capsule
-import CORALean.ContSet.Capsule.Real.Operations.API
-import CORALean.ContSet.Capsule.Real.Theorems.API
-import CORALean.ContSet.Capsule.Real.Complexity.API
-import CORALean.ContSet.Capsule.Real.Instances
-import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimCora
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import CORALean.ContSet.Capsule.Real.Operations.API
+public import CORALean.ContSet.Capsule.Real.Theorems.API
+public import CORALean.ContSet.Capsule.Real.Complexity.API
+public import CORALean.ContSet.Capsule.Real.Instances
+public import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimCora
 
 /-!
 # Capsules, collected

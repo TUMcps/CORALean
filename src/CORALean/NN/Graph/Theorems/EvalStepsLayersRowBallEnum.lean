@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
-import CORALean.NN.Graph.Theorems.BallEnumInjective
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBall
-import CORALean.NN.Graph.Theorems.MemBallEnumIff
+module
+
+public import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
+public import CORALean.NN.Graph.Theorems.BallEnumInjective
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBall
+public import CORALean.NN.Graph.Theorems.MemBallEnumIff
+
+@[expose] public section
 
 /-!
 # `[1, Sec. 4.3]`'s locality for the layered network, with no `κ` left to build

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
-import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
+public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+
+@[expose] public section
 
 /-!
 # `HPolytope.compactAlignedIneq` over a floating-point scalar

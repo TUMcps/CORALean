@@ -1,4 +1,8 @@
-import Mathlib.MeasureTheory.Measure.Typeclasses.Probability
+module
+
+public import Mathlib.MeasureTheory.Measure.Typeclasses.Probability
+
+@[expose] public section
 
 /-!
 # `ϑ`-uniformly distributed random variables

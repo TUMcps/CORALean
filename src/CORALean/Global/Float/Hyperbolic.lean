@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Exp
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+module
+
+public import CORALean.Global.Float.Exp
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+
+@[expose] public section
 
 /-!
 # `sinh`, `cosh` and `tanh` rounded in either direction

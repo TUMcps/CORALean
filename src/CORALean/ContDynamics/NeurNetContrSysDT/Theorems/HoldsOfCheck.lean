@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
-import CORALean.Specification.Theorems.CheckSound
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
+public import CORALean.Specification.Theorems.CheckSound
+
+@[expose] public section
 
 /-!
 # A passed check on the closed loop's reachable set holds along every trajectory

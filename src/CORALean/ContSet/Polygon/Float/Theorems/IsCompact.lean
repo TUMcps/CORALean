@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Polygon
-import CORALean.ContSet.VPolytope.Float.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.VPolytope.Float.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A float polygon is compact

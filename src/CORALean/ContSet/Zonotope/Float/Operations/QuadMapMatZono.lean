@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
-import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
-import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
-import CORALean.ContSet.Zonotope.Float.Operations.UnitIntervalMul
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
+public import CORALean.ContSet.Zonotope.Float.Operations.UnitIntervalMul
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMapMatZono`, over a floating-point scalar

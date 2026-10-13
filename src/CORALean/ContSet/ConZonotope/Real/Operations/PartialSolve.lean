@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamG
-import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamA
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamG
+public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolveLamA
+
+@[expose] public section
 
 /-!
 # `ConZonotope.partialSolve`

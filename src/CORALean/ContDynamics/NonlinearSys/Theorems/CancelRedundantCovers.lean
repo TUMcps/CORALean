@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
+
+@[expose] public section
 
 /-!
 # A cancelled segment lies in the polytopes of the past steps

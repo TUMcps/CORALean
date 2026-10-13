@@ -1,11 +1,15 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
-import CORALean.ContSet.HPolytope.Real.Operations.Stack
-import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Real.Operations.Stack
+public import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.guardIntersect`: [1, Sec. VI-A]

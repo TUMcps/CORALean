@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
+
+@[expose] public section
 
 /-!
 # Every state, and every algebraic variable, a run reaches within the horizon

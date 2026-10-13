@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
-import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
-import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
+public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
+
+@[expose] public section
 
 /-!
 # The window from the first outputs and the inputs alone

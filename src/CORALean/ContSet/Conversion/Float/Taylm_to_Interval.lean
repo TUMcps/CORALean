@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.Bounds
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Bounds
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # An array of float Taylor models as a float box

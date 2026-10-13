@@ -1,13 +1,17 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
-import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
-import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # What `Ellipsoid` instantiates

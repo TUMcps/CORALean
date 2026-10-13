@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.LinComb
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.linComb`'s constraint reads each side's own factors

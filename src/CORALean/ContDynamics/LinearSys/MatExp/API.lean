@@ -1,6 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.API
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.API
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.API
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.API
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.API
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.API
 
 /-!
 # Enclosing a matrix exponential, collected

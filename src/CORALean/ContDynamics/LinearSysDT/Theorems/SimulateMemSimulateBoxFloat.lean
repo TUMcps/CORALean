@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
-import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+public import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The real run lies in the float boxes

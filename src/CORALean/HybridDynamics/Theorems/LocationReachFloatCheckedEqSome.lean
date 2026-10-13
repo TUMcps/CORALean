@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.LocationReachFloatChecked
+module
+
+public import CORALean.HybridDynamics.Operations.LocationReachFloatChecked
+
+@[expose] public section
 
 /-!
 # A checked `reachFloat` that returns a result returns the unchecked one

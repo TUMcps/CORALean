@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
-import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `VPolytope.intersection`, over a floating-point scalar

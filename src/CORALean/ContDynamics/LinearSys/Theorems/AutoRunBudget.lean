@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoRun
-import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoRun
+public import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
+
+@[expose] public section
 
 /-!
 # `Alg. 2` keeps both accumulated errors inside their shares, at every step

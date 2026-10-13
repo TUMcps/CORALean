@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachSet
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachSet
+
+@[expose] public section
 
 /-!
 # `reachSet` contains every sampled run

@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Operations.ClampUnit
-import CORALean.NN.Layers.Operations.ReluGapUp
+module
+
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Operations.ClampUnit
+public import CORALean.NN.Layers.Operations.ReluGapUp
+
+@[expose] public section
 
 /-!
 # The ReLU relaxation at a chosen slope

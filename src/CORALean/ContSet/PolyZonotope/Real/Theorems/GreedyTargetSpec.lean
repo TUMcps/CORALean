@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
+
+@[expose] public section
 
 /-!
 # `greedy(G)` keeps the lightest outgoing edge

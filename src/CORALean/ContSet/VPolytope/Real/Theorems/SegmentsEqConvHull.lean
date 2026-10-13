@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
-import CORALean.ContSet.VPolytope.Real.Theorems.Convex
-import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.Convex
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+
+@[expose] public section
 
 /-!
 # The convex hull of two V-polytopes, by their points

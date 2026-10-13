@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
-import Mathlib.LinearAlgebra.Pi
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import Mathlib.LinearAlgebra.Pi
+
+@[expose] public section
 
 /-!
 # `HPolytope.lift_`

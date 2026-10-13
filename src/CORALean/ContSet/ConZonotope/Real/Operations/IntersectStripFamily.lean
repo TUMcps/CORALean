@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersectStripFamily`

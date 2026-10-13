@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+
+@[expose] public section
 
 /-!
 # Guard intersection for a constraint solvable for one variable

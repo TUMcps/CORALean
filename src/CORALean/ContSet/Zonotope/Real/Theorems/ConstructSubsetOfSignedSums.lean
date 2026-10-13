@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullSignedSums
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullSignedSums
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+
+@[expose] public section
 
 /-!
 # A convex set holding the points `c + Z±(R)` holds the zonotopes

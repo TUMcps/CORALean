@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import Mathlib.Algebra.BigOperators.Group.Finset.Defs
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+
+@[expose] public section
 
 /-!
 # The volume criterion of the outer ellipsoid, in eigen-coordinates

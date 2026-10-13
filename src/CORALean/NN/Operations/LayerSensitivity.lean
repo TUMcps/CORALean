@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Layer
-import Mathlib.Analysis.Calculus.FDeriv.Defs
+module
+
+public import CORALean.NN.Layers.Layer
+public import Mathlib.Analysis.Calculus.FDeriv.Defs
+
+@[expose] public section
 
 /-!
 # A layer's sensitivity

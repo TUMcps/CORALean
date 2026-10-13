@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `Ãᵢ`, eq. (19)-(20)

@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripDev
-import CORALean.ContSet.Zonotope.Real.Theorems.PredictDev
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.List.GetD
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripDev
+public import CORALean.ContSet.Zonotope.Real.Theorems.PredictDev
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.List.GetD
+
+@[expose] public section
 
 /-!
 # The P-radius after one prediction and `p` strips

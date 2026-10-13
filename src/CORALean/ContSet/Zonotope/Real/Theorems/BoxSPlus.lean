@@ -1,6 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BoxS
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BoxS
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `Box_S` of a zonotope sum has the summed bounds

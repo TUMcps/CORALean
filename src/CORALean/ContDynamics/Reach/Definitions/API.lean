@@ -1,5 +1,7 @@
-import CORALean.ContDynamics.Reach.Definitions.InputParams
-import CORALean.ContDynamics.Reach.Definitions.Params
+module
+
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+public import CORALean.ContDynamics.Reach.Definitions.Params
 
 /-!
 # How a reach operation takes its arguments

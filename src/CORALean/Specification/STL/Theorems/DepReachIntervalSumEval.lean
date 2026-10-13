@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
-import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
-import CORALean.Specification.STL.Operations.DepReach
-import CORALean.Specification.STL.Theorems.DepBloatingC
-import CORALean.Specification.STL.Theorems.SumGenMtimes
-import CORALean.Specification.STL.Theorems.SumGenOfPoint
-import CORALean.Specification.STL.Theorems.SumGenPlus
-import CORALean.ContSet.Zonotope.Real.Operations.LinComb
-import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
+public import CORALean.Specification.STL.Operations.DepReach
+public import CORALean.Specification.STL.Theorems.DepBloatingC
+public import CORALean.Specification.STL.Theorems.SumGenMtimes
+public import CORALean.Specification.STL.Theorems.SumGenOfPoint
+public import CORALean.Specification.STL.Theorems.SumGenPlus
+public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+public import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
+
+@[expose] public section
 
 /-!
 # The generators of `R(τ₀)` for `ẋ = u`: only the input's one is non-zero

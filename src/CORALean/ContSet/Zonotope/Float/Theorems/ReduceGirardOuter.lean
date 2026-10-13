@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceGirard` over-approximates the zonotope

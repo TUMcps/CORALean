@@ -1,4 +1,8 @@
-import Mathlib.Topology.Homeomorph.Lemmas
+module
+
+public import Mathlib.Topology.Homeomorph.Lemmas
+
+@[expose] public section
 
 /-!
 # The boundary of the image is inside what encloses the image of the boundary

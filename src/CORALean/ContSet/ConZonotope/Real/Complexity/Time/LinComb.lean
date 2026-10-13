@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
-import CORALean.ContSet.HPolytope.Real.Complexity.Time.HalfScaled
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
+public import CORALean.ContSet.HPolytope.Real.Complexity.Time.HalfScaled
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `ConZonotope.linCombCost`

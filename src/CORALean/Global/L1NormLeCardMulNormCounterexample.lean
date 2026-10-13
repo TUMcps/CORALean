@@ -1,10 +1,14 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Order.Group.Unbundled.Abs
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Order.Group.Unbundled.Abs
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # `R₁(Π) = maxᵢ ‖vᵢ‖₁` fails

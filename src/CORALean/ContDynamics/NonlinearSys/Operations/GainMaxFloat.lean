@@ -1,5 +1,9 @@
-import CORALean.Global.Float.FloatOps
-import CORALean.Global.Tensor
+module
+
+public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # `gainMax`: the gain of a step size, in floats

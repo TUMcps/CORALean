@@ -1,7 +1,11 @@
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfContracting
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfContracting
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # A perturbed matrix image, inner-approximated by a contraction

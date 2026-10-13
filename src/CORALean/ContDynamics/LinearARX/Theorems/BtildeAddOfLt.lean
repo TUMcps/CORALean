@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
-import CORALean.ContDynamics.LinearARX.Operations.Btilde
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
+public import CORALean.ContDynamics.LinearARX.Operations.Btilde
+
+@[expose] public section
 
 /-!
 # Settled parameters

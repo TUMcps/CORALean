@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.TunedState
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.TunedState
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 5-10: one iteration of the main loop

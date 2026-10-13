@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.HalfMat
-import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
-import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.HalfMat
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
+
+@[expose] public section
 
 /-!
 # `varInputs`, the time-varying part of a polynomialized input, in floats

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MethCReach
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MethCReach
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `methCReach` bounds `H G β`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.plus`'s counts

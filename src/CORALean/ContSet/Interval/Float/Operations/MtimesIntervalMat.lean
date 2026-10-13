@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+
+@[expose] public section
 
 /-!
 # `Interval.mtimesIntervalMat`, over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A bundle is convex

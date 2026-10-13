@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+
+@[expose] public section
 
 /-!
 # H-polytope in H-polytope by support functions

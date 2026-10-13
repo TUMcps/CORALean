@@ -1,7 +1,11 @@
-import CORALean.Global.FrontierImageSubsetOfSingular
-import CORALean.Global.PathMeetsFrontier
-import Mathlib.Topology.Connected.Basic
-import Mathlib.Order.Interval.Set.Pi
+module
+
+public import CORALean.Global.FrontierImageSubsetOfSingular
+public import CORALean.Global.PathMeetsFrontier
+public import Mathlib.Topology.Connected.Basic
+public import Mathlib.Order.Interval.Set.Pi
+
+@[expose] public section
 
 /-!
 # A box missing the image of the boundary and of the singular points is in the range

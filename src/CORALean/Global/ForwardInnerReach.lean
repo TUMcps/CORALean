@@ -1,4 +1,8 @@
-import CORALean.Global.KaucherInner
+module
+
+public import CORALean.Global.KaucherInner
+
+@[expose] public section
 
 /-!
 # Forward inner and outer reachable sets, the loop of Algorithm 1

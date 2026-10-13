@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
-import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
+
+@[expose] public section
 
 /-!
 # `compactFactors` is its specification

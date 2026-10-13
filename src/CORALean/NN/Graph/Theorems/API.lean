@@ -1,90 +1,92 @@
-import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
-import CORALean.NN.Graph.Theorems.AdjAtSymm
-import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
-import CORALean.NN.Graph.Theorems.BallEnumIdx
-import CORALean.NN.Graph.Theorems.BallEnumInjective
-import CORALean.NN.Graph.Theorems.BallEqOfSuccEq
-import CORALean.NN.Graph.Theorems.BallMono
-import CORALean.NN.Graph.Theorems.BallMonoOfSupport
-import CORALean.NN.Graph.Theorems.BallSubsetReduceKeep
-import CORALean.NN.Graph.Theorems.BallSubsetSucc
-import CORALean.NN.Graph.Theorems.ConvExact
-import CORALean.NN.Graph.Theorems.ConvExactOfAdjacency
-import CORALean.NN.Graph.Theorems.ConvUncertainExact
-import CORALean.NN.Graph.Theorems.DegreeAtEq
-import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
-import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBallUncertain
-import CORALean.NN.Graph.Theorems.EdgeMatNonneg
-import CORALean.NN.Graph.Theorems.EdgeMatSymm
-import CORALean.NN.Graph.Theorems.EvalStepsRowBall
-import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
-import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacency
-import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacencyUncertain
-import CORALean.NN.Graph.Theorems.EvalStepsRowMask
-import CORALean.NN.Graph.Theorems.EvalStepsRowMaskUncertain
-import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
-import CORALean.NN.Graph.Theorems.ExistsBallStable
-import CORALean.NN.Graph.Theorems.GcnLinApply
-import CORALean.NN.Graph.Theorems.GcnSharedExact
-import CORALean.NN.Graph.Theorems.GcnSharedP
-import CORALean.NN.Graph.Theorems.GcnSharedPoint
-import CORALean.NN.Graph.Theorems.GcnStepsExact
-import CORALean.NN.Graph.Theorems.GcnStepsOuter
-import CORALean.NN.Graph.Theorems.GcnStepsP
-import CORALean.NN.Graph.Theorems.GcnStepsPoint
-import CORALean.NN.Graph.Theorems.GcnUncertainOuter
-import CORALean.NN.Graph.Theorems.LinearPolyZonotopeExact
-import CORALean.NN.Graph.Theorems.MatMulBilinApply
-import CORALean.NN.Graph.Theorems.MemBallEnumIff
-import CORALean.NN.Graph.Theorems.MemBallSelf
-import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
-import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
-import CORALean.NN.Graph.Theorems.MessagePassingNeZero
-import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
-import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
-import CORALean.NN.Graph.Theorems.NotMemBallOfIsolated
-import CORALean.NN.Graph.Theorems.OneLeDegree
-import CORALean.NN.Graph.Theorems.PoolingExact
-import CORALean.NN.Graph.Theorems.ReduceGNNForNodeExact
-import CORALean.NN.Graph.Theorems.ReduceKeepZeroStepsCora
-import CORALean.NN.Graph.Theorems.ReducedStepsRow
-import CORALean.NN.Graph.Theorems.SelectMul
-import CORALean.NN.Graph.Theorems.SelectMatMul
-import CORALean.NN.Graph.Theorems.SelectMatToReal
-import CORALean.NN.Graph.Theorems.SelectMulTranspose
-import CORALean.NN.Graph.Theorems.SmulEdgeHalf
-import CORALean.NN.Graph.Theorems.SqrtAffine
-import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
-import CORALean.NN.Graph.Theorems.SumPoolLinApply
-import CORALean.NN.Graph.Theorems.UncertainAdjExact
-import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
-import CORALean.NN.Graph.Theorems.SumPoolLinPermInvariant
-import CORALean.NN.Graph.Theorems.RowEqMask
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowMask
-import CORALean.NN.Graph.Theorems.EvalStepsLayersSubmatrix
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBall
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallEnum
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallOfAdjacencyUncertain
-import CORALean.NN.Graph.Theorems.BfsVisitedEqBall
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBfsUncertain
-import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActSteps
-import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActStepsUncertain
-import CORALean.NN.Graph.Theorems.TailEncloseMem
-import CORALean.NN.Graph.Theorems.Alg1NodeSound
-import CORALean.NN.Graph.Theorems.Alg1GraphSound
-import CORALean.NN.Graph.Theorems.FloatBiasPointMem
-import CORALean.NN.Graph.Theorems.FloatGcnOuter
-import CORALean.NN.Graph.Theorems.FloatLeftMatMulVec
-import CORALean.NN.Graph.Theorems.FloatLinearOuter
-import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
-import CORALean.NN.Graph.Theorems.FloatSumPoolMatMulVec
-import CORALean.NN.Graph.Theorems.FloatSumPoolOuter
-import CORALean.NN.Graph.Theorems.SupportFloatOfNeZero
-import CORALean.NN.Graph.Theorems.ReducedStepsFloatOuter
-import CORALean.NN.Graph.Theorems.ReduceGNNForNodeFloatOuter
-import CORALean.NN.Graph.Theorems.BallSubsetBallFloat
-import CORALean.NN.Graph.Theorems.BallFloatSubsetSucc
-import CORALean.NN.Graph.Theorems.BallSubsetReduceKeepFloat
+module
+
+public import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
+public import CORALean.NN.Graph.Theorems.AdjAtSymm
+public import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
+public import CORALean.NN.Graph.Theorems.BallEnumIdx
+public import CORALean.NN.Graph.Theorems.BallEnumInjective
+public import CORALean.NN.Graph.Theorems.BallEqOfSuccEq
+public import CORALean.NN.Graph.Theorems.BallMono
+public import CORALean.NN.Graph.Theorems.BallMonoOfSupport
+public import CORALean.NN.Graph.Theorems.BallSubsetReduceKeep
+public import CORALean.NN.Graph.Theorems.BallSubsetSucc
+public import CORALean.NN.Graph.Theorems.ConvExact
+public import CORALean.NN.Graph.Theorems.ConvExactOfAdjacency
+public import CORALean.NN.Graph.Theorems.ConvUncertainExact
+public import CORALean.NN.Graph.Theorems.DegreeAtEq
+public import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
+public import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBallUncertain
+public import CORALean.NN.Graph.Theorems.EdgeMatNonneg
+public import CORALean.NN.Graph.Theorems.EdgeMatSymm
+public import CORALean.NN.Graph.Theorems.EvalStepsRowBall
+public import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
+public import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacency
+public import CORALean.NN.Graph.Theorems.EvalStepsRowBallOfAdjacencyUncertain
+public import CORALean.NN.Graph.Theorems.EvalStepsRowMask
+public import CORALean.NN.Graph.Theorems.EvalStepsRowMaskUncertain
+public import CORALean.NN.Graph.Theorems.EvalStepsSubmatrix
+public import CORALean.NN.Graph.Theorems.ExistsBallStable
+public import CORALean.NN.Graph.Theorems.GcnLinApply
+public import CORALean.NN.Graph.Theorems.GcnSharedExact
+public import CORALean.NN.Graph.Theorems.GcnSharedP
+public import CORALean.NN.Graph.Theorems.GcnSharedPoint
+public import CORALean.NN.Graph.Theorems.GcnStepsExact
+public import CORALean.NN.Graph.Theorems.GcnStepsOuter
+public import CORALean.NN.Graph.Theorems.GcnStepsP
+public import CORALean.NN.Graph.Theorems.GcnStepsPoint
+public import CORALean.NN.Graph.Theorems.GcnUncertainOuter
+public import CORALean.NN.Graph.Theorems.LinearPolyZonotopeExact
+public import CORALean.NN.Graph.Theorems.MatMulBilinApply
+public import CORALean.NN.Graph.Theorems.MemBallEnumIff
+public import CORALean.NN.Graph.Theorems.MemBallSelf
+public import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
+public import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
+public import CORALean.NN.Graph.Theorems.MessagePassingNeZero
+public import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
+public import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
+public import CORALean.NN.Graph.Theorems.NotMemBallOfIsolated
+public import CORALean.NN.Graph.Theorems.OneLeDegree
+public import CORALean.NN.Graph.Theorems.PoolingExact
+public import CORALean.NN.Graph.Theorems.ReduceGNNForNodeExact
+public import CORALean.NN.Graph.Theorems.ReduceKeepZeroStepsCora
+public import CORALean.NN.Graph.Theorems.ReducedStepsRow
+public import CORALean.NN.Graph.Theorems.SelectMul
+public import CORALean.NN.Graph.Theorems.SelectMatMul
+public import CORALean.NN.Graph.Theorems.SelectMatToReal
+public import CORALean.NN.Graph.Theorems.SelectMulTranspose
+public import CORALean.NN.Graph.Theorems.SmulEdgeHalf
+public import CORALean.NN.Graph.Theorems.SqrtAffine
+public import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
+public import CORALean.NN.Graph.Theorems.SumPoolLinApply
+public import CORALean.NN.Graph.Theorems.UncertainAdjExact
+public import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
+public import CORALean.NN.Graph.Theorems.SumPoolLinPermInvariant
+public import CORALean.NN.Graph.Theorems.RowEqMask
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowMask
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersSubmatrix
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBall
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallEnum
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallOfAdjacencyUncertain
+public import CORALean.NN.Graph.Theorems.BfsVisitedEqBall
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBfsUncertain
+public import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActSteps
+public import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActStepsUncertain
+public import CORALean.NN.Graph.Theorems.TailEncloseMem
+public import CORALean.NN.Graph.Theorems.Alg1NodeSound
+public import CORALean.NN.Graph.Theorems.Alg1GraphSound
+public import CORALean.NN.Graph.Theorems.FloatBiasPointMem
+public import CORALean.NN.Graph.Theorems.FloatGcnOuter
+public import CORALean.NN.Graph.Theorems.FloatLeftMatMulVec
+public import CORALean.NN.Graph.Theorems.FloatLinearOuter
+public import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
+public import CORALean.NN.Graph.Theorems.FloatSumPoolMatMulVec
+public import CORALean.NN.Graph.Theorems.FloatSumPoolOuter
+public import CORALean.NN.Graph.Theorems.SupportFloatOfNeZero
+public import CORALean.NN.Graph.Theorems.ReducedStepsFloatOuter
+public import CORALean.NN.Graph.Theorems.ReduceGNNForNodeFloatOuter
+public import CORALean.NN.Graph.Theorems.BallSubsetBallFloat
+public import CORALean.NN.Graph.Theorems.BallFloatSubsetSucc
+public import CORALean.NN.Graph.Theorems.BallSubsetReduceKeepFloat
 
 /-!
 # What the graph layers guarantee

@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.GcnSteps
+module
+
+public import CORALean.NN.Graph.Operations.GcnSteps
+
+@[expose] public section
 
 /-!
 # `gcnSteps` keeps the factor set throughout the chain

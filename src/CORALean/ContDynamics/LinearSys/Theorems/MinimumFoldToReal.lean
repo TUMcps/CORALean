@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # The float minimum reads as the real one

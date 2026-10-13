@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # `SetUnion.mtimes`

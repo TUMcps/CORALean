@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+
+@[expose] public section
 
 /-!
 # The generator monomial read against an extended factor vector

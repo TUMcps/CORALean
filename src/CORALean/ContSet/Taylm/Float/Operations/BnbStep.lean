@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.SplitAt
-import CORALean.ContSet.Taylm.Float.Operations.ArgMaxIdx
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.SplitAt
+public import CORALean.ContSet.Taylm.Float.Operations.ArgMaxIdx
+
+@[expose] public section
 
 /-!
 # `Taylm.bnbStep`, over a floating-point scalar

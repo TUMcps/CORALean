@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.RefinableLayer
-import CORALean.NN.Layers.Definitions.SoundLayer
+module
+
+public import CORALean.NN.Definitions.RefinableLayer
+public import CORALean.NN.Layers.Definitions.SoundLayer
+
+@[expose] public section
 
 /-!
 # The layer a pattern names

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
+
+@[expose] public section
 
 /-!
 # `ConZonotope.isDisjointLP`: disjointness by a separating direction

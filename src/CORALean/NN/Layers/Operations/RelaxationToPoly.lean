@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.NN.Layers.Definitions.Relaxation
+module
+
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.NN.Layers.Definitions.Relaxation
+
+@[expose] public section
 
 /-!
 # An affine relaxation read as a polynomial one

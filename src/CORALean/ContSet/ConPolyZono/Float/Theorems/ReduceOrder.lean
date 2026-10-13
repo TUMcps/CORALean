@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceGirardOrderLe
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceGirardOrderLe
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduce` bounds the generator count

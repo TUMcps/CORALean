@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CoeffEqSignOfMemArgmax
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CoeffEqSignOfMemArgmax
+
+@[expose] public section
 
 /-!
 # The points of a zonotope that maximize a functional

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Algebra.Order.Star.Real
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Algebra.Order.Star.Real
+
+@[expose] public section
 
 /-!
 # The bound of Eq. 28 of [1, Thm. 4] as printed fails

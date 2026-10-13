@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Shrink
-import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Shrink
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.shrink` encloses the bundle

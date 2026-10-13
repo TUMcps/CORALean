@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Taylor
-import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
-import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-import CORALean.Global.TaylorRemainder
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Taylor
+public import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+public import CORALean.Global.TaylorRemainder
+
+@[expose] public section
 
 /-!
 # `Taylm.taylor` encloses `g ∘ f`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # A bundle of one point-zonotope contains that point

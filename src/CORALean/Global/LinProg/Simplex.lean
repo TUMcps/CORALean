@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Field.Defs
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import Mathlib.Algebra.Field.Defs
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # A simplex, deliberately outside the trusted base

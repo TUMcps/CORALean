@@ -1,4 +1,8 @@
-import Mathlib.Data.Nat.Notation
+module
+
+public import Mathlib.Data.Nat.Notation
+
+@[expose] public section
 
 /-!
 # A successful `mapM` into `Option` has one result per entry

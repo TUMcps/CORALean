@@ -1,11 +1,15 @@
-import CORALean.ContSet.Taylm.Float.Operations.Intrinsic
-import CORALean.ContSet.Taylm.Float.Theorems.ToRealLeOfBelowPow
-import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
-import CORALean.ContSet.Taylm.Float.Theorems.LogOuter
-import CORALean.ContSet.Taylm.Float.Theorems.SinOuter
-import CORALean.ContSet.Taylm.Float.Theorems.CosOuter
-import CORALean.ContSet.Taylm.Float.Theorems.SinhOuter
-import CORALean.ContSet.Taylm.Float.Theorems.CoshOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Intrinsic
+public import CORALean.ContSet.Taylm.Float.Theorems.ToRealLeOfBelowPow
+public import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.LogOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.SinOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.CosOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.SinhOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.CoshOuter
+
+@[expose] public section
 
 /-!
 # A float intrinsic encloses its function

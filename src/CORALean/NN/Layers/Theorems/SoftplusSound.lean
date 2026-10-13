@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Softplus
-import CORALean.NN.Layers.Theorems.ActivationOuterWhere
-import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.Softplus
+public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
+public import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the softplus layer encloses

@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.CompactZeros
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
-import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
-import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.CompactZeros
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+
+@[expose] public section
 
 /-!
 # `compactZeros` denotes the same set, exactly

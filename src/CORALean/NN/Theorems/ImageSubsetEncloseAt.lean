@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.RefinableNetworkImage
-import CORALean.NN.Theorems.EncloseAtOuter
+module
+
+public import CORALean.NN.Definitions.RefinableNetworkImage
+public import CORALean.NN.Theorems.EncloseAtOuter
+
+@[expose] public section
 
 /-!
 # A schedule's propagation encloses the image

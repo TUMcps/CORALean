@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.Chain
-import Mathlib.Analysis.Calculus.FDeriv.Defs
+module
+
+public import CORALean.NN.Definitions.Chain
+public import Mathlib.Analysis.Calculus.FDeriv.Defs
+
+@[expose] public section
 
 /-!
 # Differentiable layer by layer, along the forward pass

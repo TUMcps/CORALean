@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.SplitAt
-import CORALean.ContSet.Taylm.Float.Operations.Covers
-import CORALean.ContSet.Taylm.Float.Theorems.HalveBoxCover
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.SplitAt
+public import CORALean.ContSet.Taylm.Float.Operations.Covers
+public import CORALean.ContSet.Taylm.Float.Theorems.HalveBoxCover
+
+@[expose] public section
 
 /-!
 # `Taylm.splitAt` keeps the cover

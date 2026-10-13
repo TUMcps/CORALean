@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimes`'s counts

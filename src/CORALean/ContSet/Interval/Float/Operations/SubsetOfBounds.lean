@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.OfBounds
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.OfBounds
+
+@[expose] public section
 
 /-!
 # `Interval.ofBounds` encloses, over a floating-point scalar

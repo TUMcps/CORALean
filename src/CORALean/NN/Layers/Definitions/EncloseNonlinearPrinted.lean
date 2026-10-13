@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.NN.Layers.Definitions.ApproxError
-import CORALean.NN.Layers.Definitions.SecantSlope
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.NN.Layers.Definitions.ApproxError
+public import CORALean.NN.Layers.Definitions.SecantSlope
+
+@[expose] public section
 
 /-!
 # Alg. 1 as printed, in one dimension

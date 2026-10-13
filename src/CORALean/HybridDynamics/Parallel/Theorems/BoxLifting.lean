@@ -1,10 +1,14 @@
-import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdExact
-import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
-import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeComapBlockProjExact
-import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
-import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
-import CORALean.HybridDynamics.Parallel.Definitions.Lifting
-import CORALean.ContSet.HPolytope.Real.Instances
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdExact
+public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
+public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeComapBlockProjExact
+public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
+public import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
+public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
+public import CORALean.ContSet.HPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `boxLifting`: a `Lifting` at boxes and halfspace descriptions

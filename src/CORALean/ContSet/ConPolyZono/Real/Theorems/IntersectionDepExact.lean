@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
-import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
-import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesIntersectionDepIff
-import CORALean.ContSet.Interval.Real.Operations.Point
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
+public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesIntersectionDepIff
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # Intersection up to a tolerance

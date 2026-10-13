@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
-import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
+
+@[expose] public section
 
 /-!
 # How far a float sampled run reaches beyond the exact held-input one

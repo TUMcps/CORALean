@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.OfObserver
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.OfObserver
+
+@[expose] public section
 
 /-!
 # The state-space outputs satisfy the ARMAX recursion

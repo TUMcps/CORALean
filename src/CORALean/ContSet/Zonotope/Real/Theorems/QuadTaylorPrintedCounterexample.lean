@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Mul
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Logic.Equiv.Fin.Basic
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Logic.Equiv.Fin.Basic
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # [1, Prop. 3]'s printed generators do not enclose `I + At + ½(At)²`

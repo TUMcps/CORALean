@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Operations.IsFullDim
-import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.IsFullDim
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.isFullDim` is the nonempty interior

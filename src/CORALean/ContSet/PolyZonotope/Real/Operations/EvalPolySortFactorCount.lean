@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
+
+@[expose] public section
 
 /-!
 # The factor count [1, Alg. 2] keeps

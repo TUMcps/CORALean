@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
+
+@[expose] public section
 
 /-!
 # The adaptive time loop holds every certified run

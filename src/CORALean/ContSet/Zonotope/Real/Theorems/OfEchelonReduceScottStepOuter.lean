@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # One step of the reduction of [1, Sec. 4.3 (new reduction)] encloses

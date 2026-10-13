@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.ZonotopeStackProdValue
-import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.ZonotopeStackProdValue
+public import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
+
+@[expose] public section
 
 /-!
 # `Zonotope.stackProd` is exact

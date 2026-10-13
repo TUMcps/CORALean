@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectHalfspace
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectHalfspace
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.interHalfspace` is exactly the halfspace intersection

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+module
+
+public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+
+@[expose] public section
 
 /-!
 # Whatever represents `linComb` of two nonempty sets holds both

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsParticularSolutionTauErrorLeConstMul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsParticularSolutionTauErrorLeConstMul
+
+@[expose] public section
 
 /-!
 # `Lemma 4`, the limit half: `Δε^{U,τ}_k(Δt,η) → 0` as `Δt → 0⁺`

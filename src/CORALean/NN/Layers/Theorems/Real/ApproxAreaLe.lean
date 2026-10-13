@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Operations.ApproxArea
-import CORALean.NN.Layers.Definitions.ApproxError
-import CORALean.NN.Layers.Definitions.DeepZSShape
-import CORALean.NN.Layers.Definitions.SecantSlope
-import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
+module
+
+public import CORALean.NN.Layers.Operations.ApproxArea
+public import CORALean.NN.Layers.Definitions.ApproxError
+public import CORALean.NN.Layers.Definitions.DeepZSShape
+public import CORALean.NN.Layers.Definitions.SecantSlope
+public import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
+
+@[expose] public section
 
 /-!
 # The approximation area is at most Singh's

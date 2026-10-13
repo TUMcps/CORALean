@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.stackProd` over floats

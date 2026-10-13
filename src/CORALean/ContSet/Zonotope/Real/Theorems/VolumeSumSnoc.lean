@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
-import Mathlib.Data.Finset.Sort
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
+public import Mathlib.Data.Finset.Sort
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+
+@[expose] public section
 
 /-!
 # The sum over generator subsets splits at the last generator

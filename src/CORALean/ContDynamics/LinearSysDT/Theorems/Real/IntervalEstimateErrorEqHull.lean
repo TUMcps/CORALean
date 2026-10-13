@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimate
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.IntervalAttained
-import CORALean.ContSet.Interval.Real.Definitions.Hull
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimate
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalAttained
+public import CORALean.ContSet.Interval.Real.Definitions.Hull
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # The error box of the reachability-based estimator is the hull of the reachable error

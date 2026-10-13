@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
+
+@[expose] public section
 
 /-!
 # The corner `sup` is `radius` from the centre

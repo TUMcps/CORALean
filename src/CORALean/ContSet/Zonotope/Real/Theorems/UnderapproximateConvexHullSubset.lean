@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.UnderapproximateMem
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.UnderapproximateMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # `underapproximate` is an inner approximation

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqEliminate
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOuter
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqEliminate
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOuter
+
+@[expose] public section
 
 /-!
 # `ConZonotope.eliminate` encloses

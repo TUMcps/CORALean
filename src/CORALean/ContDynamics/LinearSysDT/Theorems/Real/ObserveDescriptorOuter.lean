@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Zonotope.Real.Operations.ObserveDescriptor
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Zonotope.Real.Operations.ObserveDescriptor
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The prediction-type zonotopic observer holds the true state

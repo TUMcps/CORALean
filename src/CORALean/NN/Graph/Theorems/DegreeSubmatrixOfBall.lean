@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.Degree
-import CORALean.NN.Graph.Theorems.BallSubsetSucc
+module
+
+public import CORALean.NN.Graph.Operations.Degree
+public import CORALean.NN.Graph.Theorems.BallSubsetSucc
+
+@[expose] public section
 
 /-!
 # A degree is decided by one ring beyond the ball

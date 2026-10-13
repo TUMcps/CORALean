@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
-import CORALean.Global.EuclideanHausdorffDist
-import CORALean.Global.Norm2MulVecLeErrOfMemClosureConvexHull
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
+public import CORALean.Global.EuclideanHausdorffDist
+public import CORALean.Global.Norm2MulVecLeErrOfMemClosureConvexHull
+
+@[expose] public section
 
 /-!
 # [1, Prop. 11] without eq. (20)'s soundness

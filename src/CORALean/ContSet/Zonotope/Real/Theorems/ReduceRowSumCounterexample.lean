@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # Boxing generators by their signed row sums loses the enclosure

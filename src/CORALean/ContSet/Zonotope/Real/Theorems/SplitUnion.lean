@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Split
-import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Split
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumSmulUpdate
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # A split loses nothing

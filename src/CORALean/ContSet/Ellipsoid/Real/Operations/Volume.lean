@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.volume`

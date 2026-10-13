@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # `Location.potOut`

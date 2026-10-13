@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.ClauseMerge
-import CORALean.Specification.STL.Theorems.ClauseNodupInsert
+module
+
+public import CORALean.Specification.STL.Operations.ClauseMerge
+public import CORALean.Specification.STL.Theorems.ClauseNodupInsert
+
+@[expose] public section
 
 /-!
 # Merging two clauses keeps the powers distinct

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `Zonotope.radius`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.ContSet.Interval.Float.Operations.Origin
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+
+@[expose] public section
 
 /-!
 # `HPolytope.origin`, over a floating-point scalar

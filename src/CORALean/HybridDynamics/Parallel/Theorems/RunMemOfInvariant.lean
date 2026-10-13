@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.RunToProduct
-import CORALean.HybridDynamics.Theorems.RunOuter
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.RunToProduct
+public import CORALean.HybridDynamics.Theorems.RunOuter
+
+@[expose] public section
 
 /-!
 # An invariant of the product bounds a parallel run

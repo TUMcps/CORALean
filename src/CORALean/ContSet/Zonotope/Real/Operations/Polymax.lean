@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `Zonotope.polymax`

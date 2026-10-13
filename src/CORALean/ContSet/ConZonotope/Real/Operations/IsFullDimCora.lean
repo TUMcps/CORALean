@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import Mathlib.LinearAlgebra.Dimension.Finrank
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+
+@[expose] public section
 
 /-!
 # `ConZonotope.isFullDimCora`

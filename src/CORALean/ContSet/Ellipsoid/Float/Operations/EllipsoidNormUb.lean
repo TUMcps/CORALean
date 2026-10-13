@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.Global.Float.Sqrt
-import CORALean.Global.Float.NoNaN
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.Global.Float.Sqrt
+public import CORALean.Global.Float.NoNaN
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.ellipsoidNormUb`, over a floating-point scalar

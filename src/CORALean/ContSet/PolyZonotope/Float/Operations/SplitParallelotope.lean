@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
+module
+
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.splitParallelotope`

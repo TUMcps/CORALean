@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.StripGain
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerGainOptimal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.StripGain
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerGainOptimal
+
+@[expose] public section
 
 /-!
 # The strip gain minimizes the Frobenius norm

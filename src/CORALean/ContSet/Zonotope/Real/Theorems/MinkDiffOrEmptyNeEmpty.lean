@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffOrEmpty` is empty only where nothing certifies

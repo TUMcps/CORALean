@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.And
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.And
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.and_` is exact

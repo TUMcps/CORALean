@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.NN.Layers.Operations.ConjCoeffsGap
-import CORALean.NN.Layers.Operations.ConjTBound
-import CORALean.NN.Layers.Operations.EvalPolyUp
+module
+
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.NN.Layers.Operations.ConjCoeffsGap
+public import CORALean.NN.Layers.Operations.ConjTBound
+public import CORALean.NN.Layers.Operations.EvalPolyUp
+
+@[expose] public section
 
 /-!
 # A polynomial relaxation carried along an affine conjugation

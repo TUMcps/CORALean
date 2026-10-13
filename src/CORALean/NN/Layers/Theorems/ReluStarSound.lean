@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.ReluStar
-import CORALean.NN.Layers.Theorems.StarSetReluNeuronOuter
-import CORALean.NN.Layers.Theorems.StarSetRowBoundsMem
+module
+
+public import CORALean.NN.Layers.Operations.ReluStar
+public import CORALean.NN.Layers.Theorems.StarSetReluNeuronOuter
+public import CORALean.NN.Layers.Theorems.StarSetRowBoundsMem
+
+@[expose] public section
 
 /-!
 # What the ReLU layer on a star set encloses

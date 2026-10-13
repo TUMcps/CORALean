@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The printed P-radius condition does not bound the P-radius

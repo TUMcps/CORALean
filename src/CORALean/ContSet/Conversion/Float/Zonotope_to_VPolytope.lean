@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
-import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
-import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
-import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # A zonotope as its corners, over a floating-point scalar

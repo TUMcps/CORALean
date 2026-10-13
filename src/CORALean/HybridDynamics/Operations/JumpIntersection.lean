@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.Jump
+module
+
+public import CORALean.HybridDynamics.Operations.Jump
+
+@[expose] public section
 
 /-!
 # `Transition.jumpIntersection`

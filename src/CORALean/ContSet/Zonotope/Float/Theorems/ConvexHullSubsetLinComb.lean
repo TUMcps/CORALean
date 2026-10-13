@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
-import CORALean.ContSet.Zonotope.Float.Theorems.Convex
-import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # A float zonotope's `linComb` holds both operands, and their convex hull

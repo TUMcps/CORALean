@@ -1,7 +1,11 @@
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
-import CORALean.ContSet.ProbZonotope.Real.Theorems.IntegrableExpNegNormSq
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.IntegrableExpNegNormSq
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # [1, Prop. 1]'s printed density is not a density

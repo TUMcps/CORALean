@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Float.Operations.Triangulation
-import CORALean.ContSet.Conversion.Float.VPolytope_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Float.Operations.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Triangulation
+public import CORALean.ContSet.Conversion.Float.VPolytope_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.quadMap`, over a floating-point scalar

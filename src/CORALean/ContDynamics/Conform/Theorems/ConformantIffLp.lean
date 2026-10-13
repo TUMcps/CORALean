@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.ConformantIffDevSet
-import CORALean.ContDynamics.Conform.Theorems.DevSetTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ConformantIffDevSet
+public import CORALean.ContDynamics.Conform.Theorems.DevSetTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
+
+@[expose] public section
 
 /-!
 # [2, Thm. 1]: the linear program's constraints are exactly reachset conformance

@@ -1,6 +1,11 @@
-import CORALean.Global.DmdCandidate
-import Mathlib.Data.Real.Basic
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.Global.DmdCandidate
+public import Mathlib.Data.Real.Basic
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # Two printed statements of the dynamic mode decomposition with control that fail

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetAddEq
-import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetSubsetLinCombPlusCube
-import CORALean.ContSet.Zonotope.Real.Theorems.IsLUBNormFoldMaxAbsBound
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetAddEq
+public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetSubsetLinCombPlusCube
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsLUBNormFoldMaxAbsBound
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1] encloses the reachable set

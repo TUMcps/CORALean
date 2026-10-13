@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceKeep` over-approximates

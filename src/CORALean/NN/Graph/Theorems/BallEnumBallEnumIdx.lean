@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Theorems.BallEnumIdx
+module
+
+public import CORALean.NN.Graph.Theorems.BallEnumIdx
+
+@[expose] public section
 
 /-!
 # The enumeration really does give `v` back at its own index

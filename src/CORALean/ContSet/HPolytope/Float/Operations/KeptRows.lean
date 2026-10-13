@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
+
+@[expose] public section
 
 /-!
 # `HPolytope.keptRows`: the inequality rows not part of an inverted pair

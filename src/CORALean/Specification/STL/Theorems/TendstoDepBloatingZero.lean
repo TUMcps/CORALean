@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
-import CORALean.Specification.STL.Operations.DepReachConstsOf
-import CORALean.Specification.STL.Theorems.DepBloatingSubsetClosedBall
-import CORALean.Specification.STL.Theorems.TendstoSSupNormOfEventuallySubsetClosedBall
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
+public import CORALean.Specification.STL.Operations.DepReachConstsOf
+public import CORALean.Specification.STL.Theorems.DepBloatingSubsetClosedBall
+public import CORALean.Specification.STL.Theorems.TendstoSSupNormOfEventuallySubsetClosedBall
+
+@[expose] public section
 
 /-!
 # [1, Prop. 3]: the bloating vanishes with the step

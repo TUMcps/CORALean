@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.NotIsBoundaryPointIff
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Order.Lattice
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.NotIsBoundaryPointIff
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Order.Lattice
+
+@[expose] public section
 
 /-!
 # Boundary points from one linear program

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+
+@[expose] public section
 
 /-!
 # `bPU`, eq. (20): the particular solution's outer-approximation

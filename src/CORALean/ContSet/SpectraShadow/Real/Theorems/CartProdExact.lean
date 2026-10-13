@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.CartProd
-import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
-import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.CartProd
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.cartProd` is exactly the Cartesian product

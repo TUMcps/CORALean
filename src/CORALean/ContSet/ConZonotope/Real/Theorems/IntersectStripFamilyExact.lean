@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStripFamily
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripExact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStripFamily
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectStripExact
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersectStripFamily` is exactly the intersection with the family of strips

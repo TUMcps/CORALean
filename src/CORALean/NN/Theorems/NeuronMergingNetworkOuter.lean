@@ -1,7 +1,11 @@
-import CORALean.NN.Instances
-import CORALean.NN.Layers.Operations.Pack
-import CORALean.NN.Operations.ToLayer
-import CORALean.NN.Theorems.NeuronMergingOuter
+module
+
+public import CORALean.NN.Instances
+public import CORALean.NN.Layers.Operations.Pack
+public import CORALean.NN.Operations.ToLayer
+public import CORALean.NN.Theorems.NeuronMergingOuter
+
+@[expose] public section
 
 /-!
 # A merge at one layer of a whole network

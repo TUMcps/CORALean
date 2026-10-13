@@ -1,4 +1,8 @@
-import Mathlib.Analysis.Normed.Lp.PiLp
+module
+
+public import Mathlib.Analysis.Normed.Lp.PiLp
+
+@[expose] public section
 
 /-!
 # The `q`-norm is monotone in the absolute values

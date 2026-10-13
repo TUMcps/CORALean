@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The reach set of a set over `[kr, (k+1)r]` is `e^{Akr}` times that over `[0, r]`

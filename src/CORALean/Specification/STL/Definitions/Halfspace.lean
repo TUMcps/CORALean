@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Definitions.Pform
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Module.LinearMap.Defs
+module
+
+public import CORALean.Specification.STL.Definitions.Pform
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Module.LinearMap.Defs
+
+@[expose] public section
 
 /-!
 # Halfspace predicates and disjunctive normal form

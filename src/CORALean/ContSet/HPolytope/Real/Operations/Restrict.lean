@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.Data.Fintype.Card
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.Data.Fintype.Card
+
+@[expose] public section
 
 /-!
 # `HPolytope.restrict`

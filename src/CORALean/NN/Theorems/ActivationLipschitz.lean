@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Layer
-import Mathlib.Topology.MetricSpace.Lipschitz
+module
+
+public import CORALean.NN.Layers.Layer
+public import Mathlib.Topology.MetricSpace.Lipschitz
+
+@[expose] public section
 
 /-!
 # What an activation layer does to a distance

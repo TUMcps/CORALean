@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Float.Operations.IsIntersectingCell
-import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellOuter
+module
+
+public import CORALean.ContSet.LevelSet.Float.Operations.IsIntersectingCell
+public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellOuter
+
+@[expose] public section
 
 /-!
 # A `false` from `LevelSet.isIntersecting_cell` proves disjointness

@@ -1,8 +1,12 @@
-import CORALean.NN.Graph.Complexity.Space.Alg1Node
-import CORALean.NN.Graph.Complexity.Space.GcnActStepsQ
-import CORALean.NN.Graph.Complexity.Space.Pooling
-import CORALean.NN.Graph.Complexity.Space.TailEnclose
-import CORALean.NN.Graph.Operations.Alg1Graph
+module
+
+public import CORALean.NN.Graph.Complexity.Space.Alg1Node
+public import CORALean.NN.Graph.Complexity.Space.GcnActStepsQ
+public import CORALean.NN.Graph.Complexity.Space.Pooling
+public import CORALean.NN.Graph.Complexity.Space.TailEnclose
+public import CORALean.NN.Graph.Operations.Alg1Graph
+
+@[expose] public section
 
 /-!
 # `Alg. 1`'s count for a graph-level output

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
-import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachInitFloatEncloses
-import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachStepFloatEncloses
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachInitFloatEncloses
+public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachStepFloatEncloses
+
+@[expose] public section
 
 /-!
 # The float state after `k` iterations stands for the exact one

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
+
+@[expose] public section
 
 /-!
 # A discrete nonlinear system, bundled with what its `Reach` run spends

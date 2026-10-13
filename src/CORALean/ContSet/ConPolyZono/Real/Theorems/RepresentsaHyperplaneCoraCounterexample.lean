@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaHyperplaneCora
-import CORALean.Global.NotHyperplaneOneDim
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaHyperplaneCora
+public import CORALean.Global.NotHyperplaneOneDim
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `conPolyZono/representsa_(cPZ, 'hyperplane')` accepts every one-dimensional set

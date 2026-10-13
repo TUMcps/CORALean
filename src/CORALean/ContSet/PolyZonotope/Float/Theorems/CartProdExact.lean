@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
-import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
-import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cartProd` is exact

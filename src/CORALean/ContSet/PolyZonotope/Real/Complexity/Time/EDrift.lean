@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.EDiff
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.EDiff
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.eDriftCost`

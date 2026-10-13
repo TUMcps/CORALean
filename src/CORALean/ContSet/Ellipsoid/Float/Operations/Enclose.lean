@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclose`, over a floating-point scalar

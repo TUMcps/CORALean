@@ -1,4 +1,6 @@
-import CORALean.NN.Graph.Complexity.Space.API
+module
+
+public import CORALean.NN.Graph.Complexity.Space.API
 
 /-!
 # Complexity

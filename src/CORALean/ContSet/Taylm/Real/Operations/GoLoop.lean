@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.GoStep
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.GoStep
+
+@[expose] public section
 
 /-!
 # COSY-GO's box steps

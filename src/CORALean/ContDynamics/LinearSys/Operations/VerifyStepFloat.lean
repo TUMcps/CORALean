@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Definitions.VerifyIterFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaximumFold
-import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
-import CORALean.ContSet.ConZonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.HPolytope.Float.Instances
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIterFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaximumFold
+public import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.HPolytope.Float.Instances
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+
+@[expose] public section
 
 /-!
 # One iteration of the verification loop, in floats

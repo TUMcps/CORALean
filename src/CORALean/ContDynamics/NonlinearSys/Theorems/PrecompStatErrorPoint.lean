@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepPoint
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepPoint
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `precompStatError`'s point is the second-order term at that point

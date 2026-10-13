@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Order.Interval.Set.Defs
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Order.Interval.Set.Defs
+
+@[expose] public section
 
 /-!
 # What a root search owes a contractor

@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # What [1, Alg. 1 (lower bounds)]'s lower bounds carry from one step to the next

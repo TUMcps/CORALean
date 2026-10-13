@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # A stored generator of a rounded matrix product is close to the exact one

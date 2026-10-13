@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.Or
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Or
+
+@[expose] public section
 
 /-!
 # `Polygon.or` is the union

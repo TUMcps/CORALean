@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinDegree
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinDegree
+
+@[expose] public section
 
 /-!
 # The Bernstein degree bounds every exponent

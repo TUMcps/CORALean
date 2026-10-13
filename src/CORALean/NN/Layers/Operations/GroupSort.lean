@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.GroupSortChunk
+module
+
+public import CORALean.NN.Layers.Operations.GroupSortChunk
+
+@[expose] public section
 
 /-!
 # CORA's `nnGroupSortLayer`

@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+
+@[expose] public section
 
 /-!
 # A stored `bilin` generator is within its gap of the exact bilinear form

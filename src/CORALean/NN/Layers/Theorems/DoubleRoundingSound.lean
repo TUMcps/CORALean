@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.DoubleRounding
+module
+
+public import CORALean.NN.Layers.Operations.DoubleRounding
+
+@[expose] public section
 
 /-!
 # Self-addition rounds doubling

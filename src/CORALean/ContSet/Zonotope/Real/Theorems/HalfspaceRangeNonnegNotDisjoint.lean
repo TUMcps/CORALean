@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.HalfspaceRange
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.HalfspaceRange
+
+@[expose] public section
 
 /-!
 # `ω̲ ≥ 0` does not rule out an intersection

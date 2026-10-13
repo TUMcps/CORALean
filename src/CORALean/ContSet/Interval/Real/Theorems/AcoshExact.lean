@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Acosh
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Acosh
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+
+@[expose] public section
 
 /-!
 # `Interval.acosh` is exactly the image under `Real.arcosh`

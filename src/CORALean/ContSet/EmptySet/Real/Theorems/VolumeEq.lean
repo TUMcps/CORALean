@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Volume
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Volume
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.volume` is the Lebesgue volume

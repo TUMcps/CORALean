@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # `checkCustomCora`, CORA's `check` of a `'custom'` specification on a cell of sets
 

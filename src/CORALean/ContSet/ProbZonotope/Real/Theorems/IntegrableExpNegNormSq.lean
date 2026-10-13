@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
+
+@[expose] public section
 
 /-!
 # `exp(-‖v‖²/2)` is integrable on Euclidean space

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Analysis.Normed.Order.Lattice
-import Mathlib.Topology.Algebra.Monoid
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Analysis.Normed.Order.Lattice
+public import Mathlib.Topology.Algebra.Monoid
+
+@[expose] public section
 
 /-!
 # `Interval.power` is exactly the image under `x ↦ x ^ k`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumAddLe
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumAddLe
+
+@[expose] public section
 
 /-!
 # An s-face meeting Eq. (5) has a unique vertex below the plane

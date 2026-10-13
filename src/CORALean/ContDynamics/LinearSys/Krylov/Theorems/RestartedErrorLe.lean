@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Normed.Group.Basic
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+module
+
+public import Mathlib.Analysis.Normed.Group.Basic
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+
+@[expose] public section
 
 /-!
 # The error of restarted Krylov steps is at most the sum of the local errors

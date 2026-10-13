@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.IdentifyCandidate
-import CORALean.Global.DmdBlocksStack
-import CORALean.Global.DmdBlocksMulVec
-import CORALean.Global.DmdCandidateFit
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.IdentifyCandidate
+public import CORALean.Global.DmdBlocksStack
+public import CORALean.Global.DmdBlocksMulVec
+public import CORALean.Global.DmdCandidateFit
+
+@[expose] public section
 
 /-!
 # The full-rank DMD candidate fits consistent data

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.BoxPlaneIntersectNaive
-import CORALean.ContSet.Interval.Real.Theorems.EdgeMemHyperplaneIff
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.BoxPlaneIntersectNaive
+public import CORALean.ContSet.Interval.Real.Theorems.EdgeMemHyperplaneIff
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+
+@[expose] public section
 
 /-!
 # The naive algorithm returns exactly the vertices of the cut

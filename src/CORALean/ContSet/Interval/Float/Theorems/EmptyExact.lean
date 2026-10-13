@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Empty
-import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Empty
+public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
+
+@[expose] public section
 
 /-!
 # `Interval.empty` is exactly empty

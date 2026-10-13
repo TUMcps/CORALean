@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaPointConstruct
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaPointConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.representsa_point` is sound

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceHybridPC
-import CORALean.ContSet.Zonotope.Real.Theorems.LineClBasisIsUnitDet
-import CORALean.ContSet.Zonotope.Real.Theorems.PCABasisIsUnitDet
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceHybridPC
+public import CORALean.ContSet.Zonotope.Real.Theorems.LineClBasisIsUnitDet
+public import CORALean.ContSet.Zonotope.Real.Theorems.PCABasisIsUnitDet
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
+
+@[expose] public section
 
 /-!
 # `hybridPC` over-approximates

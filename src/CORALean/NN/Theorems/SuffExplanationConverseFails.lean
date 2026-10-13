@@ -1,14 +1,18 @@
-import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Interval.Real.Operations.Mtimes
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.LinearWithErrorSound
-import CORALean.NN.Theorems.EncloseOuter
-import CORALean.NN.Theorems.SuffExplanation
-import CORALean.NN.Theorems.SuffExplanationAbstract
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Interval.Real.Operations.Mtimes
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.LinearWithErrorSound
+public import CORALean.NN.Theorems.EncloseOuter
+public import CORALean.NN.Theorems.SuffExplanation
+public import CORALean.NN.Theorems.SuffExplanationAbstract
+
+@[expose] public section
 
 /-!
 # The transfer theorem's converse fails under its own hypothesis

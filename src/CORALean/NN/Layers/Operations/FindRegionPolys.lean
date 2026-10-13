@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.FindRegionLoop
+module
+
+public import CORALean.NN.Layers.Operations.FindRegionLoop
+
+@[expose] public section
 
 /-!
 # `findRegionPolys`: polynomials with error at most a tolerance, covering the line

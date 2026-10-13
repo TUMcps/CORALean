@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_emptySet`

@@ -1,5 +1,7 @@
-import CORALean.Global.Float.Instances.Flint.Definitions.Axioms
-import CORALean.Global.Float.Instances.Flint.Definitions.TrustedFlint
+module
+
+public import CORALean.Global.Float.Instances.Flint.Definitions.Axioms
+public import CORALean.Global.Float.Instances.Flint.Definitions.TrustedFlint
 
 /-!
 # What trusting FLINT means, collected

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Float.Operations.Mtimes
-import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Mtimes
+public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+
+@[expose] public section
 
 /-!
 # `Capsule.mtimes` encloses the image

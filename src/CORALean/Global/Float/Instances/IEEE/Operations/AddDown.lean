@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
-import CORALean.Global.Float.Instances.IEEE.Operations.RoundDown
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
+public import CORALean.Global.Float.Instances.IEEE.Operations.RoundDown
+
+@[expose] public section
 
 /-!
 # Addition, rounded down

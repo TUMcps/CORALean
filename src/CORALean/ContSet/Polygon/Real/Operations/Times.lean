@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Polygon.times`

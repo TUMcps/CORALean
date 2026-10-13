@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Empty
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Empty
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+
+@[expose] public section
 
 /-!
 # `ConZonotope.empty` denotes the empty set

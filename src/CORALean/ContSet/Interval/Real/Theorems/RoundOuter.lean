@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Round
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Round
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
+
+@[expose] public section
 
 /-!
 # `Interval.round` contains the image under the rounding

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachSet
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # `reach` encloses the reachable set at the period boundaries

@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
+module
+
+public import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
+
+@[expose] public section
 
 /-!
 # The matrix zonotope of [1, Prop. 3] encloses `Q⁽ⁱ⁾`, with one factor for `Θ/Λ`

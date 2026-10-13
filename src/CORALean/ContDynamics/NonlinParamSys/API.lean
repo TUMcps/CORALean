@@ -1,8 +1,10 @@
-import CORALean.ContDynamics.NonlinParamSys.Definitions.API
-import CORALean.ContDynamics.NonlinParamSys.Instances
-import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
-import CORALean.ContDynamics.NonlinParamSys.Operations.API
-import CORALean.ContDynamics.NonlinParamSys.Theorems.API
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.API
+public import CORALean.ContDynamics.NonlinParamSys.Instances
+public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
+public import CORALean.ContDynamics.NonlinParamSys.Operations.API
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.API
 
 /-!
 # Continuous-time nonlinear systems with uncertain parameters, collected

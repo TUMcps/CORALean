@@ -1,6 +1,10 @@
-import CORALean.Global.BlockDiag
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.Global.BlockDiag
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # A zonotope as a spectrahedral shadow

@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Order.Floor.Ring
-import Mathlib.Data.Rat.Floor
+module
+
+public import Mathlib.Algebra.Order.Floor.Ring
+public import Mathlib.Data.Rat.Floor
+
+@[expose] public section
 
 /-!
 # `roundAwayInt`: MATLAB's `round` of an exact rational

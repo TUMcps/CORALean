@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # The point interval contains its point, over a floating-point scalar

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.Inv
-import CORALean.ContSet.Taylm.Float.Theorems.InvCoefMem
-import CORALean.ContSet.Taylm.Float.Theorems.InvBoundGe
-import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Inv
+public import CORALean.ContSet.Taylm.Float.Theorems.InvCoefMem
+public import CORALean.ContSet.Taylm.Float.Theorems.InvBoundGe
+public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.inv` encloses `1 / f`, over a floating-point scalar

@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Float.Operations.EncloseMany
-import CORALean.ContSet.Zonotope.Float.Theorems.EncloseManyBasisInvMem
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.EncloseMany
+public import CORALean.ContSet.Zonotope.Float.Theorems.EncloseManyBasisInvMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+
+@[expose] public section
 
 /-!
 # `encloseMany` encloses every cell

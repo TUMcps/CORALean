@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.Global.EuclideanNorm
-import Mathlib.Order.Lattice
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Order.Lattice
+
+@[expose] public section
 
 /-!
 # The largest ball around the origin in an H-polytope

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.Degree
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Degree
+
+@[expose] public section
 
 /-!
 # The constant part of a Taylor model

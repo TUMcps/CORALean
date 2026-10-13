@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.ProdBounds
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ProdBounds
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # The product of intervals contains every product

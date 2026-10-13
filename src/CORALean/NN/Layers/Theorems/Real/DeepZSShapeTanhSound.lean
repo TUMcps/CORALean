@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtTanh
-import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
-import CORALean.NN.Layers.Theorems.Real.TanhDerivSShape
-import CORALean.NN.Layers.Theorems.SShapeUnimodal
+module
+
+public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtTanh
+public import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
+public import CORALean.NN.Layers.Theorems.Real.TanhDerivSShape
+public import CORALean.NN.Layers.Theorems.SShapeUnimodal
+
+@[expose] public section
 
 /-!
 # DeepZ's transformer is sound for tanh

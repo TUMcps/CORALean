@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Finset.Card
-import Mathlib.Data.Fintype.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Finset.Card
+public import Mathlib.Data.Fintype.Basic
+
+@[expose] public section
 
 /-!
 # How many neurons the buckets merge

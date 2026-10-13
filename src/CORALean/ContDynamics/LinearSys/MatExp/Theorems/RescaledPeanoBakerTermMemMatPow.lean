@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerTermMemMatPow
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerTermMemMatPow
+
+@[expose] public section
 
 /-!
 # A Peano–Baker term rescaled from `t` to the whole step

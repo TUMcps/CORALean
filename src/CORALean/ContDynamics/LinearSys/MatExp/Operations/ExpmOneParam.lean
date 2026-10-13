@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Order.Interval.Finset.Nat
-import Mathlib.Algebra.Order.Floor.Div
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Order.Interval.Finset.Nat
+public import Mathlib.Algebra.Order.Floor.Div
+
+@[expose] public section
 
 /-!
 # `MatExp.expmOneParam`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.NN.Definitions.ReducibleNetwork
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.NN.Definitions.ReducibleNetwork
+
+@[expose] public section
 
 /-!
 # The identity kernel as a layer of [1, Eq. 2]

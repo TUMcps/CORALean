@@ -1,5 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadUp
+
+@[expose] public section
+
 /-!
 # `Zonotope.cubContractDown`, the cubic contraction of three vectors rounded down
 

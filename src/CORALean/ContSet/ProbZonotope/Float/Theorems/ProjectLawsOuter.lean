@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.Project
-import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
-import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Project
+public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.project` projects the laws

@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Calculus.ContDiff.Defs
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Calculus.ContDiff.Defs
+
+@[expose] public section
 
 /-!
 # A nonlinear reset abstracted by its Taylor expansion

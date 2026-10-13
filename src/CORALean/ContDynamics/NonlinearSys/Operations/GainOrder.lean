@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GainOrderDim
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GainOrderDim
+
+@[expose] public section
 
 /-!
 # The gain order of a set-based solver

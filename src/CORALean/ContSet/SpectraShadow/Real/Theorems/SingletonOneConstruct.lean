@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
+
+@[expose] public section
 
 /-!
 # `singletonOne` is the point `1`

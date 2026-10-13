@@ -1,8 +1,12 @@
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.Order.BigOperators.Ring.Finset
-import Mathlib.Tactic.Linarith
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+public import Mathlib.Tactic.Linarith
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+@[expose] public section
 
 /-!
 # A symmetric diagonally dominant matrix has a nonnegative quadratic form

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Volume
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Volume
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Interval.volume` is the Lebesgue volume

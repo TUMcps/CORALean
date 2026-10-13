@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Float.Operations.IsIntersectingUniform
-import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingUniformOuter
+module
+
+public import CORALean.ContSet.LevelSet.Float.Operations.IsIntersectingUniform
+public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingUniformOuter
+
+@[expose] public section
 
 /-!
 # A `false` from `LevelSet.isIntersecting_uniform` proves disjointness

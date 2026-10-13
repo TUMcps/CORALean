@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
-import CORALean.ContSet.ConZonotope.Float.Theorems.DependentNominal
-import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
-import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
+public import CORALean.ContSet.ConZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
+
+@[expose] public section
 
 /-!
 # `ConZonotope.cubMap` over-approximates the cubic map, over a floating-point scalar

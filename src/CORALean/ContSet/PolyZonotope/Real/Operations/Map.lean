@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Algebra.Module.LinearMap.Defs
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Algebra.Module.LinearMap.Defs
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.map`

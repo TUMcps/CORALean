@@ -1,16 +1,18 @@
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.Plus
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.LinComb
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.Mtimes
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.MtimesMatZonotope
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.MatMul
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.Bilin
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceBy
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceBox
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.BackReachAligned
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceScottStep
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.QuadMapTri
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.SetBasedNetForward
+module
+
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.LinComb
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MtimesMatZonotope
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MatMul
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Bilin
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceBy
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceBox
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.BackReachAligned
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceScottStep
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.QuadMapTri
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.SetBasedNetForward
 
 /-!
 # How large `Zonotope`'s results are

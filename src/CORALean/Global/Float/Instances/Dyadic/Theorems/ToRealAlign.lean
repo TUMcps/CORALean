@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Le
-import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Le
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
+
+@[expose] public section
 
 /-!
 # A dyadic read at any smaller exponent

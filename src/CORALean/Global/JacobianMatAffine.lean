@@ -1,6 +1,10 @@
-import CORALean.Global.Jacobian
-import Mathlib.Analysis.Calculus.FDeriv.Add
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.Global.Jacobian
+public import Mathlib.Analysis.Calculus.FDeriv.Add
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # The Jacobian of an affine map

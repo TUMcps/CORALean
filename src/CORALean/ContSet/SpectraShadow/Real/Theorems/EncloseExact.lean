@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Real.Instances
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
-import CORALean.ContSet.SpectraShadow.Real.Theorems.OrExact
-import CORALean.ContSet.ContSet.Operations.Enclose
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Instances
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.OrExact
+public import CORALean.ContSet.ContSet.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # `enclose` of a spectrahedral shadow is exactly the convex hull of `S` and `M S ⊕ S₂`

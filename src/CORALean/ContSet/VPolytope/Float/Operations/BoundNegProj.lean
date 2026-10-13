@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundNegProj
-import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundNegProj
+public import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
+
+@[expose] public section
 
 /-!
 # `VPolytope.boundNegProj`

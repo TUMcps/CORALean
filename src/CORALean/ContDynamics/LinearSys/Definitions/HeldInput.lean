@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # A piecewise-constant input

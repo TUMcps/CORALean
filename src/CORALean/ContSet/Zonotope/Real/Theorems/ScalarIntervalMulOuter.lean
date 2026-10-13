@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
+
+@[expose] public section
 
 /-!
 # `[a, b] ⊗ Z` encloses every product

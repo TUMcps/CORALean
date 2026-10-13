@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.Gcn
+module
+
+public import CORALean.NN.Graph.Operations.Gcn
+
+@[expose] public section
 
 /-!
 # `GNN.gcn`'s counts

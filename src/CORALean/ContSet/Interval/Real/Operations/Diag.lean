@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Data.Matrix.Diagonal
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # `Interval.diag`

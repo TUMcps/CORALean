@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.VerifySplitWith
-import CORALean.Specification.Operations.Check
+module
+
+public import CORALean.NN.Operations.VerifySplitWith
+public import CORALean.Specification.Operations.Check
+
+@[expose] public section
 
 /-!
 # Verification by recursively splitting the input set, against a specification

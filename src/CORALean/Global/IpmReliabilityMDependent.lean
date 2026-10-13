@@ -1,9 +1,13 @@
-import CORALean.Global.IpmExistsSubsetCardEq
-import CORALean.Global.IpmSolCongr
-import CORALean.Global.MeasureProdViolationLt
-import CORALean.Global.MapProdPiOfIndep
-import CORALean.Global.IndepPointOfMDependent
-import CORALean.Global.ExistsSeparatedCardEq
+module
+
+public import CORALean.Global.IpmExistsSubsetCardEq
+public import CORALean.Global.IpmSolCongr
+public import CORALean.Global.MeasureProdViolationLt
+public import CORALean.Global.MapProdPiOfIndep
+public import CORALean.Global.IndepPointOfMDependent
+public import CORALean.Global.ExistsSeparatedCardEq
+
+@[expose] public section
 
 /-!
 # The reliability of an interval predictor model from `M`-dependent data

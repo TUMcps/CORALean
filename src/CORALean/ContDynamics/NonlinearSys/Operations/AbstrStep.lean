@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrInit
-import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
-import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrInit
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
+public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 3-16: one iteration of the main loop

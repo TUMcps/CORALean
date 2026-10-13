@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Symmetric
-import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
-import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
-import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyBoundS
-import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Symmetric
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyBoundS
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
+
+@[expose] public section
 
 /-!
 # One step of Horner's rule, over a floating-point scalar

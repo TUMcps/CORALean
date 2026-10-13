@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
-import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `ConZonotope.supportBound`

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptorLPV
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptorLPV
+
+@[expose] public section
 
 /-!
 # The zonotopic set-membership estimator for descriptor LPV systems

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.SupportBound
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # The float support bound of a constrained polynomial zonotope is an upper bound

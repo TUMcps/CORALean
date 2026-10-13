@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Taylm_to_PolyZonotope
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+module
+
+public import CORALean.ContSet.Conversion.Real.Taylm_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+
+@[expose] public section
 
 /-!
 # An array of Taylor models as a constrained polynomial zonotope

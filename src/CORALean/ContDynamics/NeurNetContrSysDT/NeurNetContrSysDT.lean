@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.NN.NeuralNetwork
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.NN.NeuralNetwork
+
+@[expose] public section
 
 /-!
 # A neural network in the loop of a discrete-time plant: the representation

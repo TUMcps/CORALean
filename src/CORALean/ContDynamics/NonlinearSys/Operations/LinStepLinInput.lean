@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
-import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+
+@[expose] public section
 
 /-!
 # The input set one re-linearization step has to be given

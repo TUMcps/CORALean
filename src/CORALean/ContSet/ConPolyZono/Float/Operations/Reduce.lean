@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
-import CORALean.ContSet.ConPolyZono.Float.Operations.ReduceGirard
-import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ReduceGirard
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduce`

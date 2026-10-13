@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesSubsetClosedBall
-import CORALean.Specification.STL.Operations.DepReachAt
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesSubsetClosedBall
+public import CORALean.Specification.STL.Operations.DepReachAt
+
+@[expose] public section
 
 /-!
 # The curvature set at the `i`-th step lies in a ball independent of `i`

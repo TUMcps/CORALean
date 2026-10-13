@@ -1,6 +1,10 @@
-import CORALean.Global.ExactScalar
-import CORALean.HybridDynamics.Parallel.Operations.SyncPick
-import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
+module
+
+public import CORALean.Global.ExactScalar
+public import CORALean.HybridDynamics.Parallel.Operations.SyncPick
+public import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
+
+@[expose] public section
 
 /-!
 # `liftSyncTransition`

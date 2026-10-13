@@ -1,18 +1,22 @@
-import CORALean.Global.JacobiSliceExistence
-import CORALean.ContSet.Interval.Float.Theorems.LeSound
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
-import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
-import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianBoxOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobiSliceMemSliceBox
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
+module
+
+public import CORALean.Global.JacobiSliceExistence
+public import CORALean.ContSet.Interval.Float.Theorems.LeSound
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
+public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianBoxOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobiSliceMemSliceBox
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
+
+@[expose] public section
 
 /-!
 # An accepted `innerStep` proves an inner box

@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
-import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
-import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConPolyZono
-import CORALean.ContSet.Zonotope.Float.Operations.Point
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConPolyZono
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.minkDiff` over a floating-point scalar

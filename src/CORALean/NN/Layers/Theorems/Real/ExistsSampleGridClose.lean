@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.PolySampling
+module
+
+public import CORALean.NN.Layers.Definitions.PolySampling
+
+@[expose] public section
 
 /-!
 # Every point of the box is near an exact sample

@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
-import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
-import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
+public import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
+
+@[expose] public section
 
 /-!
 # `dropAligned` denotes the same set, exactly

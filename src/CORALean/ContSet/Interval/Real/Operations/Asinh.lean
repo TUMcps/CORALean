@@ -1,5 +1,9 @@
-import Mathlib.Analysis.SpecialFunctions.Arsinh
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Arsinh
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.asinh`

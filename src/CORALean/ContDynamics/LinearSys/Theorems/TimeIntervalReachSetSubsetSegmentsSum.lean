@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # The time-interval reachable set inside an exact sum, not a representation

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.Analysis.Real.Sqrt
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.Analysis.Real.Sqrt
+
+@[expose] public section
 
 /-!
 # `HPolytope.normalizeRows`

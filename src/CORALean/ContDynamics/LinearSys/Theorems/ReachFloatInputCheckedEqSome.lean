@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputChecked
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputChecked
+
+@[expose] public section
 
 /-!
 # A checked `reachFloatInput` that returns a result returns the unchecked one

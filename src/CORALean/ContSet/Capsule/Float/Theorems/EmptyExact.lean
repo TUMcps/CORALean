@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.Empty
-import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Empty
+public import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
+
+@[expose] public section
 
 /-!
 # `Capsule.empty` is exactly empty

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # The selection matrix reads the output off the window

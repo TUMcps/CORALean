@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
-import CORALean.NN.Layers.Theorems.CoarseBounds
-import CORALean.NN.Layers.Theorems.OfBracketSound
-import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
+public import CORALean.NN.Layers.Theorems.CoarseBounds
+public import CORALean.NN.Layers.Theorems.OfBracketSound
+public import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
+
+@[expose] public section
 
 /-!
 # The sampled polynomial relaxation is sound

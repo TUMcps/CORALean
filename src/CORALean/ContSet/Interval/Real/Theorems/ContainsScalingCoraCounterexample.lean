@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.ContainsScalingCora
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ContainsScalingCora
+
+@[expose] public section
 
 /-!
 # CORA's `interval/contains_` scaling branch accepts a point outside the interval

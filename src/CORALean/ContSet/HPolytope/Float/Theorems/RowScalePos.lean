@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.RowScale
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.RowScale
+
+@[expose] public section
 
 /-!
 # A row scale is positive

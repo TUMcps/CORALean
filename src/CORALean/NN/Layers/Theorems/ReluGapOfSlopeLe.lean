@@ -1,6 +1,10 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Layers.Operations.ReluGapUp
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Definitions.Relu
+public import CORALean.NN.Layers.Operations.ReluGapUp
+
+@[expose] public section
 
 /-!
 # The rounded gap bounds the exact one

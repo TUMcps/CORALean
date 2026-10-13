@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduce`'s constraint counts

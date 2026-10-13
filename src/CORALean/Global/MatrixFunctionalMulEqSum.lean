@@ -1,5 +1,9 @@
-import CORALean.Global.MatrixFunctionalEqSumSingle
-import CORALean.Global.MatrixTraceTransposeMulEqSum
+module
+
+public import CORALean.Global.MatrixFunctionalEqSumSingle
+public import CORALean.Global.MatrixTraceTransposeMulEqSum
+
+@[expose] public section
 
 /-!
 # A linear functional of a product `H X`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.BnbStep
-import CORALean.ContSet.Taylm.Real.Operations.ListMin
-import CORALean.ContSet.Taylm.Real.Operations.ListMax
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BnbStep
+public import CORALean.ContSet.Taylm.Real.Operations.ListMin
+public import CORALean.ContSet.Taylm.Real.Operations.ListMax
+
+@[expose] public section
 
 /-!
 # The branch and bound loop

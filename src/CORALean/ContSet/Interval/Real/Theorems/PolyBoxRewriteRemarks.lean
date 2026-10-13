@@ -1,5 +1,9 @@
-import Mathlib.Tactic.Ring
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Tactic.Ring
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The two rewritings of the remarks are identities

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplication
-import CORALean.ContSet.Zonotope.Float.Theorems.CubContractBracket
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplication
+public import CORALean.ContSet.Zonotope.Float.Theorems.CubContractBracket
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
+
+@[expose] public section
 
 /-!
 # `tensorHDown` and `tensorHUp` bracket the generators of `tensorMultiplication`

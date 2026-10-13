@@ -1,7 +1,11 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Interval
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Interval
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.enclosingBox`: the box `Eq. 2` encloses by

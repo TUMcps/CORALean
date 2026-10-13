@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.BranchAndBound
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BranchAndBound
+
+@[expose] public section
 
 /-!
 # `Taylm.optBnb`, over a floating-point scalar

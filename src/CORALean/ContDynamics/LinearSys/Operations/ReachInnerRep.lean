@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
+
+@[expose] public section
 
 /-!
 # The inner approximation, at a representation

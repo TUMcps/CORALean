@@ -1,14 +1,18 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BoundIntersect2DScan
-import CORALean.ContSet.Zonotope.Real.Theorems.ScanFold
-import CORALean.ContSet.Zonotope.Real.Theorems.SectionEqIccWalkEdges
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
-import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipCompl
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerSuccAdd
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerNotSuccSub
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructPointUp
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructCompPerm
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
-import CORALean.ContSet.Zonotope.Real.Theorems.PointUpHalfPlane
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BoundIntersect2DScan
+public import CORALean.ContSet.Zonotope.Real.Theorems.ScanFold
+public import CORALean.ContSet.Zonotope.Real.Theorems.SectionEqIccWalkEdges
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipCompl
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerSuccAdd
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerNotSuccSub
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructPointUp
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructCompPerm
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.PointUpHalfPlane
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3] returns the section of the zonogon

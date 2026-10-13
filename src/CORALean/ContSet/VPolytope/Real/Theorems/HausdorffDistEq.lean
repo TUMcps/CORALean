@@ -1,10 +1,14 @@
-import CORALean.ContSet.VPolytope.Real.Operations.HausdorffDist
-import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
-import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import Mathlib.Analysis.Convex.Jensen
-import Mathlib.Topology.MetricSpace.HausdorffDistance
-import Mathlib.Analysis.Convex.Function
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.HausdorffDist
+public import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import Mathlib.Analysis.Convex.Jensen
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+public import Mathlib.Analysis.Convex.Function
+
+@[expose] public section
 
 /-!
 # `VPolytope.hausdorffDist` is the Hausdorff distance in the Euclidean norm

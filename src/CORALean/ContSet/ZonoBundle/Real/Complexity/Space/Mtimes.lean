@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Complexity.Space.Mtimes
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Mtimes
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mtimes`'s counts

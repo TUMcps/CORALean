@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.getSubset` over-approximates the exact re-parametrization

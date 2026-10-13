@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeOfBounds
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorSetSuccSubset
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
-import CORALean.Global.MulVecPosNegBounds
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeOfBounds
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorSetSuccSubset
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTransformed
+public import CORALean.Global.MulVecPosNegBounds
+
+@[expose] public section
 
 /-!
 # The reachability-based estimator is tighter than the transformed interval observer

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Interval.Real.Operations.MinkDiff
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Interval.Real.Operations.MinkDiff
+
+@[expose] public section
 
 /-!
 # `Interval.minkDiff` is an inner approximation of the Minkowski difference

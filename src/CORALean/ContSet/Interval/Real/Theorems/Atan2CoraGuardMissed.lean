@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Atan2
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Atan2
+
+@[expose] public section
 
 /-!
 # A `levelSet` guard written with `atan2` is evaluated with the corner hull, and misses

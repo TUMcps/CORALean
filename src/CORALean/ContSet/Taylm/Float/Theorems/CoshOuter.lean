@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Cosh
-import CORALean.ContSet.Taylm.Float.Theorems.HyperbolicOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Cosh
+public import CORALean.ContSet.Taylm.Float.Theorems.HyperbolicOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.cosh` encloses `cosh ∘ f`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsEllipsoidCora
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsEllipsoidCora
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Algebra.Order.Star.Real
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # CORA's ellipsoid-in-ellipsoid `contains_` accepts a disjoint degenerate ellipsoid

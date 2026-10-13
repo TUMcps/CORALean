@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # `Box_S`: the `S`-band intersection of a zonotope

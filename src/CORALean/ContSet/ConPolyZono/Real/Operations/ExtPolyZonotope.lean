@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
-import Mathlib.Algebra.Module.Prod
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
+public import Mathlib.Algebra.Module.Prod
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.extPolyZonotope`

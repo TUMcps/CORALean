@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+
+@[expose] public section
 
 /-!
 # A Chebyshev centre lies in its polytope

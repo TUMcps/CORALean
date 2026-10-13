@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.ElementwiseAffine
-import CORALean.NN.Layers.Theorems.LinearSound
+module
+
+public import CORALean.NN.Layers.Operations.ElementwiseAffine
+public import CORALean.NN.Layers.Theorems.LinearSound
+
+@[expose] public section
 
 /-!
 # What the elementwise affine layer encloses

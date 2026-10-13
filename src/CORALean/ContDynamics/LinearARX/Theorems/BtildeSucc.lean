@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.Btilde
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Btilde
+
+@[expose] public section
 
 /-!
 # One more step of the input parameters

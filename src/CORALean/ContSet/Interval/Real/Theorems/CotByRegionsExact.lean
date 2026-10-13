@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.CotByRegions
-import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
-import CORALean.ContSet.Interval.Real.Theorems.TanUnboundedOfPole
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.CotByRegions
+public import CORALean.ContSet.Interval.Real.Theorems.ModSubModCases
+public import CORALean.ContSet.Interval.Real.Theorems.TanUnboundedOfPole
+public import Mathlib.Topology.Order.IntermediateValue
+
+@[expose] public section
 
 /-!
 # `Interval.cotByRegions` is the cotangent's range, or its hull `]-∞, ∞[`

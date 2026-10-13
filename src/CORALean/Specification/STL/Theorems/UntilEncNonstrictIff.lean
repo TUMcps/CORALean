@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.MILPEncoding
+module
+
+public import CORALean.Specification.STL.Definitions.MILPEncoding
+
+@[expose] public section
 
 /-!
 # The unbounded until of the encoding, unrolled

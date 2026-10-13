@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
-import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionB
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
-import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecAppend
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecAppend
+
+@[expose] public section
 
 /-!
 # The bound `intersectionB` reads back to the exact layer's, at the tolerance `intersectionD`

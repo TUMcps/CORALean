@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The printed P-radius contraction fails after a reduction

@@ -1,10 +1,12 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.Definitions.API
-import CORALean.ContDynamics.LinearSys.Instances
-import CORALean.ContDynamics.LinearSys.Krylov.API
-import CORALean.ContDynamics.LinearSys.MatExp.API
-import CORALean.ContDynamics.LinearSys.Operations.API
-import CORALean.ContDynamics.LinearSys.Theorems.API
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.Definitions.API
+public import CORALean.ContDynamics.LinearSys.Instances
+public import CORALean.ContDynamics.LinearSys.Krylov.API
+public import CORALean.ContDynamics.LinearSys.MatExp.API
+public import CORALean.ContDynamics.LinearSys.Operations.API
+public import CORALean.ContDynamics.LinearSys.Theorems.API
 
 /-!
 # Continuous-time linear systems, collected

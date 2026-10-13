@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetBox
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetSubsetAt
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetBox
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetSubsetAt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
+
+@[expose] public section
 
 /-!
 # `getSubset` represents the subset a factor sub-box reaches

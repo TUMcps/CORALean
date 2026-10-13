@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Theorems.HoldsOfRun
-import CORALean.Specification.Theorems.CheckSound
+module
+
+public import CORALean.HybridDynamics.Theorems.HoldsOfRun
+public import CORALean.Specification.Theorems.CheckSound
+
+@[expose] public section
 
 /-!
 # A passed check on the invariant holds along every run

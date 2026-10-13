@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceMulNonneg
-import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceLmiMul
-import CORALean.Global.LinProg.LinProg
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceMulNonneg
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceLmiMul
+public import CORALean.Global.LinProg.LinProg
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.supportBound`

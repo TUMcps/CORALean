@@ -1,4 +1,8 @@
-import CORALean.Global.Radstrom
+module
+
+public import CORALean.Global.Radstrom
+
+@[expose] public section
 
 /-!
 # Rådström's cancellation law, as an equality

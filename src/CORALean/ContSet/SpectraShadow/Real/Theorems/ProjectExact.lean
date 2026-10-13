@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Project
-import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Project
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.project` is exactly the projected set

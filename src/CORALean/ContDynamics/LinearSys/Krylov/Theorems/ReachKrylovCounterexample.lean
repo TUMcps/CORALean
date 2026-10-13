@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Complex.ExponentialBounds
-import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Complex.ExponentialBounds
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+
+@[expose] public section
 
 /-!
 # CORA's `reach` with `linAlg = 'krylov'` misses a trajectory

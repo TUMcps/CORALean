@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
+
+@[expose] public section
 
 /-!
 # `EXPLORE BN` visits only vertices below the plane

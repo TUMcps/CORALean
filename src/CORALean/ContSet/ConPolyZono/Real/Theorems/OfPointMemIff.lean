@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
-import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
-import Mathlib.Algebra.Group.Fin.Tuple
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
+public import Mathlib.Algebra.Group.Fin.Tuple
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.ofPoint` denotes exactly one point

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
-import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclose` encloses the hull of `E` and `M Eplus`

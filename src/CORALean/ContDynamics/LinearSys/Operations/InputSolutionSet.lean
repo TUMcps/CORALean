@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
-import CORALean.ContDynamics.LinearSys.Operations.InputTerm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
+public import CORALean.ContDynamics.LinearSys.Operations.InputTerm
+
+@[expose] public section
 
 /-!
 # The outer approximation of the particular solution over one step, as a set

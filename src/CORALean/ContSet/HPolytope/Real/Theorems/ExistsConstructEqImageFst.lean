@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.Global.Tensor
-import Mathlib.Data.Finset.Fold
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Finset.Fold
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # A halfspace description's shadow is one

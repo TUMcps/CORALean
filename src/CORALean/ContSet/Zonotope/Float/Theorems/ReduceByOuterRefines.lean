@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceBy` encloses the exact reduction

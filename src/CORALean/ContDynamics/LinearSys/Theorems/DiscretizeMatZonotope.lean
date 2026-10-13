@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotope
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotope
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
+
+@[expose] public section
 
 /-!
 # A sampled trajectory of the matrix-zonotope system

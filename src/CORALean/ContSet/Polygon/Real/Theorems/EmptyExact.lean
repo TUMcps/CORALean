@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.Empty
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Empty
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.empty` is the empty set

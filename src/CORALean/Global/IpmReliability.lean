@@ -1,6 +1,10 @@
-import CORALean.Global.IpmExistsSubsetCardEq
-import CORALean.Global.IpmSolCongr
-import CORALean.Global.MeasureProdViolationLt
+module
+
+public import CORALean.Global.IpmExistsSubsetCardEq
+public import CORALean.Global.IpmSolCongr
+public import CORALean.Global.MeasureProdViolationLt
+
+@[expose] public section
 
 /-!
 # The reliability of an identified interval predictor model

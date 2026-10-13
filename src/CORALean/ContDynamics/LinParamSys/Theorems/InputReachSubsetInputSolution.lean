@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
+
+@[expose] public section
 
 /-!
 # `inputSolution` contains everything the input can contribute at one member

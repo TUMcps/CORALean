@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
-import CORALean.ContSet.Zonotope.Real.Theorems.PCABasisIsUnitDet
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
+public import CORALean.ContSet.Zonotope.Real.Theorems.PCABasisIsUnitDet
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
+
+@[expose] public section
 
 /-!
 # `pca` over-approximates

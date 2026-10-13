@@ -1,12 +1,16 @@
-import CORALean.NN.Graph.Operations.DegreeInf
-import CORALean.NN.Graph.Operations.DegreeSup
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.InvSqrt
-import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Definitions.ScaleRounding
-import CORALean.NN.Layers.Operations.LayerRelaxationBox
-import CORALean.NN.Layers.Operations.RelaxationBox
+module
+
+public import CORALean.NN.Graph.Operations.DegreeInf
+public import CORALean.NN.Graph.Operations.DegreeSup
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Definitions.InvSqrt
+public import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Definitions.ScaleRounding
+public import CORALean.NN.Layers.Operations.LayerRelaxationBox
+public import CORALean.NN.Layers.Operations.RelaxationBox
+
+@[expose] public section
 
 /-!
 # The inverse-square-root relaxation's offset over an uncertain degree

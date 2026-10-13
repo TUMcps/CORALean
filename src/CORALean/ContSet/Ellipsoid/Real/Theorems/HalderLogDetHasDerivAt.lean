@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
-import Mathlib.Analysis.SpecialFunctions.Log.Deriv
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
+public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
+
+@[expose] public section
 
 /-!
 # The derivative of the volume criterion

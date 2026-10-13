@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Mtimes
-import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
-import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Mtimes
+public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.mtimes` encloses the matrix image

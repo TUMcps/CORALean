@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # A slope out of a bound on the derivative

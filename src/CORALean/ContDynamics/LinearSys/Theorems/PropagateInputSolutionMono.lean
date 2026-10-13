@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
+
+@[expose] public section
 
 /-!
 # The propagation preserves an enclosure of the one-step set

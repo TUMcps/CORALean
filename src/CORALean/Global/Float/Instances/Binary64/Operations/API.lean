@@ -1,15 +1,17 @@
-import CORALean.Global.Float.Instances.Binary64.Operations.AddDown
-import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
-import CORALean.Global.Float.Instances.Binary64.Operations.DivDown
-import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
-import CORALean.Global.Float.Instances.Binary64.Operations.Half
-import CORALean.Global.Float.Instances.Binary64.Operations.InRange
-import CORALean.Global.Float.Instances.Binary64.Operations.Maximum
-import CORALean.Global.Float.Instances.Binary64.Operations.Minimum
-import CORALean.Global.Float.Instances.Binary64.Operations.MulDown
-import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
-import CORALean.Global.Float.Instances.Binary64.Operations.NextUp
-import CORALean.Global.Float.Instances.Binary64.Operations.StepUp
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Operations.AddDown
+public import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
+public import CORALean.Global.Float.Instances.Binary64.Operations.DivDown
+public import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
+public import CORALean.Global.Float.Instances.Binary64.Operations.Half
+public import CORALean.Global.Float.Instances.Binary64.Operations.InRange
+public import CORALean.Global.Float.Instances.Binary64.Operations.Maximum
+public import CORALean.Global.Float.Instances.Binary64.Operations.Minimum
+public import CORALean.Global.Float.Instances.Binary64.Operations.MulDown
+public import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
+public import CORALean.Global.Float.Instances.Binary64.Operations.NextUp
+public import CORALean.Global.Float.Instances.Binary64.Operations.StepUp
 
 /-!
 # Native binary64: the operations, collected

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
-import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
+
+@[expose] public section
 
 /-!
 # Half a difference of two vectors in boxes is in the halved difference box

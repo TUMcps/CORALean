@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Operations.MulLo
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+
+@[expose] public section
 
 /-!
 # `Interval.mulLo` never exceeds the exact corner hull

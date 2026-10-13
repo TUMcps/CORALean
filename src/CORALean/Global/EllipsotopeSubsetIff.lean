@@ -1,4 +1,8 @@
-import CORALean.Global.CoeffNormBallEq
+module
+
+public import CORALean.Global.CoeffNormBallEq
+
+@[expose] public section
 
 /-!
 # Ellipsotope containment as a maximum

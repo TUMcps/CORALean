@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # `[1, Sec. II (sign of the distance)]`: zero, not negative, on the boundary

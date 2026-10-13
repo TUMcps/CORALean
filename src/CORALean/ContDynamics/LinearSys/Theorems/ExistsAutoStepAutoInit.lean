@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoInit
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoInit
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
+
+@[expose] public section
 
 /-!
 # `Thm. 1` with nothing carried: the first iteration of `Alg. 2` always completes

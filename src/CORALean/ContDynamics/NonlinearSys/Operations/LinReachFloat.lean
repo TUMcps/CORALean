@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAlg
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.HessRemainder
-import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAlg
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.HessRemainder
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
+
+@[expose] public section
 
 /-!
 # One step of `linReach` at `alg = 'lin'` or `'poly'`, in floats

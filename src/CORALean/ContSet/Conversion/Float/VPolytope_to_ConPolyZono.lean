@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.VPolytope_to_PolyZonotope
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
+module
+
+public import CORALean.ContSet.Conversion.Float.VPolytope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
+
+@[expose] public section
 
 /-!
 # A hull as a constrained polynomial zonotope, over a floating-point scalar

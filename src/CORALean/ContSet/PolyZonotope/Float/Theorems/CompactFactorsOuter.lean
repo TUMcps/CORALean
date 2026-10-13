@@ -1,6 +1,10 @@
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
+
+@[expose] public section
 
 /-!
 # `compactFactors` over-approximates, dropping unused factors

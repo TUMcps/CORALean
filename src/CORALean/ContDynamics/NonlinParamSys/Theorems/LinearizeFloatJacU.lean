@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The float input Jacobian encloses it at every parameter

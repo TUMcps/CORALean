@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.NN.Layers.Operations.LinearWithError
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.NN.Layers.Operations.LinearWithError
+
+@[expose] public section
 
 /-!
 # The linear layer with an error box, at every value of the error

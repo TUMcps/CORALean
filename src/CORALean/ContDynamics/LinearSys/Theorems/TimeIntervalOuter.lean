@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
+
+@[expose] public section
 
 /-!
 # `timeIntervalStep` contains the flow at every time in the step

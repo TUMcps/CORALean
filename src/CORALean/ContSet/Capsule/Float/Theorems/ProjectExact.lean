@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.Project
-import CORALean.ContSet.Capsule.Real.Theorems.ProjectExact
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Project
+public import CORALean.ContSet.Capsule.Real.Theorems.ProjectExact
+
+@[expose] public section
 
 /-!
 # `Capsule.project` is exactly the projected set, over a floating-point scalar

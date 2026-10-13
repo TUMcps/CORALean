@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.LinearARX
-import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+module
+
+public import CORALean.ContDynamics.LinearARX.LinearARX
+public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+
+@[expose] public section
 
 /-!
 # The reachable outputs of a state-space model

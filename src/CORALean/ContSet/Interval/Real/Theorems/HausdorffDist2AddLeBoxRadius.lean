@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # `Prop. 1`: a Minkowski summand's box bounds how far the sum moves

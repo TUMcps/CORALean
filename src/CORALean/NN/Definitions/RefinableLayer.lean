@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Layer
+module
+
+public import CORALean.NN.Layers.Layer
+
+@[expose] public section
 
 /-!
 # A layer at every level of precision

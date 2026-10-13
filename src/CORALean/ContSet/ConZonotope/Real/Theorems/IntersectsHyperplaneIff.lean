@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A constrained zonotope meets a hyperplane exactly between its extremes

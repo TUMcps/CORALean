@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Contains
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Contains
+
+@[expose] public section
 
 /-!
 # `LevelSet.contains` decides membership

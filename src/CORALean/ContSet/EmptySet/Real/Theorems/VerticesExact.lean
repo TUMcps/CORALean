@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Vertices
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Vertices
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.vertices` spans the empty set

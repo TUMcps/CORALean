@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.SigmoidLtOne
+module
+
+public import CORALean.NN.Layers.Theorems.Real.SigmoidLtOne
+
+@[expose] public section
 
 /-!
 # The logistic function's derivative is at most one

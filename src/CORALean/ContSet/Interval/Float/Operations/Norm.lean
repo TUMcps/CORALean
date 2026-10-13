@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.NormMag
-import CORALean.Global.Float.EuclideanNorm
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.NormMag
+public import CORALean.Global.Float.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Interval.normSq` over floats

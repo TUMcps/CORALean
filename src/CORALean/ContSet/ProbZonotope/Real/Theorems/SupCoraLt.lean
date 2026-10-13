@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.UnitMeanIntervalCora
-import CORALean.ContSet.ProbZonotope.Real.Operations.SupCora
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.UnitMeanIntervalCora
+public import CORALean.ContSet.ProbZonotope.Real.Operations.SupCora
+
+@[expose] public section
 
 /-!
 # CORA's `sup` of a probabilistic zonotope is below the norm of a mean

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+
+@[expose] public section
 
 /-!
 # A point of a zonotope is within the sum of the generator lengths of the centre
