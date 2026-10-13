@@ -29,10 +29,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- `reachFloat`, or `none` if a float of its result is a NaN. -/
 def NonlinParamSys.reachFloatChecked (_sys : NonlinParamSys n m q)
-    (fm : NonlinearSys.FloatModel 𝕋 (n + q) m) (P : Zonotope 𝕋 q)
-    (params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ)
+    (fm : NonlinearSys.FloatModel 𝕋 (n + q) m) (P : Zonotope (Vec 𝕋 q))
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
     (options : LinearSys.ReachOptions 𝕋) :
-    Option (List (Zonotope 𝕋 n)) :=
+    Option (List (Zonotope (Vec 𝕋 n))) :=
   checkNoNaN (𝕋 := 𝕋) (NonlinParamSys.reachFloat _sys fm P params options)
 
 end CORALean

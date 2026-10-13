@@ -25,11 +25,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.empty_exact (n : ℕ) (hn : 0 < n) :
-    (ZonoBundle.empty n hn : ZonoBundle 𝕋 n).construct = ∅ := by -- --- PROOF ---
+    (ZonoBundle.empty n hn : ZonoBundle (Vec 𝕋 n)).construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [ZonoBundle.construct, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
   intro h
-  have h0 : x ∈ (Zonotope.origin n : Zonotope 𝕋 n).construct := h (0 : Fin 2)
+  have h0 : x ∈ (Zonotope.origin n : Zonotope (Vec 𝕋 n)).construct := h (0 : Fin 2)
   have h1 : x ∈ (Zonotope.point fun i : Fin n =>
       if i = ⟨0, hn⟩ then (one : 𝕋) else zero).construct := h (1 : Fin 2)
   rw [Zonotope.origin_exact, Set.mem_singleton_iff] at h0

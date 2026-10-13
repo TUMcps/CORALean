@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.convex_construct (Z : Zonotope 𝕋 n) : Convex ℝ Z.construct :=
+theorem Zonotope.convex_construct (Z : Zonotope (Vec 𝕋 n)) : Convex ℝ Z.construct :=
   Convex.add (nominal Z).convex_construct Z.E.nominal.convex_construct
 
 end CORALean.Float

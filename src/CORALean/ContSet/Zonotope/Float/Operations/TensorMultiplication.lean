@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.tensorMultiplication (Z : Zonotope 𝕋 n) (M : Zonotope.Tensor3 𝕋 n)
-    (L : Real.Zonotope.TensorLists Z.dependent.h) : Zonotope 𝕋 n where
+def Zonotope.tensorMultiplication (Z : Zonotope (Vec 𝕋 n)) (M : Zonotope.Tensor3 𝕋 n)
+    (L : Real.Zonotope.TensorLists Z.dependent.h) : Zonotope (Vec 𝕋 n) where
   h := L.C
   c := fun _ => zero
   G := fun cInd iDim => Zonotope.tensorHDown M Z.dependent L iDim cInd

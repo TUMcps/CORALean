@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [2, Alg. 2] as `aux_InnerSpecial` runs it. -/
-def PolyZonotope.innerSpecial (pZ : PolyZonotope 𝕋 n) (X X₀ : Interval (Vec 𝕋 pZ.p))
+def PolyZonotope.innerSpecial (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (Vec 𝕋 pZ.p))
     (Y : Interval (Vec 𝕋 n)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ)
     (h : n = pZ.p) : Bool :=
   -- every coordinate is `u₁`

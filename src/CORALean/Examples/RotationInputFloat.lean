@@ -32,7 +32,7 @@ open CORALean CORALean.Float CORALean.RotationFloat
 def BD : Mat (Dyadic 64) 2 1 := !![d 0 0; d 1 0]
 
 /-- `[3/8, 5/8]`, centred at `1/2`: `0` is not in it. -/
-def UD : Zonotope (Dyadic 64) 1 where
+def UD : Zonotope (Vec (Dyadic 64) 1) where
   h := 1
   c := ![d 1 (-1)]
   G := !![d 1 (-3)]
@@ -40,33 +40,34 @@ def UD : Zonotope (Dyadic 64) 1 where
 
 /-- `[0, 1/8]` in eight windows, Taylor order at least `4`, order `10`: the windows,
 then `R_0, …, R_8`. -/
-def recursiveD : Option (List (Zonotope (Dyadic 64) 2) × List (Zonotope (Dyadic 64) 2)) :=
+def recursiveD : Option (List (Zonotope (Vec (Dyadic 64) 2)) × List
+    (Zonotope (Vec (Dyadic 64) 2))) :=
   sysD.reachFloatInput BD { R0 := X₀D, U := UD, tFinal := 1 / 8 }
     { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
 
 /-- The same settings, each window from the first by `[e^{A t_k}]`. -/
-def wrapFreeD : Option (List (Zonotope (Dyadic 64) 2)) :=
+def wrapFreeD : Option (List (Zonotope (Vec (Dyadic 64) 2))) :=
   sysD.reachWrappingFreeFloatInput BD { R0 := X₀D, U := UD, tFinal := 1 / 8 }
     { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
 
 /-- What a successful recursive run is worth: every run under every input signal
 in `B U`, over every window. -/
-example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, Rtp)) :=
+example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (Rti, Rtp)) :=
   sysD.reachFloatInput_outer BD h
 
 /-- And at every step. -/
-example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, Rtp)) :=
+example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (Rti, Rtp)) :=
   sysD.reachFloatInput_timePoint_outer BD h
 
 /-- And the wrapping-free run's, over every window. -/
-example {Rs : List (Zonotope (Dyadic 64) 2)} (h : wrapFreeD = some Rs) :=
+example {Rs : List (Zonotope (Vec (Dyadic 64) 2))} (h : wrapFreeD = some Rs) :=
   sysD.reachWrappingFreeFloatInput_outer BD h
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The time-point sets' centres, through `Float`. -/
-def centres (Rs : List (Zonotope (Dyadic 64) 2)) : List (List Float) :=
+def centres (Rs : List (Zonotope (Vec (Dyadic 64) 2))) : List (List Float) :=
   Rs.map fun Z => List.ofFn fun i => dToFloat (Z.c i)
 
 #eval recursiveD.map fun r => r.1.map (summary dToFloat)

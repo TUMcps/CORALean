@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The independent sum with generator `j` halved and coefficient `j` replaced by `b`. -/
-theorem PolyZonotope.aux_sum_update (pZ : PolyZonotope 𝕋 n) (j : Fin pZ.q) (β : Vec ℝ pZ.q)
+theorem PolyZonotope.aux_sum_update (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ.q) (β : Vec ℝ pZ.q)
     (b : ℝ) (i : Fin n) :
     ∑ k, toReal (Function.update pZ.GI j (fun i => half (pZ.GI j i)) k i)
         * Function.update β j b k
@@ -49,7 +49,7 @@ theorem PolyZonotope.aux_sum_update (pZ : PolyZonotope 𝕋 n) (j : Fin pZ.q) (�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.splitIndepGen_outer (pZ : PolyZonotope 𝕋 n) (j : Fin pZ.q) :
+theorem PolyZonotope.splitIndepGen_outer (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ.q) :
     pZ.construct ⊆
       (pZ.splitIndepGen j).1.construct ∪ (pZ.splitIndepGen j).2.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩

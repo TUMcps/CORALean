@@ -37,13 +37,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `encloseTight(zB1, zB2, W)`, for the Stursberg basis `U`. -/
-def ZonoBundle.encloseTight (zB₁ zB₂ : ZonoBundle 𝕋 n) (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k)
-    (W : Fin r → Mat 𝕋 n n) (U : Mat 𝕋 n n) : ZonoBundle 𝕋 n :=
+def ZonoBundle.encloseTight (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k)
+    (W : Fin r → Mat 𝕋 n n) (U : Mat 𝕋 n n) : ZonoBundle (Vec 𝕋 n) :=
   let m := maximumOver ((zB₁.intervalAll hk₁).or (zB₂.intervalAll hk₂)).magnitude -- reach of V
   let box := fun H : Mat 𝕋 n n =>                       -- interval.enclosePoints(H V)
     ((zB₁.mtimes H).intervalAll hk₁).or ((zB₂.mtimes H).intervalAll hk₂)
   { k := r + 1
-    Z := Fin.snoc (α := fun _ => Zonotope 𝕋 n)
+    Z := Fin.snoc (α := fun _ => Zonotope (Vec 𝕋 n))
       (fun i =>
         let H := Zonotope.basisInverse (W i)            -- pinv(W{i}), a candidate
         ZonoBundle.parallelotope (W i) H (box H) m)     -- W{i} * zonotope(box)

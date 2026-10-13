@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.translate (t : Vec 𝕋 n) (P : HPolytope 𝕋 n) : HPolytope 𝕋 n where
+def HPolytope.translate (t : Vec 𝕋 n) (P : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := P.m
   A := P.A
   b := fun i => addUp (P.b i) (dotUp (P.A i) t)

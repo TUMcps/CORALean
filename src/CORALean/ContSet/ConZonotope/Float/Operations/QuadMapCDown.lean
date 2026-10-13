@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The centre of the enclosing zonotope, from below. -/
-def ConZonotope.quadMapCDown (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) : Vec 𝕋 m :=
+def ConZonotope.quadMapCDown (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Vec 𝕋 m :=
   fun i => addDown (ConZonotope.quadBilDown (Q i) cZ.c cZ.c)
     (half (sumDown fun s => ConZonotope.quadBilDown (Q i) (cZ.G s) (cZ.G s)))
 

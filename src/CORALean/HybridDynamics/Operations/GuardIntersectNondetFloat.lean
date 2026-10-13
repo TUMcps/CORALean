@@ -39,16 +39,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The bundle over the bases `Bs`: member `i` boxes the sets in `Bs[i]`, cut to the guard. -/
-def Location.guardIntersectNondetFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zonotope 𝕋 n)
-    (Rs : List (Zonotope 𝕋 n)) (guard : ConZonotope 𝕋 n) : ZonoBundle 𝕋 n where
+def Location.guardIntersectNondetFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zonotope (Vec 𝕋 n))
+    (Rs : List (Zonotope (Vec 𝕋 n))) (guard : ConZonotope 𝕋 (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) where
   k := Bs.length
   Z := fun i =>
     let B := Bs[i]
-    let box := (Rs.map fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) Bᵀ R).interval).foldl Interval.or
-      (Mtimes.mtimes (𝕄 := Mat 𝕋) Bᵀ R₀).interval      -- I_i, the sets boxed in the basis
-    let cZ := ConZonotope.intersection (Zonotope.conZonotope (Mtimes.mtimes (𝕄 := Mat 𝕋) B
+    let box := (Rs.map fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) Bᵀ
+      R).interval).foldl Interval.or
+      (Mtimes.mtimes (𝕄 := Mat 𝕋)  -- I_i, the sets boxed in the basis
+        (S := fun k => Zonotope (Vec 𝕋 k)) Bᵀ R₀).interval
+    let cZ := ConZonotope.intersection
+      (Zonotope.conZonotope (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
       box.zonotope)) guard                               -- the parallelotope cut to the guard
-    Mtimes.mtimes (𝕄 := Mat 𝕋) B (Mtimes.mtimes (𝕄 := Mat 𝕋) Bᵀ cZ).interval.zonotope
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
+      (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ).interval.zonotope
 
 end CORALean
 

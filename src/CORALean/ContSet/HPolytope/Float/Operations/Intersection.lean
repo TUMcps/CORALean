@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.intersection (P₁ P₂ : HPolytope 𝕋 n) : HPolytope 𝕋 n where
+def HPolytope.intersection (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := P₁.m + P₂.m
   A := Fin.append P₁.A P₂.A
   b := Fin.append P₁.b P₂.b

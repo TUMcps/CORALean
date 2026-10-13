@@ -34,13 +34,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.timeIntervalStepZonoFloat_outer
-    (sys : LinParamSys (fun m n => GZonotope (Mat 𝕋 m n)) n) {Δt : 𝕋} {m : ℕ}
+    (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n) {Δt : 𝕋} {m : ℕ}
     (hΔt : 0 < toReal Δt)
-    (hεe : toReal (MatExp.normUpperBound (GZonotope.matSmul Δt Δt sys.A).interval)
+    (hεe : toReal (MatExp.normUpperBound (Zonotope.matSmul Δt Δt sys.A).matInterval)
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
-    (hεF : toReal (MatExp.normUpperBound (Interval.smul Δt Δt sys.A.interval))
+    (hεF : toReal (MatExp.normUpperBound (Interval.smul Δt Δt sys.A.matInterval))
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
-    (R : Zonotope 𝕋 n) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n}
+    (R : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n}
     (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) :
     exp (s • A) *ᵥ x ∈ (sys.timeIntervalStepZonoFloat Δt (m + 2) R).construct := by -- --- PROOF ---
   set r := toReal Δt
@@ -53,18 +53,21 @@ theorem LinParamSys.timeIntervalStepZonoFloat_outer
     simp only [Matrix.sub_mulVec, smul_mulVec, Matrix.one_mulVec, sub_smul, smul_sub, one_smul]
     abel
   -- `Δt • A` lies in the scaled matrix zonotope, so `e^{AΔt} x` in its exponential times `R`
-  have hrA : r • A ∈ (GZonotope.matSmul Δt Δt sys.A).construct :=
-    GZonotope.matSmul_outer le_rfl le_rfl sys.A hA
-  have hE : exp (r • A) *ᵥ x ∈ construct (Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n))
-      (MatExp.expMatZonoEnclosure (GZonotope.matSmul Δt Δt sys.A) (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => GZonotope (Mat 𝕋 m n)) _ R
+  have hrA : r • A ∈ (Zonotope.matSmul Δt Δt sys.A).construct :=
+    Zonotope.matSmul_outer le_rfl le_rfl sys.A hA
+  have hE : exp (r • A) *ᵥ x ∈ construct
+    (Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      (MatExp.expMatZonoEnclosure (Zonotope.matSmul Δt Δt sys.A) (m + 2)) R) :=
+    Mtimes.mtimes_outer (𝕄 := fun m n => Zonotope (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
       (Set.mem_biUnion (MatExp.exp_mem_expMatZonoEnclosure _ (m + 2) hrA hεe)
         (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `F R`
   have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ construct
-      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.matZonoCorrectionMatrix sys.A Δt (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ R
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
       (Set.mem_biUnion (MatExp.expDiff_mem_matZonoCorrectionMatrix _ hΔt hεF hA hs0 hs)
         (Set.mem_image_of_mem _ hx))
   rw [hdecomp]

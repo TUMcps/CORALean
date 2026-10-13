@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored indicator is the real monomial at the factors `0`. -/
-theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.s) :
+theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.s) :
     toReal (cPZ.zeroMonomials k)
       = Real.PolyZonotope.monomial cPZ.EC (fun _ => (0 : ℝ)) k := by -- --- PROOF ---
   unfold ConPolyZono.zeroMonomials Real.PolyZonotope.monomial
@@ -45,7 +45,7 @@ theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.s)
     exact (Finset.prod_eq_zero (Finset.mem_univ l) (by rw [zero_pow hl])).symm
 
 /-- A combination of the stored independent generators is their matrix applied to the weights. -/
-theorem ConPolyZono.aux_sum_gi (cPZ : ConPolyZono 𝕋 n) (β : Vec ℝ cPZ.q) :
+theorem ConPolyZono.aux_sum_gi (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (β : Vec ℝ cPZ.q) :
     (∑ j, β j • (nominal cPZ).GI j)
       = toRealMat (fun i j => cPZ.GI j i) *ᵥ β := by -- --- PROOF ---
   funext i
@@ -55,7 +55,7 @@ theorem ConPolyZono.aux_sum_gi (cPZ : ConPolyZono 𝕋 n) (β : Vec ℝ cPZ.q) :
     ring
 
 /-- The checked rows say the factors `0` satisfy the constraints. -/
-theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 n}
+theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     (h : ∀ i, le (cPZ.b.inf i) (dotDown (cPZ.A i) cPZ.zeroMonomials) = true
       ∧ le (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b.sup i) = true) :
     cPZ.satisfies (fun _ => 0) := by -- --- PROOF ---
@@ -69,7 +69,7 @@ theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 n}
     le_trans (le_dotUp (cPZ.A i) cPZ.zeroMonomials) (toReal_le_of_le (h i).2)⟩
 
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
-theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 n} {H : Mat 𝕋 cPZ.q n} {B : 𝕋}
+theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.q n} {B : 𝕋}
     (hc : Zonotope.ballCert (fun i j => cPZ.GI j i) H B one = true)
     (hsat : cPZ.satisfies (fun _ => 0)) {y₀ : Vec ℝ n}
     (hy₀ : y₀ = (nominal cPZ).c
@@ -89,7 +89,7 @@ theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 n} {H : Mat 𝕋 cPZ.
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 n} {H : Mat 𝕋 cPZ.q n}
+theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.q n}
     (h : cPZ.isFullDimWith H = true) : (interior cPZ.construct).Nonempty := by -- --- PROOF ---
   simp only [ConPolyZono.isFullDimWith, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

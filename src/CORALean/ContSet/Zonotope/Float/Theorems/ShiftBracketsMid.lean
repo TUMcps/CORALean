@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The stored centres bracket the exact shifted one, which is what is left. -/
-theorem Zonotope.shift_brackets_mid (Z : Zonotope 𝕋 n) (i : Fin n) :
+theorem Zonotope.shift_brackets_mid (Z : Zonotope (Vec 𝕋 n)) (i : Fin n) :
     toReal (Z.shiftDown i) ≤ toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2 ∧
       toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2
         ≤ toReal (Z.shiftUp i) := by -- --- PROOF ---

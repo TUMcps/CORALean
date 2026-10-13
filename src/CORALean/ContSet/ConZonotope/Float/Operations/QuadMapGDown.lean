@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The generators of the enclosing zonotope, each rounded down. -/
-def ConZonotope.quadMapGDown (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) :
+def ConZonotope.quadMapGDown (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Fin m → Fin (cZ.h + cZ.h + cZ.h * cZ.h) → 𝕋 :=
   fun i => Fin.append
     (Fin.append

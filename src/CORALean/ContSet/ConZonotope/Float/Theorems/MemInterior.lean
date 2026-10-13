@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.mem_interior {cZ : ConZonotope 𝕋 n} {H : Mat 𝕋 cZ.h n}
+theorem ConZonotope.mem_interior {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cZ.h n}
     {β₀ : Vec 𝕋 cZ.h} {δ B : 𝕋} (hc : cZ.interiorCert H β₀ δ B = true) (y : Vec ℝ n)
     (hy : ∀ i, |y i - (toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))| < toReal B) :
     y ∈ interior (nominalSet cZ) := by -- --- PROOF ---

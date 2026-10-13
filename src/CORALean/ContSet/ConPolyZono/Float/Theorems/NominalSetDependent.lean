@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.nominalSet_dependent (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.nominalSet_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     nominalSet cPZ.dependent = nominalSet cPZ := by
   show Real.ConPolyZono.construct (nominal cPZ.dependent)
     = Real.ConPolyZono.construct (nominal cPZ)

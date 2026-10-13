@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.intersectStripSeqFloat_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p)
-    (Λ : Zonotope 𝕋 n → Mat 𝕋 n p) (Z : Zonotope 𝕋 n) :
+    (Λ : Zonotope (Vec 𝕋 n) → Mat 𝕋 n p) (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
       (LinearSysDT.intersectStripSeqFloat C φ y Λ Z).construct := by -- --- PROOF ---
   unfold LinearSysDT.intersectStripSeqFloat

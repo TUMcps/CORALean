@@ -31,8 +31,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {L : Type} {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The transition with its polytope guard cut to the invariant `inv`. -/
-def Transition.convGuard (e : Transition (HPolytope 𝕋) L 𝕋 n) (inv : HPolytope 𝕋 n) :
-    Transition (HPolytope 𝕋) L 𝕋 n :=
+def Transition.convGuard (e : Transition (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
+    (inv : HPolytope 𝕋 (Vec 𝕋 n)) :
+    Transition (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n :=
   { e with guard := HPolytope.intersection e.guard inv }
 
 end CORALean

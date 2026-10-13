@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `inputSolutionFloat` keeps `0` in its error box, given `U` has it, at `r ≥ 0` and an
 admissible order. -/
 theorem LinearSys.zero_mem_inputSolutionFloat_error (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {U : Zonotope 𝕋 n}
+    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {U : Zonotope (Vec 𝕋 n)}
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) :
     (0 : Vec ℝ n) ∈ (sys.inputSolutionFloat r η U).E.construct := by -- --- PROOF ---
   show (0 : Vec ℝ n) ∈ ((Zonotope.plus _ _).materialise).E.construct

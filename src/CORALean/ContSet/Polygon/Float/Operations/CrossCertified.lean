@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The cross product of `(b - a, c - a)`, certified on one side of zero. -/
-def Polygon.crossCertified (p : VPolytope 𝕋 2) (a b c : Fin p.k) : Bool :=
+def Polygon.crossCertified (p : VPolytope (Vec 𝕋 2)) (a b c : Fin p.k) : Bool :=
   let D := Polygon.orientBounds (p.V a) (p.V b) (p.V c)
   ltStrict zero D.1 || ltStrict D.2 zero
 

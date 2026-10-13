@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- A step from a state holding the invariant reaches a state holding it, later
 in time, and its window holds every run over `[t_i, t_{i+1}] ∩ [0, t_f]`. -/
-theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope 𝕋 n}
+theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} {s s' : LinearSys.AdaptiveState 𝕋 n}
     {r : LinearSys.AdaptiveStepInfo 𝕋 n}
     (h : sys.adaptiveStepFloat X₀ V t₀ tf options s = some (r, s'))
@@ -84,9 +84,11 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     push_cast at h
     rwa [← ToRat.toReal_toRat]⟩
   -- `[e^{At_i}] Z` holds `e^{At_i} z`
-  have hmt : ∀ {Z : Zonotope 𝕋 n} {z : Vec ℝ n}, z ∈ Z.construct → exp (ti • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAt Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAt Z
+  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (ti • A) *ᵥ z
+      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k)) eAt Z) :=
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) eAt Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec (le_max_right _ _) hsq) hlo hhi) (Set.mem_image_of_mem _ hz))
   -- `{ũ}` and `[0, ũ]` hold what they are built from
@@ -105,16 +107,17 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
       (Interval.point V.c).zonotope ?_
     exact ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
-  have hconst : ∀ {W : Zonotope 𝕋 n}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
-      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := Zonotope 𝕋) W τ :=
+  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
+      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
   have hPu := sys.inputReach_subset_inputSolutionFloat hΔr hadm _ (hconst hpt hΔr.le)
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔr hadm Ũ
   -- the `Ũ`-input's share by `t_i + Δt` comes apart at `t_i`
-  have hsep : ∀ y ∈ sys.inputReach (S := Zonotope 𝕋) Ũ (toReal Δt + ti),
-      ∃ p ∈ sys.inputReach (S := Zonotope 𝕋) Ũ (toReal Δt),
-        ∃ q ∈ sys.inputReach (S := Zonotope 𝕋) Ũ ti, y = exp (ti • A) *ᵥ p + q := by
+  have hsep : ∀ y ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ (toReal Δt + ti),
+      ∃ p ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ (toReal Δt),
+        ∃ q ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ ti, y = exp (ti • A)
+          *ᵥ p + q := by
     intro y hy
     obtain ⟨_, ⟨p, hp, rfl⟩, q, hq, rfl⟩ := sys.inputReach_separation_subset hΔr.le
       hti0 (CompactSet.isBounded_construct Ũ) hy
@@ -135,15 +138,15 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
       obtain ⟨p, hp, q, hq, rfl⟩ := hsep y hy
       -- `Γ(t_i) ũ + q` is in `P(t_i)`, the rest is `[e^{At_i}]` of this step's share
       dsimp only
-      refine Reduce.reduce_outer (S := Zonotope 𝕋 n) _ _ ?_
-      refine Plus.plus_outer (S := Zonotope 𝕋 n) _ _ ?_
+      refine Reduce.reduce_outer (S := Zonotope (Vec 𝕋 n)) _ _ ?_
+      refine Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ ?_
       rw [hΓ hΔr.le, show exp (ti • A) *ᵥ (Real.MatExp.expIntegral A (toReal Δt) *ᵥ ũ)
           + Real.MatExp.expIntegral A ti *ᵥ ũ + (exp (ti • A) *ᵥ p + q)
           = (Real.MatExp.expIntegral A ti *ᵥ ũ + q)
             + exp (ti • A) *ᵥ (Real.MatExp.expIntegral A (toReal Δt) *ᵥ ũ + p) by
         rw [Matrix.mulVec_add]; abel]
       exact Set.add_mem_add (hP q hq)
-        (hmt (Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add hPu (hPU hp))))
+        (hmt (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hPu (hPU hp))))
   · intro U x u traj hUV t ht htf
     rw [ht'] at ht
     have ht0 : 0 ≤ t := hti0.trans ht.1
@@ -151,17 +154,21 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     have hτ0 : 0 ≤ τ := sub_nonneg.mpr ht.1
     have hτΔ : τ ≤ toReal Δt := by linarith [ht.2]
     -- the run's departure from the free motion and the constant's share, by `t_{i+1}`
-    have hd := traj.sub_mem_inputReach_recentre (V := V) hUV ⟨ht0, htf⟩
-    have hd' := sys.inputReach_mono (CompactSet.isBounded_construct Ũ)
+    have hd := traj.sub_mem_inputReach_recentre (S' := fun k => Zonotope (Vec 𝕋 k)) (V := V)
+      hUV ⟨ht0, htf⟩
+    have hd' := sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k))
+      (CompactSet.isBounded_construct Ũ)
       (Recentre.zero_mem_recentre V) ht0 ht.2 hd
     obtain ⟨p, hp, q, hq, hpq⟩ := hsep _ hd'
     -- the free motion and the constant over `[0, τ]`, inside `HR₀ ⊕ P̃^R`
     have hc := sys.inputReach_subset_inputSolutionFloat hΔr hadm seg
-      (sys.inputReach_mono (CompactSet.isBounded_construct seg) h0seg hτ0 hτΔ
+      (sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k))
+        (CompactSet.isBounded_construct seg) h0seg hτ0 hτΔ
         (hconst hũseg hτ0))
     have hcore := Plus.plus_outer (sys.timeIntervalStepFloat Δt η X₀)
       (sys.inputSolutionFloat Δt η seg) (Set.add_mem_add
         (sys.timeIntervalStepFloat_outer hΔr hadm X₀ traj.init hτ0 hτΔ) hc)
+    -- `e^{At}` splits at `t_i`, so `x t` regroups as the window's summands
     have hexp : exp (t • A) = exp (ti • A) * exp (τ • A) := by
       rw [show t = ti + τ by ring, add_smul]
       exact exp_add_of_commute (((Commute.refl A).smul_left _).smul_right _)
@@ -173,8 +180,9 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
         Matrix.mulVec_add, Matrix.mulVec_add]
       abel
     rw [hx]
-    exact Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add
-      (hmt (Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add hcore (hPU hp)))) (hP q hq))
+    exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
+      (hmt (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
+        (Set.add_mem_add hcore (hPU hp)))) (hP q hq))
 
 end CORALean
 

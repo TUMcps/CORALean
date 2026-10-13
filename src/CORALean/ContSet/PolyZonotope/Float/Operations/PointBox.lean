@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- An interval holding the dependent point at every factor vector of the box `X`. -/
-def PolyZonotope.pointBox (pZ : PolyZonotope 𝕋 n) (X : Interval (Vec 𝕋 pZ.p)) :
+def PolyZonotope.pointBox (pZ : PolyZonotope (Vec 𝕋 n)) (X : Interval (Vec 𝕋 pZ.p)) :
     Interval (Vec 𝕋 n) :=
   -- `G` with one row per coordinate, the generators as columns
   let Gm : Mat 𝕋 n pZ.h := fun i l => pZ.G l i

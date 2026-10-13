@@ -22,7 +22,7 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
-variable {P₁ P₂ : HPolytope 𝕋 n}
+variable {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

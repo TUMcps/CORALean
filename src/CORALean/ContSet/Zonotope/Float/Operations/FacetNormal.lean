@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The cross product of the generators `S` selects, entry `i` being `(-1)^i` times the minor
 without row `i`. -/
-def Zonotope.facetNormal (Z : Zonotope 𝕋 (n + 1)) (S : Fin n → Fin Z.h) : Vec 𝕋 (n + 1) :=
+def Zonotope.facetNormal (Z : Zonotope (Vec 𝕋 (n + 1))) (S : Fin n → Fin Z.h) : Vec 𝕋 (n + 1) :=
   fun i =>
     let minor := Zonotope.detCandidate fun a b => Z.G (S b) (i.succAbove a)   -- H without row i
     if (i : ℕ) % 2 = 0 then minor else neg minor                              -- (-1)^i

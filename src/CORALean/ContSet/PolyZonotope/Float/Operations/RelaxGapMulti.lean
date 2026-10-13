@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- What the two stored columns can be off by, each the gap to the other
 rounding direction of the same sum. -/
-def PolyZonotope.relaxGapMulti (pZ : PolyZonotope 𝕋 n)
+def PolyZonotope.relaxGapMulti (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : Mat 𝕋 n 2 :=
   fun i =>
     ![subUp (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) (pZ.mergedGen part i),

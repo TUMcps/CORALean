@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.origin (n : ℕ) : Zonotope 𝕋 n := Zonotope.point fun _ => zero
+def Zonotope.origin (n : ℕ) : Zonotope (Vec 𝕋 n) := Zonotope.point fun _ => zero
 
 end CORALean.Float
 

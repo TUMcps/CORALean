@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.radius_le (k : ℕ) (Z : Zonotope 𝕋 n) {x : Vec ℝ n} (hx : x ∈ Z.construct) :
+theorem Zonotope.radius_le (k : ℕ) (Z : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n} (hx : x ∈ Z.construct) :
     ‖x - toRealVec Z.c‖₂ ≤ toReal (Z.radius k) := by -- --- PROOF ---
   obtain ⟨z, hzmem, e, he, rfl⟩ := hx
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hzmem

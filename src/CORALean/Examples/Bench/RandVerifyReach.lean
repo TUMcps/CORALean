@@ -34,10 +34,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
 /-- The windows of `alg` for `S` over `[0, tFinal]` at Taylor order `η` and zonotope order `ρ`. -/
 def randVerifyReach (alg : RandAlg) (S : RandSystem 𝕋) (tFinal : ℚ) (η ρ : ℕ) :
-    Except String (List (Zonotope 𝕋 5)) :=
+    Except String (List (Zonotope (Vec 𝕋 5))) :=
   -- the system, the problem and the algorithm's options, as CORA's `params`/`options`
   let sys : LinearSys 𝕋 5 := ⟨S.A⟩
-  let params : Reach.InputParams (Zonotope 𝕋 5) (Zonotope 𝕋 2) ℚ :=
+  let params : Reach.InputParams (Zonotope (Vec 𝕋 5)) (Zonotope (Vec 𝕋 2)) ℚ :=
     { R0 := S.X0, U := Interval.zonotope S.U, tFinal := tFinal }
   let options : LinearSys.ReachOptions 𝕋 :=
     { timeStep := S.dt, taylorTerms := η, zonotopeOrder := ρ }

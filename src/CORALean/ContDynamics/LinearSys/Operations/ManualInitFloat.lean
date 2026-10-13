@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 1-2, before the first iteration. -/
-def LinearSys.manualInitFloat (X₀ : Zonotope 𝕋 n) : LinearSys.ManualStateFloat 𝕋 n :=
+def LinearSys.manualInitFloat (X₀ : Zonotope (Vec 𝕋 n)) : LinearSys.ManualStateFloat 𝕋 n :=
   { t := 0, tLo := zero, tHi := zero                                -- 1. t₀ ← 0
     H := X₀                                                         -- 2. H(t₀) ← X₀
     Pu := Interval.point fun _ => zero                              -- 2. P^u(t₀) ← 0

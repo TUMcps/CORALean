@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.shiftUp (Z : Zonotope 𝕋 n) : Vec 𝕋 n :=
+def Zonotope.shiftUp (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
   fun i => addUp (Z.c i) (half (addUp (Z.E.inf i) (Z.E.sup i)))
 
 end CORALean.Float

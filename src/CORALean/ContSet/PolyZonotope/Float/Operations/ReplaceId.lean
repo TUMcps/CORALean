@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The factors renamed by `f`, the exponent rows of factors with a common new name added. -/
-def PolyZonotope.replaceId (pZ : PolyZonotope 𝕋 n) {p' : ℕ} (f : Fin pZ.p → Fin p') :
-    PolyZonotope 𝕋 n where
+def PolyZonotope.replaceId (pZ : PolyZonotope (Vec 𝕋 n)) {p' : ℕ} (f : Fin pZ.p → Fin p') :
+    PolyZonotope (Vec 𝕋 n) where
   p := p'
   h := pZ.h
   q := pZ.q

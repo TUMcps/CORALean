@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The edge halfspaces of a piece, when they are certified to lie inside it. -/
-def Polygon.innerHRep (p : VPolytope 𝕋 2) : Option (HPolytope 𝕋 2) :=
+def Polygon.innerHRep (p : VPolytope (Vec 𝕋 2)) : Option (HPolytope 𝕋 (Vec 𝕋 2)) :=
   -- the edge `vᵢ₊₁ - vᵢ`, the last edge closing the loop to `v₀`
   let d : Fin p.k → Vec 𝕋 2 := fun i j => subDown (p.V (finRotate p.k i) j) (p.V i j)
   -- every difference is exact: its upward rounding is no larger than its downward one

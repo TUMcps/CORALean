@@ -19,13 +19,13 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def ZonoBundle.interval (zB : ZonoBundle 𝕋 n) (i : Fin zB.k) : Interval (Vec 𝕋 n) :=
+def ZonoBundle.interval (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) : Interval (Vec 𝕋 n) :=
   (zB.zonotope i).interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.interval_contains (zB : ZonoBundle 𝕋 n) (i : Fin zB.k) :
+theorem ZonoBundle.interval_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
     zB.construct ⊆ (zB.interval i).construct :=
   subset_trans (zB.zonotope_contains i) (Zonotope.interval_contains _)
 

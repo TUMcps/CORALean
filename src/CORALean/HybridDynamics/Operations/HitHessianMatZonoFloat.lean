@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- [1, Prop. 3] at floats: `(C̃⁽ⁱ⁾, G̃^(i,1), …)` from `R(0)`, `τ_c` and `τ_g`. -/
 def GuardMap.hitHessianMatZonoFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
-    (R₀ : Zonotope 𝕋 n) (τc τg : 𝕋) (i : Fin n) : GZonotope (Mat 𝕋 n n) :=
+    (R₀ : Zonotope (Vec 𝕋 n)) (τc τg : 𝕋) (i : Fin n) : Zonotope (Mat 𝕋 n n) :=
   let col : Vec 𝕋 n → Interval (Mat 𝕋 n 1) := fun v => Interval.point fun l _ => v l
   let row : Vec 𝕋 n → Interval (Mat 𝕋 1 n) := fun v => Interval.point fun _ m => v m
   let neg1 : 𝕋 := neg one                                       -- `−1`, exact

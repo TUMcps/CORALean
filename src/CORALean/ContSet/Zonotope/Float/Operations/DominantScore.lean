@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `none` if `P` is not provably nonsingular, else `|det P| ∏ₖ Σⱼ |(P⁻¹ gⱼ)ₖ|`, rounded up. -/
-def Zonotope.dominantScore (Z : Zonotope 𝕋 n) (P : Mat 𝕋 n n) : Option 𝕋 :=
+def Zonotope.dominantScore (Z : Zonotope (Vec 𝕋 n)) (P : Mat 𝕋 n n) : Option 𝕋 :=
   let d := absolute (Zonotope.detCandidate P)                             -- |det P|
   let Pinv := Zonotope.basisInverse P                                     -- P \ ·
   let ρ := fun k => sumUp fun j => absolute (dotUp (Pinv k) (Z.G j))     -- Σⱼ |(P⁻¹ gⱼ)ₖ|

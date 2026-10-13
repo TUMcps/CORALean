@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.split_outer (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.split_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (j : Fin pZ.splitParallelotope.h) :
     pZ.construct ⊆ (pZ.split j).1.construct ∪ (pZ.split j).2.construct := by -- --- PROOF ---
   intro x hx

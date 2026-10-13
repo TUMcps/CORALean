@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.pieceSubset_sound {p q : VPolytope 𝕋 2} (h : Polygon.pieceSubset p q = true) :
+theorem Polygon.pieceSubset_sound {p q : VPolytope (Vec 𝕋 2)} (h : Polygon.pieceSubset p q = true) :
     p.construct ⊆ q.construct := by -- --- PROOF ---
   simp only [Polygon.pieceSubset, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

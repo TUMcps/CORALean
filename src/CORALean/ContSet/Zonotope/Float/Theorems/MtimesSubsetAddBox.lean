@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- The exact image, regrouped so the centre and each generator appear once —
 `Zonotope.aux_mulVec_nominal` in `MtimesOuter`, restated here for this file's
 own use. -/
-theorem Zonotope.aux_mulVec_nominal_box (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (β : Vec ℝ Z.h)
+theorem Zonotope.aux_mulVec_nominal_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (β : Vec ℝ Z.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by -- --- PROOF ---
@@ -55,7 +55,7 @@ theorem Zonotope.aux_mulVec_nominal_box (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n)
 
 /-- Each stored generator entry is wrong by at most `matMulDiff`, `mtimes_outer`'s
 own bound at the opposite sign. -/
-theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) (i : Fin m)
+theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (i : Fin m)
     (j : Fin Z.h) :
     |toReal (matMulDown M (fun i j => Z.G j i) i j) - ∑ k, toReal (M i k) * toReal (Z.G j k)|
       ≤ toReal (matMulDiff M (fun i j => Z.G j i) i j) := by -- --- PROOF ---
@@ -75,7 +75,7 @@ theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) 
 
 /-- `mtimes` reaches no further than the image of `Z.construct`, widened by
 `mtimesBox`, provided `Z` already brackets `0` in its own box. -/
-theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n)
+theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n))
     (h : (0 : Vec ℝ n) ∈ Z.E.construct) :
     (Zonotope.mtimes M Z).construct ⊆
       (toRealMat M *ᵥ ·) '' Z.construct

@@ -20,7 +20,7 @@ The rows use the centre and generators before the neuron's row is cleared, as CO
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -45,7 +45,7 @@ noncomputable def StarSet.reluNeuron {n : ℕ} (s : StarSet n) (j : Fin n) (b : 
       l := Fin.snoc (α := fun _ => ℝ) s.l 0
       u := Fin.snoc (α := fun _ => ℝ) s.u u }
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

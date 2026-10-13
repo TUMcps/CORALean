@@ -3,10 +3,10 @@ import CORALean.Global.Float.FloatOps
 
 /-!
 # A network of interval layers with float weights
-`IntervalChain` with the weights and biases stored as floats, for the float interval
+`Real.IntervalChain` with the weights and biases stored as floats, for the float interval
 backpropagation to run on. An activation is stored as two scalar interval enclosures, `σE` of its
 value and `σ'E` of its derivative; what they enclose is not data but a statement
-(`IntervalChainFloat.Sound`), as the real functions have no code to run.
+(`IntervalChain.Sound`), as the real functions have no code to run.
 -/
 
 -- Authors:       Tobias Ladner
@@ -24,12 +24,12 @@ variable (𝕋 : Type) [FloatOps 𝕋]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-inductive IntervalChainFloat : ℕ → ℕ → Type where
-  | nil {n : ℕ} : IntervalChainFloat n n
-  | linear {n m k : ℕ} (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (rest : IntervalChainFloat m k) :
-      IntervalChainFloat n k
-  | act {n k : ℕ} (σE σ'E : Interval 𝕋 → Interval 𝕋) (rest : IntervalChainFloat n k) :
-      IntervalChainFloat n k
+inductive IntervalChain : ℕ → ℕ → Type where
+  | nil {n : ℕ} : IntervalChain n n
+  | linear {n m k : ℕ} (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (rest : IntervalChain m k) :
+      IntervalChain n k
+  | act {n k : ℕ} (σE σ'E : Interval 𝕋 → Interval 𝕋) (rest : IntervalChain n k) :
+      IntervalChain n k
 
 end CORALean.Float
 

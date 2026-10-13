@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Line 11: `CZ(P ⊖ Ẑ_W(τ_k))` at the conversion box `Bx`, inside the exact eroded polytope. -/
-def LinearSys.maxBackReachCZFloat (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 n)
-    (ZW : Zonotope 𝕋 n) : ConZonotope 𝕋 n :=
+def LinearSys.maxBackReachCZFloat (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n))
+    (ZW : Zonotope (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   let Q := P.minkDiffOf ZW.construct fun i =>                       -- ⊖ Ẑ_W(τ_k)
     let u := ZW.conZonotope.boundDot (c := rowLin P.A i) (P.A i) fun _ => rfl
     ⟨u.val, fun x hx => u.le x (Zonotope.conZonotope_contains ZW hx)⟩

@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.centre (pZ : PolyZonotope 𝕋 n) : Vec 𝕋 n := pZ.c
+def PolyZonotope.centre (pZ : PolyZonotope (Vec 𝕋 n)) : Vec 𝕋 n := pZ.c
 
 end CORALean.Float
 

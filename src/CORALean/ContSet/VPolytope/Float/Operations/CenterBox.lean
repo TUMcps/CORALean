@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.centerBox (P : VPolytope 𝕋 n) : Interval (Vec 𝕋 n) :=
+def VPolytope.centerBox (P : VPolytope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
   let kU : 𝕋 := nsmulUp P.k one                        -- the count, rounded up
   let kD : 𝕋 := maximum one (nsmulDown P.k one)        -- the count, rounded down, at least 1
   ⟨fun i => let s := sumDown fun l => P.V l i

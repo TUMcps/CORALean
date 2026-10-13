@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The rows in ℚ, exactly: `A`, `Ae`, `-Ae`, then the unit box `I` and `-I`. -/
-def HPolytope.aux_boxRows (P : HPolytope 𝕋 h) :
+def HPolytope.aux_boxRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
     Fin (P.m + (P.me + P.me) + (h + h)) → Fin h → ℚ :=
   Fin.append
     (Fin.append (fun i j => ToRat.toRat (P.A i j))
@@ -50,7 +50,7 @@ def HPolytope.aux_boxRows (P : HPolytope 𝕋 h) :
     (Fin.append (fun i j => if i = j then 1 else 0) fun i j => if i = j then -1 else 0)
 
 /-- The right-hand sides matching `aux_boxRows`. -/
-def HPolytope.aux_boxRhs (P : HPolytope 𝕋 h) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
+def HPolytope.aux_boxRhs (P : HPolytope 𝕋 (Vec 𝕋 h)) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
   Fin.append
     (Fin.append (fun i => ToRat.toRat (P.b i))
       (Fin.append (fun i => ToRat.toRat (P.be.sup i)) fun i => -ToRat.toRat (P.be.inf i)))
@@ -62,7 +62,7 @@ def HPolytope.aux_boxRhs (P : HPolytope 𝕋 h) : Fin (P.m + (P.me + P.me) + (h 
 /-- Weights `(y, zu, zl)` for the rows `A`, `Ae ≤ be.sup` and `-Ae ≤ -be.inf`,
 proposed for the direction `d` over the polytope within the unit box. All zero
 where the simplex returns nothing. A proposal, not a certificate. -/
-def HPolytope.dualWeights (P : HPolytope 𝕋 h) (d : Fin h → ℚ) :
+def HPolytope.dualWeights (P : HPolytope 𝕋 (Vec 𝕋 h)) (d : Fin h → ℚ) :
     Vec 𝕋 P.m × Vec 𝕋 P.me × Vec 𝕋 P.me :=
   let k := P.m + (P.me + P.me) + (h + h)
   match dualCandidate (64 * (k + h + 1)) (HPolytope.aux_boxRows P) (HPolytope.aux_boxRhs P) d with

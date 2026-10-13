@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `err S ≤ Z.errUp` for every `S` inside `Z`'s `construct`. -/
-theorem Zonotope.err_le_errUp (Z : Zonotope 𝕋 n) {S : Set (Vec ℝ n)}
+theorem Zonotope.err_le_errUp (Z : Zonotope (Vec 𝕋 n)) {S : Set (Vec ℝ n)}
     (hS : S ⊆ Zonotope.construct Z) : err S ≤ toReal Z.errUp := by -- --- PROOF ---
   have hnorm := norm₂_le_normUp (v := fun j => toReal (Z.absBoundError j))
     (m := fun j => Z.absBoundError j) 64 fun j => le_rfl

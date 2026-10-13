@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- One Horner step: `R` multiplied by `pZ` and shifted by the next coefficient,
 the extra uncertainty `R` already carries priced in before `mul`'s own rounding
 is added. -/
-def PolyZonotope.evalPolyStep (R pZ : PolyZonotope 𝕋 n) (hp : R.p = pZ.p) (a0 : Vec 𝕋 n) :
-    PolyZonotope 𝕋 n where
+def PolyZonotope.evalPolyStep (R pZ : PolyZonotope (Vec 𝕋 n)) (hp : R.p = pZ.p) (a0 : Vec 𝕋 n) :
+    PolyZonotope (Vec 𝕋 n) where
   p := (PolyZonotope.mul R pZ hp).p
   h := (PolyZonotope.mul R pZ hp).h
   q := (PolyZonotope.mul R pZ hp).q

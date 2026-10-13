@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [FloatOps 𝕋] in
-theorem ZonoBundle.reduce_order_le (zB : ZonoBundle 𝕋 n) (o : ℕ) : (zB.reduce o).k ≤ o :=
+theorem ZonoBundle.reduce_order_le (zB : ZonoBundle (Vec 𝕋 n)) (o : ℕ) : (zB.reduce o).k ≤ o :=
   min_le_right zB.k o
 
 end CORALean.Float

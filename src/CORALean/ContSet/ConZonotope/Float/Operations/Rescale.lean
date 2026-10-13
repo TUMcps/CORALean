@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Prop. 4]: `{G diag(ξr), c + G ξm, A diag(ξr), b − A ξm}`, every rounding paid outward. -/
-def ConZonotope.rescale (cZ : ConZonotope 𝕋 n) (ξL ξU : Vec 𝕋 cZ.h) : ConZonotope 𝕋 n :=
+def ConZonotope.rescale (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU : Vec 𝕋 cZ.h) : ConZonotope
+    𝕋 (Vec 𝕋 n) :=
   let ξm : Vec 𝕋 cZ.h := fun j => half (addDown (ξU j) (ξL j))      -- ξm ≈ ½(ξU + ξL)
   let ξr : Vec 𝕋 cZ.h := fun j =>                                    -- ξr covers both ends
     maximum (subUp (ξU j) (ξm j)) (subUp (ξm j) (ξL j))

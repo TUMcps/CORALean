@@ -27,7 +27,7 @@ structure RandSystem (𝕋 : Type) where
   A : Mat 𝕋 5 5
   B : Mat 𝕋 5 2
   C : Mat 𝕋 2 5
-  X0 : Zonotope 𝕋 5
+  X0 : Zonotope (Vec 𝕋 5)
   U : Interval (Vec 𝕋 2)
   dt : 𝕋
   /-- `X0`'s centre or radius was not a number of the format, so `X0` encloses the file's box. -/

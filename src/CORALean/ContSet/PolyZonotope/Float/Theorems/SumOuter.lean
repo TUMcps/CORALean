@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Outer: the exact sum's points, with a point from each summand's box, lie in the float sum. -/
-theorem PolyZonotope.sum_outer {m : ℕ} (pZ : PolyZonotope 𝕋 n)
-    (L : Fin m → PolyZonotope 𝕋 n)
+theorem PolyZonotope.sum_outer {m : ℕ} (pZ : PolyZonotope (Vec 𝕋 n))
+    (L : Fin m → PolyZonotope (Vec 𝕋 n))
     (hp : ∀ i, (L i).p = pZ.p) {x : Vec ℝ n}
     (hx : x ∈ (Real.PolyZonotope.sum (nominal pZ) (fun i => nominal (L i)) hp).construct)
     {e : Vec ℝ n} (he : e ∈ pZ.err.construct) (eL : Fin m → Vec ℝ n)

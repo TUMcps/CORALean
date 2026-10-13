@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- CORA's `reduce`: to a maximum order, by whichever rule the representation
 sees fit. Girard's is the one here, as over ℝ, and which it is goes no further —
 a caller names an order and gets an over-approximation of bounded size. -/
-def PolyZonotope.reduce (pZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
+def PolyZonotope.reduce (pZ : PolyZonotope (Vec 𝕋 n)) (o : ℕ) : PolyZonotope (Vec 𝕋 n) :=
   pZ.compact.reduceGirard o
 
 end CORALean.Float

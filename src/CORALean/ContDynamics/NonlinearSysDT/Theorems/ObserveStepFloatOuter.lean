@@ -40,17 +40,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zonotope 𝕋 m}
-    (step : sys.LinStep 𝕋 U) (o : NonlinearSysDT.ReachOptions) (C : Mat 𝕋 p n) (σ : Vec 𝕋 p)
-    (W : Zonotope 𝕋 n) (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) (y : Vec 𝕋 p)
-    (Xhat : Zonotope 𝕋 n) {x : Vec ℝ n} {u : Vec ℝ m} {w : Vec ℝ n}
+theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zonotope (Vec 𝕋 m)}
+    (step : sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U) (o : NonlinearSysDT.ReachOptions)
+    (C : Mat 𝕋 p n) (σ : Vec 𝕋 p)
+    (W : Zonotope (Vec 𝕋 n)) (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) (y : Vec 𝕋 p)
+    (Xhat : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n} {u : Vec ℝ m} {w : Vec ℝ n}
     (hx : x ∈ Xhat.construct) (hR : x ∈ step.R) (hu : u ∈ construct U) (hw : w ∈ W.construct)
     (hy : ∀ i, |(Scalar.toRealMat C *ᵥ (sys.f x u + w) - Scalar.toRealVec y) i|
       ≤ Scalar.toReal (σ i)) :
     sys.f x u + w ∈
       (sys.observeStepFloat step o C σ W options y Xhat).construct := by -- --- PROOF ---
   -- the prediction: the linearized step on the widened input holds `f(x, u)`
-  have key := LinearSysDT.reach_one_outer (NonlinearSysDT.linearize step.A) o.hZonotopeOrder
+  have key := LinearSysDT.reach_one_outer (S := fun k => Zonotope (Vec 𝕋 k))
+    (NonlinearSysDT.linearize step.A) o.hZonotopeOrder
     Xhat step.linInput hx (step.linInput_outer hR hu)
   have heq : Scalar.toRealMat (NonlinearSysDT.linearize step.A).A *ᵥ x
       + (sys.f x u - Scalar.toRealMat step.A *ᵥ x) = sys.f x u := by
@@ -58,7 +60,8 @@ theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zo
     abel
   rw [heq] at key
   -- plus the disturbance, then the update
-  have hpred : sys.f x u + w ∈ ((sys.reach (S := Zonotope 𝕋) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)).plus
+  have hpred : sys.f x u + w ∈
+    ((sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)).plus
       W).construct := Zonotope.plus_outer _ _ ⟨_, key, w, hw, rfl⟩
   unfold NonlinearSysDT.observeStepFloat
   split

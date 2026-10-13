@@ -27,7 +27,7 @@ open SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def Zonotope.conZonotope (Z : Zonotope 𝕋 n) : ConZonotope 𝕋 n :=
+def Zonotope.conZonotope (Z : Zonotope (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   ⟨Z.h, Z.c, Z.G, HPolytope.fullspace 𝕋 Z.h, Z.E⟩
 
 variable [SoundFloatArithmetic 𝕋]
@@ -35,7 +35,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.conZonotope_contains (Z : Zonotope 𝕋 n) :
+theorem Zonotope.conZonotope_contains (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.conZonotope.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx

@@ -51,7 +51,7 @@ theorem ConZonotope.aux_toReal_eq_zero {a : 𝕋}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ.compact.construct = cZ.construct := by -- --- PROOF ---
   set S : Finset (Fin cZ.h) := Finset.univ.filter fun j : Fin cZ.h =>
     !((List.finRange n).all (fun i => le (cZ.G j i) FloatOps.zero

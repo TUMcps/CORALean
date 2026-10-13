@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The padded stored shadow reads as the nominal shadow mapped by the embedding. -/
-theorem SpectraShadow.aux_padLeft_nominal (S : SpectraShadow 𝕋 n) :
+theorem SpectraShadow.aux_padLeft_nominal (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     nominal (S.padLeft m) = (nominal S).map (blockPadLeft n m) := by -- --- PROOF ---
   show Real.SpectraShadow.mk _ _ _ _ _ _ = Real.SpectraShadow.mk _ _ _ _ _ _
   congr 1
@@ -53,7 +53,7 @@ theorem SpectraShadow.aux_padLeft_nominal (S : SpectraShadow 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.padLeft_outer (S : SpectraShadow 𝕋 n) (m : ℕ) :
+theorem SpectraShadow.padLeft_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (m : ℕ) :
     ⇑(blockPadLeft n m) '' S.construct ⊆ (S.padLeft m).construct :=
   image_subset (fun _ _ => map_add _ _ _)
     (by

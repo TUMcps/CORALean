@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.exactPlus (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
+def Zonotope.exactPlus (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 n) :=
   let m := min (min Z₁.h Z₂.h) k
   have hm₁ : m ≤ Z₁.h := (min_le_left _ _).trans (min_le_left _ _)
   have hm₂ : m ≤ Z₂.h := (min_le_left _ _).trans (min_le_right _ _)

@@ -23,7 +23,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.quadMap (Q : Fin m → Mat 𝕋 n n) (zB : ZonoBundle 𝕋 n) : ZonoBundle 𝕋 m where
+def ZonoBundle.quadMap (Q : Fin m → Mat 𝕋 n n) (zB : ZonoBundle (Vec 𝕋 n)) :
+    ZonoBundle (Vec 𝕋 m) where
   k := zB.k
   Z := fun i => Zonotope.quadMap Q (zB.Z i)
 

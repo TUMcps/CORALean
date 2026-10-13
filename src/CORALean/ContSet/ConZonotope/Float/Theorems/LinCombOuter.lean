@@ -54,7 +54,7 @@ noncomputable def ConZonotope.aux_linCombCoeff {h₁ h₂ : ℕ} (β₁ : Vec �
   Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂)) fun _ : Fin 1 => 2 * lam - 1
 
 /-- The generator row `linComb` would store if nothing rounded. -/
-noncomputable def ConZonotope.aux_linCombGReal (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n) :
+noncomputable def ConZonotope.aux_linCombGReal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin n) :
     Fin (cZ₁.h + cZ₂.h + 1) → ℝ :=
   Fin.append (Fin.append (fun j => toReal (cZ₁.G j i)) fun j => toReal (cZ₂.G j i))
     fun _ : Fin 1 => (toReal (cZ₁.c i) - toReal (cZ₂.c i)) / 2
@@ -80,7 +80,7 @@ theorem ConZonotope.aux_abs_linCombCoeff {h₁ h₂ : ℕ} {β₁ : Vec ℝ h₁
 
 /-- Each block answers to its own constraints, and to its own unit box, at the
 weight the trailing coefficient names. -/
-theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 n) {β₁ : Vec ℝ cZ₁.h}
+theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) {β₁ : Vec ℝ cZ₁.h}
     {β₂ : Vec ℝ cZ₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ cZ₁.P.construct)
     (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.construct) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
     ConZonotope.aux_linCombCoeff β₁ β₂ lam ∈ (cZ₁.linComb cZ₂).P.construct := by -- --- PROOF ---
@@ -94,7 +94,7 @@ theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 n) {β₁ 
 
 /-- What the stored generators are wrong by, entrywise: nothing on the copied
 blocks, and on the centre generator the gap `linCombGDiff` records. -/
-theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n)
+theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (cZ₁.h + cZ₂.h + 1)) :
     |ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G j i)|
       ≤ toReal (ConZonotope.linCombGDiff cZ₁ cZ₂ i j) := by -- --- PROOF ---
@@ -120,7 +120,8 @@ theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : F
 
 /-- One row of the exact generators against the coefficients the segment
 supplies. -/
-theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin n) (β₁ : Vec ℝ cZ₁.h)
+theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin n)
+    (β₁ : Vec ℝ cZ₁.h)
     (β₂ : Vec ℝ cZ₂.h) (lam : ℝ) :
     (∑ j, ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
       = lam * (∑ j, toReal (cZ₁.G j i) * β₁ j) + (1 - lam) * (∑ j, toReal (cZ₂.G j i) * β₂ j)
@@ -140,7 +141,7 @@ theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 n) (i : Fin 
 
 /-- The nominal part spills only by what the centre and the centre generator
 rounded. -/
-theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     segments (nominalSet cZ₁) (nominalSet cZ₂) ⊆
       nominalSet (cZ₁.linComb cZ₂)
         + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
@@ -175,7 +176,7 @@ theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
 
 /-- The box absorbs the two incoming boxes, the centre rounding and the centre
 generator's. -/
-theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     segments cZ₁.E.construct cZ₂.E.construct
         + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
             + (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)).construct)
@@ -187,7 +188,7 @@ theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     segments cZ₁.construct cZ₂.construct ⊆ (cZ₁.linComb cZ₂).construct :=
   InflatedContSet.linComb_subset (ConZonotope.aux_linComb_nominal cZ₁ cZ₂)
     (ConZonotope.aux_linComb_error cZ₁ cZ₂)

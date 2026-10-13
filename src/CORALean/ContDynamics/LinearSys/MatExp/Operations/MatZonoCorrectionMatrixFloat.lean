@@ -32,10 +32,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The `F` of `priv_tie` at a matrix zonotope: `Σᵢ [min(Tᵢ, 0), max(Tᵢ, 0)] ⊕ [-E, E]`,
 orders `2` through `η`, for a nonnegative `r`. -/
-def MatExp.matZonoCorrectionMatrix (M : GZonotope (Mat 𝕋 n n)) (r : 𝕋) (η : ℕ) :
+def MatExp.matZonoCorrectionMatrix (M : Zonotope (Mat 𝕋 n n)) (r : 𝕋) (η : ℕ) :
     Interval (Mat 𝕋 n n) :=
   let E := MatExp.expRemainderBound                                  -- E(r), at the box
-    (MatExp.normUpperBound (Interval.smul r r M.interval)) η
+    (MatExp.normUpperBound (Interval.smul r r M.matInterval)) η
   let T : Vector (Interval (Mat 𝕋 n n)) (η - 1) :=                  -- T₂ … T_η
     Vector.ofFn fun i => MatExp.matZonoCorrTerm M r (i + 2)
   (⟨fun j k => subDown (sumDown fun i : Fin (η - 1) => minimum (T[i].inf j k) zero) E,

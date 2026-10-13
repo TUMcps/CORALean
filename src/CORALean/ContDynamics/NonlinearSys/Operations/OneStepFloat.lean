@@ -38,9 +38,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- `(R(τ_k), R(t_{k+1}))` of `δ̇ = A δ + ũ`, `ũ ∈ V`, from `R - x✱`, shifted back by
 `x✱`; `none` if the linear step fails. -/
-def NonlinearSys.oneStepFloat (A : Mat 𝕋 n n) (xs : Vec 𝕋 n) (V R : Zonotope 𝕋 n)
-    (options : LinearSys.ReachOptions 𝕋) : Option (Zonotope 𝕋 n × Zonotope 𝕋 n) := do
-  let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n)
+def NonlinearSys.oneStepFloat (A : Mat 𝕋 n n) (xs : Vec 𝕋 n) (V R : Zonotope (Vec 𝕋 n))
+    (options : LinearSys.ReachOptions 𝕋) : Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
+  let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))
   let lin : LinearSys 𝕋 n := ⟨A⟩                                    -- δ̇ = A δ + ũ, ũ ∈ V
   let S ← lin.reachFloatInput (identityMat 𝕋 n)                     -- one step from R - x✱
     ⟨R ⊞ pt fun i => neg (xs i), V, 0, ToRat.toRat options.timeStep⟩ options

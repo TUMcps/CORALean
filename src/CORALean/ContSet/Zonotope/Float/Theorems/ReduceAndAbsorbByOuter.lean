@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The merged block covers the absorbed generators and the box together. -/
-theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope 𝕋 n)
+theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h} {e : Vec ℝ n}
     (hβ : ∀ j, |β j| ≤ 1) (he : e ∈ Z.E.construct) (i : Fin n) :
     |(∑ l, toReal (Z.G (part.right l) i) * β (part.right l))
@@ -51,7 +51,7 @@ theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope 𝕋 n)
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `reduceAndAbsorbBy`'s generator count. -/
-theorem Zonotope.aux_sum_univ_reduceAndAbsorbBy {Z : Zonotope 𝕋 n}
+theorem Zonotope.aux_sum_univ_reduceAndAbsorbBy {Z : Zonotope (Vec 𝕋 n)}
     {part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)} (f : Fin (q + n) → ℝ) :
     ∑ j : Fin (Z.reduceAndAbsorbBy part).h, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=
@@ -60,7 +60,7 @@ theorem Zonotope.aux_sum_univ_reduceAndAbsorbBy {Z : Zonotope 𝕋 n}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope 𝕋 n)
+theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     Z.construct ⊆ (Z.reduceAndAbsorbBy part).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩

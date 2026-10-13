@@ -35,13 +35,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Orders `1 … η` of the float input solution, `[0] U` below order `1`. -/
-def LinearSys.inputTaylorSumTailFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (U : Zonotope 𝕋 n) :
-    ℕ → Zonotope 𝕋 n
-  | 0 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (Interval.point fun _ _ => zero) U
-  | 1 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+def LinearSys.inputTaylorSumTailFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (U : Zonotope (Vec 𝕋 n)) :
+    ℕ → Zonotope (Vec 𝕋 n)
+  | 0 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (Interval.point fun _ _ => zero) U
+  | 1 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
       (MatExp.intervalInputTerm (Interval.point sys.A) r 1) U
   | i + 2 => sys.inputTaylorSumTailFloat r U (i + 1) ⊞
-      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm (Interval.point sys.A) r (i + 2)) U
 
 end CORALean

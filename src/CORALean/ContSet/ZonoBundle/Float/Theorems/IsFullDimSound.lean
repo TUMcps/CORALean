@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.isFullDim_sound {zB : ZonoBundle 𝕋 n}
+theorem ZonoBundle.isFullDim_sound {zB : ZonoBundle (Vec 𝕋 n)}
     {H : (i : Fin zB.k) → Mat 𝕋 (zB.Z i).h n} {x₀ : Vec 𝕋 n}
     (h : zB.isFullDim H x₀ = true) : (interior zB.construct).Nonempty := by
   simp only [ZonoBundle.isFullDim, List.all_eq_true, List.mem_finRange, forall_const] at h

@@ -34,9 +34,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Thm. 3.1] in floats: `⊕ᵢ [Aⁱr^{i+1}/(i+1)!] V ⊕ [E(r)·r] V`. -/
-def LinearSys.inputSolutionFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ) (V : Zonotope 𝕋 n) :
-    Zonotope 𝕋 n :=
+def LinearSys.inputSolutionFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ) (V : Zonotope (Vec 𝕋 n)) :
+    Zonotope (Vec 𝕋 n) :=
   sys.inputTaylorSumFloat r V η ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (S := fun k => Zonotope (Vec 𝕋 k))
     (MatExp.intervalInputRemainder (Interval.point sys.A) r η) V
 
 end CORALean

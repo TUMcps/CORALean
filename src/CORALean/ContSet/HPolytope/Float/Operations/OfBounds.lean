@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ} {
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.ofBounds (Aq : Mat 𝕋 q n) (u : ∀ i, FloatBound 𝕋 S (rowLin Aq i)) :
-    HPolytope 𝕋 n :=
+    HPolytope 𝕋 (Vec 𝕋 n) :=
   HPolytope.ineqs Aq fun i => (u i).val
 
 end CORALean.Float

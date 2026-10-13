@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `reachBoxFloat`, or `none` if a float of its result is a NaN. -/
-def LinearSys.reachBoxFloatChecked (sys : LinearSys 𝕋 n) (X₀ U : Zonotope 𝕋 n) (r : 𝕋)
-    (η N : ℕ) : Option (List (Zonotope 𝕋 n)) :=
+def LinearSys.reachBoxFloatChecked (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec 𝕋 n)) (r : 𝕋)
+    (η N : ℕ) : Option (List (Zonotope (Vec 𝕋 n))) :=
   checkNoNaN (𝕋 := 𝕋) (sys.reachBoxFloat X₀ U r η N)
 
 end CORALean

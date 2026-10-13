@@ -70,7 +70,7 @@ theorem ZonoBundle.aux_le_minimumFrom : ∀ {k : ℕ} {b : 𝕋} {u : Fin k → 
 
 /-- The least of the members' own bounds. Any one of them is already sound, so
 `hk` buys the *value*, not the proof: an empty family has no member to read. -/
-def ZonoBundle.boundDot (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k) {c : Vec ℝ n →ₗ[ℝ] ℝ}
+def ZonoBundle.boundDot (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 zB.construct c where
   val := ZonoBundle.aux_minimumFrom (Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).val

@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.mergedConsColUp (cPZ : ConPolyZono 𝕋 n) (i : Fin cPZ.m)
+def ConPolyZono.mergedConsColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
     (l : Fin (PolyZonotope.repKeep cPZ.EC).card) : 𝕋 :=
   PolyZonotope.fiberUp (Real.PolyZonotope.rep cPZ.EC) cPZ.A i (PolyZonotope.keepIdx cPZ.EC l)
 

@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Horner's rule, coordinatewise, coefficients lowest degree first, rounded. -/
-def PolyZonotope.evalPoly (pZ : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
-    PolyZonotope 𝕋 n := (PolyZonotope.evalPolyP pZ coeffs).1
+def PolyZonotope.evalPoly (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs : List (Vec 𝕋 n)) :
+    PolyZonotope (Vec 𝕋 n) := (PolyZonotope.evalPolyP pZ coeffs).1
 
 end CORALean.Float
 

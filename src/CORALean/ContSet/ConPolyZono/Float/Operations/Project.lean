@@ -25,7 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.project (cPZ : ConPolyZono 𝕋 n) (dims : Fin m → Fin n) : ConPolyZono 𝕋 m where
+def ConPolyZono.project (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (dims : Fin m → Fin n) : ConPolyZono
+    𝕋 (Vec 𝕋 m) where
   p := cPZ.p
   h := cPZ.h
   q := cPZ.q

@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What a merged generator column can be off by. -/
-def ConPolyZono.compactGensGap (cPZ : ConPolyZono 𝕋 n) :
+def ConPolyZono.compactGensGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     Mat 𝕋 n (PolyZonotope.repKeep cPZ.E).card :=
   fun i j => subUp (cPZ.mergedColUp i j) (cPZ.mergedCol i j)
 

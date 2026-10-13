@@ -40,10 +40,10 @@ the horizon they cover is, at every time of step `j`, in the `j`-th state's `R(�
 `[t_j, t_{j+1}]` of `s :: ss`. -/
 theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {U : Zonotope 𝕋 m} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
+    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
     {prec bis fuel : ℕ} {tend : ℚ} :
-    ∀ (k : ℕ) {s : NonlinearSys.AdaptState (Zonotope 𝕋) n ℚ 𝕋}
-      {ss : List (NonlinearSys.AdaptState (Zonotope 𝕋) n ℚ 𝕋)},
+    ∀ (k : ℕ) {s : NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋}
+      {ss : List (NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋)},
       fm.adaptRunFloat U options ζδ ζh ζZ ζK prec bis fuel tend k s = some ss →
       s.t ≤ ((s :: ss).getLast (List.cons_ne_nil _ _)).t ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},

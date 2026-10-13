@@ -23,9 +23,9 @@ variable {α β : Type} [RealImage α β]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.realImage_extGens (pZ : GPolyZonotope α) (l : Fin (pZ.h + 1)) :
+theorem PolyZonotope.realImage_extGens (pZ : PolyZonotope α) (l : Fin (pZ.h + 1)) :
     RealImage.realImage (PolyZonotope.extGens pZ l)
-      = Real.PolyZonotope.extG (GPolyZonotope.nominal pZ) l := by
+      = Real.PolyZonotope.extG (PolyZonotope.nominal pZ) l := by
   -- generator zero is the centre, the rest the dependent generators
   cases l using Fin.cases <;> rfl
 

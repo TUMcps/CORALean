@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `(R(τ_k), R(t_{k+1}))` from `R = R(t_k)` under inputs in `U`, or `none` if the
 region check or the linear step fails: `relinStepAtFloat` at `x✱ = linPointFloat`. -/
 def NonlinearSys.FloatModel.relinStepFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
-    (U : Zonotope 𝕋 m) (options : LinearSys.ReachOptions 𝕋) (R : Zonotope 𝕋 n) :
-    Option (Zonotope 𝕋 n × Zonotope 𝕋 n) :=
+    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) (R : Zonotope (Vec 𝕋 n)) :
+    Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) :=
   let xs := (fm.linPointFloat options.timeStep R U).1                -- 3. x✱, the half-step point
   fm.relinStepAtFloat U options R xs
 

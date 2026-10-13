@@ -36,10 +36,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The Taylor sum as a matrix zonotope, widened by the tail bound taken at the
 interval matrix the zonotope encloses. -/
-def MatExp.expMatZonoEnclosure (M : GZonotope (Mat 𝕋 n n)) (η : ℕ) : GZonotope (Mat 𝕋 n n) :=
+def MatExp.expMatZonoEnclosure (M : Zonotope (Mat 𝕋 n n)) (η : ℕ) : Zonotope (Mat 𝕋 n n) :=
   let T := MatExp.expMatZonoTaylor M η                                     -- the Taylor sum
-  let b := MatExp.expRemainderBound (MatExp.normUpperBound M.interval) η   -- its tail, entrywise
-  GZonotope.matPlusInterval T (MatExp.expMatZonoRemainder n b)
+  let b := MatExp.expRemainderBound (MatExp.normUpperBound M.matInterval) η   -- its tail, entrywise
+  Zonotope.matPlusInterval T (MatExp.expMatZonoRemainder n b)
 
 end CORALean.Float
 

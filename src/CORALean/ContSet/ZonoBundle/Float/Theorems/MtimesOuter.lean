@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.mtimes_outer (M : Mat 𝕋 m n) (zB : ZonoBundle 𝕋 n) :
+theorem ZonoBundle.mtimes_outer (M : Mat 𝕋 m n) (zB : ZonoBundle (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' zB.construct ⊆ (zB.mtimes M).construct := by -- --- PROOF ---
   rintro _ ⟨a, ha, rfl⟩
   simp only [ZonoBundle.construct, Set.mem_iInter] at ha ⊢

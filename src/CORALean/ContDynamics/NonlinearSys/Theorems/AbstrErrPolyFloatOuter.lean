@@ -117,7 +117,7 @@ split at `x` and any `u ∈ U` lies in `abstrErrPolyFloat`. -/
 theorem NonlinearSys.FloatHessModel.Encloses.abstrErrPolyFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {us : Vec 𝕋 m} {X : Interval (Vec 𝕋 n)}
-    {U : Interval (Vec 𝕋 m)} {Rdelta Rdiff : Zonotope 𝕋 n} (hxs : toRealVec xs ∈ X.construct)
+    {U : Interval (Vec 𝕋 m)} {Rdelta Rdiff : Zonotope (Vec 𝕋 n)} (hxs : toRealVec xs ∈ X.construct)
     (hus : toRealVec us ∈ U.construct) {x₀ x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ X.construct)
     (hu : u ∈ U.construct) (hx₀ : x₀ - toRealVec xs ∈ Rdelta.construct)
     (hδ : x - x₀ ∈ Rdiff.construct) :

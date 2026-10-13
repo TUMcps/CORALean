@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The box `reduceGirard` absorbs the dropped generators into, on its own —
 and the degenerate `0` box at an order already met, where nothing is dropped. -/
-def Zonotope.reduceGirardBox (Z : Zonotope 𝕋 n) (o : ℕ) : Zonotope 𝕋 n :=
+def Zonotope.reduceGirardBox (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : Zonotope (Vec 𝕋 n) :=
   if hlt : o * n < Z.h then Z.reduceByBox (Z.girardSplit o hlt)
   else ⟨n, fun _ => zero, fun _ _ => zero, ⟨fun _ => zero, fun _ => zero⟩⟩
 

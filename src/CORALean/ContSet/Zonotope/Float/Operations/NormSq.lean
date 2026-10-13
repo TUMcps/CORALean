@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `zonotope/norm_` at `type = 2`, `mode = 'ub'`, as a squared length rounded up. -/
-def Zonotope.normSq (Z : Zonotope 𝕋 n) : 𝕋 := Z.interval.normSq
+def Zonotope.normSq (Z : Zonotope (Vec 𝕋 n)) : 𝕋 := Z.interval.normSq
 
 end CORALean.Float
 

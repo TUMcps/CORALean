@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 -- the opposite direction, where the negation is taken before the maximum
-def VPolytope.nominalBoundNegProj (P : VPolytope 𝕋 n) (j : Fin n) :
+def VPolytope.nominalBoundNegProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :
     FloatBound 𝕋 (nominalSet P) (-LinearMap.proj j) where
   val := maximumOver fun l => neg (P.V l j)
   le _ hx :=

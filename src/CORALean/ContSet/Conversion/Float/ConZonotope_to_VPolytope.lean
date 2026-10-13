@@ -30,13 +30,13 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def ConZonotope.vPolytopeBox (cZ : ConZonotope 𝕋 n) : VPolytope 𝕋 n :=
+def ConZonotope.vPolytopeBox (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) :=
   Interval.vPolytope cZ.interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.vPolytopeBox_contains (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.vPolytopeBox_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ.construct ⊆ cZ.vPolytopeBox.construct :=
   subset_trans cZ.interval_contains (Interval.vPolytope_contains _)
 

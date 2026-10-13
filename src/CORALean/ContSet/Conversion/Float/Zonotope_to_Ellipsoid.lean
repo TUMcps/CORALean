@@ -36,18 +36,18 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The generators scaled by the proposed `√h`, rounded up. -/
-def Zonotope.ellipsoidG (Z : Zonotope 𝕋 n) (σ : 𝕋) : Mat 𝕋 n Z.h :=
+def Zonotope.ellipsoidG (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Mat 𝕋 n Z.h :=
   fun i j => mulUp σ (Z.G j i)
 
 /-- The width of each scaled generator's rounding bracket. -/
-def Zonotope.ellipsoidGap (Z : Zonotope 𝕋 n) (σ : 𝕋) : Mat 𝕋 n Z.h :=
+def Zonotope.ellipsoidGap (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Mat 𝕋 n Z.h :=
   fun i j => subUp (mulUp σ (Z.G j i)) (mulDown σ (Z.G j i))
 
 /-- What the rounding of the generators can move a point by, rounded up. -/
-def Zonotope.ellipsoidSlack (Z : Zonotope 𝕋 n) (σ : 𝕋) : Vec 𝕋 n :=
+def Zonotope.ellipsoidSlack (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Vec 𝕋 n :=
   fun i => divUp (radius (Z.ellipsoidGap σ) i) σ
 
-def Zonotope.ellipsoid (Z : Zonotope 𝕋 n) (σ : 𝕋) : Ellipsoid 𝕋 n where
+def Zonotope.ellipsoid (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n where
   k := Z.h
   q := Z.c
   G := Z.ellipsoidG σ
@@ -62,7 +62,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The rounding of a generator, against the bracket that stores it. -/
-theorem Zonotope.aux_ellipsoid_round_le (Z : Zonotope 𝕋 n) (σ : 𝕋) (i : Fin n) (j : Fin Z.h) :
+theorem Zonotope.aux_ellipsoid_round_le (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) (i : Fin n) (j : Fin Z.h) :
     |toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j)|
       ≤ |toReal (Z.ellipsoidGap σ i j)| := by -- --- PROOF ---
   have h1 := mul_le_mulUp σ (Z.G j i)
@@ -77,7 +77,7 @@ theorem Zonotope.aux_ellipsoid_round_le (Z : Zonotope 𝕋 n) (σ : 𝕋) (i : F
   constructor <;> linarith
 
 /-- The residual the rounding leaves, at most the slack. -/
-theorem Zonotope.aux_ellipsoid_slack (Z : Zonotope 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
+theorem Zonotope.aux_ellipsoid_slack (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     {β : Vec ℝ Z.h} (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |(∑ j, (toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ|
       ≤ toReal (Z.ellipsoidSlack σ i) := by -- --- PROOF ---
@@ -93,7 +93,7 @@ theorem Zonotope.aux_ellipsoid_slack (Z : Zonotope 𝕋 n) (σ : 𝕋) (hσ : 0 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.ellipsoid_contains (Z : Zonotope 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
+theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hh : (Z.h : ℝ) ≤ toReal (mulDown σ σ)) :
     Z.construct ⊆ (Z.ellipsoid σ).construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩

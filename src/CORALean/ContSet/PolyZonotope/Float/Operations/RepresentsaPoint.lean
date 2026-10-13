@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.representsa_point (pZ : PolyZonotope 𝕋 n) : Bool :=
+def PolyZonotope.representsa_point (pZ : PolyZonotope (Vec 𝕋 n)) : Bool :=
   (((List.finRange pZ.h).all fun j => (List.finRange n).all fun i =>
     FloatOps.le (pZ.G j i) zero && FloatOps.le zero (pZ.G j i)) &&
     ((List.finRange pZ.q).all fun j => (List.finRange n).all fun i =>

@@ -12,7 +12,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundF
 zonotope: `Real.MatExp.expDiff_mem_correctionMatrix` at the member `M` bounds each
 entry by sums of `min/max (corrTerm, 0)` widened by `E(r M)`;
 `corrTerm_mem_matZonoCorrTerm` puts each order inside the float term, and the
-member lies in the zonotope's box (`interval_contains`), which is where the
+member lies in the zonotope's box (`matInterval_contains`), which is where the
 remainder is taken. `hε` asks `1/2`, as the float remainder bound does.
 -/
 
@@ -36,14 +36,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (Z : GZonotope (Mat 𝕋 n n)) {r : 𝕋}
+theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (Z : Zonotope (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 < toReal r) {m : ℕ}
-    (hε : toReal (MatExp.normUpperBound (Interval.smul r r Z.interval))
+    (hε : toReal (MatExp.normUpperBound (Interval.smul r r Z.matInterval))
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
     {M : Mat ℝ n n} (hM : M ∈ Z.construct) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) :
     exp (t • M) - 1 - (t / toReal r) • (exp (toReal r • M) - 1)
       ∈ (MatExp.matZonoCorrectionMatrix Z r (m + 2)).construct := by -- --- PROOF ---
-  have hnorm := MatExp.norm_smul_le_normUpperBound Z.interval r (GZonotope.interval_contains Z hM)
+  have hnorm := MatExp.norm_smul_le_normUpperBound Z.matInterval r
+    (Zonotope.matInterval_contains Z hM)
   have hden : (0 : ℝ) < ((m + 2 : ℕ) : ℝ) + 2 := by positivity
   have hε' : ‖toReal r • M‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 :=
     lt_of_le_of_lt (le_trans (div_le_div_of_nonneg_right hnorm hden.le) hε) (by norm_num)
@@ -73,7 +74,7 @@ theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (Z : GZonotope (Mat 𝕋 n n)
     rw [toReal_maximum, toReal_zero]
     exact max_le_max_right _ (hterm i).2
   -- the stored entry is the rounded difference and sum of exactly these
-  set E := MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul r r Z.interval))
+  set E := MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul r r Z.matInterval))
     (m + 2)
   set sLo := sumDown fun i : Fin (m + 1) =>
     minimum ((MatExp.matZonoCorrTerm Z r (i + 2)).inf j k) zero

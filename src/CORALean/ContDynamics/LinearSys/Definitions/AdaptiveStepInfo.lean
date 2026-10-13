@@ -42,7 +42,7 @@ structure LinearSys.AdaptiveStepInfo (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) whe
   /-- `Φ_set,i`, the order `PR([0,t_{i+1}])` was reduced to. -/
   zonotopeOrder : ℕ
   /-- `R([t_i,t_{i+1}])`. -/
-  R : Zonotope 𝕋 n
+  R : Zonotope (Vec 𝕋 n)
   /-- `ε_H([t_i,t_{i+1}])`, eq. (21). -/
   εH : ℚ
   /-- `ε_P([0,t_{i+1}])`, eq. (9). -/

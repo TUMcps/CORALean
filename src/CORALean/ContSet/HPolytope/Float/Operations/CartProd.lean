@@ -26,7 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.cartProd (P₁ : HPolytope 𝕋 n₁) (P₂ : HPolytope 𝕋 n₂) : HPolytope 𝕋 (n₁ + n₂) :=
+def HPolytope.cartProd (P₁ : HPolytope 𝕋 (Vec 𝕋 n₁)) (P₂ : HPolytope 𝕋 (Vec 𝕋 n₂)) : HPolytope
+    𝕋 (Vec 𝕋 (n₁ + n₂)) :=
   (P₁.padLeft n₂).intersection (HPolytope.padRight n₁ P₂)
 
 end CORALean.Float

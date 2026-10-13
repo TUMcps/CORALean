@@ -70,7 +70,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
 theorem aux_hpMapF_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
-    {Z : Zonotope 𝕋 n} {v : Vec ℝ n} (hv : v ∈ Z.construct) :
+    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) :
     s • v ∈ (Zonotope.mtimesIntervalMat (Interval.smul a b
       (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).construct := by -- --- PROOF ---
   have hone : (1 : Mat ℝ n n) ∈
@@ -175,7 +175,7 @@ theorem aux_hpMapF_centre {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y) (h2 
 /-- `res1`: the hitting point `y_h(x₀)` of a point of `R₀`, given `Λ ≠ 0` and `1/Λ²` within
 `[φ̲, φ̄]` on a convex `S` holding `x₀` and the stored centre `ξ` of `R₀red`, and `τ(ξ)` within
 `τ_g` of `τ_c`. -/
-theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ R0red : Zonotope 𝕋 n)
+theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ R0red : Zonotope (Vec 𝕋 n))
     (hcen : R0red.c = R₀.c) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct)
     (hx₀' : x₀ ∈ R0red.construct) {S : Set (Vec ℝ n)} (hS : Convex ℝ S)
     (hξS : toRealVec R0red.c ∈ S) (hx₀S : x₀ ∈ S)
@@ -296,11 +296,12 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
 
 /-- [1, Sec. 5.4] at floats: a run from `R₀` on the hyperplane at `t ≤ tmax` is in the float
 mapped set, `η ≥ 1`. -/
-theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location (Zonotope 𝕋) G L 𝕋 n)
-    (nv : Vec 𝕋 n) (d : 𝕋) (R₀ : Zonotope 𝕋 n) (tmax : 𝕋) {η : ℕ}
+theorem Location.guardIntersectHyperplaneMapFloat_outer
+    (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n)
+    (nv : Vec 𝕋 n) (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) {η : ℕ}
     (guardOrder zonotopeOrder p : ℕ) (hη : 1 ≤ η) {τ : ℝ} {x u : ℝ → Vec ℝ n}
     (traj : ℓ.Trajectory τ x u) (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ)
-    (htmax : t ≤ toReal tmax) (hhit : toRealVec nv ⬝ᵥ x t = toReal d) {Z : Zonotope 𝕋 n}
+    (htmax : t ≤ toReal tmax) (hhit : toRealVec nv ⬝ᵥ x t = toReal d) {Z : Zonotope (Vec 𝕋 n)}
     (hZ : ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p = some Z) :
     x t ∈ Z.construct := by -- --- PROOF ---
   set x₀ := x 0 with hx₀def
@@ -376,11 +377,11 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location (Zonotop
     have hxt : x t = x₀ + t • (Ar *ᵥ x₀ + br) + e := by
       rw [he_def, GuardMap.sdcFlow]; abel
     -- `Λ(x₀) ≠ 0`: the denominator's range over `AR₀ + b`
-    have hflow : ∀ (Z' : Zonotope 𝕋 n) y, y ∈ Z'.construct →
+    have hflow : ∀ (Z' : Zonotope (Vec 𝕋 n)) y, y ∈ Z'.construct →
         Ar *ᵥ y + br ∈ ((Zonotope.mtimes ℓ.dynamics.A Z').plus (Zonotope.point bI.inf)).construct :=
       fun Z' y hy => Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.mtimes_outer ℓ.dynamics.A Z'
         ⟨y, hy, rfl⟩) (by rw [Zonotope.construct_point]; rfl))
-    have hrange : ∀ (Z' : Zonotope 𝕋 n) y, y ∈ Z'.construct →
+    have hrange : ∀ (Z' : Zonotope (Vec 𝕋 n)) y, y ∈ Z'.construct →
         toReal (((Zonotope.mtimes ℓ.dynamics.A Z').plus (Zonotope.point bI.inf)).halfspaceRange nv
           zero).1
           ≤ nr ⬝ᵥ (Ar *ᵥ y + br) ∧ nr ⬝ᵥ (Ar *ᵥ y + br) ≤
@@ -474,7 +475,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location (Zonotop
     -- a point of the hyperplane is its own projection
     have hproj : x t - ((nrm⁻¹ • nr) ⬝ᵥ x t - toReal d * nrm⁻¹) • (nrm⁻¹ • nr) = x t := by
       rw [smul_dotProduct, hhit, smul_eq_mul, mul_comm, sub_self, zero_smul, sub_zero]
-    refine ContSet.projectOnHyperplaneIntervalFloat_outer (S := fun n => Zonotope 𝕋 n) _ _ _ _
+    refine ContSet.projectOnHyperplaneIntervalFloat_outer (S := fun n => Zonotope (Vec 𝕋 n)) _ _ _ _
       (cr := nrm⁻¹ • nr)
       (fun i => ?_) hδ.1 hδ.2 ⟨x t, ?_, hproj⟩
     · -- `n/‖n‖`, entry by entry

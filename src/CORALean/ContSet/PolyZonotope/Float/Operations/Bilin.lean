@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.bilin (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope 𝕋 n)
-    (hp : pZ₁.p = pZ₂.p) : PolyZonotope 𝕋 m where
+def PolyZonotope.bilin (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
+    (hp : pZ₁.p = pZ₂.p) : PolyZonotope (Vec 𝕋 m) where
   p := pZ₁.p
   h := (pZ₁.h + 1) * (pZ₂.h + 1)
   q := 0

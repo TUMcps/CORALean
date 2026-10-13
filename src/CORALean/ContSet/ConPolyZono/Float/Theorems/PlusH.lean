@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem ConPolyZono.plus_h (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+@[simp] theorem ConPolyZono.plus_h (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (cPZ₁.plus cPZ₂).h = cPZ₁.h + cPZ₂.h := rfl
 
 end CORALean.Float

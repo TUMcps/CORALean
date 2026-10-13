@@ -39,7 +39,7 @@ def aux_scalarRat (nonFinite : 𝕋 → Bool) (x : 𝕋) : Json :=
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Z`'s centre, generators and error box as exact rationals. -/
-def zonotopeRatJson (nonFinite : 𝕋 → Bool) (Z : Zonotope 𝕋 2) : Json :=
+def zonotopeRatJson (nonFinite : 𝕋 → Bool) (Z : Zonotope (Vec 𝕋 2)) : Json :=
   let s := aux_scalarRat nonFinite
   Json.mkObj
     [ ("c", Json.arr (Array.ofFn fun i => s (Z.c i))),

@@ -46,18 +46,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- [1, Alg. 2] in floats: `R₀, …, R_N`, `R_k ⊇ R([kr, (k+1)r])`, from `X⁰` and `U` at Taylor
 order `η` raised until admissible. -/
-def LinearSys.reachBoxFloat (sys : LinearSys 𝕋 n) (X₀ U : Zonotope 𝕋 n) (r : 𝕋) (η N : ℕ) :
-    Option (List (Zonotope 𝕋 n)) := do
+def LinearSys.reachBoxFloat (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec 𝕋 n)) (r : 𝕋) (η N : ℕ) :
+    Option (List (Zonotope (Vec 𝕋 n))) := do
   let η' ← sys.reachOrderFloat r r η                               -- η, raised until admissible
   let eAr := sys.expIntervalFloat r r η'                           -- [e^{Ar}]
   let H₀ := sys.timeIntervalStepFloat r η' X₀                      -- H^R_0 = CH(X⁰, e^{Ar}X⁰) + FX⁰
   let V₀ := sys.inputSolutionFloat r η' U                          -- V₀ = ⊕ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E·r·U
   let P₀ := V₀.interval.zonotope                                   -- P^R_0 = box(V₀)
   let R₀ := H₀ ⊞ P₀                                                -- R₀ = H^R_0 + P^R_0
-  let ℰ := fun (Z : Zonotope 𝕋 n) =>                               -- Z ↦ [e^{Ar}] Z
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAr Z
+  let ℰ := fun (Z : Zonotope (Vec 𝕋 n)) =>                               -- Z ↦ [e^{Ar}] Z
+    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eAr Z
   pure ((List.range N).foldl
-    (fun (s : (Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n) × List (Zonotope 𝕋 n)) _ =>
+    (fun (s : (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) × List
+      (Zonotope (Vec 𝕋 n))) _ =>
       let Hₖ := ℰ s.1.1                                            -- H^R_k = e^{Ar} H^R_{k-1}
       let Vₖ := ℰ s.1.2.1                                          -- V_k = e^{Ar} V_{k-1}
       let Pₖ := s.1.2.2 ⊞ Vₖ.interval.zonotope                     -- P^R_k = P^R_{k-1} + box(V_k)

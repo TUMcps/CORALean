@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.centre_mem_construct (Z : Zonotope 𝕋 n)
+theorem Zonotope.centre_mem_construct (Z : Zonotope (Vec 𝕋 n))
     (h0 : ∀ i, toReal (Z.E.inf i) ≤ 0 ∧ 0 ≤ toReal (Z.E.sup i)) :
     toRealVec Z.c ∈ Z.construct :=
   ⟨toRealVec Z.c,

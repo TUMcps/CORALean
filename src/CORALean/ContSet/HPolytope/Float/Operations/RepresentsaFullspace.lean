@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.representsaFullspace (P : HPolytope 𝕋 n) : Bool :=
+def HPolytope.representsaFullspace (P : HPolytope 𝕋 (Vec 𝕋 n)) : Bool :=
   (List.finRange P.m).all (fun i =>
     le zero (P.b i) && (List.finRange n).all fun j => le (P.A i j) zero && le zero (P.A i j)) &&
   (List.finRange P.me).all fun r =>

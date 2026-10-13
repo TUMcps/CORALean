@@ -39,8 +39,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The candidate difference at the representation `M` (`M i j` writes `Z₂`'s `j`-th generator in
 `Z₁`'s `i`-th), with the margin shrunk by `ρ`; rounded inward, checked by `minkDiffRep`. -/
-def Zonotope.minkDiffRepCandidate (Z₁ Z₂ : Zonotope 𝕋 n) (M : Fin Z₁.h → Fin Z₂.h → 𝕋) (ρ : 𝕋) :
-    Zonotope 𝕋 n :=
+def Zonotope.minkDiffRepCandidate (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
+    (M : Fin Z₁.h → Fin Z₂.h → 𝕋) (ρ : 𝕋) :
+    Zonotope (Vec 𝕋 n) :=
   let c := fun r => subDown (Z₁.c r) (Z₂.c r)  -- c₁ - c₂
   let rowSum := fun i => sumUp fun j => maximum (M i j) (neg (M i j))  -- ∑ⱼ |Mᵢⱼ|, rounded up
   let margin := fun i => maximum zero (subDown one (rowSum i))  -- 1 - ∑ⱼ |Mᵢⱼ|, rounded down

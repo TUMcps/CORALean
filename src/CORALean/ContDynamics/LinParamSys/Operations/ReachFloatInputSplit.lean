@@ -37,15 +37,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 under inputs in `U` wherever it sits, the first reduced to order `ρ`, at Taylor order
 `η` raised until admissible. -/
 def LinParamSys.reachFloatInputSplit (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
-    (U : Zonotope 𝕋 n) (params : Reach.Params (Zonotope 𝕋 n) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope 𝕋 n)) := do
+    (U : Zonotope (Vec 𝕋 n)) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
+    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let η := options.taylorTerms
   let ρ := options.zonotopeOrder
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
-  let uc := ScalarCentre.centreVec (S := Zonotope 𝕋) U             -- ũ, the constant
+  let uc := ScalarCentre.centreVec (S := fun k => Zonotope (Vec 𝕋 k)) U  -- ũ, the constant
   let HRτ₀ := sys.timeIntervalStepFloat Δt η' X₀                    -- H^R(τ_0)
   let PcRτ₀ := sys.constInputSolutionFloat Δt η' uc                 -- P̃^R(τ_0), ũ over τ_0
   let Rτ₀ := Reduce.reduce (HRτ₀ ⊞ PcRτ₀) ρ                         -- (H^R ⊕ P̃^R)(τ_0), to order ρ

@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {q n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.ineqs (A : Mat 𝕋 q n) (b : Vec 𝕋 q) : HPolytope 𝕋 n where
+def HPolytope.ineqs (A : Mat 𝕋 q n) (b : Vec 𝕋 q) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := q
   A := A
   b := b

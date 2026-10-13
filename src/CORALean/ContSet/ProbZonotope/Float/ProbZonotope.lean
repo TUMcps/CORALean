@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- ========================================  MAIN TYPE  ========================================= --
 
 structure ProbZonotope (𝕋 : Type) (n : ℕ) where
-  Z : Zonotope 𝕋 n
+  Z : Zonotope (Vec 𝕋 n)
   cov : Interval (Mat 𝕋 n n)
 
 /-- The Gaussian laws `N(μ, Σ)` with `μ` in the mean zonotope and `Σ` a positive semidefinite

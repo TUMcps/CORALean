@@ -37,7 +37,7 @@ theorem PolyZonotope.aux_toReal_append {m : ℕ} {r : ℕ} (u v : Fin m → 𝕋
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.partZonotope_nominal (pZ : PolyZonotope 𝕋 n) (V : Finset (Fin pZ.p)) :
+theorem PolyZonotope.partZonotope_nominal (pZ : PolyZonotope (Vec 𝕋 n)) (V : Finset (Fin pZ.p)) :
     nominal (pZ.partZonotope V) =
       Real.PolyZonotope.partZonotope (nominal pZ) V := by -- --- PROOF ---
   unfold PolyZonotope.partZonotope Real.PolyZonotope.partZonotope

@@ -34,7 +34,7 @@ instance : Isequal (Interval (Vec 𝕋 n)) where
   isequal_construct _ _ h := Interval.isequal_sound h
 
 -- zonotope, capsule, ellipsoid
-instance : Isequal (Zonotope 𝕋 n) where
+instance : Isequal (Zonotope (Vec 𝕋 n)) where
   isequal Z S := Zonotope.isequal Z S = true
   isequal_construct _ _ h := Zonotope.isequal_sound h
 
@@ -47,15 +47,15 @@ instance : Isequal (Ellipsoid 𝕋 n) where
   isequal_construct _ _ h := Ellipsoid.isequal_sound h
 
 -- the constrained and polynomial representations
-instance : Isequal (ConZonotope 𝕋 n) where
+instance : Isequal (ConZonotope 𝕋 (Vec 𝕋 n)) where
   isequal Z S := ConZonotope.isequal Z S = true
   isequal_construct _ _ h := ConZonotope.isequal_sound h
 
-instance : Isequal (PolyZonotope 𝕋 n) where
+instance : Isequal (PolyZonotope (Vec 𝕋 n)) where
   isequal Z S := PolyZonotope.isequal Z S = true
   isequal_construct _ _ h := PolyZonotope.isequal_sound h
 
-instance : Isequal (ConPolyZono 𝕋 n) where
+instance : Isequal (ConPolyZono 𝕋 (Vec 𝕋 n)) where
   isequal Z S := ConPolyZono.isequal Z S = true
   isequal_construct _ _ h := ConPolyZono.isequal_sound h
 
@@ -63,7 +63,7 @@ instance : Isequal (ConPolyZono 𝕋 n) where
 instance : DecidableRel (Isequal.isequal (S := Interval (Vec 𝕋 n))) :=
   fun I J => inferInstanceAs (Decidable (Interval.isequal I J = true))
 
-instance : DecidableRel (Isequal.isequal (S := Zonotope 𝕋 n)) :=
+instance : DecidableRel (Isequal.isequal (S := Zonotope (Vec 𝕋 n))) :=
   fun Z S => inferInstanceAs (Decidable (Zonotope.isequal Z S = true))
 
 -- the other representations likewise
@@ -73,13 +73,13 @@ instance : DecidableRel (Isequal.isequal (S := Capsule 𝕋 n)) :=
 instance : DecidableRel (Isequal.isequal (S := Ellipsoid 𝕋 n)) :=
   fun E S => inferInstanceAs (Decidable (Ellipsoid.isequal E S = true))
 
-instance : DecidableRel (Isequal.isequal (S := ConZonotope 𝕋 n)) :=
+instance : DecidableRel (Isequal.isequal (S := ConZonotope 𝕋 (Vec 𝕋 n))) :=
   fun Z S => inferInstanceAs (Decidable (ConZonotope.isequal Z S = true))
 
-instance : DecidableRel (Isequal.isequal (S := PolyZonotope 𝕋 n)) :=
+instance : DecidableRel (Isequal.isequal (S := PolyZonotope (Vec 𝕋 n))) :=
   fun Z S => inferInstanceAs (Decidable (PolyZonotope.isequal Z S = true))
 
-instance : DecidableRel (Isequal.isequal (S := ConPolyZono 𝕋 n)) :=
+instance : DecidableRel (Isequal.isequal (S := ConPolyZono 𝕋 (Vec 𝕋 n))) :=
   fun Z S => inferInstanceAs (Decidable (ConPolyZono.isequal Z S = true))
 
 end CORALean.Float

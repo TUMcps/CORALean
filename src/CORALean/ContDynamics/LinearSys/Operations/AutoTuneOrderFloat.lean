@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- Lines 9-15: the coarsest `η ≥ 2` at which the order is admissible and both admissible-error
 shares hold, `none` where the sweep gives out. -/
 def LinearSys.autoTuneOrderFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
-    (H : Zonotope 𝕋 n) (ũ : Vec 𝕋 n) (U₀ : Zonotope 𝕋 n) (Δt : 𝕋) (εaτ εnτ : ℚ) :
+    (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n) (U₀ : Zonotope (Vec 𝕋 n)) (Δt : 𝕋) (εaτ εnτ : ℚ) :
     ℕ → ℕ → Option ℕ
   | _, 0 => none
   | η, k + 1 =>

@@ -21,8 +21,8 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.polygonPieces (pZ : PolyZonotope 𝕋 2) (splits : ℕ)
-    (pick : ℕ → PolyZonotope 𝕋 2 → Bool) : List (PolyZonotope 𝕋 2) :=
+def PolyZonotope.polygonPieces (pZ : PolyZonotope (Vec 𝕋 2)) (splits : ℕ)
+    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) : List (PolyZonotope (Vec 𝕋 2)) :=
   (List.range splits).foldl (fun L i => PolyZonotope.polygonRound (pick i) L) [pZ]
 
 end CORALean.Float

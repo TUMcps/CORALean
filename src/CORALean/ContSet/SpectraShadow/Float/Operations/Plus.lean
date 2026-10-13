@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.plus (S₁ S₂ : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 n where
+def SpectraShadow.plus (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) where
   k := S₁.k + S₂.k
   m := S₁.m + S₂.m
   A₀ := blockDiag zero S₁.A₀ S₂.A₀

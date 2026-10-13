@@ -30,11 +30,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.timePointStepFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope 𝕋 n) {x : Vec ℝ n}
+    (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n}
     (hx : x ∈ R.construct) :
     exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ x
       ∈ (sys.timePointStepFloat Δt η R).construct :=
-  Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ R
+  Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) _ R
     (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl) (Set.mem_image_of_mem _ hx))
 
 end CORALean

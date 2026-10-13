@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Every row multiplied by `1 / ‖row‖₂` rounded up, the rounding moved to the right-hand sides. -/
-def HPolytope.normalizeRows (p : ℕ) (P : HPolytope 𝕋 n) (dom : Interval (Vec 𝕋 n)) :
-    HPolytope 𝕋 n :=
+def HPolytope.normalizeRows (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (dom : Interval (Vec 𝕋 n)) :
+    HPolytope 𝕋 (Vec 𝕋 n) :=
   P.scaleRows (HPolytope.rowScale p P) (fun i => HPolytope.recipUp (normUp p (P.Ae i))) dom
 
 end CORALean.Float

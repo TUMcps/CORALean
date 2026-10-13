@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.minnorm_le (p : ℕ) (Z : Zonotope 𝕋 (n + 1)) (U : 𝕋)
+theorem Zonotope.minnorm_le (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (U : 𝕋)
     (hU : Z.minnorm p = some U)
     (hspan : Submodule.span ℝ (Set.range (nominal Z).G) = ⊤) :
     (nominal Z).minnorm ≤ toReal U := by -- --- PROOF ---

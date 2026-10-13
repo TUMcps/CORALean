@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.minBackReachSupportFloat_ge (sys : LinearSys 𝕋 n)
-    (CZ : ConZonotope 𝕋 n) (W₀ U₀ : Zonotope 𝕋 n) (Zw : 𝕋 → Zonotope 𝕋 n) (N : Mat 𝕋 q n)
+    (CZ : ConZonotope 𝕋 (Vec 𝕋 n)) (W₀ U₀ : Zonotope (Vec 𝕋 n)) (Zw : 𝕋 → Zonotope (Vec 𝕋 n))
+    (N : Mat 𝕋 q n)
     (t₀ Δt : 𝕋) (η ν k : ℕ) (j : Fin q)
     (hE : ∀ i, toReal ((sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).ZU₀.E.inf i)
       ≤ toReal ((sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).ZU₀.E.sup i)) :

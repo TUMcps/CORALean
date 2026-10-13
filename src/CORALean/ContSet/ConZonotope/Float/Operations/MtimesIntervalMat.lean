@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 /-- `mid(M) cZ`, plus `m` generators for what the radius does to the nominal part and a box for
 what it does to the error box. -/
-def ConZonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (cZ : ConZonotope 𝕋 n) :
-    ConZonotope 𝕋 m :=
+def ConZonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+    ConZonotope 𝕋 (Vec 𝕋 m) :=
   let C := Interval.centreMat IM                                    -- mid(M), stored
   let Rs := Interval.matResidual IM.inf IM.sup C                    -- M - mid(M), a box
   let MZ := ConZonotope.mtimes C cZ                                 -- mid(M) cZ

@@ -209,29 +209,29 @@ One small zonotope, two generators in two dimensions, and every other
 representation reached from it by a `Float/` conversion — exercising the
 conversion and supplying the rest of the section a value to run operations on. -/
 
-def Z : Zonotope D 2 where
+def Z : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 (-2), d 0 0; d 0 0, d 1 (-2)]
   E := zbox 2
 
 def I : Interval (Vec D 2) := Z.interval
-def V : VPolytope D 2 := Z.vPolytope
-def cZ : ConZonotope D 2 := Z.conZonotope
-def H : HPolytope D 2 := Z.hPolytope (identityMat D 2)
-def pZ : PolyZonotope D 2 := I.polyZonotope
-def cpZ : ConPolyZono D 2 := cZ.conPolyZono
+def V : VPolytope (Vec D 2) := Z.vPolytope
+def cZ : ConZonotope D (Vec D 2) := Z.conZonotope
+def H : HPolytope D (Vec D 2) := Z.hPolytope (identityMat D 2)
+def pZ : PolyZonotope (Vec D 2) := I.polyZonotope
+def cpZ : ConPolyZono D (Vec D 2) := cZ.conPolyZono
 def E : Ellipsoid D 2 := I.ellipsoid (d 1 0)
-def zB : ZonoBundle D 2 := ⟨1, fun _ => Z⟩
+def zB : ZonoBundle (Vec D 2) := ⟨1, fun _ => Z⟩
 
 -- more conversions, at the representations `Z`, `I`, `V`, `cZ` above already supply
 
-def H_of_V : HPolytope D 2 := V.hPolytope (identityMat D 2)
-def H_of_cZ : HPolytope D 2 := cZ.hPolytope (identityMat D 2)
-def cZ_of_H : ConZonotope D 2 := H.onCoefficients Z |>.conZonotopeOf Z
-def V_of_cZ : VPolytope D 2 := cZ.vPolytopeBox
-def cZ_of_V : ConZonotope D 2 := V.conZonotope
-def simplex2 : HPolytope D 2 := VPolytope.simplex D 2
+def H_of_V : HPolytope D (Vec D 2) := V.hPolytope (identityMat D 2)
+def H_of_cZ : HPolytope D (Vec D 2) := cZ.hPolytope (identityMat D 2)
+def cZ_of_H : ConZonotope D (Vec D 2) := H.onCoefficients Z |>.conZonotopeOf Z
+def V_of_cZ : VPolytope (Vec D 2) := cZ.vPolytopeBox
+def cZ_of_V : ConZonotope D (Vec D 2) := V.conZonotope
+def simplex2 : HPolytope D (Vec D 2) := VPolytope.simplex D 2
 
 
 /-! ## A `LinearARX` and its companion matrix, at `D`
@@ -271,18 +271,20 @@ def parA : Mat D 2 2 := (parP.mergeFlows (fun _ => ())).A
 /-! ## Every operation class each representation above instantiates -/
 
 -- `Zonotope`: `Plus`, `LinComb`, `Reduce`, `Reindex`, `Mtimes`
-def Z_plus : Zonotope D 2 := Z.plus Z
-def Z_linComb : Zonotope D 2 := LinComb.linComb Z Z
-def Z_reduce : Zonotope D 2 := Z.reduce 1
-def Z_reindex : Zonotope D 2 := Reindex.reindex (Equiv.refl (Fin 2)) Z
-def Z_mtimes : Zonotope D 2 := Mtimes.mtimes (identityMat D 2) Z
+def Z_plus : Zonotope (Vec D 2) := Z.plus Z
+def Z_linComb : Zonotope (Vec D 2) := LinComb.linComb Z Z
+def Z_reduce : Zonotope (Vec D 2) := Z.reduce 1
+def Z_reindex : Zonotope (Vec D 2) :=
+  Reindex.reindex (S := fun k => Zonotope (Vec D k)) (Equiv.refl (Fin 2)) Z
+def Z_mtimes : Zonotope (Vec D 2) :=
+  Mtimes.mtimes (S := fun k => Zonotope (Vec D k)) (identityMat D 2) Z
 
--- `SetUnion (Zonotope D)`: `Plus`, `Reduce`, `Mtimes`, generic over the member type
-def uZ : SetUnion (Zonotope D 2) := ⟨[Z, Z_mtimes]⟩
-def uZ_plus : SetUnion (Zonotope D 2) := Plus.plus uZ uZ
-def uZ_reduce : SetUnion (Zonotope D 2) := Reduce.reduce uZ 1
-def uZ_mtimes : SetUnion (Zonotope D 2) :=
-  Mtimes.mtimes (S := fun n => SetUnion (Zonotope D n)) (identityMat D 2) uZ
+-- `SetUnion` of float zonotopes: `Plus`, `Reduce`, `Mtimes`, generic over the member type
+def uZ : SetUnion (Zonotope (Vec D 2)) := ⟨[Z, Z_mtimes]⟩
+def uZ_plus : SetUnion (Zonotope (Vec D 2)) := Plus.plus uZ uZ
+def uZ_reduce : SetUnion (Zonotope (Vec D 2)) := Reduce.reduce uZ 1
+def uZ_mtimes : SetUnion (Zonotope (Vec D 2)) :=
+  Mtimes.mtimes (S := fun n => SetUnion (Zonotope (Vec D n))) (identityMat D 2) uZ
 
 -- `Interval`: `Plus`, `MinkDiff`, `Intersection`, `LinComb`, `Reduce`, `Reindex`, `Mtimes`
 def I_plus : Interval (Vec D 2) := Plus.plus I I
@@ -325,54 +327,61 @@ def mtimesIntervalMatRun : Interval (Vec D 2) :=
     matExpA I
 
 -- the same interval matrix, at `expEnclosureRun`, times a float zonotope (#1, phase 3 prep)
-def mtimesIntervalMatZonoRun : Zonotope D 2 :=
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat D m n)) (S := Zonotope D) expEnclosureRun Z
+def mtimesIntervalMatZonoRun : Zonotope (Vec D 2) :=
+  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat D m n)) (S := fun k => Zonotope (Vec D k))
+    expEnclosureRun Z
 
 -- `HPolytope`: `Reduce`, `Intersection`
-def H_reduce : HPolytope D 2 := Reduce.reduce H 1
-def H_intersection : HPolytope D 2 := Intersection.intersection H H
+def H_reduce : HPolytope D (Vec D 2) := Reduce.reduce H 1
+def H_intersection : HPolytope D (Vec D 2) := Intersection.intersection H H
 
 -- `VPolytope`: `Plus`, `Intersection`, `LinComb`, `Reduce`, `Mtimes`
-def V_plus : VPolytope D 2 := Plus.plus V V
-def V_intersection : VPolytope D 2 := Intersection.intersection V V
-def V_linComb : VPolytope D 2 := LinComb.linComb V V
-def V_reduce : VPolytope D 2 := Reduce.reduce V 1
-def V_mtimes : VPolytope D 2 := Mtimes.mtimes (identityMat D 2) V
+def V_plus : VPolytope (Vec D 2) := Plus.plus V V
+def V_intersection : VPolytope (Vec D 2) := Intersection.intersection V V
+def V_linComb : VPolytope (Vec D 2) := LinComb.linComb V V
+def V_reduce : VPolytope (Vec D 2) := Reduce.reduce V 1
+def V_mtimes : VPolytope (Vec D 2) :=
+  Mtimes.mtimes (S := fun k => VPolytope (Vec D k)) (identityMat D 2) V
 
 -- `ConZonotope`: `Plus`, `LinComb`, `Reduce`
-def cZ_plus : ConZonotope D 2 := Plus.plus cZ cZ
-def cZ_linComb : ConZonotope D 2 := LinComb.linComb cZ cZ
-def cZ_reduce : ConZonotope D 2 := Reduce.reduce cZ 1
+def cZ_plus : ConZonotope D (Vec D 2) := Plus.plus cZ cZ
+def cZ_linComb : ConZonotope D (Vec D 2) := LinComb.linComb cZ cZ
+def cZ_reduce : ConZonotope D (Vec D 2) := Reduce.reduce cZ 1
 
 -- `PolyZonotope`: `Plus`, `LinComb`, `Reduce`, `Mtimes`
-def pZ_plus : PolyZonotope D 2 := Plus.plus pZ pZ
-def pZ_linComb : PolyZonotope D 2 := LinComb.linComb pZ pZ
-def pZ_reduce : PolyZonotope D 2 := Reduce.reduce pZ 1
-def pZ_mtimes : PolyZonotope D 2 := Mtimes.mtimes (identityMat D 2) pZ
-def pZ_convHull : PolyZonotope D 2 := PolyZonotope.convHull pZ pZ
+def pZ_plus : PolyZonotope (Vec D 2) := Plus.plus pZ pZ
+def pZ_linComb : PolyZonotope (Vec D 2) := LinComb.linComb pZ pZ
+def pZ_reduce : PolyZonotope (Vec D 2) := Reduce.reduce pZ 1
+def pZ_mtimes : PolyZonotope (Vec D 2) :=
+  Mtimes.mtimes (S := fun k => PolyZonotope (Vec D k)) (identityMat D 2) pZ
+def pZ_convHull : PolyZonotope (Vec D 2) := PolyZonotope.convHull pZ pZ
 
 -- the quadratic map `x ↦ xᵀ x` of `pZ`, its two-operand pairings, and the varying input part
-def pZ_quadMap : PolyZonotope D 2 := PolyZonotope.quadMap (fun _ : Fin 2 => identityMat D 2) pZ
-def pZ_bilin : PolyZonotope D 2 :=
+def pZ_quadMap : PolyZonotope (Vec D 2) := PolyZonotope.quadMap
+    (fun _ : Fin 2 => identityMat D 2) pZ
+def pZ_bilin : PolyZonotope (Vec D 2) :=
   PolyZonotope.bilin (fun _ : Fin 2 => identityMat D 2) pZ.dependent pZ.dependent rfl
-def pZ_quadMapMixed : PolyZonotope D 2 :=
+def pZ_quadMapMixed : PolyZonotope (Vec D 2) :=
   PolyZonotope.quadMapMixed (fun _ : Fin 2 => identityMat D 2) pZ pZ
-def pZ_varInputs : PolyZonotope D 2 :=
+def pZ_varInputs : PolyZonotope (Vec D 2) :=
   varInputsFloat (identityMat D 2) (fun _ : Fin 2 => identityMat D 2) pZ pZ pZ
 
 -- `ConPolyZono`: `Plus`, `Reduce`, `Intersection`, `Mtimes`
-def cpZ_plus : ConPolyZono D 2 := Plus.plus cpZ cpZ
-def cpZ_reduce : ConPolyZono D 2 := Reduce.reduce cpZ 1
-def cpZ_intersection : ConPolyZono D 2 := Intersection.intersection cpZ cpZ
-def cpZ_mtimes : ConPolyZono D 2 := Mtimes.mtimes (identityMat D 2) cpZ
+def cpZ_plus : ConPolyZono D (Vec D 2) := Plus.plus cpZ cpZ
+def cpZ_reduce : ConPolyZono D (Vec D 2) := Reduce.reduce cpZ 1
+def cpZ_intersection : ConPolyZono D (Vec D 2) := Intersection.intersection cpZ cpZ
+def cpZ_mtimes : ConPolyZono D (Vec D 2) :=
+  Mtimes.mtimes (S := fun k => ConPolyZono D (Vec D k)) (identityMat D 2) cpZ
 
 -- `ZonoBundle`: `Plus`, `LinComb`, `Intersection`, `Reduce`, `Reindex`, `Mtimes`
-def zB_plus : ZonoBundle D 2 := Plus.plus zB zB
-def zB_linComb : ZonoBundle D 2 := LinComb.linComb zB zB
-def zB_intersection : ZonoBundle D 2 := Intersection.intersection zB zB
-def zB_reduce : ZonoBundle D 2 := Reduce.reduce zB 1
-def zB_reindex : ZonoBundle D 2 := Reindex.reindex (Equiv.refl (Fin 2)) zB
-def zB_mtimes : ZonoBundle D 2 := Mtimes.mtimes (identityMat D 2) zB
+def zB_plus : ZonoBundle (Vec D 2) := Plus.plus zB zB
+def zB_linComb : ZonoBundle (Vec D 2) := LinComb.linComb zB zB
+def zB_intersection : ZonoBundle (Vec D 2) := Intersection.intersection zB zB
+def zB_reduce : ZonoBundle (Vec D 2) := Reduce.reduce zB 1
+def zB_reindex : ZonoBundle (Vec D 2) :=
+  Reindex.reindex (S := fun k => ZonoBundle (Vec D k)) (Equiv.refl (Fin 2)) zB
+def zB_mtimes : ZonoBundle (Vec D 2) :=
+  Mtimes.mtimes (S := fun k => ZonoBundle (Vec D k)) (identityMat D 2) zB
 
 -- `Ellipsoid`: `Mtimes` alone — the rest of its operations have no float file yet
 def E_mtimes : Ellipsoid D 2 := Mtimes.mtimes (identityMat D 2) E
@@ -382,9 +391,9 @@ def probZ : ProbZonotope D 2 := ⟨Z, Interval.point !![d 1 0, d 0 0; d 0 0, d 1
 def probZ_probReduce : ProbZonotope D 2 := probZ.probReduce
 
 -- `SpectraShadow`: the shadow of `Z`, and its convex hull with the shadow of `Z + Z`
-def spS : SpectraShadow D 2 := Z.spectraShadow
-def spS_convHull : SpectraShadow D 2 := spS.convHull_ Z_plus.spectraShadow
-def spS_or : SpectraShadow D 2 := spS.or Z_plus.spectraShadow
+def spS : SpectraShadow D (Vec D 2) := Z.spectraShadow
+def spS_convHull : SpectraShadow D (Vec D 2) := spS.convHull_ Z_plus.spectraShadow
+def spS_or : SpectraShadow D (Vec D 2) := spS.or Z_plus.spectraShadow
 
 
 /-! ## The matrices a continuous-time step multiplies by (#1, phase 3)
@@ -410,72 +419,75 @@ interval matrices, and five steps of its `reach` under the input set `Z`. -/
 def ctSys : LinearSys D 2 := ⟨!![d (-1) 0, d (-4) 0; d 4 0, d (-1) 0]⟩
 def ctSysD : LinParamSysDT (fun m n => Interval (Mat D m n)) 2 :=
   ctSys.discretizeEnclosureFloat stepR 4
-def ctReachRun : Zonotope D 2 := ctSysD.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
+def ctReachRun : Zonotope (Vec D 2) := ctSysD.reach (S := fun k => Zonotope (Vec D k))
+    ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
 
 -- what the input enclosures of five sampled steps owe, and the box one step pays (#1)
-def ctErrorBoxRun : Zonotope D 2 := ctSys.timePointStepErrorBoxFloat stepR 4 Z
-def ctInputErrorRun : Zonotope D 2 := ctSys.reachInputErrorFloat stepR 4 Z 5
+def ctErrorBoxRun : Zonotope (Vec D 2) := ctSys.timePointStepErrorBoxFloat stepR 4 Z
+def ctInputErrorRun : Zonotope (Vec D 2) := ctSys.reachInputErrorFloat stepR 4 Z 5
 
 -- CORA's `oneStep` from `Z`: `Z` re-centred as the inputs `U`, `Z`'s centre as the constant `u`
-def oneStepTpRun : Zonotope D 2 := (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).1
-def oneStepTiRun : Zonotope D 2 := (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).2
+def oneStepTpRun : Zonotope (Vec D 2) := (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).1
+def oneStepTiRun : Zonotope (Vec D 2) := (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).2
 
 /-- The float Minkowski difference at a checked representation: the box `[-2, 2]²` minus a box of
 half-width `½` at `x₀ = ⅛`, its generators written in the minuend's by `M = ¼ I`, certified with
 the right inverse `H = ½ I` and the margin shrunk by `15/16`. -/
-def minkDiffMinuend : Zonotope D 2 where
+def minkDiffMinuend : Zonotope (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]
   G := !![d 1 1, d 0 0; d 0 0, d 1 1]
   E := zbox 2
-def minkDiffSubtrahend : Zonotope D 2 where
+def minkDiffSubtrahend : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 (-3), d 0 0]
   G := !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
   E := zbox 2
-def minkDiffOpt : Option (Zonotope D 2) :=
+def minkDiffOpt : Option (Zonotope (Vec D 2)) :=
   minkDiffMinuend.minkDiffRep minkDiffSubtrahend (fun i j => if i = j then d 1 (-2) else d 0 0)
     (d 15 (-4)) !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
-def minkDiffRun : Zonotope D 2 := minkDiffOpt.getD (Zonotope.point ![d 0 0, d 0 0])
+def minkDiffRun : Zonotope (Vec D 2) := minkDiffOpt.getD (Zonotope.point ![d 0 0, d 0 0])
 
 /-- The non-square Minkowski difference pinning the generator orientation, explained in
 `minkDiffRepCandidate`'s module docstring. -/
-def minkDiffNSMinuend : Zonotope D 2 where
+def minkDiffNSMinuend : Zonotope (Vec D 2) where
   h := 3
   c := ![d 0 0, d 0 0]
   G := !![d 1 0, d 0 0; d 0 0, d 1 0; d 1 0, d 1 0]
   E := zbox 2
-def minkDiffNSSubtrahend : Zonotope D 2 where
+def minkDiffNSSubtrahend : Zonotope (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]
   G := !![d 1 (-1), d 0 0; d 1 (-2), d 1 (-1)]
   E := zbox 2
-def minkDiffNSOpt : Option (Zonotope D 2) :=
+def minkDiffNSOpt : Option (Zonotope (Vec D 2)) :=
   let M : Mat D 3 2 := !![d 1 (-1), d 0 0; d 0 0, d 1 (-2); d 0 0, d 1 (-2)]
   minkDiffNSMinuend.minkDiffRep minkDiffNSSubtrahend (fun i j => M i j) (d 1 (-1))
     !![d 3 (-2), d (-3) (-3); d (-1) (-2), d 5 (-3); d 1 (-2), d 3 (-3)]
-def minkDiffNSRun : Zonotope D 2 := minkDiffNSOpt.getD (Zonotope.point ![d 0 0, d 0 0])
+def minkDiffNSRun : Zonotope (Vec D 2) := minkDiffNSOpt.getD (Zonotope.point ![d 0 0, d 0 0])
 
 /-- The aligned difference of `minkDiff*`'s operands (subtrahend `¼` of the minuend), shrunk by
 `ρ = 15/16`: at `ρ = 1` it is exact and leaves the check no slack. The stretch at `μ = ¾` is that
 exact difference rounded outward; at `μ = ⅝` it is certified inner by the same check. -/
-def minkDiffAlignedOpt : Option (Zonotope D 2) :=
+def minkDiffAlignedOpt : Option (Zonotope (Vec D 2)) :=
   minkDiffMinuend.minkDiffAligned minkDiffSubtrahend rfl (d 15 (-4))
     !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
-def minkDiffAlignedRun : Zonotope D 2 := minkDiffAlignedOpt.getD (Zonotope.point ![d 0 0, d 0 0])
-def minkDiffStretchRun : Zonotope D 2 :=
+def minkDiffAlignedRun : Zonotope (Vec D 2) := minkDiffAlignedOpt.getD
+    (Zonotope.point ![d 0 0, d 0 0])
+def minkDiffStretchRun : Zonotope (Vec D 2) :=
   minkDiffMinuend.minkDiffStretch minkDiffSubtrahend fun _ => d 3 (-2)
-def minkDiffStretchInnerOpt : Option (Zonotope D 2) :=
+def minkDiffStretchInnerOpt : Option (Zonotope (Vec D 2)) :=
   minkDiffMinuend.minkDiffStretchInner minkDiffSubtrahend (fun _ => d 5 (-3))
     !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
-def minkDiffStretchInnerRun : Zonotope D 2 :=
+def minkDiffStretchInnerRun : Zonotope (Vec D 2) :=
   minkDiffStretchInnerOpt.getD (Zonotope.point ![d 0 0, d 0 0])
 
 /-- A location flowing by the same `A`, its input `Z` off the origin, and its stay over
 `[0, r]` from `Z` by the float step and by the split float step. -/
-def ctLoc : Location (Zonotope D) (Zonotope D) Unit D 2 := ⟨Z, ctSys, Z, []⟩
-def locStepRun : Zonotope D 2 := ctLoc.timeIntervalStepFloat stepR 4 Z
-def locSplitRun : Zonotope D 2 := ctLoc.timeIntervalStepSplitFloat stepR 4 Z
+def ctLoc : Location (fun k => Zonotope (Vec D k)) (fun k => Zonotope (Vec D k)) Unit D 2 :=
+    ⟨Z, ctSys, Z, []⟩
+def locStepRun : Zonotope (Vec D 2) := ctLoc.timeIntervalStepFloat stepR 4 Z
+def locSplitRun : Zonotope (Vec D 2) := ctLoc.timeIntervalStepSplitFloat stepR 4 Z
 
 /-- The guard hyperplane `x₁ = 9/8` of unit normal `e₁`: the cut of `Z` along `e₂` and the
 Girard and Le Guernic bundle over the identity basis, and the reach sets of `ctLoc` that
@@ -484,20 +496,20 @@ def hpNormal : Vec D 2 := ![d 1 0, d 0 0]
 def hpOffset : D := d 9 (-3)
 def hpBasis : Mat D 2 2 := !![d 1 0, d 0 0; d 0 0, d 1 0]
 def zonoGirardUpperRun : D := Location.zonoGirardUpperFloat Z hpNormal hpOffset ![d 0 0, d 1 0]
-def zonoGirardRun : ZonoBundle D 2 :=
+def zonoGirardRun : ZonoBundle (Vec D 2) :=
   Location.guardIntersectZonoGirardFloat [hpBasis] Z [] hpNormal hpOffset
-def checkFlowRun : List (Zonotope D 2) := ctLoc.checkFlowFloat hpNormal hpOffset [Z]
+def checkFlowRun : List (Zonotope (Vec D 2)) := ctLoc.checkFlowFloat hpNormal hpOffset [Z]
 
 /-- A location drifting along `e₁` at unit speed under a slow rotation, and the guard map of the
 box of half-width `2⁻⁴` about `(1, 0)` onto `x₁ = 1`, `tmax = 2⁻³`, two Taylor terms. -/
-def hpMapLoc : Location (Zonotope D) (Zonotope D) Unit D 2 :=
+def hpMapLoc : Location (fun k => Zonotope (Vec D k)) (fun k => Zonotope (Vec D k)) Unit D 2 :=
   ⟨Z, ⟨!![d 0 0, d (-1) (-1); d 1 (-1), d 0 0]⟩, Zonotope.point ![d 1 0, d 0 0], []⟩
-def hpMapR0 : Zonotope D 2 where
+def hpMapR0 : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 (-4), d 0 0; d 0 0, d 1 (-4)]
   E := zbox 2
-def hpMapRun : Option (Zonotope D 2) :=
+def hpMapRun : Option (Zonotope (Vec D 2)) :=
   hpMapLoc.guardIntersectHyperplaneMapFloat hpNormal (d 1 0) hpMapR0 (d 1 (-3)) 2 10 10 20
 
 /-- `A` known only to `±2⁻⁵` entrywise, as a `LinParamSys` over float interval matrices: an
@@ -507,23 +519,26 @@ def lpA : Interval (Mat D 2 2) :=
     !![d (-31) (-5), d (-127) (-5); d 129 (-5), d (-31) (-5)]⟩
 def lpSys : LinParamSys (fun m n => Interval (Mat D m n)) 2 := ⟨lpA⟩
 def lpOrderRun : Option ℕ := lpSys.reachOrderFloat stepR stepR 2
-def lpStepRun : Zonotope D 2 := lpSys.timeIntervalStepFloat stepR 4 Z
-def lpInputRun : Zonotope D 2 := lpSys.inputSolutionFloat stepR 4 Z
-def lpReachRun : Zonotope D 2 :=
-  (lpSys.discretizeEnclosureFloat stepR 4).reach (S := Zonotope D) ⟨Z, lpInputRun, 0, 5⟩
+def lpStepRun : Zonotope (Vec D 2) := lpSys.timeIntervalStepFloat stepR 4 Z
+def lpInputRun : Zonotope (Vec D 2) := lpSys.inputSolutionFloat stepR 4 Z
+def lpReachRun : Zonotope (Vec D 2) :=
+  (lpSys.discretizeEnclosureFloat stepR 4).reach (S := fun k => Zonotope (Vec D k))
+    ⟨Z, lpInputRun, 0, 5⟩
     ⟨2, two_pos⟩
 /-- Four windows of `[0, 2⁻³]` at every member, each from the first by scaling and squaring. -/
-def lpWindowsRun : Option (List (Zonotope D 2)) := lpSys.reachFloat ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+def lpWindowsRun : Option (List (Zonotope (Vec D 2))) := lpSys.reachFloat
+    ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 
 /-- The same four windows with an input: `Z` re-centred at the origin, whose contribution
 `P^R(t_{k+1})` accumulates by `particularSolutionFloat`; then `Z` itself, split at its centre,
 the constant half carried across windows by `constPropagateFloat`. -/
-def lpInputSet : Zonotope D 2 := Recentre.recentre Z
-def lpParticularRun : Option (Zonotope D 2) := lpSys.particularSolutionFloat stepR 4 2 lpInputSet 2
-def lpConstRun : Zonotope D 2 := lpSys.constPropagateFloat stepR 4 2 (Z.c) 3
-def lpInputWindowsRun : Option (List (Zonotope D 2)) :=
+def lpInputSet : Zonotope (Vec D 2) := Recentre.recentre Z
+def lpParticularRun : Option (Zonotope (Vec D 2)) := lpSys.particularSolutionFloat stepR 4
+    2 lpInputSet 2
+def lpConstRun : Zonotope (Vec D 2) := lpSys.constPropagateFloat stepR 4 2 (Z.c) 3
+def lpInputWindowsRun : Option (List (Zonotope (Vec D 2))) :=
   lpSys.reachFloatInput lpInputSet ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
-def lpSplitWindowsRun : Option (List (Zonotope D 2)) :=
+def lpSplitWindowsRun : Option (List (Zonotope (Vec D 2))) :=
   lpSys.reachFloatInputSplit Z ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 
 
@@ -535,34 +550,35 @@ every budget generator in the outer set's first and `H` the least-squares right 
 `gᵀ/‖g‖²`, the margin shrunk by `15/16`. -/
 
 def ctInnerSys : LinearSys D 1 := ⟨!![d (-1) 0]⟩
-def ctInnerX : Zonotope D 1 := ⟨1, ![d 3 (-1)], !![d 1 (-1)], zbox 1⟩
-def ctInnerU : Zonotope D 1 := ⟨1, ![d 0 0], !![d 1 (-6)], zbox 1⟩
+def ctInnerX : Zonotope (Vec D 1) := ⟨1, ![d 3 (-1)], !![d 1 (-1)], zbox 1⟩
+def ctInnerU : Zonotope (Vec D 1) := ⟨1, ![d 0 0], !![d 1 (-6)], zbox 1⟩
 -- one step: the float step, its budget, and the step minus its budget
-def ctInnerStep : Zonotope D 1 :=
+def ctInnerStep : Zonotope (Vec D 1) :=
   ctInnerSys.timePointStepInputFloat (d 1 (-3)) 4 ctInnerX ctInnerU
-def ctInnerStepError : Zonotope D 1 :=
+def ctInnerStepError : Zonotope (Vec D 1) :=
   ctInnerSys.timePointStepInnerErrorFloat (d 1 (-3)) 4 ctInnerX ctInnerU
-def ctInnerStepOpt : Option (Zonotope D 1) :=
+def ctInnerStepOpt : Option (Zonotope (Vec D 1)) :=
   let S := ctInnerSys.timePointStepInputFloat (d 1 (-3)) 4 ctInnerX ctInnerU
   let B := ctInnerSys.timePointStepInnerErrorFloat (d 1 (-3)) 4 ctInnerX ctInnerU
   ctInnerSys.timePointStepInnerRepFloat (d 1 (-3)) 4 ctInnerX ctInnerU
     (fun i j => if i.val = 0 then divUp (absolute (B.G j 0)) (absolute (S.G i 0)) else d 0 0)
     (d 15 (-4)) (fun i _ => divDown (S.G i 0) (sumUp fun k => mulUp (S.G k 0) (S.G k 0)))
-def ctInnerStepRun : Zonotope D 1 := ctInnerStepOpt.getD (Zonotope.point ![d 0 0])
+def ctInnerStepRun : Zonotope (Vec D 1) := ctInnerStepOpt.getD (Zonotope.point ![d 0 0])
 -- five sampled steps: the float run, its budget, and the run minus its budget
-def ctInnerReach : Zonotope D 1 :=
-  (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach (S := Zonotope D)
+def ctInnerReach : Zonotope (Vec D 1) :=
+  (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach (S := fun k => Zonotope (Vec D k))
     ⟨ctInnerX, ctInnerSys.inputSolutionFloat (d 1 (-3)) 4 ctInnerU, 0, 5⟩ ⟨2, two_pos⟩
-def ctInnerReachError : Zonotope D 1 :=
+def ctInnerReachError : Zonotope (Vec D 1) :=
   ctInnerSys.reachErrorFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
-def ctInnerReachOpt : Option (Zonotope D 1) :=
-  let R := (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach (S := Zonotope D)
+def ctInnerReachOpt : Option (Zonotope (Vec D 1)) :=
+  let R := (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach
+    (S := fun k => Zonotope (Vec D k))
     ⟨ctInnerX, ctInnerSys.inputSolutionFloat (d 1 (-3)) 4 ctInnerU, 0, 5⟩ ⟨2, two_pos⟩
   let B := ctInnerSys.reachErrorFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
   ctInnerSys.reachInnerRepFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
     (fun i j => if i.val = 0 then divUp (absolute (B.G j 0)) (absolute (R.G i 0)) else d 0 0)
     (d 15 (-4)) (fun i _ => divDown (R.G i 0) (sumUp fun k => mulUp (R.G k 0) (R.G k 0)))
-def ctInnerReachRun : Zonotope D 1 := ctInnerReachOpt.getD (Zonotope.point ![d 0 0])
+def ctInnerReachRun : Zonotope (Vec D 1) := ctInnerReachOpt.getD (Zonotope.point ![d 0 0])
 
 
 /-! ## Matrix zonotopes in floats (#1)
@@ -571,15 +587,16 @@ def ctInnerReachRun : Zonotope D 1 := ctInnerReachOpt.getD (Zonotope.point ![d 0
 exponential at order `3`; `ctSys` sampled through a matrix zonotope and five steps of its
 `reach`; and the matrix-zonotope input solution of `lpA` over `Z`. -/
 
-def mzA : GZonotope (Mat D 2 2) := GZonotope.ofIntervalMat lpA
-def mzExpRun : GZonotope (Mat D 2 2) :=
-  MatExp.expMatZonoEnclosure (GZonotope.matSmul stepR stepR mzA) 3
+def mzA : Zonotope (Mat D 2 2) := Zonotope.ofIntervalMat lpA
+def mzExpRun : Zonotope (Mat D 2 2) :=
+  MatExp.expMatZonoEnclosure (Zonotope.matSmul stepR stepR mzA) 3
 -- the system matrix itself sampled through a point matrix zonotope, and its reach
-def ctSysMZ : LinParamSysDT (fun m n => GZonotope (Mat D m n)) 2 :=
+def ctSysMZ : LinParamSysDT (fun m n => Zonotope (Mat D m n)) 2 :=
   ctSys.discretizeMatZonotopeFloat stepR 4
-def ctMZReachRun : Zonotope D 2 := ctSysMZ.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
-def lpMZSys : LinParamSys (fun m n => GZonotope (Mat D m n)) 2 := ⟨mzA⟩
-def lpMZInputRun : Zonotope D 2 := lpMZSys.inputSolutionZonoFloat stepR 4 Z
+def ctMZReachRun : Zonotope (Vec D 2) := ctSysMZ.reach (S := fun k => Zonotope (Vec D k))
+    ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
+def lpMZSys : LinParamSys (fun m n => Zonotope (Mat D m n)) 2 := ⟨mzA⟩
+def lpMZInputRun : Zonotope (Vec D 2) := lpMZSys.inputSolutionZonoFloat stepR 4 Z
 
 
 /-! ## The fully-automated scheme's `Alg. 1` and the step error estimates, in floats (#1)
@@ -591,19 +608,21 @@ for against an admissible remainder; Girard's scheme over `[0, 2⁻³]` at input
 most `2⁻⁴`; CORA's `errorSolution_adaptive` with its order, `Z` dynamic and static; and the
 input solution's orders `1 … 4` and `H(t_{k+1})` from `Z`, under the constant `Z`'s centre. -/
 
-def manualReachRun : Option (List (Zonotope D 2)) :=
+def manualReachRun : Option (List (Zonotope (Vec D 2))) :=
   ctSys.manualReachFloat (identityMat D 2) { R0 := Z, U := Z, tFinal := 1 / 8 } ⟨stepR, 4, 2⟩
 def curvatureErrorRun : D := ctSys.timeIntervalStepCurvatureErrorFloat stepR 4 Z
 def intervalErrorRun : D := ctSys.timeIntervalStepErrorFloat stepR 4 Z
 def pointErrorRun : D := ctSys.timePointStepErrorFloat stepR 4 Z
 def remainderErrorRun : D := ctSys.timePointStepRemainderErrorFloat stepR 4 Z
 /-- One step from `Z` at the first order whose remainder bound is under `2⁻²⁰`. -/
-def stepEpsRun : Option (Zonotope D 2) := ctSys.timeIntervalStepEpsFloat stepR (d 1 (-20)) 20 Z
-def girardRun : Option (List (Zonotope D 2)) := ctSys.girardReachFloat Z (d 1 (-4)) stepR (1 / 8)
-def errorSolutionRun : Zonotope D 2 := ctSys.errorSolutionAdaptiveFloat stepR 4 Z (some Z)
+def stepEpsRun : Option (Zonotope (Vec D 2)) := ctSys.timeIntervalStepEpsFloat stepR
+    (d 1 (-20)) 20 Z
+def girardRun : Option (List (Zonotope (Vec D 2))) := ctSys.girardReachFloat Z
+    (d 1 (-4)) stepR (1 / 8)
+def errorSolutionRun : Zonotope (Vec D 2) := ctSys.errorSolutionAdaptiveFloat stepR 4 Z (some Z)
 def errorOrderRun : Option ℕ := ctSys.errorSolutionOrderFloat (d 1 (-4)) stepR Z 20
-def inputTailRun : Zonotope D 2 := ctSys.inputTaylorSumTailFloat stepR Z 4
-def timePointNextRun : Zonotope D 2 := ctSys.affineTimePointNextFloat Z Z.c stepR 4
+def inputTailRun : Zonotope (Vec D 2) := ctSys.inputTaylorSumTailFloat stepR Z 4
+def timePointNextRun : Zonotope (Vec D 2) := ctSys.affineTimePointNextFloat Z Z.c stepR 4
 
 
 /-! ## The fully-automated scheme's `Alg. 2`, its curvature enclosure and its tuning, in floats (#1)
@@ -616,8 +635,9 @@ the whole loop. -/
 
 def constCorrectionRun : Interval (Mat D 2 2) :=
   MatExp.intervalConstCorrectionMatrix (Interval.point ctSys.A) stepR 4
-def curvatureRun : Zonotope D 2 := MatExp.curvatureEnclosure (Interval.point ctSys.A) Z Z.c stepR 4
-def timeIntervalOuterRun : Zonotope D 2 := ctSys.affineTimeIntervalOuterFloat Z Z.c stepR 4
+def curvatureRun : Zonotope (Vec D 2) := MatExp.curvatureEnclosure
+    (Interval.point ctSys.A) Z Z.c stepR 4
+def timeIntervalOuterRun : Zonotope (Vec D 2) := ctSys.affineTimeIntervalOuterFloat Z Z.c stepR 4
 def errUpRun : D := Z.errUp
 /-- `‖G^{(-)}_h‖₂` of `Z`'s generators at `[e^{A r}]`, from above. -/
 def genMinusRun : D := genOpNormUp 64 (MatExp.genMinus (ctSys.expIntervalFloat stepR stepR 4) Z)
@@ -633,9 +653,9 @@ def autoTuneRun : Option (D × ℕ) :=
   ctSys.autoTuneDeltaTFloat (ctSys.expIntervalFloat zero zero 4) Z Z.c 0 (1 / 8) 1 (1 / 2) 0
     (d 1 (-3)) 20 30 Z
 /-- One iteration of `Alg. 2` from `Z` under the input `Z`, horizon `2⁻³`. -/
-def autoStepRun : Option (LinearSys.AutoStateFloat D 2 × Zonotope D 2) :=
+def autoStepRun : Option (LinearSys.AutoStateFloat D 2 × Zonotope (Vec D 2)) :=
   ctSys.autoStepFloat Z Z (d 1 (-3)) 1 (1 / 2) 20 30 (LinearSys.autoInitFloat Z (d 1 (-3)))
-def autoReachRun : Option (List (ℚ × ℚ × Zonotope D 2)) :=
+def autoReachRun : Option (List (ℚ × ℚ × Zonotope (Vec D 2))) :=
   ctSys.autoReachFloat Z Z (d 1 (-3)) 1 (1 / 2) 20 30 10
 
 /-! ## Zonotope bundles and backward reachability in floats (#1)
@@ -647,12 +667,15 @@ both input sets and a constant `Z` as the centre trajectory's contribution; its 
 and `p` are read in the direction of the first coordinate, `N = I`. The Taylor order is `4`
 and the matrix exponentials are squared twice. -/
 
-def bundleRun : List (ZonoBundle D 2) := ctSys.bundleReachFloat zB Z stepR 4 3
-def minBackInitRun : LinearSys.MinBackReachStateOf D (Zonotope D 2) (ConZonotope D 2) :=
+def bundleRun : List (ZonoBundle (Vec D 2)) := ctSys.bundleReachFloat zB Z stepR 4 3
+def minBackInitRun : LinearSys.MinBackReachStateOf D (Zonotope (Vec D 2))
+    (ConZonotope D (Vec D 2)) :=
   ctSys.minBackReachInitFloat Z Z (d 0 0) 4
-def minBackStepRun : LinearSys.MinBackReachStateOf D (Zonotope D 2) (ConZonotope D 2) :=
+def minBackStepRun : LinearSys.MinBackReachStateOf D (Zonotope (Vec D 2))
+    (ConZonotope D (Vec D 2)) :=
   ctSys.minBackReachStepFloat cZ Z Z (fun _ => Z) stepR 4 2 minBackInitRun
-def minBackRunRun : LinearSys.MinBackReachStateOf D (Zonotope D 2) (ConZonotope D 2) :=
+def minBackRunRun : LinearSys.MinBackReachStateOf D (Zonotope (Vec D 2))
+    (ConZonotope D (Vec D 2)) :=
   ctSys.minBackReachRunFloat cZ Z Z (fun _ => Z) (d 0 0) stepR 4 2 2
 def minBackSupportRun : D :=
   ctSys.minBackReachSupportFloat cZ Z Z (fun _ => Z) (identityMat D 2) (d 0 0) stepR 4 2 2 0
@@ -661,7 +684,7 @@ def minBackPRun : Fin 2 → D :=
 /-- The maximal set's curvature radius for `Z` as `box(X_end)`, and the target polytope `H` eroded
 by `Z` as `F box(X_end)` and by the ball of that radius. -/
 def maxBackMuRun : D := ctSys.maxBackReachMuFloat stepR 4 4 Z
-def maxBackPolyRun : HPolytope D 2 := LinearSys.maxBackReachPolyFloat 4 H Z maxBackMuRun
+def maxBackPolyRun : HPolytope D (Vec D 2) := LinearSys.maxBackReachPolyFloat 4 H Z maxBackMuRun
 
 
 /-! ## The four Box operations `LinearSysDT.reachErrorFloat` sums
@@ -671,9 +694,9 @@ Each used to return a `Real.Zonotope`, read back through `toReal`, and so was
 
 def plusBoxRun : Interval (Vec D 2) := Zonotope.plusBox Z Z
 def mtimesBoxRun : Interval (Vec D 2) := Zonotope.mtimesBox (identityMat D 2) Z
-def reduceByBoxRun : Zonotope D 2 :=
+def reduceByBoxRun : Zonotope (Vec D 2) :=
   Z.reduceByBox (Partition.split 2 0 : Split (Fin Z.h) into (Fin 2) ⊕ (Fin 0))
-def reduceGirardBoxRun : Zonotope D 2 := Zonotope.reduceGirardBox Z 1
+def reduceGirardBoxRun : Zonotope (Vec D 2) := Zonotope.reduceGirardBox Z 1
 -- what `[e^{AΔt}] Z` holds beyond `A Z` for every `A` in the interval matrix (#129)
 def mtimesIntervalMatBoxRun : Interval (Vec D 2) :=
   Zonotope.mtimesIntervalMatBox expEnclosureRun Z
@@ -686,7 +709,7 @@ of `Z` and a larger cell holding it (the small one is deleted), `minnorm` (an up
 radius of the ball around the centre, `1/4` for `Z`) and `encloseMany` along the diagonal. -/
 
 /-- A cell holding `Z`: the same centre, generators four times as long. -/
-def Zbig : Zonotope D 2 where
+def Zbig : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 0, d 0 0; d 0 0, d 1 0]
@@ -696,7 +719,7 @@ def dominantDirectionsRun : Option (Mat D 2 2) := Z.dominantDirections
 def filterOutRun : List (Fin 2) :=
   (List.finRange 2).filter fun i => decide (i ∈ Zonotope.filterOut ![Z, Zbig])
 def minnormRun : Option D := Z.minnorm 8
-def encloseManyRun : Option (Zonotope D 2) :=
+def encloseManyRun : Option (Zonotope (Vec D 2)) :=
   Zonotope.encloseMany 8 (fun _ : Fin 1 => Z) ![d 1 0, d 1 0]
 
 
@@ -713,25 +736,26 @@ def sys : LinearSysDT D 2 := ⟨!![d 15 (-4), d (-1) (-3); d 1 (-3), d 15 (-4)]�
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Five reachability steps, order at most `4`. -/
-def reachRun : Zonotope D 2 := sys.reach (S := Zonotope D) ⟨Z, Z, 0, 5⟩ ⟨2, by decide⟩
+def reachRun : Zonotope (Vec D 2) := sys.reach (S := fun k => Zonotope (Vec D k)) ⟨Z, Z, 0, 5⟩
+    ⟨2, by decide⟩
 
-def net : NeuralNetwork (Zonotope D) 2 2 :=
+def net : NeuralNetwork (fun k => Zonotope (Vec D k)) 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
     (.layer (⟨reluSlope, rfl⟩ : ReluLayer D 2 2) .output)
 
-def encloseRun : Zonotope D 2 := net.enclose Z
+def encloseRun : Zonotope (Vec D 2) := net.enclose Z
 
 /-- Linear, sigmoid, activation at `Real.sigmoid`, linear, and `net` nested as one layer:
 five `Enclose` kinds in one chain, each `eval` over ℝ held `Erased`, which is what this
 compiling and running checks. -/
-def mixedNet : NeuralNetwork (Zonotope D) 2 2 :=
+def mixedNet : NeuralNetwork (fun k => Zonotope (Vec D k)) 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
     (.layer (⟨2, rfl⟩ : SigmoidLayer D 2 2)
       (.layer (ActivationLayer.of (sigmoidRelaxation_sound (𝕋 := D) 2))
-        (.layer (Enclose.pack (S := Zonotope D) net)
+        (.layer (Enclose.pack (S := fun k => Zonotope (Vec D k)) net)
           (.layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2) .output))))
 
-def mixedEncloseRun : Zonotope D 2 := mixedNet.enclose Z
+def mixedEncloseRun : Zonotope (Vec D 2) := mixedNet.enclose Z
 
 /-- `net` at the interval hull representation: the stretch `propagateBounds` pushes bounds
 through. -/
@@ -762,10 +786,11 @@ def findRegionPolysRun : Option (List (RegionPoly D)) :=
 #eval findRegionPolysRun.map List.length
 
 /-- `ctSys` closed around `net`, two control periods of two float steps of `r` each (#1). -/
-def nnContrSys : NeurNetContrSys D (Zonotope D) 2 := ⟨ctSys, net⟩
-def nnContrReachRun : Zonotope D 2 := nnContrSys.reachFloat ⟨Z, 0, 2⟩ ⟨stepR, 2, 4, 2, two_pos⟩
+def nnContrSys : NeurNetContrSys D (fun k => Zonotope (Vec D k)) 2 := ⟨ctSys, net⟩
+def nnContrReachRun : Zonotope (Vec D 2) := nnContrSys.reachFloat ⟨Z, 0, 2⟩
+    ⟨stepR, 2, 4, 2, two_pos⟩
 /-- The same loop's set at every period boundary `0, 1, 2`, at an order `reachOrderFloat` finds. -/
-def nnContrUnionRun : Option (List (Zonotope D 2)) :=
+def nnContrUnionRun : Option (List (Zonotope (Vec D 2))) :=
   nnContrSys.reachUnionFloat ⟨Z, 0, 2⟩ ⟨stepR, 2, 4, 2, two_pos⟩
 
 #eval reachRun.h
@@ -964,19 +989,19 @@ theorem vdpModel_encloses : vdpModel.Encloses
       · simp [dotProduct]; ring
 
 /-- `[1.72, 1.78] × [1.22, 1.28]`, `1/32` either side of `(7/4, 5/4)`. -/
-def vdpX₀ : Zonotope D 2 :=
+def vdpX₀ : Zonotope (Vec D 2) :=
   ⟨2, ![d 7 (-2), d 5 (-2)], !![d 1 (-5), d 0 0; d 0 0, d 1 (-5)], zbox 2⟩
 
 /-- `u ∈ [-1/64, 1/64]`. -/
-def vdpU : Zonotope D 1 := ⟨1, ![d 0 0], !![d 1 (-6)], zbox 1⟩
+def vdpU : Zonotope (Vec D 1) := ⟨1, ![d 0 0], !![d 1 (-6)], zbox 1⟩
 
 /-- Four re-linearized steps of `1/32`, Taylor order at least `4`, zonotope order `10`. -/
-def vdpReach : Option (List (Zonotope D 2)) :=
+def vdpReach : Option (List (Zonotope (Vec D 2))) :=
   vdpModel.reachFloat { R0 := vdpX₀, U := vdpU, tFinal := 1 / 8 }
     { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
 
 /-- What a successful run is worth: every run of the real system, over every window. -/
-example {Rs : List (Zonotope D 2)} (h : vdpReach = some Rs) :=
+example {Rs : List (Zonotope (Vec D 2))} (h : vdpReach = some Rs) :=
   vdpModel_encloses.reachFloat_outer h
 
 /-- A dyadic read through `Float`, for printing. -/
@@ -1007,7 +1032,7 @@ def vdpHessModel : NonlinearSys.FloatHessModel D 2 1 :=
           vdpNegTwoHi (X.inf 0), zero, zero; zero, zero, zero]⟩] }
 
 /-- Four steps of `1/32` at `alg`, as `vdpReach`. -/
-def vdpReachAlg (alg : NonlinearSys.LinReachAlg) : Option (List (Zonotope D 2)) :=
+def vdpReachAlg (alg : NonlinearSys.LinReachAlg) : Option (List (Zonotope (Vec D 2))) :=
   vdpHessModel.reachAlgFloat alg { R0 := vdpX₀, U := vdpU, tFinal := 1 / 8 }
     { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
 
@@ -1092,7 +1117,7 @@ theorem vdpHessModel_encloses : vdpHessModel.Encloses
         ring
 
 /-- What a successful run is worth, at either `alg`. -/
-example {alg : NonlinearSys.LinReachAlg} {Rs : List (Zonotope D 2)}
+example {alg : NonlinearSys.LinReachAlg} {Rs : List (Zonotope (Vec D 2))}
     (h : vdpReachAlg alg = some Rs) :=
   vdpHessModel_encloses.reachAlgFloat_outer h
 
@@ -1111,12 +1136,12 @@ chooses its own size from the gain of the last one (`tuneDeltat`'s `optDeltatFlo
 tuning constants are `ζ_δ = 1/2`, `ζ_h = ζ_φ = 1/4`, `ζ_Z = 1/8`, `ζ_K = 1/2`. -/
 
 /-- Four steps of `1/32`, each linearized at its start set's centre. -/
-def vdpCentreReach : Option (List (Zonotope D 2)) :=
+def vdpCentreReach : Option (List (Zonotope (Vec D 2))) :=
   vdpModel.centreAbstrRunFloat vdpU { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
     4 vdpX₀
 
 /-- What a successful run is worth: every run of the real system, over every window. -/
-example {Rs : List (Zonotope D 2)} (h : vdpCentreReach = some Rs) :=
+example {Rs : List (Zonotope (Vec D 2))} (h : vdpCentreReach = some Rs) :=
   vdpModel_encloses.centreAbstrRunFloat_outer 4 h
 
 #eval vdpCentreReach.map (·.map fun Z =>
@@ -1125,14 +1150,15 @@ example {Rs : List (Zonotope D 2)} (h : vdpCentreReach = some Rs) :=
 /-- The adaptive loop from `vdpX₀` to `t = 1/8`: first horizon `1/32` (a step of `1/16` fails the
 region check), last gain `7/8`, order `1`. The options' own step size is not read: every step
 takes the one the tuning picked. -/
-def vdpAdaptRun : Option (List (NonlinearSys.AdaptState (Zonotope D) 2 ℚ D)) :=
+def vdpAdaptRun : Option (List (NonlinearSys.AdaptState (fun k => Zonotope (Vec D k)) 2 ℚ D)) :=
   vdpHessModel.adaptRunFloat vdpU { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
     (d 15 (-4)) (d 7 (-3)) (d 1 (-3)) (d 1 (-1)) 20 20 2 (1 / 8) 4
     (NonlinearSys.adaptInit vdpX₀ (d 1 (-5)) (d 7 (-3)) (d 1 (-6)) 1)
 
 /-- What a successful run is worth: every run of the real system, over each window the tuning
 chose. -/
-example {ss : List (NonlinearSys.AdaptState (Zonotope D) 2 ℚ D)} (h : vdpAdaptRun = some ss) :=
+example {ss : List (NonlinearSys.AdaptState (fun k => Zonotope (Vec D k)) 2 ℚ D)}
+    (h : vdpAdaptRun = some ss) :=
   vdpHessModel_encloses.adaptRunFloat_outer 4 h
 
 -- The times reached, the orders chosen, and each window's `x₂` range.
@@ -1208,7 +1234,7 @@ row of it (`Contains`) or for one row it lies strictly beyond (`IsDisjoint`). Wh
 def safeBox : Specification (Interval (Vec D 2)) := .safeSet ⟨fun _ => d (-10) 0, fun _ => d 10 0⟩
 
 /-- `x₀ ≥ t` as one row, `-x₀ ≤ -t`, with no equality rows. -/
-def halfAbove (t : ℤ) : HPolytope D 2 :=
+def halfAbove (t : ℤ) : HPolytope D (Vec D 2) :=
   ⟨1, fun _ j => if j = 0 then d (-1) 0 else d 0 0, fun _ => d (-t) 0, 0, fun i => i.elim0,
     ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
@@ -1265,7 +1291,7 @@ def softmaxBoxRun : Interval (Vec D 3) := softmaxBox 10 softmaxIn
 The thesis's `Alg. 2` for `ctSys` from `Z` under the re-centred input `lpInputSet`, at step
 `2⁻⁵`, Taylor order `4` and `3` further windows after the first, NaN-gated. -/
 
-def reachBoxRun : Option (List (Zonotope D 2)) :=
+def reachBoxRun : Option (List (Zonotope (Vec D 2))) :=
   ctSys.reachBoxFloatChecked Z lpInputSet stepR 4 3
 
 /-! ## The maximal backward reachable set from the inside, in floats
@@ -1275,7 +1301,7 @@ conversion box that box's own, the input and the disturbance the same small box 
 step `2⁻⁵`, Taylor order `4` and `t₀ = 0`: the state before the first iteration, after it, and
 after two. -/
 
-def backW : Zonotope D 2 where
+def backW : Zonotope (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]
   G := !![d 1 (-8), d 0 0; d 0 0, d 1 (-8)]
@@ -1295,8 +1321,9 @@ A triangle, a segment and a point as one-piece polygons: the vertex triangulatio
 (all `3 ^ 3` vertex triples), the quadratic map `x ↦ (xᵀ x, xᵀ x)` of the segment, the mixed map of
 the segment and the point, and the polygon an ellipsoid's certified support points span. -/
 
-def polyTri : VPolytope D 2 := ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 0 0], ![d 0 0, d 1 0]], zbox 2⟩
-def polySeg : VPolytope D 2 := ⟨2, ![![d 0 0, d 0 0], ![d 1 0, d 0 0]], zbox 2⟩
+def polyTri : VPolytope (Vec D 2) :=
+    ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 0 0], ![d 0 0, d 1 0]], zbox 2⟩
+def polySeg : VPolytope (Vec D 2) := ⟨2, ![![d 0 0, d 0 0], ![d 1 0, d 0 0]], zbox 2⟩
 def polyP : Polygon D := Polygon.ofPieces [polyTri]
 def polyS : Polygon D := Polygon.ofPieces [polySeg]
 def polyPt : Polygon D := Polygon.ofPieces [⟨1, ![![d 1 0, d 0 0]], zbox 2⟩]
@@ -1324,7 +1351,7 @@ order `1`: the lifted zonotope `[G; Aₑ]` has three rows and keeps no generator
 boxed into `3`, the equality row read back off the box, the inequality row left with the kept
 generators and their slack. -/
 
-def cZ_eqs : ConZonotope D 2 where
+def cZ_eqs : ConZonotope D (Vec D 2) where
   h := 4
   c := ![d 1 0, d 0 0]
   G := ![![d 1 0, d 0 0], ![d 0 0, d 1 0], ![d 1 (-1), d 1 (-1)], ![d 1 (-2), d (-1) (-1)]]
@@ -1332,7 +1359,7 @@ def cZ_eqs : ConZonotope D 2 where
          me := 1, Ae := ![![d 0 0, d 0 0, d 1 0, d 1 0]], be := zbox 1 }
   E := zbox 2
 
-def cZ_reduceLift : ConZonotope D 2 := cZ_eqs.reduceLift 1
+def cZ_reduceLift : ConZonotope D (Vec D 2) := cZ_eqs.reduceLift 1
 
 /-! ## Components with a worked example of their own
 
@@ -1342,18 +1369,18 @@ a `Taylm` product and sum, the certified `eqBool`, and a nonlinear ARX model sim
 `NonlinearARXFloat`). `NonlinDASys.reachFloat` is the ordinary run of its float model
 (`vdpReach` above) and needs the real-valued reduced model, so it is run in `NonlinDASysFloat`. -/
 
-def zAnd : Zonotope D 2 := Z.and_ Z_plus
+def zAnd : Zonotope (Vec D 2) := Z.and_ Z_plus
 def polyAnd : Polygon D := Polygon.and polyP polyP
 /-- The triangle minus the point `(1, 0)`: its edge halfspaces, shifted to the translate. -/
-def polyMinkDiff : SetUnion (HPolytope D 2) := Polygon.minkDiff polyP polyPt
+def polyMinkDiff : SetUnion (HPolytope D (Vec D 2)) := Polygon.minkDiff polyP polyPt
 /-- The square `[0, 3]²` minus the inner square `[1, 2]²`: one piece per edge of the inner square,
 each a box hull of the minuend cut to the side outside that edge. -/
 def polySubtract : Polygon D :=
   let sq := fun lo hi : ℤ => (⟨4, ![![d lo 0, d lo 0], ![d hi 0, d lo 0], ![d hi 0, d hi 0],
-    ![d lo 0, d hi 0]], zbox 2⟩ : VPolytope D 2)
+    ![d lo 0, d hi 0]], zbox 2⟩ : VPolytope (Vec D 2))
   Polygon.subtract (Polygon.ofPieces [sq 0 3]) (Polygon.ofPieces [sq 1 2])
-def interSum : SetIntersection (Zonotope D 2) :=
-  Plus.plus (⟨[Z, Z_plus]⟩ : SetIntersection (Zonotope D 2)) ⟨[Z]⟩
+def interSum : SetIntersection (Zonotope (Vec D 2)) :=
+  Plus.plus (⟨[Z, Z_plus]⟩ : SetIntersection (Zonotope (Vec D 2))) ⟨[Z]⟩
 
 /-- The sign test of the disc `x² + y² ≤ 1` at bounds `-1/2` on its row value. -/
 def lsContainsRun : Bool :=
@@ -1391,7 +1418,7 @@ boxes down to six bisections; the point `(3/8, 1/4)`, the value at the factors `
 from which the test starts; and the box of radius `1/64` around it, from a box of radius
 `1/32` around those factors. The approximate inverse is `Zonotope.basisInverse`. -/
 
-def pZinner : PolyZonotope D 2 where
+def pZinner : PolyZonotope (Vec D 2) where
   p := 2
   h := 3
   q := 1
@@ -1401,12 +1428,12 @@ def pZinner : PolyZonotope D 2 where
   GI := ![![d 1 (-1), d 0 0]]
   err := zbox 2
 -- the inner boxes, the point and the box
-def pZ_innerApprox : List (Zonotope D 2) :=
+def pZ_innerApprox : List (Zonotope (Vec D 2)) :=
   PolyZonotope.innerApprox pZinner (d 1 (-3)) (fun M => Zonotope.basisInverse M) 20 6
 def pZ_containsPointApprox : Bool :=
   PolyZonotope.containsPointApprox pZinner ![d 3 (-3), d 1 (-2)] ![d 0 0, d 1 (-3), d 3 (-2)]
     (fun M => Zonotope.basisInverse M) 20
-def pZinnerS : PolyZonotope D 2 :=
+def pZinnerS : PolyZonotope (Vec D 2) :=
   ⟨0, 0, 2, ![d 3 (-3), d 1 (-2)], Fin.elim0, Fin.elim0, ![![d 1 (-6), d 0 0], ![d 0 0, d 1 (-6)]],
     zbox 2⟩
 def pZ_containsSetApprox : Bool :=
@@ -1427,7 +1454,7 @@ def pZ_containsPointSetOut : Bool :=
 The triangle `(1,1), (3,1), (1,3)`: its box is the hull of its vertices, `[1, 3]²`, not that hull
 joined with the origin. -/
 
-def polyOffOrigin : VPolytope D 2 :=
+def polyOffOrigin : VPolytope (Vec D 2) :=
   ⟨3, ![![d 1 0, d 1 0], ![d 3 0, d 1 0], ![d 1 0, d 3 0]], zbox 2⟩
 def polyOffOriginBox : Interval (Vec D 2) := polyOffOrigin.interval
 

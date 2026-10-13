@@ -58,9 +58,10 @@ theorem aux_window {N : ℕ} {Δ t : ℝ} (hΔ : 0 < Δ) (hN : 0 < N) (ht0 : 0 �
 
 /-- Every state a stay of length `τ ≤ tFinal` from `X₀` passes through lies in
 one of the computed time-interval sets. -/
-theorem Location.Trajectory.reachFloat_outer {ℓ : Location (Zonotope 𝕋) G L 𝕋 n} {τ : ℝ}
+theorem Location.Trajectory.reachFloat_outer
+    {ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n} {τ : ℝ}
     {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {tFinal : ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {X₀ : Zonotope 𝕋 n} {Rs : List (Zonotope 𝕋 n)}
+    {options : LinearSys.ReachOptions 𝕋} {X₀ : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))}
     (h : ℓ.reachFloat tFinal options X₀ = some Rs) (h₀ : x 0 ∈ construct X₀)
     (hτ : τ ≤ tFinal) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :
     ∃ R ∈ Rs, x t ∈ construct R := by -- --- PROOF ---
@@ -71,7 +72,8 @@ theorem Location.Trajectory.reachFloat_outer {ℓ : Location (Zonotope 𝕋) G L
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, -, hinv⟩ :=
     ℓ.dynamics.reachFloatInput_invariant (identityMat 𝕋 n) hreach
   set Δ := toReal options.timeStep with hΔ
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (identityMat 𝕋 n) ℓ.U with hV
+  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
+    (identityMat 𝕋 n) ℓ.U with hV
   simp only [Rat.cast_zero, sub_zero] at hNΔt
   -- the horizon holds `t`, and has at least one window
   have htf' : (0 : ℝ) < tFinal := by exact_mod_cast not_le.mp htf
@@ -88,10 +90,11 @@ theorem Location.Trajectory.reachFloat_outer {ℓ : Location (Zonotope 𝕋) G L
     intro w hw
     have hI : toRealMat (identityMat 𝕋 n) *ᵥ w = w := funext (identityMat_mulVec w)
     rw [← hI]
-    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (identityMat 𝕋 n) ℓ.U
+    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) (identityMat 𝕋 n) ℓ.U
       (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
   have hd := ((traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, ht.1.trans ht.2⟩
-    (CompactSet.isBounded_construct ℓ.U)).sub_mem_inputReach_recentre hUV ht
+    (CompactSet.isBounded_construct ℓ.U)).sub_mem_inputReach_recentre
+      (S' := fun k => Zonotope (Vec 𝕋 k)) hUV ht
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
   have hy := h3 (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)
     (Recentre.zero_mem_recentre _) ht.1 (by push_cast; exact htk) hd)

@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.minkDiffOf (P : HPolytope 𝕋 n) (T : Set (Vec ℝ n))
-    (u : ∀ i, FloatBound 𝕋 T (rowLin P.A i)) : HPolytope 𝕋 n where
+def HPolytope.minkDiffOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
+    (u : ∀ i, FloatBound 𝕋 T (rowLin P.A i)) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := P.m
   A := P.A
   b := fun i => subDown (P.b i) (u i).val

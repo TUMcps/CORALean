@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.linComb_h (Z₁ Z₂ : Zonotope 𝕋 n) :
+@[simp] theorem Zonotope.linComb_h (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
     (Z₁.linComb Z₂).h = Z₁.h + Z₂.h + 1 := rfl
 
 end CORALean.Float

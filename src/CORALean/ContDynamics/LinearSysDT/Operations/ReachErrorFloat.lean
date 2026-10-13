@@ -12,7 +12,7 @@ import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 # What a float run of `reach` owes
 
 The float counterpart of `reachError`, and a strictly bigger obligation: at
-`Zonotope 𝕋` none of `plus`, `mtimes` or `reduce` is exact — `SoundFloatArithmetic`
+`Zonotope (Vec 𝕋 n)` none of `plus`, `mtimes` or `reduce` is exact — `SoundFloatArithmetic`
 constrains each outward only — so a step loses ground at every operation, not
 only at `reduce`, and this recursion carries a box per operation.
 
@@ -48,7 +48,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 `reduce` each pay a box beyond their operand's exact operation, and the
 previous step's error carries through this step's `A`. -/
 noncomputable def LinearSysDT.reachErrorFloat (sys : LinearSysDT 𝕋 n)
-    (params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 n) ℕ)
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) ℕ)
     (options : LinearSysDT.ReachOptions) : Real.Zonotope (Vec ℝ n) :=
   let R₀ := params.R0                                               -- the paper's symbols
   let U := params.U
@@ -57,7 +57,7 @@ noncomputable def LinearSysDT.reachErrorFloat (sys : LinearSysDT 𝕋 n)
   let rec E : ℕ → Real.Zonotope (Vec ℝ n)  -- E_k
     | 0 => R₀.E.nominal.zonotope
     | k + 1 =>
-      let Rk := sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ options
+      let Rk := sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ options
       let M := Zonotope.mtimes sys.A Rk
       let W := M.plus U
       (Real.Zonotope.mtimes (Scalar.toRealMat sys.A) (E k)).plus

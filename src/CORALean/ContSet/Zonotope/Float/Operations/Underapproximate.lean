@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.underapproximate (Z : Zonotope 𝕋 n) (H : Mat 𝕋 Z.h n) (s : Vec 𝕋 n) (b : Bool) :
+def Zonotope.underapproximate (Z : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z.h n) (s : Vec 𝕋 n) (b : Bool) :
     Option (Vec 𝕋 n) :=
   let p := Z.underapproximateCandidate s b
   if Z.containsPoint H p then some p else none

@@ -24,7 +24,7 @@ open SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def ConZonotope.zonotope (cZ : ConZonotope 𝕋 n) : Zonotope 𝕋 n :=
+def ConZonotope.zonotope (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩
 
 variable [SoundFloatArithmetic 𝕋]
@@ -32,7 +32,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.zonotope_contains (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.zonotope_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ.construct ⊆ cZ.zonotope.construct :=
   mono_subset (Real.ConZonotope.zonotope_contains (nominal cZ)) subset_rfl
 

@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n h : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.reduceMethC (Z : Zonotope 𝕋 n) (o : ℕ) : Zonotope 𝕋 n :=
+def Zonotope.reduceMethC (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : Zonotope (Vec 𝕋 n) :=
   if o * n < Z.h then
     -- a basis of generators, and a candidate inverse of it
     let P := Z.methCBasis

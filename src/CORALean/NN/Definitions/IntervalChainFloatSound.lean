@@ -26,14 +26,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-inductive IntervalChainFloat.Sound :
-    ∀ {n k : ℕ}, IntervalChainFloat 𝕋 n k → IntervalChain n k → Prop where
-  | nil {n : ℕ} : Sound (.nil : IntervalChainFloat 𝕋 n n) .nil
-  | linear {n m k : ℕ} {W : Mat 𝕋 m n} {b : Vec 𝕋 m} {c : IntervalChainFloat 𝕋 m k}
-      {r : IntervalChain m k} (h : Sound c r) :
+inductive IntervalChain.Sound :
+    ∀ {n k : ℕ}, IntervalChain 𝕋 n k → Real.IntervalChain n k → Prop where
+  | nil {n : ℕ} : Sound (.nil : IntervalChain 𝕋 n n) .nil
+  | linear {n m k : ℕ} {W : Mat 𝕋 m n} {b : Vec 𝕋 m} {c : IntervalChain 𝕋 m k}
+      {r : Real.IntervalChain m k} (h : Sound c r) :
       Sound (.linear W b c) (.linear (toRealMat W) (toRealVec b) r)
   | act {n k : ℕ} {σE σ'E : Interval 𝕋 → Interval 𝕋} {σ σ' : ℝ → ℝ}
-      {c : IntervalChainFloat 𝕋 n k} {r : IntervalChain n k} (hσ : ScalarEncloses σE σ)
+      {c : IntervalChain 𝕋 n k} {r : Real.IntervalChain n k} (hσ : ScalarEncloses σE σ)
       (hσ' : ScalarEncloses σ'E σ') (h : Sound c r) :
       Sound (.act σE σ'E c) (.act σ σ' r)
 

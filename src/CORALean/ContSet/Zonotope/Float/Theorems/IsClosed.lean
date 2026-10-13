@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.isClosed_construct (Z : Zonotope 𝕋 n) : IsClosed Z.construct :=
+theorem Zonotope.isClosed_construct (Z : Zonotope (Vec 𝕋 n)) : IsClosed Z.construct :=
   Z.isCompact_construct.isClosed
 
 end CORALean.Float

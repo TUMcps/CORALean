@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n s : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋 s n) (φ y : Vec 𝕋 s)
-    (Λ : Mat 𝕋 n s) : ConZonotope 𝕋 n :=
+def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C : Mat 𝕋 s n) (φ y : Vec 𝕋 s)
+    (Λ : Mat 𝕋 n s) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- C (c + G ξ + e): centre and generators rounded down, the rest in a box
   let W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩
   -- c + Λ (y - C c), as bounds around the stored centre

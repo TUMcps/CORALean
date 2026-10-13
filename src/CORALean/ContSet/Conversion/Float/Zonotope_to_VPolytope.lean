@@ -34,16 +34,16 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The generator's contribution to a corner, at its own sign. -/
-def Zonotope.signed (Z : Zonotope 𝕋 n) (σ : Fin Z.h → Bool) (i : Fin n) (j : Fin Z.h) : 𝕋 :=
+def Zonotope.signed (Z : Zonotope (Vec 𝕋 n)) (σ : Fin Z.h → Bool) (i : Fin n) (j : Fin Z.h) : 𝕋 :=
   if σ j then Z.G j i else neg (Z.G j i)
 
-def Zonotope.cornerLo (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : Fin n) : 𝕋 :=
+def Zonotope.cornerLo (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h)) (i : Fin n) : 𝕋 :=
   addDown (Z.c i) (sumDown (Z.signed (signEquiv Z.h l) i))
 
-def Zonotope.cornerHi (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : Fin n) : 𝕋 :=
+def Zonotope.cornerHi (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h)) (i : Fin n) : 𝕋 :=
   addUp (Z.c i) (sumUp (Z.signed (signEquiv Z.h l) i))
 
-def Zonotope.vPolytope (Z : Zonotope 𝕋 n) : VPolytope 𝕋 n where
+def Zonotope.vPolytope (Z : Zonotope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := 2 ^ Z.h
   V := Z.cornerLo
   E := (VPolytope.columnGap Z.cornerLo Z.cornerHi).plus Z.E
@@ -52,7 +52,7 @@ def Zonotope.vPolytope (Z : Zonotope 𝕋 n) : VPolytope 𝕋 n where
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the exact layer's corner is, in this layer's own fields. -/
-theorem Zonotope.aux_signed_toReal (Z : Zonotope 𝕋 n) (σ : Fin Z.h → Bool) (i : Fin n)
+theorem Zonotope.aux_signed_toReal (Z : Zonotope (Vec 𝕋 n)) (σ : Fin Z.h → Bool) (i : Fin n)
     (j : Fin Z.h) :
     toReal (Z.signed σ i j) = (if σ j then (1:ℝ) else -1) * toReal (Z.G j i) := by
   rw [Zonotope.signed]
@@ -60,7 +60,7 @@ theorem Zonotope.aux_signed_toReal (Z : Zonotope 𝕋 n) (σ : Fin Z.h → Bool)
   · rw [if_pos h, if_pos h, one_mul]
   · rw [if_neg h, if_neg h, toReal_neg, neg_one_mul]
 
-theorem Zonotope.aux_corner_mem (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : Fin n) :
+theorem Zonotope.aux_corner_mem (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h)) (i : Fin n) :
     toReal (Z.cornerLo l i)
         ≤ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
       ∧ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
@@ -82,7 +82,7 @@ theorem Zonotope.aux_corner_mem (Z : Zonotope 𝕋 n) (l : Fin (2 ^ Z.h)) (i : F
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.vPolytope_contains (Z : Zonotope 𝕋 n) :
+theorem Zonotope.vPolytope_contains (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---
   -- the exact corners, and the rounded ones actually stored
   have hstep : (InflatedContSet.nominal Z).vPolytope.construct

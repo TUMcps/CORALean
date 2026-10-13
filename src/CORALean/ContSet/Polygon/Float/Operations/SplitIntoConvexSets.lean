@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The stored convex pieces. -/
-def Polygon.splitIntoConvexSets (P : Polygon 𝕋) : List (VPolytope 𝕋 2) := P.sets
+def Polygon.splitIntoConvexSets (P : Polygon 𝕋) : List (VPolytope (Vec 𝕋 2)) := P.sets
 
 end CORALean.Float
 

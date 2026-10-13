@@ -21,13 +21,13 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def VPolytope.polyZonotope (P : VPolytope 𝕋 n) : PolyZonotope 𝕋 n :=
+def VPolytope.polyZonotope (P : VPolytope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
   P.zonotope.polyZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.polyZonotope_contains (P : VPolytope 𝕋 n) :
+theorem VPolytope.polyZonotope_contains (P : VPolytope (Vec 𝕋 n)) :
     P.construct ⊆ P.polyZonotope.construct :=
   subset_trans P.zonotope_contains (Zonotope.polyZonotope_contains _)
 

@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.representsa_emptySet (zB : ZonoBundle 𝕋 n) : Bool :=
+def ZonoBundle.representsa_emptySet (zB : ZonoBundle (Vec 𝕋 n)) : Bool :=
   if hk : 0 < zB.k then (zB.conZonotopeAll hk).representsa_emptySet else false
 
 end CORALean.Float

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The merged generator column as stored: the lower of the two directed fibre
 sums, `repKeep` naming the one column per class that survives. -/
-def ConPolyZono.mergedCol (cPZ : ConPolyZono 𝕋 n) (i : Fin n)
+def ConPolyZono.mergedCol (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (PolyZonotope.repKeep cPZ.E).card) : 𝕋 :=
   PolyZonotope.fiberDown (Real.PolyZonotope.rep cPZ.E) (fun i l => cPZ.G l i) i
     (PolyZonotope.keepIdx cPZ.E j)

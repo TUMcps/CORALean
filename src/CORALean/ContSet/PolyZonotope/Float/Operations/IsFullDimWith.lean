@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.isFullDimWith (pZ : PolyZonotope 𝕋 n) (H : Mat 𝕋 pZ.q n) : Bool :=
+def PolyZonotope.isFullDimWith (pZ : PolyZonotope (Vec 𝕋 n)) (H : Mat 𝕋 pZ.q n) : Bool :=
   Zonotope.ballCert (fun i j => pZ.GI j i) H (Zonotope.ballB H one) one
     && (List.finRange n).all fun i => le (pZ.err.inf i) (pZ.err.sup i)
 

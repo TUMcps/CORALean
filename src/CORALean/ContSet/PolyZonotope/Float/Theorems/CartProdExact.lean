@@ -27,7 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.cartProd_exact (pZ₁ : PolyZonotope 𝕋 n₁) (pZ₂ : PolyZonotope 𝕋 n₂) :
+theorem PolyZonotope.cartProd_exact (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
+    (pZ₂ : PolyZonotope (Vec 𝕋 n₂)) :
     (pZ₁.cartProd pZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (pZ₁.construct ×ˢ pZ₂.construct) := by
   -- the nominal part: the exact product, mapped through the append

@@ -26,8 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.splitLongestIndepGen (pZ : PolyZonotope 𝕋 n) :
-    PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
+def PolyZonotope.splitLongestIndepGen (pZ : PolyZonotope (Vec 𝕋 n)) :
+    PolyZonotope (Vec 𝕋 n) × PolyZonotope (Vec 𝕋 n) :=
   -- len = sum(GI.^2, 1)
   let len := fun j => sumUp fun i => mulUp (pZ.GI j i) (pZ.GI j i)
   -- [~, ind] = max(len)

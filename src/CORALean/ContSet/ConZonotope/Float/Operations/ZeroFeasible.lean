@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Whether coefficients `0` meet every row. -/
-def ConZonotope.zeroFeasible (cZ : ConZonotope 𝕋 n) : Bool :=
+def ConZonotope.zeroFeasible (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Bool :=
   (List.finRange cZ.P.m).all (fun i => le zero (cZ.P.b i))
     && (List.finRange cZ.P.me).all
       (fun i => le (cZ.P.be.inf i) zero && le zero (cZ.P.be.sup i))

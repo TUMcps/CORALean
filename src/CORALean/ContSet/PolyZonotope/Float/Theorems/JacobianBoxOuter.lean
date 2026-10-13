@@ -30,9 +30,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.jacobianBox_outer (pZ : PolyZonotope 𝕋 n) (X : Interval (Vec 𝕋 pZ.p))
+theorem PolyZonotope.jacobianBox_outer (pZ : PolyZonotope (Vec 𝕋 n)) (X : Interval (Vec 𝕋 pZ.p))
     {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) :
-    Real.PolyZonotope.jacobianMat (GPolyZonotope.nominal pZ) a ∈
+    Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) a ∈
       (PolyZonotope.jacobianBox pZ X).construct := by -- --- PROOF ---
   rw [PolyZonotope.jacobianBox, Interval.materialiseMat_eq]
   refine Interval.mem_mat_iff.mpr fun i k => ?_
@@ -45,7 +45,7 @@ theorem PolyZonotope.jacobianBox_outer (pZ : PolyZonotope 𝕋 n) (X : Interval 
     Interval.mem_mat_iff.mpr fun i l => ⟨nsmulDown_le _ _, le_nsmulUp _ _⟩
   have h := Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hC ⟨_, hm, rfl⟩) i
   -- the column's point is that product, coordinate `i`
-  have e : Real.PolyZonotope.jacobianMat (GPolyZonotope.nominal pZ) a i k
+  have e : Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) a i k
       = Matrix.mulVec (fun i l => (pZ.E k l : ℝ) * toReal (pZ.G l i))
         (fun l => Real.PolyZonotope.monomial
           (fun k' l => if k' = k then pZ.E k l - 1 else pZ.E k' l) a l) i := by

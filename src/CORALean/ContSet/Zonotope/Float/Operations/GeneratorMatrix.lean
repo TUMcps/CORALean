@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The generators indexed by `T` (`n` of them) as columns; `0` if `T` has not `n` entries. -/
-def Zonotope.generatorMatrix (Z : Zonotope 𝕋 n) (T : List (Fin Z.h)) : Mat 𝕋 n n :=
+def Zonotope.generatorMatrix (Z : Zonotope (Vec 𝕋 n)) (T : List (Fin Z.h)) : Mat 𝕋 n n :=
   if hT : T.length = n then fun i k => Z.G (T.get (k.cast hT.symm)) i else fun _ _ => zero
 
 end CORALean.Float

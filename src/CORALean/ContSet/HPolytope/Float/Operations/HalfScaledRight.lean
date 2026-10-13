@@ -27,7 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.halfScaledRight (n₁ : ℕ) (P : HPolytope 𝕋 n₂) : HPolytope 𝕋 (n₁ + n₂ + 1) :=
+def HPolytope.halfScaledRight (n₁ : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n₂)) : HPolytope
+    𝕋 (Vec 𝕋 (n₁ + n₂ + 1)) :=
   (HPolytope.ineqs (fun i => Fin.append (Fin.append (fun _ : Fin n₁ => zero) (P.A i))
         fun _ : Fin 1 => half (P.b i))
       fun i => half (P.b i)).intersection

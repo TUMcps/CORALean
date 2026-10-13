@@ -42,17 +42,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- A successful run's loop states, the step positive and `N` of them spanning
 the horizon, each holding what `ReachFloatInputInvariant` asks at its pass. -/
 theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope 𝕋 n)}
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
     0 < toReal options.timeStep ∧ ∃ N : ℕ,
       (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
-      ∃ S : List (Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n),
+      ∃ S : List (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) ×
+        Zonotope (Vec 𝕋 n)),
         S.length = N ∧ Rti = S.map (fun s => s.2.1 ⊞ s.2.2.1) ∧
         Rtp = params.R0 :: S.map (fun s => s.1 ⊞ s.2.2.1) ∧
         ∀ (k : ℕ) (hk : k < S.length), sys.ReachFloatInputInvariant (toReal options.timeStep)
-          params.R0.construct (Recentre.centre (Mtimes.mtimes (𝕄 := Mat 𝕋) B params.U))
-          (Recentre.recentre (Mtimes.mtimes (𝕄 := Mat 𝕋) B params.U)) k S[k] := by -- --- PROOF ---
+          params.R0.construct (Recentre.centre
+            (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U))
+          (Recentre.recentre (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
+            params.U)) k S[k] := by -- --- PROOF ---
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
@@ -64,14 +67,17 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n) (B : Mat �
   refine ⟨hΔt, N, hNΔt, _, List.length_iterate _ _ _, rfl, rfl, fun k hk => ?_⟩
   rw [List.getElem_iterate]
   clear hk
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) B U with hV
+  -- the input set in the state space, its centre, and one step's `[e^{AΔt}]`
+  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B U with hV
   set A := Scalar.toRealMat sys.A with hA
   set ũ := Recentre.centre V with hũ
   have heA := sys.exp_mem_expIntervalFloat hadm (t := toReal Δt) le_rfl le_rfl
-  have hmt : ∀ {Z : Zonotope 𝕋 n} {z : Vec ℝ n}, z ∈ Z.construct → exp (toReal Δt • A) *ᵥ z
+  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (toReal Δt • A) *ᵥ z
       ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (sys.expIntervalFloat Δt Δt η') Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ Z
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ Z
       (Set.mem_biUnion heA (Set.mem_image_of_mem _ hz))
   -- `{ũ}` and `[0, ũ]` hold what they are built from
   have hpt : ũ ∈ (Interval.point V.c).zonotope.construct :=
@@ -91,8 +97,8 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n) (B : Mat �
       (Interval.point V.c).zonotope ?_
     exact ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
-  have hconst : ∀ {W : Zonotope 𝕋 n}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
-      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := Zonotope 𝕋) W τ :=
+  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
+      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
   have hPu := sys.inputReach_subset_inputSolutionFloat hΔt hadm _ (hconst hpt hΔt.le)

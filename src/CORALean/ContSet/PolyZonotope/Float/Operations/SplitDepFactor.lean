@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.splitDepFactor (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) :
-    PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
+def PolyZonotope.splitDepFactor (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) :
+    PolyZonotope (Vec 𝕋 n) × PolyZonotope (Vec 𝕋 n) :=
   (pZ.getSubset k (neg (half one)) (half one), pZ.getSubset k (half one) (half one))
 
 end CORALean.Float

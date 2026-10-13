@@ -40,13 +40,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The state `s` of a run from `X₀` under inputs in `V` holds what it owes at `t_k`. -/
-def LinearSys.ManualInvariantFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋 n)
+def LinearSys.ManualInvariantFloat (sys : LinearSys 𝕋 n) (X₀ V : Float.Zonotope (Vec 𝕋 n))
     (s : LinearSys.ManualStateFloat 𝕋 n) : Prop :=
   0 ≤ s.t ∧ toReal s.tLo ≤ (s.t : ℝ) ∧ (s.t : ℝ) ≤ toReal s.tHi ∧
     (∀ x ∈ X₀.construct, exp ((s.t : ℝ) • Scalar.toRealMat sys.A) *ᵥ x
       + MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V ∈ s.H.construct) ∧
     MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V ∈ s.Pu.construct ∧
-    ∀ y ∈ sys.inputReach (S := Zonotope 𝕋) (Recentre.recentre V) s.t, y ∈ s.PU.construct
+    ∀ y ∈ sys.inputReach (S := fun k => Float.Zonotope (Vec 𝕋 k)) (Recentre.recentre V) s.t, y ∈
+      s.PU.construct
 
 end CORALean
 

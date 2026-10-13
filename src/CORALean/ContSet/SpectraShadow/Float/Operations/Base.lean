@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.base (S : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 S.m where
+def SpectraShadow.base (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 S.m) where
   k := S.k
   m := S.m
   A₀ := S.A₀

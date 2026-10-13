@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.nominalSupportBound (pZ : PolyZonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
+def PolyZonotope.nominalSupportBound (pZ : PolyZonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal pZ).subsetAt {a | ∀ k, |a k| ≤ 1}) c) :
     FloatBound 𝕋 (nominalSet pZ) c :=

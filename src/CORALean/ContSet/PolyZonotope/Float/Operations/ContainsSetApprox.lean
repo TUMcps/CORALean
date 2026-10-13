@@ -46,18 +46,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `true` proves `S ⊆ pZ`. -/
-def PolyZonotope.containsSetApprox (pZ S : PolyZonotope 𝕋 n)
+def PolyZonotope.containsSetApprox (pZ S : PolyZonotope (Vec 𝕋 n))
     (guess : Interval (Vec 𝕋 n) → Interval (Vec 𝕋 (pZ.p + pZ.q)))
     (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter fuel : ℕ) : Bool :=
   -- fHan = aux_funcPoly(x, c, G, GI, E); X = interval(-onesVec, onesVec)
-  let pZd : PolyZonotope 𝕋 n := pZ.indepFactors
+  let pZd : PolyZonotope (Vec 𝕋 n) := pZ.indepFactors
   let X : Interval (Vec 𝕋 (pZ.p + pZ.q)) := ⟨fun _ => neg one, fun _ => one⟩
   -- Y = interval(list{j}); isContained = aux_containsInterval(fHan, jacHan, X, X_, Y)
-  let proven : PolyZonotope 𝕋 n → Bool := fun T =>
+  let proven : PolyZonotope (Vec 𝕋 n) → Bool := fun T =>
     PolyZonotope.innerGeneral pZd X (guess T.interval) T.interval inv iter
   -- one round: list_, cnt, splits, and the answer once the rounds are over
-  let step : List (PolyZonotope 𝕋 n) × ℕ × ℕ × Option Bool →
-      List (PolyZonotope 𝕋 n) × ℕ × ℕ × Option Bool := fun s =>
+  let step : List (PolyZonotope (Vec 𝕋 n)) × ℕ × ℕ × Option Bool →
+      List (PolyZonotope (Vec 𝕋 n)) × ℕ × ℕ × Option Bool := fun s =>
     match s with
     | (L, cnt, splits, none) =>
       -- sets = aux_splitLongestGen_(list{j}) for the pieces not proved

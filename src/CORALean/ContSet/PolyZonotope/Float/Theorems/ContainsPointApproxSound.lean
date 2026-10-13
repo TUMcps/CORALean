@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.containsPointApprox_sound (pZ : PolyZonotope 𝕋 n) (s : Vec 𝕋 n)
+theorem PolyZonotope.containsPointApprox_sound (pZ : PolyZonotope (Vec 𝕋 n)) (s : Vec 𝕋 n)
     (start : Vec 𝕋 (pZ.p + pZ.q)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ)
     (h : PolyZonotope.containsPointApprox pZ s start inv iter = true) :
     toRealVec s ∈ pZ.construct := by -- --- PROOF ---

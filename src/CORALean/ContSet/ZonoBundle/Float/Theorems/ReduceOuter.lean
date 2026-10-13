@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.reduce_outer (zB : ZonoBundle 𝕋 n) (o : ℕ) :
+theorem ZonoBundle.reduce_outer (zB : ZonoBundle (Vec 𝕋 n)) (o : ℕ) :
     zB.construct ⊆ (zB.reduce o).construct := by
   intro x hx
   simp only [ZonoBundle.construct, Set.mem_iInter] at hx ⊢

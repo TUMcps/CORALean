@@ -33,11 +33,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The window `τ_k = [k Δt, (k + 1) Δt]` from the first one `Rτ₀`, at every member,
 the exponential at order `η` after scaling `t_k` down to the step. -/
 def LinParamSys.reachStepkFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
-    (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope 𝕋 n) (k : ℕ) : Option (Zonotope 𝕋 n) := do
+    (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Option (Zonotope (Vec 𝕋 n)) := do
   let tk := LinearSys.sampleTimeFloat Δt k                          -- [t_k], bracketed
   let sk ← sys.squaringsFloat Δt tk.1 tk.2 η                        -- t_k / 2^s within Δt
   let eAtk := sys.expSquaringFloat tk.1 tk.2 η sk                   -- [e^{[A] t_k}], squared
-  pure (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAtk Rτ₀)  -- H^R(τ_k)
+  pure (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- H^R(τ_k)
+    (S := fun k => Zonotope (Vec 𝕋 k)) eAtk Rτ₀)
 
 end CORALean
 

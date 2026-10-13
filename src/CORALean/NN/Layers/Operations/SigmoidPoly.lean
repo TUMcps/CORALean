@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {
 /-- The polynomial activation layer at the sigmoid, one fit and one grid per neuron. -/
 def Layer.sigmoidPoly (k : ℕ) (c : Fin n → 𝕋 → 𝕋 → Fin (m + 1) → 𝕋)
     (dx : Fin n → 𝕋 → 𝕋 → 𝕋) (p : Fin n → 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) :
-    Layer (Float.PolyZonotope 𝕋) n n :=
+    Layer (fun k => Float.PolyZonotope (Vec 𝕋 k)) n n :=
   Layer.activationPoly fun i => sigmoidPolyRelaxation k (c i) (dx i) (p i)
 
 end CORALean

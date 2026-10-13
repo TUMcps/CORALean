@@ -31,13 +31,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.reduceUnderApprox
-    (opt : (Z : Zonotope 𝕋 n) → Option (Σ h : ℕ, Mat 𝕋 n h))
-    (Z : Zonotope 𝕋 n) (H : Mat 𝕋 Z.h n) : Option (Zonotope 𝕋 n) :=
+    (opt : (Z : Zonotope (Vec 𝕋 n)) → Option (Σ h : ℕ, Mat 𝕋 n h))
+    (Z : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z.h n) : Option (Zonotope (Vec 𝕋 n)) :=
   let centre := Zonotope.point Z.c
   match opt Z with
   | none => if Z.containsZonotope centre H then some centre else none
   | some ⟨h, Gr⟩ =>
-    let reduced : Zonotope 𝕋 n := ⟨h, Z.c, fun j i => Gr i j, Interval.origin n⟩
+    let reduced : Zonotope (Vec 𝕋 n) := ⟨h, Z.c, fun j i => Gr i j, Interval.origin n⟩
     if Z.containsZonotope reduced H then some reduced
     else if Z.containsZonotope centre H then some centre else none
 

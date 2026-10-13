@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.intersection_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.intersection_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ₁.construct ∩ cPZ₂.construct ⊆ (cPZ₁.intersection cPZ₂).construct := by
   rw [cPZ₁.dependent_exact, cPZ₂.dependent_exact]
   exact ConPolyZono.intersectionDep_outer cPZ₁.dependent cPZ₂.dependent rfl rfl

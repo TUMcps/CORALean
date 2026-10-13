@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m q : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.encloseMany_outer (p : ℕ) (Zs : Fin (q + 1) → Zonotope 𝕋 (m + 1))
-    (direction : Vec 𝕋 (m + 1)) (E : Zonotope 𝕋 (m + 1))
+theorem Zonotope.encloseMany_outer (p : ℕ) (Zs : Fin (q + 1) → Zonotope (Vec 𝕋 (m + 1)))
+    (direction : Vec 𝕋 (m + 1)) (E : Zonotope (Vec 𝕋 (m + 1)))
     (hE : Zonotope.encloseMany p Zs direction = some E) (i : Fin (q + 1)) :
     (Zs i).construct ⊆ E.construct := by -- --- PROOF ---
   unfold Zonotope.encloseMany at hE

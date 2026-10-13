@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- [1, Alg. 2] lines 5-15: `Δt_k`, `η_k`, or `none` where `fuel` halvings did not suffice. -/
 def LinearSys.autoTuneDeltaTFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
-    (H : Zonotope 𝕋 n) (ũ : Vec 𝕋 n) (tk tend εmax ζ εaAcc : ℚ) (Δtprev : 𝕋) (ηmax fuel : ℕ)
-    (U₀ : Zonotope 𝕋 n) : Option (𝕋 × ℕ) :=
+    (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n) (tk tend εmax ζ εaAcc : ℚ) (Δtprev : 𝕋) (ηmax fuel : ℕ)
+    (U₀ : Zonotope (Vec 𝕋 n)) : Option (𝕋 × ℕ) :=
   let Δt₀ := addUp Δtprev Δtprev                                          -- 5. Δt_k ← 2Δt_{k-1}
   sys.autoTuneSearchFloat eAtk H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt₀ fuel   -- 6.-15. the repeat
 

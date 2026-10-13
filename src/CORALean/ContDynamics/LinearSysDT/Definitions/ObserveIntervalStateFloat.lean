@@ -37,9 +37,9 @@ variable {n : ℕ}
 
 structure LinearSysDT.ObserveIntervalStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) where
   x : Interval (Vec 𝕋 n)
-  Rx : Zonotope 𝕋 n
+  Rx : Zonotope (Vec 𝕋 n)
   Rwv : Interval (Vec 𝕋 n)
-  D : Zonotope 𝕋 n
+  D : Zonotope (Vec 𝕋 n)
 
 end CORALean
 

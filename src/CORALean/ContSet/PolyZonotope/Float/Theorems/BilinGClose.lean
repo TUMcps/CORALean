@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.bilinG_close (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.bilinG_close (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
     (i : Fin m) (l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1))) :
     |Real.PolyZonotope.bilinG (Real.PolyZonotope.quadBilin fun k => toRealMat (Q k))
           (nominal pZ₁) (nominal pZ₂) l i

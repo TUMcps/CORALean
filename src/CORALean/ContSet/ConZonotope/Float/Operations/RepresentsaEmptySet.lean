@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.representsa_emptySet (cZ : ConZonotope 𝕋 n) : Bool :=
+def ConZonotope.representsa_emptySet (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Bool :=
   let w := cZ.P.emptyWeights
   ltStrict (cZ.boundDotWeights
     (c := rowLin (fun (_ : Fin 1) => fun (_ : Fin n) => (zero : 𝕋)) 0)

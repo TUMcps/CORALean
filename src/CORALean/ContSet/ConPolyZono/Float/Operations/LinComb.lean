@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let pZ := cPZ₁.polyZonotope.linComb cPZ₂.polyZonotope   -- the segment's generators
   { p := cPZ₁.p + cPZ₂.p + 1
     h := cPZ₁.h + cPZ₂.h + (cPZ₁.h + cPZ₂.h + 1)

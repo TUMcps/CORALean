@@ -43,14 +43,14 @@ theorem LinearSys.Trajectory.discretizeMatZonotopeFloat {sys : LinearSys 𝕋 n}
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hε : toReal (MatExp.normUpperBound
-      (GZonotope.matSmul Δt Δt (GZonotope.pointMat sys.A)).interval) / ((η : ℝ) + 2) ≤ 1 / 2) :
+      (Zonotope.matSmul Δt Δt (Zonotope.pointMat sys.A)).matInterval) / ((η : ℝ) + 2) ≤ 1 / 2) :
     (sys.discretizeMatZonotopeFloat Δt η).Trajectory R₀ Ud
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) where
   init := by simpa using traj.init
   input k := hUd k
   step k := ⟨exp (toReal Δt • Scalar.toRealMat sys.A),
     MatExp.exp_mem_expMatZonoEnclosure _ η
-      (GZonotope.matSmul_outer le_rfl le_rfl _ (GZonotope.mem_pointMat sys.A)) hε, by
+      (Zonotope.matSmul_outer le_rfl le_rfl _ (Zonotope.mem_pointMat sys.A)) hε, by
     simpa [LinearSys.discretize] using traj.discretize_step hΔt hU k fun _ hs => hT hs.1⟩
 
 end CORALean

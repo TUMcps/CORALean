@@ -35,11 +35,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[e^{AΔt}] H ⊕ P^u(Δt)`, `P^u(Δt)` the float input solution of `{ũ}` at order `η`. -/
-def LinearSys.affineTimePointNextFloat (sys : LinearSys 𝕋 n) (H : Zonotope 𝕋 n) (ũ : Vec 𝕋 n)
-    (Δt : 𝕋) (η : ℕ) : Zonotope 𝕋 n :=
+def LinearSys.affineTimePointNextFloat (sys : LinearSys 𝕋 n) (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n)
+    (Δt : 𝕋) (η : ℕ) : Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                          -- [e^{AΔt}]
   let PuΔt := sys.inputSolutionFloat Δt η (Interval.point ũ).zonotope  -- ∋ A^{-1}(e^{AΔt}-I)ũ
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt H ⊞ PuΔt  -- H(t_{k+1})
+  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- H(t_{k+1})
+    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt H ⊞ PuΔt
 
 end CORALean
 

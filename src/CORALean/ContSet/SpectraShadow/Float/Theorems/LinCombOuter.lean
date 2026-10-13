@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.segments_subset_convHull (S₁ S₂ : SpectraShadow 𝕋 n) :
+theorem SpectraShadow.segments_subset_convHull (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     CORALean.segments S₁.construct S₂.construct ⊆ (S₁.convHull_ S₂).construct := by
   rw [CORALean.segments_eq_convexJoin]
   exact (convexJoin_subset_convexHull _ _).trans (SpectraShadow.convHull_outer S₁ S₂)

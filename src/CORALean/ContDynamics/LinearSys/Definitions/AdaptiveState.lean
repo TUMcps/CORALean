@@ -44,7 +44,7 @@ structure LinearSys.AdaptiveState (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) where
   /-- `ε_S([0,t_i])`, eq. (12). -/
   εS : ℚ
   /-- `P̃(t_i) ⊕ PR([0,t_i])`, the constant and the varying input's share by `t_i`. -/
-  P : Zonotope 𝕋 n
+  P : Zonotope (Vec 𝕋 n)
 
 end CORALean
 

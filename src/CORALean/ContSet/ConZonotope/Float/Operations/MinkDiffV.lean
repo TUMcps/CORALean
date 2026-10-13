@@ -38,9 +38,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Prop. 6]: `Z ⊖ ⟨v⟩_V`, the translated zonotopes `Z − v i` intersected in turn. -/
-def ConZonotope.minkDiffV {k : ℕ} (Z : Zonotope 𝕋 n) (v : Fin (k + 1) → Vec 𝕋 n) :
-    ConZonotope 𝕋 n :=
-  let shifted : Fin (k + 1) → ConZonotope 𝕋 n :=                 -- Z − v i
+def ConZonotope.minkDiffV {k : ℕ} (Z : Zonotope (Vec 𝕋 n)) (v : Fin (k + 1) → Vec 𝕋 n) :
+    ConZonotope 𝕋 (Vec 𝕋 n) :=
+  let shifted : Fin (k + 1) → ConZonotope 𝕋 (Vec 𝕋 n) :=                 -- Z − v i
     fun i => (Z.plus (Zonotope.point fun r => neg (v i r))).conZonotope
   Fin.foldl k (fun cZ i => cZ.intersection (shifted i.succ)) (shifted 0)
 

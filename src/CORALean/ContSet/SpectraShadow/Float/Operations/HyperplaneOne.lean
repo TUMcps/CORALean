@@ -22,7 +22,8 @@ open FloatOps
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-abbrev SpectraShadow.hyperplaneOne (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : SpectraShadow 𝕋 (n + 1) where
+abbrev SpectraShadow.hyperplaneOne (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : SpectraShadow
+    𝕋 (Vec 𝕋 (n + 1)) where
   k := 1
   m := n
   A₀ := fun _ _ => zero

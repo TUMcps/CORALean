@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two halves of `Z` along its longest generator. -/
-def Zonotope.splitLongestGen (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n × Zonotope 𝕋 n :=
+def Zonotope.splitLongestGen (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
   match Z.longestGen with
   | some j => Z.split j
   | none => (Z, Z)

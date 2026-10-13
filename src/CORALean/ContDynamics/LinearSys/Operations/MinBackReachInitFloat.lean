@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Lines 1-2 and 5-6: the two particular solutions accumulated up to `t₀`, before the first
 iteration. -/
-def LinearSys.minBackReachInitFloat (sys : LinearSys 𝕋 n) (W₀ U₀ : Zonotope 𝕋 n) (t₀ : 𝕋)
-    (η : ℕ) : LinearSys.MinBackReachStateOf 𝕋 (Zonotope 𝕋 n) (ConZonotope 𝕋 n) :=
+def LinearSys.minBackReachInitFloat (sys : LinearSys 𝕋 n) (W₀ U₀ : Zonotope (Vec 𝕋 n)) (t₀ : 𝕋)
+    (η : ℕ) : LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n)) :=
   let Ā : LinearSys 𝕋 n := ⟨fun i j => neg (sys.A i j)⟩             -- time-inverted dynamics
   { t := t₀                                                         -- 1. τ = [t₀, t_end]
     ZW₀ := Ā.inputSolutionFloat t₀ η W₀                             -- 5. Ẑ_{W₀}(-t₀)

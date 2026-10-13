@@ -37,19 +37,22 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A float run's error box always brackets `0`, given its two inputs do. -/
 theorem LinearSysDT.reachFloat_zero_mem_error (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    {R₀ U : Zonotope 𝕋 n} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
+    {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
     (0 : Vec ℝ n) ∈
-      (sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).E.construct := by -- --- PROOF ---
+      (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩
+        ⟨o, ho⟩).E.construct := by -- --- PROOF ---
   induction k with
   | zero => exact hR₀
   | succ k ih =>
-    set Rk := sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ with hRk
-    have hstep : sys.reach (S := Zonotope 𝕋) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
+    set Rk := sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ with hRk
+    have hstep : sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
         = Zonotope.reduceGirard ((Zonotope.mtimes sys.A Rk).plus U) o := by
-      show Reduce.reduce (Plus.plus (Mtimes.mtimes sys.A Rk) U) o = _
+      show Reduce.reduce (Plus.plus
+        (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k)) sys.A Rk) U) o = _
       simp only [Mtimes.mtimes, Plus.plus, Reduce.reduce, Zonotope.materialise_eq,
         Zonotope.reduce]
+    -- each operation keeps `0` in the error box
     rw [hstep]
     have hM : (0 : Vec ℝ n) ∈ (Zonotope.mtimes sys.A Rk).E.construct :=
       Zonotope.zero_mem_mtimes_error ih

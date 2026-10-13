@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.union_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n)
+theorem ConPolyZono.union_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hq₁ : cPZ₁.q = 0) (hq₂ : cPZ₂.q = 0)
     (hb₁ : cPZ₁.b.nominal.IsNonempty (ι := Fin cPZ₁.m))
     (hb₂ : cPZ₂.b.nominal.IsNonempty (ι := Fin cPZ₂.m))

@@ -44,7 +44,7 @@ theorem toReal_d (m e : ℤ) : toReal (d m e) = (m : ℝ) * 2 ^ e := Dyadic.toRe
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A converted zonotope's polynomial: the centre plus the generators times the variables. -/
-theorem aux_taylm_poly (Z : Zonotope D 2) (N : ℕ) (i : Fin 2) (t : Vec ℝ Z.h) :
+theorem aux_taylm_poly (Z : Zonotope (Vec D 2)) (N : ℕ) (i : Fin 2) (t : Vec ℝ Z.h) :
     (Z.taylm N i).nominal.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j := by
   -- unfold the model, then evaluate the term list
   simp only [Zonotope.taylm, Taylm.nominal, Real.Taylm.poly, List.map_cons, List.map_ofFn,

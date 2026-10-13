@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 the exact one and an exact disturbance set inside the float one. -/
 theorem LinearSys.maxBackReachCZFloat_subset
     (ρ : ∀ (P : Real.HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
-    (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 n) (ZW : Zonotope 𝕋 n)
+    (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) (ZW : Zonotope (Vec 𝕋 n))
     (Pr : Real.HPolytope (Vec ℝ n)) (ZWr : Real.Zonotope (Vec ℝ n))
     (hP : P.construct ⊆ Pr.construct) (hZ : ZWr.construct ⊆ ZW.construct)
     (hker : ∀ i, ∀ y ∈ ZW.construct, (toRealMat P.Ae *ᵥ y) i = 0)

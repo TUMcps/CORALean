@@ -34,18 +34,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure LinearSys.VerifySoundFloat (Reach : Set (Vec ℝ n)) (reachFn : 𝕋 → Zonotope 𝕋 n)
-    (innerApprox : Zonotope 𝕋 n → 𝕋 → ConZonotope 𝕋 n)
-    (distG distF : ConZonotope 𝕋 n → HPolytope 𝕋 n → 𝕋) : Prop where
+structure LinearSys.VerifySoundFloat (Reach : Set (Vec ℝ n)) (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
+    (innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n))
+    (distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋) : Prop where
   outer (ε : 𝕋) : Reach ⊆ (reachFn ε).construct
-  inner (R : Zonotope 𝕋 n) (ε : 𝕋) : (innerApprox R ε).construct ⊆ Reach
-  distG_nonpos (C : ConZonotope 𝕋 n) (P : HPolytope 𝕋 n) :
+  inner (R : Zonotope (Vec 𝕋 n)) (ε : 𝕋) : (innerApprox R ε).construct ⊆ Reach
+  distG_nonpos (C : ConZonotope 𝕋 (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     toReal (distG C P) ≤ 0 → C.construct ⊆ P.construct
-  distG_pos (C : ConZonotope 𝕋 n) (P : HPolytope 𝕋 n) :
+  distG_pos (C : ConZonotope 𝕋 (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     0 < toReal (distG C P) → ¬ C.construct ⊆ P.construct
-  distF_pos (C : ConZonotope 𝕋 n) (P : HPolytope 𝕋 n) :
+  distF_pos (C : ConZonotope 𝕋 (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     0 < toReal (distF C P) → Disjoint C.construct P.construct
-  distF_nonpos (C : ConZonotope 𝕋 n) (P : HPolytope 𝕋 n) :
+  distF_nonpos (C : ConZonotope 𝕋 (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     toReal (distF C P) ≤ 0 → ¬ Disjoint C.construct P.construct
 
 end CORALean

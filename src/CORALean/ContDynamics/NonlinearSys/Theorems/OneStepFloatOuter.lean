@@ -38,7 +38,7 @@ omit [ToRat 𝕋] in
 /-- The generator-free zonotope at `v` holds `v`. -/
 theorem aux_oneStep_mem_pt {k : ℕ} (v : Vec 𝕋 k) :
     toRealVec v ∈ (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-      Zonotope 𝕋 k).construct := by -- --- PROOF ---
+      Zonotope (Vec 𝕋 k)).construct := by -- --- PROOF ---
   refine ⟨toRealVec v, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0,
     fun i => by simp [toRealVec]⟩, 0, fun i => ?_, add_zero _⟩
   show toReal (zero : 𝕋) ≤ (0 : Vec ℝ k) i ∧ (0 : Vec ℝ k) i ≤ toReal (zero : 𝕋)
@@ -51,7 +51,7 @@ theorem aux_oneStep_mem_pt {k : ℕ} (v : Vec 𝕋 k) :
 /-- A successful step has a positive width, and every run of `sys` on `[0, Δt]` from `R`
 whose `f(x, u) - A(x - x✱)` stays in `V` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n n}
-    {xs : Vec 𝕋 n} {V R Rτ Rt : Zonotope 𝕋 n} {options : LinearSys.ReachOptions 𝕋}
+    {xs : Vec 𝕋 n} {V R Rτ Rt : Zonotope (Vec 𝕋 n)} {options : LinearSys.ReachOptions 𝕋}
     (hstep : NonlinearSys.oneStepFloat A xs V R options = some (Rτ, Rt)) :
     0 < toReal options.timeStep ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.timeStep))
@@ -76,7 +76,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := fun k => Set (Vec ℝ k))
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-        Zonotope 𝕋 n)).construct
+        Zonotope (Vec 𝕋 n))).construct
       ((Scalar.toRealMat (identityMat 𝕋 n) *ᵥ ·) '' V.construct)
       (fun t => x t - toRealVec xs)
       (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) := by
@@ -87,7 +87,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
       have hp := aux_oneStep_mem_pt (fun i => neg (xs i))
       rw [hneg] at hp
       have := Plus.plus_outer R (⟨0, fun i => neg (xs i), fun j => j.elim0,
-        ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n) (Set.add_mem_add traj.init hp)
+        ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
     -- the input, through the identity
     · rw [hTf] at ht
@@ -111,11 +111,11 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ hS
   obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ hS
   -- adding `x✱` back
-  have hback : ∀ {Z : Zonotope 𝕋 n} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.construct →
+  have hback : ∀ {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.construct →
       y ∈ construct (Z ⊞ (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-        Zonotope 𝕋 n)) := fun {Z y} hy => by
+        Zonotope (Vec 𝕋 n))) := fun {Z y} hy => by
     have := Plus.plus_outer Z (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-      Zonotope 𝕋 n) (Set.add_mem_add hy (aux_oneStep_mem_pt xs))
+      Zonotope (Vec 𝕋 n)) (Set.add_mem_add hy (aux_oneStep_mem_pt xs))
     rwa [sub_add_cancel] at this
   refine ⟨fun t ht => ?_, ?_⟩
   · cases Rti with

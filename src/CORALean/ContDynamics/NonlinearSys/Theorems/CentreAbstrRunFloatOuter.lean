@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 under inputs in `U` is, at every time of step `j`, in the `j`-th of them. -/
 theorem NonlinearSys.FloatModel.Encloses.centreAbstrRunFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {U : Zonotope 𝕋 m} {options : LinearSys.ReachOptions 𝕋} :
-    ∀ (k : ℕ) {R : Zonotope 𝕋 n} {Rs : List (Zonotope 𝕋 n)},
+    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} :
+    ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
       fm.centreAbstrRunFloat U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
           sys.Trajectory (S := fun k => Set (Vec ℝ k))

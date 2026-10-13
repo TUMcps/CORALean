@@ -47,7 +47,7 @@ def aux_errorSolutionOrderFloat (ζ : 𝕋) (edge : ℕ → 𝕋) : ℕ → ℕ 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The order `options.tt_err` CORA stores for a step, from `V`'s generators, in floats. -/
-def LinearSys.errorSolutionOrderFloat (sys : LinearSys 𝕋 n) (ζ Δt : 𝕋) (V : Zonotope 𝕋 n)
+def LinearSys.errorSolutionOrderFloat (sys : LinearSys 𝕋 n) (ζ Δt : 𝕋) (V : Zonotope (Vec 𝕋 n))
     (fuel : ℕ) : Option ℕ :=
   let edge := sys.errorEdgeFloat Δt V                                -- RerrorInt_etanoF
   let crit := (List.finRange n).foldl (fun best d => match best with  -- [~,critDimnoF] = max(...)

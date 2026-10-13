@@ -38,8 +38,10 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The box hull of the time-interval sets `Rs` cut to the invariant and to `guard`,
 or `none` when no cut can meet the guard. -/
-def Location.guardIntersectFloat (ℓ : Location (Zonotope 𝕋) (HPolytope 𝕋) L 𝕋 n)
-    (guard : HPolytope 𝕋 n) (Rs : List (Zonotope 𝕋 n)) : Option (Interval (Vec 𝕋 n)) :=
+def Location.guardIntersectFloat
+    (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
+    (guard : HPolytope 𝕋 (Vec 𝕋 n)) (Rs : List (Zonotope (Vec 𝕋 n))) : Option
+    (Interval (Vec 𝕋 n)) :=
   let cut := Rs.map fun R => guard.contractBox (ℓ.inv.contractBox R.interval)  -- R ∩ inv ∩ guard
   match cut.filter fun I => !I.representsa_emptySet with   -- those that may be non-empty
   | [] => none                                              -- the guard is never met

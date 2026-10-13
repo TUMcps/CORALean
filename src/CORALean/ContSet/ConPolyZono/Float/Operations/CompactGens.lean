@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- CORA's merge of equal exponent columns, as computed: `compactGensSpec` with
 the representative and kept-column lookups shared between entries. -/
-def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let rt := PolyZonotope.repTab cPZ.E
   let kt := PolyZonotope.keepTab rt
   let r : Fin cPZ.h → Fin cPZ.h := fun l => rt.getD l.val l

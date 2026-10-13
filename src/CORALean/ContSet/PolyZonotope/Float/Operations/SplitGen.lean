@@ -25,7 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.splitGen (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
+def PolyZonotope.splitGen (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) ×
+    PolyZonotope (Vec 𝕋 n) :=
   match pZ.longestFactor with
   | some k => pZ.splitDepFactor k
   | none => pZ.splitLongestIndepGen

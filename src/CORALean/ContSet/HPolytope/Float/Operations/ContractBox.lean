@@ -34,7 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The box `I` cut by every row of `P` in turn, the equality rows as two halfspaces each. -/
-def HPolytope.contractBox (P : HPolytope 𝕋 n) (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
+def HPolytope.contractBox (P : HPolytope 𝕋 (Vec 𝕋 n)) (I : Interval (Vec 𝕋 n)) :
+    Interval (Vec 𝕋 n) :=
   let rows := (List.finRange P.m).map (fun i => (P.A i, P.b i))      -- A_i x ≤ b_i
     ++ (List.finRange P.me).map (fun i => (P.Ae i, P.be.sup i))       -- Ae_i x ≤ sup be_i
     ++ (List.finRange P.me).map                                       -- -Ae_i x ≤ -inf be_i

@@ -24,7 +24,7 @@ variable {α β : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Its exponent column, the two columns added. -/
-def PolyZonotope.bilinE (pZ₁ : GPolyZonotope α) (pZ₂ : GPolyZonotope β) (hp : pZ₁.p = pZ₂.p) :
+def PolyZonotope.bilinE (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) :
     Fin pZ₁.p → Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → ℕ :=
   fun k l => PolyZonotope.extE pZ₁ k (finProdFinEquiv.symm l).1
       + PolyZonotope.extE pZ₂ (Fin.cast hp k) (finProdFinEquiv.symm l).2

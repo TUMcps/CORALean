@@ -25,7 +25,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
-def SpectraShadow.interval (S : SpectraShadow 𝕋 n) (Yup Ylo : Fin n → Mat 𝕋 S.k S.k) :
+def SpectraShadow.interval (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (Yup Ylo : Fin n → Mat 𝕋 S.k S.k) :
     Option (Interval (Vec 𝕋 n)) :=
   let unit : Fin n → Vec 𝕋 n := fun i r => if r = i then one else zero
   let negUnit : Fin n → Vec 𝕋 n := fun i r => neg (unit i r)
@@ -37,7 +37,8 @@ def SpectraShadow.interval (S : SpectraShadow 𝕋 n) (Yup Ylo : Fin n → Mat �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.interval_contains {S : SpectraShadow 𝕋 n} {Yup Ylo : Fin n → Mat 𝕋 S.k S.k}
+theorem SpectraShadow.interval_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
+    {Yup Ylo : Fin n → Mat 𝕋 S.k S.k}
     {I : Interval (Vec 𝕋 n)} (h : S.interval Yup Ylo = some I) :
     S.construct ⊆ I.construct := by -- --- PROOF ---
   simp only [SpectraShadow.interval] at h

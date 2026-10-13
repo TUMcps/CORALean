@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n N : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.projectHighDim_ (Z : Zonotope 𝕋 n) (N : ℕ) (proj : Fin n → Fin N) :
-    Zonotope 𝕋 N where
+def Zonotope.projectHighDim_ (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) (proj : Fin n → Fin N) :
+    Zonotope (Vec 𝕋 N) where
   h := Z.h
   c := fun j => if h : ∃ k, proj k = j then Z.c (Fin.find (fun k => proj k = j) h) else zero
   G := fun l j =>

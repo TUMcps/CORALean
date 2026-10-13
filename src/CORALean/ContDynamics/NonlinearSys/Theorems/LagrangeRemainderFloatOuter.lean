@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The exact third-order remainder box over a zonotope held by `Z` is inside the float one. -/
 theorem lagrangeRemainderFloat_outer {d n : ℕ} {Ef : Fin n → Fin d → Mat 𝕋 d d}
     {E : Fin n → Fin d → Mat ℝ d d} (hE : ∀ i j k l, |E i j k l| ≤ toReal (Ef i j k l))
-    {Z : Zonotope 𝕋 d} {Zr : Real.Zonotope (Vec ℝ d)} (hZ : Zr.construct ⊆ Z.construct)
+    {Z : Zonotope (Vec 𝕋 d)} {Zr : Real.Zonotope (Vec ℝ d)} (hZ : Zr.construct ⊆ Z.construct)
     (zs : Vec 𝕋 d) :
     (lagrangeRemainder E Zr (toRealVec zs)).construct ⊆
       (lagrangeRemainderFloat Ef Z zs).construct := by -- --- PROOF ---

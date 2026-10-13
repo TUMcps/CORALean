@@ -22,8 +22,9 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.polygonRound (pick : PolyZonotope 𝕋 2 → Bool) (L : List (PolyZonotope 𝕋 2)) :
-    List (PolyZonotope 𝕋 2) :=
+def PolyZonotope.polygonRound (pick : PolyZonotope (Vec 𝕋 2) → Bool)
+    (L : List (PolyZonotope (Vec 𝕋 2))) :
+    List (PolyZonotope (Vec 𝕋 2)) :=
   L.flatMap fun q => if pick q then [q.splitLongestGen.1, q.splitLongestGen.2] else [q]
 
 end CORALean.Float

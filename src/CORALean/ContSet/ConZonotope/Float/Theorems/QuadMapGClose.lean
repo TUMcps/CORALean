@@ -36,7 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact layer's generators on the read-back operand, at this layer's index type. -/
-noncomputable def ConZonotope.aux_quadMapGReal (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) :
+noncomputable def ConZonotope.aux_quadMapGReal (Q : Fin m → Mat 𝕋 n n)
+    (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Fin m → Fin (cZ.h + cZ.h + cZ.h * cZ.h) → ℝ :=
   fun i l => Fin.append
     (Fin.append
@@ -53,7 +54,7 @@ noncomputable def ConZonotope.aux_quadMapGReal (Q : Fin m → Mat 𝕋 n n) (cZ 
       else 0) l i
 
 /-- The exact generator lies between the two stored roundings. -/
-theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n)
+theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     (i : Fin m) (l : Fin (cZ.h + cZ.h + cZ.h * cZ.h)) :
     toReal (ConZonotope.quadMapGDown Q cZ i l) ≤ ConZonotope.aux_quadMapGReal Q cZ i l
       ∧ ConZonotope.aux_quadMapGReal Q cZ i l
@@ -103,7 +104,8 @@ theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.quadMapG_close (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) (i : Fin m)
+theorem ConZonotope.quadMapG_close (Q : Fin m → Mat 𝕋 n n)
+    (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin m)
     (l : Fin (cZ.h + cZ.h + cZ.h * cZ.h)) :
     |(Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).G l i
         - toReal (ConZonotope.quadMapGDown Q cZ i l)|

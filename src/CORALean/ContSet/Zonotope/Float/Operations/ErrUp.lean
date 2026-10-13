@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- An upper bound on the Euclidean radius of `Z`'s box about the origin, `err (Z.construct)`;
 `64` Newton steps for the square root, which an error of any magnitude settles in. -/
-def Zonotope.errUp (Z : Zonotope 𝕋 n) : 𝕋 :=
+def Zonotope.errUp (Z : Zonotope (Vec 𝕋 n)) : 𝕋 :=
   normUp 64 fun j => Z.absBoundError j
 
 end CORALean.Float

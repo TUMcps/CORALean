@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The inequality rows not dominated by a row with the same normal. -/
-def HPolytope.dropAligned (Q : HPolytope 𝕋 n) : HPolytope 𝕋 n :=
+def HPolytope.dropAligned (Q : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
   Q.restrict (fun i => !(List.finRange Q.m).any fun j =>
     HPolytope.eqVec (Q.A j) (Q.A i) &&
       (ltStrict (Q.b j) (Q.b i) || (decide (j < i) && le (Q.b j) (Q.b i)))) (fun _ => true)

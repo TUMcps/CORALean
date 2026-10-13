@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.isCompact_construct {zB : ZonoBundle 𝕋 n} (h : 0 < zB.k) :
+theorem ZonoBundle.isCompact_construct {zB : ZonoBundle (Vec 𝕋 n)} (h : 0 < zB.k) :
     IsCompact zB.construct := by
   set i₀ : Fin zB.k := ⟨0, h⟩
   refine IsCompact.of_isClosed_subset (Zonotope.isCompact_construct (zB.Z i₀)) ?_

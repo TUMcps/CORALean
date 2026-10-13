@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Lines 12-13, eq. (44): `ρ(R̂^∃(-τ_k;u_j(·)), N_(j,·))`, rounded up. -/
 def LinearSys.minBackReachSupportFloat (sys : LinearSys 𝕋 n)
-    (CZ : ConZonotope 𝕋 n) (W₀ U₀ : Zonotope 𝕋 n) (Zw : 𝕋 → Zonotope 𝕋 n) (N : Mat 𝕋 q n)
+    (CZ : ConZonotope 𝕋 (Vec 𝕋 n)) (W₀ U₀ : Zonotope (Vec 𝕋 n)) (Zw : 𝕋 → Zonotope (Vec 𝕋 n))
+    (N : Mat 𝕋 q n)
     (t₀ Δt : 𝕋) (η ν k : ℕ) (j : Fin q) : 𝕋 :=
   let s := sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k
   let ρR := (s.R.boundDot (c := rowLin N j) (N j) fun _ => rfl).val   -- ρ(R̂^∃, N_(j,·)), up

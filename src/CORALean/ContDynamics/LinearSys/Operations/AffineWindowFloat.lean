@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Ĥ(τ_k) = comb(H(t_k), H(t_{k+1})) ⊕ C`, for a `H(t_{k+1})` given. -/
-def LinearSys.affineWindowFloat (sys : LinearSys 𝕋 n) (H Hnext : Zonotope 𝕋 n) (ũ : Vec 𝕋 n)
-    (Δt : 𝕋) (η : ℕ) : Zonotope 𝕋 n :=
+def LinearSys.affineWindowFloat (sys : LinearSys 𝕋 n) (H Hnext : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n)
+    (Δt : 𝕋) (η : ℕ) : Zonotope (Vec 𝕋 n) :=
   let C := MatExp.curvatureEnclosure (Interval.point sys.A) H ũ Δt η  -- C, eq. (15)-(16)
   LinComb.linComb H Hnext ⊞ C                                         -- comb(H, H(t_{k+1})) ⊕ C
 

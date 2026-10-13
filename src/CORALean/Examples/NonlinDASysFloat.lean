@@ -105,13 +105,13 @@ theorem model_encloses : model.Encloses daeRed.toNonlinearSys := by -- --- PROOF
       ring
 
 /-- `x ∈ [3/4, 5/4]`, and `u ∈ [-1/16, 1/16]`. -/
-def X₀ : Zonotope D 1 := ⟨1, ![d 1 0], !![d 1 (-2)], zbox 1⟩
-def U₀ : Zonotope D 1 := ⟨1, ![d 0 0], !![d 1 (-4)], zbox 1⟩
+def X₀ : Zonotope (Vec D 1) := ⟨1, ![d 1 0], !![d 1 (-2)], zbox 1⟩
+def U₀ : Zonotope (Vec D 1) := ⟨1, ![d 0 0], !![d 1 (-4)], zbox 1⟩
 
 /-- Eight steps of `1/8`, Taylor order at least `4`, zonotope order `10`. The reduced model is
 data the run never reads (`NonlinDASys.reachFloat` is the ordinary run of `model`), so the
 computable form is written without it, and `run_eq` is that this is the same run. -/
-def run : Option (List (Zonotope D 1)) :=
+def run : Option (List (Zonotope (Vec D 1))) :=
   model.reachFloat { R0 := X₀, U := U₀, tFinal := 1 }
     { timeStep := d 1 (-3), taylorTerms := 4, zonotopeOrder := 10 }
 
@@ -126,7 +126,7 @@ theorem run_eq : NonlinDASys.reachFloat daeRed model { R0 := X₀, U := U₀, tF
 /-- The guarantee of the list the run returns (the `#eval` above shows it does): every trajectory
 of the algebraic system from `X₀` under `U₀` is, at every time of every window, in the window's
 zonotope. -/
-theorem run_outer {Rs : List (Zonotope D 1)} (h : run = some Rs) :
+theorem run_outer {Rs : List (Zonotope (Vec D 1))} (h : run = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal (d 1 (-3) : D) = ((1 : ℚ) : ℝ) - ((0 : ℚ) : ℝ) ∧ Rs.length = N ∧
       ∀ {x : ℝ → Vec ℝ 1} {y : ℝ → Vec ℝ 1} {u : ℝ → Vec ℝ 1},
         daeSys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (((1 : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))

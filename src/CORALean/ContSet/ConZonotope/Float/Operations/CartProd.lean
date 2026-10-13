@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.cartProd (cZ₁ : ConZonotope 𝕋 n₁) (cZ₂ : ConZonotope 𝕋 n₂) :
-    ConZonotope 𝕋 (n₁ + n₂) where
+def ConZonotope.cartProd (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁)) (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n₂)) :
+    ConZonotope 𝕋 (Vec 𝕋 (n₁ + n₂)) where
   h := cZ₁.h + cZ₂.h
   c := Fin.append cZ₁.c cZ₂.c
   G := fun j i => genBlockDiag (fun i j => cZ₁.G j i) (fun i j => cZ₂.G j i) i j

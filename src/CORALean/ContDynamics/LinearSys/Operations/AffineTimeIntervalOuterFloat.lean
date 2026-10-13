@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Eq. (22): `Ĥ(τ_k) = comb(H(t_k), H(t_{k+1})) ⊕ C`, with
 `H(t_{k+1}) = [e^{AΔt}] H(t_k) ⊕ P^u(Δt)`. -/
-def LinearSys.affineTimeIntervalOuterFloat (sys : LinearSys 𝕋 n) (H : Zonotope 𝕋 n)
-    (ũ : Vec 𝕋 n) (Δt : 𝕋) (η : ℕ) : Zonotope 𝕋 n :=
+def LinearSys.affineTimeIntervalOuterFloat (sys : LinearSys 𝕋 n) (H : Zonotope (Vec 𝕋 n))
+    (ũ : Vec 𝕋 n) (Δt : 𝕋) (η : ℕ) : Zonotope (Vec 𝕋 n) :=
   let Hnext := sys.affineTimePointNextFloat H ũ Δt η                  -- H(t_{k+1})
   sys.affineWindowFloat H Hnext ũ Δt η                                -- 9. comb(H, H') ⊕ C
 

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.linComb_outer (zB₁ zB₂ : ZonoBundle 𝕋 n) :
+theorem ZonoBundle.linComb_outer (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) :
     segments zB₁.construct zB₂.construct ⊆ (zB₁.linComb zB₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩
   simp only [ZonoBundle.construct, Set.mem_iInter] at hy₁ hy₂ ⊢

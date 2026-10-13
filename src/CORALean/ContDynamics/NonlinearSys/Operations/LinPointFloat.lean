@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- `z✱(t_k)` in floats: the stored centre of `R` advanced by `½Δt` times the
 model's field there, paired with the stored centre of `U`. -/
 def NonlinearSys.FloatModel.linPointFloat (fm : NonlinearSys.FloatModel 𝕋 n m) (Δt : 𝕋)
-    (R : Zonotope 𝕋 n) (U : Zonotope 𝕋 m) : Vec 𝕋 n × Vec 𝕋 m :=
+    (R : Zonotope (Vec 𝕋 n)) (U : Zonotope (Vec 𝕋 m)) : Vec 𝕋 n × Vec 𝕋 m :=
   let us := U.c                                                     -- 6. u✱ = center(U)
   let c := R.c                                                      -- 6. center(R(t_k))
   let fc := (fm.f (Interval.point c) (Interval.point us)).center    -- f(center, u✱)

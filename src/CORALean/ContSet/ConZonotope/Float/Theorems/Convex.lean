@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.convex_construct (cZ : ConZonotope 𝕋 n) : Convex ℝ cZ.construct :=
+theorem ConZonotope.convex_construct (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Convex ℝ cZ.construct :=
   InflatedContSet.convex_construct cZ
 
 end CORALean.Float

@@ -21,13 +21,13 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def VPolytope.ellipsoid (P : VPolytope 𝕋 n) (σ : 𝕋) : Ellipsoid 𝕋 n :=
+def VPolytope.ellipsoid (P : VPolytope (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n :=
   P.zonotope.ellipsoid σ
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.ellipsoid_contains (P : VPolytope 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
+theorem VPolytope.ellipsoid_contains (P : VPolytope (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hh : (P.zonotope.h : ℝ) ≤ toReal (mulDown σ σ)) :
     P.construct ⊆ (P.ellipsoid σ).construct :=
   subset_trans P.zonotope_contains (P.zonotope.ellipsoid_contains σ hσ hh)

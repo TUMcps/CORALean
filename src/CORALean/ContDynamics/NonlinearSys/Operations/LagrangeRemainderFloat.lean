@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- The symmetric box `[-l, l]` bounding a third-order remainder over `Z`, at the expansion point
 `zs` and the entrywise third-derivative bound `E`. -/
-def lagrangeRemainderFloat {d n : ℕ} (E : Fin n → Fin d → Mat 𝕋 d d) (Z : Zonotope 𝕋 d)
+def lagrangeRemainderFloat {d n : ℕ} (E : Fin n → Fin d → Mat 𝕋 d d) (Z : Zonotope (Vec 𝕋 d))
     (zs : Vec 𝕋 d) : Interval (Vec 𝕋 n) :=
   let Z' := Z.interval                                              -- Z's box
   let γ : Vec 𝕋 d := (Interval.plus Z' (Interval.point fun j => neg (zs j))).normMag  -- |z - z✱|

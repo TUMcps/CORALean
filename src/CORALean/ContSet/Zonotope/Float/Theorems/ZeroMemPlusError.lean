@@ -65,7 +65,7 @@ theorem Zonotope.aux_zero_mem_centerResidual (a b : Vec 𝕋 n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `plus` keeps `0` in the error box, given both operands already have it. -/
-theorem Zonotope.zero_mem_plus_error {Z₁ Z₂ : Zonotope 𝕋 n}
+theorem Zonotope.zero_mem_plus_error {Z₁ Z₂ : Zonotope (Vec 𝕋 n)}
     (h₁ : (0 : Vec ℝ n) ∈ Z₁.E.construct) (h₂ : (0 : Vec ℝ n) ∈ Z₂.E.construct) :
     (0 : Vec ℝ n) ∈ (Z₁.plus Z₂).E.construct :=
   Zonotope.aux_zero_mem_interval_plus (Zonotope.aux_zero_mem_interval_plus h₁ h₂)

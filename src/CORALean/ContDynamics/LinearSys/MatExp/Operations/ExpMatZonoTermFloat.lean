@@ -31,8 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Order `i` of [1, Sec. 3.3.2]'s series: the `i`-th power, scaled by `[1/i!]`. -/
-def MatExp.expMatZonoTerm (M : GZonotope (Mat 𝕋 n n)) (i : ℕ) : GZonotope (Mat 𝕋 n n) :=
-  GZonotope.matSmul (MatExp.invFactorialBounds i).1 (MatExp.invFactorialBounds i).2 (M.matPow i)
+def MatExp.expMatZonoTerm (M : Zonotope (Mat 𝕋 n n)) (i : ℕ) : Zonotope (Mat 𝕋 n n) :=
+  Zonotope.matSmul (MatExp.invFactorialBounds i).1 (MatExp.invFactorialBounds i).2 (M.matPow i)
 
 end CORALean.Float
 

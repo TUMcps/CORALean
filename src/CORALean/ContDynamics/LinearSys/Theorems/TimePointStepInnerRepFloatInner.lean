@@ -59,11 +59,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 reaches at `t = r` from the nominal zonotopes of `X₀` and `U`, at `r > 0` and an admissible
 order, given both error boxes bracket `0`. -/
 theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X₀ U : Zonotope 𝕋 n}
+    (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X₀ U : Zonotope (Vec 𝕋 n)}
     (hX₀ : (0 : Vec ℝ n) ∈ X₀.E.construct) (hU : (0 : Vec ℝ n) ∈ U.E.construct)
     (M : Fin (sys.timePointStepInputFloat r η X₀ U).h →
       Fin (sys.timePointStepInnerErrorFloat r η X₀ U).h → 𝕋) (ρ : 𝕋)
-    (H : Mat 𝕋 (sys.timePointStepInputFloat r η X₀ U).h n) {D : Zonotope 𝕋 n}
+    (H : Mat 𝕋 (sys.timePointStepInputFloat r η X₀ U).h n) {D : Zonotope (Vec 𝕋 n)}
     (hD : sys.timePointStepInnerRepFloat r η X₀ U M ρ H = some D) :
     D.construct ⊆ sys.reachSet (S := fun k => Real.Zonotope (Vec ℝ k))
       (Set.Icc 0 (toReal r)) (nominal X₀) (nominal U) (toReal r) := by -- --- PROOF ---

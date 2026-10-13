@@ -61,7 +61,7 @@ def reducible : ReducibleNetwork D 2 2 :=
       (.static [dy 0 0]) .nil)
 
 /-- `[1, 2] × [0, 1/2]`. -/
-def Xr : Zonotope D 2 where
+def Xr : Zonotope (Vec D 2) where
   h := 2
   c := ![dy 3 (-1), dy 1 (-2)]
   G := !![dy 1 (-1), dy 0 0; dy 0 0, dy 1 (-2)]
@@ -111,14 +111,16 @@ def reduceReport : String :=
     "look-ahead I_2  " ++ showBox lookAhead,
     mergedLine,
     ""]
-  match reduceOnTheFly (S := Zonotope D) FloatOps.le tolr fuelr Xr ρr reducible with
+  -- run Alg. 2, then print the widths, the error boxes and both enclosures
+  match reduceOnTheFly (S := fun k => Zonotope (Vec D k)) FloatOps.le tolr fuelr Xr ρr
+    reducible with
   | none => String.intercalate "\n" (header ++ ["Alg. 2 ran out of fuel"])
   | some (Φhat, Y) => String.intercalate "\n" (header ++ [
       "widths  " ++ toString (widths reducible) ++ " -> " ++ toString (widths Φhat),
       "error box I' of each reduced linear layer:"] ++ errorLines Φhat 1 ++ [
       "",
       "unreduced enclose  "
-        ++ showBox ((reducible.toNetwork (S := Zonotope D)).enclose Xr).interval,
+        ++ showBox ((reducible.toNetwork (S := fun k => Zonotope (Vec D k))).enclose Xr).interval,
       "reduced Y          " ++ showBox Y.interval])
 
 end CORALean.Demo

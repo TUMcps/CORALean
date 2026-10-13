@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.cubMapCUp (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope 𝕋 n) : Vec 𝕋 m :=
+def Zonotope.cubMapCUp (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 m :=
   fun i => addUp (Zonotope.cubFoldUp T Z i 0 0 0)
     (half (sumUp fun y : Fin Z.h => Zonotope.cubFoldUp T Z i 0 y.succ y.succ))
 

@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.tieInter (S₁ S₂ : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 n :=
+def SpectraShadow.tieInter (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   let unit : Fin n → Vec 𝕋 n := fun i r => if r = i then one else zero
   let zeroV : Vec 𝕋 (n + n) := fun _ => zero
   -- `z - c - Gβ = 0` as that expression and its negation: constants, `β` and `z` coefficients

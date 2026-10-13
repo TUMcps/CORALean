@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.cartProd (zB₁ : ZonoBundle 𝕋 n₁) (zB₂ : ZonoBundle 𝕋 n₂) :
-    ZonoBundle 𝕋 (n₁ + n₂) where
+def ZonoBundle.cartProd (zB₁ : ZonoBundle (Vec 𝕋 n₁)) (zB₂ : ZonoBundle (Vec 𝕋 n₂)) :
+    ZonoBundle (Vec 𝕋 (n₁ + n₂)) where
   k := zB₁.k * zB₂.k
   Z := fun p =>
     let ij := finProdFinEquiv.symm p

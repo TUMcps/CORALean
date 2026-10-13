@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Polygon.aux_convHullOfList_outer :
-    ∀ ps : List (VPolytope 𝕋 2),
+    ∀ ps : List (VPolytope (Vec 𝕋 2)),
       convexHull ℝ (⋃ p ∈ ps, VPolytope.construct p) ⊆
         (Polygon.convHullOfList ps).construct
   | [] => by simp

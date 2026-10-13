@@ -32,9 +32,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The fold of Minkowski sums holds the sum of one point from each summand. -/
-theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonotope 𝕋 n)
+theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonotope (Vec 𝕋 n))
     (ys : ι → Vec ℝ n) (hys : ∀ i ∈ l, ys i ∈ (Zs i).construct) :
-    ∀ (acc : Zonotope 𝕋 n) (y : Vec ℝ n), y ∈ acc.construct →
+    ∀ (acc : Zonotope (Vec 𝕋 n)) (y : Vec ℝ n), y ∈ acc.construct →
       y + (l.map ys).sum ∈ (l.foldl (fun A i => A.plus (Zs i)) acc).construct := by -- --- PROOF ---
   induction l with
   | nil => intro acc y hy; simpa using hy
@@ -50,8 +50,8 @@ theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonot
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope 𝕋 n)
-    (M : GZonotope (Zonotope.Tensor3 𝕋 n)) (L : Real.Zonotope.TensorLists Z.dependent.h)
+theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope (Vec 𝕋 n))
+    (M : Zonotope (Zonotope.Tensor3 𝕋 n)) (L : Real.Zonotope.TensorLists Z.dependent.h)
     (hc : ∀ i, toReal (Z.c i) = 0)
     (hperm : Function.Bijective fun p : Fin L.P => (L.perm p 0, L.perm p 1, L.perm p 2))
     (hmap : ∀ p q, L.map p = L.map q →

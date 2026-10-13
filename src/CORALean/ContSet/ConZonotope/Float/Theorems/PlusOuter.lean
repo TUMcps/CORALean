@@ -34,12 +34,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
 because that is the form the goal has. -/
-theorem ConZonotope.aux_sum_univ_plus {cZ₁ cZ₂ : ConZonotope 𝕋 n} (f : Fin (cZ₁.h + cZ₂.h) → ℝ) :
+theorem ConZonotope.aux_sum_univ_plus {cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)}
+    (f : Fin (cZ₁.h + cZ₂.h) → ℝ) :
     ∑ j : Fin (cZ₁.plus cZ₂).h, f j
       = ∑ j, f (Fin.castAdd cZ₂.h j) + ∑ j, f (Fin.natAdd cZ₁.h j) :=
   Fin.sum_univ_add f
 
-theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     nominalSet cZ₁ + nominalSet cZ₂ ⊆
       nominalSet (cZ₁.plus cZ₂)
         + (Zonotope.centerResidual cZ₁.c cZ₂.c).construct := by -- --- PROOF ---
@@ -66,7 +67,7 @@ theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
     simp only [ConZonotope.plus, hz₁ i, hz₂ i, Fin.append_left, Fin.append_right]
     ring
 
-theorem ConZonotope.aux_plus_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+theorem ConZonotope.aux_plus_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     (error cZ₁).construct + (error cZ₂).construct
       + (Zonotope.centerResidual cZ₁.c cZ₂.c).construct ⊆ (error (cZ₁.plus cZ₂)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer cZ₁.E cZ₂.E))
@@ -75,7 +76,7 @@ theorem ConZonotope.aux_plus_error (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.plus_outer (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+theorem ConZonotope.plus_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ₁.construct + cZ₂.construct ⊆ (cZ₁.plus cZ₂).construct :=
   InflatedContSet.plus_subset (ConZonotope.aux_plus_nominal cZ₁ cZ₂)
     (ConZonotope.aux_plus_error cZ₁ cZ₂)

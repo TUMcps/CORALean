@@ -22,7 +22,7 @@ Read from the source, not run.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open ContSet
 
@@ -52,7 +52,7 @@ theorem StarSet.coraRowBounds_unsound :
     simp [s] at h0 h1
     linarith
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.isFullDim (zB : ZonoBundle 𝕋 n) (H : (i : Fin zB.k) → Mat 𝕋 (zB.Z i).h n)
+def ZonoBundle.isFullDim (zB : ZonoBundle (Vec 𝕋 n)) (H : (i : Fin zB.k) → Mat 𝕋 (zB.Z i).h n)
     (x₀ : Vec 𝕋 n) : Bool :=
   (List.finRange zB.k).all fun i => Zonotope.interiorPoint (zB.Z i) (H i) x₀
 

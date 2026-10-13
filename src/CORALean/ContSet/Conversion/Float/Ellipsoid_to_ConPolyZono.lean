@@ -29,7 +29,7 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
-def Ellipsoid.conPolyZono (E : Ellipsoid 𝕋 n) : ConPolyZono 𝕋 n where
+def Ellipsoid.conPolyZono (E : Ellipsoid 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := E.k + 1
   h := E.k
   q := 0

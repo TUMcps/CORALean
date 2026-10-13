@@ -31,8 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.exactPlus (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (hp : pZ₁.p = pZ₂.p) :
-    PolyZonotope 𝕋 n where
+def PolyZonotope.exactPlus (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁.p = pZ₂.p) :
+    PolyZonotope (Vec 𝕋 n) where
   p := pZ₁.p
   h := pZ₁.h + pZ₂.h
   q := pZ₁.q + pZ₂.q

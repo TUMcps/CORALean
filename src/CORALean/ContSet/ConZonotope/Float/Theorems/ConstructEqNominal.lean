@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.construct_eq_nominal {cZ : ConZonotope 𝕋 n}
+theorem ConZonotope.construct_eq_nominal {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
     (hE : cZ.E = Interval.point fun _ => zero) : cZ.construct = nominalSet cZ := by -- --- PROOF ---
   ext x
   constructor

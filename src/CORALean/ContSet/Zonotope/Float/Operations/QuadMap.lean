@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m :=
+def Zonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 m) :=
   let pZ := Z.polyZonotope
   (PolyZonotope.quadMap Q pZ).zonotope
 

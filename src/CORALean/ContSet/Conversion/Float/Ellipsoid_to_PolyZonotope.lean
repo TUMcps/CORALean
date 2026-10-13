@@ -22,7 +22,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Ellipsoid.polyZonotope (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : PolyZonotope 𝕋 n :=
+def Ellipsoid.polyZonotope (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : PolyZonotope (Vec 𝕋 n) :=
   (E.interval s).polyZonotope
 
 

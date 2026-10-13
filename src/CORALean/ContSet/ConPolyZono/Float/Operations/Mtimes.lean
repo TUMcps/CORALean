@@ -32,7 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 k where
+def ConPolyZono.mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono
+    𝕋 (Vec 𝕋 k) where
   p := cPZ.p
   h := cPZ.h
   q := cPZ.q

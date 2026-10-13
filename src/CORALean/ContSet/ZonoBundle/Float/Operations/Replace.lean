@@ -23,8 +23,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.replace (zB : ZonoBundle 𝕋 n) (index : Fin zB.k) (Z : Zonotope 𝕋 n) :
-    ZonoBundle 𝕋 n where
+def ZonoBundle.replace (zB : ZonoBundle (Vec 𝕋 n)) (index : Fin zB.k) (Z : Zonotope (Vec 𝕋 n)) :
+    ZonoBundle (Vec 𝕋 n) where
   k := zB.k
   Z := Function.update zB.Z index Z
 

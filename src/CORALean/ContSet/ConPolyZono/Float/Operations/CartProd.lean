@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.cartProd (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂) :
-    ConPolyZono 𝕋 (n₁ + n₂) where
+def ConPolyZono.cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁)) (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂)) :
+    ConPolyZono 𝕋 (Vec 𝕋 (n₁ + n₂)) where
   p := cPZ₁.p + cPZ₂.p
   h := cPZ₁.h + cPZ₂.h
   q := cPZ₁.q + cPZ₂.q

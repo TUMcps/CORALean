@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W₀ : Zonotope 𝕋 n}
+theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W₀ : Zonotope (Vec 𝕋 n)}
     {t₀ : 𝕋} {η η' : ℕ} {s : LinearSys.MaxBackReachStateFloat 𝕋 n}
     (h : sys.maxBackReachInitFloat U W₀ t₀ η = some s) (hη' : sys.reachOrderFloat t₀ t₀ η = some η')
     (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀)

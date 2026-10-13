@@ -21,7 +21,7 @@ open InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def Zonotope.conPolyZono (Z : Zonotope 𝕋 n) : ConPolyZono 𝕋 n :=
+def Zonotope.conPolyZono (Z : Zonotope (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   Z.polyZonotope.conPolyZono
 
 variable [SoundFloatArithmetic 𝕋]
@@ -29,7 +29,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.conPolyZono_contains (Z : Zonotope 𝕋 n) :
+theorem Zonotope.conPolyZono_contains (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.conPolyZono.construct :=
   subset_trans Z.polyZonotope_contains Z.polyZonotope.conPolyZono_contains
 

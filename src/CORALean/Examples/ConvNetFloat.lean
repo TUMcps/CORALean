@@ -25,13 +25,13 @@ import CORALean.NN.Theorems.MarginDir
 /-!
 # The same convolutional network, over a floating-point scalar
 
-`Examples.ConvNet` at `Float.Zonotope 𝕋`, and what is worth reading is which
+`Examples.ConvNet` at `Float.Zonotope (Vec 𝕋 n)`, and what is worth reading is which
 lines changed and which did not. The taps did not: `Example.convTap` and
 `Example.poolTap` are the exact layer's, reused verbatim, because an index
 function has no scalar in it.
 
 The layers did not either: each is written once over the scalar, and this is it at
-`𝕋`. The reshape carries no scalar at all, sound here because `Zonotope 𝕋` has the
+`𝕋`. The reshape carries no scalar at all, sound here because `Zonotope (Vec 𝕋 n)` has the
 `Reindex` instance it owes; batch normalization takes its scale and shift folded,
 in the scalar, as the network read in stores them.
 
@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- `sc` and `sh` are batch normalization's folded scale and shift, which is all
 `BatchNorm` ever was; `k` is the softmax exponential's reduction depth. -/
 def Example.convNet (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5)
-    (sc sh : Vec 𝕋 2) : NeuralNetwork (Zonotope 𝕋) 6 2 :=
+    (sc sh : Vec 𝕋 2) : NeuralNetwork (fun k => Zonotope (Vec 𝕋 k)) 6 2 :=
   .layer (ReshapeLayer.mk (Fin.transposeEquiv 3 2))
     (.layer (ConvLayer.mk 1 2 (fun _ => 0) Real.Example.convTap K b
         Real.Example.convTap_injective)
@@ -71,18 +71,18 @@ def Example.convNet (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5)
 
 /-- The whole chain is a network, which is the only thing left to check. -/
 example (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (sc sh : Vec 𝕋 2)
-    (X : Zonotope 𝕋 6) : Zonotope 𝕋 2 :=
+    (X : Zonotope (Vec 𝕋 6)) : Zonotope (Vec 𝕋 2) :=
   (Example.convNet k K b sc sh).enclose X
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
-example {nn : NeuralNetwork (Zonotope 𝕋) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope 𝕋 6) {x : Vec ℝ 6}
+example {nn : NeuralNetwork (fun k => Zonotope (Vec 𝕋 k)) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
+    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 6)) {x : Vec ℝ 6}
     (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
-example {nn : NeuralNetwork (Zonotope 𝕋) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope 𝕋 6) (l : Fin 2)
+example {nn : NeuralNetwork (fun k => Zonotope (Vec 𝕋 k)) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
+    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 6)) (l : Fin 2)
     (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ construct X)
     {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
@@ -91,22 +91,23 @@ example {nn : NeuralNetwork (Zonotope 𝕋) 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
 /-- The stored kernel denotes the convolution exactly, the stencil's entries
 being placed rather than summed. -/
 example (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) :
-    (Layer.conv (S := Zonotope 𝕋) (fun _ => 0) Real.Example.convTap K b).Sound
+    (Layer.conv (S := fun k => Zonotope (Vec 𝕋 k)) (fun _ => 0) Real.Example.convTap K b).Sound
       fun x j => (∑ l, toReal (K 0 l) * x (Real.Example.convTap j l)) + toReal (b j) :=
   Layer.conv_sound _ _ _ _ Real.Example.convTap_injective
 
 /-- Exact at a float representation too, a relabelling carrying no scalar. -/
-example (X : Zonotope 𝕋 6) :
-    construct ((Layer.reshape (S := Zonotope 𝕋) (Fin.transposeEquiv 3 2)).enclose X)
+example (X : Zonotope (Vec 𝕋 6)) :
+    construct ((Layer.reshape (S := fun k => Zonotope (Vec 𝕋 k))
+    (Fin.transposeEquiv 3 2)).enclose X)
       = CORALean.reindexLin (Fin.transposeEquiv 3 2) '' construct X :=
-  Layer.reshape_exact _ X
+  Layer.reshape_exact (S := fun k => Zonotope (Vec 𝕋 k)) _ X
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Average pooling takes its reciprocal as data, `1 / k` being no float; for a
 window of two it is `half one`, which is exact. -/
-def Example.avgPoolTwo : Layer (Zonotope 𝕋) 5 2 :=
+def Example.avgPoolTwo : Layer (fun k => Zonotope (Vec 𝕋 k)) 5 2 :=
   Layer.avgPool (FloatOps.half FloatOps.one) Real.Example.poolTap
 
 end CORALean.Float

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `zonotope/abs`: `Z.c := abs(Z.c); Z.G := abs(Z.G)`. -/
-def Zonotope.abs (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
+def Zonotope.abs (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := Z.h
   c := fun i => absolute (Z.c i)
   G := fun j i => absolute (Z.G j i)

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `or`: the union of two nonempty float zonotopes lies in their `linComb`. -/
-theorem Zonotope.union_subset_linComb (Z₁ Z₂ : Zonotope 𝕋 n) (h₁ : Z₁.construct.Nonempty)
+theorem Zonotope.union_subset_linComb (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (h₁ : Z₁.construct.Nonempty)
     (h₂ : Z₂.construct.Nonempty) :
     Z₁.construct ∪ Z₂.construct ⊆ (Z₁.linComb Z₂).construct :=
   (union_subset_segments h₁ h₂).trans (Zonotope.linComb_outer Z₁ Z₂)

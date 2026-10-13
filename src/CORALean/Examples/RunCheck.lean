@@ -98,28 +98,28 @@ section Sets
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToF 𝕋]
 
 -- one summary per representation: its dimensions, its center, an error box, a hull
-def zonoF {n : ℕ} (Z : Zonotope 𝕋 n) : List Float :=
+def zonoF {n : ℕ} (Z : Zonotope (Vec 𝕋 n)) : List Float :=
   vecF Z.c ++ matF Z.G ++ boxF Z.E ++ boxF Z.interval
 
-def ofZono {n : ℕ} (Z : Zonotope 𝕋 n) : Out :=
+def ofZono {n : ℕ} (Z : Zonotope (Vec 𝕋 n)) : Out :=
   ⟨s!"h={Z.h} c={vecS Z.c} hull={boxS Z.interval}", zonoF Z, false⟩
 
 -- the polytopes and constrained sets
-def ofHP {n : ℕ} (P : HPolytope 𝕋 n) : Out :=
+def ofHP {n : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 n)) : Out :=
   ⟨s!"m={P.m} me={P.me} b={vecS P.b}", matF P.A ++ vecF P.b ++ matF P.Ae ++ boxF P.be, false⟩
 
-def ofVP {n : ℕ} (P : VPolytope 𝕋 n) : Out :=
+def ofVP {n : ℕ} (P : VPolytope (Vec 𝕋 n)) : Out :=
   ⟨s!"k={P.k} E={boxS P.E}", matF P.V ++ boxF P.E, false⟩
 
-def ofCZ {n : ℕ} (C : ConZonotope 𝕋 n) : Out :=
+def ofCZ {n : ℕ} (C : ConZonotope 𝕋 (Vec 𝕋 n)) : Out :=
   ⟨s!"h={C.h} c={vecS C.c} rows={C.P.m} E={boxS C.E}",
     vecF C.c ++ matF C.G ++ matF C.P.A ++ vecF C.P.b ++ boxF C.E, false⟩
 
-def ofPZ {n : ℕ} (P : PolyZonotope 𝕋 n) : Out :=
+def ofPZ {n : ℕ} (P : PolyZonotope (Vec 𝕋 n)) : Out :=
   ⟨s!"p={P.p} h={P.h} q={P.q} c={vecS P.c} err={boxS P.err}",
     vecF P.c ++ matF P.G ++ matF P.GI ++ boxF P.err, false⟩
 
-def ofCPZ {n : ℕ} (P : ConPolyZono 𝕋 n) : Out :=
+def ofCPZ {n : ℕ} (P : ConPolyZono 𝕋 (Vec 𝕋 n)) : Out :=
   ⟨s!"p={P.p} h={P.h} q={P.q} m={P.m} s={P.s} c={vecS P.c} err={boxS P.err}",
     vecF P.c ++ matF P.G ++ matF P.GI ++ matF P.A ++ boxF P.b ++ boxF P.err, false⟩
 
@@ -127,14 +127,15 @@ def ofCPZ {n : ℕ} (P : ConPolyZono 𝕋 n) : Out :=
 def ofEll {n : ℕ} (E : Ellipsoid 𝕋 n) : Out :=
   ⟨s!"k={E.k} q={vecS E.q} err={boxS E.err}", vecF E.q ++ matF E.G ++ boxF E.err, false⟩
 
-def ofBundle {n : ℕ} (B : ZonoBundle 𝕋 n) : Out :=
+def ofBundle {n : ℕ} (B : ZonoBundle (Vec 𝕋 n)) : Out :=
   let hulls := (List.range B.k).filterMap fun i =>
     if h : i < B.k then some (B.Z ⟨i, h⟩) else none
   ⟨s!"k={B.k} members: " ++ "; ".intercalate (hulls.map fun Z => (ofZono Z).text),
     hulls.flatMap zonoF, false⟩
 
 /-- The three sets and the time of a minimal backward reachable set's loop state. -/
-def ofMinState {n : ℕ} (s : LinearSys.MinBackReachStateOf 𝕋 (Zonotope 𝕋 n) (ConZonotope 𝕋 n)) :
+def ofMinState {n : ℕ} (s : LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n))
+    (ConZonotope 𝕋 (Vec 𝕋 n))) :
     Out :=
   ⟨s!"t={sc s.t} ZW0: " ++ (ofZono s.ZW₀).text ++ " ZU0: " ++ (ofZono s.ZU₀).text ++ " R: "
       ++ (ofCZ s.R).text,
@@ -151,23 +152,23 @@ def ofMaxState {n : ℕ} (o : Option (LinearSys.MaxBackReachStateFloat 𝕋 n)) 
       ToF.toF s.tLo :: ToF.toF s.tHi :: zonoF s.ZU ++ vecF s.UErr ++ zonoF s.ZW
         ++ (ofCZ s.RH).vals ++ zonoF s.RU, false⟩
 
-def ofBundles {n : ℕ} (L : List (ZonoBundle 𝕋 n)) : Out :=
+def ofBundles {n : ℕ} (L : List (ZonoBundle (Vec 𝕋 n))) : Out :=
   ⟨s!"bundles={L.length} last: " ++ (L.getLast?.map fun B => (ofBundle B).text).getD "-",
     L.flatMap fun B => (ofBundle B).vals, L.isEmpty⟩
 
-def ofUnion {n : ℕ} (U : SetUnion (Zonotope 𝕋 n)) : Out :=
+def ofUnion {n : ℕ} (U : SetUnion (Zonotope (Vec 𝕋 n))) : Out :=
   ⟨s!"branches={U.sets.length} " ++ "; ".intercalate (U.sets.map fun Z => (ofZono Z).text),
     U.sets.flatMap zonoF, false⟩
 
 /-- A polygon's piece count and the first piece's vertex count: the pieces that came from a
 zonotope have `2 ^ h` corners, too many to list or to bound. -/
-def ofPolygon {n : ℕ} (P : SetUnion (VPolytope 𝕋 n)) : Out :=
+def ofPolygon {n : ℕ} (P : SetUnion (VPolytope (Vec 𝕋 n))) : Out :=
   match P.sets.head? with
   | none => ⟨"pieces=0", [], true⟩
   | some p => ⟨s!"pieces={P.sets.length} k={p.k}", [], false⟩
 
 /-- A polygon's piece count and every piece's box hull. -/
-def ofPolygonBoxes (P : SetUnion (VPolytope 𝕋 2)) : Out :=
+def ofPolygonBoxes (P : SetUnion (VPolytope (Vec 𝕋 2))) : Out :=
   ⟨s!"pieces={P.sets.length} " ++ " ".intercalate (P.sets.map fun p => boxS p.interval), [], false⟩
 
 -- probabilistic zonotopes and spectrahedral shadows
@@ -175,7 +176,7 @@ def ofProbZ {n : ℕ} (P : ProbZonotope 𝕋 n) : Out :=
   ⟨s!"mean {(ofZono P.Z).text} cov inf={matS P.cov.inf} sup={matS P.cov.sup}",
     zonoF P.Z ++ matF P.cov.inf ++ matF P.cov.sup, false⟩
 
-def ofSpS {n : ℕ} (S : SpectraShadow 𝕋 n) : Out :=
+def ofSpS {n : ℕ} (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : Out :=
   ⟨s!"k={S.k} m={S.m} c={vecS S.c} E={boxS S.E}",
     matF S.A₀ ++ vecF S.c ++ matF S.G ++ boxF S.E, false⟩
 -- the regions of a piecewise polynomial fit: their number, largest error and spans
@@ -190,12 +191,12 @@ def ofRegions (o : Option (List (RegionPoly 𝕋))) : Out :=
       errs, L.isEmpty⟩
 
 -- matrix zonotopes and lists of windows (`none` is a missing value)
-def ofMZ {m n : ℕ} (M : GZonotope (Mat 𝕋 m n)) : Out :=
+def ofMZ {m n : ℕ} (M : Zonotope (Mat 𝕋 m n)) : Out :=
   ⟨s!"h={M.h} c={matS M.c} E inf={matS M.E.inf} sup={matS M.E.sup}",
     matF M.c ++ (List.range M.h).flatMap (fun i =>
       if h : i < M.h then matF (M.G ⟨i, h⟩) else []) ++ matF M.E.inf ++ matF M.E.sup, false⟩
 
-def ofWindows {n : ℕ} (o : Option (List (Zonotope 𝕋 n))) : Out :=
+def ofWindows {n : ℕ} (o : Option (List (Zonotope (Vec 𝕋 n)))) : Out :=
   match o with
   | none => ⟨"none", [], true⟩
   | some L =>
@@ -215,7 +216,7 @@ def ofMat {m n : ℕ} (M : Mat (Dyadic 24) m n) : Out :=
 def ofD (x : Dyadic 24) : Out := ⟨sc x, [ToF.toF x], false⟩
 /-- An exact rational read as a `Float`, for printing. -/
 def qF (q : ℚ) : Float := Float.ofInt q.num / Float.ofNat q.den
-def ofOptZono {n : ℕ} (o : Option (Zonotope (Dyadic 24) n)) : Out :=
+def ofOptZono {n : ℕ} (o : Option (Zonotope (Vec (Dyadic 24) n))) : Out :=
   match o with
   | none => ⟨"none", [], true⟩
   | some Z => ofZono Z
@@ -224,7 +225,8 @@ def ofOptStepOrder (o : Option (Dyadic 24 × ℕ)) : Out :=
   | none => ⟨"none", [], true⟩
   | some (Δt, η) => ⟨s!"step={sc Δt} order={η}", [ToF.toF Δt], false⟩
 /-- A step of `Alg. 2`: the time it reached, the step taken and the window. -/
-def ofAutoStep (o : Option (LinearSys.AutoStateFloat (Dyadic 24) 2 × Zonotope (Dyadic 24) 2)) :
+def ofAutoStep (o : Option
+    (LinearSys.AutoStateFloat (Dyadic 24) 2 × Zonotope (Vec (Dyadic 24) 2))) :
     Out :=
   match o with
   | none => ⟨"none", [], true⟩
@@ -232,7 +234,7 @@ def ofAutoStep (o : Option (LinearSys.AutoStateFloat (Dyadic 24) 2 × Zonotope (
     ⟨s!"t={fl (qF s.t)} step={sc s.Δt} eps_a={fl (qF s.εa)} eps_r={fl (qF s.εr)} window: "
       ++ (ofZono R).text, ToF.toF s.Δt :: zonoF R, false⟩
 /-- The windows `Alg. 2` returns, each with the times it covers. -/
-def ofTimedWindows (o : Option (List (ℚ × ℚ × Zonotope (Dyadic 24) 2))) : Out :=
+def ofTimedWindows (o : Option (List (ℚ × ℚ × Zonotope (Vec (Dyadic 24) 2)))) : Out :=
   match o with
   | none => ⟨"none", [], true⟩
   | some L =>
@@ -240,7 +242,7 @@ def ofTimedWindows (o : Option (List (ℚ × ℚ × Zonotope (Dyadic 24) 2))) : 
         s!"[{fl (qF w.1)}, {fl (qF w.2.1)}]") ++ " last: "
         ++ (L.getLast?.map fun w => (ofZono w.2.2).text).getD "-",
       L.flatMap fun w => zonoF w.2.2, L.isEmpty⟩
-def ofWindowsBox (o : Option (List (Zonotope (Dyadic 24) 2))) (i : Fin 2) : Out :=
+def ofWindowsBox (o : Option (List (Zonotope (Vec (Dyadic 24) 2)))) (i : Fin 2) : Out :=
   match o with
   | none => ⟨"none", [], true⟩
   | some L =>
@@ -614,7 +616,7 @@ abbrev F := Float
 
 def fzbox (n : ℕ) : Interval (Vec F n) := ⟨fun _ => 0, fun _ => 0⟩
 
-def fZ : Zonotope F 2 where
+def fZ : Zonotope (Vec F 2) where
   h := 2
   c := ![floatLit 1 0, floatLit 0 0]
   G := !![floatLit 1 (-2), 0; 0, floatLit 1 (-2)]
@@ -622,7 +624,7 @@ def fZ : Zonotope F 2 where
 
 def fI : Interval (Vec F 2) := fZ.interval
 /-- Entries a float cannot hold exactly, so the Box operations have an overshoot to report. -/
-def fZ' : Zonotope F 2 where
+def fZ' : Zonotope (Vec F 2) where
   h := 2
   c := ![0.1, 0.2]
   G := ![![0.3, 0.7], ![0.1, 0.9]]
@@ -631,17 +633,18 @@ def fZ' : Zonotope F 2 where
 -- a discrete-time system, a network and a continuous-time system sampled, as at `Dyadic 24`
 def fSys : LinearSysDT F 2 :=
   ⟨!![floatLit 15 (-4), floatLit (-1) (-3); floatLit 1 (-3), floatLit 15 (-4)]⟩
-def fReach : Zonotope F 2 := fSys.reach (S := Zonotope F) ⟨fZ, fZ, 0, 5⟩ ⟨2, by decide⟩
-def fNet : NeuralNetwork (Zonotope F) 2 2 :=
+def fReach : Zonotope (Vec F 2) := fSys.reach (S := fun k => Zonotope (Vec F k)) ⟨fZ, fZ, 0, 5⟩
+    ⟨2, by decide⟩
+def fNet : NeuralNetwork (fun k => Zonotope (Vec F k)) 2 2 :=
   .layer (⟨identityMat F 2, fun _ => 0⟩ : LinearLayer F 2 2)
     (.layer (⟨reluSlope, rfl⟩ : ReluLayer F 2 2) .output)
-def fEnclose : Zonotope F 2 := fNet.enclose fZ
+def fEnclose : Zonotope (Vec F 2) := fNet.enclose fZ
 def fStepR : F := floatLit 1 (-5)
 def fCtSys : LinearSys F 2 := ⟨!![-1, -4; 4, -1]⟩
 def fCtD : LinParamSysDT (fun m n => Interval (Mat F m n)) 2 :=
   fCtSys.discretizeEnclosureFloat fStepR 4
-def fCtReach : Zonotope F 2 :=
-  fCtD.reach (S := Zonotope F) ⟨fZ, fZ, 0, 5⟩ ⟨2, two_pos⟩
+def fCtReach : Zonotope (Vec F 2) :=
+  fCtD.reach (S := fun k => Zonotope (Vec F k)) ⟨fZ, fZ, 0, 5⟩ ⟨2, two_pos⟩
 def fSafe : Specification (Interval (Vec F 2)) := .safeSet ⟨fun _ => -10, fun _ => 10⟩
 
 -- the rows, in the order of the `Dyadic 24` ones
@@ -651,7 +654,7 @@ def floatRows : StateT Nat IO Unit := do
   row "I" (ofBox fI)
   row "Z_plus" (ofZono (fZ.plus fZ))
   row "Z_reduce" (ofZono (fZ.reduce 1))
-  row "Z_mtimes" (ofZono (Mtimes.mtimes (identityMat F 2) fZ))
+  row "Z_mtimes" (ofZono (Mtimes.mtimes (S := fun k => Zonotope (Vec F k)) (identityMat F 2) fZ))
   row "plusBoxRun" (ofBox (Zonotope.plusBox fZ fZ))
   row "mtimesBoxRun" (ofBox (Zonotope.mtimesBox (identityMat F 2) fZ))
   row "reduceGirardBoxRun" (ofZono (Zonotope.reduceGirardBox fZ 1))

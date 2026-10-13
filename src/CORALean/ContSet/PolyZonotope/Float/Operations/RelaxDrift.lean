@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- The drift's two reaches, read off the exponent matrix and so the exact
 layer's own bracket. -/
-def PolyZonotope.relaxDrift (pZ : PolyZonotope 𝕋 n)
+def PolyZonotope.relaxDrift (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : ℕ × ℕ :=
   Real.PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)
 

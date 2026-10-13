@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {N F₁ F₂ : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The layer on the stacked node features, an outer approximation of the exact one. -/
-def GNN.linear (W : Mat 𝕋 F₂ F₁) (b : Vec 𝕋 F₂) (pZ : PolyZonotope 𝕋 (N * F₁)) :
-    PolyZonotope 𝕋 (N * F₂) :=
+def GNN.linear (W : Mat 𝕋 F₂ F₁) (b : Vec 𝕋 F₂) (pZ : PolyZonotope (Vec 𝕋 (N * F₁))) :
+    PolyZonotope (Vec 𝕋 (N * F₂)) :=
   PolyZonotope.plus (PolyZonotope.mtimes (GNN.rightMat N W.transpose) pZ) (GNN.biasPoint N b)
 
 end CORALean.Float

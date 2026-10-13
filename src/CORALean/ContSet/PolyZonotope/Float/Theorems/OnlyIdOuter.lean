@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Outer: the original lies in the sum of the two parts. -/
-theorem PolyZonotope.onlyId_outer (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p)) :
+theorem PolyZonotope.onlyId_outer (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p)) :
     pZ.construct ⊆ (pZ.onlyId S).1.construct + (pZ.onlyId S).2.construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, β, ha, hβ, rfl⟩, e, he, rfl⟩
   have hpt := PolyZonotope.onlyId_point pZ S a

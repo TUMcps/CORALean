@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.reindex_exact (e : Fin m ≃ Fin n) (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.reindex_exact (e : Fin m ≃ Fin n) (pZ : PolyZonotope (Vec 𝕋 n)) :
     (pZ.reindex e).construct = reindexLin e '' pZ.construct := by -- --- PROOF ---
   show InflatedContSet.nominalSet (pZ.reindex e) + (pZ.err.reindex e).construct
     = reindexLin e '' (InflatedContSet.nominalSet pZ + pZ.err.construct)

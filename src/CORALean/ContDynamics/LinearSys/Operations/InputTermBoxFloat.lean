@@ -33,10 +33,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- What order `i`'s float product `[Tᵢ] U` holds beyond `Tᵢ` applied to `U`'s nominal
 zonotope: `[Tᵢ]` on the error box, and the product's own box. -/
-def LinearSys.inputTermBoxFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (U : Zonotope 𝕋 n) (i : ℕ) :
-    Zonotope 𝕋 n :=
+def LinearSys.inputTermBoxFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (U : Zonotope (Vec 𝕋 n)) (i : ℕ) :
+    Zonotope (Vec 𝕋 n) :=
   let T := MatExp.intervalInputTerm (Interval.point sys.A) r i      -- [Tᵢ]
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) T U.E.zonotope ⊞   -- [Tᵢ] E
+  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))  -- [Tᵢ] E
+    T U.E.zonotope ⊞
     (Zonotope.mtimesIntervalMatBox T U).zonotope                    -- [Tᵢ] U beyond Tᵢ U
 
 end CORALean

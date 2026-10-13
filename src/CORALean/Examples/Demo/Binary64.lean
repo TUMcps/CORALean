@@ -43,14 +43,14 @@ def sysb : LinearSysDT Float 2 := ⟨Ab⟩
 def zeroBoxB (n : ℕ) : Interval (Vec Float n) := ⟨fun _ => 0.0, fun _ => 0.0⟩
 
 /-- `[0.875, 1.125] × [-0.125, 0.125]`. -/
-def R₀b : Zonotope Float 2 where
+def R₀b : Zonotope (Vec Float 2) where
   h := 2
   c := ![1.0, 0.0]
   G := !![0.125, 0.0; 0.0, 0.125]
   E := zeroBoxB 2
 
 /-- `[-1/64, 1/64]²`. -/
-def Ub : Zonotope Float 2 where
+def Ub : Zonotope (Vec Float 2) where
   h := 2
   c := ![0.0, 0.0]
   G := !![0.015625, 0.0; 0.0, 0.015625]
@@ -58,8 +58,8 @@ def Ub : Zonotope Float 2 where
 
 /-- The same `order` and the same `steps` as the `Dyadic` runs, so the three
 tables are the same computation and nothing else. -/
-def Rb (k : ℕ) : Zonotope Float 2 :=
-  sysb.reach (S := Zonotope Float) ⟨R₀b, Ub, 0, k⟩ ⟨order, by decide⟩
+def Rb (k : ℕ) : Zonotope (Vec Float 2) :=
+  sysb.reach (S := fun k => Zonotope (Vec Float k)) ⟨R₀b, Ub, 0, k⟩ ⟨order, by decide⟩
 
 /-! ## On the page
 
@@ -81,7 +81,7 @@ def showExact (d : Dyadic 53) : String :=
 
 /-- `Rb k` if no float of it is a NaN. The table reports a hardware run only then, which is
 what the trust base asks of a `Float` result (README, item 2); `ifNoNaN` makes the test. -/
-def RbChecked (k : ℕ) : Option (Zonotope Float 2) := ifNoNaN (𝕋 := Float) (Rb k)
+def RbChecked (k : ℕ) : Option (Zonotope (Vec Float 2)) := ifNoNaN (𝕋 := Float) (Rb k)
 
 def reachRowB (k : ℕ) : String :=
   match RbChecked k with

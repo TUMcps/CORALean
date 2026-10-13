@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.empty (n : ℕ) : ConZonotope 𝕋 n where
+def ConZonotope.empty (n : ℕ) : ConZonotope 𝕋 (Vec 𝕋 n) where
   h := 0
   c := fun _ => zero
   G := Fin.elim0

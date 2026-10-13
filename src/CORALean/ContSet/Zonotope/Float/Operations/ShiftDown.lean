@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The box midpoint added to the centre, rounded each way. The exact midpoint
 need not be a float — `[5, 6]` gives 5.5 — so the gap between the two roundings
 is what `absorbError` leaves behind. -/
-def Zonotope.shiftDown (Z : Zonotope 𝕋 n) : Vec 𝕋 n :=
+def Zonotope.shiftDown (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
   fun i => addDown (Z.c i) (half (addDown (Z.E.inf i) (Z.E.sup i)))
 
 end CORALean.Float

@@ -59,14 +59,14 @@ theorem SpectraShadow.aux_lmi_block {k a b : ℕ} (A₀ : Mat ℝ k k) (A : Fin 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `mtimes`'s variable count, stated through the projection because
 that is the form the goal has. -/
-theorem SpectraShadow.aux_sum_mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 n)
+theorem SpectraShadow.aux_sum_mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n))
     {R : Type} [AddCommMonoid R] (f : Fin (S.mtimes M).m → R) :
     ∑ l : Fin (S.mtimes M).m, f l = ∑ j, f (Fin.castAdd n j) + ∑ i, f (Fin.natAdd S.m i) :=
   Fin.sum_univ_add (a := S.m) (b := n) f
 
 /-- At the variables `(β, z)` with `z` the shadow's own point, the stored inequality is the old
 one beside a zero block. -/
-theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 n)
+theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n))
     (v : Fin (S.mtimes M).m → ℝ) (z : Vec ℝ n)
     (hz : ∀ i, z i = toReal (S.c i) + ∑ j, toReal (S.G j i) * v (Fin.castAdd n j))
     (hv : ∀ i, v (Fin.natAdd S.m i) = z i) :
@@ -121,7 +121,7 @@ theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.mtimes_outer (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 n) :
+theorem SpectraShadow.mtimes_outer (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' S.construct ⊆ (S.mtimes M).construct :=
   image_subset (fun x y => Matrix.mulVec_add _ x y)
     (by

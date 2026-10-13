@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow 𝕋 n) :
+theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     S.generateESumRep.construct = InflatedContSet.nominalSet S := by -- --- PROOF ---
   have hd : ∀ v : Vec 𝕋 n, toRealMat (diagonalBlock v) = Matrix.diagonal (toRealVec v) :=
     fun v => by ext i l; exact toReal_diagonalBlock v i l

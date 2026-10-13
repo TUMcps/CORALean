@@ -33,10 +33,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n r w : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 3]: `true` where the specification is verified, `false` where it is falsified. -/
-def LinearSys.verifyFloat (reachFn : 𝕋 → Zonotope 𝕋 n)
-    (innerApprox : Zonotope 𝕋 n → 𝕋 → ConZonotope 𝕋 n)
-    (distG distF : ConZonotope 𝕋 n → HPolytope 𝕋 n → 𝕋)
-    (G : Fin (r + 1) → HPolytope 𝕋 n) (F : Fin (w + 1) → HPolytope 𝕋 n) (εmax₀ : 𝕋)
+def LinearSys.verifyFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
+    (innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n))
+    (distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋)
+    (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax₀ : 𝕋)
     (fuel : ℕ) : Option Bool :=
   LinearSys.verifyRunFloat reachFn innerApprox distG distF G F εmax₀ fuel       -- 1. ε_max ← ε_max₀
 

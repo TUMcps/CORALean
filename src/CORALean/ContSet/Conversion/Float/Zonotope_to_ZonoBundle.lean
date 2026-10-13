@@ -20,12 +20,12 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Zonotope.zonoBundle (Z : Zonotope 𝕋 n) : ZonoBundle 𝕋 n := ⟨1, fun _ => Z⟩
+def Zonotope.zonoBundle (Z : Zonotope (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) := ⟨1, fun _ => Z⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.zonoBundle_exact (Z : Zonotope 𝕋 n) :
+theorem Zonotope.zonoBundle_exact (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct = Z.zonoBundle.construct := by
   show Z.construct = ⋂ _ : Fin 1, Z.construct
   exact (Set.iInter_const Z.construct).symm

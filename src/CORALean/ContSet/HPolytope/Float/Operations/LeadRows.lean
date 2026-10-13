@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The rows with an inverted partner of no smaller index. -/
-def HPolytope.leadRows (Q : HPolytope 𝕋 n) : List (Fin Q.m) :=
+def HPolytope.leadRows (Q : HPolytope 𝕋 (Vec 𝕋 n)) : List (Fin Q.m) :=
   (List.finRange Q.m).filter fun i =>
     (List.finRange Q.m).any fun j => HPolytope.isInvertedPair Q i j && decide (i ≤ j)
 

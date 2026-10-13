@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `spectraShadow.empty(n)`: the `1 × 1` inequality `-1 ⪰ 0` over `n` free coefficients. -/
-def SpectraShadow.empty (n : ℕ) : SpectraShadow 𝕋 n where
+def SpectraShadow.empty (n : ℕ) : SpectraShadow 𝕋 (Vec 𝕋 n) where
   k := 1
   m := n
   A₀ := fun _ _ => neg one

@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.boundOfDual (P : HPolytope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
+def HPolytope.boundOfDual (P : HPolytope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (y : Vec 𝕋 P.m) (zu zl : Vec 𝕋 P.me)
     (hy : ∀ i, 0 ≤ toReal (y i)) (hzu : ∀ i, 0 ≤ toReal (zu i))
     (hzl : ∀ i, 0 ≤ toReal (zl i))

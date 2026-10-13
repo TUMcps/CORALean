@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.isequal_sound {Z S : Zonotope 𝕋 n} (h : Z.isequal S = true) :
+theorem Zonotope.isequal_sound {Z S : Zonotope (Vec 𝕋 n)} (h : Z.isequal S = true) :
     Z.construct = S.construct := by -- --- PROOF ---
   unfold Zonotope.isequal at h
   split at h
@@ -52,14 +52,14 @@ theorem Zonotope.isequal_sound {Z S : Zonotope 𝕋 n} (h : Z.isequal S = true) 
         simp only [Interval.nominal, e₁, e₂]
       unfold Interval.construct
       rw [this]
-    have hN : (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope 𝕋 n)) =
-        nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope 𝕋 n) := by
+    have hN : (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope (Vec 𝕋 n))) =
+        nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope (Vec 𝕋 n)) := by
       show (⟨h₁, toRealVec c₁, fun j i => toReal (G₁ j i)⟩ : CORALean.Real.Zonotope (Vec ℝ n)) =
         ⟨h₁, toRealVec c₂, fun j i => toReal (G₂ j i)⟩
       rw [hc, hG]
     -- so the two sums of nominal set and error box are the same
-    change ContSet.construct (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope 𝕋 n)) + E₁.construct =
-      ContSet.construct (nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope 𝕋 n)) + E₂.construct
+    change ContSet.construct (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope (Vec 𝕋 n))) + E₁.construct =
+      ContSet.construct (nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope (Vec 𝕋 n))) + E₂.construct
     rw [hN, hE]
   · simp at h
 

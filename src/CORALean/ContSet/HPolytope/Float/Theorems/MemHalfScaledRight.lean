@@ -30,7 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_halfScaledRight {P : HPolytope 𝕋 n₂} {z : Vec ℝ n₁} {y : Vec ℝ n₂} {t : ℝ}
+theorem HPolytope.mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {z : Vec ℝ n₁}
+    {y : Vec ℝ n₂} {t : ℝ}
     (h : Fin.append (Fin.append z y) (fun _ : Fin 1 => t)
       ∈ (HPolytope.halfScaledRight n₁ P).construct) :
     (∀ i, (toRealMat P.A *ᵥ y) i ≤ (1 - t) / 2 * toReal (P.b i)) ∧

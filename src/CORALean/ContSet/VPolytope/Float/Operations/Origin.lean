@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.origin (n : ℕ) : VPolytope 𝕋 n where
+def VPolytope.origin (n : ℕ) : VPolytope (Vec 𝕋 n) where
   k := 1
   V := fun _ _ => zero
   E := Interval.origin n

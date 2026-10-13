@@ -65,7 +65,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
 theorem aux_absErrFloat_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
-    {Z : Zonotope 𝕋 n} {v : Vec ℝ n} (hv : v ∈ Z.construct) :
+    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) :
     s • v ∈ (Zonotope.mtimesIntervalMat (Interval.smul a b
       (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).construct := by -- --- PROOF ---
   have hone : (1 : Mat ℝ n n) ∈
@@ -81,7 +81,7 @@ theorem aux_absErrFloat_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) 
   exact h
 
 /-- A point of the interval matrix applied to a point of the zonotope. -/
-theorem aux_absErrFloat_mulVec_mem {IM : Interval (Mat 𝕋 n n)} {Z : Zonotope 𝕋 n}
+theorem aux_absErrFloat_mulVec_mem {IM : Interval (Mat 𝕋 n n)} {Z : Zonotope (Vec 𝕋 n)}
     {M : Mat ℝ n n} {v : Vec ℝ n} (hM : M ∈ IM.construct) (hv : v ∈ Z.construct) :
     M *ᵥ v ∈ (Zonotope.mtimesIntervalMat IM Z).construct :=
   Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hM ⟨v, hv, rfl⟩)
@@ -91,7 +91,8 @@ theorem aux_absErrFloat_mulVec_mem {IM : Interval (Mat 𝕋 n n)} {Z : Zonotope 
 
 /-- [1, Eq. 13] at floats: `x(t) − y(t) ∈ E` for a run from `x₀ ∈ R₀` with inputs in `U`,
 `t ∈ [0, tmax]`, `η ≥ 1`, `th ≥ 0`, under the float test on `‖tmax A‖`. -/
-theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n) (U R₀ : Zonotope 𝕋 n) {th tmax : 𝕋}
+theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n)
+    (U R₀ : Zonotope (Vec 𝕋 n)) {th tmax : 𝕋}
     {t : ℝ} {η : ℕ} (hη : 1 ≤ η) (ht : t ∈ Set.Icc 0 (toReal tmax)) (hth : 0 ≤ toReal th)
     (hnrm : le (MatExp.normUpperBound (Interval.smul tmax tmax (Interval.point A)))
       (half (nsmulDown (η + 2) one)) = true)

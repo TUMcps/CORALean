@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem LinearSys.reachAdaptiveFloatChecked_eq_some (sys : LinearSys 𝕋 n)
     (B : Mat 𝕋 n m)
-    (params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ)
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
     (options : LinearSys.AdaptiveOptions 𝕋)
     {Rs : (List (LinearSys.AdaptiveStepInfo 𝕋 n))}
     (h : sys.reachAdaptiveFloatChecked B params options = some Rs) :

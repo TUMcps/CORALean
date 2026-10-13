@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.excludesPoint_sound (P : HPolytope 𝕋 n) (x : Vec 𝕋 n)
+theorem HPolytope.excludesPoint_sound (P : HPolytope 𝕋 (Vec 𝕋 n)) (x : Vec 𝕋 n)
     (h : P.excludesPoint x = true) : toRealVec x ∉ P.construct := by -- --- PROOF ---
   intro hx
   obtain ⟨hA, hAe⟩ := HPolytope.mem_construct_iff.mp hx

@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (zB : ZonoBundle 𝕋 n) :
+theorem ZonoBundle.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (zB : ZonoBundle (Vec 𝕋 n)) :
     Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' zB.construct
       ⊆ (zB.quadMap Q).construct := by
   rintro _ ⟨x, hx, rfl⟩

@@ -26,9 +26,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachFloatChecked_eq_some (sys : LinearSys 𝕋 n)
-    (params : Reach.Params (Zonotope 𝕋 n) ℚ)
+    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
     (options : LinearSys.ReachOptions 𝕋)
-    {Rs : (List (Zonotope 𝕋 n) × List (Zonotope 𝕋 n))}
+    {Rs : (List (Zonotope (Vec 𝕋 n)) × List (Zonotope (Vec 𝕋 n)))}
     (h : sys.reachFloatChecked params options = some Rs) :
     sys.reachFloat params options = some Rs ∧ noNaN (𝕋 := 𝕋) Rs = true :=
   checkNoNaN_eq_some h

@@ -44,9 +44,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m q r s : ℕ}
 the offsets as boxes. -/
 def LinearSys.canonicalFormFloat (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m) (c : Vec 𝕋 n)
     (out : OutputEq 𝕋 n m r) (k : Vec 𝕋 r) (E : Mat 𝕋 n q) (F : Mat 𝕋 r s)
-    (U : Zonotope 𝕋 m) (uVec : Vec 𝕋 m) (W : Zonotope 𝕋 q) (V : Zonotope 𝕋 s)
+    (U : Zonotope (Vec 𝕋 m)) (uVec : Vec 𝕋 m) (W : Zonotope (Vec 𝕋 q)) (V : Zonotope (Vec 𝕋 s))
     (vVec : Vec 𝕋 s) :
-    LinearSys 𝕋 n × OutputEq 𝕋 n n r × Zonotope 𝕋 n × Interval (Vec 𝕋 n) × Zonotope 𝕋 r ×
+    LinearSys 𝕋 n × OutputEq 𝕋 n n r × Zonotope (Vec 𝕋 n) × Interval (Vec 𝕋 n) ×
+    Zonotope (Vec 𝕋 r) ×
       Interval (Vec 𝕋 r) :=
   let U₀ := U.recentre                                               -- U - centerU
   let W₀ := W.recentre                                               -- W - centerW

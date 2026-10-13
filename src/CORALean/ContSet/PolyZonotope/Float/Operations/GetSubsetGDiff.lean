@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.getSubsetGDiff (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (cen rad : 𝕋) :
+def PolyZonotope.getSubsetGDiff (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋) :
     Mat 𝕋 n (pZ.h * (pZ.maxExp k + 1)) := fun r l =>
   let f := pZ.getSubsetCoef k cen rad (finProdFinEquiv.symm l).1 (finProdFinEquiv.symm l).2
   subUp (Interval.mulHi f.1 f.2 (pZ.G (finProdFinEquiv.symm l).1 r)

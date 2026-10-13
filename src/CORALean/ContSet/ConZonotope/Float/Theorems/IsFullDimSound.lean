@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isFullDim_sound {cZ : ConZonotope 𝕋 n} {H : Mat 𝕋 cZ.h n}
+theorem ConZonotope.isFullDim_sound {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cZ.h n}
     {β₀ : Vec 𝕋 cZ.h} (h : cZ.isFullDim H β₀ = true) :
     (interior cZ.construct).Nonempty := by -- --- PROOF ---
   simp only [ConZonotope.isFullDim, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,

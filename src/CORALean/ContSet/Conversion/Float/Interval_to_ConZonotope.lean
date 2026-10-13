@@ -22,7 +22,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Interval.conZonotope (I : Interval (Vec 𝕋 n)) : ConZonotope 𝕋 n :=
+def Interval.conZonotope (I : Interval (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   I.zonotope.conZonotope
 
 

@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.compactZeros (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
+def Zonotope.compactZeros (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := (Finset.univ.filter fun j => Z.keepColumn j = true).card
   c := Z.c
   G := fun j =>

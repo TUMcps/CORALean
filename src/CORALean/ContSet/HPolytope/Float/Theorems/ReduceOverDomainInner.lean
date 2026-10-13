@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 n) (hme : P.me = 0)
+theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (hme : P.me = 0)
     (dom : Interval (Vec 𝕋 n)) :
     (P.reduceOverDomain p dom false).construct ∩ dom.construct ⊆
       P.construct ∩ dom.construct := by -- --- PROOF ---

@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The zonotope moved to the origin, keeping its generators, its error box
 widened to hold `0`. -/
-def Zonotope.recentre (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
+def Zonotope.recentre (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := Z.h
   c := fun _ => zero
   G := Z.G

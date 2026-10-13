@@ -33,8 +33,9 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The time-interval sets `R(τ_0), …, R(τ_{N-1})` of a stay in `ℓ` from `X₀`, `N Δt = tFinal`. -/
-def Location.reachFloat (ℓ : Location (Zonotope 𝕋) G L 𝕋 n) (tFinal : ℚ)
-    (options : LinearSys.ReachOptions 𝕋) (X₀ : Zonotope 𝕋 n) : Option (List (Zonotope 𝕋 n)) :=
+def Location.reachFloat (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n) (tFinal : ℚ)
+    (options : LinearSys.ReachOptions 𝕋) (X₀ : Zonotope (Vec 𝕋 n)) : Option
+    (List (Zonotope (Vec 𝕋 n))) :=
   if tFinal ≤ 0 then none else do                                  -- a stay of positive length
   let (Rti, _) ← ℓ.dynamics.reachFloatInput (identityMat 𝕋 n)     -- ẋ = A x + I u, u ∈ ℓ.U
     ⟨X₀, ℓ.U, 0, tFinal⟩ options

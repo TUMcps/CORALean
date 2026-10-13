@@ -32,14 +32,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.convHull_ (SpS S : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 n :=
-  let singleton : SpectraShadow 𝕋 1 := SpectraShadow.singletonOne
-  let Rn_x_1 : SpectraShadow 𝕋 (n + 1) := SpectraShadow.hyperplaneOne 𝕋 n
-  let S1_x_1 : SpectraShadow 𝕋 (n + 1) := (SpS.cartProd singleton).materialise
-  let S2_x_2 : SpectraShadow 𝕋 (n + 1) := (S.cartProd singleton).materialise
-  let cone_S1 : SpectraShadow 𝕋 (n + 1) := S1_x_1.cone.materialise
-  let cone_S2 : SpectraShadow 𝕋 (n + 1) := S2_x_2.cone.materialise
-  let cone_sum : SpectraShadow 𝕋 (n + 1) := (cone_S1.plus cone_S2).materialise
+def SpectraShadow.convHull_ (SpS S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
+  let singleton : SpectraShadow 𝕋 (Vec 𝕋 1) := SpectraShadow.singletonOne
+  let Rn_x_1 : SpectraShadow 𝕋 (Vec 𝕋 (n + 1)) := SpectraShadow.hyperplaneOne 𝕋 n
+  let S1_x_1 : SpectraShadow 𝕋 (Vec 𝕋 (n + 1)) := (SpS.cartProd singleton).materialise
+  let S2_x_2 : SpectraShadow 𝕋 (Vec 𝕋 (n + 1)) := (S.cartProd singleton).materialise
+  let cone_S1 : SpectraShadow 𝕋 (Vec 𝕋 (n + 1)) := S1_x_1.cone.materialise
+  let cone_S2 : SpectraShadow 𝕋 (Vec 𝕋 (n + 1)) := S2_x_2.cone.materialise
+  let cone_sum : SpectraShadow 𝕋 (Vec 𝕋 (n + 1)) := (cone_S1.plus cone_S2).materialise
   ((cone_sum.inter Rn_x_1).materialise.project (Fin.castAdd 1)).materialise
 
 end CORALean.Float

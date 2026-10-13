@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The float stretch encloses the real one at the nominal operands and `μ` read as reals. -/
-theorem Zonotope.aux_minkDiffStretch_encloses (Z₁ Z₂ : Zonotope 𝕋 n) (μ : Fin Z₁.h → 𝕋) :
+theorem Zonotope.aux_minkDiffStretch_encloses (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (μ : Fin Z₁.h → 𝕋) :
     (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).construct
       ⊆ (Z₁.minkDiffStretch Z₂ μ).construct := by -- --- PROOF ---
   intro x hx
@@ -59,7 +59,7 @@ theorem Zonotope.aux_minkDiffStretch_encloses (Z₁ Z₂ : Zonotope 𝕋 n) (μ 
 
 /-- [1, Thm. 5] at a float result: at a `μ` meeting its constraint, read as reals, the float
 stretch covers the Minkowski difference of the nominal operands. -/
-theorem Zonotope.minkDiffStretch_outer {ι : Type} (Z₁ Z₂ : Zonotope 𝕋 n) (μ : Fin Z₁.h → 𝕋)
+theorem Zonotope.minkDiffStretch_outer {ι : Type} (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (μ : Fin Z₁.h → 𝕋)
     (C : ι → (Vec ℝ n →ₗ[ℝ] ℝ)) (hμ0 : ∀ υ, 0 ≤ toReal (μ υ)) (b : ι → ℝ)
     (hb : ∀ i, ∀ x ∈ minkowskiDiff Z₁.nominal.construct Z₂.nominal.construct,
       C i (x - (Z₁.nominal.c - Z₂.nominal.c)) ≤ b i)

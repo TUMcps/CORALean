@@ -25,8 +25,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.stack (pZ₁ : PolyZonotope 𝕋 n₁) (pZ₂ : PolyZonotope 𝕋 n₂) (hp : pZ₁.p = pZ₂.p) :
-    PolyZonotope 𝕋 (n₁ + n₂) :=
+def PolyZonotope.stack (pZ₁ : PolyZonotope (Vec 𝕋 n₁)) (pZ₂ : PolyZonotope (Vec 𝕋 n₂))
+    (hp : pZ₁.p = pZ₂.p) :
+    PolyZonotope (Vec 𝕋 (n₁ + n₂)) :=
   let pZ₁t := pZ₁.blockPadLeft n₂
   let pZ₂t := pZ₂.blockPadRight n₁
   pZ₁t.exactPlus pZ₂t hp

@@ -33,7 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachStepkWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η k : ℕ}
-    (h2 : 2 ≤ η) {Rτ₀ R : Zonotope 𝕋 n} (h : sys.reachStepkWrappingFreeFloat Δt η Rτ₀ k = some R)
+    (h2 : 2 ≤ η) {Rτ₀ R : Zonotope (Vec 𝕋 n)}
+    (h : sys.reachStepkWrappingFreeFloat Δt η Rτ₀ k = some R)
     {y : Vec ℝ n} (hy : y ∈ Rτ₀.construct) :
     exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ y ∈ R.construct := by -- --- PROOF ---
   simp only [LinearSys.reachStepkWrappingFreeFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
@@ -41,7 +42,8 @@ theorem LinearSys.reachStepkWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {Δ
   obtain ⟨sk, hsk, rfl⟩ := h
   -- `t_k` lies in its bracket
   obtain ⟨hLo, hHi⟩ := LinearSys.sampleTimeFloat_mem Δt k
-  exact Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ Rτ₀
+  exact Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (S := fun k => Zonotope (Vec 𝕋 k)) _ Rτ₀
     (Set.mem_biUnion (sys.exp_mem_expSquaringFloat (LinearSys.squaringsFloat_spec h2 hsk)
       hLo hHi) (Set.mem_image_of_mem _ hy))
 

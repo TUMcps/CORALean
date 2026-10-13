@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U` is
 at `t_k = k Δt` in the `k`-th time-point set. -/
 theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope 𝕋 n)}
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
     ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
       Rtp.length = N + 1 ∧ ∀ {x u : ℝ → Vec ℝ n},
@@ -50,21 +50,22 @@ theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n) (B : 
     simpa using traj.init
   | succ k =>
     set Δ := toReal options.timeStep with hΔ
-    set V := Mtimes.mtimes (𝕄 := Mat 𝕋) B params.U with hV
+    set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U with hV
     have hk' : k < S.length := by simpa using hk
     obtain ⟨h1, -, h3, -⟩ := hinv k hk'
     -- the run's inputs are in `B U`'s float enclosure
     have hUV : ContSet.construct ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct)
         ⊆ ContSet.construct V := by
       rintro _ ⟨w, hw, rfl⟩
-      exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) B params.U
+      exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U
         (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
     -- `t_{k+1}` lies inside the horizon
     have hkN : ((k + 1 : ℕ) : ℝ) * Δ ≤ (params.tFinal : ℝ) - params.tStart := by
       rw [← hNΔt]
       have : ((k + 1 : ℕ) : ℝ) ≤ N := by rw [← hlen]; exact_mod_cast hk'
       exact mul_le_mul_of_nonneg_right this hΔt.le
-    have hd := traj.sub_mem_inputReach_recentre hUV ⟨by positivity, hkN⟩
+    have hd := traj.sub_mem_inputReach_recentre (S' := fun k => Zonotope (Vec 𝕋 k)) hUV
+      ⟨by positivity, hkN⟩
     have hsum := Plus.plus_outer S[k].1 S[k].2.2.1 (Set.add_mem_add (h1 (x 0) traj.init) (h3 hd))
     rw [add_sub_cancel] at hsum
     simp only [List.getElem_cons_succ, List.getElem_map]

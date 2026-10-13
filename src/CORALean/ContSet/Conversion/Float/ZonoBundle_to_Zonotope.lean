@@ -19,12 +19,12 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def ZonoBundle.zonotope (zB : ZonoBundle 𝕋 n) (i : Fin zB.k) : Zonotope 𝕋 n := zB.Z i
+def ZonoBundle.zonotope (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) : Zonotope (Vec 𝕋 n) := zB.Z i
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.zonotope_contains (zB : ZonoBundle 𝕋 n) (i : Fin zB.k) :
+theorem ZonoBundle.zonotope_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
     zB.construct ⊆ (zB.zonotope i).construct :=
   Set.iInter_subset _ i
 

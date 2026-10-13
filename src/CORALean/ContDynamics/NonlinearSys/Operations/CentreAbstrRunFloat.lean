@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `R(τ_0), …, R(τ_{k-1})` of `k` steps linearized at the centre, from `R`, or `none` if
 one of them fails. -/
 def NonlinearSys.FloatModel.centreAbstrRunFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
-    (U : Zonotope 𝕋 m) (options : LinearSys.ReachOptions 𝕋) :
-    ℕ → Zonotope 𝕋 n → Option (List (Zonotope 𝕋 n)) :=
+    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) :
+    ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n))) :=
   fm.relinRunAtFloat U options fun R => R.c                         -- 3. z✱(t_s) ← center(R(t_s))
 
 end CORALean

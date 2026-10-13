@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The gap between the two directed multiples of a column. -/
-def PolyZonotope.jacobianGap (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) : Mat 𝕋 n pZ.h :=
+def PolyZonotope.jacobianGap (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) : Mat 𝕋 n pZ.h :=
   fun r i => subUp (sumUp fun _ : Fin (pZ.E k i) => pZ.G i r)
     (sumDown fun _ : Fin (pZ.E k i) => pZ.G i r)
 

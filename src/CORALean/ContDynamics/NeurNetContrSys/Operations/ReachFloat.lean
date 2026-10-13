@@ -36,17 +36,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The reachable set at the end of `params.tFinal - params.tStart` control periods,
 each `options.N` float steps of `options.timeStep` under one held input set. -/
-def NeurNetContrSys.reachFloat (sys : NeurNetContrSys 𝕋 (Zonotope 𝕋) n)
-    (params : Reach.Params (Zonotope 𝕋 n) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋) :
-    Zonotope 𝕋 n :=
+def NeurNetContrSys.reachFloat (sys : NeurNetContrSys 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
+    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋) :
+    Zonotope (Vec 𝕋 n) :=
   let R₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let N := options.N
   let η := options.taylorTerms
   let o := options.zonotopeOrder
   let H := params.tFinal - params.tStart                           -- control periods
-  let period := fun R =>                                            -- N steps under one held input
-    (sys.plant.discretizeEnclosureFloat Δt η).reach
+  let period := fun R : Zonotope (Vec 𝕋 n) =>                       -- N steps under one held input
+    (sys.plant.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
       ⟨R, sys.plant.inputSolutionFloat Δt η (sys.contr.enclose R), 0, N⟩
       ⟨o, options.hZonotopeOrder⟩
   Nat.repeat period H R₀                                            -- R(HNΔt)

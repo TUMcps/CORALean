@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.curvatureEnclosure_outer (A : Interval (Mat 𝕋 n n)) {H : Zonotope 𝕋 n}
+theorem MatExp.curvatureEnclosure_outer (A : Interval (Mat 𝕋 n n)) {H : Zonotope (Vec 𝕋 n)}
     {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt) (hη : 2 ≤ η)
     (hε : toReal (MatExp.normUpperBound (Interval.smul Δt Δt A)) / ((η : ℝ) + 2) ≤ 1 / 2)
     {M : Mat ℝ n n} (hM : M ∈ A.construct) {x : Vec ℝ n} (hx : x ∈ H.construct) {τ : ℝ}
@@ -50,10 +50,12 @@ theorem MatExp.curvatureEnclosure_outer (A : Interval (Mat 𝕋 n n)) {H : Zonot
   have hG := MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix A hΔt (m + 2) hε hM hτ0 hτ
   have hpt : toRealVec ũ ∈ (Interval.point ũ).zonotope.construct :=
     Interval.zonotope_contains _ (Interval.mem_point ũ)
-  exact Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add
-    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ H
+  exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
+    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ H
       (Set.mem_biUnion hF (Set.mem_image_of_mem _ hx)))
-    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ (Interval.point ũ).zonotope
+    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) _
+      (Interval.point ũ).zonotope
       (Set.mem_biUnion hG (Set.mem_image_of_mem _ hpt))))
 
 end CORALean.Float

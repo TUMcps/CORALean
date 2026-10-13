@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.containsZonotope (Z₂ Z₁ : Zonotope 𝕋 n) (H : Mat 𝕋 Z₂.h n) : Bool :=
+def Zonotope.containsZonotope (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) : Bool :=
   let δ := Z₂.stDelta Z₁ H
   Zonotope.ballCert (fun i j => Z₂.G j i) H (Zonotope.ballB H δ) δ
     && (List.finRange Z₂.h).all (fun k => le (addUp (Z₂.stUsed Z₁ H k) δ) one)

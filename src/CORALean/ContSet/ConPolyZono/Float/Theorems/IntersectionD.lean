@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.intersectionD (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : Real.Interval (Vec ℝ n) :=
+def ConPolyZono.intersectionD (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Real.Interval (Vec ℝ n) :=
   ⟨fun i => toReal ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf i)
       - (toReal (cPZ₂.c i) - toReal (cPZ₁.c i)),
    fun i => toReal ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).sup i)

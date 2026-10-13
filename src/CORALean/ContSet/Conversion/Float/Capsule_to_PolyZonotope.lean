@@ -23,7 +23,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Capsule.polyZonotope (C : Capsule 𝕋 n) : PolyZonotope 𝕋 n :=
+def Capsule.polyZonotope (C : Capsule 𝕋 n) : PolyZonotope (Vec 𝕋 n) :=
   C.interval.polyZonotope
 
 

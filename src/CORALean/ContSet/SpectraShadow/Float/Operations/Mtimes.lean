@@ -32,7 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 m :=
+def SpectraShadow.mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow
+    𝕋 (Vec 𝕋 m) :=
   -- the equalities `zᵢ - cᵢ - Σⱼ Gᵢⱼ βⱼ = 0`, as that expression and its negation, per `i`
   let constraintConst : Vec 𝕋 (n + n) := Fin.append (fun i => neg (S.c i)) S.c
   let constraintGen : Fin S.m → Vec 𝕋 (n + n) := fun j =>

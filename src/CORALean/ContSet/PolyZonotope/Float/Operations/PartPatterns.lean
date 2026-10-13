@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The distinct patterns of the generators, first appearance first. -/
-def PolyZonotope.partPatterns (pZ : PolyZonotope 𝕋 n) (V : Finset (Fin pZ.p)) :
+def PolyZonotope.partPatterns (pZ : PolyZonotope (Vec 𝕋 n)) (V : Finset (Fin pZ.p)) :
     List (Fin pZ.p → ℕ) :=
   (List.ofFn fun i : Fin pZ.h => fun k => if k ∈ V then pZ.E k i else 0).dedup
 

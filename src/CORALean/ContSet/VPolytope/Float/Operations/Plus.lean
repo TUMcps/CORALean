@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.plus (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n where
+def VPolytope.plus (P₁ P₂ : VPolytope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := P₁.k * P₂.k
   V := VPolytope.pairSum addDown P₁ P₂
   E := (P₁.E.plus P₂.E).plus

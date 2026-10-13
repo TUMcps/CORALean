@@ -19,7 +19,7 @@ box is `(l + u) / 2`, which is what the row's centre is taken at here. CORA's co
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -29,7 +29,7 @@ noncomputable def StarSet.rowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : ℝ 
   let r := ∑ k, |s.G j k * ((s.u k - s.l k) / 2)|
   (c_ - r, c_ + r)
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

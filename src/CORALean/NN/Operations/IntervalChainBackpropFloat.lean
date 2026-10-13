@@ -7,14 +7,14 @@ import CORALean.ContSet.Interval.Float.Operations.Halve
 
 /-!
 # The interval batch backpropagation of a float interval chain
-`IntervalChain.backprop` on boxes, with every real quantity enclosed by a box of floats and every
-operation outward-rounded. Each quantity of the real recursion has its box: the interval the layer
-received `p = (l, u)`, and the gradients `(gl, gu)` at its output. The linear layer's `dmu = Wᵀ
-(gu + gl)/2`, `dr = |W|ᵀ (gu - gl)/2`, `gl ← dmu - dr`, `gu ← dmu + dr` are `Interval.mtimes` of
-the transposed float matrices; the activation's `gl ← σ'(l) ⊙ gl`, `gu ← σ'(u) ⊙ gu` is
-`Interval.times` of the stored derivative enclosure `σ'E`, entrywise, against the gradient box.
-The forward boxes `p` are those of `IntervalChainFloat.fwd`. As in the real row there is no
-weight update.
+`Real.IntervalChain.backprop` on boxes, with every real quantity enclosed by a box of floats and
+every operation outward-rounded. Each quantity of the real recursion has its box: the interval the
+layer received `p = (l, u)`, and the gradients `(gl, gu)` at its output. The linear layer's
+`dmu = Wᵀ (gu + gl)/2`, `dr = |W|ᵀ (gu - gl)/2`, `gl ← dmu - dr`, `gu ← dmu + dr` are
+`Interval.mtimes` of the transposed float matrices; the activation's `gl ← σ'(l) ⊙ gl`,
+`gu ← σ'(u) ⊙ gu` is `Interval.times` of the stored derivative enclosure `σ'E`, entrywise,
+against the gradient box. The forward boxes `p` are those of `IntervalChain.fwd`. As in the real
+row there is no weight update.
 -/
 
 -- Authors:       Tobias Ladner
@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def IntervalChainFloat.backprop : ∀ {n k : ℕ}, IntervalChainFloat 𝕋 n k →
+def IntervalChain.backprop : ∀ {n k : ℕ}, IntervalChain 𝕋 n k →
     Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n) → Interval (Vec 𝕋 k) × Interval (Vec 𝕋 k) →
       Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)
   | _, _, .nil, _, g => g

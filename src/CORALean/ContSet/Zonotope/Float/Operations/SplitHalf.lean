@@ -26,7 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.splitHalf (Z : Zonotope 𝕋 n) (j : Fin Z.h) (s : Vec 𝕋 n) : Zonotope 𝕋 n where
+def Zonotope.splitHalf (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n) :
+    Zonotope (Vec 𝕋 n) where
   h := Z.h
   c := fun i => addDown (Z.c i) (s i)
   G := Function.update Z.G j fun i => half (Z.G j i)

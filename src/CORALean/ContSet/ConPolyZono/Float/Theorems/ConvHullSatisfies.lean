@@ -47,7 +47,7 @@ theorem ConPolyZono.aux_toRealMat_convHullA (a : ℕ) {m s : ℕ} (A : Mat 𝕋 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZono 𝕋 n)
+theorem ConPolyZono.convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ)
     (h : (Real.ConPolyZono.convHullSingle a (nominal cPZ)).satisfies v) :
     (cPZ.convHullSingle a).satisfies v := by -- --- PROOF ---

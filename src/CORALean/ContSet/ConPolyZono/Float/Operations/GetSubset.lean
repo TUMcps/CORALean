@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) (cen rad : 𝕋) :
-    ConPolyZono 𝕋 n where
+def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) (cen rad : 𝕋) :
+    ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := (cPZ.toPolyZonotope.getSubset k cen rad).h
   q := cPZ.q

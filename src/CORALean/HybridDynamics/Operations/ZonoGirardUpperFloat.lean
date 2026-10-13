@@ -39,10 +39,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- An upper bound of `x·ℓ` over the states `x` of `Z` with `x·nv = γ`. -/
-def Location.zonoGirardUpperFloat (Z : Zonotope 𝕋 n) (nv : Vec 𝕋 n) (γ : 𝕋) (ℓ : Vec 𝕋 n) : 𝕋 :=
+def Location.zonoGirardUpperFloat (Z : Zonotope (Vec 𝕋 n)) (nv : Vec 𝕋 n) (γ : 𝕋)
+    (ℓ : Vec 𝕋 n) : 𝕋 :=
   -- the plane image `Π_{n,ℓ}(Z)`, a zonogon
-  let S : Zonotope 𝕋 2 :=
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) Z
+  let S : Zonotope (Vec 𝕋 2) :=
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
+      (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) Z
   -- the dual bound at the multiplier `μ`
   let dual : 𝕋 → 𝕋 := fun μ =>
     addUp (S.boundDot (c := rowLin (fun _ : Fin 1 => ![neg μ, one]) 0) ![neg μ, one]

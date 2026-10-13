@@ -69,18 +69,19 @@ attribute [local instance] aux_setPlus aux_setMtimes aux_setMtimesInterval
 
 /-- The exact orders, taken at plain sets, inside the float sum. -/
 theorem LinearSys.aux_inputTaylorSum_subset (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    (V : Zonotope 𝕋 n) : ∀ i, construct (sys.inputTaylorSum (S := fun k => Set (Vec ℝ k))
+    (V : Zonotope (Vec 𝕋 n)) : ∀ i, construct (sys.inputTaylorSum (S := fun k => Set (Vec ℝ k))
       (toReal r) V.construct i) ⊆ (sys.inputTaylorSumFloat r V i).construct := by -- --- PROOF ---
   -- order `i`'s matrix is in its float box, so its image is in the float product
   have hterm : ∀ i, (sys.inputTerm (toReal r) i *ᵥ ·) '' V.construct
       ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) V) := by
     intro i
     have hM : sys.inputTerm (toReal r) i
         ∈ (MatExp.intervalInputTerm (Interval.point sys.A) r i).construct :=
       MatExp.smul_pow_mem_intervalInputTerm _ hr (Interval.mem_point sys.A) i
     exact (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct) hM).trans
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := Zonotope 𝕋)
+      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) V)
   intro i
   induction i with
@@ -93,8 +94,8 @@ theorem LinearSys.aux_inputTaylorSum_subset (sys : LinearSys 𝕋 n) {r : 𝕋} 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.inputReach_subset_inputSolutionFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (V : Zonotope 𝕋 n) :
-    sys.inputReach (S := Zonotope 𝕋) V (toReal Δt)
+    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (V : Zonotope (Vec 𝕋 n)) :
+    sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) V (toReal Δt)
       ⊆ (sys.inputSolutionFloat Δt η V).construct := by -- --- PROOF ---
   -- the float bound's condition is the exact one's, with room to spare
   have hε : ‖toReal Δt • Scalar.toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.minkDiffOf_inner (P : HPolytope 𝕋 n) (T : Set (Vec ℝ n))
+theorem HPolytope.minkDiffOf_inner (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
     (u : ∀ i, FloatBound 𝕋 T (rowLin P.A i))
     (hker : ∀ i, ∀ y ∈ T, (toRealMat P.Ae *ᵥ y) i = 0) :
     (P.minkDiffOf T u).construct ⊆ minkowskiDiff P.construct T := by -- --- PROOF ---

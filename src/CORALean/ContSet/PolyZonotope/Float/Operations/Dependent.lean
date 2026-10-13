@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.dependent (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+def PolyZonotope.dependent (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p + (pZ.q + n)
   h := pZ.h + (pZ.q + n)
   q := 0

@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.intersection (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
+def ConZonotope.intersection (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- Z = [c₁, G₁, zeros(size(G₂))]
   let G : Fin (cZ₁.h + cZ₂.h) → Vec 𝕋 n := Fin.append cZ₁.G fun _ _ => zero
   -- A = blkdiag(A₁, A₂), b = [b₁; b₂]

@@ -51,13 +51,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 /-- [1, Alg. 2]: one adaptively-tuned step, and `none` where a step's region check or the
 first step's search gave out. The time `t` is kept exactly. -/
 def NonlinearSys.FloatHessModel.adaptStepFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
-    (fm : NonlinearSys.FloatHessModel 𝕋 n m) (U : Zonotope 𝕋 m)
+    (fm : NonlinearSys.FloatHessModel 𝕋 n m) (U : Zonotope (Vec 𝕋 m))
     (options : LinearSys.ReachOptions 𝕋) (ζδ ζh ζZ ζK : 𝕋) (prec bis fuel : ℕ)
-    (s : NonlinearSys.AdaptState (Zonotope 𝕋) n ℚ 𝕋) :
-    Option (NonlinearSys.AdaptState (Zonotope 𝕋) n ℚ 𝕋) := do
-  let rad := fun (Z : Zonotope 𝕋 n) =>                              -- radius of the box of Z
+    (s : NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋) :
+    Option (NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋) := do
+  let rad := fun (Z : Zonotope (Vec 𝕋 n)) =>                              -- radius of the box of Z
     maximumOver fun i => half (subUp (Z.interval.sup i) (Z.interval.inf i))
-  let dia := fun (Z : Zonotope 𝕋 n) (i : Fin n) =>                  -- diameter of the box of Z
+  let dia := fun (Z : Zonotope (Vec 𝕋 n)) (i : Fin n) =>  -- diameter of the box of Z
     subUp (Z.interval.sup i) (Z.interval.inf i)
   let opts := fun (Δt : 𝕋) => ({ options with timeStep := Δt } : LinearSys.ReachOptions 𝕋)
   let hk := divUp (mulUp s.h (subUp ζδ ζh)) (subDown ζδ s.φ)       -- 1. h_k, eq. (59)

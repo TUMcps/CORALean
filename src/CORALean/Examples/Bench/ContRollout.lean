@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- `⟨A⟩` and `X0` read exactly into `𝕋` from the config's `a`, `b` and
 `x0` -- the continuous-time counterpart of `Rollout.buildSystem`. -/
 def buildContSystem (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except String 𝕋) :
-    Except String (LinearSys 𝕋 2 × Zonotope 𝕋 2) := do
+    Except String (LinearSys 𝕋 2 × Zonotope (Vec 𝕋 2)) := do
   let a ← inst "system.a" (← parseExact cfg.a)
   let b ← inst "system.b" (← parseExact cfg.b)
   let nb ← inst "system.b" (← parseExact cfg.b).neg

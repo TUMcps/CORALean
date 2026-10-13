@@ -44,18 +44,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The bundle over the bases `Bs`: member `i` boxes, in `Bs[i]`, the union of the cuts of the
 reach sets by the hyperplane. -/
-def Location.guardIntersectZonoGirardFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zonotope 𝕋 n)
-    (Rs : List (Zonotope 𝕋 n)) (nv : Vec 𝕋 n) (γ : 𝕋) : ZonoBundle 𝕋 n where
+def Location.guardIntersectZonoGirardFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zonotope (Vec 𝕋 n))
+    (Rs : List (Zonotope (Vec 𝕋 n))) (nv : Vec 𝕋 n) (γ : 𝕋) : ZonoBundle (Vec 𝕋 n) where
   k := Bs.length
   Z := fun i =>
     let B := Bs[i]
     -- the cut of one reach set along each column `ℓ` of `B`, `[-U(-ℓ), U(ℓ)]`
-    let cut : Zonotope 𝕋 n → Interval (Vec 𝕋 n) := fun R =>
+    let cut : Zonotope (Vec 𝕋 n) → Interval (Vec 𝕋 n) := fun R =>
       ⟨fun k => neg (Location.zonoGirardUpperFloat R nv γ fun r => neg (Bᵀ k r)),
         fun k => Location.zonoGirardUpperFloat R nv γ (Bᵀ k)⟩
     -- `I`, the cuts joined
     let I := (Rs.map cut).foldl Interval.or (cut R₀)
-    Mtimes.mtimes (𝕄 := Mat 𝕋) B I.zonotope
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B I.zonotope
 
 end CORALean
 

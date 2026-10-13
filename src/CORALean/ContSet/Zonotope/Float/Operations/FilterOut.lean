@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The cells that survive: those no other cell is certified to contain. -/
-def Zonotope.filterOut (Zs : Fin m → Zonotope 𝕋 n) : Finset (Fin m) :=
+def Zonotope.filterOut (Zs : Fin m → Zonotope (Vec 𝕋 n)) : Finset (Fin m) :=
   let covered := fun (ind j : Fin m) =>                              -- P_ind \ P_j has no remainder
     (Zs j).containsZonotope (Zs ind) (Zonotope.rightInvCandidate fun i k => (Zs j).G k i)
   Finset.univ.filter fun ind => (List.finRange m).all fun j => j = ind || !covered ind j

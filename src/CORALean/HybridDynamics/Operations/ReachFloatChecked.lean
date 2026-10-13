@@ -28,9 +28,10 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `reachFloat`, or `none` if a float of its result is a NaN. The locations carry no floats. -/
-def HybridAutomaton.reachFloatChecked (HA : HybridAutomaton (Zonotope 𝕋) (HPolytope 𝕋) L 𝕋 n)
-    (tFinal : ℚ) (options : LinearSys.ReachOptions 𝕋) (K : ℕ) (ℓ : L) (X₀ : Zonotope 𝕋 n) :
-    Option (List (L × Zonotope 𝕋 n)) :=
+def HybridAutomaton.reachFloatChecked
+    (HA : HybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
+    (tFinal : ℚ) (options : LinearSys.ReachOptions 𝕋) (K : ℕ) (ℓ : L) (X₀ : Zonotope (Vec 𝕋 n)) :
+    Option (List (L × Zonotope (Vec 𝕋 n))) :=
   checkNoNaN (𝕋 := 𝕋) (HA.reachFloat tFinal options K ℓ X₀)
 
 end CORALean

@@ -38,7 +38,7 @@ abbrev D := Dyadic 24
 def d (m e : ℤ) : D := ⟨m, e⟩
 
 /-- The floor met from above: `v ≤ 0` as an inequality row, `p = 0` as an equality row. -/
-def floorGuard : HPolytope D 2 where
+def floorGuard : HPolytope D (Vec D 2) where
   m := 1
   A := ![![d 0 0, d 1 0]]
   b := ![d 0 0]
@@ -47,7 +47,7 @@ def floorGuard : HPolytope D 2 where
   be := ⟨![d 0 0], ![d 0 0]⟩
 
 /-- Above the floor, `-p ≤ 0`. -/
-def aboveFloor : HPolytope D 2 where
+def aboveFloor : HPolytope D (Vec D 2) where
   m := 1
   A := ![![d (-1) 0, d 0 0]]
   b := ![d 0 0]
@@ -56,14 +56,15 @@ def aboveFloor : HPolytope D 2 where
   be := ⟨![], ![]⟩
 
 /-- The bounce: keep the position, reverse the velocity and damp it by `3/4`. -/
-def bounce : Transition (HPolytope D) Unit D 2 where
+def bounce : Transition (fun k => HPolytope D (Vec D k)) Unit D 2 where
   guard := floorGuard
   W := !![d 1 0, d 0 0; d 0 0, d (-3) (-2)]
   w := ![d 0 0, d 0 0]
   target := ()
 
 /-- `ṗ = v`, `v̇ = -g`, the gravity a constant input `{(0, -g)}`. -/
-def ball : HybridAutomaton (Zonotope D) (HPolytope D) Unit D 2 where
+def ball : HybridAutomaton (fun k => Zonotope (Vec D k)) (fun k => HPolytope D (Vec D k))
+    Unit D 2 where
   loc _ :=
     { inv := aboveFloor
       dynamics := ⟨!![d 0 0, d 1 0; d 0 0, d 0 0]⟩
@@ -71,7 +72,7 @@ def ball : HybridAutomaton (Zonotope D) (HPolytope D) Unit D 2 where
       trans := [bounce] }
 
 /-- `(1, 0) ± 1/16` in each coordinate. -/
-def R0 : Zonotope D 2 where
+def R0 : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 (-4), d 0 0; d 0 0, d 1 (-4)]
@@ -84,12 +85,12 @@ def options : LinearSys.ReachOptions D := ⟨d 1 (-5), 4, 10⟩
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Two bounces, stays of up to one second each. -/
-def ballReach : Option (List (Unit × Zonotope D 2)) := ball.reachFloat 1 options 2 () R0
+def ballReach : Option (List (Unit × Zonotope (Vec D 2))) := ball.reachFloat 1 options 2 () R0
 
 /-- Every run of the ball from `R0` lasting at most one second, with at most two
 bounces, ends in a set `ballReach` computed. -/
 example {T : ℝ} {k : ℕ} {x y : Vec ℝ 2} (run : ball.RunUntil T k () x () y) (hT : T ≤ 1)
-    (hk : k ≤ 2) (hx : x ∈ construct R0) {out : List (Unit × Zonotope D 2)}
+    (hk : k ≤ 2) (hx : x ∈ construct R0) {out : List (Unit × Zonotope (Vec D 2))}
     (h : ballReach = some out) : ∃ p ∈ out, y ∈ construct p.2 := by
   obtain ⟨p, hp, -, hy⟩ := ball.reachFloat_outer run (by exact_mod_cast hT) hk hx h
   exact ⟨p, hp, hy⟩

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- Definitional: `nominal` reads each generator into ℝ, which commutes with
 moving the coordinate axis. -/
-theorem Zonotope.reindex_nominal (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) :
+theorem Zonotope.reindex_nominal (e : Fin m ≃ Fin n) (Z : Zonotope (Vec 𝕋 n)) :
     InflatedContSet.nominal (Z.reindex e)
       = Real.Zonotope.map (reindexLin e) (InflatedContSet.nominal Z) := rfl
 

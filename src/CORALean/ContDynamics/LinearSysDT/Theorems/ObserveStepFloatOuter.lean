@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.observeStepFloat_outer (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (σ : Vec 𝕋 p) (W : Zonotope 𝕋 n) (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p)
-    (u : Vec 𝕋 n) (y : Vec 𝕋 p) (Xhat : Zonotope 𝕋 n) {S : Set (Vec ℝ n)}
+    (σ : Vec 𝕋 p) (W : Zonotope (Vec 𝕋 n)) (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p)
+    (u : Vec 𝕋 n) (y : Vec 𝕋 p) (Xhat : Zonotope (Vec 𝕋 n)) {S : Set (Vec ℝ n)}
     (hS : S ⊆ Xhat.construct) :
     ((fun x => toRealMat sys.A *ᵥ x + toRealVec u) '' S + W.construct) ∩
         {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (σ i)} ⊆

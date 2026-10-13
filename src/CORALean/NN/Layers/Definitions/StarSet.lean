@@ -21,7 +21,7 @@ bound the set already satisfies.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open ContSet
 
@@ -40,7 +40,7 @@ noncomputable instance (n : ℕ) : ContSet (StarSet n) (Vec ℝ n) where
   construct s := {x | ∃ α : Fin s.m → ℝ, (∀ k, s.l k ≤ α k ∧ α k ≤ s.u k) ∧
     (∀ r ∈ s.cons, ∑ k, r.1 k * α k ≤ r.2) ∧ ∀ i, x i = s.c i + ∑ k, s.G i k * α k}
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

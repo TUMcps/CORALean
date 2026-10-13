@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Lines 4-5 in floats are inside `X ⊖ F box(X_end) ⊖ B_μ` of the exact layer, for any exact
 `F box(X_end)` the float zonotope holds and any exact `μ` the float one is above. -/
-theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 n) (FB : Zonotope 𝕋 n)
+theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 (Vec 𝕋 n))
+    (FB : Zonotope (Vec 𝕋 n))
     (μ : 𝕋) {Fr : Set (Vec ℝ n)} {μr : ℝ} (hFr : Fr ⊆ FB.construct) (hμ : μr ≤ toReal μ)
     (hker₁ : ∀ i, ∀ y ∈ FB.construct, (toRealMat X.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i, ∀ y ∈ (Capsule.mk (fun _ => (zero : 𝕋)) (fun _ => zero)
@@ -62,7 +63,7 @@ theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 n) (
     simp only [hc, hg, hr]
     have hle' : Real.sqrt (∑ i, y i ^ 2) ≤ μr := by simpa using hle
     simpa using le_trans hle' (le_trans hμ (le_max_right 0 (toReal μ)))
-  have key : ∀ (P : HPolytope 𝕋 n) (T : Set (Vec ℝ n))
+  have key : ∀ (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
       (u : ∀ i, FloatBound 𝕋 T (rowLin P.A i)) (x : Vec ℝ n),
       x ∈ (P.minkDiffOf T u).construct →
       (∀ i, ∀ y ∈ T, (toRealMat P.Ae *ᵥ y) i = 0) → ∀ y ∈ T, x + y ∈ P.construct :=

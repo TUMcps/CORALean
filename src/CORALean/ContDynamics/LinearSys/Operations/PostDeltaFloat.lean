@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Every state difference a step can span from `R` under inputs in `V`:
 `deltaReachFloat R ⊕ P̃^R([0, ũ]) ⊕ P^R(V - ũ)` at Taylor order `η`. -/
-def LinearSys.postDeltaFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (R V : Zonotope 𝕋 n) :
-    Zonotope 𝕋 n :=
+def LinearSys.postDeltaFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (R V : Zonotope (Vec 𝕋 n)) :
+    Zonotope (Vec 𝕋 n) :=
   let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored centre
   let Ũ := Recentre.recentre V                                      -- Ũ = V - ũ, holding 0
   let seg := LinComb.linComb (Interval.point fun _ => zero).zonotope ũ    -- [0, ũ]

@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The first generator of `Z` whose squared length `Σᵢ G(i,j)²` is maximal. -/
-def Zonotope.longestGen (Z : Zonotope 𝕋 n) : Option (Fin Z.h) :=
+def Zonotope.longestGen (Z : Zonotope (Vec 𝕋 n)) : Option (Fin Z.h) :=
   let len := fun j => sumUp fun i => mulUp (Z.G j i) (Z.G j i)
   (List.finRange Z.h).foldl
     (fun best j => match best with

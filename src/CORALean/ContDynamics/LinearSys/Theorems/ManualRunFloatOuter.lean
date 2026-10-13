@@ -34,9 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- `K` iterations from a state holding the invariant return `K` windows, the `j`-th holding
 every run over `[t_k + jΔt, t_k + (j+1)Δt]`. -/
-theorem LinearSys.manualRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope 𝕋 n}
+theorem LinearSys.manualRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {Δt : 𝕋} {η ρ : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) :
-    ∀ {K : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} {Rs : List (Zonotope 𝕋 n)},
+    ∀ {K : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} {Rs : List (Zonotope (Vec 𝕋 n))},
       sys.manualRunFloat X₀ V Δt η ρ K s = some Rs → sys.ManualInvariantFloat X₀ V s →
       Rs.length = K ∧ ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
         sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 T) X₀.construct U x u →

@@ -6,7 +6,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 import Mathlib.LinearAlgebra.BilinearMap
 
 /-!
-# `GZonotope.matSmul` over-approximates scaling by every scalar in `[cLo, cHi]`
+# `Zonotope.matSmul` over-approximates scaling by every scalar in `[cLo, cHi]`
 
 At one scalar `c` in the range, the nominal part scales inside the exact
 `Zonotope.map (c • ·)` (`map_exact`), whose centre and generators `mul_between_corners`
@@ -30,9 +30,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GZonotope.matSmul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤ c)
-    (hcHi : c ≤ toReal cHi) (Z : GZonotope (Mat 𝕋 m n)) {A : Mat ℝ m n} (hA : A ∈ Z.construct) :
-    c • A ∈ (GZonotope.matSmul cLo cHi Z).construct := by -- --- PROOF ---
+theorem Zonotope.matSmul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤ c)
+    (hcHi : c ≤ toReal cHi) (Z : Zonotope (Mat 𝕋 m n)) {A : Mat ℝ m n} (hA : A ∈ Z.construct) :
+    c • A ∈ (Zonotope.matSmul cLo cHi Z).construct := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hA
   set Zc := CORALean.Real.Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ m n) c) Z.nominal
   have hca : c • a ∈ Zc.construct := by
@@ -42,7 +42,7 @@ theorem GZonotope.matSmul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo �
   have hentry : ∀ x : 𝕋, toReal (Interval.mulLo cLo cHi x x) ≤ c * toReal x
       ∧ c * toReal x ≤ toReal (Interval.mulHi cLo cHi x x) :=
     fun x => Interval.mul_between_corners hcLo hcHi le_rfl le_rfl
-  have hmem := GZonotope.ofEntryBoundsMat_outer Zc (Interval.smul cLo cHi Z.E)
+  have hmem := Zonotope.ofEntryBoundsMat_outer Zc (Interval.smul cLo cHi Z.E)
     (cLo := fun i j => Interval.mulLo cLo cHi (Z.c i j) (Z.c i j))
     (cHi := fun i j => Interval.mulHi cLo cHi (Z.c i j) (Z.c i j))
     (GLo := fun k i j => Interval.mulLo cLo cHi (Z.G k i j) (Z.G k i j))

@@ -34,13 +34,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 
 /-- `zonotope/intersectStrip` at the weights `Λ`: `(I - Λ C) Z ⊕ Λ (y + diag(φ) [-1, 1]^p)`. -/
 def Zonotope.intersectStrip (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ : Mat 𝕋 n p)
-    (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+    (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let ΛC : Interval (Mat 𝕋 n n) :=                                  -- Λ C, rounded
     Interval.matMul (Interval.point Λ) (Interval.point C)
   let IM : Interval (Mat 𝕋 n n) :=                                  -- I - Λ C, rounded
     { inf := fun i j => subDown (if i = j then one else zero) (ΛC.sup i j)
       sup := fun i j => subUp (if i = j then one else zero) (ΛC.inf i j) }
-  let strip : Zonotope 𝕋 p :=                                       -- y + diag(φ) [-1, 1]^p
+  let strip : Zonotope (Vec 𝕋 p) :=                                       -- y + diag(φ) [-1, 1]^p
     { h := p, c := y, G := fun j i => if i = j then φ i else zero, E := Interval.origin p }
   Zonotope.plus (Zonotope.mtimesIntervalMat IM Z) (Zonotope.mtimes Λ strip)
 

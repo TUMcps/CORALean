@@ -35,8 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Zonotopes whose union is inside `pZ`, as CORA's `innerApprox` computes them. -/
-def PolyZonotope.innerApprox (pZ : PolyZonotope 𝕋 n) (tol : 𝕋)
-    (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter depth : ℕ) : List (Zonotope 𝕋 n) :=
+def PolyZonotope.innerApprox (pZ : PolyZonotope (Vec 𝕋 n)) (tol : 𝕋)
+    (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter depth : ℕ) : List (Zonotope (Vec 𝕋 n)) :=
   -- D = interval(-ones(p,1), ones(p,1))
   let D : Interval (Vec 𝕋 pZ.p) := ⟨fun _ => neg one, fun _ => one⟩
   -- S = innerApproxImage(f, D, tol)

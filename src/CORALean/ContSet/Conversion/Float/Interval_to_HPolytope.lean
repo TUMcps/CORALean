@@ -58,7 +58,7 @@ theorem negIdentityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
   · intro hc
     exact absurd (Finset.mem_univ i) hc
 
-def Interval.hPolytope (I : Interval (Vec 𝕋 n)) : HPolytope 𝕋 n :=
+def Interval.hPolytope (I : Interval (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
   (HPolytope.ineqs (identityMat 𝕋 n) I.sup).intersection
     (HPolytope.ineqs (negIdentityMat 𝕋 n) fun j => neg (I.inf j))
 

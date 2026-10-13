@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.reduceGirard_outer (Z : Zonotope 𝕋 n) (o : ℕ) :
+theorem Zonotope.reduceGirard_outer (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) :
     Z.construct ⊆ (Z.reduceGirard o).construct := by
   unfold Zonotope.reduceGirard
   split_ifs with hlt

@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The nominal zonotope of the product is the exact product, mapped through the append. -/
-theorem Zonotope.aux_nominal_cartProd (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope 𝕋 n₂) :
+theorem Zonotope.aux_nominal_cartProd (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂)) :
     InflatedContSet.nominal (Z₁.cartProd Z₂) =
       (Real.Zonotope.map (appendLinear n₁ n₂)
         (Real.Zonotope.cartProd (InflatedContSet.nominal Z₁)
@@ -47,7 +47,7 @@ theorem Zonotope.aux_nominal_cartProd (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonoto
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.cartProd_exact (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope 𝕋 n₂) :
+theorem Zonotope.cartProd_exact (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂)) :
     (Z₁.cartProd Z₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (Z₁.construct ×ˢ Z₂.construct) := by -- --- PROOF ---
   -- the nominal part: the exact product's set, mapped through the append

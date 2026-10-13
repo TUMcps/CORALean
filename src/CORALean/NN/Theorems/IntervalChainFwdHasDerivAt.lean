@@ -26,7 +26,7 @@ matrix, and the activation's is a diagonal map.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open Matrix
 
@@ -72,7 +72,7 @@ theorem IntervalChain.fwd_hasDerivAt : ∀ {n k : ℕ} (c : IntervalChain n k), 
       exact (hs.1 _).comp t (hasDerivAt_pi.1 hv i)
     exact ih hs.2 _ _ t ((hpi h1).prodMk (hpi h2))
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

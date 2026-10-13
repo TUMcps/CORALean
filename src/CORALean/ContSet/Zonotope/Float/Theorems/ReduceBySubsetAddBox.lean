@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `reduceBy`'s generator count, stated through the
 projection because that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_reduceBy_box {Z : Zonotope 𝕋 n}
+theorem Zonotope.aux_sum_univ_reduceBy_box {Z : Zonotope (Vec 𝕋 n)}
     {part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)} (f : Fin (q + n) → ℝ) :
     ∑ j : Fin (Z.reduceBy part).h, f j = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=
   Fin.sum_univ_add f
@@ -47,7 +47,7 @@ theorem Zonotope.aux_sum_univ_reduceBy_box {Z : Zonotope 𝕋 n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `reduceBy` reaches no further than `Z.construct` widened by `reduceByBox`. -/
-theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope 𝕋 n)
+theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     (Z.reduceBy part).construct ⊆
       Z.construct + (Zonotope.reduceByBox Z part).construct := by -- --- PROOF ---

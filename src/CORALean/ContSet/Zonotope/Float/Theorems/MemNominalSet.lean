@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- definitionally the exact layer's reading, the generators already transposed
-theorem Zonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {Z : Zonotope 𝕋 n}
+theorem Zonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {Z : Zonotope (Vec 𝕋 n)}
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet Z ↔ ∃ β : Vec ℝ Z.h, (∀ j, |β j| ≤ 1) ∧
       ∀ i, x i = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * β j :=

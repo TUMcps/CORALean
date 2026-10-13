@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.reduceOverDomain (p : ℕ) (P : HPolytope 𝕋 n) (dom : Interval (Vec 𝕋 n))
-    (outer : Bool := true) : HPolytope 𝕋 n :=
+def HPolytope.reduceOverDomain (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (dom : Interval (Vec 𝕋 n))
+    (outer : Bool := true) : HPolytope 𝕋 (Vec 𝕋 n) :=
   -- A = interval(min(A_,[],1)', max(A_,[],1)'), the scaled rows rounded outward
   let Ainf : Vec 𝕋 n := fun j => minimumOver fun i => mulDown (P.A i j) (P.rowScale p i)
   let Asup : Vec 𝕋 n := fun j => maximumOver fun i => mulUp (P.A i j) (P.rowScale p i)

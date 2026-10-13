@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.reduceBy_coeff (Z : Zonotope 𝕋 n)
+theorem Zonotope.reduceBy_coeff (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (β : Fin Z.h → ℝ)
     (hβ : ∀ j, |β j| ≤ 1) :
     ∃ ξ : Fin (q + n) → ℝ, (∀ j, |ξ j| ≤ 1) ∧ (∀ l, ξ (Fin.castAdd n l) = β (part.left l))

@@ -4,7 +4,7 @@ import CORALean.ContSet.Interval.Float.Operations.Smul
 import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 
 /-!
-# `GZonotope.matSmul`, by a scalar known only to lie in `[cLo, cHi]`
+# `Zonotope.matSmul`, by a scalar known only to lie in `[cLo, cHi]`
 
 `Real.Zonotope.map` at `c • ·`, for every `c ∈ [cLo, cHi]` at once, as `Interval.smul`
 scales a box: each entry of the centre and of every generator is bracketed by the corner
@@ -30,10 +30,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Every entry of the centre and the generators scaled by `[cLo, cHi]`, bracketed. -/
-def GZonotope.matSmul (cLo cHi : 𝕋) (Z : GZonotope (Mat 𝕋 m n)) : GZonotope (Mat 𝕋 m n) :=
+def Zonotope.matSmul (cLo cHi : 𝕋) (Z : Zonotope (Mat 𝕋 m n)) : Zonotope (Mat 𝕋 m n) :=
   let lo : Mat 𝕋 m n → Mat 𝕋 m n := fun A i j => Interval.mulLo cLo cHi (A i j) (A i j)
   let hi : Mat 𝕋 m n → Mat 𝕋 m n := fun A i j => Interval.mulHi cLo cHi (A i j) (A i j)
-  GZonotope.ofEntryBoundsMat (lo Z.c) (hi Z.c) (fun k => lo (Z.G k)) (fun k => hi (Z.G k))
+  Zonotope.ofEntryBoundsMat (lo Z.c) (hi Z.c) (fun k => lo (Z.G k)) (fun k => hi (Z.G k))
     (Interval.smul cLo cHi Z.E)
 
 end CORALean.Float

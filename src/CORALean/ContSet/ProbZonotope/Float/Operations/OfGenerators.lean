@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 variable {q : ℕ}
 
-def ProbZonotope.ofGenerators (Z : Zonotope 𝕋 n) (g : Mat 𝕋 n q) : ProbZonotope 𝕋 n :=
+def ProbZonotope.ofGenerators (Z : Zonotope (Vec 𝕋 n)) (g : Mat 𝕋 n q) : ProbZonotope 𝕋 n :=
   ⟨Z, Interval.matMul (Interval.point g) (Interval.point g.transpose)⟩
 end CORALean.Float
 

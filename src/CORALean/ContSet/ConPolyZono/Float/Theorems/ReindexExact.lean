@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.reindex_exact (e : Fin m ≃ Fin n) (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.reindex_exact (e : Fin m ≃ Fin n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (cPZ.reindex e).construct = reindexLin e '' cPZ.construct := by -- --- PROOF ---
   show InflatedContSet.nominalSet (cPZ.reindex e) + (cPZ.err.reindex e).construct
     = reindexLin e '' (InflatedContSet.nominalSet cPZ + cPZ.err.construct)

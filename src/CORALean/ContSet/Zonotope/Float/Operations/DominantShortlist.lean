@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The `L₂` `n`-subsets of the `L₁` longest generators that span the largest volume. -/
-def Zonotope.dominantShortlist (Z : Zonotope 𝕋 n) (L₁ L₂ : ℕ) : List (List (Fin Z.h)) :=
+def Zonotope.dominantShortlist (Z : Zonotope (Vec 𝕋 n)) (L₁ L₂ : ℕ) : List (List (Fin Z.h)) :=
   let cells := List.sublistsLen n (Z.dominantLengthFilter L₁)           -- combinator(cols,rows,'c')
   let volume := fun T => absolute (Zonotope.detCandidate (Z.generatorMatrix T))  -- parallelogramVol
   (cells.mergeSort fun a b => le (volume b) (volume a)).take L₂         -- maxk(.,rem)

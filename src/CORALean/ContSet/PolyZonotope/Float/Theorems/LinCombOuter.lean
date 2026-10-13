@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_linComb_nominal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.aux_linComb_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     segments (nominalSet pZ₁) (nominalSet pZ₂) ⊆
       nominalSet (pZ₁.linComb pZ₂)
         + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).construct
@@ -71,7 +71,7 @@ theorem PolyZonotope.aux_linComb_nominal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
 
 /-- The box absorbs the two incoming boxes, both centre roundings and the
 independent block's. -/
-theorem PolyZonotope.aux_linComb_error (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.aux_linComb_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     segments pZ₁.err.construct pZ₂.err.construct
         + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).construct
             + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).construct
@@ -87,7 +87,7 @@ theorem PolyZonotope.aux_linComb_error (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.linComb_outer (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.linComb_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     segments pZ₁.construct pZ₂.construct ⊆ (pZ₁.linComb pZ₂).construct :=
   InflatedContSet.linComb_subset (PolyZonotope.aux_linComb_nominal pZ₁ pZ₂)
     (PolyZonotope.aux_linComb_error pZ₁ pZ₂)

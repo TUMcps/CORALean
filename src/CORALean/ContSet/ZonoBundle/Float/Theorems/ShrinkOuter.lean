@@ -24,15 +24,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.shrink_outer (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k) :
+theorem ZonoBundle.shrink_outer (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) :
     zB.construct ⊆ (zB.shrink hk).construct := by -- --- PROOF ---
   intro x hx
-  have hP : x ∈ (⟨zB.k, fun i => Zonotope.reduceMethC (zB.Z i) 1⟩ : ZonoBundle 𝕋 n).construct :=
+  have hP : x ∈ (⟨zB.k, fun i => Zonotope.reduceMethC (zB.Z i) 1⟩ :
+    ZonoBundle (Vec 𝕋 n)).construct :=
     Set.mem_iInter.mpr fun i => Zonotope.reduceMethC_outer _ 1 (Set.mem_iInter.mp hx i)
   -- every new member is a parallelotope around the reduced bundle
   exact Set.mem_iInter.mpr fun i =>
     ZonoBundle.enclosingParallelotope_outer (⟨zB.k, fun i => Zonotope.reduceMethC (zB.Z i) 1⟩ :
-      ZonoBundle 𝕋 n) hk _ hP
+      ZonoBundle (Vec 𝕋 n)) hk _ hP
 
 end CORALean.Float
 

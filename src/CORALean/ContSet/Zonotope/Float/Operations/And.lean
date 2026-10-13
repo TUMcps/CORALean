@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.and_ (Z S : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+def Zonotope.and_ (Z S : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   (Z.conZonotope.intersection S.conZonotope).zonotope
 
 end CORALean.Float

@@ -36,7 +36,7 @@ abbrev D := Dyadic 53
 def d (m e : ℤ) : D := ⟨m, e⟩
 
 /-- The unit square's generators, centred at the origin, no rounding error yet. -/
-def square (P : HPolytope D 2) : ConZonotope D 2 where
+def square (P : HPolytope D (Vec D 2)) : ConZonotope D (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]
   G := ![![d 1 0, d 0 0], ![d 0 0, d 1 0]]
@@ -45,26 +45,26 @@ def square (P : HPolytope D 2) : ConZonotope D 2 where
 
 /-- `β₁ + β₂ = 0`, an equality row with a point interval as its right-hand side:
 the segment `{(t, -t)}`. -/
-def eqRow : HPolytope D 2 :=
+def eqRow : HPolytope D (Vec D 2) :=
   ⟨0, fun i => i.elim0, fun i => i.elim0, 1, fun _ _ => d 1 0,
     ⟨fun _ => d 0 0, fun _ => d 0 0⟩⟩
 
 /-- `β₁ + β₂ ≤ 0`, an inequality row: a triangle. -/
-def ineqRow : HPolytope D 2 :=
+def ineqRow : HPolytope D (Vec D 2) :=
   ⟨1, fun _ _ => d 1 0, fun _ => d 0 0, 0, fun i => i.elim0,
     ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
 /-- `3β₁ + β₂ ≤ 1`, whose support value in direction `(1, 0)` is `2/3`, not a dyadic. -/
-def thirdRow : HPolytope D 2 :=
+def thirdRow : HPolytope D (Vec D 2) :=
   ⟨1, fun _ j => if j = 0 then d 3 0 else d 1 0, fun _ => d 1 0, 0, fun i => i.elim0,
     ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
 /-- The segment moved by `(1/2, 1/2)`: parallel to it, disjoint, the same hull. -/
-def shifted : ConZonotope D 2 := { square eqRow with c := ![d 1 (-1), d 1 (-1)] }
+def shifted : ConZonotope D (Vec D 2) := { square eqRow with c := ![d 1 (-1), d 1 (-1)] }
 
 /-- A flat box `[-2, 2] × [-1/8, 1/8]` and a thin parallelogram along the
 diagonal, no rounding error yet. -/
-def bundle : ZonoBundle D 2 :=
+def bundle : ZonoBundle (Vec D 2) :=
   ⟨2, ![⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 1 (-3)]],
           ⟨fun _ => d 0 0, fun _ => d 0 0⟩⟩,
         ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 2 0], ![d 1 (-3), d (-1) (-3)]],
@@ -77,7 +77,7 @@ def e₁ : Vec D 2 := ![d 1 0, d 0 0]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The bound in direction `a`, read exactly. -/
-def bound (cZ : ConZonotope D 2) (a : Vec D 2) : ℚ :=
+def bound (cZ : ConZonotope D (Vec D 2)) (a : Vec D 2) : ℚ :=
   ToRat.toRat (cZ.boundDot (c := rowLin (fun (_ : Fin 1) => a) 0) a fun _ => rfl).val
 
 #eval bound (square eqRow) ![d 1 0, d 1 0]    -- 0, where the zonotope bound is 2

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 3] as `aux_InnerGeneral` runs it. -/
-def PolyZonotope.innerGeneral (pZ : PolyZonotope 𝕋 n) (X X₀ : Interval (Vec 𝕋 pZ.p))
+def PolyZonotope.innerGeneral (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (Vec 𝕋 pZ.p))
     (Y : Interval (Vec 𝕋 n)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ) : Bool :=
   -- ind = aux_getSuitableSubmatrix(df(X_), n)
   match PolyZonotope.innerColumns (PolyZonotope.jacobianBox pZ X₀) with

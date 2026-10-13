@@ -35,32 +35,32 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance {n : ℕ} : Plus (ConPolyZono 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Plus (ConPolyZono 𝕋 (Vec 𝕋 n)) (Vec ℝ n) where
   plus cPZ₁ cPZ₂ := (cPZ₁.plus cPZ₂).materialise
   plus_outer cPZ₁ cPZ₂ := by
     rw [ConPolyZono.materialise_eq]
     exact ConPolyZono.plus_outer cPZ₁ cPZ₂
 
-instance {n : ℕ} : LinComb (ConPolyZono 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : LinComb (ConPolyZono 𝕋 (Vec 𝕋 n)) (Vec ℝ n) where
   linComb cPZ₁ cPZ₂ := (cPZ₁.linComb cPZ₂).materialise
   linComb_outer cPZ₁ cPZ₂ := by
     rw [ConPolyZono.materialise_eq]
     exact ConPolyZono.linComb_outer cPZ₁ cPZ₂
 
 -- `reduce` is computable here, `sortPerm` asking its comparator for no laws
-instance {n : ℕ} : Reduce (ConPolyZono 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Reduce (ConPolyZono 𝕋 (Vec 𝕋 n)) (Vec ℝ n) where
   reduce cPZ o := (cPZ.reduce o).materialise
   reduce_outer cPZ o := by
     rw [ConPolyZono.materialise_eq]
     exact ConPolyZono.reduce_outer cPZ o
 
-instance {n : ℕ} : Intersection (ConPolyZono 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Intersection (ConPolyZono 𝕋 (Vec 𝕋 n)) (Vec ℝ n) where
   intersection cPZ₁ cPZ₂ := (ConPolyZono.intersection cPZ₁ cPZ₂).materialise
   intersection_outer cPZ₁ cPZ₂ := by
     rw [ConPolyZono.materialise_eq]
     exact ConPolyZono.intersection_outer cPZ₁ cPZ₂
 
-instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
+instance : Mtimes (Mat 𝕋) (fun k => ConPolyZono 𝕋 (Vec 𝕋 k)) where
   mtimes M cPZ := (ConPolyZono.mtimes M cPZ).materialise
   mtimes_outer M cPZ := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, ConPolyZono.materialise_eq]
@@ -68,7 +68,7 @@ instance : Mtimes (Mat 𝕋) (ConPolyZono 𝕋) where
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/
-instance : Reindex (ConPolyZono 𝕋) where
+instance : Reindex (fun k => ConPolyZono 𝕋 (Vec 𝕋 k)) where
   reindex e cPZ := (ConPolyZono.reindex e cPZ).materialise
   reindex_exact e cPZ := by
     rw [ConPolyZono.materialise_eq]

@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono
+    𝕋 (Vec 𝕋 n) where
   p := a * cPZ.p + a
   h := a + (a * cPZ.h + a * cPZ.h)
   q := 0

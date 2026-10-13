@@ -36,8 +36,9 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The stay enclosure over `X₀` and `Ud`, boxed and cut down to the location's invariant. -/
-def Location.timeIntervalStepInvFloat (ℓ : Location (Zonotope 𝕋) (HPolytope 𝕋) L 𝕋 n)
-    (r : 𝕋) (η : ℕ) (X₀ Ud : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+def Location.timeIntervalStepInvFloat
+    (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
+    (r : 𝕋) (η : ℕ) (X₀ Ud : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   (ℓ.inv.contractBox (ℓ.timeIntervalStepFloat r η X₀ ⊞ Ud).interval).zonotope
 
 end CORALean

@@ -29,10 +29,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A state in a reach set and on the hyperplane lies in the bundle, for orthogonal bases. -/
-theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n)) (R₀ : Zonotope 𝕋 n)
-    (Rs : List (Zonotope 𝕋 n)) (nv : Vec 𝕋 n) (γ : 𝕋)
+theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
+    (R₀ : Zonotope (Vec 𝕋 n))
+    (Rs : List (Zonotope (Vec 𝕋 n))) (nv : Vec 𝕋 n) (γ : 𝕋)
     (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
-    {R : Zonotope 𝕋 n} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.construct)
+    {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.construct)
     (hg : x ⬝ᵥ toRealVec nv = toReal γ) :
     x ∈ (Location.guardIntersectZonoGirardFloat Bs R₀ Rs nv γ).construct := by -- --- PROOF ---
   have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),
@@ -63,7 +64,7 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n)) 
   have hBB : ∀ y : Vec ℝ n, Scalar.toRealMat B *ᵥ (Scalar.toRealMat Bᵀ *ᵥ y) = y := fun y => by
     rw [Matrix.mulVec_mulVec, hT, hB, Matrix.one_mulVec]
   -- the state's coordinates lie in the cut of a set holding it
-  have hcut : ∀ R' : Zonotope 𝕋 n, x ∈ R'.construct →
+  have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.construct →
       Scalar.toRealMat Bᵀ *ᵥ x ∈ (⟨fun k => neg (Location.zonoGirardUpperFloat R' nv γ
           fun r => neg (Bᵀ k r)),
         fun k => Location.zonoGirardUpperFloat R' nv γ (Bᵀ k)⟩ : Interval (Vec 𝕋 n)).construct :=
@@ -108,7 +109,7 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n)) 
         fun k => Location.zonoGirardUpperFloat R' nv γ (Bᵀ k)⟩ : Interval (Vec 𝕋 n))) = box
     at h2 ⊢
   -- and back through the basis
-  have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) B box.zonotope
+  have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B box.zonotope
     (Set.mem_biUnion rfl (Set.mem_image_of_mem (fun v => Scalar.toRealMat B *ᵥ v)
       (Interval.zonotope_contains _ h2)))
   rwa [hBB] at h3

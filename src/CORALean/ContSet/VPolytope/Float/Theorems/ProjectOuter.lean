@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.project_outer (P : VPolytope 𝕋 n) (dims : Fin m → Fin n) :
+theorem VPolytope.project_outer (P : VPolytope (Vec 𝕋 n)) (dims : Fin m → Fin n) :
     (fun x k => x (dims k)) '' P.construct ⊆ (P.project dims).construct :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.VPolytope.project_exact (nominal P) dims))

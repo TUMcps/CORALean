@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The offset of the unit-length facet row at generator selection `S`, rounded up; `p` is the
 number of Newton steps of the root. -/
-def Zonotope.minnormOffset (p : ℕ) (Z : Zonotope 𝕋 (n + 1)) (S : Fin n → Fin Z.h) : Option 𝕋 :=
+def Zonotope.minnormOffset (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1)))
+    (S : Fin n → Fin Z.h) : Option 𝕋 :=
   let C := Z.facetNormal S                                                  -- facet normal
   let Δd := sumUp fun υ =>                                                  -- Σᵤ |C G⁽ᵘ⁾|
     maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ)))

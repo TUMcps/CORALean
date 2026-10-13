@@ -66,20 +66,21 @@ attribute [local instance] aux_paramSetPlus aux_paramSetMtimes aux_paramSetMtime
 /-- The member's exact orders, taken at plain sets, inside the float sum. -/
 theorem LinParamSys.aux_inputTaylorSum_subset
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope 𝕋 n) :
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
     ∀ i, construct ((LinearSys.mk A : LinearSys ℝ n).inputTaylorSum
       (S := fun k => Set (Vec ℝ k)) (toReal r) V.construct i)
       ⊆ (sys.inputTaylorSumFloat r V i).construct := by -- --- PROOF ---
   -- order `i`'s matrix is in its float box, so its image is in the float product
   have hterm : ∀ i, ((LinearSys.mk A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) '' V.construct
       ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm sys.A r i) V) := by
     intro i
     have hM : (LinearSys.mk A : LinearSys ℝ n).inputTerm (toReal r) i
         ∈ (MatExp.intervalInputTerm sys.A r i).construct :=
       MatExp.smul_pow_mem_intervalInputTerm _ hr hA i
     exact (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct) hM).trans
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := Zonotope 𝕋)
+      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm sys.A r i) V)
   intro i
   induction i with
@@ -92,20 +93,21 @@ theorem LinParamSys.aux_inputTaylorSum_subset
 theorem LinParamSys.aux_inputRemainder_subset
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct)
-    (V : Zonotope 𝕋 n) :
+    (V : Zonotope (Vec 𝕋 n)) :
     construct (Mtimes.mtimes (𝕄 := fun m k => Real.Interval (Mat ℝ m k))
       (S := fun k => Set (Vec ℝ k)) (Real.MatExp.inputRemainder A (toReal r) η)
       (V.construct : Set (Vec ℝ n)))
       ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputRemainder sys.A r η) V) := by -- --- PROOF ---
-  set Z := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+  set Z := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
     (MatExp.intervalInputRemainder sys.A r η) V
   refine closure_minimal (convexHull_min ?_ (ConvexSet.convex_construct Z))
     (CompactSet.isClosed_construct Z)
   refine Set.iUnion₂_subset fun M hM => ?_
   exact (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct)
     (MatExp.inputRemainder_subset_intervalInputRemainder _ hr η hη.2 hA hM)).trans
-    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := Zonotope 𝕋)
+    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
       (MatExp.intervalInputRemainder sys.A r η) V)
 
 
@@ -116,8 +118,8 @@ lies in `inputSolutionFloat`. -/
 theorem LinParamSys.inputReach_subset_inputSolutionFloat
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
-    (hA : A ∈ sys.A.construct) (V : Zonotope 𝕋 n) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := Zonotope 𝕋) V (toReal Δt)
+    (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
+    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := fun k => Zonotope (Vec 𝕋 k)) V (toReal Δt)
       ⊆ (sys.inputSolutionFloat Δt η V).construct := by -- --- PROOF ---
   -- the float bound's condition is the exact one's, with room to spare
   have hε : ‖toReal Δt • A‖ / ((η : ℝ) + 2) < 1 := by

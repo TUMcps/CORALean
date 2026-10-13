@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.cartProd (pZ₁ : PolyZonotope 𝕋 n₁) (pZ₂ : PolyZonotope 𝕋 n₂) :
-    PolyZonotope 𝕋 (n₁ + n₂) where
+def PolyZonotope.cartProd (pZ₁ : PolyZonotope (Vec 𝕋 n₁)) (pZ₂ : PolyZonotope (Vec 𝕋 n₂)) :
+    PolyZonotope (Vec 𝕋 (n₁ + n₂)) where
   p := pZ₁.p + pZ₂.p
   h := pZ₁.h + pZ₂.h
   q := pZ₁.q + pZ₂.q

@@ -91,7 +91,7 @@ def handleRoundToZonotope (dops : DtypeOps 𝕋) (mode : String) (req : Json) :
     sumUp fun l : Fin h =>
       let gErr := gT.getD (i.val * h + l.val) d0
       FloatOps.maximum (FloatOps.neg gErr.2.1) gErr.2.2
-  let Z : Zonotope 𝕋 n :=
+  let Z : Zonotope (Vec 𝕋 n) :=
     { h := h
       c := fun i => (cT.getD i.val d0).1
       G := fun (l : Fin h) (i : Fin n) => (gT.getD (i.val * h + l.val) d0).1

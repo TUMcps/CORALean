@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.sum_mem_sumTerms (f : ℕ → Zonotope 𝕋 n) (v : ℕ → Vec ℝ n) (N : ℕ)
+theorem Zonotope.sum_mem_sumTerms (f : ℕ → Zonotope (Vec 𝕋 n)) (v : ℕ → Vec ℝ n) (N : ℕ)
     (h : ∀ m, m < N → v m ∈ (f m).construct) :
     ∑ m ∈ Finset.range N, v m ∈ (Zonotope.sumTerms f N).construct := by -- --- PROOF ---
   induction N with

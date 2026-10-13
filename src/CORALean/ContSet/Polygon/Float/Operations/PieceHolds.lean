@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Polygon.pieceHolds (p : VPolytope 𝕋 2) (x : Vec 𝕋 2) : Bool :=
+def Polygon.pieceHolds (p : VPolytope (Vec 𝕋 2)) (x : Vec 𝕋 2) : Bool :=
   (List.finRange p.k).any fun a => (List.finRange p.k).any fun b =>
     (List.finRange p.k).any fun c =>
       Polygon.inTriangle (p.V a) (p.V b) (p.V c) x

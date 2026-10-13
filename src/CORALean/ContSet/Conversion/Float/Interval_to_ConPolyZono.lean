@@ -21,7 +21,7 @@ open InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def Interval.conPolyZono (I : Interval (Vec 𝕋 n)) : ConPolyZono 𝕋 n :=
+def Interval.conPolyZono (I : Interval (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   I.polyZonotope.conPolyZono
 
 variable [SoundFloatArithmetic 𝕋]

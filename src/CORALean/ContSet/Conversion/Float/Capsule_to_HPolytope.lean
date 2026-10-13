@@ -23,7 +23,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Capsule.hPolytope (C : Capsule 𝕋 n) : HPolytope 𝕋 n :=
+def Capsule.hPolytope (C : Capsule 𝕋 n) : HPolytope 𝕋 (Vec 𝕋 n) :=
   C.interval.hPolytope
 
 

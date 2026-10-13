@@ -29,7 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.smul_mem_halfScaledRight {P : HPolytope 𝕋 n₂} {y : Vec ℝ n₂} {z : Vec ℝ n₁}
+theorem HPolytope.smul_mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {y : Vec ℝ n₂}
+    {z : Vec ℝ n₁}
     {w t : ℝ} (hw : (1 - t) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct) :
     Fin.append (Fin.append z (w • y)) (fun _ : Fin 1 => t)
       ∈ (HPolytope.halfScaledRight n₁ P).construct := by -- --- PROOF ---

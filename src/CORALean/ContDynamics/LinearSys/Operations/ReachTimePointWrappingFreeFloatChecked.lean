@@ -30,9 +30,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- `reachTimePointWrappingFreeFloat`, or `none` if a float of its result is a NaN. -/
 def LinearSys.reachTimePointWrappingFreeFloatChecked (sys : LinearSys 𝕋 n)
-    (params : Reach.Params (Zonotope 𝕋 n) ℚ)
+    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
     (options : LinearSys.ReachOptions 𝕋) :
-    Option (List (Zonotope 𝕋 n)) :=
+    Option (List (Zonotope (Vec 𝕋 n))) :=
   checkNoNaN (𝕋 := 𝕋) (sys.reachTimePointWrappingFreeFloat params options)
 
 end CORALean

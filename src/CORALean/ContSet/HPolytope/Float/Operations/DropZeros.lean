@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The empty set if a zero row is certified infeasible, else the rows not certified trivial. -/
-def HPolytope.dropZeros (Q : HPolytope 𝕋 n) : HPolytope 𝕋 n :=
+def HPolytope.dropZeros (Q : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
   if (List.finRange Q.m).any (fun i => HPolytope.isZeroVec (Q.A i) && ltStrict (Q.b i) zero)
       || (List.finRange Q.me).any (fun r => HPolytope.isZeroVec (Q.Ae r) &&
         (ltStrict zero (Q.be.inf r) || ltStrict (Q.be.sup r) zero)) then

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The gap between the two roundings of every generator. -/
-def ConZonotope.quadMapGDiff (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) :
+def ConZonotope.quadMapGDiff (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Fin m → Fin (cZ.h + cZ.h + cZ.h * cZ.h) → 𝕋 :=
   fun i l => subUp (ConZonotope.quadMapGUp Q cZ i l) (ConZonotope.quadMapGDown Q cZ i l)
 

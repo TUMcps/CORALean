@@ -33,9 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The step the state's order picks of the two the tuning computed is a step of that order. -/
-theorem aux_adaptStep_pick {fm : NonlinearSys.FloatHessModel 𝕋 n m} {U : Zonotope 𝕋 m}
-    {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋} {R : Zonotope 𝕋 n} {κ : ℕ}
-    {F₁ F₂ : Zonotope 𝕋 n × Zonotope 𝕋 n}
+theorem aux_adaptStep_pick {fm : NonlinearSys.FloatHessModel 𝕋 n m} {U : Zonotope (Vec 𝕋 m)}
+    {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋} {R : Zonotope (Vec 𝕋 n)} {κ : ℕ}
+    {F₁ F₂ : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)}
     (hF₁ : fm.orderStepFloat 1 U { options with timeStep := Δ } R = some F₁)
     (hF₂ : fm.orderStepFloat 2 U { options with timeStep := Δ } R = some F₂) :
     fm.orderStepFloat κ U { options with timeStep := Δ } R =
@@ -50,8 +50,8 @@ theorem aux_adaptStep_pick {fm : NonlinearSys.FloatHessModel 𝕋 n m} {U : Zono
 
 /-- The step at the tuned time step `Δ`, reduced, holds every run. -/
 theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m}
-    (h : fm.Encloses sys) {U : Zonotope 𝕋 m} {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋}
-    {t₀ : ℚ} {R : Zonotope 𝕋 n} {F : Zonotope 𝕋 n × Zonotope 𝕋 n} {κ : ℕ}
+    (h : fm.Encloses sys) {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋}
+    {t₀ : ℚ} {R : Zonotope (Vec 𝕋 n)} {F : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)} {κ : ℕ}
     (hF : fm.orderStepFloat κ U { options with timeStep := Δ } R = some F) :
     t₀ < t₀ + ToRat.toRat Δ ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ))
@@ -72,8 +72,8 @@ theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : 
   · -- reducing the sets keeps the run in them
     rw [hcast] at traj ⊢
     obtain ⟨hwin, hend⟩ := hout traj
-    exact ⟨fun t ht => Reduce.reduce_outer (S := Zonotope 𝕋 n) _ _ (hwin t ht),
-      Reduce.reduce_outer (S := Zonotope 𝕋 n) _ _ hend⟩
+    exact ⟨fun t ht => Reduce.reduce_outer (S := Zonotope (Vec 𝕋 n)) _ _ (hwin t ht),
+      Reduce.reduce_outer (S := Zonotope (Vec 𝕋 n)) _ _ hend⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -82,8 +82,8 @@ theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : 
 `R(τ)` over the step and in `R(t_{k+1})` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.adaptStepFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {U : Zonotope 𝕋 m} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
-    {prec bis fuel : ℕ} {s s' : NonlinearSys.AdaptState (Zonotope 𝕋) n ℚ 𝕋}
+    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
+    {prec bis fuel : ℕ} {s s' : NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋}
     (hstep : fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s = some s') :
     s.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ))

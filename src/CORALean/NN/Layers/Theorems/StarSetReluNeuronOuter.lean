@@ -19,7 +19,7 @@ chord from `(l, 0)` to `(u, u)`, since `max` is convex.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open ContSet
 
@@ -97,7 +97,7 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet n) (j : Fin n) (b : ℝ 
       simp [Fin.sum_univ_castSucc]
     · simp [Fin.sum_univ_castSucc, hi, hxα i]
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

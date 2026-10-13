@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.splitMany (pZ : PolyZonotope 𝕋 n) : ℕ → List (PolyZonotope 𝕋 n)
+def PolyZonotope.splitMany (pZ : PolyZonotope (Vec 𝕋 n)) : ℕ → List (PolyZonotope (Vec 𝕋 n))
   | 0 => [pZ]
   | k + 1 => (pZ.splitMany k).flatMap fun q => [q.splitGen.1, q.splitGen.2]
 

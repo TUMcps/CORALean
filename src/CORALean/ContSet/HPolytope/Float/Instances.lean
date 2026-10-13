@@ -26,13 +26,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (HPolytope 𝕋 n) (Vec ℝ n) := ⟨HPolytope.construct⟩
+instance : ContSet (HPolytope 𝕋 (Vec 𝕋 n)) (Vec ℝ n) := ⟨HPolytope.construct⟩
 
-instance : Reduce (HPolytope 𝕋 n) (Vec ℝ n) where
+instance : Reduce (HPolytope 𝕋 (Vec 𝕋 n)) (Vec ℝ n) where
   reduce P _ := P
   reduce_outer _ _ := subset_rfl
 
-instance : Intersection (HPolytope 𝕋 n) (Vec ℝ n) where
+instance : Intersection (HPolytope 𝕋 (Vec 𝕋 n)) (Vec ℝ n) where
   intersection := HPolytope.intersection
   intersection_outer P₁ P₂ := (HPolytope.intersection_exact P₁ P₂).subset
 

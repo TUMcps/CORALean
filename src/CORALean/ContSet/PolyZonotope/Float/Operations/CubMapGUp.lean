@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.cubMapGUp (T : Fin m → Fin n → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
+def PolyZonotope.cubMapGUp (T : Fin m → Fin n → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n)) :
     Fin m → Fin ((pZ.h + 1) * (pZ.h + 1) * (pZ.h + 1)) → 𝕋 :=
   fun i l =>
     -- `[c, G]`

@@ -26,7 +26,7 @@ variable {α β γ : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The pairs `f (GI₁ j) (ext₂ l)`, `f (GI₁ j) (GI₂ l)`, `f (ext₁ l) (GI₂ j)` as one list. -/
-def PolyZonotope.pairGI (f : α → β → γ) (pZ₁ : GPolyZonotope α) (pZ₂ : GPolyZonotope β) :
+def PolyZonotope.pairGI (f : α → β → γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) :
     Fin (pZ₁.q * (pZ₂.h + 1) + pZ₁.q * pZ₂.q + (pZ₁.h + 1) * pZ₂.q) → γ :=
   Fin.append
     (Fin.append

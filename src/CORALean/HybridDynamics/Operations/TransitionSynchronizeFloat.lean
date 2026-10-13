@@ -35,9 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q k : ℕ} {L : Fin k → Type}
 /-- The synchronized transition at a float scalar, the steps in CORA's order; its reset has
 interval coefficients. -/
 def Transition.synchronizeFloat (compIdx : Fin q → Fin k)
-    (t : ∀ i : Fin q, Transition (HPolytope 𝕋) (L (compIdx i)) 𝕋 n)
+    (t : ∀ i : Fin q, Transition (fun k => HPolytope 𝕋 (Vec 𝕋 k)) (L (compIdx i)) 𝕋 n)
     (idStates : Finset (Fin n)) (locID : ∀ c, L c) :
-    Transition (HPolytope 𝕋) (∀ c, L c) (Interval 𝕋) n :=
+    Transition (fun k => HPolytope 𝕋 (Vec 𝕋 k)) (∀ c, L c) (Interval 𝕋) n :=
   -- `guard = fullspace`, then `and_(guard, transList(i).guard, 'exact')` for each `i`
   let guard := Transition.synchronizeGuard (fun i => (t i).guard)
   -- `reset_sync = synchronize(resets, idStates)`, as lower and upper bounds

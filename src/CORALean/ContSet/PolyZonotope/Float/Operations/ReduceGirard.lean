@@ -31,13 +31,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- file-local: only `reduceGirard` below needs these
 /-- CORA's `[G, GI]`: the two blocks as one family, which is what it ranks. -/
-def PolyZonotope.aux_concatGens (pZ : PolyZonotope 𝕋 n) : Fin (pZ.h + pZ.q) → Vec 𝕋 n :=
+def PolyZonotope.aux_concatGens (pZ : PolyZonotope (Vec 𝕋 n)) : Fin (pZ.h + pZ.q) → Vec 𝕋 n :=
   Fin.append pZ.G pZ.GI
 
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once
 over generators nothing memoizes. The cap at `K` never binds. -/
-def PolyZonotope.aux_girardKeptDep (pZ : PolyZonotope 𝕋 n) (K : ℕ) : ℕ :=
+def PolyZonotope.aux_girardKeptDep (pZ : PolyZonotope (Vec 𝕋 n)) (K : ℕ) : ℕ :=
   let metric := PolyZonotope.girardMetric pZ.aux_concatGens
   let rank := (sortPerm fun l₁ l₂ => le (metric l₂) (metric l₁)).symm
   min K (Finset.univ.filter fun l : Fin pZ.h =>
@@ -49,7 +49,7 @@ def PolyZonotope.aux_girardKeptDep (pZ : PolyZonotope 𝕋 n) (K : ℕ) : ℕ :=
 /-- CORA's `reduce(pZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. At that order or below, nothing happens. -/
-def PolyZonotope.reduceGirard (pZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
+def PolyZonotope.reduceGirard (pZ : PolyZonotope (Vec 𝕋 n)) (o : ℕ) : PolyZonotope (Vec 𝕋 n) :=
   if o * n < pZ.h + pZ.q then
     let K := (o - 1) * n
     let d := pZ.aux_girardKeptDep K

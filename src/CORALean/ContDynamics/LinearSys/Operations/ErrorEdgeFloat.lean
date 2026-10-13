@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The edge length of the generator sum, per coordinate, up to order `η`, rounded up. -/
-def LinearSys.errorEdgeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (V : Zonotope 𝕋 n) (η : ℕ) :
+def LinearSys.errorEdgeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (V : Zonotope (Vec 𝕋 n)) (η : ℕ) :
     Vec 𝕋 n :=
   let Ã := fun i : Fin (η + 1) => MatExp.intervalInputTerm (Interval.point sys.A) Δt i  -- [Ãᵢ]
   fun d => sumUp fun i : Fin (η + 1) => sumUp fun j : Fin V.h =>      -- Σᵢ Σⱼ

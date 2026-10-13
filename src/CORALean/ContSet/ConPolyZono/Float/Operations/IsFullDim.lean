@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.isFullDim (cPZ : ConPolyZono 𝕋 n) : Bool :=
+def ConPolyZono.isFullDim (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
   cPZ.isFullDimWith (Zonotope.rightInvCandidate fun i j => cPZ.GI j i)
 
 end CORALean.Float

@@ -39,8 +39,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.observeStripBasedFloat_outer (sys : NonlinearSysDT n m)
-    {U : Zonotope 𝕋 m} (steps : ℕ → sys.LinStep 𝕋 U) (o : NonlinearSysDT.ReachOptions)
-    (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W R₀ : Zonotope 𝕋 n) (y : ℕ → Vec 𝕋 p)
+    {U : Zonotope (Vec 𝕋 m)} (steps : ℕ → sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U)
+    (o : NonlinearSysDT.ReachOptions)
+    (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W R₀ : Zonotope (Vec 𝕋 n)) (y : ℕ → Vec 𝕋 p)
     (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) (x w : ℕ → Vec ℝ n)
     (u : ℕ → Vec ℝ m) (h0 : x 0 ∈ R₀.construct) (hu : ∀ k, u k ∈ construct U)
     (hw : ∀ k, w k ∈ W.construct) (hR : ∀ k, x k ∈ (steps k).R)

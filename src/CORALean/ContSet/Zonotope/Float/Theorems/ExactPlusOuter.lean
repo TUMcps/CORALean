@@ -43,7 +43,7 @@ theorem Zonotope.aux_pairSum_gap (a b : 𝕋) :
   constructor <;> linarith
 
 /-- A stored generator entry is within its gap of the exact column. -/
-theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) (i : Fin n)
+theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) (i : Fin n)
     (j : Fin (min (min Z₁.h Z₂.h) k + (Z₁.h - min (min Z₁.h Z₂.h) k) +
       (Z₂.h - min (min Z₁.h Z₂.h) k))) :
     |((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
@@ -97,7 +97,7 @@ theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) (i : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) :
+theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
     (Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).construct
       + (Z₁.E.construct + Z₂.E.construct) ⊆ (Z₁.exactPlus Z₂ k).construct := by -- --- PROOF ---
   rintro _ ⟨y, ⟨δ, hδ, rfl⟩, _, ⟨e₁, he₁, e₂, he₂, rfl⟩, rfl⟩

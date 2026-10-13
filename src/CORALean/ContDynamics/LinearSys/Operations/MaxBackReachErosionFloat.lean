@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The distance, per coordinate, the hull has to keep from the exact one's boundary: `Φn` and
 `Ψ` bracket `e^{-A t_{k+1}}` and `e^{A t_{k+1}}`, the hull `H` is the set mapped, `ζ` bounds its
 points and `DU` is the second summand's own distance after the map. -/
-def LinearSys.maxBackReachErosionFloat (Φn Ψ : Interval (Mat 𝕋 n n)) (H : ConZonotope 𝕋 n)
+def LinearSys.maxBackReachErosionFloat (Φn Ψ : Interval (Mat 𝕋 n n)) (H : ConZonotope 𝕋 (Vec 𝕋 n))
     (ζ DU : Vec 𝕋 n) : Vec 𝕋 n :=
   let W : Mat 𝕋 n n := fun i k => subUp (Φn.sup i k) (Φn.inf i k)   -- |Φ̄ - Φ|, entrywise
   let ε := ConZonotope.mtimesNominalErr Φn.inf H                    -- rounding of Φ̄ z

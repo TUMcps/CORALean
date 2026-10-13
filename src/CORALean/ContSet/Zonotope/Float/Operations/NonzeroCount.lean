@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The number of generators that are not provably zero. -/
-def Zonotope.nonzeroCount (Z : Zonotope 𝕋 n) : ℕ :=
+def Zonotope.nonzeroCount (Z : Zonotope (Vec 𝕋 n)) : ℕ :=
   ((List.finRange Z.h).filter fun j =>
     !(List.finRange n).all fun i => le (absolute (Z.G j i)) zero).length
 

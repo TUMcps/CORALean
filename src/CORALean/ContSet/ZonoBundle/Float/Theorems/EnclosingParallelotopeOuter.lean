@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.enclosingParallelotope_outer (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k)
+theorem ZonoBundle.enclosingParallelotope_outer (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k)
     (Γ : Mat 𝕋 n n) :
     zB.construct ⊆ (zB.enclosingParallelotope hk Γ).construct := by -- --- PROOF ---
   intro x hx

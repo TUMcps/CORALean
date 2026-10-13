@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A column's exact multiple is off from the stored one by at most the gap. -/
-theorem PolyZonotope.aux_jacobianGap (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (r : Fin n)
+theorem PolyZonotope.aux_jacobianGap (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (r : Fin n)
     (i : Fin pZ.h) :
     |(pZ.E k i : ℝ) * toReal (pZ.G i r) - toReal ((pZ.jacobian k).G i r)|
       ≤ toReal (pZ.jacobianGap k r i) := by -- --- PROOF ---
@@ -48,7 +48,7 @@ theorem PolyZonotope.aux_jacobianGap (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.jacobian_outer (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) :
+theorem PolyZonotope.jacobian_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) :
     (Real.PolyZonotope.jacobian (nominal pZ) k).construct ⊆
       (pZ.jacobian k).construct := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hβ, rfl⟩

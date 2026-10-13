@@ -26,13 +26,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.enlarge_outer (zB : ZonoBundle 𝕋 n) (f : Vec 𝕋 n) (i : Fin zB.k) :
+theorem ZonoBundle.enlarge_outer (zB : ZonoBundle (Vec 𝕋 n)) (f : Vec 𝕋 n) (i : Fin zB.k) :
     (fun x : Vec ℝ n =>
-        toRealVec (ScalarCentre.centreVec (𝕋 := 𝕋) (S := Zonotope 𝕋) (zB.Z i)) +
+        toRealVec (ScalarCentre.centreVec (𝕋 := 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) (zB.Z i)) +
           fun j => toReal (f j) *
-            (x j - toRealVec (ScalarCentre.centreVec (𝕋 := 𝕋) (S := Zonotope 𝕋) (zB.Z i)) j)) ''
+            (x j - toRealVec (ScalarCentre.centreVec (𝕋 := 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
+              (zB.Z i)) j)) ''
       (zB.Z i).construct ⊆ ((zB.enlarge f).Z i).construct :=
-  ContSet.enlargeScalar_outer (S := Zonotope 𝕋) (𝕋 := 𝕋) (zB.Z i) f
+  ContSet.enlargeScalar_outer (S := fun k => Zonotope (Vec 𝕋 k)) (𝕋 := 𝕋) (zB.Z i) f
 
 end CORALean.Float
 

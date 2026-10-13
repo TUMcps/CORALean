@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.isequal_sound {Z S : PolyZonotope 𝕋 n} (h : Z.isequal S = true) :
+theorem PolyZonotope.isequal_sound {Z S : PolyZonotope (Vec 𝕋 n)} (h : Z.isequal S = true) :
     Z.construct = S.construct := by -- --- PROOF ---
   unfold PolyZonotope.isequal at h
   split at h
@@ -57,15 +57,17 @@ theorem PolyZonotope.isequal_sound {Z S : PolyZonotope 𝕋 n} (h : Z.isequal S 
         simp only [Interval.nominal, e₁, e₂]
       unfold Interval.construct
       rw [this]
-    have hN : (nominal (⟨p₁, h₁, q₁, c₁, G₁, E₁, GI₁, r₁⟩ : PolyZonotope 𝕋 n)) =
-        nominal (⟨p₁, h₁, q₁, c₂, G₂, E₂, GI₂, r₂⟩ : PolyZonotope 𝕋 n) := by
+    -- the nominal sets agree field by field
+    have hN : (nominal (⟨p₁, h₁, q₁, c₁, G₁, E₁, GI₁, r₁⟩ : PolyZonotope (Vec 𝕋 n))) =
+        nominal (⟨p₁, h₁, q₁, c₂, G₂, E₂, GI₂, r₂⟩ : PolyZonotope (Vec 𝕋 n)) := by
       show (⟨p₁, h₁, q₁, toRealVec c₁, fun l i => toReal (G₁ l i), E₁,
           fun j i => toReal (GI₁ j i)⟩ : CORALean.Real.PolyZonotope (Vec ℝ n)) =
         ⟨p₁, h₁, q₁, toRealVec c₂, fun l i => toReal (G₂ l i), E₂, fun j i => toReal (GI₂ j i)⟩
       rw [hc, hG, hGI, hE']
-    change ContSet.construct (nominal (⟨p₁, h₁, q₁, c₁, G₁, E₁, GI₁, r₁⟩ : PolyZonotope 𝕋 n)) +
+    change ContSet.construct
+      (nominal (⟨p₁, h₁, q₁, c₁, G₁, E₁, GI₁, r₁⟩ : PolyZonotope (Vec 𝕋 n))) +
         r₁.construct =
-      ContSet.construct (nominal (⟨p₁, h₁, q₁, c₂, G₂, E₂, GI₂, r₂⟩ : PolyZonotope 𝕋 n)) +
+      ContSet.construct (nominal (⟨p₁, h₁, q₁, c₂, G₂, E₂, GI₂, r₂⟩ : PolyZonotope (Vec 𝕋 n))) +
         r₂.construct
     rw [hN, hr]
   · simp at h

@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `R(τ_0), …, R(τ_{k-1})` of `k` steps abstracted by `alg` from `R`, or `none` if
 one of them fails. -/
 def NonlinearSys.FloatHessModel.linReachRunFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
-    (alg : NonlinearSys.LinReachAlg) (U : Zonotope 𝕋 m) (options : LinearSys.ReachOptions 𝕋) :
-    ℕ → Zonotope 𝕋 n → Option (List (Zonotope 𝕋 n))
+    (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) :
+    ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n)))
   | 0, _ => some []
   | k + 1, R => do
     let step ← fm.linReachFloat alg U options R                    -- (R(τ), R(t + Δt))

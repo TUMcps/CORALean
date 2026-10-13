@@ -23,13 +23,13 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Zonotope.capsule (k : ℕ) (Z : Zonotope 𝕋 n) : Capsule 𝕋 n :=
+def Zonotope.capsule (k : ℕ) (Z : Zonotope (Vec 𝕋 n)) : Capsule 𝕋 n :=
   Z.interval.capsule k
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.capsule_contains (k : ℕ) (Z : Zonotope 𝕋 n) :
+theorem Zonotope.capsule_contains (k : ℕ) (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ (Z.capsule k).construct :=
   subset_trans Z.interval_contains (Z.interval.capsule_contains k)
 

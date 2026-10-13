@@ -36,7 +36,7 @@ layer's `diagonal (Pi.single j s)`. -/
 def Zonotope.unitDiag {h : ℕ} (s : 𝕋) (j : Fin h) : Mat 𝕋 h h :=
   fun p q => if p = q then (if p = j then s else zero) else zero
 
-def Zonotope.spectraShadow (Z : Zonotope 𝕋 n) : SpectraShadow 𝕋 n where
+def Zonotope.spectraShadow (Z : Zonotope (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) where
   k := Z.h + Z.h
   m := Z.h
   A₀ := blockDiag zero (fun i j => if i = j then one else zero)
@@ -68,7 +68,7 @@ theorem Zonotope.aux_toRealMat_one {h : ℕ} :
 
 /-- The stored inequality at a point of the cube is positive semidefinite: the exact layer's, read
 through the stored entries. -/
-theorem Zonotope.posSemidef_spectraShadow (Z : Zonotope 𝕋 n) (β : Fin Z.h → ℝ)
+theorem Zonotope.posSemidef_spectraShadow (Z : Zonotope (Vec 𝕋 n)) (β : Fin Z.h → ℝ)
     (hβ : ∀ j, |β j| ≤ 1) :
     (toRealMat Z.spectraShadow.A₀
         + ∑ j : Fin Z.h, β j • toRealMat (Z.spectraShadow.A j)).PosSemidef := by -- --- PROOF ---
@@ -95,7 +95,7 @@ theorem Zonotope.posSemidef_spectraShadow (Z : Zonotope 𝕋 n) (β : Fin Z.h �
   exact (Iff.of_eq (congrArg Matrix.PosSemidef e)).mpr hP
 
 
-theorem Zonotope.spectraShadow_contains (Z : Zonotope 𝕋 n) :
+theorem Zonotope.spectraShadow_contains (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.spectraShadow.construct := by -- --- PROOF ---
   -- the box is carried over, so only the nominal parts are compared
   refine mono_subset (fun x hx => ?_) subset_rfl

@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.empty (n : ℕ) : ConPolyZono 𝕋 n where
+def ConPolyZono.empty (n : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := 0
   h := 0
   q := 0

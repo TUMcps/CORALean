@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachFloat_outer (sys : LinearSys 𝕋 n)
-    {params : Reach.Params (Zonotope 𝕋 n) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rti Rtp : List (Zonotope 𝕋 n)} (h : sys.reachFloat params options = some (Rti, Rtp)) :
+    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
+    {Rti Rtp : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloat params options = some (Rti, Rtp)) :
     ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
       Rti.length = N ∧ ∀ (k : ℕ) (hk : k < Rti.length), ∀ x₀ ∈ params.R0.construct,
         ∀ s ∈ Set.Icc 0 (toReal options.timeStep),

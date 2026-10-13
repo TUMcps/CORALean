@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def outputHulls (C : Mat 𝕋 2 5) (Rs : List (Zonotope 𝕋 5)) : List (Interval (Vec 𝕋 2)) :=
+def outputHulls (C : Mat 𝕋 2 5) (Rs : List (Zonotope (Vec 𝕋 5))) : List (Interval (Vec 𝕋 2)) :=
   Rs.map fun R => (Zonotope.mtimes C R).interval
 
 end CORALean.Bench

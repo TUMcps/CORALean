@@ -19,7 +19,7 @@ and returns nothing, so it is not here.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open Matrix
 
@@ -40,7 +40,7 @@ noncomputable def IntervalChain.backprop : ∀ {n k : ℕ}, IntervalChain n k �
     let g' := rest.backprop (fun i => σ (p.1 i), fun i => σ (p.2 i)) g
     (fun i => σ' (p.1 i) * g'.1 i, fun i => σ' (p.2 i) * g'.2 i)
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -11,7 +11,8 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
 `(a + e)(z + f) = az + (af + e(z + f))`. The nominal image `az` lies in the exact
 `mtimesMatZonotope` (`Real.Zonotope.mtimesMatZonotope_outer`), whose centre and
 generators `dotDown_le`/`le_dotUp` bracket; `af` and `e(z + f)` are
-`Interval.mtimesIntervalMat_outer` at the boxes `interval_contains` supplies.
+`Interval.mtimesIntervalMat_outer` at the boxes `matInterval_contains` and
+`interval_contains` supply.
 -/
 
 -- Authors:       Tobias Ladner
@@ -41,7 +42,7 @@ theorem Zonotope.aux_mulVec_bounds (A : Mat 𝕋 m n) (v : Vec 𝕋 n) (i : Fin 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mtimesMatZonotope_outer (M : GZonotope (Mat 𝕋 m n)) (Z : Zonotope 𝕋 n) :
+theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat 𝕋 m n)) (Z : Zonotope (Vec 𝕋 n)) :
     (⋃ A ∈ M.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesMatZonotope M Z).construct := by -- --- PROOF ---
   intro y hy
@@ -56,8 +57,8 @@ theorem Zonotope.mtimesMatZonotope_outer (M : GZonotope (Mat 𝕋 m n)) (Z : Zon
   have haz : a *ᵥ z ∈ R.construct := h (Set.mem_biUnion ha ⟨z, hz, rfl⟩)
   -- the matrix zonotope's nominal part, boxed: its nominal part with a zero box
   have ha' : a ∈ ({ M with E := Interval.point fun _ _ => zero } :
-      GZonotope (Mat 𝕋 m n)).interval.construct := by
-    refine GZonotope.interval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
+      Zonotope (Mat 𝕋 m n)).matInterval.construct := by
+    refine Zonotope.matInterval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     show toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)
     rw [toReal_zero]
@@ -80,7 +81,7 @@ theorem Zonotope.mtimesMatZonotope_outer (M : GZonotope (Mat 𝕋 m n)) (Z : Zon
     intro i k
     refine Fin.addCases (fun k' => Fin.addCases (fun l => ?_) (fun l => ?_) k') (fun l => ?_) k
       <;> simp only [R, Zn, CORALean.Real.Zonotope.mtimesMatZonotope,
-        CORALean.Real.Zonotope.bilin, GZonotope.nominal, realImage_mat, Fin.append_left,
+        CORALean.Real.Zonotope.bilin, Zonotope.nominal, realImage_mat, Fin.append_left,
         Fin.append_right]
       <;> exact Zonotope.aux_mulVec_bounds _ _ i
   -- the nominal image rounded, the two error terms in the box

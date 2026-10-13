@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The sup-norm radius of `Z`'s box about the origin, rounded up. -/
-def Zonotope.errOp (Z : Zonotope 𝕋 n) : 𝕋 :=
+def Zonotope.errOp (Z : Zonotope (Vec 𝕋 n)) : 𝕋 :=
   maximumOver fun j => Z.absBoundError j
 
 end CORALean.Float

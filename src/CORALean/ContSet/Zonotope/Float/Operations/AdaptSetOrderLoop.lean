@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Lines 3-7: decrement the order while the reduction one order down still
 clears the share, and keep the last order that did. -/
-def Zonotope.adaptSetOrderLoop (Z : Zonotope 𝕋 n) (εSi : ℚ) : ℕ → ℕ → ℕ
+def Zonotope.adaptSetOrderLoop (Z : Zonotope (Vec 𝕋 n)) (εSi : ℚ) : ℕ → ℕ → ℕ
   | Φset, 0 => Φset
   | 0, _ + 1 => 0
   | Φset + 1, k + 1 =>

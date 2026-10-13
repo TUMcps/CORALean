@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n N : ℕ}
 
 /-- `enclosePoints(points, 'stursberg')` for a given basis `U`. -/
 def Zonotope.enclosePointsStursberg [NeZero N] (pts : Fin N → Vec 𝕋 n) (U : Mat 𝕋 n n) :
-    Zonotope 𝕋 n :=
+    Zonotope (Vec 𝕋 n) :=
   let count : 𝕋 := sumUp fun _ : Fin N => one
   let mean : Vec 𝕋 n := fun i => divUp (sumUp fun j => pts j i) count
   -- the centred points, each between its two directed differences

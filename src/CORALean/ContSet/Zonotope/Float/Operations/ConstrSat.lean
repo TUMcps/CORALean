@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.constrSat (Z : Zonotope 𝕋 n) (C : Mat 𝕋 m n) (d : Vec 𝕋 m) : Bool :=
+def Zonotope.constrSat (Z : Zonotope (Vec 𝕋 n)) (C : Mat 𝕋 m n) (d : Vec 𝕋 m) : Bool :=
   let I := (Zonotope.mtimes C Z).interval
   (List.finRange m).all fun i => ltStrict (I.supremum i) (d i)
 

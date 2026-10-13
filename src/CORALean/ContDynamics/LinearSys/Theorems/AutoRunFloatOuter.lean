@@ -35,9 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Up to `K` iterations from a state holding the invariant reach one holding it, no earlier,
 and if time advanced, every run over any time it covers is in one of the returned windows. -/
-theorem LinearSys.autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope 𝕋 n} {tend : 𝕋}
+theorem LinearSys.autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {tend : 𝕋}
     {εmax ζ : ℚ} {ηmax fuel : ℕ} :
-    ∀ {K : ℕ} {s s' : LinearSys.AutoStateFloat 𝕋 n} {Ws : List (ℚ × ℚ × Zonotope 𝕋 n)},
+    ∀ {K : ℕ} {s s' : LinearSys.AutoStateFloat 𝕋 n} {Ws : List (ℚ × ℚ × Zonotope (Vec 𝕋 n))},
       sys.autoRunFloat X₀ V tend εmax ζ ηmax fuel K s = some (s', Ws) →
       sys.AutoInvariantFloat X₀ V s →
       sys.AutoInvariantFloat X₀ V s' ∧ s.t ≤ s'.t ∧

@@ -42,14 +42,14 @@ def pointA : Interval (Mat D 2 2) :=
   ⟨!![dy (-1) 0, dy 1 0; dy 0 0, dy (-2) 0], !![dy (-1) 0, dy 1 0; dy 0 0, dy (-2) 0]⟩
 
 /-- `[0.875, 1.125] × [-0.125, 0.125]`. -/
-def paramR₀ : Zonotope D 2 where
+def paramR₀ : Zonotope (Vec D 2) where
   h := 2
   c := ![dy 1 0, dy 0 0]
   G := !![dy 1 (-3), dy 0 0; dy 0 0, dy 1 (-3)]
   E := zeroBox 2
 
 /-- `[-1/64, 1/64]²`. -/
-def paramU : Zonotope D 2 where
+def paramU : Zonotope (Vec D 2) where
   h := 2
   c := ![dy 0 0, dy 0 0]
   G := !![dy 1 (-6), dy 0 0; dy 0 0, dy 1 (-6)]
@@ -59,12 +59,12 @@ def paramU : Zonotope D 2 where
 def paramΔt : D := dy 1 (-3)
 
 /-- The step's homogeneous set and input solution at a matrix box. -/
-def paramStep (B : Interval (Mat D 2 2)) : Zonotope D 2 × Zonotope D 2 :=
+def paramStep (B : Interval (Mat D 2 2)) : Zonotope (Vec D 2) × Zonotope (Vec D 2) :=
   let sys : LinParamSys (fun m n => Interval (Mat D m n)) 2 := ⟨B⟩
   (sys.timeIntervalStepFloat paramΔt 4 paramR₀, sys.inputSolutionFloat paramΔt 4 paramU)
 
 /-- One row: the set as a box, and its widths. -/
-def paramRow (name : String) (Z : Zonotope D 2) : String :=
+def paramRow (name : String) (Z : Zonotope (Vec D 2)) : String :=
   pad 10 name ++ "  " ++ showBox Z.interval ++ "  " ++ pad 14 (showWidth Z.interval 0)
     ++ pad 15 (showWidth Z.interval 1)
 

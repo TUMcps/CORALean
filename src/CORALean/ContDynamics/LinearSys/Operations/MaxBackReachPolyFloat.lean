@@ -46,8 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 4-5: `X ⊖ F box(X_end) ⊖ B_μ`, inside the exact difference. -/
-def LinearSys.maxBackReachPolyFloat (p : ℕ) (X : HPolytope 𝕋 n) (FB : Zonotope 𝕋 n) (μ : 𝕋) :
-    HPolytope 𝕋 n :=
+def LinearSys.maxBackReachPolyFloat (p : ℕ) (X : HPolytope 𝕋 (Vec 𝕋 n))
+    (FB : Zonotope (Vec 𝕋 n)) (μ : 𝕋) :
+    HPolytope 𝕋 (Vec 𝕋 n) :=
   let ball : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, maximum zero μ⟩   -- B_μ
   let XF := X.minkDiffOf FB.construct fun i =>                      -- ⊖ F box(X_end)
     let u := FB.conZonotope.boundDot (c := rowLin X.A i) (X.A i) fun _ => rfl

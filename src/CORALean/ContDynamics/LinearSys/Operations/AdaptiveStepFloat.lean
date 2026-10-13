@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Lines 5-10: one iteration of [1, Alg. 1] from `X₀` under inputs in `V`, horizon
 `tf` after `t₀`: the step's report and the next state, or `none`. -/
-def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋 n) (t₀ tf : ℚ)
+def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (t₀ tf : ℚ)
     (options : LinearSys.AdaptiveOptions 𝕋) (s : LinearSys.AdaptiveState 𝕋 n) :
     Option (LinearSys.AdaptiveStepInfo 𝕋 n × LinearSys.AdaptiveState 𝕋 n) := do
   let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored centre
@@ -55,7 +55,8 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋
   let ηe := max options.ηmax 2                                      -- [e^{At_i}]'s order
   let sq ← sys.squaringsFloat s.Δt s.tLo s.tHi ηe                   -- t_i / 2^sq within Δt_{i-1}
   let eAt := sys.expSquaringFloat s.tLo s.tHi ηe sq                 -- [e^{A t_i}]
-  let eA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAt    -- [e^{A t_i}] ·
+  let eA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{A t_i}] ·
+    (S := fun k => Zonotope (Vec 𝕋 k)) eAt
   let (Δt, η, εH, εP) ← sys.adaptTimeStepFloat eAt X₀ Ũ options.εHmax    -- 5. Alg. 2
     options.εPmax s.εP tf s.t s.Δt options.μ options.ηmax options.fuel
   let nrm := MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point sys.A))  -- ≥ ‖Δt A‖

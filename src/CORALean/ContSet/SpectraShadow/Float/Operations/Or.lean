@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.or (SpS S : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 n :=
+def SpectraShadow.or (SpS S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   SpS.convHull_ S
 
 end CORALean.Float

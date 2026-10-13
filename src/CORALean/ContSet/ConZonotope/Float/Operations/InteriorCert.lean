@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.interiorCert (cZ : ConZonotope 𝕋 n) (H : Mat 𝕋 cZ.h n) (β₀ : Vec 𝕋 cZ.h)
+def ConZonotope.interiorCert (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (H : Mat 𝕋 cZ.h n) (β₀ : Vec 𝕋 cZ.h)
     (δ B : 𝕋) : Bool :=
   le zero δ
     && (List.finRange cZ.h).all (fun j => le (addUp (absolute (β₀ j)) δ) one)

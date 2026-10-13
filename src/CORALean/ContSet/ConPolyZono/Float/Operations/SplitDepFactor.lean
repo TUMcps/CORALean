@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.splitDepFactor (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) :
-    ConPolyZono 𝕋 n × ConPolyZono 𝕋 n :=
+def ConPolyZono.splitDepFactor (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) :
+    ConPolyZono 𝕋 (Vec 𝕋 n) × ConPolyZono 𝕋 (Vec 𝕋 n) :=
   (cPZ.getSubset k (neg (half one)) (half one), cPZ.getSubset k (half one) (half one))
 
 end CORALean.Float

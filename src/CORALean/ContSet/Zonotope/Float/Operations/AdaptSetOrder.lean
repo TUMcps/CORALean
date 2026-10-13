@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- [1, Alg. 3]: the order to reduce `PR([0,t_{i+1}])` to, and the `ε_S` that
 reduction accumulates. -/
-def Zonotope.adaptSetOrder (Z : Zonotope 𝕋 n) (εSmax εSacc tf ti : ℚ) (Δt : 𝕋) : ℕ × ℚ :=
+def Zonotope.adaptSetOrder (Z : Zonotope (Vec 𝕋 n)) (εSmax εSacc tf ti : ℚ) (Δt : 𝕋) : ℕ × ℚ :=
   let εSi := (εSmax - εSacc) / (tf - ti) * ToRat.toRat Δt   -- 1. the admissible share, eq. (13)
   let Φset := Z.h                                          -- 2. param(PR), reducing nothing
   let Φset' := Z.adaptSetOrderLoop εSi Φset Φset           -- 3.-7. decrement while admissible

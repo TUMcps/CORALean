@@ -27,13 +27,13 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The dependent generators, then the independent ones, side by side. -/
-def PolyZonotope.zonotope (pZ : PolyZonotope 𝕋 n) : Zonotope 𝕋 n where
+def PolyZonotope.zonotope (pZ : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := pZ.h + pZ.q
   c := pZ.c
   G := Fin.append pZ.G pZ.GI
   E := pZ.err
 
-def ConPolyZono.zonotope (cPZ : ConPolyZono 𝕋 n) : Zonotope 𝕋 n :=
+def ConPolyZono.zonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   cPZ.polyZonotope.zonotope
 
 variable [SoundFloatArithmetic 𝕋]
@@ -41,7 +41,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.zonotope.construct := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
@@ -57,7 +57,7 @@ theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope 𝕋 n) :
     simp only [Fin.append_left, Fin.append_right]
     ring
 
-theorem ConPolyZono.zonotope_contains (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.zonotope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.construct ⊆ cPZ.zonotope.construct :=
   subset_trans cPZ.polyZonotope_contains cPZ.polyZonotope.zonotope_contains
 

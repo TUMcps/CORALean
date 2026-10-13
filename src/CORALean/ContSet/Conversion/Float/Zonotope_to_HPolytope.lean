@@ -32,7 +32,7 @@ open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 
-def Zonotope.nominalBoundDot (Z : Zonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
+def Zonotope.nominalBoundDot (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 (nominalSet Z) c :=
   FloatBound.ofSupportBound ((InflatedContSet.nominal Z).supportBound c)
@@ -69,22 +69,22 @@ def Zonotope.nominalBoundDot (Z : Zonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] �
       show c (InflatedContSet.nominal Z).c + ∑ j, |c ((InflatedContSet.nominal Z).G j)| ≤ _
       linarith)
 
-def Zonotope.boundDot (Z : Zonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
+def Zonotope.boundDot (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) : FloatBound 𝕋 Z.construct c :=
   InflatedContSet.boundOfParts (Z.nominalBoundDot a hc) (Z.E.boundDot a hc)
 
-def Zonotope.hPolytope (Z : Zonotope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 n :=
+def Zonotope.hPolytope (Z : Zonotope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 (Vec 𝕋 n) :=
   HPolytope.ofBounds Aq fun i => Z.boundDot (Aq i) fun _ => rfl
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.boundDot_le (Z : Zonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
+theorem Zonotope.boundDot_le (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     ∀ x ∈ Z.construct, c x ≤ toReal (Z.boundDot a hc).val :=
   (Z.boundDot a hc).le
 
-theorem Zonotope.hPolytope_contains (Z : Zonotope 𝕋 n) (Aq : Mat 𝕋 q n) :
+theorem Zonotope.hPolytope_contains (Z : Zonotope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) :
     Z.construct ⊆ (Z.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 

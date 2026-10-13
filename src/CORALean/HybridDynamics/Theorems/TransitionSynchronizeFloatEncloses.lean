@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Transition.synchronizeFloat_encloses (compIdx : Fin q → Fin k)
-    (t : ∀ i : Fin q, Transition (HPolytope 𝕋) (L (compIdx i)) 𝕋 n)
+    (t : ∀ i : Fin q, Transition (fun k => HPolytope 𝕋 (Vec 𝕋 k)) (L (compIdx i)) 𝕋 n)
     (idStates : Finset (Fin n)) (locID : ∀ c, L c) :
     let T := Transition.synchronizeFloat compIdx t idStates locID
     T.guard.construct = ⋂ i, (t i).guard.construct ∧

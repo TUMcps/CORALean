@@ -36,9 +36,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The window `τ_k = [k Δt, (k + 1) Δt]` from the first one `Rτ₀`, `U = ũ ⊕ Ũ`, at
 every member of `sys.A`. -/
 def LinParamSys.reachStepkFloatInputSplit
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) (U : Zonotope 𝕋 n) (ρ : ℕ)
-    (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope 𝕋 n) (k : ℕ) : Option (Zonotope 𝕋 n) := do
-  let uc := ScalarCentre.centreVec (S := Zonotope 𝕋) U           -- ũ, the constant
+    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) (U : Zonotope (Vec 𝕋 n)) (ρ : ℕ)
+    (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Option (Zonotope (Vec 𝕋 n)) := do
+  let uc := ScalarCentre.centreVec (S := fun k => Zonotope (Vec 𝕋 k)) U           -- ũ, the constant
   let U₀ := Recentre.recentre U                                    -- Ũ = U - ũ, holding 0
   let Hτk ← sys.reachStepkFloat Δt η Rτ₀ k                         -- [e^{[A]t_k}](H^R ⊕ P̃^R)(τ_0)
   let Pctk := sys.constPropagateFloat Δt η ρ uc k                  -- P̃(t_k)

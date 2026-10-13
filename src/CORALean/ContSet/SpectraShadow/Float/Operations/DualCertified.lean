@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.dualCertified (S : SpectraShadow 𝕋 n) (a : Vec 𝕋 n) (Y : Mat 𝕋 S.k S.k) :
+def SpectraShadow.dualCertified (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (Y : Mat 𝕋 S.k S.k) :
     Bool :=
   -- `Y` symmetric and diagonally dominant, entry by entry
   let symmetric : Bool := (List.finRange S.k).all fun i => (List.finRange S.k).all fun j =>

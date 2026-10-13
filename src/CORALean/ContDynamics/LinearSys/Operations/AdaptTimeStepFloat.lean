@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- [1, Alg. 2]: the step size, the truncation order, its `ε_H` and the
 accumulated `ε_P` for step `i`, or `none` where `fuel` shrinkings did not suffice. -/
 def LinearSys.adaptTimeStepFloat (sys : LinearSys 𝕋 n) (eAt : Interval (Mat 𝕋 n n))
-    (X₀ U : Zonotope 𝕋 n) (εHmax εPmax εPacc tf ti : ℚ) (Δtprev μ : 𝕋) (ηmax fuel : ℕ) :
+    (X₀ U : Zonotope (Vec 𝕋 n)) (εHmax εPmax εPacc tf ti : ℚ) (Δtprev μ : 𝕋) (ηmax fuel : ℕ) :
     Option (𝕋 × ℕ × ℚ × ℚ) :=
   let Δt := divUp Δtprev μ                                          -- 1. enlarge the previous step
   let maxTimeStep : 𝕋 := ratUp (tf - ti)                            -- t_f - t_i, rounded up

@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.centre (cPZ : ConPolyZono 𝕋 n) : Vec 𝕋 n := cPZ.c
+def ConPolyZono.centre (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 n := cPZ.c
 
 end CORALean.Float
 

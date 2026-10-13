@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.polytopeOuter (S : SpectraShadow 𝕋 n) (dirs : Fin N → Vec 𝕋 n)
-    (Y : (i : Fin N) → Mat 𝕋 S.k S.k) : HPolytope 𝕋 n :=
+def SpectraShadow.polytopeOuter (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (dirs : Fin N → Vec 𝕋 n)
+    (Y : (i : Fin N) → Mat 𝕋 S.k S.k) : HPolytope 𝕋 (Vec 𝕋 n) :=
   let finite : List (Fin N) := (List.finRange N).filter fun i => S.dualCertified (dirs i) (Y i)
   let P_A : Mat 𝕋 finite.length n := fun r j => dirs (finite.get r) j
   let P_b : Vec 𝕋 finite.length := fun r =>

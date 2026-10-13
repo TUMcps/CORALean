@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.rowScale (p : ℕ) (P : HPolytope 𝕋 n) (i : Fin P.m) : 𝕋 :=
+def HPolytope.rowScale (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.m) : 𝕋 :=
   let nrm := normUp p (P.A i)                                -- ‖Aᵢ‖₂, rounded up
   if ltStrict zero nrm then divUp one nrm else one
 

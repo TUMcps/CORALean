@@ -33,9 +33,9 @@ variable {n q k : ℕ} {L : Fin k → Type}
 
 /-- The synchronized transition at the real scalar, the steps in CORA's order. -/
 noncomputable def Transition.synchronize (compIdx : Fin q → Fin k)
-    (t : ∀ i : Fin q, Transition (HPolytope ℝ) (L (compIdx i)) ℝ n)
+    (t : ∀ i : Fin q, Transition (fun k => HPolytope ℝ (Vec ℝ k)) (L (compIdx i)) ℝ n)
     (idStates : Finset (Fin n)) (locID : ∀ c, L c) :
-    Transition (HPolytope ℝ) (∀ c, L c) ℝ n :=
+    Transition (fun k => HPolytope ℝ (Vec ℝ k)) (∀ c, L c) ℝ n :=
   -- `guard = fullspace`, then `and_(guard, transList(i).guard, 'exact')` for each `i`
   let guard := Transition.synchronizeGuard (fun i => (t i).guard)
   -- `reset_sync = synchronize(resets, idStates)`

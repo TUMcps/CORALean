@@ -32,28 +32,33 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConPolyZono.aux_realG_left (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂)
+theorem ConPolyZono.aux_realG_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
+    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
     (l : Fin cPZ₁.h) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).G
       (Fin.castAdd cPZ₂.h l) = ((InflatedContSet.nominal cPZ₁).G l, 0) := by
   dsimp only [Real.ConPolyZono.cartProd]
   exact Fin.append_left (m := cPZ₁.h) (n := cPZ₂.h) _ _ l
 
-theorem ConPolyZono.aux_realG_right (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂)
+theorem ConPolyZono.aux_realG_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
+    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
     (l : Fin cPZ₂.h) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).G
       (Fin.natAdd cPZ₁.h l) = (0, (InflatedContSet.nominal cPZ₂).G l) := by
   dsimp only [Real.ConPolyZono.cartProd]
   exact Fin.append_right (m := cPZ₁.h) (n := cPZ₂.h) _ _ l
 
-theorem ConPolyZono.aux_realGI_left (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂)
+-- the same for the independent generators
+theorem ConPolyZono.aux_realGI_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
+    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
     (l : Fin cPZ₁.q) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).GI
       (Fin.castAdd cPZ₂.q l) = ((InflatedContSet.nominal cPZ₁).GI l, 0) := by
   dsimp only [Real.ConPolyZono.cartProd]
   exact Fin.append_left (m := cPZ₁.q) (n := cPZ₂.q) _ _ l
 
-theorem ConPolyZono.aux_realGI_right (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂)
+theorem ConPolyZono.aux_realGI_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
+    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
     (l : Fin cPZ₂.q) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).GI
       (Fin.natAdd cPZ₁.q l) = (0, (InflatedContSet.nominal cPZ₂).GI l) := by
@@ -62,7 +67,8 @@ theorem ConPolyZono.aux_realGI_right (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : 
 
 /-- The nominal constrained polynomial zonotope of the product is the exact product, mapped
 through the append. -/
-theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂) :
+theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
+    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂)) :
     InflatedContSet.nominal (cPZ₁.cartProd cPZ₂) =
       Real.ConPolyZono.map (appendLinear n₁ n₂)
         (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁)
@@ -103,7 +109,8 @@ theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono 𝕋 n₁) (cPZ₂ : ConPolyZono 𝕋 n₂) :
+theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
+    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂)) :
     (cPZ₁.cartProd cPZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (cPZ₁.construct ×ˢ cPZ₂.construct) := by -- --- PROOF ---
   -- the nominal part: the exact product, mapped through the append

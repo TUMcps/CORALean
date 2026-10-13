@@ -44,7 +44,7 @@ def aux_downUp (exactIn : ExactDyadic → 𝕋) (d : String) : Except String (�
 
 /-- The config's `X0`, rounded outward as the module docstring says. -/
 def roundX0In (cfg : HeadlineConfig) (exactIn : ExactDyadic → 𝕋) :
-    Except String (Zonotope 𝕋 2) := do
+    Except String (Zonotope (Vec 𝕋 2)) := do
   if cfg.x0Center.size ≠ 2 then throw "config `x0.center` must have exactly 2 entries"
   for row in cfg.x0Generators do
     if row.size ≠ 2 then throw "config `x0.generators` rows must each have exactly 2 entries"

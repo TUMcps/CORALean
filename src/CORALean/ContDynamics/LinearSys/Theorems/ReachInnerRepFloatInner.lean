@@ -59,18 +59,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 `t = kΔt` from the nominal zonotopes of `R₀` and `U`, at `Δt > 0` and an admissible order,
 given both error boxes bracket `0`. -/
 theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋} (hΔt : 0 < toReal Δt)
-    {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) {R₀ U : Zonotope 𝕋 n}
+    {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)}
     (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct) (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ)
-    (M : Fin ((sys.discretizeEnclosureFloat Δt η).reach (S := Zonotope 𝕋)
+    (M : Fin ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h →
       Fin (sys.reachErrorFloat Δt η o ho R₀ U k).h → 𝕋) (ρ : 𝕋)
-    (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := Zonotope 𝕋)
-        ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h n) {D : Zonotope 𝕋 n}
+    (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+        ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h n) {D : Zonotope (Vec 𝕋 n)}
     (hD : sys.reachInnerRepFloat Δt η o ho R₀ U k M ρ H = some D) :
     D.construct ⊆ sys.reachSet (S := fun k => Real.Zonotope (Vec ℝ k))
       (Set.Icc 0 ((k : ℝ) * toReal Δt)) (nominal R₀) (nominal U)
       ((k : ℝ) * toReal Δt) := by -- --- PROOF ---
-  set R := (sys.discretizeEnclosureFloat Δt η).reach (S := Zonotope 𝕋)
+  set R := (sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
     ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩
   set B := sys.reachErrorFloat Δt η o ho R₀ U k
   set Q := Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt))

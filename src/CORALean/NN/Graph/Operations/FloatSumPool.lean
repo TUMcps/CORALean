@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {N F : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Each feature summed across the nodes of the stacked node features. -/
-def GNN.sumPool (pZ : PolyZonotope 𝕋 (N * F)) : PolyZonotope 𝕋 F :=
+def GNN.sumPool (pZ : PolyZonotope (Vec 𝕋 (N * F))) : PolyZonotope (Vec 𝕋 F) :=
   PolyZonotope.mtimes (GNN.sumPoolMat N F) pZ
 
 end CORALean.Float

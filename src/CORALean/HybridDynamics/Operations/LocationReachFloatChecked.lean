@@ -28,9 +28,9 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `reachFloat`, or `none` if a float of its result is a NaN. -/
-def Location.reachFloatChecked (ℓ : Location (Zonotope 𝕋) G L 𝕋 n) (tFinal : ℚ)
-    (options : LinearSys.ReachOptions 𝕋) (X₀ : Zonotope 𝕋 n) :
-    Option (List (Zonotope 𝕋 n)) :=
+def Location.reachFloatChecked (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n) (tFinal : ℚ)
+    (options : LinearSys.ReachOptions 𝕋) (X₀ : Zonotope (Vec 𝕋 n)) :
+    Option (List (Zonotope (Vec 𝕋 n))) :=
   checkNoNaN (𝕋 := 𝕋) (ℓ.reachFloat tFinal options X₀)
 
 end CORALean

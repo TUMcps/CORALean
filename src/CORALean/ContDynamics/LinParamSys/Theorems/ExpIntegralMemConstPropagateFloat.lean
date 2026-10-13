@@ -45,7 +45,8 @@ theorem LinParamSys.expIntegral_mem_constPropagateFloat
     have hz : Real.MatExp.expIntegral A (((0 : ℕ) : ℝ) * toReal Δt) = 0 := by
       simp [Real.MatExp.expIntegral]
     rw [hz, Matrix.zero_mulVec]
-    have h0 := OfScalarPoint.mem_ofVec (S := Zonotope 𝕋) (fun _ : Fin n => (zero : 𝕋))
+    have h0 := OfScalarPoint.mem_ofVec (S := fun k => Zonotope (Vec 𝕋 k))
+      (fun _ : Fin n => (zero : 𝕋))
     rwa [show Scalar.toRealVec (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
   | succ k ih =>
@@ -57,10 +58,11 @@ theorem LinParamSys.expIntegral_mem_constPropagateFloat
     rw [htk, hrec]
     -- the earlier part, carried across one window by `[e^{[A]Δt}]`
     have h1 : exp (toReal Δt • A) *ᵥ (Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt)
-        *ᵥ Scalar.toRealVec uc) ∈ construct (Mtimes.mtimes
+        *ᵥ Scalar.toRealVec uc) ∈ construct (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
           (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (sys.expIntervalFloat Δt Δt η)
           (sys.constPropagateFloat Δt η ρ uc k)) :=
-      Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ _
+      Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k)) _ _
         (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη hA (le_refl _) (le_refl _))
           (Set.mem_image_of_mem _ ih))
     -- the new window's part

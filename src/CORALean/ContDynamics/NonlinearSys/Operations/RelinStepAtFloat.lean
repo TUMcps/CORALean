@@ -51,8 +51,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 expansion point `xs` the caller names, or `none` if the region check or the linear step
 fails. -/
 def NonlinearSys.FloatModel.relinStepAtFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
-    (U : Zonotope 𝕋 m) (options : LinearSys.ReachOptions 𝕋) (R : Zonotope 𝕋 n)
-    (xs : Vec 𝕋 n) : Option (Zonotope 𝕋 n × Zonotope 𝕋 n) := do
+    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) (R : Zonotope (Vec 𝕋 n))
+    (xs : Vec 𝕋 n) : Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
   let Δt := options.timeStep                                        -- the paper's symbols
   let Ub := U.interval                                              -- U's box
   let Ω ← fm.regionFloat Δt R.interval Ub                           -- where the step stays
@@ -63,7 +63,7 @@ def NonlinearSys.FloatModel.relinStepAtFloat (fm : NonlinearSys.FloatModel 𝕋 
     ⟨fun i => minimum (Ub.inf i) (us i), fun i => maximum (Ub.sup i) (us i)⟩
   let AB := fm.linearizeFloat xs us                                 -- A, B
   let V := fm.linInputFloat AB.1 AB.2 xs X U U'                     -- f(z✱) - A x✱ ⊕ B U ⊕ L
-  let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope 𝕋 n)
+  let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))
   let lin : LinearSys 𝕋 n := ⟨AB.1⟩                                 -- δ̇ = A δ + ũ, ũ ∈ V
   let S ← lin.reachFloatInput (identityMat 𝕋 n)                     -- one step from R - x✱
     ⟨R ⊞ pt fun i => neg (xs i), V, 0, ToRat.toRat Δt⟩ options

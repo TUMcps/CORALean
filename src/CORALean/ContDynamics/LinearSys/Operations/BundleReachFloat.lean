@@ -39,15 +39,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 1] in floats: `R_0, ..., R_N` from `R^h_0` and `R^i_0`, propagated by `[e^{Ar}]`. -/
-def LinearSys.bundleReachFloat (sys : LinearSys 𝕋 n) (Rh₀ : ZonoBundle 𝕋 n)
-    (Ri₀ : Zonotope 𝕋 n) (r : 𝕋) (η N : ℕ) : List (ZonoBundle 𝕋 n) :=
+def LinearSys.bundleReachFloat (sys : LinearSys 𝕋 n) (Rh₀ : ZonoBundle (Vec 𝕋 n))
+    (Ri₀ : Zonotope (Vec 𝕋 n)) (r : 𝕋) (η N : ℕ) : List (ZonoBundle (Vec 𝕋 n)) :=
   let E := sys.expIntervalFloat r r η
   let P₀ := Ri₀.interval.zonotope
   let R₀ := Plus.plus Rh₀ P₀.zonoBundle
   ((List.range N).foldl
-    (fun (S : (ZonoBundle 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n) × List (ZonoBundle 𝕋 n)) _ =>
-      let Rhₖ := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) E S.1.1
-      let Riₖ := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) E S.1.2.1
+    (fun (S : (ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) × List
+      (ZonoBundle (Vec 𝕋 n))) _ =>
+      let Rhₖ := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => ZonoBundle (Vec 𝕋 k)) E S.1.1
+      let Riₖ := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k)) E S.1.2.1
       let Pₖ := Plus.plus S.1.2.2 Riₖ.interval.zonotope
       let Rₖ := Plus.plus Rhₖ Pₖ.zonoBundle
       ((Rhₖ, Riₖ, Pₖ), S.2 ++ [Rₖ]))

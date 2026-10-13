@@ -33,9 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 6-13: the state after the first `k` iterations. -/
-def LinearSys.minBackReachRunFloat (sys : LinearSys 𝕋 n) (CZ : ConZonotope 𝕋 n)
-    (W₀ U₀ : Zonotope 𝕋 n) (Zw : 𝕋 → Zonotope 𝕋 n) (t₀ Δt : 𝕋) (η ν : ℕ) :
-    ℕ → LinearSys.MinBackReachStateOf 𝕋 (Zonotope 𝕋 n) (ConZonotope 𝕋 n)
+def LinearSys.minBackReachRunFloat (sys : LinearSys 𝕋 n) (CZ : ConZonotope 𝕋 (Vec 𝕋 n))
+    (W₀ U₀ : Zonotope (Vec 𝕋 n)) (Zw : 𝕋 → Zonotope (Vec 𝕋 n)) (t₀ Δt : 𝕋) (η ν : ℕ) :
+    ℕ → LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n))
   | 0 => sys.minBackReachInitFloat W₀ U₀ t₀ η
   | k + 1 => sys.minBackReachStepFloat CZ W₀ U₀ Zw Δt η ν
       (sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k)

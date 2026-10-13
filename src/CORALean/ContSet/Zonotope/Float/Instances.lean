@@ -53,25 +53,25 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Not the nominal zonotope's own convexity read across: the set is that one
 plus the error box, and `Convex.add` is what carries the property over the sum. -/
-instance {n : ℕ} : ConvexSet (Zonotope 𝕋 n) (Vec ℝ n) := ⟨Zonotope.convex_construct⟩
+instance {n : ℕ} : ConvexSet (Zonotope (Vec 𝕋 n)) (Vec ℝ n) := ⟨Zonotope.convex_construct⟩
 
 /-- Compactness, not the closed-and-bounded pair, for the exact layer's reason;
 it survives the box because a sum of two compact sets is compact. -/
-instance {n : ℕ} : CompactSet (Zonotope 𝕋 n) (Vec ℝ n) := ⟨Zonotope.isCompact_construct⟩
+instance {n : ℕ} : CompactSet (Zonotope (Vec 𝕋 n)) (Vec ℝ n) := ⟨Zonotope.isCompact_construct⟩
 
-instance {n : ℕ} : Plus (Zonotope 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Plus (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
   plus Z₁ Z₂ := (Z₁.plus Z₂).materialise
   plus_outer Z₁ Z₂ := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.plus_outer Z₁ Z₂
 
-instance {n : ℕ} : LinComb (Zonotope 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : LinComb (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
   linComb Z₁ Z₂ := (Z₁.linComb Z₂).materialise
   linComb_outer Z₁ Z₂ := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.linComb_outer Z₁ Z₂
 
-instance {n : ℕ} : Reduce (Zonotope 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Reduce (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
   reduce Z o := (Z.reduce o).materialise
   reduce_outer Z o := by
     rw [Zonotope.materialise_eq]
@@ -79,14 +79,14 @@ instance {n : ℕ} : Reduce (Zonotope 𝕋 n) (Vec ℝ n) where
 
 /-- `centre` is the stored centre read as reals: a field projection, and
 exactly the point `recentre` takes out, so nothing rounds. -/
-instance {n : ℕ} : Recentre (Zonotope 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Recentre (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
   centre Z := toRealVec Z.c
   recentre := Zonotope.recentre
   zero_mem_recentre := Zonotope.zero_mem_recentre
   sub_centre_mem_recentre := Zonotope.sub_centre_mem_recentre
 
 /-- The point zonotope: no generators and the origin error box, exactly the stored point. -/
-instance : OfScalarPoint 𝕋 (Zonotope 𝕋) where
+instance : OfScalarPoint 𝕋 (fun k => Zonotope (Vec 𝕋 k)) where
   ofVec v := Zonotope.point v
   mem_ofVec v := by
     have h := Zonotope.construct_point v
@@ -95,18 +95,18 @@ instance : OfScalarPoint 𝕋 (Zonotope 𝕋) where
     exact Set.mem_singleton _
 
 /-- The stored centre. -/
-instance : ScalarCentre 𝕋 (Zonotope 𝕋) where
+instance : ScalarCentre 𝕋 (fun k => Zonotope (Vec 𝕋 k)) where
   centreVec Z := Z.c
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/
-instance : Reindex (Zonotope 𝕋) where
+instance : Reindex (fun k => Zonotope (Vec 𝕋 k)) where
   reindex e Z := (Zonotope.reindex e Z).materialise
   reindex_exact e Z := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.reindex_exact e Z
 
-instance : Mtimes (Mat 𝕋) (Zonotope 𝕋) where
+instance : Mtimes (Mat 𝕋) (fun k => Zonotope (Vec 𝕋 k)) where
   mtimes M Z := (Zonotope.mtimes M Z).materialise
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, Zonotope.materialise_eq]
@@ -115,22 +115,22 @@ instance : Mtimes (Mat 𝕋) (Zonotope 𝕋) where
 /-- The same operation at a float interval matrix, which the float
 `expIntervalEnclosure` chain builds towards, exactly as `Real`'s `Mtimes ℐ 𝒵`
 does at the exact layer. -/
-instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (Zonotope 𝕋) where
+instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun k => Zonotope (Vec 𝕋 k)) where
   mtimes IM Z := (Zonotope.mtimesIntervalMat IM Z).materialise
   mtimes_outer IM Z := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.mtimesIntervalMat_outer IM Z
 
 /-- The same operation at a float matrix zonotope, what a `LinParamSys` or `LinParamSysDT`
-over `GZonotope (Mat 𝕋 m n)` multiplies a reachable set by, as `Real`'s `Mtimes 𝕄𝒵 𝒵` does. -/
-instance : Mtimes (fun m n => GZonotope (Mat 𝕋 m n)) (Zonotope 𝕋) where
+over `Zonotope (Mat 𝕋 m n)` multiplies a reachable set by, as `Real`'s `Mtimes 𝕄𝒵 𝒵` does. -/
+instance : Mtimes (fun m n => Zonotope (Mat 𝕋 m n)) (fun k => Zonotope (Vec 𝕋 k)) where
   mtimes M Z := (Zonotope.mtimesMatZonotope M Z).materialise
   mtimes_outer M Z := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.mtimesMatZonotope_outer M Z
 
 /-- Centre, generators and error box, for `ifNoNaN`. -/
-instance {n : ℕ} : Floats 𝕋 (Zonotope 𝕋 n) :=
+instance {n : ℕ} : Floats 𝕋 (Zonotope (Vec 𝕋 n)) :=
   ⟨fun Z => Floats.floats Z.c ++ Floats.floats Z.G ++ Floats.floats Z.E⟩
 
 end CORALean.Float

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.linComb (Z₁ Z₂ : Zonotope 𝕋 n) : Zonotope 𝕋 n where
+def Zonotope.linComb (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := Z₁.h + Z₂.h + 1
   c := Zonotope.midpoint Z₁.c Z₂.c
   G := fun j i => Zonotope.linCombG addDown subDown Z₁ Z₂ i j

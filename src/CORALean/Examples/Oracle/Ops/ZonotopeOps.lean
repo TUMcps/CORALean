@@ -45,14 +45,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 def handleMtimes (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
   let ⟨_, M⟩ ← parseMatColsFixed dops.readExact dz.n (← field req "M")
-  pure [("Z", printZonotope dops.showExact (Mtimes.mtimes M dz.Z))]
+  pure [("Z", printZonotope dops.showExact
+    (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k)) M dz.Z))]
 
 def handleMtimesInterval (dops : DtypeOps 𝕋) (req : Json) :
     Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
   let ⟨_, IM⟩ ← parseIntervalMatColsFixed dops.readExact dz.n (← field req "M")
   pure [("Z", printZonotope dops.showExact
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) IM dz.Z))]
+    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      IM dz.Z))]
 
 def handlePlus (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")

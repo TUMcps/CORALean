@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isInvertedPair_symm {Q : HPolytope 𝕋 n} {i j : Fin Q.m}
+theorem HPolytope.isInvertedPair_symm {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fin Q.m}
     (h : HPolytope.isInvertedPair Q i j = true) :
     HPolytope.isInvertedPair Q j i = true := by
   simp only [HPolytope.isInvertedPair, Bool.and_eq_true] at h ⊢

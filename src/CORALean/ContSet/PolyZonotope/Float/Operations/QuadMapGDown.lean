@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 /-- Generator `(i, j)` of the image, `Gᵢᵀ Q Gⱼ`, rounded down: `Q *ᵥ Gⱼ` in both
 directions first, then the outer product against `Gᵢ` over that interval. -/
-def PolyZonotope.quadMapGDown (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
+def PolyZonotope.quadMapGDown (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n)) :
     Mat 𝕋 m ((pZ.h + 1) * (pZ.h + 1)) :=
   PolyZonotope.bilinGDown Q pZ pZ
 

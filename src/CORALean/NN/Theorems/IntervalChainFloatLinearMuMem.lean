@@ -6,7 +6,7 @@ import CORALean.NN.Operations.IntervalChainFwdFloat
 /-!
 # The linear layer's centre is in its float box
 The centre `mu = W (l + u)/2 + b` of the layer's output interval, for `l`, `u` in their boxes, is in
-the box `IntervalChainFloat.fwd` and `backprop` compute it as.
+the box `IntervalChain.fwd` and `backprop` compute it as.
 -/
 
 -- Authors:       Tobias Ladner
@@ -34,7 +34,7 @@ theorem aux_mem_point {m : ℕ} (b : Vec 𝕋 m) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem IntervalChainFloat.linear_mu_mem {n m : ℕ} (W : Mat 𝕋 m n) (b : Vec 𝕋 m)
+theorem IntervalChain.linear_mu_mem {n m : ℕ} (W : Mat 𝕋 m n) (b : Vec 𝕋 m)
     {P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)} {p : Vec ℝ n × Vec ℝ n}
     (h1 : p.1 ∈ P.1.construct) (h2 : p.2 ∈ P.2.construct) :
     toRealMat W *ᵥ ((1 / 2 : ℝ) • (p.1 + p.2)) + toRealVec b

@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def LinearSysDT.observeIntervalStateFloat (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (L : Mat 𝕋 n p) (R₀ W : Zonotope 𝕋 n) (V : Zonotope 𝕋 p) (u : ℕ → Vec 𝕋 n)
+    (L : Mat 𝕋 n p) (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n)
     (y : ℕ → Vec 𝕋 p) : ℕ → LinearSysDT.ObserveIntervalStateFloat 𝕋 n
   | 0 => { x := Interval.point R₀.c, Rx := R₀, Rwv := Interval.point fun _ => zero,
            D := (Zonotope.mtimes (fun i j => neg (L i j)) V).plus W }

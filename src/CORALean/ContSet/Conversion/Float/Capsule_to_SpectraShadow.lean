@@ -23,7 +23,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Capsule.spectraShadow (C : Capsule 𝕋 n) : SpectraShadow 𝕋 n :=
+def Capsule.spectraShadow (C : Capsule 𝕋 n) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   C.interval.spectraShadow
 
 

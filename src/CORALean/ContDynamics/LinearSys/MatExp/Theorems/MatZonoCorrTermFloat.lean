@@ -11,7 +11,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
 
 `corrTerm_mem_intervalCorrTerm` with the box of the power taken from the matrix
 zonotope: a member's `i`-th power lies in the zonotope's `i`-th power
-(`matPow_outer`), hence in its box (`interval_contains`), and the scalar
+(`matPow_outer`), hence in its box (`matInterval_contains`), and the scalar
 `corrCoeff i · r^i/i!` in `[κ·r^i/i!, 0]` scales the box over it.
 -/
 
@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.corrTerm_mem_matZonoCorrTerm (M : GZonotope (Mat 𝕋 n n)) {r : 𝕋}
+theorem MatExp.corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {A : Mat ℝ n n} (hA : A ∈ M.construct)
     (j k : Fin n) :
     toReal ((MatExp.matZonoCorrTerm M r i).inf j k) ≤ Real.MatExp.corrTerm A (toReal r) i j k
@@ -54,8 +54,8 @@ theorem MatExp.corrTerm_mem_matZonoCorrTerm (M : GZonotope (Mat 𝕋 n n)) {r : 
   have hhi' : Real.MatExp.corrCoeff i * ρ ≤ toReal (zero : 𝕋) := by
     rw [toReal_zero]; exact mul_nonpos_of_nonpos_of_nonneg hc0 hρ
   -- the member's power, in the power's box
-  have hpow : A ^ i ∈ (M.matPow i).interval.construct :=
-    GZonotope.interval_contains _ (GZonotope.matPow_outer M hA i)
+  have hpow : A ^ i ∈ (M.matPow i).matInterval.construct :=
+    Zonotope.matInterval_contains _ (Zonotope.matPow_outer M hA i)
   have hmem := Real.Interval.mem_mat_iff.mp (Interval.smul_outer hlo hhi' _ hpow) j k
   simp only [Interval.nominal, RealImage.realImage, toRealMat, Matrix.smul_apply,
     smul_eq_mul] at hmem

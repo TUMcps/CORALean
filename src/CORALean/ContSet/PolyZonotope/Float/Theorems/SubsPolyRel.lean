@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subsPoly_rel {nu : ℕ} (pZin : PolyZonotope 𝕋 nu) (ii : Fin nu) :
+theorem PolyZonotope.subsPoly_rel {nu : ℕ} (pZin : PolyZonotope (Vec 𝕋 nu)) (ii : Fin nu) :
     PolyZonotope.subsRel (pZin.subsPoly ii)
       (Real.PolyZonotope.subsPoly (InflatedContSet.nominal pZin) ii) := by -- --- PROOF ---
   refine List.Forall₂.cons ⟨rfl, le_refl _, le_refl _⟩ ?_

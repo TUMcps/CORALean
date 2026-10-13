@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle 𝕋 n) (hk₁ : 0 < zB₁.k)
+theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) (hk₁ : 0 < zB₁.k)
     (hk₂ : 0 < zB₂.k) (W : Fin r → Mat 𝕋 n n) (U : Mat 𝕋 n n) :
     convexHull ℝ (zB₁.construct ∪ zB₂.construct)
       ⊆ (zB₁.encloseTight zB₂ hk₁ hk₂ W U).construct := by -- --- PROOF ---
@@ -61,10 +61,10 @@ theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle 𝕋 n) (hk₁ :
   -- the transformations' members, then the Stursberg one
   refine Set.mem_iInter.mpr fun i => ?_
   refine Fin.lastCases ?_ (fun i => ?_) i
-  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => Zonotope 𝕋 n) _ _ (Fin.last r))
+  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => Zonotope (Vec 𝕋 n)) _ _ (Fin.last r))
     rw [Fin.snoc_last]
     exact ZonoBundle.parallelotope_contains _ _ _ _ (hbox _) hm
-  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => Zonotope 𝕋 n) _ _ (Fin.castSucc i))
+  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => Zonotope (Vec 𝕋 n)) _ _ (Fin.castSucc i))
     rw [Fin.snoc_castSucc]
     exact ZonoBundle.parallelotope_contains _ _ _ _ (hbox _) hm
 

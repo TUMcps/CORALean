@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The hull of a list of pieces' boxes. -/
-def Polygon.intervalOfList : List (VPolytope 𝕋 2) → Interval (Vec 𝕋 2)
+def Polygon.intervalOfList : List (VPolytope (Vec 𝕋 2)) → Interval (Vec 𝕋 2)
   | [] => Interval.empty 2
   | [p] => VPolytope.interval p
   | p :: q :: ps => (VPolytope.interval p).or (Polygon.intervalOfList (q :: ps))

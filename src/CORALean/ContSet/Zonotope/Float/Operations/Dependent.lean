@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.dependent (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
+def Zonotope.dependent (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := Z.h + n
   c := Z.c
   G := Fin.append Z.G (diagonalBlock (PolyZonotope.errorBound Z.E))

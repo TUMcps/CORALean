@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Generator `(i, j)` of the product, rounded down: one multiplication per
 coordinate. -/
-def PolyZonotope.mulGDown (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+def PolyZonotope.mulGDown (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     Mat 𝕋 n ((pZ₁.h + 1) * (pZ₂.h + 1)) :=
   fun i l => mulDown (PolyZonotope.extG pZ₁ i (finProdFinEquiv.symm l).1)
     (PolyZonotope.extG pZ₂ i (finProdFinEquiv.symm l).2)

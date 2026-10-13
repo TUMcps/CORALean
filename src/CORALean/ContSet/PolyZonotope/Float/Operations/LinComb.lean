@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.linComb (pZ₁ pZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+def PolyZonotope.linComb (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := pZ₁.p + pZ₂.p + 1
   h := pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)
   q := pZ₁.q + pZ₂.q

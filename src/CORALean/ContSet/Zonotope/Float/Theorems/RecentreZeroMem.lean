@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.zero_mem_recentre (Z : Zonotope 𝕋 n) :
+theorem Zonotope.zero_mem_recentre (Z : Zonotope (Vec 𝕋 n)) :
     (0 : Vec ℝ n) ∈ Z.recentre.construct := by -- --- PROOF ---
   refine ⟨0, Zonotope.mem_nominalSet_iff.mpr ⟨0, fun j => by simp, fun i => ?_⟩, 0,
     fun i => ?_, add_zero 0⟩

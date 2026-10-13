@@ -32,7 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.cubMapDep (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m where
+def Zonotope.cubMapDep (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) :
+    Zonotope (Vec 𝕋 m) where
   h := (Z.h + 1) * (Z.h + 1) * (Z.h + 1)
   c := Zonotope.cubMapCDown T Z
   G := fun l i => Zonotope.cubMapGDown T Z i l

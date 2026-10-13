@@ -38,8 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.observePropagationFloat_outer (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (gain : Zonotope 𝕋 n → Mat 𝕋 n p) (order : ℕ) (W R₀ : Zonotope 𝕋 n)
-    (V : Zonotope 𝕋 p) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p) (x w : ℕ → Vec ℝ n)
+    (gain : Zonotope (Vec 𝕋 n) → Mat 𝕋 n p) (order : ℕ) (W R₀ : Zonotope (Vec 𝕋 n))
+    (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p) (x w : ℕ → Vec ℝ n)
     (v : ℕ → Vec ℝ p) (h0 : x 0 ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
     (hv : ∀ k, v k ∈ V.construct)
     (hstep : ∀ k, x (k + 1) = toRealMat sys.A *ᵥ x k + toRealVec (u k) + w k)

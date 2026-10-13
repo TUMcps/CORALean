@@ -28,13 +28,13 @@ open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 
-def VPolytope.hPolytope (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 n :=
+def VPolytope.hPolytope (P : VPolytope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 (Vec 𝕋 n) :=
   HPolytope.ofBounds Aq fun i => P.boundDot (Aq i) fun _ => rfl
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.hPolytope_contains (P : VPolytope 𝕋 n) (Aq : Mat 𝕋 q n) :
+theorem VPolytope.hPolytope_contains (P : VPolytope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) :
     P.construct ⊆ (P.hPolytope Aq).construct :=
   HPolytope.subset_ofBounds _ _
 

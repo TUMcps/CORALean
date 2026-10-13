@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 float error solution for every `v ∈ Vdyn` and `s ∈ Vstat`. -/
 theorem LinearSys.expIntegral_mem_errorSolutionAdaptiveFloat_static (sys : LinearSys 𝕋 n)
     {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
-    {Vdyn Vstat : Zonotope 𝕋 n} {v s : Vec ℝ n} (hv : v ∈ Vdyn.construct)
+    {Vdyn Vstat : Zonotope (Vec 𝕋 n)} {v s : Vec ℝ n} (hv : v ∈ Vdyn.construct)
     (hs : s ∈ Vstat.construct) :
     Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ v
         + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ s
@@ -58,9 +58,10 @@ theorem LinearSys.expIntegral_mem_errorSolutionAdaptiveFloat_static (sys : Linea
   have hintF := MatExp.adaptiveIntegral_outer_refines (Interval.point sys.A) hΔt.le η hη.2
     (Interval.mem_point sys.A) hint
   have hstat := Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (S := fun k => Zonotope (Vec 𝕋 k))
     (MatExp.adaptiveIntegral (Interval.point sys.A) Δt η) Vstat
     (Set.mem_biUnion hintF (Set.mem_image_of_mem _ hs))
-  exact Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add hdyn hstat)
+  exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hdyn hstat)
 
 end CORALean
 

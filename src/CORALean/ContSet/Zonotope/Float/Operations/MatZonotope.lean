@@ -23,7 +23,7 @@ variable {𝕋 : Type} {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.matZonotope (Z : Zonotope 𝕋 n) : GZonotope (Mat 𝕋 n 1) where
+def Zonotope.matZonotope (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Mat 𝕋 n 1) where
   h := Z.h
   c := fun i _ => Z.c i
   G := fun k i _ => Z.G k i

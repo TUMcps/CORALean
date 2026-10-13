@@ -102,7 +102,7 @@ theorem Zonotope.aux_zero_mem_generatorError (G : Mat 𝕋 n h) :
     rw [toReal_neg]; linarith
   · exact hnonneg
 
-theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
+theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
     (0 : Vec ℝ m) ∈ (Zonotope.mtimesResidual M Z).construct :=
   Zonotope.aux_zero_mem_interval_plus'
     (Zonotope.aux_zero_mem_residual_self
@@ -113,7 +113,7 @@ theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat 𝕋 m n) (Z : Zonotope �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `mtimes` keeps `0` in the error box, given the operand already has it. -/
-theorem Zonotope.zero_mem_mtimes_error {M : Mat 𝕋 m n} {Z : Zonotope 𝕋 n}
+theorem Zonotope.zero_mem_mtimes_error {M : Mat 𝕋 m n} {Z : Zonotope (Vec 𝕋 n)}
     (h : (0 : Vec ℝ n) ∈ Z.E.construct) : (0 : Vec ℝ m) ∈ (Zonotope.mtimes M Z).E.construct :=
   Zonotope.aux_zero_mem_interval_plus' (Zonotope.aux_zero_mem_interval_mtimes h)
     (Zonotope.aux_zero_mem_mtimesResidual M Z)

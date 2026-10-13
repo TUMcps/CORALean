@@ -54,7 +54,7 @@ def handleInterval (dops : DtypeOps 𝕋) (req : Json) : Except String (List (St
 /-- `Zp`'s residual box, row `i`, folded into a generator radius `r_i := maximum (neg lo_i)
 hi_i` -- see the module docstring for why `[lo_i,hi_i] ⊆ [-r_i,r_i]`. `none` at a row already
 `[0,0]`, so a zero generator is never appended. -/
-def aux_foldRow {n : ℕ} (dops : DtypeOps 𝕋) (Zp : Zonotope 𝕋 n) (i : Fin n) :
+def aux_foldRow {n : ℕ} (dops : DtypeOps 𝕋) (Zp : Zonotope (Vec 𝕋 n)) (i : Fin n) :
     Option (Fin n × 𝕋) :=
   let r := FloatOps.maximum (FloatOps.neg (Zp.E.inf i)) (Zp.E.sup i)
   if aux_isZeroT dops r then none else some (i, r)
@@ -71,7 +71,7 @@ def handleEnclosure (dops : DtypeOps 𝕋) (req : Json) :
     if hlt : l.val < h' then Zp.G ⟨l.val, hlt⟩ i else
       let (row, val) := newCols.getD (l.val - h') (i, FloatOps.zero)
       if row = i then val else FloatOps.zero
-  let Z' : Zonotope 𝕋 n :=
+  let Z' : Zonotope (Vec 𝕋 n) :=
     { h := hFinal, c := Zp.c, G := G, E := ⟨fun _ => FloatOps.zero, fun _ => FloatOps.zero⟩ }
   pure [("Z", printZonotope dops.showExact Z')]
 

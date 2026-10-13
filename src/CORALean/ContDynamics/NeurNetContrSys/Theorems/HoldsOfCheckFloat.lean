@@ -29,10 +29,11 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSys.holds_of_checkFloat [Contains ContSet (Zonotope 𝕋 n)]
-    [IsDisjoint ContSet (Zonotope 𝕋 n)] (sys : NeurNetContrSys 𝕋 (Zonotope 𝕋) n)
+theorem NeurNetContrSys.holds_of_checkFloat [Contains ContSet (Zonotope (Vec 𝕋 n))]
+    [IsDisjoint ContSet (Zonotope (Vec 𝕋 n))]
+    (sys : NeurNetContrSys 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
     (o η N : ℕ) (ho : 0 < o) {Δt : 𝕋} (hΔt : 0 < toReal Δt)
-    (hη : sys.plant.OrderAdmissibleFloat Δt Δt η) {H : ℕ} {R₀ : Zonotope 𝕋 n}
+    (hη : sys.plant.OrderAdmissibleFloat Δt Δt η) {H : ℕ} {R₀ : Zonotope (Vec 𝕋 n)}
     {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) {x : ℝ → Vec ℝ n}
     (traj : sys.Trajectory π ((N : ℝ) * toReal Δt) H R₀ x)
     (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H) :

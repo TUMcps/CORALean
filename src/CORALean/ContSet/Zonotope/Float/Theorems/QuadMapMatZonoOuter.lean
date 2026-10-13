@@ -73,7 +73,7 @@ theorem aux_quadMapMatZono_abs_le {x : Vec ℝ n} {Δ : Mat ℝ n n} {r : Vec �
 
 /-- [1, Thm. 1], at float zonotopes and interval-matrix centres. -/
 theorem Zonotope.quadMapMatZono_outer (D : Fin m → Interval (Mat 𝕋 n n))
-    (K : Fin ν → Fin m → Mat 𝕋 n n) (Z : Zonotope 𝕋 n) :
+    (K : Fin ν → Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) :
     {l : Vec ℝ m | ∃ x ∈ Z.construct, ∃ Dr : Fin m → Mat ℝ n n,
         (∀ i, Dr i ∈ (D i).construct) ∧ ∃ β : Fin ν → ℝ, (∀ j, |β j| ≤ 1) ∧
         ∀ i, l i = x ⬝ᵥ ((Dr i + ∑ j, β j • toRealMat (K j i)) *ᵥ x)}

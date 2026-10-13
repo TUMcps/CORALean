@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.exactPlusGap (Z₁ Z₂ : Zonotope 𝕋 n) (k : ℕ) :
+def Zonotope.exactPlusGap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
     Mat 𝕋 n (min (min Z₁.h Z₂.h) k + (Z₁.h - min (min Z₁.h Z₂.h) k) +
       (Z₂.h - min (min Z₁.h Z₂.h) k)) :=
   let m := min (min Z₁.h Z₂.h) k

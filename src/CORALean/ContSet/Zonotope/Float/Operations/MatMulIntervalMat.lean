@@ -2,7 +2,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.MatMul
 import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
 
 /-!
-# `GZonotope.matMulIntervalMat`
+# `Zonotope.matMulIntervalMat`
 
 A matrix zonotope times an interval matrix, CORA's `mtimes(matZonotope, intervalMatrix)`:
 the interval matrix converted by `ofIntervalMat`, one generator per entry, and then
@@ -25,9 +25,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {p q r : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def GZonotope.matMulIntervalMat (M : GZonotope (Mat 𝕋 p q)) (I : Interval (Mat 𝕋 q r)) :
-    GZonotope (Mat 𝕋 p r) :=
-  GZonotope.matMul M (GZonotope.ofIntervalMat I)
+def Zonotope.matMulIntervalMat (M : Zonotope (Mat 𝕋 p q)) (I : Interval (Mat 𝕋 q r)) :
+    Zonotope (Mat 𝕋 p r) :=
+  Zonotope.matMul M (Zonotope.ofIntervalMat I)
 
 end CORALean.Float
 

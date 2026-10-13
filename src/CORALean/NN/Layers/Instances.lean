@@ -199,7 +199,7 @@ instance : Enclose IdentityLayer S where
       exact Layer.identity_sound.image_subset s
 
 /-- `Layer.sigmoidPoly`, at a polynomial zonotope. -/
-instance : Enclose (SigmoidPolyLayer 𝕋) (Float.PolyZonotope 𝕋) where
+instance : Enclose (SigmoidPolyLayer 𝕋) (fun k => Float.PolyZonotope (Vec 𝕋 k)) where
   eval := fun {n m} l => match n, m, l with
     | _, _, ⟨_, _, _, _, _, _, rfl⟩ => Erased.mk fun x i => Real.sigmoid (x i)
   enclose := fun {n m} l => match n, m, l with
@@ -210,7 +210,7 @@ instance : Enclose (SigmoidPolyLayer 𝕋) (Float.PolyZonotope 𝕋) where
       exact (Layer.sigmoidPoly_sound k c dx p).image_subset s
 
 /-- `Layer.activationPoly`, at a polynomial zonotope. -/
-instance : Enclose (ActivationPolyLayer 𝕋) (Float.PolyZonotope 𝕋) where
+instance : Enclose (ActivationPolyLayer 𝕋) (fun k => Float.PolyZonotope (Vec 𝕋 k)) where
   eval := fun {n m} l => match n, m, l with
     | _, _, ⟨_, _, hP, rfl⟩ => Erased.mk fun x i => hP.choose (x i)
   enclose := fun {n m} l => match n, m, l with

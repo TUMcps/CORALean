@@ -25,8 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.origin_exact (n : ℕ) :
-    (ZonoBundle.origin n : ZonoBundle 𝕋 n).construct = {0} := by
-  show ⋂ _ : Fin 1, (Zonotope.origin n : Zonotope 𝕋 n).construct = {0}
+    (ZonoBundle.origin n : ZonoBundle (Vec 𝕋 n)).construct = {0} := by
+  show ⋂ _ : Fin 1, (Zonotope.origin n : Zonotope (Vec 𝕋 n)).construct = {0}
   rw [Set.iInter_const]
   exact Zonotope.origin_exact n
 

@@ -38,8 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def LinearSysDT.observeStepFloat (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (σ : Vec 𝕋 p)
-    (W : Zonotope 𝕋 n) (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) (u : Vec 𝕋 n)
-    (y : Vec 𝕋 p) (Xhat : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+    (W : Zonotope (Vec 𝕋 n)) (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) (u : Vec 𝕋 n)
+    (y : Vec 𝕋 p) (Xhat : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let Xbar := (Zonotope.plus (Zonotope.mtimes sys.A Xhat) (Zonotope.point u)).plus W  -- Step 1, X̄
   if options.sequential then LinearSysDT.intersectStripSeqFloat C σ y options.gain Xbar
   else Zonotope.intersectStrip C σ y (options.gain Xbar) Xbar     -- Step 2, update X̂_k

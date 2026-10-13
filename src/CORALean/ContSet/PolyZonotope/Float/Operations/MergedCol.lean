@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The merged column as stored: the lower of the two directed fibre sums. -/
-def PolyZonotope.mergedCol (pZ : PolyZonotope 𝕋 n) (i : Fin n)
+def PolyZonotope.mergedCol (pZ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (PolyZonotope.repKeep pZ.E).card) : 𝕋 :=
   PolyZonotope.fiberDown (Real.PolyZonotope.rep pZ.E) (fun i l => pZ.G l i) i
     (PolyZonotope.keepIdx pZ.E j)

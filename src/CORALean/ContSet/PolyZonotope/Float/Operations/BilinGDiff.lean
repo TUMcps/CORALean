@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far a stored generator can be from the exact bilinear form. -/
-def PolyZonotope.bilinGDiff (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+def PolyZonotope.bilinGDiff (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     Mat 𝕋 m ((pZ₁.h + 1) * (pZ₂.h + 1)) :=
   fun k l => subUp (PolyZonotope.bilinGUp Q pZ₁ pZ₂ k l) (PolyZonotope.bilinGDown Q pZ₁ pZ₂ k l)
 

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem HPolytope.aux_mem_cartProd_iff {P₁ : HPolytope 𝕋 n₁} {P₂ : HPolytope 𝕋 n₂}
+theorem HPolytope.aux_mem_cartProd_iff {P₁ : HPolytope 𝕋 (Vec 𝕋 n₁)} {P₂ : HPolytope 𝕋 (Vec 𝕋 n₂)}
     {x : Vec ℝ (n₁ + n₂)} :
     x ∈ (P₁.cartProd P₂).construct
       ↔ blockLeft n₁ n₂ x ∈ P₁.construct ∧ blockRight n₁ n₂ x ∈ P₂.construct := by
@@ -36,7 +36,7 @@ theorem HPolytope.aux_mem_cartProd_iff {P₁ : HPolytope 𝕋 n₁} {P₂ : HPol
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.cartProd_exact (P₁ : HPolytope 𝕋 n₁) (P₂ : HPolytope 𝕋 n₂) :
+theorem HPolytope.cartProd_exact (P₁ : HPolytope 𝕋 (Vec 𝕋 n₁)) (P₂ : HPolytope 𝕋 (Vec 𝕋 n₂)) :
     (P₁.cartProd P₂).construct
       = blockLeft n₁ n₂ ⁻¹' P₁.construct ∩ blockRight n₁ n₂ ⁻¹' P₂.construct :=
   Set.ext fun _ => HPolytope.aux_mem_cartProd_iff

@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.not_inner {P Q : HPolytope 𝕋 n} {ε : 𝕋} (hε : 0 < toReal ε)
+theorem HPolytope.not_inner {P Q : HPolytope 𝕋 (Vec 𝕋 n)} {ε : 𝕋} (hε : 0 < toReal ε)
     (h : P.not ε = some Q) : Q.construct ⊆ P.construct ᶜ := by -- --- PROOF ---
   obtain ⟨m, A, b, me, Ae, be⟩ := P
   unfold HPolytope.not at h

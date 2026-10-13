@@ -280,7 +280,9 @@ a representation reaches into `Float`, that a file under a representation's
 `Real/` or any `Float/` declares the namespace its directory claims, that a class
 root holds only its class file, `Instances.lean` and `API.lean`, that a
 `Definitions/` file declares only meanings, that no `Real/` or `Float/` folder
-sits outside `ContSet/` but a `Theorems/Real/` and `Global/Float/`, that every
+sits outside `ContSet/` but a `Theorems/Real/` and `Global/Float/`, that a float
+type is named as its exact twin, the layer being the namespace — no `GZonotope`,
+no `StarSetFloat`, no abbreviation of a representation at `Vec` — that every
 file carries a module docstring and
 — unless it is a collector — a well-formed author block one line under it, that
 nothing is `sorry` or a search tactic, that nothing outside the three files

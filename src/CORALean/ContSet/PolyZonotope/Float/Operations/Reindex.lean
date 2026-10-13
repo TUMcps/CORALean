@@ -25,7 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.reindex (e : Fin m ≃ Fin n) (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 m where
+def PolyZonotope.reindex (e : Fin m ≃ Fin n) (pZ : PolyZonotope (Vec 𝕋 n)) :
+    PolyZonotope (Vec 𝕋 m) where
   p := pZ.p
   h := pZ.h
   q := pZ.q

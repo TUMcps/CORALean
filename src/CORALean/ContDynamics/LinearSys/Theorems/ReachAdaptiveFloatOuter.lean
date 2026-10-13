@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 the horizon from `X₀` under inputs `u(t) ∈ B U` lies, at every time of a
 window, in that window's set. -/
 theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ}
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.AdaptiveOptions 𝕋} {steps : List (LinearSys.AdaptiveStepInfo 𝕋 n)}
     (h : sys.reachAdaptiveFloat B params options = some steps) :
     (∀ t ∈ Set.Icc (params.tStart : ℝ) params.tFinal, ∃ (k : ℕ) (hk : k < steps.length),
@@ -53,7 +53,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat �
   unfold LinearSys.reachAdaptiveFloat at h
   dsimp only at h
   split_ifs at h with htf
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) B params.U with hV
+  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U with hV
   -- nothing is contributed by time `0`
   have hinv : sys.AdaptiveInvariant V (⟨0, zero, zero,
       mulDown (ratUp (params.tFinal - params.tStart)) options.μ, 0, 0,
@@ -77,7 +77,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat �
   · -- the run's inputs are in `B U`'s float enclosure
     have hUV : (Scalar.toRealMat B *ᵥ ·) '' params.U.construct ⊆ V.construct := by
       rintro _ ⟨w, hw, rfl⟩
-      exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) B params.U
+      exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U
         (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
     rw [← htf'] at traj
     exact hsnd _ (List.getElem_mem hk) traj hUV t ht
