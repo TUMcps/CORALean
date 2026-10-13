@@ -15,6 +15,7 @@ import CORALean.ContSet.Ellipsoid.Real.Operations.Project
 import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
 import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaOrigin
 import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
+import CORALean.ContSet.Ellipsoid.Real.Operations.ConvHullCora
 import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsEllipsoidCora
 import CORALean.ContSet.Ellipsoid.Real.Operations.Vertices
 import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb

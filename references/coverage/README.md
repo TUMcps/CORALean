@@ -118,16 +118,16 @@ Rulings on borderline cases:
 | Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 28 | 0 | 10 | 6 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 28 | 0 | 10 | 7 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 2 | 36 | 1 | 8 | 4 |
 | [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 36 | 0 | 12 | 5 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 28 | 0 | 72 | 0 |
-| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 35 | 0 | 12 | 5 |
+| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 35 | 0 | 12 | 6 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 20 | 0 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 0 | 92 | 0 | 18 | 3 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 9 | 3 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 1 | 54 | 3 | 15 | 7 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 1 | 54 | 3 | 15 | 8 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 1 | 32 | 2 | 11 | 8 |
 | [polytope](contSet/polytope.md) | contSet | 58 | 3 | 43 | 0 | 12 | 8 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 5 | 14 | 0 | 9 | 4 |

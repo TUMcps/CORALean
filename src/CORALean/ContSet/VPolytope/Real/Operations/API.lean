@@ -26,6 +26,7 @@ import CORALean.ContSet.VPolytope.Real.Operations.CartProd
 import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
 import CORALean.ContSet.VPolytope.Real.Operations.HausdorffDist
 import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
+import CORALean.ContSet.VPolytope.Real.Operations.RepresentsaHalfspaceCora
 
 /-!
 # What `VPolytope` computes

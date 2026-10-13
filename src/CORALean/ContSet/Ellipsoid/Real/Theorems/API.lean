@@ -5,6 +5,7 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParall
 import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
 import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+import CORALean.ContSet.Ellipsoid.Real.Theorems.ConvHullCoraEmptyCrash
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBounded
 import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
 import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact

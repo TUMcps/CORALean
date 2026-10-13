@@ -13,6 +13,7 @@ import CORALean.ContSet.Capsule.Real.Operations.PlusVec
 import CORALean.ContSet.Capsule.Real.Operations.Mtimes
 import CORALean.ContSet.Capsule.Real.Operations.MtimesCora
 import CORALean.ContSet.Capsule.Real.Operations.ConvHull
+import CORALean.ContSet.Capsule.Real.Operations.ConvHullCora
 import CORALean.ContSet.Capsule.Real.Operations.Enclose
 import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
 import CORALean.ContSet.Capsule.Real.Operations.RepresentsaOrigin
