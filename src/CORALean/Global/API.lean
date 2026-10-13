@@ -268,6 +268,7 @@ import CORALean.Global.BilliardReflect
 import CORALean.Global.BilliardReflectLaw
 import CORALean.Global.BilliardReflectReflect
 import CORALean.Global.SmithDiskIterations
+import CORALean.Global.NotHyperplaneOneDim
 /-!
 # Global definitions, collected
 
