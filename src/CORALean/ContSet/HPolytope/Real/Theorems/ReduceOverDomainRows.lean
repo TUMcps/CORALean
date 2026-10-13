@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.ReduceOverDomain
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.ReduceOverDomain
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
+
+@[expose] public section
 
 /-!
 # Each normalized row against the reduced one, over the domain

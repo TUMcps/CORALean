@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
+
+@[expose] public section
 
 /-!
 # `reduceBox` vanishes exactly, not merely in the limit

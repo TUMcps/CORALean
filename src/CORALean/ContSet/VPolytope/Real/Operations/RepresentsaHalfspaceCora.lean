@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import CORALean.Global.Tensor
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # `VPolytope.representsaHalfspaceCora`: the `'halfspace'` test on vertices, as CORA's code runs

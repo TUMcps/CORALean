@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
+
+@[expose] public section
 
 /-!
 # `HPolytope.ofBounds` encloses

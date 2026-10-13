@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Definitions.IntersectStrip
+module
+
+public import CORALean.ContSet.ContSet.Definitions.IntersectStrip
+
+@[expose] public section
 
 /-!
 # The strips one at a time

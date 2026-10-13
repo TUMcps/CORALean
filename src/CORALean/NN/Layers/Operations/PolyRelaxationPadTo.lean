@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.NN.Layers.Operations.PadCoeffs
+module
+
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.NN.Layers.Operations.PadCoeffs
+
+@[expose] public section
 
 /-!
 # A polynomial relaxation read at a higher degree

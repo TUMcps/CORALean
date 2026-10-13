@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
-import CORALean.ContDynamics.Reach.Definitions.InputParams
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+
+@[expose] public section
 
 /-!
 # Reachability of a discrete-time linear system with a set-valued matrix

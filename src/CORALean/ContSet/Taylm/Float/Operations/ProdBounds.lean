@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.PowBounds
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.MulHi
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.PowBounds
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+
+@[expose] public section
 
 /-!
 # `Taylm.prodBounds`, over a floating-point scalar

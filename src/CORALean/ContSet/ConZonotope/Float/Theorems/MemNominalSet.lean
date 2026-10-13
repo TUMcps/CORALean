@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # Membership in the nominal constrained zonotope, in the stored fields

@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Compact
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Compact
+
+@[expose] public section
 
 /-!
 # `LevelSet.isequal`

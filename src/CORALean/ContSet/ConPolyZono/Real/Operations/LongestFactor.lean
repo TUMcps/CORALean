@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import Mathlib.Data.List.MinMax
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import Mathlib.Data.List.MinMax
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.longestFactor`

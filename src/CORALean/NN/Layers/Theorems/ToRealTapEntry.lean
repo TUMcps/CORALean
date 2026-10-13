@@ -1,6 +1,10 @@
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Operations.TapEntry
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Operations.TapEntry
+
+@[expose] public section
 
 /-!
 # A stencil entry reads back exactly

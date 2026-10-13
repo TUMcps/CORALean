@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.MtimesResidual
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.MtimesResidual
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.mtimes`

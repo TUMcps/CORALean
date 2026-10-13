@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Analytic.IsolatedZeros
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Analytic.IsolatedZeros
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # The expansion of a coefficient of the error series

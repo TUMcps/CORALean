@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Interval.Real.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+
+@[expose] public section
 
 /-!
 # One step of the homogeneous flow at a set-valued system matrix, as a set

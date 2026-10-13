@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTerms
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTerms
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
+
+@[expose] public section
 
 /-!
 # The float `addedTerms` denotes the exact one

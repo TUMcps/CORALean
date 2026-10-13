@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+
+@[expose] public section
 
 /-!
 # Every state a nonlinear run reaches within the horizon

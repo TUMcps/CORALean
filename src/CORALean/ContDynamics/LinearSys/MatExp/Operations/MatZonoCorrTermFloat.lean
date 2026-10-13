@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Smul
-import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+
+@[expose] public section
 
 /-!
 # `MatExp.matZonoCorrTerm`, what order `i` contributes at a float matrix zonotope

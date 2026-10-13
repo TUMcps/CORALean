@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
-import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
+public import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+public import Mathlib.Algebra.BigOperators.Intervals
+
+@[expose] public section
 
 /-!
 # `expIntervalTaylorTail` encloses orders three and up of every member

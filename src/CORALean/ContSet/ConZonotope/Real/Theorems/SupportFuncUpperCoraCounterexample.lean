@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.SupportFuncUpperCora
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.SupportFuncUpperCora
+
+@[expose] public section
 
 /-!
 # CORA's `conZonotope/supportFunc_(cZ, dir, 'upper')` is finite for an empty set

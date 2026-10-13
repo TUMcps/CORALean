@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.ReducesAtOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.NN.Theorems.ReducesAtOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]: verifying the reduced network entails verifying the original

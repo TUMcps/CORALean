@@ -1,7 +1,11 @@
-import CORALean.Global.SubmatrixLp
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.FinCases
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.Global.SubmatrixLp
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.FinCases
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # The printed (13) is infeasible and the printed (16) unsound

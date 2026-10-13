@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.Sigmoid
-import CORALean.NN.Layers.Definitions.SigmoidRelaxation
-import CORALean.NN.Layers.Operations.Sigmoid
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
-import CORALean.NN.Theorems.SensitivityActivation
+module
+
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+public import CORALean.NN.Layers.Operations.Sigmoid
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+public import CORALean.NN.Theorems.SensitivityActivation
+
+@[expose] public section
 
 /-!
 # The sigmoid layer's sensitivity

@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionSatisfies
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionSatisfies
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
+
+@[expose] public section
 
 /-!
 # A point of the exact union lies in the stored one

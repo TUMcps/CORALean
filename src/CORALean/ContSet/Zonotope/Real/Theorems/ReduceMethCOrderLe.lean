@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceMethC` bounds the generator count

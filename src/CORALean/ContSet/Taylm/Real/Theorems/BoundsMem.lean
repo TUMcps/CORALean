@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Bounds
-import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Bounds
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+
+@[expose] public section
 
 /-!
 # An enclosed function stays in `bounds` on the box

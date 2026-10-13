@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+
+@[expose] public section
 
 /-!
 # What the generators `reduceBy` absorbs contribute, so what the block must cover

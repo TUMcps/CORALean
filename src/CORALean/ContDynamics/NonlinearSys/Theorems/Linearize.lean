@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
-import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+
+@[expose] public section
 
 /-!
 # A nonlinear run is a linear run over a widened input

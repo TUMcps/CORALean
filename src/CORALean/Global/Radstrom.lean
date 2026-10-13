@@ -1,8 +1,12 @@
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Analysis.RCLike.Basic
-import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.Tactic.Positivity
+module
+
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Analysis.RCLike.Basic
+public import Mathlib.Analysis.SpecificLimits.Basic
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # Rådström's cancellation law

@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import Mathlib.Analysis.Calculus.Deriv.Comp
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+
+@[expose] public section
 
 /-!
 # The derivative of `e^{sM}x` in the real time `s`, for a complex matrix

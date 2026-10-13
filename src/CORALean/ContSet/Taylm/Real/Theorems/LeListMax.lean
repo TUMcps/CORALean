@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.ListMax
-import Mathlib.Order.MinMax
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ListMax
+public import Mathlib.Order.MinMax
+
+@[expose] public section
 
 /-!
 # The greatest value is at least every value

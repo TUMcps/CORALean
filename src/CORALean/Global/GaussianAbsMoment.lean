@@ -1,7 +1,11 @@
-import CORALean.Global.GaussMomentRoot
-import Mathlib.MeasureTheory.Integral.Gamma
-import Mathlib.MeasureTheory.Measure.Lebesgue.Integral
-import Mathlib.Probability.Distributions.Gaussian.Multivariate
+module
+
+public import CORALean.Global.GaussMomentRoot
+public import Mathlib.MeasureTheory.Integral.Gamma
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Integral
+public import Mathlib.Probability.Distributions.Gaussian.Multivariate
+
+@[expose] public section
 
 /-!
 # Absolute moments of a Gaussian projection

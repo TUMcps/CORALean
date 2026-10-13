@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.ProjectOuter
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.ProjectOuter
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.project` is exactly the projected set

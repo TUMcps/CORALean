@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.Zonotope.Float.Operations.Project
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Zonotope.Float.Operations.Project
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.project` over a floating-point scalar

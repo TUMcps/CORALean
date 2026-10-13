@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddExcess
-import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemDiscretizeEnclosureFloatReachError
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceSubsetAddBox
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddExcess
+public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemDiscretizeEnclosureFloatReachError
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceSubsetAddBox
+
+@[expose] public section
 
 /-!
 # A float sampled run lies in the exact held-input sampled set, plus its budget

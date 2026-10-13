@@ -1,6 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
+
+@[expose] public section
+
 /-!
 # `cubContractDown` and `cubContractUp` bracket the cubic contraction
 

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.DominantDirectionsMemShortlist
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.DominantDirectionsMemShortlist
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+
+@[expose] public section
 
 /-!
 # The dominant directions can be singular

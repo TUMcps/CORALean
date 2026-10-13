@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
-import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
+public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `Zonotope.and_`, over a floating-point scalar

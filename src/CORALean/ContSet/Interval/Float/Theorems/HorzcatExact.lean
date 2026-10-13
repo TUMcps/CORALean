@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Horzcat
-import CORALean.ContSet.Interval.Real.Theorems.HorzcatExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Horzcat
+public import CORALean.ContSet.Interval.Real.Theorems.HorzcatExact
+
+@[expose] public section
 
 /-!
 # `Interval.horzcat` over floats is exact

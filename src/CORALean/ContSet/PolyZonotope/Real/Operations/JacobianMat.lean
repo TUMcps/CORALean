@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.jacobianMat`

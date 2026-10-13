@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.OneParamPowEq
-import Mathlib.Algebra.Order.Interval.Finset.SuccPred
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.OneParamPowEq
+public import Mathlib.Algebra.Order.Interval.Finset.SuccPred
+
+@[expose] public section
 
 /-!
 # A matrix polynomial in `C + βG`, by the powers of `β`

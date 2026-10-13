@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.Matrix.Mul
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # `[1, Eq. 29]` fails

@@ -1,8 +1,12 @@
-import CORALean.NN.Graph.Operations.FloatGcn
-import CORALean.NN.Graph.Operations.GcnLin
-import CORALean.NN.Graph.Theorems.FloatLeftMatMulVec
-import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
-import CORALean.NN.Graph.Theorems.GcnLinApply
+module
+
+public import CORALean.NN.Graph.Operations.FloatGcn
+public import CORALean.NN.Graph.Operations.GcnLin
+public import CORALean.NN.Graph.Theorems.FloatLeftMatMulVec
+public import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
+public import CORALean.NN.Graph.Theorems.GcnLinApply
+
+@[expose] public section
 
 /-!
 # The float graph convolutional layer over-approximates the exact one

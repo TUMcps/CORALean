@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Center
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Center
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # `VPolytope.center` lies in the polytope

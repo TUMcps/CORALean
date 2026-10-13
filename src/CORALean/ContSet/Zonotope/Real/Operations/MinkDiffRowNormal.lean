@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
+
+@[expose] public section
 
 /-!
 # One signed row of [1, Thm. 3], indexed by a generator subset

@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # What rounding a scaled row costs, bounded over a domain

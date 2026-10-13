@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtG
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtG
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
+
+@[expose] public section
 
 /-!
 # `bilin`'s generators, rounded down

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
-import CORALean.ContSet.HPolytope.Float.HPolytope
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+
+@[expose] public section
 
 /-!
 # A certified equal pair reads equal

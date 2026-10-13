@@ -1,3 +1,5 @@
+module
+
 /-!
 # How large `Interval`'s results are
 

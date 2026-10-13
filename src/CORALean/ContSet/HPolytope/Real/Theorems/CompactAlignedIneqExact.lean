@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.CompactAlignedIneq
-import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
-import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.CompactAlignedIneq
+public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+
+@[expose] public section
 
 /-!
 # `compactAlignedIneq` denotes the same set, exactly

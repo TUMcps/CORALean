@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+module
+
+public import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # A halfspace description as a zonotope, over a floating-point scalar

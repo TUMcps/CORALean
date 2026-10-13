@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Map
-import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Map
+public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimesCost`

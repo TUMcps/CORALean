@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
-import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepOuter
+
+@[expose] public section
 
 /-!
 # The strip-based observer holds the true state

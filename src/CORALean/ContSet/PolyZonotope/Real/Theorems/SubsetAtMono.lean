@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+
+@[expose] public section
 
 /-!
 # `subsetAt` is monotone in the sub-box

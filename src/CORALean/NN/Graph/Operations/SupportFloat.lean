@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.Global.Tensor
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The support of a float adjacency matrix

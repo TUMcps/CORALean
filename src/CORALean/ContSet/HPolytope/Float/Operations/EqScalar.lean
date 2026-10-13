@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+
+@[expose] public section
 
 /-!
 # `eqScalar`: equality certified by two comparisons

@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.Global.EuclideanNorm
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The Chebyshev center is not unique

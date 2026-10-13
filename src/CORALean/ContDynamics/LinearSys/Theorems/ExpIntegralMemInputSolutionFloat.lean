@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+
+@[expose] public section
 
 /-!
 # A constant input's contribution lies in `inputSolutionFloat`

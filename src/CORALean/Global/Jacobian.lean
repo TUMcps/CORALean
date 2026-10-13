@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Calculus.FDeriv.Basic
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Calculus.FDeriv.Basic
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # The Jacobian matrix

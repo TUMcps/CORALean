@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.EvalPoly
-import CORALean.NN.Layers.Operations.EvalPolyUp
-import CORALean.NN.Layers.Theorems.LeMulRangeUp
-import CORALean.NN.Layers.Theorems.PowRangeBounds
+module
+
+public import CORALean.NN.Layers.Definitions.EvalPoly
+public import CORALean.NN.Layers.Operations.EvalPolyUp
+public import CORALean.NN.Layers.Theorems.LeMulRangeUp
+public import CORALean.NN.Layers.Theorems.PowRangeBounds
+
+@[expose] public section
 
 /-!
 # A polynomial is below its upper evaluation

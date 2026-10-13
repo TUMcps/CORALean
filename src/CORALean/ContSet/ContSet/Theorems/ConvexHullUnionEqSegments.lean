@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
+module
+
+public import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
+
+@[expose] public section
 
 /-!
 # For two convex nonempty sets the segments are the convex hull of the union

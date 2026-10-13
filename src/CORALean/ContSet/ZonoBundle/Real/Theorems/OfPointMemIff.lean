@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
-import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.ofPoint` denotes exactly one point

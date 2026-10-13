@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # An interval Jacobian is a slope enclosure

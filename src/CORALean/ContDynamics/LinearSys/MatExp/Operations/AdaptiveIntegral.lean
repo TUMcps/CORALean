@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+
+@[expose] public section
 
 /-!
 # The integrated exponential as an interval matrix

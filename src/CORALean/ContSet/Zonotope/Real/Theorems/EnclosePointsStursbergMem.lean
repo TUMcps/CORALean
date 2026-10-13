@@ -1,6 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsStursberg
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsStursberg
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `Zonotope.enclosePointsStursberg` contains every point

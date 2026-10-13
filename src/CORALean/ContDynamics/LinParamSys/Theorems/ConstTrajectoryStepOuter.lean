@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuter
-import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
+
+@[expose] public section
 
 /-!
 # Where a constant-parameter run is at the end of a step

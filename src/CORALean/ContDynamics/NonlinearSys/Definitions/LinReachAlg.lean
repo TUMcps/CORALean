@@ -1,4 +1,8 @@
-import Mathlib.Data.Nat.Notation
+module
+
+public import Mathlib.Data.Nat.Notation
+
+@[expose] public section
 
 /-!
 # Which abstraction a nonlinear step uses

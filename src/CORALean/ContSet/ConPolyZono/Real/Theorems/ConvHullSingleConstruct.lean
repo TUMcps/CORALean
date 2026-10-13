@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsConvHullIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.SumConvHullE
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsConvHullIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SumConvHullE
+
+@[expose] public section
 
 /-!
 # What `convHullSingle` denotes

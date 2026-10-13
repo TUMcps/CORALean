@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
+
+@[expose] public section
 
 /-!
 # The kept columns as a table, over a floating-point scalar

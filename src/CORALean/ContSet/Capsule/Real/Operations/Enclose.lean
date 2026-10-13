@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.ConvHull
-import CORALean.ContSet.Capsule.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.ConvHull
+public import CORALean.ContSet.Capsule.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Capsule.enclose`

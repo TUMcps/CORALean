@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Minus
-import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
-import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Minus
+public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.minus` encloses the difference

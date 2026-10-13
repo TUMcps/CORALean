@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Isequal
-import CORALean.ContSet.Interval.Real.Theorems.LeSubset
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Isequal
+public import CORALean.ContSet.Interval.Real.Theorems.LeSubset
+
+@[expose] public section
 
 /-!
 # `Interval.isequal` gives equal sets

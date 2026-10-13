@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd
-import CORALean.HybridDynamics.Parallel.Theorems.StackApply
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd
+public import CORALean.HybridDynamics.Parallel.Theorems.StackApply
+
+@[expose] public section
 
 /-!
 # A block of a stacked zonotope's point

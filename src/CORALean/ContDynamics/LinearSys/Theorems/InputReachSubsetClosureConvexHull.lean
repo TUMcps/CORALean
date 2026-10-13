@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
+
+@[expose] public section
 
 /-!
 # `P^U(Δt)` lies in the closed convex hull of eq. (20)'s set

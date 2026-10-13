@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Matrix.ToLin
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # A unique fit needs as many data points as templates

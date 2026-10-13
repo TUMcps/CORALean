@@ -1,6 +1,8 @@
-import CORALean.ContDynamics.Reach.Theorems.HoldsOfCheck
-import CORALean.ContDynamics.Reach.Theorems.StepsSpec
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.HoldsOfCheck
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpec
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 
 /-!
 # What every `Reach` instance guarantees

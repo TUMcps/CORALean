@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
-import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMemMerge
-import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumMergeKeep
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMemMerge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMergeKeep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
+
+@[expose] public section
 
 /-!
 # `merge` moves no point

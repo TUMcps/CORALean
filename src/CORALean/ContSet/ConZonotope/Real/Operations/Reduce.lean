@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+module
+
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduce`

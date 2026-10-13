@@ -1,13 +1,17 @@
-import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MulVecSplit
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MulVecSplit
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mtimes` over-approximates the image under a linear map

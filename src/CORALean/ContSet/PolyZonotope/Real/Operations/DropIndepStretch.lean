@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.dropIndepStretch`

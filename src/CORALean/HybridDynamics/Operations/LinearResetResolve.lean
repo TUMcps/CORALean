@@ -1,9 +1,13 @@
-import CORALean.HybridDynamics.Definitions.ResolveSource
-import CORALean.HybridDynamics.Operations.LinearResetResolveUpdate
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Fin.Tuple.Basic
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.HybridDynamics.Definitions.ResolveSource
+public import CORALean.HybridDynamics.Operations.LinearResetResolveUpdate
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Fin.Tuple.Basic
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `LinearReset.resolve`

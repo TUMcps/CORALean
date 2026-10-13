@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+
+@[expose] public section
 
 /-!
 # Generator error at the dependent block, where coefficients are monomials

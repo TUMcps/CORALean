@@ -1,50 +1,52 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolution
-import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
-import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosure
-import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZono
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
-import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSum
-import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTail
-import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFloat
-import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
-import CORALean.ContDynamics.LinParamSys.Operations.InputTermZono
-import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
-import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachStepk
-import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
-import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachStepk
-import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachUnion
-import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
-import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumFloat
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Operations.SquaringsFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatChecked
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
-import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInput
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
-import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInputSplit
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
-import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
-import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
-import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
-import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
-import CORALean.ContDynamics.LinParamSys.Operations.SimulateEndTimeCora
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolution
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
+public import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosure
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZono
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSum
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTail
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZono
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachStepk
+public import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
+public import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachStepk
+public import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachUnion
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.SquaringsFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatChecked
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
+public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInput
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInputSplit
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
+public import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
+public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
+public import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
+public import CORALean.ContDynamics.LinParamSys.Operations.SimulateEndTimeCora
 
 /-!
 # What a continuous-time linear system with a set-valued matrix computes

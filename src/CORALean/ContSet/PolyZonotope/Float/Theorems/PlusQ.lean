@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `plus`'s independent generator count is the sum of the two incoming ones

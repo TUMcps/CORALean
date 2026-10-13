@@ -1,68 +1,70 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiRelation
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeLinear
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpAugmentMulVec
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpDiffMemCorrectionSet
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpMulIntervalSubset
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ImageSubsetOfApprox
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputSolutionMemBox
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InterpMemCorrection
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.MemBoxOfNormLe
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PartialInputSolutionCounterexample
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PartialInputSolutionMemBox
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PrintedTimeIntervalCounterexample
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.TimeIntervalSubset
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfHessenberg
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiBasisMulVecPow
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentArnoldiPow
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ConvexKrylovTermSet
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovTaylor
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetSumExpImage
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PrintedInputPropagationCounterexample
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputNotOfErrorBound
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputReachCounterexample
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovZonotope
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ReachSubsetAlg2Corrected
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyLastEqProd
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorLe
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.JaweckiBoundCoraCounterexample
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ReachKrylovCounterexample
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ReachKrylovCora1DConstantCounterexample
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.SpectrumSubsetOfKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.KrylovApproxMassConserved
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorEqSum
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HasDerivAtExpSmulMulVec
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecLe
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorEqIntegralDefect
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDelta
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpApplyLastLe
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeErrA
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpSmulMulVecTaylorIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormErrorSubErrAIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectSubLeadingIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.IntegralBoundsOfEffectiveOrder
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.IntegralOneSubPowMulPow
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSeriesEqIntegral
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorEqIntegral
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorLeErrA
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpEqSumAddPhiMul
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorRemainderEqIntegral
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.CorrectedKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpCorrectedApplyLastLe
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiCorrectedErrorLeErrA
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSmulMulVecTaylorIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiLeadingTermsIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpNegSmulMulVecLe
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaExpWeight
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeExpMinIntegralDelta
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeOfDecayBound
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.WangYeIntegralStepCounterexample
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaLanczos
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiRelation
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeLinear
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpAugmentMulVec
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpDiffMemCorrectionSet
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpMulIntervalSubset
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ImageSubsetOfApprox
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputSolutionMemBox
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InterpMemCorrection
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.MemBoxOfNormLe
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PartialInputSolutionCounterexample
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PartialInputSolutionMemBox
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PrintedTimeIntervalCounterexample
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.TimeIntervalSubset
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfHessenberg
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiBasisMulVecPow
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentArnoldiPow
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ConvexKrylovTermSet
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovTaylor
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetSumExpImage
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PrintedInputPropagationCounterexample
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputNotOfErrorBound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.VaryingInputReachCounterexample
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovZonotope
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ReachSubsetAlg2Corrected
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyLastEqProd
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorLe
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.JaweckiBoundCoraCounterexample
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ReachKrylovCounterexample
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ReachKrylovCora1DConstantCounterexample
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.SpectrumSubsetOfKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.KrylovApproxMassConserved
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorEqSum
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HasDerivAtExpSmulMulVec
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecLe
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorEqIntegralDefect
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDelta
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpApplyLastLe
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeErrA
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpSmulMulVecTaylorIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormErrorSubErrAIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectSubLeadingIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.IntegralBoundsOfEffectiveOrder
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.IntegralOneSubPowMulPow
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSeriesEqIntegral
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorEqIntegral
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorSubLeadingIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiErrorLeErrA
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpEqSumAddPhiMul
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorRemainderEqIntegral
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.CorrectedKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpCorrectedApplyLastLe
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiCorrectedErrorLeErrA
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSmulMulVecTaylorIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiLeadingTermsIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpNegSmulMulVecLe
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaExpWeight
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeExpMinIntegralDelta
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeOfDecayBound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.WangYeIntegralStepCounterexample
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaLanczos
 
 /-!
 # What the Krylov reachability of Althoff (TAC 2020) guarantees

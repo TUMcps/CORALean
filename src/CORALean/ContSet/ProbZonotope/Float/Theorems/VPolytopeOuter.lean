@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.VPolytope
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.VPolytope
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.vPolytope` contains the mean zonotope

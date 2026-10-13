@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealLeOfLe
-import CORALean.Global.Float.Instances.Flint.Operations.Le
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealLeOfLe
+public import CORALean.Global.Float.Instances.Flint.Operations.Le
+
+@[expose] public section
 
 /-!
 # `le` only approves what is true

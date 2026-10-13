@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.ConjOffsetHigh
-import CORALean.NN.Layers.Operations.ConjOffsetLow
+module
+
+public import CORALean.NN.Layers.Operations.ConjOffsetHigh
+public import CORALean.NN.Layers.Operations.ConjOffsetLow
+
+@[expose] public section
 
 /-!
 # The offset an affine conjugate stores

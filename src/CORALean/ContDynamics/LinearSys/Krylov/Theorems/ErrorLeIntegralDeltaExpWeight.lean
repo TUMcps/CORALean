@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorEqIntegralDefect
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HasDerivAtExpSmulMulVec
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpNegSmulMulVecLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorEqIntegralDefect
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HasDerivAtExpSmulMulVec
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpNegSmulMulVecLe
+
+@[expose] public section
 
 /-!
 # The Arnoldi error for `e^{-τA}v` is bounded by a weighted integral of `|h|`

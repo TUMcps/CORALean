@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
-import CORALean.ContSet.Zonotope.Real.Theorems.SqNormSumEqGram
-import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import Mathlib.Analysis.Normed.Module.Convex
-import Mathlib.Analysis.Convex.Mul
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
+public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormSumEqGram
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import Mathlib.Analysis.Normed.Module.Convex
+public import Mathlib.Analysis.Convex.Mul
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # The maximum zonotope norm as a sign-vector program

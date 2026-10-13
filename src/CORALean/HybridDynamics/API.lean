@@ -1,10 +1,12 @@
-import CORALean.HybridDynamics.HybridAutomaton
-import CORALean.HybridDynamics.Definitions.API
-import CORALean.HybridDynamics.Operations.API
-import CORALean.HybridDynamics.Theorems.API
-import CORALean.HybridDynamics.Complexity.API
-import CORALean.HybridDynamics.Parallel.API
-import CORALean.HybridDynamics.TimeTriggered.API
+module
+
+public import CORALean.HybridDynamics.HybridAutomaton
+public import CORALean.HybridDynamics.Definitions.API
+public import CORALean.HybridDynamics.Operations.API
+public import CORALean.HybridDynamics.Theorems.API
+public import CORALean.HybridDynamics.Complexity.API
+public import CORALean.HybridDynamics.Parallel.API
+public import CORALean.HybridDynamics.TimeTriggered.API
 
 /-!
 # Hybrid automata, collected

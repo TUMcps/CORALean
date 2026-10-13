@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
+
+@[expose] public section
 
 /-!
 # The exponent matrix of `mul`, over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.BucketTolerance
+module
+
+public import CORALean.NN.Operations.BucketTolerance
+
+@[expose] public section
 
 /-!
 # What [1, Alg. 1] returns meets the reduction rate

@@ -1,40 +1,42 @@
-import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
-import CORALean.ContSet.Capsule.Real.Theorems.ContainsPointIff
-import CORALean.ContSet.Capsule.Real.Theorems.ContainsTableIff
-import CORALean.ContSet.Capsule.Real.Theorems.ContainsTableCounterexample
-import CORALean.ContSet.Capsule.Real.Theorems.SegDistMem
-import CORALean.ContSet.Capsule.Real.Theorems.IsIntersectingIff
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
-import CORALean.ContSet.Capsule.Real.Theorems.Convex
-import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
-import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
-import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
-import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
-import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
-import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
-import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
-import CORALean.ContSet.Capsule.Real.Theorems.RadiusExact
-import CORALean.ContSet.Capsule.Real.Theorems.ProjectExact
-import CORALean.ContSet.Capsule.Real.Theorems.PlusOuterKeepLeft
-import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
-import CORALean.ContSet.Capsule.Real.Theorems.PlusVecExact
-import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
-import CORALean.ContSet.Capsule.Real.Theorems.MtimesCoraCounterexample
-import CORALean.ContSet.Capsule.Real.Theorems.IsIntersectingCoraCounterexample
-import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
-import CORALean.ContSet.Capsule.Real.Theorems.ConvHullCoraEmptyCrash
-import CORALean.ContSet.Capsule.Real.Theorems.EncloseOuter
-import CORALean.ContSet.Capsule.Real.Theorems.EncloseCoraCounterexample
-import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
-import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
-import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.Capsule.Real.Theorems.EnclosePointsMem
-import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
-import CORALean.ContSet.Capsule.Real.Theorems.VolumeEq
-import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
+module
+
+public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+public import CORALean.ContSet.Capsule.Real.Theorems.ContainsPointIff
+public import CORALean.ContSet.Capsule.Real.Theorems.ContainsTableIff
+public import CORALean.ContSet.Capsule.Real.Theorems.ContainsTableCounterexample
+public import CORALean.ContSet.Capsule.Real.Theorems.SegDistMem
+public import CORALean.ContSet.Capsule.Real.Theorems.IsIntersectingIff
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
+public import CORALean.ContSet.Capsule.Real.Theorems.Convex
+public import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
+public import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
+public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
+public import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
+public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
+public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+public import CORALean.ContSet.Capsule.Real.Theorems.RadiusExact
+public import CORALean.ContSet.Capsule.Real.Theorems.ProjectExact
+public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuterKeepLeft
+public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+public import CORALean.ContSet.Capsule.Real.Theorems.PlusVecExact
+public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.MtimesCoraCounterexample
+public import CORALean.ContSet.Capsule.Real.Theorems.IsIntersectingCoraCounterexample
+public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullCoraEmptyCrash
+public import CORALean.ContSet.Capsule.Real.Theorems.EncloseOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.EncloseCoraCounterexample
+public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
+public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
+public import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.Capsule.Real.Theorems.EnclosePointsMem
+public import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
+public import CORALean.ContSet.Capsule.Real.Theorems.VolumeEq
+public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
 
 /-!
 # What a capsule guarantees, collected

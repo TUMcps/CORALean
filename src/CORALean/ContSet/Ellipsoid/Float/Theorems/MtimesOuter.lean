@@ -1,11 +1,15 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
-import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+public import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.mtimes` over-approximates the image under a linear map

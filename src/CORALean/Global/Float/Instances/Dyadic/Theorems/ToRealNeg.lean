@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Neg
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Neg
+
+@[expose] public section
 
 /-!
 # Negation is exact

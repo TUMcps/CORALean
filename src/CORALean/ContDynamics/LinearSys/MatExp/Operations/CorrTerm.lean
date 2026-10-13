@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+
+@[expose] public section
 
 /-!
 # What one order contributes to the correction

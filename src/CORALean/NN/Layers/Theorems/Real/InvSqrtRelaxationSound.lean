@@ -1,12 +1,16 @@
-import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
-import CORALean.NN.Layers.Theorems.Real.AntitoneInvSqrt
-import CORALean.NN.Layers.Theorems.Real.ContinuousInvSqrt
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtInvSqrt
-import CORALean.NN.Layers.Theorems.Real.InvSqrtDerivMono
-import CORALean.NN.Layers.Theorems.OfAntitoneSound
-import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
-import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
-import CORALean.NN.Layers.Theorems.TighterSound
+module
+
+public import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
+public import CORALean.NN.Layers.Theorems.Real.AntitoneInvSqrt
+public import CORALean.NN.Layers.Theorems.Real.ContinuousInvSqrt
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtInvSqrt
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtDerivMono
+public import CORALean.NN.Layers.Theorems.OfAntitoneSound
+public import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
+public import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
+public import CORALean.NN.Layers.Theorems.TighterSound
+
+@[expose] public section
 
 /-!
 # The inverse square root's relaxation over ℝ is sound

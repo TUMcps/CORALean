@@ -1,27 +1,29 @@
-import CORALean.ContSet.Capsule.Real.Operations.ContainsPoint
-import CORALean.ContSet.Capsule.Real.Operations.SegDist
-import CORALean.ContSet.Capsule.Real.Operations.IsIntersecting
-import CORALean.ContSet.Capsule.Real.Operations.IsIntersectingCora
-import CORALean.ContSet.Capsule.Real.Operations.OfPoint
-import CORALean.ContSet.Capsule.Real.Operations.SupportBound
-import CORALean.ContSet.Capsule.Real.Operations.Empty
-import CORALean.ContSet.Capsule.Real.Operations.Reindex
-import CORALean.ContSet.Capsule.Real.Operations.Radius
-import CORALean.ContSet.Capsule.Real.Operations.Project
-import CORALean.ContSet.Capsule.Real.Operations.Plus
-import CORALean.ContSet.Capsule.Real.Operations.PlusVec
-import CORALean.ContSet.Capsule.Real.Operations.Mtimes
-import CORALean.ContSet.Capsule.Real.Operations.MtimesCora
-import CORALean.ContSet.Capsule.Real.Operations.ConvHull
-import CORALean.ContSet.Capsule.Real.Operations.ConvHullCora
-import CORALean.ContSet.Capsule.Real.Operations.Enclose
-import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.Capsule.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.Capsule.Real.Operations.Isequal
-import CORALean.ContSet.Capsule.Real.Operations.EnclosePoints
-import CORALean.ContSet.Capsule.Real.Operations.Vertices
-import CORALean.ContSet.Capsule.Real.Operations.Volume
-import CORALean.ContSet.Capsule.Real.Operations.RepresentsaHyperplaneCora
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.ContainsPoint
+public import CORALean.ContSet.Capsule.Real.Operations.SegDist
+public import CORALean.ContSet.Capsule.Real.Operations.IsIntersecting
+public import CORALean.ContSet.Capsule.Real.Operations.IsIntersectingCora
+public import CORALean.ContSet.Capsule.Real.Operations.OfPoint
+public import CORALean.ContSet.Capsule.Real.Operations.SupportBound
+public import CORALean.ContSet.Capsule.Real.Operations.Empty
+public import CORALean.ContSet.Capsule.Real.Operations.Reindex
+public import CORALean.ContSet.Capsule.Real.Operations.Radius
+public import CORALean.ContSet.Capsule.Real.Operations.Project
+public import CORALean.ContSet.Capsule.Real.Operations.Plus
+public import CORALean.ContSet.Capsule.Real.Operations.PlusVec
+public import CORALean.ContSet.Capsule.Real.Operations.Mtimes
+public import CORALean.ContSet.Capsule.Real.Operations.MtimesCora
+public import CORALean.ContSet.Capsule.Real.Operations.ConvHull
+public import CORALean.ContSet.Capsule.Real.Operations.ConvHullCora
+public import CORALean.ContSet.Capsule.Real.Operations.Enclose
+public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Capsule.Real.Operations.Isequal
+public import CORALean.ContSet.Capsule.Real.Operations.EnclosePoints
+public import CORALean.ContSet.Capsule.Real.Operations.Vertices
+public import CORALean.ContSet.Capsule.Real.Operations.Volume
+public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaHyperplaneCora
 
 /-!
 # What a capsule computes, collected

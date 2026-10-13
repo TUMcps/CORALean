@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.LocationReachFloat
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.HybridDynamics.Operations.LocationReachFloat
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # `reachFloatChecked`, without a NaN

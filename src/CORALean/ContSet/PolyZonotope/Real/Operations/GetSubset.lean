@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetE
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetG
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetG
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.getSubset`

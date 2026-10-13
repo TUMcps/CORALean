@@ -1,4 +1,8 @@
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `MatExp.powUp`, a float upper bound of a nonnegative power

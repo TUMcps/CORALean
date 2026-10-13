@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.InvSqrtRoot
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.InvSqrtRootRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.InvSqrtRoot
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.InvSqrtRootRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the inverse square root layer encloses

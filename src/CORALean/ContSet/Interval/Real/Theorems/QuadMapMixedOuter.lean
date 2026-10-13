@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.QuadMapMixed
-import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.QuadMapMixed
+public import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
+
+@[expose] public section
 
 /-!
 # `Interval.quadMapMixed` encloses the bilinear map over two boxes

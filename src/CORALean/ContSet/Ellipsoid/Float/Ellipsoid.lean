@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Instances
-import CORALean.ContSet.InflatedContSet.InflatedContSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Instances
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+
+@[expose] public section
 
 /-!
 # Ellipsoids over a floating-point scalar: the representation

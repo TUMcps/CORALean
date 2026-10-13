@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # Two nonempty sets lie in the segments between them

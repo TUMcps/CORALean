@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The interval observer in transformed coordinates

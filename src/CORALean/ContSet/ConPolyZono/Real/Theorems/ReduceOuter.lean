@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOuter
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOuter
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduce` over-approximates the set

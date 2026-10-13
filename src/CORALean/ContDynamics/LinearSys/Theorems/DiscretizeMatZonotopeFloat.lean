@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosureFloat
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
-import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
-import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+
+@[expose] public section
 
 /-!
 # A sampled trajectory of the float matrix-zonotope system

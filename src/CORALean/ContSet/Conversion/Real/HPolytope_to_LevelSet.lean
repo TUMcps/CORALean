@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+
+@[expose] public section
 
 /-!
 # A polytope as a level set

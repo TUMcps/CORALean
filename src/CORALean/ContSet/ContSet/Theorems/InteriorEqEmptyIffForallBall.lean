@@ -1,6 +1,10 @@
-import CORALean.Global.EuclideanNorm
-import Mathlib.Topology.Algebra.Module.Equiv
-import Mathlib.Analysis.Normed.Module.FiniteDimension
+module
+
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Topology.Algebra.Module.Equiv
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # Degenerate sets, by balls

@@ -1,6 +1,10 @@
-import Mathlib.Topology.Connected.Basic
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import Mathlib.Topology.Connected.Basic
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Topology.Order.IntermediateValue
+
+@[expose] public section
 
 /-!
 # A path from the interior to the outside meets the frontier

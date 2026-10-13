@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Minus
-import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Minus
+public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
+
+@[expose] public section
 
 /-!
 # `HPolytope.minus` is exactly the shift by `-v`

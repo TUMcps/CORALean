@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SShapeDerBounds
-import Mathlib.Algebra.Order.Group.Defs
+module
+
+public import CORALean.NN.Layers.Operations.SShapeDerBounds
+public import Mathlib.Algebra.Order.Group.Defs
+
+@[expose] public section
 
 /-!
 # The derivative bounds hold

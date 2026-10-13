@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.BoxDiff
-import Mathlib.Order.Interval.Set.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.BoxDiff
+public import Mathlib.Order.Interval.Set.Basic
+
+@[expose] public section
 
 /-!
 # The box difference is inside the set difference

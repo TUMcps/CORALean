@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's compositional linearization error ignores the coupling of the subsystems

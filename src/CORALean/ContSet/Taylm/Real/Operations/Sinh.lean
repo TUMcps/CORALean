@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Taylor
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
-import Mathlib.Analysis.Complex.Trigonometric
-import CORALean.ContSet.Taylm.Real.Operations.Mag
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Taylor
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import Mathlib.Analysis.Complex.Trigonometric
+public import CORALean.ContSet.Taylm.Real.Operations.Mag
+
+@[expose] public section
 
 /-!
 # `Taylm.sinh`

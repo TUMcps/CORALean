@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+
+@[expose] public section
 
 /-!
 # One entry of the entrywise remainder, as the series it is

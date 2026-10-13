@@ -1,12 +1,16 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import Mathlib.Analysis.Matrix.Order
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The ellipsoid with a given shape matrix

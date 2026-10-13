@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+
+@[expose] public section
 
 /-!
 # A closed-loop run is an orbit

@@ -1,18 +1,20 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.EqOfInit
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfCheck
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfOutput
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.NotHoldsOfSimulate
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetSubsetReach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.API
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemSimulateBoxFloat
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.EqOfInit
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfCheck
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfOutput
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.NotHoldsOfSimulate
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetSubsetReach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.API
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemSimulateBoxFloat
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
 
 /-!
 # What a network in the loop guarantees

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.BracketError
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.NN.Layers.Operations.BracketError
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # A value in the bracket is within its radius of the shift

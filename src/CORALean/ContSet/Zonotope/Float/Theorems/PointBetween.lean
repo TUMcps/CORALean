@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.PointLo
-import CORALean.ContSet.Zonotope.Float.Operations.PointHi
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.PointLo
+public import CORALean.ContSet.Zonotope.Float.Operations.PointHi
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `pointLo` and `pointHi` bracket `c + G β`

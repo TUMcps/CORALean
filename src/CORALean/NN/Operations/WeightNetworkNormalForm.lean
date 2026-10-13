@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.WeightNetworkNormalFormAux
+module
+
+public import CORALean.NN.Operations.WeightNetworkNormalFormAux
+
+@[expose] public section
 
 /-!
 # `neuralNetwork.getNormalForm`

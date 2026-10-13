@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Split
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Split
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
+
+@[expose] public section
 
 /-!
 # The halves of `split` cover the polynomial zonotope, over a floating-point scalar

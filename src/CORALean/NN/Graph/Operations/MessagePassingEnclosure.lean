@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import CORALean.Global.Hadamard
-import CORALean.NN.Graph.Operations.SqrtCol
-import CORALean.NN.Graph.Operations.SqrtRow
-import CORALean.NN.Graph.Operations.UncertainAdjPad
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import CORALean.Global.Hadamard
+public import CORALean.NN.Graph.Operations.SqrtCol
+public import CORALean.NN.Graph.Operations.SqrtRow
+public import CORALean.NN.Graph.Operations.UncertainAdjPad
+
+@[expose] public section
 
 /-!
 # The message-passing enclosure `𝒫 ⊇ D̃^(-1/2) Ã D̃^(-1/2)`

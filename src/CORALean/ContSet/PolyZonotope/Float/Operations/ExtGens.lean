@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+@[expose] public section
 
 /-!
 # The centre folded in as generator zero, over any ambient type

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.Global.Float.FloatOps
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.Float.FloatOps
+
+@[expose] public section
 
 /-!
 # The value enclosure of ReLU

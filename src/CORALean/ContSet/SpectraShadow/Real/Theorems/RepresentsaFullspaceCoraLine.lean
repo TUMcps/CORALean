@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaFullspaceCora
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleMem
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleNotMem
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqTopOfUnbounded
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaFullspaceCora
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleMem
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleNotMem
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqTopOfUnbounded
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_fullspaceCora_line`

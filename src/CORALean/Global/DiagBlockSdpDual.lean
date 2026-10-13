@@ -1,9 +1,13 @@
-import Mathlib.Analysis.LocallyConvex.Separation
-import Mathlib.Analysis.MeanInequalities
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Data.Matrix.Block
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Topology.Instances.Matrix
+module
+
+public import Mathlib.Analysis.LocallyConvex.Separation
+public import Mathlib.Analysis.MeanInequalities
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Data.Matrix.Block
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Topology.Instances.Matrix
+
+@[expose] public section
 
 /-!
 # A dual certificate for the semidefinite relaxations of the containment radius

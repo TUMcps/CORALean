@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # The stored centre is a point of the zonotope

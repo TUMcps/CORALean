@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.ExistsPolyRelaxationErrorLt
+module
+
+public import CORALean.NN.Layers.Theorems.Real.ExistsPolyRelaxationErrorLt
+
+@[expose] public section
 
 /-!
 # The polynomial relaxation family a refinement loop runs

@@ -1,8 +1,12 @@
-import CORALean.Specification.STL.Definitions.ReachSequence
-import CORALean.Specification.STL.Theorems.PformSatBigOr
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Data.NNReal.Basic
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.Specification.STL.Definitions.ReachSequence
+public import CORALean.Specification.STL.Theorems.PformSatBigOr
+public import Mathlib.Algebra.Order.Field.Basic
+public import Mathlib.Data.NNReal.Basic
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `F(0,c)` and `G(0,c)` on an open block, as a condition on its set

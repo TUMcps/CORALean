@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
-import Mathlib.Analysis.Normed.Group.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
+public import Mathlib.Analysis.Normed.Group.Basic
+
+@[expose] public section
 
 /-!
 # AH-polytope in AH-polytope, sufficiently, as printed

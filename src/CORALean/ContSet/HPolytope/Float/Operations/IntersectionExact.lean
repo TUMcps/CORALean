@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+
+@[expose] public section
 
 /-!
 # `HPolytope.intersection` is exact, over a floating-point scalar

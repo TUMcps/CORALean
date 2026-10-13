@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.LinearAlgebra.Matrix.Trace
+module
+
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.LinearAlgebra.Matrix.Trace
+
+@[expose] public section
 
 /-!
 # A maximizer of the dual program whose columns differ

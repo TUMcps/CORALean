@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MatPow
-import CORALean.ContSet.Zonotope.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
+
+@[expose] public section
 
 /-!
 # Every power of a member lies in the matrix zonotope's power

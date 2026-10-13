@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.padBack` over a floating-point scalar

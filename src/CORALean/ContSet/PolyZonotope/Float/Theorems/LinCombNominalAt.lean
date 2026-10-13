@@ -1,10 +1,14 @@
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.linComb` at named factors

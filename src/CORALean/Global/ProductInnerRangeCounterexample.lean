@@ -1,11 +1,15 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Order.Interval.Set.Pi
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.NormNum
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Fintype.Fin
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Order.Interval.Set.Pi
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Fintype.Fin
+
+@[expose] public section
 
 /-!
 # Per-component inner ranges sharing an existential input are no inner box

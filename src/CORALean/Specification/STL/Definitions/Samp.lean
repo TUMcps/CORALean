@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.Pform
+module
+
+public import CORALean.Specification.STL.Definitions.Pform
+
+@[expose] public section
 
 /-!
 # Sampled time formulas

@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Operations.SdcFlow
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Mul
+module
+
+public import CORALean.HybridDynamics.Operations.SdcFlow
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+
+@[expose] public section
 
 /-!
 # `y₀ + (Ay₀ + b)t` solves `ẏ = Ay₀ + b`

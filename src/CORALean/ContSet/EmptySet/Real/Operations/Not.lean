@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
-import CORALean.ContSet.Fullspace.Real.Fullspace
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+
+@[expose] public section
 
 /-!
 # `EmptySet.not`

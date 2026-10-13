@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Shift
-import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Shift
+public import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+
+@[expose] public section
 
 /-!
 # [1, Lemma 2]: the two translates, intersected

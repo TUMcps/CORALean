@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Operations.PieceSubset
-import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.PieceSubset
+public import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+
+@[expose] public section
 
 /-!
 # A `true` from `Polygon.pieceSubset` proves the inclusion

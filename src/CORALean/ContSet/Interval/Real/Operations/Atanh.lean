@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.SpecialFunctions.Artanh
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.SpecialFunctions.Artanh
+
+@[expose] public section
 
 /-!
 # `Interval.atanh`

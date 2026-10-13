@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
+
+@[expose] public section
 
 /-!
 # `particularSolutionFloat` holds what the input contributes at one member

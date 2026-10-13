@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The states consistent with a measured output, nonlinear

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-import CORALean.Global.Float.EuclideanNorm
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.Global.Float.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # A `true` from `Ellipsoid.isBigger` proves the inclusion up to the centres

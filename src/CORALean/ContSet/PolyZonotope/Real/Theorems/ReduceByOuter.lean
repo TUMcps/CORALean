@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnUnitBox
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByEvalOn
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnUnitBox
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByEvalOn
+
+@[expose] public section
 
 /-!
 # Boxing what two partitions drop over-approximates

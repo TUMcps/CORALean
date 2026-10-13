@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # `evaluatePredicateUnionPolytopeCora`, the union branch of `aux_evaluatePredicate` on polytopes

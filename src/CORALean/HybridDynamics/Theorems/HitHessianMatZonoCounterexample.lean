@@ -1,9 +1,13 @@
-import CORALean.HybridDynamics.Definitions.HitHessianNum
-import CORALean.HybridDynamics.Operations.HitHessianMatZono
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.HybridDynamics.Definitions.HitHessianNum
+public import CORALean.HybridDynamics.Operations.HitHessianMatZono
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # With a factor per coordinate of `Θ/Λ`, [1, Prop. 3]'s matrix zonotope misses `Q⁽ⁱ⁾`

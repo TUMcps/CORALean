@@ -1,7 +1,11 @@
-import CORALean.Global.MemOfReachSubset
-import CORALean.Global.RegionOfAttraction
-import Mathlib.Topology.Order.Basic
-import Mathlib.Order.Filter.AtTopBot.Basic
+module
+
+public import CORALean.Global.MemOfReachSubset
+public import CORALean.Global.RegionOfAttraction
+public import Mathlib.Topology.Order.Basic
+public import Mathlib.Order.Filter.AtTopBot.Basic
+
+@[expose] public section
 
 /-!
 # The region-of-attraction criterion, where the limits exist

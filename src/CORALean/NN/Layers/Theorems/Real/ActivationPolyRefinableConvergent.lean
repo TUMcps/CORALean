@@ -1,10 +1,14 @@
-import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
-import CORALean.NN.Layers.Definitions.PolyFamily
-import CORALean.NN.Operations.Convergent
-import CORALean.NN.Layers.Theorems.PadToError
-import CORALean.NN.Layers.Theorems.Real.ActivationPolySubsetInflate
-import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilyErrorLt
-import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound
+module
+
+public import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
+public import CORALean.NN.Layers.Definitions.PolyFamily
+public import CORALean.NN.Operations.Convergent
+public import CORALean.NN.Layers.Theorems.PadToError
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolySubsetInflate
+public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilyErrorLt
+public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound
+
+@[expose] public section
 
 /-!
 # Refinement converges at the exact polynomial activation layer

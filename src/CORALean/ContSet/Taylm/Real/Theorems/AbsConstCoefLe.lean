@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
-import CORALean.ContSet.Taylm.Real.Definitions.Scaled
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The constant part is at most the weight

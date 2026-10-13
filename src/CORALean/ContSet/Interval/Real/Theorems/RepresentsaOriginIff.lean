@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
-import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
+public import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
+
+@[expose] public section
 
 /-!
 # `Interval.representsa_origin` is being the origin

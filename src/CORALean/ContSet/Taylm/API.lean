@@ -1,5 +1,7 @@
-import CORALean.ContSet.Taylm.Float.API
-import CORALean.ContSet.Taylm.Real.API
+module
+
+public import CORALean.ContSet.Taylm.Float.API
+public import CORALean.ContSet.Taylm.Real.API
 
 /-!
 # Taylor models

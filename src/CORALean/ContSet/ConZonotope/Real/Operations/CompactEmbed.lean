@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # `ConZonotope.compactEmbed`

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
-import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
+
+@[expose] public section
 
 /-!
 # `precompStatError` certifies whatever is left over

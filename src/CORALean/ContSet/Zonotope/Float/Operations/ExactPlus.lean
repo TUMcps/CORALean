@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
+
+@[expose] public section
 
 /-!
 # `Zonotope.exactPlus`, over a floating-point scalar

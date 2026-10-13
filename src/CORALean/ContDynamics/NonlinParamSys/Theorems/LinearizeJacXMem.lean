@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinParamSys.Theorems.JacobianFamilyMem
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.JacobianFamilyMem
+
+@[expose] public section
 
 /-!
 # `zA` holds the state Jacobian at every parameter of the box

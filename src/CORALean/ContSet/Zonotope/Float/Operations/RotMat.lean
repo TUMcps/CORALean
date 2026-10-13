@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SinCos
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.Global.Float.SinCos
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `rotMat`, as an interval matrix

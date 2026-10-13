@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.CombineGens
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.CombineGens
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceUnderApproxYang`

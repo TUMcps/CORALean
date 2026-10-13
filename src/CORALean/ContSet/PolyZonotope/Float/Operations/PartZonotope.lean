@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.PartPatterns
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PartPatterns
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.partZonotope`, over a floating-point scalar

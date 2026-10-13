@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.RegionPoly
+module
+
+public import CORALean.NN.Layers.Definitions.RegionPoly
+
+@[expose] public section
 
 /-!
 # The region a relaxation is fitted on

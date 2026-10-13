@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.plusBox`: what a sub-box of the factors becomes under `plus`

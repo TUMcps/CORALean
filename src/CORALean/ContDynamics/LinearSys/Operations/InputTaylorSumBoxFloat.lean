@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTermBoxFloat
-import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTermBoxFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
+
+@[expose] public section
 
 /-!
 # How far `inputTaylorSumFloat` reaches beyond the exact Taylor sum

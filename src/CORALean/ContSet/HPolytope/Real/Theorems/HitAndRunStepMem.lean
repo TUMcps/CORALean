@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.HitAndRunStep
-import CORALean.ContSet.HPolytope.Real.Theorems.MemAddSmulIffChord
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.HitAndRunStep
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemAddSmulIffChord
+
+@[expose] public section
 
 /-!
 # Hit-and-Run never leaves the polytope

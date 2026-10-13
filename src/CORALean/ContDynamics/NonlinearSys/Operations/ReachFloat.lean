@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
-import CORALean.ContDynamics.Reach.Operations.Steps
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
+public import CORALean.ContDynamics.Reach.Operations.Steps
+
+@[expose] public section
 
 /-!
 # Nonlinear reachability in floats: CORA's `nonlinearSys/reach` at `alg = 'lin'`

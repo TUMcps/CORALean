@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Minnorm
-import CORALean.ContSet.Zonotope.Float.Theorems.MinnormOffsetGe
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Minnorm
+public import CORALean.ContSet.Zonotope.Float.Theorems.MinnormOffsetGe
+
+@[expose] public section
 
 /-!
 # No larger ball fits

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceBox_h`

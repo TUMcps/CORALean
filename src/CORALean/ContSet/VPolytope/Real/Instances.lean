@@ -1,15 +1,19 @@
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Definitions.ExactVertices
-import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
-import CORALean.ContSet.VPolytope.Real.Theorems.Convex
-import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
-import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
-import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
-import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.ExactVertices
+public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+public import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
+public import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
+public import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # What `VPolytope` instantiates

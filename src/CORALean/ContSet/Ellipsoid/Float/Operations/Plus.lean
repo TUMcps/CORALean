@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
-import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
-import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
-import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
-import CORALean.ContSet.Interval.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
+public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
+public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.plus`

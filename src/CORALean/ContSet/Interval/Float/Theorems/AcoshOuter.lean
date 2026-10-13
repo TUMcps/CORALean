@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Acosh
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Acosh
+
+@[expose] public section
 
 /-!
 # `Interval.acosh` contains the image under `acosh`

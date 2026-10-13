@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.LinearARX
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.Global.ExactScalar
+module
+
+public import CORALean.ContDynamics.LinearARX.LinearARX
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.Global.ExactScalar
+
+@[expose] public section
 
 /-!
 # Conversion to a discrete-time linear system

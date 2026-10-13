@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStepFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStepFloat
+
+@[expose] public section
 
 /-!
 # The adaptive loop of `Alg. 1`, in floats

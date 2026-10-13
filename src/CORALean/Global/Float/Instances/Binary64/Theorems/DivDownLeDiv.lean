@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
-import CORALean.Global.Float.Instances.Binary64.Operations.DivDown
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
+public import CORALean.Global.Float.Instances.Binary64.Operations.DivDown
+
+@[expose] public section
 
 /-!
 # Division, rounded down, never overshoots

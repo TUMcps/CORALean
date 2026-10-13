@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-import CORALean.NN.Graph.Operations.Alg1Node
-import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActStepsUncertain
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.NN.Graph.Operations.Alg1Node
+public import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActStepsUncertain
+
+@[expose] public section
 
 /-!
 # `Alg. 1` for a node-level output satisfies the problem statement

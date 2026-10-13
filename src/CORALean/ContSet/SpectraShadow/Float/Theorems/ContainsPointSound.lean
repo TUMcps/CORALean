@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PosSemidefOfDiagDominant
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PosSemidefOfDiagDominant
+
+@[expose] public section
 
 /-!
 # A `true` from `SpectraShadow.containsPoint` proves membership

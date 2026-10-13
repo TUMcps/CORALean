@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
-import CORALean.Global.EuclideanNorm
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `nonlinDASys.consistentInitialState`

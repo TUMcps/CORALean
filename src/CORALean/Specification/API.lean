@@ -1,9 +1,11 @@
-import CORALean.Specification.Definitions.API
-import CORALean.Specification.Instances
-import CORALean.Specification.Operations.API
-import CORALean.Specification.Specification
-import CORALean.Specification.STL.API
-import CORALean.Specification.Theorems.API
+module
+
+public import CORALean.Specification.Definitions.API
+public import CORALean.Specification.Instances
+public import CORALean.Specification.Operations.API
+public import CORALean.Specification.Specification
+public import CORALean.Specification.STL.API
+public import CORALean.Specification.Theorems.API
 
 /-!
 # Specifications, collected

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Data.Matrix.ColumnRowPartitioned
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+
+@[expose] public section
 
 /-!
 # The P-radius inequality of the fault-detection observer

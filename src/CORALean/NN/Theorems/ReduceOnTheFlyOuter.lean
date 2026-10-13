@@ -1,11 +1,15 @@
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.LinearWithErrorMem
-import CORALean.NN.Operations.Enclose
-import CORALean.NN.Operations.ReduceOnTheFly
-import CORALean.NN.Operations.ReducibleNetworkToNetwork
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
+public import CORALean.NN.Operations.Enclose
+public import CORALean.NN.Operations.ReduceOnTheFly
+public import CORALean.NN.Operations.ReducibleNetworkToNetwork
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2] is sound

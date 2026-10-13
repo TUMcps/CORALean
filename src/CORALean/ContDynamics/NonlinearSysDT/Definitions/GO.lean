@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+
+@[expose] public section
 
 /-!
 # The parameters of a general output model of a nonlinear discrete-time system

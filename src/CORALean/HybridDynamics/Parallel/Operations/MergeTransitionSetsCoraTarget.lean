@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.SyncPick
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.SyncPick
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
+
+@[expose] public section
 
 /-!
 # CORA's target of a label-synchronized merged transition

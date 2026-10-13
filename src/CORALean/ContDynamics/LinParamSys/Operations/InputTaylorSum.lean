@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
+
+@[expose] public section
 
 /-!
 # The exact orders of the input solution at a set-valued matrix, summed

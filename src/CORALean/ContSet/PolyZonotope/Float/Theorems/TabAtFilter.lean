@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
-import Mathlib.Data.List.NodupEquivFin
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
+public import Mathlib.Data.List.NodupEquivFin
+
+@[expose] public section
 
 /-!
 # The `j`-th element of a filtered `finRange` is the finset's

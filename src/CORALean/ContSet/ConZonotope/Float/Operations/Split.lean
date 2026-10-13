@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
-import CORALean.ContSet.Interval.Float.Operations.SplitAt
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
+public import CORALean.ContSet.Interval.Float.Operations.SplitAt
+
+@[expose] public section
 
 /-!
 # `ConZonotope.split`, over a floating-point scalar

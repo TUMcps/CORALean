@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Theorems.ZonoGirardUpperLe
+module
+
+public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperLe
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectZonoGirard` holds every state that meets the guard

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Operations.HausdorffDist
-import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
-import Mathlib.Topology.MetricSpace.HausdorffDistance
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.HausdorffDist
+public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+
+@[expose] public section
 
 /-!
 # `Polygon.hausdorffDist` is the directed distance from the points to the polygon

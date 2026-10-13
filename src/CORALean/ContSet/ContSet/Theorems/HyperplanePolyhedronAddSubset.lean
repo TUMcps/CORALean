@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # The sum of two `S`-band intersections lies in the band of the summed bounds

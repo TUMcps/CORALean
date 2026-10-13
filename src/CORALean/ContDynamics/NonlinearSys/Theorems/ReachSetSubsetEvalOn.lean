@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryStepInputOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachEvalOn
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryStepInputOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachEvalOn
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1] on the reachable set, with each step's input enclosure named

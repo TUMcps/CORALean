@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.Subtract
-import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Subtract
+public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # `Polygon.subtract` encloses the set difference and stays in the minuend

@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Operations.CartProd
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.CartProd
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+
+@[expose] public section
 
 /-!
 # `HPolytope.cartProd` is exactly the Cartesian product, over a floating-point scalar

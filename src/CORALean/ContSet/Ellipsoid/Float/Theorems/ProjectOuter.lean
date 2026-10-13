@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Project
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ProjectExact
-import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
-import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Project
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ProjectExact
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
+public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.project` over-approximates the projection

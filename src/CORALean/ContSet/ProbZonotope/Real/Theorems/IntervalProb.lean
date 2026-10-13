@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
-import CORALean.ContSet.ProbZonotope.Real.Theorems.ZonotopeProb
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.ZonotopeProb
+
+@[expose] public section
 
 /-!
 # Every law of a probabilistic zonotope puts `erf(m/√2)ⁿ` on its interval

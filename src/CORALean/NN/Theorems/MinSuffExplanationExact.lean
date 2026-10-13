@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.SuffExplanationExact
+module
+
+public import CORALean.NN.Theorems.SuffExplanationExact
+
+@[expose] public section
 
 /-!
 # Minimal sufficient explanation, read at the exact image

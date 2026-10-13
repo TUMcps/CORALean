@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.LdbStep
-import CORALean.ContSet.Taylm.Real.Operations.Reexpand
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.LdbStep
+public import CORALean.ContSet.Taylm.Real.Operations.Reexpand
+
+@[expose] public section
 
 /-!
 # The linear dominated bounder's iteration

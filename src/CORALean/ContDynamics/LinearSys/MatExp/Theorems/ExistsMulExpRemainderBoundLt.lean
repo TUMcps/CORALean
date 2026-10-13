@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoMulExpRemainderBoundZero
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoMulExpRemainderBoundZero
+
+@[expose] public section
 
 /-!
 # Any admissible error is reachable, in the step

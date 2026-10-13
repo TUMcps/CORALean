@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Real.Operations.Times
-import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe
-import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
-import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Times
+public import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe
+public import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
+public import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `Taylm.times` keeps the `(n+1)`-st order scaling

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # Reachability over `[tStart, tFinal]`, one window of width `Δt` at a time

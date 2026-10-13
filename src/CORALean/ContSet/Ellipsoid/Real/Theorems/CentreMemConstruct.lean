@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # An ellipsoid contains its centre

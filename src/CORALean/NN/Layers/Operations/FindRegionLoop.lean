@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.FindRegionLeft
-import CORALean.NN.Layers.Operations.FindRegionRight
+module
+
+public import CORALean.NN.Layers.Operations.FindRegionLeft
+public import CORALean.NN.Layers.Operations.FindRegionRight
+
+@[expose] public section
 
 /-!
 # The main loop of `findRegionPolys`

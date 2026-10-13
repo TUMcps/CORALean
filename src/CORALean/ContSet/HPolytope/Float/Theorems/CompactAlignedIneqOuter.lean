@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.CompactAlignedIneq
-import CORALean.ContSet.HPolytope.Float.Theorems.DropAlignedExact
-import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.CompactAlignedIneq
+public import CORALean.ContSet.HPolytope.Float.Theorems.DropAlignedExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
+
+@[expose] public section
 
 /-!
 # The float `compactAlignedIneq` keeps every point of the polytope in the domain

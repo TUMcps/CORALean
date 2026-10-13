@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachRunFloatEncloses
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachRunFloatEncloses
+
+@[expose] public section
 
 /-!
 # The float run of `Alg. 2` is inside the exact run

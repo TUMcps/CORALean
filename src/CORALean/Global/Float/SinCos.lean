@@ -1,7 +1,11 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.DivFact
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.DivFact
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+
+@[expose] public section
 
 /-!
 # Sine and cosine rounded in either direction
@@ -38,48 +42,48 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- `a / 2 ^ n`, exactly. -/
-private def halfIter : ℕ → 𝕋 → 𝕋
+def sinCosHalfIter : ℕ → 𝕋 → 𝕋
   | 0, a => a
-  | k + 1, a => half (halfIter k a)
+  | k + 1, a => half (sinCosHalfIter k a)
 
 /-- The least corner product of `[a, b]` and `[c, d]`, each rounded down. -/
-private def cornerLo (a b c d : 𝕋) : 𝕋 :=
+def cornerLo (a b c d : 𝕋) : 𝕋 :=
   minimum (minimum (mulDown a c) (mulDown a d)) (minimum (mulDown b c) (mulDown b d))
 
 /-- The greatest corner product, each rounded up. -/
-private def cornerHi (a b c d : 𝕋) : 𝕋 :=
+def cornerHi (a b c d : 𝕋) : 𝕋 :=
   maximum (maximum (mulUp a c) (mulUp a d)) (maximum (mulUp b c) (mulUp b d))
 
 /-- Into `[-1, 1]`, where both functions live: harmless to a bound on either side. -/
-private def clampUnit (a : 𝕋) : 𝕋 := maximum (neg one) (minimum one a)
+def clampUnit (a : 𝕋) : 𝕋 := maximum (neg one) (minimum one a)
 
 /-- `sin` and `cos` at one angle, each between two floats. -/
-private structure SinCosBox (𝕋 : Type) where
+structure SinCosBox (𝕋 : Type) where
   sl : 𝕋
   su : 𝕋
   cl : 𝕋
   cu : 𝕋
 
 /-- The trivial box, `[-1, 1]` for both. -/
-private def unitBox : SinCosBox 𝕋 := ⟨neg one, one, neg one, one⟩
+def unitBox : SinCosBox 𝕋 := ⟨neg one, one, neg one, one⟩
 
 /-- `sin t` for `0 ≤ t ≤ 1`: `t - t³/6 ± t⁵/64`. -/
-private def sinSeedNonneg (t : 𝕋) : 𝕋 × 𝕋 :=
+def sinSeedNonneg (t : 𝕋) : 𝕋 × 𝕋 :=
   let t2 := maximum zero (mulDown t t)                              -- t² from below
   let t3 := (maximum zero (mulDown t2 t), mulUp (mulUp t t) t)      -- t³, both sides
   let d := divFact t3 3                                             -- t³/6, both sides
-  let e := halfIter 6 (powUp t 5)                                     -- t⁵/64 ≥ t⁵/100
+  let e := sinCosHalfIter 6 (powUp t 5)                              -- t⁵/64 ≥ t⁵/100
   (subDown (subDown t d.2) e, addUp (subUp t d.1) e)
 
 /-- `cos t` for `0 ≤ t ≤ 1`: from `1 - t²/2` to `1 - t²/2 + t⁴/16`. -/
-private def cosSeed (t : 𝕋) : 𝕋 × 𝕋 :=
+def cosSeed (t : 𝕋) : 𝕋 × 𝕋 :=
   let t2l := maximum zero (mulDown t t)
   let t2u := mulUp t t
-  let e := halfIter 4 (powUp t 4)                                     -- t⁴/16 ≥ 5t⁴/96
+  let e := sinCosHalfIter 4 (powUp t 4)                              -- t⁴/16 ≥ 5t⁴/96
   (subDown one (half t2u), addUp (subUp one (half t2l)) e)
 
 /-- Both at `y`, for `|y| ≤ 1` certified; the sine by oddness below zero. -/
-private def seed (y : 𝕋) : SinCosBox 𝕋 :=
+def seed (y : 𝕋) : SinCosBox 𝕋 :=
   let t := absolute y
   if le t one = true then
     let s := if le zero y = true then sinSeedNonneg y
@@ -91,7 +95,7 @@ private def seed (y : 𝕋) : SinCosBox 𝕋 :=
   else unitBox
 
 /-- From `θ` to `2θ`. -/
-private def double (B : SinCosBox 𝕋) : SinCosBox 𝕋 :=
+def double (B : SinCosBox 𝕋) : SinCosBox 𝕋 :=
   let pl := cornerLo B.sl B.su B.cl B.cu                    -- sin θ cos θ
   let pu := cornerHi B.sl B.su B.cl B.cu
   let ql := maximum zero (cornerLo B.sl B.su B.sl B.su)     -- sin² θ
@@ -102,12 +106,12 @@ private def double (B : SinCosBox 𝕋) : SinCosBox 𝕋 :=
     clampUnit (maximum (subDown one (addUp qu qu)) (subDown (addDown rl rl) one)),
     clampUnit (minimum (subUp one (addDown ql ql)) (subUp (addUp ru ru) one))⟩
 
-private def doubleIter : ℕ → SinCosBox 𝕋 → SinCosBox 𝕋
+def doubleIter : ℕ → SinCosBox 𝕋 → SinCosBox 𝕋
   | 0, B => B
   | k + 1, B => doubleIter k (double B)
 
 /-- Seed at `a / 2ⁿ`, then double `n` times. -/
-private def sinCosBox (n : ℕ) (a : 𝕋) : SinCosBox 𝕋 := doubleIter n (seed (halfIter n a))
+def sinCosBox (n : ℕ) (a : 𝕋) : SinCosBox 𝕋 := doubleIter n (seed (sinCosHalfIter n a))
 
 /-- `sin a` from below, at every `a`; `n` is the number of halvings. -/
 def sinDown (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).sl
@@ -131,11 +135,11 @@ private def Holds (θ : ℝ) (B : SinCosBox 𝕋) : Prop :=
     toReal B.cl ≤ Real.cos θ ∧ Real.cos θ ≤ toReal B.cu
 
 private theorem toReal_halfIter (n : ℕ) (a : 𝕋) :
-    toReal (halfIter n a) = toReal a / 2 ^ n := by -- --- PROOF ---
+    toReal (sinCosHalfIter n a) = toReal a / 2 ^ n := by -- --- PROOF ---
   induction n with
-  | zero => rw [halfIter, pow_zero, div_one]
+  | zero => rw [sinCosHalfIter, pow_zero, div_one]
   | succ k ih =>
-    rw [halfIter, toReal_half, ih, pow_succ]
+    rw [sinCosHalfIter, toReal_half, ih, pow_succ]
     ring
 
 /-- `k x` lies between its values at the ends of `[c, d]`. -/
@@ -223,7 +227,7 @@ private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal 
   have h6 : ((Nat.factorial 3 : ℕ) : ℝ) = 6 := by norm_num [Nat.factorial]
   rw [h6] at hd
   -- `t⁵ / 64`, which bounds `t⁵ / 100`
-  have he : x ^ 5 / 100 ≤ toReal (halfIter 6 (powUp t 5)) := by
+  have he : x ^ 5 / 100 ≤ toReal (sinCosHalfIter 6 (powUp t 5)) := by
     rw [toReal_halfIter]
     have := le_powUp (B := t) h0 le_rfl 5
     have h5 : 0 ≤ x ^ 5 := pow_nonneg h0 5
@@ -251,7 +255,7 @@ private theorem cosSeed_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 
   have hu := mul_le_mulUp t t
   have hm : toReal (maximum zero (mulDown t t)) ≤ x * x := by
     rw [toReal_maximum, toReal_zero]; exact max_le (mul_nonneg h0 h0) (mulDown_le_mul t t)
-  have he : x ^ 4 * (5 / 96) ≤ toReal (halfIter 4 (powUp t 4)) := by
+  have he : x ^ 4 * (5 / 96) ≤ toReal (sinCosHalfIter 4 (powUp t 4)) := by
     rw [toReal_halfIter]
     have := le_powUp (B := t) h0 le_rfl 4
     have h4 : 0 ≤ x ^ 4 := pow_nonneg h0 4
@@ -357,7 +361,7 @@ private theorem doubleIter_holds (n : ℕ) {θ : ℝ} {B : SinCosBox 𝕋} (h : 
     exact hstep
 
 private theorem sinCosBox_holds (n : ℕ) (a : 𝕋) : Holds (toReal a) (sinCosBox n a) := by
-  have h := doubleIter_holds n (seed_holds (halfIter n a))
+  have h := doubleIter_holds n (seed_holds (sinCosHalfIter n a))
   rwa [toReal_halfIter, mul_div_cancel₀ _ (pow_ne_zero _ two_ne_zero)] at h
 
 

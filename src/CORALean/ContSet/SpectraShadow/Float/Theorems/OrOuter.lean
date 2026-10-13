@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.SpectraShadow.Float.Operations.Or
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Or
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.or` encloses the convex hull of the union, over a floating-point scalar

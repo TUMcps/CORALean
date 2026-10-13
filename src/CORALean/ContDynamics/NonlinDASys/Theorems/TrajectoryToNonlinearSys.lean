@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
+
+@[expose] public section
 
 /-!
 # A trajectory of the differential-algebraic system is one of the reduced system

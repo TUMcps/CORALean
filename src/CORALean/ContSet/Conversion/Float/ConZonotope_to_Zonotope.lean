@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+
+@[expose] public section
 
 /-!
 # Dropping the constraints, over a floating-point scalar

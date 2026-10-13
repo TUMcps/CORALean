@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.SupportBound
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeOfBound
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportBound
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeOfBound
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.supportFunc_le_supportBound`

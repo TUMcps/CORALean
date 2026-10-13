@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Instances
-import CORALean.ContSet.InflatedContSet.InflatedContSet
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Instances
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+
+@[expose] public section
 
 /-!
 # Constrained polynomial zonotopes over a floating-point scalar: the representation

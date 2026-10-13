@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Operations.EnclosureMid
+module
+
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Operations.EnclosureMid
+
+@[expose] public section
 
 /-!
 # The relaxation of a monotone function at slope zero

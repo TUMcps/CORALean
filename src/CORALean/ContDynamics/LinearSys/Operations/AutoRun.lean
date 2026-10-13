@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoInit
-import CORALean.ContDynamics.LinearSys.Operations.AutoStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoInit
+public import CORALean.ContDynamics.LinearSys.Operations.AutoStep
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 4-31: the loop

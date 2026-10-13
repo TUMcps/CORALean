@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainder
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainder
+
+@[expose] public section
 
 /-!
 # Every matrix within the bound lies in the remainder zonotope

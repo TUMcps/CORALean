@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+
+@[expose] public section
 
 /-!
 # An equality is the degenerate slab

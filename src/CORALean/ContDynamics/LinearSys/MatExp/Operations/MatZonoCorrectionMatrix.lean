@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTerm
-import CORALean.ContSet.Interval.Real.Operations.AbsMax
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTerm
+public import CORALean.ContSet.Interval.Real.Operations.AbsMax
+
+@[expose] public section
 
 /-!
 # Matrix zonotopes: the correction matrix

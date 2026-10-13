@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MethodC
-import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MethodC
+public import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeOuter
+
+@[expose] public section
 
 /-!
 # Method C encloses

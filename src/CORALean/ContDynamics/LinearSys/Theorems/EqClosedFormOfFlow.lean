@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.Analysis.ODE.Gronwall
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.Analysis.ODE.Gronwall
+
+@[expose] public section
 
 /-!
 # A run of the integral equation *is* the closed form, point by point

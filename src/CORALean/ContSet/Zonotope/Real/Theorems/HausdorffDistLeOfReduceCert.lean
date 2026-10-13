@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
-import Mathlib.Topology.MetricSpace.HausdorffDistance
-import Mathlib.Analysis.Normed.Module.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+public import Mathlib.Analysis.Normed.Module.Basic
+
+@[expose] public section
 
 /-!
 # Order reduction with a certified Hausdorff bound

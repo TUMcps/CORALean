@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetIntersection.Operations.Plus
+module
+
+public import CORALean.ContSet.SetIntersection.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `SetIntersection.plus` over-approximates the Minkowski sum

@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.TimeIntervalStepInv
-import CORALean.HybridDynamics.Theorems.FlowOuter
+module
+
+public import CORALean.HybridDynamics.Operations.TimeIntervalStepInv
+public import CORALean.HybridDynamics.Theorems.FlowOuter
+
+@[expose] public section
 
 /-!
 # A stay is enclosed by the invariant-cut time-interval step

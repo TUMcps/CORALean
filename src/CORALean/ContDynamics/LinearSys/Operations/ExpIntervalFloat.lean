@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+
+@[expose] public section
 
 /-!
 # `[e^{At}]` over a float time range

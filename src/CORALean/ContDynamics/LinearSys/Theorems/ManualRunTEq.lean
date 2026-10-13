@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.ManualRun
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ManualRun
+
+@[expose] public section
 
 /-!
 # `manualRun` reaches `t_k = k·Δt`

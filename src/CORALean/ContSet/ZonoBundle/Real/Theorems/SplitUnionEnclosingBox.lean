@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnion
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingBoxContains
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnion
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingBoxContains
+
+@[expose] public section
 
 /-!
 # Splitting at the computed box is exact

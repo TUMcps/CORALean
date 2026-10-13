@@ -1,9 +1,13 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Analysis.Matrix.Order
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Add
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Add
+
+@[expose] public section
 
 /-!
 # The derivative of the shape matrix in the parameter

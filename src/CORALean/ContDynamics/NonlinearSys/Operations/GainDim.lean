@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrSolInf
-import CORALean.Global.BoxDiameter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrSolInf
+public import CORALean.Global.BoxDiameter
+
+@[expose] public section
 
 /-!
 # The gain of one dimension

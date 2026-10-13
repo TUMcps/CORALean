@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Empty
-import CORALean.ContSet.Interval.Real.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Empty
+public import CORALean.ContSet.Interval.Real.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # `Interval.projectHighDim_`

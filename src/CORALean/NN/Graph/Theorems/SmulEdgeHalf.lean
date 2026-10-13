@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # An edge weight split into a centre and a generator

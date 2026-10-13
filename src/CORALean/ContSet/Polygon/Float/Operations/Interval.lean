@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.IntervalOfList
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.IntervalOfList
+
+@[expose] public section
 
 /-!
 # `Polygon.interval`, over a floating-point scalar

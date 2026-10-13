@@ -1,4 +1,8 @@
-import Mathlib.Data.Finset.Sort
+module
+
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # A sorted finset's `j`-th element, read off a table

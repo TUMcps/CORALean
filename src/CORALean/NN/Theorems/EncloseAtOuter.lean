@@ -1,7 +1,11 @@
-import CORALean.NN.Operations.AtSchedule
-import CORALean.NN.Operations.EncloseAt
-import CORALean.NN.Theorems.AtScheduleEval
-import CORALean.NN.Theorems.EncloseOuter
+module
+
+public import CORALean.NN.Operations.AtSchedule
+public import CORALean.NN.Operations.EncloseAt
+public import CORALean.NN.Theorems.AtScheduleEval
+public import CORALean.NN.Theorems.EncloseOuter
+
+@[expose] public section
 
 /-!
 # Every schedule encloses the image

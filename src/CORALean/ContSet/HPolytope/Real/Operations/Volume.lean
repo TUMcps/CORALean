@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # `HPolytope.volume`

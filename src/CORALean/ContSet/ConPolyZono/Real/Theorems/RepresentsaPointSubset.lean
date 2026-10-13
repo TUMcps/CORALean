@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # A constrained polynomial zonotope without generators lies in its centre

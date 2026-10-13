@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpDiffMemCorrectionSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpDiffMemCorrectionSet
+
+@[expose] public section
 
 /-!
 # The Krylov approximation between two time points

@@ -1,4 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.SetBasedNetForward
+module
+
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.SetBasedNetForward
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `SetBasedNet.trainingCost`

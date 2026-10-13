@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
+
+@[expose] public section
 
 /-!
 # One float step at either abstraction order holds every run of the real system

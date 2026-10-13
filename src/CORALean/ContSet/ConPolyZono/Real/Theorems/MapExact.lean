@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.ConPolyZono.Real.Operations.Map
-import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesMap
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Map
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesMap
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.map` is exactly the image under a linear map

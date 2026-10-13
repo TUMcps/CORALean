@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
+
+@[expose] public section
 
 /-!
 # Ranking enclosures by volume ranks them by `Θ`

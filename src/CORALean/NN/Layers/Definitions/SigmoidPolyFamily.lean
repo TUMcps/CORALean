@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.PolyFamily
-import CORALean.NN.Layers.Theorems.Real.AbsSigmoidDerivLeOne
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+module
+
+public import CORALean.NN.Layers.Definitions.PolyFamily
+public import CORALean.NN.Layers.Theorems.Real.AbsSigmoidDerivLeOne
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+
+@[expose] public section
 
 /-!
 # The refinement loop's family at the sigmoid

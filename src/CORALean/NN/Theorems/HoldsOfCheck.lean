@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.HoldsOfEnclose
-import CORALean.Specification.Theorems.CheckSound
+module
+
+public import CORALean.NN.Theorems.HoldsOfEnclose
+public import CORALean.Specification.Theorems.CheckSound
+
+@[expose] public section
 
 /-!
 # Verification, computed: a passed check answers for the network

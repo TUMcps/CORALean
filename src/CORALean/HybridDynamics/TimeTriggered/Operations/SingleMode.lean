@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+
+@[expose] public section
 
 /-!
 # A single-mode automaton

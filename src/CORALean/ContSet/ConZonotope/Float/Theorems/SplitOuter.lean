@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Split
-import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
-import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Split
+public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
+
+@[expose] public section
 
 /-!
 # The halves of `ConZonotope.split` cover the set, over a floating-point scalar

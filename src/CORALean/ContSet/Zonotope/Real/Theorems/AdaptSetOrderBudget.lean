@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
-import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
-import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
+
+@[expose] public section
 
 /-!
 # What `Alg. 3` returns is inside the budget it searched for

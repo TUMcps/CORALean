@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberEqZeroOfNotMem
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberEqZeroOfNotMem
+
+@[expose] public section
 
 /-!
 # The exact layer's regrouping at this layer's stored columns, exact reals

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Smul
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+
+@[expose] public section
 
 /-!
 # `Interval.smul` over-approximates scaling every point of a box

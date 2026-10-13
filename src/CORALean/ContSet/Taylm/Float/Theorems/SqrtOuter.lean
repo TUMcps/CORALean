@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.Sqrt
-import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
-import CORALean.ContSet.Taylm.Float.Theorems.SqrtCoefMem
-import CORALean.ContSet.Taylm.Float.Theorems.SqrtBoundGe
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Sqrt
+public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.SqrtCoefMem
+public import CORALean.ContSet.Taylm.Float.Theorems.SqrtBoundGe
+
+@[expose] public section
 
 /-!
 # `Taylm.sqrt` encloses `√ ∘ f`

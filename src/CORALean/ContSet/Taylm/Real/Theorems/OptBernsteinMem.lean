@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.OptBernstein
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqSumBernsteinCoeff
-import CORALean.ContSet.Taylm.Real.Theorems.LeBernsteinDegree
-import CORALean.ContSet.Taylm.Real.Theorems.SumBernsteinBasis
-import CORALean.ContSet.Taylm.Real.Theorems.BernsteinBasisNonneg
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.OptBernstein
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqSumBernsteinCoeff
+public import CORALean.ContSet.Taylm.Real.Theorems.LeBernsteinDegree
+public import CORALean.ContSet.Taylm.Real.Theorems.SumBernsteinBasis
+public import CORALean.ContSet.Taylm.Real.Theorems.BernsteinBasisNonneg
+
+@[expose] public section
 
 /-!
 # `optBernstein` encloses

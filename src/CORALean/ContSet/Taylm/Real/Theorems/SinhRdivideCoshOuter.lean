@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
-import CORALean.ContSet.Taylm.Real.Theorems.SinhOuter
-import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SinhOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
+
+@[expose] public section
 
 /-!
 # `tanh` as `sinh / cosh`

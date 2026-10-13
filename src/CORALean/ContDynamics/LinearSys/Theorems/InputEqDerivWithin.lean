@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
+
+@[expose] public section
 
 /-!
 # A classical run's input as a derivative, drift subtracted

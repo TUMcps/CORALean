@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalAll
-import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalAll
+public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.intervalAll` contains the bundle

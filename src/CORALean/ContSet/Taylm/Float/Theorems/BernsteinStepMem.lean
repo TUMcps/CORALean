@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.BernsteinStep
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BernsteinStep
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # A Bernstein step lies in its bracket

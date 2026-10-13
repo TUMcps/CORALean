@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot
-import CORALean.ContSet.InflatedContSet.Operations.Bound
-import CORALean.ContSet.Interval.Float.Operations.BoundDot
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot
+public import CORALean.ContSet.InflatedContSet.Operations.Bound
+public import CORALean.ContSet.Interval.Float.Operations.BoundDot
+
+@[expose] public section
 
 /-!
 # An ellipsoid answers a direction in floats, and still without a linear program

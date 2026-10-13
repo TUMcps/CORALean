@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContDynamics.OutputEq.OutputEq
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContDynamics.OutputEq.OutputEq
+
+@[expose] public section
 
 /-!
 # The disturbances' part of the conformance check's deviation sets

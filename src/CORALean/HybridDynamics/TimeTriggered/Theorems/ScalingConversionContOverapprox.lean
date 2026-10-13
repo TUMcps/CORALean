@@ -1,12 +1,16 @@
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.Topology.Order.IntermediateValue
-import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
-import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
-import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
-import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnscale
-import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfExec
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.Topology.Order.IntermediateValue
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
+public import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnscale
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfExec
+
+@[expose] public section
 
 /-!
 # The scaled automaton overapproximates within the extended time bound

@@ -1,11 +1,15 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
-import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
-import CORALean.Global.Entrywise
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
-import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
+public import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.Global.Entrywise
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
+
+@[expose] public section
 
 /-!
 # Boxing what a partition drops, and keeping its constraints, over-approximates

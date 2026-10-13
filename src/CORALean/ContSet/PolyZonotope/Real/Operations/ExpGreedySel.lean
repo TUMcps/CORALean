@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
-import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.expGreedySel`

@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Order.BourbakiWitt
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Order.BourbakiWitt
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # A group merge is not always tighter than the pairwise merges it replaces

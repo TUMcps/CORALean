@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.FindRegionPolys
-import CORALean.NN.Layers.Theorems.FindRegionLoopCover
+module
+
+public import CORALean.NN.Layers.Operations.FindRegionPolys
+public import CORALean.NN.Layers.Theorems.FindRegionLoopCover
+
+@[expose] public section
 
 /-!
 # `findRegionPolys`: every point has a polynomial within the error

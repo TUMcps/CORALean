@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # `ConZonotope.rescale` over a floating-point scalar

@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Order.Disjoint
-import Mathlib.Tactic.Abel
+module
+
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Order.Disjoint
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # [1, Sec. 2.2]: the membership tests a measurement error reduces to

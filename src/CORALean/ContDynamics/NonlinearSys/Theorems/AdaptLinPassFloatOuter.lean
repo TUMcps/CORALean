@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPassFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPassFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
+
+@[expose] public section
 
 /-!
 # The float linear pass holds the runs whose remainder stays in its input

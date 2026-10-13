@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.Conform.Definitions.Glo
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.Glo
+
+@[expose] public section
 
 /-!
 # One more factor of the Jacobian product

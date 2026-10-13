@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.ActivationPolySound
+module
+
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolySound
+
+@[expose] public section
 
 /-!
 # The exact polynomial activation layer, as an `Enclose` kind

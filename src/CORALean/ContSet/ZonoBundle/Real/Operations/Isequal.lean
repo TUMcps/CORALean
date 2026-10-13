@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Zonotope.Real.Operations.Isequal
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Zonotope.Real.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.isequal`

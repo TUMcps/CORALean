@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
-import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+public import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
+
+@[expose] public section
 
 /-!
 # The nonlinear reset of a transition evaluates to the transition's reset

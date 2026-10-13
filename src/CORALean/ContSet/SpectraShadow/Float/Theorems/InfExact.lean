@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
-import CORALean.ContSet.SpectraShadow.Float.Operations.Inf
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Inf
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.Inf` denotes everything

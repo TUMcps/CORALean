@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
+
+@[expose] public section
 
 /-!
 # Trying lower orders on a region

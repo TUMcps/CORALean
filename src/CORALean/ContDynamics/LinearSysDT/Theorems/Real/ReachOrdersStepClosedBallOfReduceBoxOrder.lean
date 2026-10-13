@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachStepSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOrder
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachStepSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOrder
+
+@[expose] public section
 
 /-!
 # Closing the loop: `reachOrders` against a tolerance chosen per step

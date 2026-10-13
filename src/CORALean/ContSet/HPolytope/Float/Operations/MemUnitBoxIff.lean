@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
-import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
+public import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.unitBox`, over a floating-point scalar

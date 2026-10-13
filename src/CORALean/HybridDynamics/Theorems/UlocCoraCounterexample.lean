@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.UlocCora
-import CORALean.HybridDynamics.Operations.Uloc
+module
+
+public import CORALean.HybridDynamics.Operations.UlocCora
+public import CORALean.HybridDynamics.Operations.Uloc
+
+@[expose] public section
 
 /-!
 # CORA's `uloc` gives locations the wrong input

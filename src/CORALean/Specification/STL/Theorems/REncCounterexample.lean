@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Definitions.MILPEncoding
-import Mathlib.Tactic.NormNum
-import CORALean.Specification.STL.Operations.DFormulaBound
+module
+
+public import CORALean.Specification.STL.Definitions.MILPEncoding
+public import Mathlib.Tactic.NormNum
+public import CORALean.Specification.STL.Operations.DFormulaBound
+
+@[expose] public section
 
 /-!
 # The printed robust encoding misses the robustness

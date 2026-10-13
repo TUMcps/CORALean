@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleSum
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleSum
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.lineExample_not_mem`

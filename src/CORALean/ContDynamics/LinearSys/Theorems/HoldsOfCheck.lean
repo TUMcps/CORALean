@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
-import CORALean.Specification.Theorems.CheckSound
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
+public import CORALean.Specification.Theorems.CheckSound
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A passed check on `reach` holds at every time of `[0, tFinal]`

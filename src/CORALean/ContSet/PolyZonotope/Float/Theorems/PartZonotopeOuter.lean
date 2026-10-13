@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeNominal
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeNominal
+
+@[expose] public section
 
 /-!
 # `partZonotope` encloses the original, in float too

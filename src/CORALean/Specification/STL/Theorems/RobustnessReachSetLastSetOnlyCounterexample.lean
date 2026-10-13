@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.RobustnessReachSetGloballyCora
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Specification.STL.Operations.RobustnessReachSetGloballyCora
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `stl/robustness` on a reach set is positive for a violated `G_[0,3/2] x > 0`

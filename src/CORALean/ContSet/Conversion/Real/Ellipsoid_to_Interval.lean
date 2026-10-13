@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
-import CORALean.ContSet.Interval.Real.Operations.OfBounds
-import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
+public import CORALean.ContSet.Interval.Real.Operations.OfBounds
+public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a box

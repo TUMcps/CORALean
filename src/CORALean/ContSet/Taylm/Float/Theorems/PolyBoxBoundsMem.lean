@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.PolyBoxBounds
-import CORALean.ContSet.Taylm.Float.Operations.InBox
-import CORALean.ContSet.Taylm.Float.Theorems.PowBoundsMem
-import CORALean.ContSet.Taylm.Float.Theorems.ProdBoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.PolyBoxBounds
+public import CORALean.ContSet.Taylm.Float.Operations.InBox
+public import CORALean.ContSet.Taylm.Float.Theorems.PowBoundsMem
+public import CORALean.ContSet.Taylm.Float.Theorems.ProdBoundsMem
+
+@[expose] public section
 
 /-!
 # `Taylm.polyBoxBounds` brackets the polynomial

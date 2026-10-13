@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # Every member's exponential lies in `expEnclosure`

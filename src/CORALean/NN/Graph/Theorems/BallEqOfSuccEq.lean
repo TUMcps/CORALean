@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.Ball
+module
+
+public import CORALean.NN.Graph.Operations.Ball
+
+@[expose] public section
 
 /-!
 # One stable step means stable forever

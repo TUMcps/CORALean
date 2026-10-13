@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The continuous-time system of a discrete-time one

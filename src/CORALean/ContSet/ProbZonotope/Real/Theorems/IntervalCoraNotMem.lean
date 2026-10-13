@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.UnitMeanIntervalCora
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.UnitMeanIntervalCora
+
+@[expose] public section
 
 /-!
 # CORA's `interval` of a probabilistic zonotope ignores the deterministic generators

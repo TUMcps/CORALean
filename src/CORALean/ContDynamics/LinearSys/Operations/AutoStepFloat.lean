@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
-import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaTFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
-import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Zonotope.Float.Operations.AutoTuneSetOrder
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaTFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Float.Operations.AutoTuneSetOrder
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 4-31 in floats: one iteration of the main loop

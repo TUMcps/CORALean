@@ -1,7 +1,9 @@
-import CORALean.ContSet.VPolytope.Float.VPolytope
-import CORALean.ContSet.VPolytope.Float.Operations.API
-import CORALean.ContSet.VPolytope.Float.Theorems.API
-import CORALean.ContSet.VPolytope.Float.Instances
+module
+
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+public import CORALean.ContSet.VPolytope.Float.Operations.API
+public import CORALean.ContSet.VPolytope.Float.Theorems.API
+public import CORALean.ContSet.VPolytope.Float.Instances
 
 /-!
 # Vertex descriptions over a floating-point scalar, collected

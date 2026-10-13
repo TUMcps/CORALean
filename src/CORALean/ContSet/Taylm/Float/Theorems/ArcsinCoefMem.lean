@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Float.Operations.ArcsinCoef
-import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import CORALean.Global.ElementaryDerivBounds
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ArcsinCoef
+public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.Global.ElementaryDerivBounds
+
+@[expose] public section
 
 /-!
 # `Taylm.arcsinCoef` encloses the coefficient of `arcsin`

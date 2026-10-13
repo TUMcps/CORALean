@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # The set-propagation observer

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Reexpand
-import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Reexpand
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+
+@[expose] public section
 
 /-!
 # A polynomial's bounds over a box by re-expansion

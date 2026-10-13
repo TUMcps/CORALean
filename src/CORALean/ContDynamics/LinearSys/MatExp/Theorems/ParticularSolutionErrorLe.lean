@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionErrorBound
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
-import CORALean.Global.Err
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionErrorBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # `particularSolutionError` is within its own explicit bound

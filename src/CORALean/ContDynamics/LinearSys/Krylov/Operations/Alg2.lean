@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Algebra.Order.Floor.Semiring
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Algebra.Order.Floor.Semiring
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # Alg. 2, as printed

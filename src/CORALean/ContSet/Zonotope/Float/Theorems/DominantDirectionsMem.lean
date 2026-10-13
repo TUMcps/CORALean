@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.DominantDirections
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.DominantDirections
+
+@[expose] public section
 
 /-!
 # The dominant directions are stored generators

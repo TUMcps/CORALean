@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
-import Mathlib.LinearAlgebra.Matrix.ToLin
-import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
+public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # A degenerate V-polytope, restricted to its affine hull

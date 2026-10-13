@@ -1,7 +1,11 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Split
-import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Split
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
+
+@[expose] public section
 
 /-!
 # The halves of a float bundle split cover the bundle

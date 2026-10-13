@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.OutputEq.Operations.OutputSet
+module
+
+public import CORALean.ContDynamics.OutputEq.Operations.OutputSet
+
+@[expose] public section
 
 /-!
 # Output equations: the output set with an offset and a noise term

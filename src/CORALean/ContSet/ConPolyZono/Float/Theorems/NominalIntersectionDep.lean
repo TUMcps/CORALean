@@ -1,12 +1,16 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
-import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
-import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatIntersectionA
-import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
+public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatIntersectionA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+
+@[expose] public section
 
 /-!
 # `intersectionDep`'s nominal part is the exact layer's, at the tolerance `intersectionD`

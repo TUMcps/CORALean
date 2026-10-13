@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropStep
-import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropLuenbergerOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionUpdateOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropStep
+public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropLuenbergerOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionUpdateOuter
+
+@[expose] public section
 
 /-!
 # One instant of the set-propagation diffusion observer holds the next state

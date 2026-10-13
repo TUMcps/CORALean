@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.replace` denotes `Z` and every other member, over a floating-point scalar

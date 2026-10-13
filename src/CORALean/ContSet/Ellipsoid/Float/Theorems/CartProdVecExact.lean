@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.CartProdVec
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.CartProdVec
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.cartProdVec` is the product with a point, exactly

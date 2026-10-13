@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.SelectMat
-import CORALean.NN.Graph.Operations.Select
+module
+
+public import CORALean.NN.Graph.Operations.SelectMat
+public import CORALean.NN.Graph.Operations.Select
+
+@[expose] public section
 
 /-!
 # `selectMat` reads back as `select`

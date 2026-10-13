@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.ineqs`, over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.Global.MeanValueAE
+module
+
+public import CORALean.Global.MeanValueAE
+
+@[expose] public section
 
 /-!
 # Mean-value AE extensions of a robust range

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.unionWithSel`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Theorems.NormNominalLe
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.NormNominalLe
+
+@[expose] public section
 
 /-!
 # `Interval.norm` bounds every member

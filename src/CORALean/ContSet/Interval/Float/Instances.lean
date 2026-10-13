@@ -1,19 +1,23 @@
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.Global.Float.NoNaN
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
-import CORALean.ContSet.Interval.Float.Theorems.IsCompact
-import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.IsCompact
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.Global.Float.NoNaN
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+public import CORALean.ContSet.Interval.Float.Theorems.IsCompact
+public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.IsCompact
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # What `Interval` instantiates

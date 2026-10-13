@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.or`

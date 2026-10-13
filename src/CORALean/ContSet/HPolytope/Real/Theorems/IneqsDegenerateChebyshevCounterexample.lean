@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # `[1, Eq. 18]` as printed reads the Chebyshev radius the wrong way round

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureExactFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorExactFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureExactFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorExactFloat
+
+@[expose] public section
 
 /-!
 # The matrix exponential lies in the sharper float interval enclosure

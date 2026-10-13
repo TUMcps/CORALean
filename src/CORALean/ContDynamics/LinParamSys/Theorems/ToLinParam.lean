@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinearSys.LinearSys
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinearSys.LinearSys
+
+@[expose] public section
 
 /-!
 # A continuous-time linear system is one with a set-valued matrix, at a point

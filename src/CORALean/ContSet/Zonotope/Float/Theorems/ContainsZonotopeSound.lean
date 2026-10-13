@@ -1,11 +1,15 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
-import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
-import CORALean.ContSet.Zonotope.Float.Theorems.EntryDeviationBound
-import CORALean.ContSet.Zonotope.Float.Theorems.ErrBoundLe
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.MulResidualBound
-import CORALean.ContSet.Zonotope.Float.Theorems.PointBetween
-import CORALean.ContSet.Zonotope.Real.Theorems.ContainsViaReach
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
+public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
+public import CORALean.ContSet.Zonotope.Float.Theorems.EntryDeviationBound
+public import CORALean.ContSet.Zonotope.Float.Theorems.ErrBoundLe
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.MulResidualBound
+public import CORALean.ContSet.Zonotope.Float.Theorems.PointBetween
+public import CORALean.ContSet.Zonotope.Real.Theorems.ContainsViaReach
+
+@[expose] public section
 
 /-!
 # A `true` from `Zonotope.containsZonotope` proves containment

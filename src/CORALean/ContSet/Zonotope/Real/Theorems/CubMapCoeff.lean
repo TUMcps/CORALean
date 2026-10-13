@@ -1,8 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.CubMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Fintype.BigOperators
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.CubMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The coefficients of `Zonotope.cubMap`

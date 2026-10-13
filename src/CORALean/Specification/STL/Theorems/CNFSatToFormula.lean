@@ -1,10 +1,14 @@
-import CORALean.Specification.STL.Operations.CNFToFormula
-import CORALean.Specification.STL.Definitions.BranchHolds
-import CORALean.Specification.STL.Theorems.STLSatBigOr
-import CORALean.Specification.STL.Theorems.STLSatBigAnd
-import CORALean.Specification.STL.Theorems.SatNext
-import CORALean.Specification.STL.Theorems.SatOfPform
-import CORALean.Specification.STL.Theorems.ShiftShift
+module
+
+public import CORALean.Specification.STL.Operations.CNFToFormula
+public import CORALean.Specification.STL.Definitions.BranchHolds
+public import CORALean.Specification.STL.Theorems.STLSatBigOr
+public import CORALean.Specification.STL.Theorems.STLSatBigAnd
+public import CORALean.Specification.STL.Theorems.SatNext
+public import CORALean.Specification.STL.Theorems.SatOfPform
+public import CORALean.Specification.STL.Theorems.ShiftShift
+
+@[expose] public section
 
 /-!
 # What a normal form says of a trace

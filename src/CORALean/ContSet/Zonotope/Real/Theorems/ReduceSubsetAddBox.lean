@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
+
+@[expose] public section
 
 /-!
 # Reduction reaches no further than the original plus its own box, at `reduce`

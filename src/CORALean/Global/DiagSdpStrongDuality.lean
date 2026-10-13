@@ -1,8 +1,12 @@
-import Mathlib.Analysis.LocallyConvex.Separation
-import Mathlib.Analysis.InnerProductSpace.Positive
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Topology.Order.Compact
-import Mathlib.Topology.Instances.Matrix
+module
+
+public import Mathlib.Analysis.LocallyConvex.Separation
+public import Mathlib.Analysis.InnerProductSpace.Positive
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Topology.Order.Compact
+public import Mathlib.Topology.Instances.Matrix
+
+@[expose] public section
 
 /-!
 # Strong duality for the semidefinite relaxation with unit diagonal

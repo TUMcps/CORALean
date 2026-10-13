@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortTailP
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PowSortPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortTailP
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PowSortPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusPoint
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2]'s sum over the powers is the polynomial from that degree up

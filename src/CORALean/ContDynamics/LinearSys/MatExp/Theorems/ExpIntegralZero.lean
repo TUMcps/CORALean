@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+
+@[expose] public section
 
 /-!
 # `∫₀ʳ e^{0·s} ds` against `r I`

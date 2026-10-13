@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # `Taylm.representsa_emptySet` is sound

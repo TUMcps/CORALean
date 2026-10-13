@@ -1,10 +1,14 @@
-import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
-import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
-import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.ConZonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceOuter
-import CORALean.ContSet.ConZonotope.Float.Theorems.ReindexExact
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.ConZonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.ConZonotope.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # What the float `ConZonotope` instantiates

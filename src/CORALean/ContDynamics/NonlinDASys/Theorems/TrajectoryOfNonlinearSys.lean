@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+
+@[expose] public section
 
 /-!
 # A trajectory of the reduced system is one of the differential-algebraic system

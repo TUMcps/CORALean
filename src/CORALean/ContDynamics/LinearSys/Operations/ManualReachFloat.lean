@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
-import CORALean.ContDynamics.LinearSys.Operations.ManualInitFloat
-import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.Reach.Operations.Steps
-import CORALean.ContDynamics.Reach.Definitions.InputParams
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Operations.ManualInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.Reach.Operations.Steps
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `Alg. 1` in floats: reachability at a fixed step, order and zonotope order

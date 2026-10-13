@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mtimes`

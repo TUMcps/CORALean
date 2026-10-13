@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.ContainsPoint
-import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
+
+@[expose] public section
 
 /-!
 # A `true` from `Polygon.containsPoint` proves membership

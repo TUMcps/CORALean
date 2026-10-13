@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Ellipsoid
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Ellipsoid
+module
+
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Ellipsoid
+
+@[expose] public section
 
 /-!
 # A constrained polynomial zonotope as an ellipsoid, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.bilin` over-approximates the exact pairing

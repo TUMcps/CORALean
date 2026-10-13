@@ -1,21 +1,25 @@
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.Global.Float.NoNaN
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Definitions.IntersectStrip
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.Convex
-import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
-import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesMatZonotopeOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
-import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
+module
+
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.Global.Float.NoNaN
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.IntersectStrip
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesMatZonotopeOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
+
+@[expose] public section
 
 /-!
 # What `Zonotope` instantiates

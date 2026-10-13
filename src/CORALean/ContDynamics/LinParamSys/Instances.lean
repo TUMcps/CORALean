@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.LinParamSys.Theorems.WithInputReachUnionOuter
-import CORALean.ContDynamics.LinParamSys.Theorems.WithInputSplitReachUnionOuter
-import CORALean.ContDynamics.Reach.Reach
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.WithInputReachUnionOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.WithInputSplitReachUnionOuter
+public import CORALean.ContDynamics.Reach.Reach
+
+@[expose] public section
 
 /-!
 # `LinParamSys ℐ`, `LinParamSys.WithInput` and `WithInputSplit` instantiate `Reach`

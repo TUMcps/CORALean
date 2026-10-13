@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ErrorLoopAdaptive
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ErrorLoopAdaptive
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.passAdaptive`

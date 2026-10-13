@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
-import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
+public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+
+@[expose] public section
 
 /-!
 # `reachWrappingFreeFloat` holds the exact flow over every window

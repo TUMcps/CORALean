@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `HPolytope.liftCols` acts on the lifted point as `M` on the selected coordinates

@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.SShape
+module
+
+public import CORALean.NN.Layers.Definitions.SShape
+
+@[expose] public section
 
 /-!
 # `nnSShapeLayer.getDerBounds`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
+
+@[expose] public section
 
 /-!
 # The stored shifted centres of `absorbError` bracket the exact one

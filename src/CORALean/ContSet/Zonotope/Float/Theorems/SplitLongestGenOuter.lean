@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.SplitLongestGen
-import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.SplitLongestGen
+public import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
+
+@[expose] public section
 
 /-!
 # The halves of `Zonotope.splitLongestGen` cover the zonotope, over a floating-point scalar

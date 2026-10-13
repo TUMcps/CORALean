@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyStep
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyStep
+
+@[expose] public section
 
 /-!
 # `evalPoly`'s recursion, over a floating-point scalar

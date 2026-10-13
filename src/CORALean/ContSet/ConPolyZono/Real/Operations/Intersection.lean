@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
-import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
-import CORALean.ContSet.Interval.Real.Operations.Point
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
+public import CORALean.ContSet.Interval.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.intersection`

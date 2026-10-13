@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.HybridDynamics.Operations.LinearResetSynchronizeFloat
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.HybridDynamics.Operations.LinearResetSynchronizeFloat
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
+
+@[expose] public section
 
 /-!
 # `Transition.synchronize` in directed rounding

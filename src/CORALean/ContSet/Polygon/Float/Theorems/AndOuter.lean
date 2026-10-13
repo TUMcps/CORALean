@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.And
-import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.And
+public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.and` encloses the intersection

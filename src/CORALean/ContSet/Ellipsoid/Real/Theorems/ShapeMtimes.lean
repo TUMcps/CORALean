@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+
+@[expose] public section
 
 /-!
 # The shape matrix of a linear image

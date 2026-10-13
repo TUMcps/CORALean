@@ -1,7 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Definitions.API
-import CORALean.ContSet.Taylm.Real.Taylm
-import CORALean.ContSet.Taylm.Real.Operations.API
-import CORALean.ContSet.Taylm.Real.Theorems.API
+module
+
+public import CORALean.ContSet.Taylm.Real.Definitions.API
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import CORALean.ContSet.Taylm.Real.Operations.API
+public import CORALean.ContSet.Taylm.Real.Theorems.API
 
 /-!
 # Taylor models, collected

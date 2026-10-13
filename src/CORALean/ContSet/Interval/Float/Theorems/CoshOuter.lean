@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Cosh
-import CORALean.ContSet.Interval.Real.Theorems.CoshExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Cosh
+public import CORALean.ContSet.Interval.Real.Theorems.CoshExact
+
+@[expose] public section
 
 /-!
 # `Interval.cosh` contains the image under `cosh`

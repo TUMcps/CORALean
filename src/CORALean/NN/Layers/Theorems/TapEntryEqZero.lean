@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.TapEntry
+module
+
+public import CORALean.NN.Layers.Operations.TapEntry
+
+@[expose] public section
 
 /-!
 # An input no tap reads gets weight zero

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Real.Operations.Triangulation
-import CORALean.ContSet.Conversion.Real.VPolytope_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
-import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Triangulation
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.quadMapMixed`

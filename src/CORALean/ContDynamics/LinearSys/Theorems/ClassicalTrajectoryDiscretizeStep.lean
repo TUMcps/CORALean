@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Operations.StepInput
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryIntervalIntegrableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryVariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryIntervalIntegrableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryVariationOfConstants
+
+@[expose] public section
 
 /-!
 # One step of the sampled recursion, for a classical run

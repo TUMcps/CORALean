@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Sup
-import CORALean.ContSet.Zonotope.Real.Theorems.IntervalAttained
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Sup
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalAttained
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.sup` is the supremum of the sup-norm over the confidence set

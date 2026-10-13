@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.Reach
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachLoopOuter
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.Reach
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachLoopOuter
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1] holds every certified run

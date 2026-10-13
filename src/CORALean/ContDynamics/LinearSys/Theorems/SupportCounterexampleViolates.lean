@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
-import CORALean.ContDynamics.LinearSys.Theorems.HeldSimSupportCounterexample
-import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerTimeIntervalLe
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
+public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimSupportCounterexample
+public import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerTimeIntervalLe
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+
+@[expose] public section
 
 /-!
 # A crossed lower bound hands back a run that crosses

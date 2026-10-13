@@ -1,53 +1,55 @@
-import CORALean.ContSet.Capsule.Float.Operations.PiStep
-import CORALean.ContSet.Capsule.Float.Operations.ArcBox
-import CORALean.ContSet.Capsule.Float.Operations.Vertices
-import CORALean.ContSet.Capsule.Float.Theorems.PiStepMem
-import CORALean.ContSet.Capsule.Float.Theorems.ArcBoxMem
-import CORALean.ContSet.Capsule.Float.Theorems.VerticesOuter
-import CORALean.ContSet.Capsule.Float.Theorems.VerticesPoint
-import CORALean.ContSet.Capsule.Float.Operations.IsDisjoint
-import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.ContSet.Capsule.Float.Operations.Origin
-import CORALean.ContSet.Capsule.Float.Operations.Empty
-import CORALean.ContSet.Capsule.Float.Operations.Center
-import CORALean.ContSet.Capsule.Float.Operations.Reduce
-import CORALean.ContSet.Capsule.Float.Operations.Reindex
-import CORALean.ContSet.Capsule.Float.Operations.Project
-import CORALean.ContSet.Capsule.Float.Operations.BoundDot
-import CORALean.ContSet.Capsule.Float.Operations.BoundDotUp
-import CORALean.ContSet.Capsule.Float.Operations.Radius
-import CORALean.ContSet.Capsule.Float.Operations.Plus
-import CORALean.ContSet.Capsule.Float.Operations.Mtimes
-import CORALean.ContSet.Capsule.Float.Operations.ConvHull
-import CORALean.ContSet.Capsule.Float.Operations.Enclose
-import CORALean.ContSet.Capsule.Float.Operations.EnclosePoints
-import CORALean.ContSet.Capsule.Float.Operations.Isequal
-import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.Capsule.Float.Operations.RepresentsaOrigin
-import CORALean.ContSet.Capsule.Float.Operations.IsFullDim
-import CORALean.ContSet.Capsule.Float.Operations.ContainsPoint
-import CORALean.ContSet.Capsule.Float.Theorems.Convex
-import CORALean.ContSet.Capsule.Float.Theorems.IsCompact
-import CORALean.ContSet.Capsule.Float.Theorems.CentreMemConstructIff
-import CORALean.ContSet.Capsule.Float.Theorems.OriginExact
-import CORALean.ContSet.Capsule.Float.Theorems.EmptyExact
-import CORALean.ContSet.Capsule.Float.Theorems.ReduceOuter
-import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
-import CORALean.ContSet.Capsule.Float.Theorems.ProjectExact
-import CORALean.ContSet.Capsule.Float.Theorems.BoundDotLe
-import CORALean.ContSet.Capsule.Float.Theorems.RadiusLe
-import CORALean.ContSet.Capsule.Float.Theorems.PlusOuter
-import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.Capsule.Float.Theorems.EncloseOuter
-import CORALean.ContSet.Capsule.Float.Theorems.EnclosePointsMem
-import CORALean.ContSet.Capsule.Float.Theorems.IsequalSound
-import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
-import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaOriginSound
-import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.Capsule.Float.Theorems.ContainsPointSound
-import CORALean.ContSet.Capsule.Float.Instances
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.PiStep
+public import CORALean.ContSet.Capsule.Float.Operations.ArcBox
+public import CORALean.ContSet.Capsule.Float.Operations.Vertices
+public import CORALean.ContSet.Capsule.Float.Theorems.PiStepMem
+public import CORALean.ContSet.Capsule.Float.Theorems.ArcBoxMem
+public import CORALean.ContSet.Capsule.Float.Theorems.VerticesOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.VerticesPoint
+public import CORALean.ContSet.Capsule.Float.Operations.IsDisjoint
+public import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.Capsule.Float.Operations.Origin
+public import CORALean.ContSet.Capsule.Float.Operations.Empty
+public import CORALean.ContSet.Capsule.Float.Operations.Center
+public import CORALean.ContSet.Capsule.Float.Operations.Reduce
+public import CORALean.ContSet.Capsule.Float.Operations.Reindex
+public import CORALean.ContSet.Capsule.Float.Operations.Project
+public import CORALean.ContSet.Capsule.Float.Operations.BoundDot
+public import CORALean.ContSet.Capsule.Float.Operations.BoundDotUp
+public import CORALean.ContSet.Capsule.Float.Operations.Radius
+public import CORALean.ContSet.Capsule.Float.Operations.Plus
+public import CORALean.ContSet.Capsule.Float.Operations.Mtimes
+public import CORALean.ContSet.Capsule.Float.Operations.ConvHull
+public import CORALean.ContSet.Capsule.Float.Operations.Enclose
+public import CORALean.ContSet.Capsule.Float.Operations.EnclosePoints
+public import CORALean.ContSet.Capsule.Float.Operations.Isequal
+public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Capsule.Float.Operations.IsFullDim
+public import CORALean.ContSet.Capsule.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Capsule.Float.Theorems.Convex
+public import CORALean.ContSet.Capsule.Float.Theorems.IsCompact
+public import CORALean.ContSet.Capsule.Float.Theorems.CentreMemConstructIff
+public import CORALean.ContSet.Capsule.Float.Theorems.OriginExact
+public import CORALean.ContSet.Capsule.Float.Theorems.EmptyExact
+public import CORALean.ContSet.Capsule.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Capsule.Float.Theorems.ProjectExact
+public import CORALean.ContSet.Capsule.Float.Theorems.BoundDotLe
+public import CORALean.ContSet.Capsule.Float.Theorems.RadiusLe
+public import CORALean.ContSet.Capsule.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.EncloseOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.EnclosePointsMem
+public import CORALean.ContSet.Capsule.Float.Theorems.IsequalSound
+public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
+public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaOriginSound
+public import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.Capsule.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.Capsule.Float.Instances
 
 /-!
 # Capsules over a floating-point scalar, collected

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # `Zonotope.areAlignedCora`, CORA's `aux_areAligned`

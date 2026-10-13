@@ -1,11 +1,15 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Complex.Basic
-import Mathlib.LinearAlgebra.Matrix.ConjTranspose
-import Mathlib.LinearAlgebra.Matrix.DotProduct
-import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Algebra.Algebra.Spectrum.Basic
-import Mathlib.Analysis.Complex.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Complex.Basic
+public import Mathlib.LinearAlgebra.Matrix.ConjTranspose
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Algebra.Algebra.Spectrum.Basic
+public import Mathlib.Analysis.Complex.Basic
+
+@[expose] public section
 
 /-!
 # The spectrum of the Krylov matrix lies in the field of values of `σA`

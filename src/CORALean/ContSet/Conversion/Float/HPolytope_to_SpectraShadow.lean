@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import Mathlib.LinearAlgebra.Matrix.PosDef
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+
+@[expose] public section
 
 /-!
 # A polytope as a spectrahedral shadow, over a floating-point scalar

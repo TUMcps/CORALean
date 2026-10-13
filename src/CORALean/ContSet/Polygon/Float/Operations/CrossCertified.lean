@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
-import CORALean.ContSet.Polygon.Float.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
+public import CORALean.ContSet.Polygon.Float.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.crossCertified`

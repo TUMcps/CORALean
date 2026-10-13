@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.EncloseOuterEval
+module
+
+public import CORALean.NN.Theorems.EncloseOuterEval
+
+@[expose] public section
 
 /-!
 # A network is a layer kind

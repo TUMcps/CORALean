@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.jointReachSet`

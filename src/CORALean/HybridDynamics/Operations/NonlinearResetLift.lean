@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.NonlinearReset
+module
+
+public import CORALean.HybridDynamics.Definitions.NonlinearReset
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.lift`

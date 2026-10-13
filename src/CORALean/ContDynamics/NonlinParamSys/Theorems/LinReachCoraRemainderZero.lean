@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
-import CORALean.Global.Jacobian
-import Mathlib.Analysis.Calculus.FDeriv.Const
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
+public import CORALean.Global.Jacobian
+public import Mathlib.Analysis.Calculus.FDeriv.Const
+
+@[expose] public section
 
 /-!
 # The abstraction error of `ẋ = p²` is zero

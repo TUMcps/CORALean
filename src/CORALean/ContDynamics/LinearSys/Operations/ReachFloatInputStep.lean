@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # One pass of `reachFloatInput`'s loop

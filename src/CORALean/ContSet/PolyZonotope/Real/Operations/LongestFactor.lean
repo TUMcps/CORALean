@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Data.List.MinMax
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Data.List.MinMax
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.longestFactor`

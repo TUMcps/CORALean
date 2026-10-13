@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MatMul
-import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MatMul
+public import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
+
+@[expose] public section
 
 /-!
 # `Zonotope.matMulIntervalMat`

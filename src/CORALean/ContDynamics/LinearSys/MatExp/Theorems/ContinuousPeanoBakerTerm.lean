@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerTerm
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerTerm
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # Every Peano–Baker term is continuous in time

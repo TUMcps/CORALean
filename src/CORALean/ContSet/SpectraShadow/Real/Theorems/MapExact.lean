@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Map
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.map` is exactly the image under a linear map

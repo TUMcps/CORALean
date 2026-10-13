@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `entryDeviation` bounds `|x - e - y|`

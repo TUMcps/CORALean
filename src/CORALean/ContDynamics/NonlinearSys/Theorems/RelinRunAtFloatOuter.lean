@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunAtFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepAtFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
-import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunAtFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepAtFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+
+@[expose] public section
 
 /-!
 # The float re-linearization loop, at given points, holds every run over every step

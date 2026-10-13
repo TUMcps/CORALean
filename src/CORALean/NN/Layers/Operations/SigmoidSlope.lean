@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SigmoidDerivHi
-import CORALean.NN.Layers.Operations.SigmoidDerivLo
+module
+
+public import CORALean.NN.Layers.Operations.SigmoidDerivHi
+public import CORALean.NN.Layers.Operations.SigmoidDerivLo
+
+@[expose] public section
 
 /-!
 # The sigmoid slope

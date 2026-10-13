@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # A ball inside a zonotope, from points on the axes

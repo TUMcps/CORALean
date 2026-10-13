@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Stack
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
-import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Stack
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.stack` over-approximates the stack of the two sets

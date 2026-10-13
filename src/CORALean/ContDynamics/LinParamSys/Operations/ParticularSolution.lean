@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
+
+@[expose] public section
 
 /-!
 # The input's contribution up to the end of a window, at every member

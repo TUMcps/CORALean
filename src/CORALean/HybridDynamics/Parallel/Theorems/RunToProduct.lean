@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
-import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
-import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
+
+@[expose] public section
 
 /-!
 # Every parallel run is a run of the product

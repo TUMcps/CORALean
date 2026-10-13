@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Definitions.CodeList
+module
+
+public import CORALean.ContSet.Taylm.Real.Definitions.CodeList
+
+@[expose] public section
 
 /-!
 # A code list with its constants converted

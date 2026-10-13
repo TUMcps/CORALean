@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.RowUpperCora
-import CORALean.ContSet.HPolytope.Real.Operations.RowLowerCora
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.RowUpperCora
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLowerCora
+
+@[expose] public section
 
 /-!
 # `HPolytope.representsaIntervalZeroRowCora`: the box of `aux_isInterval` as CORA computes it

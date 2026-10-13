@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
-import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
+
+@[expose] public section
 
 /-!
 # Zonotope bundles passing `isequal` denote the same set

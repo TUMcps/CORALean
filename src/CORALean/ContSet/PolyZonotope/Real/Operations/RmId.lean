@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.rmId`

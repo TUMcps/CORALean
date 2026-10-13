@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpApplyLastLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpApplyLastLe
+
+@[expose] public section
 
 /-!
 # The computable upper bound Err_a on the Krylov error, in the nonexpansive case

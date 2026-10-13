@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.ReachSetProductWithEq
-import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.ReachSetProductWithEq
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+
+@[expose] public section
 
 /-!
 # The product reaches exactly the stacks of what the parallel automaton reaches

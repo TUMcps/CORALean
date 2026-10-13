@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.BigOperators.Intervals
+
+@[expose] public section
 
 /-!
 # The constant flow [1, Prop. 1] chooses

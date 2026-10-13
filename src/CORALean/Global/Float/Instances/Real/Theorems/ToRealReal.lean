@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # ℝ reads itself

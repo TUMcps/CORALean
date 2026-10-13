@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.Flatten
-import CORALean.Global.Float.FloatOps
+module
+
+public import CORALean.NN.Graph.Operations.Flatten
+public import CORALean.Global.Float.FloatOps
+
+@[expose] public section
 
 /-!
 # `P` applied to every feature column, as one float matrix

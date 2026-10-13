@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `VPolytope.plus_k`

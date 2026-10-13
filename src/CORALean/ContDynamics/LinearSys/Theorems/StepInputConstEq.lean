@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+
+@[expose] public section
 
 /-!
 # A constant input steps exactly by `stepInputConst`

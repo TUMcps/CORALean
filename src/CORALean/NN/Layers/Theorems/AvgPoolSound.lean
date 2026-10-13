@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.AvgPool
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.TapMatMulVec
+module
+
+public import CORALean.NN.Layers.Operations.AvgPool
+public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.TapMatMulVec
+
+@[expose] public section
 
 /-!
 # What the average pooling layer encloses

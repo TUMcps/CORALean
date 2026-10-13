@@ -1,5 +1,9 @@
-import CORALean.Global.DmdCandidate
-import Mathlib.Data.Matrix.Diagonal
+module
+
+public import CORALean.Global.DmdCandidate
+public import Mathlib.Data.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # The SVD factors give the Moore-Penrose pseudo-inverse

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesError
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesError
+
+@[expose] public section
 
 /-!
 # `mtimesIntervalMat` keeps the origin in the error box

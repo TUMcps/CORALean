@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # The scaling of the Lipschitz-constrained linear layer, over a float scalar

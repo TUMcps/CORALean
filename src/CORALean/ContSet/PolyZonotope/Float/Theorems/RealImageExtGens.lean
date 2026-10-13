@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtGens
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtGens
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+
+@[expose] public section
 
 /-!
 # The extended generators read back are the nominal set's

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 4-5 in floats: the order sweep

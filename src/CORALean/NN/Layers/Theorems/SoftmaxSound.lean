@@ -1,9 +1,13 @@
-import CORALean.NN.Layers.Operations.Softmax
-import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
-import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
-import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
-import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
-import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
+module
+
+public import CORALean.NN.Layers.Operations.Softmax
+public import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
+public import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
+public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
+
+@[expose] public section
 
 /-!
 # What the softmax layer encloses

@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.ReachSequence
+module
+
+public import CORALean.Specification.STL.Definitions.ReachSequence
+
+@[expose] public section
 
 /-!
 # The traces of a system lie in the traces of its reach sequence

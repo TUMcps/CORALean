@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
+
+@[expose] public section
 
 /-!
 # A capsule is the origin iff it is a point at `0`

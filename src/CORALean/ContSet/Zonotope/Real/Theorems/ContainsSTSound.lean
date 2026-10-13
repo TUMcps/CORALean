@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ContainsST
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ContainsST
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+
+@[expose] public section
 
 /-!
 # `containsST` is sound

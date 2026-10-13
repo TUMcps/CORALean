@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AreAlignedCora
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AreAlignedCora
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffExact2dCora`, CORA's two-dimensional `minkDiff`

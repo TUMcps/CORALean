@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
-import CORALean.ContSet.Zonotope.Real.Operations.Cube
-import CORALean.ContSet.Zonotope.Real.Operations.LinComb
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+public import CORALean.ContSet.Zonotope.Real.Operations.Cube
+public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # `girardReach`: [1, Alg. 1]

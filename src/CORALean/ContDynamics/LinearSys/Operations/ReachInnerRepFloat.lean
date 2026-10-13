@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
-import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
+
+@[expose] public section
 
 /-!
 # The inner approximation of a sampled run, over a floating-point scalar

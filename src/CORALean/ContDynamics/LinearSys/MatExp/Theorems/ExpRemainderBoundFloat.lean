@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialDownFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowUpFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialDownFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowUpFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.expRemainderBound` bounds the real remainder, under a margin

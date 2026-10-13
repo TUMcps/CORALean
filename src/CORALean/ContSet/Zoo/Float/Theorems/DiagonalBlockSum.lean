@@ -1,4 +1,8 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # Only the diagonal entry reaches a coordinate

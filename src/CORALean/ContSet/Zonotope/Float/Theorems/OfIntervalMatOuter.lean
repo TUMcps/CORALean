@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.ofIntervalMat` contains the interval matrix

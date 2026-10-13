@@ -1,7 +1,9 @@
-import CORALean.HybridDynamics.TimeTriggered.Operations.DirectConversion
-import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
-import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
-import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Operations.DirectConversion
+public import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
+public import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
+public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
 
 /-!
 # The automata of the time-triggered conversion

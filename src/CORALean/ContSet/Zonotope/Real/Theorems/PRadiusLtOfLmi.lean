@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.Global.PosDefSchurComplement
-import Mathlib.Topology.Algebra.Module.FiniteDimension
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Topology.Order.Compact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.Global.PosDefSchurComplement
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+public import Mathlib.Topology.Instances.Matrix
+public import Mathlib.Topology.Order.Compact
+
+@[expose] public section
 
 /-!
 # The online W-radius bound

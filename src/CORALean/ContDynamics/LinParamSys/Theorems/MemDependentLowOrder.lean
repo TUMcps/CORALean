@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.Module
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Module
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The corrected `R_lowOrder` holds the dependent low orders

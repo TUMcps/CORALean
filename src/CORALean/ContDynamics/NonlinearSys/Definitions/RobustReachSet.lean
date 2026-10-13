@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # Maximal, minimal and robust reachable sets

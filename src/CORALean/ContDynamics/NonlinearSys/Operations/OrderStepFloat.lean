@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
+
+@[expose] public section
 
 /-!
 # One step at abstraction order `κ`, in floats

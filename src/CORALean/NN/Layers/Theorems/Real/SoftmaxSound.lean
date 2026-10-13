@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.Softmax
-import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
-import CORALean.NN.Layers.Theorems.Real.SoftmaxLeRaw
-import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
+module
+
+public import CORALean.NN.Layers.Definitions.Softmax
+public import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxLeRaw
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
+
+@[expose] public section
 
 /-!
 # What the exact softmax layer encloses

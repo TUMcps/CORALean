@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.LinComb
-import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.LinComb
+public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.linComb` encloses the segments

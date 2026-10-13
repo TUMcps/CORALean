@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
-import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
-import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+public import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+
+@[expose] public section
 
 /-!
 # `ConZonotope.IsCentre`

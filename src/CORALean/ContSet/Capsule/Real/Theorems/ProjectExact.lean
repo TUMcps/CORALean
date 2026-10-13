@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.Project
-import CORALean.ContSet.Capsule.Real.Capsule
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Project
+public import CORALean.ContSet.Capsule.Real.Capsule
+
+@[expose] public section
 
 /-!
 # `Capsule.project` is exactly the projected set

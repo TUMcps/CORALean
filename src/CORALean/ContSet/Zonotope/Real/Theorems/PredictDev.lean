@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # A point of the prediction, from a point of the old estimate and the disturbance

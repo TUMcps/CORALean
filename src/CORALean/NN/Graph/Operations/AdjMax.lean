@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.AdjAt
+module
+
+public import CORALean.NN.Graph.Operations.AdjAt
+
+@[expose] public section
 
 /-!
 # The adjacency with every uncertain edge present

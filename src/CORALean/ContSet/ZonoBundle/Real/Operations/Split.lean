@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Parallelotope
-import CORALean.ContSet.ZonoBundle.Real.Operations.Intersection
-import CORALean.ContSet.Zonotope.Real.Operations.Split
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Parallelotope
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Intersection
+public import CORALean.ContSet.Zonotope.Real.Operations.Split
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.split`: splitting a bundle along a column of `Λ`

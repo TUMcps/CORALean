@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Real.Basic
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # Reachable sets of any model, and the general linear output approximation

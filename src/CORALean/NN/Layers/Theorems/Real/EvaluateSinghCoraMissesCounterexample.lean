@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.EvaluateSinghCora
-import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
+module
+
+public import CORALean.NN.Layers.Definitions.EvaluateSinghCora
+public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
+
+@[expose] public section
 
 /-!
 # CORA's `'singh'` evaluation misses a true output of a network with activation `x³`

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Operations.Enlarge
-import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
-import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
-import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
-import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Enlarge
+public import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
+public import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
+public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+public import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+
+@[expose] public section
 
 /-!
 # `Interval.enlarge` is exactly the box scaled about its centre

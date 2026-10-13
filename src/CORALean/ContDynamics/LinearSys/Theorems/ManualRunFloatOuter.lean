@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ManualStepFloatOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ManualStepFloatOuter
+
+@[expose] public section
 
 /-!
 # A float run of `Alg. 1` holds every run in every window

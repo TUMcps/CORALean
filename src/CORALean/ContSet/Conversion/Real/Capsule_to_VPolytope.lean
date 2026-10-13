@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+module
+
+public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+
+@[expose] public section
 
 /-!
 # A capsule as a vertex description

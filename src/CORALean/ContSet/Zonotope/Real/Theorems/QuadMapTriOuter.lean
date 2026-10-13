@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMapTri
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapTri
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMapTri` encloses the quadratic map

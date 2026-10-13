@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Matrix.Block
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Matrix.Block
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The snapshot matrices of the dynamic mode decomposition with control

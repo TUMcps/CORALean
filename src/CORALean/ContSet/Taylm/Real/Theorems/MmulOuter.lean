@@ -1,7 +1,11 @@
-import Mathlib.Data.Matrix.Mul
-import CORALean.ContSet.Taylm.Real.Operations.Mmul
-import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
-import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import CORALean.ContSet.Taylm.Real.Operations.Mmul
+public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.mmul` encloses the matrix product

@@ -1,5 +1,9 @@
-import CORALean.Global.CoeffNorm
-import CORALean.Global.LinearRelaxationDual
+module
+
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.LinearRelaxationDual
+
+@[expose] public section
 
 /-!
 # The ellipsotope norm is attained by a dual vector

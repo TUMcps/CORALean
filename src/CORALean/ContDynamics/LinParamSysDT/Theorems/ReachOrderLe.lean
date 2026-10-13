@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
-import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+
+@[expose] public section
 
 /-!
 # `LinParamSysDT.reach` bounds the generator count

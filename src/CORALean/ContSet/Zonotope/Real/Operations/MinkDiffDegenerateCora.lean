@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffDegenerateCora`, CORA's `minkDiff` at a degenerate minuend

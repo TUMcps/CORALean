@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
+
+@[expose] public section
 
 /-!
 # The input remainder's radius vanishes as the step shrinks

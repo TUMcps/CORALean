@@ -1,15 +1,19 @@
-import CORALean.Global.CoeffNorm
-import CORALean.Global.LinearRelaxationDual
-import CORALean.Global.MatrixFunctionalEqSumSingle
-import CORALean.Global.MatrixFunctionalMulEqSum
-import CORALean.Global.MatrixTraceTransposeMulEqSum
-import CORALean.Global.PiLpNormToLpLeOfAbsLe
-import Mathlib.Analysis.MeanInequalities
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.LinearAlgebra.Dual.Lemmas
-import Mathlib.LinearAlgebra.Matrix.Bilinear
-import Mathlib.LinearAlgebra.Matrix.Trace
+module
+
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.LinearRelaxationDual
+public import CORALean.Global.MatrixFunctionalEqSumSingle
+public import CORALean.Global.MatrixFunctionalMulEqSum
+public import CORALean.Global.MatrixTraceTransposeMulEqSum
+public import CORALean.Global.PiLpNormToLpLeOfAbsLe
+public import Mathlib.Analysis.MeanInequalities
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.Bilinear
+public import Mathlib.LinearAlgebra.Matrix.Trace
+
+@[expose] public section
 
 /-!
 # The linear relaxation is exact when the dual maximizer has equal columns

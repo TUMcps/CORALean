@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.Reshape
+module
+
+public import CORALean.NN.Layers.Operations.Reshape
+
+@[expose] public section
 
 /-!
 # What the reshape layer encloses

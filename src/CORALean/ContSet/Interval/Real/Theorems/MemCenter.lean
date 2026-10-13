@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # The centre of a box lies in it

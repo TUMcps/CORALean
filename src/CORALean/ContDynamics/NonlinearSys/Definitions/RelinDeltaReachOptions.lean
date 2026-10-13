@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
+
+@[expose] public section
 
 /-!
 # CORA's `options` for the differences of the re-linearization loop

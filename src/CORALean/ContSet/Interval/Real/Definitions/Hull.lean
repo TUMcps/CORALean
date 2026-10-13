@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.Global.Entrywise
-import Mathlib.Order.ConditionallyCompleteLattice.Basic
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.Global.Entrywise
+public import Mathlib.Order.ConditionallyCompleteLattice.Basic
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # The interval hull of a set

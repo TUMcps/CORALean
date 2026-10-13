@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+@[expose] public section
 
 /-!
 # Girard's ranking metric on one generator, over a floating-point scalar

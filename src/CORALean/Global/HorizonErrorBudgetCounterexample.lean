@@ -1,6 +1,10 @@
-import CORALean.Global.SuperlinearDecrease
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Analysis.Normed.Order.Lattice
+module
+
+public import CORALean.Global.SuperlinearDecrease
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Analysis.Normed.Order.Lattice
+
+@[expose] public section
 
 /-!
 # `Prop. 2` needs `ε_P(Δt)/Δt → 0`, not only Def. 1

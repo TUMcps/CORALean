@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
+
+@[expose] public section
 
 /-!
 # A nonempty float zonotope bundle is compact

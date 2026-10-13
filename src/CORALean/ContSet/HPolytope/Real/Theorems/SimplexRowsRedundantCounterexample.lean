@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.Global.DropIdx
-import CORALean.Global.EuclideanNorm
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.Global.DropIdx
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # A unit direction can be redundant in `[1, Alg. 3]`

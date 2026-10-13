@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.containsPoint`

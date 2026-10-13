@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Uminus
-import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Uminus
+public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+
+@[expose] public section
 
 /-!
 # `Taylm.uminus` keeps the scaling

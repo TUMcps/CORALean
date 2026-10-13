@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CubMapCoeff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CubMapCoeff
+
+@[expose] public section
 
 /-!
 # The cubic map of a zonotope is enclosed by `Zonotope.cubMap`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdSubset
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdSubset
+
+@[expose] public section
 
 /-!
 # Renaming factors injectively changes nothing

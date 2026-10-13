@@ -1,11 +1,15 @@
-import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchStepFixedIsMinOn
-import Mathlib.Topology.Algebra.Order.LiminfLimsup
-import Mathlib.Topology.Sequences
-import Mathlib.Topology.Order.MonotoneConvergence
-import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Topology.Algebra.Module.FiniteDimension
-import Mathlib.Topology.Instances.Matrix
+module
+
+public import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchStepFixedIsMinOn
+public import Mathlib.Topology.Algebra.Order.LiminfLimsup
+public import Mathlib.Topology.Sequences
+public import Mathlib.Topology.Order.MonotoneConvergence
+public import Mathlib.Analysis.SpecificLimits.Basic
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+public import Mathlib.Topology.Instances.Matrix
+
+@[expose] public section
 
 /-!
 # The search for `x₀` determines the minimizer of `P₂`

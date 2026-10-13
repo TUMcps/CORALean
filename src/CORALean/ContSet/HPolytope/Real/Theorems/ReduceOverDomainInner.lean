@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainRows
-import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainRows
+public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
+
+@[expose] public section
 
 /-!
 # `HPolytope.reduceOverDomain` of the other type lies in `P` over the domain

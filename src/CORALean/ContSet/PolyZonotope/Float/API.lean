@@ -1,7 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Float.Operations.API
-import CORALean.ContSet.PolyZonotope.Float.Theorems.API
-import CORALean.ContSet.PolyZonotope.Float.Instances
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Float.Operations.API
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.API
+public import CORALean.ContSet.PolyZonotope.Float.Instances
 
 /-!
 # Sparse polynomial zonotopes over a floating-point scalar, collected

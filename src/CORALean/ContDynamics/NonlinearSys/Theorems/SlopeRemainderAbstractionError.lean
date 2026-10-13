@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
-import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `slopeRemainder` is an abstraction-error certificate

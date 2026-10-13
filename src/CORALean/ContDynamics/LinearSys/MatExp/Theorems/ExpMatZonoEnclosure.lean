@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # The exponential of every matrix a matrix zonotope denotes lies in its enclosure

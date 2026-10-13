@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # The clamped inverse square root's derivative above the clamp

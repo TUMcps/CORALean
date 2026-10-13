@@ -1,8 +1,12 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.tieInter` contains the intersection of the nominal shadows

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
-import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
+public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # The certified linear image encloses

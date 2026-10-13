@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.IntegralOneSubPowMulPow
-import Mathlib.Analysis.Normed.Algebra.Exponential
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.Topology.ContinuousMap.Compact
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.IntegralOneSubPowMulPow
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.Topology.ContinuousMap.Compact
+
+@[expose] public section
 
 /-!
 # The φ-functions: series and integral representation

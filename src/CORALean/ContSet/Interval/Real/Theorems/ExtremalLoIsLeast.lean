@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.ExtremalLo
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Order.Bounds.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExtremalLo
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Order.Bounds.Basic
+
+@[expose] public section
 
 /-!
 # `g̲[Y]` is the least value of `g[Y]`

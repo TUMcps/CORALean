@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpWFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HalfSqBoundsFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpWFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HalfSqBoundsFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # The float `expW` holds the exact one

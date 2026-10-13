@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinProbSys.Operations.InitReachCov
-import CORALean.ContDynamics.LinProbSys.Operations.Post
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+module
+
+public import CORALean.ContDynamics.LinProbSys.Operations.InitReachCov
+public import CORALean.ContDynamics.LinProbSys.Operations.Post
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # The covariance CORA's probabilistic reach loop carries

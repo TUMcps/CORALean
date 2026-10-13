@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpAugmentMulVec
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpAugmentMulVec
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # The Krylov error of the constant-input solution

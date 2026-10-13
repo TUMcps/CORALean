@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Project
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Map
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Project
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Map
+
+@[expose] public section
 
 /-!
 # `Zonotope.projectCost`

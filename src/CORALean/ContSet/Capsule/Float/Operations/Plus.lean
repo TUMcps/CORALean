@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `Capsule.plus`

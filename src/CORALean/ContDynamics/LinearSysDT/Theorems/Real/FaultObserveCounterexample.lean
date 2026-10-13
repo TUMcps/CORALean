@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # With a sensor fault the observer zonotope misses the state

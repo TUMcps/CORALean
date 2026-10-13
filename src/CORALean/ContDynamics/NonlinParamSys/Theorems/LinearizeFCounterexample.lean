@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # `linearize` assumes the dynamics are affine in the parameters

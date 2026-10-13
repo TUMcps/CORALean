@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.CNFOr
-import CORALean.Specification.STL.Theorems.CNFSatToFormula
-import CORALean.Specification.STL.Theorems.ClauseHoldsMerge
+module
+
+public import CORALean.Specification.STL.Operations.CNFOr
+public import CORALean.Specification.STL.Theorems.CNFSatToFormula
+public import CORALean.Specification.STL.Theorems.ClauseHoldsMerge
+
+@[expose] public section
 
 /-!
 # The disjunction of normal forms holds iff one does

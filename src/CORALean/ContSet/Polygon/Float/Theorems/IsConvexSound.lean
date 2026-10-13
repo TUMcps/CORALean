@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Operations.IsConvex
-import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
-import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.IsConvex
+public import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
+public import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A `true` from `Polygon.isConvex` proves the region convex

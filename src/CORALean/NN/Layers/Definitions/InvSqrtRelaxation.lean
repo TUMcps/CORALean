@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.InvSqrt
-import CORALean.NN.Layers.Operations.RelaxationOfAntitone
-import CORALean.NN.Layers.Operations.RelaxationTighter
+module
+
+public import CORALean.NN.Layers.Definitions.InvSqrt
+public import CORALean.NN.Layers.Operations.RelaxationOfAntitone
+public import CORALean.NN.Layers.Operations.RelaxationTighter
+
+@[expose] public section
 
 /-!
 # The inverse square root's relaxation over ℝ

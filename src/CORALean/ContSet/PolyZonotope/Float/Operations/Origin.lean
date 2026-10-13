@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.Interval.Float.Operations.Origin
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.origin`, over a floating-point scalar

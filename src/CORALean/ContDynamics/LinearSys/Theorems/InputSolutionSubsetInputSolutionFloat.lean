@@ -1,15 +1,19 @@
-import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundNonneg
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.RealMtimesIntervalMatSubset
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundNonneg
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.RealMtimesIntervalMatSubset
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # The float input solution holds the exact one

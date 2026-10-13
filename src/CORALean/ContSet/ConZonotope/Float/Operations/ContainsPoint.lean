@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
-import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
-import CORALean.ContSet.Zonotope.Float.Operations.BallB
-import CORALean.ContSet.Zonotope.Float.Operations.Deviation
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
+public import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
+public import CORALean.ContSet.Zonotope.Float.Operations.BallB
+public import CORALean.ContSet.Zonotope.Float.Operations.Deviation
+
+@[expose] public section
 
 /-!
 # `ConZonotope.containsPoint`, over a floating-point scalar

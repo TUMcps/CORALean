@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import CORALean.ContSet.Interval.Real.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.Interval.Real.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `Interval.origin` is exactly the origin

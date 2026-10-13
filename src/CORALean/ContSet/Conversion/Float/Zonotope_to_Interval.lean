@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # A zonotope as a box, over a floating-point scalar

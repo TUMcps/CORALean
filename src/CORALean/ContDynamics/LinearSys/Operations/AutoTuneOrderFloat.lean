@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.Operations.AffineDynamicsErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AffineDynamicsErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 9-15 in floats: the order sweep

@@ -1,6 +1,10 @@
-import CORALean.Global.IpmEllipsoidEq
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.Global.IpmEllipsoidEq
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # Consistency of the ellipsoid predictor as linear matrix inequalities

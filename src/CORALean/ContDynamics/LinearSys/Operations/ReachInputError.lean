@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # What a sampled run's input enclosures owe

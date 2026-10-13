@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
-import CORALean.ContSet.ContSet.Operations.EnlargeScalar
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
+public import CORALean.ContSet.ContSet.Operations.EnlargeScalar
+
+@[expose] public section
 
 /-!
 # The enlarged bundle is the intersection of the enlarged members

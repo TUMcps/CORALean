@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Col
-import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
-import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
+public import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+
+@[expose] public section
 
 /-!
 # Regrouping a generator sum by exponent column

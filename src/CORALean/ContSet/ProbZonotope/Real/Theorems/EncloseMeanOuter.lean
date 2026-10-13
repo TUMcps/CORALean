@@ -1,7 +1,11 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
-import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
+public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # The mean zonotope of `enclose` contains the segments from `μ` to `e^{Ar} μ + Rtrans`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Tanh
-import CORALean.ContSet.Interval.Real.Theorems.TanhExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Tanh
+public import CORALean.ContSet.Interval.Real.Theorems.TanhExact
+
+@[expose] public section
 
 /-!
 # `Interval.tanh` contains the image under `tanh`

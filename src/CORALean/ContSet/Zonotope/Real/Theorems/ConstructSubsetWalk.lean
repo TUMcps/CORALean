@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Walk
-import Mathlib.Analysis.LocallyConvex.Separation
-import Mathlib.Analysis.Convex.Topology
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Walk
+public import Mathlib.Analysis.LocallyConvex.Separation
+public import Mathlib.Analysis.Convex.Topology
+
+@[expose] public section
 
 /-!
 # The walk of sorted generators encloses a planar zonotope

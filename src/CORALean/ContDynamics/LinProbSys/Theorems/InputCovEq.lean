@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinProbSys.Operations.InputCov
-import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+module
+
+public import CORALean.ContDynamics.LinProbSys.Operations.InputCov
+public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+
+@[expose] public section
 
 /-!
 # The corrected input covariance is the noise covariance of one step

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+
+@[expose] public section
 
 /-!
 # A sampled run stays inside the reachable set

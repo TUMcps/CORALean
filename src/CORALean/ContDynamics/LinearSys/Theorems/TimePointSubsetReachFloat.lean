@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePoint
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # The nominal time-point set refines `reachFloat`'s, at a `Real.Zonotope`

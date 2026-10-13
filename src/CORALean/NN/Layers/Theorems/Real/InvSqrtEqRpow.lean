@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # The clamped inverse square root as a power

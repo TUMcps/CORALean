@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+
+@[expose] public section
 
 /-!
 # CORA's `options` for the adaptive abstraction algorithms

@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.LinComb
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `VPolytope.linComb_k`

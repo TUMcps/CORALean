@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SampleDevUp
-import CORALean.NN.Layers.Theorems.EvalPolyDownLe
+module
+
+public import CORALean.NN.Layers.Operations.SampleDevUp
+public import CORALean.NN.Layers.Theorems.EvalPolyDownLe
+
+@[expose] public section
 
 /-!
 # A sampled deviation's upper bound

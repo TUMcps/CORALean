@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Zonotope.Float.Operations.MatPow
-import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+
+@[expose] public section
 
 /-!
 # The matrix-zonotope order `i` of the input solution, in floats

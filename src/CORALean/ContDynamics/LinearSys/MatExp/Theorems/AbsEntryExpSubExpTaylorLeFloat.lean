@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+
+@[expose] public section
 
 /-!
 # An entry of the exponential's Taylor error, under a float norm bound

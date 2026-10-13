@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.PCACovarianceIsHermitian
-import Mathlib.Analysis.Matrix.Spectrum
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.PCACovarianceIsHermitian
+public import Mathlib.Analysis.Matrix.Spectrum
+
+@[expose] public section
 
 /-!
 # `Zonotope.pcaBasis`

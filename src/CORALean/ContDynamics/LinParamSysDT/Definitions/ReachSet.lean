@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+
+@[expose] public section
 
 /-!
 # The set reachable in `k` steps, at every matrix the set holds

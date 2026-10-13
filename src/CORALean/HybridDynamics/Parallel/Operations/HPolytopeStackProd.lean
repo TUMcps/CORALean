@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.BlockProj
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.BlockProj
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+
+@[expose] public section
 
 /-!
 # `HPolytope.stackProd`

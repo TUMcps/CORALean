@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # A generator-free constrained polynomial zonotope contains its own centre

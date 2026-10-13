@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.UnderS
-import Mathlib.Algebra.Module.BigOperators
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.UnderS
+public import Mathlib.Algebra.Module.BigOperators
+
+@[expose] public section
 
 /-!
 # The under-approximation lies inside the zonotope

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceSumSmulMulVec
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceSumSmulMulVec
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+
+@[expose] public section
 
 /-!
 # `ConZonotope.constraintReduce` encloses

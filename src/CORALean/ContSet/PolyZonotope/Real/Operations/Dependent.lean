@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.dependent`

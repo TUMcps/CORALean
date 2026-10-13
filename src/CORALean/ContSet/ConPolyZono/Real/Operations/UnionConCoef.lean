@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Data.Fin.VecNotation
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Data.Fin.VecNotation
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.unionConCoef`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
+module
+
+public import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
+
+@[expose] public section
 
 /-!
 # `Polygon.supportBound`

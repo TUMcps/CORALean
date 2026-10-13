@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # One interval-valued run of the dynamics

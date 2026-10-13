@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.ManualRun
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ManualRun
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 12-13: the reachable set

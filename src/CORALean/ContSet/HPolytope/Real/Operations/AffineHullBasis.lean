@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # `HPolytope.affineHullBasis`

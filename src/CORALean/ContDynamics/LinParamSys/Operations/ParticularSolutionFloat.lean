@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
+
+@[expose] public section
 
 /-!
 # The input's contribution up to the end of a window at every member, in floats

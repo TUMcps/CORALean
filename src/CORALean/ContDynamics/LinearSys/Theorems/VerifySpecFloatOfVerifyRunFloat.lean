@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat
-import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecFloatOfVerifyStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecFloatOfVerifyStepFloat
+
+@[expose] public section
 
 /-!
 # A `true` from the float verification loop proves the specification

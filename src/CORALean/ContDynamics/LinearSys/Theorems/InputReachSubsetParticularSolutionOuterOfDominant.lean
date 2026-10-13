@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+
+@[expose] public section
 
 /-!
 # Eq. (20) is sound when one point of `U₀` dominates the rest

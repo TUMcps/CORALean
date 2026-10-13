@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Taylor
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
-import CORALean.ContSet.Taylm.Real.Operations.Mag
-import CORALean.Global.ElementaryDerivBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Taylor
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import CORALean.ContSet.Taylm.Real.Operations.Mag
+public import CORALean.Global.ElementaryDerivBounds
+
+@[expose] public section
 
 /-!
 # `Taylm.asin`

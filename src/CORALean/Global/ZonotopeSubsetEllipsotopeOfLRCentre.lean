@@ -1,5 +1,9 @@
-import CORALean.Global.ZonotopeSubsetEllipsotopeOfLR
-import Mathlib.Data.Fin.SuccPred
+module
+
+public import CORALean.Global.ZonotopeSubsetEllipsotopeOfLR
+public import Mathlib.Data.Fin.SuccPred
+
+@[expose] public section
 
 /-!
 # The linear relaxation at a shifted centre

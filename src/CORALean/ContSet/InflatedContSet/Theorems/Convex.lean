@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.Interval.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # An inflated representation of a convex set is convex

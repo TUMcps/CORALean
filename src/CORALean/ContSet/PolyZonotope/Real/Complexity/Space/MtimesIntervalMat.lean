@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mtimesIntervalMat`'s counts

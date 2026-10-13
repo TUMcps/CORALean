@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
-import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
+public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
+public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+
+@[expose] public section
 
 /-!
 # The abstraction error certificate gives CORA's inner step what it needs

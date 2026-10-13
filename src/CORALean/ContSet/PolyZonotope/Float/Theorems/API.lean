@@ -1,139 +1,141 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitDepFactorOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ResolveOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetCoefMem
-import CORALean.ContSet.PolyZonotope.Float.Theorems.IsequalSound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusH
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusQ
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesH
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesQ
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MulVecSplit
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
-import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
-import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberEqZeroOfNotMem
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SupportBoundLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentQ
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemDependentErr
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombH
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombQ
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapENominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MulOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.NoIndepSubset
-import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByH
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsDroppedLeDropRadius
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardDependentOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceDependentOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOrderLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOrder
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MergedGenGap
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpEvenOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMidOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpGreedyOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.IsCompact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.OriginExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PadBackExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RestructureOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ProjectOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.StackOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdConstruct
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.OnlyIdPoint
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaPointSound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SumOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.OnlyIdOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdSubset
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaEmptySetSound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.OuterApproxOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PointBoxOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianBoxOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsHessianOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PrecondRegularInjective
-import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobiSliceMemSliceBox
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerStepSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerSpecialSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerApproxImageSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerApproxInner
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointApproxSound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitIndepGenOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenAllCover
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsSetApproxSound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapDepPoint
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsMulRel
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPowRel
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPolyRel
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsXprodRel
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsTermsRel
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsGClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulDownClose
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemMatGeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMapOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestIndepGenCover
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ZonotopeCoraContains
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointSetSound
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitDepFactorOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ResolveOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetCoefMem
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.IsequalSound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusH
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusQ
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesH
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesQ
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MulVecSplit
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberEqZeroOfNotMem
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SupportBoundLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentQ
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemDependentErr
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombH
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombQ
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapENominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MulOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.NoIndepSubset
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByH
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsDroppedLeDropRadius
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardDependentOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceDependentOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOrderLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOrder
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MergedGenGap
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpEvenOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMidOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpGreedyOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.IsCompact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.OriginExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PadBackExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RestructureOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.StackOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.OnlyIdPoint
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaPointSound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.OnlyIdOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdSubset
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.OuterApproxOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PointBoxOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianBoxOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsHessianOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PrecondRegularInjective
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobiSliceMemSliceBox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerStepSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerSpecialSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerApproxImageSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerApproxInner
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointApproxSound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitIndepGenOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenAllCover
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsSetApproxSound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapDepPoint
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsMulRel
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPowRel
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPolyRel
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsXprodRel
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsTermsRel
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsGClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulDownClose
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemMatGeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMapOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestIndepGenCover
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZonotopeCoraContains
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointSetSound
 
 /-!
 # What `PolyZonotope` guarantees

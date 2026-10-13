@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
-import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
+
+@[expose] public section
 
 /-!
 # A zonoBundle as a polynomial zonotope, over a floating-point scalar

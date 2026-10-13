@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+
+@[expose] public section
 
 /-!
 # The second-order Taylor term's diagonal factor, over a floating-point scalar

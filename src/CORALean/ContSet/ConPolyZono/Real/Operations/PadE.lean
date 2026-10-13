@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.padE`

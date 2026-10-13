@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.ProdBounds
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ProdBounds
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `Taylm.prodBounds` brackets the product

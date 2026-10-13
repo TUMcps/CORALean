@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Layer
-import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
-import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
+module
+
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
+public import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
+
+@[expose] public section
 
 /-!
 # The ReLU layer on a float star set

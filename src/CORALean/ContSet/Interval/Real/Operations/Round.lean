@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.RoundAway
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.RoundAway
+
+@[expose] public section
 
 /-!
 # `Interval.round`

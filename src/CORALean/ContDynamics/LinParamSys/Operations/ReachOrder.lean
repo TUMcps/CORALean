@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Interval.Real.Operations.AbsMax
-import CORALean.ContSet.Interval.Real.Operations.Smul
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Interval.Real.Operations.AbsMax
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # An order admissible for a window and every matrix the set holds

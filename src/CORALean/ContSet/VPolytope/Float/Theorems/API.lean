@@ -1,20 +1,22 @@
-import CORALean.ContSet.VPolytope.Float.Theorems.MatPolytopeExact
-import CORALean.ContSet.VPolytope.Float.Theorems.ProjectHighDimOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.BoundDotLe
-import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
-import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.ConstructEmptySet
-import CORALean.ContSet.VPolytope.Float.Theorems.Convex
-import CORALean.ContSet.VPolytope.Float.Theorems.IsCompact
-import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
-import CORALean.ContSet.VPolytope.Float.Theorems.OriginExact
-import CORALean.ContSet.VPolytope.Float.Theorems.CenterBoxMeets
-import CORALean.ContSet.VPolytope.Float.Theorems.IsFullDimSound
+module
+
+public import CORALean.ContSet.VPolytope.Float.Theorems.MatPolytopeExact
+public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectHighDimOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.BoundDotLe
+public import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
+public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.ConstructEmptySet
+public import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Float.Theorems.IsCompact
+public import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
+public import CORALean.ContSet.VPolytope.Float.Theorems.OriginExact
+public import CORALean.ContSet.VPolytope.Float.Theorems.CenterBoxMeets
+public import CORALean.ContSet.VPolytope.Float.Theorems.IsFullDimSound
 
 /-!
 # What the float `VPolytope` guarantees

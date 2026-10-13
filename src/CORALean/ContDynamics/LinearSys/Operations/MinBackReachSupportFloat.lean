@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRunFloat
-import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
-import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRunFloat
+public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 12-13 in floats: one direction's support value at a step

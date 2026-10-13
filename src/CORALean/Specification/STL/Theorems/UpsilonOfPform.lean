@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.Transformation
-import CORALean.Specification.STL.Theorems.SatOfPform
+module
+
+public import CORALean.Specification.STL.Definitions.Transformation
+public import CORALean.Specification.STL.Theorems.SatOfPform
+
+@[expose] public section
 
 /-!
 # A sound and complete transformation fixes non-temporal formulas

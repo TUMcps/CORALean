@@ -1,4 +1,8 @@
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # One chunk of CORA's `nnGroupSortLayer` at float entries

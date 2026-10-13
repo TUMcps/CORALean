@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotope
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotope
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # `discretizeMatZonotope`'s trajectory lands in `reach`

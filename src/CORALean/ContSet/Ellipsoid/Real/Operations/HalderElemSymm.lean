@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+@[expose] public section
 
 /-!
 # Elementary symmetric polynomials of the reciprocal eigenvalues

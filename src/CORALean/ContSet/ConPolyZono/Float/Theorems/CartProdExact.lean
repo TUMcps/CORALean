@@ -1,11 +1,15 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
-import CORALean.Global.Float.GenBlockDiag
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CartProdExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
-import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
+public import CORALean.Global.Float.GenBlockDiag
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CartProdExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
+public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.cartProd` is exact

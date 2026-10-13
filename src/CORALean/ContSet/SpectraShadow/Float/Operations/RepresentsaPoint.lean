@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Interval
-import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
+module
+
+public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Interval
+public import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_point`, over a floating-point scalar

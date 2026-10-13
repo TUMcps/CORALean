@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Zonotope.plus_h`

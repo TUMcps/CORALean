@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Interval.norm`

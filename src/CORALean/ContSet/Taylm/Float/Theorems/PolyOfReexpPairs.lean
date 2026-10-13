@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Data.Nat.Choose.Sum
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Data.Nat.Choose.Sum
+
+@[expose] public section
 
 /-!
 # One variable's re-expansion is exact

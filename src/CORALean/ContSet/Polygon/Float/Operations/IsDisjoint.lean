@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
-import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
-import CORALean.ContSet.Polygon.Float.Polygon
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
+public import CORALean.ContSet.Polygon.Float.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.isDisjoint`, over a floating-point scalar

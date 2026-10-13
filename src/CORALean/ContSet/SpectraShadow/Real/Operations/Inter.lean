@@ -1,5 +1,9 @@
-import CORALean.Global.BlockDiag
-import CORALean.ContSet.SpectraShadow.Real.Operations.Plus
+module
+
+public import CORALean.Global.BlockDiag
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.inter`

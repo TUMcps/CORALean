@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Isequal
-import CORALean.ContSet.LevelSet.Real.Theorems.CompactExact
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Isequal
+public import CORALean.ContSet.LevelSet.Real.Theorems.CompactExact
+
+@[expose] public section
 
 /-!
 # `LevelSet.isequal` is sound

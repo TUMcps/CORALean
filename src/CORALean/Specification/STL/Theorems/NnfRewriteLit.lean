@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.NnfRewrite
+module
+
+public import CORALean.Specification.STL.Definitions.NnfRewrite
+
+@[expose] public section
 
 /-!
 # A literal rewrites to sampled time

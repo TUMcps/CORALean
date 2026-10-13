@@ -1,5 +1,9 @@
-import CORALean.Global.Radstrom
-import Mathlib.Analysis.Normed.Module.Convex
+module
+
+public import CORALean.Global.Radstrom
+public import Mathlib.Analysis.Normed.Module.Convex
+
+@[expose] public section
 
 /-!
 # Adding a bounded set keeps the Hausdorff distance

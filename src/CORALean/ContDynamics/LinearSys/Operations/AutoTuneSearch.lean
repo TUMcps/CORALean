@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrder
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrder
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 6-15: the step-size sweep

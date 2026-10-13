@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyDropped
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyDropped
+
+@[expose] public section
 
 /-!
 # `Zonotope.encloseManyBasis`

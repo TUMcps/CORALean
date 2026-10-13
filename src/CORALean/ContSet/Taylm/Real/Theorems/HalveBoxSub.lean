@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.HalveBox
-import CORALean.ContSet.Taylm.Real.Definitions.Box
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
+public import CORALean.ContSet.Taylm.Real.Definitions.Box
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The halves of a proper box are proper boxes inside it

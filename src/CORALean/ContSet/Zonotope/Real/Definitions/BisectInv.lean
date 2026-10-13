@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Tensor
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # What the dichotomic search of [1, Alg. 4] keeps true

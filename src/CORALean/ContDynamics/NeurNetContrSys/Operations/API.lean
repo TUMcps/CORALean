@@ -1,9 +1,11 @@
-import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnion
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloatChecked
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnionFloat
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnion
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloatChecked
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnionFloat
 
 /-!
 # What `NeurNetContrSys` computes

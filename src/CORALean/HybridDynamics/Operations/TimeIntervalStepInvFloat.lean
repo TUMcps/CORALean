@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
-import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
+public import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+
+@[expose] public section
 
 /-!
 # `Location.timeIntervalStepInvFloat`

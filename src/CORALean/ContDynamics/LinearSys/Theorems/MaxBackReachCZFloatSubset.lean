@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
-import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
-import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
+public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
+public import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
+
+@[expose] public section
 
 /-!
 # The float `CZ(P ⊖ Ẑ_W(τ_k))` is inside the exact layer's

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Abs
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Abs
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # What `Zonotope.abs` keeps of its input

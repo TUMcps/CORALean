@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Polygon.Real.Operations.OfPieces
-import CORALean.ContSet.VPolytope.Real.Operations.EnclosePoints
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
+public import CORALean.ContSet.VPolytope.Real.Operations.EnclosePoints
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.polygon`

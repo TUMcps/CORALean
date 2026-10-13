@@ -1,8 +1,12 @@
-import CORALean.Global.CoeffNorm
-import CORALean.Global.GadgetH
-import Mathlib.Analysis.Normed.Group.Constructions
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Algebra.BigOperators.Field
+module
+
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.GadgetH
+public import Mathlib.Analysis.Normed.Group.Constructions
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Algebra.BigOperators.Field
+
+@[expose] public section
 
 /-!
 # The norm of the gadget zonotope

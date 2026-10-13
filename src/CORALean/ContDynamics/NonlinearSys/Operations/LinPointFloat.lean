@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `linPointFloat`, the point a float step linearizes at

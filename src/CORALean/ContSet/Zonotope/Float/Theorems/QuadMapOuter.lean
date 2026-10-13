@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMap` over-approximates the quadratic map, over a floating-point scalar

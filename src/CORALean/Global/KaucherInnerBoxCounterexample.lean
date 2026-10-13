@@ -1,8 +1,12 @@
-import CORALean.Global.KaucherInner
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.FinCases
-import Mathlib.Data.Fintype.Fin
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.Global.KaucherInner
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Data.Fintype.Fin
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # The box of the component-wise inner ranges is not inside the reachable set

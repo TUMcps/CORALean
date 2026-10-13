@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.Smul
-import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Smul
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `Taylm.smul` encloses the scaled function

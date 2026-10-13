@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.PowDown
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.PowDown
+
+@[expose] public section
 
 /-!
 # `Interval.powHi`, over a floating-point scalar

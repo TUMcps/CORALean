@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Operations.SyncPick
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.SyncPick
+
+@[expose] public section
 
 /-!
 # Runs of a parallel automaton with synchronization labels

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
-import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolySearchEqSome
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolySearchEqSome
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
+
+@[expose] public section
 
 /-!
 # `linReachPoly`'s step is sound

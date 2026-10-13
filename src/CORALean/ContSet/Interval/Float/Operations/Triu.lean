@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Mask
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mask
+
+@[expose] public section
 
 /-!
 # `Interval.triu` over floats

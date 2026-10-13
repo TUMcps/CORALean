@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
+@[expose] public section
 
 /-!
 # The closed form with the exponential outside the integral

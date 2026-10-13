@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.Degree
-import CORALean.ContSet.Zonotope.Real.Theorems.ExistsFacetSuperset
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.Degree
+public import CORALean.ContSet.Zonotope.Real.Theorems.ExistsFacetSuperset
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # Moving a point along one generator raises its degree

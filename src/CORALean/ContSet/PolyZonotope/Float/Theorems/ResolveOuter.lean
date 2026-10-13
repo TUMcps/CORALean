@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Resolve
-import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetOuter
-import CORALean.ContSet.PolyZonotope.Real.Operations.Resolve
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Resolve
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetOuter
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Resolve
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.resolve` over-approximates the exact one

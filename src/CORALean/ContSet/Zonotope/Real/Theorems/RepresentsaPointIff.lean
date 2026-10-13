@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import Mathlib.Algebra.Module.BigOperators
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import Mathlib.Algebra.Module.BigOperators
+
+@[expose] public section
 
 /-!
 # A zonotope is a point iff every generator vanishes

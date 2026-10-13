@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
-import CORALean.Global.ExactScalar
+module
+
+public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+public import CORALean.Global.ExactScalar
+
+@[expose] public section
 
 /-!
 # What a product's flow must do to a stack

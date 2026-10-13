@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.Feed
-import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
-import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGOFloat
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.Feed
+public import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
+public import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGOFloat
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `NonlinearARX.computeGOFloat`

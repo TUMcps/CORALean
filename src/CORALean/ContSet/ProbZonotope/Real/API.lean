@@ -1,7 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
-import CORALean.ContSet.ProbZonotope.Real.Definitions.API
-import CORALean.ContSet.ProbZonotope.Real.Operations.API
-import CORALean.ContSet.ProbZonotope.Real.Theorems.API
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.API
+public import CORALean.ContSet.ProbZonotope.Real.Operations.API
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.API
 
 /-!
 # Probabilistic zonotopes, collected

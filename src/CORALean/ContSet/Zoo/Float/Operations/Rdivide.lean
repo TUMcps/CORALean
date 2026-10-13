@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Float.Zoo
-import CORALean.ContSet.Taylm.Float.Operations.Rdivide
-import CORALean.ContSet.Interval.Float.Operations.Rdivide
+module
+
+public import CORALean.ContSet.Zoo.Float.Zoo
+public import CORALean.ContSet.Taylm.Float.Operations.Rdivide
+public import CORALean.ContSet.Interval.Float.Operations.Rdivide
+
+@[expose] public section
 
 /-!
 # `Zoo.rdivide`, over a floating-point scalar

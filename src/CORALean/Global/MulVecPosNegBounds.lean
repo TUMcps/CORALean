@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A matrix image of a box, by the positive and negative parts

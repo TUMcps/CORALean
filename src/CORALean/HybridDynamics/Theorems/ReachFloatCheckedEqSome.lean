@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.ReachFloatChecked
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.HybridDynamics.Operations.ReachFloatChecked
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # A checked `reachFloat` that returns a result returns the unchecked one

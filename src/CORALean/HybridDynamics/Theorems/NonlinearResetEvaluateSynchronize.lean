@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetSynchronize
-import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronize
+public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.synchronize` evaluates to the sum

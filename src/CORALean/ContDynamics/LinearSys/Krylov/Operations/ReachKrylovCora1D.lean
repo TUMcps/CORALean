@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
-import Mathlib.Analysis.SpecialFunctions.Exp
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+public import Mathlib.Analysis.SpecialFunctions.Exp
+
+@[expose] public section
 
 /-!
 # `Krylov.reachKrylovCora1D`, CORA's first Krylov time-point set in one dimension

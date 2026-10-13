@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.BranchAndBound
-import CORALean.ContSet.Taylm.Float.Theorems.BnbLoopMem
-import CORALean.ContSet.Taylm.Float.Theorems.PolyBoxBoundsMem
-import CORALean.ContSet.Taylm.Float.Theorems.ReexpBoxBoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BranchAndBound
+public import CORALean.ContSet.Taylm.Float.Theorems.BnbLoopMem
+public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoxBoundsMem
+public import CORALean.ContSet.Taylm.Float.Theorems.ReexpBoxBoundsMem
+
+@[expose] public section
 
 /-!
 # `Taylm.branchAndBound` brackets the polynomial

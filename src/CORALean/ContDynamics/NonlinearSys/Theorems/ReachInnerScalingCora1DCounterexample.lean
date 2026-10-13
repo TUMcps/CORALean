@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerScalingCora1D
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Topology.Order.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerScalingCora1D
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Topology.Order.Basic
+
+@[expose] public section
 
 /-!
 # CORA's `'scale'` returns an "inner approximation" of unreachable states

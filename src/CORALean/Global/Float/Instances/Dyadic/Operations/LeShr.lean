@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.LeShl
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.LeShl
+
+@[expose] public section
 
 /-!
 # `m * 2 ^ g ≤ n` without the power

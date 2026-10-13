@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.EncloseMany
-import CORALean.ContSet.Zonotope.Real.Theorems.EncloseManyBasisIsUnit
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.EncloseMany
+public import CORALean.ContSet.Zonotope.Real.Theorems.EncloseManyBasisIsUnit
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # `encloseMany` encloses every cell

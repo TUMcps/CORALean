@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Sum
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Sum
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.sum` encloses the exact sum at the nominal sets

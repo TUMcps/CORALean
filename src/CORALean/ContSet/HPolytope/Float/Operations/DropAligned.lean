@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.EqVec
-import CORALean.ContSet.HPolytope.Float.Operations.Restrict
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
+public import CORALean.ContSet.HPolytope.Float.Operations.Restrict
+
+@[expose] public section
 
 /-!
 # `HPolytope.dropAligned`: the inequality half of `'aligned'`

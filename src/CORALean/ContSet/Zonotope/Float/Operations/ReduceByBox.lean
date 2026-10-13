@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceByBox`

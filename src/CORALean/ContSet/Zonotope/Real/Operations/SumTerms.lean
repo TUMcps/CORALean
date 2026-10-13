@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # A Minkowski sum of zonotopes, term by term

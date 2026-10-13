@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Origin
-import CORALean.ContSet.HPolytope.Float.Operations.MemFullspace
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Origin
+public import CORALean.ContSet.HPolytope.Float.Operations.MemFullspace
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `ConZonotope.origin` is exactly the origin

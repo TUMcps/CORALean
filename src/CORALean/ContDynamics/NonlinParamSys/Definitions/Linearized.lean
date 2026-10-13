@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # What `nonlinParamSys/linearize` hands on

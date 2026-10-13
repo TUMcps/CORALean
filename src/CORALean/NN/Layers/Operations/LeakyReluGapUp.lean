@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.LeakyReluEndUp
+module
+
+public import CORALean.NN.Layers.Operations.LeakyReluEndUp
+
+@[expose] public section
 
 /-!
 # Leaky ReLU above a line, over a box

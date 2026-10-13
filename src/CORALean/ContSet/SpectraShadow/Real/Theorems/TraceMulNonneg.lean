@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
-import Mathlib.Analysis.Matrix.Order
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+public import Mathlib.Analysis.Matrix.Order
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.trace_mul_nonneg`

@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Operations.PolyDerivBoundUp
-import CORALean.NN.Layers.Theorems.AbsSubLeSpread
-import CORALean.NN.Layers.Theorems.PolyDerivRadiusLe
-import CORALean.NN.Layers.Theorems.Real.AbsEvalPolyDerivSubCenterLe
-import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
+module
+
+public import CORALean.NN.Layers.Operations.PolyDerivBoundUp
+public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+public import CORALean.NN.Layers.Theorems.PolyDerivRadiusLe
+public import CORALean.NN.Layers.Theorems.Real.AbsEvalPolyDerivSubCenterLe
+public import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
+
+@[expose] public section
 
 /-!
 # The stored derivative bound a bracket for σ' buys

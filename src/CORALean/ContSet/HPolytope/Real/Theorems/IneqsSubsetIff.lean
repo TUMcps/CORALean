@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
-import CORALean.Global.LinProg.Farkas
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
+public import CORALean.Global.LinProg.Farkas
+
+@[expose] public section
 
 /-!
 # H-polytope in H-polytope, as a linear program

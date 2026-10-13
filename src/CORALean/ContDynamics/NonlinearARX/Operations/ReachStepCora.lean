@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `NonlinearARX.reachStepCora`, the output set CORA's `reach` stores for one step

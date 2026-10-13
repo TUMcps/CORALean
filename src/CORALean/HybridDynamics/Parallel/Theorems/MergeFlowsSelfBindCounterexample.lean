@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddMulVec
-import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
-import CORALean.ContSet.HPolytope.Real.Instances
-import CORALean.ContSet.HPolytope.Real.Operations.Slab
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddMulVec
+public import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
+public import CORALean.ContSet.HPolytope.Real.Instances
+public import CORALean.ContSet.HPolytope.Real.Operations.Slab
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # `SelfBindFree` cannot be dropped from `mergeFlows`

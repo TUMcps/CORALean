@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Reach.Reach
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachUnionOuter
+module
+
+public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachUnionOuter
+
+@[expose] public section
 
 /-!
 # `LinParamSysDT` instantiates `Reach`

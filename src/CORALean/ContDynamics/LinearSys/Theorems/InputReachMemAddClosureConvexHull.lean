@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
-import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsExpRemainderEntryLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
-import Mathlib.Analysis.Convex.Topology
-import Mathlib.Analysis.Normed.Module.Convex
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
+public import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsExpRemainderEntryLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
+public import Mathlib.Analysis.Convex.Topology
+public import Mathlib.Analysis.Normed.Module.Convex
+
+@[expose] public section
 
 /-!
 # The exact particular solution, split at order `η`

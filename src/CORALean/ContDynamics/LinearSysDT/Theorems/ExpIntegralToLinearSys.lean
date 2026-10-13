@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
-import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
+public import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
+
+@[expose] public section
 
 /-!
 # What the converted system holds over a step is the discrete one's input

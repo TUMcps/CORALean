@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
+
+@[expose] public section
 
 /-!
 # [1, Prop. 6]: the stretched minuend is the difference where (22) holds exactly

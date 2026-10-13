@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+
+@[expose] public section
 
 /-!
 # The correction matrix

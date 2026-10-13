@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Sqrt
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.Float.Sqrt
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `(√(1 - c²))⁻¹` rounded in either direction

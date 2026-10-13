@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Vertices
-import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
-import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Vertices
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A one-dimensional ellipsoid is the hull of its vertices

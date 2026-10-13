@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 4-5: the order sweep

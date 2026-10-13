@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.NN.Layers.Operations.Linear
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.NN.Layers.Operations.Linear
+
+@[expose] public section
 
 /-!
 # What the linear layer encloses

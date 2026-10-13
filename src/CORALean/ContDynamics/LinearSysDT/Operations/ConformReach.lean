@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ConformAdd
-import CORALean.ContDynamics.OutputEq.OutputEq
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ConformAdd
+public import CORALean.ContDynamics.OutputEq.OutputEq
+
+@[expose] public section
 
 /-!
 # The deviation sets of the conformance check

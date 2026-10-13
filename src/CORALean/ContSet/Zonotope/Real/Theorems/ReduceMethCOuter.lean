@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByOuter
+
+@[expose] public section
 
 /-!
 # `methC` over-approximates

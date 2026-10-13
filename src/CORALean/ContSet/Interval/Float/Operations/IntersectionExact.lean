@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `Interval.intersection` is exact, over a floating-point scalar

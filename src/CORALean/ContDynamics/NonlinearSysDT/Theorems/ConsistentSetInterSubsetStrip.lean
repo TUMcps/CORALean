@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A component of the output bounds the consistent states by a strip

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatIsBigO
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionErrorLe
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatIsBigO
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionErrorLe
+
+@[expose] public section
 
 /-!
 # `particularSolutionError` converges to zero superquadratically

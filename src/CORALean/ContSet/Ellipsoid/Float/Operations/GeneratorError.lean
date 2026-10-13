@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.ContSet.Interval.Float.Operations.Symmetric
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Interval.Float.Operations.Symmetric
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.generatorError`

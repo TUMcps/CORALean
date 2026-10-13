@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalDependent
-import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalDependent
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
+
+@[expose] public section
 
 /-!
 # `dependent`'s nominal set is unchanged

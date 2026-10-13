@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinParamSys.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToAugment
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToAugment
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+
+@[expose] public section
 
 /-!
 # A union `reachUnion` returns contains every constant-parameter state reached

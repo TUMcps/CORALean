@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
+
+@[expose] public section
 
 /-!
 # `potInt`'s scan over level-set guards, as CORA runs it

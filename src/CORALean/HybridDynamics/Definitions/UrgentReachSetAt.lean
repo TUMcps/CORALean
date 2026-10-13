@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.UrgentRun
+module
+
+public import CORALean.HybridDynamics.Definitions.UrgentRun
+
+@[expose] public section
 
 /-!
 # The reachable set at a point in time

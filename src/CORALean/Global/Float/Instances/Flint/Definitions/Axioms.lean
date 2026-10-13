@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Flint.Definitions.TrustedFlint
+module
+
+public import CORALean.Global.Float.Instances.Flint.Definitions.TrustedFlint
+
+@[expose] public section
 
 /-!
 # The one thing the FLINT backend assumes

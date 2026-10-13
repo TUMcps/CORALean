@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Theorems.UntilDecompIff
-import CORALean.Specification.STL.Operations.DFormulaBound
+module
+
+public import CORALean.Specification.STL.Theorems.UntilDecompIff
+public import CORALean.Specification.STL.Operations.DFormulaBound
+
+@[expose] public section
 
 /-!
 # The Boolean encoding decides the formula

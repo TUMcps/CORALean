@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
+
+@[expose] public section
 
 /-!
 # Facet lifting encloses the Minkowski sum

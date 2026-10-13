@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplicationZono
-import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationSmulOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Real.Operations.TensorEvalLin
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplicationZono
+public import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationSmulOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorEvalLin
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorMultiplication_zono` encloses the tensor images, over a floating-point scalar

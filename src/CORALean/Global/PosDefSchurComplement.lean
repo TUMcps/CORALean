@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.LinearAlgebra.Matrix.SchurComplement
-import Mathlib.Algebra.Order.Star.Real
+module
+
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.LinearAlgebra.Matrix.SchurComplement
+public import Mathlib.Algebra.Order.Star.Real
+
+@[expose] public section
 
 /-!
 # The strict Schur complement

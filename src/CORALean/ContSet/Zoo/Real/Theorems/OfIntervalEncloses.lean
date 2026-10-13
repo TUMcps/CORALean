@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zoo.Real.Operations.OfInterval
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Zoo.Real.Operations.OfInterval
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Zoo.ofInterval` encloses the coordinate

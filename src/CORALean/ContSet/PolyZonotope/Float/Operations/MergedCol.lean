@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.FiberDown
-import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.FiberDown
+public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
+
+@[expose] public section
 
 /-!
 # The merged column, as stored

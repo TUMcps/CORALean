@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
+
+@[expose] public section
 
 /-!
 # `intersect(I, LS)` is exact when `p_k` stays in the box and ignores `x(k)`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Bilin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Bilin
+
+@[expose] public section
 
 /-!
 # `Zonotope.mtimesMatZonotopeCost`

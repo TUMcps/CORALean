@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
-import CORALean.ContDynamics.NonlinearSysDT.Operations.RefState
-import CORALean.Global.DescProd
-import CORALean.Global.Jacobian
-import CORALean.Global.StackSelect
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.GO
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.RefState
+public import CORALean.Global.DescProd
+public import CORALean.Global.Jacobian
+public import CORALean.Global.StackSelect
+
+@[expose] public section
 
 /-!
 # `NonlinearSysDT.computeGO`

@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Set.Image
-import Mathlib.Order.Interval.Set.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Set.Image
+public import Mathlib.Order.Interval.Set.Basic
+
+@[expose] public section
 
 /-!
 # Dependency preservation

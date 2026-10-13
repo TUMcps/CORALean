@@ -1,8 +1,12 @@
-import CORALean.Global.Err
-import Mathlib.Analysis.Convex.Topology
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.Global.Err
+public import Mathlib.Analysis.Convex.Topology
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # `err` sees a set and its closed convex hull alike

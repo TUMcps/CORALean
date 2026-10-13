@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # Zono-conformal predictors

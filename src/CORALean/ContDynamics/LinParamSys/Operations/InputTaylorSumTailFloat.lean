@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # Orders `2` through `η` of the input solution, in floats

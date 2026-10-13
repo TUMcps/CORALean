@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.Recip
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.Recip
+
+@[expose] public section
 
 /-!
 # A float interval matrix holding the hitting point's Jacobian

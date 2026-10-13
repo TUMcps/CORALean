@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
+
+@[expose] public section
 
 /-!
 # The same at the constraint block, `appendE`'s right half

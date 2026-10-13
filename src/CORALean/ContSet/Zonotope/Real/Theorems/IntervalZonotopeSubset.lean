@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # The zonotope of a box is the box, when the bounds do not cross

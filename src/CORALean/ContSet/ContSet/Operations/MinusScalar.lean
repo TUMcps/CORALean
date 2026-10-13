@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.Global.NegScalar
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.Global.NegScalar
+
+@[expose] public section
 
 /-!
 # CORA's `minus` with a vector subtrahend, at any scalar

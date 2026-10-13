@@ -1,17 +1,21 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReachSubsetAddErrorFloat
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffRepInner
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReachSubsetAddErrorFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffRepInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # `reachInnerRepFloat` is an inner approximation

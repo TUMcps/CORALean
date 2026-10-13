@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationFamilyDegOf
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationFamilyDegOf
+
+@[expose] public section
 
 /-!
 # Every neuron's degree is under its layer's

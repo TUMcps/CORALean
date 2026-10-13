@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionTauErrorLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionTauErrorLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
+
+@[expose] public section
 
 /-!
 # `particularSolutionTauError` converges to zero superlinearly

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Operations.SumRangeFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.SumRangeFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The interval sum holds the real sum

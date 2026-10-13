@@ -1,8 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.ContDynamics.NonlinearSys.Definitions.API
-import CORALean.ContDynamics.NonlinearSys.Operations.API
-import CORALean.ContDynamics.NonlinearSys.Theorems.API
-import CORALean.ContDynamics.NonlinearSys.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Definitions.API
+public import CORALean.ContDynamics.NonlinearSys.Operations.API
+public import CORALean.ContDynamics.NonlinearSys.Theorems.API
+public import CORALean.ContDynamics.NonlinearSys.Instances
 
 /-!
 # Nonlinear systems, collected

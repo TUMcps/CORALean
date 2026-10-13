@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Float.Operations.OfInterval
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Taylm
-import CORALean.ContSet.Zoo.Float.Theorems.DiagonalBlockSum
+module
+
+public import CORALean.ContSet.Zoo.Float.Operations.OfInterval
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Taylm
+public import CORALean.ContSet.Zoo.Float.Theorems.DiagonalBlockSum
+
+@[expose] public section
 
 /-!
 # `Zoo.ofInterval` encloses

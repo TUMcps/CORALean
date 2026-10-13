@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.Interval.Float.Operations.Origin
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.empty`, over a floating-point scalar

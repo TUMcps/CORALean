@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The interval observer holds the true state

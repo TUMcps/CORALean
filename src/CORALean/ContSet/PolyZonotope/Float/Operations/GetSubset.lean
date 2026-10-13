@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDiff
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.Interval.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.getSubset`, over a floating-point scalar

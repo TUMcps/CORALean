@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Order.Disjoint
+module
+
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Order.Disjoint
+
+@[expose] public section
 
 /-!
 # [1, Sec. 2]: what a noisy measurement can certify

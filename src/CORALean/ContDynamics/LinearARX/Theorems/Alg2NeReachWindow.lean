@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearARX.Operations.Alg2
-import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
-import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Alg2
+public import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
+public import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Alg. 2 started past `p` misses reachable windows

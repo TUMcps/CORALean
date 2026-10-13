@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepOnExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepOnExact
+
+@[expose] public section
 
 /-!
 # `cubMapDep` is exactly the cubic map

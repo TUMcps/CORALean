@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # A trajectory stays in the step enclosure, inputs and all

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Identify
-import CORALean.Global.DmdSelectLe
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Identify
+public import CORALean.Global.DmdSelectLe
+
+@[expose] public section
 
 /-!
 # `identify` is no worse than the full-rank candidate

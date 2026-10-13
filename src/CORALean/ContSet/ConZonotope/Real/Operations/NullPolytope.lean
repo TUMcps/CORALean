@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+
+@[expose] public section
 
 /-!
 # `ConZonotope.nullPolytope`

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosure
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosure
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # A sampled trajectory of the enclosed system

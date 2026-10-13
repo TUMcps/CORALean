@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealNeg
-import CORALean.Global.Float.Instances.Flint.Operations.Neg
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealNeg
+public import CORALean.Global.Float.Instances.Flint.Operations.Neg
+
+@[expose] public section
 
 /-!
 # Negation is exact

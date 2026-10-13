@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.Global.ExactScalar
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.Global.ExactScalar
+
+@[expose] public section
 
 /-!
 # CORA's `projectHighDim_`: embedding into a higher dimension

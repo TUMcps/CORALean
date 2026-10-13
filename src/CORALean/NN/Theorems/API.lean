@@ -1,139 +1,141 @@
-import CORALean.NN.Theorems.ActivationLipschitz
-import CORALean.NN.Theorems.AtScheduleEval
-import CORALean.NN.Theorems.BucketToleranceApprox
-import CORALean.NN.Theorems.ChainEvalCons
-import CORALean.NN.Theorems.ChainEvalNil
-import CORALean.NN.Theorems.Classifies
-import CORALean.NN.Theorems.CompressionPreprocessingOuter
-import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
-import CORALean.NN.Theorems.EncloseAtInflate
-import CORALean.NN.Theorems.EncloseAtOuter
-import CORALean.NN.Theorems.EncloseReduceAtOuter
-import CORALean.NN.Theorems.PropagateBoundsOuter
-import CORALean.NN.Theorems.RefineVerifyFromSound
-import CORALean.NN.Theorems.RefineVerifySound
-import CORALean.NN.Theorems.EncloseNotMonotone
-import CORALean.NN.Theorems.EncloseOuter
-import CORALean.NN.Theorems.EncloseOuterEval
-import CORALean.NN.Theorems.EvalDifferentiable
-import CORALean.NN.Theorems.EvalLipschitz
-import CORALean.NN.Theorems.ExistsMergeBucketAll
-import CORALean.NN.Theorems.ExistsMergeTolerance
-import CORALean.NN.Theorems.ExistsScheduleLinearSigmoidSubset
-import CORALean.NN.Theorems.ExistsScheduleSigmoidLinearSigmoidSubset
-import CORALean.NN.Theorems.ExistsScheduleSigmoidSubset
-import CORALean.NN.Theorems.ExplanationRefineLoopIff
-import CORALean.NN.Theorems.GreedyAbstractExplanationEqGreedyMinimalExplanation
-import CORALean.NN.Theorems.HoldsAllOfEnclose
-import CORALean.NN.Theorems.HoldsOfCheck
-import CORALean.NN.Theorems.HoldsOfEnclose
-import CORALean.NN.Theorems.HoldsOfReduceOnTheFly
-import CORALean.NN.Theorems.HoldsOfReducesAt
-import CORALean.NN.Theorems.HoldsOfReducesAtSubset
-import CORALean.NN.Theorems.HoldsOfSplit
-import CORALean.NN.Theorems.ImageSubset
-import CORALean.NN.Theorems.ImageSubsetEncloseAt
-import CORALean.NN.Theorems.ImageSubsetRefine
-import CORALean.NN.Theorems.ImageSubsetRefineLayer
-import CORALean.NN.Theorems.ImageSubsetRefineLoop
-import CORALean.NN.Theorems.IntervalChainBackpropAdjoint
-import CORALean.NN.Theorems.IntervalChainFwdHasDerivAt
-import CORALean.NN.Theorems.IntervalChainFwdFloatOuter
-import CORALean.NN.Theorems.IntervalChainBackpropFloatOuter
-import CORALean.NN.Theorems.IsMinSuffExplanationGreedyAbstractExplanation
-import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
-import CORALean.NN.Theorems.LinearLipschitz
-import CORALean.NN.Theorems.LinearSigmoidConverges
-import CORALean.NN.Theorems.MarginDir
-import CORALean.NN.Theorems.MemSafeSet
-import CORALean.NN.Theorems.MergeBucketCardMono
-import CORALean.NN.Theorems.MergeBucketMono
-import CORALean.NN.Theorems.MergeErrorSplit
-import CORALean.NN.Theorems.MergeErrorWidthLe
-import CORALean.NN.Theorems.MergeErrorWidthLeRow
-import CORALean.NN.Theorems.MinSuffExplanation
-import CORALean.NN.Theorems.MinSuffExplanationAbstract
-import CORALean.NN.Theorems.MinSuffExplanationAbstractOfMin
-import CORALean.NN.Theorems.MinSuffExplanationAbstractOfRefined
-import CORALean.NN.Theorems.MinSuffExplanationCounterexample
-import CORALean.NN.Theorems.MinSuffExplanationExact
-import CORALean.NN.Theorems.MinSuffExplanationExactOfRefined
-import CORALean.NN.Theorems.Misclassified
-import CORALean.NN.Theorems.MultiLayerRefinementConverges
-import CORALean.NN.Theorems.NeuronMergingNetworkOuter
-import CORALean.NN.Theorems.NeuronMergingOuter
-import CORALean.NN.Theorems.NotMemUnsafeSet
-import CORALean.NN.Theorems.Real.API
-import CORALean.NN.Theorems.ReduceOnTheFlyOuter
-import CORALean.NN.Theorems.ReducesAtCongr
-import CORALean.NN.Theorems.ReducesAtOuter
-import CORALean.NN.Theorems.ReducesAtRefl
-import CORALean.NN.Theorems.RefinableLayerAtPatternSound
-import CORALean.NN.Theorems.ReluNotDifferentiable
-import CORALean.NN.Theorems.Robustness
-import CORALean.NN.Theorems.ScheduleHeadCons
-import CORALean.NN.Theorems.BackpropEqFDerivTranspose
-import CORALean.NN.Theorems.BackpropEqTranspose
-import CORALean.NN.Theorems.FgsmAttackDistLe
-import CORALean.NN.Theorems.PgdAttackMemBox
-import CORALean.NN.Theorems.SensitivityActivation
-import CORALean.NN.Theorems.SensitivityFDeriv
-import CORALean.NN.Theorems.SensitivityLinear
-import CORALean.NN.Theorems.SensitivityOfMatrix
-import CORALean.NN.Theorems.SensitivitySigmoid
-import CORALean.NN.Theorems.SensitivityTanh
-import CORALean.NN.Theorems.SigmoidLipschitz
-import CORALean.NN.Theorems.SigmoidRefinementConverges
-import CORALean.NN.Theorems.SoundEval
-import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
-import CORALean.NN.Theorems.SoundHoldsOfEnclose
-import CORALean.NN.Theorems.SoundVerifySplitSound
-import CORALean.NN.Theorems.SoundVerifySplitWithSound
-import CORALean.NN.Theorems.SuffExplanation
-import CORALean.NN.Theorems.SuffExplanationAbstract
-import CORALean.NN.Theorems.SuffExplanationConverseFails
-import CORALean.NN.Theorems.SuffExplanationExact
-import CORALean.NN.Theorems.SuffExplanationExactOfReducesAt
-import CORALean.NN.Theorems.SuffExplanationExactOfRefined
-import CORALean.NN.Theorems.SuffExplanationMono
-import CORALean.NN.Theorems.SuffExplanationOfEnclose
-import CORALean.NN.Theorems.SuffExplanationOfExact
-import CORALean.NN.Theorems.SuffExplanationOfNeuronMerging
-import CORALean.NN.Theorems.SuffExplanationRefined
-import CORALean.NN.Theorems.SuffExplanationTransfer
-import CORALean.NN.Theorems.ToLayerSound
-import CORALean.NN.Theorems.SmoothNetworkCoraCounterexample
-import CORALean.NN.Theorems.SmoothNetworkOutputFnZero
-import CORALean.NN.Theorems.VerifySplitSound
-import CORALean.NN.Theorems.VerifySplitWithSound
-import CORALean.NN.Theorems.SnakeOrderMultiset
-import CORALean.NN.Theorems.InputNeuronOrderPerm
-import CORALean.NN.Theorems.WeightAccPushLinearEval
-import CORALean.NN.Theorems.WeightAccPushAffineEval
-import CORALean.NN.Theorems.WeightAccLayerEval
-import CORALean.NN.Theorems.WeightNetworkNormalFormAuxEval
-import CORALean.NN.Theorems.WeightNetworkNormalFormEval
-import CORALean.NN.Theorems.RefinableNetworkMemRefinableLayers
-import CORALean.NN.Theorems.ActivationKindMergeValuesIff
-import CORALean.NN.Theorems.CatTransformerOuter
-import CORALean.NN.Theorems.CatReluOnEvalIff
-import CORALean.NN.Theorems.CatImageSubsetOfTransformer
-import CORALean.NN.Theorems.SubsetCnfOfMeetEqBot
-import CORALean.NN.Theorems.CatEvalAffineIff
-import CORALean.NN.Theorems.CatEvalCompIff
-import CORALean.NN.Theorems.CatMaxSegmentEvalIff
-import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
-import CORALean.NN.Theorems.CatMaxPoolEvalIff
-import CORALean.NN.Theorems.SetBasedLossGradient
-import CORALean.NN.Theorems.SetBasedLossGradientCounterexample
-import CORALean.NN.Theorems.ReluEnclosureEncloses
-import CORALean.NN.Theorems.ReluDerEnclosureEncloses
-import CORALean.NN.Theorems.IdentityEnclosureEncloses
-import CORALean.NN.Theorems.IdentityDerEnclosureEncloses
-import CORALean.NN.Theorems.ToRealMatMapAbsolute
-import CORALean.NN.Theorems.ScalarEnclosesVecMem
-import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
-import CORALean.NN.Theorems.IntervalChainFloatLinearRMem
+module
+
+public import CORALean.NN.Theorems.ActivationLipschitz
+public import CORALean.NN.Theorems.AtScheduleEval
+public import CORALean.NN.Theorems.BucketToleranceApprox
+public import CORALean.NN.Theorems.ChainEvalCons
+public import CORALean.NN.Theorems.ChainEvalNil
+public import CORALean.NN.Theorems.Classifies
+public import CORALean.NN.Theorems.CompressionPreprocessingOuter
+public import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
+public import CORALean.NN.Theorems.EncloseAtInflate
+public import CORALean.NN.Theorems.EncloseAtOuter
+public import CORALean.NN.Theorems.EncloseReduceAtOuter
+public import CORALean.NN.Theorems.PropagateBoundsOuter
+public import CORALean.NN.Theorems.RefineVerifyFromSound
+public import CORALean.NN.Theorems.RefineVerifySound
+public import CORALean.NN.Theorems.EncloseNotMonotone
+public import CORALean.NN.Theorems.EncloseOuter
+public import CORALean.NN.Theorems.EncloseOuterEval
+public import CORALean.NN.Theorems.EvalDifferentiable
+public import CORALean.NN.Theorems.EvalLipschitz
+public import CORALean.NN.Theorems.ExistsMergeBucketAll
+public import CORALean.NN.Theorems.ExistsMergeTolerance
+public import CORALean.NN.Theorems.ExistsScheduleLinearSigmoidSubset
+public import CORALean.NN.Theorems.ExistsScheduleSigmoidLinearSigmoidSubset
+public import CORALean.NN.Theorems.ExistsScheduleSigmoidSubset
+public import CORALean.NN.Theorems.ExplanationRefineLoopIff
+public import CORALean.NN.Theorems.GreedyAbstractExplanationEqGreedyMinimalExplanation
+public import CORALean.NN.Theorems.HoldsAllOfEnclose
+public import CORALean.NN.Theorems.HoldsOfCheck
+public import CORALean.NN.Theorems.HoldsOfEnclose
+public import CORALean.NN.Theorems.HoldsOfReduceOnTheFly
+public import CORALean.NN.Theorems.HoldsOfReducesAt
+public import CORALean.NN.Theorems.HoldsOfReducesAtSubset
+public import CORALean.NN.Theorems.HoldsOfSplit
+public import CORALean.NN.Theorems.ImageSubset
+public import CORALean.NN.Theorems.ImageSubsetEncloseAt
+public import CORALean.NN.Theorems.ImageSubsetRefine
+public import CORALean.NN.Theorems.ImageSubsetRefineLayer
+public import CORALean.NN.Theorems.ImageSubsetRefineLoop
+public import CORALean.NN.Theorems.IntervalChainBackpropAdjoint
+public import CORALean.NN.Theorems.IntervalChainFwdHasDerivAt
+public import CORALean.NN.Theorems.IntervalChainFwdFloatOuter
+public import CORALean.NN.Theorems.IntervalChainBackpropFloatOuter
+public import CORALean.NN.Theorems.IsMinSuffExplanationGreedyAbstractExplanation
+public import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
+public import CORALean.NN.Theorems.LinearLipschitz
+public import CORALean.NN.Theorems.LinearSigmoidConverges
+public import CORALean.NN.Theorems.MarginDir
+public import CORALean.NN.Theorems.MemSafeSet
+public import CORALean.NN.Theorems.MergeBucketCardMono
+public import CORALean.NN.Theorems.MergeBucketMono
+public import CORALean.NN.Theorems.MergeErrorSplit
+public import CORALean.NN.Theorems.MergeErrorWidthLe
+public import CORALean.NN.Theorems.MergeErrorWidthLeRow
+public import CORALean.NN.Theorems.MinSuffExplanation
+public import CORALean.NN.Theorems.MinSuffExplanationAbstract
+public import CORALean.NN.Theorems.MinSuffExplanationAbstractOfMin
+public import CORALean.NN.Theorems.MinSuffExplanationAbstractOfRefined
+public import CORALean.NN.Theorems.MinSuffExplanationCounterexample
+public import CORALean.NN.Theorems.MinSuffExplanationExact
+public import CORALean.NN.Theorems.MinSuffExplanationExactOfRefined
+public import CORALean.NN.Theorems.Misclassified
+public import CORALean.NN.Theorems.MultiLayerRefinementConverges
+public import CORALean.NN.Theorems.NeuronMergingNetworkOuter
+public import CORALean.NN.Theorems.NeuronMergingOuter
+public import CORALean.NN.Theorems.NotMemUnsafeSet
+public import CORALean.NN.Theorems.Real.API
+public import CORALean.NN.Theorems.ReduceOnTheFlyOuter
+public import CORALean.NN.Theorems.ReducesAtCongr
+public import CORALean.NN.Theorems.ReducesAtOuter
+public import CORALean.NN.Theorems.ReducesAtRefl
+public import CORALean.NN.Theorems.RefinableLayerAtPatternSound
+public import CORALean.NN.Theorems.ReluNotDifferentiable
+public import CORALean.NN.Theorems.Robustness
+public import CORALean.NN.Theorems.ScheduleHeadCons
+public import CORALean.NN.Theorems.BackpropEqFDerivTranspose
+public import CORALean.NN.Theorems.BackpropEqTranspose
+public import CORALean.NN.Theorems.FgsmAttackDistLe
+public import CORALean.NN.Theorems.PgdAttackMemBox
+public import CORALean.NN.Theorems.SensitivityActivation
+public import CORALean.NN.Theorems.SensitivityFDeriv
+public import CORALean.NN.Theorems.SensitivityLinear
+public import CORALean.NN.Theorems.SensitivityOfMatrix
+public import CORALean.NN.Theorems.SensitivitySigmoid
+public import CORALean.NN.Theorems.SensitivityTanh
+public import CORALean.NN.Theorems.SigmoidLipschitz
+public import CORALean.NN.Theorems.SigmoidRefinementConverges
+public import CORALean.NN.Theorems.SoundEval
+public import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
+public import CORALean.NN.Theorems.SoundHoldsOfEnclose
+public import CORALean.NN.Theorems.SoundVerifySplitSound
+public import CORALean.NN.Theorems.SoundVerifySplitWithSound
+public import CORALean.NN.Theorems.SuffExplanation
+public import CORALean.NN.Theorems.SuffExplanationAbstract
+public import CORALean.NN.Theorems.SuffExplanationConverseFails
+public import CORALean.NN.Theorems.SuffExplanationExact
+public import CORALean.NN.Theorems.SuffExplanationExactOfReducesAt
+public import CORALean.NN.Theorems.SuffExplanationExactOfRefined
+public import CORALean.NN.Theorems.SuffExplanationMono
+public import CORALean.NN.Theorems.SuffExplanationOfEnclose
+public import CORALean.NN.Theorems.SuffExplanationOfExact
+public import CORALean.NN.Theorems.SuffExplanationOfNeuronMerging
+public import CORALean.NN.Theorems.SuffExplanationRefined
+public import CORALean.NN.Theorems.SuffExplanationTransfer
+public import CORALean.NN.Theorems.ToLayerSound
+public import CORALean.NN.Theorems.SmoothNetworkCoraCounterexample
+public import CORALean.NN.Theorems.SmoothNetworkOutputFnZero
+public import CORALean.NN.Theorems.VerifySplitSound
+public import CORALean.NN.Theorems.VerifySplitWithSound
+public import CORALean.NN.Theorems.SnakeOrderMultiset
+public import CORALean.NN.Theorems.InputNeuronOrderPerm
+public import CORALean.NN.Theorems.WeightAccPushLinearEval
+public import CORALean.NN.Theorems.WeightAccPushAffineEval
+public import CORALean.NN.Theorems.WeightAccLayerEval
+public import CORALean.NN.Theorems.WeightNetworkNormalFormAuxEval
+public import CORALean.NN.Theorems.WeightNetworkNormalFormEval
+public import CORALean.NN.Theorems.RefinableNetworkMemRefinableLayers
+public import CORALean.NN.Theorems.ActivationKindMergeValuesIff
+public import CORALean.NN.Theorems.CatTransformerOuter
+public import CORALean.NN.Theorems.CatReluOnEvalIff
+public import CORALean.NN.Theorems.CatImageSubsetOfTransformer
+public import CORALean.NN.Theorems.SubsetCnfOfMeetEqBot
+public import CORALean.NN.Theorems.CatEvalAffineIff
+public import CORALean.NN.Theorems.CatEvalCompIff
+public import CORALean.NN.Theorems.CatMaxSegmentEvalIff
+public import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
+public import CORALean.NN.Theorems.CatMaxPoolEvalIff
+public import CORALean.NN.Theorems.SetBasedLossGradient
+public import CORALean.NN.Theorems.SetBasedLossGradientCounterexample
+public import CORALean.NN.Theorems.ReluEnclosureEncloses
+public import CORALean.NN.Theorems.ReluDerEnclosureEncloses
+public import CORALean.NN.Theorems.IdentityEnclosureEncloses
+public import CORALean.NN.Theorems.IdentityDerEnclosureEncloses
+public import CORALean.NN.Theorems.ToRealMatMapAbsolute
+public import CORALean.NN.Theorems.ScalarEnclosesVecMem
+public import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
+public import CORALean.NN.Theorems.IntervalChainFloatLinearRMem
 
 /-!
 # What a network's enclosure guarantees, collected

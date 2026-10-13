@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The correction coefficient bounds `s^i - s` from below

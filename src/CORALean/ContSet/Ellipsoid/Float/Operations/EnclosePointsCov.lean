@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclosePointsCov`, over a floating-point scalar

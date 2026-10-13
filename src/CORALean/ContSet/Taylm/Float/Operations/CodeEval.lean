@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Float.Operations.Intrinsic
-import CORALean.ContSet.Taylm.Float.Operations.Const
-import CORALean.ContSet.Taylm.Float.Operations.Plus
-import CORALean.ContSet.Taylm.Float.Operations.Times
-import CORALean.ContSet.Taylm.Float.Operations.Uminus
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Intrinsic
+public import CORALean.ContSet.Taylm.Float.Operations.Const
+public import CORALean.ContSet.Taylm.Float.Operations.Plus
+public import CORALean.ContSet.Taylm.Float.Operations.Times
+public import CORALean.ContSet.Taylm.Float.Operations.Uminus
+
+@[expose] public section
 
 /-!
 # Executing a code list in floating-point Taylor model arithmetic

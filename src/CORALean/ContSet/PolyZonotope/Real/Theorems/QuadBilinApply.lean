@@ -1,4 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The bilinear form family in coordinates

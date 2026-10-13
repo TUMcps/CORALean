@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinProbSys.Theorems.InitReachInputCov
-import CORALean.ContDynamics.LinProbSys.Theorems.PostCov
+module
+
+public import CORALean.ContDynamics.LinProbSys.Theorems.InitReachInputCov
+public import CORALean.ContDynamics.LinProbSys.Theorems.PostCov
+
+@[expose] public section
 
 /-!
 # From `initReach`, every `post` step carries the noise covariance

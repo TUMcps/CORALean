@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
+
+@[expose] public section
 
 /-!
 # An ellipsoid is compact

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.IsConvex
-import CORALean.ContSet.Polygon.Real.Theorems.ConvHullExact
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.IsConvex
+public import CORALean.ContSet.Polygon.Real.Theorems.ConvHullExact
+
+@[expose] public section
 
 /-!
 # `Polygon.isConvex` is convexity of the region

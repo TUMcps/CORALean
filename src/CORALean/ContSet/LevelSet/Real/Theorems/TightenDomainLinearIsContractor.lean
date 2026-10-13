@@ -1,10 +1,14 @@
-import CORALean.ContSet.LevelSet.Real.Operations.TightenDomainLinear
-import CORALean.ContSet.LevelSet.Real.Definitions.Contractor
-import CORALean.ContSet.Interval.Real.Theorems.MemCenter
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Real.Theorems.InvBetween
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.TightenDomainLinear
+public import CORALean.ContSet.LevelSet.Real.Definitions.Contractor
+public import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Real.Theorems.InvBetween
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+
+@[expose] public section
 
 /-!
 # The `'linear'` contractor of `tightenDomain` is a contractor

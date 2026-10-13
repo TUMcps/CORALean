@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
+
+@[expose] public section
 
 /-!
 # An inner approximation of a reachable set, from a float run

@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Data.Fintype.Fin
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Data.Fintype.Fin
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The scaling of the Lipschitz-constrained linear layer

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
-import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
+public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
+
+@[expose] public section
 
 /-!
 # `jacobianBox` encloses the Jacobian

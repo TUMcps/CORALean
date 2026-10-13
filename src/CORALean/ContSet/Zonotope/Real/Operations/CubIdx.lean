@@ -1,4 +1,8 @@
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # The generator index of `Zonotope.cubMap`

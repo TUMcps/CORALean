@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachUnionExact
-import CORALean.ContDynamics.LinParamSysDT.Operations.ReachUnion
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.LinParamSysDT.Operations.ReachUnion
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # `reachUnion` encloses `reachUnionExact`

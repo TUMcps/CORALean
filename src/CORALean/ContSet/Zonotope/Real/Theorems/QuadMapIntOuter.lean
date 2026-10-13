@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntEq
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `quadint` encloses the quadratic map at every matrix of the interval

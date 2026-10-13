@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
-import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddFlowLaw
-import CORALean.HybridDynamics.Parallel.Operations.ProductAdd
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddFlowLaw
+public import CORALean.HybridDynamics.Parallel.Operations.ProductAdd
+
+@[expose] public section
 
 /-!
 # Every parallel run is a run of `productAdd`, with no `SelfBindFree`

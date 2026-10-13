@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Float.Operations.InTriangle
-import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.InTriangle
+public import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # A `true` from `Polygon.inTriangle` is a convex combination

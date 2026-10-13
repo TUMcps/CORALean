@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
-import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
+
+@[expose] public section
 
 /-!
 # A stored product generator is close to the exact one

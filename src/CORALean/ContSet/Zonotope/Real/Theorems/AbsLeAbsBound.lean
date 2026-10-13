@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # A coordinate of a zonotope never leaves `absBound`

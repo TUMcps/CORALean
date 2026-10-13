@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.intervalCorrectionMatrix`, the correction `F` over a float box

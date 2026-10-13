@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
+
+@[expose] public section
 
 /-!
 # The leading term of the defect, and the orders of defect and error

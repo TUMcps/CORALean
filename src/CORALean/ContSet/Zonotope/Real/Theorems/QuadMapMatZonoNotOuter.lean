@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMapMatZono
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapMatZono
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # With a factor per coordinate, [1, Thm. 1]'s enclosure fails

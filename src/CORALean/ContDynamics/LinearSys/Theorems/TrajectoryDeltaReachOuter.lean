@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuter
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # A run's state difference over a step lies in `deltaReach`

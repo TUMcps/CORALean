@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloatChecked
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloatChecked
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # A checked `reachFloat` that returns a result returns the unchecked one

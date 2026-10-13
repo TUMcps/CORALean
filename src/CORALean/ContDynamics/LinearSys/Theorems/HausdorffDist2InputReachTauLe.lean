@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetClosureConvexHull
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
-import CORALean.Global.Norm2MulVecLeErrOfMemClosureConvexHull
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import CORALean.Global.EuclideanHausdorffDistAddLe
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetClosureConvexHull
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
+public import CORALean.Global.Norm2MulVecLeErrOfMemClosureConvexHull
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.Global.EuclideanHausdorffDistAddLe
+
+@[expose] public section
 
 /-!
 # [1, Prop. 3]: the time-interval error in the particular solution

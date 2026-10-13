@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
-import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
+
+@[expose] public section
 
 /-!
 # A functional applied to a generator-space image is the dot product with its pullback

@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `LevelSet.mtimes` is exact

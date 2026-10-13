@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Mmul
-import CORALean.ContSet.Taylm.Real.Operations.Const
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Mmul
+public import CORALean.ContSet.Taylm.Real.Operations.Const
+
+@[expose] public section
 
 /-!
 # `Taylm.mpower`

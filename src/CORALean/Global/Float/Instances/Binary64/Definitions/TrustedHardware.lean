@@ -1,9 +1,13 @@
-import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
-import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
-import CORALean.Global.Float.Instances.Binary64.Operations.Half
-import CORALean.Global.Float.Instances.Binary64.Operations.Maximum
-import CORALean.Global.Float.Instances.Binary64.Operations.Minimum
-import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
+public import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
+public import CORALean.Global.Float.Instances.Binary64.Operations.Half
+public import CORALean.Global.Float.Instances.Binary64.Operations.Maximum
+public import CORALean.Global.Float.Instances.Binary64.Operations.Minimum
+public import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
+
+@[expose] public section
 
 /-!
 # What "the hardware is trusted" says

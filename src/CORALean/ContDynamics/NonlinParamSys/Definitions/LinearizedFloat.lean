@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinParamSys.Definitions.FloatModel
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Definitions.FloatModel
+
+@[expose] public section
 
 /-!
 # What the float `nonlinParamSys/linearize` hands on

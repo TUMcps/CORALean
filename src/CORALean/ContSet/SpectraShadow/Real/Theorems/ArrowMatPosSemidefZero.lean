@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatQuadForm
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatIsHermitian
-import Mathlib.Analysis.Matrix.Order
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatQuadForm
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatIsHermitian
+public import Mathlib.Analysis.Matrix.Order
+
+@[expose] public section
 
 /-!
 # The arrowhead matrix at the apex

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
+
+@[expose] public section
 
 /-!
 # Interval matrices: the second-order Taylor term, exactly, over a floating-point scalar

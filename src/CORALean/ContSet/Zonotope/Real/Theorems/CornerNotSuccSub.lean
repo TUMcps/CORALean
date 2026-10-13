@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
-import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipSucc
-import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipCompl
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipSucc
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipCompl
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The second block of the walk subtracts `2 g_k` at step `k`

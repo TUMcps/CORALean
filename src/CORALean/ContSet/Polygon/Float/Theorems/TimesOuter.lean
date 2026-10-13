@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.Times
-import CORALean.ContSet.Polygon.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Times
+public import CORALean.ContSet.Polygon.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.times` encloses the image

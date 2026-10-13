@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
-import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
-import CORALean.ContSet.Zonotope.Real.Operations.PairSum
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
+public import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
+public import CORALean.ContSet.Zonotope.Real.Operations.PairSum
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.linComb`

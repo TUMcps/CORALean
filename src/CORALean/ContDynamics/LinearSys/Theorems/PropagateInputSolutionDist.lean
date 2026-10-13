@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # One step's approximation error, summed over the horizon

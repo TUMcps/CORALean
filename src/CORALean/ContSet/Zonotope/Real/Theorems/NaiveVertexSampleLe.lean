@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.IsGreatestCoeffNormCorner
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsGreatestCoeffNormCorner
+
+@[expose] public section
 
 /-!
 # Naive vertex sampling under-approximates

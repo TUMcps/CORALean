@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReplaceId
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialReplaceId
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReplaceId
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialReplaceId
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.replaceId` evaluates the original at the renamed factors

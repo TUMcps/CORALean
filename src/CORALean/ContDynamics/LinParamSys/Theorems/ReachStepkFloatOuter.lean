@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpSquaringFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.SquaringsFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.SquaringsFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
+
+@[expose] public section
 
 /-!
 # A window `reachStepkFloat` returns holds every member's flow from the first

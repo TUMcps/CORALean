@@ -1,5 +1,9 @@
-import CORALean.ContSet.SetUnion.SetUnion
-import CORALean.ContSet.VPolytope.Float.VPolytope
+module
+
+public import CORALean.ContSet.SetUnion.SetUnion
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+
+@[expose] public section
 
 /-!
 # Polygons over a floating-point scalar

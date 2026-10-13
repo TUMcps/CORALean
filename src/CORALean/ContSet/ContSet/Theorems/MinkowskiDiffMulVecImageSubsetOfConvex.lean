@@ -1,6 +1,10 @@
-import Mathlib.Topology.Algebra.Module.FiniteDimension
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfConvex
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfConvex
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # A perturbed matrix image, inner-approximated without a smallness condition

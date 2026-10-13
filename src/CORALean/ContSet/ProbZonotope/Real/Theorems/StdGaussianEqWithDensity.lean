@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
-import CORALean.ContSet.ProbZonotope.Real.Theorems.IntegrableExpNegNormSq
-import Mathlib.Probability.Distributions.Gaussian.Multivariate
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.IntegrableExpNegNormSq
+public import Mathlib.Probability.Distributions.Gaussian.Multivariate
+
+@[expose] public section
 
 /-!
 # The standard Gaussian on `ℝⁿ` has density `(2π)^{-n/2} exp(-‖y‖²/2)`

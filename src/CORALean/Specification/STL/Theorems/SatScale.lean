@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.FormulaScale
+module
+
+public import CORALean.Specification.STL.Operations.FormulaScale
+
+@[expose] public section
 
 /-!
 # A scaled formula on a trace is the formula on the scaled trace

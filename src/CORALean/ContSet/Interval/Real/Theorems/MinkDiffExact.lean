@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import CORALean.ContSet.Interval.Real.Theorems.MinkDiffInner
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import CORALean.ContSet.Interval.Real.Theorems.MinkDiffInner
+
+@[expose] public section
 
 /-!
 # `Interval.minkDiff` is exactly the Minkowski difference

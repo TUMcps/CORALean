@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.JumpIntersection
-import CORALean.HybridDynamics.Theorems.JumpOuter
+module
+
+public import CORALean.HybridDynamics.Operations.JumpIntersection
+public import CORALean.HybridDynamics.Theorems.JumpOuter
+
+@[expose] public section
 
 /-!
 # `Transition.jumpIntersection` contains what leaves through the transition

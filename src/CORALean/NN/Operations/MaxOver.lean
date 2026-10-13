@@ -1,4 +1,8 @@
-import CORALean.Global.Float.FloatOps
+module
+
+public import CORALean.Global.Float.FloatOps
+
+@[expose] public section
 
 /-!
 # `max(u_k)`: the largest of a layer's upper bounds

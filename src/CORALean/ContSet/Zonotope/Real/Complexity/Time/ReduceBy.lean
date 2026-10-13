@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceByCost`

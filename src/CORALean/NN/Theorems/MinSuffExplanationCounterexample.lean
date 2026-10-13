@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.MinSuffExplanation
+module
+
+public import CORALean.NN.Theorems.MinSuffExplanation
+
+@[expose] public section
 
 /-!
 # Minimality is a counterexample per feature

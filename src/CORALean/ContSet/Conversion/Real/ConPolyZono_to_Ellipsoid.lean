@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Ellipsoid
+module
+
+public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Ellipsoid
+
+@[expose] public section
 
 /-!
 # A constrained polynomial zonotope as an ellipsoid

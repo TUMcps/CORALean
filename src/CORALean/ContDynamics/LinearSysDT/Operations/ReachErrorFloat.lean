@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
-import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
-import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
+public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # What a float run of `reach` owes

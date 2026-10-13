@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+
+@[expose] public section
 
 /-!
 # CORA's observers drop the disturbance matrix `E`

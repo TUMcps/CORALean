@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.RightInvResidual
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.RightInvResidual
+
+@[expose] public section
 
 /-!
 # `Zonotope.rightInvQ`

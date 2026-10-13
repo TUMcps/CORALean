@@ -1,6 +1,10 @@
-import CORALean.NN.Operations.VerifySplitWith
-import CORALean.NN.Theorems.SoundHoldsOfEnclose
-import CORALean.Specification.Theorems.HoldsUnion
+module
+
+public import CORALean.NN.Operations.VerifySplitWith
+public import CORALean.NN.Theorems.SoundHoldsOfEnclose
+public import CORALean.Specification.Theorems.HoldsUnion
+
+@[expose] public section
 
 /-!
 # `verifySplitWith` is sound, at any checker backed by a proof

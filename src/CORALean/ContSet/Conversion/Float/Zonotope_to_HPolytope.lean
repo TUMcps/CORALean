@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
-import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
-import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
-import CORALean.ContSet.InflatedContSet.Operations.Bound
-import CORALean.ContSet.Interval.Float.Operations.BoundDot
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
+public import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.InflatedContSet.Operations.Bound
+public import CORALean.ContSet.Interval.Float.Operations.BoundDot
+
+@[expose] public section
 
 /-!
 # A zonotope as halfspaces, over a floating-point scalar

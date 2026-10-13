@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
-import CORALean.ContSet.Zonotope.Float.Operations.Reindex
-import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Zonotope.Float.Operations.Reindex
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.reindex` is exactly the relabelled zonotope, in float too

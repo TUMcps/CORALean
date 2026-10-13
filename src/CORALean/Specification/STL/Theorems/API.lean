@@ -1,135 +1,137 @@
-import CORALean.Specification.STL.Theorems.BlocksDisjoint
-import CORALean.Specification.STL.Theorems.BranchHoldsMerge
-import CORALean.Specification.STL.Theorems.BranchHoldsShift
-import CORALean.Specification.STL.Theorems.CNFSatAppend
-import CORALean.Specification.STL.Theorems.CNFSatNext
-import CORALean.Specification.STL.Theorems.CNFSatOr
-import CORALean.Specification.STL.Theorems.CNFSatToFormula
-import CORALean.Specification.STL.Theorems.CNFSatUpsilon
-import CORALean.Specification.STL.Theorems.CNFUpsilonDuplicateCounterexample
-import CORALean.Specification.STL.Theorems.CNFUpsilonEmptyCounterexample
-import CORALean.Specification.STL.Theorems.CNFUpsilonSoundComplete
-import CORALean.Specification.STL.Theorems.ClauseHoldsInsert
-import CORALean.Specification.STL.Theorems.ClauseHoldsMerge
-import CORALean.Specification.STL.Theorems.ClauseNodupInsert
-import CORALean.Specification.STL.Theorems.ClauseNodupMerge
-import CORALean.Specification.STL.Theorems.CompSound
-import CORALean.Specification.STL.Theorems.ExistsNnf
-import CORALean.Specification.STL.Theorems.EvaluatePredicateUnionLastOnlyCounterexample
-import CORALean.Specification.STL.Theorems.VerifySTLKochdumperUnionLastOnlyCounterexample
-import CORALean.Specification.STL.Theorems.RobustnessReachSetLastSetOnlyCounterexample
-import CORALean.Specification.STL.Theorems.FinOpenNextEquiv
-import CORALean.Specification.STL.Theorems.FinRepConstOnBlock
-import CORALean.Specification.STL.Theorems.FinallyAIff
-import CORALean.Specification.STL.Theorems.ForallExistsIffExistsForall
-import CORALean.Specification.STL.Theorems.ForallFinalsOrGlobalsIff
-import CORALean.Specification.STL.Theorems.ForallLtAddOneOfBlocks
-import CORALean.Specification.STL.Theorems.ForallLtTwoOfBlocks
-import CORALean.Specification.STL.Theorems.ForallTraceSetSatIff
-import CORALean.Specification.STL.Theorems.GlobOpenNextEquiv
-import CORALean.Specification.STL.Theorems.ModelCheckingComplete
-import CORALean.Specification.STL.Theorems.ModelCheckingSound
-import CORALean.Specification.STL.Theorems.NextAIffSubsetIUnion
-import CORALean.Specification.STL.Theorems.NnfExistsSampled
-import CORALean.Specification.STL.Theorems.NnfRewriteAnd
-import CORALean.Specification.STL.Theorems.NnfRewriteLit
-import CORALean.Specification.STL.Theorems.NnfRewriteOr
-import CORALean.Specification.STL.Theorems.NnfRewriteRelease
-import CORALean.Specification.STL.Theorems.NnfRewriteUntil
-import CORALean.Specification.STL.Theorems.PformExistsDnf
-import CORALean.Specification.STL.Theorems.PformSatBigOr
-import CORALean.Specification.STL.Theorems.RTLSatBigAnd
-import CORALean.Specification.STL.Theorems.RTLSatBigOr
-import CORALean.Specification.STL.Theorems.ReleaseZeroEquiv
-import CORALean.Specification.STL.Theorems.RewriteFinOpenAnd
-import CORALean.Specification.STL.Theorems.RewriteFinOpenOr
-import CORALean.Specification.STL.Theorems.RewriteFinOpenReleaseSucc
-import CORALean.Specification.STL.Theorems.RewriteFinOpenReleaseZero
-import CORALean.Specification.STL.Theorems.RewriteFinOpenUntilSucc
-import CORALean.Specification.STL.Theorems.RewriteFinOpenUntilZero
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenAnd
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenOr
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenReleaseSucc
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenReleaseZero
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenUntilSucc
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenUntilZero
-import CORALean.Specification.STL.Theorems.RewriteReleaseSucc
-import CORALean.Specification.STL.Theorems.RewriteReleaseZero
-import CORALean.Specification.STL.Theorems.RewriteUntilSucc
-import CORALean.Specification.STL.Theorems.RewriteUntilZero
-import CORALean.Specification.STL.Theorems.STLSatBigAnd
-import CORALean.Specification.STL.Theorems.STLSatBigOr
-import CORALean.Specification.STL.Theorems.SampNodupToCNF
-import CORALean.Specification.STL.Theorems.SampSatToCNF
-import CORALean.Specification.STL.Theorems.SampToFormulaScale
-import CORALean.Specification.STL.Theorems.SatAnd
-import CORALean.Specification.STL.Theorems.SatNext
-import CORALean.Specification.STL.Theorems.SatOfPform
-import CORALean.Specification.STL.Theorems.SatOr
-import CORALean.Specification.STL.Theorems.SatRelease
-import CORALean.Specification.STL.Theorems.SatScale
-import CORALean.Specification.STL.Theorems.SatTt
-import CORALean.Specification.STL.Theorems.ScaleOfPform
-import CORALean.Specification.STL.Theorems.ShiftShift
-import CORALean.Specification.STL.Theorems.ShiftZero
-import CORALean.Specification.STL.Theorems.TraceSetExactCounterexample
-import CORALean.Specification.STL.Theorems.TracesSubsetTraceSet
-import CORALean.Specification.STL.Theorems.UntilZeroEquiv
-import CORALean.Specification.STL.Theorems.UpsilonAnd
-import CORALean.Specification.STL.Theorems.UpsilonOfPform
-import CORALean.Specification.STL.Theorems.UpsilonOfPformCounterexample
-import CORALean.Specification.STL.Theorems.UntilEncNonstrictIff
-import CORALean.Specification.STL.Theorems.UntilDecompIff
-import CORALean.Specification.STL.Theorems.UntilRobNonstrictLeIff
-import CORALean.Specification.STL.Theorems.ZEncIffSat
-import CORALean.Specification.STL.Theorems.REncEqRob
-import CORALean.Specification.STL.Theorems.ZEncCounterexample
-import CORALean.Specification.STL.Theorems.REncCounterexample
-import CORALean.Specification.STL.Theorems.RobSound
-import CORALean.Specification.STL.Theorems.RobCounterexample
-import CORALean.Specification.STL.Theorems.SatCongr
-import CORALean.Specification.STL.Theorems.EventuallySatIff
-import CORALean.Specification.STL.Theorems.PredEncodingIff
-import CORALean.Specification.STL.Theorems.ConjEncodingIff
-import CORALean.Specification.STL.Theorems.DisjEncodingIff
-import CORALean.Specification.STL.Theorems.RobustConjEncoding
-import CORALean.Specification.STL.Theorems.RobustDisjEncoding
-import CORALean.Specification.STL.Theorems.RobustSelectorCounterexample
-import CORALean.Specification.STL.Theorems.TsuppSubsetOfDecided
-import CORALean.Specification.STL.Theorems.UpsilonOrOfDecided
-import CORALean.Specification.STL.Theorems.UpsilonOrCounterexample
-import CORALean.Specification.STL.Theorems.AutomatedVerificationSound
-import CORALean.Specification.STL.Theorems.FactorCheckSound
-import CORALean.Specification.STL.Theorems.FactorMeetZipCounterexample
-import CORALean.Specification.STL.Theorems.FactorStepMem
-import CORALean.Specification.STL.Theorems.MilpCorrectedIff
-import CORALean.Specification.STL.Theorems.MilpPrintedCounterexample
-import CORALean.Specification.STL.Theorems.MilpPrintedInfeasible
-import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactors
-import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactorsPoint
-import CORALean.Specification.STL.Theorems.SumGenPlus
-import CORALean.Specification.STL.Theorems.SumGenMtimes
-import CORALean.Specification.STL.Theorems.SumGenOfPoint
-import CORALean.Specification.STL.Theorems.DepReachAtHh
-import CORALean.Specification.STL.Theorems.DepReachAtPcH
-import CORALean.Specification.STL.Theorems.DepReachAtPcC
-import CORALean.Specification.STL.Theorems.DepReachAtDC
-import CORALean.Specification.STL.Theorems.DepBloatingC
-import CORALean.Specification.STL.Theorems.DepReachAtSum
-import CORALean.Specification.STL.Theorems.DepReachPointDependency
-import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
-import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
-import CORALean.Specification.STL.Theorems.DepReachIntervalDependencyCounterexample
-import CORALean.Specification.STL.Theorems.UnsafeFactorsIntervalCounterexample
-import CORALean.Specification.STL.Theorems.DependencyPreservedOfEncloses
-import CORALean.Specification.STL.Theorems.DepBloatingSubsetClosedBall
-import CORALean.Specification.STL.Theorems.DepBoxSubsetClosedBall
-import CORALean.Specification.STL.Theorems.DepReachAtCSubsetClosedBall
-import CORALean.Specification.STL.Theorems.MtimesIntervalMatSubsetClosedBallInfSup
-import CORALean.Specification.STL.Theorems.TendstoDepBloatingZero
-import CORALean.Specification.STL.Theorems.TendstoDepReachAtCZero
-import CORALean.Specification.STL.Theorems.TendstoSSupNormOfEventuallySubsetClosedBall
-import CORALean.Specification.STL.Theorems.TendstoDepReachLinCombHausdorffZero
+module
+
+public import CORALean.Specification.STL.Theorems.BlocksDisjoint
+public import CORALean.Specification.STL.Theorems.BranchHoldsMerge
+public import CORALean.Specification.STL.Theorems.BranchHoldsShift
+public import CORALean.Specification.STL.Theorems.CNFSatAppend
+public import CORALean.Specification.STL.Theorems.CNFSatNext
+public import CORALean.Specification.STL.Theorems.CNFSatOr
+public import CORALean.Specification.STL.Theorems.CNFSatToFormula
+public import CORALean.Specification.STL.Theorems.CNFSatUpsilon
+public import CORALean.Specification.STL.Theorems.CNFUpsilonDuplicateCounterexample
+public import CORALean.Specification.STL.Theorems.CNFUpsilonEmptyCounterexample
+public import CORALean.Specification.STL.Theorems.CNFUpsilonSoundComplete
+public import CORALean.Specification.STL.Theorems.ClauseHoldsInsert
+public import CORALean.Specification.STL.Theorems.ClauseHoldsMerge
+public import CORALean.Specification.STL.Theorems.ClauseNodupInsert
+public import CORALean.Specification.STL.Theorems.ClauseNodupMerge
+public import CORALean.Specification.STL.Theorems.CompSound
+public import CORALean.Specification.STL.Theorems.ExistsNnf
+public import CORALean.Specification.STL.Theorems.EvaluatePredicateUnionLastOnlyCounterexample
+public import CORALean.Specification.STL.Theorems.VerifySTLKochdumperUnionLastOnlyCounterexample
+public import CORALean.Specification.STL.Theorems.RobustnessReachSetLastSetOnlyCounterexample
+public import CORALean.Specification.STL.Theorems.FinOpenNextEquiv
+public import CORALean.Specification.STL.Theorems.FinRepConstOnBlock
+public import CORALean.Specification.STL.Theorems.FinallyAIff
+public import CORALean.Specification.STL.Theorems.ForallExistsIffExistsForall
+public import CORALean.Specification.STL.Theorems.ForallFinalsOrGlobalsIff
+public import CORALean.Specification.STL.Theorems.ForallLtAddOneOfBlocks
+public import CORALean.Specification.STL.Theorems.ForallLtTwoOfBlocks
+public import CORALean.Specification.STL.Theorems.ForallTraceSetSatIff
+public import CORALean.Specification.STL.Theorems.GlobOpenNextEquiv
+public import CORALean.Specification.STL.Theorems.ModelCheckingComplete
+public import CORALean.Specification.STL.Theorems.ModelCheckingSound
+public import CORALean.Specification.STL.Theorems.NextAIffSubsetIUnion
+public import CORALean.Specification.STL.Theorems.NnfExistsSampled
+public import CORALean.Specification.STL.Theorems.NnfRewriteAnd
+public import CORALean.Specification.STL.Theorems.NnfRewriteLit
+public import CORALean.Specification.STL.Theorems.NnfRewriteOr
+public import CORALean.Specification.STL.Theorems.NnfRewriteRelease
+public import CORALean.Specification.STL.Theorems.NnfRewriteUntil
+public import CORALean.Specification.STL.Theorems.PformExistsDnf
+public import CORALean.Specification.STL.Theorems.PformSatBigOr
+public import CORALean.Specification.STL.Theorems.RTLSatBigAnd
+public import CORALean.Specification.STL.Theorems.RTLSatBigOr
+public import CORALean.Specification.STL.Theorems.ReleaseZeroEquiv
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenAnd
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenOr
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenReleaseSucc
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenReleaseZero
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenUntilSucc
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenUntilZero
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenAnd
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenOr
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenReleaseSucc
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenReleaseZero
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenUntilSucc
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenUntilZero
+public import CORALean.Specification.STL.Theorems.RewriteReleaseSucc
+public import CORALean.Specification.STL.Theorems.RewriteReleaseZero
+public import CORALean.Specification.STL.Theorems.RewriteUntilSucc
+public import CORALean.Specification.STL.Theorems.RewriteUntilZero
+public import CORALean.Specification.STL.Theorems.STLSatBigAnd
+public import CORALean.Specification.STL.Theorems.STLSatBigOr
+public import CORALean.Specification.STL.Theorems.SampNodupToCNF
+public import CORALean.Specification.STL.Theorems.SampSatToCNF
+public import CORALean.Specification.STL.Theorems.SampToFormulaScale
+public import CORALean.Specification.STL.Theorems.SatAnd
+public import CORALean.Specification.STL.Theorems.SatNext
+public import CORALean.Specification.STL.Theorems.SatOfPform
+public import CORALean.Specification.STL.Theorems.SatOr
+public import CORALean.Specification.STL.Theorems.SatRelease
+public import CORALean.Specification.STL.Theorems.SatScale
+public import CORALean.Specification.STL.Theorems.SatTt
+public import CORALean.Specification.STL.Theorems.ScaleOfPform
+public import CORALean.Specification.STL.Theorems.ShiftShift
+public import CORALean.Specification.STL.Theorems.ShiftZero
+public import CORALean.Specification.STL.Theorems.TraceSetExactCounterexample
+public import CORALean.Specification.STL.Theorems.TracesSubsetTraceSet
+public import CORALean.Specification.STL.Theorems.UntilZeroEquiv
+public import CORALean.Specification.STL.Theorems.UpsilonAnd
+public import CORALean.Specification.STL.Theorems.UpsilonOfPform
+public import CORALean.Specification.STL.Theorems.UpsilonOfPformCounterexample
+public import CORALean.Specification.STL.Theorems.UntilEncNonstrictIff
+public import CORALean.Specification.STL.Theorems.UntilDecompIff
+public import CORALean.Specification.STL.Theorems.UntilRobNonstrictLeIff
+public import CORALean.Specification.STL.Theorems.ZEncIffSat
+public import CORALean.Specification.STL.Theorems.REncEqRob
+public import CORALean.Specification.STL.Theorems.ZEncCounterexample
+public import CORALean.Specification.STL.Theorems.REncCounterexample
+public import CORALean.Specification.STL.Theorems.RobSound
+public import CORALean.Specification.STL.Theorems.RobCounterexample
+public import CORALean.Specification.STL.Theorems.SatCongr
+public import CORALean.Specification.STL.Theorems.EventuallySatIff
+public import CORALean.Specification.STL.Theorems.PredEncodingIff
+public import CORALean.Specification.STL.Theorems.ConjEncodingIff
+public import CORALean.Specification.STL.Theorems.DisjEncodingIff
+public import CORALean.Specification.STL.Theorems.RobustConjEncoding
+public import CORALean.Specification.STL.Theorems.RobustDisjEncoding
+public import CORALean.Specification.STL.Theorems.RobustSelectorCounterexample
+public import CORALean.Specification.STL.Theorems.TsuppSubsetOfDecided
+public import CORALean.Specification.STL.Theorems.UpsilonOrOfDecided
+public import CORALean.Specification.STL.Theorems.UpsilonOrCounterexample
+public import CORALean.Specification.STL.Theorems.AutomatedVerificationSound
+public import CORALean.Specification.STL.Theorems.FactorCheckSound
+public import CORALean.Specification.STL.Theorems.FactorMeetZipCounterexample
+public import CORALean.Specification.STL.Theorems.FactorStepMem
+public import CORALean.Specification.STL.Theorems.MilpCorrectedIff
+public import CORALean.Specification.STL.Theorems.MilpPrintedCounterexample
+public import CORALean.Specification.STL.Theorems.MilpPrintedInfeasible
+public import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactors
+public import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactorsPoint
+public import CORALean.Specification.STL.Theorems.SumGenPlus
+public import CORALean.Specification.STL.Theorems.SumGenMtimes
+public import CORALean.Specification.STL.Theorems.SumGenOfPoint
+public import CORALean.Specification.STL.Theorems.DepReachAtHh
+public import CORALean.Specification.STL.Theorems.DepReachAtPcH
+public import CORALean.Specification.STL.Theorems.DepReachAtPcC
+public import CORALean.Specification.STL.Theorems.DepReachAtDC
+public import CORALean.Specification.STL.Theorems.DepBloatingC
+public import CORALean.Specification.STL.Theorems.DepReachAtSum
+public import CORALean.Specification.STL.Theorems.DepReachPointDependency
+public import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
+public import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
+public import CORALean.Specification.STL.Theorems.DepReachIntervalDependencyCounterexample
+public import CORALean.Specification.STL.Theorems.UnsafeFactorsIntervalCounterexample
+public import CORALean.Specification.STL.Theorems.DependencyPreservedOfEncloses
+public import CORALean.Specification.STL.Theorems.DepBloatingSubsetClosedBall
+public import CORALean.Specification.STL.Theorems.DepBoxSubsetClosedBall
+public import CORALean.Specification.STL.Theorems.DepReachAtCSubsetClosedBall
+public import CORALean.Specification.STL.Theorems.MtimesIntervalMatSubsetClosedBallInfSup
+public import CORALean.Specification.STL.Theorems.TendstoDepBloatingZero
+public import CORALean.Specification.STL.Theorems.TendstoDepReachAtCZero
+public import CORALean.Specification.STL.Theorems.TendstoSSupNormOfEventuallySubsetClosedBall
+public import CORALean.Specification.STL.Theorems.TendstoDepReachLinCombHausdorffZero
 
 /-!
 # Signal and reachset temporal logic: the theorems

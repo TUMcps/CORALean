@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+
+@[expose] public section
 
 /-!
 # The exponential's remainder is within the step's bound at every entry

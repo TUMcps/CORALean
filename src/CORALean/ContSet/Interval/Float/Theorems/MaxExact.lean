@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Max
-import CORALean.ContSet.Interval.Real.Theorems.MaxExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Max
+public import CORALean.ContSet.Interval.Real.Theorems.MaxExact
+
+@[expose] public section
 
 /-!
 # `Interval.max` is exactly the set of entrywise maxima

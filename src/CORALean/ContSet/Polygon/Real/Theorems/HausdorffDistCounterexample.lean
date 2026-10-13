@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLe
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+module
+
+public import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLe
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+
+@[expose] public section
 
 /-!
 # CORA's `polygon/hausdorffDist` is not the Hausdorff distance to a point

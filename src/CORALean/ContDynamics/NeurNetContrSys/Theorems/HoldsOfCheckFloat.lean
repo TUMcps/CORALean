@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
-import CORALean.Specification.Theorems.CheckSound
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
+public import CORALean.Specification.Theorems.CheckSound
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A passed check on the float loop's reachable set holds along it

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonRound
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonRound
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.polygonPieces`, over a floating-point scalar

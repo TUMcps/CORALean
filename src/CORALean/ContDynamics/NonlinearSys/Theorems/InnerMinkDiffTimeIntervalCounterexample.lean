@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiff
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Order.Interval.Set.Pi
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiff
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Order.Interval.Set.Pi
+
+@[expose] public section
 
 /-!
 # The inner algorithm's time-interval output holds an unreachable state

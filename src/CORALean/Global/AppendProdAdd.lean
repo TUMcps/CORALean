@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Fin.Tuple.Basic
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Fin.Tuple.Basic
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # Appending sums coordinatewise

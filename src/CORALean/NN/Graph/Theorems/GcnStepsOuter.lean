@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
-import CORALean.NN.Graph.Theorems.GcnStepsExact
-import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
+public import CORALean.NN.Graph.Theorems.GcnStepsExact
+public import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
+
+@[expose] public section
 
 /-!
 # A chain of steps contains what the graph actually computes

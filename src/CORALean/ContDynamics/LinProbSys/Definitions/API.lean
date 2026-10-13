@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinProbSys.Definitions.PostState
+module
+
+public import CORALean.ContDynamics.LinProbSys.Definitions.PostState
 
 /-!
 # What `LinProbSys` carries between steps

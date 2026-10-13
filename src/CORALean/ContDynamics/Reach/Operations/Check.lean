@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Reach.Reach
-import CORALean.Specification.Operations.Check
+module
+
+public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.Specification.Operations.Check
+
+@[expose] public section
 
 /-!
 # Checking a specification on what `reach` returns

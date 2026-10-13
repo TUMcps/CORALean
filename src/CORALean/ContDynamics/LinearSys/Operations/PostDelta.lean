@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+
+@[expose] public section
 
 /-!
 # `postΔ`, named

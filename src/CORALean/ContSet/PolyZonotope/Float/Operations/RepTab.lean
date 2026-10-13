@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
+
+@[expose] public section
 
 /-!
 # `rep` read off a table, over a floating-point scalar

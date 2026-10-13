@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumMono
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumMono
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+
+@[expose] public section
 
 /-!
 # Every piece of the partition reaches a solution

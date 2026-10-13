@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.SupportCounterexampleViolates
-import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.SupportCounterexampleViolates
+public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
+
+@[expose] public section
 
 /-!
 # `[1, Alg. 2]`'s `unsafe` comes with a run that leaves the safe set

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Restructure
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Restructure
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.restructure` encloses the set, in float too

@@ -1,6 +1,8 @@
-import CORALean.ContSet.SetIntersection.Operations.Mtimes
-import CORALean.ContSet.SetIntersection.Operations.Plus
-import CORALean.ContSet.SetIntersection.Operations.Reduce
+module
+
+public import CORALean.ContSet.SetIntersection.Operations.Mtimes
+public import CORALean.ContSet.SetIntersection.Operations.Plus
+public import CORALean.ContSet.SetIntersection.Operations.Reduce
 
 /-!
 # `SetIntersection`'s operations, collected

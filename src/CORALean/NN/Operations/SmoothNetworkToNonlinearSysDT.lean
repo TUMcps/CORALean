@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.SmoothNetworkNu
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+module
+
+public import CORALean.NN.Operations.SmoothNetworkNu
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+
+@[expose] public section
 
 /-!
 # CORA's `neuralNetwork/nonlinearSysDT`: the system

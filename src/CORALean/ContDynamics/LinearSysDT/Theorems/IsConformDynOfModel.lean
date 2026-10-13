@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.IsConformDyn
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsConformDyn
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # A model that produced the data is never rejected

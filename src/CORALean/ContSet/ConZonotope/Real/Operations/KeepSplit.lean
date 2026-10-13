@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepInvolvement
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepMetric
-import CORALean.Global.Partition
-import CORALean.Global.Sort
-import Mathlib.Data.Fin.Tuple.Sort
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepInvolvement
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepMetric
+public import CORALean.Global.Partition
+public import CORALean.Global.Sort
+public import Mathlib.Data.Fin.Tuple.Sort
+
+@[expose] public section
 
 /-!
 # `ConZonotope.keepSplit`

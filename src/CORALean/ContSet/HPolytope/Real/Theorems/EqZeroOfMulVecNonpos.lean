@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Analysis.Normed.Group.Bounded
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Analysis.Normed.Group.Bounded
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # A bounded nonempty H-polytope has no recession direction

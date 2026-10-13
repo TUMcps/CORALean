@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
+
+@[expose] public section
 
 /-!
 # A passed `ConZonotope.interiorCert` puts a box of points in the nominal set

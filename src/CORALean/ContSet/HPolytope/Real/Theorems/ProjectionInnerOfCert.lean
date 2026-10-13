@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # An inner approximation of a projection, with a Hausdorff bound

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Smul
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Smul
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `Taylm.smul` encloses the scaled function

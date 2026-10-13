@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # Reduction reaches no further than the original plus its own box

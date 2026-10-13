@@ -1,7 +1,9 @@
-import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
-import CORALean.HybridDynamics.Parallel.Definitions.API
-import CORALean.HybridDynamics.Parallel.Operations.API
-import CORALean.HybridDynamics.Parallel.Theorems.API
+module
+
+public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+public import CORALean.HybridDynamics.Parallel.Definitions.API
+public import CORALean.HybridDynamics.Parallel.Operations.API
+public import CORALean.HybridDynamics.Parallel.Theorems.API
 
 /-!
 # Parallel hybrid automata, collected

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripLiuOuter
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeAffineAdd
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripLiuOuter
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeAffineAdd
+
+@[expose] public section
 
 /-!
 # The corrected `ESO-B` step encloses the true state

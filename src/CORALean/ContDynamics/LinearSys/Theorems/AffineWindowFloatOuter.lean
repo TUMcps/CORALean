@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CurvatureEnclosureFloat
-import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CurvatureEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
+
+@[expose] public section
 
 /-!
 # The float affine window holds the affine flow over the step

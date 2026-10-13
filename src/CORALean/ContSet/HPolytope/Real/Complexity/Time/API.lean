@@ -1,8 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Complexity.Time.Plus
-import CORALean.ContSet.HPolytope.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.HPolytope.Real.Complexity.Time.Intersection
-import CORALean.ContSet.HPolytope.Real.Complexity.Time.Comap
-import CORALean.ContSet.HPolytope.Real.Complexity.Time.HalfScaled
+module
+
+public import CORALean.ContSet.HPolytope.Real.Complexity.Time.Plus
+public import CORALean.ContSet.HPolytope.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.HPolytope.Real.Complexity.Time.Intersection
+public import CORALean.ContSet.HPolytope.Real.Complexity.Time.Comap
+public import CORALean.ContSet.HPolytope.Real.Complexity.Time.HalfScaled
 
 /-!
 # What running `HPolytope`'s operations costs

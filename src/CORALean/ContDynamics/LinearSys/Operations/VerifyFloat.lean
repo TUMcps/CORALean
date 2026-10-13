@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 3` line 1: automated verification, in floats

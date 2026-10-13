@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ExactPlus
-import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
-import CORALean.ContSet.Zonotope.Real.Theorems.ExactPlusExact
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ExactPlus
+public import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
+public import CORALean.ContSet.Zonotope.Real.Theorems.ExactPlusExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.exactPlus` encloses the exact one

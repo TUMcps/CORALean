@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # One step of the bounded-error identification algorithm

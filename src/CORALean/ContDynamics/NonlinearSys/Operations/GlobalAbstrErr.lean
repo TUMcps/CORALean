@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.Global.BoxDiameter
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.Global.BoxDiameter
+
+@[expose] public section
 
 /-!
 # The global accumulated abstraction error of a set-based solver

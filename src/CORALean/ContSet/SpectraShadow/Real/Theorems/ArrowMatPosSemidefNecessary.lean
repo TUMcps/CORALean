@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatQuadForm
-import Mathlib.Analysis.Matrix.Order
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatQuadForm
+public import Mathlib.Analysis.Matrix.Order
+
+@[expose] public section
 
 /-!
 # What a positive semidefinite arrowhead matrix needs

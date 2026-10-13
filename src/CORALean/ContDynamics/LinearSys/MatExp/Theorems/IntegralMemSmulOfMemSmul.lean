@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.LocallyConvex.Separation
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.LocallyConvex.Separation
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
+@[expose] public section
 
 /-!
 # A weighted integral of points of a closed convex set

@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The radii of the hardness gadget

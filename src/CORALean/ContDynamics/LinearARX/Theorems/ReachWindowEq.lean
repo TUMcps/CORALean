@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
-import CORALean.ContDynamics.LinearARX.Theorems.StackEqTvp
-import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
-import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+module
+
+public import CORALean.ContDynamics.LinearARX.Definitions.ReachWindow
+public import CORALean.ContDynamics.LinearARX.Theorems.StackEqTvp
+public import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
+public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+
+@[expose] public section
 
 /-!
 # The reachable windows as one Minkowski sum

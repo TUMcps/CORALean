@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.reduce` over-approximates the bundle

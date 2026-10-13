@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.PartPatterns
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PartPatterns
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.partZonotope`

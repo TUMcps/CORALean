@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaCapsuleCora
-import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaCapsuleCora
+public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
+
+@[expose] public section
 
 /-!
 # CORA's `polyZonotope/representsa_(pZ, 'capsule')` errors on a point in dimension two or more

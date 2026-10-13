@@ -1,4 +1,8 @@
-import Mathlib.Data.Set.Defs
+module
+
+public import Mathlib.Data.Set.Defs
+
+@[expose] public section
 
 /-!
 # Dependency preservation

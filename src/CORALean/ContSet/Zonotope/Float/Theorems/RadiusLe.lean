@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Radius
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Radius
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # Every point of a float zonotope is within `radius` of the stored centre

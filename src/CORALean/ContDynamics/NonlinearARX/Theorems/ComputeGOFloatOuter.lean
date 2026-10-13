@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGO
-import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGOFloat
-import CORALean.ContDynamics.NonlinearARX.Theorems.FloatJacModelEnclosesToNonlinearSysDTFloat
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOFloatOuter
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.Global.JacobianMatAffine
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGO
+public import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGOFloat
+public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatJacModelEnclosesToNonlinearSysDTFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOFloatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.Global.JacobianMatAffine
+
+@[expose] public section
 
 /-!
 # The float GO parameters of a nonlinear ARX model enclose the real ones

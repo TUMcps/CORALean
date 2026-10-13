@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.MatlabLinspace
+module
+
+public import CORALean.HybridDynamics.Operations.MatlabLinspace
+
+@[expose] public section
 
 /-!
 # The time grid of `hybridAutomaton/simulateRandom`

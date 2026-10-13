@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStepFloat
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStepFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # The interval observer's state after `k` steps, in floats

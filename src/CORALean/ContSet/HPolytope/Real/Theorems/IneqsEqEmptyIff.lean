@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.Global.LinProg.Farkas
-import Mathlib.Algebra.BigOperators.Option
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.LinProg.Farkas
+public import Mathlib.Algebra.BigOperators.Option
+
+@[expose] public section
 
 /-!
 # Emptiness of an H-polytope by Farkas' lemma

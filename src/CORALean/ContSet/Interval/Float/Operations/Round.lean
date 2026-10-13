@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.ContSet.Interval.Float.Operations.RoundAwayInt
-import CORALean.Global.Float.IntRound
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.ContSet.Interval.Float.Operations.RoundAwayInt
+public import CORALean.Global.Float.IntRound
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `Interval.round`

@@ -1,10 +1,14 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.DifferentiablePoint
-import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
-import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
-import Mathlib.Analysis.Calculus.Deriv.Pi
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.LinearAlgebra.Matrix.ToLin
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.DifferentiablePoint
+public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
+public import Mathlib.Analysis.Calculus.Deriv.Pi
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # The derivative of the point map is the Jacobian matrix

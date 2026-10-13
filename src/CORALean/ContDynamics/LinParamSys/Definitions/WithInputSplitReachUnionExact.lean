@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplit
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInputSplit
+
+@[expose] public section
 
 /-!
 # The exact set `Reach LinParamSys.WithInputSplit` is asked to enclose

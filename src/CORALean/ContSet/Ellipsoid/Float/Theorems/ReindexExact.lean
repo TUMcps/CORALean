@@ -1,8 +1,12 @@
-import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
-import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
-import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
-import CORALean.ContSet.Ellipsoid.Real.Instances
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
+public import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
+public import CORALean.ContSet.Ellipsoid.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.reindex` is exactly the relabelled set, in float too

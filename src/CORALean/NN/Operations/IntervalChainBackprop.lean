@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.IntervalChainFwd
+module
+
+public import CORALean.NN.Operations.IntervalChainFwd
+
+@[expose] public section
 
 /-!
 # The interval batch backpropagation of an interval chain

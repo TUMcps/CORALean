@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The second block of `linCombE` is the first times the fresh factor

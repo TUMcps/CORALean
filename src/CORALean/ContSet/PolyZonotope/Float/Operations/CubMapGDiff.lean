@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGDown
-import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGDown
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGUp
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMapGDiff`

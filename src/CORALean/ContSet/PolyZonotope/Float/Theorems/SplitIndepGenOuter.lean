@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SplitIndepGen
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitIndepGen
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `splitIndepGen` covers the set

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
-import CORALean.Global.Tensor
+module
+
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # A planar zonotope lies on one side of each edge line

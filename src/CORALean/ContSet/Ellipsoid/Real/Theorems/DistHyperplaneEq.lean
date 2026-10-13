@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
-import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # The distance from an ellipsoid to a hyperplane

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.Feed
-import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.Feed
+public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
+
+@[expose] public section
 
 /-!
 # One step of the converted system

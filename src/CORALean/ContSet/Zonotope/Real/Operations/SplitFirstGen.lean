@@ -1,7 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Split
-import Mathlib.Data.List.MinMax
-import Mathlib.Data.Fintype.Basic
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Split
+public import Mathlib.Data.List.MinMax
+public import Mathlib.Data.Fintype.Basic
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
+
 /-!
 # `Zonotope.splitFirstGen`
 

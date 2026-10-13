@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+
+@[expose] public section
 
 /-!
 # [1, Thm. 2] in the shape [1, Thm. 4] and [1, Thm. 5] ask for it

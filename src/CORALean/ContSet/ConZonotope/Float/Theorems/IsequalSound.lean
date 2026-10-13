@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Isequal
-import CORALean.ContSet.HPolytope.Float.Theorems.IsequalNominal
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Isequal
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsequalNominal
+
+@[expose] public section
 
 /-!
 # `ConZonotope.isequal` is sound

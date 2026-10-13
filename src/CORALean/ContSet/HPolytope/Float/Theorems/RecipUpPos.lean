@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
+
+@[expose] public section
 
 /-!
 # `recipUp` is positive

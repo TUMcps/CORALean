@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Plus
-import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Plus
+public import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `LevelSet.plus` is exact

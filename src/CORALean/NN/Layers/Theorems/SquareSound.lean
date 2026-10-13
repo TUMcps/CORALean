@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Square
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.SquareRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.Square
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.SquareRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the square layer encloses

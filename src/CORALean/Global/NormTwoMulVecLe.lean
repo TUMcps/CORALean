@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import CORALean.Global.NormTwoSqEqDotProduct
+module
+
+public import CORALean.Global.Tensor
+public import CORALean.Global.NormTwoSqEqDotProduct
+
+@[expose] public section
 
 /-!
 # A matrix with orthonormal rows does not increase the Euclidean norm

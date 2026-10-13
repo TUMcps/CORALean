@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
-import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2]'s printed stretch `1 + γⱼ` undershoots

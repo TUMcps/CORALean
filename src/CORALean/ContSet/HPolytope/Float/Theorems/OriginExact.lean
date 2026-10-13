@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Origin
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Origin
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `HPolytope.origin` denotes exactly the origin, over a floating-point scalar

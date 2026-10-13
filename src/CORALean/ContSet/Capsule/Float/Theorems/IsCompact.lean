@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.ContSet.Capsule.Real.Instances
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.Capsule.Real.Instances
+
+@[expose] public section
 
 /-!
 # A float capsule is compact

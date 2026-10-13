@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.StepInput
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableReflected
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableReflected
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+
+@[expose] public section
 
 /-!
 # `inputSolution` contains what a classical run's input contributed over a step

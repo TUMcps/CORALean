@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
-import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+
+@[expose] public section
 
 /-!
 # `reachBoxFloat` encloses the reachable set on every time interval

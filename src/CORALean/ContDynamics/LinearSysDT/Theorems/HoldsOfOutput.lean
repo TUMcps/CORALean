@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A specification checked on the output set holds along every run

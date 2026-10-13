@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Atanh
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Atanh
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+
+@[expose] public section
 
 /-!
 # `Interval.atanh` is exactly the image under `Real.artanh`

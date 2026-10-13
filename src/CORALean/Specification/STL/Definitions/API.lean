@@ -1,25 +1,27 @@
-import CORALean.Specification.STL.Definitions.BranchHolds
-import CORALean.Specification.STL.Definitions.CDivisibleFormula
-import CORALean.Specification.STL.Definitions.Composition
-import CORALean.Specification.STL.Definitions.Halfspace
-import CORALean.Specification.STL.Definitions.Nnf
-import CORALean.Specification.STL.Definitions.NnfRewrite
-import CORALean.Specification.STL.Definitions.Pform
-import CORALean.Specification.STL.Definitions.RTL
-import CORALean.Specification.STL.Definitions.ReachSequence
-import CORALean.Specification.STL.Definitions.Samp
-import CORALean.Specification.STL.Definitions.SampledTime
-import CORALean.Specification.STL.Definitions.Shift
-import CORALean.Specification.STL.Definitions.Transformation
-import CORALean.Specification.STL.Definitions.DiscreteFormula
-import CORALean.Specification.STL.Definitions.MILPEncoding
-import CORALean.Specification.STL.Definitions.Tsupp
-import CORALean.Specification.STL.Definitions.MilpCorrected
-import CORALean.Specification.STL.Definitions.MilpPrinted
-import CORALean.Specification.STL.Definitions.DepReachConsts
-import CORALean.Specification.STL.Definitions.DepReachState
-import CORALean.Specification.STL.Definitions.DependencyPreservedBy
-import CORALean.Specification.STL.Definitions.VerificationProblem
+module
+
+public import CORALean.Specification.STL.Definitions.BranchHolds
+public import CORALean.Specification.STL.Definitions.CDivisibleFormula
+public import CORALean.Specification.STL.Definitions.Composition
+public import CORALean.Specification.STL.Definitions.Halfspace
+public import CORALean.Specification.STL.Definitions.Nnf
+public import CORALean.Specification.STL.Definitions.NnfRewrite
+public import CORALean.Specification.STL.Definitions.Pform
+public import CORALean.Specification.STL.Definitions.RTL
+public import CORALean.Specification.STL.Definitions.ReachSequence
+public import CORALean.Specification.STL.Definitions.Samp
+public import CORALean.Specification.STL.Definitions.SampledTime
+public import CORALean.Specification.STL.Definitions.Shift
+public import CORALean.Specification.STL.Definitions.Transformation
+public import CORALean.Specification.STL.Definitions.DiscreteFormula
+public import CORALean.Specification.STL.Definitions.MILPEncoding
+public import CORALean.Specification.STL.Definitions.Tsupp
+public import CORALean.Specification.STL.Definitions.MilpCorrected
+public import CORALean.Specification.STL.Definitions.MilpPrinted
+public import CORALean.Specification.STL.Definitions.DepReachConsts
+public import CORALean.Specification.STL.Definitions.DepReachState
+public import CORALean.Specification.STL.Definitions.DependencyPreservedBy
+public import CORALean.Specification.STL.Definitions.VerificationProblem
 
 /-!
 # Signal and reachset temporal logic: the definitions

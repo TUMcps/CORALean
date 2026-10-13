@@ -1,4 +1,8 @@
-import CORALean.Global.ShenmaierVertex
+module
+
+public import CORALean.Global.ShenmaierVertex
+
+@[expose] public section
 
 /-!
 # Vertex sampling's `False` is certain

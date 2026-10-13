@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
-import CORALean.ContDynamics.NonlinearSys.Operations.LinInputFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinInputFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+
+@[expose] public section
 
 /-!
 # One step of the float re-linearization loop, at a given point

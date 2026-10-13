@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Interval.Real.Operations.LinComb
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Interval.Real.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `linComb` contains every segment between the two intervals

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachOptions
+public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # A network in the loop: reachability

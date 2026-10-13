@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import Mathlib.Topology.MetricSpace.HausdorffDistance
+module
+
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+
+@[expose] public section
 
 /-!
 # Adding a set to both sides cannot move them apart

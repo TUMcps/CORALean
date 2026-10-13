@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.dependent`

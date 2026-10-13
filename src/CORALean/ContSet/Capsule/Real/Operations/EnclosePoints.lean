@@ -1,7 +1,11 @@
-import CORALean.ContSet.Capsule.Real.Operations.Empty
-import CORALean.Global.EuclideanNorm
-import Mathlib.Data.List.MinMax
-import Mathlib.Data.Fintype.Basic
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Empty
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Data.List.MinMax
+public import Mathlib.Data.Fintype.Basic
+
+@[expose] public section
 
 /-!
 # `Capsule.enclosePoints`

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `reachOrder` clears `reach_outer`'s side condition

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.PolyBoxReviseLeft
-import CORALean.ContSet.Interval.Real.Definitions.RootBound
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.PolyBoxReviseLeft
+public import CORALean.ContSet.Interval.Real.Definitions.RootBound
+public import Mathlib.Topology.Order.IntermediateValue
+
+@[expose] public section
 
 /-!
 # The left bound keeps every solution

@@ -1,8 +1,12 @@
-import CORALean.ContSet.ContSet.Definitions.IsFullDim
-import CORALean.ContSet.Polygon.Float.Operations.IsFullDim
-import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
-import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
-import Mathlib.Topology.Algebra.Group.Pointwise
+module
+
+public import CORALean.ContSet.ContSet.Definitions.IsFullDim
+public import CORALean.ContSet.Polygon.Float.Operations.IsFullDim
+public import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
+public import Mathlib.Topology.Algebra.Group.Pointwise
+
+@[expose] public section
 
 /-!
 # A `true` from `Polygon.isFullDim` proves an interior point

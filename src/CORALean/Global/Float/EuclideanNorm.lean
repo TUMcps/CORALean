@@ -1,5 +1,9 @@
-import CORALean.Global.EuclideanNorm
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.EuclideanNorm
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # A Euclidean norm bounded from above, with no square root

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+
+@[expose] public section
 
 /-!
 # The box a float step stays in, checked

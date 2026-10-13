@@ -1,7 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Polygon
-import CORALean.ContSet.Polygon.Float.Operations.API
-import CORALean.ContSet.Polygon.Float.Theorems.API
-import CORALean.ContSet.Polygon.Float.Instances
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.Polygon.Float.Operations.API
+public import CORALean.ContSet.Polygon.Float.Theorems.API
+public import CORALean.ContSet.Polygon.Float.Instances
 
 /-!
 # Float polygons, collected

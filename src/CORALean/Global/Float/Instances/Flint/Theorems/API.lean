@@ -1,8 +1,10 @@
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealHalf
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealLeOfLe
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMaximum
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMinimum
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealNeg
+module
+
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealHalf
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealLeOfLe
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMaximum
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMinimum
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealNeg
 
 /-!
 # What `Flint p` is proved to do

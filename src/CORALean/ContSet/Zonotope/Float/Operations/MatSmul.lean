@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.Smul
-import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
+
+@[expose] public section
 
 /-!
 # `Zonotope.matSmul`, by a scalar known only to lie in `[cLo, cHi]`

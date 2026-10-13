@@ -1,4 +1,8 @@
-import Mathlib.Data.NNReal.Defs
+module
+
+public import Mathlib.Data.NNReal.Defs
+
+@[expose] public section
 
 /-!
 # The shift operator

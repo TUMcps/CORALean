@@ -1,7 +1,11 @@
-import Mathlib.Data.Matrix.Mul
-import CORALean.ContSet.Taylm.Float.Operations.Mmul
-import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
-import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import CORALean.ContSet.Taylm.Float.Operations.Mmul
+public import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.mmul` encloses the matrix product, float

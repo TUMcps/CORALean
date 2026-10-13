@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.PowRange
+module
+
+public import CORALean.NN.Layers.Operations.PowRange
+
+@[expose] public section
 
 /-!
 # A polynomial evaluated from below

@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.SoundEval
-import CORALean.NN.Theorems.SoundHoldsOfEnclose
+module
+
+public import CORALean.NN.Theorems.SoundEval
+public import CORALean.NN.Theorems.SoundHoldsOfEnclose
+
+@[expose] public section
 
 /-!
 # Verification: the check on the enclosed set answers for the network

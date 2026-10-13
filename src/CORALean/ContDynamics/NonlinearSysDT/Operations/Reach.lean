@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
-import CORALean.ContDynamics.Reach.Definitions.InputParams
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachOptions
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+
+@[expose] public section
 
 /-!
 # Reachability of a discrete nonlinear system

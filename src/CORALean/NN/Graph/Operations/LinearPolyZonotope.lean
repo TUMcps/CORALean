@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
-import CORALean.NN.Graph.Operations.Linear
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
+public import CORALean.NN.Graph.Operations.Linear
+
+@[expose] public section
 
 /-!
 # CORA's `nnGNNLinearLayer` on a matrix polynomial zonotope

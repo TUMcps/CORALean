@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2ManualRunReduceLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2ManualRunReduceLe
+
+@[expose] public section
 
 /-!
 # [1, Prop. 4]'s eq. (28) at varying step parameters

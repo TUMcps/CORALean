@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
-import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
-import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
-import CORALean.Global.DetLeTraceDivPow
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
+public import CORALean.Global.DetLeTraceDivPow
+
+@[expose] public section
 
 /-!
 # The minimum-volume ellipsoid around a parallelotope

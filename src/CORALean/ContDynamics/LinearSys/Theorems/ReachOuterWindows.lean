@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
-import CORALean.ContDynamics.LinearSys.Operations.Reach
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
+public import CORALean.ContDynamics.LinearSys.Operations.Reach
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
+
+@[expose] public section
 
 /-!
 # `reach` encloses `reachExact`, one window at a time

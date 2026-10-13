@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.GroupSortFloatPerm
+module
+
+public import CORALean.NN.Layers.Theorems.GroupSortFloatPerm
+
+@[expose] public section
 
 /-!
 # The float group sort is ascending where `le` is exact

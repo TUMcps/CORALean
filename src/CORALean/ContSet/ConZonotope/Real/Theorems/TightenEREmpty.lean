@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEROuter
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEROuter
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+
+@[expose] public section
 
 /-!
 # The emptiness test of `ConZonotope.tightenER`

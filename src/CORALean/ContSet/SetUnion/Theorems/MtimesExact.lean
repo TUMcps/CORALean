@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetUnion.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.SetUnion.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # `SetUnion.mtimes` is exact when every branch's own `mtimes` is

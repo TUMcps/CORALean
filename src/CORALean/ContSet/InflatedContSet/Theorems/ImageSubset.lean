@@ -1,4 +1,8 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+
+@[expose] public section
 
 /-!
 # Pushing a nominal part and its box through an additive map, each into its own

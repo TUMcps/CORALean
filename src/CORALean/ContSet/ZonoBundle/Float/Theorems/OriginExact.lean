@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
-import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
+public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.origin` is exactly the origin

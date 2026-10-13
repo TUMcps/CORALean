@@ -1,6 +1,10 @@
-import CORALean.Global.CoeffNorm
-import Mathlib.Topology.Order.OrderClosed
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.Global.CoeffNorm
+public import Mathlib.Topology.Order.OrderClosed
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The ellipsotope norm and its unit ball

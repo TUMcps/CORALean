@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zoo.Real.Zoo
-import CORALean.ContSet.Conversion.Real.Interval_to_Taylm
+module
+
+public import CORALean.ContSet.Zoo.Real.Zoo
+public import CORALean.ContSet.Conversion.Real.Interval_to_Taylm
+
+@[expose] public section
 
 /-!
 # `Zoo.ofInterval`

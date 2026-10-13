@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.BnbLoop
-import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
-import CORALean.ContSet.Taylm.Real.Operations.ReexpBoxBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BnbLoop
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
+public import CORALean.ContSet.Taylm.Real.Operations.ReexpBoxBounds
+
+@[expose] public section
 
 /-!
 # Branch and bound

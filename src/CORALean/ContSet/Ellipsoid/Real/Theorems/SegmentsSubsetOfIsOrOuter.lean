@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
-import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # Segments between two ellipsoids lie in an ellipsoid enclosing both

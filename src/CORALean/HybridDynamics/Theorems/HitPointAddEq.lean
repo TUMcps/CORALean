@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoOuter
-import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
-import CORALean.HybridDynamics.Definitions.HitPoint
-import CORALean.HybridDynamics.Definitions.HitJacobian
-import CORALean.HybridDynamics.Definitions.HitHessianNum
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.UnitIntervalMulOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoOuter
+public import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
+public import CORALean.HybridDynamics.Definitions.HitPoint
+public import CORALean.HybridDynamics.Definitions.HitJacobian
+public import CORALean.HybridDynamics.Definitions.HitHessianNum
+
+@[expose] public section
 
 /-!
 # The second-order expansion of the hitting point is exact

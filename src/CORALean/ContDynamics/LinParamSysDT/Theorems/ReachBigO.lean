@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOrderLe
-import Mathlib.Analysis.Asymptotics.Defs
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOrderLe
+public import Mathlib.Analysis.Asymptotics.Defs
+
+@[expose] public section
 
 /-!
 # `reach`'s size is `O(1)` in the step count

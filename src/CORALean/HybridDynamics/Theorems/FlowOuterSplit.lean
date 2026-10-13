@@ -1,8 +1,12 @@
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
-import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit
-import CORALean.HybridDynamics.Theorems.LinearEmbedding
+module
+
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
+public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit
+public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+
+@[expose] public section
 
 /-!
 # A stay is enclosed with no assumption on where the input set sits

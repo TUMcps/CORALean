@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.ReachStepCora
-import CORALean.Specification.Specification
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.ReachStepCora
+public import CORALean.Specification.Specification
+
+@[expose] public section
 
 /-!
 # CORA's `nonlinearARX/reach` passes any specification on a step that errored

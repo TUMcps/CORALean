@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
+
+@[expose] public section
 
 /-!
 # What `Alg. 2` returns is inside the budgets it searched for

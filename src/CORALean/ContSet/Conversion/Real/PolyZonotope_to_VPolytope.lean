@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
-import CORALean.Global.Corners
+module
+
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.Global.Corners
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope as its corners

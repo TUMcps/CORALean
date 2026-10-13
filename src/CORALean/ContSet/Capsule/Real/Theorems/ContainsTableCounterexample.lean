@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Capsule
-import CORALean.Global.EuclideanNorm
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # [1, Table 2]'s capsule test misses the boundary

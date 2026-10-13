@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.RelaxationOfDeriv
-import CORALean.NN.Layers.Operations.SigmoidSlope
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
+public import CORALean.NN.Layers.Operations.SigmoidSlope
+
+@[expose] public section
 
 /-!
 # The sigmoid relaxation from its derivative bracket

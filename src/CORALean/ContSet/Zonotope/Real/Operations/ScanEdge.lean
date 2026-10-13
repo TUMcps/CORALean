@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Convex.Segment
-import Mathlib.Data.EReal.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Convex.Segment
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # What the scan of [1, Alg. 3] does at one edge

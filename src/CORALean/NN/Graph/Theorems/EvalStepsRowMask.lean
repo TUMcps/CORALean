@@ -1,10 +1,14 @@
-import CORALean.NN.Graph.Operations.EvalSteps
-import CORALean.NN.Graph.Operations.Mask
-import CORALean.NN.Graph.Operations.MessagePassing
-import CORALean.NN.Graph.Theorems.MemBallSelf
-import CORALean.NN.Graph.Theorems.BallMono
-import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
-import CORALean.NN.Graph.Theorems.RowEqMask
+module
+
+public import CORALean.NN.Graph.Operations.EvalSteps
+public import CORALean.NN.Graph.Operations.Mask
+public import CORALean.NN.Graph.Operations.MessagePassing
+public import CORALean.NN.Graph.Theorems.MemBallSelf
+public import CORALean.NN.Graph.Theorems.BallMono
+public import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
+public import CORALean.NN.Graph.Theorems.RowEqMask
+
+@[expose] public section
 
 /-!
 # Masking outside a large enough ball changes nothing at the centre

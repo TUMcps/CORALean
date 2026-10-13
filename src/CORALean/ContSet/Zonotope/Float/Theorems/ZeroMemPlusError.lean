@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `plus` keeps the origin in the error box

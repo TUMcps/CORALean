@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # What a float run is told about the field

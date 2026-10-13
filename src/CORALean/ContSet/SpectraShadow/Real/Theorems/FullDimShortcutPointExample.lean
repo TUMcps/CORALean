@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
-import CORALean.ContSet.SpectraShadow.Real.Operations.PointExample
-import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
+public import CORALean.ContSet.SpectraShadow.Real.Operations.PointExample
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
+
+@[expose] public section
 
 /-!
 # CORA's `isFullDim` shortcut marks a point as empty

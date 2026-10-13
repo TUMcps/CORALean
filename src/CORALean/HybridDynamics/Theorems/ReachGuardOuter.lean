@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.ReachGuard
-import Mathlib.Algebra.Order.Floor.Semiring
+module
+
+public import CORALean.HybridDynamics.Operations.ReachGuard
+public import Mathlib.Algebra.Order.Floor.Semiring
+
+@[expose] public section
 
 /-!
 # [1, Alg. 5] is sound, and so [2, Alg. 1]

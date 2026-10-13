@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+
+@[expose] public section
 
 /-!
 # What `ConZonotope.linComb`'s stored generators fall short by

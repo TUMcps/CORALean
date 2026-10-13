@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MirrorY
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MirrorY
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A point of the mirrored zonogon is the mirror image of a point of the original

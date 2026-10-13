@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRun
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRun
+
+@[expose] public section
 
 /-!
 # What one step of `Alg. 2` reports

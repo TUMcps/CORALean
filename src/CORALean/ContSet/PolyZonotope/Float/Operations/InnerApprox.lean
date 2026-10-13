@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApproxImage
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApproxImage
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.innerApprox`

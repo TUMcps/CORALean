@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContSet.Zonotope.Real.Instances
-import Mathlib.Analysis.Normed.Algebra.Exponential
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.CStarAlgebra.Matrix
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import Mathlib.Topology.Instances.Matrix
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.CStarAlgebra.Matrix
+
+@[expose] public section
 
 /-!
 # `Alg. 2` line 3: the curvature radius `μ`

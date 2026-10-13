@@ -1,17 +1,21 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # What `ConZonotope` instantiates

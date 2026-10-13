@@ -1,14 +1,18 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsResidualLe
-import CORALean.ContSet.Zonotope.Float.Theorems.MulVecSplit
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsResidualLe
+public import CORALean.ContSet.Zonotope.Float.Theorems.MulVecSplit
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimesIntervalMat` over-approximates every image

@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Minimum
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Minimum
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+
+@[expose] public section
 
 /-!
 # `minimum` is exact

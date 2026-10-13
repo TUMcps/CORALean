@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
-import CORALean.ContSet.ContSet.Definitions.SupportFunc
-import CORALean.Global.DropIdx
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+public import CORALean.ContSet.ContSet.Definitions.SupportFunc
+public import CORALean.Global.DropIdx
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `HPolytope.isequalNondeg`

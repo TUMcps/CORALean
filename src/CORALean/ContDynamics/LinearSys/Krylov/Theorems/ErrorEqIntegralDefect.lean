@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # The defect-based integral representation of the Krylov error

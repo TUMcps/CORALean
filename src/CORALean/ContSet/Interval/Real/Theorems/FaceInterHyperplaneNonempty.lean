@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # An s-face below and above the plane holds a solution

@@ -1,5 +1,10 @@
-import CORALean.HybridDynamics.Definitions.HitSet
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.HybridDynamics.Definitions.HitSet
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A guard hit within `E` of the state-dependent flow lies in `R_h(x₀)`

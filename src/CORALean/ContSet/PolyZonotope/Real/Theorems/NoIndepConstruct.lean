@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.NoIndep
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.NoIndep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # What `noIndep` denotes

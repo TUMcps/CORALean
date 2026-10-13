@@ -1,6 +1,10 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
-import CORALean.Global.Float.Instances.IEEE.Operations.AddDown
-import CORALean.Global.Float.Instances.IEEE.Theorems.RoundDownLe
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
+public import CORALean.Global.Float.Instances.IEEE.Operations.AddDown
+public import CORALean.Global.Float.Instances.IEEE.Theorems.RoundDownLe
+
+@[expose] public section
 
 /-!
 # Addition, rounded down, never overshoots

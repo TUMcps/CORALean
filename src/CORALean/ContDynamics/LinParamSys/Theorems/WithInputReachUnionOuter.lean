@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.WithInputReachUnionExact
-import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.WithInputReachUnionExact
+public import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # `reachUnion` with inputs encloses every constant-parameter run

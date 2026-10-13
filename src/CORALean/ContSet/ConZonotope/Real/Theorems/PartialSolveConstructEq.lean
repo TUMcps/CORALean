@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamGMulVec
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamGMulVec
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The partial-solve `Z̃` is `Z` without `|ξ_j| ≤ 1`

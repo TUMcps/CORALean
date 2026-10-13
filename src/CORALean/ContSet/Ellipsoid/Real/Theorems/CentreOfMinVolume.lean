@@ -1,14 +1,18 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
-import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Analysis.Matrix.Order
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A minimum volume outer ellipsoid of a sum of ellipsoids is centred at the sum of the centres

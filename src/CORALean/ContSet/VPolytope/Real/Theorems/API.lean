@@ -1,48 +1,50 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
-import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.Convex
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
-import CORALean.ContSet.VPolytope.Real.Theorems.IsClosed
-import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
-import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
-import CORALean.ContSet.VPolytope.Real.Theorems.MinkowskiDiffEqIInter
-import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
-import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.MatPolytopeExact
-import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
-import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
-import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
-import CORALean.ContSet.VPolytope.Real.Theorems.SupportBoundAttained
-import CORALean.ContSet.VPolytope.Real.Theorems.ProjectExact
-import CORALean.ContSet.VPolytope.Real.Theorems.EnclosePointsExact
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
-import CORALean.ContSet.VPolytope.Real.Theorems.OrExact
-import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
-import CORALean.ContSet.VPolytope.Real.Theorems.ProjectHighDimExact
-import CORALean.ContSet.VPolytope.Real.Theorems.CenterMem
-import CORALean.ContSet.VPolytope.Real.Theorems.CartProdExact
-import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqDropIff
-import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqIffCounterexample
-import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqIffOfInjective
-import CORALean.ContSet.VPolytope.Real.Theorems.InterIneqsNonemptyIff
-import CORALean.ContSet.VPolytope.Real.Theorems.InterNonemptyIff
-import CORALean.ContSet.VPolytope.Real.Theorems.InteriorEqEmptyIffRankLt
-import CORALean.ContSet.VPolytope.Real.Theorems.NotSubsetOfNotIsBounded
-import CORALean.ContSet.VPolytope.Real.Theorems.RestrictAffineHull
-import CORALean.ContSet.VPolytope.Real.Theorems.SegmentsConvHullCounterexample
-import CORALean.ContSet.VPolytope.Real.Theorems.SegmentsEqConvHull
-import CORALean.ContSet.VPolytope.Real.Theorems.SpanQrColsCounterexample
-import CORALean.ContSet.VPolytope.Real.Theorems.SpanQrColsEqOfIndep
-import CORALean.ContSet.VPolytope.Real.Theorems.SubsetIffVertexMem
-import CORALean.ContSet.VPolytope.Real.Theorems.SubsetIneqsIff
-import CORALean.ContSet.VPolytope.Real.Theorems.SuccLeOfInteriorNonempty
-import CORALean.ContSet.VPolytope.Real.Theorems.SupportFuncEq
-import CORALean.ContSet.VPolytope.Real.Theorems.HausdorffDistEq
-import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
-import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
-import CORALean.ContSet.VPolytope.Real.Theorems.RepresentsaHalfspaceCoraCrash
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+public import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
+public import CORALean.ContSet.VPolytope.Real.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsClosed
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
+public import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.MinkowskiDiffEqIInter
+public import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
+public import CORALean.ContSet.VPolytope.Real.Theorems.MatPolytopeExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.MtimesMatPolytopeOuter
+public import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
+public import CORALean.ContSet.VPolytope.Real.Theorems.SupportBoundAttained
+public import CORALean.ContSet.VPolytope.Real.Theorems.ProjectExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.EnclosePointsExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.OrExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
+public import CORALean.ContSet.VPolytope.Real.Theorems.ProjectHighDimExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.CenterMem
+public import CORALean.ContSet.VPolytope.Real.Theorems.CartProdExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqDropIff
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqIffCounterexample
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqIffOfInjective
+public import CORALean.ContSet.VPolytope.Real.Theorems.InterIneqsNonemptyIff
+public import CORALean.ContSet.VPolytope.Real.Theorems.InterNonemptyIff
+public import CORALean.ContSet.VPolytope.Real.Theorems.InteriorEqEmptyIffRankLt
+public import CORALean.ContSet.VPolytope.Real.Theorems.NotSubsetOfNotIsBounded
+public import CORALean.ContSet.VPolytope.Real.Theorems.RestrictAffineHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.SegmentsConvHullCounterexample
+public import CORALean.ContSet.VPolytope.Real.Theorems.SegmentsEqConvHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.SpanQrColsCounterexample
+public import CORALean.ContSet.VPolytope.Real.Theorems.SpanQrColsEqOfIndep
+public import CORALean.ContSet.VPolytope.Real.Theorems.SubsetIffVertexMem
+public import CORALean.ContSet.VPolytope.Real.Theorems.SubsetIneqsIff
+public import CORALean.ContSet.VPolytope.Real.Theorems.SuccLeOfInteriorNonempty
+public import CORALean.ContSet.VPolytope.Real.Theorems.SupportFuncEq
+public import CORALean.ContSet.VPolytope.Real.Theorems.HausdorffDistEq
+public import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
+public import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
+public import CORALean.ContSet.VPolytope.Real.Theorems.RepresentsaHalfspaceCoraCrash
 
 /-!
 # What `VPolytope` guarantees

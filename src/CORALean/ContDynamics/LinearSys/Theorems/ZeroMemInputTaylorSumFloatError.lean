@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatError
-import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemPlusError
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatError
+public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemPlusError
+
+@[expose] public section
 
 /-!
 # `inputTaylorSumFloat` keeps the origin in its error box

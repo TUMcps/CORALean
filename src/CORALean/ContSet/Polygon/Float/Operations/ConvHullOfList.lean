@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Polygon
-import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
-import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
+public import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
+
+@[expose] public section
 
 /-!
 # The hull of a list of pieces

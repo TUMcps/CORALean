@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.LayerRelaxationCoeffList
+module
+
+public import CORALean.NN.Layers.Operations.LayerRelaxationCoeffList
+
+@[expose] public section
 
 /-!
 # One coordinate of a layer's coefficient list

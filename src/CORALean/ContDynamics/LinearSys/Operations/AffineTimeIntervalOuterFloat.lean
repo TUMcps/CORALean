@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
-import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
+
+@[expose] public section
 
 /-!
 # `comb(H(t_k), H(t_{k+1})) ⊕ C` in floats: eq. (22), line 9 of [1, Alg. 1]

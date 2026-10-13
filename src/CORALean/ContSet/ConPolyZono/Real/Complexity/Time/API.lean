@@ -1,9 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Map
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Plus
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Dependent
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.QuadMap
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Intersection
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Map
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Plus
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Dependent
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.QuadMap
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Intersection
 
 /-!
 # What running `ConPolyZono`'s operations costs

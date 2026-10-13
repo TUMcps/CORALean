@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Definitions.IsFullDim
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContSet.ContSet.Definitions.IsFullDim
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # An interval is full-dimensional iff no coordinate is degenerate

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.OfCenterRadius
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.OfCenterRadius
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
+
+@[expose] public section
 
 /-!
 # `Interval.ofCenterRadius` contains the exact box, over a floating-point scalar

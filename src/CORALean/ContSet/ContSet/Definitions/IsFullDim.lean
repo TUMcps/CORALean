@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Topology.Basic
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Topology.Basic
+
+@[expose] public section
 
 /-!
 # `ContSet.IsFullDim`

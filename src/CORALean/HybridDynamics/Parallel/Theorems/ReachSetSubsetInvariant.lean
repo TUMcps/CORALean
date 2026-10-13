@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.RunMemOfInvariant
-import CORALean.HybridDynamics.Parallel.Definitions.ReachSet
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.RunMemOfInvariant
+public import CORALean.HybridDynamics.Parallel.Definitions.ReachSet
+
+@[expose] public section
 
 /-!
 # `reachSet` of a parallel automaton is inside what the product's invariant supplies

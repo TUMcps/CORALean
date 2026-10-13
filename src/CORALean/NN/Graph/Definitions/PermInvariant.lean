@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.LinearAlgebra.Matrix.Defs
-import Mathlib.Logic.Equiv.Defs
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.LinearAlgebra.Matrix.Defs
+public import Mathlib.Logic.Equiv.Defs
+
+@[expose] public section
 
 /-!
 # Permutation-invariant aggregations

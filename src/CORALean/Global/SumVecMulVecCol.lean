@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The Gram matrix of a matrix's columns

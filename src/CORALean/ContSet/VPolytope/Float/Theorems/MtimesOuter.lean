@@ -1,11 +1,15 @@
-import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
-import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
-import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
-import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
+public import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
+public import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # `VPolytope.mtimes` over-approximates the image under a linear map

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneOrderFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneOrderFloat
+
+@[expose] public section
 
 /-!
 # `tuneOrder` is complete in its fuel

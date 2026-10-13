@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffStretch`, over a floating-point scalar

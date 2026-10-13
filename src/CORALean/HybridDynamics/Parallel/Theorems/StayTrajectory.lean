@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
-import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+
+@[expose] public section
 
 /-!
 # A shared stay is a stay of the product

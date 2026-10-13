@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Isequal
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # `Fullspace.isequal` decides equality of the denotations

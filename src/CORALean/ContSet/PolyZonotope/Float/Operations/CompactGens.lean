@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Float.Operations.CompactGap
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CompactGap
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # Merging equal-column generators, over a floating-point scalar

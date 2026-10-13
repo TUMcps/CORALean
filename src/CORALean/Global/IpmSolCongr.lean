@@ -1,5 +1,9 @@
-import Mathlib.Data.Finset.Card
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Data.Finset.Card
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The solution from `H` reads the data at `H` only

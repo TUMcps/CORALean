@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # A layer's fits, one coefficient vector per degree

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.RangeBound
-import CORALean.ContSet.Taylm.Float.Theorems.CodeEvalEncloses
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.RangeBound
+public import CORALean.ContSet.Taylm.Float.Theorems.CodeEvalEncloses
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+
+@[expose] public section
 
 /-!
 # Floating-point range bounding encloses the range

@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Operations.GuardIntersectPancake
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
-import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
+module
+
+public import CORALean.HybridDynamics.Operations.GuardIntersectPancake
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
+
+@[expose] public section
 
 /-!
 # A run's guard hit is in the pancake guard intersection

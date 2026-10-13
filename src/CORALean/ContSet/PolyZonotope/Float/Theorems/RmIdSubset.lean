@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RmId
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RmId
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdConstruct
+
+@[expose] public section
 
 /-!
 # `rmId` gives a subset, in float too

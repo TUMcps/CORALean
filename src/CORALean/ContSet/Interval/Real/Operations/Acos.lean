@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+
+@[expose] public section
 
 /-!
 # `Interval.acos`

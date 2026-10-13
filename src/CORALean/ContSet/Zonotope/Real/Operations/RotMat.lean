@@ -1,5 +1,9 @@
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # `rotMat`

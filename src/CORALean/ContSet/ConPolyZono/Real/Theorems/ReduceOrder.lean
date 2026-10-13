@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
-import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.reduce` bounds the generator count

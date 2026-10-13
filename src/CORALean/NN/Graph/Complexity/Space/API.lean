@@ -1,14 +1,16 @@
-import CORALean.NN.Graph.Complexity.Space.Conv
-import CORALean.NN.Graph.Complexity.Space.ConvUncertain
-import CORALean.NN.Graph.Complexity.Space.GcnSteps
-import CORALean.NN.Graph.Complexity.Space.MessagePassingEnclosure
-import CORALean.NN.Graph.Complexity.Space.Pooling
-import CORALean.NN.Graph.Complexity.Space.GcnActSteps
-import CORALean.NN.Graph.Complexity.Space.GcnActStepsQ
-import CORALean.NN.Graph.Complexity.Space.TailEnclose
-import CORALean.NN.Graph.Complexity.Space.Alg1Node
-import CORALean.NN.Graph.Complexity.Space.Alg1Graph
-import CORALean.NN.Graph.Complexity.Space.Alg1
+module
+
+public import CORALean.NN.Graph.Complexity.Space.Conv
+public import CORALean.NN.Graph.Complexity.Space.ConvUncertain
+public import CORALean.NN.Graph.Complexity.Space.GcnSteps
+public import CORALean.NN.Graph.Complexity.Space.MessagePassingEnclosure
+public import CORALean.NN.Graph.Complexity.Space.Pooling
+public import CORALean.NN.Graph.Complexity.Space.GcnActSteps
+public import CORALean.NN.Graph.Complexity.Space.GcnActStepsQ
+public import CORALean.NN.Graph.Complexity.Space.TailEnclose
+public import CORALean.NN.Graph.Complexity.Space.Alg1Node
+public import CORALean.NN.Graph.Complexity.Space.Alg1Graph
+public import CORALean.NN.Graph.Complexity.Space.Alg1
 
 /-!
 # How large a graph layer's result is

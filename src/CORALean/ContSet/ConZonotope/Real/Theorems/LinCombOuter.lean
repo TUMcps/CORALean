@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
-import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
-import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
-import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
+public import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
+public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
+
+@[expose] public section
 
 /-!
 # `ConZonotope.linComb` encloses every segment between the two

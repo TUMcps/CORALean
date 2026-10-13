@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # Ellipsoids passing `isequal` denote the same set

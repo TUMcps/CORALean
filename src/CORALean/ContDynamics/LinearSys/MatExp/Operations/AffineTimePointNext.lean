@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Shift
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.Shift
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # `H(t_{k+1})`

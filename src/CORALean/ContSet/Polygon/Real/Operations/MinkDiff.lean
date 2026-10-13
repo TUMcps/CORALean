@@ -1,10 +1,14 @@
-import CORALean.ContSet.Polygon.Real.Operations.Subtract
-import CORALean.ContSet.Polygon.Real.Operations.Center
-import CORALean.ContSet.Polygon.Real.Operations.Minus
-import CORALean.ContSet.Polygon.Real.Operations.Times
-import CORALean.ContSet.Polygon.Real.Operations.LinComb
-import CORALean.ContSet.Polygon.Real.Operations.Plus
-import CORALean.ContSet.SetUnion.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Subtract
+public import CORALean.ContSet.Polygon.Real.Operations.Center
+public import CORALean.ContSet.Polygon.Real.Operations.Minus
+public import CORALean.ContSet.Polygon.Real.Operations.Times
+public import CORALean.ContSet.Polygon.Real.Operations.LinComb
+public import CORALean.ContSet.Polygon.Real.Operations.Plus
+public import CORALean.ContSet.SetUnion.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.minkDiff`

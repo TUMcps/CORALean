@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaEmptySetSound
+module
+
+public import CORALean.ContSet.LevelSet.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaEmptySetSound
+
+@[expose] public section
 
 /-!
 # A `true` from `LevelSet.representsa_emptySet` proves the set empty

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LineClKeep
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LineClKeep
+
+@[expose] public section
 
 /-!
 # `lineClKeep` only ever keeps an invertible matrix

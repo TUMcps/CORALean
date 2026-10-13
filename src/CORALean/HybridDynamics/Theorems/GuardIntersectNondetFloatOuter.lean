@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.GuardIntersectNondetFloat
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+module
+
+public import CORALean.HybridDynamics.Operations.GuardIntersectNondetFloat
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectNondetFloat` holds every state that meets the guard

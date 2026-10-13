@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.TapMat
+module
+
+public import CORALean.NN.Layers.Operations.TapMat
+
+@[expose] public section
 
 /-!
 # The selection matrix

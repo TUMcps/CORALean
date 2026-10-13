@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
-import CORALean.NN.Definitions.ReducibleNetwork
-import CORALean.NN.Layers.Operations.LinearWithError
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
+public import CORALean.NN.Definitions.ReducibleNetwork
+public import CORALean.NN.Layers.Operations.LinearWithError
+
+@[expose] public section
 
 /-!
 # The layer [1, Eq. 2] names

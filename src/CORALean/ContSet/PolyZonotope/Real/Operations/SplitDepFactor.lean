@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.splitDepFactor`

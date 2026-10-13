@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.ConjOffsetGap
-import CORALean.NN.Layers.Operations.ConjSlopeGap
-import CORALean.NN.Layers.Operations.ConjTBound
+module
+
+public import CORALean.NN.Layers.Operations.ConjOffsetGap
+public import CORALean.NN.Layers.Operations.ConjSlopeGap
+public import CORALean.NN.Layers.Operations.ConjTBound
+
+@[expose] public section
 
 /-!
 # The error an affine conjugate stores

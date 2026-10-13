@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Minus
-import CORALean.ContSet.Interval.Real.Operations.Uminus
-import CORALean.ContSet.Interval.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Minus
+public import CORALean.ContSet.Interval.Real.Operations.Uminus
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Interval.minus` is `plus` of the negation

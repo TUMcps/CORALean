@@ -1,10 +1,14 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Operations.Split
-import CORALean.ContSet.Zonotope.Float.Operations.SplitHalf
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.Split
+public import CORALean.ContSet.Zonotope.Float.Operations.SplitHalf
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+
+@[expose] public section
 
 /-!
 # The halves of `Zonotope.split` cover the zonotope, over a floating-point scalar

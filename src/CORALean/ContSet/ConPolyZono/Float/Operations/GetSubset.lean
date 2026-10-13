@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
-import CORALean.ContSet.ConPolyZono.Float.Operations.ConsPolyZonotope
-import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
-import CORALean.ContSet.Interval.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ConsPolyZonotope
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.getSubset`, over a floating-point scalar

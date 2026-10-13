@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Taylor
-import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Taylor
+public import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
+
+@[expose] public section
 
 /-!
 # An elementary function keeps the model's order

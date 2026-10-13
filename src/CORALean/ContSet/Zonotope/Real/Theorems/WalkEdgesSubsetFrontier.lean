@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.EdgeNotMemInterior
-import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerSuccAdd
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerNotSuccSub
-import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.EdgeNotMemInterior
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerSuccAdd
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerNotSuccSub
+public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
+
+@[expose] public section
 
 /-!
 # The walk edges are on the boundary

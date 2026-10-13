@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.AtanShift
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.AtanShift
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+
+@[expose] public section
 
 /-!
 # The arctangent addition formula fails without `1 + c_f·f > 0`

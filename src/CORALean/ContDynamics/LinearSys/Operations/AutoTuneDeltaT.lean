@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 5-15: the step size and the truncation order for one step

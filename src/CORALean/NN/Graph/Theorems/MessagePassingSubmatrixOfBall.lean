@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.MessagePassing
-import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
+module
+
+public import CORALean.NN.Graph.Operations.MessagePassing
+public import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
+
+@[expose] public section
 
 /-!
 # `[1, §4.3]`'s extra hop, for `messagePassing` itself

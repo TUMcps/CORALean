@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Exp
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
-import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Exp
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+
+@[expose] public section
 
 /-!
 # `Taylm.exp` encloses `exp ∘ f`

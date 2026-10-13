@@ -1,5 +1,7 @@
-import CORALean.ContSet.WithEmpty.WithEmpty
-import CORALean.ContSet.WithEmpty.Instances
+module
+
+public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.WithEmpty.Instances
 
 /-!
 # A representation or nothing, collected

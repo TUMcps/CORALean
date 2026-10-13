@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Volume
-import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Volume
+public import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.volume` bounds the volume

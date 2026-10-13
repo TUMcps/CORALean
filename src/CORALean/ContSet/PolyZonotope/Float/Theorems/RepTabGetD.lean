@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
+
+@[expose] public section
 
 /-!
 # A `repTab` entry is `rep`

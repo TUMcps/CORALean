@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeFloat
-import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateSynchronize
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeFloat
+public import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateSynchronize
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # The synchronized float model encloses the synchronized reset

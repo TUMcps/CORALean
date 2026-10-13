@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovTaylor
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKrylovTaylor
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+
+@[expose] public section
 
 /-!
 # The input solution for varying inputs in a zonotope, from the Krylov Taylor terms

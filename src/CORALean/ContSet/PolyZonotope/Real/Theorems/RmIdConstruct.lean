@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RmId
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RmId
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `rmId` pins the removed factors at `1`, exactly

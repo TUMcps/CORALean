@@ -1,19 +1,23 @@
-import CORALean.HybridDynamics.Operations.AbstractionError
-import CORALean.HybridDynamics.Theorems.AbstractionErrorDecomp
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRemainderInterval
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
-import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
+module
+
+public import CORALean.HybridDynamics.Operations.AbstractionError
+public import CORALean.HybridDynamics.Theorems.AbstractionErrorDecomp
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRemainderInterval
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
+
+@[expose] public section
 
 /-!
 # The abstraction error encloses the difference of a run and the constant flow

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.Degree
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.Degree
+
+@[expose] public section
 
 /-!
 # The face of a point

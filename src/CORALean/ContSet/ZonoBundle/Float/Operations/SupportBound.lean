@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+
+@[expose] public section
 
 /-!
 # The tightest of a float bundle's member bounds

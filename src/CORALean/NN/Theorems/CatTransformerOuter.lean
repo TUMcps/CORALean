@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.CatTransformer
+module
+
+public import CORALean.NN.Operations.CatTransformer
+
+@[expose] public section
 
 /-!
 # AI2's abstract transformer is sound

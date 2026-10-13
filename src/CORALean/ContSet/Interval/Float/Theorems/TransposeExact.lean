@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Transpose
-import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Transpose
+public import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
+
+@[expose] public section
 
 /-!
 # `Interval.transpose` is exactly the transposed set

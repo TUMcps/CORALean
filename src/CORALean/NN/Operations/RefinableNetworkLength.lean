@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.RefinableNetwork
+module
+
+public import CORALean.NN.Definitions.RefinableNetwork
+
+@[expose] public section
 
 /-!
 # How many layers a schedule is read at

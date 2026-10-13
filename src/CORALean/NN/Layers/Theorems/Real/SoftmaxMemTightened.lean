@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.SoftmaxSumEqOne
+module
+
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxSumEqOne
+
+@[expose] public section
 
 /-!
 # What the normalization buys

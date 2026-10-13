@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MatMul
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MatMul
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # `Zonotope.matPow`

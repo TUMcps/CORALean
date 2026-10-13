@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
-import CORALean.HybridDynamics.Definitions.Transition
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
+public import CORALean.HybridDynamics.Definitions.Transition
+
+@[expose] public section
 
 /-!
 # `Transition.convGuard`

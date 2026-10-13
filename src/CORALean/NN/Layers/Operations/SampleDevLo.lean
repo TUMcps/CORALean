@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Operations.EvalPolyUp
+module
+
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Operations.EvalPolyUp
+
+@[expose] public section
 
 /-!
 # The deviation of σ from a fit at a sample, from below

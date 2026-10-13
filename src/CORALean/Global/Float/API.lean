@@ -1,31 +1,33 @@
-import CORALean.Global.Float.FloatOps
-import CORALean.Global.Float.GenOpNorm
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.Global.Float.ToRat
-import CORALean.Global.Float.NoNaN
-import CORALean.Global.Float.EuclideanNorm
-import CORALean.Global.Float.Exp
-import CORALean.Global.Float.Log
-import CORALean.Global.Float.Sqrt
-import CORALean.Global.Float.InverseHyperbolic
-import CORALean.Global.Float.SinCos
-import CORALean.Global.Float.TrigRange
-import CORALean.Global.Float.InverseTrig
-import CORALean.Global.Float.Tan
-import CORALean.Global.Float.Hyperbolic
-import CORALean.Global.Float.Atanh
-import CORALean.Global.Float.GenBlockDiag
-import CORALean.Global.Float.ListSum
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.PowDown
-import CORALean.Global.Float.DivFact
-import CORALean.Global.Float.BilinUp
-import CORALean.Global.Float.Instances.API
-import CORALean.Global.Float.FloatBound
-import CORALean.Global.Float.RatUp
-import CORALean.Global.Float.IntRound
-import CORALean.Global.Float.HalfPow
-import CORALean.Global.Float.InvSqrtOneSub
+module
+
+public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.Float.GenOpNorm
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.NoNaN
+public import CORALean.Global.Float.EuclideanNorm
+public import CORALean.Global.Float.Exp
+public import CORALean.Global.Float.Log
+public import CORALean.Global.Float.Sqrt
+public import CORALean.Global.Float.InverseHyperbolic
+public import CORALean.Global.Float.SinCos
+public import CORALean.Global.Float.TrigRange
+public import CORALean.Global.Float.InverseTrig
+public import CORALean.Global.Float.Tan
+public import CORALean.Global.Float.Hyperbolic
+public import CORALean.Global.Float.Atanh
+public import CORALean.Global.Float.GenBlockDiag
+public import CORALean.Global.Float.ListSum
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.PowDown
+public import CORALean.Global.Float.DivFact
+public import CORALean.Global.Float.BilinUp
+public import CORALean.Global.Float.Instances.API
+public import CORALean.Global.Float.FloatBound
+public import CORALean.Global.Float.RatUp
+public import CORALean.Global.Float.IntRound
+public import CORALean.Global.Float.HalfPow
+public import CORALean.Global.Float.InvSqrtOneSub
 
 /-!
 # The floating-point scalar, collected

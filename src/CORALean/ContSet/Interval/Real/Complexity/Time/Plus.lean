@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Plus
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Interval.plusCost`

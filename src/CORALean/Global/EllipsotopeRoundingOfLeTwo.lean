@@ -1,7 +1,11 @@
-import CORALean.Global.LpNormLeLpNorm
-import CORALean.Global.LpNormLeCardRpowMul
-import CORALean.Global.NormTwoTransposeMulVecEq
-import CORALean.Global.NormTwoMulVecLe
+module
+
+public import CORALean.Global.LpNormLeLpNorm
+public import CORALean.Global.LpNormLeCardRpowMul
+public import CORALean.Global.NormTwoTransposeMulVecEq
+public import CORALean.Global.NormTwoMulVecLe
+
+@[expose] public section
 
 /-!
 # Rounding an ellipsotope by the Euclidean ball, `q ≤ 2`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ObserveDescriptorCurrent
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ObserveDescriptorCurrent
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+
+@[expose] public section
 
 /-!
 # The current-estimation-type observer is the set-membership estimator

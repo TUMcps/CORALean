@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.boundaryPoint`

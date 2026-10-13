@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.MatResidual
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MatResidual
+
+@[expose] public section
 
 /-!
 # What is left over after storing a rounded matrix

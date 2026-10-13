@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.ContSet.Taylm.Real.Operations.Degree
-import CORALean.Global.Float.ListSum
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Taylm.Real.Operations.Degree
+public import CORALean.Global.Float.ListSum
+
+@[expose] public section
 
 /-!
 # The constant part of a Taylor model

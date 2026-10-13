@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.NN.Layers.Operations.BracketError
-import CORALean.NN.Layers.Operations.ShiftConst
+module
+
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.NN.Layers.Operations.BracketError
+public import CORALean.NN.Layers.Operations.ShiftConst
+
+@[expose] public section
 
 /-!
 # A polynomial relaxation out of a bracket, recentred

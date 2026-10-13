@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeOfBound
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeOfBound
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.supportFunc_ne_top_iff`

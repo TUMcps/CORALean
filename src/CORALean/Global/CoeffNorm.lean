@@ -1,8 +1,12 @@
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Topology.Algebra.Module.FiniteDimension
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Topology.EMetricSpace.Lipschitz
+module
+
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Topology.EMetricSpace.Lipschitz
+
+@[expose] public section
 
 /-!
 # The norm a coefficient ball induces through a linear map

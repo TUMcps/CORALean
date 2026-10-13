@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import CORALean.NN.Layers.Theorems.Real.LeWindowMax
-import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Global.Tensor
+public import CORALean.NN.Layers.Theorems.Real.LeWindowMax
+public import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # How far a window's maximum rises above its pivot

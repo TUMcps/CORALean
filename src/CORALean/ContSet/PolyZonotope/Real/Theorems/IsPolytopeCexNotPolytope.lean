@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexNotConvex
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexNotConvex
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # `isPolytopeCex` is not a polytope

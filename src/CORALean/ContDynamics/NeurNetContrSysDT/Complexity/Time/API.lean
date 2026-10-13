@@ -1,5 +1,7 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.ReachBound
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.Reach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.ReachBound
 
 /-!
 # What running `NeurNetContrSysDT.reach` costs

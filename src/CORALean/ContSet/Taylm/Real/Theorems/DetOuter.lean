@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.Det
-import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
-import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
-import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Det
+public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+
+@[expose] public section
 
 /-!
 # `Taylm.det` encloses the determinant

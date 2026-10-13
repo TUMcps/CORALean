@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # A point has no weighted generators

@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.LocationPotOut
+module
+
+public import CORALean.HybridDynamics.Operations.LocationPotOut
+
+@[expose] public section
 
 /-!
 # `Location.potOut` keeps every state in the invariant

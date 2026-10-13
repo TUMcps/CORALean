@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Algebra.BigOperators.GroupWithZero.Finset
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Algebra.BigOperators.GroupWithZero.Finset
+
+@[expose] public section
 
 /-!
 # A column with no constant term vanishes at zero factors

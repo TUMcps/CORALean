@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # The row of ones a summation across nodes multiplies by

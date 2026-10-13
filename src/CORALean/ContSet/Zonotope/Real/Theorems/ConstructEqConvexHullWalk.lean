@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A zonogon is the hull of its walk

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.Compose
-import CORALean.ContSet.Taylm.Float.Operations.TrigCoef
-import CORALean.ContSet.Taylm.Float.Operations.UnitRemainder
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Compose
+public import CORALean.ContSet.Taylm.Float.Operations.TrigCoef
+public import CORALean.ContSet.Taylm.Float.Operations.UnitRemainder
+
+@[expose] public section
 
 /-!
 # `Taylm.cos`

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
-import CORALean.Global.ErrorConvergesToZero
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
+public import CORALean.Global.ErrorConvergesToZero
+
+@[expose] public section
 
 /-!
 # `Prop. 3`: `ε_H` converges to zero

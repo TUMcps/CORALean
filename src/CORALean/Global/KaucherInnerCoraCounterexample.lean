@@ -1,5 +1,9 @@
-import CORALean.Global.KaucherInner
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.Global.KaucherInner
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # CORA reports `(-∞, ∞)` where (18) gives no inner approximation

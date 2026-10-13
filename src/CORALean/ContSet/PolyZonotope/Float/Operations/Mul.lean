@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Operations.MulE
-import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDiff
-import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDown
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MulE
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MulGDown
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mul`

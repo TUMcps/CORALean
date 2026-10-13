@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `[1, Sec. 4.1 (support vector)]`: a halfspace tight at a support vector can still be redundant

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSet
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
+
+@[expose] public section
 
 /-!
 # `reachSet` stays inside `reach`

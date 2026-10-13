@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+
+@[expose] public section
 
 /-!
 # The exact tail orders lie in the float ones

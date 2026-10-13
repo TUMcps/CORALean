@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPoly
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPoly
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPoly
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPoly
+
+@[expose] public section
 
 /-!
 # `subsPoly` is the stored polynomial of an output

@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.FactorMeet
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Specification.STL.Operations.FactorMeet
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2, l. 12] read index by index loses unsafe factors

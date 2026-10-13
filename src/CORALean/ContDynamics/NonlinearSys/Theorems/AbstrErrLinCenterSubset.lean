@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # The centre is the best expansion point

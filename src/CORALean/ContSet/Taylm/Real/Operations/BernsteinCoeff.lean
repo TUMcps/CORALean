@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
-import CORALean.ContSet.Taylm.Real.Taylm
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
+public import CORALean.ContSet.Taylm.Real.Taylm
+
+@[expose] public section
 
 /-!
 # `Taylm.bernsteinCoeff`

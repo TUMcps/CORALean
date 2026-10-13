@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Centre
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Centre
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.centre` is a point exactly when there is one

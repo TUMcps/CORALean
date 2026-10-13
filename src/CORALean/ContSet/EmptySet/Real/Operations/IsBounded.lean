@@ -1,4 +1,8 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+
+@[expose] public section
 
 /-!
 # `EmptySet.isBounded`

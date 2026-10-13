@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.ConvHull
-import CORALean.ContSet.Capsule.Real.Operations.Empty
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.ConvHull
+public import CORALean.ContSet.Capsule.Real.Operations.Empty
+
+@[expose] public section
 
 /-!
 # `Capsule.convHullCora`: `convHull_` as CORA's code runs, an empty second operand included

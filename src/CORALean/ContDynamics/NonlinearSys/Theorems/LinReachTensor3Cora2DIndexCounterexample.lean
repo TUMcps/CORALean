@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachTensor3Cora2D
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachTensor3Cora2D
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # CORA's third-order remainder reads the wrong tensor columns

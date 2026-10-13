@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # A zonotope as an ellipsoid, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.Global.IccSubsetImageOfGammaTest
-import CORALean.Global.SubsetImageOfPreconditioned
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.Global.IccSubsetImageOfGammaTest
+public import CORALean.Global.SubsetImageOfPreconditioned
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # The preconditioned inclusion test proves a box inside the range

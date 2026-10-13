@@ -1,11 +1,15 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CartProd
-import CORALean.ContSet.Zonotope.Real.Theorems.CartProdExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.Global.AppendLinear
-import CORALean.ContSet.Zonotope.Float.Theorems.NominalCartProdC
-import CORALean.ContSet.Zonotope.Float.Theorems.NominalCartProdG
-import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CartProd
+public import CORALean.ContSet.Zonotope.Real.Theorems.CartProdExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.Global.AppendLinear
+public import CORALean.ContSet.Zonotope.Float.Theorems.NominalCartProdC
+public import CORALean.ContSet.Zonotope.Float.Theorems.NominalCartProdG
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+
+@[expose] public section
 
 /-!
 # `Zonotope.cartProd` is exact

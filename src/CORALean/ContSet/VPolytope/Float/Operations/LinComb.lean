@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.LinComb
-import CORALean.ContSet.VPolytope.Float.VPolytope
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.LinComb
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+
+@[expose] public section
 
 /-!
 # `VPolytope.linComb`

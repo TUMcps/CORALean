@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainSearchFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.InterpGainFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainSearchFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGainFloat
+
+@[expose] public section
 
 /-!
 # `estimateGain`: the gain at the finite horizon, in floats

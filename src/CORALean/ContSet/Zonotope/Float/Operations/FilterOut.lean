@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
-import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
+
+@[expose] public section
 
 /-!
 # `Zonotope.filterOut`, over a floating-point scalar

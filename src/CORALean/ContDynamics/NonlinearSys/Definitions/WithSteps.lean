@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinStepLinInput
+
+@[expose] public section
 
 /-!
 # A nonlinear system, bundled with what its `Reach` run spends

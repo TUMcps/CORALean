@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.HPolytope.Float.Operations.Isequal
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.HPolytope.Float.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # `ConZonotope.isequal`, over a floating-point scalar

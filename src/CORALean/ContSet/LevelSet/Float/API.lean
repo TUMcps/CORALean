@@ -1,5 +1,7 @@
-import CORALean.ContSet.LevelSet.Float.Operations.API
-import CORALean.ContSet.LevelSet.Float.Theorems.API
+module
+
+public import CORALean.ContSet.LevelSet.Float.Operations.API
+public import CORALean.ContSet.LevelSet.Float.Theorems.API
 
 /-!
 # Level sets at float bounds, collected

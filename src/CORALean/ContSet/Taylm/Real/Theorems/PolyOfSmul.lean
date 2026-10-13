@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Taylm
+module
+
+public import CORALean.ContSet.Taylm.Real.Taylm
+
+@[expose] public section
 
 /-!
 # Scaling every coefficient scales the polynomial

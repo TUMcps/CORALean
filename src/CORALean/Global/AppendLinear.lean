@@ -1,5 +1,9 @@
-import CORALean.Global.Block
-import Mathlib.LinearAlgebra.Pi
+module
+
+public import CORALean.Global.Block
+public import Mathlib.LinearAlgebra.Pi
+
+@[expose] public section
 
 /-!
 # A pair appended into one vector

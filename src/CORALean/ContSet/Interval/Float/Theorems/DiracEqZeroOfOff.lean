@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Dirac
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Dirac
+
+@[expose] public section
 
 /-!
 # `Interval.dirac` is `{0}` off `0`, over a floating-point scalar

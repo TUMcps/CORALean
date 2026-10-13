@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.intervalCora`

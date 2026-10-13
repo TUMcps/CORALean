@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContSet.Interval.Real.Instances
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContSet.Interval.Real.Instances
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # One step of the flow, at its end rather than over it

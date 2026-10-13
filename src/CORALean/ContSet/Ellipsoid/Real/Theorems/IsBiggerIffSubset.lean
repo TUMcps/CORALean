@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
-import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `isBigger` is containment of the centred ellipsoids

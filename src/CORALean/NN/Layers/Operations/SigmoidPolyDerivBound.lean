@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Operations.PolyDerivBoundUp
-import CORALean.NN.Layers.Operations.SigmoidDerivHi
-import CORALean.NN.Layers.Operations.SigmoidDerivLo
-import CORALean.NN.Layers.Operations.SigmoidEnclosure
+module
+
+public import CORALean.NN.Layers.Operations.PolyDerivBoundUp
+public import CORALean.NN.Layers.Operations.SigmoidDerivHi
+public import CORALean.NN.Layers.Operations.SigmoidDerivLo
+public import CORALean.NN.Layers.Operations.SigmoidEnclosure
+
+@[expose] public section
 
 /-!
 # The derivative bound a sampled sigmoid fit asks for

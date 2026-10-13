@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDiff
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDiff
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # The stored generators of `subs` are close to the exact ones

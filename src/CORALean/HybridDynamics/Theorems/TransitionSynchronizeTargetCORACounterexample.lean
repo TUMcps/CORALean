@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
+module
+
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
+
+@[expose] public section
 
 /-!
 # CORA's synchronized target loop is wrong

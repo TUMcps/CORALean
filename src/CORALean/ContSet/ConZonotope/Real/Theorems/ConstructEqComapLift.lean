@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.LiftIff
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LiftIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # A constrained zonotope to halfspaces, through its lifted zonotope

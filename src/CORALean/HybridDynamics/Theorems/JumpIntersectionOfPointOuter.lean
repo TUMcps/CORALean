@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Instances
-import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
-import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Instances
+public import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
+public import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
+
+@[expose] public section
 
 /-!
 # `Transition.jumpIntersectionOfPoint` contains the states that leave through the transition

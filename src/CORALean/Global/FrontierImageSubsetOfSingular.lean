@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
-import Mathlib.LinearAlgebra.Determinant
-import Mathlib.Topology.Compactness.Compact
+module
+
+public import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
+public import Mathlib.LinearAlgebra.Determinant
+public import Mathlib.Topology.Compactness.Compact
+
+@[expose] public section
 
 /-!
 # The frontier of the image lies in the image of the boundary and of the singular points

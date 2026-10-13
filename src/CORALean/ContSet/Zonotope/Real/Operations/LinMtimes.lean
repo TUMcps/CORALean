@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Map
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # Zonotopes: multiplication by a single linear map

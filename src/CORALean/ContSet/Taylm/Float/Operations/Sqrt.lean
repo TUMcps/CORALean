@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.Taylor
-import CORALean.ContSet.Taylm.Float.Operations.SqrtCoef
-import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Taylor
+public import CORALean.ContSet.Taylm.Float.Operations.SqrtCoef
+public import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
+
+@[expose] public section
 
 /-!
 # `Taylm.sqrt`

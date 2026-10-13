@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirFlow
-import CORALean.ContSet.ZonoBundle.Real.Theorems.FlowIndexMax
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
+public import CORALean.ContSet.ZonoBundle.Real.Operations.DirFlow
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.FlowIndexMax
+
+@[expose] public section
 
 /-!
 # Splitting by the flow heuristic is exact

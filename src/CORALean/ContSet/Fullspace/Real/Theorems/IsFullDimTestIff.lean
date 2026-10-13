@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Operations.IsFullDimTest
-import CORALean.ContSet.Fullspace.Real.Theorems.IsFullDim
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.IsFullDimTest
+public import CORALean.ContSet.Fullspace.Real.Theorems.IsFullDim
+
+@[expose] public section
 
 /-!
 # `Fullspace.isFullDimTest` is full-dimensionality

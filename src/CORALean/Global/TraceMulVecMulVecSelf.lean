@@ -1,7 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.LinearAlgebra.Matrix.Trace
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.LinearAlgebra.Matrix.Trace
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A weighted square as a trace

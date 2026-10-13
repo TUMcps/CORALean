@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
-import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
+public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.compactGensGap`

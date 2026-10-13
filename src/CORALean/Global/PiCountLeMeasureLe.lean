@@ -1,7 +1,11 @@
-import Mathlib.MeasureTheory.Constructions.Pi
-import Mathlib.MeasureTheory.Measure.Typeclasses.Probability
-import Mathlib.Data.Nat.Choose.Sum
-import Mathlib.MeasureTheory.Measure.Real
+module
+
+public import Mathlib.MeasureTheory.Constructions.Pi
+public import Mathlib.MeasureTheory.Measure.Typeclasses.Probability
+public import Mathlib.Data.Nat.Choose.Sum
+public import Mathlib.MeasureTheory.Measure.Real
+
+@[expose] public section
 
 /-!
 # At most `k` of `m` independent samples in a set

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.UnderSSubset
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.UnderSSubset
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # Control synthesis from the under-approximation

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.ContSet.Operations.Enlarge
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.ContSet.Operations.Enlarge
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.enlarge`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
-import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+
+@[expose] public section
 
 /-!
 # `Zonotope.venum`

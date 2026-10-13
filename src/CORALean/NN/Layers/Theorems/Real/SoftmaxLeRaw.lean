@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.SoftmaxEqInv
+module
+
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxEqInv
+
+@[expose] public section
 
 /-!
 # Softmax below its raw upper bound

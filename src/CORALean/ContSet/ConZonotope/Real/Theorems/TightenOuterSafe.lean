@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
+
+@[expose] public section
 
 /-!
 # `ConZonotope.tighten` is sound at a dependency-closed set of coordinates

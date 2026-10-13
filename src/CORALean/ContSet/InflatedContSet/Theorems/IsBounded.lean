@@ -1,4 +1,8 @@
-import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # An inflated representation of a compact set is bounded

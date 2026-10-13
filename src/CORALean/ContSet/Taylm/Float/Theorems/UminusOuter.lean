@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Uminus
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Uminus
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
+
+@[expose] public section
 
 /-!
 # `Taylm.uminus` encloses the negation

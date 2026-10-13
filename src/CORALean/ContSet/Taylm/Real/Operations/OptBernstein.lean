@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinDegree
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinDegree
+
+@[expose] public section
 
 /-!
 # `Taylm.optBernstein`

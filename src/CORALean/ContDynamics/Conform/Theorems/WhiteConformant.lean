@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.Conform.Theorems.MemGloSetIffGen
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.MemGloSetIffGen
+
+@[expose] public section
 
 /-!
 # [1, Thm. 2]: a feasible point of the white-box program is reachset conformant

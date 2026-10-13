@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The algebraic deviation, solved for

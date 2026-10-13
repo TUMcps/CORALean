@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # The polygon CORA builds from boundary samples, and its two tests against a set

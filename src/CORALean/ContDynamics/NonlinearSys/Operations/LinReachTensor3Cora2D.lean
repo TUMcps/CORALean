@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # `linReachTensor3Cora2D`, CORA's `'lin'` step at `tensorOrder = 3` in two dimensions

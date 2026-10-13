@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MatMulIntervalMat
-import CORALean.ContSet.Zonotope.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.OfIntervalMatOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MatMulIntervalMat
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.OfIntervalMatOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.matMulIntervalMat` over-approximates every product

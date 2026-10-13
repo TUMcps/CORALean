@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.DiracZeroMem
-import Mathlib.Data.Sign.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.DiracZeroMem
+public import Mathlib.Data.Sign.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.dirac` encloses at `n = 0`

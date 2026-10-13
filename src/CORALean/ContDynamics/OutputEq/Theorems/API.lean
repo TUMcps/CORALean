@@ -1,8 +1,10 @@
-import CORALean.ContDynamics.OutputEq.Theorems.HausdorffDist2EvalLe
-import CORALean.ContDynamics.OutputEq.Theorems.HoldsOfCheck
-import CORALean.ContDynamics.OutputEq.Theorems.HoldsOfOutputSet
-import CORALean.ContDynamics.OutputEq.Theorems.OutputSetNoiseOuter
-import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+module
+
+public import CORALean.ContDynamics.OutputEq.Theorems.HausdorffDist2EvalLe
+public import CORALean.ContDynamics.OutputEq.Theorems.HoldsOfCheck
+public import CORALean.ContDynamics.OutputEq.Theorems.HoldsOfOutputSet
+public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetNoiseOuter
+public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
 
 /-!
 # What `OutputEq` guarantees

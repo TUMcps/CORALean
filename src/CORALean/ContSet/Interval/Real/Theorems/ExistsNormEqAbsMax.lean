@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.AbsMax
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.AbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # A non-empty box has a member as long as its dominating matrix

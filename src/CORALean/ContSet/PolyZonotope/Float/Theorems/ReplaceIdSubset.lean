@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ReplaceId
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ReplaceId
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
+
+@[expose] public section
 
 /-!
 # Renaming factors can only shrink the set, in float too

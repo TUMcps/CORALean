@@ -1,12 +1,16 @@
-import CORALean.HybridDynamics.Theorems.AbstractionErrorCoraEqZero
-import CORALean.HybridDynamics.Operations.SdcFlow
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.HybridDynamics.Definitions.SdcInput
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.HybridDynamics.Theorems.AbstractionErrorCoraEqZero
+public import CORALean.HybridDynamics.Operations.SdcFlow
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.HybridDynamics.Definitions.SdcInput
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # CORA's printed `aux_abstractionError` misses the abstraction error

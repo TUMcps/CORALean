@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.EdgeMat
+module
+
+public import CORALean.NN.Graph.Operations.EdgeMat
+
+@[expose] public section
 
 /-!
 # What the uncertain edges add to a node's degree

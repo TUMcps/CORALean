@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import Mathlib.Data.EReal.Basic
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # `ConZonotope.supportFuncUpperCora`: the `'upper'` support function as CORA's code computes it

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplication
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplication
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorMultiplication_zono`, over a floating-point scalar

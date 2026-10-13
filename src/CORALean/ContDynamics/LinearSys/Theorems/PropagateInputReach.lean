@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+
+@[expose] public section
 
 /-!
 # The propagation is exact on the exact particular solution

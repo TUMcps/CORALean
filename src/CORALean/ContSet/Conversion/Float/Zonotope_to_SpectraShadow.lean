@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # A zonotope as a spectrahedral shadow, over a floating-point scalar

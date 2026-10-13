@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxScale
-import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxScale
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
+
+@[expose] public section
 
 /-!
 # `reduceUnderApproxScale` returns a subset

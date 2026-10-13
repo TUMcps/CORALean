@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
-import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
-import CORALean.ContDynamics.NonlinearARX.Operations.Feed
-import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
+public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
+public import CORALean.ContDynamics.NonlinearARX.Operations.Feed
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
+
+@[expose] public section
 
 /-!
 # An interval-valued `simulate` for a nonlinear ARX model

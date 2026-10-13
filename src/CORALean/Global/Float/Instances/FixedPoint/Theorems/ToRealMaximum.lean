@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Maximum
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Maximum
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
+
+@[expose] public section
 
 /-!
 # `maximum` is exact

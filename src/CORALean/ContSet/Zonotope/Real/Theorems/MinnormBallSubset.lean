@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
-import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
-import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
-import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
-import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetNonneg
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
+public import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetNonneg
+
+@[expose] public section
 
 /-!
 # The `minnorm` ball lies in the zonotope

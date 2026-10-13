@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.GcnLin
+module
+
+public import CORALean.NN.Graph.Operations.GcnLin
+
+@[expose] public section
 
 /-!
 # `gcnLin` unfolds to `P H W`

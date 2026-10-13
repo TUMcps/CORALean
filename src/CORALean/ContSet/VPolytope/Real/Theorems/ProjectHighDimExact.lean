@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
+public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `projectHighDim` is the zero-padded image, exactly

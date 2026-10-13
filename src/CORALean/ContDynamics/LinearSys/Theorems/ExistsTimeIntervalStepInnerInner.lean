@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+
+@[expose] public section
 
 /-!
 # The same over a whole step

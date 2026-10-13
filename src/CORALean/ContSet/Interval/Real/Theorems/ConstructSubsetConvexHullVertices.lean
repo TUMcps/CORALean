@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # An interval matrix lies in the convex hull of its vertices

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LengthSplit
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LengthSplit
+
+@[expose] public section
 
 /-!
 # `lengthSplit` keeps the longest generators

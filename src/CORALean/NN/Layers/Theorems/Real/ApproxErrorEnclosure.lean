@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.ApproxError
-import Mathlib.Topology.Order.Compact
-import Mathlib.Topology.Instances.Real.Lemmas
+module
+
+public import CORALean.NN.Layers.Definitions.ApproxError
+public import Mathlib.Topology.Order.Compact
+public import Mathlib.Topology.Instances.Real.Lemmas
+
+@[expose] public section
 
 /-!
 # The approximation errors enclose the activation

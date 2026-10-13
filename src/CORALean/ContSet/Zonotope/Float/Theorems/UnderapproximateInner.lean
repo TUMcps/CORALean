@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Underapproximate
-import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Underapproximate
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
+
+@[expose] public section
 
 /-!
 # `Zonotope.underapproximate` returns points of the zonotope

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CartProd
-import CORALean.Global.AppendLinear
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CartProd
+public import CORALean.Global.AppendLinear
+
+@[expose] public section
 
 /-!
 # The nominal centre of `Zonotope.cartProd`

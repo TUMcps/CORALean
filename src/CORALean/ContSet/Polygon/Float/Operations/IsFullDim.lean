@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.CrossCertified
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.CrossCertified
+
+@[expose] public section
 
 /-!
 # `Polygon.isFullDim`, over a floating-point scalar

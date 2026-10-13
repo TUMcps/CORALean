@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
-import CORALean.Global.Radstrom
+module
+
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
+public import CORALean.Global.Radstrom
+
+@[expose] public section
 
 /-!
 # An outer approximation minus its own error bound is an inner approximation

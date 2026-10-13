@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCompCora
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCompCora
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # CORA's compositional `nonlinDASys/linReach` misses a reachable state

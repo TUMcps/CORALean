@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
+
+@[expose] public section
 
 /-!
 # The set of `isPolytopeCex`

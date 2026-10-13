@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
-import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.unionE`

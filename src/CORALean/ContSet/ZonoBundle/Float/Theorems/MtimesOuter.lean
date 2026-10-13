@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mtimes` over-approximates the linear image

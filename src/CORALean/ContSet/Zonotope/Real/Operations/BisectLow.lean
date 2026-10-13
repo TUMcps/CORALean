@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BisectStep
-import Mathlib.Analysis.Convex.Segment
-import CORALean.ContSet.Zonotope.Real.Operations.PointUp
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BisectStep
+public import Mathlib.Analysis.Convex.Segment
+public import CORALean.ContSet.Zonotope.Real.Operations.PointUp
+
+@[expose] public section
 
 /-!
 # [1, Alg. 4], lines 1-28: the lower end of the section by bisection

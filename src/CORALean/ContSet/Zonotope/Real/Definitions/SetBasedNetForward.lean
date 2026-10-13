@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
-import CORALean.ContSet.Zonotope.Real.Operations.Affine
-import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
+public import CORALean.ContSet.Zonotope.Real.Operations.Affine
+public import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
+
+@[expose] public section
 
 /-!
 # `SetBasedNet.forward`

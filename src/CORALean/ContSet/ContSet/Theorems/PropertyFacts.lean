@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Theorems.ProdProperties
+module
+
+public import CORALean.ContSet.ContSet.Theorems.ProdProperties
+
+@[expose] public section
 
 /-!
 # The set properties CORA stores, and how they combine

@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # The bloating `D`

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetHasDerivAt
-import Mathlib.Analysis.Calculus.Deriv.Inv
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetHasDerivAt
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+
+@[expose] public section
 
 /-!
 # The second derivative of the volume criterion at the root

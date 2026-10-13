@@ -1,7 +1,11 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
-import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianBox
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianBox
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+
+@[expose] public section
 
 /-!
 # The confidence set holds the G-zonotope with probability `erf(m/√2)ⁿ`

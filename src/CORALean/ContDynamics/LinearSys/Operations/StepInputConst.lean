@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+
+@[expose] public section
 
 /-!
 # What a constant input contributes over one step

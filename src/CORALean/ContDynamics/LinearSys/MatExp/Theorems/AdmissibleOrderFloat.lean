@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # An order `admissibleOrder` returns is admissible

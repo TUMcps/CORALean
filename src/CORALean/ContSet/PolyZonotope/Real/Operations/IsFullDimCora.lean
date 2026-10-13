@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.LinearAlgebra.Dimension.Finrank
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.isFullDimCora`: CORA's test for full dimension

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
+
+@[expose] public section
 
 /-!
 # A run before the guard is a run of the pancake-scaled system

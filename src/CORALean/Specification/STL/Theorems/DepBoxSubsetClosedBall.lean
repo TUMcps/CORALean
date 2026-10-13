@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
-import CORALean.Specification.STL.Operations.DepBox
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
+public import CORALean.Specification.STL.Operations.DepBox
+
+@[expose] public section
 
 /-!
 # `interval(·)` does not leave the ball

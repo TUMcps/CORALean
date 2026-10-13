@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.NonlinearARX
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # What a float run is told about a nonlinear ARX model

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DominantDirections
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DominantDirections
+
+@[expose] public section
 
 /-!
 # `dominantDirections` is the best shortlisted subset

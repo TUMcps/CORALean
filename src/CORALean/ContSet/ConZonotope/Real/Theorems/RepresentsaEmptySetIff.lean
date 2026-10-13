@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+
+@[expose] public section
 
 /-!
 # A constrained zonotope is empty iff its coefficient polytope is

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxShiftMid
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxShiftMid
+
+@[expose] public section
 
 /-!
 # `relaxExpMid`'s shifted centre, as stored

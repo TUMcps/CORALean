@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.TransitionGuard2Polytope
+module
+
+public import CORALean.HybridDynamics.Operations.TransitionGuard2Polytope
+
+@[expose] public section
 
 /-!
 # `Transition.guard2polytope` with an exact conversion

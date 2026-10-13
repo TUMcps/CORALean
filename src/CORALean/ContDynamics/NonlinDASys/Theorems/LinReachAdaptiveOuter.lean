@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
-import CORALean.ContDynamics.NonlinDASys.Operations.AdaptPassLinPoint
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Operations.AdaptPassLinPoint
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
+
+@[expose] public section
 
 /-!
 # An accepted adaptive pass holds every certified run

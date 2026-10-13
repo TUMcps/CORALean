@@ -1,8 +1,12 @@
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Abel
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Abel
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # [1, Eq. 5]: subtracting the nominal solution

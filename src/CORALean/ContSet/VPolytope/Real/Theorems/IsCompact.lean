@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import Mathlib.Analysis.Convex.Topology
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Analysis.Normed.Order.Lattice
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import Mathlib.Analysis.Convex.Topology
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Analysis.Normed.Order.Lattice
+
+@[expose] public section
 
 /-!
 # A vertex description is compact

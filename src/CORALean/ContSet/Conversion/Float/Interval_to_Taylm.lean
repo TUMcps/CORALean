@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Taylm
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Taylm
+
+@[expose] public section
 
 /-!
 # A box as an array of Taylor models, over a floating-point scalar

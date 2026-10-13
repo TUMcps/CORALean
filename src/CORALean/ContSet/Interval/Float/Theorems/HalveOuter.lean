@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Halve
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Halve
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `Interval.halve` contains half of every vector in the box

@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.AlignGuard
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.AlignGuard
+
+@[expose] public section
 
 /-!
 # The exponent a sum is coarsened to

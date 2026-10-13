@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Conform.Definitions.ReachOut
-import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.ReachOut
+public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # [1, Eq. 7] as printed is not the reachable set

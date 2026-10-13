@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.ClauseMerge
+module
+
+public import CORALean.Specification.STL.Operations.ClauseMerge
+
+@[expose] public section
 
 /-!
 # The disjunction of two normal forms

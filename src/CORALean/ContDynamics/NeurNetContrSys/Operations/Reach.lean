@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
-import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
-import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachOptions
-import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # The sampled loop: reachability at two rates

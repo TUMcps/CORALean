@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointApprox
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointApprox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
+
+@[expose] public section
 
 /-!
 # `containsPointApprox` proves membership

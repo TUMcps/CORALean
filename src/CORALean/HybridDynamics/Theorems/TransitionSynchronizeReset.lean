@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.TransitionSynchronize
-import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
+module
+
+public import CORALean.HybridDynamics.Operations.TransitionSynchronize
+public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
+
+@[expose] public section
 
 /-!
 # `Transition.synchronize` resets by the sum

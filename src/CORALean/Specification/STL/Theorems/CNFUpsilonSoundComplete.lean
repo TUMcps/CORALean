@@ -1,10 +1,14 @@
-import CORALean.Specification.STL.Theorems.CNFSatToFormula
-import CORALean.Specification.STL.Theorems.CNFSatUpsilon
-import CORALean.Specification.STL.Theorems.BlocksDisjoint
-import CORALean.Specification.STL.Theorems.FinRepConstOnBlock
-import CORALean.Specification.STL.Theorems.ForallExistsIffExistsForall
-import CORALean.Specification.STL.Theorems.ForallFinalsOrGlobalsIff
-import CORALean.Specification.STL.Theorems.ForallTraceSetSatIff
+module
+
+public import CORALean.Specification.STL.Theorems.CNFSatToFormula
+public import CORALean.Specification.STL.Theorems.CNFSatUpsilon
+public import CORALean.Specification.STL.Theorems.BlocksDisjoint
+public import CORALean.Specification.STL.Theorems.FinRepConstOnBlock
+public import CORALean.Specification.STL.Theorems.ForallExistsIffExistsForall
+public import CORALean.Specification.STL.Theorems.ForallFinalsOrGlobalsIff
+public import CORALean.Specification.STL.Theorems.ForallTraceSetSatIff
+
+@[expose] public section
 
 /-!
 # `Υ` is sound and complete for c-divisible reach sequences

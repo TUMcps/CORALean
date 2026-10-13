@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.FilterOutCovered
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.FilterOutCovered
+
+@[expose] public section
 
 /-!
 # Nothing the criterion keeps is deleted

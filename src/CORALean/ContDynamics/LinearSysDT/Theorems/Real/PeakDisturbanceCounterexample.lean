@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Order.ConditionallyCompleteLattice.Indexed
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Order.ConditionallyCompleteLattice.Indexed
+
+@[expose] public section
 
 /-!
 # The peak of a disturbance is not the worst case of its set

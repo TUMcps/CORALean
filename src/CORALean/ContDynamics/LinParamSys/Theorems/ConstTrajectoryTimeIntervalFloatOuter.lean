@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
-import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+
+@[expose] public section
 
 /-!
 # A `'constParam'` run is enclosed by the float step over one step

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.EqVec
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
+
+@[expose] public section
 
 /-!
 # `HPolytope.isInvertedPair`: two inequality rows certified inverted

@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Operations.Degree
-import CORALean.NN.Graph.Operations.DegreeCoeff
-import CORALean.NN.Graph.Operations.SqrtOffset
-import CORALean.NN.Graph.Operations.SqrtSlope
+module
+
+public import CORALean.NN.Graph.Operations.Degree
+public import CORALean.NN.Graph.Operations.DegreeCoeff
+public import CORALean.NN.Graph.Operations.SqrtOffset
+public import CORALean.NN.Graph.Operations.SqrtSlope
+
+@[expose] public section
 
 /-!
 # `s_j` at every uncertain edge factor zero

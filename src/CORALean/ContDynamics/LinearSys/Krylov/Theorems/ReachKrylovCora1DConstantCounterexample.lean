@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.ReachKrylovCora1D
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ReachKrylovCora1D
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # CORA's Krylov `reach` drops the constant input `c`

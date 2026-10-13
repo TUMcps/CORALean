@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.LinearARX
-import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
+module
+
+public import CORALean.ContDynamics.LinearARX.LinearARX
+public import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
+
+@[expose] public section
 
 /-!
 # From a state-space model to an ARMAX model, by the characteristic polynomial

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # Continuous-time nonlinear systems with uncertain parameters

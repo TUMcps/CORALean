@@ -1,4 +1,8 @@
-import CORALean.Global.Float.FloatOps
+module
+
+public import CORALean.Global.Float.FloatOps
+
+@[expose] public section
 
 /-!
 # Bringing a slope into `[0, 1]`

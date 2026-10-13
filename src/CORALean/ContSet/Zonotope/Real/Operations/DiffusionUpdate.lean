@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AndAveraging
-import CORALean.ContSet.Zonotope.Real.Operations.AveragingWeights
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AndAveraging
+public import CORALean.ContSet.Zonotope.Real.Operations.AveragingWeights
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `Zonotope.diffusionUpdate`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+
+@[expose] public section
 
 /-!
 # `HPolytope.eqs`

@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.MinkDiff
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MinkDiff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
+
+@[expose] public section
 
 /-!
 # What `ConPolyZono.minkDiff` computes

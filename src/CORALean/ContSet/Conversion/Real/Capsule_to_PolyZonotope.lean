@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+module
+
+public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+
+@[expose] public section
 
 /-!
 # A capsule as a polynomial zonotope

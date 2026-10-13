@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.splitIndepGen`, over a floating-point scalar

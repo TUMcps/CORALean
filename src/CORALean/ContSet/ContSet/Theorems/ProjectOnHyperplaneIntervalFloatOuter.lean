@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `projectOnHyperplaneIntervalFloat` encloses the projection onto every allowed hyperplane

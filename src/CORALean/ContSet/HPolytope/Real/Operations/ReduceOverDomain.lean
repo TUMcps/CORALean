@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
+
+@[expose] public section
 
 /-!
 # `HPolytope.reduceOverDomain`

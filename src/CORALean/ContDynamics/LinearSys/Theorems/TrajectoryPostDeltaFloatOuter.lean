@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
-import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+
+@[expose] public section
 
 /-!
 # `postDeltaFloat` holds every difference a run spans over the step

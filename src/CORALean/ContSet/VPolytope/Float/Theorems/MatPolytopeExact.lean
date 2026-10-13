@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Float.Operations.MatPolytope
-import CORALean.ContSet.VPolytope.Real.Theorems.MatPolytopeExact
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.MatPolytope
+public import CORALean.ContSet.VPolytope.Real.Theorems.MatPolytopeExact
+
+@[expose] public section
 
 /-!
 # `VPolytope.matPolytope` is exactly the image under the column embedding

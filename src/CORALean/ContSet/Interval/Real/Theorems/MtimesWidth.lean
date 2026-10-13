@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Interval.mtimes`'s width, row by row

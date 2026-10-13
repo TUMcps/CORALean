@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.boundDot` bounds the support function

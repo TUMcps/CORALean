@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorMemExpmOneParam
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorMemExpmOneParam
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # The matrix exponential set of one parameter lies in `K(r) ⊕ E(r)`

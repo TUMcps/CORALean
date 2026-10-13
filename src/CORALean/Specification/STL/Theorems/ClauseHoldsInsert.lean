@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.ClauseInsert
-import CORALean.Specification.STL.Theorems.BranchHoldsMerge
+module
+
+public import CORALean.Specification.STL.Operations.ClauseInsert
+public import CORALean.Specification.STL.Theorems.BranchHoldsMerge
+
+@[expose] public section
 
 /-!
 # Inserting a branch in a clause

@@ -1,15 +1,19 @@
-import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMap
-import CORALean.HybridDynamics.Theorems.AbstractionErrorOuter
-import CORALean.HybridDynamics.Theorems.HitPointAddEq
-import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
-import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
-import CORALean.HybridDynamics.Theorems.LinearEmbedding
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
-import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+module
+
+public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMap
+public import CORALean.HybridDynamics.Theorems.AbstractionErrorOuter
+public import CORALean.HybridDynamics.Theorems.HitPointAddEq
+public import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
+public import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
+public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapMatZonoOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+
+@[expose] public section
 
 /-!
 # The hyperplane map holds every guard hit of a run from `R₀`

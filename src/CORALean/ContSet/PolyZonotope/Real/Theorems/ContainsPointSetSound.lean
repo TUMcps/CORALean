@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsPointSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitGenCover
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsPointSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitGenCover
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+
+@[expose] public section
 
 /-!
 # `containsPointSet` never rejects a point set the polynomial zonotope contains

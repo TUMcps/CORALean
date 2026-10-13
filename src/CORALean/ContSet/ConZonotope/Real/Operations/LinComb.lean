@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+public import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
+
+@[expose] public section
 
 /-!
 # `ConZonotope.linComb`

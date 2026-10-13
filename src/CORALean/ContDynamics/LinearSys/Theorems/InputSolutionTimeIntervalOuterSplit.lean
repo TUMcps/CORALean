@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+
+@[expose] public section
 
 /-!
 # A time-interval input enclosure when the input set misses the origin

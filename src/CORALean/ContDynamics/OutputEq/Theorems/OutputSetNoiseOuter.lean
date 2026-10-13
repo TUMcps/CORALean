@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.OutputEq.Operations.OutputSetNoise
-import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+module
+
+public import CORALean.ContDynamics.OutputEq.Operations.OutputSetNoise
+public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+
+@[expose] public section
 
 /-!
 # `outputSetNoise` contains the output at every state, input and noise value

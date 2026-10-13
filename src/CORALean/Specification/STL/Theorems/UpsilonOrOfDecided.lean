@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Definitions.Transformation
-import CORALean.Specification.STL.Definitions.Tsupp
-import CORALean.Specification.STL.Theorems.SatOr
+module
+
+public import CORALean.Specification.STL.Definitions.Transformation
+public import CORALean.Specification.STL.Definitions.Tsupp
+public import CORALean.Specification.STL.Theorems.SatOr
+
+@[expose] public section
 
 /-!
 # A sound and complete transformation distributes over disjunction of independent formulas

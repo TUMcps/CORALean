@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
+
+@[expose] public section
 
 /-!
 # The rank of the shape matrix

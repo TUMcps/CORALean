@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.ReachOrderLe
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.ReachOrderLe
 
 /-!
 # What holds of `NeurNetContrSysDT` only at `𝕋 := ℝ`, collected

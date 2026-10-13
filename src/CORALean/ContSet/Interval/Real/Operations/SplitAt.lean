@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+
+@[expose] public section
 
 /-!
 # `Interval.splitAt`

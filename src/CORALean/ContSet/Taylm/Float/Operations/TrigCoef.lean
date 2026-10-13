@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.Global.Float.SinCos
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.Global.Float.SinCos
+
+@[expose] public section
 
 /-!
 # `Taylm.trigCoef`

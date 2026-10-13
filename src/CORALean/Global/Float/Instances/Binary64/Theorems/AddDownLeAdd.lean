@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
-import CORALean.Global.Float.Instances.Binary64.Operations.AddDown
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
+public import CORALean.Global.Float.Instances.Binary64.Operations.AddDown
+
+@[expose] public section
 
 /-!
 # Addition, rounded down, never overshoots

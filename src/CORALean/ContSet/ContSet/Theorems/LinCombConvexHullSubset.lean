@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+module
+
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+
+@[expose] public section
 
 /-!
 # For a convex representation, `linComb` holds the convex hull of the union

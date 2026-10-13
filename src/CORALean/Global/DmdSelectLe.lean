@@ -1,4 +1,8 @@
-import CORALean.Global.DmdSelect
+module
+
+public import CORALean.Global.DmdSelect
+
+@[expose] public section
 
 /-!
 # The selected candidate has the least error

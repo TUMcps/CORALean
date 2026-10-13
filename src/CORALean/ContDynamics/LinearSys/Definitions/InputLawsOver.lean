@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.InputLaws
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.InputLaws
+
+@[expose] public section
 
 /-!
 # The laws of the input solution over a time interval

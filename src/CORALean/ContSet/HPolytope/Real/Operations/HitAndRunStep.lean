@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.ChordHigh
-import CORALean.ContSet.HPolytope.Real.Operations.ChordLow
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordHigh
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordLow
+
+@[expose] public section
 
 /-!
 # `HPolytope.hitAndRunStep`

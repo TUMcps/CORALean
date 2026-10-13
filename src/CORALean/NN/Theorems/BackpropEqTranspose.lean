@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.Backprop
+module
+
+public import CORALean.NN.Operations.Backprop
+
+@[expose] public section
 
 /-!
 # Backpropagation is the transposed Jacobian applied to the output gradient

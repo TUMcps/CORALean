@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.Radius2NominalLe
-import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.Radius2NominalLe
+public import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
+
+@[expose] public section
 
 /-!
 # A member is within the certified bound of the centre

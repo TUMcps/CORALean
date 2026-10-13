@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.Raise
+module
+
+public import CORALean.NN.Operations.Raise
+
+@[expose] public section
 
 /-!
 # The neuron-wise refinement step

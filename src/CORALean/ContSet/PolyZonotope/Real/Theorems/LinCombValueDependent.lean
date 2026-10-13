@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValue
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValue
+
+@[expose] public section
 
 /-!
 # A point of `linComb` read back as a segment, where the operands are dependent

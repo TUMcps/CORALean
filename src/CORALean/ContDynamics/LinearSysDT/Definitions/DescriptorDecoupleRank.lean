@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.LinearAlgebra.Matrix.Kronecker
-import Mathlib.LinearAlgebra.Matrix.Vec
-import Mathlib.Data.Matrix.ColumnRowPartitioned
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.LinearAlgebra.Matrix.Kronecker
+public import Mathlib.LinearAlgebra.Matrix.Vec
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+
+@[expose] public section
 
 /-!
 # The decoupling rank condition of the descriptor system

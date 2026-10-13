@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Zonotope.Float.Operations.MatPlusInterval
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPlusInterval
+
+@[expose] public section
 
 /-!
 # `Zonotope.matPlusInterval` over-approximates the sum

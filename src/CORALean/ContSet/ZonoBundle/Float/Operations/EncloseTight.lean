@@ -1,9 +1,13 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
-import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
-import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
-import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
-import CORALean.ContSet.Interval.Float.Operations.Or
-import CORALean.ContSet.Interval.Float.Operations.Magnitude
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
+public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Interval.Float.Operations.Magnitude
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.encloseTight`, over a floating-point scalar

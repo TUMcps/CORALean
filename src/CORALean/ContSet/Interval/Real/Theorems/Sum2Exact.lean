@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Sum2
-import CORALean.ContSet.Interval.Real.Theorems.Sum1Exact
-import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Sum2
+public import CORALean.ContSet.Interval.Real.Theorems.Sum1Exact
+public import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
+
+@[expose] public section
 
 /-!
 # `Interval.sum₂` is exactly the set of row sums

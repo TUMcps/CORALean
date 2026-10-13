@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyDropped
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyDropped
+
+@[expose] public section
 
 /-!
 # `Zonotope.encloseManyBasis`, over a floating-point scalar

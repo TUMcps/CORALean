@@ -1,7 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.API
-import CORALean.ContDynamics.Conform.Operations.API
-import CORALean.ContDynamics.Conform.Plant
-import CORALean.ContDynamics.Conform.Theorems.API
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.API
+public import CORALean.ContDynamics.Conform.Operations.API
+public import CORALean.ContDynamics.Conform.Plant
+public import CORALean.ContDynamics.Conform.Theorems.API
 
 /-!
 # Reachset conformance, collected

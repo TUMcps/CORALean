@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.unitBox`

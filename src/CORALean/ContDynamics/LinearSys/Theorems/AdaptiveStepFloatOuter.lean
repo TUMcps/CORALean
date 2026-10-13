@@ -1,15 +1,19 @@
-import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
-import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+
+@[expose] public section
 
 /-!
 # One adaptive float step keeps what the state owes, and holds every run

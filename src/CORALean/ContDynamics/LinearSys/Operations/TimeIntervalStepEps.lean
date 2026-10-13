@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+
+@[expose] public section
 
 /-!
 # A step stated against an admissible error rather than an order

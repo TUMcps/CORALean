@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
+
+@[expose] public section
 
 /-!
 # `Zonotope.dependent`

@@ -1,5 +1,10 @@
-import CORALean.HybridDynamics.Operations.LinearResetSynchronize
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.HybridDynamics.Operations.LinearResetSynchronize
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `LinearReset.synchronize` applies to the sum

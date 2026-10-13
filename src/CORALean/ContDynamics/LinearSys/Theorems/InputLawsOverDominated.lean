@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.InputLawsOver
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovariancePosSemidef
-import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.InputLawsOver
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovariancePosSemidef
+public import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+
+@[expose] public section
 
 /-!
 # With the origin an input, the interval's laws are dominated by the one at its end

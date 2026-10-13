@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.Location
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Location.checkFlowCora`: CORA's `checkFlow` as printed, with the vector offset

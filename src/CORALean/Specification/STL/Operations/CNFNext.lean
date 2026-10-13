@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.SampledTime
+module
+
+public import CORALean.Specification.STL.Definitions.SampledTime
+
+@[expose] public section
 
 /-!
 # The next-operator on a normal form

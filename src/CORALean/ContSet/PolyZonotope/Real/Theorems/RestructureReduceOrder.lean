@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOrder
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOrder
+
+@[expose] public section
 
 /-!
 # `restructureReduce` bounds the generator count

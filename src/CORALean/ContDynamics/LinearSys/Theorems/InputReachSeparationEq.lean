@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
+
+@[expose] public section
 
 /-!
 # The input reach set separates exactly, not just up to enclosure

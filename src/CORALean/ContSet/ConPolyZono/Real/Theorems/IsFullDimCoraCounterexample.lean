@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.IsFullDimCora
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimCoraCounterexample
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.IsFullDimCora
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimCoraCounterexample
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+
+@[expose] public section
 
 /-!
 # CORA's `conPolyZono/isFullDim` accepts a curve

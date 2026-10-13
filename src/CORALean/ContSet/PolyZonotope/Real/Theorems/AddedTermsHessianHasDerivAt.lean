@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AddedTermsPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
-import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AddedTermsPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
+
+@[expose] public section
 
 /-!
 # `addedTermsHessian` is the Hessian of the weighted sum

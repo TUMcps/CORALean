@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.Global.SuperlinearDecrease
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.Global.SuperlinearDecrease
+
+@[expose] public section
 
 /-!
 # `Lemma 1`: the exponential remainder decreases superlinearly

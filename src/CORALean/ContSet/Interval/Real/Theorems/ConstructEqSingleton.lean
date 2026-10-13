@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+
+@[expose] public section
 
 /-!
 # A box that is a single point has both bounds at it

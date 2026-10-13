@@ -1,5 +1,9 @@
-import CORALean.Global.JacobiExistence
-import CORALean.Global.JacobiSlice
+module
+
+public import CORALean.Global.JacobiExistence
+public import CORALean.Global.JacobiSlice
+
+@[expose] public section
 
 /-!
 # The preconditioned Jacobi test on a slice proves a pre-image

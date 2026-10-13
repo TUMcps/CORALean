@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
-import Mathlib.Order.Interval.Finset.Nat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+public import Mathlib.Order.Interval.Finset.Nat
+
+@[expose] public section
 
 /-!
 # `Σᵢ Ãᵢ`, the correlated summand's single matrix

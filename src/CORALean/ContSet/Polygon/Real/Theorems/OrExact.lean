@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.Or
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Or
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.or` is the union

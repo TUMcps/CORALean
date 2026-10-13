@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
-import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
+public import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
+
+@[expose] public section
 
 /-!
 # A certified zero row is the zero functional

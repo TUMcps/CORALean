@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGen
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGen
+
+@[expose] public section
 
 /-!
 # What `relaxExp`'s two stored columns can be off by

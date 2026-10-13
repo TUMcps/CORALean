@@ -1,12 +1,16 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
-import CORALean.Global.Float.ToRat
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
-import CORALean.Global.Float.Instances.Flint.Definitions.Axioms
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealHalf
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealLeOfLe
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMaximum
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMinimum
-import CORALean.Global.Float.Instances.Flint.Theorems.ToRealNeg
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
+public import CORALean.Global.Float.Instances.Flint.Definitions.Axioms
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealHalf
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealLeOfLe
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMaximum
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMinimum
+public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealNeg
+
+@[expose] public section
 
 /-!
 # `Flint p` as a sound float model

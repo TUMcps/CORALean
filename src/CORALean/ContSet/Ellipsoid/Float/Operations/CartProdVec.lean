@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.cartProdVec`, over a floating-point scalar

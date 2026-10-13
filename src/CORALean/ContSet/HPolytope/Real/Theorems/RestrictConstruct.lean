@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+
+@[expose] public section
 
 /-!
 # The set of a restricted polytope

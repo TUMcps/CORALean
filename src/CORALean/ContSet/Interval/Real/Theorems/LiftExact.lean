@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
-import CORALean.ContSet.Interval.Real.Operations.Lift
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
+public import CORALean.ContSet.Interval.Real.Operations.Lift
+
+@[expose] public section
 
 /-!
 # `Interval.lift_` is exact

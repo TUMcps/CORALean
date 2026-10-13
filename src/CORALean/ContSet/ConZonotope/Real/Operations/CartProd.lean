@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import Mathlib.Algebra.Module.Prod
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import Mathlib.Algebra.Module.Prod
+
+@[expose] public section
 
 /-!
 # `ConZonotope.cartProd`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.representsa_origin_iff`

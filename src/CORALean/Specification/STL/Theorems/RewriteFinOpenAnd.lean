@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.STL
-import CORALean.Specification.STL.Theorems.SatAnd
+module
+
+public import CORALean.Specification.STL.STL
+public import CORALean.Specification.STL.Theorems.SatAnd
+
+@[expose] public section
 
 /-!
 # Rewriting, `F_I` of a conjunction

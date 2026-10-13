@@ -1,6 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+
+@[expose] public section
+
 /-!
 # A passed `Zonotope.ballCert` puts a box of points in the nominal set
 

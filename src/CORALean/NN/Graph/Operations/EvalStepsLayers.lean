@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # A chain of message-passing steps with a layer after each, at one matrix

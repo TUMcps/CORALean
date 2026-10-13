@@ -1,15 +1,17 @@
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheck
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetOuter
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetSubsetReach
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionFloatOuter
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatCheckedEqSome
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheckFloat
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheck
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetOuter
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetSubsetReach
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionFloatOuter
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatCheckedEqSome
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheckFloat
 
 /-!
 # What a sampled network in the loop guarantees

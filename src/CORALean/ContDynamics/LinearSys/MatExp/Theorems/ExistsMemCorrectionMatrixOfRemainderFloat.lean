@@ -1,21 +1,25 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulVecEqOfNormLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RescaledPeanoBakerTermMemMatPow
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
-import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
-import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulVecEqOfNormLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RescaledPeanoBakerTermMemMatPow
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Interval.Real.Theorems.AbsMaxSmul
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # The truncated Peano–Baker series plus a short remainder, over a float box

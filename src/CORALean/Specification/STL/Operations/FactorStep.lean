@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.FactorMeet
+module
+
+public import CORALean.Specification.STL.Operations.FactorMeet
+
+@[expose] public section
 
 /-!
 # One pass of the inner loop of [1, Alg. 2]

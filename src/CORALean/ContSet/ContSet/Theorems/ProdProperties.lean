@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Topology.Bornology.Constructions
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Topology.Bornology.Constructions
+
+@[expose] public section
 
 /-!
 # What a Cartesian product does to emptiness, degeneracy and boundedness

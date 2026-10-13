@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Relu
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.ReluRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.Relu
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.ReluRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the ReLU layer encloses

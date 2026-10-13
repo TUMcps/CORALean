@@ -1,11 +1,15 @@
-import CORALean.ContSet.Interval.Float.Theorems.LeSound
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerStepSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PointBoxOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PrecondRegularInjective
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.LeSound
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerStepSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PointBoxOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PrecondRegularInjective
+
+@[expose] public section
 
 /-!
 # `innerTest` proves an inner box

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # Half a sum of two vectors in boxes is in the halved sum box

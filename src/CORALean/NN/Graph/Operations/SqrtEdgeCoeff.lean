@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.DegreeCoeff
-import CORALean.NN.Graph.Operations.SqrtSlope
+module
+
+public import CORALean.NN.Graph.Operations.DegreeCoeff
+public import CORALean.NN.Graph.Operations.SqrtSlope
+
+@[expose] public section
 
 /-!
 # The generator `s_j` puts on one uncertain edge's factor

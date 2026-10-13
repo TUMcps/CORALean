@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorEqIntegralDefect
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HasDerivAtExpSmulMulVec
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DefectOfKrylovIdentity
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorEqIntegralDefect
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HasDerivAtExpSmulMulVec
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecLe
+
+@[expose] public section
 
 /-!
 # The Krylov error is bounded by the integral of `|δ_m|`, in the nonexpansive case

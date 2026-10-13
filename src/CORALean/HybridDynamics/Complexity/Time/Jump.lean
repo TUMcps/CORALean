@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Operations.Jump
-import CORALean.HybridDynamics.Operations.JumpOfPoint
-import CORALean.Global.Cost
+module
+
+public import CORALean.HybridDynamics.Operations.Jump
+public import CORALean.HybridDynamics.Operations.JumpOfPoint
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Transition.jumpCost`

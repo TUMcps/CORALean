@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalState
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalState
+
+@[expose] public section
 
 /-!
 # The interval observer

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.ContDynamics.Reach.Operations.Steps
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.ContDynamics.Reach.Operations.Steps
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # Wrapping-free reachability in floats: `R(τ_k) = [e^{A t_k}] R(τ_0)`

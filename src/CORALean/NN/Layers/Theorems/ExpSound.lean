@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Exp
-import CORALean.NN.Layers.Theorems.ActivationOuterWhere
-import CORALean.NN.Layers.Theorems.ExpRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.Exp
+public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
+public import CORALean.NN.Layers.Theorems.ExpRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the exponential layer encloses

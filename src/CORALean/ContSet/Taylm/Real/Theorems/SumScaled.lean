@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Sum
-import CORALean.ContSet.Taylm.Real.Theorems.WeightAppend
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Sum
+public import CORALean.ContSet.Taylm.Real.Theorems.WeightAppend
+
+@[expose] public section
 
 /-!
 # `Taylm.sum` keeps the scaling

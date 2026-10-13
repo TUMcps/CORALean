@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionWithSel
-import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionWithSel
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
+
+@[expose] public section
 
 /-!
 # The monomial of a column carrying the selector

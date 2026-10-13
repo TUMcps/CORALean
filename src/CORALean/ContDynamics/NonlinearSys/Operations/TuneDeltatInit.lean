@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GainMax
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GainMax
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 3-7: the first step's search for `Δ`

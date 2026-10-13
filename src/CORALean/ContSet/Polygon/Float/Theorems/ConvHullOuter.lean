@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Operations.ConvHull
-import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.ConvHull
+public import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # `Polygon.convHull` contains the convex hull of the polygon

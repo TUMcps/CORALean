@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.NonlinearARX
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+module
+
+public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+
+@[expose] public section
 
 /-!
 # Conversion to a discrete-time nonlinear system

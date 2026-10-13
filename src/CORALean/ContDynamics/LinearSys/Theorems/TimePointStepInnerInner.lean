@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Definitions.StepInner
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.StepInner
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # The first inner approximation of a continuous reachable set here

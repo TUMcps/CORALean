@@ -1,11 +1,15 @@
-import CORALean.ContSet.Taylm.Real.Operations.GoLowerBound
-import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
-import CORALean.ContSet.Taylm.Real.Theorems.PolyBoxBoundsMem
-import CORALean.ContSet.Taylm.Real.Theorems.ReexpandOuter
-import CORALean.ContSet.Taylm.Real.Theorems.ExistsNormalized
-import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-import CORALean.ContSet.Taylm.Real.Theorems.LdbLe
-import CORALean.ContSet.Taylm.Real.Theorems.QfbLowerLe
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.GoLowerBound
+public import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoxBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.ReexpandOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.ExistsNormalized
+public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.LdbLe
+public import CORALean.ContSet.Taylm.Real.Theorems.QfbLowerLe
+
+@[expose] public section
 
 /-!
 # COSY-GO's bound of a box is a lower bound

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Float.Operations.Taylor
-import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
-import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-import CORALean.Global.TaylorRemainder
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Taylor
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
+public import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.Global.TaylorRemainder
+
+@[expose] public section
 
 /-!
 # `Taylm.taylor` encloses `g ∘ f`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.Enclose
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Enclose
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # CORA's `capsule/enclose` misses the set its header documents

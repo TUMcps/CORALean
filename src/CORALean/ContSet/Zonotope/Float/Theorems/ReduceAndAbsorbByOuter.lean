@@ -1,12 +1,16 @@
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsAbsorbedLeRadius
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsSubMidLeErrorRadius
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.ShiftBracketsMid
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsAbsorbedLeRadius
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsSubMidLeErrorRadius
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.ShiftBracketsMid
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+
+@[expose] public section
 
 /-!
 # `reduceAndAbsorbBy` keeps the set it had

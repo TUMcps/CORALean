@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # What `PolyZonotope.jacobian` can be off by

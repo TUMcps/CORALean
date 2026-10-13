@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.ConvHull
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.ConvHull
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.convHull` is the convex hull

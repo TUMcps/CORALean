@@ -1,5 +1,9 @@
-import CORALean.Global.Scalar
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.Global.Scalar
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # Set representations

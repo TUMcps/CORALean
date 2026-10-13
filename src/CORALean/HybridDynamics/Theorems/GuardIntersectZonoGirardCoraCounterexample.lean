@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirardCora
-import CORALean.HybridDynamics.Theorems.RobustProjectionCoraCounterexample
+module
+
+public import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirardCora
+public import CORALean.HybridDynamics.Theorems.RobustProjectionCoraCounterexample
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectZonoGirardCora` misses every state of the hyperplane

@@ -1,12 +1,16 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ProjectOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.convHull_` encloses the convex hull of the union, over a floating-point scalar

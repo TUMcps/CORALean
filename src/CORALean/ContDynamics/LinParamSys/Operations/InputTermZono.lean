@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.MatPow
-import CORALean.ContSet.Zonotope.Real.Operations.Map
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.MatPow
+public import CORALean.ContSet.Zonotope.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # The matrix-zonotope order `i` contributes to the input solution, exactly

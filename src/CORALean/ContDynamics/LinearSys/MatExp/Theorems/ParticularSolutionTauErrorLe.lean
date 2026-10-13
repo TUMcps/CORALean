@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionTauErrorBound
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
-import CORALean.Global.Err
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularSolutionTauErrorBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # `particularSolutionTauError` is within `√n` times its own explicit bound

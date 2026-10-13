@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyBasis
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyBasis
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `Zonotope.encloseMany`

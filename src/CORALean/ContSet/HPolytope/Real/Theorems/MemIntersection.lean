@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # Membership in a concatenated constraint list

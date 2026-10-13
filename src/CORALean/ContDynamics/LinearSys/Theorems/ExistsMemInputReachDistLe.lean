@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormMulNormExpIntegralSubLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubOneSubLeSqMulExp
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormMulNormExpIntegralSubLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubOneSubLeSqMulExp
+
+@[expose] public section
 
 /-!
 # Every point of `□(β_r)` is nearly reached by a constant input

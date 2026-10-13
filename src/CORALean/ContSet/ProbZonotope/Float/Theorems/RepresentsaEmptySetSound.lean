@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.representsaEmptySet` is sound

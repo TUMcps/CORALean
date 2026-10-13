@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.Global.DropIdx
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.Global.DropIdx
+
+@[expose] public section
 
 /-!
 # A redundant point of a V-polytope

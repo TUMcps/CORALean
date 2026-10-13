@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeOuter
-import CORALean.ContSet.SpectraShadow.Real.Theorems.TranslateMem
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeOuter
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.TranslateMem
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+
+@[expose] public section
 
 /-!
 # The outer polytope of a shadow encloses it

@@ -1,6 +1,10 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Empty
-import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Empty
+public import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `LevelSet.empty` denotes the empty set

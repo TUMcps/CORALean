@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumMatrixEntryEq
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumMatrixEntryEq
+
+@[expose] public section
 
 /-!
 # `Σ_{i>η} Ãᵢ` is entrywise under `E(Δt,η)·Δt`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.Pow
-import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
-import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Pow
+public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.pow` encloses the power

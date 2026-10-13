@@ -1,14 +1,18 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # What `PolyZonotope` instantiates

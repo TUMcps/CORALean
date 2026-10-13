@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.SegmentLength
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.SegmentLength
+
+@[expose] public section
 
 /-!
 # `Zonotope.enclosePointsMaiga`

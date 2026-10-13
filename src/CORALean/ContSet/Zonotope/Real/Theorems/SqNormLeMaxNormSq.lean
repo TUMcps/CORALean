@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
-import Mathlib.Order.ConditionallyCompleteLattice.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
+public import Mathlib.Order.ConditionallyCompleteLattice.Basic
+
+@[expose] public section
 
 /-!
 # Every point is within the maximum norm

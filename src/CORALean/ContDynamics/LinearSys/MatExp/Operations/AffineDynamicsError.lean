@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinus
-import CORALean.Global.Err
-import CORALean.Global.EuclideanGenOpNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinus
+public import CORALean.Global.Err
+public import CORALean.Global.EuclideanGenOpNorm
+
+@[expose] public section
 
 /-!
 # `Δε^h_k`, eq. (23)

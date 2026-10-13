@@ -1,11 +1,15 @@
-import CORALean.NN.Definitions.RefinableNetwork
-import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
-import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
-import CORALean.NN.Layers.Layer
-import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
-import CORALean.NN.Operations.LayerRefinable
+module
+
+public import CORALean.NN.Definitions.RefinableNetwork
+public import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
+public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Layers.Operations.Linear
+public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
+public import CORALean.NN.Operations.LayerRefinable
+
+@[expose] public section
 
 /-!
 # The refinable networks the convergence theorems are about

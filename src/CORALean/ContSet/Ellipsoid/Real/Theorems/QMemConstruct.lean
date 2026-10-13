@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.q_mem_construct`

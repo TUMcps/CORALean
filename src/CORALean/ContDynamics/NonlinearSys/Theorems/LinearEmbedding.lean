@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.ContDynamics.LinearSys.LinearSys
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContDynamics.LinearSys.LinearSys
+
+@[expose] public section
 
 /-!
 # A linear system is a nonlinear one

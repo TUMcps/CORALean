@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
-import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
+public import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # Every classical run is its matrix exponential plus its inputs

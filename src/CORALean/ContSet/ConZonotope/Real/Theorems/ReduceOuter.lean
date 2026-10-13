@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduce` over-approximates

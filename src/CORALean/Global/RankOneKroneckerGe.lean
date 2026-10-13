@@ -1,7 +1,11 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.LinearAlgebra.Matrix.Kronecker
-import Mathlib.LinearAlgebra.Dimension.Constructions
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.LinearAlgebra.Matrix.Kronecker
+public import Mathlib.LinearAlgebra.Dimension.Constructions
+
+@[expose] public section
 
 /-!
 # The rank of `I ⊗ M`

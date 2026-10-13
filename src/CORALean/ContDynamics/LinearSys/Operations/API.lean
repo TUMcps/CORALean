@@ -1,192 +1,194 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepOrder
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearch
-import CORALean.ContDynamics.LinearSys.Operations.AffineDynamicsErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.AffineTimeIntervalOuterFloat
-import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoInit
-import CORALean.ContDynamics.LinearSys.Operations.AutoInitFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoReach
-import CORALean.ContDynamics.LinearSys.Operations.AutoReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoRun
-import CORALean.ContDynamics.LinearSys.Operations.AutoRunFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoStep
-import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaTFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrder
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearchFloat
-import CORALean.ContDynamics.LinearSys.Operations.BundleReach
-import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachBox
-import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
-import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
-import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosure
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotope
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Operations.GirardReach
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionBoxFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumBoxFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTermBoxFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionSet
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
-import CORALean.ContDynamics.LinearSys.Operations.InputTerm
-import CORALean.ContDynamics.LinearSys.Operations.ManualInit
-import CORALean.ContDynamics.LinearSys.Operations.ManualReach
-import CORALean.ContDynamics.LinearSys.Operations.ManualRun
-import CORALean.ContDynamics.LinearSys.Operations.ManualStep
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInit
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMuFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPoly
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPolyFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStep
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReach
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInit
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInitFloat
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachP
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachPFloat
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRun
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRunFloat
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStep
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupport
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupportFloat
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
-import CORALean.ContDynamics.LinearSys.Operations.OneStep
-import CORALean.ContDynamics.LinearSys.Operations.OneStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.NonlinearSysFloatModel
-import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinearSys.Operations.PostDelta
-import CORALean.ContDynamics.LinearSys.Operations.PostDeltaSplit
-import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
-import CORALean.ContDynamics.LinearSys.Operations.Reach
-import CORALean.ContDynamics.LinearSys.Operations.ReachAdmissible
-import CORALean.ContDynamics.LinearSys.Operations.ReachError
-import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachExcessFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
-import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
-import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
-import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
-import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
-import CORALean.ContDynamics.LinearSys.Operations.ErrorEdge
-import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptive
-import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrder
-import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
-import CORALean.ContDynamics.LinearSys.Operations.IsCanonicalFormFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
-import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFree
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
-import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
-import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
-import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
-import CORALean.ContDynamics.LinearSys.Operations.StepInput
-import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePoint
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRepFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
-import CORALean.ContDynamics.LinearSys.Operations.TunedInit
-import CORALean.ContDynamics.LinearSys.Operations.TunedReach
-import CORALean.ContDynamics.LinearSys.Operations.TunedRun
-import CORALean.ContDynamics.LinearSys.Operations.TunedStep
-import CORALean.ContDynamics.LinearSys.Operations.Verify
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRAIntersectionDistanceCora
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRAOuterVerdictCora
-import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
-import CORALean.ContDynamics.LinearSys.Operations.VerifyFloat
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat
-import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaximumFold
-import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
-import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
-import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
-import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
-import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReachStepk
-import CORALean.ContDynamics.LinearSys.Operations.DeltaReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearchFloat
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
-import CORALean.ContDynamics.LinearSys.Operations.Identify
-import CORALean.ContDynamics.LinearSys.Operations.IdentifyCandidate
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatChecked
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatChecked
-import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloatChecked
-import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputChecked
-import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloatChecked
-import CORALean.ContDynamics.LinearSys.Operations.ManualInitFloat
-import CORALean.ContDynamics.LinearSys.Operations.ManualStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
-import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderErrorFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEpsFloat
-import CORALean.ContDynamics.LinearSys.Operations.GirardReachFloat
-import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptiveFloat
-import CORALean.ContDynamics.LinearSys.Operations.ErrorEdgeFloat
-import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
-import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachErosionFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
-import CORALean.ContDynamics.LinearSys.Operations.SupportLower
-import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
-import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
-import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
-import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepOrder
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearch
+public import CORALean.ContDynamics.LinearSys.Operations.AffineDynamicsErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AffineTimeIntervalOuterFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoInit
+public import CORALean.ContDynamics.LinearSys.Operations.AutoInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoReach
+public import CORALean.ContDynamics.LinearSys.Operations.AutoReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoRun
+public import CORALean.ContDynamics.LinearSys.Operations.AutoRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoStep
+public import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaTFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrder
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearchFloat
+public import CORALean.ContDynamics.LinearSys.Operations.BundleReach
+public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachBox
+public import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
+public import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosure
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotope
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Operations.GirardReach
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionBoxFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumBoxFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTermBoxFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionSet
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
+public import CORALean.ContDynamics.LinearSys.Operations.InputTerm
+public import CORALean.ContDynamics.LinearSys.Operations.ManualInit
+public import CORALean.ContDynamics.LinearSys.Operations.ManualReach
+public import CORALean.ContDynamics.LinearSys.Operations.ManualRun
+public import CORALean.ContDynamics.LinearSys.Operations.ManualStep
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInit
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMuFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPoly
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPolyFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStep
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReach
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInit
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachP
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachPFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRun
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStep
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupport
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupportFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.OneStep
+public import CORALean.ContDynamics.LinearSys.Operations.OneStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.NonlinearSysFloatModel
+public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
+public import CORALean.ContDynamics.LinearSys.Operations.PostDelta
+public import CORALean.ContDynamics.LinearSys.Operations.PostDeltaSplit
+public import CORALean.ContDynamics.LinearSys.Operations.PropagateInputSolution
+public import CORALean.ContDynamics.LinearSys.Operations.Reach
+public import CORALean.ContDynamics.LinearSys.Operations.ReachAdmissible
+public import CORALean.ContDynamics.LinearSys.Operations.ReachError
+public import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachExcessFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorEdge
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptive
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrder
+public import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
+public import CORALean.ContDynamics.LinearSys.Operations.IsCanonicalFormFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFree
+public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
+public import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
+public import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+public import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
+public import CORALean.ContDynamics.LinearSys.Operations.TunedInit
+public import CORALean.ContDynamics.LinearSys.Operations.TunedReach
+public import CORALean.ContDynamics.LinearSys.Operations.TunedRun
+public import CORALean.ContDynamics.LinearSys.Operations.TunedStep
+public import CORALean.ContDynamics.LinearSys.Operations.Verify
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRAIntersectionDistanceCora
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRAOuterVerdictCora
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaximumFold
+public import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
+public import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
+public import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
+public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
+public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReachStepk
+public import CORALean.ContDynamics.LinearSys.Operations.DeltaReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepSearchFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
+public import CORALean.ContDynamics.LinearSys.Operations.Identify
+public import CORALean.ContDynamics.LinearSys.Operations.IdentifyCandidate
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatChecked
+public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatChecked
+public import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloatChecked
+public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputChecked
+public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloatChecked
+public import CORALean.ContDynamics.LinearSys.Operations.ManualInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ManualStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderErrorFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEpsFloat
+public import CORALean.ContDynamics.LinearSys.Operations.GirardReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptiveFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorEdgeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AffineTimePointNextFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachErosionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.SupportLower
+public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
+public import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
+public import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
+public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
 
 /-!
 # What a continuous-time linear system computes

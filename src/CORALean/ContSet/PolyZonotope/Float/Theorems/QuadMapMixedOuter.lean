@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
-import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.quadMapMixed` over-approximates the pairwise image

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatSearchFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachSizeEstimateFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatSearchFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachSizeEstimateFloat
+
+@[expose] public section
 
 /-!
 # `optDeltat`: the time step size that balances the two wrapping effects, in floats

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # `e^{At}` lies in `expIntervalFloat` at every member and every time of its range

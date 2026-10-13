@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Operations.Sum1
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Sum1
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # `Interval.sum₁` is exactly the set of column sums

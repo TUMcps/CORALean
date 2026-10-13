@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinParam
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinParam
+
+@[expose] public section
 
 /-!
 # A nonlinear system's trajectories are its embedding's

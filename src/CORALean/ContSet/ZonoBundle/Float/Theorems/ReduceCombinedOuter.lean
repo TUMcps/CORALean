@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
-import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.reduceCombined` encloses the bundle

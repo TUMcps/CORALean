@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
-import Mathlib.Data.Finset.Lattice.Fold
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
+public import Mathlib.Data.Finset.Lattice.Fold
+
+@[expose] public section
 
 /-!
 # A bundle of boxes is a box

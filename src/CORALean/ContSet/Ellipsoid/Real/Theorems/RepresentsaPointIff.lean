@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreMemConstruct
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreMemConstruct
+
+@[expose] public section
 
 /-!
 # An ellipsoid is a point iff its generator matrix vanishes

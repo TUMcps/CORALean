@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Operations.MinusFrom
-import CORALean.ContSet.ContSet.Theorems.UminusOuter
-import CORALean.Global.NegScalar
+module
+
+public import CORALean.ContSet.ContSet.Operations.MinusFrom
+public import CORALean.ContSet.ContSet.Theorems.UminusOuter
+public import CORALean.Global.NegScalar
+
+@[expose] public section
 
 /-!
 # `minusFrom` encloses the reflected translate

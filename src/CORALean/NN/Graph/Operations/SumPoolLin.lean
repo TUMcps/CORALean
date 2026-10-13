@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # Summation pooling as one linear map

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveLoopOuter
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveLoopOuter
+
+@[expose] public section
 
 /-!
 # `reachAdaptive` holds every certified run

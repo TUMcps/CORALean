@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
-import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
-import CORALean.ContSet.Zonotope.Real.Operations.EnclRatioLoop
-import CORALean.ContSet.Zonotope.Real.Operations.Recentre
-import CORALean.Global.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+public import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
+public import CORALean.ContSet.Zonotope.Real.Operations.EnclRatioLoop
+public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+public import CORALean.Global.Sort
+
+@[expose] public section
 
 /-!
 # `Alg. 1`: which generators of the minuend have to enclose the subtrahend

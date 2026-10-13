@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Isequal
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Isequal
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.isequal` decides equality of the denotations

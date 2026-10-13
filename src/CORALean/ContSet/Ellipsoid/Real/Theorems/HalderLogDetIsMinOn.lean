@@ -1,9 +1,13 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetHasDerivAt
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityStrictAntiOn
-import Mathlib.Analysis.Calculus.MeanValue
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetHasDerivAt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityStrictAntiOn
+public import Mathlib.Analysis.Calculus.MeanValue
+
+@[expose] public section
 
 /-!
 # The root of Halder's stationarity equation minimises the volume

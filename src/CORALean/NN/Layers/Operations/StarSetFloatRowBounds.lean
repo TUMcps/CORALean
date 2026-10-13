@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.NN.Layers.Operations.StarSetFloatContSet
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.NN.Layers.Operations.StarSetFloatContSet
+
+@[expose] public section
 
 /-!
 # The bounds of one neuron of a float star set

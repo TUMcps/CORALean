@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
-import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope with no zero exponent column contains its centre

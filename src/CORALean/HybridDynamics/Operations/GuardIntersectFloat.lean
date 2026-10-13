@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
-import CORALean.ContSet.Interval.Float.Operations.Or
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
+public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectFloat`

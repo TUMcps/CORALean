@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `Zonotope.ofEntryBounds` contains the exact zonotope it brackets

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryStepInputOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryStepInputOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
+
+@[expose] public section
 
 /-!
 # The re-linearization loop, each step's input enclosure named

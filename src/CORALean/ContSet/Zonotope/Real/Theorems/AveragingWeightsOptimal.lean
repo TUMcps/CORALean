@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AveragingWeights
-import CORALean.ContSet.Zonotope.Real.Operations.AndAveraging
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.BigOperators.Ring.Finset
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AveragingWeights
+public import CORALean.ContSet.Zonotope.Real.Operations.AndAveraging
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The averaging weights minimize the Frobenius norm

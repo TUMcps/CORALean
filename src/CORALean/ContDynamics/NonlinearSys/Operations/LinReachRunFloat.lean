@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
+
+@[expose] public section
 
 /-!
 # The float `linReach` loop, at `alg = 'lin'` or `'poly'`

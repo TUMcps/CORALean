@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDiff
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDown
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDown
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGUp
+
+@[expose] public section
 
 /-!
 # How far a stored `quadMap` generator can be from the exact bilinear form

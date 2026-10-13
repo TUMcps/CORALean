@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Float.Instances
-import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.HybridDynamics.Operations.GuardIntersectFloat
+module
+
+public import CORALean.ContSet.HPolytope.Float.Instances
+public import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.HybridDynamics.Operations.GuardIntersectFloat
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectFloat` holds every state that meets the guard

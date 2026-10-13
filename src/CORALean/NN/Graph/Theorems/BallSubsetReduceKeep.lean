@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.ReduceKeep
-import CORALean.NN.Graph.Theorems.BallMono
+module
+
+public import CORALean.NN.Graph.Operations.ReduceKeep
+public import CORALean.NN.Graph.Theorems.BallMono
+
+@[expose] public section
 
 /-!
 # The kept sets contain what the remaining steps read

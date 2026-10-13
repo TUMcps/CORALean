@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeast
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeast
+
+@[expose] public section
 
 /-!
 # Emptiness by one linear program

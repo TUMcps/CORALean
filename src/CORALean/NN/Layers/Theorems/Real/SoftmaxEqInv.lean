@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.Softmax
+module
+
+public import CORALean.NN.Layers.Definitions.Softmax
+
+@[expose] public section
 
 /-!
 # Softmax, divided through by its own term

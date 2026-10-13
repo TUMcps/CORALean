@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+
+@[expose] public section
 
 /-!
 # Padding the factor list moves no set

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Sin
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Sin
+
+@[expose] public section
 
 /-!
 # `Interval.sin` contains the image under `sin`

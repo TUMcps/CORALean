@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachRunLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachRunLe
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2]'s eq. (21) at the varying step parameters of `Alg. 2`

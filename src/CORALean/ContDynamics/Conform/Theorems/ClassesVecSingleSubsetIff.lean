@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Theorems.MemZcpSetIff
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.MemZcpSetIff
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A class is predicted iff a coefficient vector scores it highest

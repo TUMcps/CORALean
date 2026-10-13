@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `C`, the curvature enclosure

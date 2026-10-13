@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Tensor
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Diagonal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # `interval(Z)` as a zonotope

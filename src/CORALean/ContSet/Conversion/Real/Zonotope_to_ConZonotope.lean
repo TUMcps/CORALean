@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+
+@[expose] public section
 
 /-!
 # A zonotope is a constrained one with nothing to satisfy

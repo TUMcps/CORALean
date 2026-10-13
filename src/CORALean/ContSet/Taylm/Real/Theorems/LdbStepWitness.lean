@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Theorems.LdbStepReduce
+module
+
+public import CORALean.ContSet.Taylm.Real.Theorems.LdbStepReduce
+
+@[expose] public section
 
 /-!
 # LDB keeps a point at most `Min`

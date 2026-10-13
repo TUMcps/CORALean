@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.HPolytopeStackProd
-import CORALean.HybridDynamics.Parallel.Operations.BlockProj
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.HPolytopeStackProd
+public import CORALean.HybridDynamics.Parallel.Operations.BlockProj
+
+@[expose] public section
 
 /-!
 # `HPolytope.stackProd`'s rows at a pair

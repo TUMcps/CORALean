@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Theorems.TimesOuter
-import CORALean.ContSet.Interval.Real.Theorems.ExistsMulEq
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsMulEq
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.times` is exactly the set of entrywise products of nonempty boxes

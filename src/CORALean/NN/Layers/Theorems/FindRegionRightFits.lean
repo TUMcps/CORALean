@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.FindRegionRight
-import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
+module
+
+public import CORALean.NN.Layers.Operations.FindRegionRight
+public import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
+
+@[expose] public section
 
 /-!
 # The right region found fits

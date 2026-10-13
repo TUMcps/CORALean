@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Capsule
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+
+@[expose] public section
 
 /-!
 # A capsule with a negative radius is empty

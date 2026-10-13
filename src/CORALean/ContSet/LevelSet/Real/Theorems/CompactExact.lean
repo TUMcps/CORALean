@@ -1,5 +1,9 @@
-import Mathlib.Tactic.Linarith
-import CORALean.ContSet.LevelSet.Real.Operations.Compact
+module
+
+public import Mathlib.Tactic.Linarith
+public import CORALean.ContSet.LevelSet.Real.Operations.Compact
+
+@[expose] public section
 
 /-!
 # `LevelSet.compact_` is exact

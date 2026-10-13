@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.KeepColumn
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.KeepColumn
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # `Zonotope.compactZeros`, over a floating-point scalar

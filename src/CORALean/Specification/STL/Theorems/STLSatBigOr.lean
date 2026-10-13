@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.STL
+module
+
+public import CORALean.Specification.STL.STL
+
+@[expose] public section
 
 /-!
 # A disjunction of STL formulas

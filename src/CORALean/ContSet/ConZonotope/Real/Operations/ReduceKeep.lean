@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.KeepSplit
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSplit
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceKeep`

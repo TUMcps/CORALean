@@ -1,4 +1,8 @@
-import Mathlib.Topology.MetricSpace.Pseudo.Defs
+module
+
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
+
+@[expose] public section
 
 /-!
 # `Assumption 1`: a step error converges to zero

@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.Eval
+module
+
+public import CORALean.NN.Operations.Eval
+
+@[expose] public section
 
 /-!
 # A network is sound at what it computes

@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.EvalPoly
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Data.Nat.SuccPred
+module
+
+public import CORALean.NN.Layers.Definitions.EvalPoly
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Data.Nat.SuccPred
+
+@[expose] public section
 
 /-!
 # Padding changes no value of a polynomial

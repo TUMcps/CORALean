@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LineClBasis
-import CORALean.ContSet.Zonotope.Real.Theorems.LineClKeepIsUnitDet
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LineClBasis
+public import CORALean.ContSet.Zonotope.Real.Theorems.LineClKeepIsUnitDet
+
+@[expose] public section
 
 /-!
 # The clustering basis is invertible

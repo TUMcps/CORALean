@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Theorems.ContainsPointIff
+module
+
+public import CORALean.ContSet.Capsule.Real.Theorems.ContainsPointIff
+
+@[expose] public section
 
 /-!
 # [1, Table 2]'s capsule test, its first inequality made non-strict, is exact

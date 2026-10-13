@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+
+@[expose] public section
 
 /-!
 # `r_j = 0` makes the partial solve exact, given an `R_j` that satisfies (A.1)

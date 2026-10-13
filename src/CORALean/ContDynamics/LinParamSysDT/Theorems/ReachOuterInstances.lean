@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.VPolytope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.VPolytope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `reach_outer`, at the four system-matrix representations it now covers

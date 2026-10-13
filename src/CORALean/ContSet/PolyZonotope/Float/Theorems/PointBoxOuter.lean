@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `pointBox` encloses the dependent point

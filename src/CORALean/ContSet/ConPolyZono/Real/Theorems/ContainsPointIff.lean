@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPoint
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPoint
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
+
+@[expose] public section
 
 /-!
 # `[p; 0]` is in the extended polynomial zonotope iff `p` is in the set

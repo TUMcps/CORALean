@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Tensor
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # Coordinates of a point of a planar zonotope

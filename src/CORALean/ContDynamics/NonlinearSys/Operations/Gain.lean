@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
+
+@[expose] public section
 
 /-!
 # The gain function

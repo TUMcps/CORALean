@@ -1,8 +1,12 @@
-import CORALean.Global.CoeffNorm
-import CORALean.Global.DotProductLeCoeffNorm
-import CORALean.Global.GaussianRoundingLe
-import CORALean.Global.LinearRelaxationDual
-import Mathlib.Analysis.InnerProductSpace.PiL2
+module
+
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.DotProductLeCoeffNorm
+public import CORALean.Global.GaussianRoundingLe
+public import CORALean.Global.LinearRelaxationDual
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+
+@[expose] public section
 
 /-!
 # The accuracy of the linear relaxation

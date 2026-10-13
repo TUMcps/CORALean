@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripStep
-import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionTimeUpdateOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionUpdateOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripStep
+public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionTimeUpdateOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionUpdateOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
+
+@[expose] public section
 
 /-!
 # One instant of the strip-based diffusion observer holds the next state

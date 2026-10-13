@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.Select
+module
+
+public import CORALean.NN.Graph.Operations.Select
+
+@[expose] public section
 
 /-!
 # `select` multiplies out to row selection

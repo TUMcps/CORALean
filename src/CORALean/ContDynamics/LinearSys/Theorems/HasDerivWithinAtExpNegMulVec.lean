@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.SpecialFunctions.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+
+@[expose] public section
 
 /-!
 # The substitution that cancels the dynamics

@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import Mathlib.Analysis.Normed.Lp.ProdLp
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import Mathlib.Analysis.Normed.Lp.ProdLp
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # A row of `G' = [G, c - d]`

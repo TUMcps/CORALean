@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `expRemainderBound` is monotone in `‖A‖`

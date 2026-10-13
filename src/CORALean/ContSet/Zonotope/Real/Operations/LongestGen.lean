@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Tensor
-import Mathlib.Data.List.MinMax
-import Mathlib.Data.Fintype.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Tensor
+public import Mathlib.Data.List.MinMax
+public import Mathlib.Data.Fintype.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.longestGen`

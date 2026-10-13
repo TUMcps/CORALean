@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.HPolytope.Real.HPolytope
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+
+@[expose] public section
 
 /-!
 # `Alg. 3` lines 3-25: one iteration of the main loop

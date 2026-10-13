@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Theorems.SatOfPform
-import CORALean.Specification.STL.Definitions.Transformation
+module
+
+public import CORALean.Specification.STL.Theorems.SatOfPform
+public import CORALean.Specification.STL.Definitions.Transformation
+
+@[expose] public section
 
 /-!
 # Eq. 10 needs every `R(t)` non-empty

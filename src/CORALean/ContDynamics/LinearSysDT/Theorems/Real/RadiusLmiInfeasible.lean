@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Data.Matrix.Block
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Data.Matrix.Block
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The radius condition of the LPV estimator has no solution

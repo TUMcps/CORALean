@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+
+@[expose] public section
 
 /-!
 # `Zonotope.polygon`, over a floating-point scalar

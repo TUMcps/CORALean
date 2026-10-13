@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
+
+@[expose] public section
 
 /-!
 # `SetBasedNet.neurons`

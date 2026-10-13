@@ -1,12 +1,16 @@
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.Global.SqrtDeriv
-import CORALean.Global.Float.HalfPow
-import CORALean.Global.Float.IntRound
-import CORALean.Global.Float.Sqrt
-import CORALean.Global.Float.PowDown
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.DivFact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.Global.SqrtDeriv
+public import CORALean.Global.Float.HalfPow
+public import CORALean.Global.Float.IntRound
+public import CORALean.Global.Float.Sqrt
+public import CORALean.Global.Float.PowDown
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.DivFact
+
+@[expose] public section
 
 /-!
 # The `k`-th Taylor coefficient of `√`, enclosed

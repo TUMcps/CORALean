@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Order.Filter.Basic
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Order.Filter.Basic
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Halfspaces strictly containing an enclosure are redundant

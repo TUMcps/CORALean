@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.RowsRhs
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.RowsRhs
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A point is in a polytope iff every row holds

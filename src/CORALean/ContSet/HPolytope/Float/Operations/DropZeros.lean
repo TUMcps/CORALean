@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
-import CORALean.ContSet.HPolytope.Float.Operations.Restrict
-import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
+public import CORALean.ContSet.HPolytope.Float.Operations.Restrict
+public import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
+
+@[expose] public section
 
 /-!
 # `HPolytope.dropZeros`: the zero-row step of `compact_`

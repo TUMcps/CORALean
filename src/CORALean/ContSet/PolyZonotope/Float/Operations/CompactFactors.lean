@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+
+@[expose] public section
 
 /-!
 # Dropping the factors no column reads, over a floating-point scalar

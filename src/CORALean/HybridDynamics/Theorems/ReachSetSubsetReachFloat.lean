@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Theorems.ReachFloatOuter
-import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionRunUntil
+module
+
+public import CORALean.HybridDynamics.Theorems.ReachFloatOuter
+public import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionRunUntil
+
+@[expose] public section
 
 /-!
 # `HybridAutomaton.reachFloat` encloses the reachable set up to its horizon

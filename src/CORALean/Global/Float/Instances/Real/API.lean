@@ -1,5 +1,7 @@
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.Global.Float.Instances.Real.Theorems.API
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.Global.Float.Instances.Real.Theorems.API
 
 /-!
 # ℝ as a float model, collected

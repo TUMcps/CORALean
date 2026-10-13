@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.CNFNext
-import CORALean.Specification.STL.Theorems.CNFSatToFormula
-import CORALean.Specification.STL.Theorems.BranchHoldsShift
+module
+
+public import CORALean.Specification.STL.Operations.CNFNext
+public import CORALean.Specification.STL.Theorems.CNFSatToFormula
+public import CORALean.Specification.STL.Theorems.BranchHoldsShift
+
+@[expose] public section
 
 /-!
 # The next-operator on a normal form

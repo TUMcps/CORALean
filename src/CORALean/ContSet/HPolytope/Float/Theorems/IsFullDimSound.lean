@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.IsFullDim
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.IsFullDim
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # A `true` from `HPolytope.isFullDim` proves an interior point

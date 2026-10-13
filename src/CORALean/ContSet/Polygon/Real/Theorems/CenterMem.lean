@@ -1,8 +1,12 @@
-import CORALean.ContSet.Polygon.Real.Operations.Center
-import CORALean.ContSet.Polygon.Real.Theorems.RegionCenterMem
-import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
-import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
-import CORALean.ContSet.Polygon.Real.Operations.Volume
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Center
+public import CORALean.ContSet.Polygon.Real.Theorems.RegionCenterMem
+public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+public import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
+public import CORALean.ContSet.Polygon.Real.Operations.Volume
+
+@[expose] public section
 
 /-!
 # `Polygon.center` lies in the hull of the vertices

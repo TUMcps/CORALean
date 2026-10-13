@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
-import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolySearchEqSome
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolySearchEqSome
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
+
+@[expose] public section
 
 /-!
 # The region `linReachPoly` certifies is a computed set

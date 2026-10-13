@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+
+@[expose] public section
 
 /-!
 # `timeIntervalStep` encloses the exact reachable set of the step

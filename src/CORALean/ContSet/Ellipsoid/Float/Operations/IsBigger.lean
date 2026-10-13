@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
-import CORALean.Global.Float.EuclideanNorm
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+public import CORALean.Global.Float.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.isBigger`, over a floating-point scalar

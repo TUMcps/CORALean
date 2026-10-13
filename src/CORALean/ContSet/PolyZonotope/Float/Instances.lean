@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
+
+@[expose] public section
 
 /-!
 # What `PolyZonotope` instantiates

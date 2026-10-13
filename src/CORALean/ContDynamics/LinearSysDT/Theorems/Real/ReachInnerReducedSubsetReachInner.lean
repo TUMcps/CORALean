@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedContainsReachError
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedContainsReachError
+
+@[expose] public section
 
 /-!
 # What reducing the error costs, stated

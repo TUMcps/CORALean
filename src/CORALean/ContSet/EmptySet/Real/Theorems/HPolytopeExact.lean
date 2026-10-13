@@ -1,6 +1,10 @@
-import CORALean.ContSet.EmptySet.Real.Operations.HPolytope
-import CORALean.ContSet.EmptySet.Real.Instances
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.HPolytope
+public import CORALean.ContSet.EmptySet.Real.Instances
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+
+@[expose] public section
 
 /-!
 # `EmptySet.hPolytope` denotes the empty set

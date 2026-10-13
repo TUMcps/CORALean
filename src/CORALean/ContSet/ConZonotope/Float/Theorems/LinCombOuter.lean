@@ -1,14 +1,18 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
-import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
-import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
-import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
-import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
+public import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
+public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
+public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
+
+@[expose] public section
 
 /-!
 # `ConZonotope.linComb` encloses every segment between the two

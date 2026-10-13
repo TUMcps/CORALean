@@ -1,10 +1,14 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperA
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsUnionUpperIff
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsUnionUpperIff
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+
+@[expose] public section
 
 /-!
 # The stored selector rows hold wherever the exact ones do

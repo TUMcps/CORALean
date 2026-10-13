@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.SupportLower
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.SupportLower
+
+@[expose] public section
 
 /-!
 # Line 16's lower bound is no more than line 15's at one end of the step

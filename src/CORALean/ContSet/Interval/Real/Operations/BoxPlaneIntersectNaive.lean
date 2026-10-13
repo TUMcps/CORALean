@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import Mathlib.Data.Finset.Image
-import Mathlib.Data.Fintype.Pi
-import Mathlib.Data.Fintype.Prod
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import Mathlib.Data.Finset.Image
+public import Mathlib.Data.Fintype.Pi
+public import Mathlib.Data.Fintype.Prod
+
+@[expose] public section
 
 /-!
 # `Interval.boxPlaneIntersectNaive`

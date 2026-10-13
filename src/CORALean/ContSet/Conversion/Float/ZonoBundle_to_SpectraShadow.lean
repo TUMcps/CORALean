@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Float.Theorems.InfExact
-import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
-import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.InfExact
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+
+@[expose] public section
 
 /-!
 # A zonotope bundle as a spectrahedral shadow, over a floating-point scalar

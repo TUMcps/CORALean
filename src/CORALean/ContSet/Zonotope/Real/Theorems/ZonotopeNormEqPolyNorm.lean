@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
-import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
+public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+
+@[expose] public section
 
 /-!
 # The zonotope norm is the polyhedral norm of the zonotope

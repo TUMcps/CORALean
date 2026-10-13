@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
-import CORALean.ContDynamics.LinearSys.Operations.OneStep
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
+public import CORALean.ContDynamics.LinearSys.Operations.OneStep
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.linReach`

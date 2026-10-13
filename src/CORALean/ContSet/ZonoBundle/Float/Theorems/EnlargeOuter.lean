@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
-import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
+public import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
+
+@[expose] public section
 
 /-!
 # Each member of a float enlarged bundle encloses the scaling of its own member

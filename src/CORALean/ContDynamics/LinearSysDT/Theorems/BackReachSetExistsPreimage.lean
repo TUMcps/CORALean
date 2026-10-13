@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
+
+@[expose] public section
 
 /-!
 # The `∃` step is a preimage of a Minkowski *sum*

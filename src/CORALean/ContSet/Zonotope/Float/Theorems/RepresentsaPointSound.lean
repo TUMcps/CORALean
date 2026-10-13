@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
+
+@[expose] public section
 
 /-!
 # `Zonotope.representsa_point` is sound

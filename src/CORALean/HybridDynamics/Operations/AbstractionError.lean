@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Recentre
-import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
+
+@[expose] public section
 
 /-!
 # The abstraction error of the state-dependent constant flow, with uncertain inputs

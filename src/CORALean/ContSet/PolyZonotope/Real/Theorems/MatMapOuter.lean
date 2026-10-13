@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.MatMap
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinOuterMem
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MatMap
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinOuterMem
+
+@[expose] public section
 
 /-!
 # `matMap` encloses the matrix product at shared factors

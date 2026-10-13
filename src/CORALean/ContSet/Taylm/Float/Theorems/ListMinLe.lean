@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.ListMin
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ListMin
+
+@[expose] public section
 
 /-!
 # `Taylm.listMin` is a lower bound

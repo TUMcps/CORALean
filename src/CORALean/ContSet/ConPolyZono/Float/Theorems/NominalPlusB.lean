@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
-import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecAppend
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecAppend
+
+@[expose] public section
 
 /-!
 # The bound `plusB` reads back to the exact layer's

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_SpectraShadow
+module
+
+public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_SpectraShadow
+
+@[expose] public section
 
 /-!
 # A capsule as a spectrahedral shadow

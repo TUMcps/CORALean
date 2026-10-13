@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.PolyOfSampling
-import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtEvalPoly
-import CORALean.NN.Layers.Theorems.Real.SampleBoundsOfDeriv
-import CORALean.Global.Float.Instances.Real.Theorems.ToRealReal
+module
+
+public import CORALean.NN.Layers.Definitions.PolyOfSampling
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtEvalPoly
+public import CORALean.NN.Layers.Theorems.Real.SampleBoundsOfDeriv
+public import CORALean.Global.Float.Instances.Real.Theorems.ToRealReal
+
+@[expose] public section
 
 /-!
 # The exactly sampled polynomial relaxation is sound

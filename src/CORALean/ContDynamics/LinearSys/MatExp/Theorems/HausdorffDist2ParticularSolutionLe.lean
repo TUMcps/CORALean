@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # [1, Prop. 11]: the error of eq. (20)'s particular solution, propagated by `e^{At_k}`

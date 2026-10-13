@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
-import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
-import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
-import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+public import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.minkDiff`

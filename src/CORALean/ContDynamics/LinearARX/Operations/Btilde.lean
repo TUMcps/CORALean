@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Operations.Aext
-import CORALean.ContDynamics.LinearARX.Operations.Bext
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Aext
+public import CORALean.ContDynamics.LinearARX.Operations.Bext
+
+@[expose] public section
 
 /-!
 # The time-varying input parameters

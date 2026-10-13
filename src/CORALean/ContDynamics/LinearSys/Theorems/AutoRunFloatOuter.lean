@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoRunFloat
-import CORALean.ContDynamics.LinearSys.Theorems.AutoStepFloatOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoRunFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.AutoStepFloatOuter
+
+@[expose] public section
 
 /-!
 # `autoRunFloat` holds every run over every time it covers

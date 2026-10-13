@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.Global.LinProg.Duality
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.Global.LinProg.Duality
+
+@[expose] public section
 
 /-!
 # A halfspace description's own construct is `Feasible`

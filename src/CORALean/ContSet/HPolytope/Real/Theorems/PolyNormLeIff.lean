@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.PolyNorm
-import Mathlib.Algebra.Order.Group.Finset
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.PolyNorm
+public import Mathlib.Algebra.Order.Group.Finset
+
+@[expose] public section
 
 /-!
 # `polyNorm` against a bound

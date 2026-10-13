@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMonomial
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMonomial
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # Corner images of `isPolytopeCex`

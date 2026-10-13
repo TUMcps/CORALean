@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
+
+@[expose] public section
 
 /-!
 # Step `i` of the re-linearization loop, over its whole interval

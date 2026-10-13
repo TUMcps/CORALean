@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.FacetNormal
-import CORALean.ContSet.HPolytope.Real.Operations.ChordHighIndex
-import CORALean.Global.BilliardReflect
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.FacetNormal
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordHighIndex
+public import CORALean.Global.BilliardReflect
+
+@[expose] public section
 
 /-!
 # `HPolytope.billiardEnd`

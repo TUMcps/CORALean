@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCentreMid
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMid
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMidUp
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxShiftMidUp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCentreMid
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMid
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMidUp
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxShiftMidUp
+
+@[expose] public section
 
 /-!
 # What `relaxExpMid`'s three stored quantities can each be off by

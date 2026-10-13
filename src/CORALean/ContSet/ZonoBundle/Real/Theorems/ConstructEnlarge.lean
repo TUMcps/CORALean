@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
+
+@[expose] public section
 
 /-!
 # The enlarged bundle is the intersection of the enlarged members

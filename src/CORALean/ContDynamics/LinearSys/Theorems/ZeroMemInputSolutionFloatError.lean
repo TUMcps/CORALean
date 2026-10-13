@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputTaylorSumFloatError
-import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemIntervalInputRemainder
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputTaylorSumFloatError
+public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemIntervalInputRemainder
+
+@[expose] public section
 
 /-!
 # `inputSolutionFloat` keeps the origin in its error box

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.PowBounds
-import CORALean.ContSet.Taylm.Real.Operations.ProdBounds
-import CORALean.ContSet.Taylm.Real.Taylm
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.PowBounds
+public import CORALean.ContSet.Taylm.Real.Operations.ProdBounds
+public import CORALean.ContSet.Taylm.Real.Taylm
+
+@[expose] public section
 
 /-!
 # A term's bounds over a box by interval arithmetic

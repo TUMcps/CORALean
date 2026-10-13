@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The interval matrix `F` of the curvature set

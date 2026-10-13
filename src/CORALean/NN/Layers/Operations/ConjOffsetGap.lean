@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.ConjOffset
+module
+
+public import CORALean.NN.Layers.Operations.ConjOffset
+
+@[expose] public section
 
 /-!
 # How far a stored conjugate offset may be from the exact one

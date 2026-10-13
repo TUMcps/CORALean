@@ -1,10 +1,14 @@
-import CORALean.ContSet.Ellipsoid.Real.Definitions.IsApproxLownerJohn
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Ring
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Definitions.IsApproxLownerJohn
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # A sandwich of ellipsoids gives an approximate Löwner-John ellipse

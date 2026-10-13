@@ -1,5 +1,9 @@
-import Mathlib.Tactic.Linarith
-import CORALean.ContSet.Taylm.Real.Operations.GetSyms
+module
+
+public import Mathlib.Tactic.Linarith
+public import CORALean.ContSet.Taylm.Real.Operations.GetSyms
+
+@[expose] public section
 
 /-!
 # `Taylm.getSyms` is the polynomial part

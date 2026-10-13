@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Minus
-import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Minus
+public import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
+
+@[expose] public section
 
 /-!
 # `HPolytope.minus` encloses

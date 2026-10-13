@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatSubsetClosedBall
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatSubsetClosedBall
+
+@[expose] public section
 
 /-!
 # The interval matrix product in a ball, by the size of the bounds

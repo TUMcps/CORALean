@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
+
+@[expose] public section
 
 /-!
 # `ExpEdgeAt` decides

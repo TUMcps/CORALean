@@ -1,10 +1,14 @@
-import CORALean.Global.ShenmaierVertex
-import CORALean.Global.ShenmaierHalfspace
-import CORALean.Global.ThetaUniform
-import CORALean.Global.L1BallOrthantVolume
-import CORALean.ContSet.Zonotope.Real.Theorems.IsGreatestCoeffNormCorner
-import Mathlib.MeasureTheory.Measure.Real
-import Mathlib.Probability.Independence.Basic
+module
+
+public import CORALean.Global.ShenmaierVertex
+public import CORALean.Global.ShenmaierHalfspace
+public import CORALean.Global.ThetaUniform
+public import CORALean.Global.L1BallOrthantVolume
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsGreatestCoeffNormCorner
+public import Mathlib.MeasureTheory.Measure.Real
+public import Mathlib.Probability.Independence.Basic
+
+@[expose] public section
 
 /-!
 # Vertex sampling's accuracy for a zonotope inbody, at a fixed `ε`

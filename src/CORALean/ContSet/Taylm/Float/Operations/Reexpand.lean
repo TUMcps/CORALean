@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
+
+@[expose] public section
 
 /-!
 # `Taylm.reexpand`, over a floating-point scalar

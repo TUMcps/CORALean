@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Rank
-import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Rank
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
+
+@[expose] public section
 
 /-!
 # A zonotope is full-dimensional iff its generators have full rank

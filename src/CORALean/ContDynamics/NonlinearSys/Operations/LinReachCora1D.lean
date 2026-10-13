@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Lattice
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Lattice
+
+@[expose] public section
 
 /-!
 # `linReachCora1D`, CORA's `'lin'` step in one dimension at a vanishing Jacobian

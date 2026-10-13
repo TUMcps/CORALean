@@ -1,4 +1,8 @@
-import CORALean.Global.Float.FloatOps
+module
+
+public import CORALean.Global.Float.FloatOps
+
+@[expose] public section
 
 /-!
 # Checking `x ≤ 2ᵖ/2` in floats

@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
-import CORALean.ContSet.SpectraShadow.Real.Operations.Translate
-import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Translate
+public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.polytopeOuter`

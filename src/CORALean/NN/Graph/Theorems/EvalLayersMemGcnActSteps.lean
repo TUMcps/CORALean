@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
-import CORALean.NN.Graph.Operations.EvalLayers
-import CORALean.NN.Graph.Operations.GcnActSteps
-import CORALean.NN.Graph.Theorems.GcnSharedPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.NN.Graph.Operations.EvalLayers
+public import CORALean.NN.Graph.Operations.GcnActSteps
+public import CORALean.NN.Graph.Theorems.GcnSharedPoint
+
+@[expose] public section
 
 /-!
 # The graph part of `Alg. 1` contains the iteration it abstracts

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
-import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxCover
-import CORALean.ContSet.Taylm.Real.Theorems.ListMinLe
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
+public import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxCover
+public import CORALean.ContSet.Taylm.Real.Theorems.ListMinLe
+
+@[expose] public section
 
 /-!
 # The optimizer's lower end is a lower bound

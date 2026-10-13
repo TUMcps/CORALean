@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.onlyId`, over a floating-point scalar

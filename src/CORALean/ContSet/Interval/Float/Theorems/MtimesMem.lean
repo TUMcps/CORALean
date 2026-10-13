@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # A matrix-vector product is in the `Interval.mtimes` box

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # A stretched template, by its scaled coefficients

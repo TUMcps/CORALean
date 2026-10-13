@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.parallelotope`: the enclosing parallelotope

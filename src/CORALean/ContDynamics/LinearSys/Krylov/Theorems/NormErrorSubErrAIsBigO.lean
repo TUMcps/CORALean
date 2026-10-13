@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
-import Mathlib.Analysis.InnerProductSpace.PiL2
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorSubLeadingIsBigO
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+
+@[expose] public section
 
 /-!
 # Err_a is asymptotically correct

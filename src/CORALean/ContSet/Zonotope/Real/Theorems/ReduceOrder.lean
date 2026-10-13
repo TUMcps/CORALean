@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Reduce
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduce` bounds the generator count

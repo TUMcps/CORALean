@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Norm
-import CORALean.ContSet.Interval.Real.Theorems.NormLe
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Norm
+public import CORALean.ContSet.Interval.Real.Theorems.NormLe
+
+@[expose] public section
 
 /-!
 # `Interval.norm` bounded without a square root

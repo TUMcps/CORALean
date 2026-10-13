@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Sum2
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Sum2
+
+@[expose] public section
 
 /-!
 # `Interval.sum₂` holds every member's sums

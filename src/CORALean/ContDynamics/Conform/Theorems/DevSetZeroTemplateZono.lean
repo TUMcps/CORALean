@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Conform.Definitions.DevSet
-import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.DevSet
+public import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
+
+@[expose] public section
 
 /-!
 # `R_a(k)` of stretched templates, from an exact initial state

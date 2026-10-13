@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxOrder
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxEqOfPoint
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxOrder
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxEqOfPoint
+
+@[expose] public section
 
 /-!
 # The chosen order meets the error it was chosen for

@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Operations.LinearResetResolveFloat
-import CORALean.HybridDynamics.Operations.LinearResetResolve
-import Mathlib.Data.Fintype.Sigma
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import Mathlib.Algebra.BigOperators.Ring.Finset
+module
+
+public import CORALean.HybridDynamics.Operations.LinearResetResolveFloat
+public import CORALean.HybridDynamics.Operations.LinearResetResolve
+public import Mathlib.Data.Fintype.Sigma
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # The float `resolve` encloses the real resolved reset

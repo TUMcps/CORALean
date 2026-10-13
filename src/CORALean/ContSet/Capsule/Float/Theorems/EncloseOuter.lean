@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Float.Operations.Enclose
-import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Enclose
+public import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # `Capsule.enclose` encloses the hull of `C` and `M Cplus`

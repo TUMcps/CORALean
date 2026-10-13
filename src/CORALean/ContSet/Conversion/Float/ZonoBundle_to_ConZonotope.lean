@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+module
+
+public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+
+@[expose] public section
 
 /-!
 # A bundle's constrained zonotope, at one component, over a floating-point scalar

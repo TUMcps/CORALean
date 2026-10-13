@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.Operations.DeltaReachFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.Operations.DeltaReachFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # `deltaReachFloat` contains every difference the flow spans over the step

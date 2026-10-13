@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
-import CORALean.ContDynamics.LinearARX.Theorems.OutputPowInputMat
-import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
-import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
+public import CORALean.ContDynamics.LinearARX.Theorems.OutputPowInputMat
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
+
+@[expose] public section
 
 /-!
 # `computeGO` gives the output of every ARX run

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConsPolyZonotope
-import CORALean.ContSet.ConPolyZono.Real.Operations.ToPolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConsPolyZonotope
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ToPolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.getSubset`

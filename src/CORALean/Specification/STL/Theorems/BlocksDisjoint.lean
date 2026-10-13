@@ -1,5 +1,9 @@
-import Mathlib.Data.NNReal.Defs
-import Mathlib.Order.Interval.Set.Basic
+module
+
+public import Mathlib.Data.NNReal.Defs
+public import Mathlib.Order.Interval.Set.Basic
+
+@[expose] public section
 
 /-!
 # Two time blocks of length `c` do not meet

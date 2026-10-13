@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Theorems.ZcpSetEq
-import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIffGen
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ZcpSetEq
+public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIffGen
+
+@[expose] public section
 
 /-!
 # Membership in a prediction set, by coefficients

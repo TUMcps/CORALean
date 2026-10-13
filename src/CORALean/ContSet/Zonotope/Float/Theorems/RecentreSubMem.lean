@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Recentre
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `Zonotope.recentre` holds every point less the stored centre

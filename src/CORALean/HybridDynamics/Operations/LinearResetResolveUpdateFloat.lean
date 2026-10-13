@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.HybridDynamics.Definitions.ResolveSource
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.HybridDynamics.Definitions.ResolveSource
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `LinearReset.resolveUpdate` in directed rounding

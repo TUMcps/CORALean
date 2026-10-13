@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
-import CORALean.Global.Float.Instances.IEEE.IEEE
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
+public import CORALean.Global.Float.Instances.IEEE.IEEE
+
+@[expose] public section
 
 /-!
 # How many bits a rounding drops

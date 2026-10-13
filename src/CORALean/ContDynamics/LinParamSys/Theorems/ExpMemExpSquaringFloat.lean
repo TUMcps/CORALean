@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+
+@[expose] public section
 
 /-!
 # `e^{At}` lies in `expSquaringFloat` at every member and every time of its range

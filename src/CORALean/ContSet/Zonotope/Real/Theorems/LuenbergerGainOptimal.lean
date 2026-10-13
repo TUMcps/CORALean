@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
-import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerUpdate
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.BigOperators.Ring.Finset
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
+public import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerUpdate
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The Luenberger gain minimizes the Frobenius norm

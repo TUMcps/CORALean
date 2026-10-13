@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.mtimes` maps the laws

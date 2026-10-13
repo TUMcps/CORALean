@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersection` over-approximates the intersection

@@ -1,6 +1,8 @@
-import CORALean.ContSet.Zoo.Real.Zoo
-import CORALean.ContSet.Zoo.Real.Operations.API
-import CORALean.ContSet.Zoo.Real.Theorems.API
+module
+
+public import CORALean.ContSet.Zoo.Real.Zoo
+public import CORALean.ContSet.Zoo.Real.Operations.API
+public import CORALean.ContSet.Zoo.Real.Theorems.API
 
 /-!
 # Zoos, collected

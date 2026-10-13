@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstInputAddErrorBox
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstInputAddErrorBox
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # The sampled exact recursion, against held inputs

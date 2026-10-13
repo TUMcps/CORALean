@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Or
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Or
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.or` is exactly the convex hull of the union

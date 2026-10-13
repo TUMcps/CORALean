@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+
+@[expose] public section
 
 /-!
 # [1, Thm. 2]'s normals up to sign under a reordering of the selection

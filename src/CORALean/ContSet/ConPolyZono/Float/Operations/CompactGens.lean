@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensSpec
-import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
-import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
-import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensSpec
+public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
+public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.compactGens`

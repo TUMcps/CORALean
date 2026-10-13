@@ -1,6 +1,10 @@
-import CORALean.ContSet.Fullspace.Real.Operations.SupportFunc
-import CORALean.ContSet.Fullspace.Real.Fullspace
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.SupportFunc
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `Fullspace.supportFunc` is the supremum

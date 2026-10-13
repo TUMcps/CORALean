@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
-import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
+
+@[expose] public section
 
 /-!
 # Halfspaces to vertices, over a floating-point scalar

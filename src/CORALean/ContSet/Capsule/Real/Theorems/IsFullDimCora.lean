@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Instances
-import CORALean.ContSet.ContSet.Definitions.IsFullDim
-import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
+module
+
+public import CORALean.ContSet.Capsule.Real.Instances
+public import CORALean.ContSet.ContSet.Definitions.IsFullDim
+public import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
+
+@[expose] public section
 
 /-!
 # CORA's `capsule/isFullDim` is wrong for a thin capsule

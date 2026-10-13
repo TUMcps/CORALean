@@ -1,9 +1,13 @@
-import CORALean.Global.Float.FloatOps
-import CORALean.Global.Scalar
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Data.Matrix.Diagonal
+module
+
+public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.Scalar
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # Sound floating-point arithmetic

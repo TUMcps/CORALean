@@ -1,11 +1,15 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.ContSet.Zonotope.Real.Definitions.GeneratorHull
-import CORALean.ContSet.Zonotope.Real.Theorems.SegmentSumEq
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Definitions.GeneratorHull
+public import CORALean.ContSet.Zonotope.Real.Theorems.SegmentSumEq
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A zonotope of the evolution, parametrized by the unit cube

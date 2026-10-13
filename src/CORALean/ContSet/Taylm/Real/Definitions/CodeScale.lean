@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Definitions.CodeList
-import Mathlib.Analysis.SpecialFunctions.Exp
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Taylm.Real.Definitions.CodeList
+public import Mathlib.Analysis.SpecialFunctions.Exp
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The scaling constant of a code list

@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # The per-location input of `hybridAutomaton/reach`, as intended
 

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.representsaHyperplaneCora`: the `'hyperplane'` test as CORA's code computes it

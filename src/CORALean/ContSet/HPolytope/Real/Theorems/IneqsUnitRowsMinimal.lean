@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.Global.DropIdx
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.Global.DropIdx
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # Distinct unit rows with offset one are all non-redundant

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # `mtimes` scales the sup-norm ball by the operator norm

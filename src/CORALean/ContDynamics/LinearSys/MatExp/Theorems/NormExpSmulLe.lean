@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-import Mathlib.Analysis.SpecialFunctions.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+
+@[expose] public section
 
 /-!
 # The propagator's norm, unconditionally

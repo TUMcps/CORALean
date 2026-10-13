@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Horzcat
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Horzcat
+
+@[expose] public section
 
 /-!
 # `Interval.horzcat` is exactly the set of side-by-side concatenations

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
+module
+
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.radiusReach`

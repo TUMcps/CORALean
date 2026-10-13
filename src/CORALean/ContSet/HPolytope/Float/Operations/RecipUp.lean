@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.RowScale
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.RowScale
+
+@[expose] public section
 
 /-!
 # `recipUp`: a positive scale from a number

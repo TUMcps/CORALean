@@ -1,6 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.ContSet.Taylm.Float.Operations.API
-import CORALean.ContSet.Taylm.Float.Theorems.API
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Taylm.Float.Operations.API
+public import CORALean.ContSet.Taylm.Float.Theorems.API
 
 /-!
 # Float Taylor models, collected

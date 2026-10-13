@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ManualState
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ManualState
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 1-2: the loop state before the first iteration

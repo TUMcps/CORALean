@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Float.Operations.Acos
-import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
-import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
-import CORALean.ContSet.Taylm.Float.Theorems.ArcsinCoefMem
-import CORALean.ContSet.Taylm.Float.Theorems.ArcsinBoundGe
-import CORALean.Global.IteratedDerivArccos
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Acos
+public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
+public import CORALean.ContSet.Taylm.Float.Theorems.ArcsinCoefMem
+public import CORALean.ContSet.Taylm.Float.Theorems.ArcsinBoundGe
+public import CORALean.Global.IteratedDerivArccos
+
+@[expose] public section
 
 /-!
 # `Taylm.acos` encloses `arccos ∘ f`

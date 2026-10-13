@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.PowBounds
-import Mathlib.Algebra.Order.Ring.Abs
-import Mathlib.Algebra.Order.Ring.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.PowBounds
+public import Mathlib.Algebra.Order.Ring.Abs
+public import Mathlib.Algebra.Order.Ring.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `[l, u]ᵏ` contains every power

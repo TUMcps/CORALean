@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubEvalMixed
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEvalMixed
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+
+@[expose] public section
 
 /-!
 # The point of `cubMapDepOn`

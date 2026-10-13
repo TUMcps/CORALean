@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # A sampled trajectory of the float-enclosed system

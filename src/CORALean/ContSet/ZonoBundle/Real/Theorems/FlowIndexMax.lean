@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
+
+@[expose] public section
 
 /-!
 # The flow index is a most aligned axis

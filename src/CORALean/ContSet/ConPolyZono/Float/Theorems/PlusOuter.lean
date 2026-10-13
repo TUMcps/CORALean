@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesPlusIff
-import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesPlusIff
+public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.plus` over-approximates the Minkowski sum

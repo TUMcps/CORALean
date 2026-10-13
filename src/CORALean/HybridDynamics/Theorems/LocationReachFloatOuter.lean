@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
-import CORALean.HybridDynamics.Operations.LocationReachFloat
-import CORALean.HybridDynamics.Theorems.LinearEmbedding
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.HybridDynamics.Operations.LocationReachFloat
+public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+
+@[expose] public section
 
 /-!
 # `Location.reachFloat` holds every stay of length up to `tFinal`

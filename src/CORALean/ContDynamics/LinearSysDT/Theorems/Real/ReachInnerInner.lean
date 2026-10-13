@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddError
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddError
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # The first inner approximation of a reachable set in this development

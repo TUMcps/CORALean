@@ -1,8 +1,12 @@
-import CORALean.ContSet.VPolytope.Real.Operations.CartProd
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.Global.AppendLinear
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.LinearAlgebra.Prod
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.CartProd
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.Global.AppendLinear
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.LinearAlgebra.Prod
+
+@[expose] public section
 
 /-!
 # `VPolytope.cartProd` is exact

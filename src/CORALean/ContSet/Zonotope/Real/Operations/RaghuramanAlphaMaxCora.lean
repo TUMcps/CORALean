@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.RaghuramanGProdCora
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.RaghuramanGProdCora
+
+@[expose] public section
 
 /-!
 # `Zonotope.raghuramanAlphaMaxCora`, CORA's `alpha_max` in the `'raghuraman'` reduction

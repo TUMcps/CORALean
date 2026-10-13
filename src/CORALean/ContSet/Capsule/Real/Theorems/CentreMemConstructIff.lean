@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Capsule
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+
+@[expose] public section
 
 /-!
 # A capsule holds its centre exactly when its radius is nonnegative

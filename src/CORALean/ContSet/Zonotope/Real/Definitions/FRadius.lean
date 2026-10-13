@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The normalized F-radius of a zonotope

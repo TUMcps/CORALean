@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
-import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
+
+@[expose] public section
 
 /-!
 # A zonotope is compact

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Split
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Split
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+
+@[expose] public section
 
 /-!
 # The halves of `split` cover the polynomial zonotope

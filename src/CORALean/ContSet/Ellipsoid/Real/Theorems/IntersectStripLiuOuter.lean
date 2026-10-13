@@ -1,11 +1,15 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The corrected Liu update encloses the intersection

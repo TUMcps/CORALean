@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.quadMap` is exactly the image under a quadratic map

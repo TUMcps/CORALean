@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+
+@[expose] public section
 
 /-!
 # The shape matrix of a full-rank ellipsoid is invertible

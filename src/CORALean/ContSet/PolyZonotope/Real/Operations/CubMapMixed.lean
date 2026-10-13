@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
-import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
-import Mathlib.LinearAlgebra.Prod
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import Mathlib.LinearAlgebra.Prod
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMapMixed`

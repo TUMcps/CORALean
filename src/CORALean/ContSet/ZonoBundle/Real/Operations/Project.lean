@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Map
-import CORALean.ContSet.Zonotope.Real.Operations.Project
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Map
+public import CORALean.ContSet.Zonotope.Real.Operations.Project
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.project`

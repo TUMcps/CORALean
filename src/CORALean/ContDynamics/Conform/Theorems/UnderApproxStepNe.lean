@@ -1,9 +1,13 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Algebra.Exponential
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # [1, Eq. 7] is not an equality for [1, Eq. 2]'s inner approximation

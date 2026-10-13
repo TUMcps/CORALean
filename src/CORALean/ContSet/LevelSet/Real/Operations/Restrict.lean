@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # `LevelSet.restrict`

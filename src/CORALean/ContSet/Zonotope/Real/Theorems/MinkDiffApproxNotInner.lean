@@ -1,11 +1,15 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffApprox
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Order.Fin.Basic
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.NormNum.RealSqrt
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffApprox
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Order.Fin.Basic
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.NormNum.RealSqrt
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffApprox` is not inner

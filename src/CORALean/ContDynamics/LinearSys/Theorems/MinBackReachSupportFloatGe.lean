@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupportFloat
-import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotLe
-import CORALean.ContSet.Zonotope.Float.Theorems.LowerDotLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupportFloat
+public import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotLe
+public import CORALean.ContSet.Zonotope.Float.Theorems.LowerDotLe
+
+@[expose] public section
 
 /-!
 # The float support value is an upper bound

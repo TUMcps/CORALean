@@ -1,18 +1,22 @@
-import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
-import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Interval
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
-import CORALean.ContSet.Capsule.Float.Instances
-import CORALean.ContSet.ConPolyZono.Float.Instances
-import CORALean.ContSet.ConZonotope.Float.Instances
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.PolyZonotope.Float.Instances
-import CORALean.ContSet.VPolytope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
+public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Interval
+public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
+public import CORALean.ContSet.Capsule.Float.Instances
+public import CORALean.ContSet.ConPolyZono.Float.Instances
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.PolyZonotope.Float.Instances
+public import CORALean.ContSet.VPolytope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # Enclosing itself in a box, over a floating-point scalar

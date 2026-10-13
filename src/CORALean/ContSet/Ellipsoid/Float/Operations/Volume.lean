@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Volume
+module
+
+public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Volume
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.volume`, over a floating-point scalar

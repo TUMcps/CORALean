@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.Conform.Definitions.Glo
-import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.SingletonAddTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.Glo
+public import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.SingletonAddTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
+
+@[expose] public section
 
 /-!
 # [1, Lemma 1]: `Ȳ` of stretched templates is a stretched template

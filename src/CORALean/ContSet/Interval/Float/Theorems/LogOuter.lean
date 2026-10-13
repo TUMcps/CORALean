@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Log
-import CORALean.ContSet.Interval.Real.Theorems.LogExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Log
+public import CORALean.ContSet.Interval.Real.Theorems.LogExact
+
+@[expose] public section
 
 /-!
 # `Interval.log` contains the image under the logarithm

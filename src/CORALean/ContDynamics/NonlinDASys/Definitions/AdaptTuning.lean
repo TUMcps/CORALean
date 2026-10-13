@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
-import CORALean.ContDynamics.NonlinDASys.Definitions.HessData
-import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptPass
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
+public import CORALean.ContDynamics.NonlinDASys.Definitions.HessData
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptPass
+
+@[expose] public section
 
 /-!
 # The heuristics of the adaptive DAE algorithm

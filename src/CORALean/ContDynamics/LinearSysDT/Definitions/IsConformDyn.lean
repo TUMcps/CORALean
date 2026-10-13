@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
-import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
+public import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
+
+@[expose] public section
 
 /-!
 # What the dynamic conformance check asks

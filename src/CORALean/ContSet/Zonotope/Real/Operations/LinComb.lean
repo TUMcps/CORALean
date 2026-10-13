@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
-import CORALean.ContSet.Zonotope.Real.Operations.PairSum
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
+public import CORALean.ContSet.Zonotope.Real.Operations.PairSum
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # Zonotopes: the linear combination of two

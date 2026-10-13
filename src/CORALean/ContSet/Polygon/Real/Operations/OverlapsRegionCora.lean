@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+
+@[expose] public section
 
 /-!
 # `@polygon/isIntersecting_.m` l. 52 on regions

@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Operations.ReduceGNNForNode
-import CORALean.NN.Graph.Theorems.BallSubsetReduceKeep
-import CORALean.NN.Graph.Theorems.ReducedStepsRow
+module
+
+public import CORALean.NN.Graph.Operations.ReduceGNNForNode
+public import CORALean.NN.Graph.Theorems.BallSubsetReduceKeep
+public import CORALean.NN.Graph.Theorems.ReducedStepsRow
+
+@[expose] public section
 
 /-!
 # The reduced network answers for node `v` exactly

@@ -1,7 +1,11 @@
-import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
-import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
-import CORALean.ContSet.Zonotope.Float.Operations.Project
-import CORALean.ContSet.Zonotope.Real.Theorems.ProjectExact
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
+public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.Zonotope.Float.Operations.Project
+public import CORALean.ContSet.Zonotope.Real.Theorems.ProjectExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.project` over-approximates the projection

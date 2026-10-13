@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.IsBounded
-import CORALean.ContSet.Interval.Float.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.IsBounded
+public import CORALean.ContSet.Interval.Float.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A `true` from `SpectraShadow.isBounded` proves the set bounded

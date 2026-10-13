@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
-import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
-import CORALean.ContSet.ConZonotope.Float.Theorems.CentreBetween
-import CORALean.ContSet.ConZonotope.Float.Theorems.CornerMem
-import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
+public import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
+public import CORALean.ContSet.ConZonotope.Float.Theorems.CentreBetween
+public import CORALean.ContSet.ConZonotope.Float.Theorems.CornerMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
+
+@[expose] public section
 
 /-!
 # A `true` from `ConZonotope.containsPoint` proves membership

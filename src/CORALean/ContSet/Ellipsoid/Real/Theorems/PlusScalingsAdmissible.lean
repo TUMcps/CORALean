@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # Kurzhanski and Varaiya's `l` names an admissible pair

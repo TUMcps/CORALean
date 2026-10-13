@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Atan2
-import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
-import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Atan2
+public import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
+public import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
+
+@[expose] public section
 
 /-!
 # `Interval.atan2` is an enclosure in the right half-plane

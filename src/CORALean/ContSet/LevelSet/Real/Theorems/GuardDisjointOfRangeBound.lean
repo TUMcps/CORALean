@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+module
+
+public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+
+@[expose] public section
 
 /-!
 # A set whose range bound excludes zero misses the guard

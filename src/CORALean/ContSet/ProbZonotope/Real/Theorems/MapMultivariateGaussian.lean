@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # The image of a Gaussian under a linear map

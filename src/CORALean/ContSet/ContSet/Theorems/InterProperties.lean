@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Module.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Module.Basic
+
+@[expose] public section
 
 /-!
 # What an intersection does to emptiness, degeneracy and boundedness

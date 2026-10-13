@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatChecked
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatChecked
+
+@[expose] public section
 
 /-!
 # A checked `reachWrappingFreeFloat` that returns a result returns the unchecked one

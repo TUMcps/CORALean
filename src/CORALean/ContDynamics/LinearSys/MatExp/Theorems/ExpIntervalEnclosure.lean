@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+
+@[expose] public section
 
 /-!
 # The matrix exponential lies in its interval enclosure

@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.Sigmoid
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Analysis.SpecialFunctions.ExpDeriv
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # The logistic function's derivative

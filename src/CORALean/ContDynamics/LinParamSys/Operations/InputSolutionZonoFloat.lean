@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFloat
-import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+
+@[expose] public section
 
 /-!
 # The set every input contributes over one step, at a float matrix zonotope

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoReachFloat
-import CORALean.ContDynamics.LinearSys.Theorems.AutoRunFloatOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoReachFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.AutoRunFloatOuter
+
+@[expose] public section
 
 /-!
 # `autoReachFloat` holds every run over `[0, t_end]`

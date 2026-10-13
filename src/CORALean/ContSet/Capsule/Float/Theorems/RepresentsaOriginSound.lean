@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Float.Operations.RepresentsaOrigin
-import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
-import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
+public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
+
+@[expose] public section
 
 /-!
 # `Capsule.representsa_origin` is sound

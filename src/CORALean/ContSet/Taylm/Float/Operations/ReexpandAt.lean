@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.ReexpCoef
-import CORALean.Global.Float.ListSum
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ReexpCoef
+public import CORALean.Global.Float.ListSum
+
+@[expose] public section
 
 /-!
 # `Taylm.reexpandAt`

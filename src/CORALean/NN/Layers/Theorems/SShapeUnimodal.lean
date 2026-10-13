@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.SShape
-import Mathlib.Order.Monotone.Basic
-import Mathlib.Order.Interval.Set.Basic
+module
+
+public import CORALean.NN.Layers.Definitions.SShape
+public import Mathlib.Order.Monotone.Basic
+public import Mathlib.Order.Interval.Set.Basic
+
+@[expose] public section
 
 /-!
 # An S-shaped derivative rises to `0` and falls after it

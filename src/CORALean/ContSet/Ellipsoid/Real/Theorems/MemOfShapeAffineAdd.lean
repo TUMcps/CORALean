@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # An affine image of an ellipsoid plus a second ellipsoid, at a weight `p`

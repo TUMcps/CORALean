@@ -1,4 +1,8 @@
-import CORALean.NN.NeuralNetwork
+module
+
+public import CORALean.NN.NeuralNetwork
+
+@[expose] public section
 
 /-!
 # Propagating a set through the graph

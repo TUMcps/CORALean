@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.Sin
-import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
-import CORALean.ContSet.Taylm.Float.Theorems.TrigCoefMem
-import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Sin
+public import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.TrigCoefMem
+public import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
+
+@[expose] public section
 
 /-!
 # `Taylm.sin` encloses `sin ∘ f`

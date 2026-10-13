@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The fault-detection observer encloses the fault-free state

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+
+@[expose] public section
 
 /-!
 # The interpolation error of a matrix exponential, as one series

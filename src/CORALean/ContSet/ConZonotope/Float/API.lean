@@ -1,7 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.ConZonotope.Float.Operations.API
-import CORALean.ContSet.ConZonotope.Float.Theorems.API
-import CORALean.ContSet.ConZonotope.Float.Instances
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.ConZonotope.Float.Operations.API
+public import CORALean.ContSet.ConZonotope.Float.Theorems.API
+public import CORALean.ContSet.ConZonotope.Float.Instances
 
 /-!
 # Constrained zonotopes over a floating-point scalar, collected

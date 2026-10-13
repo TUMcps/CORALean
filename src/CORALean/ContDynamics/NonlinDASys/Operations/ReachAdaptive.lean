@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.reachAdaptive`

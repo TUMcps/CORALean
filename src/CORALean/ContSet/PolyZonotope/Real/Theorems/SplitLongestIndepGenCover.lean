@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The halves of `splitLongestIndepGen` cover the set

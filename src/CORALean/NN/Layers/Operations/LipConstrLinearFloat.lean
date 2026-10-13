@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
-import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.NN.Layers.Operations.LipConstrScaleFloat
-import CORALean.NN.Layers.Layer
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.NN.Layers.Operations.LipConstrScaleFloat
+public import CORALean.NN.Layers.Layer
+
+@[expose] public section
 
 /-!
 # The Lipschitz-constrained linear layer, over a float scalar

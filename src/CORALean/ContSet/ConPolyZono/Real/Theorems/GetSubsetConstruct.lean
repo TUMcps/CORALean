@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # `getSubset` represents the subset a factor sub-box reaches

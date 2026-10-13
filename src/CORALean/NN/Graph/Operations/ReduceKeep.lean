@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.Ball
+module
+
+public import CORALean.NN.Graph.Operations.Ball
+
+@[expose] public section
 
 /-!
 # The node sets `reduceGNNForNode` keeps

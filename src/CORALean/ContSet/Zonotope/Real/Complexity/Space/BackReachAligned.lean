@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BackReachAligned
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BackReachAligned
+
+@[expose] public section
 
 /-!
 # `Zonotope.backReachAligned_h`

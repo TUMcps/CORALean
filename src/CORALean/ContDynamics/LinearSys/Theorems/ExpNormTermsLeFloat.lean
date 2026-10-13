@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpLeExpNormUpFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpLeExpNormUpFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The scalar terms of a step's error estimates, bounded in floats

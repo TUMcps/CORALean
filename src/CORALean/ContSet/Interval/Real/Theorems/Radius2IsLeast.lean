@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
-import CORALean.ContSet.Interval.Real.Theorems.SupSubCenter
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
+public import CORALean.ContSet.Interval.Real.Theorems.SupSubCenter
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.radius₂` is the radius of the smallest ball about the centre

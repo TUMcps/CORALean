@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationFamilyAtPattern
-import CORALean.NN.Layers.Theorems.DegLeDegOf
-import CORALean.NN.Layers.Theorems.PadToSound
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationFamilyAtPattern
+public import CORALean.NN.Layers.Theorems.DegLeDegOf
+public import CORALean.NN.Layers.Theorems.PadToSound
+
+@[expose] public section
 
 /-!
 # A sound family is sound at every pattern

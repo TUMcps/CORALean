@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # `timeIntervalStep` contains the flow of every matrix the set holds

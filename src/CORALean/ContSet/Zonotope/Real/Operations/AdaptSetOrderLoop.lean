@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+
+@[expose] public section
 
 /-!
 # `Alg. 3` lines 3-7: the order-decrementing loop

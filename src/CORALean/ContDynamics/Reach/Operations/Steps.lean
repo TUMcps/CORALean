@@ -1,4 +1,8 @@
-import Mathlib.Algebra.Order.Field.Rat
+module
+
+public import Mathlib.Algebra.Order.Field.Rat
+
+@[expose] public section
 
 /-!
 # The step count a horizon and a time step determine

@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # Choosing one of two per coordinate

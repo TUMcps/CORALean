@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorLeFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorNonneg
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorLeFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorNonneg
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
+
+@[expose] public section
 
 /-!
 # The float error box holds the exact one

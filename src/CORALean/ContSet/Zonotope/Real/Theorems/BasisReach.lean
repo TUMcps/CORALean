@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # A checked approximate inverse places a vector in a basis, with a bound

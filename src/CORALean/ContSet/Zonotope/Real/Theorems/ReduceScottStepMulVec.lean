@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
+
+@[expose] public section
 
 /-!
 # (A.10) keeps every generator not removed

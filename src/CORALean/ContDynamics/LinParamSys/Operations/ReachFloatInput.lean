@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInput
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInput
+
+@[expose] public section
 
 /-!
 # Reachability with inputs of a set-valued-matrix system in floats

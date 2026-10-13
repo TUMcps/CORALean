@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Analysis.Matrix.Order
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Analysis.Matrix.Order
+
+@[expose] public section
 
 /-!
 # The trace criterion has its optimum in closed form

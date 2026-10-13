@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.OptBnbAdv
-import CORALean.ContSet.Taylm.Float.Theorems.BranchAndBoundMem
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.OptBnbAdv
+public import CORALean.ContSet.Taylm.Float.Theorems.BranchAndBoundMem
+
+@[expose] public section
 
 /-!
 # `Taylm.optBnbAdv` encloses

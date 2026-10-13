@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
-import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
+
+@[expose] public section
 
 /-!
 # Boxing what a partition drops over-approximates

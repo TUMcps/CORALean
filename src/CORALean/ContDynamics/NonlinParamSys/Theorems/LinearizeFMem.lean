@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
-import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
+
+@[expose] public section
 
 /-!
 # The constant term's zonotope holds the dynamics at every parameter of the box

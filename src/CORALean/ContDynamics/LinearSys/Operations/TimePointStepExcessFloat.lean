@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionBoxFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionBoxFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInputFloat
+
+@[expose] public section
 
 /-!
 # How far a float step reaches beyond the exact one

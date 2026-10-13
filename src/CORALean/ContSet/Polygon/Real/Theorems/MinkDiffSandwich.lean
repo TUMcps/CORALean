@@ -1,13 +1,17 @@
-import CORALean.ContSet.Polygon.Real.Operations.MinkDiff
-import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
-import CORALean.ContSet.Polygon.Real.Theorems.LinCombOuter
-import CORALean.ContSet.Polygon.Real.Theorems.MinusExact
-import CORALean.ContSet.Polygon.Real.Theorems.PlusExact
-import CORALean.ContSet.Polygon.Real.Theorems.TimesExact
-import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
-import Mathlib.Analysis.Convex.PathConnected
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.MinkDiff
+public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+public import CORALean.ContSet.Polygon.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.Polygon.Real.Theorems.MinusExact
+public import CORALean.ContSet.Polygon.Real.Theorems.PlusExact
+public import CORALean.ContSet.Polygon.Real.Theorems.TimesExact
+public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+public import Mathlib.Analysis.Convex.PathConnected
+
+@[expose] public section
 
 /-!
 # `Polygon.minkDiff` is the Minkowski difference up to its boundary

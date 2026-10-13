@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
-import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
+
+@[expose] public section
 
 /-!
 # A differential-algebraic system, bundled with its reduced `Reach` run

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The powers of a one-parameter matrix, by the coefficients of `β`

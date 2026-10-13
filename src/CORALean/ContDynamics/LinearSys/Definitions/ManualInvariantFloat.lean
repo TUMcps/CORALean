@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # What the state of a float run of `Alg. 1` owes

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
-import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
+public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+
+@[expose] public section
 
 /-!
 # `ConZonotope.interiorCert`

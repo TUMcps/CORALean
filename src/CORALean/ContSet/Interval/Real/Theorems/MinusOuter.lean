@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Theorems.MinusEqPlusUminus
-import CORALean.ContSet.Interval.Real.Theorems.UminusExact
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MinusEqPlusUminus
+public import CORALean.ContSet.Interval.Real.Theorems.UminusExact
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Interval.minus` contains the pointwise difference of the sets

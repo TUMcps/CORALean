@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+
+@[expose] public section
 
 /-!
 # `padE` constrains nothing new

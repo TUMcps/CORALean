@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
-import CORALean.Specification.STL.Operations.DepReachConstsOf
-import CORALean.Specification.STL.Theorems.DepReachAtPcH
-import CORALean.Specification.STL.Theorems.SumGenMtimes
-import CORALean.Specification.STL.Theorems.SumGenOfPoint
-import CORALean.Specification.STL.Theorems.SumGenPlus
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
+public import CORALean.Specification.STL.Operations.DepReachConstsOf
+public import CORALean.Specification.STL.Theorems.DepReachAtPcH
+public import CORALean.Specification.STL.Theorems.SumGenMtimes
+public import CORALean.Specification.STL.Theorems.SumGenOfPoint
+public import CORALean.Specification.STL.Theorems.SumGenPlus
+
+@[expose] public section
 
 /-!
 # The state of the reach sequence at `t_i` is the held-input solution, factor by factor

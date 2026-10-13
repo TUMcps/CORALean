@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # `Zonotope.representsa_origin`

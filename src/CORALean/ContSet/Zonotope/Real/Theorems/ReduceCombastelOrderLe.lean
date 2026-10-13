@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceCombastel` bounds the generator count

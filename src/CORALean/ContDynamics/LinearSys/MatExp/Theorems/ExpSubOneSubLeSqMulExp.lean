@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
+
+@[expose] public section
 
 /-!
 # `e^x - 1 - x ≤ x²/2 · e^x` for `x ≥ 0`

@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+module
+
+public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+
+@[expose] public section
 
 /-!
 # Where `mergeFlows` is exact

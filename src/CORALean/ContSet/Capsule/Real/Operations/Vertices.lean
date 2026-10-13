@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
-import Mathlib.Analysis.SpecialFunctions.Complex.Arg
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
+public import Mathlib.Analysis.SpecialFunctions.Complex.Arg
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+
+@[expose] public section
 
 /-!
 # `Capsule.vertices`

@@ -1,4 +1,8 @@
-import CORALean.Global.Float.SinCos
+module
+
+public import CORALean.Global.Float.SinCos
+
+@[expose] public section
 
 /-!
 # The tangent rounded in either direction

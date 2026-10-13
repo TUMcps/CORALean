@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
+module
+
+public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.quadMapDep`

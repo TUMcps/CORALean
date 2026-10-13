@@ -1,5 +1,9 @@
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # `abstrErrAdaptiveTensor3Cora2D`, `priv_abstractionError_adaptive` at `tensorOrder = 3`

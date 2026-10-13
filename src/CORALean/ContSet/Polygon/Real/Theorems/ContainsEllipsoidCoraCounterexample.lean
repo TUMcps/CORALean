@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
-import CORALean.ContSet.Polygon.Real.Operations.ContainsRegionCora
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+module
+
+public import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
+public import CORALean.ContSet.Polygon.Real.Operations.ContainsRegionCora
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+@[expose] public section
 
 /-!
 # CORA's `polygon/contains_` accepts an ellipsoid its polygon does not contain

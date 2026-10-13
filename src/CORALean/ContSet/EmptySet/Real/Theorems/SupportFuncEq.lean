@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.SupportFunc
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.SupportFunc
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.supportFunc` is the supremum

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexExact
+
+@[expose] public section
 
 /-!
 # `sort` is exact

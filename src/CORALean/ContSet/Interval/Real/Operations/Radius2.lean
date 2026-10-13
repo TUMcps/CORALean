@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Interval.radius₂`

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
-import CORALean.Specification.Theorems.CheckSound
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
+public import CORALean.Specification.Theorems.CheckSound
+
+@[expose] public section
 
 /-!
 # A passed check on the sampled loop's reachable set holds along it

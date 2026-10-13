@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGDiff
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMapDep`

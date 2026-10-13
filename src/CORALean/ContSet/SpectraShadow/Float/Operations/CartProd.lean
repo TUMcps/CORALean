@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.PadLeft
-import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
-import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.PadLeft
+public import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.cartProd`

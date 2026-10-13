@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `Zonotope.cubMapMixed`

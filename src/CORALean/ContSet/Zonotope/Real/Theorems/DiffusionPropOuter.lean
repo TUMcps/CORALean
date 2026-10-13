@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionProp
-import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropStepOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionProp
+public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropStepOuter
+
+@[expose] public section
 
 /-!
 # The set-propagation diffusion observer holds the true state

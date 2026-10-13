@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.ProjectHighDim
+module
+
+public import CORALean.ContSet.ContSet.Operations.ProjectHighDim
+
+@[expose] public section
 
 /-!
 # `projectHighDim_` encloses the zero-padded set

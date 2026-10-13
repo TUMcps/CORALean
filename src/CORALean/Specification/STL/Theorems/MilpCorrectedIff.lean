@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Definitions.MilpCorrected
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Specification.STL.Definitions.MilpCorrected
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The corrected program (26) finds a factor outside the polytope

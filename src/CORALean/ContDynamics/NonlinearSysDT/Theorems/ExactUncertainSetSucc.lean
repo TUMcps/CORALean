@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ExactUncertainSet
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ExactUncertainSet
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
+
+@[expose] public section
 
 /-!
 # The exact uncertain set is the image of the last one met with the consistent set

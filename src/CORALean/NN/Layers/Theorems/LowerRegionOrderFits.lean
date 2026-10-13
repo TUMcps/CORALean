@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.LowerRegionOrder
-import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
+module
+
+public import CORALean.NN.Layers.Operations.LowerRegionOrder
+public import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
+
+@[expose] public section
 
 /-!
 # Lowering the order keeps the region fitting

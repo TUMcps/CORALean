@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetMtimesPlusCube
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetMtimesPlusCube
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
+
+@[expose] public section
 
 /-!
 # One step of the flow: the enclosure converges

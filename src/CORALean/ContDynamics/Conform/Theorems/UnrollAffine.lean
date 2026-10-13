@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Conform.Theorems.ProdJacSucc
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ProdJacSucc
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # Unrolling an affine recursion with time-varying matrices

@@ -1,56 +1,58 @@
-import CORALean.ContDynamics.Conform.Theorems.ClassesVecSingleSubsetIff
-import CORALean.ContDynamics.Conform.Theorems.ConformantIffDevSet
-import CORALean.ContDynamics.Conform.Theorems.ConformantIffHRep
-import CORALean.ContDynamics.Conform.Theorems.ConformantIffLp
-import CORALean.ContDynamics.Conform.Theorems.ConformantOfRecording
-import CORALean.ContDynamics.Conform.Theorems.ConvexFitsUnder
-import CORALean.ContDynamics.Conform.Theorems.CostUnderApprox
-import CORALean.ContDynamics.Conform.Theorems.CpScenarioTermLe
-import CORALean.ContDynamics.Conform.Theorems.DevSetTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.DevSetZeroTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.DisjointSingletonAddIff
-import CORALean.ContDynamics.Conform.Theorems.FalsifyAddCounterexample
-import CORALean.ContDynamics.Conform.Theorems.GloCostEq
-import CORALean.ContDynamics.Conform.Theorems.GloSetTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.GloStateSpace
-import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.IntervalNormProps
-import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
-import CORALean.ContDynamics.Conform.Theorems.LpCostEq
-import CORALean.ContDynamics.Conform.Theorems.MeasurementConformance
-import CORALean.ContDynamics.Conform.Theorems.MemGloSetIffGen
-import CORALean.ContDynamics.Conform.Theorems.MemGloSetIffHRep
-import CORALean.ContDynamics.Conform.Theorems.MemReachOutIff
-import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
-import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIffGen
-import CORALean.ContDynamics.Conform.Theorems.MemUnderApproxIff
-import CORALean.ContDynamics.Conform.Theorems.MemZcpSetIff
-import CORALean.ContDynamics.Conform.Theorems.NotIsBoundaryPointIff
-import CORALean.ContDynamics.Conform.Theorems.QpCostEq
-import CORALean.ContDynamics.Conform.Theorems.ReachOutNePrinted
-import CORALean.ContDynamics.Conform.Theorems.ReachOutSucc
-import CORALean.ContDynamics.Conform.Theorems.ReachSetOfGlo
-import CORALean.ContDynamics.Conform.Theorems.ReachSetOfSubset
-import CORALean.ContDynamics.Conform.Theorems.SearchOutliersOptimal
-import CORALean.ContDynamics.Conform.Theorems.SingletonAddTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.StateAddDev
-import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
-import CORALean.ContDynamics.Conform.Theorems.UnderApproxStepNe
-import CORALean.ContDynamics.Conform.Theorems.WhiteConformant
-import CORALean.ContDynamics.Conform.Theorems.ZcpBoundaryLp
-import CORALean.ContDynamics.Conform.Theorems.ZcpClassificationLp
-import CORALean.ContDynamics.Conform.Theorems.ZcpClassificationMilp
-import CORALean.ContDynamics.Conform.Theorems.ZcpIntervalNorm
-import CORALean.ContDynamics.Conform.Theorems.ZcpRegressionLp
-import CORALean.ContDynamics.Conform.Theorems.ZcpRegressionMilp
-import CORALean.ContDynamics.Conform.Theorems.ZcpSetEq
-import CORALean.ContDynamics.Conform.Theorems.PassesBFOfConformant
-import CORALean.ContDynamics.Conform.Theorems.GloInputOutput
-import CORALean.ContDynamics.Conform.Theorems.NarxWindowStep
-import CORALean.ContDynamics.Conform.Theorems.ProdJacSucc
-import CORALean.ContDynamics.Conform.Theorems.SumWindow
-import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ClassesVecSingleSubsetIff
+public import CORALean.ContDynamics.Conform.Theorems.ConformantIffDevSet
+public import CORALean.ContDynamics.Conform.Theorems.ConformantIffHRep
+public import CORALean.ContDynamics.Conform.Theorems.ConformantIffLp
+public import CORALean.ContDynamics.Conform.Theorems.ConformantOfRecording
+public import CORALean.ContDynamics.Conform.Theorems.ConvexFitsUnder
+public import CORALean.ContDynamics.Conform.Theorems.CostUnderApprox
+public import CORALean.ContDynamics.Conform.Theorems.CpScenarioTermLe
+public import CORALean.ContDynamics.Conform.Theorems.DevSetTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.DevSetZeroTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.DisjointSingletonAddIff
+public import CORALean.ContDynamics.Conform.Theorems.FalsifyAddCounterexample
+public import CORALean.ContDynamics.Conform.Theorems.GloCostEq
+public import CORALean.ContDynamics.Conform.Theorems.GloSetTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.GloStateSpace
+public import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.IntervalNormProps
+public import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
+public import CORALean.ContDynamics.Conform.Theorems.LpCostEq
+public import CORALean.ContDynamics.Conform.Theorems.MeasurementConformance
+public import CORALean.ContDynamics.Conform.Theorems.MemGloSetIffGen
+public import CORALean.ContDynamics.Conform.Theorems.MemGloSetIffHRep
+public import CORALean.ContDynamics.Conform.Theorems.MemReachOutIff
+public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
+public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIffGen
+public import CORALean.ContDynamics.Conform.Theorems.MemUnderApproxIff
+public import CORALean.ContDynamics.Conform.Theorems.MemZcpSetIff
+public import CORALean.ContDynamics.Conform.Theorems.NotIsBoundaryPointIff
+public import CORALean.ContDynamics.Conform.Theorems.QpCostEq
+public import CORALean.ContDynamics.Conform.Theorems.ReachOutNePrinted
+public import CORALean.ContDynamics.Conform.Theorems.ReachOutSucc
+public import CORALean.ContDynamics.Conform.Theorems.ReachSetOfGlo
+public import CORALean.ContDynamics.Conform.Theorems.ReachSetOfSubset
+public import CORALean.ContDynamics.Conform.Theorems.SearchOutliersOptimal
+public import CORALean.ContDynamics.Conform.Theorems.SingletonAddTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.StateAddDev
+public import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
+public import CORALean.ContDynamics.Conform.Theorems.UnderApproxStepNe
+public import CORALean.ContDynamics.Conform.Theorems.WhiteConformant
+public import CORALean.ContDynamics.Conform.Theorems.ZcpBoundaryLp
+public import CORALean.ContDynamics.Conform.Theorems.ZcpClassificationLp
+public import CORALean.ContDynamics.Conform.Theorems.ZcpClassificationMilp
+public import CORALean.ContDynamics.Conform.Theorems.ZcpIntervalNorm
+public import CORALean.ContDynamics.Conform.Theorems.ZcpRegressionLp
+public import CORALean.ContDynamics.Conform.Theorems.ZcpRegressionMilp
+public import CORALean.ContDynamics.Conform.Theorems.ZcpSetEq
+public import CORALean.ContDynamics.Conform.Theorems.PassesBFOfConformant
+public import CORALean.ContDynamics.Conform.Theorems.GloInputOutput
+public import CORALean.ContDynamics.Conform.Theorems.NarxWindowStep
+public import CORALean.ContDynamics.Conform.Theorems.ProdJacSucc
+public import CORALean.ContDynamics.Conform.Theorems.SumWindow
+public import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
 
 /-!
 # What reachset conformance and its identification guarantee, collected

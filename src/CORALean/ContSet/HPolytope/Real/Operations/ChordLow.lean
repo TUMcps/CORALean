@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.ChordLowIndex
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.ChordLowIndex
+
+@[expose] public section
 
 /-!
 # `HPolytope.chordLow`

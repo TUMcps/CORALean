@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Aligned
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # No aligned zonotope around `EW` gives the whole difference `Z ⊖ EW`

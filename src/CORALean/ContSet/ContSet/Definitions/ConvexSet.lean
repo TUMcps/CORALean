@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # Representations that denote a convex set

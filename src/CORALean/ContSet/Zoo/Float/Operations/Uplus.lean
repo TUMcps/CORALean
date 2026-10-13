@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zoo.Float.Zoo
+module
+
+public import CORALean.ContSet.Zoo.Float.Zoo
+
+@[expose] public section
 
 /-!
 # `Zoo.uplus`, over a floating-point scalar

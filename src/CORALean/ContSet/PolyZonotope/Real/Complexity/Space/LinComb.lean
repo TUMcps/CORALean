@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.linComb`'s counts

@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.InfExact
-import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
-import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.InfExact
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+
+@[expose] public section
 
 /-!
 # A zonotope bundle as a spectrahedral shadow

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMap
-import CORALean.ContSet.ConZonotope.Float.Theorems.DependentNominal
-import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapDepNominal
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.ConZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapDepNominal
+
+@[expose] public section
 
 /-!
 # `ConZonotope.quadMap` over-approximates the quadratic map, on the factors

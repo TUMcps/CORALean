@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
-import Mathlib.Data.Fin.VecNotation
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
+public import Mathlib.Data.Fin.VecNotation
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.empty`

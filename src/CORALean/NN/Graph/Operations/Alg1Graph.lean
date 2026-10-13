@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Operations.Alg1Node
-import CORALean.NN.Graph.Operations.SumPool
-import CORALean.NN.Graph.Operations.TailEnclose
+module
+
+public import CORALean.NN.Graph.Operations.Alg1Node
+public import CORALean.NN.Graph.Operations.SumPool
+public import CORALean.NN.Graph.Operations.TailEnclose
+
+@[expose] public section
 
 /-!
 # `Alg. 1` for a graph-level output

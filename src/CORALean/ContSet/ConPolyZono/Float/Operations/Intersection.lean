@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
-import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.intersection`

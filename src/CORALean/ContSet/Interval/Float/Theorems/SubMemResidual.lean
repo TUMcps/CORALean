@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Residual
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+
+@[expose] public section
 
 /-!
 # What is left over after storing a rounded vector

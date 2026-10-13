@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+
+@[expose] public section
 
 /-!
 # Dropping the factors no column reads

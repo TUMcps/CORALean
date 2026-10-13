@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.ReachOrderLe
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.Reach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.ReachOrderLe
+
+@[expose] public section
 
 /-!
 # `reach` costs at most `k` worst-case steps

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.LinReachCora
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Mul
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinReachCora
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+
+@[expose] public section
 
 /-!
 # `linReach` of a `nonlinParamSys` with an interval `paramInt` misses states

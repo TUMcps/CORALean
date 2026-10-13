@@ -1,11 +1,15 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
-import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
+public import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+
+@[expose] public section
 
 /-!
 # Boxing what two partitions drop over-approximates

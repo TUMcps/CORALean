@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Operations.Vertices
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Vertices
+
+@[expose] public section
 
 /-!
 # `Polygon.convHull`

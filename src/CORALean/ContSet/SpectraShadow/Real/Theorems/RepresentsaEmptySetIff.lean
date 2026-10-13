@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_emptySet` is emptiness

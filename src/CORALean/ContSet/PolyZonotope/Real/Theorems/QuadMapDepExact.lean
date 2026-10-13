@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+
+@[expose] public section
 
 /-!
 # `quadMapDep` is exact where every coefficient is dependent

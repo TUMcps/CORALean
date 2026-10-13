@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateState
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateState
+
+@[expose] public section
 
 /-!
 # The reachability-based interval estimator

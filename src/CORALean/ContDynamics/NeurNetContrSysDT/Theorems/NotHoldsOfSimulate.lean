@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
+
+@[expose] public section
 
 /-!
 # One sampled run can falsify what reachability can only fail to prove

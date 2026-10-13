@@ -1,11 +1,15 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Fintype.Pi
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Logic.Function.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Fintype.Pi
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Logic.Function.Basic
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The sign vectors have mean zero and covariance `2ᵐ I`

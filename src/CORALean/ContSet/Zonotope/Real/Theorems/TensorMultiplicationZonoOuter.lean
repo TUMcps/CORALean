@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplicationZono
-import CORALean.ContSet.Zonotope.Real.Operations.TensorEvalLin
-import CORALean.ContSet.Zonotope.Real.Theorems.TensorMultiplicationOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import Mathlib.Algebra.BigOperators.GroupWithZero.Action
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplicationZono
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorEvalLin
+public import CORALean.ContSet.Zonotope.Real.Theorems.TensorMultiplicationOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `tensorMultiplication_zono` encloses the images under a tensor zonotope

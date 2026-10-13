@@ -1,7 +1,11 @@
-import CORALean.ContSet.Capsule.Real.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
-import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
-import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 4-5: the eroded polytope

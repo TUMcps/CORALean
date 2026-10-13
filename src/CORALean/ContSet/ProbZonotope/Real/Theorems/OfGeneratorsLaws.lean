@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.OfGenerators
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.OfGenerators
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
+
+@[expose] public section
 
 /-!
 # The laws of `ofGenerators` are those of `μ + g N`

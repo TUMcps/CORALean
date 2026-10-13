@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.DoubleRounding
-import CORALean.NN.Layers.Operations.PolyRelaxationOfAffineConj
-import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.DoubleRounding
+public import CORALean.NN.Layers.Operations.PolyRelaxationOfAffineConj
+public import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
+
+@[expose] public section
 
 /-!
 # The polynomial relaxation at tanh

@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Binary64.Definitions.TrustedHardware
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Definitions.TrustedHardware
+
+@[expose] public section
 
 /-!
 # The one thing this repository assumes

@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Theorems.MilpPrintedInfeasible
-import CORALean.Specification.STL.Theorems.MilpCorrectedIff
+module
+
+public import CORALean.Specification.STL.Theorems.MilpPrintedInfeasible
+public import CORALean.Specification.STL.Theorems.MilpCorrectedIff
+
+@[expose] public section
 
 /-!
 # The program (26) as printed is infeasible where a falsifying factor exists

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
-import Mathlib.Tactic.Positivity
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # The float side condition certified by `le` is the real one

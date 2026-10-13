@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.Submatrix
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.Submatrix
+
+@[expose] public section
 
 /-!
 # Message passing on a shrinking node set, at float

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
-import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
+public import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
+
+@[expose] public section
 
 /-!
 # Lifting the facets of a bundle is lifting each member's

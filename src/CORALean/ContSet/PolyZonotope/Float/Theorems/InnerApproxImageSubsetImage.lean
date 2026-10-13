@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApproxImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerSpecialSubsetImage
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApproxImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerSpecialSubsetImage
+
+@[expose] public section
 
 /-!
 # `innerApproxImage` returns inner boxes

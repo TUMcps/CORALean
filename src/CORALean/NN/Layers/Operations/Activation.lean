@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
-import CORALean.NN.Layers.Layer
-import CORALean.NN.Layers.Operations.RelaxationBox
-import CORALean.NN.Layers.Operations.RelaxationSlopeMat
+module
+
+public import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Layers.Operations.RelaxationBox
+public import CORALean.NN.Layers.Operations.RelaxationSlopeMat
+
+@[expose] public section
 
 /-!
 # Activation layers

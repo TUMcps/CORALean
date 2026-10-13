@@ -1,11 +1,15 @@
-import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
-import CORALean.NN.Theorems.IntervalChainFloatLinearRMem
-import CORALean.NN.Theorems.ScalarEnclosesVecMem
-import CORALean.NN.Definitions.IntervalChainFloatSound
-import CORALean.NN.Operations.IntervalChainFwd
-import CORALean.NN.Operations.IntervalChainFwdFloat
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
+public import CORALean.NN.Theorems.IntervalChainFloatLinearRMem
+public import CORALean.NN.Theorems.ScalarEnclosesVecMem
+public import CORALean.NN.Definitions.IntervalChainFloatSound
+public import CORALean.NN.Operations.IntervalChainFwd
+public import CORALean.NN.Operations.IntervalChainFwdFloat
+
+@[expose] public section
 
 /-!
 # The float forward pass of an interval chain encloses the real one

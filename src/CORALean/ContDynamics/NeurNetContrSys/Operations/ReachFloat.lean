@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachOptions
-import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # A neural-network-controlled continuous plant, reached in floats

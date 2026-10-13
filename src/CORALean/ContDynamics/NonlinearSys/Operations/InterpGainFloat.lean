@@ -1,4 +1,8 @@
-import CORALean.Global.Float.PowUp
+module
+
+public import CORALean.Global.Float.PowUp
+
+@[expose] public section
 
 /-!
 # Eq. (54): the interpolated gain, in floats

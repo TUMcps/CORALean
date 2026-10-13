@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `reduceBy`'s dependent generator count is the kept block's size

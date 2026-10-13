@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.DepBloating
+module
+
+public import CORALean.Specification.STL.Operations.DepBloating
+
+@[expose] public section
 
 /-!
 # The bloating is centred at the origin

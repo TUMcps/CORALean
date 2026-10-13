@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.MatPolytope
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.MatPolytope
+public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # The matrix polytope of a vertex list is its columns, exactly

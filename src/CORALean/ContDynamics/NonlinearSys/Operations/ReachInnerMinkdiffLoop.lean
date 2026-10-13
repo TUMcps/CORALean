@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
+
+@[expose] public section
 
 /-!
 # `reachInnerMinkdiffLoop`, the time steps of CORA's `'minkdiff'` inner reachability

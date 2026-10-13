@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Compact
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Compact
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # The float `compact` keeps the set

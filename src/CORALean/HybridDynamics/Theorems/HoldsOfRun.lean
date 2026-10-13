@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Theorems.RunOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.HybridDynamics.Theorems.RunOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A specification checked on the invariant holds along every run

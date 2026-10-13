@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Mask
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Mask
+
+@[expose] public section
 
 /-!
 # `Interval.tril`

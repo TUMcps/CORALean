@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ContainsDFS
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
-import CORALean.Global.CoeffNormBallEq
-import Mathlib.Data.List.GetD
-import Mathlib.Data.List.NodupEquivFin
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ContainsDFS
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.Global.CoeffNormBallEq
+public import Mathlib.Data.List.GetD
+public import Mathlib.Data.List.NodupEquivFin
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # `containsDFS` decides containment

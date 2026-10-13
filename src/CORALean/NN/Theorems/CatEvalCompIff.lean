@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.Cat
+module
+
+public import CORALean.NN.Definitions.Cat
+
+@[expose] public section
 
 /-!
 # What a composed CAT function maps a point to

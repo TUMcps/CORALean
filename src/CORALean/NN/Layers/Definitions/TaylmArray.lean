@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Taylm.Float.Taylm
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Taylm.Float.Taylm
+
+@[expose] public section
 
 /-!
 # An array of Taylor models as a layer's set

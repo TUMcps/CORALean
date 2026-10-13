@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxBox
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitKeptAddSplitDroppedSubset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxBox
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitKeptAddSplitDroppedSubset
+
+@[expose] public section
 
 /-!
 # `reduceUnderApproxBox` returns a subset

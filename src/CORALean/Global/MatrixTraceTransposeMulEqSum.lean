@@ -1,5 +1,9 @@
-import Mathlib.LinearAlgebra.Matrix.Trace
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Trace
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The trace of `Aᵀ B` as an entrywise sum

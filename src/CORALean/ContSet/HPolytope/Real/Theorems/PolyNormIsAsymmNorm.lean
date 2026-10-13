@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
-import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The polyhedral norm is an asymmetric norm

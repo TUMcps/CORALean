@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.unionCrossCol`

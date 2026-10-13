@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Definitions.ExactVertices
-import CORALean.ContSet.Polygon.Real.Operations.OfPieces
+module
+
+public import CORALean.ContSet.ContSet.Definitions.ExactVertices
+public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
+
+@[expose] public section
 
 /-!
 # CORA's `contSet/polygon`

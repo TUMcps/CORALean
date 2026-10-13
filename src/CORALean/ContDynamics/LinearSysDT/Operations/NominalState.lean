@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+
+@[expose] public section
 
 /-!
 # The nominal run of a discrete-time system

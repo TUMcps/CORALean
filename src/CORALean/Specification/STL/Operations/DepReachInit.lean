@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.Specification.STL.Definitions.DepReachConsts
-import CORALean.Specification.STL.Definitions.DepReachState
-import CORALean.Specification.STL.Operations.DepBox
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.Specification.STL.Definitions.DepReachConsts
+public import CORALean.Specification.STL.Definitions.DepReachState
+public import CORALean.Specification.STL.Operations.DepBox
+
+@[expose] public section
 
 /-!
 # Lines 2-3 of the dependency preserving reachability algorithm

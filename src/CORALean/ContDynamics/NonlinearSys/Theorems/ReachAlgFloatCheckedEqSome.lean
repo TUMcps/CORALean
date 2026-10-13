@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloatChecked
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloatChecked
+
+@[expose] public section
 
 /-!
 # A checked `reachAlgFloat` that returns a result returns the unchecked one

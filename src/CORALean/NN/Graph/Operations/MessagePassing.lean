@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.Degree
-import Mathlib.Analysis.Real.Sqrt
+module
+
+public import CORALean.NN.Graph.Operations.Degree
+public import Mathlib.Analysis.Real.Sqrt
+
+@[expose] public section
 
 /-!
 # `P = D̃^(-1/2) Ã D̃^(-1/2)`, entrywise

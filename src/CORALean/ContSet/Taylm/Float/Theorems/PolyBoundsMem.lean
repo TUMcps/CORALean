@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.PolyBounds
-import CORALean.ContSet.Taylm.Float.Theorems.ToRealTermBounds
-import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
-import CORALean.Global.Float.ListSum
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.PolyBounds
+public import CORALean.ContSet.Taylm.Float.Theorems.ToRealTermBounds
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+public import CORALean.Global.Float.ListSum
+
+@[expose] public section
 
 /-!
 # A term list stays in its float `polyBounds` on the box

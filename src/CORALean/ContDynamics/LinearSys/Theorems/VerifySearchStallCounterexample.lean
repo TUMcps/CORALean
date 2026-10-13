@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
-import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSet
-import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Instances
-import Mathlib.Analysis.Complex.Exponential
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
+public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import Mathlib.Analysis.Complex.Exponential
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3 (termination)]: a safe, decidable instance on which `Alg. 3` never halts

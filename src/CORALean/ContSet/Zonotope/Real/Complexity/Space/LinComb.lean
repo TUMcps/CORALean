@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `Zonotope.linComb_h`

@@ -1,23 +1,25 @@
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToAugment
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToTrajectory
-import CORALean.ContDynamics.NonlinParamSys.Theorems.JacobianFamilyMem
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFCounterexample
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFMem
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatF
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatJacX
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatJacU
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeJacUMem
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeJacXMem
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinReachCoraMissesCounterexample
-import CORALean.ContDynamics.NonlinParamSys.Theorems.LinReachCoraRemainderZero
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatOuter
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatCheckedEqSome
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinParam
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
-import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryOfNonlinearSys
-import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryToNonlinParam
-import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryToNonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToAugment
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToTrajectory
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.JacobianFamilyMem
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFCounterexample
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFMem
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatF
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatJacX
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeFloatJacU
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeJacUMem
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinearizeJacXMem
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinReachCoraMissesCounterexample
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinReachCoraRemainderZero
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatOuter
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatCheckedEqSome
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinParam
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryOfNonlinearSys
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryToNonlinParam
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryToNonlinearSys
 
 /-!
 # What `NonlinParamSys` guarantees

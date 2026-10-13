@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPow
-import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPoly
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPow
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPoly
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.subsXprod`

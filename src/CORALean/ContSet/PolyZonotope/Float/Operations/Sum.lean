@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
-import CORALean.ContSet.PolyZonotope.Float.Operations.SumErr
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SumErr
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.sum`, over a floating-point scalar

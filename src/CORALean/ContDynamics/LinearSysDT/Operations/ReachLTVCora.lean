@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.reachLTVCora`, CORA's `reach` for a time-varying `linearSysDT`

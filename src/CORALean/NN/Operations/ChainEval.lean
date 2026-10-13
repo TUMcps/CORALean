@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.Chain
+module
+
+public import CORALean.NN.Definitions.Chain
+
+@[expose] public section
 
 /-!
 # A chain's composite

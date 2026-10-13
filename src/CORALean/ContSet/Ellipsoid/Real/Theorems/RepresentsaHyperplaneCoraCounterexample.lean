@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaHyperplaneCora
-import CORALean.Global.NotHyperplaneOneDim
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaHyperplaneCora
+public import CORALean.Global.NotHyperplaneOneDim
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `ellipsoid/representsa_(E, 'hyperplane')` accepts every one-dimensional ellipsoid

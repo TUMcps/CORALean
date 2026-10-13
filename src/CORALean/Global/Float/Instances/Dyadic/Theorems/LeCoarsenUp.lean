@@ -1,6 +1,10 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowCoarsen
-import Mathlib.Analysis.Normed.Ring.Lemmas
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowCoarsen
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+
+@[expose] public section
 
 /-!
 # Coarsening up never undershoots

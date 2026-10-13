@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinProbSys.Operations.InitReach
-import CORALean.ContDynamics.LinProbSys.Theorems.InputCovEq
+module
+
+public import CORALean.ContDynamics.LinProbSys.Operations.InitReach
+public import CORALean.ContDynamics.LinProbSys.Theorems.InputCovEq
+
+@[expose] public section
 
 /-!
 # `initReach` hands `post` the noise covariance of one step

@@ -1,6 +1,10 @@
-import CORALean.ContSet.LevelSet.Real.Definitions.TaylorSeries
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.Global.TaylorLagrangeConvex
+module
+
+public import CORALean.ContSet.LevelSet.Real.Definitions.TaylorSeries
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.Global.TaylorLagrangeConvex
+
+@[expose] public section
 
 /-!
 # The Taylor series operator encloses its function

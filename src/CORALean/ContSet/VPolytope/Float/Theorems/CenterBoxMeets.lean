@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
-import CORALean.ContSet.VPolytope.Real.Operations.Center
-import CORALean.ContSet.VPolytope.Real.Theorems.CenterMem
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
+public import CORALean.ContSet.VPolytope.Real.Operations.Center
+public import CORALean.ContSet.VPolytope.Real.Theorems.CenterMem
+
+@[expose] public section
 
 /-!
 # The float centre box holds a point of the polytope

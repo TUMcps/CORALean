@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+
+@[expose] public section
 
 /-!
 # `ConZonotope.rescale`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
+
+@[expose] public section
 
 /-!
 # The support bound is the maximum, not merely an upper bound

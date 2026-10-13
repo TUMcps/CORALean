@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
+
+@[expose] public section
 
 /-!
 # Zonotope containment as a norm bound

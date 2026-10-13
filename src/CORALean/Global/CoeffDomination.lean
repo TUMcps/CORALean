@@ -1,8 +1,12 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Polynomial.Derivative
-import Mathlib.Algebra.Polynomial.Eval.Degree
-import Mathlib.Algebra.Polynomial.Degree.Lemmas
-import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Polynomial.Derivative
+public import Mathlib.Algebra.Polynomial.Eval.Degree
+public import Mathlib.Algebra.Polynomial.Degree.Lemmas
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-!
 # Polynomials dominated coefficientwise

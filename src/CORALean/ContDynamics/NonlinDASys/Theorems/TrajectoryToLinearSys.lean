@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
-import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import Mathlib.Analysis.Calculus.Deriv.Add
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import Mathlib.Analysis.Calculus.Deriv.Add
+
+@[expose] public section
 
 /-!
 # A confined run of the DAE is a run of the linear system `linReach` steps

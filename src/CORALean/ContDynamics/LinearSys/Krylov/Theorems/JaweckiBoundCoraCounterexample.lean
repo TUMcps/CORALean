@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # CORA's Krylov error test without the nonexpansive hypothesis

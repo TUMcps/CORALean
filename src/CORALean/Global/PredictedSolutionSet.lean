@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # The parameter set before the next measurement, by the paper's recursion

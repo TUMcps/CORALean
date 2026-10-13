@@ -1,6 +1,10 @@
-import CORALean.Global.Float.PowUp
-import CORALean.ContSet.PolyZonotope.Float.Operations.IndepFactors
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
+module
+
+public import CORALean.Global.Float.PowUp
+public import CORALean.ContSet.PolyZonotope.Float.Operations.IndepFactors
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.containsPointApprox`

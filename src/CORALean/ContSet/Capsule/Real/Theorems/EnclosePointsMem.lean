@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Operations.EnclosePoints
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.EnclosePoints
+
+@[expose] public section
 
 /-!
 # `Capsule.enclosePoints` contains every point

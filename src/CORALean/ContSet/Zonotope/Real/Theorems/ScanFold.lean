@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ScanEdgeSpec
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ScanEdgeSpec
+
+@[expose] public section
 
 /-!
 # The loops of [1, Alg. 3] record the extremes over all the edges they pass

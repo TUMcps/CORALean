@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Operations.CurvMid
+module
+
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Operations.CurvMid
+
+@[expose] public section
 
 /-!
 # The relaxation a derivative bracket buys

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiBasisMulVecPow
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiBasisMulVecPow
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
+
+@[expose] public section
 
 /-!
 # The Krylov Taylor terms of an input are its exact Taylor terms

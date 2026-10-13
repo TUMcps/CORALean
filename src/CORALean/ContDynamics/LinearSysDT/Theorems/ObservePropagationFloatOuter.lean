@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagationFloat
-import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagationFloat
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # The float propagation observer holds the true state

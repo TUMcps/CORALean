@@ -1,4 +1,8 @@
-import CORALean.Specification.Operations.Check
+module
+
+public import CORALean.Specification.Operations.Check
+
+@[expose] public section
 
 /-!
 # A passed check is the specification, on what the representation denotes

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
+
+@[expose] public section
 
 /-!
 # The first steps of the inner algorithm are a run of their own

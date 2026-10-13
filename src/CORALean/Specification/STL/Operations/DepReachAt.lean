@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.DepReachInit
-import CORALean.Specification.STL.Operations.DepReachStep
+module
+
+public import CORALean.Specification.STL.Operations.DepReachInit
+public import CORALean.Specification.STL.Operations.DepReachStep
+
+@[expose] public section
 
 /-!
 # The state of the dependency preserving reachability algorithm after `i` steps

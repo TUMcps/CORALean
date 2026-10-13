@@ -1,9 +1,13 @@
-import CORALean.NN.Layers.Operations.CoarseHi
-import CORALean.NN.Layers.Operations.CoarseLo
-import CORALean.NN.Layers.Theorems.LeSampleDevUp
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtEvalPoly
-import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
-import CORALean.NN.Layers.Theorems.SampleDevLoLe
+module
+
+public import CORALean.NN.Layers.Operations.CoarseHi
+public import CORALean.NN.Layers.Operations.CoarseLo
+public import CORALean.NN.Layers.Theorems.LeSampleDevUp
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtEvalPoly
+public import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
+public import CORALean.NN.Layers.Theorems.SampleDevLoLe
+
+@[expose] public section
 
 /-!
 # The fallback bracket is sound outright

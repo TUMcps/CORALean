@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.PolyFamily
+module
+
+public import CORALean.NN.Layers.Definitions.PolyFamily
+
+@[expose] public section
 
 /-!
 # Each level of the family is accurate on its range

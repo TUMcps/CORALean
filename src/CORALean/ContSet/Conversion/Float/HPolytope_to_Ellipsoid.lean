@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Ellipsoid
+module
+
+public import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Ellipsoid
+
+@[expose] public section
 
 /-!
 # A halfspace description as an ellipsoid, over a floating-point scalar

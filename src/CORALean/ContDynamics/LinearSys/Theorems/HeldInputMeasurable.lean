@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
-import Mathlib.MeasureTheory.Function.Floor
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
+public import Mathlib.MeasureTheory.Function.Floor
+
+@[expose] public section
 
 /-!
 # A held input is measurable

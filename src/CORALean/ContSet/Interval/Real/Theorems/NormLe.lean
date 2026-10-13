@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Interval.Real.Operations.Norm
+module
+
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Interval.Real.Operations.Norm
+
+@[expose] public section
 
 /-!
 # `Interval.norm` bounds every member

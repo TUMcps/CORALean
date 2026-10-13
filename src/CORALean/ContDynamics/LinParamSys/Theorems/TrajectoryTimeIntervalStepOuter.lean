@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfIntegral
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfIntegral
+
+@[expose] public section
 
 /-!
 # An input-free time-varying run stays in the box's step, unwidened

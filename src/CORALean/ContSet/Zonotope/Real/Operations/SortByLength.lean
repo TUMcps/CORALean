@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
-import Mathlib.Data.Fin.Tuple.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+public import Mathlib.Data.Fin.Tuple.Sort
+
+@[expose] public section
 
 /-!
 # `Zonotope.sortByLength`

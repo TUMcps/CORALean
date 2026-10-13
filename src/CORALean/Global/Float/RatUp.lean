@@ -1,5 +1,9 @@
-import CORALean.Global.Float.FloatOps
-import Mathlib.Data.Rat.Defs
+module
+
+public import CORALean.Global.Float.FloatOps
+public import Mathlib.Data.Rat.Defs
+
+@[expose] public section
 
 /-!
 # A rational, rounded up into the scalar

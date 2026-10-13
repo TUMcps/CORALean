@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.Volume
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Volume
+
+@[expose] public section
 
 /-!
 # `Zonotope.mspb`

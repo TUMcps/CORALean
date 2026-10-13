@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.Star.Real
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.Star.Real
+
+@[expose] public section
 
 /-!
 # The vertex conditions of the LPV estimator as printed

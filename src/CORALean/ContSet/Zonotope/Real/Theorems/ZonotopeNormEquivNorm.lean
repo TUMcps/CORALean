@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
-import Mathlib.Analysis.Calculus.Rademacher
-import Mathlib.Analysis.Convex.Function
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+public import Mathlib.Analysis.Calculus.Rademacher
+public import Mathlib.Analysis.Convex.Function
+
+@[expose] public section
 
 /-!
 # The zonotope norm is equivalent to the others, convex, Lipschitz

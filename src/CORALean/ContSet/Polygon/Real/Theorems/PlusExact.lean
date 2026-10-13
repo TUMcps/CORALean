@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.Plus
-import CORALean.ContSet.SetUnion.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Plus
+public import CORALean.ContSet.SetUnion.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.plus` is the Minkowski sum

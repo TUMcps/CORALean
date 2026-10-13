@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
-import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.RecipUpPos
-import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.RecipUpPos
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
+
+@[expose] public section
 
 /-!
 # The float `normalizeRows` keeps every point of the polytope in the domain

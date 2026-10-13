@@ -1,13 +1,17 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SingletonOneConstruct
-import CORALean.ContSet.SpectraShadow.Real.Theorems.HyperplaneOneConstruct
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
-import CORALean.ContSet.SpectraShadow.Real.Theorems.CartProdExact
-import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
-import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ProjectExact
-import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SingletonOneConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.HyperplaneOneConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.CartProdExact
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ProjectExact
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.convHull_` is exactly the convex hull of the union

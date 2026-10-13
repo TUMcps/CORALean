@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
+
+@[expose] public section
 
 /-!
 # One window with inputs at every member, in floats

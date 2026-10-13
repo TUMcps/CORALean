@@ -1,4 +1,8 @@
-import CORALean.Global.DmdRegressor
+module
+
+public import CORALean.Global.DmdRegressor
+
+@[expose] public section
 
 /-!
 # The blocks of an identified matrix

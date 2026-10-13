@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachExistsOptions
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContDynamics.Reach.Definitions.InputParams
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachExistsOptions
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+
+@[expose] public section
 
 /-!
 # Backward reachability in the `∃` reading, computed

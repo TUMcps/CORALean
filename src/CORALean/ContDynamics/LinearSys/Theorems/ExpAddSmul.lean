@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+
+@[expose] public section
 
 /-!
 # The exponential of a sum of multiples of one matrix

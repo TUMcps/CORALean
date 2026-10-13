@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.HybridDynamics.Operations.TimeIntervalStep
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.HybridDynamics.Operations.TimeIntervalStep
+
+@[expose] public section
 
 /-!
 # `Location.timeIntervalStepSplit`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Bilin
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Bilin
+
+@[expose] public section
 
 /-!
 # `VPolytope.bilin` encloses every pointwise product

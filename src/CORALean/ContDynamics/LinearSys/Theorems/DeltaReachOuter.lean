@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
+
+@[expose] public section
 
 /-!
 # `deltaReach` contains every difference the step can span

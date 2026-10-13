@@ -1,7 +1,11 @@
-import CORALean.ContSet.Capsule.Real.Operations.Volume
-import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
-import Mathlib.MeasureTheory.Constructions.Pi
-import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Volume
+public import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
+public import Mathlib.MeasureTheory.Constructions.Pi
+public import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
+
+@[expose] public section
 
 /-!
 # The volume of a capsule

@@ -1,9 +1,13 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Operations.Aligned
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.Data.Matrix.Basic
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # The inner bound of the Minkowski difference fails at (max-in) over `W`'s halfspaces

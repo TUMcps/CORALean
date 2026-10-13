@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Replace
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Replace
+
+@[expose] public section
 
 /-!
 # What `replace` denotes

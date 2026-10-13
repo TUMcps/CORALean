@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.ScalarEncloses
+module
+
+public import CORALean.NN.Definitions.ScalarEncloses
+
+@[expose] public section
 
 /-!
 # A scalar enclosure, applied entrywise, encloses the entrywise image

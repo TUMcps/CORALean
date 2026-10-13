@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Alg2Corrected
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetSumExpImage
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Alg2Corrected
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetSumExpImage
+
+@[expose] public section
 
 /-!
 # Alg. 2, repaired, encloses the reachable set

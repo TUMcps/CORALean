@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.CoeffNorm
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.CoeffNorm
+public import Mathlib.Algebra.BigOperators.Intervals
+
+@[expose] public section
 
 /-!
 # `Zonotope.containsDFS`

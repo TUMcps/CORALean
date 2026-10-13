@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearARX.Operations.OutputEq
-import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
-import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
-import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
+public import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
+
+@[expose] public section
 
 /-!
 # The ARX output lies in the output set of the converted reach

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # What an `Alg. 2` state owes at `t_k`, in floats

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationFamilyDegOf
-import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationFamilyDegOf
+public import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
+
+@[expose] public section
 
 /-!
 # A layer's abstraction at an order pattern

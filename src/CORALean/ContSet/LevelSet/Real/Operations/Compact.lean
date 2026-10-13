@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
-import CORALean.ContSet.EmptySet.Real.EmptySet
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+
+@[expose] public section
 
 /-!
 # `LevelSet.compact_`

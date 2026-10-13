@@ -1,10 +1,14 @@
-import CORALean.Global.LinProg.Duality
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
-import Mathlib.Algebra.BigOperators.Field
-import Mathlib.Algebra.Module.Submodule.LinearMap
-import Mathlib.LinearAlgebra.Prod
+module
+
+public import CORALean.Global.LinProg.Duality
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+public import Mathlib.Algebra.BigOperators.Field
+public import Mathlib.Algebra.Module.Submodule.LinearMap
+public import Mathlib.LinearAlgebra.Prod
+
+@[expose] public section
 
 /-!
 # Strong duality: Farkas' lemma

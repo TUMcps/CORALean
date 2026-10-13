@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
-import CORALean.NN.Layers.Operations.Linear
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
+public import CORALean.NN.Layers.Operations.Linear
+
+@[expose] public section
 
 /-!
 # The linear layer loses nothing at a polynomial zonotope

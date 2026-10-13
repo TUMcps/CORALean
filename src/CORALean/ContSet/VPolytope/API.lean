@@ -1,5 +1,7 @@
-import CORALean.ContSet.VPolytope.Real.API
-import CORALean.ContSet.VPolytope.Float.API
+module
+
+public import CORALean.ContSet.VPolytope.Real.API
+public import CORALean.ContSet.VPolytope.Float.API
 
 /-!
 # Polytopes by vertices, both layers

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Float.Operations.SplitParallelotope
-import CORALean.ContSet.Zonotope.Float.Operations.Split
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitParallelotope
+public import CORALean.ContSet.Zonotope.Float.Operations.Split
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.split`, over a floating-point scalar

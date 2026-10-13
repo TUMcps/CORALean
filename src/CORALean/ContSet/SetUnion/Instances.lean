@@ -1,6 +1,10 @@
-import CORALean.ContSet.SetUnion.Theorems.MtimesOuter
-import CORALean.ContSet.SetUnion.Theorems.PlusOuter
-import CORALean.ContSet.SetUnion.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.SetUnion.Theorems.MtimesOuter
+public import CORALean.ContSet.SetUnion.Theorems.PlusOuter
+public import CORALean.ContSet.SetUnion.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # What `SetUnion` instantiates

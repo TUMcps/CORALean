@@ -1,6 +1,10 @@
-import CORALean.Global.CubeSubsetHalfspaceIff
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Analysis.Convex.Jensen
+module
+
+public import CORALean.Global.CubeSubsetHalfspaceIff
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Analysis.Convex.Jensen
+
+@[expose] public section
 
 /-!
 # Circumradius and polar inradius are reciprocal

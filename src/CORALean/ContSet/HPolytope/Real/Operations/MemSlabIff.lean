@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.Slab
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Slab
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.slab`

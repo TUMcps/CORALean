@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersectMany`

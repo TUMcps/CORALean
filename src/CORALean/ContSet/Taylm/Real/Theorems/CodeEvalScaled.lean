@@ -1,12 +1,16 @@
-import CORALean.ContSet.Taylm.Real.Operations.CodeEval
-import CORALean.ContSet.Taylm.Real.Definitions.CodeScale
-import CORALean.ContSet.Taylm.Real.Theorems.PlusScaled
-import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
-import CORALean.ContSet.Taylm.Real.Theorems.UminusScaled
-import CORALean.ContSet.Taylm.Real.Theorems.ExpScaled
-import CORALean.ContSet.Taylm.Real.Theorems.SinScaled
-import CORALean.ContSet.Taylm.Real.Theorems.CosScaled
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorMaxOrder
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.CodeEval
+public import CORALean.ContSet.Taylm.Real.Definitions.CodeScale
+public import CORALean.ContSet.Taylm.Real.Theorems.PlusScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.UminusScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.ExpScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.SinScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.CosScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorMaxOrder
+
+@[expose] public section
 
 /-!
 # A code list keeps the `(n+1)`-st order scaling

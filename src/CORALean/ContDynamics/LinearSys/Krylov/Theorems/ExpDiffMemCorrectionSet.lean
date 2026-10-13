@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Definitions.CorrectionSet
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpRemainderMatEntry
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumMatrixEntryEq
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Definitions.CorrectionSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpRemainderMatEntry
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumMatrixEntryEq
+
+@[expose] public section
 
 /-!
 # The interpolation error of the reduced exponential lies in the correction set

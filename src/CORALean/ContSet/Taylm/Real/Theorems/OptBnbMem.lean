@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.OptBnb
-import CORALean.ContSet.Taylm.Real.Theorems.BranchAndBoundMem
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.OptBnb
+public import CORALean.ContSet.Taylm.Real.Theorems.BranchAndBoundMem
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Taylm.optBnb` bounds the enclosed function

@@ -1,18 +1,22 @@
-import CORALean.ContDynamics.LinProbSys.Definitions.PostState
-import CORALean.ContDynamics.LinProbSys.Operations.InputCov
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.MatMul
-import CORALean.ContSet.Interval.Real.Operations.Point
-import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
-import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+module
+
+public import CORALean.ContDynamics.LinProbSys.Definitions.PostState
+public import CORALean.ContDynamics.LinProbSys.Operations.InputCov
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.MatMul
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+
+@[expose] public section
 
 /-!
 # The first step of the probabilistic reach loop

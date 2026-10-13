@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoInitFloat
-import CORALean.ContDynamics.LinearSys.Operations.AutoRunFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoRunFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 2` in floats: reachability to a horizon

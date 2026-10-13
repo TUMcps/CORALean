@@ -1,6 +1,10 @@
-import CORALean.Specification.Operations.VerifyConvex
-import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
-import CORALean.Specification.Theorems.Separation
+module
+
+public import CORALean.Specification.Operations.VerifyConvex
+public import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
+public import CORALean.Specification.Theorems.Separation
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3 (exits), l. 4-5]: `verifyConvex`'s `safe` answer is sound

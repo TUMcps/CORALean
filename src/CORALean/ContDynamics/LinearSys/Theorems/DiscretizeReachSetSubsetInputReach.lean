@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparation
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+
+@[expose] public section
 
 /-!
 # The discrete reachable set, under constant-input steps, sits inside `inputReach`

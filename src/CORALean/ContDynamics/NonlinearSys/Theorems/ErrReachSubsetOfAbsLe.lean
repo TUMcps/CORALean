@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The condition that does keep the error set inside `[-θ r, θ r]`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
+
+@[expose] public section
 
 /-!
 # The quadratic form of the arrowhead matrix

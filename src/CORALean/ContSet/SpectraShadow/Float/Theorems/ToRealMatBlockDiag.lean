@@ -1,5 +1,9 @@
-import CORALean.Global.BlockDiag
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+module
+
+public import CORALean.Global.BlockDiag
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+
+@[expose] public section
 
 /-!
 # Stored block-diagonal matrices read as reals

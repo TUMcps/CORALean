@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Sqrt
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Sqrt
+
+@[expose] public section
 
 /-!
 # `Interval.sqrt` contains the image under `sqrt`

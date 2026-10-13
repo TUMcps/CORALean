@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
-import CORALean.Global.LinProg.LinProg
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
+public import CORALean.Global.LinProg.LinProg
+
+@[expose] public section
 
 /-!
 # A time-point lower bound is a time-interval lower bound

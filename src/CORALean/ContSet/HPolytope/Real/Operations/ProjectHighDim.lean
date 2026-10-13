@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Lift
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Lift
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # `HPolytope.projectHighDim`

@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptorLPV
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Algebra.Module.BigOperators
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptorLPV
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.Module.BigOperators
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The polytopic intersection zonotope is the intersection zonotope at the scheduled matrices

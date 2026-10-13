@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
+
+@[expose] public section
 
 /-!
 # `HPolytope.minkDiffOf`'s counts

@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+
+@[expose] public section
 
 /-!
 # `errorSolution_adaptive`'s remainder box, inside the float input remainder

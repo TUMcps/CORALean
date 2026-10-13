@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Analysis.Normed.Field.Basic
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Analysis.Normed.Field.Basic
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # Every face of a zonotope is centrally symmetric

@@ -1,5 +1,9 @@
-import CORALean.Global.EuclideanNorm
-import CORALean.Global.Tensor
+module
+
+public import CORALean.Global.EuclideanNorm
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # A neuron's own sensitivity

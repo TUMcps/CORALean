@@ -1,5 +1,9 @@
-import Mathlib.Analysis.InnerProductSpace.Basic
-import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+module
+
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+
+@[expose] public section
 
 /-!
 # The combined scaled time-triggered transformation

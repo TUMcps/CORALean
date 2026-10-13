@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+@[expose] public section
 
 /-!
 # The map an ellipsoid is the image of is continuous

@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Operations.SigmoidCurvatureRelaxation
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
-import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
-import CORALean.NN.Layers.Theorems.OfDerivSound
-import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
+module
+
+public import CORALean.NN.Layers.Operations.SigmoidCurvatureRelaxation
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+public import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
+public import CORALean.NN.Layers.Theorems.OfDerivSound
+public import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
+
+@[expose] public section
 
 /-!
 # The sigmoid's curvature relaxation is sound

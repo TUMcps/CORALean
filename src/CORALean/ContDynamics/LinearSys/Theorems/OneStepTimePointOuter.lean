@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.OneStep
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachShift
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.OneStep
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachShift
+
+@[expose] public section
 
 /-!
 # `oneStep` holds the state at the end of the step

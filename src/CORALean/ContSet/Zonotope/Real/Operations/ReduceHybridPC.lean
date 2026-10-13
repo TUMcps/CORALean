@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LineClBasis
-import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LineClBasis
+public import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceHybridPC`

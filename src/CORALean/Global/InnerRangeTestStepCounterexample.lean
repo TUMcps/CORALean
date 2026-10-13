@@ -1,5 +1,9 @@
-import CORALean.Global.InnerRangeTest
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.Global.InnerRangeTest
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # (5) does not give condition (i) on the whole of `∂u`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffStretch
-import CORALean.Global.Tensor
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffStretch
+public import CORALean.Global.Tensor
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffApprox`

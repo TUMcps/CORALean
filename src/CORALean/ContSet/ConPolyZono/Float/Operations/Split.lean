@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
-import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_ConPolyZono
-import CORALean.ContSet.Interval.Float.Operations.SplitAt
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
+public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_ConPolyZono
+public import CORALean.ContSet.Interval.Float.Operations.SplitAt
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.split`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.mtimes`

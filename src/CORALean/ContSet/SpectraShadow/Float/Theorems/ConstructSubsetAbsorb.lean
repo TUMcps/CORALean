@@ -1,7 +1,11 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
-import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.absorb` holds the whole set in its nominal shadow

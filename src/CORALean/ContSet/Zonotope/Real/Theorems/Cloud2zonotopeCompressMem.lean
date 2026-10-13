@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeCompress
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeCompress
+
+@[expose] public section
 
 /-!
 # `Zonotope.cloud2zonotopeCompress` moves each point along `g` by at most `g`

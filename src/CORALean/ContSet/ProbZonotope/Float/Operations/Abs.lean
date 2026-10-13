@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
-import CORALean.ContSet.Zonotope.Float.Operations.Abs
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.Abs
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.abs`, over a floating-point scalar

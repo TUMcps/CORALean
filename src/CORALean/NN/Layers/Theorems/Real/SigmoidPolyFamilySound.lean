@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
-import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound
+module
+
+public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
+public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound
+
+@[expose] public section
 
 /-!
 # The sigmoid family is sound

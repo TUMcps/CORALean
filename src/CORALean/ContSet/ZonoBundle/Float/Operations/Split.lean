@@ -1,7 +1,11 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Float.Operations.Split
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Operations.Split
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.split` over a floating-point scalar

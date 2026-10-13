@@ -1,15 +1,19 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
-import CORALean.ContSet.Zonotope.Real.Theorems.EdgePointLeast
-import CORALean.ContSet.Zonotope.Real.Theorems.SegmentMeetsVlineIff
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerApply
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottom
-import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerBottomLe
-import CORALean.ContSet.Zonotope.Real.Theorems.ReachLe
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
+public import CORALean.ContSet.Zonotope.Real.Theorems.EdgePointLeast
+public import CORALean.ContSet.Zonotope.Real.Theorems.SegmentMeetsVlineIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerApply
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottom
+public import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerBottomLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReachLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # The lowest point of a section lies on an edge of the walk

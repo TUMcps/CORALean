@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpGreedy
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpGreedy
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
+
+@[expose] public section
 
 /-!
 # Relaxing along a selection over-approximates at the stored columns

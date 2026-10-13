@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Aligned
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Shift
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.Shift
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `Zonotope.backReachAligned`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
-import CORALean.ContSet.PolyZonotope.Real.Operations.SortPerm
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPerm
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.sort`

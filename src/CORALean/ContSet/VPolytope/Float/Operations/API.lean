@@ -1,27 +1,29 @@
-import CORALean.ContSet.VPolytope.Float.Operations.MatPolytope
-import CORALean.ContSet.VPolytope.Float.Operations.ProjectHighDim
-import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
-import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
-import CORALean.ContSet.VPolytope.Float.Operations.PairSum
-import CORALean.ContSet.VPolytope.Float.Operations.Plus
-import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
-import CORALean.ContSet.VPolytope.Float.Operations.LinComb
-import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundProj
-import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundNegProj
-import CORALean.ContSet.VPolytope.Float.Operations.BoundProj
-import CORALean.ContSet.VPolytope.Float.Operations.BoundNegProj
-import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundDot
-import CORALean.ContSet.VPolytope.Float.Operations.Project
-import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
-import CORALean.ContSet.VPolytope.Float.Operations.Intersection
-import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
-import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
-import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
-import CORALean.ContSet.VPolytope.Float.Operations.Origin
-import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
-import CORALean.ContSet.VPolytope.Float.Operations.Bordered
-import CORALean.ContSet.VPolytope.Float.Operations.IsFullDimWith
-import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.MatPolytope
+public import CORALean.ContSet.VPolytope.Float.Operations.ProjectHighDim
+public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
+public import CORALean.ContSet.VPolytope.Float.Operations.PairSum
+public import CORALean.ContSet.VPolytope.Float.Operations.Plus
+public import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
+public import CORALean.ContSet.VPolytope.Float.Operations.LinComb
+public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundProj
+public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundNegProj
+public import CORALean.ContSet.VPolytope.Float.Operations.BoundProj
+public import CORALean.ContSet.VPolytope.Float.Operations.BoundNegProj
+public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundDot
+public import CORALean.ContSet.VPolytope.Float.Operations.Project
+public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
+public import CORALean.ContSet.VPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
+public import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
+public import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
+public import CORALean.ContSet.VPolytope.Float.Operations.Origin
+public import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
+public import CORALean.ContSet.VPolytope.Float.Operations.Bordered
+public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDimWith
+public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
 
 /-!
 # What the float `VPolytope` computes

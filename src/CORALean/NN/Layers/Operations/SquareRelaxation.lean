@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.RelaxationOfDeriv
-import CORALean.NN.Layers.Operations.SquareEnclosure
-import CORALean.NN.Layers.Operations.SquareSlope
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
+public import CORALean.NN.Layers.Operations.SquareEnclosure
+public import CORALean.NN.Layers.Operations.SquareSlope
+
+@[expose] public section
 
 /-!
 # The square relaxation

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
+
+@[expose] public section
 
 /-!
 # Confinement, discharged from the computed sets

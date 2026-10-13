@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.OfBounds
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.OfBounds
+
+@[expose] public section
 
 /-!
 # `Interval.ofBounds` encloses

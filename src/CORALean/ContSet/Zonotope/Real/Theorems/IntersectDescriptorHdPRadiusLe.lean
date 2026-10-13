@@ -1,11 +1,15 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.Global.PosDefSchurComplement
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.Global.PosDefSchurComplement
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The P-radius contraction of the LPV estimator

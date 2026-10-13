@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # The interval Hessians of one abstraction-error evaluation

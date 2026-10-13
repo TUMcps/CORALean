@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
+
+@[expose] public section
 
 /-!
 # A masked sum of stored floats reads back to the exact layer's fibre sum

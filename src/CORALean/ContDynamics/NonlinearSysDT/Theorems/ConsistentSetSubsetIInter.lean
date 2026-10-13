@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
+
+@[expose] public section
 
 /-!
 # The consistent set lies in the intersection of the component sets

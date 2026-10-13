@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
+
+@[expose] public section
 
 /-!
 # `HPolytope.contractBox` holds the box's intersection with the polytope

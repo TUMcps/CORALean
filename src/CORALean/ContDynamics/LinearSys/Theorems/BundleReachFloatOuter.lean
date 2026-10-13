@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
-import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1] in floats encloses the reachable set on every time interval

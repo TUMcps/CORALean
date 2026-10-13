@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
-import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
-import CORALean.Specification.STL.Operations.DepReach
-import CORALean.Specification.STL.Theorems.DepBloatingC
-import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
-import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
-import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
+public import CORALean.Specification.STL.Operations.DepReach
+public import CORALean.Specification.STL.Theorems.DepBloatingC
+public import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
+public import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
+public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # The time interval half of [1, Prop. 1] fails at an interior time

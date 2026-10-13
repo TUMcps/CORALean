@@ -1,4 +1,8 @@
-import Mathlib.Data.Nat.Log
+module
+
+public import Mathlib.Data.Nat.Log
+
+@[expose] public section
 
 /-!
 # What running an operation costs

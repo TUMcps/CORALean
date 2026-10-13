@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 9-15: the order sweep

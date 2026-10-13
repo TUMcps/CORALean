@@ -1,17 +1,19 @@
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Plus
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.LinComb
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Map
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Mtimes
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.MtimesIntervalMat
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Mul
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPoly
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPolySort
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.PadFront
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.PadBack
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Compact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Plus
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.LinComb
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Map
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Mtimes
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.MtimesIntervalMat
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Mul
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPoly
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPolySort
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.PadFront
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.PadBack
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Compact
 
 /-!
 # How large `PolyZonotope`'s results are

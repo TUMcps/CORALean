@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
-import Mathlib.Probability.Distributions.Gaussian.Multivariate
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
+public import Mathlib.Probability.Distributions.Gaussian.Multivariate
+
+@[expose] public section
 
 /-!
 # The laws of the input solution at time `t`

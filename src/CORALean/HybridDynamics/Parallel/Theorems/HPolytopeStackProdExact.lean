@@ -1,9 +1,13 @@
-import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdA
-import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdb
-import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdAe
-import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdbe
-import CORALean.HybridDynamics.Parallel.Theorems.BlockProjApply
-import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdA
+public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdb
+public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdAe
+public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdbe
+public import CORALean.HybridDynamics.Parallel.Theorems.BlockProjApply
+public import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
+
+@[expose] public section
 
 /-!
 # `HPolytope.stackProd` is the Cartesian product, exactly

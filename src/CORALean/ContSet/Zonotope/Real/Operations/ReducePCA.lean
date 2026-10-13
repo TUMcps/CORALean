@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
-import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+public import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+
+@[expose] public section
 
 /-!
 # `Zonotope.reducePCA`

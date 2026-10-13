@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose2
-import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose2
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.enclose₂` contains the segments

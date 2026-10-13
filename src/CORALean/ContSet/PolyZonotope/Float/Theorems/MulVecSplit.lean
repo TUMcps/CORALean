@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # The exact image, regrouped so the centre and each generator appear once

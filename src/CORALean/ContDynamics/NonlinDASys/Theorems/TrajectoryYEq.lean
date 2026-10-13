@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+
+@[expose] public section
 
 /-!
 # The algebraic variable of a trajectory is `h` of its state and input

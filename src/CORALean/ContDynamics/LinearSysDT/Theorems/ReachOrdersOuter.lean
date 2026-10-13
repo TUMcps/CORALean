@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
+
+@[expose] public section
 
 /-!
 # `reachOrders` contains every trajectory

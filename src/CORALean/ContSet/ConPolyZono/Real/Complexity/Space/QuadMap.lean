@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.quadMap`'s counts

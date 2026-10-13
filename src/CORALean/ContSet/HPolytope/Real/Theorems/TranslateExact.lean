@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Translate
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Translate
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `HPolytope.translate` is exactly the shift

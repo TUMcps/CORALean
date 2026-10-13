@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.VolumeRatio
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.VolumeRatio
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `volumeRatio` of an over-approximation is at least one

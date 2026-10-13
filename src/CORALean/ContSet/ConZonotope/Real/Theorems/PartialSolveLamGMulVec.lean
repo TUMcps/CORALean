@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Λ_G` of [1, Sec. 4.2] on a vector

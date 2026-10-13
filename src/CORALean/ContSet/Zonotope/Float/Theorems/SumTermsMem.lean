@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # A sum of members is a member of the float sum

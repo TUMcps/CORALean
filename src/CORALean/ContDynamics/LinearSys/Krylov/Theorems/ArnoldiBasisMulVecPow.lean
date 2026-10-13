@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiBasis
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiHessenberg
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiRelation
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfHessenberg
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiBasis
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiHessenberg
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiRelation
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfHessenberg
+
+@[expose] public section
 
 /-!
 # The Krylov approximation is exact below the Krylov order

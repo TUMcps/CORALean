@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # A zonotope is convex

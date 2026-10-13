@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.AdjAt
-import CORALean.NN.Graph.Operations.Degree
+module
+
+public import CORALean.NN.Graph.Operations.AdjAt
+public import CORALean.NN.Graph.Operations.Degree
+
+@[expose] public section
 
 /-!
 # The degree of a graph whose edges are uncertain, at one choice of weights

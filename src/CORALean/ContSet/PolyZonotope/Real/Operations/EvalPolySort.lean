@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.evalPolySort`

@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
-import CORALean.NN.Layers.Theorems.Real.SigmoidDerivSShape
-import CORALean.NN.Layers.Theorems.SShapeUnimodal
+module
+
+public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+public import CORALean.NN.Layers.Theorems.Real.SigmoidDerivSShape
+public import CORALean.NN.Layers.Theorems.SShapeUnimodal
+
+@[expose] public section
 
 /-!
 # DeepZ's transformer is sound for the sigmoid

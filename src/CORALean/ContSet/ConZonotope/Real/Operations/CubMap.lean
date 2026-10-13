@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
-import CORALean.ContSet.Zonotope.Real.Operations.CubMap
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
+public import CORALean.ContSet.Zonotope.Real.Operations.CubMap
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+
+@[expose] public section
 
 /-!
 # `ConZonotope.cubMap`

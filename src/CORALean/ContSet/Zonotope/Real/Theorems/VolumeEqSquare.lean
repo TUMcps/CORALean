@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Volume
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Volume
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # The volume of a zonotope with `n` generators

@@ -1,8 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.API
-import CORALean.ContDynamics.LinParamSys.Instances
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinParamSys.Operations.API
-import CORALean.ContDynamics.LinParamSys.Theorems.API
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.API
+public import CORALean.ContDynamics.LinParamSys.Instances
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinParamSys.Operations.API
+public import CORALean.ContDynamics.LinParamSys.Theorems.API
 
 /-!
 # Continuous-time linear systems with a set-valued system matrix, collected

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.PolyZonotope.Float.Operations.MonoBox
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MonoBox
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.pointBox`

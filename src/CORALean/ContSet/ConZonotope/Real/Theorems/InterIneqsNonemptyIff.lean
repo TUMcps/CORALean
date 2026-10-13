@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # A constrained zonotope meets a halfspace polytope exactly when the optimum is `≤ 0`

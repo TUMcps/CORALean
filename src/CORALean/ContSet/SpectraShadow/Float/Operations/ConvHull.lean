@@ -1,9 +1,13 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
-import CORALean.ContSet.SpectraShadow.Float.Operations.SingletonOne
-import CORALean.ContSet.SpectraShadow.Float.Operations.HyperplaneOne
-import CORALean.ContSet.SpectraShadow.Float.Operations.CartProd
-import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
-import CORALean.ContSet.SpectraShadow.Float.Operations.Project
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
+public import CORALean.ContSet.SpectraShadow.Float.Operations.SingletonOne
+public import CORALean.ContSet.SpectraShadow.Float.Operations.HyperplaneOne
+public import CORALean.ContSet.SpectraShadow.Float.Operations.CartProd
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Project
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.convHull_`, over a floating-point scalar

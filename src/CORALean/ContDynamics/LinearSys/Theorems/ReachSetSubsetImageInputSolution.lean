@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # The time-point reachable set inside an exact sum, not a representation

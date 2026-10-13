@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # Relaxing the exponents of two similar generators over-approximates

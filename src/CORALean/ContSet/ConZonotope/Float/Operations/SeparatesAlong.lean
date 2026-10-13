@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+
+@[expose] public section
 
 /-!
 # `ConZonotope.separatesAlong`

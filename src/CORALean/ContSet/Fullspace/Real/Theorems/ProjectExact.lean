@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Project
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Project
+
+@[expose] public section
 
 /-!
 # `Fullspace.project` is exact

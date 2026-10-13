@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Complexity.Space.GcnActSteps
-import CORALean.NN.Graph.Complexity.Space.MessagePassingEnclosure
-import CORALean.NN.Graph.Operations.Alg1Node
+module
+
+public import CORALean.NN.Graph.Complexity.Space.GcnActSteps
+public import CORALean.NN.Graph.Complexity.Space.MessagePassingEnclosure
+public import CORALean.NN.Graph.Operations.Alg1Node
+
+@[expose] public section
 
 /-!
 # `Alg. 1`'s count for a node-level output

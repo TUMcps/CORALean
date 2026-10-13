@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.NnfToFormula
-import CORALean.Specification.STL.Operations.SampToFormula
+module
+
+public import CORALean.Specification.STL.Operations.NnfToFormula
+public import CORALean.Specification.STL.Operations.SampToFormula
+
+@[expose] public section
 
 /-!
 # A normal form that rewrites to sampled time

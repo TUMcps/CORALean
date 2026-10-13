@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMeasurableParam
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMeasurableParam
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # An input-free time-varying run solves the integral equation

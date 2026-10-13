@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
-import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
-import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
-import CORALean.Global.DetLeTraceDivPow
-import CORALean.Global.EqSmulOneOfDetEqTraceDivPow
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
+public import CORALean.Global.DetLeTraceDivPow
+public import CORALean.Global.EqSmulOneOfDetEqTraceDivPow
+
+@[expose] public section
 
 /-!
 # The minimum-volume ellipsoid around a parallelotope is unique

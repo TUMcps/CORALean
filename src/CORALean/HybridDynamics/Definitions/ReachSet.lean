@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.HybridAutomaton
+module
+
+public import CORALean.HybridDynamics.HybridAutomaton
+
+@[expose] public section
 
 /-!
 # The states and locations a hybrid run actually reaches

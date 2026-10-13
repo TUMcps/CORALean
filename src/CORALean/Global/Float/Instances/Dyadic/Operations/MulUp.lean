@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.ExactMul
-import CORALean.Global.Float.Instances.Dyadic.Operations.RoundUp
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.ExactMul
+public import CORALean.Global.Float.Instances.Dyadic.Operations.RoundUp
+
+@[expose] public section
 
 /-!
 # Multiplication, rounded up

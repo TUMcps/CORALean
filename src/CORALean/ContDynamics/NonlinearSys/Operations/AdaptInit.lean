@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AdaptState
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AdaptState
+
+@[expose] public section
 
 /-!
 # `Alg. 2`'s loop state before the first step

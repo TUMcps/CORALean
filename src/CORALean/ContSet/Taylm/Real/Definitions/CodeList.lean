@@ -1,9 +1,13 @@
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # Code lists

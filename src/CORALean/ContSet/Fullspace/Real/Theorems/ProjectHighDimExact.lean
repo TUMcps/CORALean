@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Operations.ProjectHighDim
-import Mathlib.Data.Fintype.EquivFin
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.ProjectHighDim
+public import Mathlib.Data.Fintype.EquivFin
+
+@[expose] public section
 
 /-!
 # `Fullspace.projectHighDim_` is exact

@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
+
+@[expose] public section
 
 /-!
 # `columnGap` admits every column's rounding residual

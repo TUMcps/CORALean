@@ -1,49 +1,51 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Box
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirBox
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirFil
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirFlow
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirPca
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirPcaCovariance
-import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingBox
-import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
-import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalAll
-import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
-import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
-import CORALean.ContSet.ZonoBundle.Real.Operations.GuardIntersect
-import CORALean.ContSet.ZonoBundle.Real.Operations.Intersection
-import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
-import CORALean.ContSet.ZonoBundle.Real.Operations.Map
-import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
-import CORALean.ContSet.ZonoBundle.Real.Operations.MtimesMatZonotope
-import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
-import CORALean.ContSet.ZonoBundle.Real.Operations.Parallelotope
-import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
-import CORALean.ContSet.ZonoBundle.Real.Operations.Pool
-import CORALean.ContSet.ZonoBundle.Real.Operations.Replace
-import CORALean.ContSet.ZonoBundle.Real.Operations.QuadMap
-import CORALean.ContSet.ZonoBundle.Real.Operations.Empty
-import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
-import CORALean.ContSet.ZonoBundle.Real.Operations.ReduceCombined
-import CORALean.ContSet.ZonoBundle.Real.Operations.Shrink
-import CORALean.ContSet.ZonoBundle.Real.Operations.Split
-import CORALean.ContSet.ZonoBundle.Real.Operations.SupportBound
-import CORALean.ContSet.ZonoBundle.Real.Operations.Project
-import CORALean.ContSet.ZonoBundle.Real.Operations.CartProd
-import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
-import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
-import CORALean.ContSet.ZonoBundle.Real.Operations.IsequalCora
-import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
-import CORALean.ContSet.ZonoBundle.Real.Operations.IsCentre
-import CORALean.ContSet.ZonoBundle.Real.Operations.ContainsAll
-import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
-import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
-import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
-import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVertices
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVerticesNonempty
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Box
+public import CORALean.ContSet.ZonoBundle.Real.Operations.DirBox
+public import CORALean.ContSet.ZonoBundle.Real.Operations.DirFil
+public import CORALean.ContSet.ZonoBundle.Real.Operations.DirFlow
+public import CORALean.ContSet.ZonoBundle.Real.Operations.DirPca
+public import CORALean.ContSet.ZonoBundle.Real.Operations.DirPcaCovariance
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingBox
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalAll
+public import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
+public import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
+public import CORALean.ContSet.ZonoBundle.Real.Operations.GuardIntersect
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Intersection
+public import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Map
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+public import CORALean.ContSet.ZonoBundle.Real.Operations.MtimesMatZonotope
+public import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Parallelotope
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Pool
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Replace
+public import CORALean.ContSet.ZonoBundle.Real.Operations.QuadMap
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Empty
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+public import CORALean.ContSet.ZonoBundle.Real.Operations.ReduceCombined
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Shrink
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Split
+public import CORALean.ContSet.ZonoBundle.Real.Operations.SupportBound
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Project
+public import CORALean.ContSet.ZonoBundle.Real.Operations.CartProd
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IsequalCora
+public import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IsCentre
+public import CORALean.ContSet.ZonoBundle.Real.Operations.ContainsAll
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
+public import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
+public import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
+public import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVertices
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVerticesNonempty
 
 /-!
 # What a zonotope bundle computes, collected

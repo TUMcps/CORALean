@@ -1,5 +1,9 @@
-import Mathlib.Data.EReal.Basic
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import Mathlib.Data.EReal.Basic
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.EBox`: bounds with infinite ends

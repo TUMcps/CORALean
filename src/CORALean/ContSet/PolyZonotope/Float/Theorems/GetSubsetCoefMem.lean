@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetCoef
-import CORALean.ContSet.Interval.Float.Theorems.PowLoLe
-import CORALean.ContSet.Interval.Float.Theorems.PowHiLe
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetCoef
+public import CORALean.ContSet.Interval.Float.Theorems.PowLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.PowHiLe
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # The binomial coefficient lies in its bracket

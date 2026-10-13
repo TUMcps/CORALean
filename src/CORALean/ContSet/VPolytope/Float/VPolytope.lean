@@ -1,6 +1,10 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.VPolytope.Real.Instances
-import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.VPolytope.Real.Instances
+public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
+
+@[expose] public section
 
 /-!
 # Vertex descriptions over a floating-point scalar: the representation

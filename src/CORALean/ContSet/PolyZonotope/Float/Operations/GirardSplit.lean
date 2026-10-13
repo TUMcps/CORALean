@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GirardMetric
-import CORALean.Global.Partition
-import CORALean.Global.Sort
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GirardMetric
+public import CORALean.Global.Partition
+public import CORALean.Global.Sort
+
+@[expose] public section
 
 /-!
 # The generators a metric ranks first, against the rest, over a floating-point scalar

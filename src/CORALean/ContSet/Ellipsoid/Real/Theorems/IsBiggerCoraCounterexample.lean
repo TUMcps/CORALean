@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IsBiggerCora
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerIffSubset
-import Mathlib.LinearAlgebra.Matrix.Rank
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBiggerCora
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerIffSubset
+public import Mathlib.LinearAlgebra.Matrix.Rank
+
+@[expose] public section
 
 /-!
 # CORA's `isBigger` answers `true` for every pair in dimension `1`

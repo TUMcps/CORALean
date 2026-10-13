@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # `LevelSet.isIntersecting_` at a box, one operator

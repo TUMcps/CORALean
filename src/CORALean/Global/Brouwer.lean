@@ -1,6 +1,10 @@
-import CORALean.Global.BrouwerClosedBall
-import Mathlib.Analysis.InnerProductSpace.Projection.Minimal
-import Mathlib.Analysis.InnerProductSpace.EuclideanDist
+module
+
+public import CORALean.Global.BrouwerClosedBall
+public import Mathlib.Analysis.InnerProductSpace.Projection.Minimal
+public import Mathlib.Analysis.InnerProductSpace.EuclideanDist
+
+@[expose] public section
 
 /-!
 # Brouwer's fixed-point theorem

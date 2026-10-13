@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+module
+
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+
+@[expose] public section
 
 /-!
 # A halfspace description as a polynomial zonotope

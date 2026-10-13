@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.Unstack
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.Unstack
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.stackProd`

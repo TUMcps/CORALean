@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Definitions.CompactSet
+module
+
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+
+@[expose] public section
 
 /-!
 # A compact representation's set is bounded

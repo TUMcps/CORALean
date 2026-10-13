@@ -1,6 +1,10 @@
-import CORALean.NN.Theorems.ImageSubset
-import CORALean.Specification.Theorems.HoldsOfOuter
-import CORALean.Specification.Theorems.HoldsAllOfOuter
+module
+
+public import CORALean.NN.Theorems.ImageSubset
+public import CORALean.Specification.Theorems.HoldsOfOuter
+public import CORALean.Specification.Theorems.HoldsAllOfOuter
+
+@[expose] public section
 
 /-!
 # Verification against a whole list, at the enclosed set

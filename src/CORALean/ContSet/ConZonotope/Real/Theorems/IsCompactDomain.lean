@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
-import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
-import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
+
+@[expose] public section
 
 /-!
 # The coefficient domain of a constrained zonotope is compact

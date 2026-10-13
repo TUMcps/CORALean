@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SplitKept
-import CORALean.ContSet.Zonotope.Real.Operations.SplitDropped
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitKept
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitDropped
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `Z_a ⊕ Z_b ⊆ Z`

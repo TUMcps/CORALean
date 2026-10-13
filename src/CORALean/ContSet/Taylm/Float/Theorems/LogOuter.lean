@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Float.Operations.Log
-import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
-import CORALean.ContSet.Taylm.Float.Theorems.LogCoefMem
-import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-import CORALean.Global.TaylorRemainder
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Log
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
+public import CORALean.ContSet.Taylm.Float.Theorems.LogCoefMem
+public import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.Global.TaylorRemainder
+
+@[expose] public section
 
 /-!
 # `Taylm.log` encloses `log ∘ f`

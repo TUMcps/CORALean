@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.ContSet.Operations.Uminus
-import CORALean.Global.NegScalar
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.ContSet.Operations.Uminus
+public import CORALean.Global.NegScalar
+
+@[expose] public section
 
 /-!
 # CORA's `minus` with a vector minuend, at any scalar

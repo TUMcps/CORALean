@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachSpecCora
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachSpecCora
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # CORA's `nonlinearSysDT/reach` never checks the initial set against the specification

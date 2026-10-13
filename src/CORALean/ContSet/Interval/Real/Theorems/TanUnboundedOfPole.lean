@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Complex
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Complex
+
+@[expose] public section
 
 /-!
 # The tangent is unbounded both ways on a range around a pole

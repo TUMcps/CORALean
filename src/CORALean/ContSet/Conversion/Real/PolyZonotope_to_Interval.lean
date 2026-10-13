@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope as a box

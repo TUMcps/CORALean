@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
+
+@[expose] public section
 
 /-!
 # `VPolytope.or`

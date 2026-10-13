@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Sqrt
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Sqrt
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+
+@[expose] public section
 
 /-!
 # `Interval.sqrt` is exactly the image under `Real.sqrt`

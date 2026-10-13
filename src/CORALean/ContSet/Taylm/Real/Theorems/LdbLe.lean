@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Ldb
-import CORALean.ContSet.Taylm.Real.Theorems.LdbLoopLe
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Ldb
+public import CORALean.ContSet.Taylm.Real.Theorems.LdbLoopLe
+
+@[expose] public section
 
 /-!
 # `Taylm.ldb` is a lower bound

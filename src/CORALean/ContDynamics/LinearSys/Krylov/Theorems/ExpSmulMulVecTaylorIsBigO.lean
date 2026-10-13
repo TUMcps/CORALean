@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import Mathlib.Analysis.Analytic.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.Analysis.Analytic.Basic
+
+@[expose] public section
 
 /-!
 # The Taylor expansion of `e^{tN}x` at `t = 0`

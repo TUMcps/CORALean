@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Exp
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorScaled
-import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Exp
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorScaled
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+
+@[expose] public section
 
 /-!
 # `Taylm.exp` keeps the `(n+1)`-st order scaling

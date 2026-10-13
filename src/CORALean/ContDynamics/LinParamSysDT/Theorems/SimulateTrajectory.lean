@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
-import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # `simulate` samples a trajectory

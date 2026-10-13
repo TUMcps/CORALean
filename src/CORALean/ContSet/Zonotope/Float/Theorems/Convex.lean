@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A float zonotope is convex

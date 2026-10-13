@@ -1,11 +1,15 @@
-import CORALean.Specification.STL.Theorems.ExistsNnf
-import CORALean.Specification.STL.Theorems.NnfExistsSampled
-import CORALean.Specification.STL.Theorems.SampToFormulaScale
-import CORALean.Specification.STL.Theorems.SatScale
-import CORALean.Specification.STL.Theorems.SampSatToCNF
-import CORALean.Specification.STL.Theorems.SampNodupToCNF
-import CORALean.Specification.STL.Theorems.CNFUpsilonSoundComplete
-import CORALean.Specification.STL.Theorems.TracesSubsetTraceSet
+module
+
+public import CORALean.Specification.STL.Theorems.ExistsNnf
+public import CORALean.Specification.STL.Theorems.NnfExistsSampled
+public import CORALean.Specification.STL.Theorems.SampToFormulaScale
+public import CORALean.Specification.STL.Theorems.SatScale
+public import CORALean.Specification.STL.Theorems.SampSatToCNF
+public import CORALean.Specification.STL.Theorems.SampNodupToCNF
+public import CORALean.Specification.STL.Theorems.CNFUpsilonSoundComplete
+public import CORALean.Specification.STL.Theorems.TracesSubsetTraceSet
+
+@[expose] public section
 
 /-!
 # STL model checking is sound

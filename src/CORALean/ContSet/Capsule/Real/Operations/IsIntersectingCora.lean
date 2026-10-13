@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Capsule
-import CORALean.Global.EuclideanNorm
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # CORA's capsule–capsule `isIntersecting_`, as printed

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Equality.Float.Operations.EqBool
+module
+
+public import CORALean.ContSet.Equality.Float.Operations.EqBool
+
+@[expose] public section
 
 /-!
 # `ContSet.eqBool` is sound

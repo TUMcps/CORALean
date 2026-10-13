@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Mrdivide
-import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasis
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mrdivide
+public import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasis
+
+@[expose] public section
 
 /-!
 # `Zonotope.encloseManyBasisInv`, over a floating-point scalar

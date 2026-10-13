@@ -1,8 +1,12 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
-import CORALean.Global.DropIdx
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+public import CORALean.Global.DropIdx
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `[1, Eq. 7]` with a repeated point

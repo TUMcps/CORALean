@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePoint
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
+public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # `timePoint` holds the homogeneous flow at its own sample time

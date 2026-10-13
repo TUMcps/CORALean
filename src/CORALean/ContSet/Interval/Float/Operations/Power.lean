@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.PowHi
-import CORALean.ContSet.Interval.Float.Operations.PowLo
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.PowHi
+public import CORALean.ContSet.Interval.Float.Operations.PowLo
+
+@[expose] public section
 
 /-!
 # `Interval.power`, over a floating-point scalar

@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusSorted
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusSorted
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2] returns a sorted matrix

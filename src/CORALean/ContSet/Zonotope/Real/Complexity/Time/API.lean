@@ -1,31 +1,33 @@
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.LinComb
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Map
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceBy
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.CartProd
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Abs
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Shift
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Rotate
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Project
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.UnitIntervalMul
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ScalarIntervalMul
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceCombastel
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceByBasis
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReducePCA
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffAligned
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffStretch
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffRep
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Bilin
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.MtimesMatZonotope
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.QuadMap
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ExhaustiveSearch
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ExhaustiveSearchFiltered
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ImageEnclosure
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.SetBasedNetForward
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.SetBasedTraining
+module
+
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.LinComb
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Map
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceBy
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.CartProd
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Abs
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Shift
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Rotate
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Project
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.UnitIntervalMul
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ScalarIntervalMul
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceCombastel
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceByBasis
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReducePCA
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffAligned
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffStretch
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffRep
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Bilin
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MtimesMatZonotope
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.QuadMap
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ExhaustiveSearch
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ExhaustiveSearchFiltered
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ImageEnclosure
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.SetBasedNetForward
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.SetBasedTraining
 
 /-!
 # What running `Zonotope`'s operations costs

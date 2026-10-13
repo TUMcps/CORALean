@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallEnum
-import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
+module
+
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallEnum
+public import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
+
+@[expose] public section
 
 /-!
 # `[1, Sec. 4.3]`'s locality for the layered network, uniform in the graph's uncertainty

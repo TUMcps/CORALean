@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Operations.LinComb
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.Zonotope.Float.Operations.LinCombGDiff
-import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
-import CORALean.ContSet.Zonotope.Float.Operations.MidpointResidual
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.LinComb
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Zonotope.Float.Operations.LinCombGDiff
+public import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
+public import CORALean.ContSet.Zonotope.Float.Operations.MidpointResidual
+
+@[expose] public section
 
 /-!
 # `Zonotope.linComb`

@@ -1,4 +1,8 @@
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # What an activation function has to supply

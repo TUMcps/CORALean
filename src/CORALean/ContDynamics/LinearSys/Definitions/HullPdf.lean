@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
-import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
+public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # The enclosing probabilistic hull of the density at time `r`

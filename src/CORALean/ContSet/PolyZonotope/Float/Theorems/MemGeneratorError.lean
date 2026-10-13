@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # Entrywise generator error, scaled by any coefficients in `[-1,1]`

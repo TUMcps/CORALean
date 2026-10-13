@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunAtFloatOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunAtFloatOuter
+
+@[expose] public section
 
 /-!
 # The float re-linearization loop holds every run of the real system

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Shear
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Shear
+
+@[expose] public section
 
 /-!
 # The shear keeps the generators in the upper half-plane

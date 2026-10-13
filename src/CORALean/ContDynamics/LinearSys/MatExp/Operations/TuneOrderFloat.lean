@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.tuneOrder`, the order selector as a computable search

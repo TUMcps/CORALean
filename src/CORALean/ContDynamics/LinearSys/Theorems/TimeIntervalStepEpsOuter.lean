@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+
+@[expose] public section
 
 /-!
 # An enclosure asked for by error rather than by order

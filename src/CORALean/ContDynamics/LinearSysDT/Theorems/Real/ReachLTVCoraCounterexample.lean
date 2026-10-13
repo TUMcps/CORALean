@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachLTVCora
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachLTVCora
+
+@[expose] public section
 
 /-!
 # CORA's time-varying `linearSysDT` `reach` applies `B{1}` where `B{2}` acts

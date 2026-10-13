@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffGenRec
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffGenRec
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffGenRec` computes the Minkowski difference exactly

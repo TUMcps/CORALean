@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
-import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceLift`

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
-import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimeIntervalStepCurvatureError
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
+public import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimeIntervalStepCurvatureError
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `Alg. 2`'s step sweep does run out of budget-violating steps

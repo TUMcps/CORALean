@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # The exact orders of the input solution, summed in floats

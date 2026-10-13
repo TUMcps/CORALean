@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
+
+@[expose] public section
 
 /-!
 # The verification loop, in floats

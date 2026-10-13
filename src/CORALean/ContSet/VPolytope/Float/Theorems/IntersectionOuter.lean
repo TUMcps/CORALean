@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
-import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Intersection
-import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
-import CORALean.ContSet.VPolytope.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Intersection
+public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+public import CORALean.ContSet.VPolytope.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # The float `VPolytope.intersection` contains the intersection

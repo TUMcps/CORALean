@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # The unit circle of the zonotope norm, against the image of the cube's boundary

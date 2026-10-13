@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Operations.ReluRelaxation
-import CORALean.NN.Layers.Theorems.ClampUnitLeOne
-import CORALean.NN.Layers.Theorems.ClampUnitNonneg
-import CORALean.NN.Layers.Theorems.Real.ReluBoundsOfSlope
-import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
+module
+
+public import CORALean.NN.Layers.Operations.ReluRelaxation
+public import CORALean.NN.Layers.Theorems.ClampUnitLeOne
+public import CORALean.NN.Layers.Theorems.ClampUnitNonneg
+public import CORALean.NN.Layers.Theorems.Real.ReluBoundsOfSlope
+public import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
+
+@[expose] public section
 
 /-!
 # The ReLU relaxation is sound

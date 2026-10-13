@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinProbSys.LinProbSys
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContDynamics.LinProbSys.LinProbSys
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The covariance of one step's noise, sign corrected

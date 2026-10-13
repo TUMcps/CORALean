@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # `Location.reachGuard`: [1, Alg. 5], the reachable set within a location and at a guard

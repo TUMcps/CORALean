@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetExistsForall
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
-import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
-import CORALean.ContDynamics.LinearSys.Theorems.PerturbedTrajectoryClosedForm
-import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetExistsForall
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
+public import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
+public import CORALean.ContDynamics.LinearSys.Theorems.PerturbedTrajectoryClosedForm
+public import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
+
+@[expose] public section
 
 /-!
 # [1, Prop. 5]: the maximal time-point backward reachable set, exactly

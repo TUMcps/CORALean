@@ -1,22 +1,26 @@
-import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
-import CORALean.HybridDynamics.Theorems.AbstractionErrorFloatOuter
-import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
-import CORALean.HybridDynamics.Theorems.HitHessianMatZonoFloatMem
-import CORALean.HybridDynamics.Theorems.HitJacobianMemHitJacobianFloat
-import CORALean.HybridDynamics.Theorems.HitPointAddEq
-import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
-import CORALean.HybridDynamics.Theorems.LinearEmbedding
-import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
-import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
-import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.HalfspaceRangeMem
-import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapMatZonoOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
+public import CORALean.HybridDynamics.Theorems.AbstractionErrorFloatOuter
+public import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
+public import CORALean.HybridDynamics.Theorems.HitHessianMatZonoFloatMem
+public import CORALean.HybridDynamics.Theorems.HitJacobianMemHitJacobianFloat
+public import CORALean.HybridDynamics.Theorems.HitPointAddEq
+public import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
+public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+public import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.HalfspaceRangeMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapMatZonoOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # The float hyperplane map holds every guard hit of a run from `R₀`

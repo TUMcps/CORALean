@@ -1,10 +1,14 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConValue
-import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConValue
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # What the two selector rows say

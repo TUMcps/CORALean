@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+module
+
+public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+
+@[expose] public section
 
 /-!
 # A constrained zonotope as vertices, over a floating-point scalar

@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Float.Operations.EnclosePointsStursberg
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.EnclosePointsStursberg
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.enclosePointsStursberg` contains every point

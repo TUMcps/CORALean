@@ -1,4 +1,8 @@
-import CORALean.Global.SupportConstraintsLengthLe
+module
+
+public import CORALean.Global.SupportConstraintsLengthLe
+
+@[expose] public section
 
 /-!
 # `d` of the constraints give the same solution

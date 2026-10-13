@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Recentre
-import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Recentre
+public import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+
+@[expose] public section
 
 /-!
 # The recentred box contains the origin, if the box was nonempty

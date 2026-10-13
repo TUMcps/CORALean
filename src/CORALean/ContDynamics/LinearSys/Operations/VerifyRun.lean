@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
+
+@[expose] public section
 
 /-!
 # `Alg. 3` lines 2-27: the loop

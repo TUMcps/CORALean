@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.InvCoef
-import Mathlib.Analysis.Calculus.Deriv.ZPow
-import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.InvCoef
+public import Mathlib.Analysis.Calculus.Deriv.ZPow
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+
+@[expose] public section
 
 /-!
 # The coefficients of `1/x` contain the Taylor coefficient

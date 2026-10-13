@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Stack
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Stack
+
+@[expose] public section
 
 /-!
 # `ConZonotope.containsPoint`

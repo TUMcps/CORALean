@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # The two merged generators, as stored

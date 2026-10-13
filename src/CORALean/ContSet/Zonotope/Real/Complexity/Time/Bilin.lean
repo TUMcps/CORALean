@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Bilin
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Zonotope.bilinCost`

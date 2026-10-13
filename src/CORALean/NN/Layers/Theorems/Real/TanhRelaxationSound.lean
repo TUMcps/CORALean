@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.TanhRelaxation
-import CORALean.NN.Layers.Theorems.OfAffineConjSound
-import CORALean.NN.Layers.Theorems.Real.ScaleRoundingExactSound
-import CORALean.NN.Layers.Theorems.Real.SigmoidRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+module
+
+public import CORALean.NN.Layers.Definitions.TanhRelaxation
+public import CORALean.NN.Layers.Theorems.OfAffineConjSound
+public import CORALean.NN.Layers.Theorems.Real.ScaleRoundingExactSound
+public import CORALean.NN.Layers.Theorems.Real.SigmoidRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+
+@[expose] public section
 
 /-!
 # The tanh relaxation over ℝ is sound

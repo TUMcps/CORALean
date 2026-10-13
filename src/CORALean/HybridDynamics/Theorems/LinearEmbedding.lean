@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # A stay in a location is a linear trajectory

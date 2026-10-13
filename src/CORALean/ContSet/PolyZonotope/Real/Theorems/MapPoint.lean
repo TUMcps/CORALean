@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.map` moves the point by the map itself

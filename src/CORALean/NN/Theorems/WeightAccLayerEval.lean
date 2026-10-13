@@ -1,6 +1,10 @@
-import CORALean.NN.Operations.WeightAccLayer
-import CORALean.NN.Operations.WeightAccEval
-import CORALean.NN.Operations.WeightLayerEval
+module
+
+public import CORALean.NN.Operations.WeightAccLayer
+public import CORALean.NN.Operations.WeightAccEval
+public import CORALean.NN.Operations.WeightLayerEval
+
+@[expose] public section
 
 /-!
 # The flushed layer computes the accumulated map

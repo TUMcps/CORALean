@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
-import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
+
+@[expose] public section
 
 /-!
 # A solution from an initial state is an execution of the single-mode automaton

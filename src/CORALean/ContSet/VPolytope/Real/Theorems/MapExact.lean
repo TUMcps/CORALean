@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Map
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Map
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+
+@[expose] public section
 
 /-!
 # `VPolytope.map` is exactly the image

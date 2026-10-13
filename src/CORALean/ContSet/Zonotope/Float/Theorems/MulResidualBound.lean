@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
-import Mathlib.Data.Matrix.Mul
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
+public import Mathlib.Data.Matrix.Mul
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `mulResidual` bounds `|A - G Γ|`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # A float polytope the `'fullspace'` test accepts is the whole space

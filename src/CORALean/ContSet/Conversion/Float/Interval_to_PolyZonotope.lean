@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # A box as a polynomial zonotope, over a floating-point scalar

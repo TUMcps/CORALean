@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Interval.Set.Defs
+module
+
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Interval.Set.Defs
+
+@[expose] public section
 
 /-!
 # The approximation errors of a linear approximation

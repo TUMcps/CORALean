@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Origin
-import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Origin
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.origin` is exactly the origin

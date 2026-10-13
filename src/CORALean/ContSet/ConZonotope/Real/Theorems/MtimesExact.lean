@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # A matrix times a constrained zonotope is exact

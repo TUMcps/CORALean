@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeast
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeast
+
+@[expose] public section
 
 /-!
 # Membership by one linear program

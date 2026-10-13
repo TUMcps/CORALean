@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.ReduceOnTheFlyFrom
+module
+
+public import CORALean.NN.Operations.ReduceOnTheFlyFrom
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2]: reducing a network on the fly

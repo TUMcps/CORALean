@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.NormLe
-import CORALean.ContSet.Zonotope.Float.Operations.NormSq
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.NormLe
+public import CORALean.ContSet.Zonotope.Float.Operations.NormSq
+
+@[expose] public section
 
 /-!
 # `Zonotope.normSq` bounds every member

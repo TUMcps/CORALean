@@ -1,6 +1,10 @@
-import CORALean.Global.CoordinatePath
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Analysis.Convex.Topology
+module
+
+public import CORALean.Global.CoordinatePath
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Analysis.Convex.Topology
+
+@[expose] public section
 
 /-!
 # Mean-value AE extensions of a real-valued function

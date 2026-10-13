@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `VPolytope.point` denotes the singleton

@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # A real vector reads as itself

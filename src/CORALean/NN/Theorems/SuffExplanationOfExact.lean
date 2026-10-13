@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.SuffExplanationExact
-import CORALean.NN.Theorems.SuffExplanation
+module
+
+public import CORALean.NN.Theorems.SuffExplanationExact
+public import CORALean.NN.Theorems.SuffExplanation
+
+@[expose] public section
 
 /-!
 # From separation on the exact image to the pointwise definition

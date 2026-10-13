@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.ineqs`

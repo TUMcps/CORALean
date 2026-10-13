@@ -1,4 +1,8 @@
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # Minkowski sums move apart by at most the sum of the two distances

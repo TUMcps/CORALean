@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+
+@[expose] public section
 
 /-!
 # `bilin` is exactly the pairing over shared factors

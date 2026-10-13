@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 19-22 always land

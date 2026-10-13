@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.ReducesAtOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.NN.Theorems.ReducesAtOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # [1, Cor. 2]: a reduced network is reused across subsets

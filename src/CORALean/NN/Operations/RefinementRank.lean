@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.RefinementRankSensitivity
+module
+
+public import CORALean.NN.Operations.RefinementRankSensitivity
+
+@[expose] public section
 
 /-!
 # A neuron's share of the output error

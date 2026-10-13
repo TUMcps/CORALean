@@ -1,131 +1,133 @@
-import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioAtMem
-import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioBounds
-import CORALean.ContSet.Interval.Float.Theorems.BoundaryPointOuter
-import CORALean.ContSet.Interval.Float.Theorems.Atan2LoLe
-import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
-import CORALean.ContSet.Interval.Float.Theorems.Atan2Outer
-import CORALean.ContSet.Interval.Float.Theorems.InfExact
-import CORALean.ContSet.Interval.Float.Theorems.LiftExact
-import CORALean.ContSet.Interval.Float.Theorems.StlIntervalExact
-import CORALean.ContSet.Interval.Float.Theorems.DiracOuter
-import CORALean.ContSet.Interval.Float.Theorems.DiracZeroMem
-import CORALean.ContSet.Interval.Float.Theorems.DiracEqZeroOfOff
-import CORALean.ContSet.Interval.Float.Theorems.BoundDotLe
-import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Float.Theorems.DescProdOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIsNonempty
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
-import CORALean.ContSet.Interval.Float.Theorems.ReindexNominal
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
-import CORALean.ContSet.Interval.Float.Theorems.UminusExact
-import CORALean.ContSet.Interval.Float.Theorems.UplusExact
-import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
-import CORALean.ContSet.Interval.Float.Theorems.InfimumMemConstruct
-import CORALean.ContSet.Interval.Float.Theorems.IsCompact
-import CORALean.ContSet.Interval.Float.Theorems.SupremumMemConstruct
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
-import CORALean.ContSet.Interval.Float.Theorems.ConvHullOuter
-import CORALean.ContSet.Interval.Float.Theorems.EnclosePointsOuter
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
-import CORALean.ContSet.Interval.Float.Theorems.AbsExact
-import CORALean.ContSet.Interval.Float.Theorems.EmptyExact
-import CORALean.ContSet.Interval.Float.Theorems.ExpOuter
-import CORALean.ContSet.Interval.Float.Theorems.LogOuter
-import CORALean.ContSet.Interval.Float.Theorems.SqrtOuter
-import CORALean.ContSet.Interval.Float.Theorems.AsinhOuter
-import CORALean.ContSet.Interval.Float.Theorems.AtanOuter
-import CORALean.ContSet.Interval.Float.Theorems.AsinOuter
-import CORALean.ContSet.Interval.Float.Theorems.AcosOuter
-import CORALean.ContSet.Interval.Float.Theorems.TanOuter
-import CORALean.ContSet.Interval.Float.Theorems.CosOuter
-import CORALean.ContSet.Interval.Float.Theorems.SinOuter
-import CORALean.ContSet.Interval.Float.Theorems.AcoshOuter
-import CORALean.ContSet.Interval.Float.Theorems.SinhOuter
-import CORALean.ContSet.Interval.Float.Theorems.CoshOuter
-import CORALean.ContSet.Interval.Float.Theorems.TanhOuter
-import CORALean.ContSet.Interval.Float.Theorems.AtanhOuter
-import CORALean.ContSet.Interval.Float.Theorems.KronOuter
-import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
-import CORALean.ContSet.Interval.Float.Theorems.SignOuter
-import CORALean.ContSet.Interval.Float.Theorems.LeSound
-import CORALean.ContSet.Interval.Float.Theorems.LtSound
-import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter
-import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
-import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.Interval.Float.Theorems.MaxExact
-import CORALean.ContSet.Interval.Float.Theorems.MinExact
-import CORALean.ContSet.Interval.Float.Theorems.IsequalSound
-import CORALean.ContSet.Interval.Float.Theorems.TransposeExact
-import CORALean.ContSet.Interval.Float.Theorems.CtransposeExact
-import CORALean.ContSet.Interval.Float.Theorems.DiagExact
-import CORALean.ContSet.Interval.Float.Theorems.DiagVecExact
-import CORALean.ContSet.Interval.Float.Theorems.MaskExact
-import CORALean.ContSet.Interval.Float.Theorems.TrilExact
-import CORALean.ContSet.Interval.Float.Theorems.TriuExact
-import CORALean.ContSet.Interval.Float.Theorems.HorzcatExact
-import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
-import CORALean.ContSet.Interval.Float.Theorems.CenterOuter
-import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
-import CORALean.ContSet.Interval.Float.Theorems.Sum1Outer
-import CORALean.ContSet.Interval.Float.Theorems.Sum2Outer
-import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
-import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
-import CORALean.ContSet.Interval.Float.Theorems.CenterGe
-import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
-import CORALean.ContSet.Interval.Float.Theorems.Sum1OuterImage
-import CORALean.ContSet.Interval.Float.Theorems.Sum2OuterImage
-import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
-import CORALean.ContSet.Interval.Float.Theorems.NormNominalLe
-import CORALean.ContSet.Interval.Float.Theorems.NormLe
-import CORALean.ContSet.Interval.Float.Theorems.Radius2NominalLe
-import CORALean.ContSet.Interval.Float.Theorems.Norm2SubCenterLe
-import CORALean.ContSet.Interval.Float.Theorems.Prod1Outer
-import CORALean.ContSet.Interval.Float.Theorems.PartitionCover
-import CORALean.ContSet.Interval.Float.Theorems.PartitionPiece
-import CORALean.ContSet.Interval.Float.Theorems.EnlargeOuter
-import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
-import CORALean.ContSet.Interval.Float.Theorems.RdivideOuter
-import CORALean.ContSet.Interval.Float.Theorems.MrdivideOuter
-import CORALean.ContSet.Interval.Float.Theorems.OfCenterRadiusOuter
-import CORALean.ContSet.Interval.Float.Theorems.QuadMapOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatMulSubset
-import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
-import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
-import CORALean.ContSet.Interval.Float.Theorems.PowHiLe
-import CORALean.ContSet.Interval.Float.Theorems.PowLoLe
-import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
-import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
-import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeDotUp
-import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeMagnitudeMat
-import CORALean.ContSet.Interval.Float.Theorems.RoundAwayIntCast
-import CORALean.ContSet.Interval.Float.Theorems.RoundOuter
-import CORALean.ContSet.Interval.Float.Theorems.SumTermsMatMem
-import CORALean.ContSet.Interval.Float.Theorems.SubmatrixMem
-import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
-import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
-import CORALean.ContSet.Interval.Float.Theorems.HalvePlusMem
-import CORALean.ContSet.Interval.Float.Theorems.HalveMinusMem
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioAtMem
+public import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioBounds
+public import CORALean.ContSet.Interval.Float.Theorems.BoundaryPointOuter
+public import CORALean.ContSet.Interval.Float.Theorems.Atan2LoLe
+public import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
+public import CORALean.ContSet.Interval.Float.Theorems.Atan2Outer
+public import CORALean.ContSet.Interval.Float.Theorems.InfExact
+public import CORALean.ContSet.Interval.Float.Theorems.LiftExact
+public import CORALean.ContSet.Interval.Float.Theorems.StlIntervalExact
+public import CORALean.ContSet.Interval.Float.Theorems.DiracOuter
+public import CORALean.ContSet.Interval.Float.Theorems.DiracZeroMem
+public import CORALean.ContSet.Interval.Float.Theorems.DiracEqZeroOfOff
+public import CORALean.ContSet.Interval.Float.Theorems.BoundDotLe
+public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Float.Theorems.DescProdOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIsNonempty
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Interval.Float.Theorems.ReindexNominal
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
+public import CORALean.ContSet.Interval.Float.Theorems.UminusExact
+public import CORALean.ContSet.Interval.Float.Theorems.UplusExact
+public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.InfimumMemConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.IsCompact
+public import CORALean.ContSet.Interval.Float.Theorems.SupremumMemConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+public import CORALean.ContSet.Interval.Float.Theorems.ConvHullOuter
+public import CORALean.ContSet.Interval.Float.Theorems.EnclosePointsOuter
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+public import CORALean.ContSet.Interval.Float.Theorems.AbsExact
+public import CORALean.ContSet.Interval.Float.Theorems.EmptyExact
+public import CORALean.ContSet.Interval.Float.Theorems.ExpOuter
+public import CORALean.ContSet.Interval.Float.Theorems.LogOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SqrtOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AsinhOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AtanOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AsinOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AcosOuter
+public import CORALean.ContSet.Interval.Float.Theorems.TanOuter
+public import CORALean.ContSet.Interval.Float.Theorems.CosOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SinOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AcoshOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SinhOuter
+public import CORALean.ContSet.Interval.Float.Theorems.CoshOuter
+public import CORALean.ContSet.Interval.Float.Theorems.TanhOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AtanhOuter
+public import CORALean.ContSet.Interval.Float.Theorems.KronOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.SignOuter
+public import CORALean.ContSet.Interval.Float.Theorems.LeSound
+public import CORALean.ContSet.Interval.Float.Theorems.LtSound
+public import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter
+public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
+public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.Interval.Float.Theorems.MaxExact
+public import CORALean.ContSet.Interval.Float.Theorems.MinExact
+public import CORALean.ContSet.Interval.Float.Theorems.IsequalSound
+public import CORALean.ContSet.Interval.Float.Theorems.TransposeExact
+public import CORALean.ContSet.Interval.Float.Theorems.CtransposeExact
+public import CORALean.ContSet.Interval.Float.Theorems.DiagExact
+public import CORALean.ContSet.Interval.Float.Theorems.DiagVecExact
+public import CORALean.ContSet.Interval.Float.Theorems.MaskExact
+public import CORALean.ContSet.Interval.Float.Theorems.TrilExact
+public import CORALean.ContSet.Interval.Float.Theorems.TriuExact
+public import CORALean.ContSet.Interval.Float.Theorems.HorzcatExact
+public import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
+public import CORALean.ContSet.Interval.Float.Theorems.CenterOuter
+public import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.Sum1Outer
+public import CORALean.ContSet.Interval.Float.Theorems.Sum2Outer
+public import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
+public import CORALean.ContSet.Interval.Float.Theorems.CenterGe
+public import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.Sum1OuterImage
+public import CORALean.ContSet.Interval.Float.Theorems.Sum2OuterImage
+public import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
+public import CORALean.ContSet.Interval.Float.Theorems.NormNominalLe
+public import CORALean.ContSet.Interval.Float.Theorems.NormLe
+public import CORALean.ContSet.Interval.Float.Theorems.Radius2NominalLe
+public import CORALean.ContSet.Interval.Float.Theorems.Norm2SubCenterLe
+public import CORALean.ContSet.Interval.Float.Theorems.Prod1Outer
+public import CORALean.ContSet.Interval.Float.Theorems.PartitionCover
+public import CORALean.ContSet.Interval.Float.Theorems.PartitionPiece
+public import CORALean.ContSet.Interval.Float.Theorems.EnlargeOuter
+public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
+public import CORALean.ContSet.Interval.Float.Theorems.RdivideOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MrdivideOuter
+public import CORALean.ContSet.Interval.Float.Theorems.OfCenterRadiusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulSubset
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
+public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.ContSet.Interval.Float.Theorems.PowHiLe
+public import CORALean.ContSet.Interval.Float.Theorems.PowLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
+public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
+public import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeDotUp
+public import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeMagnitudeMat
+public import CORALean.ContSet.Interval.Float.Theorems.RoundAwayIntCast
+public import CORALean.ContSet.Interval.Float.Theorems.RoundOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SumTermsMatMem
+public import CORALean.ContSet.Interval.Float.Theorems.SubmatrixMem
+public import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
+public import CORALean.ContSet.Interval.Float.Theorems.HalvePlusMem
+public import CORALean.ContSet.Interval.Float.Theorems.HalveMinusMem
 
 /-!
 # What `Interval` guarantees

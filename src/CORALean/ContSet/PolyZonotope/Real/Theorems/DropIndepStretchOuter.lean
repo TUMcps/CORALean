@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
-import CORALean.Global.Partition
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.Global.Partition
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `dropIndepStretch` over-approximates the generator it drops

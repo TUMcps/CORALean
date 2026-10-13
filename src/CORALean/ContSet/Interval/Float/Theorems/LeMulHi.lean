@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Real.Operations.MulHi
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+
+@[expose] public section
 
 /-!
 # `Interval.mulHi` never falls under the exact corner hull

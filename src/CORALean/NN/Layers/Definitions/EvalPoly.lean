@@ -1,5 +1,9 @@
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # A polynomial in the monomial basis, and what moves its coefficients

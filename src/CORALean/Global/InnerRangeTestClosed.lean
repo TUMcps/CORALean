@@ -1,4 +1,8 @@
-import CORALean.Global.JacobiExistence
+module
+
+public import CORALean.Global.JacobiExistence
+
+@[expose] public section
 
 /-!
 # The inclusion test for an inner box, with a closed inclusion

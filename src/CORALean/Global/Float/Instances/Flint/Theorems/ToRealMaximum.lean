@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
-import CORALean.Global.Float.Instances.Flint.Operations.Maximum
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+public import CORALean.Global.Float.Instances.Flint.Operations.Maximum
+
+@[expose] public section
 
 /-!
 # `maximum` is exact

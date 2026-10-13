@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Smul
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `Interval.smul` over-approximates scaling every point of a box

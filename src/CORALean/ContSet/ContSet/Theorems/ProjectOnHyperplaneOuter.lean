@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
+module
+
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
+
+@[expose] public section
 
 /-!
 # `projectOnHyperplane` encloses the orthogonal projection

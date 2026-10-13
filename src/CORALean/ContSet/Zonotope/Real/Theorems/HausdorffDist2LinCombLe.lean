@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Shift
-import CORALean.Global.EuclideanGenOpNorm
-import CORALean.Global.EuclideanHausdorffDist
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.Shift
+public import CORALean.Global.EuclideanGenOpNorm
+public import CORALean.Global.EuclideanHausdorffDist
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # [1, Prop. 9]: the error of enclosing a linear combination of zonotopes by `linComb`

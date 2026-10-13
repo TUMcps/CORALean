@@ -1,6 +1,10 @@
-import CORALean.Global.Float.SinCos
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+module
+
+public import CORALean.Global.Float.SinCos
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+
+@[expose] public section
 
 /-!
 # The range of sine and cosine over a float range
@@ -31,10 +35,10 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- A float near the middle of `[l, u]`; any float would be sound. -/
-private def midOf (l u : 𝕋) : 𝕋 := half (addUp l u)
+def midOf (l u : 𝕋) : 𝕋 := half (addUp l u)
 
 /-- At least the distance from `midOf l u` to any point of `[l, u]`. -/
-private def radOf (l u : 𝕋) : 𝕋 := maximum (subUp u (midOf l u)) (subUp (midOf l u) l)
+def radOf (l u : 𝕋) : 𝕋 := maximum (subUp u (midOf l u)) (subUp (midOf l u) l)
 
 /-- `cos` over `[l, u]`: falling where the sine is certified non-negative, rising where it is
 certified non-positive, the midpoint form otherwise. -/

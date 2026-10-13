@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Eqs
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Eqs
+
+@[expose] public section
 
 /-!
 # Membership in `HPolytope.eqs`, over a floating-point scalar

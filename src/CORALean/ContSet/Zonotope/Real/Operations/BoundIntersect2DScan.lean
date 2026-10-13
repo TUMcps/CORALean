@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ScanEdge
-import CORALean.ContSet.Zonotope.Real.Operations.PointUp
-import Mathlib.Analysis.SpecialFunctions.Complex.Arg
-import Mathlib.Data.Fin.Tuple.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ScanEdge
+public import CORALean.ContSet.Zonotope.Real.Operations.PointUp
+public import Mathlib.Analysis.SpecialFunctions.Complex.Arg
+public import Mathlib.Data.Fin.Tuple.Sort
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3]: `BOUND_INTERSECT_2D` by scanning

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # `Interval.representsa_emptySet` is sound

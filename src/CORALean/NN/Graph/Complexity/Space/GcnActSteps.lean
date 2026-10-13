@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Complexity.Space.ConvUncertain
-import CORALean.NN.Graph.Operations.GcnActSteps
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
+module
+
+public import CORALean.NN.Graph.Complexity.Space.ConvUncertain
+public import CORALean.NN.Graph.Operations.GcnActSteps
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
+
+@[expose] public section
 
 /-!
 # `GNN.gcnActSteps`'s count over a chain of steps

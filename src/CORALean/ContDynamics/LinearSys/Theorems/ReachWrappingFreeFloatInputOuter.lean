@@ -1,16 +1,20 @@
-import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
-import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
-import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+module
+
+public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
+public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
+public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+
+@[expose] public section
 
 /-!
 # `reachWrappingFreeFloatInput` holds every run over every window

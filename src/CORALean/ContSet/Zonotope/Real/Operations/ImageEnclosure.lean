@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Row
-import Mathlib.Data.Fin.Tuple.Basic
-import Mathlib.Algebra.Group.Pi.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Row
+public import Mathlib.Data.Fin.Tuple.Basic
+public import Mathlib.Algebra.Group.Pi.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.imageEnclosure`

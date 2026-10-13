@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxDrift`

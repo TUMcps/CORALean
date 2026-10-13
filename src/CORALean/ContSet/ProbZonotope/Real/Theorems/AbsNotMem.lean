@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.abs` does not enclose the absolute values of the means

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+module
+
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+
+@[expose] public section
 
 /-!
 # Adding a set and taking it back off returns the set

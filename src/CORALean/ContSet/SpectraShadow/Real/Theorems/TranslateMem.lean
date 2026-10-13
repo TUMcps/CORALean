@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Translate
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Translate
+
+@[expose] public section
 
 /-!
 # A translated shadow is the shifted set

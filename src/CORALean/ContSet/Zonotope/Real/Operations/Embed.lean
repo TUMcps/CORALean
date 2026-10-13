@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # `Zonotope.embed`

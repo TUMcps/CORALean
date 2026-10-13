@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
-import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
-import CORALean.ContSet.Taylm.Real.Operations.Pow
+module
+
+public import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
+public import CORALean.ContSet.Taylm.Real.Operations.Pow
+
+@[expose] public section
 
 /-!
 # `Taylm.pow` keeps the scaling

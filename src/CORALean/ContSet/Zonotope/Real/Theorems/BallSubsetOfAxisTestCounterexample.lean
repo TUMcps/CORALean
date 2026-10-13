@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Data.Fin.VecNotation
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Data.Fin.VecNotation
+
+@[expose] public section
 
 /-!
 # `[1, Lemma 5]` with the test as printed

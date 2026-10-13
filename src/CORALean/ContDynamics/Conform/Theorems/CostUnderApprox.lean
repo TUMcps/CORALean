@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Order.CompleteLattice.Finset
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Order.CompleteLattice.Finset
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # [1, Prop. 1]: a cost below the program's, computable without solving it

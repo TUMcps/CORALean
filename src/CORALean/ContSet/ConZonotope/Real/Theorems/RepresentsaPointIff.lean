@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+
+@[expose] public section
 
 /-!
 # A constrained zonotope is a point iff `G` is constant on the coefficient polytope

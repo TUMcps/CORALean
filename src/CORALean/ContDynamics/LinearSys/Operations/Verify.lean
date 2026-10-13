@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
+
+@[expose] public section
 
 /-!
 # `Alg. 3` line 1: automated verification

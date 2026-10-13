@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.ExpRelaxation
-import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
+module
+
+public import CORALean.NN.Layers.Operations.ExpRelaxation
+public import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
+
+@[expose] public section
 
 /-!
 # The exponential relaxation is sound

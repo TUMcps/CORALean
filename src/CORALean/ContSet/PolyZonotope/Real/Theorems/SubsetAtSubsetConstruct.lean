@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+
+@[expose] public section
 
 /-!
 # A sub-box of admissible factors reaches only members

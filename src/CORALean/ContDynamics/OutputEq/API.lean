@@ -1,6 +1,8 @@
-import CORALean.ContDynamics.OutputEq.Operations.API
-import CORALean.ContDynamics.OutputEq.OutputEq
-import CORALean.ContDynamics.OutputEq.Theorems.API
+module
+
+public import CORALean.ContDynamics.OutputEq.Operations.API
+public import CORALean.ContDynamics.OutputEq.OutputEq
+public import CORALean.ContDynamics.OutputEq.Theorems.API
 
 /-!
 # Output equations, collected

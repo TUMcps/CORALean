@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.Conformant
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.Conformant
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # [1, Cor. 1]: one-step residuals in `W` and `V` give conformance for every horizon

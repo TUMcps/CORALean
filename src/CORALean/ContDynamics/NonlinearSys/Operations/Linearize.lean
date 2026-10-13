@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+
+@[expose] public section
 
 /-!
 # The linear system a linearization leaves behind

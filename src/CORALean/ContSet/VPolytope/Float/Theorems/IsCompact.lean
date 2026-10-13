@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Float.VPolytope
-import CORALean.ContSet.VPolytope.Real.Instances
-import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+public import CORALean.ContSet.VPolytope.Real.Instances
+public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A float vpolytope is compact

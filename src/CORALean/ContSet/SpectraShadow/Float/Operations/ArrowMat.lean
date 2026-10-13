@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+module
+
+public import CORALean.Global.Tensor
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+
+@[expose] public section
 
 /-!
 # The arrowhead matrix, over a floating-point scalar

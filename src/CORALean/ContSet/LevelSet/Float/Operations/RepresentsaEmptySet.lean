@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.LevelSet
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `LevelSet.representsa_emptySet` at float bounds

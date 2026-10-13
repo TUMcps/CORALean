@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+
+@[expose] public section
 
 /-!
 # A row with one nonzero entry reads one coordinate

@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.SoundEval
-import CORALean.NN.Theorems.SoundVerifySplitSound
+module
+
+public import CORALean.NN.Theorems.SoundEval
+public import CORALean.NN.Theorems.SoundVerifySplitSound
+
+@[expose] public section
 
 /-!
 # `verifySplit` is sound, with no hypothesis on the network

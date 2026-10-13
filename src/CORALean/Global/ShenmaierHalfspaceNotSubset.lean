@@ -1,5 +1,9 @@
-import CORALean.Global.ShenmaierHalfspace
-import CORALean.Global.EllipsotopeSupport
+module
+
+public import CORALean.Global.ShenmaierHalfspace
+public import CORALean.Global.EllipsotopeSupport
+
+@[expose] public section
 
 /-!
 # Halfspace sampling's `False` is certain

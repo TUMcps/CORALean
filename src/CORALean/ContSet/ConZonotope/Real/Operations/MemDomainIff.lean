@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+
+@[expose] public section
 
 /-!
 # Membership in `ConZonotope.domain`

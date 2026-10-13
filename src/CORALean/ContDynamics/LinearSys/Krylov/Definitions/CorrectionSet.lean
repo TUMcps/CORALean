@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+
+@[expose] public section
 
 /-!
 # The correction interval matrix in the Krylov subspace

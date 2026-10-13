@@ -1,10 +1,14 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.FinCases
-import Mathlib.Topology.MetricSpace.HausdorffDistance
-import Mathlib.Analysis.Normed.Module.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+public import Mathlib.Analysis.Normed.Module.Basic
+
+@[expose] public section
 
 /-!
 # `[1, Prop. 7]` fails as printed

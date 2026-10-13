@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContDynamics.Reach.Definitions.InputParams
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContDynamics.Reach.Definitions.InputParams
+
+@[expose] public section
 
 /-!
 # `reach` at one held input point

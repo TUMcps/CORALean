@@ -1,41 +1,43 @@
-import CORALean.Specification.STL.Operations.BranchMerge
-import CORALean.Specification.STL.Operations.CNFNext
-import CORALean.Specification.STL.Operations.CNFOr
-import CORALean.Specification.STL.Operations.CNFToFormula
-import CORALean.Specification.STL.Operations.CNFUpsilon
-import CORALean.Specification.STL.Operations.ClauseInsert
-import CORALean.Specification.STL.Operations.ClauseMerge
-import CORALean.Specification.STL.Operations.CompEval
-import CORALean.Specification.STL.Operations.FormulaScale
-import CORALean.Specification.STL.Operations.NnfToFormula
-import CORALean.Specification.STL.Operations.NnfWeight
-import CORALean.Specification.STL.Operations.RTLBigAnd
-import CORALean.Specification.STL.Operations.RTLBigOr
-import CORALean.Specification.STL.Operations.RTLFinally
-import CORALean.Specification.STL.Operations.SampToCNF
-import CORALean.Specification.STL.Operations.SampToFormula
-import CORALean.Specification.STL.Operations.DFormulaBound
-import CORALean.Specification.STL.Operations.EvaluatePredicateUnionCora
-import CORALean.Specification.STL.Operations.EvaluatePredicateUnionPolytopeCora
-import CORALean.Specification.STL.Operations.SafeToUnsafeCora
-import CORALean.Specification.STL.Operations.VerifySTLKochdumperGloballyCora
-import CORALean.Specification.STL.Operations.RobustnessReachSetGloballyCora
-import CORALean.Specification.STL.Operations.AutomatedVerification
-import CORALean.Specification.STL.Operations.FactorCheck
-import CORALean.Specification.STL.Operations.FactorMeet
-import CORALean.Specification.STL.Operations.FactorStep
-import CORALean.Specification.STL.Operations.UnsafeFactors
-import CORALean.Specification.STL.Operations.DepCurvatureF
-import CORALean.Specification.STL.Operations.DepCurvatureG
-import CORALean.Specification.STL.Operations.DepBloating
-import CORALean.Specification.STL.Operations.DepBox
-import CORALean.Specification.STL.Operations.DepReachConstsOf
-import CORALean.Specification.STL.Operations.DepReachInit
-import CORALean.Specification.STL.Operations.DepReachStep
-import CORALean.Specification.STL.Operations.DepReachAt
-import CORALean.Specification.STL.Operations.DepReachPoint
-import CORALean.Specification.STL.Operations.DepReachInterval
-import CORALean.Specification.STL.Operations.DepReach
+module
+
+public import CORALean.Specification.STL.Operations.BranchMerge
+public import CORALean.Specification.STL.Operations.CNFNext
+public import CORALean.Specification.STL.Operations.CNFOr
+public import CORALean.Specification.STL.Operations.CNFToFormula
+public import CORALean.Specification.STL.Operations.CNFUpsilon
+public import CORALean.Specification.STL.Operations.ClauseInsert
+public import CORALean.Specification.STL.Operations.ClauseMerge
+public import CORALean.Specification.STL.Operations.CompEval
+public import CORALean.Specification.STL.Operations.FormulaScale
+public import CORALean.Specification.STL.Operations.NnfToFormula
+public import CORALean.Specification.STL.Operations.NnfWeight
+public import CORALean.Specification.STL.Operations.RTLBigAnd
+public import CORALean.Specification.STL.Operations.RTLBigOr
+public import CORALean.Specification.STL.Operations.RTLFinally
+public import CORALean.Specification.STL.Operations.SampToCNF
+public import CORALean.Specification.STL.Operations.SampToFormula
+public import CORALean.Specification.STL.Operations.DFormulaBound
+public import CORALean.Specification.STL.Operations.EvaluatePredicateUnionCora
+public import CORALean.Specification.STL.Operations.EvaluatePredicateUnionPolytopeCora
+public import CORALean.Specification.STL.Operations.SafeToUnsafeCora
+public import CORALean.Specification.STL.Operations.VerifySTLKochdumperGloballyCora
+public import CORALean.Specification.STL.Operations.RobustnessReachSetGloballyCora
+public import CORALean.Specification.STL.Operations.AutomatedVerification
+public import CORALean.Specification.STL.Operations.FactorCheck
+public import CORALean.Specification.STL.Operations.FactorMeet
+public import CORALean.Specification.STL.Operations.FactorStep
+public import CORALean.Specification.STL.Operations.UnsafeFactors
+public import CORALean.Specification.STL.Operations.DepCurvatureF
+public import CORALean.Specification.STL.Operations.DepCurvatureG
+public import CORALean.Specification.STL.Operations.DepBloating
+public import CORALean.Specification.STL.Operations.DepBox
+public import CORALean.Specification.STL.Operations.DepReachConstsOf
+public import CORALean.Specification.STL.Operations.DepReachInit
+public import CORALean.Specification.STL.Operations.DepReachStep
+public import CORALean.Specification.STL.Operations.DepReachAt
+public import CORALean.Specification.STL.Operations.DepReachPoint
+public import CORALean.Specification.STL.Operations.DepReachInterval
+public import CORALean.Specification.STL.Operations.DepReach
 
 /-!
 # Signal and reachset temporal logic: the operations

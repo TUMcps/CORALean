@@ -1,6 +1,10 @@
-import CORALean.NN.Definitions.InputOrderMethod
-import CORALean.NN.Operations.SnakeOrder
-import CORALean.NN.Operations.Sensitivity
+module
+
+public import CORALean.NN.Definitions.InputOrderMethod
+public import CORALean.NN.Operations.SnakeOrder
+public import CORALean.NN.Operations.Sensitivity
+
+@[expose] public section
 
 /-!
 # `getInputNeuronOrder`

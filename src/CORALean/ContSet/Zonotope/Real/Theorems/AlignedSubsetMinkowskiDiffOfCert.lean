@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Aligned
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
-import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+public import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
+
+@[expose] public section
 
 /-!
 # A feasible point of (17) gives an aligned zonotope inside `Z ⊖ EW`

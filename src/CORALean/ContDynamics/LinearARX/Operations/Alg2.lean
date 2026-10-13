@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.Alg2State
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Alg2State
+
+@[expose] public section
 
 /-!
 # Alg. 2: efficient reachability analysis

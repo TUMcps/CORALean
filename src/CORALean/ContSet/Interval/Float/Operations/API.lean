@@ -1,127 +1,129 @@
-import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
-import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioStep
-import CORALean.ContSet.Interval.Float.Operations.BoundaryRatio
-import CORALean.ContSet.Interval.Float.Operations.BoundaryPoint
-import CORALean.ContSet.Interval.Float.Operations.Atan2Lo
-import CORALean.ContSet.Interval.Float.Operations.Atan2Hi
-import CORALean.ContSet.Interval.Float.Operations.Atan2
-import CORALean.ContSet.Interval.Float.Operations.EBox
-import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
-import CORALean.ContSet.Interval.Float.Operations.Inf
-import CORALean.ContSet.Interval.Float.Operations.Lift
-import CORALean.ContSet.Interval.Float.Operations.StlInterval
-import CORALean.ContSet.Interval.Float.Operations.Dirac
-import CORALean.ContSet.Interval.Float.Operations.BoundDot
-import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
-import CORALean.ContSet.Interval.Float.Operations.BoundProj
-import CORALean.ContSet.Interval.Float.Operations.CentreMat
-import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
-import CORALean.ContSet.Interval.Float.Operations.Intersection
-import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
-import CORALean.ContSet.Interval.Float.Operations.LinComb
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.Interval.Float.Operations.MatPow
-import CORALean.ContSet.Interval.Float.Operations.DescProd
-import CORALean.ContSet.Interval.Float.Operations.MatResidual
-import CORALean.ContSet.Interval.Float.Operations.MinkDiff
-import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
-import CORALean.ContSet.Interval.Float.Operations.OfBounds
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Operations.Reindex
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Interval.Float.Operations.Smul
-import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
-import CORALean.ContSet.Interval.Float.Operations.Symmetric
-import CORALean.ContSet.Interval.Float.Operations.Uminus
-import CORALean.ContSet.Interval.Float.Operations.Uplus
-import CORALean.ContSet.Interval.Float.Operations.Minus
-import CORALean.ContSet.Interval.Float.Operations.Infimum
-import CORALean.ContSet.Interval.Float.Operations.Supremum
-import CORALean.ContSet.Interval.Float.Operations.Or
-import CORALean.ContSet.Interval.Float.Operations.ConvHull
-import CORALean.ContSet.Interval.Float.Operations.EnclosePoints
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import CORALean.ContSet.Interval.Float.Operations.Abs
-import CORALean.ContSet.Interval.Float.Operations.Empty
-import CORALean.ContSet.Interval.Float.Operations.Exp
-import CORALean.ContSet.Interval.Float.Operations.Log
-import CORALean.ContSet.Interval.Float.Operations.Sqrt
-import CORALean.ContSet.Interval.Float.Operations.Asinh
-import CORALean.ContSet.Interval.Float.Operations.Atan
-import CORALean.ContSet.Interval.Float.Operations.Asin
-import CORALean.ContSet.Interval.Float.Operations.Acos
-import CORALean.ContSet.Interval.Float.Operations.Tan
-import CORALean.ContSet.Interval.Float.Operations.Cos
-import CORALean.ContSet.Interval.Float.Operations.Sin
-import CORALean.ContSet.Interval.Float.Operations.Acosh
-import CORALean.ContSet.Interval.Float.Operations.Sinh
-import CORALean.ContSet.Interval.Float.Operations.CoshLo
-import CORALean.ContSet.Interval.Float.Operations.CoshHi
-import CORALean.ContSet.Interval.Float.Operations.Cosh
-import CORALean.ContSet.Interval.Float.Operations.Tanh
-import CORALean.ContSet.Interval.Float.Operations.Atanh
-import CORALean.ContSet.Interval.Float.Operations.Kron
-import CORALean.ContSet.Interval.Float.Operations.Append
-import CORALean.ContSet.Interval.Float.Operations.Sign
-import CORALean.ContSet.Interval.Float.Operations.Le
-import CORALean.ContSet.Interval.Float.Operations.Lt
-import CORALean.ContSet.Interval.Float.Operations.Project
-import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaOrigin
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.Interval.Float.Operations.Times
-import CORALean.ContSet.Interval.Float.Operations.IsFullDim
-import CORALean.ContSet.Interval.Float.Operations.Max
-import CORALean.ContSet.Interval.Float.Operations.Min
-import CORALean.ContSet.Interval.Float.Operations.Isequal
-import CORALean.ContSet.Interval.Float.Operations.Transpose
-import CORALean.ContSet.Interval.Float.Operations.Ctranspose
-import CORALean.ContSet.Interval.Float.Operations.Diag
-import CORALean.ContSet.Interval.Float.Operations.DiagVec
-import CORALean.ContSet.Interval.Float.Operations.Mask
-import CORALean.ContSet.Interval.Float.Operations.Tril
-import CORALean.ContSet.Interval.Float.Operations.Triu
-import CORALean.ContSet.Interval.Float.Operations.Horzcat
-import CORALean.ContSet.Interval.Float.Operations.Vertcat
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Float.Operations.Radius
-import CORALean.ContSet.Interval.Float.Operations.Sum1
-import CORALean.ContSet.Interval.Float.Operations.Sum2
-import CORALean.ContSet.Interval.Float.Operations.Volume
-import CORALean.ContSet.Interval.Float.Operations.SplitAt
-import CORALean.ContSet.Interval.Float.Operations.Norm
-import CORALean.ContSet.Interval.Float.Operations.CenterLo
-import CORALean.ContSet.Interval.Float.Operations.CenterBox
-import CORALean.ContSet.Interval.Float.Operations.NormMag
-import CORALean.ContSet.Interval.Float.Operations.RadiusSq
-import CORALean.ContSet.Interval.Float.Operations.ProdUp
-import CORALean.ContSet.Interval.Float.Operations.WidthUp
-import CORALean.ContSet.Interval.Float.Operations.Prod1
-import CORALean.ContSet.Interval.Float.Operations.Partition
-import CORALean.ContSet.Interval.Float.Operations.Enlarge
-import CORALean.ContSet.Interval.Float.Operations.Recip
-import CORALean.ContSet.Interval.Float.Operations.Rdivide
-import CORALean.ContSet.Interval.Float.Operations.Mrdivide
-import CORALean.ContSet.Interval.Float.Operations.OfCenterRadius
-import CORALean.ContSet.Interval.Float.Operations.QuadMap
-import CORALean.ContSet.Interval.Float.Operations.EvalList
-import CORALean.ContSet.Interval.Float.Operations.PowHi
-import CORALean.ContSet.Interval.Float.Operations.PowLo
-import CORALean.ContSet.Interval.Float.Operations.Power
-import CORALean.ContSet.Interval.Float.Operations.Magnitude
-import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
-import CORALean.ContSet.Interval.Float.Operations.RoundAwayInt
-import CORALean.ContSet.Interval.Float.Operations.Round
-import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
-import CORALean.ContSet.Interval.Float.Operations.Submatrix
-import CORALean.ContSet.Interval.Float.Operations.Halve
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioStep
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatio
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryPoint
+public import CORALean.ContSet.Interval.Float.Operations.Atan2Lo
+public import CORALean.ContSet.Interval.Float.Operations.Atan2Hi
+public import CORALean.ContSet.Interval.Float.Operations.Atan2
+public import CORALean.ContSet.Interval.Float.Operations.EBox
+public import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+public import CORALean.ContSet.Interval.Float.Operations.Inf
+public import CORALean.ContSet.Interval.Float.Operations.Lift
+public import CORALean.ContSet.Interval.Float.Operations.StlInterval
+public import CORALean.ContSet.Interval.Float.Operations.Dirac
+public import CORALean.ContSet.Interval.Float.Operations.BoundDot
+public import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
+public import CORALean.ContSet.Interval.Float.Operations.BoundProj
+public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
+public import CORALean.ContSet.Interval.Float.Operations.Intersection
+public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+public import CORALean.ContSet.Interval.Float.Operations.LinComb
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.MatPlus
+public import CORALean.ContSet.Interval.Float.Operations.MatPow
+public import CORALean.ContSet.Interval.Float.Operations.DescProd
+public import CORALean.ContSet.Interval.Float.Operations.MatResidual
+public import CORALean.ContSet.Interval.Float.Operations.MinkDiff
+public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
+public import CORALean.ContSet.Interval.Float.Operations.OfBounds
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Operations.Reindex
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.Interval.Float.Operations.Symmetric
+public import CORALean.ContSet.Interval.Float.Operations.Uminus
+public import CORALean.ContSet.Interval.Float.Operations.Uplus
+public import CORALean.ContSet.Interval.Float.Operations.Minus
+public import CORALean.ContSet.Interval.Float.Operations.Infimum
+public import CORALean.ContSet.Interval.Float.Operations.Supremum
+public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Interval.Float.Operations.ConvHull
+public import CORALean.ContSet.Interval.Float.Operations.EnclosePoints
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.Interval.Float.Operations.Abs
+public import CORALean.ContSet.Interval.Float.Operations.Empty
+public import CORALean.ContSet.Interval.Float.Operations.Exp
+public import CORALean.ContSet.Interval.Float.Operations.Log
+public import CORALean.ContSet.Interval.Float.Operations.Sqrt
+public import CORALean.ContSet.Interval.Float.Operations.Asinh
+public import CORALean.ContSet.Interval.Float.Operations.Atan
+public import CORALean.ContSet.Interval.Float.Operations.Asin
+public import CORALean.ContSet.Interval.Float.Operations.Acos
+public import CORALean.ContSet.Interval.Float.Operations.Tan
+public import CORALean.ContSet.Interval.Float.Operations.Cos
+public import CORALean.ContSet.Interval.Float.Operations.Sin
+public import CORALean.ContSet.Interval.Float.Operations.Acosh
+public import CORALean.ContSet.Interval.Float.Operations.Sinh
+public import CORALean.ContSet.Interval.Float.Operations.CoshLo
+public import CORALean.ContSet.Interval.Float.Operations.CoshHi
+public import CORALean.ContSet.Interval.Float.Operations.Cosh
+public import CORALean.ContSet.Interval.Float.Operations.Tanh
+public import CORALean.ContSet.Interval.Float.Operations.Atanh
+public import CORALean.ContSet.Interval.Float.Operations.Kron
+public import CORALean.ContSet.Interval.Float.Operations.Append
+public import CORALean.ContSet.Interval.Float.Operations.Sign
+public import CORALean.ContSet.Interval.Float.Operations.Le
+public import CORALean.ContSet.Interval.Float.Operations.Lt
+public import CORALean.ContSet.Interval.Float.Operations.Project
+public import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Interval.Float.Operations.Times
+public import CORALean.ContSet.Interval.Float.Operations.IsFullDim
+public import CORALean.ContSet.Interval.Float.Operations.Max
+public import CORALean.ContSet.Interval.Float.Operations.Min
+public import CORALean.ContSet.Interval.Float.Operations.Isequal
+public import CORALean.ContSet.Interval.Float.Operations.Transpose
+public import CORALean.ContSet.Interval.Float.Operations.Ctranspose
+public import CORALean.ContSet.Interval.Float.Operations.Diag
+public import CORALean.ContSet.Interval.Float.Operations.DiagVec
+public import CORALean.ContSet.Interval.Float.Operations.Mask
+public import CORALean.ContSet.Interval.Float.Operations.Tril
+public import CORALean.ContSet.Interval.Float.Operations.Triu
+public import CORALean.ContSet.Interval.Float.Operations.Horzcat
+public import CORALean.ContSet.Interval.Float.Operations.Vertcat
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.Radius
+public import CORALean.ContSet.Interval.Float.Operations.Sum1
+public import CORALean.ContSet.Interval.Float.Operations.Sum2
+public import CORALean.ContSet.Interval.Float.Operations.Volume
+public import CORALean.ContSet.Interval.Float.Operations.SplitAt
+public import CORALean.ContSet.Interval.Float.Operations.Norm
+public import CORALean.ContSet.Interval.Float.Operations.CenterLo
+public import CORALean.ContSet.Interval.Float.Operations.CenterBox
+public import CORALean.ContSet.Interval.Float.Operations.NormMag
+public import CORALean.ContSet.Interval.Float.Operations.RadiusSq
+public import CORALean.ContSet.Interval.Float.Operations.ProdUp
+public import CORALean.ContSet.Interval.Float.Operations.WidthUp
+public import CORALean.ContSet.Interval.Float.Operations.Prod1
+public import CORALean.ContSet.Interval.Float.Operations.Partition
+public import CORALean.ContSet.Interval.Float.Operations.Enlarge
+public import CORALean.ContSet.Interval.Float.Operations.Recip
+public import CORALean.ContSet.Interval.Float.Operations.Rdivide
+public import CORALean.ContSet.Interval.Float.Operations.Mrdivide
+public import CORALean.ContSet.Interval.Float.Operations.OfCenterRadius
+public import CORALean.ContSet.Interval.Float.Operations.QuadMap
+public import CORALean.ContSet.Interval.Float.Operations.EvalList
+public import CORALean.ContSet.Interval.Float.Operations.PowHi
+public import CORALean.ContSet.Interval.Float.Operations.PowLo
+public import CORALean.ContSet.Interval.Float.Operations.Power
+public import CORALean.ContSet.Interval.Float.Operations.Magnitude
+public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
+public import CORALean.ContSet.Interval.Float.Operations.RoundAwayInt
+public import CORALean.ContSet.Interval.Float.Operations.Round
+public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
+public import CORALean.ContSet.Interval.Float.Operations.Submatrix
+public import CORALean.ContSet.Interval.Float.Operations.Halve
 
 /-!
 # What `Interval` computes

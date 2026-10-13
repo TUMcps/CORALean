@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.Reach.Reach
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.Reach.Reach
+
+@[expose] public section
 
 /-!
 # `NonlinearSys.WithSteps` instantiates `Reach`

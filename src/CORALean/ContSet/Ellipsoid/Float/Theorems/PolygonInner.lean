@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Polygon
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
-import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
-import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Polygon
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
+public import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
+public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.polygon` lies inside the float ellipsoid

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduce`

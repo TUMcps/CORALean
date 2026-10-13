@@ -1,5 +1,7 @@
-import CORALean.ContSet.HPolytope.Real.Complexity.Time.API
-import CORALean.ContSet.HPolytope.Real.Complexity.Space.API
+module
+
+public import CORALean.ContSet.HPolytope.Real.Complexity.Time.API
+public import CORALean.ContSet.HPolytope.Real.Complexity.Space.API
 
 /-!
 # Complexity

@@ -1,10 +1,14 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombEFst
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombELast
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombESnd
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
-import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombEFst
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombELast
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialLinCombESnd
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
+
+@[expose] public section
 
 /-!
 # What `linComb`'s witness evaluates to

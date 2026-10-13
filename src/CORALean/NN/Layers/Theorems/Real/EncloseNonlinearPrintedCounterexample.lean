@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.EncloseNonlinearPrinted
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.NN.Layers.Definitions.EncloseNonlinearPrinted
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # Alg. 1 as printed does not enclose the image

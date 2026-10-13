@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.OfCharpoly
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.OfCharpoly
+
+@[expose] public section
 
 /-!
 # The state-space outputs satisfy the ARMAX recursion, by Cayley-Hamilton

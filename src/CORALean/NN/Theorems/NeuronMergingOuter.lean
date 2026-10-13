@@ -1,18 +1,22 @@
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.Global.Partition
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Operations.LinearWithError
-import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Operations.ActivationLayerOf
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.LinearWithErrorMem
-import CORALean.NN.NeuralNetwork
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.Global.Partition
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.Linear
+public import CORALean.NN.Layers.Operations.LinearWithError
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
+public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Layers.Operations.ActivationLayerOf
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
+public import CORALean.NN.NeuralNetwork
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # Neuron merging: sound at every bucket

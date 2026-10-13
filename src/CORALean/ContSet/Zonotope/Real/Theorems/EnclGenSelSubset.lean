@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1] never leaves the minuend

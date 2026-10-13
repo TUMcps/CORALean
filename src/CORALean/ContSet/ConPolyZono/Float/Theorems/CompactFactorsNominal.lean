@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsEqSpec
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsEqSpec
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
+
+@[expose] public section
 
 /-!
 # `compactFactors`'s nominal part is the exact layer's

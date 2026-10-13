@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.STL
-import CORALean.Specification.STL.Definitions.ReachSequence
-import CORALean.Specification.STL.Definitions.RTL
+module
+
+public import CORALean.Specification.STL.STL
+public import CORALean.Specification.STL.Definitions.ReachSequence
+public import CORALean.Specification.STL.Definitions.RTL
+
+@[expose] public section
 
 /-!
 # Sound and complete transformations

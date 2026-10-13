@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Float.Operations.Plus
-import CORALean.ContSet.Capsule.Real.Theorems.PlusOuterKeepLeft
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Plus
+public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuterKeepLeft
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+
+@[expose] public section
 
 /-!
 # `Capsule.plus` encloses the sum

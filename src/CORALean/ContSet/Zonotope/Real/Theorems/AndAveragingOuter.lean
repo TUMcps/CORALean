@@ -1,6 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AndAveraging
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Module.BigOperators
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AndAveraging
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Module.BigOperators
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The averaged zonotope encloses the intersection

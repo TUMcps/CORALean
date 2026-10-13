@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.recip`, over a floating-point scalar

@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEqOfMeasurable
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerInputTermMem
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
-import Mathlib.Analysis.Normed.Module.FiniteDimension
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEqOfMeasurable
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerInputTermMem
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # A time-varying run with an input stays in the box's step and input solution

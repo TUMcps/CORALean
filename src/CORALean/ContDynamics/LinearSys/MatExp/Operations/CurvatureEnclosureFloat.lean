@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `MatExp.curvatureEnclosure` in floats: line 8 of [1, Alg. 1]

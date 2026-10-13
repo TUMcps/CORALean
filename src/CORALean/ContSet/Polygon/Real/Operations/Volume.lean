@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.volume`

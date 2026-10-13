@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Definitions.StepInner
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.StepInner
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # The same over a whole step

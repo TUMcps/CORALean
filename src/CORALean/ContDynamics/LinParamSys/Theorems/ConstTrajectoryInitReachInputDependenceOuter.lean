@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
-import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenceOuter
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenceOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+
+@[expose] public section
 
 /-!
 # A run with a parameter-dependent constant input stays in the corrected first step

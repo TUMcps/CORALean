@@ -1,6 +1,10 @@
-import CORALean.Global.CoeffNorm
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.Global.CoeffNorm
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # The containment radius of two ellipsotopes

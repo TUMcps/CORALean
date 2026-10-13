@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceBoxError`, the error of a reduction in floats

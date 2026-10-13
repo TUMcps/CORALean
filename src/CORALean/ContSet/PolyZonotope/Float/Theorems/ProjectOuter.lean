@@ -1,7 +1,11 @@
-import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
-import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.Project
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
+public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Project
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.project` over-approximates the projection

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatZeroMemError
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesSubsetAddBox
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceSubsetAddBox
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatZeroMemError
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesSubsetAddBox
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceSubsetAddBox
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # A float run reaches no further than the exact set plus its own error

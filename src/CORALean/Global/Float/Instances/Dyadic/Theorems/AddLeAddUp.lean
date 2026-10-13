@@ -1,8 +1,12 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.AddUp
-import CORALean.Global.Float.Instances.Dyadic.Operations.AlignExp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeCoarsenUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.AddUp
+public import CORALean.Global.Float.Instances.Dyadic.Operations.AlignExp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeCoarsenUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
+
+@[expose] public section
 
 /-!
 # The upward sum bounds the real sum

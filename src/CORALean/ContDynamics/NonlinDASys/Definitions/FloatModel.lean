@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # What a float run is told about a differential-algebraic system

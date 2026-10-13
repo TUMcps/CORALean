@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Prod
-import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Prod
+public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.prod` encloses the product

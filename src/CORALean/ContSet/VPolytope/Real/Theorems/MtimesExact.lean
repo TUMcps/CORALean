@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
-import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
-import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+public import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
+public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # A matrix times a vertex description is exact

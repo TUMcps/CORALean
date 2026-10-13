@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
+
+@[expose] public section
 
 /-!
 # What `LevelSet` instantiates

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Rdivide
-import CORALean.ContSet.Taylm.Real.Theorems.InvOuter
-import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Rdivide
+public import CORALean.ContSet.Taylm.Real.Theorems.InvOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.rdivide` encloses the quotient

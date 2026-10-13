@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
-import CORALean.ContSet.LevelSet.Real.Theorems.RestrictConstruct
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
+public import CORALean.ContSet.LevelSet.Real.Theorems.RestrictConstruct
+
+@[expose] public section
 
 /-!
 # Splitting a level set is exact

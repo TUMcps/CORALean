@@ -1,7 +1,11 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesLinCombIff
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValue
-import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesLinCombIff
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValue
+public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # `linComb` contains every segment between the two constrained polynomial zonotopes

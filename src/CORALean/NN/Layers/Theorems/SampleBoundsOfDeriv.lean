@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Theorems.ExistsGridClose
-import CORALean.NN.Layers.Theorems.GridMemOfChecked
-import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
+module
+
+public import CORALean.NN.Layers.Theorems.ExistsGridClose
+public import CORALean.NN.Layers.Theorems.GridMemOfChecked
+public import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
+
+@[expose] public section
 
 /-!
 # A checked grid's sampled range brackets a function

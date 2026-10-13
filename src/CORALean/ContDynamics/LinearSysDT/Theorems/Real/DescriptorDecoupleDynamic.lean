@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # Decoupling the unknown input of a dynamical system

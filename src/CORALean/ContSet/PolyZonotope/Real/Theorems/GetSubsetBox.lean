@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The unit box re-parametrized at one factor is a box again

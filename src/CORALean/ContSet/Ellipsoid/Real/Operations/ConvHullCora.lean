@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.convHullCora`: `convHull_` as CORA's code runs, an empty second operand included

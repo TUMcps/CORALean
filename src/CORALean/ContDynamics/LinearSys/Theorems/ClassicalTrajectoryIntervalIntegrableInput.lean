@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
-import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
-import Mathlib.Analysis.Calculus.FDeriv.Measurable
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
+public import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
+public import Mathlib.Analysis.Calculus.FDeriv.Measurable
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
+@[expose] public section
 
 /-!
 # What a classical run's `variation_of_constants` assumes about the input

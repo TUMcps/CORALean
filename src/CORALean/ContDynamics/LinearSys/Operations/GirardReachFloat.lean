@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
-import CORALean.Global.Float.Exp
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+public import CORALean.Global.Float.Exp
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `girardReach` in floats: [1, Alg. 1]

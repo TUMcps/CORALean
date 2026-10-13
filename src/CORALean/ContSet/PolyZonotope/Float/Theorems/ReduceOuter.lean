@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOuter
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.reduce` over-approximates the set

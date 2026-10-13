@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
-import CORALean.HybridDynamics.Definitions.ResolveSource
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
+public import CORALean.HybridDynamics.Definitions.ResolveSource
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.resolve` for a float model

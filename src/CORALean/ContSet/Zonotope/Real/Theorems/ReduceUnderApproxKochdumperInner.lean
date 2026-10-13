@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxKochdumper
-import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
-import CORALean.ContSet.Zonotope.Real.Theorems.SortByLengthConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.SumAbsLeOneOfSubsingletonSupport
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxKochdumper
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.SortByLengthConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumAbsLeOneOfSubsingletonSupport
+
+@[expose] public section
 
 /-!
 # `reduceUnderApproxKochdumper` returns a subset

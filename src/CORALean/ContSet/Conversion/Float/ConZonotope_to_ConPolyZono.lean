@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_ConPolyZono
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_ConPolyZono
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+
+@[expose] public section
 
 /-!
 # A constrained zonotope as a constrained polynomial zonotope, over a

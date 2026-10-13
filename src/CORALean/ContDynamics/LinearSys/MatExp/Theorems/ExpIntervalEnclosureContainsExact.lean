@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureExact
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWAttained
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureExact
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWAttained
+
+@[expose] public section
 
 /-!
 # The exact-second-order enclosure is inside the uniform one

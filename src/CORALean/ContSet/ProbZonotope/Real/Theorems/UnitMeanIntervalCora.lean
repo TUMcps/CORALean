@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.UnitMean
-import CORALean.ContSet.ProbZonotope.Real.Operations.IntervalCora
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.UnitMean
+public import CORALean.ContSet.ProbZonotope.Real.Operations.IntervalCora
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose
+
+@[expose] public section
 
 /-!
 # CORA's `interval` of `[-1, 1]` with no covariance is the origin

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Embed
-import CORALean.ContSet.Zonotope.Real.Operations.Map
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Embed
+public import CORALean.ContSet.Zonotope.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # `Zonotope.projectHighDim_`

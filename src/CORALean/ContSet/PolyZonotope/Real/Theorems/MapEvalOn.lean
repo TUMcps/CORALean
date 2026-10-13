@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
+
+@[expose] public section
 
 /-!
 # `map` carries the evaluation along with it

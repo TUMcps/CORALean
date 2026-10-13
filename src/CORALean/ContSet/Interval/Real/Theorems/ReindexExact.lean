@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Reindex
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Reindex
+
+@[expose] public section
 
 /-!
 # `Interval.reindex` is exactly the relabelled box

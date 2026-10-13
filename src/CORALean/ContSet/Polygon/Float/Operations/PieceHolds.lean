@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.InTriangle
-import CORALean.ContSet.VPolytope.Float.VPolytope
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.InTriangle
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+
+@[expose] public section
 
 /-!
 # `Polygon.pieceHolds`

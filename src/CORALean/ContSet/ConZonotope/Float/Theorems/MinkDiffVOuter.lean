@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.MinkDiffV
-import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
-import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.MinkDiffV
+public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+
+@[expose] public section
 
 /-!
 # The float `minkDiffV` encloses the Minkowski difference

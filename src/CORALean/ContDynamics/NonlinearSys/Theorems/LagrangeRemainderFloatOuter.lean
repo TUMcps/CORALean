@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainderFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
-import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainderFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # The float cubic remainder holds the exact one

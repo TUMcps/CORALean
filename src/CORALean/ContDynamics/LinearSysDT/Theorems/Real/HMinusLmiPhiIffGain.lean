@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
-import CORALean.Global.PosDefSchurComplementFirst
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
+public import CORALean.Global.PosDefSchurComplementFirst
+
+@[expose] public section
 
 /-!
 # The `H₋` inequality and its Schur complement

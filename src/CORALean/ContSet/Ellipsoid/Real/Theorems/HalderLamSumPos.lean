@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLamSum
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLamSum
+
+@[expose] public section
 
 /-!
 # Halder's denominator is positive

@@ -1,5 +1,9 @@
-import CORALean.Global.LeastSquaresOfNormalEq
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.Global.LeastSquaresOfNormalEq
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The pseudo-inverse solution, with the Gram matrix of the right side

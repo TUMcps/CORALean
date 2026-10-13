@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentArnoldiPow
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import Mathlib.Analysis.Normed.Module.Convex
-import Mathlib.Analysis.Normed.Group.Bounded
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentArnoldiPow
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import Mathlib.Analysis.Normed.Module.Convex
+public import Mathlib.Analysis.Normed.Group.Bounded
+
+@[expose] public section
 
 /-!
 # The input solution for varying inputs from the Krylov Taylor terms

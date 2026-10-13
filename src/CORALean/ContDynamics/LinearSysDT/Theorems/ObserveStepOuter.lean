@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
-import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
+public import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
+
+@[expose] public section
 
 /-!
 # One observer step encloses the states the measurement allows

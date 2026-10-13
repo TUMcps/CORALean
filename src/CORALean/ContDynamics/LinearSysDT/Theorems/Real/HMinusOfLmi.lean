@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
+public import Mathlib.Algebra.BigOperators.Intervals
+
+@[expose] public section
 
 /-!
 # The `H₋` inequality makes the residual fault-sensitive

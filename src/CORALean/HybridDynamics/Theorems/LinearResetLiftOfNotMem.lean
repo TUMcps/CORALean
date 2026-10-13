@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.LinearResetLift
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.HybridDynamics.Operations.LinearResetLift
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `LinearReset.lift` is the identity off the bound coordinates

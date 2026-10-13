@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.Complex.Trigonometric
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.Complex.Trigonometric
+
+@[expose] public section
 
 /-!
 # `Interval.tan`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Jacobian
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Jacobian
+
+@[expose] public section
 
 /-!
 # `NonlinearSys.outputSetCora`, CORA's output set of `reach(nonlinearSys)`

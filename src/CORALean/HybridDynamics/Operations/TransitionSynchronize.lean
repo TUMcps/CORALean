@@ -1,7 +1,11 @@
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.HybridDynamics.Operations.LinearResetSynchronize
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.HybridDynamics.Operations.LinearResetSynchronize
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
+
+@[expose] public section
 
 /-!
 # `Transition.synchronize`

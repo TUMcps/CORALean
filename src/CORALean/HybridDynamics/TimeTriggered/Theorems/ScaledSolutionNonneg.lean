@@ -1,5 +1,9 @@
-import Mathlib.Topology.Order.IntermediateValue
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionConstOfZero
+module
+
+public import Mathlib.Topology.Order.IntermediateValue
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionConstOfZero
+
+@[expose] public section
 
 /-!
 # A scaled solution keeps the sign of its scaling function

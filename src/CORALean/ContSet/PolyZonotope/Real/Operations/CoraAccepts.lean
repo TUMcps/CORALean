@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraNormalCone
-import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraNormalCone
+public import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
+
+@[expose] public section
 
 /-!
 # The `true` path of CORA's `isPolytope`

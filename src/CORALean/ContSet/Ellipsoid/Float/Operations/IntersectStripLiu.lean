@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.intersectStripLiu`, over a floating-point scalar

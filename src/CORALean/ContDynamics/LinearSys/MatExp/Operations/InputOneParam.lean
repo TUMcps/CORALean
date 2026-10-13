@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
-import CORALean.ContSet.Zonotope.Real.Operations.OfOneParamPoly
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
+public import CORALean.ContSet.Zonotope.Real.Operations.OfOneParamPoly
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `MatExp.inputOneParam`

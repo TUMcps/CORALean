@@ -1,8 +1,12 @@
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Data.Finset.Max
-import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
+module
+
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Data.Finset.Max
+public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
+
+@[expose] public section
 
 /-!
 # The robust disjunction constraints compute the maximum

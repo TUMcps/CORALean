@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Fullspace
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # The full space is not a point

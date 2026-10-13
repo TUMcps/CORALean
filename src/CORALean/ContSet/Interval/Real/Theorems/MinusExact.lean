@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
-import CORALean.ContSet.Interval.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `Interval.minus` is exactly the pointwise difference of the sets

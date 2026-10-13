@@ -1,9 +1,13 @@
-import CORALean.ContSet.Conversion.Real.VPolytope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
-import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import Mathlib.Analysis.Convex.Join
+module
+
+public import CORALean.ContSet.Conversion.Real.VPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import Mathlib.Analysis.Convex.Join
+
+@[expose] public section
 
 /-!
 # A hull as a polynomial zonotope

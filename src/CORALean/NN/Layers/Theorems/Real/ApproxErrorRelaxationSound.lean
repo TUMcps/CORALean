@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.ApproxErrorRelaxation
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorEnclosure
+module
+
+public import CORALean.NN.Layers.Definitions.ApproxErrorRelaxation
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorEnclosure
+
+@[expose] public section
 
 /-!
 # The image enclosure of a nonlinear layer is sound

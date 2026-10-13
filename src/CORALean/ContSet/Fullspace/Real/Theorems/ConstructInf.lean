@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Inf
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Inf
+
+@[expose] public section
 
 /-!
 # `Fullspace.Inf` denotes everything

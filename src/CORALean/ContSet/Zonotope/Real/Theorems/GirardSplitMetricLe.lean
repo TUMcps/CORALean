@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+
+@[expose] public section
 
 /-!
 # `girardSplit` ranks by Girard's metric

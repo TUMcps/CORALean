@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.ConvHull
-import CORALean.ContSet.Capsule.Real.Complexity.Time.Radius
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.ConvHull
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.Radius
+
+@[expose] public section
 
 /-!
 # `Capsule.convHullCost`

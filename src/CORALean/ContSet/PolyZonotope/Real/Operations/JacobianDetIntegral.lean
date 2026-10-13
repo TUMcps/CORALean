@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
-import Mathlib.MeasureTheory.Integral.Bochner.Set
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.jacobianDetIntegral`

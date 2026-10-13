@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.splitDepFactor`, over a floating-point scalar

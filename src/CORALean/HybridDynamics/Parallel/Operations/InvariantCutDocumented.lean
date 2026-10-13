@@ -1,3 +1,6 @@
+module
+
+@[expose] public section
 
 /-!
 # The invariant cut as `mergeInvariants.m` documents it

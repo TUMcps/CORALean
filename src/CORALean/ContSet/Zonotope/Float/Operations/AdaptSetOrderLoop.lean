@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `Alg. 3` lines 3-7 in floats: the order-decrementing loop

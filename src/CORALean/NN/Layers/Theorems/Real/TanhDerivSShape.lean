@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.SShape
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Analysis.Complex.Trigonometric
+module
+
+public import CORALean.NN.Layers.Definitions.SShape
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+public import Mathlib.Analysis.Complex.Trigonometric
+
+@[expose] public section
 
 /-!
 # tanh is S-shaped

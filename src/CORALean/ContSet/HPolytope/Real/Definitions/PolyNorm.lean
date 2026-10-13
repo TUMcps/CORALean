@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.Algebra.Order.Field.Basic
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The polyhedral asymmetric norm

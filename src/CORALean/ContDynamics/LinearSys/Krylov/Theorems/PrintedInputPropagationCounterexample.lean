@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # Line 8 of Alg. 2 propagates one step too far

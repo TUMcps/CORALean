@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # A run is determined by its first window and its inputs

@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.MatMulBilin
+module
+
+public import CORALean.NN.Graph.Operations.MatMulBilin
+
+@[expose] public section
 
 /-!
 # `matMulBilin` unfolds to plain matrix multiplication

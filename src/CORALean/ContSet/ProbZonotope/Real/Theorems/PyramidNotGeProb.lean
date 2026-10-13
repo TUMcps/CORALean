@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidOuter
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidOuter
+public import Mathlib.Analysis.Real.Pi.Bounds
+
+@[expose] public section
 
 /-!
 # `pyramid` alone is not an upper bound of the probability

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderSpec
-import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxOrderSpec
+public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
+
+@[expose] public section
 
 /-!
 # What lets a caller choose the step's order against a stated tolerance

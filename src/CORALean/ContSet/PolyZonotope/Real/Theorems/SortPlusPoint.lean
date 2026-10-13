@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPoint
+
+@[expose] public section
 
 /-!
 # `sortPlus`'s point is the sum of the two points

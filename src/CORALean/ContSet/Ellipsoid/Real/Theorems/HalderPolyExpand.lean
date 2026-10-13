@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderMu
-import Mathlib.RingTheory.Polynomial.Vieta
-import Mathlib.Algebra.Polynomial.Derivative
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderMu
+public import Mathlib.RingTheory.Polynomial.Vieta
+public import Mathlib.Algebra.Polynomial.Derivative
+
+@[expose] public section
 
 /-!
 # Halder's polynomial in the elementary symmetric polynomials

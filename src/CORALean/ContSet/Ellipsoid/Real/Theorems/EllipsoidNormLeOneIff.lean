@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
-import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # The ellipsoid norm is the ellipsoid's gauge

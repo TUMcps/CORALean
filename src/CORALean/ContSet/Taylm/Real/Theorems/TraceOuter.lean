@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Trace
-import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Trace
+public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.trace` encloses the trace

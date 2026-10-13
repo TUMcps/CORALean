@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.intervalAll`, over a floating-point scalar

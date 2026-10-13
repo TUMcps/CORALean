@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.ConjCoeffsDown
-import CORALean.NN.Layers.Operations.ConjCoeffsUp
+module
+
+public import CORALean.NN.Layers.Operations.ConjCoeffsDown
+public import CORALean.NN.Layers.Operations.ConjCoeffsUp
+
+@[expose] public section
 
 /-!
 # How far the stored conjugated coefficients can be from the exact ones

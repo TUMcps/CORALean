@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi1D
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi1D
+
+@[expose] public section
 
 /-!
 # CORA's `intersectStrip` (Gollamudi) does not enclose the intersection

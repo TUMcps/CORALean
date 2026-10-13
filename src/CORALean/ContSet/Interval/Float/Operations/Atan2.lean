@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Atan2Lo
-import CORALean.ContSet.Interval.Float.Operations.Atan2Hi
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Atan2Lo
+public import CORALean.ContSet.Interval.Float.Operations.Atan2Hi
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.atan2`, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitParallelotope
-import CORALean.ContSet.Zonotope.Real.Operations.Split
+module
+
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitParallelotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Split
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.split`

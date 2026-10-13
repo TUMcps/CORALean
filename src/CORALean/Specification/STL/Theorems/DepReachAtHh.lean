@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.DepReachAt
+module
+
+public import CORALean.Specification.STL.Operations.DepReachAt
+
+@[expose] public section
 
 /-!
 # The homogeneous solution has the generators of `X₀`

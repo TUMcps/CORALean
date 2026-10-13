@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.QuadForm
-import CORALean.ContSet.Taylm.Real.Operations.Minus
-import CORALean.ContSet.Taylm.Real.Operations.Bounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.QuadForm
+public import CORALean.ContSet.Taylm.Real.Operations.Minus
+public import CORALean.ContSet.Taylm.Real.Operations.Bounds
+
+@[expose] public section
 
 /-!
 # The quadratic fast bounder

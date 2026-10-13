@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Sign
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
-import CORALean.ContSet.Interval.Real.Theorems.SignMonotone
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Sign
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
+public import CORALean.ContSet.Interval.Real.Theorems.SignMonotone
+
+@[expose] public section
 
 /-!
 # `Interval.sign` contains the image under the sign

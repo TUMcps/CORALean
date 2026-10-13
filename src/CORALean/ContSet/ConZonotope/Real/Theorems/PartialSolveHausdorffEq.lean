@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # The Hausdorff error of the partial solve, over coefficients

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.BilliardStep
-import CORALean.ContSet.HPolytope.Real.Theorems.BilliardEndMem
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.BilliardStep
+public import CORALean.ContSet.HPolytope.Real.Theorems.BilliardEndMem
+
+@[expose] public section
 
 /-!
 # A step of the Billiard Walk stays in the polytope

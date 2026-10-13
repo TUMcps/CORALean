@@ -1,4 +1,8 @@
-import Mathlib.Data.List.Basic
+module
+
+public import Mathlib.Data.List.Basic
+
+@[expose] public section
 
 /-!
 # A list cut into consecutive chunks of at most `μ` elements

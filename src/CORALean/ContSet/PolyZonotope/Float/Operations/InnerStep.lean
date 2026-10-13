@@ -1,11 +1,15 @@
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.Minus
-import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Operations.Recip
-import CORALean.ContSet.Interval.Float.Operations.Times
-import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
-import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.Minus
+public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Operations.Recip
+public import CORALean.ContSet.Interval.Float.Operations.Times
+public import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.innerStep`

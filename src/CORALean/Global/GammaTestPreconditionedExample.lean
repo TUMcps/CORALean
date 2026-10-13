@@ -1,5 +1,9 @@
-import CORALean.Global.GammaTest
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Global.GammaTest
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The preconditioned test holds on the rotation

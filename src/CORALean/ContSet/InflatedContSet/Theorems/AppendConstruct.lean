@@ -1,6 +1,10 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
-import CORALean.Global.AppendProdAdd
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
+public import CORALean.Global.AppendProdAdd
+
+@[expose] public section
 
 /-!
 # A product of inflated sets

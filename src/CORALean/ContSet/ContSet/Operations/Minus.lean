@@ -1,5 +1,8 @@
-import CORALean.ContSet.ContSet.ContSet
+module
 
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # CORA's `minus` with a vector subtrahend

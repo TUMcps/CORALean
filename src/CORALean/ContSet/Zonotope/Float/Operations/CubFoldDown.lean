@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Zonotope.Float.Operations.ListQuadDown
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.ListQuadDown
+
+@[expose] public section
 
 /-!
 # `Zonotope.cubFoldDown`

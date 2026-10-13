@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Operations.IsequalCora
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.IsequalCora
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `polygon/isequal` reports a polygon unequal to its own re-start

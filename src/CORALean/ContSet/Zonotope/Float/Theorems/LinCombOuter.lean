@@ -1,15 +1,19 @@
-import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
-import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Operations.LinComb
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
-import CORALean.ContSet.Zonotope.Float.Theorems.PairDiffBracket
-import CORALean.ContSet.Zonotope.Float.Theorems.PairSumBracket
-import CORALean.ContSet.Zonotope.Float.Theorems.SumPairMul
-import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
+public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
+public import CORALean.ContSet.Zonotope.Float.Theorems.PairDiffBracket
+public import CORALean.ContSet.Zonotope.Float.Theorems.PairSumBracket
+public import CORALean.ContSet.Zonotope.Float.Theorems.SumPairMul
+public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.linComb` contains every segment between the two zonotopes

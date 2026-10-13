@@ -1,11 +1,15 @@
-import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Analysis.Normed.Group.Bounded
-import Mathlib.Tactic.FieldSimp
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Analysis.Normed.Group.Bounded
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # `HPolytope.isequalNondeg` decides equality

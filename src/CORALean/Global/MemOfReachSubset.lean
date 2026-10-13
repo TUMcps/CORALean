@@ -1,4 +1,8 @@
-import CORALean.Global.RobustInvariant
+module
+
+public import CORALean.Global.RobustInvariant
+
+@[expose] public section
 
 /-!
 # Once in an invariant set, always in it

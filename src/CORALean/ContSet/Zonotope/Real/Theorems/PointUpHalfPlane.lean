@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.PointUp
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.PointUp
+
+@[expose] public section
 
 /-!
 # Every generator of `pointUp` is in the upper half-plane

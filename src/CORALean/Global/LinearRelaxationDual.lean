@@ -1,14 +1,18 @@
-import CORALean.Global.MatrixFunctionalMulEqSum
-import CORALean.Global.PiLpNormToLpLeOfAbsLe
-import Mathlib.Analysis.MeanInequalities
-import Mathlib.Analysis.Normed.Group.Quotient
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Analysis.Normed.Module.HahnBanach
-import Mathlib.LinearAlgebra.Dual.Lemmas
-import Mathlib.LinearAlgebra.Matrix.Bilinear
-import Mathlib.LinearAlgebra.Matrix.Trace
-import Mathlib.Topology.MetricSpace.HausdorffDistance
+module
+
+public import CORALean.Global.MatrixFunctionalMulEqSum
+public import CORALean.Global.PiLpNormToLpLeOfAbsLe
+public import Mathlib.Analysis.MeanInequalities
+public import Mathlib.Analysis.Normed.Group.Quotient
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Analysis.Normed.Module.HahnBanach
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.Bilinear
+public import Mathlib.LinearAlgebra.Matrix.Trace
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+
+@[expose] public section
 
 /-!
 # The linear relaxation has a dual certificate

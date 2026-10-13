@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.Sigmoid
-import CORALean.NN.Layers.Definitions.TanhRelaxation
-import CORALean.NN.Layers.Operations.Tanh
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtTanh
-import CORALean.NN.Theorems.SensitivityActivation
+module
+
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Definitions.TanhRelaxation
+public import CORALean.NN.Layers.Operations.Tanh
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtTanh
+public import CORALean.NN.Theorems.SensitivityActivation
+
+@[expose] public section
 
 /-!
 # The tanh layer's sensitivity

@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Dependent
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Dependent
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # `Zonotope.dependent` empties the box without losing a point

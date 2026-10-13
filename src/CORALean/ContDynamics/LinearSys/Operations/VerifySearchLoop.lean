@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
-import CORALean.ContDynamics.LinearSys.Definitions.VerifySearchState
-import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
-import CORALean.ContDynamics.LinearSys.Operations.SupportLower
-import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
-import CORALean.Specification.Definitions.VerifyAnswer
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySearchState
+public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
+public import CORALean.ContDynamics.LinearSys.Operations.SupportLower
+public import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
+public import CORALean.Specification.Definitions.VerifyAnswer
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3 (search)]: the `repeat` loop

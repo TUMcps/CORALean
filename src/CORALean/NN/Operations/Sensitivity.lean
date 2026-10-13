@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.Chain
-import CORALean.NN.Operations.LayerSensitivity
+module
+
+public import CORALean.NN.Definitions.Chain
+public import CORALean.NN.Operations.LayerSensitivity
+
+@[expose] public section
 
 /-!
 # The sensitivity of a network

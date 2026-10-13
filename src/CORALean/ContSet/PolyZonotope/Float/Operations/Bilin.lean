@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.BilinE
-import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDiff
-import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDown
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinE
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDown
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.bilin`, over a floating-point scalar

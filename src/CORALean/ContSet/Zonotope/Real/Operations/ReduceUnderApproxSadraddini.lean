@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceUnderApproxSadraddini`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
-import CORALean.HybridDynamics.Theorems.JumpOuter
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
+public import CORALean.HybridDynamics.Theorems.JumpOuter
+
+@[expose] public section
 
 /-!
 # The jump step at a constrained zonotope, with nothing assumed

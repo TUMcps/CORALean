@@ -1,101 +1,103 @@
-import CORALean.NN.Layers.Theorems.Real.AbsEvalPolyDerivSubCenterLe
-import CORALean.NN.Layers.Theorems.Real.AbsSigmoidDerivLeOne
-import CORALean.NN.Layers.Theorems.Real.AbsSubEvalPolyDerivLe
-import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseH
-import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseHIndep
-import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseQ
-import CORALean.NN.Layers.Theorems.Real.ActivationPolyOnOuter
-import CORALean.NN.Layers.Theorems.Real.ActivationPolyRefinableConvergent
-import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
-import CORALean.NN.Layers.Theorems.Real.ActivationPolySound
-import CORALean.NN.Layers.Theorems.Real.ActivationPolySubsetInflate
-import CORALean.NN.Layers.Theorems.Real.AntitoneInvSqrt
-import CORALean.NN.Layers.Theorems.Real.BatchNormSound
-import CORALean.NN.Layers.Theorems.Real.ContinuousInvSqrt
-import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
-import CORALean.NN.Layers.Theorems.Real.EvalPolyCoeff
-import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
-import CORALean.NN.Layers.Theorems.Real.EvalPolyPadCoeffs
-import CORALean.NN.Layers.Theorems.Real.EvalPolyScaleCoeffs
-import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
-import CORALean.NN.Layers.Theorems.Real.ExistsEvalPolyNear
-import CORALean.NN.Layers.Theorems.Real.ExistsFitSamplingErrorLt
-import CORALean.NN.Layers.Theorems.Real.ExistsPolyRelaxationErrorLt
-import CORALean.NN.Layers.Theorems.Real.ExistsSampleGridClose
-import CORALean.NN.Layers.Theorems.Real.ExpSumPos
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtEvalPoly
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtInvSqrt
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtTanh
-import CORALean.NN.Layers.Theorems.Real.InvSqrtDerivMono
-import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
-import CORALean.NN.Layers.Theorems.Real.InvSqrtEqRpow
-import CORALean.NN.Layers.Theorems.Real.InvSqrtLeOne
-import CORALean.NN.Layers.Theorems.Real.InvSqrtPos
-import CORALean.NN.Layers.Theorems.Real.InvSqrtRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.LeSigmoidDerivHi
-import CORALean.NN.Layers.Theorems.Real.LeWindowMax
-import CORALean.NN.Layers.Theorems.Real.LeakyReluBoundsOfSlope
-import CORALean.NN.Layers.Theorems.Real.MaxPoolBounds
-import CORALean.NN.Layers.Theorems.Real.OfSamplingError
-import CORALean.NN.Layers.Theorems.Real.OfSamplingSound
-import CORALean.NN.Layers.Theorems.Real.PolyDerivDiffOne
-import CORALean.NN.Layers.Theorems.Real.PolyOfAffineConjSound
-import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilyErrorLt
-import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound
-import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
-import CORALean.NN.Layers.Theorems.Real.ReluBoundsOfSlope
-import CORALean.NN.Layers.Theorems.Real.ReluSlopeLeOne
-import CORALean.NN.Layers.Theorems.Real.ReluSlopeNonneg
-import CORALean.NN.Layers.Theorems.Real.SampleBoundsOfDeriv
-import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
-import CORALean.NN.Layers.Theorems.Real.SamplingErrorBracket
-import CORALean.NN.Layers.Theorems.Real.ScaleRoundingExactSound
-import CORALean.NN.Layers.Theorems.Real.SigmoidDerivLoLe
-import CORALean.NN.Layers.Theorems.Real.SigmoidLtOne
-import CORALean.NN.Layers.Theorems.Real.SigmoidMono
-import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
-import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
-import CORALean.NN.Layers.Theorems.Real.SigmoidPolyRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.SigmoidPos
-import CORALean.NN.Layers.Theorems.Real.SigmoidRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.SoftmaxEqInv
-import CORALean.NN.Layers.Theorems.Real.SoftmaxLeRaw
-import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
-import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
-import CORALean.NN.Layers.Theorems.Real.SoftmaxSound
-import CORALean.NN.Layers.Theorems.Real.SoftmaxSumEqOne
-import CORALean.NN.Layers.Theorems.Real.SoftplusMono
-import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
-import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
-import CORALean.NN.Layers.Theorems.Real.TanhPolyRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.TanhRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.RootRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.TendstoSamplingError
-import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
-import CORALean.NN.Layers.Theorems.Real.SigmoidDerivSShape
-import CORALean.NN.Layers.Theorems.Real.TanhDerivSShape
-import CORALean.NN.Layers.Theorems.Real.DeepZReluEq
-import CORALean.NN.Layers.Theorems.Real.DeepZReluSound
-import CORALean.NN.Layers.Theorems.Real.ReluBandAreaLe
-import CORALean.NN.Layers.Theorems.Real.ReluGapOfSlopeEqIte
-import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
-import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
-import CORALean.NN.Layers.Theorems.Real.SShapeBandAreaLe
-import CORALean.NN.Layers.Theorems.Real.EvaluateSinghCoraMissesCounterexample
-import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
-import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSigmoidSound
-import CORALean.NN.Layers.Theorems.Real.DeepZSShapeTanhSound
-import CORALean.NN.Layers.Theorems.Real.ApproxAreaLe
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorEnclosure
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorIsExtreme
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorRelaxationSound
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorRelu
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorSigmoid
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorTanh
-import CORALean.NN.Layers.Theorems.Real.ExistsCriticalExtreme
-import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfTanh
-import CORALean.NN.Layers.Theorems.Real.EncloseNonlinearPrintedCounterexample
+module
+
+public import CORALean.NN.Layers.Theorems.Real.AbsEvalPolyDerivSubCenterLe
+public import CORALean.NN.Layers.Theorems.Real.AbsSigmoidDerivLeOne
+public import CORALean.NN.Layers.Theorems.Real.AbsSubEvalPolyDerivLe
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseH
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseHIndep
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseQ
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyOnOuter
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyRefinableConvergent
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolySound
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolySubsetInflate
+public import CORALean.NN.Layers.Theorems.Real.AntitoneInvSqrt
+public import CORALean.NN.Layers.Theorems.Real.BatchNormSound
+public import CORALean.NN.Layers.Theorems.Real.ContinuousInvSqrt
+public import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyCoeff
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyPadCoeffs
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyScaleCoeffs
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
+public import CORALean.NN.Layers.Theorems.Real.ExistsEvalPolyNear
+public import CORALean.NN.Layers.Theorems.Real.ExistsFitSamplingErrorLt
+public import CORALean.NN.Layers.Theorems.Real.ExistsPolyRelaxationErrorLt
+public import CORALean.NN.Layers.Theorems.Real.ExistsSampleGridClose
+public import CORALean.NN.Layers.Theorems.Real.ExpSumPos
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtEvalPoly
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtInvSqrt
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtTanh
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtDerivMono
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtEqRpow
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtLeOne
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtPos
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.LeSigmoidDerivHi
+public import CORALean.NN.Layers.Theorems.Real.LeWindowMax
+public import CORALean.NN.Layers.Theorems.Real.LeakyReluBoundsOfSlope
+public import CORALean.NN.Layers.Theorems.Real.MaxPoolBounds
+public import CORALean.NN.Layers.Theorems.Real.OfSamplingError
+public import CORALean.NN.Layers.Theorems.Real.OfSamplingSound
+public import CORALean.NN.Layers.Theorems.Real.PolyDerivDiffOne
+public import CORALean.NN.Layers.Theorems.Real.PolyOfAffineConjSound
+public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilyErrorLt
+public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound
+public import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
+public import CORALean.NN.Layers.Theorems.Real.ReluBoundsOfSlope
+public import CORALean.NN.Layers.Theorems.Real.ReluSlopeLeOne
+public import CORALean.NN.Layers.Theorems.Real.ReluSlopeNonneg
+public import CORALean.NN.Layers.Theorems.Real.SampleBoundsOfDeriv
+public import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
+public import CORALean.NN.Layers.Theorems.Real.SamplingErrorBracket
+public import CORALean.NN.Layers.Theorems.Real.ScaleRoundingExactSound
+public import CORALean.NN.Layers.Theorems.Real.SigmoidDerivLoLe
+public import CORALean.NN.Layers.Theorems.Real.SigmoidLtOne
+public import CORALean.NN.Layers.Theorems.Real.SigmoidMono
+public import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPos
+public import CORALean.NN.Layers.Theorems.Real.SigmoidRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxEqInv
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxLeRaw
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxSound
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxSumEqOne
+public import CORALean.NN.Layers.Theorems.Real.SoftplusMono
+public import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
+public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+public import CORALean.NN.Layers.Theorems.Real.TanhPolyRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.TanhRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.RootRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.TendstoSamplingError
+public import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
+public import CORALean.NN.Layers.Theorems.Real.SigmoidDerivSShape
+public import CORALean.NN.Layers.Theorems.Real.TanhDerivSShape
+public import CORALean.NN.Layers.Theorems.Real.DeepZReluEq
+public import CORALean.NN.Layers.Theorems.Real.DeepZReluSound
+public import CORALean.NN.Layers.Theorems.Real.ReluBandAreaLe
+public import CORALean.NN.Layers.Theorems.Real.ReluGapOfSlopeEqIte
+public import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
+public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
+public import CORALean.NN.Layers.Theorems.Real.SShapeBandAreaLe
+public import CORALean.NN.Layers.Theorems.Real.EvaluateSinghCoraMissesCounterexample
+public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
+public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSigmoidSound
+public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeTanhSound
+public import CORALean.NN.Layers.Theorems.Real.ApproxAreaLe
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorEnclosure
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorIsExtreme
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorRelaxationSound
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorRelu
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorSigmoid
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorTanh
+public import CORALean.NN.Layers.Theorems.Real.ExistsCriticalExtreme
+public import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfTanh
+public import CORALean.NN.Layers.Theorems.Real.EncloseNonlinearPrintedCounterexample
 
 /-!
 # What holds of the standard layers only at ℝ, collected

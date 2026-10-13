@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Recip
-import CORALean.ContSet.Interval.Real.Theorems.InvBetween
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Recip
+public import CORALean.ContSet.Interval.Real.Theorems.InvBetween
+
+@[expose] public section
 
 /-!
 # `Interval.recip` over-approximates the reciprocal image, over a floating-point scalar

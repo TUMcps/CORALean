@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # Goffin's separator for a zonotope

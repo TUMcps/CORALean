@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
+
+@[expose] public section
 
 /-!
 # AH-polytope in AH-polytope, sufficiently

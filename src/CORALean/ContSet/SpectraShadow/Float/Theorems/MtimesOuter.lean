@@ -1,9 +1,13 @@
-import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.SpectraShadow.Float.Operations.Mtimes
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Mtimes
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.mtimes` contains the image

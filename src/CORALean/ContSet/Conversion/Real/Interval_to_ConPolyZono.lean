@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+
+@[expose] public section
 
 /-!
 # A box as a constrained polynomial zonotope

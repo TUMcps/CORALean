@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.PowBounds
-import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.PowBounds
+public import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.powBounds` brackets the power

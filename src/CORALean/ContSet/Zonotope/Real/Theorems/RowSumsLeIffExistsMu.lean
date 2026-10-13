@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.Linarith
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # The linear encoding of `‖T‖∞ ≤ α`

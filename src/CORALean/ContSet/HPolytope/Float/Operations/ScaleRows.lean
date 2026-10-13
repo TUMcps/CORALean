@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
+
+@[expose] public section
 
 /-!
 # `HPolytope.scaleRows`: rows scaled by given numbers, the rounding paid on the right-hand side

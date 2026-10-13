@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.TrigCoef
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.TrigCoef
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+
+@[expose] public section
 
 /-!
 # `Taylm.trigCoef` encloses the Taylor coefficients of `sin` and `cos`

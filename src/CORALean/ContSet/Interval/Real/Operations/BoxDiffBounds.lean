@@ -1,7 +1,11 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.List.MinMax
-import Mathlib.Data.List.FinRange
-import Mathlib.Logic.Function.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.List.MinMax
+public import Mathlib.Data.List.FinRange
+public import Mathlib.Logic.Function.Basic
+
+@[expose] public section
 
 /-!
 # The box difference as [1, Alg. 1] stores it

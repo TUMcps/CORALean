@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
-import Mathlib.Data.Matrix.Mul
-import Mathlib.LinearAlgebra.Pi
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.LinearAlgebra.Pi
+
+@[expose] public section
 
 /-!
 # A functional applied is the dot product with its `dualVec`

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularRemainderSet
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
-import CORALean.Global.ErrorConvergesToZero
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularRemainderSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
+public import CORALean.Global.ErrorConvergesToZero
+
+@[expose] public section
 
 /-!
 # `Prop. 4`: `ε_P` of eq. (22) converges to `0` with the step

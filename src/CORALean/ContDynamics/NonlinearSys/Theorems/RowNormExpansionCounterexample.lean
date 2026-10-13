@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Analysis.SpecialFunctions.SmoothTransition
-import Mathlib.Analysis.Calculus.ContDiff.Defs
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Analysis.SpecialFunctions.SmoothTransition
+public import Mathlib.Analysis.Calculus.ContDiff.Defs
+
+@[expose] public section
 
 /-!
 # The expansion of a coefficient fails for a merely smooth right-hand side

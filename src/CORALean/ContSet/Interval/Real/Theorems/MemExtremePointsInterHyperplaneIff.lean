@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import Mathlib.Analysis.Convex.Extreme
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.LinearCombination
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import Mathlib.Analysis.Convex.Extreme
+public import Mathlib.Algebra.Order.Field.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.LinearCombination
+
+@[expose] public section
 
 /-!
 # The vertices of a box cut by a hyperplane lie on its edges

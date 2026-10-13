@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.ConjSlope
+module
+
+public import CORALean.NN.Layers.Operations.ConjSlope
+
+@[expose] public section
 
 /-!
 # How far a stored conjugate slope may be from the exact one

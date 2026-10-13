@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOut
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BoxOutOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOut
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BoxOutOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+
+@[expose] public section
 
 /-!
 # Boxing out generators encloses, in float

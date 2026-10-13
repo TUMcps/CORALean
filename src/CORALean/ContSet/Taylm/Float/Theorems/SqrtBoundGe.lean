@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
-import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
+public import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # `Taylm.sqrtBound` bounds the derivative of `√`

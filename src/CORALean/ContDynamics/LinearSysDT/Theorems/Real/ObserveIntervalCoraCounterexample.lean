@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # CORA's interval observer misses the initial state off the origin

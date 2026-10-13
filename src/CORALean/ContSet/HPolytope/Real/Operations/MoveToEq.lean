@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+
+@[expose] public section
 
 /-!
 # `HPolytope.moveToEq`

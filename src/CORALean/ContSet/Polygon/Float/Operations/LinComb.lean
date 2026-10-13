@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Polygon
-import CORALean.ContSet.VPolytope.Float.Operations.LinComb
+module
+
+public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.VPolytope.Float.Operations.LinComb
+
+@[expose] public section
 
 /-!
 # `Polygon.linComb`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
+
+@[expose] public section
 
 /-!
 # What the step's end encloses beyond what it reaches

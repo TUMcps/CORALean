@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Parallelotope
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Parallelotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # The parallelotope `Γ box(Γ⁻¹Z)` encloses `Z`

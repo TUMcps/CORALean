@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.OutputEq.Theorems.HoldsOfOutputSet
-import CORALean.Specification.Theorems.CheckSound
+module
+
+public import CORALean.ContDynamics.OutputEq.Theorems.HoldsOfOutputSet
+public import CORALean.Specification.Theorems.CheckSound
+
+@[expose] public section
 
 /-!
 # A passed check on the output set holds of every output

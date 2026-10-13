@@ -1,6 +1,10 @@
-import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxExact
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxExact
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # The box `[-1, 1] × [0, 2]` cut by the parabola `x₂ = 2x₁²`

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
+
+@[expose] public section
 
 /-!
 # The Peano–Baker series truncated at order `η`, and what it leaves

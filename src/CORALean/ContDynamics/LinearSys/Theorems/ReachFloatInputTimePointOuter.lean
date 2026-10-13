@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+
+@[expose] public section
 
 /-!
 # `reachFloatInput`'s time-point sets hold every run at `t_k`

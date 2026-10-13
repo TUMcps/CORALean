@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
-import CORALean.ContSet.ConPolyZono.Real.Operations.UsedFactors
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UsedFactors
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.compactFactorsSpec`

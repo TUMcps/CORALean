@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxDrift
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxDrift
+
+@[expose] public section
 
 /-!
 # `relaxExpMid`'s new independent column, as stored

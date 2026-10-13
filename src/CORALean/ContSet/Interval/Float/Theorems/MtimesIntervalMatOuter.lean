@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # `Interval.mtimesIntervalMat` over-approximates every matrix in the box

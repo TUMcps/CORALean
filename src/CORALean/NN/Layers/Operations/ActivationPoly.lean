@@ -1,11 +1,15 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
-import CORALean.ContSet.PolyZonotope.Float.Instances
-import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
-import CORALean.NN.Layers.Layer
-import CORALean.NN.Layers.Operations.LayerRelaxationBox
-import CORALean.NN.Layers.Operations.LayerRelaxationCoeffList
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+public import CORALean.ContSet.PolyZonotope.Float.Instances
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Layers.Operations.LayerRelaxationBox
+public import CORALean.NN.Layers.Operations.LayerRelaxationCoeffList
+
+@[expose] public section
 
 /-!
 # The activation layer at a polynomial relaxation

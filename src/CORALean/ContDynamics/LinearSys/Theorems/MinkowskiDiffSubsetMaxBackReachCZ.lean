@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
+
+@[expose] public section
 
 /-!
 # The difference of a polytope and a zonotope is inside the exact `CZ(P ⊖ Ẑ_W)`

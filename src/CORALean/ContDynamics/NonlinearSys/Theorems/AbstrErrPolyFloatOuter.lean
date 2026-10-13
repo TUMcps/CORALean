@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyFloat
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyFloat
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+
+@[expose] public section
 
 /-!
 # `abstrErrPolyFloat` holds the remainder at every state of the step

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ColLex
-import Mathlib.Order.PiLex
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ColLex
+public import Mathlib.Order.PiLex
+
+@[expose] public section
 
 /-!
 # A sorted exponent matrix

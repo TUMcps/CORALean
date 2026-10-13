@@ -1,6 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
-import CORALean.ContSet.ProbZonotope.Real.Definitions.Eph
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.Eph
 
 /-!
 # What a probabilistic zonotope means beyond its laws

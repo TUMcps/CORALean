@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Operations.CatReluOn
-import Mathlib.Data.List.FinRange
+module
+
+public import CORALean.NN.Layers.Definitions.Relu
+public import CORALean.NN.Operations.CatReluOn
+public import Mathlib.Data.List.FinRange
+
+@[expose] public section
 
 /-!
 # The CAT form of ReLU is ReLU

@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.ReduceKeep
+module
+
+public import CORALean.NN.Graph.Operations.ReduceKeep
+
+@[expose] public section
 
 /-!
 # CORA's `reduceGNNForNode` at no message-passing step keeps the neighbours

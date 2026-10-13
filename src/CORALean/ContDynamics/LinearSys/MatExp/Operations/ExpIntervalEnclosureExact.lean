@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExact
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContSet.Interval.Real.Operations.AbsMax
-import CORALean.ContSet.Interval.Real.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExact
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContSet.Interval.Real.Operations.AbsMax
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+
+@[expose] public section
 
 /-!
 # Interval matrices: the exponential enclosed with an exact second order

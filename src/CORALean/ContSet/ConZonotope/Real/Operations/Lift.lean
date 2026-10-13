@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # `ConZonotope.lift`

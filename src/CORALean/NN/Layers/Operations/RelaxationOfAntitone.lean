@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.Relaxation
+module
+
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Definitions.Relaxation
+
+@[expose] public section
 
 /-!
 # The relaxation of an antitone function at slope zero

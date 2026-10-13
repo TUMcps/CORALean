@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.Global.DropIdx
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.Global.DropIdx
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # An H-representation of the empty set need not be minimal

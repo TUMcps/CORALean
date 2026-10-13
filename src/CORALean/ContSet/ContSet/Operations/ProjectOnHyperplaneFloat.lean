@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+module
+
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
+public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+
+@[expose] public section
 
 /-!
 # CORA's `projectOnHyperplane`, over a floating-point scalar

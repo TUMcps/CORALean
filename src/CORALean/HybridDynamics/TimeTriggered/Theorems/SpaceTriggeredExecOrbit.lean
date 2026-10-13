@@ -1,6 +1,10 @@
-import Mathlib.Topology.Order.IntermediateValue
-import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzPieceEq
+module
+
+public import Mathlib.Topology.Order.IntermediateValue
+public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzPieceEq
+
+@[expose] public section
 
 /-!
 # An execution of the original automaton follows two solutions

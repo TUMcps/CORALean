@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FilterOut
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Topology
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FilterOut
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Topology
+
+@[expose] public section
 
 /-!
 # A deleted cell is covered by the others

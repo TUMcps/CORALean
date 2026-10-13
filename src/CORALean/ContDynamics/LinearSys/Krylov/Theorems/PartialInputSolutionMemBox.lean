@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputSolutionMemBox
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputSolutionMemBox
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
+@[expose] public section
 
 /-!
 # The input solution over a part of the step, corrected

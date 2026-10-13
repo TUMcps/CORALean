@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.VerifySpec
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySpec
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # What `Alg. 3`'s passed-in functions must satisfy

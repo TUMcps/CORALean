@@ -1,4 +1,8 @@
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `MatExp.admissibleOrder`, a computed Taylor order the float remainder admits

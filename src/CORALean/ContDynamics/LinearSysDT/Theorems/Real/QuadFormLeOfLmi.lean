@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.LinearAlgebra.Matrix.SchurComplement
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Algebra.Order.Star.Real
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.LinearAlgebra.Matrix.SchurComplement
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Algebra.Order.Star.Real
+
+@[expose] public section
 
 /-!
 # The linear matrix inequality of the P-radius gain

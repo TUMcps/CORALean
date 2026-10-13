@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.Deriv
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Calculus.InverseFunctionTheorem.Deriv
+
+@[expose] public section
 
 /-!
 # Time reparametrization of a classical run

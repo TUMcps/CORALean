@@ -1,8 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.ContSet.Definitions.API
-import CORALean.ContSet.ContSet.Float.API
-import CORALean.ContSet.ContSet.Operations.API
-import CORALean.ContSet.ContSet.Theorems.API
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.ContSet.Definitions.API
+public import CORALean.ContSet.ContSet.Float.API
+public import CORALean.ContSet.ContSet.Operations.API
+public import CORALean.ContSet.ContSet.Theorems.API
 
 /-!
 # The set interface, collected

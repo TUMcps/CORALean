@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # [1, Lemma 5]: the whole loop preserves dependencies, not only one step

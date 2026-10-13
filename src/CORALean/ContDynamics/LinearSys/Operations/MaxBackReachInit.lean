@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachState
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachState
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 1-2: the loop state before the first iteration

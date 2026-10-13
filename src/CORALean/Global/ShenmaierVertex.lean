@@ -1,5 +1,9 @@
-import CORALean.Global.ShenmaierHalfspace
-import CORALean.Global.CoeffNorm
+module
+
+public import CORALean.Global.ShenmaierHalfspace
+public import CORALean.Global.CoeffNorm
+
+@[expose] public section
 
 /-!
 # Shenmaier vertex sampling

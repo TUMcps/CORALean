@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.RTLFinally
-import CORALean.Specification.STL.Theorems.ForallTraceSetSatIff
-import CORALean.Specification.STL.Theorems.SatOfPform
+module
+
+public import CORALean.Specification.STL.Operations.RTLFinally
+public import CORALean.Specification.STL.Theorems.ForallTraceSetSatIff
+public import CORALean.Specification.STL.Theorems.SatOfPform
+
+@[expose] public section
 
 /-!
 # What `F[0,1] Aϱ` says of the traces

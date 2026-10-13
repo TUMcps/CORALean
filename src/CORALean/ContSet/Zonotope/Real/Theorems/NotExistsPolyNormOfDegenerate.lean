@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Topology.Algebra.Order.Group
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Topology.Algebra.Module.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Topology.Instances.Matrix
+public import Mathlib.Topology.Algebra.Order.Group
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Topology.Algebra.Module.Basic
+
+@[expose] public section
 
 /-!
 # A degenerate zonotope has no polyhedral norm

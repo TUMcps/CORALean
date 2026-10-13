@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.ActivationLayer
+module
+
+public import CORALean.NN.Layers.Definitions.ActivationLayer
+
+@[expose] public section
 
 /-!
 # An activation layer from a soundness proof

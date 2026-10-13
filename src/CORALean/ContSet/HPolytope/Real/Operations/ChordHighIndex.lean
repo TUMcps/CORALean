@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.HitTime
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.HitTime
+
+@[expose] public section
 
 /-!
 # `HPolytope.chordHighIndex`

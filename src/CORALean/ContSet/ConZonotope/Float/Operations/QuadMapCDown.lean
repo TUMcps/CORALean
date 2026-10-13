@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
+
+@[expose] public section
 
 /-!
 # `ConZonotope.quadMapCDown`

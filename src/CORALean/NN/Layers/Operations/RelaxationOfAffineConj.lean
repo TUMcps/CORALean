@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.ConjError
+module
+
+public import CORALean.NN.Layers.Operations.ConjError
+
+@[expose] public section
 
 /-!
 # A relaxation carried along an affine conjugation

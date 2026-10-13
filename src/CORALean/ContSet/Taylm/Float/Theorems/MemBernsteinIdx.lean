@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
+
+@[expose] public section
 
 /-!
 # The index list holds every multi-index

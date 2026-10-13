@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaExpWeight
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeIntegralDeltaExpWeight
+
+@[expose] public section
 
 /-!
 # From an exponential decay bound on `h` to the Arnoldi error bound, `t e^{-tz}`

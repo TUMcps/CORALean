@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The program (26) as printed

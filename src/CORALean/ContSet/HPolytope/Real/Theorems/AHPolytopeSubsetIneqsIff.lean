@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
+
+@[expose] public section
 
 /-!
 # AH-polytope in H-polytope, exactly

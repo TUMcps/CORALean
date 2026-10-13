@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `mtimes` keeps the origin in the error box

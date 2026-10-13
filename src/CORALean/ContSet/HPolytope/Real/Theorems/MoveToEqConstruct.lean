@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
-import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+
+@[expose] public section
 
 /-!
 # The set of `moveToEq`

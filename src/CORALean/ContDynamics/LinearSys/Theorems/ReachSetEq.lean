@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubset
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubset
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
+
+@[expose] public section
 
 /-!
 # The reachable set is exactly the closed form

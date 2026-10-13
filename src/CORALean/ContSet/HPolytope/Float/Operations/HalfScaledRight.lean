@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+
+@[expose] public section
 
 /-!
 # `HPolytope.halfScaledRight`

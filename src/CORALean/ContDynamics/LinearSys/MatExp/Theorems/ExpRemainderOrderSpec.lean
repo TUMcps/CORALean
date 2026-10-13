@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsExpRemainderBoundLt
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsExpRemainderBoundLt
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
+
+@[expose] public section
 
 /-!
 # The chosen order meets the error it was chosen for

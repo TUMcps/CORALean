@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Matrix.Hermitian
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeExpMinIntegralDelta
+module
+
+public import Mathlib.Analysis.Matrix.Hermitian
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeExpMinIntegralDelta
+
+@[expose] public section
 
 /-!
 # The Lanczos error for `e^{iτH}v` is bounded by `β_{k+1}∫₀^τ|h(t)|dt`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.ProjectHighDim
-import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ProjectHighDim
+public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
+
+@[expose] public section
 
 /-!
 # `Interval.projectHighDim_` is exactly the zero-padded set

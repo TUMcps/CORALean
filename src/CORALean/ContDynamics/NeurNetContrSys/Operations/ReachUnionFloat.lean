@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
+
+@[expose] public section
 
 /-!
 # The reachable sets at every control-period boundary, in floats

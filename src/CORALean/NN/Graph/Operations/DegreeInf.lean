@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.Degree
+module
+
+public import CORALean.NN.Graph.Operations.Degree
+
+@[expose] public section
 
 /-!
 # The degree of an uncertain graph, every uncertain edge switched off

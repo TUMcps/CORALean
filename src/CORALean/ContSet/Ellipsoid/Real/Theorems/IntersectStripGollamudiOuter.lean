@@ -1,9 +1,13 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
-import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The corrected Gollamudi update encloses the intersection

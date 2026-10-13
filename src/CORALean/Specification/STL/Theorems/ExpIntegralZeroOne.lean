@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+
+@[expose] public section
 
 /-!
 # `T = 1` for `A = 0` and `Δt = 1`

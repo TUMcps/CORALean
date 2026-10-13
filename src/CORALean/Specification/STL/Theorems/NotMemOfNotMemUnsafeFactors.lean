@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Operations.UnsafeFactors
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Specification.STL.Operations.UnsafeFactors
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2]: a factor outside `K` reaches no point of the polytope

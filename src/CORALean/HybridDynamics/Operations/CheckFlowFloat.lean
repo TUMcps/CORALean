@@ -1,8 +1,12 @@
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
-import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # `Location.checkFlowFloat`

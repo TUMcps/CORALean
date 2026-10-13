@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.ConvHull
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.ConvHull
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # `Interval.convHull` contains the convex hull of the union

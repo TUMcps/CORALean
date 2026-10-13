@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachP
-import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachP
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+
+@[expose] public section
 
 /-!
 # `Alg. 1` line 16: the minimal time-interval backward reachable set

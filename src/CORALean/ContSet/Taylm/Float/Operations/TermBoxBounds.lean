@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.ProdBounds
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.ProdBounds
+
+@[expose] public section
 
 /-!
 # `Taylm.termBoxBounds`, over a floating-point scalar

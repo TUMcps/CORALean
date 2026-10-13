@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Definitions.Lifting
+module
+
+public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
+
+@[expose] public section
 
 /-!
 # A `Lifting` that can also conjoin guards

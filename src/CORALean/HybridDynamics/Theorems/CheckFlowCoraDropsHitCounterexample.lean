@@ -1,9 +1,13 @@
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import CORALean.HybridDynamics.Definitions.CheckFlowCora
-import CORALean.HybridDynamics.Theorems.CheckFlowDropped
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import CORALean.HybridDynamics.Definitions.CheckFlowCora
+public import CORALean.HybridDynamics.Theorems.CheckFlowDropped
+
+@[expose] public section
 
 /-!
 # CORA's `checkFlow` drops a set the bouncing ball leaves through the guard

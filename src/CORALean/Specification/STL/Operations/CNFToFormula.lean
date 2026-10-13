@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.STL
-import CORALean.Specification.STL.Definitions.SampledTime
+module
+
+public import CORALean.Specification.STL.STL
+public import CORALean.Specification.STL.Definitions.SampledTime
+
+@[expose] public section
 
 /-!
 # A normal form as a sampled time formula

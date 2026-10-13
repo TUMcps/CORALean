@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+
+@[expose] public section
 
 /-!
 # `HPolytope.fullspace` denotes `Set.univ`

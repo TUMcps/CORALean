@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # The integrated exponential, applied to a vector, is the integral

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `MatExp.normUpperBound`, a float upper bound of a dominating norm

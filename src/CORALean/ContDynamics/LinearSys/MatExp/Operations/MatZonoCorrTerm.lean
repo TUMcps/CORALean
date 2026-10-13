@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.Smul
-import CORALean.ContSet.Zonotope.Real.Operations.MatPow
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+public import CORALean.ContSet.Zonotope.Real.Operations.MatPow
+
+@[expose] public section
 
 /-!
 # Matrix zonotopes: one order's contribution to the correction

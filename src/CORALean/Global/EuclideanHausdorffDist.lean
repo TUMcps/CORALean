@@ -1,4 +1,8 @@
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # The Hausdorff distance a paper writing `‖·‖₂` means

@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.RunOfProductWith
-import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.RunOfProductWith
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+
+@[expose] public section
 
 /-!
 # Every run of the product is a parallel run

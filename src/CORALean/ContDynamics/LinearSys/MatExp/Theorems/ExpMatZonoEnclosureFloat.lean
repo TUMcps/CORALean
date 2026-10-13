@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylorFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.Zonotope.Float.Theorems.MatPlusIntervalOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylorFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatPlusIntervalOuter
+
+@[expose] public section
 
 /-!
 # The exponential of every member lies in the float matrix-zonotope enclosure

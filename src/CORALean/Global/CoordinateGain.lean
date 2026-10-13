@@ -1,6 +1,10 @@
-import CORALean.Global.CoordinatePath
-import Mathlib.Analysis.Calculus.ContDiff.Basic
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
+module
+
+public import CORALean.Global.CoordinatePath
+public import Mathlib.Analysis.Calculus.ContDiff.Basic
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+
+@[expose] public section
 
 /-!
 # A coordinate move with a partial bounded away from zero gains at least its bound

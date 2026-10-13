@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.PolySampling
+module
+
+public import CORALean.NN.Layers.Definitions.PolySampling
+
+@[expose] public section
 
 /-!
 # The exact sample grid lies in the box

@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.PolyZonotope.Float.Operations.BilinE
-import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Operations.PairG
-import CORALean.ContSet.PolyZonotope.Float.Operations.PairGI
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.MatPlus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinE
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PairG
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PairGI
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.matMap`, over a floating-point scalar

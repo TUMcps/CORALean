@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
-import CORALean.NN.Layers.Operations.StarSetFloatChordRow
+module
+
+public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
+public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
+
+@[expose] public section
 
 /-!
 # One ReLU neuron on a float star set

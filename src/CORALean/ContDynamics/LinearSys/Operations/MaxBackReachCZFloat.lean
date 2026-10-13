@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotopeInner
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
-import CORALean.ContDynamics.LinearSys.LinearSys
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+public import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotopeInner
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContDynamics.LinearSys.LinearSys
+
+@[expose] public section
 
 /-!
 # `Alg. 2` line 11 in floats: `CZ(P ⊖ Ẑ_W(τ_k))`, from the inside

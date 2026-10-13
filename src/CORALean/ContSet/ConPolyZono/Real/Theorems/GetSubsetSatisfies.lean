@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+
+@[expose] public section
 
 /-!
 # `getSubset` and the constraints

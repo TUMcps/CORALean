@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripLiu
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IntersectStripGollamudiOuter
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripLiu
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IntersectStripGollamudiOuter
+
+@[expose] public section
 
 /-!
 # The float Liu update encloses the intersection with the measurement set

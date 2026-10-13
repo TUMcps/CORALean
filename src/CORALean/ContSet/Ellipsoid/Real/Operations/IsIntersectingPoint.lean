@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.isIntersectingPoint`

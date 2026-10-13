@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConPolyZono
+module
+
+public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConPolyZono
+
+@[expose] public section
 
 /-!
 # A spectrahedral shadow as a constrained polynomial zonotope, over a floating-point scalar

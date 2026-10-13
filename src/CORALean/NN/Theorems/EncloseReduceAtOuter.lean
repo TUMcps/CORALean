@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.EncloseReduceAt
-import CORALean.NN.Operations.RefinableNetworkEval
+module
+
+public import CORALean.NN.Operations.EncloseReduceAt
+public import CORALean.NN.Operations.RefinableNetworkEval
+
+@[expose] public section
 
 /-!
 # The refinement loop's network evaluation encloses the network

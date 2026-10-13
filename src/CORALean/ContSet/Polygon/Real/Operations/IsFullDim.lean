@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import Mathlib.LinearAlgebra.AffineSpace.Combination
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import Mathlib.LinearAlgebra.AffineSpace.Combination
+
+@[expose] public section
 
 /-!
 # `Polygon.isFullDim`

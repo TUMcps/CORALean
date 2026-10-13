@@ -1,4 +1,8 @@
-import Mathlib.Data.Set.Prod
+module
+
+public import Mathlib.Data.Set.Prod
+
+@[expose] public section
 
 /-!
 # The weights of a reshape layer

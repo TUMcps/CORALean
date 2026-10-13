@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Dependent
-import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.QuadMapDep
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Dependent
+public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.QuadMapDep
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.quadMapCost`

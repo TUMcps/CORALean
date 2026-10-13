@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInitFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInitFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 2`: tuning of the time step size Δt, in floats

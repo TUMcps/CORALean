@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # The matrix of some columns followed by one more

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubFoldUp
-import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubFoldUp
+public import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+
+@[expose] public section
 
 /-!
 # `Zonotope.cubMapGUp`

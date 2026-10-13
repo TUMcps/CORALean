@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
+
+@[expose] public section
 
 /-!
 # The step a pass settled on

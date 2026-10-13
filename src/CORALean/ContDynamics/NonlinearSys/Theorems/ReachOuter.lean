@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
-import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
+
+@[expose] public section
 
 /-!
 # The nonlinear reachable set is the linearized one

@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
-import CORALean.ContSet.Interval.Real.Theorems.OrOuter
-import CORALean.ContSet.LevelSet.Real.Definitions.Contractor
+module
+
+public import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
+public import CORALean.ContSet.Interval.Real.Theorems.OrOuter
+public import CORALean.ContSet.LevelSet.Real.Definitions.Contractor
+
+@[expose] public section
 
 /-!
 # The box `guardIntersectLevelSet` returns holds the guard intersection

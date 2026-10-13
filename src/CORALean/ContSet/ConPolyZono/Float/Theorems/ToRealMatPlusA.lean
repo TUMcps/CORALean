@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
-import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
+public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
+
+@[expose] public section
 
 /-!
 # The constraint matrix `plusA` reads back to the exact layer's

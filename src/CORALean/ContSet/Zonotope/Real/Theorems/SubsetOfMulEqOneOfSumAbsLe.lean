@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The constraint of constrained-optimization reduction

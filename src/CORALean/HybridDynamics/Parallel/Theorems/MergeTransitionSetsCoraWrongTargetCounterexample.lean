@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsCoraTarget
-import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
-import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetCORACounterexample
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsCoraTarget
+public import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
+public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetCORACounterexample
+
+@[expose] public section
 
 /-!
 # CORA's `mergeTransitionSets` sends a synchronized jump to the wrong location

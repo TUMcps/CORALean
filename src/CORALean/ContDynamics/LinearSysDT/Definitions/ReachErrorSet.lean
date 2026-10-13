@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The reachable set of the Luenberger estimation error

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.SpectraShadow.Float.Theorems.LinCombOuter
-import CORALean.ContSet.SpectraShadow.Float.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # What `SpectraShadow` instantiates

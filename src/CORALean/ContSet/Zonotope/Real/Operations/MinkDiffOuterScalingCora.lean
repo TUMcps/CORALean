@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.Radius
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffOuterScalingCora`, CORA's `minkDiff(Z, I, 'outer:scaling')`

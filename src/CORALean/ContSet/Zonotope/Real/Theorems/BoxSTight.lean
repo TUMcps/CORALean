@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BoxS
-import CORALean.ContSet.Zonotope.Real.Theorems.InterHyperplaneIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BoxS
+public import CORALean.ContSet.Zonotope.Real.Theorems.InterHyperplaneIff
+
+@[expose] public section
 
 /-!
 # `Box_S(Z)` encloses `Z` and every face of it touches `Z`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Analysis.Normed.Module.Convex
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Analysis.Normed.Module.Convex
+
+@[expose] public section
 
 /-!
 # What the convex hull does to emptiness, degeneracy and boundedness

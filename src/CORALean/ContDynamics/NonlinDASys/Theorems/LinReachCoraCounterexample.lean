@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCora
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCora
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # CORA's `nonlinDASys/linReach` misses a reachable state

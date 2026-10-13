@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
+
+@[expose] public section
 
 /-!
 # A constrained zonotope is compact

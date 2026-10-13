@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Recip
-import CORALean.ContSet.Interval.Real.Theorems.InvBetween
-import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Recip
+public import CORALean.ContSet.Interval.Real.Theorems.InvBetween
+public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.recip` is exactly the reciprocal image

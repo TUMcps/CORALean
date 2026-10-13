@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.Reach.Reach
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.Reach.Reach
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.WithSteps` instantiates `Reach`

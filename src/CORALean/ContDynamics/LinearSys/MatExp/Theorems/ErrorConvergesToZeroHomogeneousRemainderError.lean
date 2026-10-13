@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRemainderError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemInputCorrectionSet
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemStateCorrectionSet
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
-import CORALean.Global.ErrorConvergesToZero
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRemainderError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemInputCorrectionSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemStateCorrectionSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
+public import CORALean.Global.ErrorConvergesToZero
+
+@[expose] public section
 
 /-!
 # `Prop. 3`: `ε_H` of eq. (21) converges to `0` with the step

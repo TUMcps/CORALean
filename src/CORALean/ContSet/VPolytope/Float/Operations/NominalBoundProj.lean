@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Float.VPolytope
-import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
-import CORALean.ContSet.InflatedContSet.Operations.Bound
+module
+
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+public import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
+public import CORALean.ContSet.InflatedContSet.Operations.Bound
+
+@[expose] public section
 
 /-!
 # `VPolytope.nominalBoundProj`

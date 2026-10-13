@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+
+@[expose] public section
 
 /-!
 # A step's end with an input, over a floating-point scalar

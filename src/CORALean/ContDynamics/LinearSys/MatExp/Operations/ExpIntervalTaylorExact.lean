@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
-import CORALean.ContSet.Interval.Real.Operations.Plus
-import CORALean.ContSet.Interval.Real.Operations.Point
-import CORALean.ContSet.Interval.Real.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+
+@[expose] public section
 
 /-!
 # Interval matrices: the Taylor truncation with an exact second order

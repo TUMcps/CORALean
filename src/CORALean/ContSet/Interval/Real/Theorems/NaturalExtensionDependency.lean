@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Real.Operations.Power
-import CORALean.ContSet.Interval.Real.Operations.Times
-import CORALean.ContSet.Interval.Real.Operations.Smul
-import CORALean.ContSet.Interval.Real.Operations.Minus
-import CORALean.ContSet.Interval.Real.Operations.Plus
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Power
+public import CORALean.ContSet.Interval.Real.Operations.Times
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+public import CORALean.ContSet.Interval.Real.Operations.Minus
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # The natural extension depends on the expression

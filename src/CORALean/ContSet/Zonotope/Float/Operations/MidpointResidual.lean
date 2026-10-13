@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
+
+@[expose] public section
 
 /-!
 # What storing the midpoint leaves to pay

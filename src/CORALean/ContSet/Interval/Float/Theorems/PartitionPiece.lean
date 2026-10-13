@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Partition
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Partition
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
+
+@[expose] public section
 
 /-!
 # Each real piece of `Interval.partition` is inside the float piece

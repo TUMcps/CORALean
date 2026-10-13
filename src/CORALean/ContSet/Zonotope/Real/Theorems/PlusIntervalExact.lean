@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-import CORALean.ContSet.Zonotope.Real.Theorems.IntervalZonotopeSubset
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalZonotopeSubset
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.plus` at a box is exact, [1, Prop. 2]

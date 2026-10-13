@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MethCBasis
-import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
-import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
-import CORALean.ContSet.Zonotope.Float.Operations.MethCReach
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.Interval.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MethCBasis
+public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+public import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
+public import CORALean.ContSet.Zonotope.Float.Operations.MethCReach
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceMethC`

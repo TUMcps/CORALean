@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
+
+@[expose] public section
 
 /-!
 # `Zonotope.representsa_origin_iff`

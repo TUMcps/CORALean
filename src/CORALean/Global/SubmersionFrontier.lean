@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
-import Mathlib.Topology.Compactness.Compact
+module
+
+public import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
+public import Mathlib.Topology.Compactness.Compact
+
+@[expose] public section
 
 /-!
 # A submersion maps no interior point onto the frontier of its image

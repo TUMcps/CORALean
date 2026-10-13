@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.UnitIntervalMul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.UnitIntervalMul
+
+@[expose] public section
 
 /-!
 # `Zonotope.scalarIntervalMulCost`

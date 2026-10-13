@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Analysis.Normed.Ring.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Analysis.Normed.Ring.Basic
+
+@[expose] public section
 
 /-!
 # The coefficient cube is a closed ball

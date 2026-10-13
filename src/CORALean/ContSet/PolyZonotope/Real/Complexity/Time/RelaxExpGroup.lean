@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxWidthGroup
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxWidthGroup
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxExpGroupCost`

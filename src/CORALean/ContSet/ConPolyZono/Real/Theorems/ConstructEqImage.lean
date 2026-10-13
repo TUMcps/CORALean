@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
-import CORALean.ContSet.ConPolyZono.Real.Operations.Affine
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Affine
+
+@[expose] public section
 
 /-!
 # A constrained polynomial zonotope is its domain's image

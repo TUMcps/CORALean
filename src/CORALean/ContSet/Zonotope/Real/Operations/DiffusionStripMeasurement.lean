@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
-import CORALean.ContSet.Zonotope.Real.Operations.StripGain
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Real.Operations.StripGain
+
+@[expose] public section
 
 /-!
 # `Zonotope.diffusionStripMeasurement`

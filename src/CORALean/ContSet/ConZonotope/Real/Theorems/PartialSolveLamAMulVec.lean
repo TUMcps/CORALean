@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
+
+@[expose] public section
 
 /-!
 # `Λ_A b` of [1, Sec. 4.2]

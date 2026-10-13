@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderEigenvalues
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderEigenvalues
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLogDet
+
+@[expose] public section
 
 /-!
 # The volume criterion is the sum over the eigenvalues

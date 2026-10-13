@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceBy` carries the coefficients of the kept generators over

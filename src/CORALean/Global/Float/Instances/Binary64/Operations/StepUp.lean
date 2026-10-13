@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Binary64.Binary64
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Binary64
+
+@[expose] public section
 
 /-!
 # A round-to-nearest result, one step up

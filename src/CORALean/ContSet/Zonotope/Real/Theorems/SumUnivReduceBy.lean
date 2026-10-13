@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+
+@[expose] public section
 
 /-!
 # Splitting a sum over what `reduceBy` produces

@@ -1,8 +1,12 @@
-import CORALean.NN.Graph.Operations.Alg1Graph
-import CORALean.NN.Graph.Operations.OnesRow
-import CORALean.NN.Graph.Theorems.Alg1NodeSound
-import CORALean.NN.Graph.Theorems.PoolingExact
-import CORALean.NN.Graph.Theorems.TailEncloseMem
+module
+
+public import CORALean.NN.Graph.Operations.Alg1Graph
+public import CORALean.NN.Graph.Operations.OnesRow
+public import CORALean.NN.Graph.Theorems.Alg1NodeSound
+public import CORALean.NN.Graph.Theorems.PoolingExact
+public import CORALean.NN.Graph.Theorems.TailEncloseMem
+
+@[expose] public section
 
 /-!
 # `Alg. 1` for a graph-level output satisfies the problem statement

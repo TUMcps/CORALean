@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
+
+@[expose] public section
 
 /-!
 # `Polygon.inTriangle`

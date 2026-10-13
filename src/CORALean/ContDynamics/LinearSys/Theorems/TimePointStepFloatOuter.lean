@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+
+@[expose] public section
 
 /-!
 # `timePointStepFloat` contains the flow at the end of the step

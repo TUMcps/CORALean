@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
-import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `Δε^U_k(Δt, η)`, eq. (25), in floats

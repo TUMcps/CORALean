@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptInit
-import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPassFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
-import CORALean.ContDynamics.NonlinearSys.Operations.TuneAbstrOrderFloat
-import CORALean.Global.Float.Exp
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptInit
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPassFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.TuneAbstrOrderFloat
+public import CORALean.Global.Float.Exp
+
+@[expose] public section
 
 /-!
 # `Alg. 2`: one adaptively-tuned step, in floats

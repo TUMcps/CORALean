@@ -1,10 +1,14 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.Analysis.Convex.Basic
-import Mathlib.Order.Filter.Extr
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.Linarith
-import Mathlib.LinearAlgebra.Matrix.Symmetric
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Analysis.Convex.Basic
+public import Mathlib.Order.Filter.Extr
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Linarith
+public import Mathlib.LinearAlgebra.Matrix.Symmetric
+
+@[expose] public section
 
 /-!
 # The quadratic fast bounder at the quadratic part's minimizer

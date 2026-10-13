@@ -1,6 +1,10 @@
-import CORALean.Global.CoeffNorm
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.Global.CoeffNorm
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # A zonotope's centre shift is one more generator

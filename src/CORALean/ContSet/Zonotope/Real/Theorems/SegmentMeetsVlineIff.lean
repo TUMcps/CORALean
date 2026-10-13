@@ -1,9 +1,13 @@
-import Mathlib.Analysis.Convex.Segment
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
+module
+
+public import Mathlib.Analysis.Convex.Segment
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A segment meets a vertical line iff the line is between its ends

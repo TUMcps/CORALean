@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Split
-import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
-import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Split
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
+
+@[expose] public section
 
 /-!
 # The halves of `ConPolyZono.split` cover the set, over a floating-point scalar

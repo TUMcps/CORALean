@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.Bounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Bounds
+
+@[expose] public section
 
 /-!
 # How far a Taylor model reaches from a point

@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Float.VPolytope
+module
+
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+
+@[expose] public section
 
 /-!
 # `VPolytope.columnGap`

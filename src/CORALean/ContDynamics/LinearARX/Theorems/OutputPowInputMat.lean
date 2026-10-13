@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearARX.Operations.InputMat
-import CORALean.ContDynamics.LinearARX.Operations.OutputEq
-import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
-import CORALean.ContDynamics.LinearARX.Theorems.OutputEqMulVec
-import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.InputMat
+public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
+public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+public import CORALean.ContDynamics.LinearARX.Theorems.OutputEqMulVec
+public import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+
+@[expose] public section
 
 /-!
 # An input cannot reach the first block of the window early

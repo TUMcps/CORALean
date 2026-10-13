@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ConsistentSet
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ConsistentSet
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # The exact uncertain set of a measured run

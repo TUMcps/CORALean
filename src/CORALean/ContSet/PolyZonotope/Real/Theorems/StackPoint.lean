@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.stack`'s point

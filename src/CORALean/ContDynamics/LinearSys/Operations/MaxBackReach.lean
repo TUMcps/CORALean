@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPoly
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
-import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPoly
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
+public import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+
+@[expose] public section
 
 /-!
 # `Alg. 2`: the maximal time-interval backward reachable set, every line

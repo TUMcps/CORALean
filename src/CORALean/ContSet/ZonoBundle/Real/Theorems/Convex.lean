@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A zonotope bundle is convex

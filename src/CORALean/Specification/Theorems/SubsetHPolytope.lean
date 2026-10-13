@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
-import CORALean.Global.LinProg.LinProg
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
+public import CORALean.Global.LinProg.LinProg
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Bounds certify containment in a halfspace description

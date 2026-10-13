@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.GO
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.GO
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.computeGO`

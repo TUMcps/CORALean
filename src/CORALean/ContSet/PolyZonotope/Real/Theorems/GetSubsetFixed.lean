@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetConstruct
+
+@[expose] public section
 
 /-!
 # Fixing one factor to a value

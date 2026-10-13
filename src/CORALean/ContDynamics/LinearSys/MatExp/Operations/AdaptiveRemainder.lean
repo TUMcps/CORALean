@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # The adaptive input remainder `Δt · [-W, W]`

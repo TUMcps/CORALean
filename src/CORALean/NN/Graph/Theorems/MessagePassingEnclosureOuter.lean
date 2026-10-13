@@ -1,15 +1,19 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
-import CORALean.NN.Graph.Operations.AdjAt
-import CORALean.NN.Graph.Operations.Degree
-import CORALean.NN.Graph.Operations.DegreeAt
-import CORALean.NN.Graph.Operations.MessagePassing
-import CORALean.NN.Graph.Operations.MessagePassingEnclosure
-import CORALean.NN.Graph.Theorems.SmulEdgeHalf
-import CORALean.NN.Graph.Theorems.SqrtAffine
-import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
-import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.NN.Graph.Operations.AdjAt
+public import CORALean.NN.Graph.Operations.Degree
+public import CORALean.NN.Graph.Operations.DegreeAt
+public import CORALean.NN.Graph.Operations.MessagePassing
+public import CORALean.NN.Graph.Operations.MessagePassingEnclosure
+public import CORALean.NN.Graph.Theorems.SmulEdgeHalf
+public import CORALean.NN.Graph.Theorems.SqrtAffine
+public import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
+public import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
+
+@[expose] public section
 
 /-!
 # The message-passing enclosure contains the true message passing

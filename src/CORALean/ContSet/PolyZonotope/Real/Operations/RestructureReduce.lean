@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
-import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.restructureReduce`

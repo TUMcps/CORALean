@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.ReachSet
-import CORALean.HybridDynamics.Theorems.RunIffExistsRunUntil
+module
+
+public import CORALean.HybridDynamics.Definitions.ReachSet
+public import CORALean.HybridDynamics.Theorems.RunIffExistsRunUntil
+
+@[expose] public section
 
 /-!
 # The reachable set, sliced by duration and jump count

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.Mldivide
-import CORALean.ContSet.Polygon.Float.Theorems.SubtractOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Mldivide
+public import CORALean.ContSet.Polygon.Float.Theorems.SubtractOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.mldivide` encloses the difference with any set

@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
-import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
-import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.Global.EuclideanNorm
-import CORALean.Specification.STL.Operations.DepReachConstsOf
-import CORALean.Specification.STL.Theorems.DepReachAtHh
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.Global.EuclideanNorm
+public import CORALean.Specification.STL.Operations.DepReachConstsOf
+public import CORALean.Specification.STL.Theorems.DepReachAtHh
+
+@[expose] public section
 
 /-!
 # [1, Prop. 5]: the convex hull enclosure converges

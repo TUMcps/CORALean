@@ -1,4 +1,8 @@
-import CORALean.Global.BoxDiameter
+module
+
+public import CORALean.Global.BoxDiameter
+
+@[expose] public section
 
 /-!
 # The local abstraction error of a set-based solver

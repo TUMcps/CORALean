@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.NonlinearSysFloatModel
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.NonlinearSysFloatModel
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The float model of a linear system encloses it

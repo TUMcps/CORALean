@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Times
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import Mathlib.Analysis.Calculus.ContDiff.Operations
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Times
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import Mathlib.Analysis.Calculus.ContDiff.Operations
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1] does not hold for models whose expansion point moves with `h`

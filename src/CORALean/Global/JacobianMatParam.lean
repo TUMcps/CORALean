@@ -1,6 +1,10 @@
-import CORALean.Global.Jacobian
-import Mathlib.Analysis.Calculus.FDeriv.Add
-import Mathlib.Analysis.Calculus.FDeriv.Mul
+module
+
+public import CORALean.Global.Jacobian
+public import Mathlib.Analysis.Calculus.FDeriv.Add
+public import Mathlib.Analysis.Calculus.FDeriv.Mul
+
+@[expose] public section
 
 /-!
 # The Jacobian of a map affine in a parameter

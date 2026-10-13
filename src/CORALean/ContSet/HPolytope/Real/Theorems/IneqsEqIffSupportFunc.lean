@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffSupportFunc
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffSupportFunc
+
+@[expose] public section
 
 /-!
 # Set equality of H-polytopes by mutual containment

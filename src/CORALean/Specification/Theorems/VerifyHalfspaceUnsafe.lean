@@ -1,6 +1,10 @@
-import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
-import CORALean.Specification.Theorems.Violation
-import CORALean.Global.LinProg.LinProg
+module
+
+public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
+public import CORALean.Specification.Theorems.Violation
+public import CORALean.Global.LinProg.LinProg
+
+@[expose] public section
 
 /-!
 # `[1, Alg. 2]`: `unsafe` refutes the safe-set specification

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # A zonotope as a polynomial zonotope

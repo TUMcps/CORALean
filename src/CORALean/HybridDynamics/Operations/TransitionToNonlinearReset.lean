@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.Transition
-import CORALean.HybridDynamics.Definitions.NonlinearReset
+module
+
+public import CORALean.HybridDynamics.Definitions.Transition
+public import CORALean.HybridDynamics.Definitions.NonlinearReset
+
+@[expose] public section
 
 /-!
 # `Transition.toNonlinearReset`

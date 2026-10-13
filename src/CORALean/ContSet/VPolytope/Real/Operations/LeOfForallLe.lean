@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+
+@[expose] public section
 
 /-!
 # A vertex description's combinations never exceed a bound on the vertices

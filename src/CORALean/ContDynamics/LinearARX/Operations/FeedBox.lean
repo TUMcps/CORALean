@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Operations.InputMat
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.InputMat
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # The input a float ARX step feeds, as a box

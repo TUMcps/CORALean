@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Definitions.SyncLabels
+module
+
+public import CORALean.HybridDynamics.Parallel.Definitions.SyncLabels
+
+@[expose] public section
 
 /-!
 # `SyncLabels.pick`

@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.OutputEq.OutputEq
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Operations.Recentre
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.OutputEq.OutputEq
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `LinearSys.canonicalFormFloat`

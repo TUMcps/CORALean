@@ -1,14 +1,18 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeDetLe
-import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
-import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeDetLe
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A cut at Goffin's depth shrinks the volume by a constant factor

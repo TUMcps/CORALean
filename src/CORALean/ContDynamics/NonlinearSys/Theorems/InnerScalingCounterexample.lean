@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.InnerScaling
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
-import CORALean.ContSet.Interval.Real.Definitions.IsBoundsContractor
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Topology.Order.Basic
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.InnerScaling
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
+public import CORALean.ContSet.Interval.Real.Definitions.IsBoundsContractor
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Topology.Order.Basic
+
+@[expose] public section
 
 /-!
 # [1, Thm. 3] fails: the scaled set can leave the reachable set

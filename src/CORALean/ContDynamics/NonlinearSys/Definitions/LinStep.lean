@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+
+@[expose] public section
 
 /-!
 # One step of the re-linearization loop

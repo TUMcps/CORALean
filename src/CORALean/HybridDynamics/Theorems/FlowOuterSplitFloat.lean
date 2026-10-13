@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
-import CORALean.HybridDynamics.Theorems.LinearEmbedding
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
+public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+
+@[expose] public section
 
 /-!
 # A stay is enclosed by the split float step, wherever the input set sits

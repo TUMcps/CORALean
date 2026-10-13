@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactGens
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactGens
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.compact`

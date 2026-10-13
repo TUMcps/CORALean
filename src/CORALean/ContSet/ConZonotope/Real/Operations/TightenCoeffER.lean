@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
-import Mathlib.Data.EReal.Basic
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # `ConZonotope.tightenCoeffER`

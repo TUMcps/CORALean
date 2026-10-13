@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Theorems.UntilEncNonstrictIff
+module
+
+public import CORALean.Specification.STL.Theorems.UntilEncNonstrictIff
+
+@[expose] public section
 
 /-!
 # The bounded until from the unbounded one

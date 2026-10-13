@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
-import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
+public import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # One window of `reachWrappingFreeFloat`: `R(τ_k) = [e^{A t_k}] R(τ_0)`, in floats

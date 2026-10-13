@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A specification checked on the closed loop's reachable set holds along it

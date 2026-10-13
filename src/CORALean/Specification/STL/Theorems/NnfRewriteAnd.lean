@@ -1,7 +1,11 @@
-import CORALean.Specification.STL.Definitions.NnfRewrite
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenAnd
-import CORALean.Specification.STL.Theorems.RewriteFinOpenAnd
-import CORALean.Specification.STL.Theorems.SatAnd
+module
+
+public import CORALean.Specification.STL.Definitions.NnfRewrite
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenAnd
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenAnd
+public import CORALean.Specification.STL.Theorems.SatAnd
+
+@[expose] public section
 
 /-!
 # A conjunction rewrites to sampled time

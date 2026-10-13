@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.MinusScalar
+module
+
+public import CORALean.ContSet.ContSet.Operations.MinusScalar
+
+@[expose] public section
 
 /-!
 # `minusScalar` encloses the translate

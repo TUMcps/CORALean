@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.BnbLoop
-import CORALean.ContSet.Taylm.Real.Theorems.SplitAtCovers
-import CORALean.ContSet.Taylm.Real.Theorems.ListMinLe
-import CORALean.ContSet.Taylm.Real.Theorems.LeListMax
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BnbLoop
+public import CORALean.ContSet.Taylm.Real.Theorems.SplitAtCovers
+public import CORALean.ContSet.Taylm.Real.Theorems.ListMinLe
+public import CORALean.ContSet.Taylm.Real.Theorems.LeListMax
+
+@[expose] public section
 
 /-!
 # The branch and bound loop encloses the range

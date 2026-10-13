@@ -1,5 +1,9 @@
-import Mathlib.Data.List.Range
-import Mathlib.Logic.Function.Iterate
+module
+
+public import Mathlib.Data.List.Range
+public import Mathlib.Logic.Function.Iterate
+
+@[expose] public section
 
 /-!
 # A loop that steps a state and records its outputs

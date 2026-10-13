@@ -1,9 +1,13 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
-import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+
+@[expose] public section
 
 /-!
 # The float cone encloses the perspective cone

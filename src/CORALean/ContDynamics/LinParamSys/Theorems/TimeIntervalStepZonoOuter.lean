@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrix
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrix
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # The step at a matrix zonotope holds every member's flow at every time of the step

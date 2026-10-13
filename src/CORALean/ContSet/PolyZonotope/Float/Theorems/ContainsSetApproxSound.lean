@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
-import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsSetApprox
-import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
-import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
-import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenAllCover
+module
+
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsSetApprox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenAllCover
+
+@[expose] public section
 
 /-!
 # `containsSetApprox` proves containment

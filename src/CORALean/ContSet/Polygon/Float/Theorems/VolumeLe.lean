@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Float.Operations.Volume
-import CORALean.ContSet.Polygon.Float.Theorems.IntervalContains
-import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Volume
+public import CORALean.ContSet.Polygon.Float.Theorems.IntervalContains
+public import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.volume` bounds the area

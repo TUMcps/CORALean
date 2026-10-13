@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Complexity.Time.Jump
-import CORALean.HybridDynamics.Operations.JumpIntersection
-import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
+module
+
+public import CORALean.HybridDynamics.Complexity.Time.Jump
+public import CORALean.HybridDynamics.Operations.JumpIntersection
+public import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
+
+@[expose] public section
 
 /-!
 # `Transition.jumpIntersectionCost`

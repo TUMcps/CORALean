@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
-import CORALean.ContSet.Interval.Float.Operations.MatPow
-import CORALean.ContSet.Interval.Float.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Interval.Float.Operations.MatPow
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+
+@[expose] public section
 
 /-!
 # `MatExp.intervalCorrTerm`, what order `i` contributes to the correction

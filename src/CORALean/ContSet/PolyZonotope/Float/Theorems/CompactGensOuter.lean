@@ -1,10 +1,14 @@
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
-import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberEqZeroOfNotMem
-import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberEqZeroOfNotMem
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `compactGens` over-approximates, merging generator columns

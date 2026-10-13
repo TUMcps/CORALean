@@ -1,4 +1,8 @@
-import CORALean.Specification.Operations.CheckCustomCora
+module
+
+public import CORALean.Specification.Operations.CheckCustomCora
+
+@[expose] public section
 
 /-!
 # CORA's `check` of a custom specification accepts a cell with a violating piece

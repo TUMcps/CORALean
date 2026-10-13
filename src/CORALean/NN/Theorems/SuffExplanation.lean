@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.NN.NeuralNetwork
-import CORALean.NN.Operations.ExplainBox
+module
+
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.NN.NeuralNetwork
+public import CORALean.NN.Operations.ExplainBox
+
+@[expose] public section
 
 /-!
 # Sufficient explanation

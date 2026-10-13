@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+
+@[expose] public section
 
 /-!
 # `bilin`'s subset at `B` is the diagonal image, not a pairwise one

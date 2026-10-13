@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # Matrix zonotopes: a uniform-width box

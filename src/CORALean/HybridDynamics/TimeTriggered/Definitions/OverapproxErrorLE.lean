@@ -1,5 +1,9 @@
-import Mathlib.Topology.MetricSpace.HausdorffDistance
-import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+module
+
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
+
+@[expose] public section
 
 /-!
 # The time-bounded overapproximation error

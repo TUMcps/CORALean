@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Shear
-import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Shear
+public import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The sheared combination is the shear of the combination

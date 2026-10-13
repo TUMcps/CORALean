@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloat
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # `discretizeEnclosureFloat`'s trajectory lands in `reach`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.NormExactCora
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.NormExactCora
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `norm(Z,2,'exact')` under-estimates the largest norm

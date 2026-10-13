@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # Membership in a float interval matrix, entry by entry

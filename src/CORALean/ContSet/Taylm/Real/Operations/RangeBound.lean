@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.CodeEval
-import CORALean.ContSet.Taylm.Real.Operations.Bounds
-import CORALean.ContSet.Conversion.Real.Interval_to_Taylm
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.CodeEval
+public import CORALean.ContSet.Taylm.Real.Operations.Bounds
+public import CORALean.ContSet.Conversion.Real.Interval_to_Taylm
+
+@[expose] public section
 
 /-!
 # Range bounding with Taylor models

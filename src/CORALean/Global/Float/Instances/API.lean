@@ -1,8 +1,10 @@
-import CORALean.Global.Float.Instances.Real.API
-import CORALean.Global.Float.Instances.Dyadic.API
-import CORALean.Global.Float.Instances.FixedPoint.API
-import CORALean.Global.Float.Instances.Binary64.API
-import CORALean.Global.Float.Instances.IEEE.API
+module
+
+public import CORALean.Global.Float.Instances.Real.API
+public import CORALean.Global.Float.Instances.Dyadic.API
+public import CORALean.Global.Float.Instances.FixedPoint.API
+public import CORALean.Global.Float.Instances.Binary64.API
+public import CORALean.Global.Float.Instances.IEEE.API
 
 /-!
 # Models of `SoundFloatArithmetic`

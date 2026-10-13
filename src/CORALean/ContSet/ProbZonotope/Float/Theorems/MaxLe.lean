@@ -1,9 +1,13 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.Max
-import CORALean.ContSet.ProbZonotope.Real.Operations.Max
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import Mathlib.Analysis.Matrix.Spectrum
-import Mathlib.LinearAlgebra.Matrix.Gershgorin
-import Mathlib.LinearAlgebra.Eigenspace.Matrix
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Max
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Max
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import Mathlib.Analysis.Matrix.Spectrum
+public import Mathlib.LinearAlgebra.Matrix.Gershgorin
+public import Mathlib.LinearAlgebra.Eigenspace.Matrix
+
+@[expose] public section
 
 /-!
 # The real `max` is under the float `max`

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
-import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecOfVerifyStep
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecOfVerifyStep
+
+@[expose] public section
 
 /-!
 # `Alg. 3`'s loop: `true` is sound

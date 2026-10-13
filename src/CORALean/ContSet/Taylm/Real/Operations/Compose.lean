@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Real.Operations.Sum
-import CORALean.ContSet.Taylm.Real.Operations.Pow
-import CORALean.ContSet.Taylm.Real.Operations.Smul
-import CORALean.ContSet.Taylm.Real.Operations.Minus
-import CORALean.ContSet.Taylm.Real.Operations.Const
-import CORALean.ContSet.Taylm.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Sum
+public import CORALean.ContSet.Taylm.Real.Operations.Pow
+public import CORALean.ContSet.Taylm.Real.Operations.Smul
+public import CORALean.ContSet.Taylm.Real.Operations.Minus
+public import CORALean.ContSet.Taylm.Real.Operations.Const
+public import CORALean.ContSet.Taylm.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # Composing a polynomial with a Taylor model

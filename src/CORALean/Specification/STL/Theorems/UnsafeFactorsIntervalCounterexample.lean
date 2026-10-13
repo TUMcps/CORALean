@@ -1,7 +1,11 @@
-import CORALean.Specification.STL.Operations.UnsafeFactors
-import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
-import CORALean.Specification.STL.Theorems.DepBloatingC
-import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
+module
+
+public import CORALean.Specification.STL.Operations.UnsafeFactors
+public import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
+public import CORALean.Specification.STL.Theorems.DepBloatingC
+public import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2] is false for the time interval polytope `K_i2`

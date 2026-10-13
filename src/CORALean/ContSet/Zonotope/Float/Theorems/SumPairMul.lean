@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
+
+@[expose] public section
 
 /-!
 # `sum_pair` with the coefficient following the generator

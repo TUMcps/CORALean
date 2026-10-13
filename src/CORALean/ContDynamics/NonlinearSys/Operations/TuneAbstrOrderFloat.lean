@@ -1,5 +1,9 @@
-import CORALean.Global.Float.FloatOps
-import CORALean.Global.Tensor
+module
+
+public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # `tuneAbstrOrder`: the abstraction order for the next step, in floats

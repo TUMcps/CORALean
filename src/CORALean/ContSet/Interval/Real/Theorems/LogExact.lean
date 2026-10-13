@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Log
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Log
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+
+@[expose] public section
 
 /-!
 # `Interval.log` is exactly the image under `Real.log`

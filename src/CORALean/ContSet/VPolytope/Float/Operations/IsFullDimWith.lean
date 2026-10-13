@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Float.Operations.Bordered
-import CORALean.ContSet.Zonotope.Float.Operations.BallCert
-import CORALean.ContSet.Zonotope.Float.Operations.BallB
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.Bordered
+public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+public import CORALean.ContSet.Zonotope.Float.Operations.BallB
+
+@[expose] public section
 
 /-!
 # `VPolytope.isFullDimWith`, over a floating-point scalar

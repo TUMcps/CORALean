@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenRow
-import CORALean.Global.FoldInduction
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenRow
+public import CORALean.Global.FoldInduction
+
+@[expose] public section
 
 /-!
 # `ConZonotope.tighten`

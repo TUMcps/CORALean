@@ -1,12 +1,16 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
-import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
-import CORALean.ContSet.ConZonotope.Float.Instances
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.PolyZonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.PolyZonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # Absorbing a box, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.PieceHolds
-import CORALean.ContSet.Polygon.Float.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.PieceHolds
+public import CORALean.ContSet.Polygon.Float.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.containsPoint`, over a floating-point scalar

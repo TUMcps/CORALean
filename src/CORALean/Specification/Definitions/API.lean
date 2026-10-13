@@ -1,4 +1,6 @@
-import CORALean.Specification.Definitions.VerifyAnswer
+module
+
+public import CORALean.Specification.Definitions.VerifyAnswer
 
 /-!
 # What a verification run concludes

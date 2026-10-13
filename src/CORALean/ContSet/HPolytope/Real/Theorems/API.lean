@@ -1,126 +1,128 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
-import CORALean.ContSet.HPolytope.Real.Theorems.Convex
-import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
-import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
-import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter
-import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
-import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
-import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
-import CORALean.ContSet.HPolytope.Real.Theorems.MinusExact
-import CORALean.ContSet.HPolytope.Real.Theorems.MtimesOfOuter
-import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
-import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
-import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
-import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
-import CORALean.ContSet.HPolytope.Real.Theorems.LiftExact
-import CORALean.ContSet.HPolytope.Real.Theorems.MldivideCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.ConvHullCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiff1DCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.Compact1DEqCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaIntervalCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaPointCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeConstraintsExact
-import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
-import CORALean.ContSet.HPolytope.Real.Theorems.ProjectHighDimExact
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfExistsCert
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIffOfInjective
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeCertNecessary
-import CORALean.ContSet.HPolytope.Real.Theorems.SumAHPolytopeSubsetIneqsIff
-import CORALean.ContSet.HPolytope.Real.Theorems.SumAHPolytopeSubsetIneqsIffCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetSumOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullOfCertCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullAHOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullAHOfCertCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.ExistsSubsetIffDisjunctiveCert
-import CORALean.ContSet.HPolytope.Real.Theorems.ExistsSubsetIffDisjunctiveCertCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetAddBallOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.HausdorffDistLeOfSubsetAddBall
-import CORALean.ContSet.HPolytope.Real.Theorems.ProjectionInnerOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.ProjectionInnerOfCertCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeEqOfLeftInverse
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeEqOfLeftInverseCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeImageAffine
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeAddEq
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEq
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEqCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
-import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
-import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNormCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotope
-import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotopeCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainRows
-import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainOuter
-import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainInner
-import CORALean.ContSet.HPolytope.Real.Theorems.AffineHullBasisSpec
-import CORALean.ContSet.HPolytope.Real.Theorems.ChebyshevNotUnique
-import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
-import CORALean.ContSet.HPolytope.Real.Theorems.GenerateRandomHBoundedFullDim
-import CORALean.ContSet.HPolytope.Real.Theorems.ImageIneqsOfFactor
-import CORALean.ContSet.HPolytope.Real.Theorems.ImageIneqsOfInvertible
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsAddEqProjection
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsBlockDiagEq
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsDegenerateChebyshevCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqDropIffSupportFunc
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqEmptyIff
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqIffSupportFunc
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqImageRestrict
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqOfStrict
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqOfStrictCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsInterNonemptyIff
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffSupportFunc
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsUnitRowsMinimal
-import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
-import CORALean.ContSet.HPolytope.Real.Theorems.InteriorRestrictNonempty
-import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedIffSimplexSupportFunc
-import CORALean.ContSet.HPolytope.Real.Theorems.IsFullDimCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IsIntersectingVPolyCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IsIntersectingZonoBundleCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegDuplicateCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegIff
-import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegPrintedCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestSignedUnit
-import CORALean.ContSet.HPolytope.Real.Theorems.MinkowskiDiffIneqsEq
-import CORALean.ContSet.HPolytope.Real.Theorems.SimplexRowsRedundantCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.SuccLeOfIsBounded
-import CORALean.ContSet.HPolytope.Real.Theorems.TightRedundantCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestBallRadius
-import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
-import CORALean.ContSet.HPolytope.Real.Theorems.CompactZerosExact
-import CORALean.ContSet.HPolytope.Real.Theorems.CompactAlignedIneqExact
-import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct
-import CORALean.ContSet.HPolytope.Real.Theorems.AtoAeStateSpec
-import CORALean.ContSet.HPolytope.Real.Theorems.CompactAtoAeExact
-import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaFullspaceIff
-import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
-import CORALean.ContSet.HPolytope.Real.Theorems.VolumeInterval
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
-import CORALean.ContSet.HPolytope.Real.Theorems.VolumeLtTop
-import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageAffine
-import CORALean.ContSet.HPolytope.Real.Theorems.BallSubsetIneqsIff
-import CORALean.ContSet.HPolytope.Real.Theorems.EmptyRedundantCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.EmptySetRowsMinimal
-import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceNotSubset
-import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspacePrintedCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceValueLe
-import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceAccuracyCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIneqsIff
+module
 
-import CORALean.ContSet.HPolytope.Real.Theorems.MemAddSmulIffChord
-import CORALean.ContSet.HPolytope.Real.Theorems.HitAndRunStepMem
-import CORALean.ContSet.HPolytope.Real.Theorems.BilliardEndMem
-import CORALean.ContSet.HPolytope.Real.Theorems.BilliardStepMem
-import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
-import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaIntervalZeroRowCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
+public import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter
+public import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
+public import CORALean.ContSet.HPolytope.Real.Theorems.MinusExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.MtimesOfOuter
+public import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
+public import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.LiftExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.MldivideCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConvHullCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiff1DCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.Compact1DEqCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaIntervalCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaPointCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeConstraintsExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.ProjectHighDimExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetOfExistsCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIffOfInjective
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeCertNecessary
+public import CORALean.ContSet.HPolytope.Real.Theorems.SumAHPolytopeSubsetIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.SumAHPolytopeSubsetIneqsIffCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetSumOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullOfCertCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullAHOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetConvexHullAHOfCertCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsSubsetIffDisjunctiveCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsSubsetIffDisjunctiveCertCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetAddBallOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.HausdorffDistLeOfSubsetAddBall
+public import CORALean.ContSet.HPolytope.Real.Theorems.ProjectionInnerOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.ProjectionInnerOfCertCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeEqOfLeftInverse
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeEqOfLeftInverseCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeImageAffine
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeAddEq
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEq
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEqCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
+public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNormCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotope
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotopeCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainRows
+public import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainOuter
+public import CORALean.ContSet.HPolytope.Real.Theorems.ReduceOverDomainInner
+public import CORALean.ContSet.HPolytope.Real.Theorems.AffineHullBasisSpec
+public import CORALean.ContSet.HPolytope.Real.Theorems.ChebyshevNotUnique
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
+public import CORALean.ContSet.HPolytope.Real.Theorems.GenerateRandomHBoundedFullDim
+public import CORALean.ContSet.HPolytope.Real.Theorems.ImageIneqsOfFactor
+public import CORALean.ContSet.HPolytope.Real.Theorems.ImageIneqsOfInvertible
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsAddEqProjection
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsBlockDiagEq
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsDegenerateChebyshevCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqDropIffSupportFunc
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqEmptyIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqIffSupportFunc
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqImageRestrict
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqOfStrict
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsEqOfStrictCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsInterNonemptyIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffSupportFunc
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsUnitRowsMinimal
+public import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
+public import CORALean.ContSet.HPolytope.Real.Theorems.InteriorRestrictNonempty
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedIffSimplexSupportFunc
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsFullDimCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsIntersectingVPolyCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsIntersectingZonoBundleCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegDuplicateCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegPrintedCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestSignedUnit
+public import CORALean.ContSet.HPolytope.Real.Theorems.MinkowskiDiffIneqsEq
+public import CORALean.ContSet.HPolytope.Real.Theorems.SimplexRowsRedundantCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.SuccLeOfIsBounded
+public import CORALean.ContSet.HPolytope.Real.Theorems.TightRedundantCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestBallRadius
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.CompactZerosExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.CompactAlignedIneqExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.AtoAeStateSpec
+public import CORALean.ContSet.HPolytope.Real.Theorems.CompactAtoAeExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaFullspaceIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.VolumeInterval
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
+public import CORALean.ContSet.HPolytope.Real.Theorems.VolumeLtTop
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageAffine
+public import CORALean.ContSet.HPolytope.Real.Theorems.BallSubsetIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.EmptyRedundantCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.EmptySetRowsMinimal
+public import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceNotSubset
+public import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspacePrintedCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceValueLe
+public import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceAccuracyCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemAddSmulIffChord
+public import CORALean.ContSet.HPolytope.Real.Theorems.HitAndRunStepMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.BilliardEndMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.BilliardStepMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
+public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaIntervalZeroRowCoraCounterexample
+
 /-!
 # What `HPolytope` guarantees
 

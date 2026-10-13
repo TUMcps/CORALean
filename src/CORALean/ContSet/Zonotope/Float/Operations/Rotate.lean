@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.RotMat
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.RotMat
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+
+@[expose] public section
 
 /-!
 # `Zonotope.rotate`

@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.TailEnclose
-import CORALean.NN.Graph.Operations.TailEval
+module
+
+public import CORALean.NN.Graph.Operations.TailEnclose
+public import CORALean.NN.Graph.Operations.TailEval
+
+@[expose] public section
 
 /-!
 # The enclosed tail contains the exact one

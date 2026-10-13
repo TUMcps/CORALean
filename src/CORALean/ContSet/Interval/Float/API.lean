@@ -1,7 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.ContSet.Interval.Float.Operations.API
-import CORALean.ContSet.Interval.Float.Theorems.API
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.ContSet.Interval.Float.Operations.API
+public import CORALean.ContSet.Interval.Float.Theorems.API
+public import CORALean.ContSet.Interval.Float.Instances
 
 /-!
 # Intervals over a floating-point scalar, collected

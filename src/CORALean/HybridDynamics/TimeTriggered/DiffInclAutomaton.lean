@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.Normed.Module.Basic
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.Analysis.Normed.Module.Basic
+
+@[expose] public section
 
 /-!
 # Hybrid automata with differential-inclusion flows, as [1] defines them

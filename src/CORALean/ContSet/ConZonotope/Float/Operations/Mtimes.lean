@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesResidual
+module
+
+public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesResidual
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimes` over a floating-point scalar

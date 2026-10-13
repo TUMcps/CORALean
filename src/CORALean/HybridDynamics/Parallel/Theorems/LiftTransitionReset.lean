@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Operations.Product
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.Product
+
+@[expose] public section
 
 /-!
 # A lifted reset moves one component

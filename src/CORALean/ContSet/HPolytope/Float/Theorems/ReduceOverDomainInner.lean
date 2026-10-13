@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
-import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
+module
+
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
+
+@[expose] public section
 
 /-!
 # A point under the float inner reduction meets every row of the polytope in the domain

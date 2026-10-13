@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullA
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecBlkDiag
-import CORALean.ContSet.ConPolyZono.Real.Operations.ProdBlkDiag
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecBlkDiag
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdBlkDiag
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The constraint system of the convex hull, split

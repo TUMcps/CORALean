@@ -1,9 +1,13 @@
-import CORALean.HybridDynamics.Definitions.HitPoint
-import CORALean.HybridDynamics.Definitions.HitJacobian
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.HybridDynamics.Definitions.HitPoint
+public import CORALean.HybridDynamics.Definitions.HitJacobian
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # `hitJacobian` is the first derivative of `hitPoint`

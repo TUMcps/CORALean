@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `Δε^{U,τ}_k(Δt, η)`, eq. (26), in floats

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
-import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.intersectionDep`

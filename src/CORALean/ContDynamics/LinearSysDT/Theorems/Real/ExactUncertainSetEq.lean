@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
+
+@[expose] public section
 
 /-!
 # The exact uncertain set is exactly the consistent states

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
+
+@[expose] public section
 
 /-!
 # The strip-based observer

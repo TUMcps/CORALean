@@ -1,7 +1,9 @@
-import CORALean.ContSet.SetUnion.SetUnion
-import CORALean.ContSet.SetUnion.Operations.API
-import CORALean.ContSet.SetUnion.Theorems.API
-import CORALean.ContSet.SetUnion.Instances
+module
+
+public import CORALean.ContSet.SetUnion.SetUnion
+public import CORALean.ContSet.SetUnion.Operations.API
+public import CORALean.ContSet.SetUnion.Theorems.API
+public import CORALean.ContSet.SetUnion.Instances
 
 /-!
 # The union of a list of representations, collected

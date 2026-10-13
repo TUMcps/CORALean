@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Analysis.Normed.Lp.ProdLp
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Analysis.Normed.Lp.ProdLp
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The inbody generator matrix of the inapproximability reduction

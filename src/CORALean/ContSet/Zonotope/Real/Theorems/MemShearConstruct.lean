@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Shear
-import Mathlib.Tactic.FinCases
-import Mathlib.Algebra.BigOperators.Pi
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Tactic.Ring
-import CORALean.ContSet.Zonotope.Real.Theorems.ShearComb
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Shear
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.BigOperators.Pi
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Tactic.Ring
+public import CORALean.ContSet.Zonotope.Real.Theorems.ShearComb
+
+@[expose] public section
 
 /-!
 # A point of the sheared zonogon is the sheared point of the zonogon

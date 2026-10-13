@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # A zonotope as an ellipsoid

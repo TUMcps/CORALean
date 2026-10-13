@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionOuter
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
+
+@[expose] public section
 
 /-!
 # The algebraic variables a run reaches lie in `h` of the states and inputs

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
-import CORALean.ContSet.Interval.Float.Theorems.Prod1Outer
-import CORALean.ContSet.PolyZonotope.Float.Operations.MonoBox
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
+public import CORALean.ContSet.Interval.Float.Theorems.Prod1Outer
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MonoBox
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+
+@[expose] public section
 
 /-!
 # `monoBox` encloses every monomial

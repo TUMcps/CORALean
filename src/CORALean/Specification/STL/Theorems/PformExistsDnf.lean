@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.Halfspace
+module
+
+public import CORALean.Specification.STL.Definitions.Halfspace
+
+@[expose] public section
 
 /-!
 # A predicate over halfspaces has a disjunctive normal form

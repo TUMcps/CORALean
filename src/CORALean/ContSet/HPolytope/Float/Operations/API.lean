@@ -1,75 +1,77 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
-import CORALean.ContSet.HPolytope.Float.Operations.Isequal
-import CORALean.ContSet.HPolytope.Float.Operations.Not
-import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
-import CORALean.ContSet.HPolytope.Float.Operations.PlusOf
-import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
-import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
-import CORALean.ContSet.HPolytope.Float.Operations.DualBound
-import CORALean.ContSet.HPolytope.Float.Operations.DualWeights
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
-import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
-import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
-import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
-import CORALean.ContSet.HPolytope.Float.Operations.Eqs
-import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
-import CORALean.ContSet.HPolytope.Float.Operations.MemFullspace
-import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
-import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
-import CORALean.ContSet.HPolytope.Float.Operations.PadRight
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
-import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
-import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
-import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
-import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
-import CORALean.ContSet.HPolytope.Float.Operations.Translate
-import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
-import CORALean.ContSet.HPolytope.Float.Operations.Minus
-import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
-import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
-import CORALean.ContSet.HPolytope.Float.Operations.CartProd
-import CORALean.ContSet.HPolytope.Float.Operations.Origin
-import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecLiftCols
-import CORALean.ContSet.HPolytope.Float.Operations.Lift
-import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
-import CORALean.ContSet.HPolytope.Float.Operations.RowScale
-import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
-import CORALean.ContSet.HPolytope.Float.Operations.EmptyWeights
-import CORALean.ContSet.HPolytope.Float.Operations.IsFullDim
-import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
-import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
-import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
-import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraints
-import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
-import CORALean.ContSet.HPolytope.Float.Operations.Restrict
-import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
-import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
-import CORALean.ContSet.HPolytope.Float.Operations.CompactZeros
-import CORALean.ContSet.HPolytope.Float.Operations.EqVec
-import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
-import CORALean.ContSet.HPolytope.Float.Operations.CompactAlignedIneq
-import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
-import CORALean.ContSet.HPolytope.Float.Operations.KeptRows
-import CORALean.ContSet.HPolytope.Float.Operations.LeadRows
-import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
-import CORALean.ContSet.HPolytope.Float.Operations.CompactAtoAe
-import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
+public import CORALean.ContSet.HPolytope.Float.Operations.Isequal
+public import CORALean.ContSet.HPolytope.Float.Operations.Not
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
+public import CORALean.ContSet.HPolytope.Float.Operations.PlusOf
+public import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
+public import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
+public import CORALean.ContSet.HPolytope.Float.Operations.DualBound
+public import CORALean.ContSet.HPolytope.Float.Operations.DualWeights
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
+public import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+public import CORALean.ContSet.HPolytope.Float.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
+public import CORALean.ContSet.HPolytope.Float.Operations.MemFullspace
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.PadRight
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+public import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
+public import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
+public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
+public import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
+public import CORALean.ContSet.HPolytope.Float.Operations.Translate
+public import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
+public import CORALean.ContSet.HPolytope.Float.Operations.Minus
+public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
+public import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
+public import CORALean.ContSet.HPolytope.Float.Operations.CartProd
+public import CORALean.ContSet.HPolytope.Float.Operations.Origin
+public import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecLiftCols
+public import CORALean.ContSet.HPolytope.Float.Operations.Lift
+public import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
+public import CORALean.ContSet.HPolytope.Float.Operations.RowScale
+public import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
+public import CORALean.ContSet.HPolytope.Float.Operations.EmptyWeights
+public import CORALean.ContSet.HPolytope.Float.Operations.IsFullDim
+public import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
+public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraints
+public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
+public import CORALean.ContSet.HPolytope.Float.Operations.Restrict
+public import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
+public import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
+public import CORALean.ContSet.HPolytope.Float.Operations.CompactZeros
+public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
+public import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
+public import CORALean.ContSet.HPolytope.Float.Operations.CompactAlignedIneq
+public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
+public import CORALean.ContSet.HPolytope.Float.Operations.KeptRows
+public import CORALean.ContSet.HPolytope.Float.Operations.LeadRows
+public import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
+public import CORALean.ContSet.HPolytope.Float.Operations.CompactAtoAe
+public import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint
 
 /-!
 # What the float `HPolytope` computes

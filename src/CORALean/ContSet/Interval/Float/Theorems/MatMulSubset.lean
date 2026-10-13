@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Real.Operations.MatMul
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Real.Operations.MatMul
+
+@[expose] public section
 
 /-!
 # A real box product inside a float one, the factors' boxes inside

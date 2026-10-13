@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Order.Filter.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Order.Filter.Basic
+
+@[expose] public section
 
 /-!
 # The box volume and its `n`-th root have the same maximizers

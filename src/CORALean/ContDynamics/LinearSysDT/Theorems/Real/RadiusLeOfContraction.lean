@@ -1,4 +1,8 @@
-import CORALean.Global.UltimateBoundOfRecurrence
+module
+
+public import CORALean.Global.UltimateBoundOfRecurrence
+
+@[expose] public section
 
 /-!
 # The adaptive radius bound of the LPV estimator

@@ -1,9 +1,13 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Data.Matrix.Mul
-import Mathlib.LinearAlgebra.Matrix.DotProduct
-import Mathlib.Order.Filter.Extr
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+public import Mathlib.Order.Filter.Extr
+
+@[expose] public section
 
 /-!
 # The linear system (A.7) solves the estimate's quadratic program

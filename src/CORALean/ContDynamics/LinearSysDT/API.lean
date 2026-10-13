@@ -1,40 +1,42 @@
-import CORALean.ContDynamics.LinearSysDT.Complexity.API
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachExistsOptions
-import CORALean.ContDynamics.LinearSysDT.Definitions.IsConformDyn
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachForallOptions
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetRobust
-import CORALean.ContDynamics.LinearSysDT.Definitions.GO
-import CORALean.ContDynamics.LinearSysDT.Definitions.GOFloat
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOptions
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachUnionExact
-import CORALean.ContDynamics.LinearSysDT.Instances
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContDynamics.LinearSysDT.Operations.API
-import CORALean.ContDynamics.LinearSysDT.Theorems.API
-import CORALean.ContDynamics.LinearSysDT.Definitions.ConsistentSet
-import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
-import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
-import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorPredictSet
-import CORALean.ContDynamics.LinearSysDT.Definitions.MeasurementSet
-import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalState
-import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalStateFloat
-import CORALean.ContDynamics.LinearSysDT.Definitions.IntervalEstimateState
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
-import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
-import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
-import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorDecoupleRank
-import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmiGain
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusStepPositive
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Complexity.API
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachExistsOptions
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsConformDyn
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachForallOptions
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetRobust
+public import CORALean.ContDynamics.LinearSysDT.Definitions.GO
+public import CORALean.ContDynamics.LinearSysDT.Definitions.GOFloat
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.LinearSysDT.Instances
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContDynamics.LinearSysDT.Operations.API
+public import CORALean.ContDynamics.LinearSysDT.Theorems.API
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ConsistentSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions
+public import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorPredictSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.MeasurementSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalState
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalStateFloat
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IntervalEstimateState
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorDecoupleRank
+public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmiGain
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusStepPositive
 
 /-!
 # Discrete-time linear systems, collected

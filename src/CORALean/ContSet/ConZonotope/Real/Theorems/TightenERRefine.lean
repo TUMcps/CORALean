@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
-import CORALean.Global.FoldInduction
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
+public import CORALean.Global.FoldInduction
+
+@[expose] public section
 
 /-!
 # Iterating `ConZonotope.tightenER` refines `E`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Radius
-import CORALean.Global.Float.EuclideanNorm
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Radius
+public import CORALean.Global.Float.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Interval.radiusSq` over floats

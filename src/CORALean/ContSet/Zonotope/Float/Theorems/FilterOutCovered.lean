@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.FilterOut
-import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.FilterOut
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
+
+@[expose] public section
 
 /-!
 # A deleted cell lies in another cell

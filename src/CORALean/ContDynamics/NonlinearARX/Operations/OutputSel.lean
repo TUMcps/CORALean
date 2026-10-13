@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.NonlinearARX
-import CORALean.Global.Float.FloatOps
+module
+
+public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+public import CORALean.Global.Float.FloatOps
+
+@[expose] public section
 
 /-!
 # Reading the output off the window

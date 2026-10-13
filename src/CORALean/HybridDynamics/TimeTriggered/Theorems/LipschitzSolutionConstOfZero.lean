@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
+
+@[expose] public section
 
 /-!
 # A solution through a zero of a Lipschitz field stays there

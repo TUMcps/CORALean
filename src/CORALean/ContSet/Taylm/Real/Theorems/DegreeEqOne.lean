@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.Degree
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Degree
+
+@[expose] public section
 
 /-!
 # An exponent of degree one is a unit vector

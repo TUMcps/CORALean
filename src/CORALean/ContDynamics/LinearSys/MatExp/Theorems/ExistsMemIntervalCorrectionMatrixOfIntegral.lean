@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerSumLe
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerSumLe
+
+@[expose] public section
 
 /-!
 # A run inside a box, between the two ends of a step, is CORA's interpolation

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusGradient
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusGradient
+
+@[expose] public section
 
 /-!
 # The gradient of the F-radius as printed is off by a factor `n`

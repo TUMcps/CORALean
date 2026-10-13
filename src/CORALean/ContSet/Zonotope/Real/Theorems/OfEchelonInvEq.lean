@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `{[T TR], c}` with `R = T⁻¹V` is `{[T V], c}`

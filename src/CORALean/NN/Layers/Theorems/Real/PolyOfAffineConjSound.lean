@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.PolyAffineConj
-import CORALean.NN.Layers.Theorems.Real.EvalPolyScaleCoeffs
-import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
+module
+
+public import CORALean.NN.Layers.Definitions.PolyAffineConj
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyScaleCoeffs
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
+
+@[expose] public section
 
 /-!
 # A polynomial relaxation carried along an affine conjugation is sound

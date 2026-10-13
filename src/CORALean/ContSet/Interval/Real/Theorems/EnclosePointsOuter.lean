@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+
+@[expose] public section
 
 /-!
 # `Interval.enclosePoints` contains every point

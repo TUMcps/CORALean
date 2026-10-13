@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableReflected
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryVariationOfConstants
-import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableReflected
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryVariationOfConstants
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+
+@[expose] public section
 
 /-!
 # A linearized step, solution by solution: the representation behind the inner set

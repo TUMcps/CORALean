@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `cloud2zonotope`'s step 8 can cut a zero generator from a cloud with extent

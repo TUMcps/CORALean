@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
-import CORALean.Global.CoeffNorm
-import Mathlib.Analysis.Convex.Jensen
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.Global.CoeffNorm
+public import Mathlib.Analysis.Convex.Jensen
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # A zonotope's distance from an ellipsotope is attained at a corner

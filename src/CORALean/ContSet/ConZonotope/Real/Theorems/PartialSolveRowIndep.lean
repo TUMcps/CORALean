@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+
+@[expose] public section
 
 /-!
 # The partial-solve `Z̃` does not depend on the row it solves

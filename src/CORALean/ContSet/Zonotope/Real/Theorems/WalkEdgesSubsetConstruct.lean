@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # The walk edges lie in the zonotope

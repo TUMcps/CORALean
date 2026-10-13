@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapE
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDiff
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDown
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapE
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDown
+
+@[expose] public section
 
 /-!
 # `quadMap` at a set with no independent block and no error box

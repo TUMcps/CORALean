@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
+
+@[expose] public section
 
 /-!
 # Every ARX trajectory is a trajectory of the converted system

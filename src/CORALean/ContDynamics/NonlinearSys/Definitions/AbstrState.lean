@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+
+@[expose] public section
 
 /-!
 # `Alg. 1`'s loop state

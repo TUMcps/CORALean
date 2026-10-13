@@ -1,9 +1,13 @@
-import CORALean.HybridDynamics.Definitions.SdcInput
-import CORALean.HybridDynamics.Operations.SdcFlow
-import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
+module
+
+public import CORALean.HybridDynamics.Definitions.SdcInput
+public import CORALean.HybridDynamics.Operations.SdcFlow
+public import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
+
+@[expose] public section
 
 /-!
 # The difference of a run and the constant flow, order by order

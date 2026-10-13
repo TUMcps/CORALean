@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.Compose
-import CORALean.ContSet.Taylm.Real.Operations.Reach
-import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
-import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Compose
+public import CORALean.ContSet.Taylm.Real.Operations.Reach
+public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
+
+@[expose] public section
 
 /-!
 # `Taylm.invTight`

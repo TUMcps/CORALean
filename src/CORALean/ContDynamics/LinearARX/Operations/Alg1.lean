@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.Alg1State
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Alg1State
+
+@[expose] public section
 
 /-!
 # Alg. 1: reachability analysis with arbitrary sets

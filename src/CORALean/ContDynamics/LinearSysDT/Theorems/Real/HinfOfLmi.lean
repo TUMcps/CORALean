@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DissipationOfHinfLmi
-import Mathlib.Analysis.Complex.Norm
-import Mathlib.Data.Complex.BigOperators
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.DissipationOfHinfLmi
+public import Mathlib.Analysis.Complex.Norm
+public import Mathlib.Data.Complex.BigOperators
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # The `H∞` observer gain

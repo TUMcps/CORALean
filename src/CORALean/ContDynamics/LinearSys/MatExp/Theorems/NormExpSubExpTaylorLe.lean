@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
-import Mathlib.Analysis.Normed.Algebra.Exponential
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The matrix exponential's Taylor truncation error, bounded

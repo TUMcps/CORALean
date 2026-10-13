@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # The first window of a simulated run is the start window

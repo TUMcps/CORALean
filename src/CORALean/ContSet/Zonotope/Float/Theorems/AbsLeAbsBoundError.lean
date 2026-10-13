@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # A coordinate of `construct` never leaves `absBoundError`

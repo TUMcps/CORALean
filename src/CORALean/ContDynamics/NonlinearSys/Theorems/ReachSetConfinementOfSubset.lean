@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
+
+@[expose] public section
 
 /-!
 # Confinement of the whole reachable set, from the computed sets

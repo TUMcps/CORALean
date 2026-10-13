@@ -1,8 +1,12 @@
-import CORALean.Global.GammaTest
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.Global.GammaTest
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The unpreconditioned test fails on a rotation

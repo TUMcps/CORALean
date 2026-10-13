@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Sinh
-import CORALean.ContSet.Interval.Real.Theorems.SinhExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Sinh
+public import CORALean.ContSet.Interval.Real.Theorems.SinhExact
+
+@[expose] public section
 
 /-!
 # `Interval.sinh` contains the image under `sinh`

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialDownFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialUpFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialDownFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialUpFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.invFactorialBounds` encloses `1 / k!`

@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
-import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
-import CORALean.Global.FoldInduction
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.TightenER
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
+public import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
+public import CORALean.Global.FoldInduction
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `ConZonotope.tightenER` is sound for `B∞(A, b)`

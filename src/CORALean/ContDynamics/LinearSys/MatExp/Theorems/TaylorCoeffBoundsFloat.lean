@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowDownFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowUpFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowDownFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowUpFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.taylorCoeffBounds` encloses `r ^ k / k!`

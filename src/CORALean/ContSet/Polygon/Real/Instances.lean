@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
-import CORALean.ContSet.Polygon.Real.Theorems.LinCombOuter
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+public import CORALean.ContSet.Polygon.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # What `Polygon` instantiates

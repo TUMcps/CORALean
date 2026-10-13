@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
+
+@[expose] public section
 
 /-!
 # The nonlinear reachable set is the linearized one, over a bounded horizon

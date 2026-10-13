@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
+
+@[expose] public section
 
 /-!
 # `bilin`'s exponent matrix, over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+
+@[expose] public section
 
 /-!
 # `HPolytope.minkDiff1DCora`: CORA's one-dimensional polytope `minkDiff`

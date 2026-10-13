@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRemainderError
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemSum
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRemainderError
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemSum
+
+@[expose] public section
 
 /-!
 # A member of `F_u(Δt,η)` is entrywise bounded

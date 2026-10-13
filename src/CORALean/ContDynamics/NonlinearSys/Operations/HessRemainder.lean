@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
-import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Interval.Float.Operations.NormMag
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.Global.Float.BilinUp
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
+public import CORALean.ContSet.Interval.Float.Operations.MatPlus
+public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Interval.Float.Operations.NormMag
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.Global.Float.BilinUp
+
+@[expose] public section
 
 /-!
 # The abstraction error from a Hessian enclosure

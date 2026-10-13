@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
+
+@[expose] public section
 
 /-!
 # `compactFactors`'s nominal part is the exact layer's

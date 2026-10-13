@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.LineExample
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.LineExample
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.lineExample_sum`

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.ExploreBN
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsSumLe
-import CORALean.ContSet.Interval.Real.Theorems.MemExploreBNVisits
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExploreBN
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsSumLe
+public import CORALean.ContSet.Interval.Real.Theorems.MemExploreBNVisits
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+
+@[expose] public section
 
 /-!
 # `EXPLORE BN` returns exactly the vertices of the cut

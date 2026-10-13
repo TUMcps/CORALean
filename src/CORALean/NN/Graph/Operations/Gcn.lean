@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.NN.Graph.Operations.GcnLin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.NN.Graph.Operations.GcnLin
+
+@[expose] public section
 
 /-!
 # The graph convolutional layer on a matrix polynomial zonotope

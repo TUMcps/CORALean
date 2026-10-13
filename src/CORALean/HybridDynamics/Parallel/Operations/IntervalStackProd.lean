@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.Unstack
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.Unstack
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Interval.stackProd`

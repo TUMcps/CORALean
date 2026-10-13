@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
-import CORALean.ContSet.HPolytope.Float.Theorems.IsZeroVecDot
-import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
-import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsZeroVecDot
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
+
+@[expose] public section
 
 /-!
 # `dropZeros` denotes the same set, exactly

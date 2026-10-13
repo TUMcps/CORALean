@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
-import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
+public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # A non-degenerate V-polytope needs `n + 1` points

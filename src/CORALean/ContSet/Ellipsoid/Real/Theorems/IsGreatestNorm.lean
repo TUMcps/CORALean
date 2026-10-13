@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.NormExact
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestRadius
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.NormExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestRadius
+
+@[expose] public section
 
 /-!
 # `norm_` of an ellipsoid centred at the origin is its largest Euclidean norm

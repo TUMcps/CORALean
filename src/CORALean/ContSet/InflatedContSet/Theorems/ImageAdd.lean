@@ -1,4 +1,8 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+
+@[expose] public section
 
 /-!
 # A linear map passes a Minkowski sum

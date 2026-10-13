@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.Activation
+module
+
+public import CORALean.NN.Layers.Operations.Activation
+
+@[expose] public section
 
 /-!
 # What an activation layer encloses where its relaxation is sound

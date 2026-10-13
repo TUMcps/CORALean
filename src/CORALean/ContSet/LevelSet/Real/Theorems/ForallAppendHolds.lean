@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.Theorems.ForallFinAdd
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.ContSet.LevelSet.Real.Theorems.ForallFinAdd
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # Stacked constraints hold if each block holds

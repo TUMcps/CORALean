@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
-import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
+public import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
+
+@[expose] public section
 
 /-!
 # The corrected `initReach_inputDependence` holds the first step

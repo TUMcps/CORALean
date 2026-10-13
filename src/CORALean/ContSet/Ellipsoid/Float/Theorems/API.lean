@@ -1,41 +1,43 @@
-import CORALean.ContSet.Ellipsoid.Float.Theorems.BoundDotLe
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesK
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusK
-import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ProjectOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IsCompact
-import CORALean.ContSet.Ellipsoid.Float.Theorems.OriginExact
-import CORALean.ContSet.Ellipsoid.Float.Theorems.CentreMemConstruct
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
-import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaPointSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaOriginSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IsequalSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.VerticesOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
-import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdVecExact
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MinkDiffPointOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.RadiusLe
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.EncloseOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.Enclose2Outer
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IsBiggerSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.EllipsoidNormLeEllipsoidNormUb
-import CORALean.ContSet.Ellipsoid.Float.Theorems.VolumeLe
-import CORALean.ContSet.Ellipsoid.Float.Theorems.PolygonInner
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IsGoodDirSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.AndPointOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.EnclosePointsCovMem
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IntersectStripGollamudiOuter
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IntersectStripLiuOuter
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.BoundDotLe
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesK
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusK
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsCompact
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.OriginExact
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaPointSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaOriginSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsequalSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.VerticesOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdVecExact
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MinkDiffPointOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.RadiusLe
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.EncloseOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Enclose2Outer
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsBiggerSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.EllipsoidNormLeEllipsoidNormUb
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.VolumeLe
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.PolygonInner
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsGoodDirSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.AndPointOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.EnclosePointsCovMem
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IntersectStripGollamudiOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IntersectStripLiuOuter
 
 /-!
 # What a float ellipsoid guarantees, collected

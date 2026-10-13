@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMeasurableParam
-import Mathlib.Analysis.Calculus.FDeriv.Measurable
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
-import Mathlib.Topology.Order.ProjIcc
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulVec
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsMeasurableParam
+public import Mathlib.Analysis.Calculus.FDeriv.Measurable
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+public import Mathlib.Topology.Order.ProjIcc
+
+@[expose] public section
 
 /-!
 # A time-varying run with an input solves the integral equation, measurably

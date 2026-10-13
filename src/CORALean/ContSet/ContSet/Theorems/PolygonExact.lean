@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.Polygon
-import CORALean.ContSet.Polygon.Real.Theorems.ConstructOfPieces
+module
+
+public import CORALean.ContSet.ContSet.Operations.Polygon
+public import CORALean.ContSet.Polygon.Real.Theorems.ConstructOfPieces
+
+@[expose] public section
 
 /-!
 # `polygon(S)` is `S`

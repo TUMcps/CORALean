@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
-import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # A box as halfspaces, over a floating-point scalar

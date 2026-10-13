@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.WindowMax
+module
+
+public import CORALean.NN.Layers.Definitions.WindowMax
+
+@[expose] public section
 
 /-!
 # A window's maximum is at most any common bound

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.AbsMax
-import CORALean.ContSet.Interval.Real.Operations.Smul
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.AbsMax
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+
+@[expose] public section
 
 /-!
 # `Interval.absMax` of a non-negatively scaled box

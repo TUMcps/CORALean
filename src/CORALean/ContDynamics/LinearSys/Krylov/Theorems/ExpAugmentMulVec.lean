@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+
+@[expose] public section
 
 /-!
 # The constant-input solution as an exponential of the augmented matrix

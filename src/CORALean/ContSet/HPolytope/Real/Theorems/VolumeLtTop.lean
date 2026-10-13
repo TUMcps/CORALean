@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Volume
-import Mathlib.Topology.MetricSpace.Bounded
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Volume
+public import Mathlib.Topology.MetricSpace.Bounded
+
+@[expose] public section
 
 /-!
 # A bounded polytope has finite volume

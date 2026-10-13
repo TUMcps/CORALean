@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.LongestGen
-import CORALean.ContSet.Zonotope.Float.Operations.Split
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.LongestGen
+public import CORALean.ContSet.Zonotope.Float.Operations.Split
+
+@[expose] public section
 
 /-!
 # `Zonotope.splitLongestGen`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.AbsPullbackLe
-import CORALean.Global.Float.EuclideanNorm
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.AbsPullbackLe
+public import CORALean.Global.Float.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.nominalBoundDot`

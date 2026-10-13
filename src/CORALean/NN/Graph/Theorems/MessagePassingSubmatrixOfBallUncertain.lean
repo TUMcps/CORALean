@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
-import CORALean.NN.Graph.Theorems.AdjAtSymm
-import CORALean.NN.Graph.Theorems.BallMonoOfSupport
-import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
+module
+
+public import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
+public import CORALean.NN.Graph.Theorems.AdjAtSymm
+public import CORALean.NN.Graph.Theorems.BallMonoOfSupport
+public import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
+
+@[expose] public section
 
 /-!
 # `[1, §4.3]`'s extra hop, for `messagePassing` itself, uniform in `lam`

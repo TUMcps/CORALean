@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.HalveBox
-import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
+public import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
+
+@[expose] public section
 
 /-!
 # Splitting one box of a list

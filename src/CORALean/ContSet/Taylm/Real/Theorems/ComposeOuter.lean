@@ -1,10 +1,14 @@
-import CORALean.ContSet.Taylm.Real.Operations.Compose
-import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
-import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
-import CORALean.ContSet.Taylm.Real.Theorems.PowOuter
-import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
-import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
-import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Compose
+public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.PowOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.compose` encloses `g ∘ f`

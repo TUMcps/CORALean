@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.abs_sub_center_le`

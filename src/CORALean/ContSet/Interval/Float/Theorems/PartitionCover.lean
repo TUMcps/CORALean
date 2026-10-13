@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.PartitionPiece
-import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.PartitionPiece
+public import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
+
+@[expose] public section
 
 /-!
 # `Interval.partition` covers the box it cuts

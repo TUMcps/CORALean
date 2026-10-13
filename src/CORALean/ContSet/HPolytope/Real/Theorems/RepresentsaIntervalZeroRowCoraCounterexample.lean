@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalZeroRowCora
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalZeroRowCora
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `polytope/representsa_(P, 'interval')` converts an empty polytope to a nonempty box

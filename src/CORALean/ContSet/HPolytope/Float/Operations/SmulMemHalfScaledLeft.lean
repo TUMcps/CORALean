@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
-import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
+
+@[expose] public section
 
 /-!
 # A weighted block meets the weighted constraints, on the left

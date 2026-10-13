@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A piece of the partition whose own face misses the plane

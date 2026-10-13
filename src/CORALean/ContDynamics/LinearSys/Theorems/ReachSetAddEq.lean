@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+
+@[expose] public section
 
 /-!
 # Reaching `t + r` is reaching `t`, then flowing for `r`

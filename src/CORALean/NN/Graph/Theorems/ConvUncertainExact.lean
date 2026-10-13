@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
-import CORALean.NN.Graph.Operations.GcnUncertain
-import CORALean.NN.Graph.Theorems.GcnSharedExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
+public import CORALean.NN.Graph.Operations.GcnUncertain
+public import CORALean.NN.Graph.Theorems.GcnSharedExact
+
+@[expose] public section
 
 /-!
 # The uncertain-graph convolution loses nothing

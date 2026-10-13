@@ -1,7 +1,11 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.AlignExp
-import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenDown
-import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
-import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.AlignExp
+public import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenDown
+public import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
+public import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
+
+@[expose] public section
 
 /-!
 # Addition, rounded down

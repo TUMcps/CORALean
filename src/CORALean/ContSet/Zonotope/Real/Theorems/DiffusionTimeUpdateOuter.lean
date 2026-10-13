@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionTimeUpdate
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionTimeUpdate
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The time update of the diffusion observers encloses the next state

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import Mathlib.LinearAlgebra.Matrix.Rank
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import Mathlib.LinearAlgebra.Matrix.Rank
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.rank`

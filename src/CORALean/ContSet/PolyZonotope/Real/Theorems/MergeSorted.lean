@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+
+@[expose] public section
 
 /-!
 # `merge` keeps a sorted matrix sorted

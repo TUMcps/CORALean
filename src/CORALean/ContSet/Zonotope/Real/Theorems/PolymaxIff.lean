@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Polymax
-import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Polymax
+public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # `polymax` decides containment

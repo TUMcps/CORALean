@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
-import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.reindex` is exactly the relabelled bundle

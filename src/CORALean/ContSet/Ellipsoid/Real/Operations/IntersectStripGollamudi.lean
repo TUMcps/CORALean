@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.intersectStripGollamudi`

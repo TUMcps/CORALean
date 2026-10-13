@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
+
+@[expose] public section
 
 /-!
 # A run through the boxes stays in the boxes

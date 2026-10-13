@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.RegionCenter
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `Polygon.center`

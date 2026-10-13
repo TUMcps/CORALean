@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationToRelaxation
-import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationToRelaxation
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
+
+@[expose] public section
 
 /-!
 # An order-1 polynomial relaxation is sound as an affine one

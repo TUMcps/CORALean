@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
-import Mathlib.LinearAlgebra.Matrix.BilinearForm
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+public import Mathlib.LinearAlgebra.Matrix.BilinearForm
+
+@[expose] public section
 
 /-!
 # The quadratic map of a zonotope is enclosed by `Zonotope.quadMap`

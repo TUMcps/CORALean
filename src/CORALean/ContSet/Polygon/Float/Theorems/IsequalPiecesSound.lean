@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.IsequalPieces
-import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.IsequalPieces
+public import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
+
+@[expose] public section
 
 /-!
 # A `true` from `Polygon.isequalPieces` proves the regions equal

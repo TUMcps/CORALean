@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.Global.Corners
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.Global.Corners
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # A zonotope as its corners

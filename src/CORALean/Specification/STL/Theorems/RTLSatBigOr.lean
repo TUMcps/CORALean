@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.RTLBigOr
+module
+
+public import CORALean.Specification.STL.Operations.RTLBigOr
+
+@[expose] public section
 
 /-!
 # A disjunction of RTL formulas

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
-import CORALean.ContSet.Zonotope.Real.Operations.Row
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
+public import CORALean.ContSet.Zonotope.Real.Operations.Row
+
+@[expose] public section
 
 /-!
 # `Zonotope.backpropEnclose`

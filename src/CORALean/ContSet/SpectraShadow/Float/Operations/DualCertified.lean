@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
-import CORALean.Global.Float.NoNaN
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+public import CORALean.Global.Float.NoNaN
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.dualCertified`

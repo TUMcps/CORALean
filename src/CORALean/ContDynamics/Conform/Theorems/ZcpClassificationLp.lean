@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.ClassesVecSingleSubsetIff
-import CORALean.ContDynamics.Conform.Theorems.ZcpIntervalNorm
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ClassesVecSingleSubsetIff
+public import CORALean.ContDynamics.Conform.Theorems.ZcpIntervalNorm
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Zono-conformal classification is a linear program

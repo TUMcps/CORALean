@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceValueLe
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceValueLe
+
+@[expose] public section
 
 /-!
 # Naive halfspace sampling's `False` is certain

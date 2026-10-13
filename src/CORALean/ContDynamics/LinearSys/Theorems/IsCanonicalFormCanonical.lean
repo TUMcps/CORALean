@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalForm
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalForm
+
+@[expose] public section
 
 /-!
 # The system `canonicalForm` returns is in canonical form [1]

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
+
+@[expose] public section
 
 /-!
 # A bundle with a member has finite volume

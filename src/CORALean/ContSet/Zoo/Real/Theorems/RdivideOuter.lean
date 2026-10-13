@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Real.Operations.Rdivide
-import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
-import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
+module
+
+public import CORALean.ContSet.Zoo.Real.Operations.Rdivide
+public import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
+public import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
+
+@[expose] public section
 
 /-!
 # `Zoo.rdivide` encloses the quotient

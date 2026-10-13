@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
-import Mathlib.Algebra.BigOperators.Pi
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIff
+public import Mathlib.Algebra.BigOperators.Pi
+
+@[expose] public section
 
 /-!
 # Disjunctive containment, as a mixed-integer linear program

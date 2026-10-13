@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.bilin`

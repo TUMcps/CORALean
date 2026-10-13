@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpEnclosure
-import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpEnclosure
+public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+
+@[expose] public section
 
 /-!
 # Sampling a continuous-time system, the exponential only enclosed

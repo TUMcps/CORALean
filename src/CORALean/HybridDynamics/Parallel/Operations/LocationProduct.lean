@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
-import CORALean.HybridDynamics.Parallel.Operations.MergeInvariants
-import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
-import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
+public import CORALean.HybridDynamics.Parallel.Operations.MergeInvariants
+public import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
+public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
+
+@[expose] public section
 
 /-!
 # `locationProduct`

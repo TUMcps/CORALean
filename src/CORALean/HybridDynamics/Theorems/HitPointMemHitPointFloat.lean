@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Definitions.HitPoint
-import CORALean.HybridDynamics.Operations.HitPointFloat
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
+module
+
+public import CORALean.HybridDynamics.Definitions.HitPoint
+public import CORALean.HybridDynamics.Operations.HitPointFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
+
+@[expose] public section
 
 /-!
 # The float box holds the hitting point

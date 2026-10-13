@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
-import CORALean.ContSet.Taylm.Real.Definitions.Box
-import CORALean.ContSet.Taylm.Real.Theorems.PowBoundsMem
-import CORALean.ContSet.Taylm.Real.Theorems.ProdBoundsMem
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
+public import CORALean.ContSet.Taylm.Real.Definitions.Box
+public import CORALean.ContSet.Taylm.Real.Theorems.PowBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.ProdBoundsMem
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # Interval evaluation encloses a polynomial over a box

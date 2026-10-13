@@ -1,8 +1,10 @@
-import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
-import CORALean.ContDynamics.NeurNetContrSys.Definitions.API
-import CORALean.ContDynamics.NeurNetContrSys.Instances
-import CORALean.ContDynamics.NeurNetContrSys.Operations.API
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.API
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.API
+public import CORALean.ContDynamics.NeurNetContrSys.Instances
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.API
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.API
 
 /-!
 # A neural network in the loop of a continuous-time plant, collected

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+
+@[expose] public section
 
 /-!
 # CORA's `options` for a continuous closed-loop reach

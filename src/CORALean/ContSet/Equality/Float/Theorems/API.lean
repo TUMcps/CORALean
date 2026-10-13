@@ -1,5 +1,7 @@
-import CORALean.ContSet.Equality.Float.Theorems.EqBoolSound
-import CORALean.ContSet.Equality.Float.Theorems.NeBoolOfConstructNe
+module
+
+public import CORALean.ContSet.Equality.Float.Theorems.EqBoolSound
+public import CORALean.ContSet.Equality.Float.Theorems.NeBoolOfConstructNe
 
 /-!
 # What `eqBool` and `neBool` guarantee

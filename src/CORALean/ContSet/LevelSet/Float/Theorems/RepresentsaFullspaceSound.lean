@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Float.Operations.RepresentsaFullspace
-import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound
+module
+
+public import CORALean.ContSet.LevelSet.Float.Operations.RepresentsaFullspace
+public import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound
+
+@[expose] public section
 
 /-!
 # A `true` from `LevelSet.representsa_fullspace` proves the set is everything

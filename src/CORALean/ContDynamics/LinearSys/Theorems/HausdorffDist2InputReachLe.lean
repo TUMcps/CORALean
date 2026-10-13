@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2ParticularSolutionLe
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2ParticularSolutionLe
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+
+@[expose] public section
 
 /-!
 # [1, Prop. 11] at the exact particular solution itself

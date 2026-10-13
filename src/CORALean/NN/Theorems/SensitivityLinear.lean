@@ -1,6 +1,10 @@
-import CORALean.NN.Theorems.SensitivityOfMatrix
-import Mathlib.Analysis.Calculus.FDeriv.Add
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.NN.Theorems.SensitivityOfMatrix
+public import Mathlib.Analysis.Calculus.FDeriv.Add
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # The linear layer's sensitivity is its weight matrix

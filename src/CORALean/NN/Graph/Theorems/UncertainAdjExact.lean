@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-import CORALean.NN.Graph.Operations.AdjAt
-import CORALean.NN.Graph.Operations.UncertainAdj
-import CORALean.NN.Graph.Theorems.SmulEdgeHalf
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.NN.Graph.Operations.AdjAt
+public import CORALean.NN.Graph.Operations.UncertainAdj
+public import CORALean.NN.Graph.Theorems.SmulEdgeHalf
+
+@[expose] public section
 
 /-!
 # The uncertain adjacency is exactly the adjacencies the edges allow

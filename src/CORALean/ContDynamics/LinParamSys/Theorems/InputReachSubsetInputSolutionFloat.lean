@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+
+@[expose] public section
 
 /-!
 # `inputSolutionFloat` holds every member's input contribution over a step

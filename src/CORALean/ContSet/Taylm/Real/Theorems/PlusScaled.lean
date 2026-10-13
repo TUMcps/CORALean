@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Plus
-import CORALean.ContSet.Taylm.Real.Theorems.WeightAppend
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Plus
+public import CORALean.ContSet.Taylm.Real.Theorems.WeightAppend
+
+@[expose] public section
 
 /-!
 # `Taylm.plus` keeps the `(n+1)`-st order scaling

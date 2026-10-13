@@ -1,14 +1,18 @@
-import CORALean.Specification.STL.Definitions.NnfRewrite
-import CORALean.Specification.STL.Theorems.RewriteUntilSucc
-import CORALean.Specification.STL.Theorems.RewriteUntilZero
-import CORALean.Specification.STL.Theorems.RewriteFinOpenUntilSucc
-import CORALean.Specification.STL.Theorems.RewriteFinOpenUntilZero
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenUntilSucc
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenUntilZero
-import CORALean.Specification.STL.Theorems.UntilZeroEquiv
-import CORALean.Specification.STL.Theorems.SatAnd
-import CORALean.Specification.STL.Theorems.SatNext
-import CORALean.Specification.STL.Theorems.SatOr
+module
+
+public import CORALean.Specification.STL.Definitions.NnfRewrite
+public import CORALean.Specification.STL.Theorems.RewriteUntilSucc
+public import CORALean.Specification.STL.Theorems.RewriteUntilZero
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenUntilSucc
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenUntilZero
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenUntilSucc
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenUntilZero
+public import CORALean.Specification.STL.Theorems.UntilZeroEquiv
+public import CORALean.Specification.STL.Theorems.SatAnd
+public import CORALean.Specification.STL.Theorems.SatNext
+public import CORALean.Specification.STL.Theorems.SatOr
+
+@[expose] public section
 
 /-!
 # An until rewrites to sampled time

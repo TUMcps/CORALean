@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
-import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
+public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+
+@[expose] public section
 
 /-!
 # The one-row H-representation of `∅` has the fewest rows

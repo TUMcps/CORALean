@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
+
+@[expose] public section
 
 /-!
 # One step of `mtimes`, `plus`, `reduce` bounds the sup-norm ball it lands in

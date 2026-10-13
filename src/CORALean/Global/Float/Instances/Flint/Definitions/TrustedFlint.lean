@@ -1,9 +1,13 @@
-import CORALean.Global.Float.Instances.Flint.Operations.AddDown
-import CORALean.Global.Float.Instances.Flint.Operations.AddUp
-import CORALean.Global.Float.Instances.Flint.Operations.DivDown
-import CORALean.Global.Float.Instances.Flint.Operations.DivUp
-import CORALean.Global.Float.Instances.Flint.Operations.MulDown
-import CORALean.Global.Float.Instances.Flint.Operations.MulUp
+module
+
+public import CORALean.Global.Float.Instances.Flint.Operations.AddDown
+public import CORALean.Global.Float.Instances.Flint.Operations.AddUp
+public import CORALean.Global.Float.Instances.Flint.Operations.DivDown
+public import CORALean.Global.Float.Instances.Flint.Operations.DivUp
+public import CORALean.Global.Float.Instances.Flint.Operations.MulDown
+public import CORALean.Global.Float.Instances.Flint.Operations.MulUp
+
+@[expose] public section
 
 /-!
 # What "FLINT is trusted" says

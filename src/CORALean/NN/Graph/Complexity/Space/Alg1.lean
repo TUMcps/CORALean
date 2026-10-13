@@ -1,7 +1,11 @@
-import CORALean.NN.Graph.Complexity.Space.Alg1Graph
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Filter.AtTopBot.Prod
+module
+
+public import CORALean.NN.Graph.Complexity.Space.Alg1Graph
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Filter.AtTopBot.Prod
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1 (generators)]: `Alg. 1` is `O(h_e^(3κ') (h_x + |N| c_max) + (κ - 2κ') n_max)`

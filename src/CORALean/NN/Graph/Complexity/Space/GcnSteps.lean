@@ -1,12 +1,16 @@
-import CORALean.NN.Graph.Complexity.Space.ConvUncertain
-import CORALean.NN.Graph.Operations.GcnSteps
-import Mathlib.Data.Int.ConditionallyCompleteOrder
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.Asymptotics.Defs
-import Mathlib.Tactic.Positivity
-import CORALean.NN.Graph.Complexity.Space.MessagePassingEnclosure
+module
+
+public import CORALean.NN.Graph.Complexity.Space.ConvUncertain
+public import CORALean.NN.Graph.Operations.GcnSteps
+public import Mathlib.Data.Int.ConditionallyCompleteOrder
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Tactic.Positivity
+public import CORALean.NN.Graph.Complexity.Space.MessagePassingEnclosure
+
+@[expose] public section
 
 /-!
 # `GNN.gcnSteps`'s count over a chain of steps

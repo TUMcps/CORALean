@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Operations.EvalList
-import CORALean.Global.RecList
-import CORALean.Global.Float.InvSqrtOneSub
-import CORALean.Global.Float.PowDown
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.DivFact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.EvalList
+public import CORALean.Global.RecList
+public import CORALean.Global.Float.InvSqrtOneSub
+public import CORALean.Global.Float.PowDown
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.DivFact
+
+@[expose] public section
 
 /-!
 # The `(j+1)`-th Taylor coefficient of `arcsin`, enclosed

@@ -1,10 +1,14 @@
-import CORALean.ContSet.Capsule.Float.Capsule
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Times
-import CORALean.ContSet.Interval.Float.Operations.Cos
-import CORALean.ContSet.Interval.Float.Operations.Sin
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.Global.Float.IntRound
+module
+
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Times
+public import CORALean.ContSet.Interval.Float.Operations.Cos
+public import CORALean.ContSet.Interval.Float.Operations.Sin
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.Global.Float.IntRound
+
+@[expose] public section
 
 /-!
 # `Capsule.arcBox`: a box around one sampled boundary point

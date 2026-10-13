@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+module
+
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+
+@[expose] public section
 
 /-!
 # A constrained zonotope as a bundle of one

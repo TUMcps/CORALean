@@ -1,6 +1,10 @@
-import CORALean.Global.GaussianAbsMoment
-import Mathlib.Analysis.Convex.Integral
-import Mathlib.Analysis.Convex.SpecificFunctions.Pow
+module
+
+public import CORALean.Global.GaussianAbsMoment
+public import Mathlib.Analysis.Convex.Integral
+public import Mathlib.Analysis.Convex.SpecificFunctions.Pow
+
+@[expose] public section
 
 /-!
 # Moments of the `p`-norm of a Gaussian image

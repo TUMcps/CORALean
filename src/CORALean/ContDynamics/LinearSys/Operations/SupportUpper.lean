@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.SupportUpperState
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.SupportUpperState
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1 (upper bounds)]'s upper bounds on the support function of the reachable set

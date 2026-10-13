@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # Adding a whole set to an evaluated one, [1, (23)]

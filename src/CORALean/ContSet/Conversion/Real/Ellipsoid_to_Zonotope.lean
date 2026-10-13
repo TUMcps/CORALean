@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a zonotope

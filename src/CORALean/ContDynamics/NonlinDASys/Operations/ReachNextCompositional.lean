@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.CompositionalState
-import CORALean.ContDynamics.NonlinDASys.Operations.EnlargeInterfaceInput
-import CORALean.ContDynamics.NonlinDASys.Operations.ComposeSubsystems
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.CompositionalState
+public import CORALean.ContDynamics.NonlinDASys.Operations.EnlargeInterfaceInput
+public import CORALean.ContDynamics.NonlinDASys.Operations.ComposeSubsystems
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.reachNextCompositional`

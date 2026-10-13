@@ -1,10 +1,14 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Fintype.Sigma
-import Mathlib.Data.Fintype.Card
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Data.Nat.Choose.Basic
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Fintype.Sigma
+public import Mathlib.Data.Fintype.Card
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Data.Nat.Choose.Basic
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMapPairIdx`

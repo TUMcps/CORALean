@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
-import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
+public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+
+@[expose] public section
 
 /-!
 # `LinParamSys.reachFloatInput` holds every member's run at every time of every window

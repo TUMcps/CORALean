@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Theorems.ArcsinEqAddArcsinShiftIff
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+module
+
+public import CORALean.ContSet.Taylm.Real.Theorems.ArcsinEqAddArcsinShiftIff
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+
+@[expose] public section
 
 /-!
 # The arcsine addition formula fails inside `(-1, 1)`

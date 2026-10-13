@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
+
+@[expose] public section
 
 /-!
 # `Zonotope.Tensor3`, over a floating-point scalar

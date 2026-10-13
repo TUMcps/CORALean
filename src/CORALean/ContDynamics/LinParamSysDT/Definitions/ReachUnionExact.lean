@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSet
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSet
+
+@[expose] public section
 
 /-!
 # The exact set `Reach LinParamSysDT` is asked to enclose

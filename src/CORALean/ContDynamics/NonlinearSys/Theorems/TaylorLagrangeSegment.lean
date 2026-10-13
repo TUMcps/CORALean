@@ -1,5 +1,9 @@
-import CORALean.Global.TaylorLagrangeConvex
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.Global.TaylorLagrangeConvex
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # The first-order expansion with its Lagrange remainder on the segment

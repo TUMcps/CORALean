@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Shift
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Shift
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Zonotope.shiftCost`

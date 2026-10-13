@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # Conditional affine transformations

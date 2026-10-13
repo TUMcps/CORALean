@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachNextCompositional
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachNextCompositional
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # What [1, Alg. 2] returns

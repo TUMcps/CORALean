@@ -1,10 +1,14 @@
-import CORALean.ContSet.Interval.Float.Operations.Center
-import CORALean.ContSet.Interval.Float.Operations.Le
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
-import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
-import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.Le
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.innerTest`

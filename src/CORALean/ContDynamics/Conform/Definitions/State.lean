@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.Conform.Plant
+module
+
+public import CORALean.ContDynamics.Conform.Plant
+
+@[expose] public section
 
 /-!
 # One run of the model, and its outputs

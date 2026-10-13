@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
+
+@[expose] public section
 
 /-!
 # `expNormUpFloat` bounds `e^{nrm}`

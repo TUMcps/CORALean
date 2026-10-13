@@ -1,9 +1,13 @@
-import Mathlib.Combinatorics.Pigeonhole
-import Mathlib.Algebra.Order.Floor.Semiring
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Order.Interval.Finset.Nat
+module
+
+public import Mathlib.Combinatorics.Pigeonhole
+public import Mathlib.Algebra.Order.Floor.Semiring
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Order.Interval.Finset.Nat
+
+@[expose] public section
 
 /-!
 # `W` times `M + 1` apart, away from `d` given ones

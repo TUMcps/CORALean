@@ -1,6 +1,10 @@
-import CORALean.NN.Definitions.MergeBucket
-import CORALean.NN.Operations.DynamicMergeBuckets
-import CORALean.NN.Operations.StaticMergeBuckets
+module
+
+public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Operations.DynamicMergeBuckets
+public import CORALean.NN.Operations.StaticMergeBuckets
+
+@[expose] public section
 
 /-!
 # Initialising a layer's merge buckets

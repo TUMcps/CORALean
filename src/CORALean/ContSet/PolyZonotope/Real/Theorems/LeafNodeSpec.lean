@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
+
+@[expose] public section
 
 /-!
 # A leaf node has an outgoing edge and no incoming one

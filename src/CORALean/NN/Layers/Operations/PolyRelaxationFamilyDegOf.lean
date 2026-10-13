@@ -1,6 +1,10 @@
-import CORALean.NN.Definitions.RefinableLayer
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.NN.Layers.Layer
+module
+
+public import CORALean.NN.Definitions.RefinableLayer
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.NN.Layers.Layer
+
+@[expose] public section
 
 /-!
 # The degree a whole layer is read at

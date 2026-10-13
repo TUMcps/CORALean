@@ -1,6 +1,10 @@
-import CORALean.Global.Entrywise
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.Global.Entrywise
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The entrywise product, bundled as a bilinear map

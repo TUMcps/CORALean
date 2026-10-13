@@ -1,14 +1,18 @@
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsResidualLe
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.MulVecSplit
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsResidualLe
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.MulVecSplit
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+
+@[expose] public section
 
 /-!
 # `Zonotope.mtimesIntervalMat` over-approximates every matrix in the box

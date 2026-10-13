@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.Analytic.Basic
-import Mathlib.Analysis.Analytic.OfScalars
-import Mathlib.Analysis.Normed.Operator.Asymptotics
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.Analytic.Basic
+public import Mathlib.Analysis.Analytic.OfScalars
+public import Mathlib.Analysis.Normed.Operator.Asymptotics
+
+@[expose] public section
 
 /-!
 # The Taylor expansion of `φ_j(tN)x` at `t = 0`

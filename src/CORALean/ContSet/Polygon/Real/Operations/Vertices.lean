@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.vertices`

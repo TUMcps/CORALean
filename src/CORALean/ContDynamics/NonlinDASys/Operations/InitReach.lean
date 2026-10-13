@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
-import CORALean.ContSet.Zonotope.Real.Operations.Split
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
+public import CORALean.ContSet.Zonotope.Real.Operations.Split
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.initReach`

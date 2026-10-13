@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
-import CORALean.Global.DropIdx
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+public import CORALean.Global.DropIdx
+
+@[expose] public section
 
 /-!
 # A redundant halfspace, by its support function

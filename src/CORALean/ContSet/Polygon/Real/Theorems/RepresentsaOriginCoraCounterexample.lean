@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Operations.RepresentsaOriginCora
-import CORALean.ContSet.Polygon.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.VPolytope.Real.Instances
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaOriginCora
+public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.VPolytope.Real.Instances
+
+@[expose] public section
 
 /-!
 # CORA's `polygon/representsa_(pgon, 'origin')` accepts the empty polygon

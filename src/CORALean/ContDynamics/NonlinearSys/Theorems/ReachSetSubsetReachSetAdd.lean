@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Order.Interval.Set.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.Order.Interval.Set.Basic
+
+@[expose] public section
 
 /-!
 # Runs under a constant input concatenate

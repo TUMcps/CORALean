@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructCompPerm
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructCompPerm
+
+@[expose] public section
 
 /-!
 # Sorting the generators leaves the zonotope unchanged

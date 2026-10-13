@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachErosionFloat
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
-import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
-import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
-import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachErosionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
+public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
+public import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 7-12 in floats: one iteration of the main loop, from the inside

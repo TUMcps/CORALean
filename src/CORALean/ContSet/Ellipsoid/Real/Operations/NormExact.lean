@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import Mathlib.Analysis.Matrix.Spectrum
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import Mathlib.Analysis.Matrix.Spectrum
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.normExact`

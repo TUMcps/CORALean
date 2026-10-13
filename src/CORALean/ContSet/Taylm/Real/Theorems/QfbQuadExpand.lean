@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Matrix.Mul
-import Mathlib.LinearAlgebra.Matrix.Symmetric
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.LinearAlgebra.Matrix.Symmetric
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `P₂` expanded about a point

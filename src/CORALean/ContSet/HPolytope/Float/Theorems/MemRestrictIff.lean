@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Restrict
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Restrict
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # Membership in a restricted polytope

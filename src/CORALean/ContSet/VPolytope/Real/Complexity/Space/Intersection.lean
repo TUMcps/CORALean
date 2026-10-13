@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `VPolytope.intersection`'s vertex count

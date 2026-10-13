@@ -1,4 +1,8 @@
-import Mathlib.Data.NNReal.Defs
+module
+
+public import Mathlib.Data.NNReal.Defs
+
+@[expose] public section
 
 /-!
 # A predicate on `(0,2)` in three blocks

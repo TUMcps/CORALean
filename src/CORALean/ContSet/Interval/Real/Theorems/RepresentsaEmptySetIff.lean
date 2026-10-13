@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.representsa_emptySet` is emptiness

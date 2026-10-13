@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.SquareRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.SquareRelaxation
+
+@[expose] public section
 
 /-!
 # The square layer

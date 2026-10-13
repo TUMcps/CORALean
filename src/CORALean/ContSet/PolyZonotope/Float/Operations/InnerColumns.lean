@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import Mathlib.Data.Fintype.Card
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import Mathlib.Data.Fintype.Card
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.innerColumns`

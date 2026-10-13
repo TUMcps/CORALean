@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
-import CORALean.Global.DropIdx
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.Global.DropIdx
+
+@[expose] public section
 
 /-!
 # Dropping a zero column and a zero row

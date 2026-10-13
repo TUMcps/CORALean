@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.isGoodDir`, a sound float test for `isBadDir`

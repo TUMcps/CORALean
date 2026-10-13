@@ -1,10 +1,14 @@
-import CORALean.NN.Layers.Definitions.Sigmoid
-import CORALean.NN.Layers.Definitions.SigmoidNetworks
-import CORALean.NN.Layers.Definitions.SigmoidRelaxation
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.Sigmoid
-import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
-import CORALean.NN.Theorems.EncloseAtInflate
+module
+
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Definitions.SigmoidNetworks
+public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.Sigmoid
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
+public import CORALean.NN.Theorems.EncloseAtInflate
+
+@[expose] public section
 
 /-!
 # The network statement, at a network that exists

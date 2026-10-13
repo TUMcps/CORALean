@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.Convex
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+
+@[expose] public section
 
 /-!
 # A vertex polytope is full-dimensional iff its vertices affinely span

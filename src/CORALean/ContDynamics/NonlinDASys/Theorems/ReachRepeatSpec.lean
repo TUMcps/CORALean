@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachRepeat
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachRepeat
+
+@[expose] public section
 
 /-!
 # What the error loop of [1, Alg. 1] returns

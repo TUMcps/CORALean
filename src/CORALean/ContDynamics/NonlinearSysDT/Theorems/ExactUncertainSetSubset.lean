@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSucc
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ExactUncertainSetSucc
+
+@[expose] public section
 
 /-!
 # One step of the guaranteed state estimation algorithm is an outer approximation

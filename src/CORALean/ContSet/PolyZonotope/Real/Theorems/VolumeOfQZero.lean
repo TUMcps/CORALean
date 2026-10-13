@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
+
+@[expose] public section
 
 /-!
 # `volume` without independent generators

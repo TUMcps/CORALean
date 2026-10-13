@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+@[expose] public section
 
 /-!
 # What storing `plus`'s centre leaves to pay

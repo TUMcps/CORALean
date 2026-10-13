@@ -1,18 +1,20 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.Index1
-import CORALean.ContDynamics.NonlinDASys.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NonlinDASys.Definitions.ReducedModel
-import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinInclusion
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
-import CORALean.ContDynamics.NonlinDASys.Definitions.ErrorLoopResult
-import CORALean.ContDynamics.NonlinDASys.Definitions.HessData
-import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
-import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptPass
-import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptState
-import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
-import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
-import CORALean.ContDynamics.NonlinDASys.Definitions.CompositionalState
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.Index1
+public import CORALean.ContDynamics.NonlinDASys.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NonlinDASys.Definitions.ReducedModel
+public import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinInclusion
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
+public import CORALean.ContDynamics.NonlinDASys.Definitions.ErrorLoopResult
+public import CORALean.ContDynamics.NonlinDASys.Definitions.HessData
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptPass
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptState
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
+public import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
+public import CORALean.ContDynamics.NonlinDASys.Definitions.CompositionalState
 
 /-!
 # What `NonlinDASys` means beyond the system itself

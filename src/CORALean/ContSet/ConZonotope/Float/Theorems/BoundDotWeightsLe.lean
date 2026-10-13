@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
+
+@[expose] public section
 
 /-!
 # `ConZonotope.boundDotWeights` bounds the support function, at every weight vector

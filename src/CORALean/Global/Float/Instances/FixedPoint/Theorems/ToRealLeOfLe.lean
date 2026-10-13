@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
+
+@[expose] public section
 
 /-!
 # `le` only approves what is true

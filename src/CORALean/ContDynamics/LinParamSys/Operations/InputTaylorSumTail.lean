@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
-import CORALean.ContSet.Interval.Real.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
+public import CORALean.ContSet.Interval.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # Orders `2` through `η` of the input solution, over an interval matrix, summed

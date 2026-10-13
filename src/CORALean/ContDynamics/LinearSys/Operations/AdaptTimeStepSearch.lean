@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepOrder
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepOrder
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 3-12: the step-size sweep

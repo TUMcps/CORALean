@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
-import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.Interval.Float.Operations.MatPow
-import CORALean.ContSet.Interval.Float.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
+public import CORALean.ContSet.Interval.Float.Operations.MatPlus
+public import CORALean.ContSet.Interval.Float.Operations.MatPow
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+
+@[expose] public section
 
 /-!
 # Interval matrices: the Taylor series past order two, over a floating-point scalar

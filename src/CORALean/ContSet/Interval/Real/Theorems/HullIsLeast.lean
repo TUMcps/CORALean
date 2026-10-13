@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Definitions.Hull
-import Mathlib.Topology.MetricSpace.Bounded
-import Mathlib.Analysis.Normed.Ring.Lemmas
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.Hull
+public import Mathlib.Topology.MetricSpace.Bounded
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+
+@[expose] public section
 
 /-!
 # The interval hull is the smallest box

@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
-import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
+module
+
+public import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
+public import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBallUncertain
+
+@[expose] public section
 
 /-!
 # `[1, §4.3]`'s locality, end to end, uniform in the graph's own uncertainty

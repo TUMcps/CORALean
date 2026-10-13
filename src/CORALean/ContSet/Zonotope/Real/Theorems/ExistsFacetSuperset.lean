@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ConstructFace
-import CORALean.ContSet.Zonotope.Real.Theorems.VectorSpanConstruct
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Convex.Exposed
-import Mathlib.LinearAlgebra.Dual.Lemmas
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructFace
+public import CORALean.ContSet.Zonotope.Real.Theorems.VectorSpanConstruct
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Convex.Exposed
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # Every proper face of a full-dimensional zonotope lies in a facet

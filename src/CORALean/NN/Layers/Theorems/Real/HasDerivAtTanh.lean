@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
-import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+module
+
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
+public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
+
+@[expose] public section
 
 /-!
 # tanh's derivative through the logistic function

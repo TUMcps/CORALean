@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContSet.Zonotope.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `LinearSys.oneStepFloat`

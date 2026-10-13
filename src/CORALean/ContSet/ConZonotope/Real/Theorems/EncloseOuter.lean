@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
-import CORALean.ContSet.HPolytope.Real.Theorems.Convex
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `ConZonotope.enclose` encloses every segment, when the constraints agree

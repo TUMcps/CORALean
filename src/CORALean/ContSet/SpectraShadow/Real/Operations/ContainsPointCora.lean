@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPoint
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPoint
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.containsPointCora`

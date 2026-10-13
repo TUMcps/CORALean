@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `glmReach`: [1, Alg. 1], the recurrence `Ω_{i+1} = ΦΩᵢ ⊕ U` without the wrapping effect

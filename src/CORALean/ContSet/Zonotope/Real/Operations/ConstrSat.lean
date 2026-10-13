@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.Supremum
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.Supremum
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Zonotope.constrSat`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.Eq
+module
+
+public import CORALean.ContSet.ContSet.Operations.Eq
+
+@[expose] public section
 
 /-!
 # `eq` is sound: equal means the same set

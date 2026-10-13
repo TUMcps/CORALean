@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # `simulate` samples a trajectory

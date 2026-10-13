@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
+module
+
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
+
+@[expose] public section
 
 /-!
 # Splitting the minuend into an enclosure and a remainder loses no room

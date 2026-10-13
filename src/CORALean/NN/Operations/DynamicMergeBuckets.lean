@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.Bucketed
-import CORALean.NN.Operations.InMergeBucket
+module
+
+public import CORALean.NN.Operations.Bucketed
+public import CORALean.NN.Operations.InMergeBucket
+
+@[expose] public section
 
 /-!
 # [1, Eq. 6]: merge buckets at the neurons' own centres

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.mtimes`

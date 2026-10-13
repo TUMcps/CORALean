@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
-import Mathlib.Analysis.Convex.Segment
-import Mathlib.Topology.MetricSpace.Pseudo.Pi
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
+public import Mathlib.Analysis.Convex.Segment
+public import Mathlib.Topology.MetricSpace.Pseudo.Pi
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # A point of an edge is not interior

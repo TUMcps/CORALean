@@ -1,12 +1,16 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
-import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
-import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
-import CORALean.Global.EuclideanHausdorffDist
-import CORALean.Global.Err
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
+public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
+public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
+public import CORALean.Global.EuclideanHausdorffDist
+public import CORALean.Global.Err
+
+@[expose] public section
 
 /-!
 # [1, Prop. 4] at an order rather than at a partition

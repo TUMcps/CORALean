@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
-import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
+
+@[expose] public section
 
 /-!
 # The exact layer's tolerance the stored agreement rows amount to

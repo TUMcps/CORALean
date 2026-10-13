@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope as a constrained one, over a floating-point scalar

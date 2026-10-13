@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.InterpGainFloat
-import CORALean.Global.Float.Log
-import CORALean.Global.Float.ToRat
-import CORALean.Global.Float.PowUp
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGainFloat
+public import CORALean.Global.Float.Log
+public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.PowUp
+
+@[expose] public section
 
 /-!
 # Eq. (57): the estimated size after a finite horizon, in floats

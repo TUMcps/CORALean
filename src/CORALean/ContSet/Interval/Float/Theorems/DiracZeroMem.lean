@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Dirac
-import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Dirac
+public import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+
+@[expose] public section
 
 /-!
 # `Interval.dirac` contains `0`, over a floating-point scalar

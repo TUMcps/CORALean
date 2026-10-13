@@ -1,15 +1,19 @@
-import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapCoraErr
-import CORALean.HybridDynamics.Theorems.AbstractionErrorCoraEqZero
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
-import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapCoraErr
+public import CORALean.HybridDynamics.Theorems.AbstractionErrorCoraEqZero
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # With CORA's printed error, the hyperplane map misses a guard hit

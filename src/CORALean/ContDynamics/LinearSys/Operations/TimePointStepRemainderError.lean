@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+
+@[expose] public section
 
 /-!
 # `ε_P`'s widening term alone

@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Stack
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Stack
+
+@[expose] public section
 
 /-!
 # `HPolytope.stack` is exactly the intersection

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusStepPositive
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusStepPositive
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
+
+@[expose] public section
 
 /-!
 # The `H₋` step condition is the matrix inequality in `(e, f)`

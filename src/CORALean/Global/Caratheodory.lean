@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Analysis.Convex.Caratheodory
-import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+module
+
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Analysis.Convex.Caratheodory
+public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # Carathéodory's theorem, over a fixed index

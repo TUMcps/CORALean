@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
+
+@[expose] public section
 
 /-!
 # Every point is in `HPolytope.fullspace`

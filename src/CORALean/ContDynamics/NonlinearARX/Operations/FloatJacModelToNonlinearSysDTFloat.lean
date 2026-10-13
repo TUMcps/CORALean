@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearARX.Definitions.FloatJacModel
-import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Definitions.FloatJacModel
+public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
+
+@[expose] public section
 
 /-!
 # The conversion to a discrete-time system, on a float model with Jacobians

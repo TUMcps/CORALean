@@ -1,6 +1,10 @@
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Matrix.Diagonal
-import CORALean.NN.Definitions.WeightLayer
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Matrix.Diagonal
+public import CORALean.NN.Definitions.WeightLayer
+
+@[expose] public section
 
 /-!
 # What a weight layer computes

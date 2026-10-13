@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Taylm
-import Mathlib.Analysis.Calculus.ContDiff.Defs
-import Mathlib.Analysis.Normed.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import Mathlib.Analysis.Calculus.ContDiff.Defs
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # Taylor models in the source's sense

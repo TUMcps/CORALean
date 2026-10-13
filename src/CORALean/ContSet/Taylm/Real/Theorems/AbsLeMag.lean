@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Mag
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Mag
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The hull of a Taylor model lies within its magnitude

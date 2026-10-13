@@ -1,7 +1,11 @@
-import CORALean.Global.TraceMulVecMulVecSelf
-import CORALean.Global.VecMulVecMulVecSelf
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.Global.TraceMulVecMulVecSelf
+public import CORALean.Global.VecMulVecMulVecSelf
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The gain that minimizes a weighted trace

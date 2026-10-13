@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
-import CORALean.ContSet.Interval.Float.Operations.MatPow
-import CORALean.ContSet.Interval.Float.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Interval.Float.Operations.MatPow
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+
+@[expose] public section
 
 /-!
 # `MatExp.intervalInputTerm`, the input solution's order `i` over a float box

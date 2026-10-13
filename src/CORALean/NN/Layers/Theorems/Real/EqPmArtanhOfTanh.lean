@@ -1,4 +1,8 @@
-import Mathlib.Analysis.SpecialFunctions.Artanh
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Artanh
+
+@[expose] public section
 
 /-!
 # A point with `tanh² x = s²` is at `±artanh s`

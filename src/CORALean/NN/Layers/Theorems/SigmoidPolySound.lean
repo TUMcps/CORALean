@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.SigmoidPoly
-import CORALean.NN.Layers.Theorems.ActivationPolySound
-import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.SigmoidPoly
+public import CORALean.NN.Layers.Theorems.ActivationPolySound
+public import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the polynomial sigmoid layer encloses

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Theorems.MemZcpSetIff
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.MemZcpSetIff
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Zono-conformal regression with outliers is a mixed-integer program

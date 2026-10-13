@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
-import CORALean.ContDynamics.LinearSys.Definitions.VerifySoundFloat
-import CORALean.ContDynamics.LinearSys.Theorems.MaximumFoldToReal
-import CORALean.ContDynamics.LinearSys.Theorems.MinimumFoldToReal
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySoundFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.MaximumFoldToReal
+public import CORALean.ContDynamics.LinearSys.Theorems.MinimumFoldToReal
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+
+@[expose] public section
 
 /-!
 # One verified iteration proves the specification

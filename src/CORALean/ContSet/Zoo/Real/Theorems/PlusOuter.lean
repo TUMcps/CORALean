@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Real.Operations.Plus
-import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Zoo.Real.Operations.Plus
+public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Zoo.plus` encloses

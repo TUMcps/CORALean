@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # A point is not a boundary point iff one `β` fits strictly

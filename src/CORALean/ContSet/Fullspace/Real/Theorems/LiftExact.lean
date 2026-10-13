@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Operations.Lift
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.Lift
+
+@[expose] public section
 
 /-!
 # `Fullspace.lift_` is exact

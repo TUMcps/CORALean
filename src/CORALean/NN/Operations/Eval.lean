@@ -1,4 +1,8 @@
-import CORALean.NN.NeuralNetwork
+module
+
+public import CORALean.NN.NeuralNetwork
+
+@[expose] public section
 
 /-!
 # What a network computes

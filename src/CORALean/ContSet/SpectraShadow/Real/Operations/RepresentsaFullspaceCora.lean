@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_fullspaceCora`

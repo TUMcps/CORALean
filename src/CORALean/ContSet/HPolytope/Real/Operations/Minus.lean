@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Translate
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Translate
+
+@[expose] public section
 
 /-!
 # `HPolytope.minus`

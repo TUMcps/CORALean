@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # The second-order Taylor term's diagonal factor

@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Analysis.Normed.Group.Constructions
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+public import Mathlib.Analysis.Normed.Group.Constructions
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # A short vector is a small matrix applied to a given one

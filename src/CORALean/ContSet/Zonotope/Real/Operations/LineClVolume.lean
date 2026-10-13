@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
+
+@[expose] public section
 
 /-!
 # `Zonotope.lineClVolume`

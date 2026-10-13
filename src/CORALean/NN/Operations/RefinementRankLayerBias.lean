@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.RefinementRankApproxError
+module
+
+public import CORALean.NN.Operations.RefinementRankApproxError
+
+@[expose] public section
 
 /-!
 # A neuron's approximation error, biased towards earlier layers

@@ -1,8 +1,12 @@
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Order.Field.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # A matrix with a near inverse is injective

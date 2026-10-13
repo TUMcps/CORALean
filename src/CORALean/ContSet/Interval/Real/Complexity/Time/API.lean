@@ -1,7 +1,9 @@
-import CORALean.ContSet.Interval.Real.Complexity.Time.Plus
-import CORALean.ContSet.Interval.Real.Complexity.Time.LinComb
-import CORALean.ContSet.Interval.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.Interval.Real.Complexity.Time.Intersection
+module
+
+public import CORALean.ContSet.Interval.Real.Complexity.Time.Plus
+public import CORALean.ContSet.Interval.Real.Complexity.Time.LinComb
+public import CORALean.ContSet.Interval.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.Interval.Real.Complexity.Time.Intersection
 
 /-!
 # What running `Interval`'s operations costs

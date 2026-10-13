@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.WithInput
-import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.WithInput
+public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
+
+@[expose] public section
 
 /-!
 # One window of `reach` with inputs: the set over `τ_k = [t_k, t_k + Δt]`

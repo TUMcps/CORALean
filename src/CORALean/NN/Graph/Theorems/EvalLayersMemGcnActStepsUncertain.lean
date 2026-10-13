@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
-import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActSteps
-import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontPoint
+public import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActSteps
+public import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
+
+@[expose] public section
 
 /-!
 # The graph part of `Alg. 1` contains what the uncertain graph actually computes

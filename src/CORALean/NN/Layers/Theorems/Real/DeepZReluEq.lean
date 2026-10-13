@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.DeepZRelu
-import CORALean.NN.Layers.Operations.ReluRelaxation
-import CORALean.NN.Layers.Operations.ReluSlope
+module
+
+public import CORALean.NN.Layers.Definitions.DeepZRelu
+public import CORALean.NN.Layers.Operations.ReluRelaxation
+public import CORALean.NN.Layers.Operations.ReluSlope
+
+@[expose] public section
 
 /-!
 # DeepZ's ReLU transformer is the tree's ReLU relaxation at its default slope

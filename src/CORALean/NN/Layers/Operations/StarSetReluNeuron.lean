@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.StarSet
+module
+
+public import CORALean.NN.Layers.Definitions.StarSet
+
+@[expose] public section
 
 /-!
 # One ReLU neuron on a star set

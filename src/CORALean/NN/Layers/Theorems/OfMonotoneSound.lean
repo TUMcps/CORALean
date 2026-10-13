@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.RelaxationOfMonotone
-import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+module
+
+public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
+
+@[expose] public section
 
 /-!
 # A monotone function's slope-zero relaxation is sound

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
-import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
+public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
+
+@[expose] public section
 
 /-!
 # `HPolytope.compactAtoAe` over a floating-point scalar

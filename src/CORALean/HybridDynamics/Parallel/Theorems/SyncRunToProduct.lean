@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Parallel.Operations.ProductSync
-import CORALean.HybridDynamics.Parallel.Definitions.SyncRun
-import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
-import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
-import CORALean.HybridDynamics.Parallel.Theorems.LiftSyncTransitionReset
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.ProductSync
+public import CORALean.HybridDynamics.Parallel.Definitions.SyncRun
+public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
+public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
+public import CORALean.HybridDynamics.Parallel.Theorems.LiftSyncTransitionReset
+
+@[expose] public section
 
 /-!
 # Every run with synchronization labels is a run of the labeled product

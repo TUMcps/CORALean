@@ -1,11 +1,15 @@
-import CORALean.ContSet.Capsule.Float.Theorems.IsequalSound
-import CORALean.ContSet.ConPolyZono.Float.Theorems.IsequalSound
-import CORALean.ContSet.ConZonotope.Float.Theorems.IsequalSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.IsequalSound
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Interval.Float.Theorems.IsequalSound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.IsequalSound
-import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
+module
+
+public import CORALean.ContSet.Capsule.Float.Theorems.IsequalSound
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.IsequalSound
+public import CORALean.ContSet.ConZonotope.Float.Theorems.IsequalSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsequalSound
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Interval.Float.Theorems.IsequalSound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.IsequalSound
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
+
+@[expose] public section
 
 /-!
 # The float representations' `isequal`

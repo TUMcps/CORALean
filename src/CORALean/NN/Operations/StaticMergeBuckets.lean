@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.InMergeBucket
+module
+
+public import CORALean.NN.Operations.InMergeBucket
+
+@[expose] public section
 
 /-!
 # [1, Eq. 5]: merge buckets at an activation's asymptotic values

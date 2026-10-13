@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExtG
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtG
+
+@[expose] public section
 
 /-!
 # `mul`'s generators, rounded down

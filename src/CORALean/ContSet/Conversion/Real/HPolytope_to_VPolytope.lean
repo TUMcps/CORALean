@@ -1,12 +1,16 @@
-import CORALean.ContSet.HPolytope.Real.Operations.TightAt
-import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
-import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
-import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
-import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
-import Mathlib.Analysis.Convex.KreinMilman
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
+public import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
+public import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
+public import Mathlib.Analysis.Convex.KreinMilman
+
+@[expose] public section
 
 /-!
 # Halfspaces to vertices

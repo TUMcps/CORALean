@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCex
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCex
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The monomials of `isPolytopeCex`

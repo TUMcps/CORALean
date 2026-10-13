@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+
+@[expose] public section
 
 /-!
 # A parametric system is a nonlinear one with the parameter as a state

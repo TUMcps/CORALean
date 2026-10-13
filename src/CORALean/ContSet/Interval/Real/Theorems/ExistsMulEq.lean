@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Operations.MulHi
-import Mathlib.Analysis.Normed.Order.Lattice
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import Mathlib.Analysis.Normed.Order.Lattice
+
+@[expose] public section
 
 /-!
 # Every value between the corner products is a product

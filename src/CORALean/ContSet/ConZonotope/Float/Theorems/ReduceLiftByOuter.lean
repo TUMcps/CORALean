@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByCoeff
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByCoeff
+
+@[expose] public section
 
 /-!
 # Lifting, reducing and reading the rows back over-approximates, in floats

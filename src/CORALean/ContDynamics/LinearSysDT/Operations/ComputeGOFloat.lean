@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.GOFloat
-import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGO
-import CORALean.ContSet.Interval.Float.Operations.MatPow
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContDynamics.OutputEq.OutputEq
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.GOFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGO
+public import CORALean.ContSet.Interval.Float.Operations.MatPow
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContDynamics.OutputEq.OutputEq
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.computeGOFloat`

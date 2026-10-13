@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import Mathlib.Analysis.Convex.Integral
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import Mathlib.Analysis.Convex.Integral
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # A polynomially weighted average stays in a convex closed set

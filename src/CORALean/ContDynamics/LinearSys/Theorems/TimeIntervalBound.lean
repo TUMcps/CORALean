@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSegmentsSum
-import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
-import CORALean.Global.LinProg.Composition
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSegmentsSum
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.Global.LinProg.Composition
+
+@[expose] public section
 
 /-!
 # A support bound over a whole step, not a time point

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+
+@[expose] public section
 
 /-!
 # The support vector of [1, Sec. 4.2], as an initial state and an input sequence

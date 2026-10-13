@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.compact` bounds three counts

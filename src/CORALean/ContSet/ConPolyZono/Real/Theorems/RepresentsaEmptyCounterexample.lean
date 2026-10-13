@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+
+@[expose] public section
 
 /-!
 # CORA's `representsa_(cPZ, 'emptySet')` answers "not empty" before reading the constraints

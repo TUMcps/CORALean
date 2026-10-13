@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.dependentCost`

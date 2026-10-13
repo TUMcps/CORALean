@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
-import CORALean.ContSet.Interval.Real.Operations.Point
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+public import CORALean.ContSet.Interval.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # CORA's `conPolyZono/minkDiff` is not exact for a nonconvex minuend

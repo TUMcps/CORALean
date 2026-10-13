@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `exactPlus` is the sum over shared factors

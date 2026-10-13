@@ -1,4 +1,8 @@
-import Mathlib.LinearAlgebra.Matrix.Defs
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Defs
+
+@[expose] public section
 
 /-!
 # Arrays: vectors, matrices, tensors

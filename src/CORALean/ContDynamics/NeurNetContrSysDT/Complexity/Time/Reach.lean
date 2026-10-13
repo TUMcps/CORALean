@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.NN.Complexity.Time.Enclose
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.NN.Complexity.Time.Enclose
+
+@[expose] public section
 
 /-!
 # `NeurNetContrSysDT.reachCost`

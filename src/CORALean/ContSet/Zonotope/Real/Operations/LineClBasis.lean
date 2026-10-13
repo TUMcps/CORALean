@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
-import CORALean.ContSet.Zonotope.Real.Operations.LineClKeep
-import CORALean.ContSet.Zonotope.Real.Operations.LineClVolume
-import Mathlib.Analysis.Matrix.Spectrum
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+public import CORALean.ContSet.Zonotope.Real.Operations.LineClKeep
+public import CORALean.ContSet.Zonotope.Real.Operations.LineClVolume
+public import Mathlib.Analysis.Matrix.Spectrum
+
+@[expose] public section
 
 /-!
 # `Zonotope.lineClBasis`

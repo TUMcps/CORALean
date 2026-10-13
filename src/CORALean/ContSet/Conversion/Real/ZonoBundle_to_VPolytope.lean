@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_VPolytope
+module
+
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_VPolytope
+
+@[expose] public section
 
 /-!
 # A bundle's corners, at one component

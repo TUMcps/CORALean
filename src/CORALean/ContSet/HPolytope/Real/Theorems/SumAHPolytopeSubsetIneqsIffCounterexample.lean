@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffCounterexample
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffCounterexample
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # `[1, Prop. 1]` fails at an empty summand

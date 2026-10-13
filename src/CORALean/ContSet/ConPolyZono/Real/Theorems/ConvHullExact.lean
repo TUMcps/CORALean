@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHull
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombExactOfDependent
-import Mathlib.Analysis.RCLike.Lemmas
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHull
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombExactOfDependent
+public import Mathlib.Analysis.RCLike.Lemmas
+
+@[expose] public section
 
 /-!
 # The convex hull, exactly — under the hypothesis [1, Prop. 9] leaves out

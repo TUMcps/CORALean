@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Operations.And
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContSet.Fullspace.Real.Operations.And
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `Fullspace.and_` is exact

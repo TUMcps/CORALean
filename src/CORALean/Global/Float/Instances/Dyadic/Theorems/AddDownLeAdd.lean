@@ -1,8 +1,12 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.AddDown
-import CORALean.Global.Float.Instances.Dyadic.Operations.AlignExp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.CoarsenDownLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.AddDown
+public import CORALean.Global.Float.Instances.Dyadic.Operations.AlignExp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.CoarsenDownLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
+
+@[expose] public section
 
 /-!
 # The downward sum is bounded by the real sum

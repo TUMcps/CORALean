@@ -1,6 +1,11 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
+
 /-!
 # The integrated series is dominated by the exponential's own
 

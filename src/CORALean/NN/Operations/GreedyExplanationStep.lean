@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Finset.SDiff
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Finset.SDiff
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1]'s loop body

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrixFloat
-import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrixFloat
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+
+@[expose] public section
 
 /-!
 # The float matrix-zonotope step holds the flow of every member at every time

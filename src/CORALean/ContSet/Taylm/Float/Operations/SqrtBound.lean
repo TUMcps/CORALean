@@ -1,8 +1,12 @@
-import CORALean.Global.SqrtDeriv
-import CORALean.Global.Float.HalfPow
-import CORALean.Global.Float.IntRound
-import CORALean.Global.Float.Sqrt
-import CORALean.Global.Float.PowUp
+module
+
+public import CORALean.Global.SqrtDeriv
+public import CORALean.Global.Float.HalfPow
+public import CORALean.Global.Float.IntRound
+public import CORALean.Global.Float.Sqrt
+public import CORALean.Global.Float.PowUp
+
+@[expose] public section
 
 /-!
 # A bound of the `(N+1)`-th derivative of `√`, rounded up

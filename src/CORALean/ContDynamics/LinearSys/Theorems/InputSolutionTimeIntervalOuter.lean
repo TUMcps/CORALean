@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+
+@[expose] public section
 
 /-!
 # `inputSolution` contains the input's contribution at every time in the step

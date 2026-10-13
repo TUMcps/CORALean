@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.MulLo
-import CORALean.ContSet.Interval.Real.Operations.MulHi
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.MulHi
+
+@[expose] public section
 
 /-!
 # The product of a list of intervals

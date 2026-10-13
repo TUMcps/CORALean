@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.GroupSortChunkFloat
+module
+
+public import CORALean.NN.Layers.Operations.GroupSortChunkFloat
+
+@[expose] public section
 
 /-!
 # CORA's `nnGroupSortLayer` at float entries

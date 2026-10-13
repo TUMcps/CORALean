@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ExactPlus
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ExactPlus
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.exactPlus` is the sum over shared factors

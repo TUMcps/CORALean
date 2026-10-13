@@ -1,5 +1,9 @@
-import CORALean.Global.IndepMidOfIndep
-import Mathlib.MeasureTheory.MeasurableSpace.Pi
+module
+
+public import CORALean.Global.IndepMidOfIndep
+public import Mathlib.MeasureTheory.MeasurableSpace.Pi
+
+@[expose] public section
 
 /-!
 # A point of an `M`-dependent sequence is independent of the points more than `M` away

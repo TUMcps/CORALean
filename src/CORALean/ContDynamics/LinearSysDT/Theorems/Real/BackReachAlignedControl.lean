@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MemBackReachAlignedSuccIff
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemBackReachAlignedSuccIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
+
+@[expose] public section
 
 /-!
 # An input from (16) steers `Z̲_{k+1}` into `Z̲_k` against every disturbance

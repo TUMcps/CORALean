@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeFloat
-import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
-import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeFloatOuter
-import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeFloatOffsetOuter
-import CORALean.HybridDynamics.Theorems.TransitionSynchronizeGuardExact
+module
+
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeFloat
+public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
+public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeFloatOuter
+public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeFloatOffsetOuter
+public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeGuardExact
+
+@[expose] public section
 
 /-!
 # The float `synchronize` encloses the synchronized transition

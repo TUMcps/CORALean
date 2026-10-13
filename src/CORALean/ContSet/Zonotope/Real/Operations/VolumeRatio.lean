@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Project
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Project
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # `Zonotope.volumeRatio`

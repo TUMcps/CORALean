@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Jacobian
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Jacobian
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
+
+@[expose] public section
 
 /-!
 # The float `jacobian` encloses the exact one

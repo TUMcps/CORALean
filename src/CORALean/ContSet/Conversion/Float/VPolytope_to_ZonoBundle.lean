@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.VPolytope_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+module
+
+public import CORALean.ContSet.Conversion.Float.VPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+
+@[expose] public section
 
 /-!
 # A vertex description as a bundle of one, over a floating-point scalar

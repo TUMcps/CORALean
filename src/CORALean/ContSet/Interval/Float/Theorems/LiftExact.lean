@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Lift
-import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Lift
+public import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+
+@[expose] public section
 
 /-!
 # `Interval.lift_` is exact, over a floating-point scalar

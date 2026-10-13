@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
-import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusHasDerivAt
-import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.Deriv.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
+public import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusHasDerivAt
+public import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+
+@[expose] public section
 
 /-!
 # The gradient of the F-radius

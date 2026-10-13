@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Operations.And
-import CORALean.ContSet.Polygon.Real.Theorems.AndRegion
-import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.And
+public import CORALean.ContSet.Polygon.Real.Theorems.AndRegion
+public import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.and` encloses the intersection

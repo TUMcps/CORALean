@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.ofEntryBoundsMat` contains the exact matrix zonotope it brackets

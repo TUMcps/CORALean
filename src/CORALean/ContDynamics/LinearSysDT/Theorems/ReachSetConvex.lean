@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # `reachSet` is convex

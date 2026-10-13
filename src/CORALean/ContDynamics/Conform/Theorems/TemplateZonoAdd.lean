@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The sum of two stretched templates

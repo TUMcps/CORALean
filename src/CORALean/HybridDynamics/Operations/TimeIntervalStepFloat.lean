@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # `Location.timeIntervalStepFloat`

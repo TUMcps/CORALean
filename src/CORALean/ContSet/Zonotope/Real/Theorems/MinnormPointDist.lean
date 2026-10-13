@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinnormPoint
-import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinnormPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
+
+@[expose] public section
 
 /-!
 # `minnormPoint` is at distance `minnorm`

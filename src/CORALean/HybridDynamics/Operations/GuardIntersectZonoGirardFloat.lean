@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Interval.Float.Operations.Or
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+module
+
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectZonoGirardFloat`

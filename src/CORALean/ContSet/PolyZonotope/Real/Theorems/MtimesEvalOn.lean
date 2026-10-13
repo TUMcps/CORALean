@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesEqMap
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapEvalOn
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesEqMap
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapEvalOn
+
+@[expose] public section
 
 /-!
 # `mtimes` carries the evaluation along with it

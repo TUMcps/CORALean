@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # A translated stretched template

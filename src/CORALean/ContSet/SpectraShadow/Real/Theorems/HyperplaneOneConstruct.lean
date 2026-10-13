@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.HyperplaneOne
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.HyperplaneOne
+
+@[expose] public section
 
 /-!
 # `hyperplaneOne` is the hyperplane at height `1`

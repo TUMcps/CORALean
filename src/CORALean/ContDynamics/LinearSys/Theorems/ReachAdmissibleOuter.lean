@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachAdmissible
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachAdmissible
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
+
+@[expose] public section
 
 /-!
 # `reachAdmissible` encloses `reachExact`, at any `η`

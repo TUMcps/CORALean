@@ -1,4 +1,8 @@
-import CORALean.Global.GaussianNormMomentLe
+module
+
+public import CORALean.Global.GaussianNormMomentLe
+
+@[expose] public section
 
 /-!
 # Gaussian rounding: a pointwise ratio bound gives a bound on the norms

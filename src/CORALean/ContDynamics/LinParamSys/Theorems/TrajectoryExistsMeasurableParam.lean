@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import Mathlib.MeasureTheory.Function.StronglyMeasurable.AEStronglyMeasurable
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import Mathlib.MeasureTheory.Function.StronglyMeasurable.AEStronglyMeasurable
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # A time-varying run is driven by a measurable member of the box everywhere

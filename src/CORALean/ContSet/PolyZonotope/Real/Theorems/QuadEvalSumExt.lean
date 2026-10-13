@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+
+@[expose] public section
 
 /-!
 # A quadratic map of the extended sum, expanded over pairs

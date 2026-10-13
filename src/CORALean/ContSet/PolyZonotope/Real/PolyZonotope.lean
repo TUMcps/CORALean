@@ -1,4 +1,8 @@
-import CORALean.Global.Entrywise
+module
+
+public import CORALean.Global.Entrywise
+
+@[expose] public section
 
 /-!
 # Sparse polynomial zonotopes: the representation

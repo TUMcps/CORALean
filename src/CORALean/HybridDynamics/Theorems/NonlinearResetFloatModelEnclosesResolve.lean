@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetResolveFloat
-import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetResolveFloat
+public import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+
+@[expose] public section
 
 /-!
 # The resolved float model encloses the resolved reset

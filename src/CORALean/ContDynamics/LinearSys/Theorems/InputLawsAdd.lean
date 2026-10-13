@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.InputLaws
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovariancePosSemidef
-import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
-import CORALean.ContSet.ProbZonotope.Real.Theorems.ConvMultivariateGaussian
-import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.InputLaws
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
+public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovariancePosSemidef
+public import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.ConvMultivariateGaussian
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
+
+@[expose] public section
 
 /-!
 # The input solution's laws split at any intermediate time

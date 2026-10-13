@@ -1,18 +1,20 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.AddDown
-import CORALean.Global.Float.Instances.FixedPoint.Operations.AddUp
-import CORALean.Global.Float.Instances.FixedPoint.Operations.DivDown
-import CORALean.Global.Float.Instances.FixedPoint.Operations.DivUp
-import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactAdd
-import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactMul
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Half
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Le
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Maximum
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Minimum
-import CORALean.Global.Float.Instances.FixedPoint.Operations.MulDown
-import CORALean.Global.Float.Instances.FixedPoint.Operations.MulUp
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Neg
-import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundDown
-import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundUp
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.AddDown
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.AddUp
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.DivDown
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.DivUp
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactAdd
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactMul
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Half
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Le
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Maximum
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Minimum
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.MulDown
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.MulUp
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Neg
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundDown
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundUp
 
 /-!
 # Fixed-point numbers at a target precision: the operations, collected

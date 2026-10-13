@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.EvalPoly
-import Mathlib.Algebra.Polynomial.Eval.Degree
+module
+
+public import CORALean.NN.Layers.Definitions.EvalPoly
+public import Mathlib.Algebra.Polynomial.Eval.Degree
+
+@[expose] public section
 
 /-!
 # Mathlib's polynomials read as coefficients

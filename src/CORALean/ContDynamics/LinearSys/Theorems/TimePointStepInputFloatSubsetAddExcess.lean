@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionFloatSubsetAddBox
-import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputSolutionFloatError
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstInputAddErrorBox
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorBoxSubsetFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionFloatSubsetAddBox
+public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputSolutionFloatError
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstInputAddErrorBox
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorBoxSubsetFloat
+
+@[expose] public section
 
 /-!
 # A float step reaches no further than the exact held-input step, plus two boxes

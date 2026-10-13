@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErr
-import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
-import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErr
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
+public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
+
+@[expose] public section
 
 /-!
 # `[2, Lemma 3]`: the abstraction error grows with what it is computed from

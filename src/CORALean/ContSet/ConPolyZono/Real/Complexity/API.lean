@@ -1,5 +1,7 @@
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.API
-import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.API
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.API
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.API
 
 /-!
 # Complexity

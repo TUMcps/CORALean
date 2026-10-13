@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortFactorCount
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortTailPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ShiftPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortFactorCount
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortTailPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ShiftPoint
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2] is exactly the polynomial, evaluated coordinatewise

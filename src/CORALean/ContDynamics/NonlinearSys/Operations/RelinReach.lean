@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
-import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
-import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
-import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
-import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
-import CORALean.ContDynamics.Reach.Definitions.Params
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
+public import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
+public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+public import CORALean.ContDynamics.Reach.Definitions.Params
+
+@[expose] public section
 
 /-!
 # The re-linearization loop

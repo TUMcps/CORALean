@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.Discretize
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.Discretize
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+
+@[expose] public section
 
 /-!
 # A sampled trajectory, with the input set named rather than assumed

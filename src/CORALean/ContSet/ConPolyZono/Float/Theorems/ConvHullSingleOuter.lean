@@ -1,10 +1,14 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSatisfies
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import Mathlib.Analysis.Convex.Combination
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSatisfies
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Combination
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.convHullSingle` contains the convex hull

@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
-import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Float.Operations.MixedForm
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MixedForm
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.quadMapMixed`, over a floating-point scalar

@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Parallel.Theorems.RunOfProductWith
-import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
-import CORALean.HybridDynamics.Parallel.Definitions.ReachSet
-import CORALean.HybridDynamics.Definitions.ReachSet
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.RunOfProductWith
+public import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
+public import CORALean.HybridDynamics.Parallel.Definitions.ReachSet
+public import CORALean.HybridDynamics.Definitions.ReachSet
+
+@[expose] public section
 
 /-!
 # The product reaches exactly the stacks of what the parallel automaton reaches

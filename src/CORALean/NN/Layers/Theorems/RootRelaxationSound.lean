@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.RootRelaxation
-import CORALean.NN.Layers.Theorems.OfMonotoneSound
+module
+
+public import CORALean.NN.Layers.Operations.RootRelaxation
+public import CORALean.NN.Layers.Theorems.OfMonotoneSound
+
+@[expose] public section
 
 /-!
 # The square root relaxation is sound

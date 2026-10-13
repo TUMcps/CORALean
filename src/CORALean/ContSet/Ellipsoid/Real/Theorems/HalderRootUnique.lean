@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityStrictAntiOn
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Topology.Algebra.Monoid
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityStrictAntiOn
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Topology.Algebra.Monoid
+
+@[expose] public section
 
 /-!
 # Halder's stationarity equation has a unique positive root

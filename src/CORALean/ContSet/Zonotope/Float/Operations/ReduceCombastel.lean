@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
-import CORALean.Global.Float.EuclideanNorm
-import CORALean.Global.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+public import CORALean.Global.Float.EuclideanNorm
+public import CORALean.Global.Sort
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceCombastel`

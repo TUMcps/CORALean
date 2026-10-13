@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.InvSqrt
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
-import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.InvSqrt
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+public import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # `Taylm.invSqrt` encloses `1 / sqrt ∘ f`

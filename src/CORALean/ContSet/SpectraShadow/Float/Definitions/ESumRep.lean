@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
-import CORALean.ContSet.SpectraShadow.Real.Definitions.ESumRep
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+public import CORALean.ContSet.SpectraShadow.Real.Definitions.ESumRep
+
+@[expose] public section
 
 /-!
 # Existential sum representations over a floating-point scalar

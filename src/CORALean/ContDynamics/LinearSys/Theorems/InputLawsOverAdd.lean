@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.InputLawsOver
-import CORALean.ContDynamics.LinearSys.Theorems.InputLawsAdd
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.InputLawsOver
+public import CORALean.ContDynamics.LinearSys.Theorems.InputLawsAdd
+
+@[expose] public section
 
 /-!
 # The input solution over `[kr, (k+1)r]` from the one over `[0, r]`

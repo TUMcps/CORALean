@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
-import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+
+@[expose] public section
 
 /-!
 # The support function of an ellipsoid

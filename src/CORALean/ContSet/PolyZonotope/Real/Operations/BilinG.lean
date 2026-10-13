@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
-import Mathlib.Algebra.Module.LinearMap.Defs
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # The generators of `bilin`

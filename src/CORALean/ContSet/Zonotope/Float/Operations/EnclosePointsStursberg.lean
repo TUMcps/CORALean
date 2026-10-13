@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.enclosePointsStursberg`, over a floating-point scalar

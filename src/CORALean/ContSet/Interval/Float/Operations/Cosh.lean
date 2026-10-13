@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.CoshLo
-import CORALean.ContSet.Interval.Float.Operations.CoshHi
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.CoshLo
+public import CORALean.ContSet.Interval.Float.Operations.CoshHi
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.cosh`

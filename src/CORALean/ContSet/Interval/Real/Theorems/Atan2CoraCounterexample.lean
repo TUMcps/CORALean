@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Atan2
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Atan2
+
+@[expose] public section
 
 /-!
 # CORA's `interval/atan2` is not an enclosure across the branch cut

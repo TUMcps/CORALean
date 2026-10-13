@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `ε_S`: the error a reduction to a given order pays

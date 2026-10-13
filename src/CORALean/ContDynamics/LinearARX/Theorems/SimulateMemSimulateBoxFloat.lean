@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearARX.Operations.SimulateBoxFloat
-import CORALean.ContDynamics.LinearARX.Theorems.FeedMemFeedBox
-import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
-import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
-import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.SimulateBoxFloat
+public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemFeedBox
+public import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
+public import CORALean.ContDynamics.LinearSysDT.Theorems.MemSimulateBoxIn
+
+@[expose] public section
 
 /-!
 # The real ARX run lies in the float boxes

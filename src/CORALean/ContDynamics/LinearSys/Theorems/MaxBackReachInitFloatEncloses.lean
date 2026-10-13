@@ -1,18 +1,22 @@
-import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloatEncloses
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInit
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemAdaptiveIntegralFloat
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
-import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
-import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
-import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
-import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatError
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloatEncloses
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInit
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemAdaptiveIntegralFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
+public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
+public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatError
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+
+@[expose] public section
 
 /-!
 # The float state before the first iteration stands for the exact one

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Definitions.CorrectionSet
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Definitions.CorrectionSet
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # The printed time-interval enclosure fails

@@ -1,12 +1,16 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
-import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorExtend
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorExtend
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+
+@[expose] public section
 
 /-!
 # Dropping the factors no monomial reads loses nothing

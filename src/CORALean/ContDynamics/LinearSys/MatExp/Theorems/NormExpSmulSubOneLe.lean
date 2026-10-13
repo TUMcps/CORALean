@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubOneLeExpNorm
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubOneLeExpNorm
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # `e^{tA}` stays within `t‖A‖e^{t‖A‖}` of the identity

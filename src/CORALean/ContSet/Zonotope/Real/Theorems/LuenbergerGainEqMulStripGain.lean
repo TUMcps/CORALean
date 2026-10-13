@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
-import CORALean.ContSet.Zonotope.Real.Operations.StripGain
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
+public import CORALean.ContSet.Zonotope.Real.Operations.StripGain
+
+@[expose] public section
 
 /-!
 # The two observers' gains differ by the state matrix

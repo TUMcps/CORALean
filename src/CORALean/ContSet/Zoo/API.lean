@@ -1,5 +1,7 @@
-import CORALean.ContSet.Zoo.Float.API
-import CORALean.ContSet.Zoo.Real.API
+module
+
+public import CORALean.ContSet.Zoo.Float.API
+public import CORALean.ContSet.Zoo.Real.API
 
 /-!
 # Zoos

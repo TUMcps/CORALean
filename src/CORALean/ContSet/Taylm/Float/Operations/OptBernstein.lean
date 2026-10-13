@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.BernsteinCoeffBounds
-import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
-import CORALean.ContSet.Taylm.Float.Operations.ListMin
-import CORALean.ContSet.Taylm.Float.Operations.ListMax
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BernsteinCoeffBounds
+public import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
+public import CORALean.ContSet.Taylm.Float.Operations.ListMin
+public import CORALean.ContSet.Taylm.Float.Operations.ListMax
+
+@[expose] public section
 
 /-!
 # `Taylm.optBernstein`, over a floating-point scalar

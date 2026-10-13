@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.DeepZSShape
-import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
+module
+
+public import CORALean.NN.Layers.Definitions.DeepZSShape
+public import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
+
+@[expose] public section
 
 /-!
 # DeepZ's S-shape transformer is sound, for the right S

@@ -1,12 +1,16 @@
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
-import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyFactorCount
-import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyFactorCount
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.evalPoly` encloses the exact evaluation, rounding outward

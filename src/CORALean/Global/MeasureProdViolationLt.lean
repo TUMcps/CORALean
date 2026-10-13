@@ -1,7 +1,11 @@
-import CORALean.Global.BinomialTailStrictAntiOn
-import CORALean.Global.PiCountLeMeasureLe
-import Mathlib.MeasureTheory.Measure.Prod
-import Mathlib.MeasureTheory.Integral.Lebesgue.Markov
+module
+
+public import CORALean.Global.BinomialTailStrictAntiOn
+public import CORALean.Global.PiCountLeMeasureLe
+public import Mathlib.MeasureTheory.Measure.Prod
+public import Mathlib.MeasureTheory.Integral.Lebesgue.Markov
+
+@[expose] public section
 
 /-!
 # A bad solution rarely survives `m` independent samples

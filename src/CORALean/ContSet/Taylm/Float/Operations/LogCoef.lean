@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.Global.Float.Log
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.PowDown
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.Global.Float.Log
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.PowDown
+
+@[expose] public section
 
 /-!
 # The coefficients of `log`, enclosed

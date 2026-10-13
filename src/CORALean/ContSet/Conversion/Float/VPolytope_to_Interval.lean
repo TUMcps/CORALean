@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
-import CORALean.ContSet.VPolytope.Float.Operations.BoundProj
-import CORALean.ContSet.VPolytope.Float.Operations.BoundNegProj
-import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
+public import CORALean.ContSet.VPolytope.Float.Operations.BoundProj
+public import CORALean.ContSet.VPolytope.Float.Operations.BoundNegProj
+public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # A hull as a box, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SoftmaxExpInRange
-import CORALean.NN.Layers.Operations.SumOffUp
+module
+
+public import CORALean.NN.Layers.Operations.SoftmaxExpInRange
+public import CORALean.NN.Layers.Operations.SumOffUp
+
+@[expose] public section
 
 /-!
 # Softmax's denominator from above

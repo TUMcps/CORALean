@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+
+@[expose] public section
 
 /-!
 # A reduced model of a differential-algebraic system

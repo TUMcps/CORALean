@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.Module.Prod
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.Module.Prod
+
+@[expose] public section
 
 /-!
 # `ConZonotope.stack`

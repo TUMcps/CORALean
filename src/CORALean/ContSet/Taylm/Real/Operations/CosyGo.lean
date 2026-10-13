@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
-import CORALean.ContSet.Taylm.Real.Operations.GoLowerBound
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
+public import CORALean.ContSet.Taylm.Real.Operations.GoLowerBound
+
+@[expose] public section
 
 /-!
 # `Taylm.cosyGo`

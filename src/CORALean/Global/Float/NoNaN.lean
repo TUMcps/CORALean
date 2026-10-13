@@ -1,5 +1,9 @@
-import CORALean.Global.Float.ToRat
-import CORALean.Global.Tensor
+module
+
+public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # Reporting a result only if it holds no NaN

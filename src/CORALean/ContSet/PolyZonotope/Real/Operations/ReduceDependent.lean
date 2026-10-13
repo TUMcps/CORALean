@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.reduceDependent`

@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.SigmoidRelaxation
-import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
+module
+
+public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+public import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
+
+@[expose] public section
 
 /-!
 # The tanh relaxation over ℝ

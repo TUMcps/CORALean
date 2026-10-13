@@ -1,5 +1,9 @@
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuterRefines
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuterRefines
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceBy` keeps the set it had

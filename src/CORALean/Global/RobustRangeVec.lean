@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Finset.Basic
-import Mathlib.Order.Interval.Set.Defs
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Finset.Basic
+public import Mathlib.Order.Interval.Set.Defs
+
+@[expose] public section
 
 /-!
 # The robust range of a vector-valued function

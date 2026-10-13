@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.VerifyIterFloat
-import CORALean.ContSet.HPolytope.Float.Instances
-import CORALean.Specification.Specification
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIterFloat
+public import CORALean.ContSet.HPolytope.Float.Instances
+public import CORALean.Specification.Specification
+
+@[expose] public section
 
 /-!
 # The specification the float verification decides

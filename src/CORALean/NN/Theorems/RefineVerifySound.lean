@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.RefineVerify
-import CORALean.NN.Theorems.RefineVerifyFromSound
+module
+
+public import CORALean.NN.Operations.RefineVerify
+public import CORALean.NN.Theorems.RefineVerifyFromSound
+
+@[expose] public section
 
 /-!
 # Automatic abstraction refinement is sound

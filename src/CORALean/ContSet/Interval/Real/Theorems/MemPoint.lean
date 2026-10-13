@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Point
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # The point interval contains its point

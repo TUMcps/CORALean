@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContSet.Interval.Real.Operations.AbsMax
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContSet.Interval.Real.Operations.AbsMax
+
+@[expose] public section
 
 /-!
 # Interval matrices: enclosing the exponential of an interval matrix

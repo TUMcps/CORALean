@@ -1,11 +1,15 @@
-import CORALean.NN.Definitions.RefinableLayer
-import CORALean.NN.Layers.Layer
-import CORALean.NN.Layers.Operations.ActivationPoly
-import CORALean.NN.Layers.Operations.PolyRelaxationFamilyAtPattern
-import CORALean.NN.Layers.Theorems.ActivationPolySound
-import CORALean.NN.Layers.Theorems.AtPatternSound
-import CORALean.NN.Operations.RefinableLayerAtPattern
-import CORALean.NN.Theorems.RefinableLayerAtPatternSound
+module
+
+public import CORALean.NN.Definitions.RefinableLayer
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Layers.Operations.ActivationPoly
+public import CORALean.NN.Layers.Operations.PolyRelaxationFamilyAtPattern
+public import CORALean.NN.Layers.Theorems.ActivationPolySound
+public import CORALean.NN.Layers.Theorems.AtPatternSound
+public import CORALean.NN.Operations.RefinableLayerAtPattern
+public import CORALean.NN.Theorems.RefinableLayerAtPatternSound
+
+@[expose] public section
 
 /-!
 # The polynomial activation layer as a refinable layer

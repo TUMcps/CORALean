@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.MagUp
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.MagUp
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `Taylm.magUp` bounds the hull

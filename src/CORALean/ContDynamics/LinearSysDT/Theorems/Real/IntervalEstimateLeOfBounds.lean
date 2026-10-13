@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateErrorEqHull
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateErrorEqHull
+
+@[expose] public section
 
 /-!
 # The reachability-based estimator is the tightest box around the reachable error

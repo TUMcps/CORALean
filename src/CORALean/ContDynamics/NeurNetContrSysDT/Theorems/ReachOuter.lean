@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
-import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
-import CORALean.NN.Theorems.EncloseOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
+public import CORALean.NN.Theorems.EncloseOuter
+
+@[expose] public section
 
 /-!
 # `NeurNetContrSysDT.reach` contains every closed-loop run

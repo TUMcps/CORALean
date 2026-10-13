@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # `W(t)`, entry by entry, in the shape [1, Lemma 3.1] evaluates

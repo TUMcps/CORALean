@@ -1,5 +1,9 @@
-import Mathlib.Probability.Kernel.Invariance
-import Mathlib.Probability.Kernel.Defs
+module
+
+public import Mathlib.Probability.Kernel.Invariance
+public import Mathlib.Probability.Kernel.Defs
+
+@[expose] public section
 
 /-!
 # A Markov kernel with a symmetric density leaves the reference measure invariant

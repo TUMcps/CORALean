@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.Zonotope.Float.Operations.Isequal
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Zonotope.Float.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.isequal`, over a floating-point scalar

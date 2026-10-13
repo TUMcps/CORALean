@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.volume`

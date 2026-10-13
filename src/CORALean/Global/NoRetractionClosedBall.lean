@@ -1,13 +1,17 @@
-import Mathlib.LinearAlgebra.Lagrange
-import Mathlib.LinearAlgebra.Matrix.Polynomial
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Analysis.InnerProductSpace.Calculus
-import Mathlib.MeasureTheory.Function.Jacobian
-import Mathlib.MeasureTheory.Measure.Haar.Basic
-import Mathlib.Topology.MetricSpace.Contracting
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.MeasureTheory.Integral.Bochner.Set
+module
+
+public import Mathlib.LinearAlgebra.Lagrange
+public import Mathlib.LinearAlgebra.Matrix.Polynomial
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Analysis.InnerProductSpace.Calculus
+public import Mathlib.MeasureTheory.Function.Jacobian
+public import Mathlib.MeasureTheory.Measure.Haar.Basic
+public import Mathlib.Topology.MetricSpace.Contracting
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+
+@[expose] public section
 
 /-!
 # No smooth retraction of the closed unit ball onto its sphere

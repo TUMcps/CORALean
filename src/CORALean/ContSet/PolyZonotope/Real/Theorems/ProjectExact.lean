@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Project
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Project
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `project` is exactly the coordinate

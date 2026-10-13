@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+
+@[expose] public section
 
 /-!
 # The coefficient the unit ball allows

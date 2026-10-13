@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.Normed.Algebra.Exponential
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # Conjugating by `e^{-At}` is a bijection, so membership transports

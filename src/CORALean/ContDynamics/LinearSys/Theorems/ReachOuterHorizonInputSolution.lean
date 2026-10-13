@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
-import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+
+@[expose] public section
 
 /-!
 # `reach` contains every trajectory over a bounded horizon, inputs and all

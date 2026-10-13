@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
+
+@[expose] public section
 
 /-!
 # The first part of `splitEquality` holds only equalities

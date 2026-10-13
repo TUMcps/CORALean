@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Instances
-import CORALean.NN.Graph.Operations.FloatSumPoolMat
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Instances
+public import CORALean.NN.Graph.Operations.FloatSumPoolMat
+
+@[expose] public section
 
 /-!
 # Summation pooling on a float polynomial zonotope

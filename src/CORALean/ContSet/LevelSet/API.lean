@@ -1,5 +1,7 @@
-import CORALean.ContSet.LevelSet.Real.API
-import CORALean.ContSet.LevelSet.Float.API
+module
+
+public import CORALean.ContSet.LevelSet.Real.API
+public import CORALean.ContSet.LevelSet.Float.API
 
 /-!
 # Level sets

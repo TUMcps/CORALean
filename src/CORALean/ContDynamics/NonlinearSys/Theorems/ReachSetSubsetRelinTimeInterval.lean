@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
+
+@[expose] public section
 
 /-!
 # One computed set encloses the whole reachable set over a step

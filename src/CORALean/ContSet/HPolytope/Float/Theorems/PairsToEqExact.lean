@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
-import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairDot
-import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairSymm
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairDot
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairSymm
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `pairsToEq` denotes the same set, exactly

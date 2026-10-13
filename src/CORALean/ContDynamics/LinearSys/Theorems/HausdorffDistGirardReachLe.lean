@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.GirardReachOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetDistLe
-import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetDistLe
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1] converges

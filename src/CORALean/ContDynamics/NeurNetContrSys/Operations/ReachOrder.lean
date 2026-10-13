@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # An order admissible for a step and its plant's matrix

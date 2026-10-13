@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Capsule.radius` is the supremum of the distance from the centre

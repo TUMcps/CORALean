@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceBox`

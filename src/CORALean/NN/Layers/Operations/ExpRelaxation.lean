@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.ExpEnclosure
-import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+module
+
+public import CORALean.NN.Layers.Operations.ExpEnclosure
+public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+
+@[expose] public section
 
 /-!
 # The exponential relaxation

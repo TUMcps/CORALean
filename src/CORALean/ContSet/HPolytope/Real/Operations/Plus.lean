@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
-import CORALean.Global.LinProg.Composition
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
+public import CORALean.Global.LinProg.Composition
+
+@[expose] public section
 
 /-!
 # `HPolytope.plusOf`

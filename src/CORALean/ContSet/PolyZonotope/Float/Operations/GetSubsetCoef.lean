@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.MaxExp
-import CORALean.ContSet.Interval.Float.Operations.PowLo
-import CORALean.ContSet.Interval.Float.Operations.PowHi
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.Global.Float.IntRound
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MaxExp
+public import CORALean.ContSet.Interval.Float.Operations.PowLo
+public import CORALean.ContSet.Interval.Float.Operations.PowHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.Global.Float.IntRound
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.getSubsetCoef`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
-import CORALean.ContSet.Zonotope.Real.Theorems.CubMapCoeff
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
+public import CORALean.ContSet.Zonotope.Real.Theorems.CubMapCoeff
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+
+@[expose] public section
 
 /-!
 # The cubic map of a constrained zonotope is enclosed by `ConZonotope.cubMap`

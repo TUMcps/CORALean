@@ -1,7 +1,11 @@
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Topology.MetricSpace.HausdorffDistance
+module
+
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+
+@[expose] public section
 
 /-!
 # How far a zonotope's box can be from the zonotope

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # State of the interval observer, in floats

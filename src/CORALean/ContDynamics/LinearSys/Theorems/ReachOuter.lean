@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.Discretize
-import CORALean.ContDynamics.LinearSys.Theorems.Discretize
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.Discretize
+public import CORALean.ContDynamics.LinearSys.Theorems.Discretize
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # `reach` contains every trajectory at the sample times

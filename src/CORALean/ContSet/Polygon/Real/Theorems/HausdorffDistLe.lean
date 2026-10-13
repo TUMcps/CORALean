@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLeIff
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLeIff
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # `Polygon.hausdorffDist` is at most the Hausdorff distance to the points

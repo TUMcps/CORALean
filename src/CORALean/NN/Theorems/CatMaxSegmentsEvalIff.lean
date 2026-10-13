@@ -1,8 +1,12 @@
-import CORALean.NN.Operations.CatMaxSegments
-import CORALean.NN.Theorems.CatEvalAffineIff
-import CORALean.NN.Theorems.CatEvalCompIff
-import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
-import CORALean.NN.Theorems.CatMaxSegmentEvalIff
+module
+
+public import CORALean.NN.Operations.CatMaxSegments
+public import CORALean.NN.Theorems.CatEvalAffineIff
+public import CORALean.NN.Theorems.CatEvalCompIff
+public import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
+public import CORALean.NN.Theorems.CatMaxSegmentEvalIff
+
+@[expose] public section
 
 /-!
 # Pooling a row of windows, one CAT step at a time

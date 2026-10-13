@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.representsa_emptySet`

@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.HybridAutomaton
+module
+
+public import CORALean.HybridDynamics.HybridAutomaton
+
+@[expose] public section
 
 /-!
 # Parallel hybrid automata: the automaton and its runs

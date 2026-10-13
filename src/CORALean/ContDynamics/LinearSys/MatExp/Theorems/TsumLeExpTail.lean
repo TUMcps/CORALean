@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
-import Mathlib.Analysis.Normed.Order.Lattice
-import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
+public import Mathlib.Analysis.Normed.Order.Lattice
+public import Mathlib.Analysis.SpecificLimits.Basic
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # A series dominated by the exponential's tail sums to no more than it

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.BoundDotLP
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.BoundDotLP
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.boundDotLP` bounds the support function

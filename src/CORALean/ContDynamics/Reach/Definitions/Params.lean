@@ -1,4 +1,8 @@
-import Mathlib.Algebra.Group.Defs
+module
+
+public import Mathlib.Algebra.Group.Defs
+
+@[expose] public section
 
 /-!
 # CORA's `params` for a system with no input: the initial set and the horizon

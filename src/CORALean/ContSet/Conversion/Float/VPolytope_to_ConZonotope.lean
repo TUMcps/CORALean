@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.VPolytope.Float.VPolytope
-import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.VPolytope.Float.VPolytope
+public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+
+@[expose] public section
 
 /-!
 # A hull as a constrained zonotope, over a floating-point scalar

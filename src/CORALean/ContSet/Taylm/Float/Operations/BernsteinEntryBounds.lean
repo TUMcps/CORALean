@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.BernsteinStep
-import CORALean.Global.Float.ListSum
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BernsteinStep
+public import CORALean.Global.Float.ListSum
+
+@[expose] public section
 
 /-!
 # `Taylm.bernsteinEntryBounds`

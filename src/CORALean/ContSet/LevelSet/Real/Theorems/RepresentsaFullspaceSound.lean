@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaFullspace
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaFullspace
+
+@[expose] public section
 
 /-!
 # `LevelSet.representsa_fullspace` is sound

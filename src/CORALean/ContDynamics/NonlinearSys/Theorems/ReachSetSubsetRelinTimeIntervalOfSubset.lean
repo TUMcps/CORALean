@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
+
+@[expose] public section
 
 /-!
 # The reachable set inside a computed one, with nothing left to assume

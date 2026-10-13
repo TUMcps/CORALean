@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.BoundaryRatio
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.BoundaryRatio
+
+@[expose] public section
 
 /-!
 # `Interval.boundaryPoint`

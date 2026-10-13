@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
-import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+
+@[expose] public section
 
 /-!
 # One window of `reachUnion` encloses every member's flow over it

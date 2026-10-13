@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Algebra.Order.Chebyshev
+module
+
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Algebra.Order.Chebyshev
+
+@[expose] public section
 
 /-!
 # A double sum of matrices weighted by a probability vector is positive definite

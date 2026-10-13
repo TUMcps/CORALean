@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
+
+@[expose] public section
 
 /-!
 # A generator pointing along `σ` has a nonnegative cross product with one that does not

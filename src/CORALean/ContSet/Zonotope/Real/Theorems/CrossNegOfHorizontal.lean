@@ -1,7 +1,11 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # A generator of the wrong horizontal direction cannot come first

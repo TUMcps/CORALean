@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.RepresentsaHalfspaceCora
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.RepresentsaHalfspaceCora
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `polytope/representsa_(P, 'halfspace')` errors on a one-dimensional vertex polytope

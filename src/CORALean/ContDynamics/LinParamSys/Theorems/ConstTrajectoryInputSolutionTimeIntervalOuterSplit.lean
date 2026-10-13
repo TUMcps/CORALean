@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
-import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+
+@[expose] public section
 
 /-!
 # A time-interval input enclosure at a box, when the input set misses the origin

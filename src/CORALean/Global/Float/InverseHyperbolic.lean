@@ -1,7 +1,11 @@
-import CORALean.Global.Float.Log
-import CORALean.Global.Float.Sqrt
-import Mathlib.Analysis.SpecialFunctions.Arsinh
-import Mathlib.Analysis.SpecialFunctions.Arcosh
+module
+
+public import CORALean.Global.Float.Log
+public import CORALean.Global.Float.Sqrt
+public import Mathlib.Analysis.SpecialFunctions.Arsinh
+public import Mathlib.Analysis.SpecialFunctions.Arcosh
+
+@[expose] public section
 
 /-!
 # `arsinh` and `arcosh` rounded in either direction

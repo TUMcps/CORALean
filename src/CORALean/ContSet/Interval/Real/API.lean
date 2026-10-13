@@ -1,9 +1,11 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.Interval.Real.Definitions.API
-import CORALean.ContSet.Interval.Real.Operations.API
-import CORALean.ContSet.Interval.Real.Theorems.API
-import CORALean.ContSet.Interval.Real.Complexity.API
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Interval.Real.Definitions.API
+public import CORALean.ContSet.Interval.Real.Operations.API
+public import CORALean.ContSet.Interval.Real.Theorems.API
+public import CORALean.ContSet.Interval.Real.Complexity.API
+public import CORALean.ContSet.Interval.Real.Instances
 
 /-!
 # Intervals, collected

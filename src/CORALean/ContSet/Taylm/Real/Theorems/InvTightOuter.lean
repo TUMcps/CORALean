@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.InvTight
-import CORALean.ContSet.Taylm.Real.Theorems.InvSubSumEq
-import CORALean.ContSet.Taylm.Real.Theorems.InvCoef
-import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
-import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.InvTight
+public import CORALean.ContSet.Taylm.Real.Theorems.InvSubSumEq
+public import CORALean.ContSet.Taylm.Real.Theorems.InvCoef
+public import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+
+@[expose] public section
 
 /-!
 # `Taylm.invTight` encloses `1 / f`

@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Float.Operations.BallB
-import CORALean.ContSet.Zonotope.Float.Operations.BallCert
-import CORALean.ContSet.Zonotope.Float.Operations.StBeta
-import CORALean.ContSet.Zonotope.Float.Operations.StDelta
-import CORALean.ContSet.Zonotope.Float.Operations.StGamma
-import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
-import CORALean.ContSet.Zonotope.Float.Operations.StUsed
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.BallB
+public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
+public import CORALean.ContSet.Zonotope.Float.Operations.StBeta
+public import CORALean.ContSet.Zonotope.Float.Operations.StDelta
+public import CORALean.ContSet.Zonotope.Float.Operations.StGamma
+public import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
+public import CORALean.ContSet.Zonotope.Float.Operations.StUsed
+
+@[expose] public section
 
 /-!
 # `Zonotope.containsZonotope`, over a floating-point scalar

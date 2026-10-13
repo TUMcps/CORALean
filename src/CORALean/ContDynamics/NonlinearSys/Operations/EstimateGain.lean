@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainSearch
-import CORALean.ContDynamics.NonlinearSys.Operations.InterpGain
-import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainSearch
+public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGain
+public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+
+@[expose] public section
 
 /-!
 # `estimateGain`: the gain at the finite horizon, read back from two radii

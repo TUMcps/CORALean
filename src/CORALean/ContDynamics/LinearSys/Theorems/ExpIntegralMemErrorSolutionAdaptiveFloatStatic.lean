@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveIntegralOuterRefines
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptiveFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveIntegralOuterRefines
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSolutionAdaptiveFloat
+
+@[expose] public section
 
 /-!
 # `errorSolutionAdaptiveFloat` with a static input

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorHdOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorLPVEq
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorHdOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.IntersectDescriptorLPVEq
+
+@[expose] public section
 
 /-!
 # The descriptor LPV estimator holds the true state

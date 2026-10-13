@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ErrMatFloat
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Float.Operations.Reduce
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ErrMatFloat
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # The set-propagation observer, in floats

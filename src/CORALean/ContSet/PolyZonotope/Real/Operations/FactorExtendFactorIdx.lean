@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+
+@[expose] public section
 
 /-!
 # On a kept factor, extension is the identity

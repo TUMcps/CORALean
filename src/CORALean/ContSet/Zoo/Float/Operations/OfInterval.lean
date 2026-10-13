@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zoo.Float.Zoo
-import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
+module
+
+public import CORALean.ContSet.Zoo.Float.Zoo
+public import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
+
+@[expose] public section
 
 /-!
 # `Zoo.ofInterval`, over a floating-point scalar

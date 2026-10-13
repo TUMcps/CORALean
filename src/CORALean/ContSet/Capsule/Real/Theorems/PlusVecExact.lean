@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.PlusVec
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.PlusVec
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # `Capsule.plusVec` is exactly the translate

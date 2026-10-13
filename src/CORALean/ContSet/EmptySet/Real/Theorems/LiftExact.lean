@@ -1,5 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Lift
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Lift
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # `EmptySet.lift_` is exact

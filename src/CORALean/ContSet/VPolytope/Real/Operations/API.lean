@@ -1,32 +1,34 @@
-import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
-import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
-import CORALean.ContSet.VPolytope.Real.Operations.Point
-import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
-import CORALean.ContSet.VPolytope.Real.Operations.IntersectionH
-import CORALean.ContSet.VPolytope.Real.Operations.IntersectionHIsCompact
-import CORALean.ContSet.VPolytope.Real.Operations.Intersection
-import CORALean.ContSet.VPolytope.Real.Operations.LinComb
-import CORALean.ContSet.VPolytope.Real.Operations.Map
-import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
-import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
-import CORALean.ContSet.VPolytope.Real.Operations.Bilin
-import CORALean.ContSet.VPolytope.Real.Operations.ColLin
-import CORALean.ContSet.VPolytope.Real.Operations.MatPolytope
-import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
-import CORALean.ContSet.VPolytope.Real.Operations.Plus
-import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
-import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
-import CORALean.ContSet.VPolytope.Real.Operations.Project
-import CORALean.ContSet.VPolytope.Real.Operations.EnclosePoints
-import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
-import CORALean.ContSet.VPolytope.Real.Operations.Or
-import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
-import CORALean.ContSet.VPolytope.Real.Operations.Center
-import CORALean.ContSet.VPolytope.Real.Operations.CartProd
-import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
-import CORALean.ContSet.VPolytope.Real.Operations.HausdorffDist
-import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
-import CORALean.ContSet.VPolytope.Real.Operations.RepresentsaHalfspaceCora
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
+public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.VPolytope.Real.Operations.Point
+public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionH
+public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionHIsCompact
+public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
+public import CORALean.ContSet.VPolytope.Real.Operations.LinComb
+public import CORALean.ContSet.VPolytope.Real.Operations.Map
+public import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
+public import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
+public import CORALean.ContSet.VPolytope.Real.Operations.Bilin
+public import CORALean.ContSet.VPolytope.Real.Operations.ColLin
+public import CORALean.ContSet.VPolytope.Real.Operations.MatPolytope
+public import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
+public import CORALean.ContSet.VPolytope.Real.Operations.Plus
+public import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
+public import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
+public import CORALean.ContSet.VPolytope.Real.Operations.Project
+public import CORALean.ContSet.VPolytope.Real.Operations.EnclosePoints
+public import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
+public import CORALean.ContSet.VPolytope.Real.Operations.Or
+public import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
+public import CORALean.ContSet.VPolytope.Real.Operations.Center
+public import CORALean.ContSet.VPolytope.Real.Operations.CartProd
+public import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
+public import CORALean.ContSet.VPolytope.Real.Operations.HausdorffDist
+public import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
+public import CORALean.ContSet.VPolytope.Real.Operations.RepresentsaHalfspaceCora
 
 /-!
 # What `VPolytope` computes

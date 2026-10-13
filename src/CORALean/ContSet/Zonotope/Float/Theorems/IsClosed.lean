@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A float zonotope is closed

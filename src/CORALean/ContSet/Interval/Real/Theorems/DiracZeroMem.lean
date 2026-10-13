@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Dirac
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Dirac
+
+@[expose] public section
 
 /-!
 # `Interval.dirac` contains `0`

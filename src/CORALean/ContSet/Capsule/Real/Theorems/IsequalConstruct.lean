@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Operations.Isequal
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # Equal fields denote equal sets

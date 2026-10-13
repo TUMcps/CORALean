@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1]: reachability of a nonlinear differential-algebraic system

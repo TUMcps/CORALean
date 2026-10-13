@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # `Zonotope.minnormOffset`

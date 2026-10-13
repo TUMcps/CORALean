@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Empty
-import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Empty
+public import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
+
+@[expose] public section
 
 /-!
 # `Interval.empty` denotes the empty set

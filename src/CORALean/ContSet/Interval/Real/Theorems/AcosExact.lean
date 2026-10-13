@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Acos
-import CORALean.ContSet.Interval.Real.Theorems.AntitoneImageExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Acos
+public import CORALean.ContSet.Interval.Real.Theorems.AntitoneImageExact
+
+@[expose] public section
 
 /-!
 # `Interval.acos` is exactly the image under `Real.arccos`

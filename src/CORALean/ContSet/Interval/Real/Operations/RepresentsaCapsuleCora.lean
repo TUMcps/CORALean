@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Radius
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+
+@[expose] public section
 
 /-!
 # `Interval.representsaCapsuleCora`: the `'capsule'` test as CORA's code computes it

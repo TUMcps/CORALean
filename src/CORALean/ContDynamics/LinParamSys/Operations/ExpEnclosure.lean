@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
+
+@[expose] public section
 
 /-!
 # `e^{At}` at every matrix the set holds, as one interval matrix

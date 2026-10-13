@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.LeShl
-import CORALean.Global.Float.Instances.Dyadic.Operations.LeShr
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.LeShl
+public import CORALean.Global.Float.Instances.Dyadic.Operations.LeShr
+
+@[expose] public section
 
 /-!
 # Comparison

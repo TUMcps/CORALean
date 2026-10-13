@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerSubsetReachSet
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
-import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerSubsetReachSet
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
+
+@[expose] public section
 
 /-!
 # `timePointStepInnerRep` is an inner approximation, as a representation

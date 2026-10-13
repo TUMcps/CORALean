@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+module
+
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+
+@[expose] public section
 
 /-!
 # A float polytope as a level set

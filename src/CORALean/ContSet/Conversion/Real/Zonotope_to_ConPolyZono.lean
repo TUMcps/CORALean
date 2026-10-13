@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
-import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+module
+
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+
+@[expose] public section
 
 /-!
 # A zonotope as a constrained polynomial zonotope

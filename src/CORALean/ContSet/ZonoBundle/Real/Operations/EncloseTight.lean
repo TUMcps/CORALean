@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVerticesNonempty
-import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVerticesNonempty
+public import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.encloseTight`

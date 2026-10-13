@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
+
+@[expose] public section
 
 /-!
 # The horizon, as the union of what the loop computes on each step

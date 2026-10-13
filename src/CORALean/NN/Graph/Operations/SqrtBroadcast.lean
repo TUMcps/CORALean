@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.NN.Graph.Operations.SqrtConst
-import CORALean.NN.Graph.Operations.SqrtEdgeCoeff
-import CORALean.NN.Graph.Operations.SqrtError
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.NN.Graph.Operations.SqrtConst
+public import CORALean.NN.Graph.Operations.SqrtEdgeCoeff
+public import CORALean.NN.Graph.Operations.SqrtError
+
+@[expose] public section
 
 /-!
 # The matrix of inverse square roots, broadcast along an index

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Map
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Map
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # `Zonotope.mtimes` is `map` at the matrix's linear map

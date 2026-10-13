@@ -1,15 +1,19 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineDynamicsErrorBound
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinus
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsConstCorrectionMatrixLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
-import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.Global.Err
-import CORALean.Global.EuclideanGenOpNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineDynamicsErrorBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinus
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsConstCorrectionMatrixLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
+public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.Global.Err
+public import CORALean.Global.EuclideanGenOpNorm
+
+@[expose] public section
 
 /-!
 # `affineDynamicsError` is under its own explicit bound

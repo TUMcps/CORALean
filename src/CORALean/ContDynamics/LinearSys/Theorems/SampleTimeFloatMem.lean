@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
-import CORALean.Global.Float.SoundFloatArithmetic
-import Mathlib.Algebra.CharP.Defs
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.SampleTimeFloat
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import Mathlib.Algebra.CharP.Defs
+
+@[expose] public section
 
 /-!
 # `sampleTimeFloat` brackets `k Δt`

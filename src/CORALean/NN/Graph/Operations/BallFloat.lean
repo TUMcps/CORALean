@@ -1,5 +1,9 @@
-import Mathlib.Data.Fintype.Basic
-import CORALean.Global.Tensor
+module
+
+public import Mathlib.Data.Fintype.Basic
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The `r`-hop neighbourhood on an edge test

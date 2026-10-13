@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
+
+@[expose] public section
 
 /-!
 # `HPolytope.contractBox`

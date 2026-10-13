@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Operations.MaxPoolGapUp
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Operations.MaxPoolGapUp
+
+@[expose] public section
 
 /-!
 # A pooled window's gap is nonnegative

@@ -1,9 +1,13 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
-import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
-import CORALean.ContSet.SpectraShadow.Real.Operations.HyperplaneOne
-import CORALean.ContSet.SpectraShadow.Real.Operations.CartProd
-import CORALean.ContSet.SpectraShadow.Real.Operations.Inter
-import CORALean.ContSet.SpectraShadow.Real.Operations.Project
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
+public import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
+public import CORALean.ContSet.SpectraShadow.Real.Operations.HyperplaneOne
+public import CORALean.ContSet.SpectraShadow.Real.Operations.CartProd
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Inter
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Project
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.convHull_`

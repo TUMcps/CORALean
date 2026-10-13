@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceCombastel
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceCombastel
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceCombastel` over-approximates the zonotope

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.MtimesCora
-import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.MtimesCora
+public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
+
+@[expose] public section
 
 /-!
 # CORA's `capsule/mtimes` radius is unsound for a contraction

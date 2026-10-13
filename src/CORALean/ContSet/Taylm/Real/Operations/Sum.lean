@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Taylm.sum`

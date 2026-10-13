@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Real.Operations.OfPoint
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.OfPoint
+
+@[expose] public section
 
 /-!
 # A direction-free, radius-free capsule contains its own centre

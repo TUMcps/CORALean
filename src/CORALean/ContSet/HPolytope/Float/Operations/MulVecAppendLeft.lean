@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # A row of a concatenated constraint matrix, on the left block

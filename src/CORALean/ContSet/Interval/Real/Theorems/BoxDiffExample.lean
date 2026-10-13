@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.BoxDiff
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Linarith
-import Mathlib.Data.Fin.VecNotation
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.BoxDiff
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Data.Fin.VecNotation
+
+@[expose] public section
 
 /-!
 # The box difference of [1, Example 4]

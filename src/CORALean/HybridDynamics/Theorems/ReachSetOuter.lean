@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.ReachSet
+module
+
+public import CORALean.HybridDynamics.Definitions.ReachSet
+
+@[expose] public section
 
 /-!
 # `reachSet` contains every run

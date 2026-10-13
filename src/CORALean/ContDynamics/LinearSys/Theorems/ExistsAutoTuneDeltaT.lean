@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionErrorIsBigO
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoAffineDynamicsErrorZero
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionTauErrorZero
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaT
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolutionErrorIsBigO
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoAffineDynamicsErrorZero
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoParticularSolutionTauErrorZero
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+
+@[expose] public section
 
 /-!
 # `Thm. 1`: `Alg. 2` lines 5-15 always land, for every `ε_max > 0`

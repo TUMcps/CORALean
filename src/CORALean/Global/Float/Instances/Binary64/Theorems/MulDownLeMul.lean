@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
-import CORALean.Global.Float.Instances.Binary64.Operations.MulDown
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
+public import CORALean.Global.Float.Instances.Binary64.Operations.MulDown
+
+@[expose] public section
 
 /-!
 # Multiplication, rounded down, never overshoots

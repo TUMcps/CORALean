@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
-import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # From the backward reachable set, a run into the target exists

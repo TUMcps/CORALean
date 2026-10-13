@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-import CORALean.NN.Layers.Operations.StarSetFloatChordRow
-import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
+public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
+
+@[expose] public section
 
 /-!
 # The float chord row holds at the ReLU of a bounded neuron

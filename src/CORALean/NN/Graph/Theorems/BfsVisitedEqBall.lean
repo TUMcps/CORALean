@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Operations.Bfs
-import CORALean.NN.Graph.Theorems.BallMono
-import CORALean.NN.Graph.Theorems.MemBallSelf
+module
+
+public import CORALean.NN.Graph.Operations.Bfs
+public import CORALean.NN.Graph.Theorems.BallMono
+public import CORALean.NN.Graph.Theorems.MemBallSelf
+
+@[expose] public section
 
 /-!
 # The breadth-first search finds the ball

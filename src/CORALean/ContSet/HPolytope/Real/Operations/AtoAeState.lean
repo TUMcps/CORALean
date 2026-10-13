@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import Mathlib.Data.List.FinRange
-import Mathlib.Data.Finset.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import Mathlib.Data.List.FinRange
+public import Mathlib.Data.Finset.Basic
+
+@[expose] public section
 
 /-!
 # `HPolytope.atoAeState`

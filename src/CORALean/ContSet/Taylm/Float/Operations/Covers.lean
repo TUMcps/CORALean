@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.InBox
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.InBox
+
+@[expose] public section
 
 /-!
 # `Taylm.Covers`, over a floating-point scalar

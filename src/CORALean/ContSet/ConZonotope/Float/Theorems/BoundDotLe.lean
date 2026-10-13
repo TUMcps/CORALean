@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `ConZonotope.boundDot` bounds the support function

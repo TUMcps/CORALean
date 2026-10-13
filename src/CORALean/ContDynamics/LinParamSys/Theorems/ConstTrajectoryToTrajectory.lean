@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+
+@[expose] public section
 
 /-!
 # A constant-parameter trajectory is a time-varying one

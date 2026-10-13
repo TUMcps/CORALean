@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.ActivationKind
+module
+
+public import CORALean.NN.Definitions.ActivationKind
+
+@[expose] public section
 
 /-!
 # `nnActivationLayer.getMergeBuckets`

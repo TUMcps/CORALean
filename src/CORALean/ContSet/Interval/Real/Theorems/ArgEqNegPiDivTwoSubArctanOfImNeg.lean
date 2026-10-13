@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Complex.Arg
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
-import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfImPos
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Complex.Arg
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+public import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfImPos
+
+@[expose] public section
 
 /-!
 # The argument in the lower half-plane is a shifted arctangent

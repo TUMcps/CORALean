@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Theorems.FaceCentrallySymmetric
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.FaceCentrallySymmetric
+
+@[expose] public section
 
 /-!
 # [1, Prop. 1]: zonotopes are not closed under Minkowski difference

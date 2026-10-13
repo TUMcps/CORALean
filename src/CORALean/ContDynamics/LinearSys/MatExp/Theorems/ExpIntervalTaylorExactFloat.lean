@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExactFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTailFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
-import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExactFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorTailFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorTwo
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # `expIntervalTaylorExact` encloses the truncation of every member, over a float

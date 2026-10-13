@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.ChainEval
+module
+
+public import CORALean.NN.Operations.ChainEval
+
+@[expose] public section
 
 /-!
 # A chain's composite, one layer in

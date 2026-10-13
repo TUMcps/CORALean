@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+
+@[expose] public section
 
 /-!
 # The complement of a vertex of the cut is a vertex of the complementary cut

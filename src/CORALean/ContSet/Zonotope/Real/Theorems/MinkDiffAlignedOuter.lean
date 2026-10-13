@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
-import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffAligned` also encloses the Minkowski difference

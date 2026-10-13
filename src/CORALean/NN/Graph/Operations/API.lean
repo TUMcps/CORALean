@@ -1,67 +1,69 @@
-import CORALean.NN.Graph.Operations.AdjAt
-import CORALean.NN.Graph.Operations.AdjMax
-import CORALean.NN.Graph.Operations.Ball
-import CORALean.NN.Graph.Operations.BallEnum
-import CORALean.NN.Graph.Operations.Degree
-import CORALean.NN.Graph.Operations.DegreeAt
-import CORALean.NN.Graph.Operations.DegreeCoeff
-import CORALean.NN.Graph.Operations.DegreeInf
-import CORALean.NN.Graph.Operations.DegreeSup
-import CORALean.NN.Graph.Operations.EdgeDegree
-import CORALean.NN.Graph.Operations.EdgeMat
-import CORALean.NN.Graph.Operations.EvalSteps
-import CORALean.NN.Graph.Operations.Gcn
-import CORALean.NN.Graph.Operations.GcnLin
-import CORALean.NN.Graph.Operations.GcnShared
-import CORALean.NN.Graph.Operations.GcnSteps
-import CORALean.NN.Graph.Operations.GcnUncertain
-import CORALean.NN.Graph.Operations.Linear
-import CORALean.NN.Graph.Operations.LinearBias
-import CORALean.NN.Graph.Operations.LinearLin
-import CORALean.NN.Graph.Operations.LinearPolyZonotope
-import CORALean.NN.Graph.Operations.Mask
-import CORALean.NN.Graph.Operations.MatMulBilin
-import CORALean.NN.Graph.Operations.MessagePassing
-import CORALean.NN.Graph.Operations.MessagePassingEnclosure
-import CORALean.NN.Graph.Operations.OnesRow
-import CORALean.NN.Graph.Operations.ReduceGNNForNode
-import CORALean.NN.Graph.Operations.ReduceKeep
-import CORALean.NN.Graph.Operations.ReducedSteps
-import CORALean.NN.Graph.Operations.Select
-import CORALean.NN.Graph.Operations.SelectMat
-import CORALean.NN.Graph.Operations.SqrtBroadcast
-import CORALean.NN.Graph.Operations.SqrtCol
-import CORALean.NN.Graph.Operations.SqrtConst
-import CORALean.NN.Graph.Operations.SqrtEdgeCoeff
-import CORALean.NN.Graph.Operations.SqrtError
-import CORALean.NN.Graph.Operations.SqrtOffset
-import CORALean.NN.Graph.Operations.SqrtRow
-import CORALean.NN.Graph.Operations.SqrtSlope
-import CORALean.NN.Graph.Operations.SumPool
-import CORALean.NN.Graph.Operations.SumPoolLin
-import CORALean.NN.Graph.Operations.UncertainAdj
-import CORALean.NN.Graph.Operations.UncertainAdjPad
-import CORALean.NN.Graph.Operations.EvalStepsLayers
-import CORALean.NN.Graph.Operations.Bfs
-import CORALean.NN.Graph.Operations.EvalLayers
-import CORALean.NN.Graph.Operations.GcnActSteps
-import CORALean.NN.Graph.Operations.TailEval
-import CORALean.NN.Graph.Operations.TailEnclose
-import CORALean.NN.Graph.Operations.Alg1Node
-import CORALean.NN.Graph.Operations.Alg1Graph
-import CORALean.NN.Graph.Operations.Flatten
-import CORALean.NN.Graph.Operations.FloatBiasPoint
-import CORALean.NN.Graph.Operations.FloatGcn
-import CORALean.NN.Graph.Operations.FloatLeftMat
-import CORALean.NN.Graph.Operations.FloatLinear
-import CORALean.NN.Graph.Operations.FloatRightMat
-import CORALean.NN.Graph.Operations.FloatSumPool
-import CORALean.NN.Graph.Operations.FloatSumPoolMat
-import CORALean.NN.Graph.Operations.SupportFloat
-import CORALean.NN.Graph.Operations.BallFloat
-import CORALean.NN.Graph.Operations.ReduceKeepFloat
-import CORALean.NN.Graph.Operations.ReducedStepsFloat
-import CORALean.NN.Graph.Operations.ReduceGNNForNodeFloat
+module
+
+public import CORALean.NN.Graph.Operations.AdjAt
+public import CORALean.NN.Graph.Operations.AdjMax
+public import CORALean.NN.Graph.Operations.Ball
+public import CORALean.NN.Graph.Operations.BallEnum
+public import CORALean.NN.Graph.Operations.Degree
+public import CORALean.NN.Graph.Operations.DegreeAt
+public import CORALean.NN.Graph.Operations.DegreeCoeff
+public import CORALean.NN.Graph.Operations.DegreeInf
+public import CORALean.NN.Graph.Operations.DegreeSup
+public import CORALean.NN.Graph.Operations.EdgeDegree
+public import CORALean.NN.Graph.Operations.EdgeMat
+public import CORALean.NN.Graph.Operations.EvalSteps
+public import CORALean.NN.Graph.Operations.Gcn
+public import CORALean.NN.Graph.Operations.GcnLin
+public import CORALean.NN.Graph.Operations.GcnShared
+public import CORALean.NN.Graph.Operations.GcnSteps
+public import CORALean.NN.Graph.Operations.GcnUncertain
+public import CORALean.NN.Graph.Operations.Linear
+public import CORALean.NN.Graph.Operations.LinearBias
+public import CORALean.NN.Graph.Operations.LinearLin
+public import CORALean.NN.Graph.Operations.LinearPolyZonotope
+public import CORALean.NN.Graph.Operations.Mask
+public import CORALean.NN.Graph.Operations.MatMulBilin
+public import CORALean.NN.Graph.Operations.MessagePassing
+public import CORALean.NN.Graph.Operations.MessagePassingEnclosure
+public import CORALean.NN.Graph.Operations.OnesRow
+public import CORALean.NN.Graph.Operations.ReduceGNNForNode
+public import CORALean.NN.Graph.Operations.ReduceKeep
+public import CORALean.NN.Graph.Operations.ReducedSteps
+public import CORALean.NN.Graph.Operations.Select
+public import CORALean.NN.Graph.Operations.SelectMat
+public import CORALean.NN.Graph.Operations.SqrtBroadcast
+public import CORALean.NN.Graph.Operations.SqrtCol
+public import CORALean.NN.Graph.Operations.SqrtConst
+public import CORALean.NN.Graph.Operations.SqrtEdgeCoeff
+public import CORALean.NN.Graph.Operations.SqrtError
+public import CORALean.NN.Graph.Operations.SqrtOffset
+public import CORALean.NN.Graph.Operations.SqrtRow
+public import CORALean.NN.Graph.Operations.SqrtSlope
+public import CORALean.NN.Graph.Operations.SumPool
+public import CORALean.NN.Graph.Operations.SumPoolLin
+public import CORALean.NN.Graph.Operations.UncertainAdj
+public import CORALean.NN.Graph.Operations.UncertainAdjPad
+public import CORALean.NN.Graph.Operations.EvalStepsLayers
+public import CORALean.NN.Graph.Operations.Bfs
+public import CORALean.NN.Graph.Operations.EvalLayers
+public import CORALean.NN.Graph.Operations.GcnActSteps
+public import CORALean.NN.Graph.Operations.TailEval
+public import CORALean.NN.Graph.Operations.TailEnclose
+public import CORALean.NN.Graph.Operations.Alg1Node
+public import CORALean.NN.Graph.Operations.Alg1Graph
+public import CORALean.NN.Graph.Operations.Flatten
+public import CORALean.NN.Graph.Operations.FloatBiasPoint
+public import CORALean.NN.Graph.Operations.FloatGcn
+public import CORALean.NN.Graph.Operations.FloatLeftMat
+public import CORALean.NN.Graph.Operations.FloatLinear
+public import CORALean.NN.Graph.Operations.FloatRightMat
+public import CORALean.NN.Graph.Operations.FloatSumPool
+public import CORALean.NN.Graph.Operations.FloatSumPoolMat
+public import CORALean.NN.Graph.Operations.SupportFloat
+public import CORALean.NN.Graph.Operations.BallFloat
+public import CORALean.NN.Graph.Operations.ReduceKeepFloat
+public import CORALean.NN.Graph.Operations.ReducedStepsFloat
+public import CORALean.NN.Graph.Operations.ReduceGNNForNodeFloat
 
 /-!
 # What the graph layers compute, collected

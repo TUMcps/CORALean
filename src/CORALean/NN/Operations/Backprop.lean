@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.Sensitivity
+module
+
+public import CORALean.NN.Operations.Sensitivity
+
+@[expose] public section
 
 /-!
 # Backpropagating a gradient through a network

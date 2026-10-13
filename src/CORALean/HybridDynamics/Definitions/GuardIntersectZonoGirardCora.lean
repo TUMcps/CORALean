@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirard
-import CORALean.HybridDynamics.Definitions.RobustProjectionCora
+module
+
+public import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirard
+public import CORALean.HybridDynamics.Definitions.RobustProjectionCora
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectZonoGirardCora`: the guard enclosure with CORA's pinning

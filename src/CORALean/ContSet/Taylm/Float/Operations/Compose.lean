@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Float.Operations.Sum
-import CORALean.ContSet.Taylm.Float.Operations.Pow
-import CORALean.ContSet.Taylm.Float.Operations.Smul
-import CORALean.ContSet.Taylm.Float.Operations.Minus
-import CORALean.ContSet.Taylm.Float.Operations.Const
-import CORALean.ContSet.Taylm.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Sum
+public import CORALean.ContSet.Taylm.Float.Operations.Pow
+public import CORALean.ContSet.Taylm.Float.Operations.Smul
+public import CORALean.ContSet.Taylm.Float.Operations.Minus
+public import CORALean.ContSet.Taylm.Float.Operations.Const
+public import CORALean.ContSet.Taylm.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # Composing a polynomial with a Taylor model

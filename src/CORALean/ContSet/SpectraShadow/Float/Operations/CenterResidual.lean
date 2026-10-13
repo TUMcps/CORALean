@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Residual
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.centerResidual`

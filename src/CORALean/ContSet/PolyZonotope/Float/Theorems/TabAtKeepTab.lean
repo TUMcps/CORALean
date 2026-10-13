@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
-import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
-import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
-import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
-import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
-import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
+public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
+public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
+
+@[expose] public section
 
 /-!
 # The kept-column table is `keepIdx`

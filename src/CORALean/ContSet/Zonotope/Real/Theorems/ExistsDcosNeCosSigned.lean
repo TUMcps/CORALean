@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Dcos
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Dcos
+
+@[expose] public section
 
 /-!
 # [1, Eq. (4)] is not the cosine it is said to be

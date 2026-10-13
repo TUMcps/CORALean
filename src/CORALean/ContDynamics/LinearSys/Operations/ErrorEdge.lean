@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContSet.Zonotope.Real.Zonotope
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+
+@[expose] public section
 
 /-!
 # The generator sums of the error solution

@@ -1,4 +1,8 @@
-import CORALean.Global.DmdCandidate
+module
+
+public import CORALean.Global.DmdCandidate
+
+@[expose] public section
 
 /-!
 # The full-rank candidate fits consistent data exactly

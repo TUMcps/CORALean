@@ -1,6 +1,10 @@
-import CORALean.Global.CoeffNormHalfGadgetH
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Algebra.GroupWithZero.Action.Pointwise.Set
+module
+
+public import CORALean.Global.CoeffNormHalfGadgetH
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Algebra.GroupWithZero.Action.Pointwise.Set
+
+@[expose] public section
 
 /-!
 # The circumbody of the reduction: a zonotope with cross-polytope slices

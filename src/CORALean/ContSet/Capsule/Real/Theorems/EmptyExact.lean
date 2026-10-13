@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.Empty
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.Empty
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+
+@[expose] public section
 
 /-!
 # `Capsule.empty` denotes the empty set

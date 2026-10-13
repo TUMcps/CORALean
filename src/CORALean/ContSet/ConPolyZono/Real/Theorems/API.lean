@@ -1,66 +1,68 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
-import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsPointIff
-import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsMono
-import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionDepExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactGensExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactConsExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactFactorsExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
-import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CartProdExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
-import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombExactOfDependent
-import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ConstructEqImage
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ContinuousAffine
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompactDomain
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceByOuter
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOuter
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOrder
-import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentSetUnionDomain
-import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
-import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
-import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceConOuter
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ProjectExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.EmptyExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimCoraCounterexample
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank
-import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
-import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitLongestGenUnion
-import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitUnion
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ExactPlusConstruct
-import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointSubset
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffOuter
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffInnerOfConvex
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffNotInner
-import CORALean.ContSet.ConPolyZono.Real.Theorems.RescaleExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointIff
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointCoraCounterexample
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
-import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaEmptyCounterexample
-import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
-import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointCoraCounterexample
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsPointIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsMono
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionDepExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactGensExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactConsExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactFactorsExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CartProdExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombExactOfDependent
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapDepExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.QuadMapExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContinuousAffine
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompactDomain
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceByOuter
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOrder
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentSetUnionDomain
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceConOuter
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ProjectExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.EmptyExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimCoraCounterexample
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitLongestGenUnion
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitUnion
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExactPlusConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointSubset
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffOuter
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffInnerOfConvex
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffNotInner
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RescaleExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointCoraCounterexample
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaEmptyCounterexample
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointCoraCounterexample
 
 /-!
 # What `ConPolyZono` guarantees

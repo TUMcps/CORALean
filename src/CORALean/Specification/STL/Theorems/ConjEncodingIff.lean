@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The conjunction constraints compute the conjunction

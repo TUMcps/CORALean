@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
-import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
-import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorMultiplication`

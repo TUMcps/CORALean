@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
-import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnscale
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnscale
+
+@[expose] public section
 
 /-!
 # The scaled solution is on the orbit, at the clock

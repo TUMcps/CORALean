@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
-import CORALean.ContSet.Interval.Real.Operations.Inf
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
+public import CORALean.ContSet.Interval.Real.Operations.Inf
+
+@[expose] public section
 
 /-!
 # `Interval.Inf` is the full space

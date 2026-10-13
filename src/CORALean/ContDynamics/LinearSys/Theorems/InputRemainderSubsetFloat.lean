@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The input remainder's closed convex hull lies in the float product

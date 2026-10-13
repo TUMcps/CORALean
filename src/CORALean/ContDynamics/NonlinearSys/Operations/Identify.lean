@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.ContDynamics.NonlinearSys.Operations.IdentifyCandidate
-import CORALean.Global.DmdSelect
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Operations.IdentifyCandidate
+public import CORALean.Global.DmdSelect
+
+@[expose] public section
 
 /-!
 # `identify` of `NonlinearSys`, algorithm `dmd`

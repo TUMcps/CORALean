@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Log
-import Mathlib.Analysis.SpecialFunctions.Artanh
+module
+
+public import CORALean.Global.Float.Log
+public import Mathlib.Analysis.SpecialFunctions.Artanh
+
+@[expose] public section
 
 /-!
 # `artanh` rounded in either direction

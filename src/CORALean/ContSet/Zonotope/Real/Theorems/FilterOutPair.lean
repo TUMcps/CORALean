@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FilterOut
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FilterOut
+
+@[expose] public section
 
 /-!
 # `filterOut` deletes both of two equal cells

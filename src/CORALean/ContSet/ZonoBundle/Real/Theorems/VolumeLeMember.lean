@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
+
+@[expose] public section
 
 /-!
 # A bundle is no larger than any member

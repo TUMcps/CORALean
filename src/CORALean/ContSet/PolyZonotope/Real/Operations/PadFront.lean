@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadFrontE
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFrontE
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.padFront`

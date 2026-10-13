@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+
+@[expose] public section
 
 /-!
 # The exact set `Reach LinearSysDT` is asked to enclose

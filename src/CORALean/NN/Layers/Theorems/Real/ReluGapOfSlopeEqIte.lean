@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.Relu
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.NN.Layers.Definitions.Relu
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Which end ReLU's gap above a line is taken at

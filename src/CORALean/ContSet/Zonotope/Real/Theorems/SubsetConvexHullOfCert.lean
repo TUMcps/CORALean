@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.Algebra.Order.Chebyshev
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.Algebra.Order.Chebyshev
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # Zonotope in a convex hull of zonotopes, sufficiently

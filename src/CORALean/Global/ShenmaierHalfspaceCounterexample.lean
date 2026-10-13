@@ -1,9 +1,13 @@
-import CORALean.Global.ShenmaierHalfspace
-import CORALean.Global.CoeffNorm
-import CORALean.Global.Tensor
-import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.Global.ShenmaierHalfspace
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.Tensor
+public import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
+public import Mathlib.LinearAlgebra.Dimension.Constructions
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # `[1, Thm. 4.3]`'s probability claim fails

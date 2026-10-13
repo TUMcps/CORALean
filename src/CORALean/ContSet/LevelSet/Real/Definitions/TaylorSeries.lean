@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
-import Mathlib.Analysis.Calculus.ContDiff.Defs
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import Mathlib.Analysis.Calculus.ContDiff.Defs
+
+@[expose] public section
 
 /-!
 # The Taylor series operator

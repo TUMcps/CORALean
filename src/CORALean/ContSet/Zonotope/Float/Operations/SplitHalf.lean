@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
+
+@[expose] public section
 
 /-!
 # `Zonotope.splitHalf`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import Mathlib.Data.Sign.Basic
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import Mathlib.Data.Sign.Basic
+
+@[expose] public section
 
 /-!
 # CORA's normal cone columns

@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
+
+@[expose] public section
 
 /-!
 # A curve with a running timer extends an execution

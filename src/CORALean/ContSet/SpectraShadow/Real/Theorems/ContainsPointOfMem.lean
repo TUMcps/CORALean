@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsPointZeroIff
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsPointZeroIff
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.containsPoint_of_mem`

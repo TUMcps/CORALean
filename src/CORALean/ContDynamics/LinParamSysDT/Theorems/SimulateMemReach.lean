@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
-import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
+
+@[expose] public section
 
 /-!
 # A sampled run stays inside the reachable set

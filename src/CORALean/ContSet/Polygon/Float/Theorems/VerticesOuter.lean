@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.Vertices
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Vertices
+
+@[expose] public section
 
 /-!
 # The polygon lies in the hull of its stored vertices, inflated by its error box

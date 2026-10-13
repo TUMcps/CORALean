@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SShapeDerBoundsFloat
-import CORALean.NN.Layers.Definitions.SShape
+module
+
+public import CORALean.NN.Layers.Operations.SShapeDerBoundsFloat
+public import CORALean.NN.Layers.Definitions.SShape
+
+@[expose] public section
 
 /-!
 # The float derivative bounds hold

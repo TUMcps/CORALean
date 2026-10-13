@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Map
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # `VPolytope.projectHighDim`

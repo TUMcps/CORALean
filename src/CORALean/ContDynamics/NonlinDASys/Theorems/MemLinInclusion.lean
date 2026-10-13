@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinInclusion
-import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinInclusion
+public import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
+
+@[expose] public section
 
 /-!
 # A consistent state's derivative lies in the abstracting inclusion

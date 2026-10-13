@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
-import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
-import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
+public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
+
+@[expose] public section
 
 /-!
 # `HPolytope.projectHighDim` is exact over a floating-point scalar

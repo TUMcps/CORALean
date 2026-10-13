@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.ExactMul
-import Mathlib.Algebra.Ring.CharZero
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.ExactMul
+public import Mathlib.Algebra.Ring.CharZero
+
+@[expose] public section
 
 /-!
 # Multiplication is exact

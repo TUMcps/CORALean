@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+
+@[expose] public section
 
 /-!
 # Every member's input remainder lies in the float box

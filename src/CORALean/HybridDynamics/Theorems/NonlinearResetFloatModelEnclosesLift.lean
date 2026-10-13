@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetLiftFloat
-import CORALean.HybridDynamics.Theorems.NonlinearResetLiftBind
-import CORALean.HybridDynamics.Theorems.NonlinearResetLiftOfNotMem
-import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetLiftFloat
+public import CORALean.HybridDynamics.Theorems.NonlinearResetLiftBind
+public import CORALean.HybridDynamics.Theorems.NonlinearResetLiftOfNotMem
+public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
+
+@[expose] public section
 
 /-!
 # The lifted float model encloses the lifted reset

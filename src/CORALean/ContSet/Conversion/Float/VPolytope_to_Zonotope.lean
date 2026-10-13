@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+module
+
+public import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+
+@[expose] public section
 
 /-!
 # A hull as a zonotope, over a floating-point scalar

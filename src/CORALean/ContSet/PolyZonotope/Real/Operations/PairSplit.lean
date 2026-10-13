@@ -1,4 +1,8 @@
-import CORALean.Global.Partition
+module
+
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.pairSplit`

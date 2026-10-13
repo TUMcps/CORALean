@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.NN.NeuralNetwork
-import Mathlib.Analysis.Calculus.Deriv.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.NN.NeuralNetwork
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+
+@[expose] public section
 
 /-!
 # A neural network in the loop of a nonlinear plant: the representation

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+
+@[expose] public section
 
 /-!
 # The range of a Taylor model

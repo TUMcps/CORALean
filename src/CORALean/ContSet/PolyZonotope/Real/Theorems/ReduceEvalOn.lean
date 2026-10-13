@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBox
-import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByEvalOn
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBox
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceByEvalOn
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # CORA's `reduce` preserves dependencies, up to the factors it drops

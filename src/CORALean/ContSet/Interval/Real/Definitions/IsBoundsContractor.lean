@@ -1,5 +1,9 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Interval.Set.Defs
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Interval.Set.Defs
+
+@[expose] public section
 
 /-!
 # What a contractor owes

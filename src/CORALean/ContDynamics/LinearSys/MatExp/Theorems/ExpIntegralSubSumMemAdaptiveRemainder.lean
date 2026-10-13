@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+
+@[expose] public section
 
 /-!
 # The integrated exponential's tail lies in `Δt [-W, W]`

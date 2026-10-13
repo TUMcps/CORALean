@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+
+@[expose] public section
 
 /-!
 # A stored matrix lies in its point matrix zonotope

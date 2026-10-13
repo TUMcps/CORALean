@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.NormUb
-import CORALean.ContSet.Interval.Real.Theorems.NormLe
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.NormUb
+public import CORALean.ContSet.Interval.Real.Theorems.NormLe
+
+@[expose] public section
 
 /-!
 # `Zonotope.normUb` bounds every member

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachDistInner
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerSubsetInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionDist
-import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
-import CORALean.Global.EuclideanHausdorffDist
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachDistInner
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerSubsetInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionDist
+public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
+public import CORALean.Global.EuclideanHausdorffDist
+
+@[expose] public section
 
 /-!
 # The inner approximation converges to the exact particular solution

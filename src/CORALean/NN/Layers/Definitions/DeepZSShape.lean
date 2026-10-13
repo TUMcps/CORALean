@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.NN.Layers.Definitions.Relaxation
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.NN.Layers.Definitions.Relaxation
+
+@[expose] public section
 
 /-!
 # DeepZ's transformer for an S-shaped activation

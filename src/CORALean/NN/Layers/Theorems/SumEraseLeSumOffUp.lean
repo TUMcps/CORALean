@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.SumOffUp
-import CORALean.NN.Layers.Theorems.SumIteZero
-import CORALean.NN.Layers.Theorems.ToRealIteZero
+module
+
+public import CORALean.NN.Layers.Operations.SumOffUp
+public import CORALean.NN.Layers.Theorems.SumIteZero
+public import CORALean.NN.Layers.Theorems.ToRealIteZero
+
+@[expose] public section
 
 /-!
 # A sum leaving one index out, bounded above

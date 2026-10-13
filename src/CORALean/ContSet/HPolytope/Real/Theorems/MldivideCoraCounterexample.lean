@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MldivideCora
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MldivideCora
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # CORA's `polytope/mldivide` computes `P1 \ P1`

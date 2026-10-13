@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
+
+@[expose] public section
 
 /-!
 # The variation of a point under the flow, as the interpolation plus the correction

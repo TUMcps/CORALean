@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.magnitude`: how far an interval vector reaches from the origin

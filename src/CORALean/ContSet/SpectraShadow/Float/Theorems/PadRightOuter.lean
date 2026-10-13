@@ -1,7 +1,11 @@
-import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
-import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
-import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
+public import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.padRight` contains the embedded shadow

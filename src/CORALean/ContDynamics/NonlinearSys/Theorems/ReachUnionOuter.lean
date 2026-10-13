@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
-import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalHorizon
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalHorizon
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # A union `reachUnion` returns contains every state reached within the horizon

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinError
-import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinError
+public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # `linError` holds the linearization error at every Hessian of the intervals

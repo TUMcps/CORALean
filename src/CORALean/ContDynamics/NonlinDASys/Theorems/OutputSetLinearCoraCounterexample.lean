@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearCora
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearCora
+
+@[expose] public section
 
 /-!
 # CORA's `nonlinDASys` output set ignores the algebraic variables

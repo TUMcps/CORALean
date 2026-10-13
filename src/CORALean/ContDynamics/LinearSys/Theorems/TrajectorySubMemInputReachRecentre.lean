@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+
+@[expose] public section
 
 /-!
 # A run is its free motion, its constant input, and a recentred input's share

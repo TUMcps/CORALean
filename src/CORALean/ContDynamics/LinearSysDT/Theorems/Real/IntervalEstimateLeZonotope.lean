@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeOfBounds
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorSetSuccSubset
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeOfBounds
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorSetSuccSubset
+
+@[expose] public section
 
 /-!
 # The reachability-based estimator is tighter than the zonotope method

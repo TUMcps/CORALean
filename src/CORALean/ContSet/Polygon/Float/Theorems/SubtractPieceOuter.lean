@@ -1,8 +1,12 @@
-import CORALean.ContSet.Polygon.Float.Operations.SubtractPiece
-import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
-import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
-import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.SubtractPiece
+public import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
+public import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
+public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `Polygon.subtractPiece` covers the piece less the other

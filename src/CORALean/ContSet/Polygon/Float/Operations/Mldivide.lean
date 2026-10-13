@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.Subtract
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.Subtract
+
+@[expose] public section
 
 /-!
 # `Polygon.mldivide`, over a floating-point scalar

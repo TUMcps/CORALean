@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.Pow
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Pow
+
+@[expose] public section
 
 /-!
 # A power keeps the model's order

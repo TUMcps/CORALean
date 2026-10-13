@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+
+@[expose] public section
 
 /-!
 # The Kurzhanski parameterization is Halder's at a change of variable

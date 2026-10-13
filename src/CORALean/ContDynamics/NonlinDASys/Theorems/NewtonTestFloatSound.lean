@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
-import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-import CORALean.Global.ExistsUniqueZeroOfNewtonTest
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
+public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
+public import CORALean.Global.ExistsUniqueZeroOfNewtonTest
+
+@[expose] public section
 
 /-!
 # A passed float Newton test certifies a unique zero

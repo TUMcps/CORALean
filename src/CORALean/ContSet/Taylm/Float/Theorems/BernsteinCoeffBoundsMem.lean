@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Float.Operations.BernsteinCoeffBounds
-import CORALean.ContSet.Taylm.Float.Theorems.BernsteinEntryBoundsMem
-import CORALean.ContSet.Taylm.Float.Theorems.BoundsProdMem
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.BernsteinCoeffBounds
+public import CORALean.ContSet.Taylm.Float.Theorems.BernsteinEntryBoundsMem
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsProdMem
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
+
+@[expose] public section
 
 /-!
 # A Bernstein coefficient lies in its bracket

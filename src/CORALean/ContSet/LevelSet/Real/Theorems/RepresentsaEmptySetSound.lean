@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaEmptySet
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaEmptySet
+
+@[expose] public section
 
 /-!
 # `LevelSet.representsa_emptySet` is sound

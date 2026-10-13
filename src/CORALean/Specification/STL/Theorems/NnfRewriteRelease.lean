@@ -1,14 +1,18 @@
-import CORALean.Specification.STL.Definitions.NnfRewrite
-import CORALean.Specification.STL.Theorems.RewriteReleaseSucc
-import CORALean.Specification.STL.Theorems.RewriteReleaseZero
-import CORALean.Specification.STL.Theorems.RewriteFinOpenReleaseSucc
-import CORALean.Specification.STL.Theorems.RewriteFinOpenReleaseZero
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenReleaseSucc
-import CORALean.Specification.STL.Theorems.RewriteGlobOpenReleaseZero
-import CORALean.Specification.STL.Theorems.ReleaseZeroEquiv
-import CORALean.Specification.STL.Theorems.SatAnd
-import CORALean.Specification.STL.Theorems.SatNext
-import CORALean.Specification.STL.Theorems.SatOr
+module
+
+public import CORALean.Specification.STL.Definitions.NnfRewrite
+public import CORALean.Specification.STL.Theorems.RewriteReleaseSucc
+public import CORALean.Specification.STL.Theorems.RewriteReleaseZero
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenReleaseSucc
+public import CORALean.Specification.STL.Theorems.RewriteFinOpenReleaseZero
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenReleaseSucc
+public import CORALean.Specification.STL.Theorems.RewriteGlobOpenReleaseZero
+public import CORALean.Specification.STL.Theorems.ReleaseZeroEquiv
+public import CORALean.Specification.STL.Theorems.SatAnd
+public import CORALean.Specification.STL.Theorems.SatNext
+public import CORALean.Specification.STL.Theorems.SatOr
+
+@[expose] public section
 
 /-!
 # A release rewrites to sampled time

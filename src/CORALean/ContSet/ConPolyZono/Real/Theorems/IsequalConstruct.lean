@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Isequal
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # Constrained polynomial zonotopes passing `isequal` denote the same set

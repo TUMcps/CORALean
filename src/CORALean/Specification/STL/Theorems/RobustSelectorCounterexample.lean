@@ -1,9 +1,13 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The selector of the minimum is not unique

@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.Dyadic.Dyadic
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Dyadic
+
+@[expose] public section
 
 /-!
 # `m ≤ n * 2 ^ g` without the power

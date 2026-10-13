@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Times
-import CORALean.ContSet.Taylm.Float.Operations.Sum
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Times
+public import CORALean.ContSet.Taylm.Float.Operations.Sum
+
+@[expose] public section
 
 /-!
 # `Taylm.mmul`, float

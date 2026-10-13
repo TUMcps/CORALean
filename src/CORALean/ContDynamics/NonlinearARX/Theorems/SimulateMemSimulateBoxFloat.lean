@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.SimulateBoxFloat
-import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
-import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
-import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateBoxFloat
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.SimulateBoxFloat
+public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateBoxFloat
+
+@[expose] public section
 
 /-!
 # The real windows lie in the float boxes

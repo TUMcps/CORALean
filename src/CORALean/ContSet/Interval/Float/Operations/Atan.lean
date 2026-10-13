@@ -1,5 +1,9 @@
-import CORALean.Global.Float.InverseTrig
-import CORALean.ContSet.Interval.Float.Interval
+module
+
+public import CORALean.Global.Float.InverseTrig
+public import CORALean.ContSet.Interval.Float.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.atan`

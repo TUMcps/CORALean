@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.SoftmaxDenomUp
+module
+
+public import CORALean.NN.Layers.Operations.SoftmaxDenomUp
+
+@[expose] public section
 
 /-!
 # Softmax's raw lower bound

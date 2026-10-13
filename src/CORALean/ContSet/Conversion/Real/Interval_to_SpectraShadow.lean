@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+
+@[expose] public section
 
 /-!
 # A box as a spectrahedral shadow

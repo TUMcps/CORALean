@@ -1,10 +1,14 @@
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.Global.Partition
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Operations.ActivationLayerOf
-import CORALean.NN.Operations.Enclose
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.Global.Partition
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Layers.Operations.ActivationLayerOf
+public import CORALean.NN.Operations.Enclose
+
+@[expose] public section
 
 /-!
 # Reducing at many layers of one network, and [1, Thm. 1]

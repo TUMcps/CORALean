@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceCoOptDir
-import CORALean.ContSet.Zonotope.Real.Theorems.PCABasisIsUnitDet
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfMulEqOneOfSumAbsLe
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceCoOptDir
+public import CORALean.ContSet.Zonotope.Real.Theorems.PCABasisIsUnitDet
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfMulEqOneOfSumAbsLe
+
+@[expose] public section
 
 /-!
 # CoOpt_dir over-approximates, whatever the solver returns

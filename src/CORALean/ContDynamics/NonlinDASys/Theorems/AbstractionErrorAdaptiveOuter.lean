@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
+
+@[expose] public section
 
 /-!
 # `abstractionErrorAdaptive` holds the Lagrange remainder

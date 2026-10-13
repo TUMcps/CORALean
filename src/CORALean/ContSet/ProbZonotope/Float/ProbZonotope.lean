@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+
+@[expose] public section
 
 /-!
 # Probabilistic zonotopes over a floating-point scalar: the representation

@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.Location
+module
+
+public import CORALean.HybridDynamics.Definitions.Location
+
+@[expose] public section
 
 /-!
 # The dwell time is inside its own interval

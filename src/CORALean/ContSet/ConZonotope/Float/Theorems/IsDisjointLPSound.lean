@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.IsDisjointLP
-import CORALean.ContSet.ConZonotope.Float.Theorems.SeparatesAlongSound
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.IsDisjointLP
+public import CORALean.ContSet.ConZonotope.Float.Theorems.SeparatesAlongSound
+
+@[expose] public section
 
 /-!
 # `ConZonotope.isDisjointLP` is sound when `true`

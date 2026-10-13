@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.StlInterval
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.StlInterval
+
+@[expose] public section
 
 /-!
 # `Interval.stlInterval` is exact

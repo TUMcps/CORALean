@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+
+@[expose] public section
 
 /-!
 # A halfspace description as a constrained zonotope, over a floating-point scalar

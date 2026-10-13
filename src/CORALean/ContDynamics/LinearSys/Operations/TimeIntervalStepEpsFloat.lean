@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+
+@[expose] public section
 
 /-!
 # A float step stated against an admissible error rather than an order

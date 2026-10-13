@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+
+@[expose] public section
 
 /-!
 # Multiplying a constrained zonotope by an interval matrix over-approximates

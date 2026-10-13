@@ -1,5 +1,9 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.SpectraShadow.Real.Instances
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.SpectraShadow.Real.Instances
+
+@[expose] public section
 
 /-!
 # Spectrahedral shadows over a floating-point scalar: the representation

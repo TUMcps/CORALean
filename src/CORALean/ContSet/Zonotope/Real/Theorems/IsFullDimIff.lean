@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Analysis.Normed.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # A zonotope is full-dimensional iff its generators span

@@ -1,5 +1,9 @@
-import Mathlib.Data.Set.Lattice
-import Mathlib.Data.List.Basic
+module
+
+public import Mathlib.Data.Set.Lattice
+public import Mathlib.Data.List.Basic
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3]: the automated verifier

@@ -1,5 +1,7 @@
-import CORALean.NN.Graph.Definitions.PermInvariant
-import CORALean.NN.Graph.Definitions.ActLayer
+module
+
+public import CORALean.NN.Graph.Definitions.PermInvariant
+public import CORALean.NN.Graph.Definitions.ActLayer
 
 /-!
 # What a graph layer means

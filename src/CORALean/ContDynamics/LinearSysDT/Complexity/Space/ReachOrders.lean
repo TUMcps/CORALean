@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
-import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
-import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.reachOrders` bounds the generator count

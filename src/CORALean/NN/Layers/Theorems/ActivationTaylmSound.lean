@@ -1,10 +1,14 @@
-import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
-import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
-import CORALean.ContSet.Taylm.Float.Theorems.PowOuter
-import CORALean.ContSet.Taylm.Float.Theorems.SmulOuter
-import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
-import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
-import CORALean.NN.Layers.Operations.ActivationTaylm
+module
+
+public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.PowOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.NN.Layers.Operations.ActivationTaylm
+
+@[expose] public section
 
 /-!
 # What the activation layer on Taylor models encloses

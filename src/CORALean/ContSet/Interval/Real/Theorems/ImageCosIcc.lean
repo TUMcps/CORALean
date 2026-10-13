@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.MaxCos
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MaxCos
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+
+@[expose] public section
 
 /-!
 # The cosine maps `[lb, ub]` onto the interval CORA's `@interval/cos` computes

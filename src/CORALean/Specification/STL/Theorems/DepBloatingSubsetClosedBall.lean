@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesSubsetClosedBall
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
-import CORALean.Specification.STL.Operations.DepBloating
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
+public import CORALean.Specification.STL.Operations.DepBloating
+
+@[expose] public section
 
 /-!
 # The bloating lies in an explicit ball

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormEq
-import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
-import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormEq
+public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
+public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # Every trajectory is its matrix exponential plus its inputs

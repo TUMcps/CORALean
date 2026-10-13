@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.Half
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Half
+
+@[expose] public section
 
 /-!
 # Halving is exact

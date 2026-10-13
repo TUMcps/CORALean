@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.cartProdVec` is the product with a point, exactly

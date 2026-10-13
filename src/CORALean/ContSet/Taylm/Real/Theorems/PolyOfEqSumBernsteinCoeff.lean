@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
-import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinEntry
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
+public import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinEntry
+
+@[expose] public section
 
 /-!
 # A polynomial as its Bernstein expansion

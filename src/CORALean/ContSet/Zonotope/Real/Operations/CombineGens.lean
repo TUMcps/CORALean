@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.combineGens`

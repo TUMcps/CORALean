@@ -1,22 +1,24 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
-import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
-import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
-import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
-import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
-import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
-import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
-import CORALean.ContSet.Zonotope.Real.Definitions.GeneratorHull
-import CORALean.ContSet.Zonotope.Real.Definitions.SegmentSum
-import CORALean.ContSet.Zonotope.Real.Definitions.BackpropEnclose
-import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
-import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
-import CORALean.ContSet.Zonotope.Real.Definitions.Degree
-import CORALean.ContSet.Zonotope.Real.Definitions.MinFace
-import CORALean.ContSet.Zonotope.Real.Definitions.BisectInv
-import CORALean.ContSet.Zonotope.Real.Definitions.WalkEdges
-import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
+public import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+public import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
+public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
+public import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
+public import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
+public import CORALean.ContSet.Zonotope.Real.Definitions.Gradient
+public import CORALean.ContSet.Zonotope.Real.Definitions.GeneratorHull
+public import CORALean.ContSet.Zonotope.Real.Definitions.SegmentSum
+public import CORALean.ContSet.Zonotope.Real.Definitions.BackpropEnclose
+public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
+public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
+public import CORALean.ContSet.Zonotope.Real.Definitions.Degree
+public import CORALean.ContSet.Zonotope.Real.Definitions.MinFace
+public import CORALean.ContSet.Zonotope.Real.Definitions.BisectInv
+public import CORALean.ContSet.Zonotope.Real.Definitions.WalkEdges
+public import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
 
 /-!
 # What a zonotope means beyond its own construction

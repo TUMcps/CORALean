@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemExpIntervalEnclosureOfIntegral
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemExpIntervalEnclosureOfIntegral
+
+@[expose] public section
 
 /-!
 # A time-varying run is mapped by a member of the box's exponential enclosure

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.TensorHBracket
-import CORALean.ContSet.Zonotope.Float.Theorems.DependentOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.TensorMultiplicationOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.TensorHBracket
+public import CORALean.ContSet.Zonotope.Float.Theorems.DependentOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.TensorMultiplicationOuter
+
+@[expose] public section
 
 /-!
 # The tensor image of a point, coefficient by coefficient, over a floating-point scalar

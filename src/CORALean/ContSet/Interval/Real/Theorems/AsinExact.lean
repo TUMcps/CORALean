@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Asin
-import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Asin
+public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
+
+@[expose] public section
 
 /-!
 # `Interval.asin` is exactly the image under `Real.arcsin`

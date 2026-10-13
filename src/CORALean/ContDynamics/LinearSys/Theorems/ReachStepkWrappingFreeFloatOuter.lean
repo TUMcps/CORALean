@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
-import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
-import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
+public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
+
+@[expose] public section
 
 /-!
 # A window of `reachWrappingFreeFloat` carries its first window by the exact `e^{A t_k}`

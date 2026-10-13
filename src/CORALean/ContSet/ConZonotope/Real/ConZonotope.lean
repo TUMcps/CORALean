@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Comap
-import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
-import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.HPolytope.Real.Theorems.Convex
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Block
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Block
+
+@[expose] public section
 
 /-!
 # Constrained zonotopes: the representation

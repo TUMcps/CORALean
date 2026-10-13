@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnUnitBox
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetBox
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnUnitBox
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetBox
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+
+@[expose] public section
 
 /-!
 # `getSubset` is exactly the evaluation over a factor sub-box

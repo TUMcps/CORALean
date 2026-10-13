@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Definitions.IsFullDim
-import CORALean.ContSet.EmptySet.Real.Instances
+module
+
+public import CORALean.ContSet.ContSet.Definitions.IsFullDim
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
 
 /-!
 # The empty set is not full-dimensional

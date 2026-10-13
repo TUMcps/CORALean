@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Float.Operations.OfInterval
-import CORALean.ContSet.Zoo.Float.Theorems.DiagonalBlockSum
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.Zoo.Float.Operations.OfInterval
+public import CORALean.ContSet.Zoo.Float.Theorems.DiagonalBlockSum
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `Zoo.ofInterval` reaches the box

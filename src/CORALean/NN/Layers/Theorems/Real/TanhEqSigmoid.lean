@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.Sigmoid
-import Mathlib.Analysis.Complex.Trigonometric
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import Mathlib.Analysis.Complex.Trigonometric
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # tanh is an affine conjugate of the logistic function

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
+
+@[expose] public section
 
 /-!
 # The interpolation coefficient never leaves the unit interval

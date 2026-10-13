@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncNeTopIff
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncNeTopIff
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.supportFunc_eq_top_of_unbounded`

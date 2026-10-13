@@ -1,6 +1,10 @@
-import CORALean.ContSet.VPolytope.Real.Operations.Intersection
-import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
-import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
+public import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
+public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
+
+@[expose] public section
 
 /-!
 # `VPolytope.intersection` contains the intersection

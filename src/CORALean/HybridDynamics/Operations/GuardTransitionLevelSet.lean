@@ -1,5 +1,9 @@
-import CORALean.Global.Chunks
-import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
+module
+
+public import CORALean.Global.Chunks
+public import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
+
+@[expose] public section
 
 /-!
 # `Location.guardTransitionLevelSet`, the transition through a nonlinear guard

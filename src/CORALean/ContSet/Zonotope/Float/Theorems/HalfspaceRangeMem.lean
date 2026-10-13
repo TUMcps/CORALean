@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.HalfspaceRange
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.HalfspaceRange
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `nᵀx − d` of a point of a float zonotope lies in `halfspaceRange`

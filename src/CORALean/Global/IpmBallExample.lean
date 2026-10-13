@@ -1,4 +1,8 @@
-import CORALean.Global.IpmBallEq
+module
+
+public import CORALean.Global.IpmBallEq
+
+@[expose] public section
 
 /-!
 # The interval predictor of the example

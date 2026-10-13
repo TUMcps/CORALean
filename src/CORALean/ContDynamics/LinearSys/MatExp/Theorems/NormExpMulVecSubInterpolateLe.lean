@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
+
+@[expose] public section
 
 /-!
 # The flow against the straight line between the ends of a step

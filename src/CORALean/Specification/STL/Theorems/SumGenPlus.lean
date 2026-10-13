@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The weighted generators of a Minkowski sum

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # `HPolytope.emptySet` denotes `∅`

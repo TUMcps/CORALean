@@ -1,8 +1,12 @@
-import Mathlib.Analysis.Calculus.FDeriv.Basic
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.Calculus.Deriv.Shift
-import Mathlib.Analysis.Calculus.Deriv.Add
-import Mathlib.Analysis.Calculus.Deriv.Prod
+module
+
+public import Mathlib.Analysis.Calculus.FDeriv.Basic
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.Calculus.Deriv.Shift
+public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+
+@[expose] public section
 
 /-!
 # The derivative along a line through a point

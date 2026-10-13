@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.mtimes` over-approximates the linear image

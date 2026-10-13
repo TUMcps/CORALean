@@ -1,4 +1,6 @@
-import CORALean.ContSet.Ellipsoid.Real.Definitions.IsApproxLownerJohn
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Definitions.IsApproxLownerJohn
 
 /-!
 # What an ellipsoid approximates

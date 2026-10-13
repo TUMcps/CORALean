@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Symmetric
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Symmetric
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+
+@[expose] public section
 
 /-!
 # How far `mtimesIntervalMat` reaches beyond one matrix of the box

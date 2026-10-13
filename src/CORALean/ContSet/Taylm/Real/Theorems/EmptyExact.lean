@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.Empty
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Empty
+
+@[expose] public section
 
 /-!
 # `Taylm.empty` denotes `∅`

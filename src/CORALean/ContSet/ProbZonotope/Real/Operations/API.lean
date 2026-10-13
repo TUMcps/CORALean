@@ -1,25 +1,27 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.OfGenerators
-import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.ProbZonotope.Real.Operations.Mean
-import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
-import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
-import CORALean.ContSet.ProbZonotope.Real.Operations.Project
-import CORALean.ContSet.ProbZonotope.Real.Operations.VPolytope
-import CORALean.ContSet.ProbZonotope.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.ProbZonotope.Real.Operations.Max
-import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
-import CORALean.ContSet.ProbZonotope.Real.Operations.ProbReduce
-import CORALean.ContSet.ProbZonotope.Real.Operations.ReduceGirard
-import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
-import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
-import CORALean.ContSet.ProbZonotope.Real.Operations.IntervalCora
-import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
-import CORALean.ContSet.ProbZonotope.Real.Operations.Sup
-import CORALean.ContSet.ProbZonotope.Real.Operations.SupCora
-import CORALean.ContSet.ProbZonotope.Real.Operations.PyramidLevels
-import CORALean.ContSet.ProbZonotope.Real.Operations.Pyramid
-import CORALean.ContSet.ProbZonotope.Real.Operations.UnitMean
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.OfGenerators
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Mean
+public import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Project
+public import CORALean.ContSet.ProbZonotope.Real.Operations.VPolytope
+public import CORALean.ContSet.ProbZonotope.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Max
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
+public import CORALean.ContSet.ProbZonotope.Real.Operations.ProbReduce
+public import CORALean.ContSet.ProbZonotope.Real.Operations.ReduceGirard
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
+public import CORALean.ContSet.ProbZonotope.Real.Operations.IntervalCora
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Sup
+public import CORALean.ContSet.ProbZonotope.Real.Operations.SupCora
+public import CORALean.ContSet.ProbZonotope.Real.Operations.PyramidLevels
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Pyramid
+public import CORALean.ContSet.ProbZonotope.Real.Operations.UnitMean
 
 /-!
 # Probabilistic zonotope operations, collected

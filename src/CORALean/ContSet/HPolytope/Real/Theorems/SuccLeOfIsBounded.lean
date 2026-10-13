@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # A bounded nonempty H-polytope needs `n + 1` halfspaces

@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
-import CORALean.ContSet.Interval.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A float spectrahedral shadow is convex

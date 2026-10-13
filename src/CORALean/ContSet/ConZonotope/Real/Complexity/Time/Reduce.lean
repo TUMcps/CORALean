@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceCost`

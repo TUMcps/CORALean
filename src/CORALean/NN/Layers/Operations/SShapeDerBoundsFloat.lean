@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SShapeDerBounds
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.NN.Layers.Operations.SShapeDerBounds
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `nnSShapeLayer.getDerBounds` in floats

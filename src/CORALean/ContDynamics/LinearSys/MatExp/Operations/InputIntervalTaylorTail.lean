@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Operations.MatPow
-import CORALean.ContSet.Interval.Real.Operations.Plus
-import CORALean.ContSet.Interval.Real.Operations.Point
-import CORALean.ContSet.Interval.Real.Operations.Smul
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MatPow
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.Interval.Real.Operations.Smul
+
+@[expose] public section
 
 /-!
 # Interval matrices: the input series past order two

@@ -1,5 +1,9 @@
-import CORALean.Global.DmdCandidate
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.Global.DmdCandidate
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The DMD candidate of rank `k` of `NonlinearSysDT.identify`

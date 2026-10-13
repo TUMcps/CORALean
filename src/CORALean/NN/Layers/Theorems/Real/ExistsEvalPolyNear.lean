@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Theorems.Real.EvalPolyCoeff
-import Mathlib.Topology.ContinuousMap.Weierstrass
+module
+
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyCoeff
+public import Mathlib.Topology.ContinuousMap.Weierstrass
+
+@[expose] public section
 
 /-!
 # Weierstrass, in the form a fit is handed in

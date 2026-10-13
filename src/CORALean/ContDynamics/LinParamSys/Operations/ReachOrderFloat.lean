@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-import CORALean.ContSet.Interval.Float.Operations.Smul
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+
+@[expose] public section
 
 /-!
 # A Taylor order admissible at every member, searched in floats

@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
-import CORALean.ContSet.Zonotope.Real.Theorems.FWRadiusSqEqTrace
-import CORALean.Global.TraceGainLe
-import CORALean.Global.SumVecMulVecCol
-import CORALean.Global.VecMulVecMulVecSelf
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+public import CORALean.ContSet.Zonotope.Real.Theorems.FWRadiusSqEqTrace
+public import CORALean.Global.TraceGainLe
+public import CORALean.Global.SumVecMulVecCol
+public import CORALean.Global.VecMulVecMulVecSelf
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The Kalman correction matrix minimizes the F_W-radius

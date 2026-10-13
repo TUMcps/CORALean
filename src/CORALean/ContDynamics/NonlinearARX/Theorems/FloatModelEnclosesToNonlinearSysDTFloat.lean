@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
+
+@[expose] public section
 
 /-!
 # The converted float model encloses the converted system

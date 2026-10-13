@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
-import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaOriginIff
-import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaOriginIff
+public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.representsa_origin` is sound

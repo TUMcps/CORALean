@@ -1,7 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Float.Operations.API
-import CORALean.ContSet.ConPolyZono.Float.Theorems.API
-import CORALean.ContSet.ConPolyZono.Float.Instances
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Float.Operations.API
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.API
+public import CORALean.ContSet.ConPolyZono.Float.Instances
 
 /-!
 # Constrained polynomial zonotopes over a floating-point scalar, collected

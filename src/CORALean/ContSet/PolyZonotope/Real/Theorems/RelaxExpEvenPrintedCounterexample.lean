@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]'s printed centre shift `+ξ_E/2` does not enclose

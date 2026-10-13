@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.SetBasedLossGradient
+module
+
+public import CORALean.NN.Theorems.SetBasedLossGradient
+
+@[expose] public section
 
 /-!
 # The gradient of the set-based loss as printed is off by a factor `n`

@@ -1,4 +1,8 @@
-import CORALean.Global.Scalar
+module
+
+public import CORALean.Global.Scalar
+
+@[expose] public section
 
 /-!
 # The bias of CORA's `nnGNNLinearLayer`

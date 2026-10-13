@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPolytopeCora
-import Mathlib.Data.Fin.VecNotation
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPolytopeCora
+public import Mathlib.Data.Fin.VecNotation
+
+@[expose] public section
 
 /-!
 # CORA's `representsa_(Z,'polytope')` returns a set other than `Z`

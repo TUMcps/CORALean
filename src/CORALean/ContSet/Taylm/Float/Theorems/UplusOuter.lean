@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.Uplus
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Uplus
+
+@[expose] public section
 
 /-!
 # `Taylm.uplus` encloses the function, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.CompactZeros
-import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenConstruct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.CompactZeros
+public import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenConstruct
+
+@[expose] public section
 
 /-!
 # `compact_(Z, 'zeros')` at tolerance `0` changes no point

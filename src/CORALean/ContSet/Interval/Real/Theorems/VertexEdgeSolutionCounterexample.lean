@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # A solution on an edge the vertex lowers

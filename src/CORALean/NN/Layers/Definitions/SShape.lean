@@ -1,4 +1,8 @@
-import Mathlib.Algebra.Order.Group.Defs
+module
+
+public import Mathlib.Algebra.Order.Group.Defs
+
+@[expose] public section
 
 /-!
 # S-shaped activations: the derivative

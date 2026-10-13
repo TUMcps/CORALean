@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Analysis.Matrix.Order
-import Mathlib.Analysis.Matrix.HermitianFunctionalCalculus
-import Mathlib.Analysis.Matrix.Spectrum
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.Matrix.HermitianFunctionalCalculus
+public import Mathlib.Analysis.Matrix.Spectrum
+
+@[expose] public section
 
 /-!
 # A positive-definite times a symmetric matrix is diagonalizable

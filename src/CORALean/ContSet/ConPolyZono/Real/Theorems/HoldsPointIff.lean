@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-import CORALean.ContSet.Interval.Real.Operations.Point
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.Interval.Real.Operations.Point
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.holds_point_iff`

@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.ContSet.Taylm.Real.Taylm
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.ContSet.Taylm.Real.Taylm
+
+@[expose] public section
 
 /-!
 # Taylor models over a floating-point scalar: the representation

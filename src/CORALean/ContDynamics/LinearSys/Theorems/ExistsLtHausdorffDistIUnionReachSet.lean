@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
+
+@[expose] public section
 
 /-!
 # [1, Lemma 2]'s convergence bound, as printed, is false

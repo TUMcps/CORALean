@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
-import CORALean.Global.Float.FloatBound
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.Global.Float.FloatBound
+
+@[expose] public section
 
 /-!
 # `HPolytope.minkDiffOf`

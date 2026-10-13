@@ -1,8 +1,13 @@
-import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
-import CORALean.ContDynamics.Conform.Plant
-import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.IntervalNorm
+public import CORALean.ContDynamics.Conform.Plant
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # [1, Thm. 2]: the quadratic program's objective is the Frobenius-norm cost

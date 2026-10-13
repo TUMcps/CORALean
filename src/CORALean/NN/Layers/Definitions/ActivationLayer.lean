@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.Relaxation
+module
+
+public import CORALean.NN.Layers.Definitions.Relaxation
+
+@[expose] public section
 
 /-!
 # The weights of an activation layer at a relaxation

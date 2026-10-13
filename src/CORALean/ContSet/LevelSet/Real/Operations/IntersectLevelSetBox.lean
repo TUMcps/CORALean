@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Definitions.TaylorModelOn
+module
+
+public import CORALean.ContSet.Taylm.Real.Definitions.TaylorModelOn
+
+@[expose] public section
 
 /-!
 # `intersect(I, LS)`: a box cut by a level set solved for one variable

@@ -1,8 +1,12 @@
-import CORALean.Global.Float.SinCos
-import CORALean.Global.Float.Sqrt
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import CORALean.Global.Float.SinCos
+public import CORALean.Global.Float.Sqrt
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+public import Mathlib.Analysis.Real.Pi.Bounds
+
+@[expose] public section
 
 /-!
 # `arctan`, `arcsin` and `arccos` rounded in either direction
@@ -39,10 +43,10 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- Into `[-1, 1]`. -/
-private def clampOne (a : 𝕋) : 𝕋 := maximum (neg one) (minimum one a)
+def clampOne (a : 𝕋) : 𝕋 := maximum (neg one) (minimum one a)
 
 /-- One bisection step for `arctan z` in `b`, at a midpoint clamped into `[-1, 1]`. -/
-private def atanStep (n : ℕ) (z : 𝕋) (b : 𝕋 × 𝕋) : 𝕋 × 𝕋 :=
+def atanStep (n : ℕ) (z : 𝕋) (b : 𝕋 × 𝕋) : 𝕋 × 𝕋 :=
   let m := clampOne (half (addUp b.1 b.2))
   let cl := cosDown n m
   let cu := cosUp n m
@@ -50,26 +54,26 @@ private def atanStep (n : ℕ) (z : 𝕋) (b : 𝕋 × 𝕋) : 𝕋 × 𝕋 :=
   else if le (maximum (mulUp z cl) (mulUp z cu)) (sinDown n m) = true then (b.1, m) -- z ≤ tan m
   else b
 
-private def atanIter (n : ℕ) (z : 𝕋) : ℕ → 𝕋 × 𝕋 → 𝕋 × 𝕋
+def atanIter (n : ℕ) (z : 𝕋) : ℕ → 𝕋 × 𝕋 → 𝕋 × 𝕋
   | 0, b => b
   | j + 1, b => atanIter n z j (atanStep n z b)
 
 /-- `arctan z` bracketed, `z` clamped into `[-1, 1]` first. -/
-private def atanBracket (n k : ℕ) (z : 𝕋) : 𝕋 × 𝕋 := atanIter n (clampOne z) k (neg one, one)
+def atanBracket (n k : ℕ) (z : 𝕋) : 𝕋 × 𝕋 := atanIter n (clampOne z) k (neg one, one)
 
 /-- `num / D` from below and above, for `D` between `dl ≥ 1` and `du`. -/
-private def quotLo (num dl du : 𝕋) : 𝕋 := minimum (divDown num dl) (divDown num du)
-private def quotHi (num dl du : 𝕋) : 𝕋 := maximum (divUp num dl) (divUp num du)
+def quotLo (num dl du : 𝕋) : 𝕋 := minimum (divDown num dl) (divDown num du)
+def quotHi (num dl du : 𝕋) : 𝕋 := maximum (divUp num dl) (divUp num du)
 
 /-- `1 + √(1 + y²)`, from below and above. -/
-private def atanDenLo (k : ℕ) (y : 𝕋) : 𝕋 :=
+def atanDenLo (k : ℕ) (y : 𝕋) : 𝕋 :=
   maximum one (addDown one (sqrtDown k (addDown one (mulDown y y))))
-private def atanDenHi (k : ℕ) (y : 𝕋) : 𝕋 := addUp one (sqrtUp k (addUp one (mulUp y y)))
+def atanDenHi (k : ℕ) (y : 𝕋) : 𝕋 := addUp one (sqrtUp k (addUp one (mulUp y y)))
 
 /-- `1 + √(1 - x²)`, from below and above. -/
-private def asinDenLo (k : ℕ) (x : 𝕋) : 𝕋 :=
+def asinDenLo (k : ℕ) (x : 𝕋) : 𝕋 :=
   maximum one (addDown one (sqrtDown k (subDown one (mulUp x x))))
-private def asinDenHi (k : ℕ) (x : 𝕋) : 𝕋 := addUp one (sqrtUp k (subUp one (mulDown x x)))
+def asinDenHi (k : ℕ) (x : 𝕋) : 𝕋 := addUp one (sqrtUp k (subUp one (mulDown x x)))
 
 /-- `arctan y` from below, at every `y`. -/
 def atanDown (n k : ℕ) (y : 𝕋) : 𝕋 :=

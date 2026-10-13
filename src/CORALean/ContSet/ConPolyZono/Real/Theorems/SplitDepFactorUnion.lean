@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.SplitDepFactor
-import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SplitDepFactor
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
+
+@[expose] public section
 
 /-!
 # The halves of `splitDepFactor` cover the set, exactly

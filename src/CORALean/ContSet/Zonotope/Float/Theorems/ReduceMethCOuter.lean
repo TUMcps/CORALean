@@ -1,10 +1,14 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Zonotope.Float.Theorems.MethCQBound
-import CORALean.ContSet.Zonotope.Float.Theorems.MethCReachBound
-import CORALean.ContSet.Zonotope.Real.Theorems.BasisReach
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Zonotope.Float.Theorems.MethCQBound
+public import CORALean.ContSet.Zonotope.Float.Theorems.MethCReachBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.BasisReach
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceMethC` over-approximates the zonotope

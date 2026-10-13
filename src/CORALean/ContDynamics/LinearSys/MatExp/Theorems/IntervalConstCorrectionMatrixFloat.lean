@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrixSubsetFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrixSubsetFloat
+
+@[expose] public section
 
 /-!
 # The integrated interpolation error of every member lies in the float `F̃`

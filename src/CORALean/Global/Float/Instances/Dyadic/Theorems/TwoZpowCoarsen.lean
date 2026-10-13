@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenUp
-import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
+
+@[expose] public section
 
 /-!
 # The alignment of a coarsening

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
-import Mathlib.Algebra.EuclideanDomain.Basic
-import Mathlib.Algebra.EuclideanDomain.Field
-import Mathlib.Analysis.Normed.Field.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GainDim
+public import Mathlib.Algebra.EuclideanDomain.Basic
+public import Mathlib.Algebra.EuclideanDomain.Field
+public import Mathlib.Analysis.Normed.Field.Basic
+
+@[expose] public section
 
 /-!
 # The limit of the gain as the time span shrinks

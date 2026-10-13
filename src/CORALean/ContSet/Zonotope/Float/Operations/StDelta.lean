@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.StUsed
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.StUsed
+
+@[expose] public section
 
 /-!
 # `Zonotope.stDelta`

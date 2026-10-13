@@ -1,7 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-import CORALean.ContSet.ZonoBundle.Float.Operations.API
-import CORALean.ContSet.ZonoBundle.Float.Theorems.API
-import CORALean.ContSet.ZonoBundle.Float.Instances
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.ZonoBundle.Float.Operations.API
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.API
+public import CORALean.ContSet.ZonoBundle.Float.Instances
 
 /-!
 # Zonotope bundles over a floating-point scalar, collected

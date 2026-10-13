@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Real.Operations.Mtimes
-import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Real.Operations.Mtimes
+public import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # `Interval.mtimes` contains the image under a linear map

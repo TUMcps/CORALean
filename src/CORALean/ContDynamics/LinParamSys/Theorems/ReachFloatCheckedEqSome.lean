@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatChecked
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatChecked
+
+@[expose] public section
 
 /-!
 # A checked `reachFloat` that returns a result returns the unchecked one

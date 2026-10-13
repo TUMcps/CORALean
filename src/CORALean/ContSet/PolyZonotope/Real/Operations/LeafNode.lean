@@ -1,5 +1,9 @@
-import Mathlib.Data.List.Defs
-import Mathlib.Data.Fin.Basic
+module
+
+public import Mathlib.Data.List.Defs
+public import Mathlib.Data.Fin.Basic
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.leafNode`

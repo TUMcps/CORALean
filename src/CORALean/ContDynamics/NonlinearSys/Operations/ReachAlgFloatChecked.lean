@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
-import CORALean.Global.Float.NoNaN
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
+public import CORALean.Global.Float.NoNaN
+
+@[expose] public section
 
 /-!
 # `reachAlgFloatChecked`, without a NaN

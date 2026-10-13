@@ -1,6 +1,10 @@
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.NN.Layers.Definitions.PolySampling
+module
+
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.NN.Layers.Definitions.PolySampling
+
+@[expose] public section
 
 /-!
 # The polynomial relaxation a fit and exact sampling buy

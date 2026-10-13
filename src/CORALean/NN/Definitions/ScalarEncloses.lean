@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # A scalar interval function encloses a real function

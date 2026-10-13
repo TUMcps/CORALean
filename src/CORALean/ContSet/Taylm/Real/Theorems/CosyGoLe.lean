@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.CosyGo
-import CORALean.ContSet.Taylm.Real.Theorems.GlobalMinLe
-import CORALean.ContSet.Taylm.Real.Theorems.GoLowerBoundLe
-import CORALean.ContSet.Taylm.Real.Theorems.GoodBoxHalve
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
+public import CORALean.ContSet.Taylm.Real.Theorems.GlobalMinLe
+public import CORALean.ContSet.Taylm.Real.Theorems.GoLowerBoundLe
+public import CORALean.ContSet.Taylm.Real.Theorems.GoodBoxHalve
+
+@[expose] public section
 
 /-!
 # COSY-GO's lower end bounds the function

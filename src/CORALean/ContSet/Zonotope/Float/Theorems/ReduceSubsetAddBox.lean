@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Reduce
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.ReduceBySubsetAddBox
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceBySubsetAddBox
+
+@[expose] public section
 
 /-!
 # `reduce` reaches no further than its operand plus `reduceGirardBox`

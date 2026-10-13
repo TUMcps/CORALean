@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceBoxError
-import CORALean.Global.Float.ToRat
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBoxError
+public import CORALean.Global.Float.ToRat
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 19-22 in floats: the order to reduce `P̂^U_0` to

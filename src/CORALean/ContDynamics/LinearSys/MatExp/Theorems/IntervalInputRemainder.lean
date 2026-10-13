@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+
+@[expose] public section
 
 /-!
 # The box's input remainder contains every member's

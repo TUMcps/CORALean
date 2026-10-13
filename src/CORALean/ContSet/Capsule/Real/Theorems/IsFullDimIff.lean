@@ -1,7 +1,11 @@
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Analysis.Normed.Field.Basic
-import Mathlib.Analysis.Normed.Order.Lattice
+module
+
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Analysis.Normed.Field.Basic
+public import Mathlib.Analysis.Normed.Order.Lattice
+
+@[expose] public section
 
 /-!
 # When a capsule is full-dimensional

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.Project
+module
+
+public import CORALean.ContSet.ContSet.Operations.Project
+
+@[expose] public section
 
 /-!
 # CORA's `decompose`: a set cut into blocks of coordinates

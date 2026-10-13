@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
-import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadLeft
-import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadRight
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadLeft
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadRight
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.stack` over a floating-point scalar

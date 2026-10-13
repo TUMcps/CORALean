@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsMulVec
-import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
+module
+
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsMulVec
+public import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
+
+@[expose] public section
 
 /-!
 # `mergeFlows` has the flow law, where it is exact

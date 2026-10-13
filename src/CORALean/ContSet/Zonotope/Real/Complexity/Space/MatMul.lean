@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MatMul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MatMul
+
+@[expose] public section
 
 /-!
 # `Zonotope.matMul_h`

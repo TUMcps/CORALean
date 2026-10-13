@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinParamSys.LinParamSys
-import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputIntervalTaylorTail
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputIntervalTaylorTail
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `LinParamSys.dependentHomSol`, CORA's `priv_dependentHomSol` corrected

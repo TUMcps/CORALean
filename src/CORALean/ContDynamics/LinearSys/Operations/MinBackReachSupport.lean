@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRun
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRun
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 12-13: one direction's support value at a step

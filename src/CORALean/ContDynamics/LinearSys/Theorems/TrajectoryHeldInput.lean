@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
-import CORALean.ContDynamics.LinearSys.Theorems.HeldInputMeasurable
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
+public import CORALean.ContDynamics.LinearSys.Theorems.HeldInputMeasurable
+
+@[expose] public section
 
 /-!
 # A held-input run is a run of the system

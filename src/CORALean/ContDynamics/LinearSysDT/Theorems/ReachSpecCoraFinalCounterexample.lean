@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachSpecCora
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSpecCora
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # CORA's `linearSysDT/reach` never checks the specification at `tFinal`

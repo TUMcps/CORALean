@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Instances
-import CORALean.ContSet.InflatedContSet.Theorems.Convex
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Instances
+public import CORALean.ContSet.InflatedContSet.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # A float ellipsoid is convex

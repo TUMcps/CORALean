@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsExactCora1D
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.FinCases
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.Linarith
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsExactCora1D
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # CORA's exact `contains` for a 1-D polynomial zonotope uses its zonotope enclosure

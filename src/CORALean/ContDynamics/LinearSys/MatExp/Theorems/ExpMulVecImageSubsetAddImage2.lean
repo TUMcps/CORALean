@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpDiffMatrices
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCorrectionMatrix
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpDiffMatrices
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCorrectionMatrix
+
+@[expose] public section
 
 /-!
 # The image of a set under `e^{At}` lies in the set plus `ΔR`

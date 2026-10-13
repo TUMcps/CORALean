@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Softplus
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.NN.Layers.Definitions.Softplus
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # Softplus is monotone

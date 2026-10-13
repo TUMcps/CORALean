@@ -1,5 +1,7 @@
-import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.API
-import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.API
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.API
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Space.API
 
 /-!
 # Complexity

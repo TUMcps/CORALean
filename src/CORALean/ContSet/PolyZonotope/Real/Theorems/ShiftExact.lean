@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.shift` is exactly the translate

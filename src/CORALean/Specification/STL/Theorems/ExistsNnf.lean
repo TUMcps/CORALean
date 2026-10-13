@@ -1,11 +1,15 @@
-import CORALean.Specification.STL.Definitions.CDivisibleFormula
-import CORALean.Specification.STL.Operations.NnfToFormula
-import CORALean.Specification.STL.Operations.FormulaScale
-import CORALean.Specification.STL.Theorems.ScaleOfPform
-import CORALean.Specification.STL.Theorems.SatOfPform
-import CORALean.Specification.STL.Theorems.SatAnd
-import CORALean.Specification.STL.Theorems.SatOr
-import CORALean.Specification.STL.Theorems.SatRelease
+module
+
+public import CORALean.Specification.STL.Definitions.CDivisibleFormula
+public import CORALean.Specification.STL.Operations.NnfToFormula
+public import CORALean.Specification.STL.Operations.FormulaScale
+public import CORALean.Specification.STL.Theorems.ScaleOfPform
+public import CORALean.Specification.STL.Theorems.SatOfPform
+public import CORALean.Specification.STL.Theorems.SatAnd
+public import CORALean.Specification.STL.Theorems.SatOr
+public import CORALean.Specification.STL.Theorems.SatRelease
+
+@[expose] public section
 
 /-!
 # A c-divisible STL formula is a scaled normal form

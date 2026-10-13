@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
-import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumAddLe
-import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
-import Mathlib.Data.Nat.Find
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
+public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumAddLe
+public import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
+public import Mathlib.Data.Nat.Find
+
+@[expose] public section
 
 /-!
 # `EXPLORE BN` visits every border vertex

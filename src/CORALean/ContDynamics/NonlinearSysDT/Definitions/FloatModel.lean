@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
-import CORALean.ContSet.Interval.Float.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+public import CORALean.ContSet.Interval.Float.Instances
+
+@[expose] public section
 
 /-!
 # What a float run is told about the discrete-time field

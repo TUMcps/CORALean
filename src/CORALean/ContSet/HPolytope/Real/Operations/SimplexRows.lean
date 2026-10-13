@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Data.Fin.VecNotation
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Data.Fin.VecNotation
+
+@[expose] public section
 
 /-!
 # `HPolytope.simplexRows`

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # `exactPlus` is the exact addition, independent blocks included

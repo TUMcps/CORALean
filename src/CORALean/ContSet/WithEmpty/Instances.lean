@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.ContSet.Definitions.ConvexSet
-import CORALean.ContSet.WithEmpty.WithEmpty
+module
+
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.WithEmpty.WithEmpty
+
+@[expose] public section
 
 /-!
 # What `WithEmpty` instantiates

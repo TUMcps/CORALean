@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Algebra.Order.Star.Real
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Algebra.Order.Star.Real
+
+@[expose] public section
 
 /-!
 # The noise covariance is positive semidefinite

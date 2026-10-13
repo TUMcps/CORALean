@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+module
+
+public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+
+@[expose] public section
 
 /-!
 # A bundle's box, at one component, over a floating-point scalar

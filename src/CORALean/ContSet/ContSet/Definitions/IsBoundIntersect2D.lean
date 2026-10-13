@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # What the two-dimensional line intersection must return

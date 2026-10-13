@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.GOFloat
-import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
-import CORALean.ContSet.Interval.Float.Operations.DescProd
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.GOFloat
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
+public import CORALean.ContSet.Interval.Float.Operations.DescProd
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `NonlinearSysDT.computeGOFloat`

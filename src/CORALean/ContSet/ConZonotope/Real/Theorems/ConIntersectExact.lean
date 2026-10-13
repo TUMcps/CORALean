@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
-import CORALean.ContSet.HPolytope.Real.Operations.Eqs
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `conIntersect` is exactly the preimage intersection

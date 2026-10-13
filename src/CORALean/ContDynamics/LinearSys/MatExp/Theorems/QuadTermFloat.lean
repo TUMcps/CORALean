@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `γ(a)` lies in `quadTerm t a`

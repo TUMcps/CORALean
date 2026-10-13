@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.PolyDerivBound
-import CORALean.NN.Layers.Operations.PolyDerivRadiusUp
-import CORALean.NN.Layers.Theorems.PowRangeBounds
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.NN.Layers.Definitions.PolyDerivBound
+public import CORALean.NN.Layers.Operations.PolyDerivRadiusUp
+public import CORALean.NN.Layers.Theorems.PowRangeBounds
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # A stored radius bounds the exact one

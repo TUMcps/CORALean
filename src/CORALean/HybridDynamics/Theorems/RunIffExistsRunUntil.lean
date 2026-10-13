@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Theorems.RunOnToRun
-import CORALean.HybridDynamics.Theorems.RunUntilToRunOn
+module
+
+public import CORALean.HybridDynamics.Theorems.RunOnToRun
+public import CORALean.HybridDynamics.Theorems.RunUntilToRunOn
+
+@[expose] public section
 
 /-!
 # A run is a run of bounded duration

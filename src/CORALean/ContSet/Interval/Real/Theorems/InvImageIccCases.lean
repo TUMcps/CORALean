@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Topology.Algebra.Order.Field
-import Mathlib.Analysis.Normed.Field.Lemmas
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Topology.Algebra.Order.Field
+public import Mathlib.Analysis.Normed.Field.Lemmas
+
+@[expose] public section
 
 /-!
 # The reciprocal of an interval, case by case

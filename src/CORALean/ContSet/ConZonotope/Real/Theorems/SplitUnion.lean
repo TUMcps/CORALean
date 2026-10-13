@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Split
-import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
-import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Split
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
+
+@[expose] public section
 
 /-!
 # The halves of `split` cover the set, exactly

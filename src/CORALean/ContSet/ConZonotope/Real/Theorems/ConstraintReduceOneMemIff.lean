@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+
+@[expose] public section
 
 /-!
 # `ConZonotope.constraintReduce` at `Λ_A = I`

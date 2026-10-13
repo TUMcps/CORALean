@@ -1,5 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # A zonotope attains its radius about a point

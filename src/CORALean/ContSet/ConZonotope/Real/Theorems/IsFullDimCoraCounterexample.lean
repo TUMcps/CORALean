@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.IsFullDimCora
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.IsFullDimCora
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # CORA's `conZonotope/isFullDim` accepts a point

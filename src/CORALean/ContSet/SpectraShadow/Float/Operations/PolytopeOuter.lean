@@ -1,6 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.DualBound
-import CORALean.ContSet.SpectraShadow.Float.Operations.DualCertified
-import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.DualBound
+public import CORALean.ContSet.SpectraShadow.Float.Operations.DualCertified
+public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.polytopeOuter`, over a floating-point scalar

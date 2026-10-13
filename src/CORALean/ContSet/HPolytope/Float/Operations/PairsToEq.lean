@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.KeptRows
-import CORALean.ContSet.HPolytope.Float.Operations.LeadRows
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.KeptRows
+public import CORALean.ContSet.HPolytope.Float.Operations.LeadRows
+
+@[expose] public section
 
 /-!
 # `HPolytope.pairsToEq`: the inverted pairs as equalities

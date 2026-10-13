@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.ReduceCombined
-import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.ReduceCombined
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.reduceCombined` over-approximates the bundle

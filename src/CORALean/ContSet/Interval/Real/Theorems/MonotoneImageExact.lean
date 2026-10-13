@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.Normed.Order.Lattice
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.Normed.Order.Lattice
+
+@[expose] public section
 
 /-!
 # The image of a box under a monotone function

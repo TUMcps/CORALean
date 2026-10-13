@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+
+@[expose] public section
 
 /-!
 # `ConZonotope.enclose`

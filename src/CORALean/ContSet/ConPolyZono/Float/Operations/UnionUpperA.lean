@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConCoef
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConCoef
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.unionUpperA`

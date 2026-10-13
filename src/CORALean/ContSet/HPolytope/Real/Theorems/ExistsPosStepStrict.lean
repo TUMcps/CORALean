@@ -1,9 +1,13 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Linarith
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # Strict inequalities survive a small step

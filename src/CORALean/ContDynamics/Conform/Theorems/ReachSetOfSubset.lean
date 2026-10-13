@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.Conform.Theorems.ReachSetOfGlo
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.ReachSetOfGlo
+
+@[expose] public section
 
 /-!
 # [1, Thm. 1]: `Ŷ = Ȳ ⊕ Ê` encloses the reachable set

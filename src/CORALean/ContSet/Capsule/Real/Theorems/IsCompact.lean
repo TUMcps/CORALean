@@ -1,8 +1,12 @@
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
-import Mathlib.Analysis.Normed.Order.Lattice
-import Mathlib.Analysis.Normed.Ring.Basic
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
+public import Mathlib.Analysis.Normed.Order.Lattice
+public import Mathlib.Analysis.Normed.Ring.Basic
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # A capsule is compact

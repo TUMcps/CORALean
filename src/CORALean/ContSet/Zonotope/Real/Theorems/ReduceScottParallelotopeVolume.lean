@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
-import Mathlib.LinearAlgebra.Matrix.ToLin
-import Mathlib.LinearAlgebra.Matrix.Diagonal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import Mathlib.LinearAlgebra.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # The volume of the reduction's parallelotope

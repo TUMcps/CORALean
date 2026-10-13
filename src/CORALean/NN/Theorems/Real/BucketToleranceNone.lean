@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.Global.Float.Instances.Real.Instances
-import CORALean.NN.Operations.BucketTolerance
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.NN.Operations.BucketTolerance
+
+@[expose] public section
 
 /-!
 # [1, Alg. 1] need not end

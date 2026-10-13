@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.ExtPolyZonotope
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ExtPolyZonotope
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.containsPoint`

@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.PolyFamily
+module
+
+public import CORALean.NN.Layers.Definitions.PolyFamily
+
+@[expose] public section
 
 /-!
 # The family is sound at every level

@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Linarith
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The image of a box under a nonnegative matrix need not be a box

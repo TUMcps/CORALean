@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
-import CORALean.ContDynamics.NonlinDASys.Operations.AdaptPassLinPoint
-import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptState
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
+public import CORALean.ContDynamics.NonlinDASys.Operations.AdaptPassLinPoint
+public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptState
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.reachAdaptiveLoop`

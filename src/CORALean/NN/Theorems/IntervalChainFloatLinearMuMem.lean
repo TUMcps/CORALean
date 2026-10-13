@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Theorems.HalvePlusMem
-import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.NN.Operations.IntervalChainFwdFloat
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.HalvePlusMem
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.NN.Operations.IntervalChainFwdFloat
+
+@[expose] public section
 
 /-!
 # The linear layer's centre is in its float box

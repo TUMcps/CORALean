@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
-import CORALean.ContSet.ConPolyZono.Real.Operations.Affine
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
-import Mathlib.Analysis.Normed.Module.Basic
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Affine
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
+public import Mathlib.Analysis.Normed.Module.Basic
+
+@[expose] public section
 
 /-!
 # The map a constrained polynomial zonotope is the image of is continuous

@@ -1,6 +1,10 @@
-import CORALean.NN.Theorems.Misclassified
-import CORALean.NN.Theorems.SuffExplanationAbstract
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.NN.Theorems.Misclassified
+public import CORALean.NN.Theorems.SuffExplanationAbstract
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # Refining an abstraction, enclosure to enclosure

@@ -1,64 +1,66 @@
-import CORALean.NN.Layers.Definitions.ActivationLayer
-import CORALean.NN.Layers.Definitions.ActivationPoly
-import CORALean.NN.Layers.Definitions.ActivationPolyExactLayer
-import CORALean.NN.Layers.Definitions.ActivationPolyLayer
-import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
-import CORALean.NN.Layers.Definitions.AvgPoolLayer
-import CORALean.NN.Layers.Definitions.BatchNorm
-import CORALean.NN.Layers.Definitions.BatchNormLayer
-import CORALean.NN.Layers.Definitions.ConvLayer
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.EvalPoly
-import CORALean.NN.Layers.Definitions.IdentityLayer
-import CORALean.NN.Layers.Definitions.InvSqrt
-import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
-import CORALean.NN.Layers.Definitions.LeakyRelu
-import CORALean.NN.Layers.Definitions.LinearLayer
-import CORALean.NN.Layers.Definitions.LinearWithErrorLayer
-import CORALean.NN.Layers.Definitions.MaxPoolLayer
-import CORALean.NN.Layers.Definitions.PolyAffineConj
-import CORALean.NN.Layers.Definitions.PolyDerivBound
-import CORALean.NN.Layers.Definitions.PolyFamily
-import CORALean.NN.Layers.Definitions.PolyFit
-import CORALean.NN.Layers.Definitions.PolyOfSampling
-import CORALean.NN.Layers.Definitions.PolyRelaxation
-import CORALean.NN.Layers.Definitions.PolySampling
-import CORALean.NN.Layers.Definitions.RegionPoly
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Layers.Definitions.ReluLayer
-import CORALean.NN.Layers.Definitions.ReshapeLayer
-import CORALean.NN.Layers.Definitions.ScaleRounding
-import CORALean.NN.Layers.Definitions.Sigmoid
-import CORALean.NN.Layers.Definitions.SigmoidLayer
-import CORALean.NN.Layers.Definitions.SigmoidNetworks
-import CORALean.NN.Layers.Definitions.SigmoidPoly
-import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
-import CORALean.NN.Layers.Definitions.SigmoidPolyLayer
-import CORALean.NN.Layers.Definitions.SigmoidRelaxation
-import CORALean.NN.Layers.Definitions.Softmax
-import CORALean.NN.Layers.Definitions.SoftmaxExactLayer
-import CORALean.NN.Layers.Definitions.SoftmaxLayer
-import CORALean.NN.Layers.Definitions.Softplus
-import CORALean.NN.Layers.Definitions.SoftplusBox
-import CORALean.NN.Layers.Definitions.SoundLayer
-import CORALean.NN.Layers.Definitions.StarSet
-import CORALean.NN.Layers.Definitions.StarSetFloat
-import CORALean.NN.Layers.Definitions.TanhLayer
-import CORALean.NN.Layers.Definitions.TanhRelaxation
-import CORALean.NN.Layers.Definitions.RootRelaxation
-import CORALean.NN.Layers.Definitions.TaylmArray
-import CORALean.NN.Layers.Definitions.WindowMax
-import CORALean.NN.Layers.Definitions.SShape
-import CORALean.NN.Layers.Definitions.DeepZRelu
-import CORALean.NN.Layers.Definitions.DeepZSShape
-import CORALean.NN.Layers.Definitions.EvaluateSinghNeuronCora
-import CORALean.NN.Layers.Definitions.EvaluateSinghCora
-import CORALean.NN.Layers.Definitions.SShapedPrinted
-import CORALean.NN.Layers.Definitions.ApproxError
-import CORALean.NN.Layers.Definitions.ApproxErrorRelaxation
-import CORALean.NN.Layers.Definitions.SecantSlope
-import CORALean.NN.Layers.Definitions.EncloseNonlinearPrinted
+module
+
+public import CORALean.NN.Layers.Definitions.ActivationLayer
+public import CORALean.NN.Layers.Definitions.ActivationPoly
+public import CORALean.NN.Layers.Definitions.ActivationPolyExactLayer
+public import CORALean.NN.Layers.Definitions.ActivationPolyLayer
+public import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
+public import CORALean.NN.Layers.Definitions.AvgPoolLayer
+public import CORALean.NN.Layers.Definitions.BatchNorm
+public import CORALean.NN.Layers.Definitions.BatchNormLayer
+public import CORALean.NN.Layers.Definitions.ConvLayer
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Definitions.EvalPoly
+public import CORALean.NN.Layers.Definitions.IdentityLayer
+public import CORALean.NN.Layers.Definitions.InvSqrt
+public import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
+public import CORALean.NN.Layers.Definitions.LeakyRelu
+public import CORALean.NN.Layers.Definitions.LinearLayer
+public import CORALean.NN.Layers.Definitions.LinearWithErrorLayer
+public import CORALean.NN.Layers.Definitions.MaxPoolLayer
+public import CORALean.NN.Layers.Definitions.PolyAffineConj
+public import CORALean.NN.Layers.Definitions.PolyDerivBound
+public import CORALean.NN.Layers.Definitions.PolyFamily
+public import CORALean.NN.Layers.Definitions.PolyFit
+public import CORALean.NN.Layers.Definitions.PolyOfSampling
+public import CORALean.NN.Layers.Definitions.PolyRelaxation
+public import CORALean.NN.Layers.Definitions.PolySampling
+public import CORALean.NN.Layers.Definitions.RegionPoly
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Definitions.Relu
+public import CORALean.NN.Layers.Definitions.ReluLayer
+public import CORALean.NN.Layers.Definitions.ReshapeLayer
+public import CORALean.NN.Layers.Definitions.ScaleRounding
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Definitions.SigmoidLayer
+public import CORALean.NN.Layers.Definitions.SigmoidNetworks
+public import CORALean.NN.Layers.Definitions.SigmoidPoly
+public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
+public import CORALean.NN.Layers.Definitions.SigmoidPolyLayer
+public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+public import CORALean.NN.Layers.Definitions.Softmax
+public import CORALean.NN.Layers.Definitions.SoftmaxExactLayer
+public import CORALean.NN.Layers.Definitions.SoftmaxLayer
+public import CORALean.NN.Layers.Definitions.Softplus
+public import CORALean.NN.Layers.Definitions.SoftplusBox
+public import CORALean.NN.Layers.Definitions.SoundLayer
+public import CORALean.NN.Layers.Definitions.StarSet
+public import CORALean.NN.Layers.Definitions.StarSetFloat
+public import CORALean.NN.Layers.Definitions.TanhLayer
+public import CORALean.NN.Layers.Definitions.TanhRelaxation
+public import CORALean.NN.Layers.Definitions.RootRelaxation
+public import CORALean.NN.Layers.Definitions.TaylmArray
+public import CORALean.NN.Layers.Definitions.WindowMax
+public import CORALean.NN.Layers.Definitions.SShape
+public import CORALean.NN.Layers.Definitions.DeepZRelu
+public import CORALean.NN.Layers.Definitions.DeepZSShape
+public import CORALean.NN.Layers.Definitions.EvaluateSinghNeuronCora
+public import CORALean.NN.Layers.Definitions.EvaluateSinghCora
+public import CORALean.NN.Layers.Definitions.SShapedPrinted
+public import CORALean.NN.Layers.Definitions.ApproxError
+public import CORALean.NN.Layers.Definitions.ApproxErrorRelaxation
+public import CORALean.NN.Layers.Definitions.SecantSlope
+public import CORALean.NN.Layers.Definitions.EncloseNonlinearPrinted
 
 /-!
 # What the standard layers mean, collected

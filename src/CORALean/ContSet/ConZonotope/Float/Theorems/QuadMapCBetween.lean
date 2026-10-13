@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCDown
-import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCUp
-import CORALean.ContSet.ConZonotope.Float.Theorems.QuadBilBracket
-import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCDown
+public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapCUp
+public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadBilBracket
+public import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
+
+@[expose] public section
 
 /-!
 # The exact centre of `quadMap` lies between the two stored roundings

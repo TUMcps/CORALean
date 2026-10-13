@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Zonotope.Float.Operations.MatMul
-import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
-import CORALean.ContSet.Zonotope.Real.Operations.MatMul
-import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Zonotope.Float.Operations.MatMul
+public import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
+public import CORALean.ContSet.Zonotope.Real.Operations.MatMul
+public import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.matMul` over-approximates every product of two members

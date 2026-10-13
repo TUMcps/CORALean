@@ -1,16 +1,20 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
-import CORALean.Global.Float.ToRat
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
-import CORALean.Global.Float.Instances.IEEE.Theorems.AddDownLeAdd
-import CORALean.Global.Float.Instances.IEEE.Theorems.AddLeAddUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.DivDownLeDiv
-import CORALean.Global.Float.Instances.IEEE.Theorems.DivLeDivUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.MulDownLeMul
-import CORALean.Global.Float.Instances.IEEE.Theorems.MulLeMulUp
-import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealHalf
-import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMaximum
-import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMinimum
-import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealNeg
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
+public import CORALean.Global.Float.Instances.IEEE.Theorems.AddDownLeAdd
+public import CORALean.Global.Float.Instances.IEEE.Theorems.AddLeAddUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.DivDownLeDiv
+public import CORALean.Global.Float.Instances.IEEE.Theorems.DivLeDivUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.MulDownLeMul
+public import CORALean.Global.Float.Instances.IEEE.Theorems.MulLeMulUp
+public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealHalf
+public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMaximum
+public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMinimum
+public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealNeg
+
+@[expose] public section
 
 /-!
 # `IEEE fmt` as a sound float model

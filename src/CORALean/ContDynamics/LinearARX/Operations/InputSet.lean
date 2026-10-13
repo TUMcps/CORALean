@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.InputMat
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.InputMat
+
+@[expose] public section
 
 /-!
 # The input set of the converted system

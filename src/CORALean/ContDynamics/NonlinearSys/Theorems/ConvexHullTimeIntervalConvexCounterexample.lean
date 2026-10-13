@@ -1,10 +1,14 @@
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Analysis.Convex.Segment
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Topology.Order.Compact
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Analysis.Convex.Segment
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Topology.Order.Compact
+
+@[expose] public section
 
 /-!
 # The time-interval inner set of L-CSS 2024 fails for a convex initial set too

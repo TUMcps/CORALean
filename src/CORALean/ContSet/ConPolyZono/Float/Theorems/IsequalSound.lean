@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Isequal
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.isequal` is sound

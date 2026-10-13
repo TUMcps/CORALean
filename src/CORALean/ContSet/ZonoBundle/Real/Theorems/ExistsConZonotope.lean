@@ -1,4 +1,8 @@
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
+module
+
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
+
+@[expose] public section
 
 /-!
 # A bundle is a constrained zonotope

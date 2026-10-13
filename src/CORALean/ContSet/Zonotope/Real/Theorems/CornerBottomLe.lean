@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerApply
-import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerApply
+public import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
+
+@[expose] public section
 
 /-!
 # The lowest corner is lowest

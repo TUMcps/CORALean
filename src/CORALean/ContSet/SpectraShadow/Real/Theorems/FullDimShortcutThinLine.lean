@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
+
+@[expose] public section
 
 /-!
 # CORA's `isFullDim` shortcut marks a full-dimensional shadow as empty

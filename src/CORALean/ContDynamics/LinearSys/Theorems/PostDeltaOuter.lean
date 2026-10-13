@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.PostDelta
-import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolution
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.PostDelta
+public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolution
+
+@[expose] public section
 
 /-!
 # `postΔ` contains every state difference a step can span

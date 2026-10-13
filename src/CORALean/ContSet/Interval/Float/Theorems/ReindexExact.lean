@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Reindex
-import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Reindex
+public import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
+
+@[expose] public section
 
 /-!
 # `Interval.reindex` is exactly the relabelled box, in float too

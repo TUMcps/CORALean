@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # What a sampled run's input enclosures owe, in floats

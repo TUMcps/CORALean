@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.EnlargeInterfaceInput
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.EnlargeInterfaceInput
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+
+@[expose] public section
 
 /-!
 # The enlarged interface input holds the interface part of the input set

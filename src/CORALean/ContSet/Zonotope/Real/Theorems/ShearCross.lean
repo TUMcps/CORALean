@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Shear
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Shear
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The shear keeps the cross product of the generators

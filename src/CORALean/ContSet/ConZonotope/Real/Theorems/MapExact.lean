@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Map
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Map
+
+@[expose] public section
 
 /-!
 # `ConZonotope.map` is exactly the image under a linear map

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Bounds.Basic
-import Mathlib.Order.Interval.Set.Defs
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Order.Bounds.Basic
+public import Mathlib.Order.Interval.Set.Defs
+
+@[expose] public section
 
 /-!
 # Without continuity, `0 ∈ [h̲, h̅]` is not sufficient

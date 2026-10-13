@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.PointExample
-import CORALean.ContSet.SpectraShadow.Real.Theorems.LmiOfAZero
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.PointExample
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.LmiOfAZero
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.pointExample_construct`

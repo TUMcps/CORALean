@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
-import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
-import CORALean.Global.PosDefSchurComplement
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
+public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
+public import CORALean.Global.PosDefSchurComplement
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.ColumnRowPartitioned
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The W-radius criterion of the offline correction matrix

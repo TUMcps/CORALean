@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # `HPolytope.isIntersectingVPolyCora`, CORA's H-polytope/V-polytope intersection test

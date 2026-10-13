@@ -1,6 +1,10 @@
-import CORALean.HybridDynamics.Definitions.Invariant
-import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
-import CORALean.HybridDynamics.Theorems.JumpIntersectionOuter
+module
+
+public import CORALean.HybridDynamics.Definitions.Invariant
+public import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
+public import CORALean.HybridDynamics.Theorems.JumpIntersectionOuter
+
+@[expose] public section
 
 /-!
 # `Invariant`, discharged from the computed enclosures

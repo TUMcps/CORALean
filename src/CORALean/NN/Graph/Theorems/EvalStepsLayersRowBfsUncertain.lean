@@ -1,6 +1,10 @@
-import CORALean.NN.Graph.Operations.Bfs
-import CORALean.NN.Graph.Theorems.BfsVisitedEqBall
-import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallOfAdjacencyUncertain
+module
+
+public import CORALean.NN.Graph.Operations.Bfs
+public import CORALean.NN.Graph.Theorems.BfsVisitedEqBall
+public import CORALean.NN.Graph.Theorems.EvalStepsLayersRowBallOfAdjacencyUncertain
+
+@[expose] public section
 
 /-!
 # `[1, Sec. 4.3]`'s subgraph, found by the breadth-first search

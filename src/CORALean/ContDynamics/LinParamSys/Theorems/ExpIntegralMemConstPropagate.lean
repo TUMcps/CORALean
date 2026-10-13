@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolution
-import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+
+@[expose] public section
 
 /-!
 # `constPropagate` holds what a constant input contributes by `t_k`, at every member

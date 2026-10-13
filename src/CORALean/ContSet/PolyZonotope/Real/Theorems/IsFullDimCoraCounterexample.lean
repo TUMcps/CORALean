@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.IsFullDimCora
-import CORALean.ContSet.ContSet.Definitions.IsFullDim
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsFullDimCora
+public import CORALean.ContSet.ContSet.Definitions.IsFullDim
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # CORA's `polyZonotope/isFullDim` accepts a curve

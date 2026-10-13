@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+
+@[expose] public section
 
 /-!
 # V-polytope in V-polytope

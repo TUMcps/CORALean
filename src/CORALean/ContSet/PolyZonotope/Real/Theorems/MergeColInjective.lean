@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
-import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
+
+@[expose] public section
 
 /-!
 # `merge` leaves no two columns equal

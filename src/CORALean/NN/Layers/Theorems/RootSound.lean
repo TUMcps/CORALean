@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Root
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.RootRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.Root
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.RootRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the square root layer encloses

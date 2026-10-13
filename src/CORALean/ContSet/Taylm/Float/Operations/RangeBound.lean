@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Float.Operations.CodeEval
-import CORALean.ContSet.Taylm.Float.Operations.Bounds
-import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.CodeEval
+public import CORALean.ContSet.Taylm.Float.Operations.Bounds
+public import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
+
+@[expose] public section
 
 /-!
 # Range bounding with floating-point Taylor models

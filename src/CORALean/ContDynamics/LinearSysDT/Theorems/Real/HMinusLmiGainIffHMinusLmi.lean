@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
-import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
+
+@[expose] public section
 
 /-!
 # The two forms of the `H₋` inequality agree

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.Intersection
-import CORALean.ContSet.Interval.Float.Operations.SplitAt
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
-import CORALean.ContSet.PolyZonotope.Float.Operations.InnerSpecial
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Intersection
+public import CORALean.ContSet.Interval.Float.Operations.SplitAt
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
+public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerSpecial
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.innerApproxImage`

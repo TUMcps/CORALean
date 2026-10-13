@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Operations.ActivationLayerOf
-import CORALean.NN.Definitions.MergeBucket
-import CORALean.NN.NeuralNetwork
+module
+
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Layers.Operations.ActivationLayerOf
+public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.NeuralNetwork
+
+@[expose] public section
 
 /-!
 # A network in the form [1, Alg. 2] reads and writes

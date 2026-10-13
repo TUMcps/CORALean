@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Isequal
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Isequal
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.isequal` is sound

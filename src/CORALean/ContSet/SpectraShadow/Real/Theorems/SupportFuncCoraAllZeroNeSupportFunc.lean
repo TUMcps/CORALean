@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFuncCoraAllZero
-import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFuncCoraAllZero
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.supportFuncCoraAllZero_ne_supportFunc`

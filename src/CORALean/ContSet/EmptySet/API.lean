@@ -1,4 +1,6 @@
-import CORALean.ContSet.EmptySet.Real.API
+module
+
+public import CORALean.ContSet.EmptySet.Real.API
 
 /-!
 # The empty set

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GeneratorMatrix
-import CORALean.ContSet.Zonotope.Real.Operations.DominantLengthFilter
-import Mathlib.Data.List.Sort
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorMatrix
+public import CORALean.ContSet.Zonotope.Real.Operations.DominantLengthFilter
+public import Mathlib.Data.List.Sort
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+
+@[expose] public section
 
 /-!
 # `Zonotope.dominantShortlist`

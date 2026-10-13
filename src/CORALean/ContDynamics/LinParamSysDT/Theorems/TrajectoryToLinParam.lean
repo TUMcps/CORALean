@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
+
+@[expose] public section
 
 /-!
 # A `LinearSysDT` trajectory is a `toLinParam` trajectory

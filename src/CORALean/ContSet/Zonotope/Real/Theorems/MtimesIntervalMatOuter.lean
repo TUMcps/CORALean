@@ -1,14 +1,18 @@
-import CORALean.ContSet.Interval.Real.Operations.Center
-import CORALean.ContSet.Interval.Real.Operations.Radius
-import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
-import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
+public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # Multiplying by an interval matrix over-approximates every matrix in it

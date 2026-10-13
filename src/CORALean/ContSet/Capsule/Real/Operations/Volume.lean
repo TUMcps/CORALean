@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Capsule
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+
+@[expose] public section
 
 /-!
 # `Capsule.volume`

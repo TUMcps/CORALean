@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.IntervalChain
+module
+
+public import CORALean.NN.Definitions.IntervalChain
+
+@[expose] public section
 
 /-!
 # The forward pass of an interval chain

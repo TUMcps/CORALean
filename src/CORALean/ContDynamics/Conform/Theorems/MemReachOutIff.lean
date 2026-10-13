@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.Conform.Definitions.DevSet
-import CORALean.ContDynamics.Conform.Definitions.ReachOut
-import CORALean.ContDynamics.Conform.Theorems.StateAddDev
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.DevSet
+public import CORALean.ContDynamics.Conform.Definitions.ReachOut
+public import CORALean.ContDynamics.Conform.Theorems.StateAddDev
+
+@[expose] public section
 
 /-!
 # A measurement is reachable iff its deviation from the nominal run is in the deviation set

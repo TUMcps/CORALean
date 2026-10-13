@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ConstructEqImage
-import CORALean.ContSet.ConPolyZono.Real.Theorems.ContinuousAffine
-import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompactDomain
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContinuousAffine
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompactDomain
+
+@[expose] public section
 
 /-!
 # A constrained polynomial zonotope is compact

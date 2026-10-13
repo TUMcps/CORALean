@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MatMul
-import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MatMul
+public import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+
+@[expose] public section
 
 /-!
 # `Zonotope.matPow`

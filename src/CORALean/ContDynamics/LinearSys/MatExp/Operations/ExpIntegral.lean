@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Topology.MetricSpace.Pseudo.Defs
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.Analysis.Normed.Algebra.Exponential
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Topology.Instances.Matrix
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+
+@[expose] public section
 
 /-!
 # The matrix exponential, integrated

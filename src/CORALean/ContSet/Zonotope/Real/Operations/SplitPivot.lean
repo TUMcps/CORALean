@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.Global.Tensor
-import Mathlib.Analysis.SpecialFunctions.Complex.Arg
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.SpecialFunctions.Complex.Arg
+
+@[expose] public section
 
 /-!
 # `SPLIT_PIVOT`: the generators below the pivot and the rest

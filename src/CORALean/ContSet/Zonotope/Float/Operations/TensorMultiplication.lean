@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.TensorHDiff
-import CORALean.ContSet.Zonotope.Float.Operations.Dependent
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.TensorHDiff
+public import CORALean.ContSet.Zonotope.Float.Operations.Dependent
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorMultiplication`, over a floating-point scalar

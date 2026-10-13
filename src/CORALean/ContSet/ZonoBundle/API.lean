@@ -1,5 +1,7 @@
-import CORALean.ContSet.ZonoBundle.Real.API
-import CORALean.ContSet.ZonoBundle.Float.API
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.API
+public import CORALean.ContSet.ZonoBundle.Float.API
 
 /-!
 # Zonotope bundles, both layers

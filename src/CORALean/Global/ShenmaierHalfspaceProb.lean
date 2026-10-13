@@ -1,7 +1,11 @@
-import CORALean.Global.ShenmaierHalfspace
-import CORALean.Global.ShenmaierBound
-import CORALean.Global.EllipsotopeSupport
-import CORALean.Global.CoeffNorm
+module
+
+public import CORALean.Global.ShenmaierHalfspace
+public import CORALean.Global.ShenmaierBound
+public import CORALean.Global.EllipsotopeSupport
+public import CORALean.Global.CoeffNorm
+
+@[expose] public section
 
 /-!
 # Halfspace sampling's accuracy, at a fixed `ε`

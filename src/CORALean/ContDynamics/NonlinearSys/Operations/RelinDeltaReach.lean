@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
-import CORALean.ContDynamics.NonlinearSys.Definitions.RelinDeltaReachOptions
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
+public import CORALean.ContDynamics.NonlinearSys.Definitions.RelinDeltaReachOptions
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
+
+@[expose] public section
 
 /-!
 # The state differences step `i` of the loop spans

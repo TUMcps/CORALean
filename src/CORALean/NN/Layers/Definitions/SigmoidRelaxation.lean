@@ -1,9 +1,13 @@
-import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
-import CORALean.NN.Layers.Definitions.Sigmoid
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.RelaxationOfDeriv
-import CORALean.NN.Layers.Operations.RelaxationOfMonotone
-import CORALean.NN.Layers.Operations.RelaxationTighter
+module
+
+public import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
+public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+public import CORALean.NN.Layers.Operations.RelaxationTighter
+
+@[expose] public section
 
 /-!
 # The sigmoid relaxation over ℝ

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ExtremalGen
-import CORALean.ContSet.Zonotope.Real.Theorems.InterHyperplaneIff
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ExtremalGen
+public import CORALean.ContSet.Zonotope.Real.Theorems.InterHyperplaneIff
+
+@[expose] public section
 
 /-!
 # `u ± g` are the extremal points of a zonotope along `s`

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
-import CORALean.ContSet.Interval.Float.Operations.MatPlus
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
+public import CORALean.ContSet.Interval.Float.Operations.MatPlus
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `Σᵢ Ãᵢ` over a float box

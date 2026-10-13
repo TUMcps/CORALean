@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
-import CORALean.Global.Err
-import CORALean.Global.EuclideanGenOpNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
+public import CORALean.Global.Err
+public import CORALean.Global.EuclideanGenOpNorm
+
+@[expose] public section
 
 /-!
 # `affineDynamicsError` is nonnegative

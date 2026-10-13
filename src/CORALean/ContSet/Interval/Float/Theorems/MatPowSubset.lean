@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Theorems.MatMulSubset
-import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulSubset
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
+
+@[expose] public section
 
 /-!
 # A real box power inside a float one, the base box inside

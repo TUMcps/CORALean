@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.MethCResidual
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.MethCResidual
+
+@[expose] public section
 
 /-!
 # `Zonotope.methCQ`

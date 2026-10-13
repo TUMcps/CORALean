@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # Block-diagonal generator matrices

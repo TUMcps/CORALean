@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Origin
-import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Origin
+public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # `Interval.origin` is exactly the origin

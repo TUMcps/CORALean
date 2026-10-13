@@ -1,10 +1,14 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Module.NatInt
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.Data.Nat.SuccPred
-import Mathlib.Logic.Function.CompTypeclasses
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Module.NatInt
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.Data.Nat.SuccPred
+public import Mathlib.Logic.Function.CompTypeclasses
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope as a zonotope

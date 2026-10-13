@@ -1,16 +1,18 @@
-import CORALean.ContSet.ProbZonotope.Float.Theorems.AbsLawsOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.EncloseMeanOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.GaussPdfLeMax
-import CORALean.ContSet.ProbZonotope.Float.Theorems.MaxLe
-import CORALean.ContSet.ProbZonotope.Float.Theorems.RepresentsaEmptySetSound
-import CORALean.ContSet.ProbZonotope.Float.Theorems.MeanOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.MtimesLawsOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.OfGeneratorsLawsOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.PlusLawsOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.ProbReduceOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.ProjectLawsOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.ReduceGirardOuter
-import CORALean.ContSet.ProbZonotope.Float.Theorems.VPolytopeOuter
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.AbsLawsOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.EncloseMeanOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.GaussPdfLeMax
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.MaxLe
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.MeanOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.MtimesLawsOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.OfGeneratorsLawsOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.PlusLawsOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.ProbReduceOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.ProjectLawsOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.VPolytopeOuter
 
 /-!
 # Float probabilistic zonotopes: the guarantees

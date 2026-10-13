@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # The zonogon and its walk edges are symmetric about the centre

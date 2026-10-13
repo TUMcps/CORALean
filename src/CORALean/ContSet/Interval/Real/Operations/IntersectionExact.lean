@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `Interval.intersection` is exact

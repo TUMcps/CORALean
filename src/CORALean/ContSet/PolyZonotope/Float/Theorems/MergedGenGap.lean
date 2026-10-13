@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
+
+@[expose] public section
 
 /-!
 # What storing the merged column costs

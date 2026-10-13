@@ -1,8 +1,12 @@
-import CORALean.NN.Layers.Theorems.Real.ExistsSampleGridClose
-import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Topology.Algebra.Module.ModuleTopology
+module
+
+public import CORALean.NN.Layers.Theorems.Real.ExistsSampleGridClose
+public import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Topology.Algebra.Module.ModuleTopology
+
+@[expose] public section
 
 /-!
 # The exact sampled range brackets a function

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.pullback`

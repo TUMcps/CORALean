@@ -1,8 +1,10 @@
-import CORALean.Global.Float.Instances.Binary64.Binary64
-import CORALean.Global.Float.Instances.Binary64.Definitions.API
-import CORALean.Global.Float.Instances.Binary64.Operations.API
-import CORALean.Global.Float.Instances.Binary64.Theorems.API
-import CORALean.Global.Float.Instances.Binary64.Instances
+module
+
+public import CORALean.Global.Float.Instances.Binary64.Binary64
+public import CORALean.Global.Float.Instances.Binary64.Definitions.API
+public import CORALean.Global.Float.Instances.Binary64.Operations.API
+public import CORALean.Global.Float.Instances.Binary64.Theorems.API
+public import CORALean.Global.Float.Instances.Binary64.Instances
 
 /-!
 # Native binary64, collected

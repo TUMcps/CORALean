@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSum
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSum
+
+@[expose] public section
 
 /-!
 # [1]'s eq. (25)'s correlated summand: `(Σᵢ Ãᵢ)U0 ⊕ E(Δt,η)ΔtU0`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Real.Theorems.SubtractOuter
+module
+
+public import CORALean.ContSet.Polygon.Real.Theorems.SubtractOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.mldivide` encloses the difference with any set

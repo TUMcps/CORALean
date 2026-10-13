@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
+module
+
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
+
+@[expose] public section
 
 /-!
 # `Zonotope.imageEnclosureCost`

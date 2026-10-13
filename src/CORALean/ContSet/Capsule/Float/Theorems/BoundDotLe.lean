@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Float.Operations.BoundDot
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.BoundDot
+
+@[expose] public section
 
 /-!
 # `Capsule.boundDot` bounds the capsule, in float too

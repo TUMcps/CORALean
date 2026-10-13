@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # The inverse square root's machine enclosure

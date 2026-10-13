@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+
+@[expose] public section
 
 /-!
 # `HPolytope.representsaFullspace` over a floating-point scalar

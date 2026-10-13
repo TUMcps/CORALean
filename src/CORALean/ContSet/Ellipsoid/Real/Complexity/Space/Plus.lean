@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.plus_k`

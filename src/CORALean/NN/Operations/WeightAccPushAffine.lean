@@ -1,6 +1,10 @@
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Matrix.Diagonal
-import CORALean.NN.Definitions.WeightAcc
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Matrix.Diagonal
+public import CORALean.NN.Definitions.WeightAcc
+
+@[expose] public section
 
 /-!
 # Fusing an elementwise affine layer into the accumulator

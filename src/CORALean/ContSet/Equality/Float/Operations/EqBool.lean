@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Operations.Eq
+module
+
+public import CORALean.ContSet.ContSet.Operations.Eq
+
+@[expose] public section
 
 /-!
 # CORA's `eq`, as a `Bool`

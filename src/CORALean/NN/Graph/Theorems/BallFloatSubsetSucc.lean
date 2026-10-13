@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.BallFloat
+module
+
+public import CORALean.NN.Graph.Operations.BallFloat
+
+@[expose] public section
 
 /-!
 # The float ball grows with the radius

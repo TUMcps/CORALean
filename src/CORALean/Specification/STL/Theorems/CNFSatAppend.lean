@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Theorems.CNFSatToFormula
+module
+
+public import CORALean.Specification.STL.Theorems.CNFSatToFormula
+
+@[expose] public section
 
 /-!
 # Appending normal forms is conjunction

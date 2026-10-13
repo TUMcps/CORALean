@@ -1,8 +1,12 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.DivDown
-import CORALean.Global.Float.Instances.Dyadic.Theorems.MantissaPos
-import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDivEq
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMk
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.DivDown
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.MantissaPos
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDivEq
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMk
+
+@[expose] public section
 
 /-!
 # Division, rounded down, never overshoots

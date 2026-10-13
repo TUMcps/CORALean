@@ -1,5 +1,9 @@
-import CORALean.Global.EllipsoidContainmentRadiusSDP
-import CORALean.Global.IsPinvOfSurjective
+module
+
+public import CORALean.Global.EllipsoidContainmentRadiusSDP
+public import CORALean.Global.IsPinvOfSurjective
+
+@[expose] public section
 
 /-!
 # The ellipsoid-in-ellipsoid program with `H⁺ = Hᵀ (H Hᵀ)⁻¹`

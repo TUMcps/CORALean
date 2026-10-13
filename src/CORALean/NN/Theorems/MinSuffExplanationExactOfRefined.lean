@@ -1,6 +1,10 @@
-import CORALean.NN.Theorems.MinSuffExplanationAbstract
-import CORALean.NN.Theorems.MinSuffExplanationExact
-import CORALean.NN.Theorems.SuffExplanationExactOfRefined
+module
+
+public import CORALean.NN.Theorems.MinSuffExplanationAbstract
+public import CORALean.NN.Theorems.MinSuffExplanationExact
+public import CORALean.NN.Theorems.SuffExplanationExactOfRefined
+
+@[expose] public section
 
 /-!
 # Minimality transfers from a refinement to the coarser network

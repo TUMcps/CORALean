@@ -1,6 +1,10 @@
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Taylm.Float.Taylm
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Taylm.Float.Taylm
+
+@[expose] public section
 
 /-!
 # An array of Taylor models as a polynomial zonotope, over a floating-point scalar

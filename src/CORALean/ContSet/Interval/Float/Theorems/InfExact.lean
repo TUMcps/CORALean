@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Inf
-import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Inf
+public import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+
+@[expose] public section
 
 /-!
 # `Interval.Inf` is exact, over a floating-point scalar

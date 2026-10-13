@@ -1,31 +1,33 @@
-import CORALean.ContSet.SpectraShadow.Float.Operations.GenerateESumRep
-import CORALean.ContSet.SpectraShadow.Float.Operations.CenterResidual
-import CORALean.ContSet.SpectraShadow.Float.Operations.CartProd
-import CORALean.ContSet.SpectraShadow.Float.Operations.Empty
-import CORALean.ContSet.SpectraShadow.Float.Operations.Inf
-import CORALean.ContSet.SpectraShadow.Float.Operations.Mtimes
-import CORALean.ContSet.SpectraShadow.Float.Operations.PadLeft
-import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
-import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
-import CORALean.ContSet.SpectraShadow.Float.Operations.Project
-import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
-import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
-import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
-import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
-import CORALean.ContSet.SpectraShadow.Float.Operations.Base
-import CORALean.ContSet.SpectraShadow.Float.Operations.DualBound
-import CORALean.ContSet.SpectraShadow.Float.Operations.DualCertified
-import CORALean.ContSet.SpectraShadow.Float.Operations.IsBounded
-import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaEmptySet
-import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaOrigin
-import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.SpectraShadow.Float.Operations.ArrowMat
-import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
-import CORALean.ContSet.SpectraShadow.Float.Operations.SingletonOne
-import CORALean.ContSet.SpectraShadow.Float.Operations.HyperplaneOne
-import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
-import CORALean.ContSet.SpectraShadow.Float.Operations.Or
-import CORALean.ContSet.SpectraShadow.Float.Operations.PolytopeOuter
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Operations.GenerateESumRep
+public import CORALean.ContSet.SpectraShadow.Float.Operations.CenterResidual
+public import CORALean.ContSet.SpectraShadow.Float.Operations.CartProd
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Empty
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Inf
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Mtimes
+public import CORALean.ContSet.SpectraShadow.Float.Operations.PadLeft
+public import CORALean.ContSet.SpectraShadow.Float.Operations.PadRight
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Project
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
+public import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
+public import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Base
+public import CORALean.ContSet.SpectraShadow.Float.Operations.DualBound
+public import CORALean.ContSet.SpectraShadow.Float.Operations.DualCertified
+public import CORALean.ContSet.SpectraShadow.Float.Operations.IsBounded
+public import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.SpectraShadow.Float.Operations.ArrowMat
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
+public import CORALean.ContSet.SpectraShadow.Float.Operations.SingletonOne
+public import CORALean.ContSet.SpectraShadow.Float.Operations.HyperplaneOne
+public import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Or
+public import CORALean.ContSet.SpectraShadow.Float.Operations.PolytopeOuter
 
 /-!
 # What a float spectrahedral shadow computes, collected

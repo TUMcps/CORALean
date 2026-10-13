@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+
+@[expose] public section
 
 /-!
 # The input reach set is convex

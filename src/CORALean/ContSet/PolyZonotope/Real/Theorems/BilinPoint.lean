@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+
+@[expose] public section
 
 /-!
 # `bilin`'s point is `f` at the two points

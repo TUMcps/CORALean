@@ -1,4 +1,8 @@
-import Mathlib.Analysis.Complex.Exponential
+module
+
+public import Mathlib.Analysis.Complex.Exponential
+
+@[expose] public section
 
 /-!
 # The exponential series without its constant order

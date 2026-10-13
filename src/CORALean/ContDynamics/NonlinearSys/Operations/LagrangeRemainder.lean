@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The cubic remainder of a second-order expansion

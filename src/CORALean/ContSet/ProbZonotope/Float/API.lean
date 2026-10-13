@@ -1,6 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
-import CORALean.ContSet.ProbZonotope.Float.Operations.API
-import CORALean.ContSet.ProbZonotope.Float.Theorems.API
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
+public import CORALean.ContSet.ProbZonotope.Float.Operations.API
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.API
 
 /-!
 # Float probabilistic zonotopes, collected

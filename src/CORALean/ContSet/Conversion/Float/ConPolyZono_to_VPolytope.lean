@@ -1,4 +1,8 @@
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_VPolytope
+module
+
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_VPolytope
+
+@[expose] public section
 
 /-!
 # A constrained polynomial zonotope as its corners, over a floating-point scalar

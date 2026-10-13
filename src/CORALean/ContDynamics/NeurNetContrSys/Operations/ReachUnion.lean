@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
-import CORALean.ContSet.Interval.Real.Instances
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
+public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # `NeurNetContrSys.reach`, packaged as `Reach`'s `SetUnion`

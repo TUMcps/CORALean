@@ -1,4 +1,8 @@
-import Mathlib.Data.Nat.Basic
+module
+
+public import Mathlib.Data.Nat.Basic
+
+@[expose] public section
 
 /-!
 # CORA's `options` for a discrete-time linear reach

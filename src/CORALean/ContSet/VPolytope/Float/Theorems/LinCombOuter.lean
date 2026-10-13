@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
-import CORALean.ContSet.VPolytope.Float.Operations.LinComb
-import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.VPolytope.Float.Operations.LinComb
+public import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
+
+@[expose] public section
 
 /-!
 # `VPolytope.linComb` encloses every segment between the two

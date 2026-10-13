@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The linear differential inclusion abstracting a DAE

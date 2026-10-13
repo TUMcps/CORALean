@@ -1,27 +1,29 @@
-import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
-import CORALean.ContDynamics.LinearARX.Operations.ComputeGOFloat
-import CORALean.ContDynamics.LinearARX.Operations.SumRangeFloat
-import CORALean.ContDynamics.LinearARX.Operations.Aext
-import CORALean.ContDynamics.LinearARX.Operations.Alg1
-import CORALean.ContDynamics.LinearARX.Operations.Alg1State
-import CORALean.ContDynamics.LinearARX.Operations.Alg2
-import CORALean.ContDynamics.LinearARX.Operations.Alg2State
-import CORALean.ContDynamics.LinearARX.Operations.Bext
-import CORALean.ContDynamics.LinearARX.Operations.Btilde
-import CORALean.ContDynamics.LinearARX.Operations.OfObserver
-import CORALean.ContDynamics.LinearARX.Operations.Feed
-import CORALean.ContDynamics.LinearARX.Operations.FeedBox
-import CORALean.ContDynamics.LinearARX.Operations.InputMat
-import CORALean.ContDynamics.LinearARX.Operations.InputSet
-import CORALean.ContDynamics.LinearARX.Operations.OutputEq
-import CORALean.ContDynamics.LinearARX.Operations.Simulate
-import CORALean.ContDynamics.LinearARX.Operations.SimulateBoxFloat
-import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
-import CORALean.ContDynamics.LinearARX.Operations.OfCharpoly
-import CORALean.ContDynamics.LinearARX.Operations.Identify
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyBlocks
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyCandidate
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
+public import CORALean.ContDynamics.LinearARX.Operations.ComputeGOFloat
+public import CORALean.ContDynamics.LinearARX.Operations.SumRangeFloat
+public import CORALean.ContDynamics.LinearARX.Operations.Aext
+public import CORALean.ContDynamics.LinearARX.Operations.Alg1
+public import CORALean.ContDynamics.LinearARX.Operations.Alg1State
+public import CORALean.ContDynamics.LinearARX.Operations.Alg2
+public import CORALean.ContDynamics.LinearARX.Operations.Alg2State
+public import CORALean.ContDynamics.LinearARX.Operations.Bext
+public import CORALean.ContDynamics.LinearARX.Operations.Btilde
+public import CORALean.ContDynamics.LinearARX.Operations.OfObserver
+public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContDynamics.LinearARX.Operations.FeedBox
+public import CORALean.ContDynamics.LinearARX.Operations.InputMat
+public import CORALean.ContDynamics.LinearARX.Operations.InputSet
+public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
+public import CORALean.ContDynamics.LinearARX.Operations.Simulate
+public import CORALean.ContDynamics.LinearARX.Operations.SimulateBoxFloat
+public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+public import CORALean.ContDynamics.LinearARX.Operations.OfCharpoly
+public import CORALean.ContDynamics.LinearARX.Operations.Identify
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyBlocks
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyCandidate
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
 
 /-!
 # Linear ARX models: the conversion

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Operations.Sum
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Sum
+
+@[expose] public section
 
 /-!
 # `Taylm.trace`, over a floating-point scalar

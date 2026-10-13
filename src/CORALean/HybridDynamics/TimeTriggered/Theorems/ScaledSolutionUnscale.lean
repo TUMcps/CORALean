@@ -1,6 +1,10 @@
-import Mathlib.Analysis.ODE.ExistUnique
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
+module
+
+public import Mathlib.Analysis.ODE.ExistUnique
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
+
+@[expose] public section
 
 /-!
 # A solution of the scaled field is a solution of the field, reparametrized

@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Layers.Theorems.Real.ApproxErrorIsExtreme
-import Mathlib.Data.Set.Finite.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.NN.Layers.Definitions.Relu
+public import CORALean.NN.Layers.Theorems.Real.ApproxErrorIsExtreme
+public import Mathlib.Data.Set.Finite.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The approximation errors of ReLU

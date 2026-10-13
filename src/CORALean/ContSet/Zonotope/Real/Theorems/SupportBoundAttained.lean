@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
-import Mathlib.Data.Real.Sign
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+public import Mathlib.Data.Real.Sign
+
+@[expose] public section
 
 /-!
 # The support bound is the support function

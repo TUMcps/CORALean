@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SumExpTail2Le
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SumExpTail2Le
+
+@[expose] public section
 
 /-!
 # How wide the correction matrix is, in `r` and `‖A‖` alone

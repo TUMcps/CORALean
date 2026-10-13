@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.SplitAt
-import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.SplitAt
+public import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
+
+@[expose] public section
 
 /-!
 # `Interval.splitAt` covers the box it bisects

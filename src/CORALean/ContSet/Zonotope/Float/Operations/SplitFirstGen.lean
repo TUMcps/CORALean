@@ -1,4 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Split
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Split
+
+@[expose] public section
+
 /-!
 # `Zonotope.splitFirstGen`, over a floating-point scalar
 

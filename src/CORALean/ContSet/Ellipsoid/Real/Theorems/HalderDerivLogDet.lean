@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.LogDetHalderEq
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetHasDerivAt
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.LogDetHalderEq
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetHasDerivAt
+
+@[expose] public section
 
 /-!
 # The derivative of the log-determinant of the outer ellipsoid

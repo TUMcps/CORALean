@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.BranchAndBound
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BranchAndBound
+
+@[expose] public section
 
 /-!
 # `Taylm.optBnb`

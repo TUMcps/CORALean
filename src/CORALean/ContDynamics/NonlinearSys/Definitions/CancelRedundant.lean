@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.List.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Set.Lattice
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.List.Basic
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Set.Lattice
+
+@[expose] public section
 
 /-!
 # Cancelling redundant reachable sets

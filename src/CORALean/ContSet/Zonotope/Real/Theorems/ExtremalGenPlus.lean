@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ExtremalGen
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ExtremalGen
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-!
 # The under-approximation of a sum is the `⊞` of the under-approximations

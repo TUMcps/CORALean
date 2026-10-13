@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.Global.LinProg.Composition
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.Global.LinProg.Composition
+
+@[expose] public section
 
 /-!
 # A support bound propagated along the steps

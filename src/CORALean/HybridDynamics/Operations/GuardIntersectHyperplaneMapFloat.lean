@@ -1,18 +1,22 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Operations.HalfspaceRange
-import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Float.Operations.QuadMapMatZono
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
-import CORALean.Global.Float.Sqrt
-import CORALean.HybridDynamics.Definitions.Location
-import CORALean.HybridDynamics.Operations.AbstractionErrorFloat
-import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
-import CORALean.HybridDynamics.Operations.HitJacobianFloat
-import CORALean.HybridDynamics.Operations.HitPointFloat
-import CORALean.HybridDynamics.Operations.SdcInputFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.HalfspaceRange
+public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadMapMatZono
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
+public import CORALean.Global.Float.Sqrt
+public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.AbstractionErrorFloat
+public import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
+public import CORALean.HybridDynamics.Operations.HitJacobianFloat
+public import CORALean.HybridDynamics.Operations.HitPointFloat
+public import CORALean.HybridDynamics.Operations.SdcInputFloat
+
+@[expose] public section
 
 /-!
 # `Location.guardIntersectHyperplaneMapFloat`, the guard mapping at floats

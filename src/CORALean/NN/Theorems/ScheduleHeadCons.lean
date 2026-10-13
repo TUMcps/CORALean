@@ -1,5 +1,9 @@
-import CORALean.NN.Operations.ScheduleCons
-import CORALean.NN.Operations.ScheduleHead
+module
+
+public import CORALean.NN.Operations.ScheduleCons
+public import CORALean.NN.Operations.ScheduleHead
+
+@[expose] public section
 
 /-!
 # The head of a pattern in front of a schedule is that pattern

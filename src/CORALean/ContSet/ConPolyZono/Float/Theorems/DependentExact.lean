@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalSetDependent
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalSetDependent
+
+@[expose] public section
 
 /-!
 # Making the independent generators dependent loses nothing here either

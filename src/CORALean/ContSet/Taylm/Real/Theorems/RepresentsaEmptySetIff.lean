@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaEmptySetIff
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaEmptySetIff
+
+@[expose] public section
 
 /-!
 # `Taylm.representsa_emptySet` says what it should

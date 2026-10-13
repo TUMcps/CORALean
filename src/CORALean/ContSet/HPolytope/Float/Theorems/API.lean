@@ -1,44 +1,46 @@
-import CORALean.ContSet.HPolytope.Float.Theorems.ProjectHighDimExact
-import CORALean.ContSet.HPolytope.Float.Theorems.IsequalNominal
-import CORALean.ContSet.HPolytope.Float.Theorems.NotInner
-import CORALean.ContSet.HPolytope.Float.Theorems.BoundOfDualLe
-import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
-import CORALean.ContSet.HPolytope.Float.Theorems.PlusOfOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.LinCombOfOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.MtimesOfOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.MinusOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
-import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
-import CORALean.ContSet.HPolytope.Float.Theorems.CartProdExact
-import CORALean.ContSet.HPolytope.Float.Theorems.OriginExact
-import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
-import CORALean.ContSet.HPolytope.Float.Theorems.RepresentsaFullspaceSound
-import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
-import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
-import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainInner
-import CORALean.ContSet.HPolytope.Float.Theorems.IsFullDimSound
-import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledLeft
-import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
-import CORALean.ContSet.HPolytope.Float.Theorems.RecipUpPos
-import CORALean.ContSet.HPolytope.Float.Theorems.ScaleDevBetween
-import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeConstraintsOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
-import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
-import CORALean.ContSet.HPolytope.Float.Theorems.IsZeroVecDot
-import CORALean.ContSet.HPolytope.Float.Theorems.DropZerosExact
-import CORALean.ContSet.HPolytope.Float.Theorems.CompactZerosOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
-import CORALean.ContSet.HPolytope.Float.Theorems.DropAlignedExact
-import CORALean.ContSet.HPolytope.Float.Theorems.CompactAlignedIneqOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairDot
-import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairSymm
-import CORALean.ContSet.HPolytope.Float.Theorems.PairsToEqExact
-import CORALean.ContSet.HPolytope.Float.Theorems.CompactAtoAeOuter
-import CORALean.ContSet.HPolytope.Float.Theorems.ExcludesPointSound
+module
+
+public import CORALean.ContSet.HPolytope.Float.Theorems.ProjectHighDimExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsequalNominal
+public import CORALean.ContSet.HPolytope.Float.Theorems.NotInner
+public import CORALean.ContSet.HPolytope.Float.Theorems.BoundOfDualLe
+public import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.PlusOfOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.LinCombOfOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.MtimesOfOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.MinusOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
+public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Float.Theorems.CartProdExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.OriginExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.RepresentsaFullspaceSound
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
+public import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
+public import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainInner
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
+public import CORALean.ContSet.HPolytope.Float.Theorems.RecipUpPos
+public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleDevBetween
+public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeConstraintsOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsZeroVecDot
+public import CORALean.ContSet.HPolytope.Float.Theorems.DropZerosExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.CompactZerosOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
+public import CORALean.ContSet.HPolytope.Float.Theorems.DropAlignedExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.CompactAlignedIneqOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairDot
+public import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairSymm
+public import CORALean.ContSet.HPolytope.Float.Theorems.PairsToEqExact
+public import CORALean.ContSet.HPolytope.Float.Theorems.CompactAtoAeOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.ExcludesPointSound
 
 /-!
 # What the float `HPolytope` guarantees

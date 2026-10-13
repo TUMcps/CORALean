@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
+
+@[expose] public section
 
 /-!
 # Every `Trajectory` run is a witness in `e^{tA} R₀ ⊕ inputReach U t`

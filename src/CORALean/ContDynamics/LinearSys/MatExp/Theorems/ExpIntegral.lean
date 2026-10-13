@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableNormExpIntegral
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableNormExpIntegral
+
+@[expose] public section
 
 /-!
 # The integrated exponential series converges

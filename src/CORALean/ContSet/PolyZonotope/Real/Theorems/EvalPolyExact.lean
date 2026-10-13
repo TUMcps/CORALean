@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyFactorCount
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyStepPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyFactorCount
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyStepPoint
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.evalPoly` is exactly the polynomial, evaluated coordinatewise

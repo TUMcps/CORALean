@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
-import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
+public import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
+
+@[expose] public section
 
 /-!
 # A step of the exact particular solution is within `O(Δt²)` of a constant input

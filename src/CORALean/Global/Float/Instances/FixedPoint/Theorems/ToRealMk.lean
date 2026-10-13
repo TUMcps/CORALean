@@ -1,4 +1,8 @@
-import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
+
+@[expose] public section
 
 /-!
 # A fixed-point literal, read back

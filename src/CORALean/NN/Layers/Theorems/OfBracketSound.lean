@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.PolyRelaxationOfBracket
-import CORALean.NN.Layers.Theorems.AbsSubLeBracketError
-import CORALean.NN.Layers.Theorems.EvalPolyShiftConst
+module
+
+public import CORALean.NN.Layers.Operations.PolyRelaxationOfBracket
+public import CORALean.NN.Layers.Theorems.AbsSubLeBracketError
+public import CORALean.NN.Layers.Theorems.EvalPolyShiftConst
+
+@[expose] public section
 
 /-!
 # A recentred bracket is a sound relaxation

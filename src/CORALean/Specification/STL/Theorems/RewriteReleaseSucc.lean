@@ -1,8 +1,12 @@
-import CORALean.Specification.STL.STL
-import CORALean.Specification.STL.Theorems.SatNext
-import CORALean.Specification.STL.Theorems.SatRelease
-import CORALean.Specification.STL.Theorems.ShiftShift
-import CORALean.Specification.STL.Theorems.ShiftZero
+module
+
+public import CORALean.Specification.STL.STL
+public import CORALean.Specification.STL.Theorems.SatNext
+public import CORALean.Specification.STL.Theorems.SatRelease
+public import CORALean.Specification.STL.Theorems.ShiftShift
+public import CORALean.Specification.STL.Theorems.ShiftZero
+
+@[expose] public section
 
 /-!
 # Rewriting, `R[i,j]` past `1`

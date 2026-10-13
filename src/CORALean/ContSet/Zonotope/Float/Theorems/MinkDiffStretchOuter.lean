@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Theorems.OriginExact
-import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffStretch
-import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+public import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffStretch
+public import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
+
+@[expose] public section
 
 /-!
 # The float `minkDiffStretch` over-approximates the Minkowski difference

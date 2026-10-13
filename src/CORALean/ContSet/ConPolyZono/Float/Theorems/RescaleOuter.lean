@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.Rescale
-import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetPointOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Rescale
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetPointOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # The float `rescale` encloses the constrained polynomial zonotope

@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.Operations.RTLBigAnd
-import CORALean.Specification.STL.Operations.RTLBigOr
-import CORALean.Specification.STL.Definitions.SampledTime
+module
+
+public import CORALean.Specification.STL.Operations.RTLBigAnd
+public import CORALean.Specification.STL.Operations.RTLBigOr
+public import CORALean.Specification.STL.Definitions.SampledTime
+
+@[expose] public section
 
 /-!
 # The transformation from sampled time STL to RTL

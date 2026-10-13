@@ -1,8 +1,12 @@
-import CORALean.NN.Graph.Operations.DegreeInf
-import CORALean.NN.Graph.Operations.DegreeSup
-import CORALean.NN.Graph.Theorems.DegreeAtEq
-import CORALean.NN.Graph.Theorems.EdgeMatNonneg
-import CORALean.NN.Graph.Theorems.OneLeDegree
+module
+
+public import CORALean.NN.Graph.Operations.DegreeInf
+public import CORALean.NN.Graph.Operations.DegreeSup
+public import CORALean.NN.Graph.Theorems.DegreeAtEq
+public import CORALean.NN.Graph.Theorems.EdgeMatNonneg
+public import CORALean.NN.Graph.Theorems.OneLeDegree
+
+@[expose] public section
 
 /-!
 # The uncertain degree is bracketed, and never below `1`

@@ -1,5 +1,9 @@
-import CORALean.Specification.Operations.VerifyConvexStep
-import CORALean.Specification.Theorems.DiffPointMemSub
+module
+
+public import CORALean.Specification.Operations.VerifyConvexStep
+public import CORALean.Specification.Theorems.DiffPointMemSub
+
+@[expose] public section
 
 /-!
 # `verifyConvexStep`'s loop invariant

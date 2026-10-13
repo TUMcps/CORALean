@@ -1,6 +1,10 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
-import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
-import CORALean.ContSet.InflatedContSet.Operations.Bound
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
+public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
+public import CORALean.ContSet.InflatedContSet.Operations.Bound
+
+@[expose] public section
 
 /-!
 # The pulled-back direction never leaves `pullbackAbs`

@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
-import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `reachBoxFloat`: [1, Alg. 2], the wrapping-free reachable set with `box()`, in floats

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinProbSys.Operations.InitReachCov
-import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
+module
+
+public import CORALean.ContDynamics.LinProbSys.Operations.InitReachCov
+public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
+
+@[expose] public section
 
 /-!
 # `initReach`'s input covariance is below the true one for an unstable `A`

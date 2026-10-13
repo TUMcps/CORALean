@@ -1,7 +1,11 @@
-import CORALean.NN.Definitions.ActivationKind
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Layers.Definitions.Sigmoid
-import Mathlib.Analysis.Complex.Trigonometric
+module
+
+public import CORALean.NN.Definitions.ActivationKind
+public import CORALean.NN.Layers.Definitions.Relu
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import Mathlib.Analysis.Complex.Trigonometric
+
+@[expose] public section
 
 /-!
 # The function an activation applies

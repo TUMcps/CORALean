@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.HPolytope
-import CORALean.Global.Float.Sqrt
+module
+
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.Global.Float.Sqrt
+
+@[expose] public section
 
 /-!
 # `HPolytope.rowScale`

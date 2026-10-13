@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.MergeBucket
+module
+
+public import CORALean.NN.Definitions.MergeBucket
+
+@[expose] public section
 
 /-!
 # The bucket grows with the tolerance

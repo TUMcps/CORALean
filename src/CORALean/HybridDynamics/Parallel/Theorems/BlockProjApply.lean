@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Operations.BlockProj
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.BlockProj
+
+@[expose] public section
 
 /-!
 # `blockProj` reads a block

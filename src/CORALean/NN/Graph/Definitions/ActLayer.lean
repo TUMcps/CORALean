@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The enclosure of an activation layer on matrix polynomial zonotopes

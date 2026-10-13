@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimDerivTendsto
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimDerivTendsto
+
+@[expose] public section
 
 /-!
 # The gain's derivative has a non-positive limit when `g'(0)/g(0) ≥ 0`

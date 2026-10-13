@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
+
+@[expose] public section
 
 /-!
 # A group merge pays no more width than the pairwise merges it replaces

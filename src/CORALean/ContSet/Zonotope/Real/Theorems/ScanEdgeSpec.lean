@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ScanEdge
-import Mathlib.Topology.Order.Compact
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ScanEdge
+public import Mathlib.Topology.Order.Compact
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # What one scanned edge contributes

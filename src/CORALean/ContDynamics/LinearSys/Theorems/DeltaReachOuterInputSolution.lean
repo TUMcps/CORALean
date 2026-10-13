@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
+
+@[expose] public section
 
 /-!
 # A run's state difference over a step, the input set named

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStrip
-import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionStripStepOuter
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStrip
+public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionStripStepOuter
+
+@[expose] public section
 
 /-!
 # The strip-based diffusion observer holds the true state

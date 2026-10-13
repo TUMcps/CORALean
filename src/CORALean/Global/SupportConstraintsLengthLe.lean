@@ -1,7 +1,11 @@
-import CORALean.Global.SupportConstraints
-import Mathlib.Analysis.Convex.Radon
-import Mathlib.Analysis.Convex.Function
-import Mathlib.Data.Real.Basic
+module
+
+public import CORALean.Global.SupportConstraints
+public import Mathlib.Analysis.Convex.Radon
+public import Mathlib.Analysis.Convex.Function
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # A convex program has at most `d` support constraints

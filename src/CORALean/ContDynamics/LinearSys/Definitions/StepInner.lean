@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # Inner approximations of a continuous step

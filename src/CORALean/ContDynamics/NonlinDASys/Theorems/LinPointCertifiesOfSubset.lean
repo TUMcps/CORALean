@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
+
+@[expose] public section
 
 /-!
 # A certificate survives enlarging the error sets

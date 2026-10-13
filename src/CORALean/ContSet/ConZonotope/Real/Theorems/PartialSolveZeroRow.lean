@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMul
-import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMul
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
+
+@[expose] public section
 
 /-!
 # Partial solve zeroes row `r`

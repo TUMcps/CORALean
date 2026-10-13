@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffAligned` is an inner approximation of the Minkowski difference

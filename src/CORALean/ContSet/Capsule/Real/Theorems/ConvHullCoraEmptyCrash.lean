@@ -1,7 +1,11 @@
-import CORALean.ContSet.Capsule.Real.Operations.ConvHullCora
-import CORALean.ContSet.Capsule.Real.Theorems.Convex
-import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.ConvHullCora
+public import CORALean.ContSet.Capsule.Real.Theorems.Convex
+public import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # CORA's `capsule/convHull_` errors on an empty second operand

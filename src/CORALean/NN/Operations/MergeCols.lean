@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.NN.Operations.MergeRows
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.NN.Operations.MergeRows
+
+@[expose] public section
 
 /-!
 # [1, Prop. 4] at layer `k+1`: boxing the merged neurons' contribution

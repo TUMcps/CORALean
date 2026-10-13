@@ -1,7 +1,11 @@
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
-import Mathlib.Dynamics.Ergodic.AddCircle
-import Mathlib.Probability.Independence.Basic
-import Mathlib.Analysis.Convex.Function
+module
+
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
+public import Mathlib.Dynamics.Ergodic.AddCircle
+public import Mathlib.Probability.Independence.Basic
+public import Mathlib.Analysis.Convex.Function
+
+@[expose] public section
 
 /-!
 # Pairwise independence at lags above `M` is not enough for [1, Thm. 4]

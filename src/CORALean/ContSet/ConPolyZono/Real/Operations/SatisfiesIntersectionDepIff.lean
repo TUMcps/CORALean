@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecIntersectionALeft
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecIntersectionAAgree
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecIntersectionALeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecIntersectionAAgree
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+
+@[expose] public section
 
 /-!
 # What `ConPolyZono.intersectionDep`'s constraint system says

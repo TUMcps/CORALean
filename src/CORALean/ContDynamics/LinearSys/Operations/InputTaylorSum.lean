@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputTerm
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputTerm
+
+@[expose] public section
 
 /-!
 # The exact orders of the input solution, summed

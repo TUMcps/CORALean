@@ -1,6 +1,10 @@
-import CORALean.ContSet.SetIntersection.Theorems.MtimesOuter
-import CORALean.ContSet.SetIntersection.Theorems.PlusOuter
-import CORALean.ContSet.SetIntersection.Theorems.ReduceOuter
+module
+
+public import CORALean.ContSet.SetIntersection.Theorems.MtimesOuter
+public import CORALean.ContSet.SetIntersection.Theorems.PlusOuter
+public import CORALean.ContSet.SetIntersection.Theorems.ReduceOuter
+
+@[expose] public section
 
 /-!
 # What `SetIntersection` instantiates

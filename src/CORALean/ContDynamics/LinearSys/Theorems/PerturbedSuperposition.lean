@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
+
+@[expose] public section
 
 /-!
 # Superposition: a perturbed run is its exponential plus each signal's integral

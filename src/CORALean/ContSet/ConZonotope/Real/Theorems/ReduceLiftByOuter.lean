@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
-import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftEqOfMem
-import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftEqOfMem
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # Lifting, reducing and reading the rows back over-approximates

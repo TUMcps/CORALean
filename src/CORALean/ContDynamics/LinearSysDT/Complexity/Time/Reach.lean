@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
-import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
-import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
+public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # `LinearSysDT.reachCost`

@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.MergeBucket
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.NN.Definitions.MergeBucket
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # A large enough tolerance takes every neuron

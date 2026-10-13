@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Definitions.Enclosure
+module
+
+public import CORALean.NN.Layers.Definitions.Enclosure
+
+@[expose] public section
 
 /-!
 # The sigmoid derivative's upper bound over a box

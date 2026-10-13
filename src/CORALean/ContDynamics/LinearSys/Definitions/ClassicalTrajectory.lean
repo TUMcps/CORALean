@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import Mathlib.Analysis.Calculus.Deriv.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+
+@[expose] public section
 
 /-!
 # Continuous-time linear systems: the classical run

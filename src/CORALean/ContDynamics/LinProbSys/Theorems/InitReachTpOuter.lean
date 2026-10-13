@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinProbSys.Operations.InitReach
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegral
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinProbSys.Operations.InitReach
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegral
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # The time-point set of `initReach` encloses the mean at the end of the first step

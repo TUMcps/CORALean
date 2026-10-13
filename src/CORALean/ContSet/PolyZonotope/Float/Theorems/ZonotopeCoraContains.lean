@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.ZonotopeCora
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ZonotopeCora
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.zonotopeCora` encloses the set

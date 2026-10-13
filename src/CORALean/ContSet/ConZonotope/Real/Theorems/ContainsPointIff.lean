@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
-import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+
+@[expose] public section
 
 /-!
 # A constrained zonotope contains a point iff the stacked zonotope contains the stacked point

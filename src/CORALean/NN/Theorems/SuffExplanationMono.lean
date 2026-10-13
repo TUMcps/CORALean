@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.SuffExplanation
+module
+
+public import CORALean.NN.Theorems.SuffExplanation
+
+@[expose] public section
 
 /-!
 # Sufficiency only becomes easier to keep as more features are pinned

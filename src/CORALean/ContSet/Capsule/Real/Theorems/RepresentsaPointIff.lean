@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
+
+@[expose] public section
 
 /-!
 # A capsule is a point iff it has no direction and no radius

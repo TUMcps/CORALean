@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.Mtimes
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `HPolytope.mtimesOfCost`

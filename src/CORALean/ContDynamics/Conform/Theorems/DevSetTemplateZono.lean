@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Conform.Definitions.DevSet
-import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
-import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.DevSet
+public import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
+public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
+
+@[expose] public section
 
 /-!
 # The deviation set of stretched templates is a stretched template

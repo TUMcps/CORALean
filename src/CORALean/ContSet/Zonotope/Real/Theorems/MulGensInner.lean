@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MulGens
-import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MulGens
+public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
+
+@[expose] public section
 
 /-!
 # `mulGens` with `‖T‖∞ ≤ 1` is an inner-approximation

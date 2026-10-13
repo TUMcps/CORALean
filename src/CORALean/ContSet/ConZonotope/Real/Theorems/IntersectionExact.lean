@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
-import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
-import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
+public import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
+public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersection` is exactly the intersection

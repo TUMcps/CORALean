@@ -1,3 +1,5 @@
+module
+
 /-!
 # What `Capsule` costs
 

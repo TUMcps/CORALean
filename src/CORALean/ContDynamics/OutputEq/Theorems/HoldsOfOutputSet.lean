@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
-import CORALean.Specification.Theorems.HoldsOfOuter
+module
+
+public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+public import CORALean.Specification.Theorems.HoldsOfOuter
+
+@[expose] public section
 
 /-!
 # A specification checked on the output set holds of the output

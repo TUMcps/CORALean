@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
-import CORALean.ContSet.Zonotope.Float.Theorems.InteriorPointSound
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
+public import CORALean.ContSet.Zonotope.Float.Theorems.InteriorPointSound
+
+@[expose] public section
 
 /-!
 # A `true` from `ZonoBundle.isFullDim` proves an interior point

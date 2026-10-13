@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffStretch
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffStretch
+
+@[expose] public section
 
 /-!
 # `Zonotope.minkDiffStretch` under-approximates the Minkowski difference

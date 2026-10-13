@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.ContSet.ContSet.ContSet
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContSet.ContSet.ContSet
+
+@[expose] public section
 
 /-!
 # `linPoint`, the point a step linearizes at

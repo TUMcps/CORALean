@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+module
+
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+
+@[expose] public section
 
 /-!
 # A held run is a trajectory

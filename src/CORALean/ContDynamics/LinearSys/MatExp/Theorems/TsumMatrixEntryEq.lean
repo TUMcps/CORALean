@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+
+@[expose] public section
 
 /-!
 # Reading a matrix `tsum` off one entry at a time

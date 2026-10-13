@@ -1,8 +1,10 @@
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Operations.API
-import CORALean.ContSet.ConZonotope.Real.Theorems.API
-import CORALean.ContSet.ConZonotope.Real.Complexity.API
-import CORALean.ContSet.ConZonotope.Real.Instances
+module
+
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Operations.API
+public import CORALean.ContSet.ConZonotope.Real.Theorems.API
+public import CORALean.ContSet.ConZonotope.Real.Complexity.API
+public import CORALean.ContSet.ConZonotope.Real.Instances
 
 /-!
 # Constrained zonotopes, collected

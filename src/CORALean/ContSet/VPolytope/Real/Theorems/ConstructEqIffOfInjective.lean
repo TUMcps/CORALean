@@ -1,10 +1,14 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
-import CORALean.ContSet.VPolytope.Real.Theorems.IsClosed
-import CORALean.Global.DropIdx
-import Mathlib.Analysis.Convex.KreinMilman
-import Mathlib.Analysis.Convex.Join
-import Mathlib.Tactic.Module
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+public import CORALean.ContSet.VPolytope.Real.Theorems.IsClosed
+public import CORALean.Global.DropIdx
+public import Mathlib.Analysis.Convex.KreinMilman
+public import Mathlib.Analysis.Convex.Join
+public import Mathlib.Tactic.Module
+
+@[expose] public section
 
 /-!
 # Set equality of V-polytopes, by their points

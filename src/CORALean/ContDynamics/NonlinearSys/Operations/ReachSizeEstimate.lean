@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.InterpGain
-import CORALean.Global.Tensor
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGain
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # Eq. (57): the estimated size after a finite horizon

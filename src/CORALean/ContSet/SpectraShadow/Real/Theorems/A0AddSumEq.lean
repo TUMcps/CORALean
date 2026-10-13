@@ -1,4 +1,8 @@
-import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
+
+@[expose] public section
 
 /-!
 # The inequality of a spectrahedral shadow with zero `Aᵢ`

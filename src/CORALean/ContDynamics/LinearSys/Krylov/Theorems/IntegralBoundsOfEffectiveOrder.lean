@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+
+@[expose] public section
 
 /-!
 # The integral of `|δ_m|` between two trapezoidal estimates, by its effective order

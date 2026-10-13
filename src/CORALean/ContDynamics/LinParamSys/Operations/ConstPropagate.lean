@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolution
-import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolution
+public import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
+
+@[expose] public section
 
 /-!
 # What a constant input contributes up to the start of a window, at every member

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+module
+
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMap`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.CentreMemConstruct
-import CORALean.ContSet.ConPolyZono.Float.Operations.Centre
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Centre
+
+@[expose] public section
 
 /-!
 # The stored centre is a point of the constrained polynomial zonotope

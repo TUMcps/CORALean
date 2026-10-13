@@ -1,10 +1,14 @@
-import CORALean.HybridDynamics.Definitions.HitPoint
-import CORALean.HybridDynamics.Definitions.HitJacobian
-import CORALean.HybridDynamics.Definitions.HitHessianNum
-import Mathlib.Analysis.Calculus.Deriv.Inv
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.HybridDynamics.Definitions.HitPoint
+public import CORALean.HybridDynamics.Definitions.HitJacobian
+public import CORALean.HybridDynamics.Definitions.HitHessianNum
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # The first-order Taylor series of `y_h` with Lagrange remainder

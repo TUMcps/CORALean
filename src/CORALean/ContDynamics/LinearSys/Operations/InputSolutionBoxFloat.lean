@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumBoxFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumBoxFloat
+
+@[expose] public section
 
 /-!
 # How far `inputSolutionFloat` reaches beyond the exact input solution

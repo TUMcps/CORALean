@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Uplus
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Uplus
+
+@[expose] public section
 
 /-!
 # `Interval.uplus` is the identity

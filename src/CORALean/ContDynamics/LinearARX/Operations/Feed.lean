@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearARX.Operations.InputMat
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.InputMat
+
+@[expose] public section
 
 /-!
 # The input signal of the converted system

@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
-import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.quadMap` over a floating-point scalar

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # `Capsule.representsa_origin`, over a floating-point scalar

@@ -1,8 +1,12 @@
-import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # A zonotope as a polynomial zonotope, over a floating-point scalar

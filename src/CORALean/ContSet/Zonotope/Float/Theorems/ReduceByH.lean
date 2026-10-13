@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+
+@[expose] public section
 
 /-!
 # `reduceBy`'s generator count is the kept block plus the box

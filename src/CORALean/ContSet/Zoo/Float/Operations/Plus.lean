@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zoo.Float.Zoo
-import CORALean.ContSet.Taylm.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Zoo.Float.Zoo
+public import CORALean.ContSet.Taylm.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Zoo.plus`, over a floating-point scalar

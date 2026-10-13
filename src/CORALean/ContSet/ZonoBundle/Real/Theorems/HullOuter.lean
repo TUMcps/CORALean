@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import Mathlib.Analysis.Convex.Hull
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import Mathlib.Analysis.Convex.Hull
+
+@[expose] public section
 
 /-!
 # The hull of a bundle and its image, member by member

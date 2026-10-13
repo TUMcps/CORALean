@@ -1,9 +1,13 @@
-import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
-import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
-import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-import CORALean.NN.Layers.Operations.ActivationPoly
-import CORALean.NN.Layers.Theorems.CoeffListCoord
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.NN.Layers.Operations.ActivationPoly
+public import CORALean.NN.Layers.Theorems.CoeffListCoord
+
+@[expose] public section
 
 /-!
 # What the polynomial activation layer encloses

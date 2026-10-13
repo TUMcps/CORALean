@@ -1,4 +1,8 @@
-import CORALean.Global.Tensor
+module
+
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # The layers a network can be normalised over

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.Order.Field.Basic
-import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.Order.Field.Basic
+public import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+
+@[expose] public section
 
 /-!
 # `[-1, 1] ⊗ Z` is enclosed by `(0, c, g⁽¹⁾, ..., g⁽ᵖ⁾)`

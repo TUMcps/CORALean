@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Float.Operations.ConvHull
-import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
-import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.ConvHull
+public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+
+@[expose] public section
 
 /-!
 # `Capsule.convHull` encloses the hull

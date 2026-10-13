@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.HybridDynamics.Definitions.Transition
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.HybridDynamics.Definitions.Transition
+
+@[expose] public section
 
 /-!
 # Hybrid automata: a location

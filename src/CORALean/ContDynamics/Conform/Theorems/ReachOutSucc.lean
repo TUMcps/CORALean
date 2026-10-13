@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.ReachOut
-import Mathlib.Logic.Function.Basic
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.ReachOut
+public import Mathlib.Logic.Function.Basic
+
+@[expose] public section
 
 /-!
 # [1, Eq. 6]: one step of the reachable set

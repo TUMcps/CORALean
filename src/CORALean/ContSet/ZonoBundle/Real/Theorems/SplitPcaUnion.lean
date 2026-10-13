@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
-import CORALean.ContSet.ZonoBundle.Real.Operations.DirPca
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
+public import CORALean.ContSet.ZonoBundle.Real.Operations.DirPca
+
+@[expose] public section
 
 /-!
 # Splitting by the pca heuristic is exact

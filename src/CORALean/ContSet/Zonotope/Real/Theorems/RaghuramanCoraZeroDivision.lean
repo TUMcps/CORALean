@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.RaghuramanAlphaMaxCora
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.RaghuramanAlphaMaxCora
+
+@[expose] public section
 
 /-!
 # CORA's `'raghuraman'` reduction divides `0/0` on a valid zonotope

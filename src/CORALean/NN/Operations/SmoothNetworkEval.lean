@@ -1,7 +1,11 @@
-import CORALean.NN.Definitions.SmoothNetwork
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Layers.Definitions.Sigmoid
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+module
+
+public import CORALean.NN.Definitions.SmoothNetwork
+public import CORALean.NN.Layers.Definitions.Relu
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+
+@[expose] public section
 
 /-!
 # What a `SmoothNetwork` computes

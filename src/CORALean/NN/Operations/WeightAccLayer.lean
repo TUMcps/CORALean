@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.WeightAcc
+module
+
+public import CORALean.NN.Definitions.WeightAcc
+
+@[expose] public section
 
 /-!
 # The layer an accumulator is flushed as

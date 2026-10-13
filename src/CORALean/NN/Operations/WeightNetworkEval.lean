@@ -1,5 +1,9 @@
-import CORALean.NN.Definitions.WeightNetwork
-import CORALean.NN.Operations.WeightLayerEval
+module
+
+public import CORALean.NN.Definitions.WeightNetwork
+public import CORALean.NN.Operations.WeightLayerEval
+
+@[expose] public section
 
 /-!
 # What a weight network computes

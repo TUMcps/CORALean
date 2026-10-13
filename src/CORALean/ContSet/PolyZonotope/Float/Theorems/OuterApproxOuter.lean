@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.OuterApprox
-import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.OuterApprox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
+
+@[expose] public section
 
 /-!
 # `outerApprox` encloses the original, in float too

@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.SmoothNetwork
+module
+
+public import CORALean.NN.Definitions.SmoothNetwork
+
+@[expose] public section
 
 /-!
 # The dimension of the input CORA's conversion adds

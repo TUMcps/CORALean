@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.SupportFloat
+module
+
+public import CORALean.NN.Graph.Operations.SupportFloat
+
+@[expose] public section
 
 /-!
 # A nonzero entry is on the float support

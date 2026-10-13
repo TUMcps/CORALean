@@ -1,78 +1,80 @@
-import CORALean.ContSet.ContSet.Theorems.EqConstruct
-import CORALean.ContSet.ContSet.Theorems.NeOfConstructNe
-import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
-import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
-import CORALean.ContSet.ContSet.Theorems.EncloseOuter
-import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
-import CORALean.ContSet.ContSet.Theorems.EnlargeOuter
-import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
-import CORALean.ContSet.ContSet.Theorems.ProjectHighDimOuter
-import CORALean.ContSet.ContSet.Theorems.ProjectOuter
-import CORALean.ContSet.ContSet.Theorems.DecomposeOuter
-import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneDot
-import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
-import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneFloatOuter
-import CORALean.ContSet.ContSet.Theorems.HausdorffDist2MulVecLinAddLe
-import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
-import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
-import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
-import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
-import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
-import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
-import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
-import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
-import CORALean.ContSet.ContSet.Theorems.LinCombUnionSubset
-import CORALean.ContSet.ContSet.Theorems.LinCombConvexHullSubset
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAddOfSubset
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEqIInter
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfContracting
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfConvex
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfContracting
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfConvex
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffNotSubsetOfDiscontinuous
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuous
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuousOfConvex
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddCancel
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
-import CORALean.ContSet.ContSet.Theorems.MinusFromOuter
-import CORALean.ContSet.ContSet.Theorems.MinusOuter
-import CORALean.ContSet.ContSet.Theorems.MinusFromScalarOuter
-import CORALean.ContSet.ContSet.Theorems.MinusScalarOuter
-import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
-import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
-import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
-import CORALean.ContSet.ContSet.Theorems.TimesOuter
-import CORALean.ContSet.ContSet.Theorems.UminusOuter
-import CORALean.ContSet.ContSet.Theorems.UplusExact
-import CORALean.ContSet.ContSet.Theorems.IsFullDimIffAffineSpan
-import CORALean.ContSet.ContSet.Theorems.AddProperties
-import CORALean.ContSet.ContSet.Theorems.AddPropertiesCounterexample
-import CORALean.ContSet.ContSet.Theorems.ImageLinearMapProperties
-import CORALean.ContSet.ContSet.Theorems.InterProperties
-import CORALean.ContSet.ContSet.Theorems.InteriorEqEmptyIffForallBall
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffProperties
-import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffPropertiesCounterexample
-import CORALean.ContSet.ContSet.Theorems.ProdProperties
-import CORALean.ContSet.ContSet.Theorems.ProdPropertiesCounterexample
-import CORALean.ContSet.ContSet.Theorems.PropertyFacts
-import CORALean.ContSet.ContSet.Theorems.SegmentsProperties
-import CORALean.ContSet.ContSet.Theorems.SegmentsPropertiesCounterexample
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
-import CORALean.ContSet.ContSet.Theorems.DimReduceOuter
-import CORALean.ContSet.ContSet.Theorems.DimReduceTight
-import CORALean.ContSet.ContSet.Theorems.HyperplaneSliceEq
-import CORALean.ContSet.ContSet.Theorems.SubsetHyperplanePolyhedron
-import CORALean.ContSet.ContSet.Theorems.PolygonExact
-import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
-import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
-import CORALean.ContSet.ContSet.Theorems.HyperplanePolyhedronAddSubset
-import CORALean.ContSet.ContSet.Theorems.ExistsHyperplanePolyhedronAddNe
+module
+
+public import CORALean.ContSet.ContSet.Theorems.EqConstruct
+public import CORALean.ContSet.ContSet.Theorems.NeOfConstructNe
+public import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
+public import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
+public import CORALean.ContSet.ContSet.Theorems.EncloseOuter
+public import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
+public import CORALean.ContSet.ContSet.Theorems.EnlargeOuter
+public import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
+public import CORALean.ContSet.ContSet.Theorems.ProjectHighDimOuter
+public import CORALean.ContSet.ContSet.Theorems.ProjectOuter
+public import CORALean.ContSet.ContSet.Theorems.DecomposeOuter
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneDot
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneFloatOuter
+public import CORALean.ContSet.ContSet.Theorems.HausdorffDist2MulVecLinAddLe
+public import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
+public import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
+public import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
+public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
+public import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
+public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.ContSet.Theorems.LinCombUnionSubset
+public import CORALean.ContSet.ContSet.Theorems.LinCombConvexHullSubset
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAddOfSubset
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEnclSubsetAdd
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffEqIInter
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfContracting
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffImageSubsetImageOfConvex
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfContracting
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfConvex
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffNotSubsetOfDiscontinuous
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuous
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuousOfConvex
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddCancel
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
+public import CORALean.ContSet.ContSet.Theorems.MinusFromOuter
+public import CORALean.ContSet.ContSet.Theorems.MinusOuter
+public import CORALean.ContSet.ContSet.Theorems.MinusFromScalarOuter
+public import CORALean.ContSet.ContSet.Theorems.MinusScalarOuter
+public import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
+public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
+public import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
+public import CORALean.ContSet.ContSet.Theorems.TimesOuter
+public import CORALean.ContSet.ContSet.Theorems.UminusOuter
+public import CORALean.ContSet.ContSet.Theorems.UplusExact
+public import CORALean.ContSet.ContSet.Theorems.IsFullDimIffAffineSpan
+public import CORALean.ContSet.ContSet.Theorems.AddProperties
+public import CORALean.ContSet.ContSet.Theorems.AddPropertiesCounterexample
+public import CORALean.ContSet.ContSet.Theorems.ImageLinearMapProperties
+public import CORALean.ContSet.ContSet.Theorems.InterProperties
+public import CORALean.ContSet.ContSet.Theorems.InteriorEqEmptyIffForallBall
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffProperties
+public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffPropertiesCounterexample
+public import CORALean.ContSet.ContSet.Theorems.ProdProperties
+public import CORALean.ContSet.ContSet.Theorems.ProdPropertiesCounterexample
+public import CORALean.ContSet.ContSet.Theorems.PropertyFacts
+public import CORALean.ContSet.ContSet.Theorems.SegmentsProperties
+public import CORALean.ContSet.ContSet.Theorems.SegmentsPropertiesCounterexample
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+public import CORALean.ContSet.ContSet.Theorems.DimReduceOuter
+public import CORALean.ContSet.ContSet.Theorems.DimReduceTight
+public import CORALean.ContSet.ContSet.Theorems.HyperplaneSliceEq
+public import CORALean.ContSet.ContSet.Theorems.SubsetHyperplanePolyhedron
+public import CORALean.ContSet.ContSet.Theorems.PolygonExact
+public import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
+public import CORALean.ContSet.ContSet.Theorems.HyperplanePolyhedronAddSubset
+public import CORALean.ContSet.ContSet.Theorems.ExistsHyperplanePolyhedronAddNe
 
 /-!
 # What the set interface's classes and definitions give together

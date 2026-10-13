@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulMemMinmax
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowSubEq
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SubLeZero
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulMemMinmax
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowSubEq
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SubLeZero
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpDiff
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+
+@[expose] public section
 
 /-!
 # The interpolation error lies in the correction matrix

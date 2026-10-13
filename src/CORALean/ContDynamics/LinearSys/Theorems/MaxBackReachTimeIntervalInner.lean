@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetExistsForall
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
-import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetExistsForallEq
-import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
-import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
-import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
-import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetExistsForall
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
+public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetExistsForallEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
+public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # `Thm. 2`: what `Alg. 2` returns is inside the maximal set over `τ`

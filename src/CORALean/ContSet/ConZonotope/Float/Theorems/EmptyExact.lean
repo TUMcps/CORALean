@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Empty
-import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Empty
+public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
+
+@[expose] public section
 
 /-!
 # `ConZonotope.empty` denotes the empty set

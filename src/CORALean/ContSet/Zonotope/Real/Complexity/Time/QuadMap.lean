@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMapCost`

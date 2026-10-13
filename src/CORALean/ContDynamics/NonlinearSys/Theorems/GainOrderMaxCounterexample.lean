@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.GainOrder
-import Mathlib.Data.ENat.Lattice
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.GainOrder
+public import Mathlib.Data.ENat.Lattice
+
+@[expose] public section
 
 /-!
 # Eq. (40) as a maximum makes `Def. 6`'s closing sentence false

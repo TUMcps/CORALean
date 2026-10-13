@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MethodCBasis
-import CORALean.ContSet.Zonotope.Real.Operations.Parallelotope
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MethodCBasis
+public import CORALean.ContSet.Zonotope.Real.Operations.Parallelotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.methodC`: a zonotope reduced to a parallelotope by method C

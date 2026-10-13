@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Operations.ExploreBN
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.IntervalCases
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExploreBN
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.IntervalCases
+
+@[expose] public section
 
 /-!
 # `EXPLORE BN` misses a vertex of an unordered box

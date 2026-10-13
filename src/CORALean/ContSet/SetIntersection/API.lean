@@ -1,7 +1,9 @@
-import CORALean.ContSet.SetIntersection.SetIntersection
-import CORALean.ContSet.SetIntersection.Operations.API
-import CORALean.ContSet.SetIntersection.Theorems.API
-import CORALean.ContSet.SetIntersection.Instances
+module
+
+public import CORALean.ContSet.SetIntersection.SetIntersection
+public import CORALean.ContSet.SetIntersection.Operations.API
+public import CORALean.ContSet.SetIntersection.Theorems.API
+public import CORALean.ContSet.SetIntersection.Instances
 
 /-!
 # The intersection of a list of representations, collected

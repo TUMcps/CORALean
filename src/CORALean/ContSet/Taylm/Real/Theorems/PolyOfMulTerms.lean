@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.MulTerms
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.MulTerms
+
+@[expose] public section
 
 /-!
 # The product list evaluates to the product

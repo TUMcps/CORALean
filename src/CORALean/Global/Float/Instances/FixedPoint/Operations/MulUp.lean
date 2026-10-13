@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactMul
-import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundUp
+module
+
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactMul
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundUp
+
+@[expose] public section
 
 /-!
 # Multiplication, rounded up

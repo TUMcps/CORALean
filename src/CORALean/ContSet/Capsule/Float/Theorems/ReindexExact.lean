@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.Reindex
-import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Reindex
+public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
+
+@[expose] public section
 
 /-!
 # `Capsule.reindex` is exactly the relabelled set, over a floating-point scalar

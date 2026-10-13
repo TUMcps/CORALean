@@ -1,4 +1,8 @@
-import CORALean.NN.Definitions.WeightLayer
+module
+
+public import CORALean.NN.Definitions.WeightLayer
+
+@[expose] public section
 
 /-!
 # A network of weight layers

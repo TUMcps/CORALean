@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Operations.ExtremalLo
-import CORALean.ContSet.Interval.Real.Operations.ExtremalHi
-import CORALean.ContSet.Interval.Real.Operations.PolyBoxReviseLeft
-import CORALean.ContSet.Interval.Real.Operations.PolyBoxReviseRight
-import Mathlib.Logic.Function.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExtremalLo
+public import CORALean.ContSet.Interval.Real.Operations.ExtremalHi
+public import CORALean.ContSet.Interval.Real.Operations.PolyBoxReviseLeft
+public import CORALean.ContSet.Interval.Real.Operations.PolyBoxReviseRight
+public import Mathlib.Logic.Function.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.polyBoxRevise`

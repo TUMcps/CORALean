@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.NN.Operations.BucketTolerance
-import CORALean.NN.Operations.MergeCols
-import CORALean.NN.Operations.ReducedLinearToLayer
+module
+
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.NN.Operations.BucketTolerance
+public import CORALean.NN.Operations.MergeCols
+public import CORALean.NN.Operations.ReducedLinearToLayer
+
+@[expose] public section
 
 /-!
 # [1, Alg. 2] from one nonlinear layer on

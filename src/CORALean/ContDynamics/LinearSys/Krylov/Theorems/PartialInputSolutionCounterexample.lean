@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
-import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import Mathlib.Analysis.SpecialFunctions.Exp
-import Mathlib.Analysis.Complex.ExponentialBounds
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
+public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.Analysis.SpecialFunctions.Exp
+public import Mathlib.Analysis.Complex.ExponentialBounds
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
+@[expose] public section
 
 /-!
 # The printed input solution over a part of the step fails

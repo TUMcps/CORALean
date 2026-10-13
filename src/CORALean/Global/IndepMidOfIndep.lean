@@ -1,4 +1,8 @@
-import Mathlib.Probability.Independence.Basic
+module
+
+public import Mathlib.Probability.Independence.Basic
+
+@[expose] public section
 
 /-!
 # The middle of three blocks is independent of the two outer ones

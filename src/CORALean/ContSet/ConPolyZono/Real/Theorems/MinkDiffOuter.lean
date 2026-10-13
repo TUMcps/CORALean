@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.minkDiff` contains the Minkowski difference

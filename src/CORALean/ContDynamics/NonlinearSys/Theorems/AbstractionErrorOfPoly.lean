@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
-import CORALean.ContSet.PolyZonotope.Real.Instances
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
+public import CORALean.ContSet.PolyZonotope.Real.Instances
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+
+@[expose] public section
 
 /-!
 # A polynomial certificate is a certificate

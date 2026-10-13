@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+
+@[expose] public section
 
 /-!
 # The exponent matrix `linComb` assembles

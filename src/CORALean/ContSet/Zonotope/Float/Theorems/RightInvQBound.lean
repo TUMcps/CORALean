@@ -1,6 +1,10 @@
-import Mathlib.Data.Matrix.Mul
-import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import Mathlib.Data.Matrix.Mul
+public import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `rightInvQ` bounds every absolute row sum of `1 - G H`

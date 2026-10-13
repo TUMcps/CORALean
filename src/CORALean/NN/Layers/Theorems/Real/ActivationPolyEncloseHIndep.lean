@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseH
+module
+
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseH
+
+@[expose] public section
 
 /-!
 # The generator count ignores the fits

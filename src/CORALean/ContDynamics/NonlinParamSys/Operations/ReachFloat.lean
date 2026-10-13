@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloat
-import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
-import CORALean.ContSet.Zonotope.Float.Operations.CartProd
-import CORALean.ContSet.Zonotope.Float.Operations.Project
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloat
+public import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
+public import CORALean.ContSet.Zonotope.Float.Operations.CartProd
+public import CORALean.ContSet.Zonotope.Float.Operations.Project
+
+@[expose] public section
 
 /-!
 # Parametric nonlinear reachability in floats

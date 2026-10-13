@@ -1,4 +1,9 @@
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
+
 /-!
 # Scaling an interval-bounded value keeps it interval-bounded
 

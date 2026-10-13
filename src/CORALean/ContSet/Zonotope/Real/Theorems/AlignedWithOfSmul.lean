@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
+
+@[expose] public section
 
 /-!
 # The pairing `minkDiffAligned` runs on is [1, Def. 3]'s alignment

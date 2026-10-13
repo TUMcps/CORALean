@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Map
-import CORALean.ContSet.Zonotope.Real.Operations.MatPow
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Map
+public import CORALean.ContSet.Zonotope.Real.Operations.MatPow
+
+@[expose] public section
 
 /-!
 # Matrix zonotopes: one order of the exponential's Taylor series

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # A linear image of an ellipsoid is exactly an ellipsoid

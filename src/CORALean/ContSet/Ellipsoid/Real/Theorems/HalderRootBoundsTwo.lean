@@ -1,8 +1,12 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityTwo
-import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityStrictAntiOn
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityTwo
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityStrictAntiOn
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # Bounds on the root of Halder's stationarity equation for two eigenvalues

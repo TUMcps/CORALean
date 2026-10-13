@@ -1,6 +1,10 @@
-import CORALean.Global.CoeffNorm
-import CORALean.Global.CoeffNormHalfGadgetH
-import CORALean.Global.GadgetGA
+module
+
+public import CORALean.Global.CoeffNorm
+public import CORALean.Global.CoeffNormHalfGadgetH
+public import CORALean.Global.GadgetGA
+
+@[expose] public section
 
 /-!
 # The slope bound on the reduction's radius function fails

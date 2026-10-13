@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.SuffExplanationAbstract
+module
+
+public import CORALean.NN.Theorems.SuffExplanationAbstract
+
+@[expose] public section
 
 /-!
 # Minimal sufficient explanation for an abstract network

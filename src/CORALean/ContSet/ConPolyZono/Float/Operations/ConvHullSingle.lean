@@ -1,10 +1,14 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullA
-import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullB
-import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullG
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
-import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Residual
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullG
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Residual
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.convHullSingle`

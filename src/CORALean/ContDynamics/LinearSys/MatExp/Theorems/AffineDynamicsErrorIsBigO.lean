@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoAffineDynamicsErrorZero
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoAffineDynamicsErrorZero
+
+@[expose] public section
 
 /-!
 # `Lemma 3`, the rate half: `Δε^h_k(Δt,η) ∼ O(Δt)` as `Δt → 0⁺`

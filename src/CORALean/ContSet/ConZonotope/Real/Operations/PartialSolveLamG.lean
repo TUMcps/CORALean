@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce
+
+@[expose] public section
 
 /-!
 # `ConZonotope.partialSolveΛG`

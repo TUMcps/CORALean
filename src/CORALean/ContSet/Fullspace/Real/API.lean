@@ -1,7 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Fullspace
-import CORALean.ContSet.Fullspace.Real.Instances
-import CORALean.ContSet.Fullspace.Real.Operations.API
-import CORALean.ContSet.Fullspace.Real.Theorems.API
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+public import CORALean.ContSet.Fullspace.Real.Instances
+public import CORALean.ContSet.Fullspace.Real.Operations.API
+public import CORALean.ContSet.Fullspace.Real.Theorems.API
 
 /-!
 # The full space, collected

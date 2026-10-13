@@ -1,7 +1,11 @@
-import CORALean.ContSet.Polygon.Float.Operations.QuadMap
-import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
-import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.QuadMap
+public import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
+
+@[expose] public section
 
 /-!
 # `Polygon.quadMap` encloses the image of the float polygon

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
+
+@[expose] public section
 
 /-!
 # The bundle is empty exactly when its constrained zonotope is

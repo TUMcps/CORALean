@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.ContainsPoint
-import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+
+@[expose] public section
 
 /-!
 # `Capsule.containsPoint` is sound

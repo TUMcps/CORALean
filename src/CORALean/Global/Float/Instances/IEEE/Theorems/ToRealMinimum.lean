@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.IEEE.Operations.Minimum
-import CORALean.Global.Float.Instances.IEEE.Theorems.LeIff
+module
+
+public import CORALean.Global.Float.Instances.IEEE.Operations.Minimum
+public import CORALean.Global.Float.Instances.IEEE.Theorems.LeIff
+
+@[expose] public section
 
 /-!
 # The lesser of two numbers is exact

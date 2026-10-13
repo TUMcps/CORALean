@@ -1,4 +1,8 @@
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The reference evaluator: Horner's rule over `ℝ`

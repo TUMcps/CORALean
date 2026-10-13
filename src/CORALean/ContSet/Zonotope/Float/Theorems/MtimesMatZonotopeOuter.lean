@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesMatZonotope
-import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesMatZonotope
+public import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
+
+@[expose] public section
 
 /-!
 # `Zonotope.mtimesMatZonotope` over-approximates every member's image

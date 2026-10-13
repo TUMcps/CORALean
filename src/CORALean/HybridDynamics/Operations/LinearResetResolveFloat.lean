@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.LinearResetResolveUpdateFloat
+module
+
+public import CORALean.HybridDynamics.Operations.LinearResetResolveUpdateFloat
+
+@[expose] public section
 
 /-!
 # `LinearReset.resolve` in directed rounding

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Min
-import CORALean.ContSet.Interval.Real.Theorems.MinExact
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Min
+public import CORALean.ContSet.Interval.Real.Theorems.MinExact
+
+@[expose] public section
 
 /-!
 # `Interval.min` is exactly the set of entrywise minima

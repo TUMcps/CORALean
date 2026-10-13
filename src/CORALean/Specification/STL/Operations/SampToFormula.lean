@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.Samp
-import CORALean.Specification.STL.STL
+module
+
+public import CORALean.Specification.STL.Definitions.Samp
+public import CORALean.Specification.STL.STL
+
+@[expose] public section
 
 /-!
 # A sampled time formula as an STL formula

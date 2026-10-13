@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
+module
+
+public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
+
+@[expose] public section
 
 /-!
 # `NonlinearReset.evaluate` over boxes

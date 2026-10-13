@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
-import CORALean.ContSet.Zonotope.Real.Operations.FaultResidual
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
+public import CORALean.ContSet.Zonotope.Real.Operations.FaultResidual
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The residual zonotope in terms of the previous estimate

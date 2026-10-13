@@ -1,9 +1,13 @@
-import CORALean.ContSet.ContSet.ContSet
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Calculus.FDeriv.Comp
-import Mathlib.Analysis.Calculus.FDeriv.Mul
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.FDeriv.Comp
+public import Mathlib.Analysis.Calculus.FDeriv.Mul
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # The first-order Taylor expansion with Lagrange remainder, one coordinate at a time

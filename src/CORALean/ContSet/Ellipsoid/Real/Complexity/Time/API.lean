@@ -1,5 +1,7 @@
-import CORALean.ContSet.Ellipsoid.Real.Complexity.Time.Plus
-import CORALean.ContSet.Ellipsoid.Real.Complexity.Time.Mtimes
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Complexity.Time.Plus
+public import CORALean.ContSet.Ellipsoid.Real.Complexity.Time.Mtimes
 
 /-!
 # What running `Ellipsoid`'s operations costs

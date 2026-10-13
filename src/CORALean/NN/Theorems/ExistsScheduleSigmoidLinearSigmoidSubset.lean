@@ -1,4 +1,8 @@
-import CORALean.NN.Theorems.MultiLayerRefinementConverges
+module
+
+public import CORALean.NN.Theorems.MultiLayerRefinementConverges
+
+@[expose] public section
 
 /-!
 # The loop converges on a genuine three-layer chain

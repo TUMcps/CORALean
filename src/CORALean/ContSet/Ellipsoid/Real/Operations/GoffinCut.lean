@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.CutShape
-import CORALean.Global.EuclideanNorm
-import Mathlib.Analysis.Matrix.Order
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.CutShape
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # One cut of Goffin's algorithm for zonotopes

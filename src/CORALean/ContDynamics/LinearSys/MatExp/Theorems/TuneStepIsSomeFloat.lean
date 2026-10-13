@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
+
+@[expose] public section
 
 /-!
 # `tuneStep` is complete in its fuel

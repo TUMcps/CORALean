@@ -1,5 +1,9 @@
-import CORALean.Global.FeasibleSolutionSet
-import CORALean.Global.PredictedSolutionSet
+module
+
+public import CORALean.Global.FeasibleSolutionSet
+public import CORALean.Global.PredictedSolutionSet
+
+@[expose] public section
 
 /-!
 # The feasible solution set is the predicted set met with the last strip

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
-import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
-import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
+
+@[expose] public section
 
 /-!
 # Any admissible pair of signals is realized by a perturbed run

@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Definitions.PermInvariant
-import CORALean.NN.Graph.Operations.SumPoolLin
+module
+
+public import CORALean.NN.Graph.Definitions.PermInvariant
+public import CORALean.NN.Graph.Operations.SumPoolLin
+
+@[expose] public section
 
 /-!
 # Summation pooling is permutation invariant

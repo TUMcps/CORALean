@@ -1,9 +1,13 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
-import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
-import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapePlus
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.Analysis.Matrix.Order
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapePlus
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Analysis.Matrix.Order
+
+@[expose] public section
 
 /-!
 # Minimising the volume of the outer ellipsoid is minimising the log-determinant

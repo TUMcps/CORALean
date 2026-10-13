@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+
+@[expose] public section
 
 /-!
 # The recentred zonotope contains the origin

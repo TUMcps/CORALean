@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.IsequalCora
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IsequalCora
+
+@[expose] public section
 
 /-!
 # CORA's `zonoBundle/isequal` quick check accepts bundles of different sets

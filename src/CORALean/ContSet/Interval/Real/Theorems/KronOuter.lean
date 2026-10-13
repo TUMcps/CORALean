@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Kron
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Kron
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `Interval.kron` holds every Kronecker product of members

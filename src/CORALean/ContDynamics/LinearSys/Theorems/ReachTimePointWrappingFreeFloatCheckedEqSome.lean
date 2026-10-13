@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloatChecked
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloatChecked
+
+@[expose] public section
 
 /-!
 # A checked `reachTimePointWrappingFreeFloat` that returns a result returns the unchecked one

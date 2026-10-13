@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.Conform.Definitions.Glo
-import CORALean.ContDynamics.Conform.Theorems.ProdJacSucc
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Algebra.BigOperators.Group.List.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.Glo
+public import CORALean.ContDynamics.Conform.Theorems.ProdJacSucc
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Algebra.BigOperators.Group.List.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # [1, Cor. 1]: the GLO approximation of a state-space model

@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.NaiveHalfspaceValue
-import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
-import CORALean.Global.ShenmaierHalfspace
-import CORALean.Global.Tensor
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.NaiveHalfspaceValue
+public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+public import CORALean.Global.ShenmaierHalfspace
+public import CORALean.Global.Tensor
+
+@[expose] public section
 
 /-!
 # `[1, Cor. 4.8]`'s accuracy fails at a fixed `ε` too

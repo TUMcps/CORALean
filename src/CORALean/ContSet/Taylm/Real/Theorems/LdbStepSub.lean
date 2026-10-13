@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.LdbStep
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.LdbStep
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # The kept box lies in the normalized box

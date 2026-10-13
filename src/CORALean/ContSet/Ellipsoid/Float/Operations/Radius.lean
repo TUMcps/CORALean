@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.radius`, over a floating-point scalar

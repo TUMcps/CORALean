@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.Tsupp
+module
+
+public import CORALean.Specification.STL.Definitions.Tsupp
+
+@[expose] public section
 
 /-!
 # The time support lies in any set that decides the formula

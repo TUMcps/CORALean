@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.containsExactCora1D`

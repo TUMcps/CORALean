@@ -1,10 +1,14 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.InnerScaling
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-import CORALean.ContSet.Interval.Real.Definitions.IsBoundsContractor
-import CORALean.Global.SubsetOfIsPreconnectedOfDisjointFrontier
-import Mathlib.Analysis.Convex.Topology
-import Mathlib.Analysis.Normed.Module.Basic
-import Mathlib.Topology.Algebra.Module.Basic
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.InnerScaling
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+public import CORALean.ContSet.Interval.Real.Definitions.IsBoundsContractor
+public import CORALean.Global.SubsetOfIsPreconnectedOfDisjointFrontier
+public import Mathlib.Analysis.Convex.Topology
+public import Mathlib.Analysis.Normed.Module.Basic
+public import Mathlib.Topology.Algebra.Module.Basic
+
+@[expose] public section
 
 /-!
 # The scaled outer approximation is inside a closed set when its factor box is not flat

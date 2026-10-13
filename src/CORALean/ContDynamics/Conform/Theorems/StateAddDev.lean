@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.Conform.Definitions.State
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.State
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # A run splits into the nominal run and its deviation

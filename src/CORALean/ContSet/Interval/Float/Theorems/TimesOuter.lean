@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Times
-import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Times
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # `Interval.times` contains the entrywise products

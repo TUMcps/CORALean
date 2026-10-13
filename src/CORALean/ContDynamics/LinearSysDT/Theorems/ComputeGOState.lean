@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGO
-import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGO
+public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
+
+@[expose] public section
 
 /-!
 # `computeGO` gives the state of every run

@@ -1,7 +1,11 @@
-import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
-import CORALean.ContSet.Interval.Real.Theorems.Convex
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+
+@[expose] public section
 
 /-!
 # `VPolytope.convHull` contains the convex hull of the two operands

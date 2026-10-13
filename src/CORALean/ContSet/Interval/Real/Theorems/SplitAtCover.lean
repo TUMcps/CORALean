@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.SplitAt
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.SplitAt
+
+@[expose] public section
 
 /-!
 # `Interval.splitAt` covers the box it bisects

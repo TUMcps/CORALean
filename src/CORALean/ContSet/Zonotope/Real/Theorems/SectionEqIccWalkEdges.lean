@@ -1,9 +1,13 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.ExistsEdgeLeastSection
-import CORALean.ContSet.Zonotope.Real.Theorems.SectionConvex
-import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
-import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesCentralSymm
-import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
-import CORALean.ContSet.Zonotope.Real.Theorems.CentralSymmMemConstruct
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.ExistsEdgeLeastSection
+public import CORALean.ContSet.Zonotope.Real.Theorems.SectionConvex
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
+public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesCentralSymm
+public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CentralSymmMemConstruct
+
+@[expose] public section
 
 /-!
 # A vertical section of a zonogon is the segment between two walk edges

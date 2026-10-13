@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
+
+@[expose] public section
 
 /-!
 # `evalPolyStep`'s point, generically

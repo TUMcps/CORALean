@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.MessagePassing
-import CORALean.NN.Graph.Theorems.ConvExact
+module
+
+public import CORALean.NN.Graph.Operations.MessagePassing
+public import CORALean.NN.Graph.Theorems.ConvExact
+
+@[expose] public section
 
 /-!
 # `[1, Prop. 2]` itself: the layer at the graph's own message passing

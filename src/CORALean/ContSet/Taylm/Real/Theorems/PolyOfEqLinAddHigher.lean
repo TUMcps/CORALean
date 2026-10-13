@@ -1,7 +1,11 @@
-import CORALean.ContSet.Taylm.Real.Operations.LinCoef
-import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
-import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
-import CORALean.ContSet.Taylm.Real.Theorems.DegreeSingle
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.LinCoef
+public import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
+public import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
+public import CORALean.ContSet.Taylm.Real.Theorems.DegreeSingle
+
+@[expose] public section
 
 /-!
 # A polynomial as constant, linear and higher part

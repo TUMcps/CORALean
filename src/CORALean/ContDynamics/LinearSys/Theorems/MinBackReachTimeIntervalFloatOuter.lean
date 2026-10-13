@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExists
-import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInput
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachPFloat
-import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
-import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExists
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInput
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachPFloat
+public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # `Thm. 1` in floats: what `Alg. 1` returns encloses the minimal set over `τ`

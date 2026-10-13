@@ -1,4 +1,8 @@
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # `∫₀ˢ σᵏ/k! · c dσ = sᵏ⁺¹/(k+1)! · c`

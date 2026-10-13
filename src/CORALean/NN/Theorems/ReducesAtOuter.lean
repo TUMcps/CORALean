@@ -1,6 +1,10 @@
-import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
-import CORALean.NN.Definitions.Reduction
-import CORALean.NN.Theorems.NeuronMergingOuter
+module
+
+public import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
+public import CORALean.NN.Definitions.Reduction
+public import CORALean.NN.Theorems.NeuronMergingOuter
+
+@[expose] public section
 
 /-!
 # `ReducesAt` is sound

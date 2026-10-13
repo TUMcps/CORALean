@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsAdd
-import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsAdd
+public import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
+
+@[expose] public section
 
 /-!
 # What the summed matrix does to a stack

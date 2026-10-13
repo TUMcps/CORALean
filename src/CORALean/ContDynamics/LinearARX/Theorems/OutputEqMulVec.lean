@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Operations.OutputEq
-import CORALean.ContDynamics.LinearARX.Operations.Simulate
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
+public import CORALean.ContDynamics.LinearARX.Operations.Simulate
+
+@[expose] public section
 
 /-!
 # The output equation reads the first block

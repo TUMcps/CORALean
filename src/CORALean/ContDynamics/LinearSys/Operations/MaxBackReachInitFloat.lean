@@ -1,12 +1,16 @@
-import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-import CORALean.ContSet.ConZonotope.Float.Operations.Origin
-import CORALean.ContSet.Interval.Float.Operations.Magnitude
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
-import CORALean.ContSet.Zonotope.Float.Operations.Origin
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
+public import CORALean.ContSet.ConZonotope.Float.Operations.Origin
+public import CORALean.ContSet.Interval.Float.Operations.Magnitude
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
+public import CORALean.ContSet.Zonotope.Float.Operations.Origin
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 1-2 in floats: the loop state before the first iteration

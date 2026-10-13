@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
+public import Mathlib.Analysis.Real.Pi.Bounds
+
+@[expose] public section
 
 /-!
 # A finite set of circle points does not span the circle

@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic.Abel
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # The reachable error set one step on

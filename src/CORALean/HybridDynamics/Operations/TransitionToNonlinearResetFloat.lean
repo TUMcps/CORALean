@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
-import CORALean.HybridDynamics.Definitions.Transition
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
+public import CORALean.HybridDynamics.Definitions.Transition
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # The affine reset of a transition as a float model

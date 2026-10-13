@@ -1,8 +1,12 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
-import Mathlib.LinearAlgebra.Prod
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+public import Mathlib.LinearAlgebra.Prod
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.quadMapMixed`

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
-import CORALean.ContSet.Interval.Float.Operations.CentreMat
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
+public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `linearizeFloat`, the matrices a float step linearizes with

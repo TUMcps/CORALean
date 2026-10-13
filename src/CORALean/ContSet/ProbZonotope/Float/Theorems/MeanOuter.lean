@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.Mean
-import CORALean.ContSet.ProbZonotope.Real.Theorems.MeanExact
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Mean
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.MeanExact
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.mean` bounds the means

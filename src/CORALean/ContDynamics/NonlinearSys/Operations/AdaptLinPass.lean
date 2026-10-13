@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
-import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
-import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
-import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
+public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 3-6: the half both passes share

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.ReduceUnderApprox
-import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceUnderApprox
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceUnderApprox` is inner

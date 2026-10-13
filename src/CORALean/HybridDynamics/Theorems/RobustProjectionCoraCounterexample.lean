@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.Definitions.RobustProjectionCora
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.HybridDynamics.Definitions.RobustProjectionCora
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Location.robustProjectionCora` pins the box off the hyperplane

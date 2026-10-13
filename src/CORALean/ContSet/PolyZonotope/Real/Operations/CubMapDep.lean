@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubPair
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubQuad
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubPair
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubQuad
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.cubMapDepOn`

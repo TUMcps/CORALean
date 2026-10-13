@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
-import CORALean.ContSet.Interval.Float.Operations.Horzcat
-import CORALean.ContSet.Interval.Float.Operations.Vertcat
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
+public import CORALean.ContSet.Interval.Float.Operations.Horzcat
+public import CORALean.ContSet.Interval.Float.Operations.Vertcat
+
+@[expose] public section
 
 /-!
 # A float model's slopes on the stacked state

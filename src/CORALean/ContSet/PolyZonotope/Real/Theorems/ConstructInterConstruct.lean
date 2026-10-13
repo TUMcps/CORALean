@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
+
+@[expose] public section
 
 /-!
 # The intersection of two polynomial zonotopes

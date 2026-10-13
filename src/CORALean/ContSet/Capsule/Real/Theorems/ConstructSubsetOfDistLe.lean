@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Real.Capsule
-import CORALean.Global.EuclideanNorm
+module
+
+public import CORALean.ContSet.Capsule.Real.Capsule
+public import CORALean.Global.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # A capsule inside another, by the distances between their parts

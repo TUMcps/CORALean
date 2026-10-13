@@ -1,5 +1,9 @@
-import CORALean.NN.Theorems.ImageSubset
-import CORALean.NN.Theorems.SoundEval
+module
+
+public import CORALean.NN.Theorems.ImageSubset
+public import CORALean.NN.Theorems.SoundEval
+
+@[expose] public section
 
 /-!
 # What a network encloses

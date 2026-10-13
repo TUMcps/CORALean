@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.splitGen`

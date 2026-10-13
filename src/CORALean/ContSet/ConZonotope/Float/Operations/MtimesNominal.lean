@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimesNominal`: a matrix applied to the stored numbers, with no error box

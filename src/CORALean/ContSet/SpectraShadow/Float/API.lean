@@ -1,8 +1,10 @@
-import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
-import CORALean.ContSet.SpectraShadow.Float.Definitions.API
-import CORALean.ContSet.SpectraShadow.Float.Operations.API
-import CORALean.ContSet.SpectraShadow.Float.Theorems.API
-import CORALean.ContSet.SpectraShadow.Float.Instances
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+public import CORALean.ContSet.SpectraShadow.Float.Definitions.API
+public import CORALean.ContSet.SpectraShadow.Float.Operations.API
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.API
+public import CORALean.ContSet.SpectraShadow.Float.Instances
 
 /-!
 # Spectrahedral shadows over a floating-point scalar, collected

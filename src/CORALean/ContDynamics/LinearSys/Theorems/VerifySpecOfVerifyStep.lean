@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
-import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
+
+@[expose] public section
 
 /-!
 # One iteration of `Alg. 3`: a safe verdict is sound

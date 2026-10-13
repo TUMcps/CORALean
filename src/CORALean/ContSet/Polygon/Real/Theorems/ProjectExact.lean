@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Operations.Project
-import CORALean.ContSet.VPolytope.Real.Instances
-import CORALean.ContSet.VPolytope.Real.Theorems.ProjectExact
+module
+
+public import CORALean.ContSet.Polygon.Real.Operations.Project
+public import CORALean.ContSet.VPolytope.Real.Instances
+public import CORALean.ContSet.VPolytope.Real.Theorems.ProjectExact
+
+@[expose] public section
 
 /-!
 # `Polygon.project` is the image

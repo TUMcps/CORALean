@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorOuter
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntersectDescriptorOuter
+
+@[expose] public section
 
 /-!
 # The intersection zonotope for one uncertainty driving state and output

@@ -1,7 +1,11 @@
-import CORALean.ContSet.Interval.Float.Operations.Atan2Lo
-import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
-import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfImPos
-import CORALean.ContSet.Interval.Real.Theorems.ArgEqNegPiDivTwoSubArctanOfImNeg
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Atan2Lo
+public import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
+public import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfImPos
+public import CORALean.ContSet.Interval.Real.Theorems.ArgEqNegPiDivTwoSubArctanOfImNeg
+
+@[expose] public section
 
 /-!
 # `Interval.atan2Lo` is a lower bound

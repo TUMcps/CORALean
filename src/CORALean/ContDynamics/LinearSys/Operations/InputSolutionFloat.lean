@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
+
+@[expose] public section
 
 /-!
 # The set every input contributes over one step, in floats

@@ -1,7 +1,11 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Operations.PowRange
-import CORALean.NN.Layers.Theorems.LeMulRangeUp
-import CORALean.NN.Layers.Theorems.MulRangeDownLe
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Operations.PowRange
+public import CORALean.NN.Layers.Theorems.LeMulRangeUp
+public import CORALean.NN.Layers.Theorems.MulRangeDownLe
+
+@[expose] public section
 
 /-!
 # A power is inside its bracket

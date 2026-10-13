@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.CubFold
-import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.CubFold
+public import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
+
+@[expose] public section
 
 /-!
 # `Zonotope.cubMap`

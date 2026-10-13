@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.DetCandidate
-import CORALean.ContSet.Zonotope.Float.Operations.DominantLengthFilter
-import CORALean.ContSet.Zonotope.Float.Operations.GeneratorMatrix
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.DetCandidate
+public import CORALean.ContSet.Zonotope.Float.Operations.DominantLengthFilter
+public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorMatrix
+
+@[expose] public section
 
 /-!
 # `Zonotope.dominantShortlist`, over a floating-point scalar

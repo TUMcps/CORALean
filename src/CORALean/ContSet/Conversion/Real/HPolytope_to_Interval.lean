@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.ContSet.Interval.Real.Operations.OfBounds
-import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.Interval.Real.Operations.OfBounds
+public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # A halfspace description as a box

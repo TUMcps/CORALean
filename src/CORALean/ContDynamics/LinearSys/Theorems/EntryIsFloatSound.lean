@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
+
+@[expose] public section
 
 /-!
 # A `true` from the entry test is a proof

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
-import CORALean.ContSet.ConPolyZono.Real.Operations.SumRep
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
+public import CORALean.ContSet.ConPolyZono.Real.Operations.SumRep
+
+@[expose] public section
 
 /-!
 # A row of a block-diagonal matrix

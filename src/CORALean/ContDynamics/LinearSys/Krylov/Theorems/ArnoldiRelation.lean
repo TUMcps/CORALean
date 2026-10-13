@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
+module
+
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
+
+@[expose] public section
 
 /-!
 # The Arnoldi relation

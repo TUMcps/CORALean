@@ -1,5 +1,9 @@
-import CORALean.Global.GaussianAbsMoment
-import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
+module
+
+public import CORALean.Global.GaussianAbsMoment
+public import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
+
+@[expose] public section
 
 /-!
 # The correlation of a Gaussian projection with the sign of another

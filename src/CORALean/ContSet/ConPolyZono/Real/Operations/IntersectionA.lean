@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
-import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.intersectionA`

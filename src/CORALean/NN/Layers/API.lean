@@ -1,9 +1,11 @@
-import CORALean.NN.Layers.Complexity.API
-import CORALean.NN.Layers.Definitions.API
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Layer
-import CORALean.NN.Layers.Operations.API
-import CORALean.NN.Layers.Theorems.API
+module
+
+public import CORALean.NN.Layers.Complexity.API
+public import CORALean.NN.Layers.Definitions.API
+public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Layers.Operations.API
+public import CORALean.NN.Layers.Theorems.API
 
 /-!
 # The standard layers, collected

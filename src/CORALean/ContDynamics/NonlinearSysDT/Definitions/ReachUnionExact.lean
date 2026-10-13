@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
+
+@[expose] public section
 
 /-!
 # Every state a discrete nonlinear run reaches within the horizon

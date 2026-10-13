@@ -1,4 +1,6 @@
-import CORALean.ContSet.SpectraShadow.Float.Definitions.ESumRep
+module
+
+public import CORALean.ContSet.SpectraShadow.Float.Definitions.ESumRep
 
 /-!
 # What a float spectrahedral shadow means beyond its inequality

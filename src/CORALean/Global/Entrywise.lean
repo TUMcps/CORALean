@@ -1,8 +1,12 @@
-import CORALean.Global.Tensor
-import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
-import Mathlib.Data.Fintype.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
+public import Mathlib.Data.Fintype.Basic
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Ambient types that have coordinates

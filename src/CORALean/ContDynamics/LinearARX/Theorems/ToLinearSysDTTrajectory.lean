@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
-import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
+
+@[expose] public section
 
 /-!
 # Every ARX trajectory is a trajectory of the converted system

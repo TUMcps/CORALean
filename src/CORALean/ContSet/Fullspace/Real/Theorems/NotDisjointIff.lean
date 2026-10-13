@@ -1,4 +1,8 @@
-import CORALean.ContSet.Fullspace.Real.Theorems.DisjointIff
+module
+
+public import CORALean.ContSet.Fullspace.Real.Theorems.DisjointIff
+
+@[expose] public section
 
 /-!
 # The full space meets a set iff it is nonempty

@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.Origin
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Zonotope.intersectStrip`, over a floating-point scalar

@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SquareExample
-import Mathlib.Tactic.Linarith
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SquareExample
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # The square example is the interval `[0, 1]`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.LinComb
-import CORALean.Global.Cost
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.LinComb
+public import CORALean.Global.Cost
+
+@[expose] public section
 
 /-!
 # `Interval.linCombCost`

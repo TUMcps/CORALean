@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.InitReach
-import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
-import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.InitReach
+public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPointCertifies
+public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+
+@[expose] public section
 
 /-!
 # `initReach` holds every run whose start set's linearization certifies it

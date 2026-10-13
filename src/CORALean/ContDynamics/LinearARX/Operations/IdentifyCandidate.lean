@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
-import CORALean.Global.DmdCandidate
+module
+
+public import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
+public import CORALean.Global.DmdCandidate
+
+@[expose] public section
 
 /-!
 # The DMD candidate of rank `k` of `LinearARX.identify`

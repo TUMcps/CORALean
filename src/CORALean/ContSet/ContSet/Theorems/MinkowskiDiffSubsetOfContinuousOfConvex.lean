@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.ContSet
-import CORALean.Global.Brouwer
+module
+
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.Global.Brouwer
+
+@[expose] public section
 
 /-!
 # The fixed-point inclusion, for a convex error set

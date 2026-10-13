@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+
+@[expose] public section
 
 /-!
 # The index-1 assumption

@@ -1,8 +1,12 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-import CORALean.ContSet.Interval.Real.Theorems.Convex
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.Global.Corners
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.Global.Corners
+
+@[expose] public section
 
 /-!
 # A box as its corners

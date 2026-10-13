@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserver
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserver
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # Alg. 1 is not tighter than Eq. 36 without `A - LC ≥ 0`

@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.Conform.Definitions.ReachOut
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.ReachOut
+
+@[expose] public section
 
 /-!
 # Test cases, and reachset conformance tested on them

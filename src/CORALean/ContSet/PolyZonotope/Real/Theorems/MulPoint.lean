@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
-import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
+
+@[expose] public section
 
 /-!
 # `mul`'s point is the product of the two points

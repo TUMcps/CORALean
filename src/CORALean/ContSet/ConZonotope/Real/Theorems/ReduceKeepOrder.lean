@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
+
+@[expose] public section
 
 /-!
 # `ConZonotope.reduceKeep` bounds the generator count

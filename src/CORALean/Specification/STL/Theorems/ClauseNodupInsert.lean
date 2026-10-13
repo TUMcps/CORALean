@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.ClauseInsert
+module
+
+public import CORALean.Specification.STL.Operations.ClauseInsert
+
+@[expose] public section
 
 /-!
 # Inserting keeps the powers distinct

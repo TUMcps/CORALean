@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # `LinParamSysDT.reach`, packaged as `Reach`'s `SetUnion`

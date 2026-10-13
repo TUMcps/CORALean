@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.HybridAutomaton
-import CORALean.HybridDynamics.Operations.GuardIntersectFloat
-import CORALean.HybridDynamics.Operations.JumpFloat
-import CORALean.HybridDynamics.Operations.LocationReachFloat
+module
+
+public import CORALean.HybridDynamics.HybridAutomaton
+public import CORALean.HybridDynamics.Operations.GuardIntersectFloat
+public import CORALean.HybridDynamics.Operations.JumpFloat
+public import CORALean.HybridDynamics.Operations.LocationReachFloat
+
+@[expose] public section
 
 /-!
 # `HybridAutomaton.reachFloat`

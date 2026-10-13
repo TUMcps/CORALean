@@ -1,6 +1,10 @@
-import CORALean.ContSet.Taylm.Real.Operations.Inv
-import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
-import Mathlib.Analysis.Calculus.Deriv.ZPow
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Inv
+public import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
+public import Mathlib.Analysis.Calculus.Deriv.ZPow
+
+@[expose] public section
 
 /-!
 # `Taylm.inv` encloses `1 / f`

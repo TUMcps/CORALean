@@ -1,15 +1,19 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperA
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperB
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerA
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
-import CORALean.ContSet.Interval.Float.Operations.Or
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiffError
-import CORALean.ContSet.PolyZonotope.Float.Operations.MidpointResidual
-import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiff
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiffError
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MidpointResidual
+public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiff
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.union`

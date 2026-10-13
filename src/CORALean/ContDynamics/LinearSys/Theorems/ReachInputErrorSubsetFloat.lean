@@ -1,10 +1,14 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
-import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
-import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorBoxSubsetFloat
-import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
+public import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorBoxSubsetFloat
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # The float input error holds the exact one

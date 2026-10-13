@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AdmissibleLinError
-import CORALean.ContSet.Interval.Real.Interval
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.SpecialFunctions.Exponential
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AdmissibleLinError
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.LinearAlgebra.Matrix.Notation
+
+@[expose] public section
 
 /-!
 # `L̂ ≤ L̄` does not keep the error set inside `[-θ r, θ r]`

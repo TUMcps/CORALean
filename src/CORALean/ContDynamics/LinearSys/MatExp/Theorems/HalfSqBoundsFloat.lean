@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # `halfSqBounds` brackets `t² / 2`

@@ -1,9 +1,13 @@
-import CORALean.NN.Layers.Definitions.DeepZSShape
-import CORALean.NN.Layers.Definitions.SShapedPrinted
-import Mathlib.Algebra.Order.Ring.Abs
-import Mathlib.Analysis.Calculus.ContDiff.Operations
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Pow
+module
+
+public import CORALean.NN.Layers.Definitions.DeepZSShape
+public import CORALean.NN.Layers.Definitions.SShapedPrinted
+public import Mathlib.Algebra.Order.Ring.Abs
+public import Mathlib.Analysis.Calculus.ContDiff.Operations
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Pow
+
+@[expose] public section
 
 /-!
 # DeepZ's S-shape transformer is unsound for an S-shaped function as printed

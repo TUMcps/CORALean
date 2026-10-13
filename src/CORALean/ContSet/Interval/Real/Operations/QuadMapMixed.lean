@@ -1,8 +1,12 @@
-import CORALean.ContSet.Interval.Real.Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Zonotope.Real.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+
+@[expose] public section
 
 /-!
 # `Interval.quadMapMixed`

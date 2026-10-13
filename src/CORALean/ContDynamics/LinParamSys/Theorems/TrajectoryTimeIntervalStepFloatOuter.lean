@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerSumLe
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerSumLe
+
+@[expose] public section
 
 /-!
 # An input-free time-varying run stays in the float step

@@ -1,4 +1,8 @@
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # `evaluatePolyZonotopeNeuron` with `poly_method = 'singh'`, order 1, as printed

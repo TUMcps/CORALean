@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.Map
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Map
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.map` is exactly the image under a linear map

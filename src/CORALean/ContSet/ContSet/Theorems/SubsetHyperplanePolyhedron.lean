@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
-import Mathlib.Data.Real.Basic
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # A set lies in the polyhedron of its bounds

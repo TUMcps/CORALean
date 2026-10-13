@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.BisectLowPrinted
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossPosOfArgLt
-import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.BisectLowPrinted
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossPosOfArgLt
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
+
+@[expose] public section
 
 /-!
 # [1, Alg. 4] with "smaller" in the printed order returns the other boundary

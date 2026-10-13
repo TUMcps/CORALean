@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+
+@[expose] public section
 
 /-!
 # One step of the input, re-anchored at any other step

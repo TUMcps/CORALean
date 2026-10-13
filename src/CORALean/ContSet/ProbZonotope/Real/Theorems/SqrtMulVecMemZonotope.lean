@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # A mean plus the covariance's square root applied to a cube lands in the confidence set

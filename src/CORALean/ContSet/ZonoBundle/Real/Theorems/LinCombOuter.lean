@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
-import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
+public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.linComb` over-approximates `segments`

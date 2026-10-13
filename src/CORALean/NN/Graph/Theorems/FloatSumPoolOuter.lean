@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.FloatSumPool
-import CORALean.NN.Graph.Theorems.FloatSumPoolMatMulVec
+module
+
+public import CORALean.NN.Graph.Operations.FloatSumPool
+public import CORALean.NN.Graph.Theorems.FloatSumPoolMatMulVec
+
+@[expose] public section
 
 /-!
 # The float summation pooling over-approximates the exact one

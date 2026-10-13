@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Logic.Equiv.Fin.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Logic.Equiv.Fin.Basic
+
+@[expose] public section
 
 /-!
 # `LinParamSys.dependentLowOrder`, CORA's `R_lowOrder` corrected

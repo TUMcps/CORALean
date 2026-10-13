@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `mtimes` does not change the ball's dimension

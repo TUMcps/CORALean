@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.LinearBias
-import CORALean.NN.Graph.Operations.LinearLin
+module
+
+public import CORALean.NN.Graph.Operations.LinearBias
+public import CORALean.NN.Graph.Operations.LinearLin
+
+@[expose] public section
 
 /-!
 # CORA's `nnGNNLinearLayer` on a point

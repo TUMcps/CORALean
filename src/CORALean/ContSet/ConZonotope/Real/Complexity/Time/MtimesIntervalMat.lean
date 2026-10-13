@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.Zonotope.Real.Complexity.Time.MtimesIntervalMat
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MtimesIntervalMat
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimesIntervalMatCost`

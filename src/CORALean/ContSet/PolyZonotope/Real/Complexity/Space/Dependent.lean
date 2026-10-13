@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.dependent`'s counts

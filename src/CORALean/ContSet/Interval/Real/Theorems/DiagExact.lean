@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.Diag
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Diag
+
+@[expose] public section
 
 /-!
 # `Interval.diag` is exactly the set of diagonal matrices over the box

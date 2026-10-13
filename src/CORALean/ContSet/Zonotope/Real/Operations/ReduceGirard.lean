@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceGirard`

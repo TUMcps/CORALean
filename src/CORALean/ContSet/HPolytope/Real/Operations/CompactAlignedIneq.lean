@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
-import CORALean.ContSet.HPolytope.Real.Operations.Restrict
-import Mathlib.Order.Lex
-import Mathlib.Data.Prod.Lex
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
+public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+public import Mathlib.Order.Lex
+public import Mathlib.Data.Prod.Lex
+
+@[expose] public section
 
 /-!
 # `HPolytope.compactAlignedIneq`

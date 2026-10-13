@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerA
-import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
-import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerA
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+
+@[expose] public section
 
 /-!
 # The stored operand rows hold wherever the exact ones do

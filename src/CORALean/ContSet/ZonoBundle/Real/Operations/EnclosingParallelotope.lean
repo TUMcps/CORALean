@@ -1,7 +1,11 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalAll
-import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
-import CORALean.ContSet.ZonoBundle.Real.Operations.Parallelotope
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalAll
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Parallelotope
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.enclosingParallelotope`

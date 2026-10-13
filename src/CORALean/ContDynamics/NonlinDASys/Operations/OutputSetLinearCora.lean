@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.NonlinDASys
-import CORALean.Global.Jacobian
+module
+
+public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import CORALean.Global.Jacobian
+
+@[expose] public section
 
 /-!
 # `NonlinDASys.outputSetLinearCora`

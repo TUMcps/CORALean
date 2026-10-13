@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Definitions.Transformation
-import CORALean.Specification.STL.Theorems.SatAnd
+module
+
+public import CORALean.Specification.STL.Definitions.Transformation
+public import CORALean.Specification.STL.Theorems.SatAnd
+
+@[expose] public section
 
 /-!
 # A sound and complete transformation distributes over conjunction

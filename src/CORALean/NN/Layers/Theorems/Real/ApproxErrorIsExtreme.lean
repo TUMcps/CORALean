@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.ApproxError
-import Mathlib.Order.ConditionallyCompleteLattice.Finset
-import Mathlib.Data.Set.Finite.Lemmas
+module
+
+public import CORALean.NN.Layers.Definitions.ApproxError
+public import Mathlib.Order.ConditionallyCompleteLattice.Finset
+public import Mathlib.Data.Set.Finite.Lemmas
+
+@[expose] public section
 
 /-!
 # The approximation errors are attained on a finite set of candidates

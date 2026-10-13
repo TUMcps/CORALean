@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpMulti
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpMulti
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxExpGreedyCost`

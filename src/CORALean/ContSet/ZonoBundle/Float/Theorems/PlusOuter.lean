@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.plus` over-approximates the Minkowski sum

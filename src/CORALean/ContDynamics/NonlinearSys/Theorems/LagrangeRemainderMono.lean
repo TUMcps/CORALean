@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
-import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
-import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
+public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+
+@[expose] public section
 
 /-!
 # `lagrangeRemainder` grows with the region it is taken over

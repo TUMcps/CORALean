@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
-import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
+
+@[expose] public section
 
 /-!
 # `Zonotope.quadMapMatZono`

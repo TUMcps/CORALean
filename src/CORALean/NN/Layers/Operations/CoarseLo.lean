@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.SampleDevLo
-import CORALean.NN.Layers.Operations.SampleLo
+module
+
+public import CORALean.NN.Layers.Operations.SampleDevLo
+public import CORALean.NN.Layers.Operations.SampleLo
+
+@[expose] public section
 
 /-!
 # The fallback bracket's lower end

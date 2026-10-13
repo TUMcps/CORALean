@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Interval
-import CORALean.ContSet.Interval.Real.Operations.Intersection
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Interval
+public import CORALean.ContSet.Interval.Real.Operations.Intersection
+
+@[expose] public section
 
 /-!
 # `ZonoBundle.intervalAll`: the box of the whole bundle

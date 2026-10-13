@@ -1,12 +1,16 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
-import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
+public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # The float Gollamudi update encloses the intersection with one strip

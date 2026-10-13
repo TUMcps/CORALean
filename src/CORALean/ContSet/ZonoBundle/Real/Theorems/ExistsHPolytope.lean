@@ -1,5 +1,9 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsConZonotope
-import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+
+@[expose] public section
 
 /-!
 # A bundle is a polytope

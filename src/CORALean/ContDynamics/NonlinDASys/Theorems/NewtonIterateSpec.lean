@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
+
+@[expose] public section
 
 /-!
 # What the iteration returns

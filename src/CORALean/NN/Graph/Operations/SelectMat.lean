@@ -1,4 +1,8 @@
-import CORALean.Global.ExactScalar
+module
+
+public import CORALean.Global.ExactScalar
+
+@[expose] public section
 
 /-!
 # The subgraph projection at a scalar, `[1, Cor. 1]`'s `M`

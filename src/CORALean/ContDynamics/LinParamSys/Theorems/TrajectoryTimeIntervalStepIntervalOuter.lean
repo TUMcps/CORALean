@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepOuter
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepOuter
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # A time-varying run at a matrix zonotope, in the step of its box

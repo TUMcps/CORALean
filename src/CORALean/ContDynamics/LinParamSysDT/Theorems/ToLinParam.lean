@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
-import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+module
+
+public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+
+@[expose] public section
 
 /-!
 # A discrete-time linear system is one with a set-valued matrix

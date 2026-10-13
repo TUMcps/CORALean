@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.Global.Float.IntRound
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.Global.Float.IntRound
+
+@[expose] public section
 
 /-!
 # `Interval.evalList`

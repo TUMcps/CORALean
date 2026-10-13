@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Cube
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-import Mathlib.Analysis.Normed.Ring.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Cube
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import Mathlib.Analysis.Normed.Ring.Basic
+
+@[expose] public section
 
 /-!
 # `□(ρ)` is exactly the sup-norm ball

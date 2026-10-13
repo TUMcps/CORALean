@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.ReachSequence
+module
+
+public import CORALean.Specification.STL.Definitions.ReachSequence
+
+@[expose] public section
 
 /-!
 # An exact reach sequence can have more traces than the system

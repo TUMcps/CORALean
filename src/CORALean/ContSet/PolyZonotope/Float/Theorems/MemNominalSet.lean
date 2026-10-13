@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # Membership in the nominal polynomial zonotope, in the stored fields

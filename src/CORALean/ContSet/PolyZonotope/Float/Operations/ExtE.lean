@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
+
+@[expose] public section
 
 /-!
 # The exponent matrix widened to match `extG`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Fullspace
-import Mathlib.Data.ENNReal.Basic
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+public import Mathlib.Data.ENNReal.Basic
+
+@[expose] public section
 
 /-!
 # `Fullspace.radius`

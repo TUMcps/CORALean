@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexPoint
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexPoint
+
+@[expose] public section
 
 /-!
 # Reordering the dependent block loses nothing

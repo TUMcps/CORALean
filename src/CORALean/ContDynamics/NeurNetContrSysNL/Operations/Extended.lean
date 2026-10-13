@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NeurNetContrSysNL.NeurNetContrSysNL
+module
+
+public import CORALean.ContDynamics.NeurNetContrSysNL.NeurNetContrSysNL
+
+@[expose] public section
 
 /-!
 # The extended system of a control period

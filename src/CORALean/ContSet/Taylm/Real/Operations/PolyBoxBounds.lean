@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Real.Operations.TermBoxBounds
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.TermBoxBounds
+
+@[expose] public section
 
 /-!
 # A polynomial's bounds over a box by interval arithmetic

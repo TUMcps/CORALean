@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
-import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
-import CORALean.ContDynamics.Reach.Definitions.Params
-import CORALean.ContSet.SetUnion.SetUnion
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
+public import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
+public import CORALean.ContDynamics.Reach.Definitions.Params
+public import CORALean.ContSet.SetUnion.SetUnion
+
+@[expose] public section
 
 /-!
 # The steps of the loop as one union, or a run-time failure

@@ -1,5 +1,9 @@
-import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingUniform
-import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingUniform
+public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+
+@[expose] public section
 
 /-!
 # `LevelSet.isIntersecting_` rules out an intersection

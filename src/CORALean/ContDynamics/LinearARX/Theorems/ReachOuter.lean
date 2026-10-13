@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
-import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # The converted system's reach contains every ARX window

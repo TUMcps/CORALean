@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.IntervalChainFwd
+module
+
+public import CORALean.NN.Operations.IntervalChainFwd
+
+@[expose] public section
 
 /-!
 # The tangent propagation of an interval chain

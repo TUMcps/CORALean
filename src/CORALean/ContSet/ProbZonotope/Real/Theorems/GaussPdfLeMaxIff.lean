@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Max
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Max
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.max` is the density on the `m`-sigma bound

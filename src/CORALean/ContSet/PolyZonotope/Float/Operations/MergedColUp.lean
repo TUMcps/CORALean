@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
-import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
+public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
+
+@[expose] public section
 
 /-!
 # The merged column rounded the other way

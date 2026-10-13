@@ -1,6 +1,10 @@
-import CORALean.ContSet.ContSet.Operations.Enlarge
-import CORALean.ContSet.ContSet.Theorems.MinusOuter
-import CORALean.ContSet.ContSet.Theorems.TimesOuter
+module
+
+public import CORALean.ContSet.ContSet.Operations.Enlarge
+public import CORALean.ContSet.ContSet.Theorems.MinusOuter
+public import CORALean.ContSet.ContSet.Theorems.TimesOuter
+
+@[expose] public section
 
 /-!
 # `enlarge` encloses the scaling about the centre

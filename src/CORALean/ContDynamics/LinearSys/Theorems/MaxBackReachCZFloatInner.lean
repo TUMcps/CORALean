@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
-import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
+public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
+
+@[expose] public section
 
 /-!
 # The float `CZ(P ⊖ Ẑ_W(τ_k))` is inside the eroded polytope

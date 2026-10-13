@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrderLoop
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrderLoop
+
+@[expose] public section
 
 /-!
 # `Alg. 3` in floats: the order to reduce the particular solution to

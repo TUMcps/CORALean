@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Operations.Restrict
+module
+
+public import CORALean.ContSet.LevelSet.Real.Operations.Restrict
+
+@[expose] public section
 
 /-!
 # What `restrict` denotes

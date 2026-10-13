@@ -1,4 +1,8 @@
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # The sign of `t + c t²` against the parabola's vertex

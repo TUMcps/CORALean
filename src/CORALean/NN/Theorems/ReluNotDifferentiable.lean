@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Layers.Operations.Relu
-import Mathlib.Analysis.Calculus.Deriv.Basic
+module
+
+public import CORALean.NN.Layers.Definitions.Relu
+public import CORALean.NN.Layers.Operations.Relu
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+
+@[expose] public section
 
 /-!
 # ReLU has no derivative at zero

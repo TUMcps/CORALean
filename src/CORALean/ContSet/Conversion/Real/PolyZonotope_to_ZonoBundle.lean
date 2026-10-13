@@ -1,6 +1,10 @@
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
-import Mathlib.Order.BourbakiWitt
+module
+
+public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+public import Mathlib.Order.BourbakiWitt
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope as a bundle of one

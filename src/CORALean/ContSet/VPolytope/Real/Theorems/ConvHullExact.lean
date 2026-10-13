@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
-import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+module
+
+public import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+
+@[expose] public section
 
 /-!
 # `VPolytope.convHull` is exactly the convex hull of the union

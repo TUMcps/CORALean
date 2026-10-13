@@ -1,8 +1,12 @@
-import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
-import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
-import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
-import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnscale
-import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfExec
+module
+
+public import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnscale
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfExec
+
+@[expose] public section
 
 /-!
 # What the scaled automaton reaches, the original reaches

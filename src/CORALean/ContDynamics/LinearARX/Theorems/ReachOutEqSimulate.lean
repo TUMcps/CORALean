@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearARX.Definitions.ReachOut
-import CORALean.ContDynamics.LinearARX.Theorems.EqSimulate
-import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
+module
+
+public import CORALean.ContDynamics.LinearARX.Definitions.ReachOut
+public import CORALean.ContDynamics.LinearARX.Theorems.EqSimulate
+public import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
+
+@[expose] public section
 
 /-!
 # Exact addition is exact

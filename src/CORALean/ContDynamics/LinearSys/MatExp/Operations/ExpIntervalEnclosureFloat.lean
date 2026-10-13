@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+
+@[expose] public section
 
 /-!
 # `MatExp.expIntervalEnclosure`, over a floating-point scalar

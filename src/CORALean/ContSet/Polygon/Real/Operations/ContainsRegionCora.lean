@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # `@polygon/contains_.m` l. 71-78 on regions

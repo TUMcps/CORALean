@@ -1,7 +1,11 @@
-import Mathlib.RingTheory.Polynomial.Bernstein
-import Mathlib.Analysis.Calculus.Deriv.Polynomial
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Topology.Algebra.Polynomial
+module
+
+public import Mathlib.RingTheory.Polynomial.Bernstein
+public import Mathlib.Analysis.Calculus.Deriv.Polynomial
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Topology.Algebra.Polynomial
+
+@[expose] public section
 
 /-!
 # The binomial tail falls with the success probability

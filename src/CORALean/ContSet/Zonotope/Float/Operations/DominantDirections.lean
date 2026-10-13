@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Float.Operations.DominantScore
-import CORALean.ContSet.Zonotope.Float.Operations.DominantShortlist
-import CORALean.ContSet.Zonotope.Float.Operations.NonzeroCount
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.DominantScore
+public import CORALean.ContSet.Zonotope.Float.Operations.DominantShortlist
+public import CORALean.ContSet.Zonotope.Float.Operations.NonzeroCount
+
+@[expose] public section
 
 /-!
 # `Zonotope.dominantDirections`, over a floating-point scalar

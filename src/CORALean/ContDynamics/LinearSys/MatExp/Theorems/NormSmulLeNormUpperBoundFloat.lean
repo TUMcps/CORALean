@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
-import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
-import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
+
+@[expose] public section
 
 /-!
 # A step's matrix, scaled, is normed below the float bound of its box

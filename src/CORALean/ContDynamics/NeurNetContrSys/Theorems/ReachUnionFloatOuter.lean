@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnionFloat
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnionFloat
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
+
+@[expose] public section
 
 /-!
 # `reachUnionFloat` holds every zero-order-hold run at every period boundary

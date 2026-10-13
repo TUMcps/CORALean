@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import CORALean.Global.Partition
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import CORALean.Global.Partition
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.dropIndepMat`

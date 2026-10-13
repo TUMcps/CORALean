@@ -1,14 +1,18 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryPostDeltaFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
-import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
-import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryPostDeltaFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+
+@[expose] public section
 
 /-!
 # One float `linReach` step holds every run of the real system

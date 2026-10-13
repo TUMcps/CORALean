@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorLe
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorLe
+
+@[expose] public section
 
 /-!
 # `affineDynamicsError` converges to zero superlinearly

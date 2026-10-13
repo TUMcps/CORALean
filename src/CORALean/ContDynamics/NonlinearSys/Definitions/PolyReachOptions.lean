@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
+
+@[expose] public section
 
 /-!
 # CORA's `options` for the polynomialization algorithm

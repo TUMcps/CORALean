@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.squareExample`

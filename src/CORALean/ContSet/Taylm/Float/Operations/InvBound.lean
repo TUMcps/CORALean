@@ -1,6 +1,10 @@
-import CORALean.Global.Float.IntRound
-import CORALean.Global.Float.PowUp
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.Global.Float.IntRound
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # The derivative bound of `1/x` over the box

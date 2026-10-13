@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrderFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrderFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 6-15 in floats: the step-size search

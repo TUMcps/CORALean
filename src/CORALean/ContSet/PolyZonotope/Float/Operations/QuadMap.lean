@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.quadMap`

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputReach
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+
+@[expose] public section
 
 /-!
 # Holding the input at one point is admissible

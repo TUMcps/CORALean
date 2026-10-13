@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetUnion.Operations.Reduce
+module
+
+public import CORALean.ContSet.SetUnion.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `SetUnion.reduce` over-approximates the union

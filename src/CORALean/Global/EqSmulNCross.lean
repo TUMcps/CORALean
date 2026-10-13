@@ -1,7 +1,11 @@
-import CORALean.Global.CrossProduct
-import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
-import Mathlib.LinearAlgebra.Matrix.DotProduct
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+
+public import CORALean.Global.CrossProduct
+public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+@[expose] public section
 
 /-!
 # The line `nX` spans

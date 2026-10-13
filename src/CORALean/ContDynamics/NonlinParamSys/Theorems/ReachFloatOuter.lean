@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloat
-import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToAugment
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloat
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToAugment
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
+
+@[expose] public section
 
 /-!
 # The float parametric run encloses every constant-parameter run

@@ -1,6 +1,10 @@
-import CORALean.ContSet.Polygon.Real.Polygon
-import CORALean.ContSet.VPolytope.Real.Instances
-import CORALean.ContSet.SetUnion.Operations.Plus
+module
+
+public import CORALean.ContSet.Polygon.Real.Polygon
+public import CORALean.ContSet.VPolytope.Real.Instances
+public import CORALean.ContSet.SetUnion.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `Polygon.plus`

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
+
+@[expose] public section
 
 /-!
 # The error box's lower corner is a member of the error set

@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A zonotope bundle is bounded

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.MinnormBall
-import CORALean.ContSet.Zonotope.Real.Theorems.MinnormBallSubset
+module
+
+public import CORALean.ContSet.Zonotope.Float.Theorems.MinnormBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormBallSubset
+
+@[expose] public section
 
 /-!
 # The computed `minnorm` bounds the exact one

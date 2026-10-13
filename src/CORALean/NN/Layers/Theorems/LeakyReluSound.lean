@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.LeakyRelu
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.LeakyReluRelaxationSound
+module
+
+public import CORALean.NN.Layers.Operations.LeakyRelu
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.LeakyReluRelaxationSound
+
+@[expose] public section
 
 /-!
 # What the leaky ReLU layer encloses

@@ -1,4 +1,6 @@
-import CORALean.NN.Complexity.Time.API
+module
+
+public import CORALean.NN.Complexity.Time.API
 
 /-!
 # Complexity

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Finset.Sort
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # `Zonotope.filterGen`

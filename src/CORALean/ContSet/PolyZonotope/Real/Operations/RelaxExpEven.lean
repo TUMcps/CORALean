@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.relaxExpEven`

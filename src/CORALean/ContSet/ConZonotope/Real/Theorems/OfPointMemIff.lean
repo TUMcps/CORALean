@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
-import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # `ConZonotope.ofPoint` denotes exactly one point

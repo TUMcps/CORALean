@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Operations.CompactAtoAe
-import CORALean.ContSet.HPolytope.Real.Theorems.AtoAeStateSpec
-import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct
-import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.CompactAtoAe
+public import CORALean.ContSet.HPolytope.Real.Theorems.AtoAeStateSpec
+public import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
+
+@[expose] public section
 
 /-!
 # `compactAtoAe` denotes the same set, exactly

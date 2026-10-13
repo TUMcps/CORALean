@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrState
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrState
+
+@[expose] public section
 
 /-!
 # `Alg. 1` line 1: the loop state before the first iteration

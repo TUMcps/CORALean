@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.SamplingErrorBracket
+module
+
+public import CORALean.NN.Layers.Theorems.Real.SamplingErrorBracket
+
+@[expose] public section
 
 /-!
 # Refinement by sampling converges

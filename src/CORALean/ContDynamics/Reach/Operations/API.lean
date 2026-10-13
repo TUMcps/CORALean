@@ -1,5 +1,7 @@
-import CORALean.ContDynamics.Reach.Operations.Check
-import CORALean.ContDynamics.Reach.Operations.Steps
+module
+
+public import CORALean.ContDynamics.Reach.Operations.Check
+public import CORALean.ContDynamics.Reach.Operations.Steps
 
 /-!
 # What every `Reach` instance computes

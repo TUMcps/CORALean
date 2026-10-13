@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Real.Operations.ReexpBoxBounds
-import CORALean.ContSet.Taylm.Real.Definitions.Box
-import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
-import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.ReexpBoxBounds
+public import CORALean.ContSet.Taylm.Real.Definitions.Box
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FieldSimp
+
+@[expose] public section
 
 /-!
 # Re-expanded bounds enclose a polynomial over a box

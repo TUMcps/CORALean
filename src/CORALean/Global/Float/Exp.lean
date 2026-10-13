@@ -1,7 +1,11 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import Mathlib.Analysis.Complex.Exponential
-import Mathlib.Analysis.Normed.Field.Basic
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import Mathlib.Analysis.Complex.Exponential
+public import Mathlib.Analysis.Normed.Field.Basic
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # A directed-rounding exponential
@@ -39,23 +43,23 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- `a / 2 ^ n`, exactly. -/
-private def halfIter : ℕ → 𝕋 → 𝕋
+def halfIter : ℕ → 𝕋 → 𝕋
   | 0, a => a
   | k + 1, a => half (halfIter k a)
 
 /-- `1 + a`, floored at zero so the squarings stay monotone. -/
-private def seedDown (a : 𝕋) : 𝕋 := maximum zero (addDown one a)
+def seedDown (a : 𝕋) : 𝕋 := maximum zero (addDown one a)
 
 /-- `1 + a + 2a²`. The doubling is an addition rather than a product, so it
 holds whatever the sign of `a`. -/
-private def seedUp (a : 𝕋) : 𝕋 := addUp (addUp one a) (addUp (mulUp a a) (mulUp a a))
+def seedUp (a : 𝕋) : 𝕋 := addUp (addUp one a) (addUp (mulUp a a) (mulUp a a))
 
 /-- `u ^ (2 ^ n)`, squaring `n` times rather than multiplying out. -/
-private def squareDownIter : ℕ → 𝕋 → 𝕋
+def squareDownIter : ℕ → 𝕋 → 𝕋
   | 0, u => u
   | k + 1, u => squareDownIter k (maximum zero (mulDown u u))
 
-private def squareUpIter : ℕ → 𝕋 → 𝕋
+def squareUpIter : ℕ → 𝕋 → 𝕋
   | 0, u => u
   | k + 1, u => squareUpIter k (mulUp u u)
 

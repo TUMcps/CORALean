@@ -1,7 +1,11 @@
-import Mathlib.Analysis.ODE.ExistUnique
-import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
-import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
-import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
+module
+
+public import Mathlib.Analysis.ODE.ExistUnique
+public import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
+
+@[expose] public section
 
 /-!
 # An execution of the single-mode automaton follows a solution

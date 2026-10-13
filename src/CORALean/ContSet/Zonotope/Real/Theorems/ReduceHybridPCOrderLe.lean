@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.ReduceHybridPC
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceHybridPC
+
+@[expose] public section
 
 /-!
 # `Zonotope.reduceHybridPC` bounds the generator count

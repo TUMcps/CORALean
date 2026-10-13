@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.ContSet.Interval.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.ContSet.Interval.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A float interval is compact

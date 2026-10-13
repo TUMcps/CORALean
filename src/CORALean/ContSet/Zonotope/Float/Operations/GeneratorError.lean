@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Symmetric
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Symmetric
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # `Zonotope.generatorError`

@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Data.Real.Basic
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # The set eq. (15) of [1] puts a guard hit in, from one initial state

@@ -1,7 +1,11 @@
-import CORALean.NN.Operations.WeightAccLayer
-import CORALean.NN.Operations.WeightAccPushAffine
-import CORALean.NN.Operations.WeightAccPushLinear
-import CORALean.NN.Definitions.WeightNetwork
+module
+
+public import CORALean.NN.Operations.WeightAccLayer
+public import CORALean.NN.Operations.WeightAccPushAffine
+public import CORALean.NN.Operations.WeightAccPushLinear
+public import CORALean.NN.Definitions.WeightNetwork
+
+@[expose] public section
 
 /-!
 # `getNormalForm`'s loop

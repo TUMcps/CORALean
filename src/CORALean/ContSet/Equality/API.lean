@@ -1,4 +1,6 @@
-import CORALean.ContSet.Equality.Float.API
+module
+
+public import CORALean.ContSet.Equality.Float.API
 
 /-!
 # Equality of sets, collected

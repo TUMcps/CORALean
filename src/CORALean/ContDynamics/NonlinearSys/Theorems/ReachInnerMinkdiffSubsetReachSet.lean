@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiff
-import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubsetReachSet
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiff
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubsetReachSet
+
+@[expose] public section
 
 /-!
 # CORA's `'minkdiff'` inner reachability: every cell is an inner approximation

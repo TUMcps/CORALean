@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.Conform.Theorems.NarxWindowStep
-import CORALean.ContDynamics.Conform.Theorems.SumWindow
-import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContDynamics.Conform.Theorems.NarxWindowStep
+public import CORALean.ContDynamics.Conform.Theorems.SumWindow
+public import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # [1, Cor. 2]: the GLO approximation of an input-output model

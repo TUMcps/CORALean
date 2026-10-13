@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
-import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+
+@[expose] public section
 
 /-!
 # Under Eq. (5), the solutions of an s-face are on the edges of its border vertex

@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Calculus.Taylor
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Calculus.Taylor
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # Taylor's theorem with the Lagrange remainder, in several variables

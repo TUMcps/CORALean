@@ -1,5 +1,9 @@
-import CORALean.ContSet.Fullspace.Real.Fullspace
-import Mathlib.Topology.MetricSpace.Pseudo.Defs
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
+
+@[expose] public section
 
 /-!
 # Full space is full-dimensional

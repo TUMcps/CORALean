@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProdFloat
-import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdExact
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProdFloat
+public import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdExact
+
+@[expose] public section
 
 /-!
 # `Interval.stackProd` over floats is the Cartesian product, exactly

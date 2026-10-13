@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMemConstruct
-import Mathlib.Analysis.Convex.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMemConstruct
+public import Mathlib.Analysis.Convex.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # `isPolytopeCex` is not convex

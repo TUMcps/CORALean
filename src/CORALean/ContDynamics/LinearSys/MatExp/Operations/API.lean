@@ -1,98 +1,100 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimePointNext
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureExact
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureExactFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExact
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExactFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTailFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputIntervalTaylorTail
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylorFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderStep
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpWFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialDownFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialUpFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinus
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinusFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSum
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegral
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuterCorrelated
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowDownFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowUpFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.StepTestFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneOrderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTerm
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrix
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamD
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmOneParam
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputOneParam
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrixFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimePointNext
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureExact
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureExactFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExact
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorExactFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTailFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputIntervalTaylorTail
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylorFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderStep
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpWFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialDownFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialUpFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinus
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinusFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSum
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionError
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionOuterCorrelated
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSolutionTauError
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowDownFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowUpFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.StepTestFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneOrderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamD
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OneParamF
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmOneParam
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputOneParam
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrixFloat
 
 /-!
 # What enclosing a matrix exponential computes

@@ -1,19 +1,23 @@
-import CORALean.ContSet.Taylm.Real.Definitions.CodeList
-import CORALean.ContSet.Taylm.Real.Operations.Exp
-import CORALean.ContSet.Taylm.Real.Operations.Log
-import CORALean.ContSet.Taylm.Real.Operations.Inv
-import CORALean.ContSet.Taylm.Real.Operations.Sqrt
-import CORALean.ContSet.Taylm.Real.Operations.InvSqrt
-import CORALean.ContSet.Taylm.Real.Operations.Sin
-import CORALean.ContSet.Taylm.Real.Operations.Cos
-import CORALean.ContSet.Taylm.Real.Operations.Sinh
-import CORALean.ContSet.Taylm.Real.Operations.Cosh
-import CORALean.ContSet.Taylm.Real.Operations.Asin
-import CORALean.ContSet.Taylm.Real.Operations.Acos
-import CORALean.ContSet.Taylm.Real.Operations.Atan
-import CORALean.ContSet.Taylm.Real.Operations.Tan
-import CORALean.ContSet.Taylm.Real.Operations.Tanh
-import CORALean.ContSet.Taylm.Real.Operations.Mag
+module
+
+public import CORALean.ContSet.Taylm.Real.Definitions.CodeList
+public import CORALean.ContSet.Taylm.Real.Operations.Exp
+public import CORALean.ContSet.Taylm.Real.Operations.Log
+public import CORALean.ContSet.Taylm.Real.Operations.Inv
+public import CORALean.ContSet.Taylm.Real.Operations.Sqrt
+public import CORALean.ContSet.Taylm.Real.Operations.InvSqrt
+public import CORALean.ContSet.Taylm.Real.Operations.Sin
+public import CORALean.ContSet.Taylm.Real.Operations.Cos
+public import CORALean.ContSet.Taylm.Real.Operations.Sinh
+public import CORALean.ContSet.Taylm.Real.Operations.Cosh
+public import CORALean.ContSet.Taylm.Real.Operations.Asin
+public import CORALean.ContSet.Taylm.Real.Operations.Acos
+public import CORALean.ContSet.Taylm.Real.Operations.Atan
+public import CORALean.ContSet.Taylm.Real.Operations.Tan
+public import CORALean.ContSet.Taylm.Real.Operations.Tanh
+public import CORALean.ContSet.Taylm.Real.Operations.Mag
+
+@[expose] public section
 
 /-!
 # An intrinsic applied to a Taylor model

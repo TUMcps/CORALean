@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+
+@[expose] public section
 
 /-!
 # `ConZonotope.mtimesNominalErr`: how far `mtimesNominal` can be from the exact product

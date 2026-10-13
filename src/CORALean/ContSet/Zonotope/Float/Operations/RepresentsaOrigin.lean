@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaPoint
-import CORALean.ContSet.Interval.Float.Operations.RepresentsaOrigin
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Interval.Float.Operations.RepresentsaOrigin
+
+@[expose] public section
 
 /-!
 # `Zonotope.representsa_origin`, over a floating-point scalar

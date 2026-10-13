@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
-import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
+public import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # The float certified convex combination encloses

@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Data.Matrix.Diagonal
+module
+
+public import Mathlib.Analysis.Normed.Lp.PiLp
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Data.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # The row constraints of the terminal set program

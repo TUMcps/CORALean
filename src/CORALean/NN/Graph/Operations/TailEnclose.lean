@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+
+@[expose] public section
 
 /-!
 # The layers after the global pooling, enclosed one by one

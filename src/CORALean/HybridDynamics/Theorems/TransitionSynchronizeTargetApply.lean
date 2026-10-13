@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
+module
+
+public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
+
+@[expose] public section
 
 /-!
 # `Transition.synchronizeTarget` moves each component

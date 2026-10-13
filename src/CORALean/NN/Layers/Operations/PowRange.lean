@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.MulRangeDown
-import CORALean.NN.Layers.Operations.MulRangeUp
+module
+
+public import CORALean.NN.Layers.Operations.MulRangeDown
+public import CORALean.NN.Layers.Operations.MulRangeUp
+
+@[expose] public section
 
 /-!
 # A power bracketed

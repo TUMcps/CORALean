@@ -1,5 +1,7 @@
-import CORALean.ContDynamics.LinearSysDT.Complexity.Time.API
-import CORALean.ContDynamics.LinearSysDT.Complexity.Space.API
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.API
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Space.API
 
 /-!
 # Complexity

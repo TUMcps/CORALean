@@ -1,4 +1,8 @@
-import CORALean.NN.Operations.ChainEval
+module
+
+public import CORALean.NN.Operations.ChainEval
+
+@[expose] public section
 
 /-!
 # The empty chain is the identity

@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapMono
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusMono
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
-import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapMono
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusMono
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
+
+@[expose] public section
 
 /-!
 # `varInputs` grows with the sets it runs on

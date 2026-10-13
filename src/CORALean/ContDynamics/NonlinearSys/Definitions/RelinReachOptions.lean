@@ -1,4 +1,8 @@
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # CORA's `options` for the re-linearization loop

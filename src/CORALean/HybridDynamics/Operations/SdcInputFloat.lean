@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
-import CORALean.ContSet.Interval.Float.Operations.MatPow
-import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.ContSet.Interval.Float.Operations.Smul
-import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
-import CORALean.Global.Float.PowDown
-import CORALean.Global.Float.PowUp
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
+public import CORALean.ContSet.Interval.Float.Operations.MatPow
+public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
+public import CORALean.Global.Float.PowDown
+public import CORALean.Global.Float.PowUp
+
+@[expose] public section
 
 /-!
 # A float box holding the constant flow [1, Prop. 1] chooses

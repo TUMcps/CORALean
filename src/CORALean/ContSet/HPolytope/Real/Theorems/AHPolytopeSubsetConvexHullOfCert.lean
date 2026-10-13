@@ -1,7 +1,11 @@
-import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
-import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
-import Mathlib.Analysis.Convex.Combination
+module
+
+public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
+public import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
+public import Mathlib.Analysis.Convex.Combination
+
+@[expose] public section
 
 /-!
 # An AH-polytope in a convex hull of H-polytopes, sufficiently

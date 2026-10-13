@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
-import CORALean.Specification.Theorems.Intersection
-import CORALean.Specification.Operations.VerifyConvex
-import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
+public import CORALean.Specification.Theorems.Intersection
+public import CORALean.Specification.Operations.VerifyConvex
+public import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3 (exits), l. 12-13]: `verifyConvex`'s `violated` answer is sound

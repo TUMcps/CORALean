@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
+
+@[expose] public section
 
 /-!
 # The canonical form holds every state input

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
-import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.plus`'s constraint reads each side's own factors

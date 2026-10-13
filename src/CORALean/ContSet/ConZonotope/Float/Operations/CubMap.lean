@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
-import CORALean.ContSet.HPolytope.Float.Operations.Lift
-import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.HPolytope.Float.Operations.Lift
+public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
+
+@[expose] public section
 
 /-!
 # `ConZonotope.cubMap`, over a floating-point scalar

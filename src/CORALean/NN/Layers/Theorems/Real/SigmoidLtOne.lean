@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
-import CORALean.NN.Layers.Theorems.Real.SigmoidPos
+module
+
+public import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPos
+
+@[expose] public section
 
 /-!
 # The logistic function is below one

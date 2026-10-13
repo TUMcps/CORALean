@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactKeep
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactKeep
+
+@[expose] public section
 
 /-!
 # A dropped column's fibre sums to zero

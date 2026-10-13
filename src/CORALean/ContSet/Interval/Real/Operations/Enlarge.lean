@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.IntervalMatrix
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.IntervalMatrix
+
+@[expose] public section
 
 /-!
 # `Interval.enlarge`

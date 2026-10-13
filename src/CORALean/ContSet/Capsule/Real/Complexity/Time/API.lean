@@ -1,12 +1,14 @@
-import CORALean.ContSet.Capsule.Real.Complexity.Time.Plus
-import CORALean.ContSet.Capsule.Real.Complexity.Time.PlusVec
-import CORALean.ContSet.Capsule.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.Capsule.Real.Complexity.Time.MtimesCora
-import CORALean.ContSet.Capsule.Real.Complexity.Time.Radius
-import CORALean.ContSet.Capsule.Real.Complexity.Time.ConvHull
-import CORALean.ContSet.Capsule.Real.Complexity.Time.Enclose
-import CORALean.ContSet.Capsule.Real.Complexity.Time.SupportBound
-import CORALean.ContSet.Capsule.Real.Complexity.Time.EnclosePoints
+module
+
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.Plus
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.PlusVec
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.MtimesCora
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.Radius
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.ConvHull
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.Enclose
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.SupportBound
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.EnclosePoints
 
 /-!
 # What running `Capsule`'s operations costs

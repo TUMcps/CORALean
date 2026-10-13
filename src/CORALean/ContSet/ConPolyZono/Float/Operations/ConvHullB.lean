@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-import CORALean.ContSet.ConPolyZono.Real.Operations.RepVec
-import CORALean.Global.Float.IntRound
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.RepVec
+public import CORALean.Global.Float.IntRound
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.convHullB`

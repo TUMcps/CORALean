@@ -1,5 +1,9 @@
-import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaOrigin
-import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
+
+@[expose] public section
 
 /-!
 # `SpectraShadow.representsa_origin` is `{0}`

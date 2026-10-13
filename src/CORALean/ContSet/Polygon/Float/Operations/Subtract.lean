@@ -1,5 +1,9 @@
-import CORALean.ContSet.Polygon.Float.Operations.SubtractPiece
-import CORALean.ContSet.Polygon.Float.Polygon
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.SubtractPiece
+public import CORALean.ContSet.Polygon.Float.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.subtract`, over a floating-point scalar

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundAtTop
-import Mathlib.Algebra.Order.Ring.Star
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundAtTop
+public import Mathlib.Algebra.Order.Ring.Star
+
+@[expose] public section
 
 /-!
 # Any admissible error is reachable, in the order

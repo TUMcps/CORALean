@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.Trace
-import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.Trace
+public import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
+
+@[expose] public section
 
 /-!
 # `Taylm.trace` encloses the trace

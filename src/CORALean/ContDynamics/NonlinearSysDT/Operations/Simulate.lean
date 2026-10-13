@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+
+@[expose] public section
 
 /-!
 # One sampled run of a discrete nonlinear system

@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # The certified halfspace difference is an inner approximation

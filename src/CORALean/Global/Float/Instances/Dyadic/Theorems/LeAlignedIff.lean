@@ -1,5 +1,9 @@
-import CORALean.Global.Float.Instances.Dyadic.Operations.LeAligned
-import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealAlign
+module
+
+public import CORALean.Global.Float.Instances.Dyadic.Operations.LeAligned
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealAlign
+
+@[expose] public section
 
 /-!
 # The aligned comparison agrees with ℝ

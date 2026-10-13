@@ -1,6 +1,10 @@
-import Mathlib.Data.Real.Basic
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Analysis.Convex.Basic
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Analysis.Convex.Basic
+
+@[expose] public section
 
 /-!
 # A linear functional's greatest value on a convex hull is taken at a generator

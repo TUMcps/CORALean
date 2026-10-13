@@ -1,5 +1,9 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.Zonotope.Real.Instances
+
+@[expose] public section
 
 /-!
 # Zonotopes over a floating-point scalar: the representation

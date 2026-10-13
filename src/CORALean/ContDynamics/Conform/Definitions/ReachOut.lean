@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.State
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.State
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # The reachable sets of the model, exactly

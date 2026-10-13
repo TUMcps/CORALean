@@ -1,13 +1,17 @@
-import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.Relu
-import CORALean.NN.Layers.Theorems.ActivationSound
-import CORALean.NN.Layers.Theorems.LinearWithErrorMem
-import CORALean.NN.Operations.CompressionPreprocessing
-import CORALean.NN.Theorems.ReduceOnTheFlyOuter
+module
+
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
+public import CORALean.NN.Layers.Definitions.Enclosure
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Definitions.Relu
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.Relu
+public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
+public import CORALean.NN.Operations.CompressionPreprocessing
+public import CORALean.NN.Theorems.ReduceOnTheFlyOuter
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3] is sound on a nonnegative image

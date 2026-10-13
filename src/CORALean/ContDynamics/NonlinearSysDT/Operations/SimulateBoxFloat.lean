@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatModel
-import CORALean.ContSet.Interval.Float.Operations.Point
+module
+
+public import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatModel
+public import CORALean.ContSet.Interval.Float.Operations.Point
+
+@[expose] public section
 
 /-!
 # An interval-valued `simulate` for a nonlinear discrete-time system

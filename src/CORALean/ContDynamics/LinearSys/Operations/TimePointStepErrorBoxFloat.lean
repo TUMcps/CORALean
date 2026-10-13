@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorFloat
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorFloat
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # A step's error ball, as a float zonotope

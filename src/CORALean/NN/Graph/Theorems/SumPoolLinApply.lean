@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.OnesRow
-import CORALean.NN.Graph.Operations.SumPoolLin
+module
+
+public import CORALean.NN.Graph.Operations.OnesRow
+public import CORALean.NN.Graph.Operations.SumPoolLin
+
+@[expose] public section
 
 /-!
 # `sumPoolLin` unfolds to `[1]`'s `1 H`

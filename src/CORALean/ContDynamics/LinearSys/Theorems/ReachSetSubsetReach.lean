@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.StepInput
-import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
-import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # `reach` encloses the set the flow reaches, at the sample times

@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.PolyDerivBound
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Algebra.CharP.Defs
-import Mathlib.Algebra.Order.Archimedean.Real.Basic
+module
+
+public import CORALean.NN.Layers.Definitions.PolyDerivBound
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.CharP.Defs
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+
+@[expose] public section
 
 /-!
 # At order 1 the derivative bound is the bracket

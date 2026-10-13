@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # A matrix times a polynomial zonotope is exact

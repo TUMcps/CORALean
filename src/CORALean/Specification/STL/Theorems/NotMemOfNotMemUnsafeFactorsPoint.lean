@@ -1,5 +1,9 @@
-import CORALean.Specification.STL.Theorems.DepReachPointDependency
-import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactors
+module
+
+public import CORALean.Specification.STL.Theorems.DepReachPointDependency
+public import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactors
+
+@[expose] public section
 
 /-!
 # [1, Prop. 2] at the time points: the polytope `K_i1`

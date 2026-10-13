@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Theorems.Real.ExpSumPos
+module
+
+public import CORALean.NN.Layers.Theorems.Real.ExpSumPos
+
+@[expose] public section
 
 /-!
 # Softmax is nonnegative

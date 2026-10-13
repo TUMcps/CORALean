@@ -1,4 +1,8 @@
-import CORALean.Global.ExactScalar
+module
+
+public import CORALean.Global.ExactScalar
+
+@[expose] public section
 
 /-!
 # A scalar whose negation is exact

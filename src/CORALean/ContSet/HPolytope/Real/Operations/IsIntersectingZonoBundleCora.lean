@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.ZonoBundleVar
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.ZonoBundleVar
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+
+@[expose] public section
 
 /-!
 # `HPolytope.isIntersectingZonoBundleCora`, CORA's polytope/zonotope-bundle intersection test

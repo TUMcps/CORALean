@@ -1,4 +1,8 @@
-import CORALean.ContSet.Polygon.Float.Operations.PieceHolds
+module
+
+public import CORALean.ContSet.Polygon.Float.Operations.PieceHolds
+
+@[expose] public section
 
 /-!
 # `Polygon.pieceSubset`

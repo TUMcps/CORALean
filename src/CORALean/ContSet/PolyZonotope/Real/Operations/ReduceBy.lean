@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.DropRadius
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DropRadius
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.reduceBy`

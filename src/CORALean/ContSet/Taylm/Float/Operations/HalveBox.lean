@@ -1,4 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Taylm
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+
+@[expose] public section
 
 /-!
 # `Taylm.halveBox`, over a floating-point scalar

@@ -1,13 +1,17 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeMulCutPrecision
-import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
-import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
-import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
-import Mathlib.Tactic.Abel
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeMulCutPrecision
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The ellipsoid of the cut shape contains the ball with the parallel cut

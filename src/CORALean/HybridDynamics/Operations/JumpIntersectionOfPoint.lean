@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Operations.JumpOfPoint
+module
+
+public import CORALean.HybridDynamics.Operations.JumpOfPoint
+
+@[expose] public section
 
 /-!
 # `Transition.jumpIntersectionOfPoint`

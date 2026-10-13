@@ -1,6 +1,10 @@
-import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
-import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
-import CORALean.ContSet.Polygon.Float.Polygon
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+public import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
+public import CORALean.ContSet.Polygon.Float.Polygon
+
+@[expose] public section
 
 /-!
 # `Polygon.innerHRep`

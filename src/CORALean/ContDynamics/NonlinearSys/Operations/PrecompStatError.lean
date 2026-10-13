@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+
+@[expose] public section
 
 /-!
 # The static abstraction error, kept as a polynomial

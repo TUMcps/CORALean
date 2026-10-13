@@ -1,7 +1,11 @@
-import CORALean.NN.Layers.Definitions.Sigmoid
-import CORALean.NN.Layers.Operations.SigmoidDerivLo
-import CORALean.NN.Layers.Theorems.Real.SigmoidMono
-import CORALean.NN.Layers.Theorems.Real.SigmoidPos
+module
+
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Operations.SigmoidDerivLo
+public import CORALean.NN.Layers.Theorems.Real.SigmoidMono
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPos
+
+@[expose] public section
 
 /-!
 # The sigmoid derivative is above its rounded lower bound

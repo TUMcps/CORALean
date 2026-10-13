@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Walk
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Walk
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # The edges of the walk of a zonogon

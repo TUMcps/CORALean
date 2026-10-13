@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.Conform.Definitions.Conformant
-import CORALean.ContDynamics.Conform.Theorems.MemReachOutIff
+module
+
+public import CORALean.ContDynamics.Conform.Definitions.Conformant
+public import CORALean.ContDynamics.Conform.Theorems.MemReachOutIff
+
+@[expose] public section
 
 /-!
 # Conformance is one inclusion per step

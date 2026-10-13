@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Operations.PolyDerivCenter
-import CORALean.NN.Layers.Operations.PolyDerivRadiusUp
+module
+
+public import CORALean.NN.Layers.Operations.PolyDerivCenter
+public import CORALean.NN.Layers.Operations.PolyDerivRadiusUp
+
+@[expose] public section
 
 /-!
 # The derivative bound a sampled fit asks for

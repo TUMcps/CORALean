@@ -1,31 +1,33 @@
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Plus
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Map
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Mtimes
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.LinComb
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Mul
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.QuadBilin
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.QuadMapDep
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Compact
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.ReduceBy
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.ReduceGirard
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Reduce
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.CartProd
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.EDiff
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.EDrift
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxWidth
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxWidthMulti
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxWidthGroup
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxDrift
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExp
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpEven
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpMid
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpMulti
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpGroup
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpGreedy
-import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxGreedy
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Plus
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Map
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Mtimes
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.LinComb
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Mul
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.QuadBilin
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.QuadMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Compact
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.ReduceBy
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.ReduceGirard
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Reduce
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.CartProd
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.EDiff
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.EDrift
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxWidth
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxWidthMulti
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxWidthGroup
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxDrift
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExp
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpEven
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpMid
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpMulti
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpGroup
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxExpGreedy
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.RelaxGreedy
 
 /-!
 # What running `PolyZonotope`'s operations costs

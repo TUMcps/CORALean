@@ -1,5 +1,9 @@
-import CORALean.NN.Graph.Operations.Ball
-import CORALean.NN.Graph.Operations.BallFloat
+module
+
+public import CORALean.NN.Graph.Operations.Ball
+public import CORALean.NN.Graph.Operations.BallFloat
+
+@[expose] public section
 
 /-!
 # The real ball lies in the ball on an edge test that covers the support

@@ -1,161 +1,163 @@
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.ActivationLayerOf
-import CORALean.NN.Layers.Operations.ActivationPoly
-import CORALean.NN.Layers.Operations.ActivationPolyRefinable
-import CORALean.NN.Layers.Operations.ActivationTaylm
-import CORALean.NN.Layers.Operations.AllOver
-import CORALean.NN.Layers.Operations.ApproxArea
-import CORALean.NN.Layers.Operations.AvgPool
-import CORALean.NN.Layers.Operations.BatchNorm
-import CORALean.NN.Layers.Operations.BracketError
-import CORALean.NN.Layers.Operations.BracketShift
-import CORALean.NN.Layers.Operations.ClampUnit
-import CORALean.NN.Layers.Operations.CoarseHi
-import CORALean.NN.Layers.Operations.CoarseLo
-import CORALean.NN.Layers.Operations.ConjCoeffsDown
-import CORALean.NN.Layers.Operations.ConjCoeffsGap
-import CORALean.NN.Layers.Operations.ConjCoeffsUp
-import CORALean.NN.Layers.Operations.ConjError
-import CORALean.NN.Layers.Operations.ConjOffset
-import CORALean.NN.Layers.Operations.ConjOffsetGap
-import CORALean.NN.Layers.Operations.ConjOffsetHigh
-import CORALean.NN.Layers.Operations.ConjOffsetLow
-import CORALean.NN.Layers.Operations.ConjSlope
-import CORALean.NN.Layers.Operations.ConjSlopeGap
-import CORALean.NN.Layers.Operations.ConjSlopeHigh
-import CORALean.NN.Layers.Operations.ConjSlopeLow
-import CORALean.NN.Layers.Operations.ConjTBound
-import CORALean.NN.Layers.Operations.Conv
-import CORALean.NN.Layers.Operations.ConvTranspose
-import CORALean.NN.Layers.Operations.CurvHi
-import CORALean.NN.Layers.Operations.CurvLo
-import CORALean.NN.Layers.Operations.CurvMid
-import CORALean.NN.Layers.Operations.DoubleRounding
-import CORALean.NN.Layers.Operations.ElementwiseAffine
-import CORALean.NN.Layers.Operations.EnclosureMid
-import CORALean.NN.Layers.Operations.EvalPolyDown
-import CORALean.NN.Layers.Operations.EvalPolyUp
-import CORALean.NN.Layers.Operations.Exp
-import CORALean.NN.Layers.Operations.ExpEnclosure
-import CORALean.NN.Layers.Operations.ExpRelaxation
-import CORALean.NN.Layers.Operations.ExpUpLimit
-import CORALean.NN.Layers.Operations.FindRegionLeft
-import CORALean.NN.Layers.Operations.FindRegionLoop
-import CORALean.NN.Layers.Operations.FindRegionPolys
-import CORALean.NN.Layers.Operations.FindRegionRight
-import CORALean.NN.Layers.Operations.FitHi
-import CORALean.NN.Layers.Operations.FitLo
-import CORALean.NN.Layers.Operations.GeneratorReduction
-import CORALean.NN.Layers.Operations.GridChecked
-import CORALean.NN.Layers.Operations.GroupSort
-import CORALean.NN.Layers.Operations.GroupSortChunk
-import CORALean.NN.Layers.Operations.GroupSortChunkFloat
-import CORALean.NN.Layers.Operations.GroupSortFloat
-import CORALean.NN.Layers.Operations.InvSqrtRoot
-import CORALean.NN.Layers.Operations.InvSqrtRootEnclosure
-import CORALean.NN.Layers.Operations.InvSqrtRootRelaxation
-import CORALean.NN.Layers.Operations.LayerRelaxationBox
-import CORALean.NN.Layers.Operations.LayerRelaxationCoeffList
-import CORALean.NN.Layers.Operations.LayerRelaxationCoeffVec
-import CORALean.NN.Layers.Operations.LeakyRelu
-import CORALean.NN.Layers.Operations.LeakyReluEndUp
-import CORALean.NN.Layers.Operations.LeakyReluGapUp
-import CORALean.NN.Layers.Operations.LeakyReluRelaxation
-import CORALean.NN.Layers.Operations.LeakyReluSlope
-import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Operations.LinearWithError
-import CORALean.NN.Layers.Operations.LipConstrLinear
-import CORALean.NN.Layers.Operations.LipConstrLinearFloat
-import CORALean.NN.Layers.Operations.LipConstrScale
-import CORALean.NN.Layers.Operations.LipConstrScaleFloat
-import CORALean.NN.Layers.Operations.LowerRegionOrder
-import CORALean.NN.Layers.Operations.MaxPool
-import CORALean.NN.Layers.Operations.MaxPoolGapUp
-import CORALean.NN.Layers.Operations.MulRangeDown
-import CORALean.NN.Layers.Operations.MulRangeUp
-import CORALean.NN.Layers.Operations.OnePlusExpDown
-import CORALean.NN.Layers.Operations.Pack
-import CORALean.NN.Layers.Operations.PadCoeffs
-import CORALean.NN.Layers.Operations.PolyDerivBoundUp
-import CORALean.NN.Layers.Operations.PolyDerivCenter
-import CORALean.NN.Layers.Operations.PolyDerivRadiusUp
-import CORALean.NN.Layers.Operations.PolyRelaxationFamilyAtPattern
-import CORALean.NN.Layers.Operations.PolyRelaxationFamilyDegOf
-import CORALean.NN.Layers.Operations.PolyRelaxationOfAffineConj
-import CORALean.NN.Layers.Operations.PolyRelaxationOfBracket
-import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
-import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
-import CORALean.NN.Layers.Operations.PolyRelaxationToRelaxation
-import CORALean.NN.Layers.Operations.PowRange
-import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
-import CORALean.NN.Layers.Operations.RelaxationBox
-import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
-import CORALean.NN.Layers.Operations.RelaxationOfAntitone
-import CORALean.NN.Layers.Operations.RelaxationOfDeriv
-import CORALean.NN.Layers.Operations.RelaxationOfMonotone
-import CORALean.NN.Layers.Operations.RelaxationSlopeMat
-import CORALean.NN.Layers.Operations.RelaxationTighter
-import CORALean.NN.Layers.Operations.RelaxationToPoly
-import CORALean.NN.Layers.Operations.Relu
-import CORALean.NN.Layers.Operations.ReluGapUp
-import CORALean.NN.Layers.Operations.ReluRelaxation
-import CORALean.NN.Layers.Operations.ReluSlope
-import CORALean.NN.Layers.Operations.ReluStar
-import CORALean.NN.Layers.Operations.ReluStarFloat
-import CORALean.NN.Layers.Operations.Reshape
-import CORALean.NN.Layers.Operations.Root
-import CORALean.NN.Layers.Operations.RootEnclosure
-import CORALean.NN.Layers.Operations.RootRelaxation
-import CORALean.NN.Layers.Operations.SShapeDerBounds
-import CORALean.NN.Layers.Operations.SShapeDerBoundsFloat
-import CORALean.NN.Layers.Operations.SampleDevLo
-import CORALean.NN.Layers.Operations.SampleDevUp
-import CORALean.NN.Layers.Operations.SampleHi
-import CORALean.NN.Layers.Operations.SampleLo
-import CORALean.NN.Layers.Operations.SelectMat
-import CORALean.NN.Layers.Operations.ShiftConst
-import CORALean.NN.Layers.Operations.Sigmoid
-import CORALean.NN.Layers.Operations.SigmoidCurvatureRelaxation
-import CORALean.NN.Layers.Operations.SigmoidDerivHi
-import CORALean.NN.Layers.Operations.SigmoidDerivLo
-import CORALean.NN.Layers.Operations.SigmoidEnclosure
-import CORALean.NN.Layers.Operations.SigmoidPoly
-import CORALean.NN.Layers.Operations.SigmoidPolyDerivBound
-import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
-import CORALean.NN.Layers.Operations.SigmoidRelaxation
-import CORALean.NN.Layers.Operations.SigmoidSlope
-import CORALean.NN.Layers.Operations.Softmax
-import CORALean.NN.Layers.Operations.SoftmaxBox
-import CORALean.NN.Layers.Operations.SoftmaxDenomDown
-import CORALean.NN.Layers.Operations.SoftmaxDenomUp
-import CORALean.NN.Layers.Operations.SoftmaxExpInRange
-import CORALean.NN.Layers.Operations.SoftmaxRawLower
-import CORALean.NN.Layers.Operations.SoftmaxRawUpper
-import CORALean.NN.Layers.Operations.Softplus
-import CORALean.NN.Layers.Operations.SoftplusEnclosure
-import CORALean.NN.Layers.Operations.SoftplusRelaxation
-import CORALean.NN.Layers.Operations.Square
-import CORALean.NN.Layers.Operations.SquareDerivHi
-import CORALean.NN.Layers.Operations.SquareDerivLo
-import CORALean.NN.Layers.Operations.SquareEnclosure
-import CORALean.NN.Layers.Operations.SquareRelaxation
-import CORALean.NN.Layers.Operations.SquareSlope
-import CORALean.NN.Layers.Operations.StarSetCoraRowBounds
-import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
-import CORALean.NN.Layers.Operations.StarSetFloatChordRow
-import CORALean.NN.Layers.Operations.StarSetFloatContSet
-import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
-import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
-import CORALean.NN.Layers.Operations.StarSetReluNeuron
-import CORALean.NN.Layers.Operations.StarSetRowBounds
-import CORALean.NN.Layers.Operations.SumOffDown
-import CORALean.NN.Layers.Operations.SumOffUp
-import CORALean.NN.Layers.Operations.Tanh
-import CORALean.NN.Layers.Operations.TanhPolyRelaxation
-import CORALean.NN.Layers.Operations.TanhRelaxation
-import CORALean.NN.Layers.Operations.TapEntry
-import CORALean.NN.Layers.Operations.TapMat
-import CORALean.NN.Layers.Operations.TransposeEquiv
+module
+
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.ActivationLayerOf
+public import CORALean.NN.Layers.Operations.ActivationPoly
+public import CORALean.NN.Layers.Operations.ActivationPolyRefinable
+public import CORALean.NN.Layers.Operations.ActivationTaylm
+public import CORALean.NN.Layers.Operations.AllOver
+public import CORALean.NN.Layers.Operations.ApproxArea
+public import CORALean.NN.Layers.Operations.AvgPool
+public import CORALean.NN.Layers.Operations.BatchNorm
+public import CORALean.NN.Layers.Operations.BracketError
+public import CORALean.NN.Layers.Operations.BracketShift
+public import CORALean.NN.Layers.Operations.ClampUnit
+public import CORALean.NN.Layers.Operations.CoarseHi
+public import CORALean.NN.Layers.Operations.CoarseLo
+public import CORALean.NN.Layers.Operations.ConjCoeffsDown
+public import CORALean.NN.Layers.Operations.ConjCoeffsGap
+public import CORALean.NN.Layers.Operations.ConjCoeffsUp
+public import CORALean.NN.Layers.Operations.ConjError
+public import CORALean.NN.Layers.Operations.ConjOffset
+public import CORALean.NN.Layers.Operations.ConjOffsetGap
+public import CORALean.NN.Layers.Operations.ConjOffsetHigh
+public import CORALean.NN.Layers.Operations.ConjOffsetLow
+public import CORALean.NN.Layers.Operations.ConjSlope
+public import CORALean.NN.Layers.Operations.ConjSlopeGap
+public import CORALean.NN.Layers.Operations.ConjSlopeHigh
+public import CORALean.NN.Layers.Operations.ConjSlopeLow
+public import CORALean.NN.Layers.Operations.ConjTBound
+public import CORALean.NN.Layers.Operations.Conv
+public import CORALean.NN.Layers.Operations.ConvTranspose
+public import CORALean.NN.Layers.Operations.CurvHi
+public import CORALean.NN.Layers.Operations.CurvLo
+public import CORALean.NN.Layers.Operations.CurvMid
+public import CORALean.NN.Layers.Operations.DoubleRounding
+public import CORALean.NN.Layers.Operations.ElementwiseAffine
+public import CORALean.NN.Layers.Operations.EnclosureMid
+public import CORALean.NN.Layers.Operations.EvalPolyDown
+public import CORALean.NN.Layers.Operations.EvalPolyUp
+public import CORALean.NN.Layers.Operations.Exp
+public import CORALean.NN.Layers.Operations.ExpEnclosure
+public import CORALean.NN.Layers.Operations.ExpRelaxation
+public import CORALean.NN.Layers.Operations.ExpUpLimit
+public import CORALean.NN.Layers.Operations.FindRegionLeft
+public import CORALean.NN.Layers.Operations.FindRegionLoop
+public import CORALean.NN.Layers.Operations.FindRegionPolys
+public import CORALean.NN.Layers.Operations.FindRegionRight
+public import CORALean.NN.Layers.Operations.FitHi
+public import CORALean.NN.Layers.Operations.FitLo
+public import CORALean.NN.Layers.Operations.GeneratorReduction
+public import CORALean.NN.Layers.Operations.GridChecked
+public import CORALean.NN.Layers.Operations.GroupSort
+public import CORALean.NN.Layers.Operations.GroupSortChunk
+public import CORALean.NN.Layers.Operations.GroupSortChunkFloat
+public import CORALean.NN.Layers.Operations.GroupSortFloat
+public import CORALean.NN.Layers.Operations.InvSqrtRoot
+public import CORALean.NN.Layers.Operations.InvSqrtRootEnclosure
+public import CORALean.NN.Layers.Operations.InvSqrtRootRelaxation
+public import CORALean.NN.Layers.Operations.LayerRelaxationBox
+public import CORALean.NN.Layers.Operations.LayerRelaxationCoeffList
+public import CORALean.NN.Layers.Operations.LayerRelaxationCoeffVec
+public import CORALean.NN.Layers.Operations.LeakyRelu
+public import CORALean.NN.Layers.Operations.LeakyReluEndUp
+public import CORALean.NN.Layers.Operations.LeakyReluGapUp
+public import CORALean.NN.Layers.Operations.LeakyReluRelaxation
+public import CORALean.NN.Layers.Operations.LeakyReluSlope
+public import CORALean.NN.Layers.Operations.Linear
+public import CORALean.NN.Layers.Operations.LinearWithError
+public import CORALean.NN.Layers.Operations.LipConstrLinear
+public import CORALean.NN.Layers.Operations.LipConstrLinearFloat
+public import CORALean.NN.Layers.Operations.LipConstrScale
+public import CORALean.NN.Layers.Operations.LipConstrScaleFloat
+public import CORALean.NN.Layers.Operations.LowerRegionOrder
+public import CORALean.NN.Layers.Operations.MaxPool
+public import CORALean.NN.Layers.Operations.MaxPoolGapUp
+public import CORALean.NN.Layers.Operations.MulRangeDown
+public import CORALean.NN.Layers.Operations.MulRangeUp
+public import CORALean.NN.Layers.Operations.OnePlusExpDown
+public import CORALean.NN.Layers.Operations.Pack
+public import CORALean.NN.Layers.Operations.PadCoeffs
+public import CORALean.NN.Layers.Operations.PolyDerivBoundUp
+public import CORALean.NN.Layers.Operations.PolyDerivCenter
+public import CORALean.NN.Layers.Operations.PolyDerivRadiusUp
+public import CORALean.NN.Layers.Operations.PolyRelaxationFamilyAtPattern
+public import CORALean.NN.Layers.Operations.PolyRelaxationFamilyDegOf
+public import CORALean.NN.Layers.Operations.PolyRelaxationOfAffineConj
+public import CORALean.NN.Layers.Operations.PolyRelaxationOfBracket
+public import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
+public import CORALean.NN.Layers.Operations.PolyRelaxationPadTo
+public import CORALean.NN.Layers.Operations.PolyRelaxationToRelaxation
+public import CORALean.NN.Layers.Operations.PowRange
+public import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
+public import CORALean.NN.Layers.Operations.RelaxationBox
+public import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
+public import CORALean.NN.Layers.Operations.RelaxationOfAntitone
+public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
+public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
+public import CORALean.NN.Layers.Operations.RelaxationSlopeMat
+public import CORALean.NN.Layers.Operations.RelaxationTighter
+public import CORALean.NN.Layers.Operations.RelaxationToPoly
+public import CORALean.NN.Layers.Operations.Relu
+public import CORALean.NN.Layers.Operations.ReluGapUp
+public import CORALean.NN.Layers.Operations.ReluRelaxation
+public import CORALean.NN.Layers.Operations.ReluSlope
+public import CORALean.NN.Layers.Operations.ReluStar
+public import CORALean.NN.Layers.Operations.ReluStarFloat
+public import CORALean.NN.Layers.Operations.Reshape
+public import CORALean.NN.Layers.Operations.Root
+public import CORALean.NN.Layers.Operations.RootEnclosure
+public import CORALean.NN.Layers.Operations.RootRelaxation
+public import CORALean.NN.Layers.Operations.SShapeDerBounds
+public import CORALean.NN.Layers.Operations.SShapeDerBoundsFloat
+public import CORALean.NN.Layers.Operations.SampleDevLo
+public import CORALean.NN.Layers.Operations.SampleDevUp
+public import CORALean.NN.Layers.Operations.SampleHi
+public import CORALean.NN.Layers.Operations.SampleLo
+public import CORALean.NN.Layers.Operations.SelectMat
+public import CORALean.NN.Layers.Operations.ShiftConst
+public import CORALean.NN.Layers.Operations.Sigmoid
+public import CORALean.NN.Layers.Operations.SigmoidCurvatureRelaxation
+public import CORALean.NN.Layers.Operations.SigmoidDerivHi
+public import CORALean.NN.Layers.Operations.SigmoidDerivLo
+public import CORALean.NN.Layers.Operations.SigmoidEnclosure
+public import CORALean.NN.Layers.Operations.SigmoidPoly
+public import CORALean.NN.Layers.Operations.SigmoidPolyDerivBound
+public import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
+public import CORALean.NN.Layers.Operations.SigmoidRelaxation
+public import CORALean.NN.Layers.Operations.SigmoidSlope
+public import CORALean.NN.Layers.Operations.Softmax
+public import CORALean.NN.Layers.Operations.SoftmaxBox
+public import CORALean.NN.Layers.Operations.SoftmaxDenomDown
+public import CORALean.NN.Layers.Operations.SoftmaxDenomUp
+public import CORALean.NN.Layers.Operations.SoftmaxExpInRange
+public import CORALean.NN.Layers.Operations.SoftmaxRawLower
+public import CORALean.NN.Layers.Operations.SoftmaxRawUpper
+public import CORALean.NN.Layers.Operations.Softplus
+public import CORALean.NN.Layers.Operations.SoftplusEnclosure
+public import CORALean.NN.Layers.Operations.SoftplusRelaxation
+public import CORALean.NN.Layers.Operations.Square
+public import CORALean.NN.Layers.Operations.SquareDerivHi
+public import CORALean.NN.Layers.Operations.SquareDerivLo
+public import CORALean.NN.Layers.Operations.SquareEnclosure
+public import CORALean.NN.Layers.Operations.SquareRelaxation
+public import CORALean.NN.Layers.Operations.SquareSlope
+public import CORALean.NN.Layers.Operations.StarSetCoraRowBounds
+public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
+public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
+public import CORALean.NN.Layers.Operations.StarSetFloatContSet
+public import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
+public import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
+public import CORALean.NN.Layers.Operations.StarSetReluNeuron
+public import CORALean.NN.Layers.Operations.StarSetRowBounds
+public import CORALean.NN.Layers.Operations.SumOffDown
+public import CORALean.NN.Layers.Operations.SumOffUp
+public import CORALean.NN.Layers.Operations.Tanh
+public import CORALean.NN.Layers.Operations.TanhPolyRelaxation
+public import CORALean.NN.Layers.Operations.TanhRelaxation
+public import CORALean.NN.Layers.Operations.TapEntry
+public import CORALean.NN.Layers.Operations.TapMat
+public import CORALean.NN.Layers.Operations.TransposeEquiv
 
 /-!
 # The standard layers, collected

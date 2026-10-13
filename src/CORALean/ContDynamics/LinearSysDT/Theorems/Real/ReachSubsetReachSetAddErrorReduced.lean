@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedContainsReachError
-import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddError
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedContainsReachError
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddError
+
+@[expose] public section
 
 /-!
 # The computed run stays inside the exact set plus the *reduced* error

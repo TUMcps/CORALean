@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeLoop
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeLoop
+
+@[expose] public section
 
 /-!
 # `Zonotope.cloud2zonotope`

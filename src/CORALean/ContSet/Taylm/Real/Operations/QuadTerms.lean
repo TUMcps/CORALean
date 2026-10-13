@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Taylm
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # `½ (t - x₀)ᵀ H (t - x₀)` as a term list

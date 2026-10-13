@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+module
+
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+
+@[expose] public section
 
 /-!
 # What a constant input contributes over one step at every member, in floats

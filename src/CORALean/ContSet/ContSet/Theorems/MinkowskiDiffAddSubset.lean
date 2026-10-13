@@ -1,4 +1,8 @@
-import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
+module
+
+public import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
+
+@[expose] public section
 
 /-!
 # Adding `T` back to a Minkowski difference stays inside `S`

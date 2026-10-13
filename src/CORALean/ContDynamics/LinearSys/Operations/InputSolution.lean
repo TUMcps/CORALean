@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
-import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
-import CORALean.ContSet.Interval.Real.Instances
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSum
+public import CORALean.ContSet.Interval.Real.Instances
+
+@[expose] public section
 
 /-!
 # The set every input contributes over one step

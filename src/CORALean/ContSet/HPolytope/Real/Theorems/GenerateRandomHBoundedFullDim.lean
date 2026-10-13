@@ -1,8 +1,12 @@
-import CORALean.ContSet.HPolytope.Real.Operations.GenerateRandomH
-import CORALean.ContSet.HPolytope.Real.Theorems.ImageIneqsOfInvertible
-import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedIffSimplexSupportFunc
-import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
-import CORALean.ContSet.ContSet.Theorems.ImageLinearMapProperties
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.GenerateRandomH
+public import CORALean.ContSet.HPolytope.Real.Theorems.ImageIneqsOfInvertible
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedIffSimplexSupportFunc
+public import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
+public import CORALean.ContSet.ContSet.Theorems.ImageLinearMapProperties
+
+@[expose] public section
 
 /-!
 # What `HPolytope.generateRandomH` returns

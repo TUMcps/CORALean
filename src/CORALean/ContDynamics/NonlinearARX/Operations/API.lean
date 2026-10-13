@@ -1,13 +1,15 @@
-import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGO
-import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGOFloat
-import CORALean.ContDynamics.NonlinearARX.Operations.Feed
-import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
-import CORALean.ContDynamics.NonlinearARX.Operations.ReachStepCora
-import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
-import CORALean.ContDynamics.NonlinearARX.Operations.SimulateBoxFloat
-import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
-import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
-import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
+module
+
+public import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGO
+public import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGOFloat
+public import CORALean.ContDynamics.NonlinearARX.Operations.Feed
+public import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
+public import CORALean.ContDynamics.NonlinearARX.Operations.ReachStepCora
+public import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
+public import CORALean.ContDynamics.NonlinearARX.Operations.SimulateBoxFloat
+public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
+public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
+public import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
 
 /-!
 # Nonlinear ARX models: the conversion

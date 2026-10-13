@@ -1,4 +1,8 @@
-import CORALean.ContSet.LevelSet.Real.Definitions.TaylorSeries
+module
+
+public import CORALean.ContSet.LevelSet.Real.Definitions.TaylorSeries
+
+@[expose] public section
 
 /-!
 # Gradient enclosures

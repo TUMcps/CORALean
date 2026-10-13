@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloat
-import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
-import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloat
+public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
+
+@[expose] public section
 
 /-!
 # The float differential-algebraic run encloses every trajectory

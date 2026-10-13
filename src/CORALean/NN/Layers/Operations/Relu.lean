@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.Activation
-import CORALean.NN.Layers.Operations.ReluRelaxation
-import CORALean.NN.Layers.Operations.ReluSlope
+module
+
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.ReluRelaxation
+public import CORALean.NN.Layers.Operations.ReluSlope
+
+@[expose] public section
 
 /-!
 # The ReLU layer

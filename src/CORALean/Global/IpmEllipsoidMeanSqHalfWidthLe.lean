@@ -1,7 +1,11 @@
-import CORALean.Global.IpmEllipsoidEq
-import Mathlib.MeasureTheory.Integral.Bochner.Basic
-import Mathlib.MeasureTheory.Constructions.BorelSpace.ContinuousLinearMap
-import Mathlib.LinearAlgebra.Matrix.Trace
+module
+
+public import CORALean.Global.IpmEllipsoidEq
+public import Mathlib.MeasureTheory.Integral.Bochner.Basic
+public import Mathlib.MeasureTheory.Constructions.BorelSpace.ContinuousLinearMap
+public import Mathlib.LinearAlgebra.Matrix.Trace
+
+@[expose] public section
 
 /-!
 # `μ_Q = Tr[PW] + γ²` bounds the mean squared half width

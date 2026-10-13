@@ -1,9 +1,11 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import CORALean.ContSet.Zonotope.Real.Definitions.API
-import CORALean.ContSet.Zonotope.Real.Operations.API
-import CORALean.ContSet.Zonotope.Real.Theorems.API
-import CORALean.ContSet.Zonotope.Real.Complexity.API
-import CORALean.ContSet.Zonotope.Real.Instances
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Definitions.API
+public import CORALean.ContSet.Zonotope.Real.Operations.API
+public import CORALean.ContSet.Zonotope.Real.Theorems.API
+public import CORALean.ContSet.Zonotope.Real.Complexity.API
+public import CORALean.ContSet.Zonotope.Real.Instances
 
 /-!
 # Zonotopes, collected

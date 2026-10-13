@@ -1,11 +1,13 @@
-import CORALean.NN.Complexity.API
-import CORALean.NN.Definitions.API
-import CORALean.NN.Graph.API
-import CORALean.NN.Instances
-import CORALean.NN.Layers.API
-import CORALean.NN.NeuralNetwork
-import CORALean.NN.Operations.API
-import CORALean.NN.Theorems.API
+module
+
+public import CORALean.NN.Complexity.API
+public import CORALean.NN.Definitions.API
+public import CORALean.NN.Graph.API
+public import CORALean.NN.Instances
+public import CORALean.NN.Layers.API
+public import CORALean.NN.NeuralNetwork
+public import CORALean.NN.Operations.API
+public import CORALean.NN.Theorems.API
 
 /-!
 # Neural network verification, collected

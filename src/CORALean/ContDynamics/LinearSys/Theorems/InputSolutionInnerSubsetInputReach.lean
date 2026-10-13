@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionInner
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
+
+@[expose] public section
 
 /-!
 # The inner approximation really is one

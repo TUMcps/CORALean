@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Real.Operations.ExploreBN
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.ExploreBN
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # Below the box, `EXPLORE BN` returns a point outside it

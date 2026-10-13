@@ -1,4 +1,8 @@
-import CORALean.NN.Graph.Operations.SqrtBroadcast
+module
+
+public import CORALean.NN.Graph.Operations.SqrtBroadcast
+
+@[expose] public section
 
 /-!
 # `s_j` broadcast along each column

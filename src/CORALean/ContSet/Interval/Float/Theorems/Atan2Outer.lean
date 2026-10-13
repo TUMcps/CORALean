@@ -1,9 +1,13 @@
-import CORALean.ContSet.Interval.Float.Operations.Atan2
-import CORALean.ContSet.Interval.Float.Theorems.Atan2LoLe
-import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
-import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfX
-import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfY
-import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfNegSupY
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Atan2
+public import CORALean.ContSet.Interval.Float.Theorems.Atan2LoLe
+public import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
+public import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfX
+public import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfPosInfY
+public import CORALean.ContSet.Interval.Real.Theorems.Atan2EnclosureOfNegSupY
+
+@[expose] public section
 
 /-!
 # `Interval.atan2` encloses

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionPointMem
-import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
-import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionPointMem
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
+public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.union` contains both operands

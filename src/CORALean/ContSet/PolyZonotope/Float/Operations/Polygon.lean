@@ -1,7 +1,11 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonPieces
-import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Zonotope.Float.Operations.Polygon
-import CORALean.ContSet.Polygon.Float.Operations.OfPieces
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonPieces
+public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.Polygon
+public import CORALean.ContSet.Polygon.Float.Operations.OfPieces
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.polygon`, over a floating-point scalar

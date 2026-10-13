@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.Asinh
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Asinh
+
+@[expose] public section
 
 /-!
 # `Interval.asinh` contains the image under `asinh`

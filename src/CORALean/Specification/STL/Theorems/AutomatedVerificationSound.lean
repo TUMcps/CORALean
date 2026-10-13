@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Operations.AutomatedVerification
+module
+
+public import CORALean.Specification.STL.Operations.AutomatedVerification
+
+@[expose] public section
 
 /-!
 # [1, Alg. 3] is sound

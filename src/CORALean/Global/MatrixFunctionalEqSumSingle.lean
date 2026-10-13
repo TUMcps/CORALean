@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.Matrix.Basis
-import Mathlib.LinearAlgebra.Matrix.Trace
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Basis
+public import Mathlib.LinearAlgebra.Matrix.Trace
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # A linear functional on matrices, entry by entry

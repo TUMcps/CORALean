@@ -1,4 +1,8 @@
-import CORALean.Global.Jacobian
+module
+
+public import CORALean.Global.Jacobian
+
+@[expose] public section
 
 /-!
 # What a first-order linearization leaves out

@@ -1,8 +1,12 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.HPolytope.Float.Operations.Eqs
-import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
-import CORALean.ContSet.HPolytope.Float.Operations.PadRight
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.HPolytope.Float.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.PadRight
+
+@[expose] public section
 
 /-!
 # `ConZonotope.intersection`

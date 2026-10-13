@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
-import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.Global.Float.Instances.Real.Instances
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.Global.Float.Instances.Real.Instances
+
+@[expose] public section
 
 /-!
 # One linearization of a discrete step

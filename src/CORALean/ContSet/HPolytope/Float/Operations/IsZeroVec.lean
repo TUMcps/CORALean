@@ -1,4 +1,8 @@
-import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
+
+@[expose] public section
 
 /-!
 # `isZeroVec`: a row certified zero

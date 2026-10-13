@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Zonotope
+module
+
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+
+@[expose] public section
 
 /-!
 # The paired-difference generator column, over a floating-point scalar

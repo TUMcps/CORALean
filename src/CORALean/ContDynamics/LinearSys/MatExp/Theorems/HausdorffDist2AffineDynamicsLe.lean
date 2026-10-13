@@ -1,13 +1,17 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineTimeIntervalSolution
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimePointNext
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorNonneg
-import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
-import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
-import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.AffineTimeIntervalSolution
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimePointNext
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErrorNonneg
+public import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
+public import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+
+@[expose] public section
 
 /-!
 # [1, Prop. 1]: the affine dynamics error of eq. (22)'s time-interval enclosure

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+
+@[expose] public section
 
 /-!
 # The monomial `identE` produces is the factor itself

@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Underapproximate
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Underapproximate
+
+@[expose] public section
 
 /-!
 # `underapproximate` returns points of the zonotope

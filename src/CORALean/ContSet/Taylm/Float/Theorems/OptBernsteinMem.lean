@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Float.Operations.OptBernstein
-import CORALean.ContSet.Taylm.Float.Theorems.BernsteinCoeffBoundsMem
-import CORALean.ContSet.Taylm.Float.Theorems.MemBernsteinIdx
-import CORALean.ContSet.Taylm.Float.Theorems.ListMinLe
-import CORALean.ContSet.Taylm.Float.Theorems.LeListMax
-import CORALean.ContSet.Taylm.Real.Theorems.OptBernsteinMem
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.OptBernstein
+public import CORALean.ContSet.Taylm.Float.Theorems.BernsteinCoeffBoundsMem
+public import CORALean.ContSet.Taylm.Float.Theorems.MemBernsteinIdx
+public import CORALean.ContSet.Taylm.Float.Theorems.ListMinLe
+public import CORALean.ContSet.Taylm.Float.Theorems.LeListMax
+public import CORALean.ContSet.Taylm.Real.Theorems.OptBernsteinMem
+
+@[expose] public section
 
 /-!
 # `optBernstein` encloses, over a floating-point scalar

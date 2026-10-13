@@ -1,7 +1,11 @@
-import CORALean.HybridDynamics.Parallel.Operations.Product
-import CORALean.HybridDynamics.Operations.ReachFloat
-import CORALean.ContSet.HPolytope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Instances
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.Product
+public import CORALean.HybridDynamics.Operations.ReachFloat
+public import CORALean.ContSet.HPolytope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Instances
+
+@[expose] public section
 
 /-!
 # Parallel hybrid automata in floats: CORA's `parallelHybridAutomaton/reach`

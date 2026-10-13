@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
+
+@[expose] public section
 
 /-!
 # What the abstraction error's loop reports is conservative

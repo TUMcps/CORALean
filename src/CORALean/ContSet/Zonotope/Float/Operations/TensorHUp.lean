@@ -1,7 +1,11 @@
-import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
-import CORALean.ContSet.Zonotope.Float.Operations.Tensor3
-import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
+public import CORALean.ContSet.Zonotope.Float.Operations.Tensor3
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
+
+@[expose] public section
 
 /-!
 # `Zonotope.tensorHUp`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Zonotope
-import Mathlib.Data.Matrix.Diagonal
+module
+
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Diagonal
+
+@[expose] public section
 
 /-!
 # A diagonal block of generators couples each coordinate to one coefficient

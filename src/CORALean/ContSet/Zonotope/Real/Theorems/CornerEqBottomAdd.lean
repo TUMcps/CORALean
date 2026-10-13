@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottom
+module
+
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottom
+
+@[expose] public section
 
 /-!
 # A sign corner as a vector: the lowest corner plus twice the flipped generators

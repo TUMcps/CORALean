@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
-import CORALean.ContSet.Interval.Real.Operations.SplitAt
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
+public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
+public import CORALean.ContSet.Interval.Real.Operations.SplitAt
+
+@[expose] public section
 
 /-!
 # `ConZonotope.split`

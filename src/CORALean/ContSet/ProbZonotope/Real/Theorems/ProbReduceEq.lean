@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.ProbReduce
-import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.ProbReduce
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose
+
+@[expose] public section
 
 /-!
 # `probReduce` changes the generators, not the probabilistic zonotope

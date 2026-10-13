@@ -1,12 +1,16 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.AbsFactorExtendLeOne
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendLeft
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendRight
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
-import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
-import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
-import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
-import CORALean.ContSet.ConPolyZono.Real.Operations.CompactFactors
-import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AbsFactorExtendLeOne
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendLeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendRight
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
+public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
+public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
+public import CORALean.ContSet.ConPolyZono.Real.Operations.CompactFactors
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
+
+@[expose] public section
 
 /-!
 # Dropping the factors neither block reads loses nothing

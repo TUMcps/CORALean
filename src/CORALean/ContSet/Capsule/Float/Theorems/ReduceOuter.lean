@@ -1,4 +1,8 @@
-import CORALean.ContSet.Capsule.Float.Operations.Reduce
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.Reduce
+
+@[expose] public section
 
 /-!
 # `Capsule.reduce` encloses

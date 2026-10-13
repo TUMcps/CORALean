@@ -1,7 +1,12 @@
-import CORALean.HybridDynamics.Definitions.HitHessianNum
-import CORALean.HybridDynamics.Operations.HitHessianMatZono
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.HybridDynamics.Definitions.HitHessianNum
+public import CORALean.HybridDynamics.Operations.HitHessianMatZono
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # `Q⁽ⁱ⁾` in the matrix zonotope of [1, Prop. 3], with its factors named

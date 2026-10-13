@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Operations.MaxCos
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.MaxCos
+
+@[expose] public section
 
 /-!
 # `Interval.cos`

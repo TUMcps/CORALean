@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactIdx
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactIdx
+
+@[expose] public section
 
 /-!
 # A sum over the kept columns is a sum over the plain count

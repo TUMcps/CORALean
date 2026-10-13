@@ -1,9 +1,13 @@
-import CORALean.ContSet.Taylm.Real.Operations.BernsteinBasis
-import Mathlib.Tactic.Positivity
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.BernsteinBasis
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # The Bernstein basis is nonnegative on `[0, 1]`

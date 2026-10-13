@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.Plus
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Plus
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `Taylm.plus` encloses the sum

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsOuter
-import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensOuter
+module
+
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensOuter
+
+@[expose] public section
 
 /-!
 # `compact` over-approximates, where the exact one is an equality

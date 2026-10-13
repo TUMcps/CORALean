@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
-import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+
+@[expose] public section
 
 /-!
 # The float certified Minkowski difference is inside the exact one

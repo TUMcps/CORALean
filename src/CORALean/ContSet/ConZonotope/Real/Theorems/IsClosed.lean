@@ -1,4 +1,8 @@
-import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A constrained zonotope is closed

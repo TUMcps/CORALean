@@ -1,6 +1,10 @@
-import CORALean.ContSet.Interval.Float.Operations.MulLo
-import CORALean.ContSet.Interval.Float.Operations.MulHi
-import Mathlib.LinearAlgebra.Matrix.Kronecker
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import Mathlib.LinearAlgebra.Matrix.Kronecker
+
+@[expose] public section
 
 /-!
 # `Interval.kron`, over a floating-point scalar

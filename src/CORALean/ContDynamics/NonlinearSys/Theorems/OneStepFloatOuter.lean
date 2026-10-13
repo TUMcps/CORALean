@@ -1,11 +1,15 @@
-import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
-import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # One linearized step holds every run whose field it covers

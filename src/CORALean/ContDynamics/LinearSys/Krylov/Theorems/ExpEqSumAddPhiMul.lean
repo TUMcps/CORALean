@@ -1,6 +1,10 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Algebra.Exponential
-import Mathlib.Topology.Algebra.InfiniteSum.NatInt
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import Mathlib.Topology.Algebra.InfiniteSum.NatInt
+
+@[expose] public section
 
 /-!
 # The exponential series split after `N` terms

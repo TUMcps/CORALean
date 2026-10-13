@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.Theorems.SupportBoundAttained
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.SupportBoundAttained
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+
+@[expose] public section
 
 /-!
 # The support function of a V-polytope

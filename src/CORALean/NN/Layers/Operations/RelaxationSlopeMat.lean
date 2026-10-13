@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Interval
-import CORALean.NN.Layers.Definitions.Relaxation
+module
+
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.NN.Layers.Definitions.Relaxation
+
+@[expose] public section
 
 /-!
 # The affine part of a relaxation, as a matrix

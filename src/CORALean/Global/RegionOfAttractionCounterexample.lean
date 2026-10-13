@@ -1,9 +1,13 @@
-import CORALean.Global.RobustInvariant
-import CORALean.Global.RegionOfAttraction
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Topology.Algebra.Order.Field
+module
+
+public import CORALean.Global.RobustInvariant
+public import CORALean.Global.RegionOfAttraction
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Topology.Algebra.Order.Field
+
+@[expose] public section
 
 /-!
 # The region-of-attraction criterion without limits

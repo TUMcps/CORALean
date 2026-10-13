@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # `normalizeConstraints` denotes the same set, exactly

@@ -1,7 +1,11 @@
-import CORALean.Global.Tensor
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.Complex.Basic
-import Mathlib.LinearAlgebra.Matrix.ConjTranspose
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.Complex.Basic
+public import Mathlib.LinearAlgebra.Matrix.ConjTranspose
+
+@[expose] public section
 
 /-!
 # The Krylov approximation of a unitary evolution conserves mass

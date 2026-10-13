@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralPowDivFactorialMul
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulPeanoBakerTerm
-import CORALean.ContSet.Interval.Real.Theorems.MatPowSmul
-import CORALean.ContSet.Interval.Real.Theorems.MemMat
-import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralPowDivFactorialMul
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrableMulPeanoBakerTerm
+public import CORALean.ContSet.Interval.Real.Theorems.MatPowSmul
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+
+@[expose] public section
 
 /-!
 # The `k`-th Peano–Baker term lies in the `k`-th power of the box

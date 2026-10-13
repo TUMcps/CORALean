@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
-import CORALean.ContSet.Zonotope.Real.Operations.GenMap
-import CORALean.ContSet.ConZonotope.Real.ConZonotope
-import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+module
+
+public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+
+@[expose] public section
 
 /-!
 # A halfspace description as a constrained zonotope

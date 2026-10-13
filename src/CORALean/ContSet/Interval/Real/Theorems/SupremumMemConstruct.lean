@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Supremum
-import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Supremum
+public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
+
+@[expose] public section
 
 /-!
 # The supremum of a nonempty interval lies in it

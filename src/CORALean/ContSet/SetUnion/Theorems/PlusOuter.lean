@@ -1,4 +1,8 @@
-import CORALean.ContSet.SetUnion.Operations.Plus
+module
+
+public import CORALean.ContSet.SetUnion.Operations.Plus
+
+@[expose] public section
 
 /-!
 # `SetUnion.plus` over-approximates the Minkowski sum

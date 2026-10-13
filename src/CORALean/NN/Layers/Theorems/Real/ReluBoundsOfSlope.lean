@@ -1,5 +1,9 @@
-import CORALean.NN.Layers.Definitions.Relu
-import Mathlib.Tactic.Linarith
+module
+
+public import CORALean.NN.Layers.Definitions.Relu
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # ReLU between a line and the line raised by its gap

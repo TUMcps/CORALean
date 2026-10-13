@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIffOfInjective
-import Mathlib.LinearAlgebra.Matrix.DotProduct
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeSubsetIffOfInjective
+public import Mathlib.LinearAlgebra.Matrix.DotProduct
+
+@[expose] public section
 
 /-!
 # When `[1, Thm. 1, Eq. 12]` is necessary

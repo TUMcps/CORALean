@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.PyramidLevels
-import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.PyramidLevels
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.pyramid`

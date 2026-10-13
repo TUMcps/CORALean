@@ -1,6 +1,10 @@
-import CORALean.ContSet.ProbZonotope.Float.Operations.Abs
-import CORALean.ContSet.Zonotope.Float.Theorems.AbsNominal
-import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
+module
+
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Abs
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsNominal
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.abs` holds the real `abs`'s laws

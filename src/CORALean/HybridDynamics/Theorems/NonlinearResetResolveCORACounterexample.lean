@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.NonlinearResetResolve
-import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
+module
+
+public import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+public import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
+
+@[expose] public section
 
 /-!
 # CORA's `nonlinearReset/resolve` ignores the global index of an input

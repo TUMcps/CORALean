@@ -1,6 +1,10 @@
-import CORALean.NN.Layers.Operations.ShiftConst
-import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.NN.Layers.Operations.ShiftConst
+public import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # A stored shift moves the polynomial by what it landed

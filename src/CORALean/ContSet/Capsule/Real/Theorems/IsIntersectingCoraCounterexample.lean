@@ -1,6 +1,10 @@
-import CORALean.ContSet.Capsule.Real.Operations.IsIntersectingCora
-import Mathlib.Topology.Order.Compact
-import Mathlib.Topology.Algebra.Module.FiniteDimension
+module
+
+public import CORALean.ContSet.Capsule.Real.Operations.IsIntersectingCora
+public import Mathlib.Topology.Order.Compact
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+
+@[expose] public section
 
 /-!
 # CORA's capsule–capsule `isIntersecting_` misses an intersection

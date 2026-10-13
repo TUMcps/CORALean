@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.ErrorEdgeFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ErrorEdgeFloat
+
+@[expose] public section
 
 /-!
 # The order of the adaptive error solution, in floats

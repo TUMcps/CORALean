@@ -1,5 +1,9 @@
-import CORALean.Global.Float.SoundFloatArithmetic
-import CORALean.NN.Layers.Operations.MulRangeDown
+module
+
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Operations.MulRangeDown
+
+@[expose] public section
 
 /-!
 # The lower product bound

@@ -1,9 +1,13 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
-import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
-import CORALean.ContSet.HPolytope.Real.Operations.RowLin
-import CORALean.Global.DropIdx
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
+public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.DropIdx
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section
 
 /-!
 # `[1, Alg. 1]` as printed accepts `[0, 1] = [0, 2]`

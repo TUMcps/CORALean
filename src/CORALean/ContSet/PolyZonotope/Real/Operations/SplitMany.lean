@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitGen
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitGen
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.splitMany`

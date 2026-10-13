@@ -1,6 +1,10 @@
-import CORALean.Specification.STL.STL
-import CORALean.Specification.STL.Theorems.SatRelease
-import CORALean.Specification.STL.Theorems.ShiftZero
+module
+
+public import CORALean.Specification.STL.STL
+public import CORALean.Specification.STL.Theorems.SatRelease
+public import CORALean.Specification.STL.Theorems.ShiftZero
+
+@[expose] public section
 
 /-!
 # Lemma 4: `R[0,0]`

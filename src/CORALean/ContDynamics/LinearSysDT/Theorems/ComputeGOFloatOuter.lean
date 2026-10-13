@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGOFloat
-import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+module
+
+public import CORALean.ContDynamics.LinearSysDT.Operations.ComputeGOFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+
+@[expose] public section
 
 /-!
 # The float GO parameters enclose the real ones

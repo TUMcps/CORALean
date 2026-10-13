@@ -1,6 +1,10 @@
-import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
-import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+
+@[expose] public section
 
 /-!
 # A nonempty zonotope bundle is compact

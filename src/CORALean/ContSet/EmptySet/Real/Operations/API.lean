@@ -1,21 +1,23 @@
-import CORALean.ContSet.EmptySet.Real.Operations.Isequal
-import CORALean.ContSet.EmptySet.Real.Operations.Radius
-import CORALean.ContSet.EmptySet.Real.Operations.Centre
-import CORALean.ContSet.EmptySet.Real.Operations.And
-import CORALean.ContSet.EmptySet.Real.Operations.Empty
-import CORALean.ContSet.EmptySet.Real.Operations.HPolytope
-import CORALean.ContSet.EmptySet.Real.Operations.Lift
-import CORALean.ContSet.EmptySet.Real.Operations.Not
-import CORALean.ContSet.EmptySet.Real.Operations.Project
-import CORALean.ContSet.EmptySet.Real.Operations.ProjectHighDim
-import CORALean.ContSet.EmptySet.Real.Operations.SupportFunc
-import CORALean.ContSet.EmptySet.Real.Operations.VPolytope
-import CORALean.ContSet.EmptySet.Real.Operations.Vertices
-import CORALean.ContSet.EmptySet.Real.Operations.Volume
-import CORALean.ContSet.EmptySet.Real.Operations.Interval
-import CORALean.ContSet.EmptySet.Real.Operations.ConvHull
-import CORALean.ContSet.EmptySet.Real.Operations.IsBounded
-import CORALean.ContSet.EmptySet.Real.Operations.IsFullDimTest
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Isequal
+public import CORALean.ContSet.EmptySet.Real.Operations.Radius
+public import CORALean.ContSet.EmptySet.Real.Operations.Centre
+public import CORALean.ContSet.EmptySet.Real.Operations.And
+public import CORALean.ContSet.EmptySet.Real.Operations.Empty
+public import CORALean.ContSet.EmptySet.Real.Operations.HPolytope
+public import CORALean.ContSet.EmptySet.Real.Operations.Lift
+public import CORALean.ContSet.EmptySet.Real.Operations.Not
+public import CORALean.ContSet.EmptySet.Real.Operations.Project
+public import CORALean.ContSet.EmptySet.Real.Operations.ProjectHighDim
+public import CORALean.ContSet.EmptySet.Real.Operations.SupportFunc
+public import CORALean.ContSet.EmptySet.Real.Operations.VPolytope
+public import CORALean.ContSet.EmptySet.Real.Operations.Vertices
+public import CORALean.ContSet.EmptySet.Real.Operations.Volume
+public import CORALean.ContSet.EmptySet.Real.Operations.Interval
+public import CORALean.ContSet.EmptySet.Real.Operations.ConvHull
+public import CORALean.ContSet.EmptySet.Real.Operations.IsBounded
+public import CORALean.ContSet.EmptySet.Real.Operations.IsFullDimTest
 
 /-!
 # The empty set: operations, collected

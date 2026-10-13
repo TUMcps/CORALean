@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExists
-import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInput
-import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+module
+
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExists
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInput
+public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # `Thm. 1`: what `Alg. 1` returns encloses the minimal set over `τ`

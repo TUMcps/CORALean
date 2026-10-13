@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+
+@[expose] public section
 
 /-!
 # `Zonotope.rightInvCandidate`

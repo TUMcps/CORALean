@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.MatPow
-import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.MatPow
+public import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+
+@[expose] public section
 
 /-!
 # Every power of a matrix the zonotope denotes lies in the zonotope's power

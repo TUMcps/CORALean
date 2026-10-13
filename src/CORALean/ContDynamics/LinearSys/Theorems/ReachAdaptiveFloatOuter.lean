@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
-import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveRunFloatOuter
-import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveRunFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+
+@[expose] public section
 
 /-!
 # `reachAdaptiveFloat` holds every run, over windows covering the horizon

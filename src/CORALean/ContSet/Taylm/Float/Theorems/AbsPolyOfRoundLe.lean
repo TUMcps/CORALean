@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Taylm
-import CORALean.Global.Float.ListSum
+module
+
+public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.Global.Float.ListSum
+
+@[expose] public section
 
 /-!
 # What storing one end of each coefficient's enclosure costs

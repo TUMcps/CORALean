@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.SupportBound
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.supportBound` bounds the set, in float too

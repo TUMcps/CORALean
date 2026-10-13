@@ -1,5 +1,9 @@
-import CORALean.Global.Tensor
-import Mathlib.Data.Matrix.Mul
+module
+
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Matrix.Mul
+
+@[expose] public section
 
 /-!
 # The defect of the Krylov approximation is a multiple of the next Krylov vector

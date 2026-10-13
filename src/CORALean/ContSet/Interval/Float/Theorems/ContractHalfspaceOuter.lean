@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
+
+@[expose] public section
 
 /-!
 # `Interval.contractHalfspace` keeps every point of the box in the halfspace

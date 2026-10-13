@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 2` lines 6-13 in floats: the state after the first `k` iterations

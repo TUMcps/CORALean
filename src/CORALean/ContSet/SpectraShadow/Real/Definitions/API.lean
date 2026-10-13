@@ -1,4 +1,6 @@
-import CORALean.ContSet.SpectraShadow.Real.Definitions.ESumRep
+module
+
+public import CORALean.ContSet.SpectraShadow.Real.Definitions.ESumRep
 
 /-!
 # What a spectrahedral shadow means beyond its inequality

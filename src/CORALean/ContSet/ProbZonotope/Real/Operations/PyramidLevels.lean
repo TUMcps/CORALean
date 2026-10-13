@@ -1,4 +1,8 @@
-import CORALean.ContSet.ProbZonotope.Real.Operations.Max
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Max
+
+@[expose] public section
 
 /-!
 # `ProbZonotope.pyramidLevels`

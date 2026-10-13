@@ -1,4 +1,8 @@
-import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+
+@[expose] public section
 
 /-!
 # One component of a bundle, enclosing it, over a floating-point scalar

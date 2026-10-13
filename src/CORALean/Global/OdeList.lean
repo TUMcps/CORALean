@@ -1,6 +1,10 @@
-import CORALean.Global.EvalList
-import CORALean.Global.ElementaryDerivBounds
-import Mathlib.Algebra.Polynomial.Roots
+module
+
+public import CORALean.Global.EvalList
+public import CORALean.Global.ElementaryDerivBounds
+public import Mathlib.Algebra.Polynomial.Roots
+
+@[expose] public section
 
 /-!
 # `odePoly` on integer coefficient lists

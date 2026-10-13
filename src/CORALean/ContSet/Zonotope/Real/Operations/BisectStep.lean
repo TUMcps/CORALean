@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.SplitPivot
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitPivot
+public import Mathlib.Analysis.Convex.Segment
+
+@[expose] public section
 
 /-!
 # One pass of the dichotomic search of [1, Alg. 4]

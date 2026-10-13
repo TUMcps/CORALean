@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
-import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
+
+@[expose] public section
 
 /-!
 # Narrowing a factor narrows the error with it

@@ -1,6 +1,10 @@
-import CORALean.Global.DmdCandidate
-import CORALean.Global.DmdRegressor
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.Global.DmdCandidate
+public import CORALean.Global.DmdRegressor
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The DMD candidate of rank `k` of `LinearSysDT.identify`

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
-import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
+module
+
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
+
+@[expose] public section
 
 /-!
 # A trajectory stays in the step enclosure, the input set named

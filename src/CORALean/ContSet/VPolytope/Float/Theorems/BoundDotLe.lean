@@ -1,4 +1,8 @@
-import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
+
+@[expose] public section
 
 /-!
 # `VPolytope.boundDot` bounds the support function

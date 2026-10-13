@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundDot
-import CORALean.ContSet.Interval.Float.Operations.BoundDot
+module
+
+public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundDot
+public import CORALean.ContSet.Interval.Float.Operations.BoundDot
+
+@[expose] public section
 
 /-!
 # A float vertex description answers a general direction

@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Data.Real.Basic
+module
+
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
 
 /-!
 # The largest coordinate a pooling window reads

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The truncated series applied to a vector, with the time pulled out

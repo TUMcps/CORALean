@@ -1,5 +1,9 @@
-import CORALean.ContSet.Capsule.Float.Operations.ConvHull
-import CORALean.ContSet.Capsule.Float.Operations.Mtimes
+module
+
+public import CORALean.ContSet.Capsule.Float.Operations.ConvHull
+public import CORALean.ContSet.Capsule.Float.Operations.Mtimes
+
+@[expose] public section
 
 /-!
 # `Capsule.enclose`, over a floating-point scalar

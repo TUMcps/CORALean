@@ -1,4 +1,8 @@
-import CORALean.Global.DmdCandidate
+module
+
+public import CORALean.Global.DmdCandidate
+
+@[expose] public section
 
 /-!
 # The reduced-order matrix and the dynamic modes of the dynamic mode decomposition

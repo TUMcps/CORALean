@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-import CORALean.Global.Float.EuclideanNorm
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.Global.Float.EuclideanNorm
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a box, over a floating-point scalar

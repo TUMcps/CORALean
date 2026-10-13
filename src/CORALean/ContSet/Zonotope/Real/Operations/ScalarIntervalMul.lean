@@ -1,6 +1,10 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import CORALean.ContSet.Zonotope.Real.Operations.Plus
-import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
+
+@[expose] public section
 
 /-!
 # An interval scalar times a zonotope

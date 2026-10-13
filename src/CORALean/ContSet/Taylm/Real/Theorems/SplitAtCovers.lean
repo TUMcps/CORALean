@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.SplitAt
-import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxCover
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.SplitAt
+public import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxCover
+
+@[expose] public section
 
 /-!
 # Splitting keeps the cover

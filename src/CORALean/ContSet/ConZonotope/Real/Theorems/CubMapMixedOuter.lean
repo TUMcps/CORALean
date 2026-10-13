@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
-import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedCoeff
-import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
-import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+module
+
+public import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
+public import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedCoeff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
+public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+
+@[expose] public section
 
 /-!
 # The mixed cubic map of constrained zonotopes is enclosed by `ConZonotope.cubMapMixed`

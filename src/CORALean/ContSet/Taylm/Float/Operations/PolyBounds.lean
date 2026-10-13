@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Float.Operations.TermBounds
-import CORALean.Global.Float.ListSum
+module
+
+public import CORALean.ContSet.Taylm.Float.Operations.TermBounds
+public import CORALean.Global.Float.ListSum
+
+@[expose] public section
 
 /-!
 # The range of a term list over the box

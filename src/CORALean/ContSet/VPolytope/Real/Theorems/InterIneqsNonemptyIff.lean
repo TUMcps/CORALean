@@ -1,5 +1,9 @@
-import CORALean.ContSet.VPolytope.Real.VPolytope
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+module
+
+public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+
+@[expose] public section
 
 /-!
 # Does a V-polytope meet an H-polytope?

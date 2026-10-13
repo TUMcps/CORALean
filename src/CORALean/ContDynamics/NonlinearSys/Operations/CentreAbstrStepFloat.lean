@@ -1,4 +1,8 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
+
+@[expose] public section
 
 /-!
 # `Alg. 1` lines 3-15, linearizing at the centre, in floats

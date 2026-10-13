@@ -1,6 +1,10 @@
-import CORALean.Global.Partition
-import CORALean.ContSet.Interval.Real.Operations.Mtimes
-import CORALean.ContSet.Interval.Real.Operations.Plus
+module
+
+public import CORALean.Global.Partition
+public import CORALean.ContSet.Interval.Real.Operations.Mtimes
+public import CORALean.ContSet.Interval.Real.Operations.Plus
+
+@[expose] public section
 
 /-!
 # Disjoint buckets merge independently

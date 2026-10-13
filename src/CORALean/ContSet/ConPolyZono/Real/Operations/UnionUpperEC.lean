@@ -1,5 +1,9 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
-import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+
+@[expose] public section
 
 /-!
 # `ConPolyZono.unionUpperEC`

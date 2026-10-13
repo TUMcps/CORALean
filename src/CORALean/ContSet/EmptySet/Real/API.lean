@@ -1,7 +1,9 @@
-import CORALean.ContSet.EmptySet.Real.EmptySet
-import CORALean.ContSet.EmptySet.Real.Instances
-import CORALean.ContSet.EmptySet.Real.Operations.API
-import CORALean.ContSet.EmptySet.Real.Theorems.API
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import CORALean.ContSet.EmptySet.Real.Instances
+public import CORALean.ContSet.EmptySet.Real.Operations.API
+public import CORALean.ContSet.EmptySet.Real.Theorems.API
 
 /-!
 # The empty set, collected

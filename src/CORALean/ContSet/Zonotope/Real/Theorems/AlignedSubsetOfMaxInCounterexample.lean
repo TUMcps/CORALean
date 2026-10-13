@@ -1,8 +1,12 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Aligned
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Tactic.FinCases
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # (max-in) with `W`'s own halfspaces does not stay inside `EW`

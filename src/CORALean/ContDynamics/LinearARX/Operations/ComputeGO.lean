@@ -1,7 +1,11 @@
-import CORALean.ContDynamics.LinearARX.Definitions.GO
-import CORALean.ContDynamics.LinearARX.Operations.Feed
-import CORALean.ContDynamics.LinearARX.Operations.OutputEq
-import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+module
+
+public import CORALean.ContDynamics.LinearARX.Definitions.GO
+public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
+public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
+
+@[expose] public section
 
 /-!
 # `LinearARX.computeGO`

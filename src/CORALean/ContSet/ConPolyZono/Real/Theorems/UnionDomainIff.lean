@@ -1,7 +1,11 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
-import Mathlib.Algebra.CharP.Defs
-import Mathlib.Analysis.Normed.Field.Basic
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
+public import Mathlib.Algebra.CharP.Defs
+public import Mathlib.Analysis.Normed.Field.Basic
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # The two selector equations cut out exactly the two branches

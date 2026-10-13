@@ -1,194 +1,196 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.Isequal
-import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-import CORALean.ContSet.PolyZonotope.Real.Operations.Map
-import CORALean.ContSet.PolyZonotope.Real.Operations.Project
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
-import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesEqMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.RadiusReach
-import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
-import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
-import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
-import CORALean.ContSet.PolyZonotope.Real.Operations.Resolve
-import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExactCartProd
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
-import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
-import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
-import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-import CORALean.ContSet.PolyZonotope.Real.Operations.NoIndep
-import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
-import CORALean.ContSet.PolyZonotope.Real.Operations.SupportBound
-import CORALean.ContSet.PolyZonotope.Real.Operations.MaxExp
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetE
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetG
-import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
-import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
-import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinGI
-import CORALean.ContSet.PolyZonotope.Real.Operations.BilinOuter
-import CORALean.ContSet.PolyZonotope.Real.Operations.MatMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadFrontE
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
-import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
-import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
-import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
-import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
-import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyFactorCount
-import CORALean.ContSet.PolyZonotope.Real.Operations.Col
-import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
-import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
-import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactKeep
-import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactGens
-import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
-import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
-import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorExtend
-import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
-import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
-import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
-import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumMergeKeep
-import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMemMerge
-import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
-import CORALean.ContSet.PolyZonotope.Real.Operations.ColLex
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
-import CORALean.ContSet.PolyZonotope.Real.Operations.SortPerm
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
-import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
-import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
-import CORALean.ContSet.PolyZonotope.Real.Operations.PowSort
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortTailP
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
-import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortFactorCount
-import CORALean.ContSet.PolyZonotope.Real.Operations.DropRadius
-import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
-import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
-import CORALean.ContSet.PolyZonotope.Real.Operations.GirardMetric
-import CORALean.ContSet.PolyZonotope.Real.Operations.GirardSplit
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirard
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
-import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBox
-import CORALean.ContSet.PolyZonotope.Real.Operations.PostBox
-import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
-import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceDependent
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
-import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidth
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
-import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdgeAt
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
-import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpGreedySel
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
-import CORALean.ContSet.PolyZonotope.Real.Operations.IsFullDimCora
-import CORALean.ContSet.PolyZonotope.Real.Operations.LongestFactor
-import CORALean.ContSet.PolyZonotope.Real.Operations.RmId
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitDepFactor
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestGen
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitParallelotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.Split
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitAll
-import CORALean.ContSet.PolyZonotope.Real.Operations.BoxOut
-import CORALean.ContSet.PolyZonotope.Real.Operations.OuterApprox
-import CORALean.ContSet.PolyZonotope.Real.Operations.PartPattern
-import CORALean.ContSet.PolyZonotope.Real.Operations.PartPatterns
-import CORALean.ContSet.PolyZonotope.Real.Operations.PartZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsMul
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPow
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPoly
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsXprod
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsTerms
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsFactor
-import CORALean.ContSet.PolyZonotope.Real.Operations.Subs
-import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
-import CORALean.ContSet.PolyZonotope.Real.Operations.SumCora
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaCapsuleCora
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaEmptySet
-import CORALean.ContSet.PolyZonotope.Real.Operations.ReplaceId
-import CORALean.ContSet.PolyZonotope.Real.Operations.OnlyId
-import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
-import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
-import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsPointSet
-import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsExactCora1D
-import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
-import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
-import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraWeight
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitGen
-import CORALean.ContSet.PolyZonotope.Real.Operations.SplitMany
-import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonRound
-import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonPieces
-import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
-import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
-import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubEvalMixed
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubPair
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubQuad
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
-import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapMixed
-import CORALean.ContSet.PolyZonotope.Real.Operations.SquareExample
-import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCex
-import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCexCorners
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraNormalCone
-import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
-import CORALean.ContSet.PolyZonotope.Real.Operations.CoraAccepts
-import CORALean.ContSet.PolyZonotope.Real.Operations.ConvHull
-import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
-import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
-import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
-import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
-import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
-import CORALean.ContSet.PolyZonotope.Real.Operations.InnerScaling
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Isequal
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Project
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesEqMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RadiusReach
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExactPlus
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Resolve
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CartProd
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExactCartProd
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LinCombE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Real.Operations.NoIndep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SupportBound
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MaxExp
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Bilin
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinGI
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinOuter
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MatMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFrontE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyFactorCount
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactKeep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactGens
+public import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorExtend
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMergeKeep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMemMerge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ColLex
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPerm
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PowSort
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortTailP
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortFactorCount
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DropRadius
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GirardMetric
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GirardSplit
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirard
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceGirardDependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBox
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PostBox
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceDependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidth
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdgeAt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpGreedySel
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsFullDimCora
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LongestFactor
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RmId
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitDepFactor
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestGen
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitParallelotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Split
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitAll
+public import CORALean.ContSet.PolyZonotope.Real.Operations.BoxOut
+public import CORALean.ContSet.PolyZonotope.Real.Operations.OuterApprox
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PartPattern
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PartPatterns
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PartZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsMul
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPow
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPoly
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsXprod
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsTerms
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsFactor
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Subs
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SumCora
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaCapsuleCora
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ReplaceId
+public import CORALean.ContSet.PolyZonotope.Real.Operations.OnlyId
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestIndepGen
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsPointSet
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsExactCora1D
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraWeight
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitGen
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitMany
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonRound
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonPieces
+public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
+public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEvalMixed
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubPair
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubQuad
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapMixed
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SquareExample
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCex
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCexCorners
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraNormalCone
+public import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
+public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraAccepts
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ConvHull
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
+public import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
+public import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
+public import CORALean.ContSet.PolyZonotope.Real.Operations.InnerScaling
 
 /-!
 # What `PolyZonotope` computes

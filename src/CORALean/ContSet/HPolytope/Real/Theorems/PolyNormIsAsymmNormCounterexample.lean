@@ -1,10 +1,14 @@
-import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
-import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic.FinCases
-import Mathlib.Topology.MetricSpace.Bounded
-import Mathlib.Tactic.Linarith
-import Mathlib.Analysis.Normed.Module.Basic
+module
+
+public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Topology.MetricSpace.Bounded
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Analysis.Normed.Module.Basic
+
+@[expose] public section
 
 /-!
 # The unit ball of `S_P` is not `P` when the origin is outside

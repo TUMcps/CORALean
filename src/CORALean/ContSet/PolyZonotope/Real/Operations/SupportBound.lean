@@ -1,6 +1,10 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-import CORALean.Global.LinProg.LinProg
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
+public import CORALean.Global.LinProg.LinProg
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.supportBound`

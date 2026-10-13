@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-import Mathlib.Data.Matrix.Basic
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-!
 # The weighted generators of a linear map

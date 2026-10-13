@@ -1,6 +1,8 @@
-import CORALean.ContSet.InflatedContSet.InflatedContSet
-import CORALean.ContSet.InflatedContSet.Operations.Bound
-import CORALean.ContSet.InflatedContSet.Theorems.API
+module
+
+public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Operations.Bound
+public import CORALean.ContSet.InflatedContSet.Theorems.API
 
 /-!
 # Inflated representations, collected

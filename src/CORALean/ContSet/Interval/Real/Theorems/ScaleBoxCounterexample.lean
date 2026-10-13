@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
-import Mathlib.Tactic.NormNum
+module
+
+public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+public import Mathlib.Tactic.NormNum
+
+@[expose] public section
 
 /-!
 # The printed scaled box is empty for a negative coefficient

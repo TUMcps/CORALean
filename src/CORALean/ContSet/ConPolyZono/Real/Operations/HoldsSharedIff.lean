@@ -1,9 +1,13 @@
-import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
-import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
-import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
-import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+module
+
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
+
+@[expose] public section
 
 /-!
 # Two constraint systems stacked over the same factors

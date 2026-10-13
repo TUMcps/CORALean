@@ -1,5 +1,9 @@
-import CORALean.HybridDynamics.Operations.CheckFlowFloat
-import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneFloatOuter
+module
+
+public import CORALean.HybridDynamics.Operations.CheckFlowFloat
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneFloatOuter
+
+@[expose] public section
 
 /-!
 # A reach set `Location.checkFlowFloat` drops has no outward flow on its projection

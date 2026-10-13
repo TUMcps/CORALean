@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosure
-import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+module
+
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosure
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+
+@[expose] public section
 
 /-!
 # A sampled constant-parameter run lands in `reach`, over a whole horizon

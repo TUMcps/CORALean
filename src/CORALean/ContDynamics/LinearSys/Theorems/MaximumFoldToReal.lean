@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinearSys.Operations.MaximumFold
-import CORALean.Global.Float.SoundFloatArithmetic
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.MaximumFold
+public import CORALean.Global.Float.SoundFloatArithmetic
+
+@[expose] public section
 
 /-!
 # The float maximum reads as the real one

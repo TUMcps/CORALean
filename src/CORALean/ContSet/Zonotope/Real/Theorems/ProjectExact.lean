@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Operations.Project
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.Project
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # `Zonotope.project` is exactly the projected set

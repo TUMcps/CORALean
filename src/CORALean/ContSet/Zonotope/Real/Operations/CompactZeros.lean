@@ -1,4 +1,8 @@
-import CORALean.ContSet.Zonotope.Real.Operations.FilterGen
+module
+
+public import CORALean.ContSet.Zonotope.Real.Operations.FilterGen
+
+@[expose] public section
 
 /-!
 # `Zonotope.compactZeros`

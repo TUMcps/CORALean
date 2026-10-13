@@ -1,4 +1,8 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
+
+@[expose] public section
 
 /-!
 # A `true` from `Ellipsoid.excludesPoint` proves non-membership

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaPoint
-import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+
+@[expose] public section
 
 /-!
 # A polynomial zonotope without generators is a point

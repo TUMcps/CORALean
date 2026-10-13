@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Real.Operations.Uminus
-import Mathlib.Algebra.Group.Pointwise.Set.Basic
+module
+
+public import CORALean.ContSet.Interval.Real.Operations.Uminus
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+
+@[expose] public section
 
 /-!
 # `Interval.uminus` is exactly the negated set

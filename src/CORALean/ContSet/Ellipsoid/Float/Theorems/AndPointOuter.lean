@@ -1,7 +1,11 @@
-import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
-import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
-import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
+module
+
+public import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
+
+@[expose] public section
 
 /-!
 # `and_` of a float ellipsoid and a point encloses the intersection

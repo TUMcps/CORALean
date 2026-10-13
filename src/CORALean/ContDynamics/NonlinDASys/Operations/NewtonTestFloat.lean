@@ -1,11 +1,15 @@
-import CORALean.ContSet.Interval.Float.Operations.CentreMat
-import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
-import CORALean.ContSet.Interval.Float.Operations.Magnitude
-import CORALean.ContSet.Interval.Float.Operations.MatMul
-import CORALean.ContSet.Interval.Float.Operations.MatResidual
-import CORALean.ContSet.Interval.Float.Operations.Mtimes
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
+public import CORALean.ContSet.Interval.Float.Operations.Magnitude
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.MatResidual
+public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+
+@[expose] public section
 
 /-!
 # A float Newton test for a zero in a box

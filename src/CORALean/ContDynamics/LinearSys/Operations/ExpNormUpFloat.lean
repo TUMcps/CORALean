@@ -1,8 +1,12 @@
-import CORALean.ContDynamics.LinearSys.LinearSys
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-import CORALean.ContSet.Interval.Float.Operations.Point
-import CORALean.ContSet.Interval.Float.Operations.Smul
-import CORALean.Global.Float.Exp
+module
+
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.Global.Float.Exp
+
+@[expose] public section
 
 /-!
 # `e^{r‖A‖}` from above, in floats

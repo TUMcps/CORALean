@@ -1,8 +1,12 @@
-import CORALean.ContSet.Taylm.Real.Operations.Intrinsic
-import CORALean.ContSet.Taylm.Real.Operations.Const
-import CORALean.ContSet.Taylm.Real.Operations.Plus
-import CORALean.ContSet.Taylm.Real.Operations.Times
-import CORALean.ContSet.Taylm.Real.Operations.Uminus
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.Intrinsic
+public import CORALean.ContSet.Taylm.Real.Operations.Const
+public import CORALean.ContSet.Taylm.Real.Operations.Plus
+public import CORALean.ContSet.Taylm.Real.Operations.Times
+public import CORALean.ContSet.Taylm.Real.Operations.Uminus
+
+@[expose] public section
 
 /-!
 # Executing a code list in Taylor model arithmetic

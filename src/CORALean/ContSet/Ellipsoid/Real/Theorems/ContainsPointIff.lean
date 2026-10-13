@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint
-import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsPoint
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
+
+@[expose] public section
 
 /-!
 # `Ellipsoid.containsPoint` is membership

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
-import CORALean.ContSet.Interval.Float.Instances
-import CORALean.Global.Jacobian
+module
+
+public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
+public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.Global.Jacobian
+
+@[expose] public section
 
 /-!
 # What a float run is told about a parametric field

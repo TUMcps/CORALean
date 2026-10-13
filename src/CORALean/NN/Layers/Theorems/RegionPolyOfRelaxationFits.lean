@@ -1,4 +1,8 @@
-import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
+module
+
+public import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
+
+@[expose] public section
 
 /-!
 # A sound relaxation's region fits when its error is within the tolerance

@@ -1,5 +1,9 @@
-import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
-import CORALean.Global.Float.FloatBound
+module
+
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.Global.Float.FloatBound
+
+@[expose] public section
 
 /-!
 # Float bounds across `segments`

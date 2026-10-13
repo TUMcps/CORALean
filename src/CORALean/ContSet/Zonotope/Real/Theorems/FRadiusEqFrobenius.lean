@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
-import Mathlib.Analysis.Matrix.Normed
+module
+
+public import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
+public import Mathlib.Analysis.Matrix.Normed
+
+@[expose] public section
 
 /-!
 # The F-radius is the Frobenius norm of the generator matrix, over `n`

@@ -1,5 +1,9 @@
-import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
-import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.addedTermsHessian`

@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.InnerProductSpace.Basic
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.InnerProductSpace.Basic
+
+@[expose] public section
 
 /-!
 # Confinement over a step, from a ball the field cannot cross

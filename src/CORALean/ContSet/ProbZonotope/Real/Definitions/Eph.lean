@@ -1,5 +1,9 @@
-import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
-import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+module
+
+public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
+public import CORALean.ContSet.ProbZonotope.Real.Definitions.GaussPdf
+
+@[expose] public section
 
 /-!
 # The enclosing probabilistic hull of a probabilistic zonotope

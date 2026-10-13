@@ -1,5 +1,9 @@
-import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-import CORALean.ContSet.LevelSet.Real.LevelSet
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.LevelSet.Real.LevelSet
+
+@[expose] public section
 
 /-!
 # An ellipsoid as a level set

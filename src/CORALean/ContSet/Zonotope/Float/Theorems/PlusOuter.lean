@@ -1,9 +1,13 @@
-import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
-import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
-import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
-import CORALean.ContSet.Zonotope.Float.Operations.Plus
-import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+module
+
+public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+
+@[expose] public section
 
 /-!
 # `Zonotope.plus` over-approximates the Minkowski sum

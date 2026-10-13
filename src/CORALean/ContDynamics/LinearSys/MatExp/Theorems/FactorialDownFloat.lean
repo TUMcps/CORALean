@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialDownFloat
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Tactic.Positivity
+module
+
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialDownFloat
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Tactic.Positivity
+
+@[expose] public section
 
 /-!
 # `MatExp.factorialDown` sits between one and the factorial

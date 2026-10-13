@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.LinProbSys.Operations.Post
-import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+module
+
+public import CORALean.ContDynamics.LinProbSys.Operations.Post
+public import CORALean.ContDynamics.LinProbSys.Theorems.NoiseCovarianceAdd
+
+@[expose] public section
 
 /-!
 # The covariance of `post` is the noise covariance one step later

@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
-import CORALean.ContSet.HPolytope.Float.Operations.EmptyWeights
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
+public import CORALean.ContSet.HPolytope.Float.Operations.EmptyWeights
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+
+@[expose] public section
 
 /-!
 # `ConZonotope.representsa_emptySet`, over a floating-point scalar

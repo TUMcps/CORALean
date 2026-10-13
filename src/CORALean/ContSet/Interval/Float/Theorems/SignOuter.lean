@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Sign
-import CORALean.ContSet.Interval.Real.Theorems.SignMonotone
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Sign
+public import CORALean.ContSet.Interval.Real.Theorems.SignMonotone
+
+@[expose] public section
 
 /-!
 # `Interval.sign` contains the image under the sign

@@ -1,9 +1,13 @@
-import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffState
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.Convex.Basic
-import Mathlib.Topology.EMetricSpace.Lipschitz
+module
+
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffState
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.Analysis.Convex.Basic
+public import Mathlib.Topology.EMetricSpace.Lipschitz
+
+@[expose] public section
 
 /-!
 # What one step of the inner Minkowski-difference algorithm needs

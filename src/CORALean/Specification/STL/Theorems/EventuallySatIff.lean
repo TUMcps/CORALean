@@ -1,4 +1,8 @@
-import CORALean.Specification.STL.Definitions.DiscreteFormula
+module
+
+public import CORALean.Specification.STL.Definitions.DiscreteFormula
+
+@[expose] public section
 
 /-!
 # Eventually as until

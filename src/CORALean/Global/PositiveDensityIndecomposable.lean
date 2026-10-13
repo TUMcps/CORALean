@@ -1,5 +1,9 @@
-import Mathlib.Probability.Kernel.Defs
-import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
+module
+
+public import Mathlib.Probability.Kernel.Defs
+public import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # A chain with a positive transition density is indecomposable

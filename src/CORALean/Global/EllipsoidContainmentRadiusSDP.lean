@@ -1,8 +1,12 @@
-import CORALean.Global.DmdPinv
-import CORALean.Global.SLemmaPosSemidef
-import Mathlib.Analysis.Normed.Group.Basic
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Topology.MetricSpace.ProperSpace.Real
+module
+
+public import CORALean.Global.DmdPinv
+public import CORALean.Global.SLemmaPosSemidef
+public import Mathlib.Analysis.Normed.Group.Basic
+public import Mathlib.Topology.Instances.Matrix
+public import Mathlib.Topology.MetricSpace.ProperSpace.Real
+
+@[expose] public section
 
 /-!
 # The ellipsoid-in-ellipsoid containment radius as a semidefinite program

@@ -1,5 +1,9 @@
-import CORALean.ContSet.Zonotope.Float.Operations.Reindex
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+module
+
+public import CORALean.ContSet.Zonotope.Float.Operations.Reindex
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+
+@[expose] public section
 
 /-!
 # A relabelled zonotope's nominal part is the exact layer's `map` at the relabelling

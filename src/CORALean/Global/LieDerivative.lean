@@ -1,7 +1,11 @@
-import Mathlib.Analysis.Calculus.FDeriv.Symmetric
-import Mathlib.Analysis.Calculus.FDeriv.CompCLM
-import Mathlib.Analysis.Calculus.FDeriv.Prod
-import Mathlib.Analysis.Calculus.ContDiff.Operations
+module
+
+public import Mathlib.Analysis.Calculus.FDeriv.Symmetric
+public import Mathlib.Analysis.Calculus.FDeriv.CompCLM
+public import Mathlib.Analysis.Calculus.FDeriv.Prod
+public import Mathlib.Analysis.Calculus.ContDiff.Operations
+
+@[expose] public section
 
 /-!
 # Lie derivatives of the flow and of its Jacobian

@@ -1,4 +1,8 @@
-import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetCoef
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetCoef
+
+@[expose] public section
 
 /-!
 # `PolyZonotope.getSubsetGDown`

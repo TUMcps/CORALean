@@ -1,5 +1,9 @@
-import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
-import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+module
+
+public import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
+public import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+
+@[expose] public section
 
 /-!
 # The float certified linear image encloses

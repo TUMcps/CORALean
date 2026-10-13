@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinearSys.Operations.IdentifyCandidate
-import CORALean.Global.DmdBlocks
-import CORALean.Global.DmdSelect
+module
+
+public import CORALean.ContDynamics.LinearSys.Operations.IdentifyCandidate
+public import CORALean.Global.DmdBlocks
+public import CORALean.Global.DmdSelect
+
+@[expose] public section
 
 /-!
 # `identify` of `LinearSys`, algorithm `dmd`

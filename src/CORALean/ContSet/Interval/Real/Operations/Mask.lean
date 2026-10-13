@@ -1,4 +1,8 @@
-import CORALean.ContSet.Interval.Real.Interval
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+
+@[expose] public section
 
 /-!
 # `Interval.mask`: keep the entries a pattern selects, zero the rest

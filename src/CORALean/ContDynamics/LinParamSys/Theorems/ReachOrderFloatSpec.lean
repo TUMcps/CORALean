@@ -1,6 +1,10 @@
-import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
-import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdmissibleOrderFloat
+module
+
+public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdmissibleOrderFloat
+
+@[expose] public section
 
 /-!
 # An order `reachOrderFloat` returns is admissible, and at least the one asked

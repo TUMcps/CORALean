@@ -1,5 +1,9 @@
-import CORALean.ContSet.Interval.Float.Operations.Recip
-import CORALean.ContSet.Interval.Float.Operations.Times
+module
+
+public import CORALean.ContSet.Interval.Float.Operations.Recip
+public import CORALean.ContSet.Interval.Float.Operations.Times
+
+@[expose] public section
 
 /-!
 # `Interval.rdivide`, over a floating-point scalar

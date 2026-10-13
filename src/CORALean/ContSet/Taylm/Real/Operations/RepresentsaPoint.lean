@@ -1,5 +1,9 @@
-import CORALean.ContSet.Conversion.Real.Taylm_to_PolyZonotope
-import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaPoint
+module
+
+public import CORALean.ContSet.Conversion.Real.Taylm_to_PolyZonotope
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaPoint
+
+@[expose] public section
 
 /-!
 # `Taylm.representsa_point`

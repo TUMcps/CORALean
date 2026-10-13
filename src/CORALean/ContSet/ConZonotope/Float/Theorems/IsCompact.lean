@@ -1,6 +1,10 @@
-import CORALean.ContSet.ConZonotope.Float.ConZonotope
-import CORALean.ContSet.ConZonotope.Real.Instances
-import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+module
+
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.ConZonotope.Real.Instances
+public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+
+@[expose] public section
 
 /-!
 # A float con zonotope is compact

@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinDASys.Operations.SteadyState
-import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
+module
+
+public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyState
+public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
+
+@[expose] public section
 
 /-!
 # What `steadyState` returns

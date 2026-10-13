@@ -1,8 +1,12 @@
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Analysis.Convex.Segment
-import Mathlib.Data.Fin.VecNotation
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Analysis.Convex.Segment
+public import Mathlib.Data.Fin.VecNotation
+
+@[expose] public section
 
 /-!
 # The time-interval inner set of L-CSS 2024 is not inside the reachable set

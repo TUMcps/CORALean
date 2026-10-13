@@ -1,7 +1,11 @@
-import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
-import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
-import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsStursbergMem
-import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
+public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsStursbergMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+
+@[expose] public section
 
 /-!
 # Every point lies in the bundle of `encloseTightPoints`

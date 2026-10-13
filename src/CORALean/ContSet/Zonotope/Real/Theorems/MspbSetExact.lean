@@ -1,8 +1,12 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
-import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-import Mathlib.Data.Matrix.Mul
-import Mathlib.LinearAlgebra.Matrix.ToLin
+module
+
+public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.LinearAlgebra.Matrix.ToLin
+
+@[expose] public section
 
 /-!
 # A parallelotope plus a box is a zonotope with `2n` generators

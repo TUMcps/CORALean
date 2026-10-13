@@ -1,5 +1,9 @@
-import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
+module
+
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+public import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
+
+@[expose] public section
 
 /-!
 # A term list stays in `polyBounds` on the box

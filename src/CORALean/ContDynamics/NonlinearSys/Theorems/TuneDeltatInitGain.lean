@@ -1,5 +1,9 @@
-import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInit
-import Mathlib.Tactic.Ring
+module
+
+public import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInit
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # What the first step's search for `Δ` buys

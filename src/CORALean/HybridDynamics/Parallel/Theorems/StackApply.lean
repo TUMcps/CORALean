@@ -1,4 +1,8 @@
-import CORALean.HybridDynamics.Parallel.Operations.Unstack
+module
+
+public import CORALean.HybridDynamics.Parallel.Operations.Unstack
+
+@[expose] public section
 
 /-!
 # A coordinate of a stack
