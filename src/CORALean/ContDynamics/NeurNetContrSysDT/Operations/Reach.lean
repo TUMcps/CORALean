@@ -18,7 +18,7 @@ the same set the step is taken from and `plus` combines the two, so every state
 in the enclosure is paired with every input in it, not with the input the
 controller produces at that state. No order bound recovers the difference.
 
-`zonotopeOrder` is uniform across steps, as in `LinearSysDT.reach`, and time is
+`ρ` is uniform across steps, as in `LinearSysDT.reach`, and time is
 counted in sampling periods (`ℕ`) with `tFinal - tStart` steps, as there; a
 `Reach.Params`, since the controller, not the caller, supplies the inputs.
 -/
@@ -43,12 +43,12 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set of the closed loop at time `tFinal`, from `R₀` at `tStart`,
-held at maximum order `zonotopeOrder`. -/
+held at maximum order `ρ`. -/
 def NeurNetContrSysDT.reach (sys : NeurNetContrSysDT 𝕋 S n) (params : Reach.Params (S n) ℕ)
     (options : NeurNetContrSysDT.ReachOptions) : S n :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
-  let o := options.zonotopeOrder
+  let o := options.ρ
   let ho := options.hZonotopeOrder
   let step := fun R =>                                              -- plant on the enclosed inputs
     sys.plant.reach ⟨R, sys.contr.enclose R, 0, 1⟩ ⟨o, ho⟩

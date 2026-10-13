@@ -33,13 +33,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `reach` with the order re-chosen at every step: `zonotopeOrder k` at step
+/-- `reach` with the order re-chosen at every step: `ρ k` at step
 `k`, in place of the one order `reach` fixes for the whole run. -/
 def LinearSysDT.reachOrders (sys : LinearSysDT 𝕋 n) (params : Reach.InputParams (S n) (S n) ℕ)
     (options : LinearSysDT.ReachOrdersOptions) : S n :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
-  let o := options.zonotopeOrder
+  let o := options.ρ
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
   let rec R : ℕ → S n                                              -- R_k, the run after k steps
     | 0 => R₀

@@ -43,7 +43,7 @@ noncomputable def NonlinDASys.reachAdaptiveLoop (sys : NonlinDASys n p m)
   | 0, st, Runion => if tFinal - st.t ≤ tol then some (Runion, st.t) else none
   | fuel + 1, st, Runion =>
     if tol < tFinal - st.t then                                            -- tFinal - t > 1e-12
-      let lastStep : Bool := decide (tFinal - st.t < st.h)                 -- timeStep > tFinal - t
+      let lastStep : Bool := decide (tFinal - st.t < st.h)                 -- Δt > tFinal - t
       let h : ℝ := min st.h (tFinal - st.t)                                -- capped by time left
       match sys.linReachAdaptive T st.R U η fuelErr fuelHalf st.adm_x st.adm_y h lastStep with
       | none => none

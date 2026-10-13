@@ -27,10 +27,10 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The initial set `R0`, the input set `U` and the horizon `[tStart, tFinal]`:
+/-- The initial set `X₀`, the input set `U` and the horizon `[tStart, tFinal]`:
 CORA's `params.R0`, `params.U`, `params.tStart` (default `0`), `params.tFinal`. -/
 structure Reach.InputParams (X I T : Type) [Zero T] where
-  R0 : X
+  X₀ : X
   U : I
   tStart : T := 0
   tFinal : T

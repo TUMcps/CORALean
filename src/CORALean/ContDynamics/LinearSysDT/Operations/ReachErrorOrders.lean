@@ -41,9 +41,9 @@ noncomputable def LinearSysDT.reachErrorOrders (sys : LinearSysDT ℝ n)
     (params : Reach.InputParams (Zonotope (Vec ℝ n)) (Zonotope (Vec ℝ n)) ℕ)
     (options : LinearSysDT.ReachOrdersOptions) :
     Zonotope (Vec ℝ n) :=
-  let R₀ := params.R0                                               -- the paper's symbols
+  let R₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
-  let o := options.zonotopeOrder
+  let o := options.ρ
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods
   let rec E : ℕ → Zonotope (Vec ℝ n)  -- E_k
     | 0 => Zonotope.ofPoint 0

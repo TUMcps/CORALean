@@ -47,11 +47,11 @@ starting at `0`. -/
 noncomputable def NonlinearSys.abstrReach (sys : NonlinearSys n m)
     (params : Reach.InputParams (S n) (S m) ℝ) (options : NonlinearSys.AbstrReachOptions S n m) :
     Set (Vec ℝ n) :=
-  let X₀ := params.R0                                               -- the paper's symbols
+  let X₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
   let tend := params.tFinal - params.tStart
   ⋃ j < options.K, ⋃ s ∈ sys.abstrRun U options.lin options.Φ options.sub options.enlarge
-    options.timeStep tend options.taylorTerms options.taylorTermsAbstr options.zonotopeOrder
+    options.Δt tend options.η options.taylorTermsAbstr options.ρ
     options.fuel X₀ (j + 1), construct s.Rτ
 
 end CORALean

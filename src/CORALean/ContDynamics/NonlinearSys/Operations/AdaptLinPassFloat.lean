@@ -41,7 +41,7 @@ def NonlinearSys.FloatModel.adaptLinPassFloat [SoundFloatArithmetic 𝕋] [ToRat
     (fm : NonlinearSys.FloatModel 𝕋 n m) (U : Zonotope (Vec 𝕋 m))
     (options : LinearSys.ReachOptions 𝕋)
     (R : Zonotope (Vec 𝕋 n)) : Option (Mat 𝕋 n n × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
-  let zs := fm.linPointFloat options.timeStep R U                   -- 3. linPoint, eq. (6)
+  let zs := fm.linPointFloat options.Δt R U                   -- 3. linPoint, eq. (6)
   let AB := fm.linearizeFloat zs.1 zs.2                             -- 4.-5. taylor, linSys
   let f₀ := fm.f (Interval.point zs.1) (Interval.point zs.2)        -- [f(z✱)]
   let Ulin := f₀.zonotope ⊞                                         -- 5. f(z✱) ⊕ B(U - u✱)

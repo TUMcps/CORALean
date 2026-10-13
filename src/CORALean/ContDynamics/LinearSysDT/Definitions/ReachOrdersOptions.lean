@@ -3,9 +3,9 @@ import Mathlib.Data.Nat.Basic
 /-!
 # CORA's `options` for a discrete-time linear reach at a per-step order
 
-`zonotopeOrder` as a sequence, one order per step, where `ReachOptions` holds the
+`ρ` as a sequence, one order per step, where `ReachOptions` holds the
 one order every step shares. CORA's `linearSysDT` reach takes a single
-`zonotopeOrder`; a per-step choice is the tuning of Wetzlinger et al., and the
+`ρ`; a per-step choice is the tuning of Wetzlinger et al., and the
 `o (k + 1)` it takes at step `k + 1` is the order that step is reduced to.
 
 `hZonotopeOrder` rules out `0` at every step, as `ReachOptions.hZonotopeOrder`
@@ -26,10 +26,10 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The maximum orders `zonotopeOrder k` step `k` is reduced to, all positive. -/
+/-- The maximum orders `ρ k` step `k` is reduced to, all positive. -/
 structure LinearSysDT.ReachOrdersOptions where
-  zonotopeOrder : ℕ → ℕ
-  hZonotopeOrder : ∀ k, 0 < zonotopeOrder k
+  ρ : ℕ → ℕ
+  hZonotopeOrder : ∀ k, 0 < ρ k
 
 end CORALean
 

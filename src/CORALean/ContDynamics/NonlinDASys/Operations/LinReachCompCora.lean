@@ -18,7 +18,7 @@ added to both sets moved back by `x*`.
 As in `linReachCora`, the `while` loop is not run: its accepting pass's per-subsystem zonotopes
 `R_xyu` (l. 104) and Hessian midpoints and radii (ll. 116-123, over that pass's box) are
 arguments. All `k` subsystems have the same sizes `nx`, `ny`, `nz` (CORA's may differ); every
-`index{i}.X` is taken nonempty (l. 165). `reduce(·, 'girard', options.zonotopeOrder)` is
+`index{i}.X` is taken nonempty (l. 165). `reduce(·, 'girard', options.ρ)` is
 `Zonotope.reduce`. The loop-only outputs `errorTotal_x`, `errorTotal_y`, `Rtotal_y` and the
 split decision are left out.
 -/

@@ -51,10 +51,10 @@ order `ρ`, at Taylor order `η` raised until admissible. -/
 def LinearSys.reachWrappingFreeFloat (sys : LinearSys 𝕋 n)
     (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n))) := do
-  let X₀ := params.R0                                               -- the paper's symbols
-  let Δt := options.timeStep
-  let η := options.taylorTerms
-  let ρ := options.zonotopeOrder
+  let X₀ := params.X₀                                               -- the paper's symbols
+  let Δt := options.Δt
+  let η := options.η
+  let ρ := options.ρ
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let Rτ₀ := Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀) ρ   -- R(τ_0), to order ρ

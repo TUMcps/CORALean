@@ -52,7 +52,7 @@ def optionsD : LinearSys.AdaptiveOptions (Dyadic 64) :=
 
 /-- `[0, 1]`, every parameter tuned. -/
 def adaptiveD : Option (List (LinearSys.AdaptiveStepInfo (Dyadic 64) 2)) :=
-  sysD.reachAdaptiveFloat BD { R0 := X₀D, U := UD, tFinal := 1 } optionsD
+  sysD.reachAdaptiveFloat BD { X₀ := X₀D, U := UD, tFinal := 1 } optionsD
 
 /-- What a successful run is worth: its windows cover `[0, 1]`, and every run
 under every input signal in `B U` is in the window of every time. -/
@@ -70,7 +70,7 @@ and the window's hull half-widths. -/
 def report (r : LinearSys.AdaptiveStepInfo (Dyadic 64) 2) :
     String × String × ℕ × ℕ × List String × List String :=
   let I := r.R.interval
-  (s!"[{r.tStart}, {r.tEnd}]", toString (dToFloat r.timeStep), r.taylorTerms, r.zonotopeOrder,
+  (s!"[{r.tStart}, {r.tEnd}]", toString (dToFloat r.Δt), r.η, r.ρ,
     [sci (qToFloat r.εH), sci (qToFloat r.εP), sci (qToFloat r.εS)],
     List.ofFn fun i => sci ((dToFloat (I.sup i) - dToFloat (I.inf i)) / 2))
 

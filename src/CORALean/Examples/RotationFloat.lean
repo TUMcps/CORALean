@@ -71,14 +71,14 @@ def ΔtD : Dyadic 64 := d 1 (-6)
 /-- `[0, 1/8]` in eight windows, Taylor order at least `4`, the first window reduced to
 order `10`. -/
 def wrapFreeD : Option (List (Zonotope (Vec (Dyadic 64) 2))) :=
-  sysD.reachWrappingFreeFloat { R0 := X₀D, tFinal := 1 / 8 }
-    { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
+  sysD.reachWrappingFreeFloat { X₀ := X₀D, tFinal := 1 / 8 }
+    { Δt := ΔtD, η := 4, ρ := 10 }
 
 /-- The same settings, one step at a time: the windows, then `R_0, …, R_8`. -/
 def recursiveD : Option (List (Zonotope (Vec (Dyadic 64) 2)) × List
     (Zonotope (Vec (Dyadic 64) 2))) :=
-  sysD.reachFloat { R0 := X₀D, tFinal := 1 / 8 }
-    { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
+  sysD.reachFloat { X₀ := X₀D, tFinal := 1 / 8 }
+    { Δt := ΔtD, η := 4, ρ := 10 }
 
 /-- What a successful wrapping-free run is worth: the exact flow, over every window,
 `1/8 = 8 Δt` split into the eight windows `Reach.steps` derived. -/
@@ -111,12 +111,12 @@ def ΔtF : Float := 0.015625
 
 /-- The Dyadic runs' settings at binary64. -/
 def wrapFreeF : Option (List (Zonotope (Vec Float 2))) :=
-  sysF.reachWrappingFreeFloat { R0 := X₀F, tFinal := 1 / 8 }
-    { timeStep := ΔtF, taylorTerms := 4, zonotopeOrder := 10 }
+  sysF.reachWrappingFreeFloat { X₀ := X₀F, tFinal := 1 / 8 }
+    { Δt := ΔtF, η := 4, ρ := 10 }
 
 def recursiveF : Option (List (Zonotope (Vec Float 2)) × List (Zonotope (Vec Float 2))) :=
-  sysF.reachFloat { R0 := X₀F, tFinal := 1 / 8 }
-    { timeStep := ΔtF, taylorTerms := 4, zonotopeOrder := 10 }
+  sysF.reachFloat { X₀ := X₀F, tFinal := 1 / 8 }
+    { Δt := ΔtF, η := 4, ρ := 10 }
 
 #eval wrapFreeD.map (·.map (summary dToFloat))
 #eval recursiveD.map fun r => r.1.map (summary dToFloat)

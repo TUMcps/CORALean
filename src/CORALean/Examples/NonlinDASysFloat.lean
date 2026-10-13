@@ -112,11 +112,11 @@ def U₀ : Zonotope (Vec D 1) := ⟨1, ![d 0 0], !![d 1 (-4)], zbox 1⟩
 data the run never reads (`NonlinDASys.reachFloat` is the ordinary run of `model`), so the
 computable form is written without it, and `run_eq` is that this is the same run. -/
 def run : Option (List (Zonotope (Vec D 1))) :=
-  model.reachFloat { R0 := X₀, U := U₀, tFinal := 1 }
-    { timeStep := d 1 (-3), taylorTerms := 4, zonotopeOrder := 10 }
+  model.reachFloat { X₀ := X₀, U := U₀, tFinal := 1 }
+    { Δt := d 1 (-3), η := 4, ρ := 10 }
 
-theorem run_eq : NonlinDASys.reachFloat daeRed model { R0 := X₀, U := U₀, tFinal := 1 }
-    { timeStep := d 1 (-3), taylorTerms := 4, zonotopeOrder := 10 } = run := rfl
+theorem run_eq : NonlinDASys.reachFloat daeRed model { X₀ := X₀, U := U₀, tFinal := 1 }
+    { Δt := d 1 (-3), η := 4, ρ := 10 } = run := rfl
 
 #eval run.map (·.length)   -- some 8
 -- the range of `x` in each window, falling towards the equilibrium `2u = 0`

@@ -41,8 +41,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 is in one of `reachWrappingFree`'s windows. -/
 theorem LinearSys.reachWrappingFree_outer (sys : LinearSys 𝕋 n)
     (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
-    (hΔt : 0 < options.timeStep) :
-    sys.reachExact (params.tFinal - params.tStart) (construct params.R0)
+    (hΔt : 0 < options.Δt) :
+    sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reachWrappingFree params options) := by -- --- PROOF ---
   obtain ⟨X₀, tStart, tF⟩ := params
   obtain ⟨Δt, η⟩ := options

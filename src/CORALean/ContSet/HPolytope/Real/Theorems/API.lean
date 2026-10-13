@@ -22,6 +22,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.ConvHullCoraCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiff1DCoraCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.Compact1DEqCoraCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaIntervalCoraCounterexample
+import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaPointCoraCounterexample
 import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeConstraintsExact
 import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
 import CORALean.ContSet.HPolytope.Real.Theorems.ProjectHighDimExact

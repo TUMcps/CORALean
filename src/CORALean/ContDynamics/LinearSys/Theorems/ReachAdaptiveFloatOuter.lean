@@ -46,7 +46,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat �
         t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧
       ∀ {x u : ℝ → Vec ℝ n},
         sys.Trajectory (S := fun k => Set (Vec ℝ k))
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.R0.construct
+          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < steps.length), ∀ t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd,
           x (t - params.tStart) ∈ steps[k].R.construct := by -- --- PROOF ---

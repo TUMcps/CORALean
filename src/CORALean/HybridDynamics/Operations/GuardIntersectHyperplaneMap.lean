@@ -51,7 +51,7 @@ variable {G : ℕ → Type} {L : Type} {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `R = guardIntersect_hyperplaneMap(loc,guard,R0,params,options)` at the refined `R₀` and
-`tmax`, `η = options.taylorTerms`. -/
+`tmax`, `η = options.η`. -/
 noncomputable def Location.guardIntersectHyperplaneMap (ℓ : Location 𝒵 G L ℝ n) (nv : Vec ℝ n)
     (d : ℝ) (R₀ : Zonotope (Vec ℝ n)) (tmax : ℝ) (η guardOrder zonotopeOrder : ℕ) :
     Option (Zonotope (Vec ℝ n)) :=

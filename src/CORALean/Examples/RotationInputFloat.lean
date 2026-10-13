@@ -42,13 +42,13 @@ def UD : Zonotope (Vec (Dyadic 64) 1) where
 then `R_0, …, R_8`. -/
 def recursiveD : Option (List (Zonotope (Vec (Dyadic 64) 2)) × List
     (Zonotope (Vec (Dyadic 64) 2))) :=
-  sysD.reachFloatInput BD { R0 := X₀D, U := UD, tFinal := 1 / 8 }
-    { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
+  sysD.reachFloatInput BD { X₀ := X₀D, U := UD, tFinal := 1 / 8 }
+    { Δt := ΔtD, η := 4, ρ := 10 }
 
 /-- The same settings, each window from the first by `[e^{A t_k}]`. -/
 def wrapFreeD : Option (List (Zonotope (Vec (Dyadic 64) 2))) :=
-  sysD.reachWrappingFreeFloatInput BD { R0 := X₀D, U := UD, tFinal := 1 / 8 }
-    { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
+  sysD.reachWrappingFreeFloatInput BD { X₀ := X₀D, U := UD, tFinal := 1 / 8 }
+    { Δt := ΔtD, η := 4, ρ := 10 }
 
 /-- What a successful recursive run is worth: every run under every input signal
 in `B U`, over every window. -/

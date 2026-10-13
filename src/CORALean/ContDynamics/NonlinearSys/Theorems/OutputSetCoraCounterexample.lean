@@ -10,7 +10,7 @@ default `u = 0`), the run `x = 0` under the input `1` has the output `1` at time
 `postProcessing` moves `center(U) = 1` into `uTrans` and leaves `params.U = {0}`, and
 `aux_outputSet` expands about `p_u = center(params.U) = 0` and never adds `uTrans` back, so
 CORA's output set `outputSetCora` at `R0` is `{h(0, 0)} = {0}`: the output `1` is missed. It is
-the set `reach` stores as its first time-point output (`outputSet(sys,params.R0,params,options)`);
+the set `reach` stores as its first time-point output (`outputSet(sys,params.X₀,params,options)`);
 the later ones read the same `params.U`. `h` is affine, so `out_isLinear` holds and the
 second- and third-order terms are `0` at either `tensorOrderOutput`.
 -/

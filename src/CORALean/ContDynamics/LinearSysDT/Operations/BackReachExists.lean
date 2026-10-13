@@ -47,7 +47,7 @@ set added on, then the image under `Ainv`. -/
 def LinearSysDT.backReachExists (_sys : LinearSysDT 𝕋 n)
     (params : Reach.InputParams (S n) (S n) ℕ)
     (options : LinearSysDT.BackReachExistsOptions 𝕋 n) : S n :=
-  let T := params.R0                                                -- the target
+  let T := params.X₀                                                -- the target
   let negU := params.U                                              -- the negated input set
   let Ainv := options.Ainv
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods

@@ -7,7 +7,7 @@ CORA's `neurNetContrSys(sys, nn, dt)` stores the sampling time `dt` with the
 system: the controller is evaluated every `dt`, and the set a closed loop reaches
 depends on it. `NeurNetContrSys` states `dt` per theorem instead, so `Reach`, whose
 `reachExact` reads the system and `params` only, takes it bundled here. The
-plant's step `timeStep` stays in `options`, which CORA checks divides `dt`, and so
+plant's step `Δt` stays in `options`, which CORA checks divides `dt`, and so
 does `reach`.
 -/
 

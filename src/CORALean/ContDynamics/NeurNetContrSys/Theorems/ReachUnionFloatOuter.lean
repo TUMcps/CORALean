@@ -33,12 +33,12 @@ theorem NeurNetContrSys.reachUnionFloat_outer
     (sys : NeurNetContrSys 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
     {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ} {options : NeurNetContrSys.ReachOptions 𝕋}
     {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachUnionFloat params options = some Rs)
-    (hΔt : 0 < toReal options.timeStep) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    (hΔt : 0 < toReal options.Δt) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n}
-    (traj : sys.Trajectory π ((options.N : ℝ) * toReal options.timeStep)
-      (params.tFinal - params.tStart) params.R0 x) :
+    (traj : sys.Trajectory π ((options.N : ℝ) * toReal options.Δt)
+      (params.tFinal - params.tStart) params.X₀ x) :
     Rs.length = params.tFinal - params.tStart + 1 ∧ ∀ (i : ℕ) (hi : i < Rs.length),
-      x ((i : ℝ) * ((options.N : ℝ) * toReal options.timeStep))
+      x ((i : ℝ) * ((options.N : ℝ) * toReal options.Δt))
         ∈ construct Rs[i] := by -- --- PROOF ---
   obtain ⟨R₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, N, η, o, ho⟩ := options

@@ -3,7 +3,7 @@ import CORALean.ContDynamics.NonlinDASys.Definitions.AbstractionError
 /-!
 # The step a pass settled on
 
-`linReach_adaptive` halves the step `options.timeStep` until the abstraction error loop
+`linReach_adaptive` halves the step `options.Δt` until the abstraction error loop
 converges ([1, Alg. 1] with CORA's tuning); the pass is that step and the errors it
 converged to, the outputs the loop that follows needs.
 
@@ -30,7 +30,7 @@ open CORALean.Real
 
 /-- The step size a pass settled on and the abstraction errors it ran with. -/
 structure NonlinDASys.AdaptPass (n p : ℕ) where
-  /-- `options.timeStep`. -/
+  /-- `options.Δt`. -/
   Δt : ℝ
   /-- The abstraction errors the accepted pass converged to. -/
   err : NonlinDASys.AbstractionError n p

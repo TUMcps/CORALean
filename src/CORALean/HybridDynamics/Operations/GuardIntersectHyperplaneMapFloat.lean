@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `R = guardIntersect_hyperplaneMap(loc,guard,R0,params,options)` at floats, at the refined
-`R₀` and `tmax`, `η = options.taylorTerms`, `p` the precision of the square root of `nᵀn`. -/
+`R₀` and `tmax`, `η = options.η`, `p` the precision of the square root of `nᵀn`. -/
 def Location.guardIntersectHyperplaneMapFloat (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n)
     (nv : Vec 𝕋 n)
     (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) (η guardOrder zonotopeOrder p : ℕ) :

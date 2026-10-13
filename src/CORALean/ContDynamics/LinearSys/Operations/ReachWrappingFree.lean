@@ -7,7 +7,7 @@ import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # Reachability over `[tStart, tFinal]`, one window of width `Δt` at a time
 
-`X₀ = params.R0`, `Δt = options.timeStep`, `η = options.taylorTerms`. The windows
+`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`. The windows
 `τ_0, …, τ_{N-1}`, one `reachStepkWrappingFree` each, collected as a `SetUnion`:
 `N = ⌈(tFinal - tStart) / Δt⌉` of them, so the last may overshoot `tFinal`, which an outer
 enclosure may, and never fewer than one, so `tFinal = tStart` still keeps `X₀`. The times
@@ -45,9 +45,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 at order `η` raised until admissible. -/
 noncomputable def LinearSys.reachWrappingFree (sys : LinearSys 𝕋 n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
-  let X₀ := params.R0                                           -- the paper's symbols
-  let Δt := options.timeStep
-  let η := options.taylorTerms
+  let X₀ := params.X₀                                           -- the paper's symbols
+  let Δt := options.Δt
+  let η := options.η
   let N := max 1 ⌈(params.tFinal - params.tStart) / Δt⌉₊      -- windows τ_0, …, τ_{N-1}
   let η' := max η (sys.reachOrder Δt + 2)                        -- η, raised until admissible
   ⟨(List.range N).map (sys.reachStepkWrappingFree Δt η' X₀)⟩    -- ⋃_{k < N} R(τ_k)

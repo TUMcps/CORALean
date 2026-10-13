@@ -39,11 +39,11 @@ theorem NonlinearSys.FloatHessModel.Encloses.orderStepFloat_outer
     {κ : ℕ} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
     {R Rτ Rt : Zonotope (Vec 𝕋 n)}
     (hstep : fm.orderStepFloat κ U options R = some (Rτ, Rt)) :
-    0 < toReal options.timeStep ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.timeStep))
+    0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.timeStep), x t ∈ Rτ.construct) ∧
-        x (toReal options.timeStep) ∈ Rt.construct := by
+      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+        x (toReal options.Δt) ∈ Rt.construct := by
   unfold NonlinearSys.FloatHessModel.orderStepFloat at hstep
   split at hstep
   · exact h.toEncloses.relinStepFloat_outer hstep

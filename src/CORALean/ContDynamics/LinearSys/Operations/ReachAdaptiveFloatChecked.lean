@@ -5,7 +5,7 @@ import CORALean.Global.Float.NoNaN
 # `reachAdaptiveFloatChecked`, without a NaN
 
 `reachAdaptiveFloat` followed by the NaN test: `none` where it is `none` or a float of its
-result is a NaN. The floats of a step are its `timeStep` and the set `R`; the rest is ℚ or ℕ.
+result is a NaN. The floats of a step are its `Δt` and the set `R`; the rest is ℚ or ℕ.
 A `some` is the unchecked `some` (`reachAdaptiveFloatChecked_eq_some`), so whatever is
 proved of `reachAdaptiveFloat` holds of it, with the NaN test made.
 -/
@@ -34,7 +34,7 @@ def LinearSys.reachAdaptiveFloatChecked (sys : LinearSys 𝕋 n)
     (options : LinearSys.AdaptiveOptions 𝕋) :
     Option (List (LinearSys.AdaptiveStepInfo 𝕋 n)) :=
   (sys.reachAdaptiveFloat B params options).bind fun infos =>
-    (ifNoNaN (𝕋 := 𝕋) (infos.map fun r => (r.timeStep, r.R))).map fun _ => infos
+    (ifNoNaN (𝕋 := 𝕋) (infos.map fun r => (r.Δt, r.R))).map fun _ => infos
 
 end CORALean
 

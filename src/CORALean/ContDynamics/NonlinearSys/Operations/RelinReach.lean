@@ -22,7 +22,7 @@ data the caller supplies. One step per linearization, so the sample times are th
 step boundaries and absolute time is `iΔt`.
 
 Time is counted in steps, `tStart` and `tFinal` being ℕ as in `LinearSysDT.reach`,
-not in ℚ with `Reach.steps`: `timeStep` is an ℝ that `discretize` needs, and the
+not in ℚ with `Reach.steps`: `Δt` is an ℝ that `discretize` needs, and the
 guarantees are stated at every boundary `iΔt`, which in ℚ time would be a partial
 `Option` per horizon. The count `tFinal - tStart` is exact, and every guarantee is
 stated at `tStart = 0`. `steps` and `Ud` are the certificates CORA computes inside
@@ -58,14 +58,14 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set after `params.tFinal - params.tStart` re-linearized steps of
-length `options.timeStep`, from `params.R0` under the per-step input enclosures
-`Ud`, held at maximum order `options.zonotopeOrder`. -/
+length `options.Δt`, from `params.X₀` under the per-step input enclosures
+`Ud`, held at maximum order `options.ρ`. -/
 noncomputable def NonlinearSys.relinReach (sys : NonlinearSys n m) {U : S m}
     (params : Reach.Params (S n) ℕ) (options : NonlinearSys.RelinReachOptions)
     (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) : S n :=
-  let R₀ := params.R0                                               -- the paper's symbols
-  let Δt := options.timeStep
-  let o := options.zonotopeOrder
+  let R₀ := params.X₀                                               -- the paper's symbols
+  let Δt := options.Δt
+  let o := options.ρ
   let N := params.tFinal - params.tStart                           -- steps
   let step := fun i R => ((NonlinearSys.linearize (steps i).A).discretize Δt).reach
     ⟨R, Ud i, 0, 1⟩ ⟨o, options.hZonotopeOrder⟩                    -- one linearization, one step

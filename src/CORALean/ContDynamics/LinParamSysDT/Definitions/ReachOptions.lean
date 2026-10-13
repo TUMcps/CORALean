@@ -3,7 +3,7 @@ import Mathlib.Data.Nat.Basic
 /-!
 # CORA's `options` for a discrete-time set-valued-matrix reach
 
-`zonotopeOrder`, as `LinearSysDT.ReachOptions` has it: the one option this
+`ρ`, as `LinearSysDT.ReachOptions` has it: the one option this
 reach reads. The matrix set `sys.A` is multiplied through `Mtimes`, and
 CORA's default of `inf`, no reduction, has no value in `ℕ`, so the order is
 mandatory.
@@ -28,10 +28,10 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The maximum order `zonotopeOrder` every step is reduced to, positive. -/
+/-- The maximum order `ρ` every step is reduced to, positive. -/
 structure LinParamSysDT.ReachOptions where
-  zonotopeOrder : ℕ
-  hZonotopeOrder : 0 < zonotopeOrder := by exact Nat.zero_lt_succ _
+  ρ : ℕ
+  hZonotopeOrder : 0 < ρ := by exact Nat.zero_lt_succ _
 
 end CORALean
 

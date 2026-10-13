@@ -609,7 +609,7 @@ most `2⁻⁴`; CORA's `errorSolution_adaptive` with its order, `Z` dynamic and 
 input solution's orders `1 … 4` and `H(t_{k+1})` from `Z`, under the constant `Z`'s centre. -/
 
 def manualReachRun : Option (List (Zonotope (Vec D 2))) :=
-  ctSys.manualReachFloat (identityMat D 2) { R0 := Z, U := Z, tFinal := 1 / 8 } ⟨stepR, 4, 2⟩
+  ctSys.manualReachFloat (identityMat D 2) { X₀ := Z, U := Z, tFinal := 1 / 8 } ⟨stepR, 4, 2⟩
 def curvatureErrorRun : D := ctSys.timeIntervalStepCurvatureErrorFloat stepR 4 Z
 def intervalErrorRun : D := ctSys.timeIntervalStepErrorFloat stepR 4 Z
 def pointErrorRun : D := ctSys.timePointStepErrorFloat stepR 4 Z
@@ -997,8 +997,8 @@ def vdpU : Zonotope (Vec D 1) := ⟨1, ![d 0 0], !![d 1 (-6)], zbox 1⟩
 
 /-- Four re-linearized steps of `1/32`, Taylor order at least `4`, zonotope order `10`. -/
 def vdpReach : Option (List (Zonotope (Vec D 2))) :=
-  vdpModel.reachFloat { R0 := vdpX₀, U := vdpU, tFinal := 1 / 8 }
-    { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
+  vdpModel.reachFloat { X₀ := vdpX₀, U := vdpU, tFinal := 1 / 8 }
+    { Δt := d 1 (-5), η := 4, ρ := 10 }
 
 /-- What a successful run is worth: every run of the real system, over every window. -/
 example {Rs : List (Zonotope (Vec D 2))} (h : vdpReach = some Rs) :=
@@ -1033,8 +1033,8 @@ def vdpHessModel : NonlinearSys.FloatHessModel D 2 1 :=
 
 /-- Four steps of `1/32` at `alg`, as `vdpReach`. -/
 def vdpReachAlg (alg : NonlinearSys.LinReachAlg) : Option (List (Zonotope (Vec D 2))) :=
-  vdpHessModel.reachAlgFloat alg { R0 := vdpX₀, U := vdpU, tFinal := 1 / 8 }
-    { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
+  vdpHessModel.reachAlgFloat alg { X₀ := vdpX₀, U := vdpU, tFinal := 1 / 8 }
+    { Δt := d 1 (-5), η := 4, ρ := 10 }
 
 /-- The slope matrix between two points of a box lies in the model's Jacobian box. -/
 theorem vdp_jacX_mem {X : Interval (Vec D 2)} {U : Interval (Vec D 1)} {x x' : Vec ℝ 2}
@@ -1137,7 +1137,7 @@ tuning constants are `ζ_δ = 1/2`, `ζ_h = ζ_φ = 1/4`, `ζ_Z = 1/8`, `ζ_K = 
 
 /-- Four steps of `1/32`, each linearized at its start set's centre. -/
 def vdpCentreReach : Option (List (Zonotope (Vec D 2))) :=
-  vdpModel.centreAbstrRunFloat vdpU { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
+  vdpModel.centreAbstrRunFloat vdpU { Δt := d 1 (-5), η := 4, ρ := 10 }
     4 vdpX₀
 
 /-- What a successful run is worth: every run of the real system, over every window. -/
@@ -1151,7 +1151,7 @@ example {Rs : List (Zonotope (Vec D 2))} (h : vdpCentreReach = some Rs) :=
 region check), last gain `7/8`, order `1`. The options' own step size is not read: every step
 takes the one the tuning picked. -/
 def vdpAdaptRun : Option (List (NonlinearSys.AdaptState (fun k => Zonotope (Vec D k)) 2 ℚ D)) :=
-  vdpHessModel.adaptRunFloat vdpU { timeStep := d 1 (-5), taylorTerms := 4, zonotopeOrder := 10 }
+  vdpHessModel.adaptRunFloat vdpU { Δt := d 1 (-5), η := 4, ρ := 10 }
     (d 15 (-4)) (d 7 (-3)) (d 1 (-3)) (d 1 (-1)) 20 20 2 (1 / 8) 4
     (NonlinearSys.adaptInit vdpX₀ (d 1 (-5)) (d 7 (-3)) (d 1 (-6)) 1)
 

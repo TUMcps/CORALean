@@ -52,6 +52,8 @@ import CORALean.ContSet.Interval.Real.Operations.Le
 import CORALean.ContSet.Interval.Real.Operations.Lt
 import CORALean.ContSet.Interval.Real.Operations.Project
 import CORALean.ContSet.Interval.Real.Operations.ProjectHighDim
+import CORALean.ContSet.Interval.Real.Operations.RepresentsaCapsuleCora
+import CORALean.ContSet.Interval.Real.Operations.RepresentsaEllipsoidCora
 import CORALean.ContSet.Interval.Real.Operations.RepresentsaEmptySet
 import CORALean.ContSet.Interval.Real.Operations.RepresentsaOrigin
 import CORALean.ContSet.Interval.Real.Operations.RepresentsaPoint

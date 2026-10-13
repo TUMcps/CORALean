@@ -38,9 +38,9 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachRunFloat_outer
       fm.linReachRunFloat alg U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
           sys.Trajectory (S := fun k => Set (Vec ℝ k))
-            (Set.Icc 0 ((k : ℝ) * toReal options.timeStep)) R.construct U.construct x u →
-          ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.timeStep)
-            (((j : ℝ) + 1) * toReal options.timeStep), x t ∈ Rs[j].construct := by -- --- PROOF ---
+            (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u →
+          ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
+            (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].construct := by -- --- PROOF ---
   intro k
   induction k with
   | zero =>
@@ -57,7 +57,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachRunFloat_outer
     subst hpure
     obtain ⟨hΔt, hout⟩ := h.linReachFloat_outer hstep
     obtain ⟨hlen, hrestout⟩ := ih hrest
-    set Δt := toReal options.timeStep
+    set Δt := toReal options.Δt
     refine ⟨by simp [hlen], fun {x u} traj j hj t ht => ?_⟩
     -- the first step, on its own window
     have hsub : Set.Icc 0 Δt ⊆ Set.Icc 0 (((k + 1 : ℕ) : ℝ) * Δt) := fun s hs =>

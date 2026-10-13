@@ -20,7 +20,7 @@ Only `A = f'(p) = 0` is modelled (else `none`): `aux_expmtie_adaptive` stops at 
 `errorSolution_adaptive` scales a box by `Δt`. A point start gives `tensorOrder = 2` and, by
 `aux_getPowers` at `A = 0`, `minorder = 2`; a zero `trueError` makes `orders = Inf`, an indexing
 error. Branches off the path (halving, a small `varphi`, a shorter tuned step) and running out of
-`fuel` are `none`. The result is `(Rti, Rtp, options.timeStep)`.
+`fuel` are `none`. The result is `(Rti, Rtp, options.Δt)`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -44,8 +44,8 @@ noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ) (hess
   let decrFactor : ℝ := 9 / 10                            -- options.decrFactor = 0.90
   let redFactor : ℝ := 5 / 10000                          -- options.redFactor = 0.0005
   let zetaphi : ℝ := 68 / 100                             -- options.zetaphi(options.minorder+1)
-  let timeStep_h := (tFinal - tStart) * (1 / 100)         -- options.timeStep = (tF - tS) * 0.01
-  let finitehorizon := timeStep_h                         -- finitehorizon = options.timeStep
+  let timeStep_h := (tFinal - tStart) * (1 / 100)         -- options.Δt = (tF - tS) * 0.01
+  let finitehorizon := timeStep_h                         -- finitehorizon = options.Δt
   -- run 1 at the finite horizon (veryfirststep)
   let p_h := x0 + f x0 * (1 / 2) * timeStep_h             -- p.x = cx + f0prev*0.5*timeStep
   let f0_h := f p_h                                       -- f0 = nlnsys.mFile(p.x,p.u)
@@ -72,7 +72,7 @@ noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ) (hess
   let Rerror_h := timeStep_h * trueError_h                -- Rerror = errorSolution_adaptive(..)
   let abstrerr_h := Rerror_h                              -- abstrerr = sum(abs(generators(Rerror)))
   -- run 1 at decrFactor times the finite horizon
-  let timeStep₁ := decrFactor * timeStep_h                -- options.timeStep = decrFactor*timeStep
+  let timeStep₁ := decrFactor * timeStep_h                -- options.Δt = decrFactor*timeStep
   let error_adm₁ := decrFactor * trueError_h              -- error_adm = decrFactor * trueError
   let p₁ := x0 + f x0 * (1 / 2) * timeStep₁               -- p.x = cx + f0prev*0.5*timeStep
   let f0₁ := f p₁                                         -- f0 = nlnsys.mFile(p.x,p.u)
@@ -91,9 +91,9 @@ noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ) (hess
   if varphi < zetaphi then none else                      -- decrease time step size
   let timeStep₂ := NonlinearSys.optimalDeltatCora 0 Rerror_h -- aux_optimaldeltat(Rstart,Rerror_h,
     finitehorizon varphi zetaP_h decrFactor redFactor     --   finitehorizon,varphi,zetaP_h,options)
-  if timeStep₂ ≠ finitehorizon then none else             -- if options.timeStep == finitehorizon
+  if timeStep₂ ≠ finitehorizon then none else             -- if options.Δt == finitehorizon
   -- run 2 (timeStepequalHorizon)
-  let timeStep₃ := timeStep₂ * decrFactor                 -- options.timeStep*options.decrFactor
+  let timeStep₃ := timeStep₂ * decrFactor                 -- options.Δt*options.decrFactor
   let p₃ := x0 + f x0 * (1 / 2) * timeStep₃               -- p.x = cx + f0prev*0.5*timeStep
   let f0₃ := f p₃                                         -- f0 = nlnsys.mFile(p.x,p.u)
   let A₃ := f' p₃                                         -- [A,B] = nlnsys.jacobian(p.x,p.u)
@@ -109,7 +109,7 @@ noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ) (hess
   -- timeStepequalHorizon: Rti = Rti_h + linx_h, Rtp = Rtp_h + linx_h, Rerror = Rerror_h
   some ((Rlinti_h.1 + p_h - Rerror_h, Rlinti_h.2 + p_h + Rerror_h), -- Rti = Rti + Rerror
     (Rlintp_h + p_h - Rerror_h, Rlintp_h + p_h + Rerror_h),        -- Rtp = Rtp + Rerror
-    finitehorizon)                                        -- options.timeStep = finitehorizon
+    finitehorizon)                                        -- options.Δt = finitehorizon
 
 end CORALean
 

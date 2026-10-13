@@ -3,12 +3,12 @@ import Mathlib.Data.Real.Basic
 /-!
 # CORA's `options` for the re-linearization loop
 
-`timeStep` and `zonotopeOrder`, CORA's names, as in `LinearSys.ReachOptions`. The
-loop takes one step per linearization, so `timeStep` is also the length of each
+`Δt` and `ρ` (CORA's `timeStep` and `zonotopeOrder`), as in `LinearSys.ReachOptions`. The
+loop takes one step per linearization, so `Δt` is also the length of each
 linearization's horizon; the horizon in `params` counts those steps (see
 `NonlinearSys.relinReach`).
 
-`timeStep` is an `ℝ` here, not the `ℚ` of `LinearSys.ReachOptions`: it feeds
+`Δt` is an `ℝ` here, not the `ℚ` of `LinearSys.ReachOptions`: it feeds
 `LinearSys.discretize`, which holds `e^{AΔt}` exactly at `ℝ` and has no other
 argument. `hZonotopeOrder` rules out `0`, as in `LinearSysDT.ReachOptions`, and
 closes at any positive literal by default.
@@ -31,12 +31,12 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The step `timeStep` and the maximum order `zonotopeOrder` (positive) every
+/-- The step `Δt` and the maximum order `ρ` (positive) every
 step is reduced to. -/
 structure NonlinearSys.RelinReachOptions where
-  timeStep : ℝ
-  zonotopeOrder : ℕ
-  hZonotopeOrder : 0 < zonotopeOrder := by exact Nat.zero_lt_succ _
+  Δt : ℝ
+  ρ : ℕ
+  hZonotopeOrder : 0 < ρ := by exact Nat.zero_lt_succ _
 
 end CORALean
 

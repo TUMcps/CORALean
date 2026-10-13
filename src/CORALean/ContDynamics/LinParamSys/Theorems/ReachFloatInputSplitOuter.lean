@@ -49,13 +49,13 @@ theorem LinParamSys.reachFloatInputSplit_outer
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {U : Zonotope (Vec 𝕋 n)}
     {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
     {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInputSplit U params options = some Rs) :
-    ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
+    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {A : Mat ℝ n n} {x u : ℝ → Vec ℝ n},
         sys.ConstTrajectory (S := fun k => Zonotope (Vec 𝕋 k))
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
-          params.R0 U x u A →
-        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.timeStep)
-          (((k : ℝ) + 1) * toReal options.timeStep), x t ∈ Rs[k].construct := by -- --- PROOF ---
+          params.X₀ U x u A →
+        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢

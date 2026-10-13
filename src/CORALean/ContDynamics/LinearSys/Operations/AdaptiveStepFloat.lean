@@ -72,8 +72,8 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec
     let PRred := Reduce.reduce PR Φset                              -- 8. red(PR, Φ_set,i)
     let R := HR ⊞ s.P                                               -- 9. R([t_i,t_{i+1}])
     let t' := s.t + ToRat.toRat Δt                                  -- 10. t ← t + Δt_i
-    some ({ tStart := t₀ + s.t, tEnd := t₀ + min t' tf, timeStep := Δt, taylorTerms := η,
-            zonotopeOrder := Φset, R := R, εH := εH, εP := εP, εS := εS },
+    some ({ tStart := t₀ + s.t, tEnd := t₀ + min t' tf, Δt := Δt, η := η,
+            ρ := Φset, R := R, εH := εH, εP := εP, εS := εS },
           { t := t', tLo := addDown s.tLo Δt, tHi := addUp s.tHi Δt, Δt := Δt,
             εP := εP, εS := εS, P := PRred })
   else none

@@ -9,8 +9,8 @@ import CORALean.Global.Float.ToRat
 # Recursive reachability in floats: `R_{k+1} = reduce([e^{AΔt}] R_k, ρ)`
 
 [1, Alg. 4] at a point matrix, no input, in `𝕋` — CORA's `linAlg = 'standard'`,
-`X₀ = params.R0`, `Δt`, `η`, `ρ` the `options`' `timeStep`, `taylorTerms`,
-`zonotopeOrder`, `N = (tFinal - tStart) / Δt` by `Reach.steps`, `none` unless a
+`X₀ = params.X₀`, `Δt`, `η`, `ρ` the `options`' `Δt`, `η`,
+`ρ`, `N = (tFinal - tStart) / Δt` by `Reach.steps`, `none` unless a
 natural number: time-point sets `R_0 = X₀, …, R_N` by `timePointStepFloat` and
 Girard's reduction to order `ρ`, window `k < N` by `timeIntervalStepFloat` from
 `R_k`, not reduced; nothing is propagated from it.
@@ -53,10 +53,10 @@ from `X₀`, reducing to order `ρ` after every step. -/
 def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
     (options : LinearSys.ReachOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n)) × List (Zonotope (Vec 𝕋 n))) := do
-  let X₀ := params.R0                                               -- the paper's symbols
-  let Δt := options.timeStep
-  let η := options.taylorTerms
-  let ρ := options.zonotopeOrder
+  let X₀ := params.X₀                                               -- the paper's symbols
+  let Δt := options.Δt
+  let η := options.η
+  let ρ := options.ρ
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let eAΔt := sys.expIntervalFloat Δt Δt η'                         -- [e^{AΔt}], once

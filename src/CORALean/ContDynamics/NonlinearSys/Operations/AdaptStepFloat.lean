@@ -59,7 +59,7 @@ def NonlinearSys.FloatHessModel.adaptStepFloat [SoundFloatArithmetic 𝕋] [ToRa
     maximumOver fun i => half (subUp (Z.interval.sup i) (Z.interval.inf i))
   let dia := fun (Z : Zonotope (Vec 𝕋 n)) (i : Fin n) =>  -- diameter of the box of Z
     subUp (Z.interval.sup i) (Z.interval.inf i)
-  let opts := fun (Δt : 𝕋) => ({ options with timeStep := Δt } : LinearSys.ReachOptions 𝕋)
+  let opts := fun (Δt : 𝕋) => ({ options with Δt := Δt } : LinearSys.ReachOptions 𝕋)
   let hk := divUp (mulUp s.h (subUp ζδ ζh)) (subDown ζδ s.φ)       -- 1. h_k, eq. (59)
   let p₁ ← fm.toFloatModel.adaptLinPassFloat U (opts hk) s.R          -- 3.-6. a = 1, at Δt_k = h_k
   let F₁ ← fm.orderStepFloat s.κ U (opts hk) s.R                      -- 7.-9. the step at κ_k
@@ -76,8 +76,8 @@ def NonlinearSys.FloatHessModel.adaptStepFloat [SoundFloatArithmetic 𝕋] [ToRa
   let κ' := tuneAbstrOrderFloat ζK s.φ rabsOpt s.rabs dabs₁ dabs₂ s.κ  -- 13. tuneAbstrOrder
   let φk := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.2) rabs1 rabsOpt opt.2 fuel  -- 16.
   pure { t := s.t + ToRat.toRat opt.1,                              -- 17. t_{k+1}
-         R := Reduce.reduce F.2 options.zonotopeOrder,              -- 18. redAdaptive
-         Rτ := Reduce.reduce F.1 options.zonotopeOrder,
+         R := Reduce.reduce F.2 options.ρ,              -- 18. redAdaptive
+         Rτ := Reduce.reduce F.1 options.ρ,
          h := hk, φ := φk, κ := κ', rabs := rabsOpt }
 
 end CORALean

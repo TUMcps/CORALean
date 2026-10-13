@@ -102,15 +102,15 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
     {R Rτ Rt : Zonotope (Vec 𝕋 n)} (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt)) :
-    0 < toReal options.timeStep ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.timeStep))
+    0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.timeStep), x t ∈ Rτ.construct) ∧
-        x (toReal options.timeStep) ∈ Rt.construct := by -- --- PROOF ---
+      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+        x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
   unfold NonlinearSys.FloatHessModel.linReachFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
   obtain ⟨Ω, hΩ, hrest⟩ := hstep
-  set Δt := options.timeStep with hΔt_def
+  set Δt := options.Δt with hΔt_def
   set xs := (fm.linPointFloat Δt R U).1 with hxs_def
   set A := (fm.linearizeFloat xs U.c).1 with hA_def
   set B := (fm.linearizeFloat xs U.c).2 with hB_def

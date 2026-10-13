@@ -11,9 +11,9 @@ import CORALean.ContSet.SetUnion.SetUnion
 
 `relinTimeInterval` at steps `0` through `N - 1`, one member of the `SetUnion`
 per step — the `Reach.reach` field of the instance, [1, Alg. 1]'s `R([0, t_f])`.
-`N = (tFinal - tStart) / timeStep`, `none` unless it is a positive natural number,
-CORA's integer-steps check, decided in ℝ since `timeStep` is the real `discretize`
-takes; `none` too at `zonotopeOrder = 0`, CORA's `geone`. `taylorTerms` is a floor,
+`N = (tFinal - tStart) / Δt`, `none` unless it is a positive natural number,
+CORA's integer-steps check, decided in ℝ since `Δt` is the real `discretize`
+takes; `none` too at `ρ = 0`, CORA's `geone`. `η` is a floor,
 raised to what every step's matrix admits. Step `i`'s certificate is conservative
 only while the run stays in `(steps i).R`, so, as CORA does, each step is tested
 before it is trusted, and one failed test makes the answer `none`.
@@ -50,18 +50,18 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Steps `0` through `N - 1` of `relinTimeInterval`, `N = (tFinal - tStart) / timeStep`,
+/-- Steps `0` through `N - 1` of `relinTimeInterval`, `N = (tFinal - tStart) / Δt`,
 or `none` if `N` is no positive natural, the order is `0`, or a step's start, inflated
 by `2MΔt`, is not shown inside its region. -/
 noncomputable def NonlinearSys.WithSteps.reachUnion (sys : NonlinearSys.WithSteps S Rg m n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
     Option (SetUnion (S n)) :=
-  let X₀ := params.R0                                             -- the paper's symbols
-  let Δt := options.timeStep
-  let o := options.zonotopeOrder
+  let X₀ := params.X₀                                             -- the paper's symbols
+  let Δt := options.Δt
+  let o := options.ρ
   let N := ⌈(params.tFinal - params.tStart) / Δt⌉₊               -- steps
   if h : 0 < Δt ∧ 0 < N ∧ (N : ℝ) * Δt = params.tFinal - params.tStart ∧ 0 < o then
-    let q := max options.taylorTerms ((Finset.range N).sup fun i => -- order q + 2, admissible
+    let q := max options.η ((Finset.range N).sup fun i => -- order q + 2, admissible
       (NonlinearSys.linearize (sys.steps i).A).reachOrder Δt)     --   at every step's matrix
     let Ud := fun i => (NonlinearSys.linearize (sys.steps i).A).inputSolution Δt (q + 2)
       (sys.steps i).linInput                                      -- step i's input solution

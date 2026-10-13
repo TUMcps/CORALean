@@ -3,7 +3,7 @@ import Mathlib.Data.Nat.Basic
 /-!
 # CORA's `options` for a discrete-time linear reach
 
-`zonotopeOrder`, the one option CORA's `config_linearSysDT_reach` makes
+`ρ`, the one option CORA's `config_linearSysDT_reach` makes
 mandatory. CORA's default is `inf`, no reduction at all, which `ℕ` has no value
 for, so here it is mandatory.
 
@@ -27,10 +27,10 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The maximum order `zonotopeOrder` every step is reduced to, positive. -/
+/-- The maximum order `ρ` every step is reduced to, positive. -/
 structure LinearSysDT.ReachOptions where
-  zonotopeOrder : ℕ
-  hZonotopeOrder : 0 < zonotopeOrder := by exact Nat.zero_lt_succ _
+  ρ : ℕ
+  hZonotopeOrder : 0 < ρ := by exact Nat.zero_lt_succ _
 
 end CORALean
 

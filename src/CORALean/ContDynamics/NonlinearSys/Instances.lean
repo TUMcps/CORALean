@@ -10,7 +10,7 @@ step is a linear one, and CORA's `nonlinearSys` reads the same `timeStep`,
 certificate is issued for it. `reachExact` is `reachUnionExact` on
 `[0, tFinal - tStart]`, the certificates counted from the run's start, `reach` is
 `reachUnion`, and the guarantee is `reachUnion_outer`. `reach` returns `none` where
-the horizon is no multiple of `timeStep`, or a step's linearization could not be
+the horizon is no multiple of `Δt`, or a step's linearization could not be
 trusted: the set it starts from, inflated by `2MΔt`, not shown inside its region
 at run time. That test is what lets `reach_outer` hold with no confinement
 hypothesis on any run. `ConvexSet` and `CompactSet` are asked of the
@@ -44,7 +44,7 @@ noncomputable instance NonlinearSys.reachInstance :
     Reach (NonlinearSys.WithSteps S Rg m) (fun n => Reach.Params (S n) ℝ)
       (LinearSys.ReachOptions ℝ) S where
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
-    (construct params.R0)
+    (construct params.X₀)
   reach sys params options := sys.reachUnion params options
   reach_outer sys params options := sys.reachUnion_outer params options
 

@@ -45,7 +45,7 @@ noncomputable def NonlinearSys.reachInnerMinkdiff (ops : NonlinearSys.LinReachIn
     Option ((ℕ → Set (Vec ℝ n)) × (ℕ → Set (Vec ℝ n))) :=
   let timePoint : ℕ → Set (Vec ℝ n) := Function.update (fun _ => ∅) 0 R0  -- timePoint.set{1}
   let timeInt : ℕ → Set (Vec ℝ n) := fun _ => ∅                    -- timeInt.set = cell(steps)
-  let Rtp := R0                                                     -- Rtp.set = params.R0
+  let Rtp := R0                                                     -- Rtp.set = params.X₀
   let err : Vec ℝ n := 0                                            -- Rtp.error = zeros(n,1)
   NonlinearSys.reachInnerMinkdiffLoop ops f timeStep fuel steps 0 Rtp err timePoint timeInt
 

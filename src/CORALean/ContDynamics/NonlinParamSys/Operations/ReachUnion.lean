@@ -35,12 +35,12 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `aug.reachUnion` from `R0 × P` over the same horizon and options, each member
+/-- `aug.reachUnion` from `X₀ × P` over the same horizon and options, each member
 projected to the first `n` coordinates, or `none` where the augmented run fails. -/
 noncomputable def NonlinParamSys.WithSteps.reachUnion (sys : NonlinParamSys.WithSteps S Rg m q n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
     Option (SetUnion (S n)) :=
-  let X₀ := params.R0                                                -- the paper's symbols
+  let X₀ := params.X₀                                                -- the paper's symbols
   let E := LinearMap.toMatrix' (blockPadLeft n q)                    -- x ↦ (x, 0)
   let F := LinearMap.toMatrix' (blockPadRight n q)                   -- p ↦ (0, p)
   let Pr := LinearMap.toMatrix' (blockLeft n q)                      -- (x, p) ↦ x

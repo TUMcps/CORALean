@@ -78,6 +78,7 @@ import CORALean.ContSet.Interval.Real.Theorems.LtSubset
 import CORALean.ContSet.Interval.Real.Theorems.ProjectExact
 import CORALean.ContSet.Interval.Real.Theorems.ProjectHighDimExact
 import CORALean.ContSet.Interval.Real.Theorems.ProjectOuter
+import CORALean.ContSet.Interval.Real.Theorems.RepresentsaCapsuleCoraCounterexample
 import CORALean.ContSet.Interval.Real.Theorems.RepresentsaEmptySetIff
 import CORALean.ContSet.Interval.Real.Theorems.RepresentsaOriginIff
 import CORALean.ContSet.Interval.Real.Theorems.RepresentsaPointIff

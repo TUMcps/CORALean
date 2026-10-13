@@ -3,7 +3,7 @@ import Mathlib.Data.Nat.Basic
 /-!
 # CORA's `options` for a discrete-time nonlinear reach
 
-`zonotopeOrder`, as `LinearSysDT.ReachOptions` has it: the order each
+`ρ`, as `LinearSysDT.ReachOptions` has it: the order each
 re-linearized step is reduced to. CORA's `nonlinearSysDT/reach` also reads
 `tensorOrder` and `alg`, which choose how a linearization and its error are
 computed; here the linearization of step `i` is the certificate `steps i` a caller
@@ -29,10 +29,10 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The maximum order `zonotopeOrder` every step is reduced to, positive. -/
+/-- The maximum order `ρ` every step is reduced to, positive. -/
 structure NonlinearSysDT.ReachOptions where
-  zonotopeOrder : ℕ
-  hZonotopeOrder : 0 < zonotopeOrder := by exact Nat.zero_lt_succ _
+  ρ : ℕ
+  hZonotopeOrder : 0 < ρ := by exact Nat.zero_lt_succ _
 
 end CORALean
 

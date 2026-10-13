@@ -30,7 +30,7 @@ one of them fails: `relinRunAtFloat` at `x✱ = linPointFloat`. -/
 def NonlinearSys.FloatModel.relinRunFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
     (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) :
     ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n))) :=
-  fm.relinRunAtFloat U options fun R => (fm.linPointFloat options.timeStep R U).1
+  fm.relinRunAtFloat U options fun R => (fm.linPointFloat options.Δt R U).1
 
 end CORALean
 

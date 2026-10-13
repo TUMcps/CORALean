@@ -9,9 +9,9 @@ CORA's `reach(sys, params, options)`, read as a class the way `Mtimes` and
 may widen; `reach sys params options` is what an algorithm computes for it, `none`
 where it could not certify its soundness conditions at run time — CORA's failure
 mode, as when a linearization region misses the set computed in it, or a horizon is
-no multiple of `timeStep`. `reach_outer` encloses the first in every result.
+no multiple of `Δt`. `reach_outer` encloses the first in every result.
 
-`P n` is CORA's `params`, the problem: `R0`, the horizon `[tStart, tFinal]`, and `U`
+`P n` is CORA's `params`, the problem: `X₀` (its `R0`), the horizon `[tStart, tFinal]`, and `U`
 where the system does not bind its input set itself — `Reach.Params` or
 `Reach.InputParams` at the family's time type, which is `P`'s business and no
 parameter of the class. `O` is CORA's `options`, the algorithm. `reachExact` takes

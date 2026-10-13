@@ -70,18 +70,18 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {R Rτ Rt : Zonotope (Vec 𝕋 n)}
     {xs : Vec 𝕋 n} (hstep : fm.relinStepAtFloat U options R xs = some (Rτ, Rt)) :
-    0 < toReal options.timeStep ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.timeStep))
+    0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.timeStep), x t ∈ Rτ.construct) ∧
-        x (toReal options.timeStep) ∈ Rt.construct := by -- --- PROOF ---
+      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+        x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
   -- every `←` of the step succeeded: name what each returned
   unfold NonlinearSys.FloatModel.relinStepAtFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
   obtain ⟨Ω, hΩ, ⟨Rti, Rtp⟩, hS, Δτ, hτ, Δ₁, h₁, hpure⟩ := hstep
   simp only [pure, Option.some.injEq, Prod.mk.injEq] at hpure
   obtain ⟨rfl, rfl⟩ := hpure
-  set Δt := options.timeStep with hΔt_def
+  set Δt := options.Δt with hΔt_def
   set A := (fm.linearizeFloat xs U.c).1 with hA_def
   set B := (fm.linearizeFloat xs U.c).2 with hB_def
   set X : Interval (Vec 𝕋 n) :=

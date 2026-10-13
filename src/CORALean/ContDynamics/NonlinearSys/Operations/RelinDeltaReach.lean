@@ -46,8 +46,8 @@ the state that step started from, from what `relinReach` reaches at `iΔt` and s
 noncomputable def NonlinearSys.relinDeltaReach (sys : NonlinearSys n m) {U : S m}
     (params : Reach.Params (S n) ℕ) (options : NonlinearSys.RelinDeltaReachOptions)
     (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) : S n :=
-  let Δt := options.timeStep                                       -- the paper's symbols
-  let η := options.taylorTerms
+  let Δt := options.Δt                                       -- the paper's symbols
+  let η := options.η
   let i := params.tFinal - params.tStart                           -- the step
   let R := sys.relinReach params options.toRelinReachOptions steps Ud  -- R(iΔt)
   ((NonlinearSys.linearize (steps i).A).deltaReach Δt η R) ⊞ Ud i
