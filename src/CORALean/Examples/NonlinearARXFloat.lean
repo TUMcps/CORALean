@@ -1,10 +1,9 @@
-import CORALean.ContDynamics.NonlinearARX.API
+import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
 import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
 import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemSimulateBoxFloat
 import CORALean.ContSet.Interval.Float.Operations.MulLo
 import CORALean.ContSet.Interval.Float.Operations.MulHi
-import CORALean.Global.Float.Instances.Dyadic.API
 
 /-!
 # A nonlinear ARX model, simulated in boxes

@@ -1,4 +1,3 @@
-import CORALean.ContSet.Conversion.Real.API
 import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu

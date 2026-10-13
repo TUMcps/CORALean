@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Operations.RepresentsaEmptySet
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # A polygon is empty iff no piece has a vertex

@@ -1,5 +1,5 @@
 import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyMulVec
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
 
 /-!
 # An ellipsoid answers any direction in closed form

@@ -85,6 +85,12 @@ report() {
   fi
 }
 
+# The entry points the build is told to start from: `roots = [...]` of each
+# `[[lean_lib]]` and `root = ...` of each `[[lean_exe]]`. They are the one place
+# outside a collector that may import a collector.
+lake_roots=$(sed -n 's/^roots[[:space:]]*=[[:space:]]*\[\(.*\)\].*/\1/p; s/^root[[:space:]]*=[[:space:]]*\(.*\)/\1/p' lakefile.toml |
+  grep -o '"[^"]*"' | tr -d '"' | tr '\n' ' ')
+
 files=$(find src -name '*.lean' | sed 's#\\#/#g' | sort)
 
 # The file list reaches awk through a list file rather than the command line,
@@ -116,6 +122,7 @@ out=$(awk \
   -v FLINT_AXIOM_FILE="$FLINT_AXIOM_FILE" \
   -v FLINT_AXIOM="$FLINT_AXIOM" \
   -v BENCH_DIR="$BENCH_DIR" \
+  -v LAKE_ROOTS="$lake_roots" \
   -v ALLOWLIST="$ALLOWLIST" '
 # One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
 function checkReview(val, ln,    d, nm) {
@@ -332,7 +339,7 @@ function closeBlock(e,   len) {
   blockKind = ""
 }
 
-function check(f,   i, n, collector, want, dir, cap) {
+function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   endRun(f)
   collector = (f ~ /\/API\.lean$/) || (f == "src/CORALean.lean")
 
@@ -388,7 +395,14 @@ function check(f,   i, n, collector, want, dir, cap) {
 
   dir = dirOf(f)
   want = moduleOf(dir "/API.lean")
+  # A collector and a lakefile root may import collectors; no other file does.
+  nroot = split(LAKE_ROOTS, rootList, " ")
+  isRoot = 0
+  for (i = 1; i <= nroot; i++) if (moduleOf(f) == rootList[i]) isRoot = 1
   for (i = 1; i <= nimp; i++) {
+    if (!collector && !isRoot && imp[i] ~ /(^|\.)API$/)
+      say(f ":" impLine[i] ": imports the collector " imp[i] \
+          "; import the exact modules (CONTRIBUTING, API.lean)")
     if (imp[i] == want)
       say(f ":" impLine[i] ": imports the `API.lean` of its own directory, which is a cycle")
     # Only the two layers of a representation are kept apart so: a `Theorems/Real/` statement

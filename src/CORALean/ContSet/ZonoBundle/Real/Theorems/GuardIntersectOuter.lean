@@ -4,6 +4,7 @@ import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
 import CORALean.ContSet.Interval.Real.Theorems.Convex
 import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+import Mathlib.Analysis.Convex.Hull
 
 /-!
 # The guard intersection of a bundle is enclosed

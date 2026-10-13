@@ -1,6 +1,9 @@
 import CORALean.ContSet.ConZonotope.Float.ConZonotope
 import CORALean.ContSet.Zonotope.Float.Operations.Plus
 import CORALean.Global.Block
+import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
+import CORALean.ContSet.HPolytope.Float.Operations.PadRight
 
 /-!
 # `ConZonotope.plus`

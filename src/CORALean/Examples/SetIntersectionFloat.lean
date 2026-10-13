@@ -1,9 +1,9 @@
-import CORALean.ContSet.SetIntersection.API
+import CORALean.ContSet.SetIntersection.Instances
+import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-import CORALean.Global.Float.Instances.Dyadic.API
 
 /-!
 # An intersection of float zonotopes, operated on branch-wise

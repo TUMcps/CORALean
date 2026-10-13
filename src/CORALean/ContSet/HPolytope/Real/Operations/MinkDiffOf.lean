@@ -1,5 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.HPolytope
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.LinProg
 
 /-!
 # `HPolytope.minkDiffOf`

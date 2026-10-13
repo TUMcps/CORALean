@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
+import CORALean.Global.LinProg.Composition
 
 /-!
 # `HPolytope.mtimesOf`

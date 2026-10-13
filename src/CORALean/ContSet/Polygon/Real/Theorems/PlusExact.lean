@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Operations.Plus
+import CORALean.ContSet.SetUnion.Theorems.PlusOuter
 
 /-!
 # `Polygon.plus` is the Minkowski sum

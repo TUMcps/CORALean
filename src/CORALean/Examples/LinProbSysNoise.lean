@@ -1,4 +1,6 @@
-import CORALean.ContDynamics.LinProbSys.API
+import CORALean.ContDynamics.LinProbSys.Theorems.PostCov
+import CORALean.ContDynamics.LinProbSys.Operations.InitReachCov
+import CORALean.ContDynamics.LinProbSys.Theorems.InitReachCovLt
 import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
 
 /-!

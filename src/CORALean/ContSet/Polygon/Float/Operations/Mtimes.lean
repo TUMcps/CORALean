@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Float.Polygon
+import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
 
 /-!
 # `Polygon.mtimes`, over a floating-point scalar

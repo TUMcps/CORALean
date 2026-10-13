@@ -1,8 +1,7 @@
-import CORALean.ContDynamics.NonlinDASys.API
+import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloatChecked
 import CORALean.ContDynamics.NonlinDASys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
-import CORALean.Global.Float.Instances.Dyadic.API
 import CORALean.ContSet.Zonotope.Float.Instances
 
 /-!

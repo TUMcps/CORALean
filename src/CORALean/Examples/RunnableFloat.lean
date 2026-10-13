@@ -1,4 +1,5 @@
 import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+import CORALean.ContSet.Zonotope.Float.Operations.CartProd
 import CORALean.ContDynamics.LinearARX.Operations.InputMat
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
@@ -143,7 +144,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.And
 import CORALean.ContSet.Polygon.Float.Operations.And
 import CORALean.ContSet.Polygon.Float.Operations.MinkDiff
 import CORALean.ContSet.Polygon.Float.Operations.Subtract
-import CORALean.ContSet.SetIntersection.API
+import CORALean.ContSet.SetIntersection.Instances
 import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
 import CORALean.ContSet.Taylm.Float.Operations.Times
 import CORALean.ContSet.Taylm.Float.Operations.Plus

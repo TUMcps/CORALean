@@ -1,4 +1,6 @@
-import CORALean.Global.Float.Instances.Dyadic.API
+import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
+import CORALean.Global.Float.Instances.Dyadic.Operations.ExactMul
+import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
 
 /-!
 # Round-to-nearest at `p` bits, WITHOUT guarantees

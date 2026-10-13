@@ -1,7 +1,13 @@
 import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
 import CORALean.ContSet.ContSet.Definitions.ConvexSet
 import CORALean.ContSet.ContSet.Definitions.CompactSet
-import CORALean.ContSet.Capsule.Real.Theorems.API
+import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
+import CORALean.ContSet.Capsule.Real.Theorems.Convex
+import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
+import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
+import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
+import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
+import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
 import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!

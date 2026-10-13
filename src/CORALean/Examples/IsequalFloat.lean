@@ -1,7 +1,8 @@
-import CORALean.ContSet.Equality.Float.API
+import CORALean.ContSet.Equality.Float.Instances
+import CORALean.ContSet.Equality.Float.Theorems.NeBoolOfConstructNe
+import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.Global.Float.Instances.Dyadic.API
 
 /-!
 # Equality of float sets, certified

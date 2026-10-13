@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.Composition
 
 /-!
 # A support witness propagated along the steps

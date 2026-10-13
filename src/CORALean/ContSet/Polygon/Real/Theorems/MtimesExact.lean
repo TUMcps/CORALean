@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Operations.Mtimes
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.mtimes` is the image

@@ -1,6 +1,7 @@
 import CORALean.ContSet.Polygon.Real.Operations.Interval
 import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
 import CORALean.ContSet.Interval.Real.Theorems.OrOuter
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.interval` holds the polygon

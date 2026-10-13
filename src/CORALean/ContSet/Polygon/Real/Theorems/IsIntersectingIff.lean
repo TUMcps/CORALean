@@ -1,5 +1,6 @@
 import CORALean.ContSet.Polygon.Real.Operations.IsIntersecting
 import CORALean.ContSet.VPolytope.Real.Theorems.InterNonemptyIff
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.isIntersecting` is region intersection

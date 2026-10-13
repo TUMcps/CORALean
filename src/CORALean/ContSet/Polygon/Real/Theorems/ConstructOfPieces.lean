@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Operations.OfPieces
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.ofPieces` denotes the union

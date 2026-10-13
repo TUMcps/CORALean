@@ -1,4 +1,6 @@
 import CORALean.ContSet.Polygon.Float.Polygon
+import CORALean.ContSet.SetUnion.Operations.Plus
+import CORALean.ContSet.VPolytope.Float.Instances
 
 /-!
 # `Polygon.plus`, over a floating-point scalar

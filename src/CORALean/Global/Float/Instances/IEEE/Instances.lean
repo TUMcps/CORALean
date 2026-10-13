@@ -1,8 +1,16 @@
 import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
 import CORALean.Global.Float.ToRat
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
-import CORALean.Global.Float.Instances.IEEE.Operations.API
-import CORALean.Global.Float.Instances.IEEE.Theorems.API
+import CORALean.Global.Float.Instances.IEEE.Theorems.AddDownLeAdd
+import CORALean.Global.Float.Instances.IEEE.Theorems.AddLeAddUp
+import CORALean.Global.Float.Instances.IEEE.Theorems.DivDownLeDiv
+import CORALean.Global.Float.Instances.IEEE.Theorems.DivLeDivUp
+import CORALean.Global.Float.Instances.IEEE.Theorems.MulDownLeMul
+import CORALean.Global.Float.Instances.IEEE.Theorems.MulLeMulUp
+import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealHalf
+import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMaximum
+import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMinimum
+import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealNeg
 
 /-!
 # `IEEE fmt` as a sound float model

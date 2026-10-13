@@ -4,8 +4,9 @@ import CORALean.Examples.Bench.GitInfo
 import CORALean.Examples.Bench.MnistNetwork
 import CORALean.Examples.Bench.NumberType
 import CORALean.Examples.Bench.Timing
-import CORALean.Global.Float.Instances.Binary64.API
-import CORALean.Global.Float.Instances.Dyadic.API
+import CORALean.ContSet.Interval.Float.Interval
+import CORALean.Examples.Bench.MnistParse
+import CORALean.Examples.Bench.Rational
 
 /-!
 # `lake exe bench nn-mnist --net small|medium|large --type dyadic|float [...]`

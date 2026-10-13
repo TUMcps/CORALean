@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetImageInputSolution
-import CORALean.Global.LinProg.API
+import CORALean.Global.LinProg.Composition
 
 /-!
 # A support bound at the end of a step, not over the whole of it

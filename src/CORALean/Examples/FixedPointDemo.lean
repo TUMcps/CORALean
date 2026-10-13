@@ -1,5 +1,5 @@
 import CORALean.ContSet.Interval.Float.Operations.Plus
-import CORALean.Global.Float.Instances.FixedPoint.API
+import CORALean.Global.Float.Instances.FixedPoint.Instances
 
 /-!
 # `FixedPoint`, run: a decimal enclosure of a repeating fraction

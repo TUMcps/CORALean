@@ -1,4 +1,5 @@
-import CORALean.ContSet.Polygon.Real.Theorems.API
+import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
+import CORALean.ContSet.Polygon.Real.Theorems.LinCombOuter
 import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!

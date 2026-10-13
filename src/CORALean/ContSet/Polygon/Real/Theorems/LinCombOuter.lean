@@ -1,4 +1,5 @@
 import CORALean.ContSet.Polygon.Real.Operations.LinComb
+import CORALean.ContSet.VPolytope.Real.Instances
 
 /-!
 # `Polygon.linComb` encloses the segments
