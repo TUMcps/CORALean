@@ -1103,6 +1103,119 @@ END { if (n > 0 && other == 0) print prev ": holds only `import Mathlib.*` lines
 ' $files)"
 report "$(printf '%s' "$out" | sed '/^$/d')"
 
+# The float layer names its types as the exact layer does, the layer being the
+# namespace: `Float.Zonotope (Vec 𝕋 n)` beside `Real.Zonotope (Vec ℝ n)`, never a
+# `GZonotope` with a `Zonotope 𝕋 n` abbreviation in front of it, nor a
+# `StarSetFloat` beside `StarSet`. Four rules, from the declarations alone:
+#   (1) no `structure`/`inductive`/`class`/`abbrev` named `G<Name>` where
+#       `<Name>` is a type the Real layer declares (a `Real/` folder or a
+#       `...Real` namespace);
+#   (2) no type `<Name>Float` where `<Name>` is a declared type — the namespace
+#       says the layer — but for the twins on FLOAT_SUFFIX_PENDING;
+#   (3) a representation `ContSet/<S>/` with both `Real/<S>.lean` and
+#       `Float/<S>.lean` declares the same main type in both, the first type
+#       after the MAIN TYPE banner;
+#   (4) no `abbrev` under `Float/` that aliases a representation at `Vec`, a
+#       right-hand side starting with the type (or a `G` of it) and holding `(Vec`.
+#
+# Algorithm-state twins written before the rule, one qualified name per line.
+# The list only shrinks: an entry no longer declared is reported as stale.
+FLOAT_SUFFIX_PENDING="
+LinearARX.GOFloat
+LinearSys.AutoStateFloat
+LinearSys.ManualStateFloat
+LinearSys.MaxBackReachStateFloat
+LinearSys.VerifyIterFloat
+LinearSys.VerifySoundFloat
+LinearSysDT.GOFloat
+LinearSysDT.ObserveIntervalStateFloat
+LinearSysDT.ObserveStripOptionsFloat
+NonlinParamSys.LinearizedFloat
+NonlinearSysDT.GOFloat
+"
+out=$(awk -v LIST="$list" \
+  -v PENDING="$(printf '%s' "$FLOAT_SUFFIX_PENDING" | tr '\n' ' ')" '
+BEGIN {
+  while ((getline f < LIST) > 0) if (f != "") ARGV[ARGC++] = f
+  n = split(PENDING, pl, " ")
+  for (i = 1; i <= n; i++) if (pl[i] != "") pending[pl[i]] = 1
+  DECL = "^(@\\[[^]]*\\][ \t]*)?((private|protected|noncomputable|scoped|partial|unsafe)[ \t]+)*" \
+         "(structure|inductive|class|abbrev)[ \t]+"
+}
+function lastOf(s,   b) { b = s; sub(/^.*\./, "", b); return b }
+FNR == 1 {
+  inb = 0; nst = 0; banner = 0
+  fileReal = (FILENAME ~ /\/Real\//)
+  if (match(FILENAME, /\/ContSet\/[^\/]+\/(Real|Float)\/[^\/]+\.lean$/)) {
+    seg = substr(FILENAME, RSTART + 9, RLENGTH - 9)   # <S>/<Layer>/<file>.lean
+    split(seg, sp, "/"); rep = sp[1]; layer = sp[2]; fb = sp[3]; sub(/\.lean$/, "", fb)
+    isMain = (fb == rep)
+  } else { isMain = 0 }
+}
+{
+  s = $0
+  if (inb) { if (s ~ /-\//) inb = 0; next }
+  if (s ~ /^[ \t]*\/-/ && s !~ /-\//) { inb = 1; next }
+  if (s ~ /MAIN TYPE/) banner = 1
+  if (s ~ /^namespace[ \t]/) { st[++nst] = $2; next }
+  if (s ~ /^section([ \t]|$)/) { st[++nst] = "§"; next }
+  if (s ~ /^end([ \t]|$)/) { if (nst > 0) nst--; next }
+  if (s !~ DECL) next
+  sub(DECL, "", s); name = s; sub(/[ \t:({\[].*$/, "", name)
+  if (name == "") next
+  full = name
+  for (i = nst; i >= 1; i--) if (st[i] != "§") full = st[i] "." full
+  base = lastOf(name)
+  real = fileReal || ("." full ".") ~ /\.Real\./
+  nd++; dName[nd] = name; dBase[nd] = base; dLoc[nd] = FILENAME ":" FNR
+  declared[base] = 1
+  if (real) realType[base] = 1
+  if (isMain && banner && !((FILENAME) in mainOf)) {
+    mainOf[FILENAME] = base; mainLoc[FILENAME] = FNR; mainKey[rep, layer] = FILENAME
+  }
+  # (4) a `Float/` abbreviation of a representation at `Vec`
+  if ($0 ~ /^abbrev/ && FILENAME ~ /\/Float\// && index($0, ":=") > 0) {
+    rhs = substr($0, index($0, ":=") + 2); sub(/^[ \t]+/, "", rhs)
+    head = rhs; sub(/[ \t(].*$/, "", head); head = lastOf(head)
+    if (rhs ~ /\(Vec[ \t]/) { nab++; abHead[nab] = head; abLoc[nab] = FILENAME ":" FNR; abName[nab] = name }
+  }
+}
+END {
+  # the representations: the main types of `ContSet/<S>/Real/<S>.lean`
+  for (k in mainKey) { split(k, kp, SUBSEP); if (kp[2] == "Real") repType[mainOf[mainKey[k]]] = 1 }
+  for (i = 1; i <= nd; i++) {
+    b = dBase[i]
+    if (b ~ /^G[A-Z]/ && (substr(b, 2) in realType))
+      print dLoc[i] ": `" dName[i] "` — the float layer names this type `" substr(b, 2) \
+            "`, as the Real layer does (rule 1, no `G` prefix)"
+    if (b ~ /.Float$/ && (substr(b, 1, length(b) - 5) in declared)) {
+      if (dName[i] in pending) { seen[dName[i]] = 1; continue }
+      print dLoc[i] ": `" dName[i] "` — a float twin of `" substr(b, 1, length(b) - 5) \
+            "` takes its name and the `Float` namespace, not a `Float` suffix (rule 2)"
+    }
+  }
+  for (k in mainKey) {
+    split(k, kp, SUBSEP)
+    if (kp[2] != "Float" || !((kp[1], "Real") in mainKey)) continue
+    ff = mainKey[k]; rf = mainKey[kp[1], "Real"]
+    if (mainOf[ff] != mainOf[rf])
+      print ff ":" mainLoc[ff] ": the main type is `" mainOf[ff] "` but " rf " declares `" \
+            mainOf[rf] "` — the two layers of a representation share its name (rule 3)"
+  }
+  for (i = 1; i <= nab; i++) {
+    h = abHead[i]
+    if ((h in repType) || (h ~ /^G[A-Z]/ && (substr(h, 2) in repType)))
+      print abLoc[i] ": `abbrev " abName[i] "` aliases `" h "` at `Vec` — write `" \
+            (h ~ /^G[A-Z]/ ? substr(h, 2) : h) " (Vec 𝕋 n)` at the use instead (rule 4)"
+  }
+  for (p in pending)
+    if (!(p in seen))
+      print "scripts/check-conventions.sh: `" p "` is on FLOAT_SUFFIX_PENDING but no such" \
+            " type is declared any more — drop it from the list"
+}
+' | sort)
+report "$out"
+
 # No file may import the same module twice: union merges of merge trains leave
 # repeated `import` lines in the collector files.
 out=$(awk '

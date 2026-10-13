@@ -28,23 +28,23 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.origin_exact (n : ℕ) :
-    (VPolytope.origin n : VPolytope 𝕋 n).construct = {0} := by -- --- PROOF ---
+    (VPolytope.origin n : VPolytope (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
   -- the stored zero reads as ℝ's
-  have h : InflatedContSet.nominal (VPolytope.origin n : VPolytope 𝕋 n)
+  have h : InflatedContSet.nominal (VPolytope.origin n : VPolytope (Vec 𝕋 n))
       = Real.VPolytope.point (0 : Vec ℝ n) := by
     rw [VPolytope.nominal_eq]
     show (⟨1, fun _ i => toReal (zero : 𝕋)⟩ : Real.VPolytope (Vec ℝ n)) = ⟨1, fun _ => 0⟩
     congr 1
     funext l i
     exact toReal_zero
-  have hN : InflatedContSet.nominalSet (VPolytope.origin n : VPolytope 𝕋 n) = {0} := by
+  have hN : InflatedContSet.nominalSet (VPolytope.origin n : VPolytope (Vec 𝕋 n)) = {0} := by
     unfold InflatedContSet.nominalSet
     rw [h]
     exact Real.VPolytope.construct_point 0
-  have hE : (VPolytope.origin n : VPolytope 𝕋 n).E.construct = {0} :=
+  have hE : (VPolytope.origin n : VPolytope (Vec 𝕋 n)).E.construct = {0} :=
     Interval.origin_exact n
-  show InflatedContSet.nominalSet (VPolytope.origin n : VPolytope 𝕋 n)
-      + (VPolytope.origin n : VPolytope 𝕋 n).E.construct = _
+  show InflatedContSet.nominalSet (VPolytope.origin n : VPolytope (Vec 𝕋 n))
+      + (VPolytope.origin n : VPolytope (Vec 𝕋 n)).E.construct = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

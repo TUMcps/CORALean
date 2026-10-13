@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- The new independent generator as stored: the summed `ξ_E` copies of the
 relaxed generator, rounded down. -/
-def PolyZonotope.relaxGenMulti (pZ : PolyZonotope 𝕋 n)
+def PolyZonotope.relaxGenMulti (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : Vec 𝕋 n :=
   fun i => nsmulDown (pZ.relaxWidthMulti part) (pZ.G (part.right 0) i)
 

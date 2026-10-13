@@ -28,7 +28,7 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Interval.polyZonotope (I : Interval (Vec 𝕋 n)) : PolyZonotope 𝕋 n where
+def Interval.polyZonotope (I : Interval (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := 0
   h := 0
   q := 0

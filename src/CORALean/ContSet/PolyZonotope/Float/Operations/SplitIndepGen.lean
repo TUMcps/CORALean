@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two halves of `pZ` along its independent generator `j`. -/
-def PolyZonotope.splitIndepGen (pZ : PolyZonotope 𝕋 n) (j : Fin pZ.q) :
-    PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
+def PolyZonotope.splitIndepGen (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ.q) :
+    PolyZonotope (Vec 𝕋 n) × PolyZonotope (Vec 𝕋 n) :=
   -- GI(:,ind) = 0.5*GI(:,ind)
   let g : Vec 𝕋 n := fun i => half (pZ.GI j i)
   let GI' : Fin pZ.q → Vec 𝕋 n := Function.update pZ.GI j g

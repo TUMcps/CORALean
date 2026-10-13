@@ -32,7 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- `mtimesIntervalMat` keeps `0` in the error box, given the operand has it and `IM` holds a
 matrix `A`. -/
-theorem Zonotope.zero_mem_mtimesIntervalMat_error {IM : Interval (Mat 𝕋 m n)} {Z : Zonotope 𝕋 n}
+theorem Zonotope.zero_mem_mtimesIntervalMat_error {IM : Interval (Mat 𝕋 m n)}
+    {Z : Zonotope (Vec 𝕋 n)}
     {A : Mat ℝ m n} (hA : A ∈ IM.construct) (h : (0 : Vec ℝ n) ∈ Z.E.construct) :
     (0 : Vec ℝ m) ∈ (Zonotope.mtimesIntervalMat IM Z).E.construct := by -- --- PROOF ---
   set C := Interval.centreMat IM

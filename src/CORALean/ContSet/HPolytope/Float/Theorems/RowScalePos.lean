@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.rowScale_pos (p : ℕ) (P : HPolytope 𝕋 n) (i : Fin P.m) :
+theorem HPolytope.rowScale_pos (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.m) :
     0 < toReal (P.rowScale p i) := by -- --- PROOF ---
   by_cases h : ltStrict zero (normUp p (P.A i)) = true
   · simp only [HPolytope.rowScale, h, if_true]

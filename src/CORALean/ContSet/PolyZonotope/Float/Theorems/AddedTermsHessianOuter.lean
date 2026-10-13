@@ -33,12 +33,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.addedTermsHessian_outer (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.addedTermsHessian_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (A : Interval (Vec 𝕋 pZ.p)) (L : Interval (Vec 𝕋 n)) {a : Vec ℝ pZ.p} {l : Vec ℝ n}
     (ha : a ∈ A.construct) (hl : l ∈ L.construct) (j k : Fin pZ.p) :
     toReal (pZ.addedTermsHessian A L j k).inf
-        ≤ Real.PolyZonotope.addedTermsHessian (GPolyZonotope.nominal pZ) a l j k
-    ∧ Real.PolyZonotope.addedTermsHessian (GPolyZonotope.nominal pZ) a l j k
+        ≤ Real.PolyZonotope.addedTermsHessian (PolyZonotope.nominal pZ) a l j k
+    ∧ Real.PolyZonotope.addedTermsHessian (PolyZonotope.nominal pZ) a l j k
         ≤ toReal (pZ.addedTermsHessian A L j k).sup := by -- --- PROOF ---
   -- the stored generators read as the exact ones
   have hG := (PolyZonotope.addedTerms_nominal pZ).1
@@ -48,7 +48,7 @@ theorem PolyZonotope.addedTermsHessian_outer (pZ : PolyZonotope 𝕋 n)
     exact ⟨(a, l), ⟨ha, hl⟩, rfl⟩
   -- the sum, its exact counterpart, and the two lowered exponent matrices
   set T := pZ.addedTerms
-  set R := Real.PolyZonotope.addedTerms (GPolyZonotope.nominal pZ) with hR
+  set R := Real.PolyZonotope.addedTerms (PolyZonotope.nominal pZ) with hR
   have hE : T.E = R.E := (PolyZonotope.addedTerms_nominal pZ).2.1
   let kk : Fin T.p := Fin.castAdd n k
   let jj : Fin T.p := Fin.castAdd n j
@@ -62,7 +62,7 @@ theorem PolyZonotope.addedTermsHessian_outer (pZ : PolyZonotope 𝕋 n)
     Interval.mem_mat_iff.mpr fun i l => ⟨nsmulDown_le _ _, le_nsmulUp _ _⟩
   have h := Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hC ⟨_, hm, rfl⟩) 0
   -- the exact entry is that product, coordinate `0`
-  have e : Real.PolyZonotope.addedTermsHessian (GPolyZonotope.nominal pZ) a l j k
+  have e : Real.PolyZonotope.addedTermsHessian (PolyZonotope.nominal pZ) a l j k
       = Matrix.mulVec (fun (_ : Fin 1) i => ((E1 jj i * T.E kk i : ℕ) : ℝ) * toReal (T.G i 0))
         (fun l' => Real.PolyZonotope.monomial E2 (Fin.append a l) l') 0 := by
     simp only [Real.PolyZonotope.addedTermsHessian, Matrix.of_apply, Real.PolyZonotope.point,

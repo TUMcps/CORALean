@@ -31,9 +31,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.indepFactors_point_mem (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.indepFactors_point_mem (pZ : PolyZonotope (Vec 𝕋 n))
     {a : Fin (pZ.p + pZ.q) → ℝ} (ha : ∀ k, |a k| ≤ 1) :
-    (GPolyZonotope.nominal pZ.indepFactors).point a ∈
+    (PolyZonotope.nominal pZ.indepFactors).point a ∈
       InflatedContSet.nominalSet pZ := by -- --- PROOF ---
   refine PolyZonotope.mem_nominalSet_iff.mpr ⟨fun k => a (Fin.castAdd pZ.q k),
     fun j => a (Fin.natAdd pZ.p j), fun k => ha _, fun j => ha _, fun i => ?_⟩

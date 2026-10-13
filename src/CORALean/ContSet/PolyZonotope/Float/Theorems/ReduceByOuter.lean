@@ -36,7 +36,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
-theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope (Vec 𝕋 n)}
     {partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)}
     {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (pZ.reduceBy partD partI).q, f j
@@ -47,14 +47,14 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- The dependent count needs no splitting, only its binder read back at `d`:
 `ring` treats a sum over `Fin (pZ.reduceBy partD partI).h` and one over `Fin d`
 as two atoms, defeq or not. -/
-theorem PolyZonotope.aux_sum_univ_reduceBy_h {pZ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_reduceBy_h {pZ : PolyZonotope (Vec 𝕋 n)}
     {partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)}
     {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (pZ.reduceBy partD partI).h, f l = ∑ l, f l :=
   rfl
 
 -- the dropped columns become one diagonal block, at the coefficient that reaches them
-theorem PolyZonotope.aux_reduceBy_nominal (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.aux_reduceBy_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) :
     nominalSet pZ ⊆ nominalSet (pZ.reduceBy partD partI) := by -- --- PROOF ---
@@ -93,7 +93,7 @@ theorem PolyZonotope.aux_reduceBy_nominal (pZ : PolyZonotope 𝕋 n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.reduceBy_outer (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.reduceBy_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) :
     pZ.construct ⊆ (pZ.reduceBy partD partI).construct :=

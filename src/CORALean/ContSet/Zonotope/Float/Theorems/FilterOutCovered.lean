@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.filterOut_covered (Zs : Fin m → Zonotope 𝕋 n) (ind : Fin m)
+theorem Zonotope.filterOut_covered (Zs : Fin m → Zonotope (Vec 𝕋 n)) (ind : Fin m)
     (hout : ind ∉ Zonotope.filterOut Zs) :
     ∃ j, j ≠ ind ∧ (Zs ind).construct ⊆ (Zs j).construct := by -- --- PROOF ---
   -- unfold the filter: some other cell passes the containment certificate

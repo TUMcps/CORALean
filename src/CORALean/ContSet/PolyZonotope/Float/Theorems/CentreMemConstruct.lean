@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.centre_mem_construct (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.centre_mem_construct (pZ : PolyZonotope (Vec 𝕋 n))
     (hE : Real.ConPolyZono.NoZeroCol pZ.E)
     (h0 : ∀ i, toReal (pZ.err.inf i) ≤ 0 ∧ 0 ≤ toReal (pZ.err.sup i)) :
     toRealVec pZ.centre ∈ pZ.construct := by

@@ -17,7 +17,7 @@ plus `Σ G_jk (α_k - mid_k)`, and each factor is within its radius of the middl
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open ContSet
 
@@ -54,7 +54,7 @@ theorem StarSet.rowBounds_mem {n : ℕ} (s : StarSet n) (j : Fin n) {x : Vec ℝ
   simp only [StarSet.rowBounds]
   constructor <;> linarith [h.1, h.2]
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

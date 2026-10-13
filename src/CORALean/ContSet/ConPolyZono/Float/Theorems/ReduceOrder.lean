@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.reduce_order_le (cPZ : ConPolyZono 𝕋 n) {o : ℕ} (ho : 0 < o) :
+theorem ConPolyZono.reduce_order_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {o : ℕ} (ho : 0 < o) :
     (cPZ.reduce o).h + (cPZ.reduce o).q ≤ o * n :=
   ConPolyZono.reduceGirard_order_le cPZ.compact ho
 

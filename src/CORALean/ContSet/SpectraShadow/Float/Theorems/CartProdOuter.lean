@@ -28,7 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.cartProd_outer (S : SpectraShadow 𝕋 n) (T : SpectraShadow 𝕋 m) :
+theorem SpectraShadow.cartProd_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n))
+    (T : SpectraShadow 𝕋 (Vec 𝕋 m)) :
     (fun p : Vec ℝ n × Vec ℝ m => (Fin.append p.1 p.2 : Vec ℝ (n + m)))
       '' (S.construct ×ˢ T.construct) ⊆ (S.cartProd T).construct := by -- --- PROOF ---
   rintro _ ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩

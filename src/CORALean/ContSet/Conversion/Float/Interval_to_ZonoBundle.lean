@@ -20,7 +20,7 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Interval.zonoBundle (I : Interval (Vec 𝕋 n)) : ZonoBundle 𝕋 n := I.zonotope.zonoBundle
+def Interval.zonoBundle (I : Interval (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) := I.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

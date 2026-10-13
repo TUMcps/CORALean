@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.reduceGirardDependent_outer (pZ : PolyZonotope 𝕋 n) (o : ℕ) :
+theorem PolyZonotope.reduceGirardDependent_outer (pZ : PolyZonotope (Vec 𝕋 n)) (o : ℕ) :
     pZ.construct ⊆ (pZ.reduceGirardDependent o).construct := by
   unfold PolyZonotope.reduceGirardDependent
   split_ifs with hlt

@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.isFullDim (P : HPolytope 𝕋 n) (x₀ : Vec 𝕋 n) : Bool :=
+def HPolytope.isFullDim (P : HPolytope 𝕋 (Vec 𝕋 n)) (x₀ : Vec 𝕋 n) : Bool :=
   (List.finRange P.m).all (fun i => ltStrict (dotUp (P.A i) x₀) (P.b i))
     && (List.finRange P.me).all fun i =>
       ltStrict (P.be.inf i) (dotDown (P.Ae i) x₀) && ltStrict (dotUp (P.Ae i) x₀) (P.be.sup i)

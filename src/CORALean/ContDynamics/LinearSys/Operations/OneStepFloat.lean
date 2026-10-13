@@ -42,16 +42,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- CORA's `oneStep`, one block, in floats: the time-point set `Rtp` and the time-interval set
 `Rti` of the step `Δt`, from `X`, under the constant input `u` and the inputs in `U`, at Taylor
 order `η`. -/
-def LinearSys.oneStepFloat (sys : LinearSys 𝕋 n) (X U : Zonotope 𝕋 n) (u : Vec 𝕋 n) (Δt : 𝕋)
-    (η : ℕ) : Zonotope 𝕋 n × Zonotope 𝕋 n :=
+def LinearSys.oneStepFloat (sys : LinearSys 𝕋 n) (X U : Zonotope (Vec 𝕋 n)) (u : Vec 𝕋 n) (Δt : 𝕋)
+    (η : ℕ) : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
   let A := Interval.point sys.A                                           -- [A, A]
   let PU := sys.inputSolutionFloat Δt η U                                 -- time-varying input
   let Pu := sys.inputSolutionFloat Δt η (Zonotope.point u)                -- constant input
-  let C_input := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))    -- `[G] u`
+  let C_input := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- `[G] u`
+    (S := fun k => Zonotope (Vec 𝕋 k))
     (MatExp.intervalConstCorrectionMatrix A Δt η) (Zonotope.point u)
-  let Htp := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))        -- `[e^{AΔt}] X ⊕ Pu`
+  let Htp := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- `[e^{AΔt}] X ⊕ Pu`
+    (S := fun k => Zonotope (Vec 𝕋 k))
     (sys.expIntervalFloat Δt Δt η) X ⊞ Pu
-  let C_state := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))    -- `[F] X`
+  let C_state := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- `[F] X`
+    (S := fun k => Zonotope (Vec 𝕋 k))
     (MatExp.intervalCorrectionMatrix A Δt η) X
   let Hti := LinComb.linComb X Htp ⊞ C_state                              -- `CH(X, Htp) ⊕ C_state`
   (Htp ⊞ PU, Hti ⊞ PU ⊞ C_input)                                          -- `Rtp`, `Rti`

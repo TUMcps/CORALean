@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `partZonotope(pZ, id)`: the polynomial zonotope `PZ`. -/
-def PolyZonotope.partZonotope (pZ : PolyZonotope 𝕋 n) (V : Finset (Fin pZ.p)) :
-    PolyZonotope 𝕋 n :=
+def PolyZonotope.partZonotope (pZ : PolyZonotope (Vec 𝕋 n)) (V : Finset (Fin pZ.p)) :
+    PolyZonotope (Vec 𝕋 n) :=
   -- `unique`: the distinct exponent patterns in the factors `idv`
   let pats := pZ.partPatterns V
   -- the generator's pattern is zero (group 1) or even (`sum(mod(e_vi,2))==0`)

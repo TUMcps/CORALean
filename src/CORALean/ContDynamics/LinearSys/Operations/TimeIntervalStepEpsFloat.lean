@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `timeIntervalStepFloat` at the first order whose float remainder bound is under `ε`, or
 `none` if none of the `fuel` orders from `2` is. -/
 def LinearSys.timeIntervalStepEpsFloat (sys : LinearSys 𝕋 n) (r ε : 𝕋) (fuel : ℕ)
-    (X₀ : Zonotope 𝕋 n) : Option (Zonotope 𝕋 n) := do
+    (X₀ : Zonotope (Vec 𝕋 n)) : Option (Zonotope (Vec 𝕋 n)) := do
   let nrm := MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))  -- ≥ ‖r A‖
   let η ← MatExp.tuneOrder nrm ε fuel                               -- the order for ε
   pure (sys.timeIntervalStepFloat r η X₀)                           -- the step at it

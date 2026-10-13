@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- Lines 6-15: halve `Δt` until `autoTuneOrderFloat` finds an `η`, `none` after `fuel`
 halvings without one. -/
 def LinearSys.autoTuneSearchFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
-    (H : Zonotope 𝕋 n) (ũ : Vec 𝕋 n) (tk tend εmax ζ εaAcc : ℚ) (ηmax : ℕ)
-    (U₀ : Zonotope 𝕋 n) : 𝕋 → ℕ → Option (𝕋 × ℕ)
+    (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n) (tk tend εmax ζ εaAcc : ℚ) (ηmax : ℕ)
+    (U₀ : Zonotope (Vec 𝕋 n)) : 𝕋 → ℕ → Option (𝕋 × ℕ)
   | _, 0 => none
   | Δt, k + 1 =>
     let Δt' := half Δt                                                      -- 7. Δt_k ← ½Δt_k

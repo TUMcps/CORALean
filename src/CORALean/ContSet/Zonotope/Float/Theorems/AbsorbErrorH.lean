@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.absorbError_h (Z : Zonotope 𝕋 n) : Z.absorbError.h = Z.h + n := rfl
+@[simp] theorem Zonotope.absorbError_h (Z : Zonotope (Vec 𝕋 n)) : Z.absorbError.h = Z.h + n := rfl
 
 end CORALean.Float
 

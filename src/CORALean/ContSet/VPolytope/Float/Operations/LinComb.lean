@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.linComb (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n where
+def VPolytope.linComb (P₁ P₂ : VPolytope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := P₁.k + P₂.k
   V := Fin.append P₁.V P₂.V
   E := P₁.E.linComb P₂.E

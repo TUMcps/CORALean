@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 n} (h : Z.isequal S = true) :
+theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)} (h : Z.isequal S = true) :
     Z.construct = S.construct := by -- --- PROOF ---
   unfold ConPolyZono.isequal at h
   split at h
@@ -68,8 +68,9 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 n} (h : Z.isequal S = 
       rw [hint hEi hEs]
     -- so the nominal sets are the same
     have hN : (nominal (⟨p₁, h₁, q₁, m₁, s₁, c₁, G₁, E₁, GI₁, A₁, b₁, EC₁, r₁⟩ :
-        ConPolyZono 𝕋 n)) =
-        nominal (⟨p₁, h₁, q₁, m₁, s₁, c₂, G₂, E₂, GI₂, A₂, b₂, EC₂, r₂⟩ : ConPolyZono 𝕋 n) := by
+        ConPolyZono 𝕋 (Vec 𝕋 n))) =
+        nominal (⟨p₁, h₁, q₁, m₁, s₁, c₂, G₂, E₂, GI₂, A₂, b₂, EC₂, r₂⟩ : ConPolyZono
+          𝕋 (Vec 𝕋 n)) := by
       show (⟨p₁, h₁, q₁, m₁, s₁, toRealVec c₁, fun l i => toReal (G₁ l i), E₁,
           fun j i => toReal (GI₁ j i), toRealMat A₁, b₁.nominal, EC₁⟩ :
           CORALean.Real.ConPolyZono (Vec ℝ n)) =
@@ -78,9 +79,9 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 n} (h : Z.isequal S = 
       rw [hc, hG, hGI, hE₁, hE₂, hA, hint hbi hbs]
     -- the sum of nominal set and error box, on both sides
     change ContSet.construct (nominal (⟨p₁, h₁, q₁, m₁, s₁, c₁, G₁, E₁, GI₁, A₁, b₁, EC₁, r₁⟩ :
-          ConPolyZono 𝕋 n)) + r₁.construct =
+          ConPolyZono 𝕋 (Vec 𝕋 n))) + r₁.construct =
       ContSet.construct (nominal (⟨p₁, h₁, q₁, m₁, s₁, c₂, G₂, E₂, GI₂, A₂, b₂, EC₂, r₂⟩ :
-          ConPolyZono 𝕋 n)) + r₂.construct
+          ConPolyZono 𝕋 (Vec 𝕋 n))) + r₂.construct
     rw [hN, hr]
   · simp at h
 

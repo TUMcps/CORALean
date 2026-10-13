@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.quadMapDep (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) :
-    ConZonotope 𝕋 m where
+def ConZonotope.quadMapDep (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+    ConZonotope 𝕋 (Vec 𝕋 m) where
   h := cZ.h + cZ.h + cZ.h * cZ.h
   c := ConZonotope.quadMapCDown Q cZ
   G := fun l i => ConZonotope.quadMapGDown Q cZ i l

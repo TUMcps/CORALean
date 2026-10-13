@@ -78,11 +78,11 @@ theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (V : Zonotope 𝕋 n) :
-    sys.inputReach (S := Zonotope 𝕋) V (toReal Δt)
-      ⊆ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (V : Zonotope (Vec 𝕋 n)) :
+    sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) V (toReal Δt)
+      ⊆ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
           (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V).construct
-        + (sys.inputTaylorSumTailFloat Δt V η ⊞ Mtimes.mtimes
+        + (sys.inputTaylorSumTailFloat Δt V η ⊞ Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
           (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (MatExp.intervalInputRemainder
             (Interval.point sys.A) Δt η) V).construct := by -- --- PROOF ---
   have hε : ‖toReal Δt • Scalar.toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by
@@ -103,10 +103,11 @@ theorem LinearSys.inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 
   -- order `0`'s matrix is in its float box, so its image is in the float product
   have hterm0 : (sys.inputTerm (toReal Δt) 0 *ᵥ ·) '' V.construct
       ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V) :=
     (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct)
       (MatExp.smul_pow_mem_intervalInputTerm _ hΔt.le (Interval.mem_point sys.A) 0)).trans
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := Zonotope 𝕋)
+      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V)
   -- from order `1` on, the exact sum is order `0` and the exact tail, and the float sets hold both
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 1 := ⟨η - 1, by have := hη.1; omega⟩

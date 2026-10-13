@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {
 
 /-- The activation layer of a family: one `σ`, one enclosure per pattern. -/
 def Layer.activationPolyRefinable {F : PolyRelaxationFamily 𝕋} (hF : F.Sound σ) :
-    RefinableLayer (Float.PolyZonotope 𝕋) n n where
+    RefinableLayer (fun k => Float.PolyZonotope (Vec 𝕋 k)) n n where
   eval x := fun i => σ (x i)
   enclose t := (Layer.activationPoly (F.atPattern t)).enclose
   enclose_outer t := (Layer.activationPoly_sound (F.atPattern_sound hF t)).enclose_outer

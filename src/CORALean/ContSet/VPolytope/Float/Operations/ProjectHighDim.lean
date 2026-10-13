@@ -26,7 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n N : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.projectHighDim (P : VPolytope 𝕋 n) (dims : Fin n → Fin N) : VPolytope 𝕋 N where
+def VPolytope.projectHighDim (P : VPolytope (Vec 𝕋 n)) (dims : Fin n → Fin N) :
+    VPolytope (Vec 𝕋 N) where
   k := P.k
   V := fun l j =>
     if h : ∃ k, dims k = j then P.V l (Fin.find (fun k => dims k = j) h) else zero

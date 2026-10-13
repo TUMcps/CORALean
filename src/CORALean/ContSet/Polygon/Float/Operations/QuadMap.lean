@@ -29,9 +29,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The union of the polygons of the images of the triangles. -/
 def Polygon.quadMap (P : Polygon 𝕋) (Q : Fin 2 → Mat 𝕋 2 2) (splits : ℕ)
-    (pick : ℕ → PolyZonotope 𝕋 2 → Bool) : Polygon 𝕋 :=
+    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) : Polygon 𝕋 :=
   -- `list = triangulation(pgon)`
-  let list : List (VPolytope 𝕋 2) := (Polygon.triangulation P).sets
+  let list : List (VPolytope (Vec 𝕋 2)) := (Polygon.triangulation P).sets
   -- per triangle `pZ_i_2 = quadMap(polyZonotope(polytope(list{i})), Q)`, then `polygon(pZ_i_2)`
   ⟨list.flatMap fun t => ((PolyZonotope.quadMap Q t.polyZonotope).polygon splits pick).sets⟩
 

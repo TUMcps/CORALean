@@ -34,10 +34,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Lines 4-31: up to `K` iterations from `s` while `t_k < t_end`, the state reached and the
 windows `(t_k, t_{k+1}, R̂(τ_k))` of the iterations that ran. -/
-def LinearSys.autoRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋 n) (tend : 𝕋)
+def LinearSys.autoRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (tend : 𝕋)
     (εmax ζ : ℚ) (ηmax fuel : ℕ) :
     ℕ → LinearSys.AutoStateFloat 𝕋 n →
-      Option (LinearSys.AutoStateFloat 𝕋 n × List (ℚ × ℚ × Zonotope 𝕋 n))
+      Option (LinearSys.AutoStateFloat 𝕋 n × List (ℚ × ℚ × Zonotope (Vec 𝕋 n)))
   | 0, s => some (s, [])
   | K + 1, s =>
     if ToRat.toRat tend ≤ s.t then some (s, [])                         -- 4. until t_k ≥ t_end

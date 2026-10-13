@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `pZ` without the `removed` dependent generators, and the box of those and of the `taken`
 independent ones appended to the independent block. -/
-def PolyZonotope.boxOut (pZ : PolyZonotope 𝕋 n) (removed : Fin pZ.h → Bool)
-    (taken : Fin pZ.q → Bool) : PolyZonotope 𝕋 n where
+def PolyZonotope.boxOut (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h → Bool)
+    (taken : Fin pZ.q → Bool) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := (Finset.univ.filter fun l => removed l = false).card
   q := pZ.q + n

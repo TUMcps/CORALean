@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.project_outer (cZ : ConZonotope 𝕋 n) (dims : Fin m → Fin n) :
+theorem ConZonotope.project_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (dims : Fin m → Fin n) :
     (fun x k => x (dims k)) '' cZ.construct ⊆ (cZ.project dims).construct :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.ConZonotope.project_exact (nominal cZ) dims))

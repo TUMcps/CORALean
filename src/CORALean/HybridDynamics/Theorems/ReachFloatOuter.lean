@@ -56,10 +56,11 @@ theorem aux_mapM_some {α β : Type} {f : α → Option β} :
 most `K` jumps and lasting at most `tFinal`, ends in a computed set of its final location;
 at `reachSet` this is `reachSet_subset_reachFloat`. -/
 theorem HybridAutomaton.reachFloat_outer
-    (HA : HybridAutomaton (Zonotope 𝕋) (HPolytope 𝕋) L 𝕋 n) {tFinal : ℚ}
+    (HA : HybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
+    n) {tFinal : ℚ}
     {options : LinearSys.ReachOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
     (run : HA.RunUntil T k ℓ x ℓ' y) (hT : T ≤ tFinal) {K : ℕ} (hk : k ≤ K)
-    {X₀ : Zonotope 𝕋 n} (hx : x ∈ construct X₀) {out : List (L × Zonotope 𝕋 n)}
+    {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ construct X₀) {out : List (L × Zonotope (Vec 𝕋 n))}
     (h : HA.reachFloat tFinal options K ℓ X₀ = some out) :
     ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ construct p.2 := by -- --- PROOF ---
   induction run generalizing K X₀ out with

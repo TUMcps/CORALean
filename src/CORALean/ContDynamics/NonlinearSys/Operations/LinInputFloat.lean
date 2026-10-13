@@ -37,12 +37,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- `[f(x✱, u✱)] ⊕ B(U - u✱) ⊕ L` at `u✱ = U.c`, with `L` over the boxes `X`
 and `U'`. -/
 def NonlinearSys.FloatModel.linInputFloat (fm : NonlinearSys.FloatModel 𝕋 n m) (A : Mat 𝕋 n n)
-    (B : Mat 𝕋 n m) (xs : Vec 𝕋 n) (X : Interval (Vec 𝕋 n)) (U : Zonotope 𝕋 m)
-    (U' : Interval (Vec 𝕋 m)) : Zonotope 𝕋 n :=
+    (B : Mat 𝕋 n m) (xs : Vec 𝕋 n) (X : Interval (Vec 𝕋 n)) (U : Zonotope (Vec 𝕋 m))
+    (U' : Interval (Vec 𝕋 m)) : Zonotope (Vec 𝕋 n) :=
   let us := U.c                                                     -- u✱
   let f₀ := fm.f (Interval.point xs) (Interval.point us)            -- [f(x✱, u✱)]
   let L := fm.slopeRemainder A B xs us X U'                         -- L, the abstraction error
-  (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) B (Recentre.recentre U)) ⊞ L.zonotope
+  (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
+    (Recentre.recentre U)) ⊞ L.zonotope
 
 end CORALean
 

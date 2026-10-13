@@ -22,8 +22,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.rescaleStep (cen rad : ℕ → 𝕋) (acc : ConPolyZono 𝕋 n) (r : ℕ) :
-    ConPolyZono 𝕋 n :=
+def ConPolyZono.rescaleStep (cen rad : ℕ → 𝕋) (acc : ConPolyZono 𝕋 (Vec 𝕋 n)) (r : ℕ) :
+    ConPolyZono 𝕋 (Vec 𝕋 n) :=
   if h : r < acc.p then acc.getSubset ⟨r, h⟩ (cen r) (rad r) else acc
 
 end CORALean.Float

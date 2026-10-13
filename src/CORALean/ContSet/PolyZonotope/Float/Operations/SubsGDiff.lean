@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.subsGDiff (pZ : PolyZonotope 𝕋 n) {nu : ℕ} (pZin : PolyZonotope 𝕋 nu)
+def PolyZonotope.subsGDiff (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ} (pZin : PolyZonotope (Vec 𝕋 nu))
     (idu : Fin nu → Fin pZ.p) : Mat 𝕋 n (pZ.subsTerms pZin idu).length := fun r l =>
   let t := (pZ.subsTerms pZin idu).get l
   subUp (Interval.mulHi t.2.1.1 t.2.1.2 (pZ.G t.1 r) (pZ.G t.1 r)) (pZ.subsGDown pZin idu r l)

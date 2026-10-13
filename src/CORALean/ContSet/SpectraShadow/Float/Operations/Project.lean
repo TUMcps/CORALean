@@ -24,7 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.project (S : SpectraShadow 𝕋 n) (dims : Fin m → Fin n) : SpectraShadow 𝕋 m where
+def SpectraShadow.project (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (dims : Fin m → Fin n) : SpectraShadow
+    𝕋 (Vec 𝕋 m) where
   k := S.k
   m := S.m
   A₀ := S.A₀

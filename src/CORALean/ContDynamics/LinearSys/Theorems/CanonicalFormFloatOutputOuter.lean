@@ -37,7 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m q r s : 
 
 theorem LinearSys.canonicalFormFloat_output_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
     (c : Vec 𝕋 n) (out : OutputEq 𝕋 n m r) (k : Vec 𝕋 r) (E : Mat 𝕋 n q) (F : Mat 𝕋 r s)
-    (U : Zonotope 𝕋 m) (uVec : Vec 𝕋 m) (W : Zonotope 𝕋 q) (V : Zonotope 𝕋 s) (vVec : Vec 𝕋 s)
+    (U : Zonotope (Vec 𝕋 m)) (uVec : Vec 𝕋 m) (W : Zonotope (Vec 𝕋 q)) (V : Zonotope (Vec 𝕋 s))
+    (vVec : Vec 𝕋 s)
     {u : Vec ℝ m} (hu : u ∈ U.construct) {v : Vec ℝ s} (hv : v ∈ V.construct) :
     let G := sys.canonicalFormFloat B c out k E F U uVec W V vVec
     toRealMat out.D *ᵥ (toRealVec uVec + u) + toRealVec k + toRealMat F *ᵥ (toRealVec vVec + v) ∈

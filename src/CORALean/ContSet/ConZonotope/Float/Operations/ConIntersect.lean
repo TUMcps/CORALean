@@ -37,8 +37,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.conIntersect (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : ConZonotope 𝕋 m) (M : Mat 𝕋 m n) :
-    ConZonotope 𝕋 n :=
+def ConZonotope.conIntersect (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n)) (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 m))
+    (M : Mat 𝕋 m n) :
+    ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- M (c₁ + G₁ β₁ + e₁): centre and generators rounded down, the rest in a box
   let W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, cZ₁.G, cZ₁.E⟩
   -- Z = [c₁, G₁, zeros(size(G₂))]

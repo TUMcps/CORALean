@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.padLeft (P : HPolytope 𝕋 n₁) (n₂ : ℕ) : HPolytope 𝕋 (n₁ + n₂) where
+def HPolytope.padLeft (P : HPolytope 𝕋 (Vec 𝕋 n₁)) (n₂ : ℕ) : HPolytope 𝕋 (Vec 𝕋 (n₁ + n₂)) where
   m := P.m
   A := fun i => Fin.append (P.A i) fun _ => FloatOps.zero
   b := P.b

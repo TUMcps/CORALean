@@ -9,7 +9,7 @@ Appending the two families intersects what each bundle denoted:
 inside their own `construct`, so the argument is the exact layer's unchanged —
 this is the one operation here that loses nothing over floats either.
 
-`Instances` is what turns it into the `Intersection (ZonoBundle 𝕋 n) (Vec ℝ n)` instance,
+`Instances` is what turns it into the `Intersection (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n)` instance,
 whose obligation is only the outer half.
 -/
 
@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.intersection_exact (zB₁ zB₂ : ZonoBundle 𝕋 n) :
+theorem ZonoBundle.intersection_exact (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) :
     (zB₁.intersection zB₂).construct = zB₁.construct ∩ zB₂.construct := by
   ext x
   simp only [ZonoBundle.construct, ZonoBundle.intersection, Set.mem_iInter, Set.mem_inter_iff,

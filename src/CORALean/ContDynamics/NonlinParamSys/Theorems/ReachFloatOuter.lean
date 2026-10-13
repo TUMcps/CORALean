@@ -31,8 +31,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem NonlinParamSys.reachFloat_outer (sys : NonlinParamSys n m q)
     {fm : NonlinearSys.FloatModel 𝕋 (n + q) m} (h : fm.Encloses sys.augment)
-    {P : Zonotope 𝕋 q} {params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope 𝕋 n)}
+    {P : Zonotope (Vec 𝕋 q)}
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
     (hR : sys.reachFloat fm P params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {p : Vec ℝ q},

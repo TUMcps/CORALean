@@ -38,9 +38,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `cPZ₁ ⊖ Z` for a zonotope `Z`, by [1, Thm. 1]: one `(P + g) ∩ (P - g)` per generator. -/
-def ConPolyZono.minkDiff (cPZ₁ : ConPolyZono 𝕋 n) (Z : Zonotope 𝕋 n) : ConPolyZono 𝕋 n :=
+def ConPolyZono.minkDiff (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) : ConPolyZono
+    𝕋 (Vec 𝕋 n) :=
   -- a float vector as a one-point set
-  let pt : Vec 𝕋 n → ConPolyZono 𝕋 n := fun w => (Zonotope.point w).conPolyZono
+  let pt : Vec 𝕋 n → ConPolyZono 𝕋 (Vec 𝕋 n) := fun w => (Zonotope.point w).conPolyZono
   -- the independent generators become dependent ones
   let P₁ := cPZ₁.dependent
   -- the centre is subtracted, and each generator `g` cuts `(P + g) ∩ (P - g)`

@@ -3,7 +3,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
 import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 
 /-!
-# `GZonotope.matPlus` over-approximates the Minkowski sum
+# `Zonotope.matPlus` over-approximates the Minkowski sum
 
 The nominal parts add inside the exact `Zonotope.plus` (`plus_exact`), which
 `ofEntryBoundsMat_outer` rounds: its generators are stored exactly, its centre between the
@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GZonotope.matPlus_outer (Z₁ Z₂ : GZonotope (Mat 𝕋 m n)) :
-    Z₁.construct + Z₂.construct ⊆ (GZonotope.matPlus Z₁ Z₂).construct := by -- --- PROOF ---
+theorem Zonotope.matPlus_outer (Z₁ Z₂ : Zonotope (Mat 𝕋 m n)) :
+    Z₁.construct + Z₂.construct ⊆ (Zonotope.matPlus Z₁ Z₂).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, e, he, rfl⟩, _, ⟨b, hb, f, hf, rfl⟩, rfl⟩
   have hab : a + b ∈ (CORALean.Real.Zonotope.plus Z₁.nominal Z₂.nominal).construct := by
     rw [← CORALean.Real.Zonotope.plus_exact]
@@ -40,15 +40,15 @@ theorem GZonotope.matPlus_outer (Z₁ Z₂ : GZonotope (Mat 𝕋 m n)) :
         ≤ toReal (Fin.append Z₁.G Z₂.G k i j) := by
     intro k i j
     refine Fin.addCases (fun l => ?_) (fun l => ?_) k
-    · simp only [CORALean.Real.Zonotope.plus, GZonotope.nominal, realImage_mat, Fin.append_left,
+    · simp only [CORALean.Real.Zonotope.plus, Zonotope.nominal, realImage_mat, Fin.append_left,
         toRealMat]
       exact ⟨le_rfl, le_rfl⟩
-    · simp only [CORALean.Real.Zonotope.plus, GZonotope.nominal, realImage_mat, Fin.append_right,
+    · simp only [CORALean.Real.Zonotope.plus, Zonotope.nominal, realImage_mat, Fin.append_right,
         toRealMat]
       exact ⟨le_rfl, le_rfl⟩
   -- the nominal sum rounded, the two boxes added
-  have hmem : a + b + (e + f) ∈ (GZonotope.matPlus Z₁ Z₂).construct :=
-    GZonotope.ofEntryBoundsMat_outer
+  have hmem : a + b + (e + f) ∈ (Zonotope.matPlus Z₁ Z₂).construct :=
+    Zonotope.ofEntryBoundsMat_outer
       (CORALean.Real.Zonotope.plus Z₁.nominal Z₂.nominal) (Interval.matPlus Z₁.E Z₂.E)
       (cLo := fun i j => addDown (Z₁.c i j) (Z₂.c i j))
       (cHi := fun i j => addUp (Z₁.c i j) (Z₂.c i j))

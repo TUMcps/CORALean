@@ -30,8 +30,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.subs (pZ : PolyZonotope 𝕋 n) {nu : ℕ} (pZin : PolyZonotope 𝕋 nu)
-    (idu : Fin nu → Fin pZ.p) (share : Fin pZin.p → Option (Fin pZ.p)) : PolyZonotope 𝕋 n where
+def PolyZonotope.subs (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ} (pZin : PolyZonotope (Vec 𝕋 nu))
+    (idu : Fin nu → Fin pZ.p) (share : Fin pZin.p → Option (Fin pZ.p)) :
+    PolyZonotope (Vec 𝕋 n) where
   p := pZ.p + pZin.p
   h := (pZ.subsTerms pZin idu).length
   q := pZ.q

@@ -37,17 +37,17 @@ open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The inequality rows, then the equality rows; entries copied. -/
-def ConZonotope.conA (cZ : ConZonotope 𝕋 n) : Mat 𝕋 (cZ.P.m + cZ.P.me) cZ.h :=
+def ConZonotope.conA (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Mat 𝕋 (cZ.P.m + cZ.P.me) cZ.h :=
   Fin.append cZ.P.A cZ.P.Ae
 
 /-- The upper bounds are `P`'s own. An inequality has no lower bound, and gets
 the free one: no factor leaves `[-1,1]`, so no row falls below minus its row sum
 of absolute values, which `radius` computes upward. -/
-def ConZonotope.conB (cZ : ConZonotope 𝕋 n) : Interval (Vec 𝕋 (cZ.P.m + cZ.P.me)) :=
+def ConZonotope.conB (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 (cZ.P.m + cZ.P.me)) :=
   ⟨Fin.append (fun i => neg (radius cZ.P.A i)) cZ.P.be.inf,
    Fin.append cZ.P.b cZ.P.be.sup⟩
 
-def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 n) : ConPolyZono 𝕋 n where
+def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cZ.h
   h := cZ.h
   q := 0
@@ -65,7 +65,7 @@ def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 n) : ConPolyZono 𝕋 n where
 variable [SoundFloatArithmetic 𝕋]
 
 -- the polytope's rows read as a constraint system over the factors themselves
-theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 n) {β : Vec ℝ cZ.h}
+theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {β : Vec ℝ cZ.h}
     (hβ : ∀ j, |β j| ≤ 1) (hP : β ∈ cZ.P.construct) :
     cZ.conPolyZono.satisfies β := by -- --- PROOF ---
   obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hP
@@ -114,7 +114,7 @@ theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 n) {β : Vec �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the point survives as it stands: identity exponents make every monomial a factor
-theorem ConZonotope.conPolyZono_contains (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.conPolyZono_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ.construct ⊆ cZ.conPolyZono.construct := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hβ, hP, hx⟩ := ConZonotope.mem_nominalSet_iff.mp hx

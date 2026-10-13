@@ -35,8 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `R(τ_0), …, R(τ_{k-1})` of `k` re-linearized steps from `R`, each linearized at the
 expansion point `pt` names for its start set, or `none` if one of them fails. -/
 def NonlinearSys.FloatModel.relinRunAtFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
-    (U : Zonotope 𝕋 m) (options : LinearSys.ReachOptions 𝕋) (pt : Zonotope 𝕋 n → Vec 𝕋 n) :
-    ℕ → Zonotope 𝕋 n → Option (List (Zonotope 𝕋 n))
+    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋)
+    (pt : Zonotope (Vec 𝕋 n) → Vec 𝕋 n) :
+    ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n)))
   | 0, _ => some []
   | k + 1, R => do
     let step ← fm.relinStepAtFloat U options R (pt R)               -- (R(τ), R(t + Δt))

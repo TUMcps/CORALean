@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The two halves `Z_∩¹`, `Z_∩²` of [1, Eq. 2], split along the `j`-th column of `Λ`. -/
 def ZonoBundle.split (Λ : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (j : Fin n)
-    (zB : ZonoBundle 𝕋 n) : ZonoBundle 𝕋 n × ZonoBundle 𝕋 n :=
+    (zB : ZonoBundle (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) × ZonoBundle (Vec 𝕋 n) :=
   let Ψ := Zonotope.mtimes Λ B.zonotope                  -- Ψ = Λ box
   let Ψs := Ψ.split j                                     -- the two halves along `w⁽ʲ⁾`
   (zB.intersection ⟨1, fun _ => Ψs.1⟩, zB.intersection ⟨1, fun _ => Ψs.2⟩)

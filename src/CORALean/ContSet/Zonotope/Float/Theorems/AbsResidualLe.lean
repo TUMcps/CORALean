@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of the nominal zonotope reaches no further than `|c| + Σ|G|`, rounded up. -/
-theorem Zonotope.aux_abs_le_nominal {Z : Zonotope 𝕋 n} {z : Vec ℝ n}
+theorem Zonotope.aux_abs_le_nominal {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}
     (hz : z ∈ nominalSet Z) (j : Fin n) :
     |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) := by -- --- PROOF ---
   obtain ⟨β, hβ, hzβ⟩ := Zonotope.mem_nominalSet_iff.mp hz
@@ -45,7 +45,7 @@ theorem Zonotope.aux_abs_le_nominal {Z : Zonotope 𝕋 n} {z : Vec ℝ n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- What the residual does to the nominal part stays within the new generators' radius. -/
-theorem Zonotope.abs_residual_le (IM : Interval (Mat 𝕋 m n)) {Z : Zonotope 𝕋 n}
+theorem Zonotope.abs_residual_le (IM : Interval (Mat 𝕋 m n)) {Z : Zonotope (Vec 𝕋 n)}
     {R : Mat ℝ m n}
     (hR : R ∈ (Interval.matResidual IM.inf IM.sup (Interval.centreMat IM)).construct)
     {z : Vec ℝ n} (hz : z ∈ nominalSet Z) (i : Fin m) :

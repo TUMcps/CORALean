@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `r` fresh factors appended after the set's own, at exponent zero. -/
-def PolyZonotope.padBack (r : ℕ) (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+def PolyZonotope.padBack (r : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p + r
   h := pZ.h
   q := pZ.q

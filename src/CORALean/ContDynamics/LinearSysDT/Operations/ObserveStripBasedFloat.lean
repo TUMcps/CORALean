@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 
 /-- `R k`, the set the observer holds after the measurement `y k`. -/
 def LinearSysDT.observeStripBasedFloat (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (σ : Vec 𝕋 p) (W R₀ : Zonotope 𝕋 n) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p)
-    (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) : ℕ → Zonotope 𝕋 n
+    (σ : Vec 𝕋 p) (W R₀ : Zonotope (Vec 𝕋 n)) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p)
+    (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) : ℕ → Zonotope (Vec 𝕋 n)
   | 0 =>
     if options.sequential then LinearSysDT.intersectStripSeqFloat C σ (y 0) options.gain R₀
     else Zonotope.intersectStrip C σ (y 0) (options.gain R₀) R₀

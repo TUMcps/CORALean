@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isCompact_construct (cPZ : ConPolyZono 𝕋 n) : IsCompact cPZ.construct :=
+theorem ConPolyZono.isCompact_construct (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : IsCompact cPZ.construct :=
   InflatedContSet.isCompact_construct cPZ
 
 end CORALean.Float

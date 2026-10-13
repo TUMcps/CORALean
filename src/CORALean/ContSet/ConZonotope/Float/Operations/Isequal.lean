@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.isequal (Z S : ConZonotope 𝕋 n) : Bool :=
+def ConZonotope.isequal (Z S : ConZonotope 𝕋 (Vec 𝕋 n)) : Bool :=
   if e : Z.h = S.h then
     (List.finRange n).all (fun i =>
       (le (Z.c i) (S.c i) && le (S.c i) (Z.c i)) &&

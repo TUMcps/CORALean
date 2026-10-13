@@ -43,21 +43,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ========================================  INSTANCES  ========================================= --
 
-/-- One instance at every ambient type, as `GZonotope`'s `InflatedContSet` is. -/
+/-- One instance at every ambient type, as `Zonotope`'s `InflatedContSet` is. -/
 instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι] :
-    ContSet (GZonoBundle α) β := ⟨GZonoBundle.construct⟩
+    ContSet (ZonoBundle α) β := ⟨ZonoBundle.construct⟩
 
 /-- An intersection of convex sets, each member's error box included in what
 that member denotes. -/
-instance {n : ℕ} : ConvexSet (ZonoBundle 𝕋 n) (Vec ℝ n) := ⟨ZonoBundle.convex_construct⟩
+instance {n : ℕ} : ConvexSet (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) := ⟨ZonoBundle.convex_construct⟩
 
-instance {n : ℕ} : Plus (ZonoBundle 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Plus (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) where
   plus zB₁ zB₂ := (zB₁.plus zB₂).materialise
   plus_outer zB₁ zB₂ := by
     rw [ZonoBundle.materialise_eq]
     exact ZonoBundle.plus_outer zB₁ zB₂
 
-instance {n : ℕ} : LinComb (ZonoBundle 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : LinComb (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) where
   linComb zB₁ zB₂ := (zB₁.linComb zB₂).materialise
   linComb_outer zB₁ zB₂ := by
     rw [ZonoBundle.materialise_eq]
@@ -65,7 +65,7 @@ instance {n : ℕ} : LinComb (ZonoBundle 𝕋 n) (Vec ℝ n) where
 
 /-- Exact, as over ℝ: appending two families runs no arithmetic. The class
 obligation keeps only the outer half of `intersection_exact`. -/
-instance {n : ℕ} : Intersection (ZonoBundle 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Intersection (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) where
   intersection zB₁ zB₂ := (zB₁.intersection zB₂).materialise
   intersection_outer zB₁ zB₂ := by
     rw [ZonoBundle.materialise_eq]
@@ -73,26 +73,26 @@ instance {n : ℕ} : Intersection (ZonoBundle 𝕋 n) (Vec ℝ n) where
 
 /-- Members are dropped, never absorbed, so this needs no error box, unlike
 `Zonotope.reduce`, which boxes the generators it discards. -/
-instance {n : ℕ} : Reduce (ZonoBundle 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Reduce (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) where
   reduce zB o := (zB.reduce o).materialise
   reduce_outer zB o := by
     rw [ZonoBundle.materialise_eq]
     exact ZonoBundle.reduce_outer zB o
 
-instance : Reindex (ZonoBundle 𝕋) where
+instance : Reindex (fun k => ZonoBundle (Vec 𝕋 k)) where
   reindex e zB := (ZonoBundle.reindex e zB).materialise
   reindex_exact e zB := by
     rw [ZonoBundle.materialise_eq]
     exact ZonoBundle.reindex_exact e zB
 
-instance : Mtimes (Mat 𝕋) (ZonoBundle 𝕋) where
+instance : Mtimes (Mat 𝕋) (fun k => ZonoBundle (Vec 𝕋 k)) where
   mtimes M zB := (ZonoBundle.mtimes M zB).materialise
   mtimes_outer M zB := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, ZonoBundle.materialise_eq]
     exact ZonoBundle.mtimes_outer M zB
 
 /-- The same operation at a float interval matrix, member by member, as `Zonotope`'s is. -/
-instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (ZonoBundle 𝕋) where
+instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun k => ZonoBundle (Vec 𝕋 k)) where
   mtimes IM zB := (ZonoBundle.mtimesIntervalMat IM zB).materialise
   mtimes_outer IM zB := by
     rw [ZonoBundle.materialise_eq]

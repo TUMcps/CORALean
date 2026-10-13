@@ -35,12 +35,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `⊕_{2 ≤ i ≤ η} [Aⁱ r^{i+1}/(i+1)!] V` over the float box `sys.A`, `0 · V` below order `2`. -/
 def LinParamSys.inputTaylorSumTailFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
-    (r : 𝕋) (V : Zonotope 𝕋 n) : ℕ → Zonotope 𝕋 n
-  | 0 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (Interval.point fun _ _ => zero) V
-  | 1 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (Interval.point fun _ _ => zero) V
-  | 2 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (MatExp.intervalInputTerm sys.A r 2) V
+    (r : 𝕋) (V : Zonotope (Vec 𝕋 n)) : ℕ → Zonotope (Vec 𝕋 n)
+  | 0 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (Interval.point fun _ _ => zero) V
+  | 1 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (Interval.point fun _ _ => zero) V
+  | 2 => Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (MatExp.intervalInputTerm sys.A r 2) V
   | k + 3 => sys.inputTaylorSumTailFloat r V (k + 2) ⊞
-      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm sys.A r (k + 3)) V
 
 end CORALean

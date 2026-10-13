@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `P = reduce(zonotope(pZ), 'methC', 1)`. -/
-def PolyZonotope.splitParallelotope (pZ : PolyZonotope 𝕋 n) : Zonotope 𝕋 n :=
+def PolyZonotope.splitParallelotope (pZ : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   pZ.zonotope.reduceMethC 1
 
 end CORALean.Float

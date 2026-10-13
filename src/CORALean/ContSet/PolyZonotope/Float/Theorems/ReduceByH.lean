@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem PolyZonotope.reduceBy_h (pZ : PolyZonotope 𝕋 n)
+@[simp] theorem PolyZonotope.reduceBy_h (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) :
     (pZ.reduceBy partD partI).h = d := rfl

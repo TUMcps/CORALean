@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The right-hand side is rounded down, so the result is the smaller set. -/
-def HPolytope.not (P : HPolytope 𝕋 n) (ε : 𝕋) : Option (HPolytope 𝕋 n) :=
+def HPolytope.not (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : 𝕋) : Option (HPolytope 𝕋 (Vec 𝕋 n)) :=
   if h : P.m = 1 ∧ P.me = 0 then
     some
       { m := 1

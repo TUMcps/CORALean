@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.isFullDim (Z : Zonotope 𝕋 n) : Bool :=
+def Zonotope.isFullDim (Z : Zonotope (Vec 𝕋 n)) : Bool :=
   Z.isFullDimWith (Zonotope.rightInvCandidate fun i j => Z.G j i)
 
 end CORALean.Float

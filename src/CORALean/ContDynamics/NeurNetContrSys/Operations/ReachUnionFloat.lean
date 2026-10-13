@@ -28,9 +28,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The sets `R(iNΔt)`, `i ≤ tFinal - tStart`, one per control-period boundary. -/
-def NeurNetContrSys.reachUnionFloat (sys : NeurNetContrSys 𝕋 (Zonotope 𝕋) n)
-    (params : Reach.Params (Zonotope 𝕋 n) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋) :
-    Option (List (Zonotope 𝕋 n)) := do
+def NeurNetContrSys.reachUnionFloat (sys : NeurNetContrSys 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
+    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋) :
+    Option (List (Zonotope (Vec 𝕋 n))) := do
   let R₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let H := params.tFinal - params.tStart                           -- control periods

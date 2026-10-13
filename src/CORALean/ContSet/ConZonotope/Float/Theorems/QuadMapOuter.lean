@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) '' cZ.construct
       ⊆ (cZ.quadMap Q).construct := by
   rintro _ ⟨x, hx, rfl⟩

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.nominal_blockPadRight (n₁ : ℕ) (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.nominal_blockPadRight (n₁ : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) :
     nominal (pZ.blockPadRight n₁) =
       Real.PolyZonotope.map (CORALean.blockPadRight n₁ n) (nominal pZ) := by -- --- PROOF ---
   -- the same fields, entry by entry

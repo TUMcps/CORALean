@@ -30,7 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.containsPoint (S : SpectraShadow 𝕋 n) (p : Vec 𝕋 n) (β : Vec 𝕋 S.m) : Bool :=
+def SpectraShadow.containsPoint (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (p : Vec 𝕋 n)
+    (β : Vec 𝕋 S.m) : Bool :=
   -- each entry of `A₀ + Σ βₗ Aₗ` between its two roundings, and its magnitude
   let entryLo : Fin S.k → Fin S.k → 𝕋 := fun i j =>
     addDown (S.A₀ i j) (dotDown β fun l => S.A l i j)

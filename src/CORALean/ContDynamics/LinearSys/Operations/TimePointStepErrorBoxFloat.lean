@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The box `timePointStepErrorFloat` bounds a point of: its radius times each unit vector. -/
 def LinearSys.timePointStepErrorBoxFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ)
-    (U : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+    (U : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let ε := sys.timePointStepErrorFloat r η U                         -- the radius, rounded up
   ⟨n, fun _ => zero, diagonalBlock fun _ => ε, Interval.point fun _ => zero⟩
 

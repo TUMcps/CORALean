@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.zonotopeCora (pZ : PolyZonotope 𝕋 n) : Zonotope 𝕋 n :=
+def PolyZonotope.zonotopeCora (pZ : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   -- the generator kept free: half of an all-even column, all of any other
   let G : Fin pZ.h → Vec 𝕋 n := fun l i =>
     if ∀ k, pZ.E k l % 2 = 0 then half (pZ.G l i) else pZ.G l i

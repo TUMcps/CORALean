@@ -29,7 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.cubFold_bracket (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope 𝕋 n) (i : Fin m)
+theorem Zonotope.cubFold_bracket (T : Fin m → Fin n → Mat 𝕋 n n)
+    (Z : Zonotope (Vec 𝕋 n)) (i : Fin m)
     (x y z : Fin (Z.h + 1)) :
     toReal (Zonotope.cubFoldDown T Z i x y z)
         ≤ Real.Zonotope.cubFold (fun i k => toRealMat (T i k))

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `2 Σⱼ|U|ⱼ (r E(rA, η))`, rounded up. -/
 def LinearSys.timePointStepRemainderErrorFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ)
-    (U : Zonotope 𝕋 n) : 𝕋 :=
+    (U : Zonotope (Vec 𝕋 n)) : 𝕋 :=
   let S := sumUp fun j => U.absBoundError j                               -- ≥ Σⱼ |U|ⱼ
   let nrm := MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))  -- ≥ r ‖A‖
   let rem := MatExp.expRemainderBound nrm η                              -- ≥ E(rA, η)

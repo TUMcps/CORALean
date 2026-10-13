@@ -26,16 +26,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every state of `Z` on the hyperplane is below `zonoGirardUpperFloat` along `ℓ`. -/
-theorem Location.zonoGirardUpperFloat_le (Z : Zonotope 𝕋 n) (nv : Vec 𝕋 n) (γ : 𝕋)
+theorem Location.zonoGirardUpperFloat_le (Z : Zonotope (Vec 𝕋 n)) (nv : Vec 𝕋 n) (γ : 𝕋)
     (ℓ : Vec 𝕋 n) {x : Vec ℝ n} (hx : x ∈ Z.construct)
     (hg : x ⬝ᵥ toRealVec nv = toReal γ) :
     x ⬝ᵥ toRealVec ℓ ≤ toReal (Location.zonoGirardUpperFloat Z nv γ ℓ) := by -- --- PROOF ---
   unfold Location.zonoGirardUpperFloat
   -- the plane image of `x` lies in the plane zonotope
-  have hy := Mtimes.mtimes_outer (𝕄 := Mat 𝕋)
+  have hy := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
     (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) Z
     (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx))
-  generalize Mtimes.mtimes (𝕄 := Mat 𝕋)
+  generalize Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
     (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) Z = S at hy ⊢
   have h0 : (Scalar.toRealMat (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) *ᵥ x) 0
       = toReal γ := by

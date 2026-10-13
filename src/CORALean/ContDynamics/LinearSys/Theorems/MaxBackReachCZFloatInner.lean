@@ -35,8 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Line 11 in floats is inside `P ⊖ Ẑ_W`, at every conversion box. -/
-theorem LinearSys.maxBackReachCZFloat_inner (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 n)
-    (ZW : Zonotope 𝕋 n) (hker : ∀ i, ∀ y ∈ ZW.construct, (toRealMat P.Ae *ᵥ y) i = 0) :
+theorem LinearSys.maxBackReachCZFloat_inner (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n))
+    (ZW : Zonotope (Vec 𝕋 n)) (hker : ∀ i, ∀ y ∈ ZW.construct, (toRealMat P.Ae *ᵥ y) i = 0) :
     (LinearSys.maxBackReachCZFloat Bx P ZW).construct ⊆
       minkowskiDiff P.construct ZW.construct := fun _ hx =>
   HPolytope.minkDiffOf_inner _ _ _ hker (HPolytope.conZonotopeInner_subset _ Bx hx)

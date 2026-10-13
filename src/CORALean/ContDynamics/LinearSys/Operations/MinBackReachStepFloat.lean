@@ -47,25 +47,32 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Lines 8-11: one iteration of [1, Alg. 1]'s main loop, propagating the two particular
 solutions and the converted target set over `τ_k`. -/
 def LinearSys.minBackReachStepFloat (sys : LinearSys 𝕋 n)
-    (CZ : ConZonotope 𝕋 n) (W₀ U₀ : Zonotope 𝕋 n) (Zw : 𝕋 → Zonotope 𝕋 n) (Δt : 𝕋)
-    (η ν : ℕ) (s : LinearSys.MinBackReachStateOf 𝕋 (Zonotope 𝕋 n) (ConZonotope 𝕋 n)) :
-    LinearSys.MinBackReachStateOf 𝕋 (Zonotope 𝕋 n) (ConZonotope 𝕋 n) :=
+    (CZ : ConZonotope 𝕋 (Vec 𝕋 n)) (W₀ U₀ : Zonotope (Vec 𝕋 n))
+    (Zw : 𝕋 → Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
+    (η ν : ℕ) (s : LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n))) :
+    LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n)) :=
   let Ā : LinearSys 𝕋 n := ⟨fun i j => neg (sys.A i j)⟩             -- time-inverted dynamics
   let tk1 := addUp s.t Δt                                           -- 8. t_{k+1} ← t_k + Δt
   let Φk := Ā.expSquaringFloat s.t s.t η ν                          -- 8. [e^{-A t_k}]
   let Φk1 := Ā.expSquaringFloat tk1 tk1 η ν                         -- 8. [e^{-A t_{k+1}}]
   let ZW₀ := Plus.plus s.ZW₀                                        -- 9. Ẑ_{W₀}(-t_{k+1})
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) Φk (Ā.inputSolutionFloat Δt η W₀))
+    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) Φk
+      (Ā.inputSolutionFloat Δt η W₀))
   let ZU₀ := Plus.plus s.ZU₀                                        -- 12. Ẑ_{U₀}(-t_{k+1})
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) Φk (Ā.inputSolutionFloat Δt η U₀))
+    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) Φk
+      (Ā.inputSolutionFloat Δt η U₀))
   let ZW := Plus.plus ZW₀ (Zw s.t)                                  -- 10. Ẑ_W(-τ_k)
-  let CZk1 := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) Φk1 CZ
+  let CZk1 := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Φk1 CZ
   let hull := LinComb.linComb CZk1                                  -- 11. conv(…, …)
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) Φk CZ)
+    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Φk CZ)
   let curv := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- 11. F e^{-A t_{k+1}} CZ
+    (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k))
     (MatExp.intervalCorrectionMatrix (Interval.point Ā.A) Δt η) CZk1
   let R := Plus.plus (Plus.plus hull curv)                          -- 11. ⊕ -Ẑ_W(-τ_k)
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (negIdentityMat 𝕋 n) ZW).conZonotope
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) (negIdentityMat 𝕋 n)
+      ZW).conZonotope
   { t := tk1, ZW₀ := ZW₀, ZU₀ := ZU₀, R := R }
 
 end CORALean

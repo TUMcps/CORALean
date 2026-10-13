@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.origin_exact (n : ℕ) :
-    (PolyZonotope.origin n : PolyZonotope 𝕋 n).construct = {0} := by -- --- PROOF ---
-  have h : InflatedContSet.nominal (PolyZonotope.origin n : PolyZonotope 𝕋 n)
+    (PolyZonotope.origin n : PolyZonotope (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
+  have h : InflatedContSet.nominal (PolyZonotope.origin n : PolyZonotope (Vec 𝕋 n))
       = Real.PolyZonotope.ofPoint (0 : Vec ℝ n) := by
     unfold PolyZonotope.origin Real.PolyZonotope.ofPoint
     show (⟨0, 0, 0, toRealVec (fun _ : Fin n => (zero : 𝕋)), _, _, _⟩ : Real.PolyZonotope (Vec ℝ n))
@@ -37,15 +37,15 @@ theorem PolyZonotope.origin_exact (n : ℕ) :
     congr 1
     · funext l; exact l.elim0
     · funext l; exact l.elim0
-  have hN : InflatedContSet.nominalSet (PolyZonotope.origin n : PolyZonotope 𝕋 n) = {0} := by
+  have hN : InflatedContSet.nominalSet (PolyZonotope.origin n : PolyZonotope (Vec 𝕋 n)) = {0} := by
     unfold InflatedContSet.nominalSet
     rw [h]
     exact Set.ext fun x =>
       (Real.PolyZonotope.mem_ofPoint_iff (0 : Vec ℝ n) x).trans Set.mem_singleton_iff.symm
-  have hE : (PolyZonotope.origin n : PolyZonotope 𝕋 n).err.construct = {0} :=
+  have hE : (PolyZonotope.origin n : PolyZonotope (Vec 𝕋 n)).err.construct = {0} :=
     Interval.origin_exact n
-  show InflatedContSet.nominalSet (PolyZonotope.origin n : PolyZonotope 𝕋 n)
-      + (PolyZonotope.origin n : PolyZonotope 𝕋 n).err.construct = _
+  show InflatedContSet.nominalSet (PolyZonotope.origin n : PolyZonotope (Vec 𝕋 n))
+      + (PolyZonotope.origin n : PolyZonotope (Vec 𝕋 n)).err.construct = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

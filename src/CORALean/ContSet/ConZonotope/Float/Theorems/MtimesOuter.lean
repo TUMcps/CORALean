@@ -33,7 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact image, regrouped so the centre and each generator appear once. -/
-theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 n) (β : Vec ℝ cZ.h)
+theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
+    (β : Vec ℝ cZ.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (cZ.c k) + ∑ j, toReal (cZ.G j k) * β j) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (cZ.c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (cZ.G j k)) * β j := by -- --- PROOF ---
@@ -51,7 +52,7 @@ theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
-theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' nominalSet cZ ⊆
       nominalSet (ConZonotope.mtimes M cZ)
         + (Zonotope.mtimesResidual M cZ.zonotope).construct := by -- --- PROOF ---
@@ -101,7 +102,7 @@ theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋
   linarith [hsum]
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
-theorem ConZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' (error cZ).construct + (Zonotope.mtimesResidual M cZ.zonotope).construct
       ⊆ (error (ConZonotope.mtimes M cZ)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M cZ.E))
@@ -110,7 +111,7 @@ theorem ConZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.mtimes_outer (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.mtimes_outer (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' cZ.construct ⊆ (ConZonotope.mtimes M cZ).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (ConZonotope.aux_mtimes_nominal M cZ) (ConZonotope.aux_mtimes_error M cZ)

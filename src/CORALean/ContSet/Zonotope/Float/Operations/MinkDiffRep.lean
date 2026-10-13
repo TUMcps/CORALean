@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The difference at the representation `M`, margin shrunk by `ρ`, certified against the
 minuend with the right inverse `H`; `none` where the check does not go through. -/
-def Zonotope.minkDiffRep (Z₁ Z₂ : Zonotope 𝕋 n) (M : Fin Z₁.h → Fin Z₂.h → 𝕋) (ρ : 𝕋)
-    (H : Mat 𝕋 Z₁.h n) : Option (Zonotope 𝕋 n) :=
+def Zonotope.minkDiffRep (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (M : Fin Z₁.h → Fin Z₂.h → 𝕋) (ρ : 𝕋)
+    (H : Mat 𝕋 Z₁.h n) : Option (Zonotope (Vec 𝕋 n)) :=
   let D := Z₁.minkDiffRepCandidate Z₂ M ρ
   if Z₁.containsZonotope (D.plus Z₂) H then some D else none
 

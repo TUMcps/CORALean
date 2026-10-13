@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r w : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `X` satisfies every safe set `G j` and every unsafe set `F j`. -/
-def LinearSys.VerifySpecFloat (G : Fin (r + 1) → HPolytope 𝕋 n)
-    (F : Fin (w + 1) → HPolytope 𝕋 n) (X : Set (Vec ℝ n)) : Prop :=
+def LinearSys.VerifySpecFloat (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n))
+    (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (X : Set (Vec ℝ n)) : Prop :=
   (∀ j, (Specification.safeSet (G j)).Holds X) ∧ ∀ j, (Specification.unsafeSet (F j)).Holds X
 
 end CORALean

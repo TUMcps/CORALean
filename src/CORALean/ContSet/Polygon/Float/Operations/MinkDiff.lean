@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Each certified minuend piece, its edge rows shifted inward by the subtrahend's support. -/
-def Polygon.minkDiff (P Q : Polygon 𝕋) : SetUnion (HPolytope 𝕋 2) :=
+def Polygon.minkDiff (P Q : Polygon 𝕋) : SetUnion (HPolytope 𝕋 (Vec 𝕋 2)) :=
   ⟨P.sets.filterMap fun p => (Polygon.innerHRep p).map fun H =>
     H.minkDiffOf (ContSet.construct Q) fun i => Q.boundDot (H.A i) fun _ => rfl⟩
 

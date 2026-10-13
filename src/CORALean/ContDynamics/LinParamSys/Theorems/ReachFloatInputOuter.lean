@@ -39,12 +39,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
-    {U : Zonotope 𝕋 n} (h0 : (0 : Vec ℝ n) ∈ U.construct)
-    {params : Reach.Params (Zonotope 𝕋 n) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rs : List (Zonotope 𝕋 n)} (h : sys.reachFloatInput U params options = some Rs) :
+    {U : Zonotope (Vec 𝕋 n)} (h0 : (0 : Vec ℝ n) ∈ U.construct)
+    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
+    {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInput U params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {A : Mat ℝ n n} {x u : ℝ → Vec ℝ n},
-        sys.ConstTrajectory (S := Zonotope 𝕋) (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
+        sys.ConstTrajectory (S := fun k => Zonotope (Vec 𝕋 k))
+          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
           params.R0 U x u A →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.timeStep)
           (((k : ℝ) + 1) * toReal options.timeStep), x t ∈ Rs[k].construct := by -- --- PROOF ---
@@ -79,7 +80,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys (fun m n => Interva
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   -- that integral is one admissible input's contribution by `t`, under `A`
   have hin : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
-      ∈ (LinearSys.mk A : LinearSys ℝ n).inputReach (S := Zonotope 𝕋) U t :=
+      ∈ (LinearSys.mk A : LinearSys ℝ n).inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U t :=
     ⟨u, fun s hs => traj.input s (hTt hs), lin.aestronglyMeasurable_input hTt, by
       simp only [Scalar.toRealMat_real]⟩
   -- `e^{At} = e^{A t_k} e^{Aτ}`, both powers of the same member

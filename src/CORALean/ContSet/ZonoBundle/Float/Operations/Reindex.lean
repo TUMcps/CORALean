@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.reindex (e : Fin m ≃ Fin n) (zB : ZonoBundle 𝕋 n) : ZonoBundle 𝕋 m where
+def ZonoBundle.reindex (e : Fin m ≃ Fin n) (zB : ZonoBundle (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 m) where
   k := zB.k
   Z := fun i => Zonotope.reindex e (zB.Z i)
 

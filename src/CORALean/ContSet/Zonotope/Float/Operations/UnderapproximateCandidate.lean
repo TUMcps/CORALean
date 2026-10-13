@@ -27,7 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The candidate vertex for direction `s`; rounding may move it, `underapproximate` checks it. -/
-def Zonotope.underapproximateCandidate (Z : Zonotope 𝕋 n) (s : Vec 𝕋 n) (b : Bool) : Vec 𝕋 n :=
+def Zonotope.underapproximateCandidate (Z : Zonotope (Vec 𝕋 n)) (s : Vec 𝕋 n)
+    (b : Bool) : Vec 𝕋 n :=
   let d := fun j : Fin Z.h => sumUp fun i => mulUp (s i) (Z.G j i)  -- sᵀ gⱼ
   let sgn := fun j : Fin Z.h =>  -- sign(sᵀ gⱼ), `0` unless strictly signed, flipped for `false`
     if le (d j) zero then (if le zero (d j) then zero else if b then neg one else one)

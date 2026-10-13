@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `(c₁ - c₂, ρ · (G₁ - G₂))`, [1, Prop. 5] with the generators shrunk by `ρ`; rounded inward,
 checked by `minkDiffAligned`. `hh` casts `Z₂`'s generators against `Z₁`'s own index. -/
-def Zonotope.minkDiffAlignedCandidate (Z₁ Z₂ : Zonotope 𝕋 n) (hh : Z₁.h = Z₂.h) (ρ : 𝕋) :
-    Zonotope 𝕋 n :=
+def Zonotope.minkDiffAlignedCandidate (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (hh : Z₁.h = Z₂.h) (ρ : 𝕋) :
+    Zonotope (Vec 𝕋 n) :=
   let c := fun r => subDown (Z₁.c r) (Z₂.c r)  -- c₁ - c₂
   let diff := fun i r =>  -- g₁ᵢ - g₂ᵢ, rounded towards zero
     if le zero (subDown (Z₁.G i r) (Z₂.G (Fin.cast hh i) r)) then

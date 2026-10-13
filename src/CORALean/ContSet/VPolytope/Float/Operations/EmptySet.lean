@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.emptySet (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : VPolytope 𝕋 n where
+def VPolytope.emptySet (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : VPolytope (Vec 𝕋 n) where
   k := 0
   V := Fin.elim0
   E := Interval.origin n

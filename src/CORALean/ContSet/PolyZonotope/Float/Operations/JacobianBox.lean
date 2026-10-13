@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- An interval matrix holding the Jacobian of the dependent point at every factor vector of the
 box `X`. -/
-def PolyZonotope.jacobianBox (pZ : PolyZonotope 𝕋 n) (X : Interval (Vec 𝕋 pZ.p)) :
+def PolyZonotope.jacobianBox (pZ : PolyZonotope (Vec 𝕋 n)) (X : Interval (Vec 𝕋 pZ.p)) :
     Interval (Mat 𝕋 n pZ.p) :=
   -- the exponents with factor `k` lowered by one
   let Ek : Fin pZ.p → Fin pZ.p → Fin pZ.h → ℕ :=

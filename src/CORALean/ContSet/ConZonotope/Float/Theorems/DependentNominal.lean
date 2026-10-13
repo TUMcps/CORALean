@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `dependent`'s generator count, stated through the projection because
 that is the form the goal has. -/
-theorem ConZonotope.aux_sum_univ_dependent {cZ : ConZonotope 𝕋 n} (f : Fin (cZ.h + n) → ℝ) :
+theorem ConZonotope.aux_sum_univ_dependent {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} (f : Fin (cZ.h + n) → ℝ) :
     ∑ l : Fin cZ.dependent.h, f l
       = ∑ l, f (Fin.castAdd n l) + ∑ l, f (Fin.natAdd cZ.h l) :=
   Fin.sum_univ_add f
@@ -44,7 +44,7 @@ theorem ConZonotope.aux_sum_univ_dependent {cZ : ConZonotope 𝕋 n} (f : Fin (c
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.dependent_nominal (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.dependent_nominal (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ.construct ⊆ nominalSet cZ.dependent := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hP, hz⟩ := ConZonotope.mem_nominalSet_iff.mp hz'

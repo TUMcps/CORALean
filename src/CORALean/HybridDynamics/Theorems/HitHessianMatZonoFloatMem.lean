@@ -76,7 +76,7 @@ theorem aux_hessF_box (C G : Interval (Mat 𝕋 n n)) {Cr Gr : Mat ℝ n n} (hC 
 /-- [1, Prop. 3] at floats: the exact matrix zonotope's point at `(κ, 0, 0)` is the float one's
 plus a point of its error box. -/
 theorem GuardMap.hitHessianMatZonoFloat_mem (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
-    (R₀ : Zonotope 𝕋 n) (τc τg : 𝕋) (i : Fin n) {κ : ℝ} (hκ : |κ| ≤ 1) :
+    (R₀ : Zonotope (Vec 𝕋 n)) (τc τg : 𝕋) (i : Fin n) {κ : ℝ} (hκ : |κ| ≤ 1) :
     ∃ E ∈ (GuardMap.hitHessianMatZonoFloat A b nv d R₀ τc τg i).E.construct,
       (GuardMap.hitHessianMatZono (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d)
           (⟨R₀.h, toRealVec R₀.c, fun j => toRealVec (R₀.G j)⟩ : Real.Zonotope (Vec ℝ n))

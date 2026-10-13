@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.lift_exact (P : HPolytope 𝕋 n) {dims : Fin n → Fin N}
+theorem HPolytope.lift_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) {dims : Fin n → Fin N}
     (hdims : Function.Injective dims) :
     (P.lift_ dims).construct =
       {x : Vec ℝ N | (fun k => x (dims k)) ∈ P.construct} := by

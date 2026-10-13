@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Eq. 11]: `(0, c, g⁽¹⁾, ..., g⁽ᵖ⁾)` with the box's symmetric hull. -/
-def Zonotope.unitIntervalMul (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+def Zonotope.unitIntervalMul (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let m : Vec 𝕋 n := fun i => maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i))
   { h := Z.h + 1
     c := fun _ => zero

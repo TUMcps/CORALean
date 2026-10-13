@@ -35,8 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q r : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.reduceLiftBy (cZ : ConZonotope 𝕋 n)
-    (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : ConZonotope 𝕋 n :=
+def ConZonotope.reduceLiftBy (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
+    (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- Z⁺ = [G; Aₑ], reduced at `part`
   let Zred := cZ.liftEq.reduceBy part
   -- the first `n` rows are the generators

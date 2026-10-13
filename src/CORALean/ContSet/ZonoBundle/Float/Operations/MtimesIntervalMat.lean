@@ -25,8 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (zB : ZonoBundle 𝕋 n) :
-    ZonoBundle 𝕋 m where
+def ZonoBundle.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (zB : ZonoBundle (Vec 𝕋 n)) :
+    ZonoBundle (Vec 𝕋 m) where
   k := zB.k
   Z := fun i => Zonotope.mtimesIntervalMat IM (zB.Z i)
 

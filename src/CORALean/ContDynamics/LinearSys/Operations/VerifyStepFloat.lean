@@ -38,10 +38,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n r w : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSys.verifyStepFloat (reachFn : 𝕋 → Zonotope 𝕋 n)
-    (innerApprox : Zonotope 𝕋 n → 𝕋 → ConZonotope 𝕋 n)
-    (distG distF : ConZonotope 𝕋 n → HPolytope 𝕋 n → 𝕋)
-    (G : Fin (r + 1) → HPolytope 𝕋 n) (F : Fin (w + 1) → HPolytope 𝕋 n) (εmax : 𝕋) :
+def LinearSys.verifyStepFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
+    (innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n))
+    (distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋)
+    (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax : 𝕋) :
     LinearSys.VerifyIterFloat 𝕋 × 𝕋 :=
   let Rout := reachFn εmax                                                    -- 3. R̂(t)
   let Rin := innerApprox Rout εmax                                            -- 4. Ř(t), Sec. V

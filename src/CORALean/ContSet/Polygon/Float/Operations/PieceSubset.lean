@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Polygon.pieceSubset (p q : VPolytope 𝕋 2) : Bool :=
+def Polygon.pieceSubset (p q : VPolytope (Vec 𝕋 2)) : Bool :=
   ((List.finRange p.k).all fun l => Polygon.pieceHolds q (p.V l)) &&
     (List.finRange 2).all fun i => le (q.E.inf i) (p.E.inf i) && le (p.E.sup i) (q.E.sup i)
 

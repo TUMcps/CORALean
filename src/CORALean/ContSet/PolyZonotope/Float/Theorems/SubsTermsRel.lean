@@ -26,7 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subsTerms_rel (pZ : PolyZonotope 𝕋 n) {nu : ℕ} (pZin : PolyZonotope 𝕋 nu)
+theorem PolyZonotope.subsTerms_rel (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
+    (pZin : PolyZonotope (Vec 𝕋 nu))
     (idu : Fin nu → Fin pZ.p) :
     List.Forall₂ (fun s t => s.1 = t.1 ∧ s.2.2 = t.2.2 ∧ toReal s.2.1.1 ≤ t.2.1 ∧
         t.2.1 ≤ toReal s.2.1.2)

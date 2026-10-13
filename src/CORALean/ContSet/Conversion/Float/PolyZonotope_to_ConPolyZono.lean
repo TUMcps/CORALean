@@ -23,7 +23,7 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def PolyZonotope.conPolyZono (pZ : PolyZonotope 𝕋 n) : ConPolyZono 𝕋 n where
+def PolyZonotope.conPolyZono (pZ : PolyZonotope (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := pZ.p
   h := pZ.h
   q := pZ.q
@@ -44,7 +44,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- with no constraint rows the system is vacuous
-theorem PolyZonotope.conPolyZono_contains (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.conPolyZono_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.conPolyZono.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx

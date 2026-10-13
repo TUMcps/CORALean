@@ -16,7 +16,7 @@ the derivative there. It is the specification `IntervalChain.backprop` is the ad
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open Matrix
 
@@ -36,7 +36,7 @@ noncomputable def IntervalChain.jvp : ∀ {n k : ℕ}, IntervalChain n k →
     rest.jvp (fun i => σ (p.1 i), fun i => σ (p.2 i))
       (fun i => σ' (p.1 i) * δ.1 i, fun i => σ' (p.2 i) * δ.2 i)
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

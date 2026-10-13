@@ -22,7 +22,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Interval.spectraShadow (I : Interval (Vec 𝕋 n)) : SpectraShadow 𝕋 n :=
+def Interval.spectraShadow (I : Interval (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   I.zonotope.spectraShadow
 
 

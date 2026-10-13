@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.minus (P : HPolytope 𝕋 n) (v : Vec 𝕋 n) : HPolytope 𝕋 n :=
+def HPolytope.minus (P : HPolytope 𝕋 (Vec 𝕋 n)) (v : Vec 𝕋 n) : HPolytope 𝕋 (Vec 𝕋 n) :=
   HPolytope.translate (fun i => neg (v i)) P
 
 end CORALean.Float

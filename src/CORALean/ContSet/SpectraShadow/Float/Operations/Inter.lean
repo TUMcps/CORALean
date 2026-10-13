@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.inter (S₁ S₂ : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 n :=
+def SpectraShadow.inter (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   let T₁ := S₁.absorb
   let T₂ := S₂.absorb
   T₁.tieInter T₂

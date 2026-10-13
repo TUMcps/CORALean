@@ -24,7 +24,7 @@ variable {α : Type}
 
 /-- The exponent matrix widened to match, the centre's column being zero — its
 monomial is `1`, which is what the centre needs to be. -/
-def PolyZonotope.extE (pZ : GPolyZonotope α) : Fin pZ.p → Fin (pZ.h + 1) → ℕ :=
+def PolyZonotope.extE (pZ : PolyZonotope α) : Fin pZ.p → Fin (pZ.h + 1) → ℕ :=
   fun k => Fin.cons 0 (pZ.E k)
 
 end CORALean.Float

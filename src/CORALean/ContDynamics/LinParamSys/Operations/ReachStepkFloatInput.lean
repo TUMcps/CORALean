@@ -35,8 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The window `τ_k = [k Δt, (k + 1) Δt]` from the first one `Rτ₀`, inputs in `U`,
 at every member of `sys.A`: `R(τ_k) = H^R(τ_k) ⊕ P^R(t_{k+1})`. -/
 def LinParamSys.reachStepkFloatInput (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
-    (U : Zonotope 𝕋 n) (ρ : ℕ) (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope 𝕋 n) (k : ℕ) :
-    Option (Zonotope 𝕋 n) := do
+    (U : Zonotope (Vec 𝕋 n)) (ρ : ℕ) (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
+    Option (Zonotope (Vec 𝕋 n)) := do
   let HRτk ← sys.reachStepkFloat Δt η Rτ₀ k                  -- H^R(τ_k) = [e^{[A] t_k}] H^R(τ_0)
   let PRtk ← sys.particularSolutionFloat Δt η ρ U k          -- P^R(t_{k+1})
   pure (HRτk ⊞ PRtk)                                          -- R(τ_k) = H^R(τ_k) ⊕ P^R(t_{k+1})

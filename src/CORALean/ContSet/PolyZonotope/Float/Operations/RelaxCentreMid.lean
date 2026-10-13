@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- The shifted centre as stored, the shift added at its lower rounding, so the
 stored centre stays below the exact one. -/
-def PolyZonotope.relaxCentreMid (pZ : PolyZonotope 𝕋 n)
+def PolyZonotope.relaxCentreMid (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
   fun i => addDown (pZ.c i) (pZ.relaxShiftMid part k₀ i)
 

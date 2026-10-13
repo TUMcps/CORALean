@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.empty (n : ℕ) (hn : 0 < n) : ZonoBundle 𝕋 n :=
+def ZonoBundle.empty (n : ℕ) (hn : 0 < n) : ZonoBundle (Vec 𝕋 n) :=
   ⟨2, ![Zonotope.origin n, Zonotope.point fun i => if i = ⟨0, hn⟩ then one else zero]⟩
 
 end CORALean.Float

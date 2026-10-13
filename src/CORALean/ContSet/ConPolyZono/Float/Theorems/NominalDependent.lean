@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.nominal_dependent (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.nominal_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     nominal cPZ.dependent = (nominal cPZ).dependent := by -- --- PROOF ---
   have hG : (fun (l : Fin (cPZ.h + cPZ.q)) (i : Fin n) =>
         toReal (Fin.append cPZ.G cPZ.GI l i))

@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.absorb (S : SpectraShadow 𝕋 n) : SpectraShadow 𝕋 n :=
+def SpectraShadow.absorb (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   -- the `i`-th unit vector
   let unit : Fin n → Vec 𝕋 n := fun i r => if r = i then one else zero
   -- the box constraints `e - inf ≥ 0`, `sup - e ≥ 0`: their constants and their `e` coefficients

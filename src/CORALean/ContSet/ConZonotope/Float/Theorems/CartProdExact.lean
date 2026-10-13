@@ -31,12 +31,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope 𝕋 n₁) (cZ₂ : ConZonotope 𝕋 n₂) :
+theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁))
+    (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n₂)) :
     (cZ₁.cartProd cZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (cZ₁.construct ×ˢ cZ₂.construct) := by -- --- PROOF ---
   -- the zonotope parts, whose nominal centre and generators the product shares
-  set Z₁ : Zonotope 𝕋 n₁ := ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G j i, cZ₁.E⟩
-  set Z₂ : Zonotope 𝕋 n₂ := ⟨cZ₂.h, cZ₂.c, fun j i => cZ₂.G j i, cZ₂.E⟩
+  set Z₁ : Zonotope (Vec 𝕋 n₁) := ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G j i, cZ₁.E⟩
+  set Z₂ : Zonotope (Vec 𝕋 n₂) := ⟨cZ₂.h, cZ₂.c, fun j i => cZ₂.G j i, cZ₂.E⟩
   -- the nominal part: the exact product, mapped through the append
   have hN : InflatedContSet.nominalSet (cZ₁.cartProd cZ₂) =
       (appendLinear n₁ n₂) ''

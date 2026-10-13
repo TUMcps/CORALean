@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 inputs in `U` is, at every time of window `k`, in the `k`-th set `reachFloat` returns. -/
 theorem NonlinearSys.FloatModel.Encloses.reachFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope 𝕋 n)}
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
     (hR : fm.reachFloat params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},

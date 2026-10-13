@@ -40,8 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `Γ box(Γ⁻¹ Z_∩)` of a bundle with a member, at `Γ` if its candidate inverse checks, at the
 identity if not. -/
-def ZonoBundle.enclosingParallelotope (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k)
-    (Γ : Mat 𝕋 n n) : Zonotope 𝕋 n :=
+def ZonoBundle.enclosingParallelotope (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k)
+    (Γ : Mat 𝕋 n n) : Zonotope (Vec 𝕋 n) :=
   let Hc := Zonotope.basisInverse Γ                                  -- inv(Γ), a candidate
   let ok := le (Zonotope.rightInvQ Γ Hc) (half one)                  -- checks: ‖1 - Γ H‖ ≤ 1/2
   let I : Mat 𝕋 n n := fun i j => if i = j then one else zero

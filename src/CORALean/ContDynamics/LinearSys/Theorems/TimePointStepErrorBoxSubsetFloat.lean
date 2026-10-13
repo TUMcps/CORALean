@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The float box denotes the box of its stored radius. -/
 theorem aux_errorBoxFloat_nominal (ε : 𝕋) :
     (nominal (⟨n, fun _ => zero, diagonalBlock fun _ => ε, Interval.point fun _ => zero⟩ :
-      Zonotope 𝕋 n)) =
+      Zonotope (Vec 𝕋 n))) =
       (⟨n, 0, Matrix.diagonal fun _ => toReal ε⟩ : Real.Zonotope (Vec ℝ n)) := by -- --- PROOF ---
   show (⟨n, toRealVec fun _ => (zero : 𝕋), fun j i => toReal (diagonalBlock (fun _ => ε) j i)⟩
     : Real.Zonotope (Vec ℝ n)) = _
@@ -70,7 +70,7 @@ theorem aux_diagonal_subset_closedBall {ε : ℝ} (hε : 0 ≤ ε) :
   exact mul_le_of_le_one_left hε (hβ i)
 
 /-- The closed ball of the float radius lies in the float box. -/
-theorem aux_closedBall_subset_float (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ) (U : Zonotope 𝕋 n) :
+theorem aux_closedBall_subset_float (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ) (U : Zonotope (Vec 𝕋 n)) :
     Metric.closedBall (0 : Vec ℝ n) (toReal (sys.timePointStepErrorFloat r η U))
       ⊆ ContSet.construct (sys.timePointStepErrorBoxFloat r η U) := by -- --- PROOF ---
   intro x hx
@@ -78,7 +78,7 @@ theorem aux_closedBall_subset_float (sys : LinearSys 𝕋 n) (r : 𝕋) (η : �
   · -- the nominal part is the diagonal zonotope of the float radius
     show x ∈ ContSet.construct (nominal (⟨n, fun _ => zero,
       diagonalBlock fun _ => sys.timePointStepErrorFloat r η U, Interval.point fun _ => zero⟩ :
-        Zonotope 𝕋 n))
+        Zonotope (Vec 𝕋 n)))
     rw [aux_errorBoxFloat_nominal]
     exact Real.Zonotope.closedBall_subset_diagonal _ hx
   · -- the error box is the stored origin
@@ -91,7 +91,7 @@ theorem aux_closedBall_subset_float (sys : LinearSys 𝕋 n) (r : 𝕋) (η : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.timePointStepErrorBox_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) (U : Zonotope 𝕋 n) :
+    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) (U : Zonotope (Vec 𝕋 n)) :
     (sys.timePointStepErrorBox (toReal r) η (nominal U)).construct ⊆
       ContSet.construct (sys.timePointStepErrorBoxFloat r η U) := by -- --- PROOF ---
   -- the exact radius is non-negative, so its box is its ball, which the float radius covers

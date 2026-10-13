@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The degenerate `0` zonotope `reduceGirardBox` reduces to when nothing is
 dropped: `n` generators, all `0`, and a `0` error box. -/
-def Zonotope.aux_zeroZonotope : Zonotope 𝕋 n :=
+def Zonotope.aux_zeroZonotope : Zonotope (Vec 𝕋 n) :=
   ⟨n, fun _ => zero, fun _ _ => zero, ⟨fun _ => zero, fun _ => zero⟩⟩
 
 /-- `0` lies in it: its nominal set at coefficients all `0`, plus its `0`
@@ -59,7 +59,7 @@ theorem Zonotope.aux_zero_mem_zeroZonotope :
 /-- `reduce` reaches no further than `Z.construct` widened by
 `reduceGirardBox` — the reverse of `reduce_outer`, and what a float run's own
 accumulated error needs. -/
-theorem Zonotope.reduce_subset_add_box (Z : Zonotope 𝕋 n) (o : ℕ) :
+theorem Zonotope.reduce_subset_add_box (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) :
     (Z.reduce o).construct ⊆
       Z.construct + (Zonotope.reduceGirardBox Z o).construct := by -- --- PROOF ---
   unfold Zonotope.reduce Zonotope.reduceGirard Zonotope.reduceGirardBox

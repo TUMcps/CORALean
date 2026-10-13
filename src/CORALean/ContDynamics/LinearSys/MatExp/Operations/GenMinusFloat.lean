@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The magnitudes of `(e^{AΔt} - I_n)G_h`, from `[e^{AΔt}]` and `H`'s generators. -/
-def MatExp.genMinus (eA : Interval (Mat 𝕋 n n)) (H : Zonotope 𝕋 n) : Fin H.h → Vec 𝕋 n :=
+def MatExp.genMinus (eA : Interval (Mat 𝕋 n n)) (H : Zonotope (Vec 𝕋 n)) : Fin H.h → Vec 𝕋 n :=
   fun l j => sumUp fun k =>
     let lo := if j = k then subDown (eA.inf j k) one else eA.inf j k   -- [e^{AΔt} - I]_{jk}
     let hi := if j = k then subUp (eA.sup j k) one else eA.sup j k

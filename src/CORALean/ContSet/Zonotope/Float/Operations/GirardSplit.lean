@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`. Zero exactly on the
 axis-aligned generators, which a box reproduces for free. -/
-def Zonotope.aux_girardMetric (Z : Zonotope 𝕋 n) (j : Fin Z.h) : 𝕋 :=
+def Zonotope.aux_girardMetric (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) : 𝕋 :=
   subDown (sumUp fun i => absolute (Z.G j i)) (maximumOver fun i => absolute (Z.G j i))
 
 
@@ -45,7 +45,7 @@ def Zonotope.aux_girardMetric (Z : Zonotope 𝕋 n) (j : Fin Z.h) : 𝕋 :=
 /-- The generators Girard's rule keeps at order `o`, against the rest: `(o-1)*n`
 of them, leaving room for the box of `n`. The comparator ranks the larger metric
 first, so the generators dearest to box survive — CORA's descending sort. -/
-def Zonotope.girardSplit (Z : Zonotope 𝕋 n) (o : ℕ) (hlt : o * n < Z.h) :
+def Zonotope.girardSplit (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) (hlt : o * n < Z.h) :
     Split (Fin Z.h) into (Fin ((o - 1) * n)) ⊕ (Fin (Z.h - (o - 1) * n)) :=
   have hle : (o - 1) * n ≤ Z.h :=
     le_of_lt (lt_of_le_of_lt (Nat.mul_le_mul (Nat.sub_le o 1) (le_refl n)) hlt)

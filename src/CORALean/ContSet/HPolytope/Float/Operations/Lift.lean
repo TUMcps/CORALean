@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n N : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.lift_ (P : HPolytope 𝕋 n) (dims : Fin n → Fin N) : HPolytope 𝕋 N where
+def HPolytope.lift_ (P : HPolytope 𝕋 (Vec 𝕋 n)) (dims : Fin n → Fin N) : HPolytope 𝕋 (Vec 𝕋 N) where
   m := P.m
   A := HPolytope.liftCols dims P.A
   b := P.b

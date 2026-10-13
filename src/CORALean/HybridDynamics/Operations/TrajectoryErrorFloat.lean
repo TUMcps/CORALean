@@ -56,8 +56,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `E_err = trajectoryError(linsys,f,u,R0,tmin,tmax,tc,order,n)` at floats, `none` where the
 float test `‖tmax A‖ ≤ (η + 2)/2` of the remainder bound fails. -/
-def LinearSys.trajectoryErrorFloat (sys : LinearSys 𝕋 n) (f₁ f₂ u : Vec 𝕋 n) (R₀ : Zonotope 𝕋 n)
-    (tmin tmax tc : 𝕋) (η : ℕ) : Option (Zonotope 𝕋 n) :=
+def LinearSys.trajectoryErrorFloat (sys : LinearSys 𝕋 n) (f₁ f₂ u : Vec 𝕋 n)
+    (R₀ : Zonotope (Vec 𝕋 n))
+    (tmin tmax tc : 𝕋) (η : ℕ) : Option (Zonotope (Vec 𝕋 n)) :=
   -- `[a, b] * Z` of a float interval and a zonotope, as the interval matrix `[a, b] I`
   let mulI : 𝕋 → 𝕋 → Interval (Mat 𝕋 n n) := fun a b =>
     Interval.smul a b (Interval.point (diagonalBlock fun _ => one))

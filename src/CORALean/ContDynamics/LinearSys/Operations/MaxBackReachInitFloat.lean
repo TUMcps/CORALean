@@ -46,11 +46,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Lines 1-2: the two particular solutions accumulated up to `t₀`, before the first
 iteration. -/
-def LinearSys.maxBackReachInitFloat (sys : LinearSys 𝕋 n) (U W₀ : Zonotope 𝕋 n) (t₀ : 𝕋)
+def LinearSys.maxBackReachInitFloat (sys : LinearSys 𝕋 n) (U W₀ : Zonotope (Vec 𝕋 n)) (t₀ : 𝕋)
     (η : ℕ) : Option (LinearSys.MaxBackReachStateFloat 𝕋 n) := do
   let η' ← sys.reachOrderFloat t₀ t₀ η                              -- η, raised until admissible
   let I := MatExp.adaptiveIntegral (Interval.point sys.A) t₀ η'     -- [∫₀^{t₀} e^{As}ds]
-  let ZU := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) I U     -- 2. Z̲_U(t₀)
+  let ZU := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- 2. Z̲_U(t₀)
+    (S := fun k => Zonotope (Vec 𝕋 k)) I U
   let ZW₀ := sys.inputSolutionFloat t₀ η' W₀                        -- 2. Ẑ_{W₀}(t₀)
   pure { tLo := t₀                                                  -- 1. τ = [t₀, t_end]
          tHi := t₀

@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n n₁ n₂ 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A box point padded below by zero is a point of the padded box. -/
-theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope 𝕋 n) (n₂ : ℕ) :
+theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₂ : ℕ) :
     CORALean.blockPadLeft n n₂ '' pZ.err.construct ⊆
       (pZ.blockPadLeft n₂).err.construct := by -- --- PROOF ---
   rintro _ ⟨e, he, rfl⟩ i
@@ -48,7 +48,7 @@ theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope 𝕋 n) (n₂ : ℕ) :
     exact ⟨le_refl _, le_refl _⟩
 
 /-- A box point padded above by zero is a point of the padded box. -/
-theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope 𝕋 n) (n₁ : ℕ) :
+theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₁ : ℕ) :
     CORALean.blockPadRight n₁ n '' pZ.err.construct ⊆
       (pZ.blockPadRight n₁).err.construct := by -- --- PROOF ---
   rintro _ ⟨e, he, rfl⟩ i
@@ -67,7 +67,7 @@ theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope 𝕋 n) (n₁ : ℕ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.stack_outer (pZ₁ : PolyZonotope 𝕋 n₁) (pZ₂ : PolyZonotope 𝕋 n₂)
+theorem PolyZonotope.stack_outer (pZ₁ : PolyZonotope (Vec 𝕋 n₁)) (pZ₂ : PolyZonotope (Vec 𝕋 n₂))
     (hp : pZ₁.p = pZ₂.p) :
     (Real.PolyZonotope.stack (nominal pZ₁) (nominal pZ₂) hp).construct
         + (CORALean.blockPadLeft n₁ n₂ '' pZ₁.err.construct

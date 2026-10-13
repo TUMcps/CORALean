@@ -38,37 +38,41 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachFloatInputStep_invariant (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ Δt)
-    {X₀ : Set (Vec ℝ n)} {ũ : Vec ℝ n} {Ũ : Zonotope 𝕋 n} {eAΔt : Interval (Mat 𝕋 n n)}
-    {Pu : Zonotope 𝕋 n} (ρ : ℕ) (heA : exp (Δt • Scalar.toRealMat sys.A) ∈ eAΔt.construct)
+    {X₀ : Set (Vec ℝ n)} {ũ : Vec ℝ n} {Ũ : Zonotope (Vec 𝕋 n)} {eAΔt : Interval (Mat 𝕋 n n)}
+    {Pu : Zonotope (Vec 𝕋 n)} (ρ : ℕ) (heA : exp (Δt • Scalar.toRealMat sys.A) ∈ eAΔt.construct)
     (hPu : Real.MatExp.expIntegral (Scalar.toRealMat sys.A) Δt *ᵥ ũ ∈ Pu.construct) {k : ℕ}
-    {s : Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n}
+    {s : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)}
     (h : sys.ReachFloatInputInvariant Δt X₀ ũ Ũ k s) :
     sys.ReachFloatInputInvariant Δt X₀ ũ Ũ (k + 1)
       (LinearSys.reachFloatInputStep eAΔt Pu ρ s) := by -- --- PROOF ---
   obtain ⟨h1, h2, h3, h4⟩ := h
   set A := Scalar.toRealMat sys.A with hA
   -- `[e^{AΔt}] Z` holds `e^{AΔt} z`
-  have hmt : ∀ {Z : Zonotope 𝕋 n} {z : Vec ℝ n}, z ∈ Z.construct → exp (Δt • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt Z
+  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (Δt • A) *ᵥ z
+      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt Z) :=
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt Z
       (Set.mem_biUnion heA (Set.mem_image_of_mem _ hz))
   -- `e^{A(a+Δt)} = e^{AΔt} e^{Aa}`, both powers of the same matrix
   have hexp : ∀ a : ℝ, exp ((a + Δt) • A) = exp (Δt • A) * exp (a • A) := fun a => by
     rw [add_comm a Δt, add_smul]
     exact exp_add_of_commute (((Commute.refl A).smul_left _).smul_right _)
   -- the free motion and the constant's contribution, one step on
-  have hnext : ∀ {Z : Zonotope 𝕋 n} {a : ℝ}, 0 ≤ a → ∀ {x₀ : Vec ℝ n},
+  have hnext : ∀ {Z : Zonotope (Vec 𝕋 n)} {a : ℝ}, 0 ≤ a → ∀ {x₀ : Vec ℝ n},
       exp (a • A) *ᵥ x₀ + Real.MatExp.expIntegral A a *ᵥ ũ ∈ Z.construct →
       exp ((a + Δt) • A) *ᵥ x₀ + Real.MatExp.expIntegral A (a + Δt) *ᵥ ũ ∈ ContSet.construct
-        (Reduce.reduce (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt Z ⊞ Pu) ρ) := by
+        (Reduce.reduce (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+          (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt Z ⊞ Pu) ρ) := by
     intro Z a ha x₀ hz
     rw [hexp, ← Matrix.mulVec_mulVec, Real.MatExp.expIntegral_add_mulVec A ũ ha hΔt, ← add_assoc,
       ← Matrix.mulVec_add]
     exact Reduce.reduce_outer _ ρ (Plus.plus_outer _ _ (Set.add_mem_add (hmt hz) hPu))
   -- the one-step set carried across `t_{k+1}` rather than `t_k`
   have h4' : (fun y => exp ((((k + 1 : ℕ) : ℝ) * Δt) • A) *ᵥ y)
-      '' sys.inputReach (S := Zonotope 𝕋) Ũ Δt ⊆ ContSet.construct
-        (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt s.2.2.2) := by
+      '' sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ Δt ⊆ ContSet.construct
+        (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+          eAΔt s.2.2.2) := by
     rintro _ ⟨y, hy, rfl⟩
     have ht : (((k + 1 : ℕ) : ℝ) * Δt) = (k : ℝ) * Δt + Δt := by push_cast; ring
     simp only [ht, hexp, ← Matrix.mulVec_mulVec]

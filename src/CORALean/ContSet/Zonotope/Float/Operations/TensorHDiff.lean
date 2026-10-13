@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.tensorHDiff (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope 𝕋 n)
+def Zonotope.tensorHDiff (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
     (L : Real.Zonotope.TensorLists Z.h) : Fin n → Fin L.C → 𝕋 :=
   fun iDim cInd => subUp (Zonotope.tensorHUp M Z L iDim cInd) (Zonotope.tensorHDown M Z L iDim cInd)
 

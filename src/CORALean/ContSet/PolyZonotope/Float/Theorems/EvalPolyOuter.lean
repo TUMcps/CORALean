@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `|nominal pZ|` is at most its centre plus every generator's magnitude, since
 every monomial is at most `1`. -/
-theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope 𝕋 n) (b : Fin pZ.p → ℝ)
+theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope (Vec 𝕋 n)) (b : Fin pZ.p → ℝ)
     (hb : ∀ k, |b k| ≤ 1) (i : Fin n) :
     |Real.PolyZonotope.point (nominal pZ) b i|
       ≤ toReal (PolyZonotope.evalPolyBoundS pZ i) := by -- --- PROOF ---
@@ -72,7 +72,7 @@ theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope 𝕋 n) (b : Fin pZ.
 /-- The Horner recursion's invariant: the gap between the exact value (from `pZ`'s
 stored floats, with no further rounding) and the float accumulator's own stored
 value lies in that accumulator's error box, at every admissible `b`. -/
-theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n))
+theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs : List (Vec 𝕋 n))
     (b : Fin pZ.p → ℝ) (hb : ∀ k, |b k| ≤ 1) :
     (fun i => (Real.PolyZonotope.evalPolyP (nominal pZ) (coeffs.map toRealVec)).1.point
           (fun k => b (Fin.cast ((Real.PolyZonotope.evalPolyP (nominal pZ)
@@ -308,7 +308,7 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope 𝕋 n) (coeffs : Lis
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the exact statement, read through the refinement: the same image, rounded outward
-theorem PolyZonotope.evalPoly_outer (pZ : PolyZonotope 𝕋 n) (coeffs : List (Vec 𝕋 n)) :
+theorem PolyZonotope.evalPoly_outer (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs : List (Vec 𝕋 n)) :
     (fun a : Fin pZ.p → ℝ => fun i => Real.PolyZonotope.evalPolyReal
         (coeffs.map fun v => toReal (v i))
         (Real.PolyZonotope.point (nominal pZ) a i)) '' {a | ∀ k, |a k| ≤ 1}

@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The `k` longest generators, as indices in increasing order. -/
-def Zonotope.dominantLengthFilter (Z : Zonotope 𝕋 n) (k : ℕ) : List (Fin Z.h) :=
+def Zonotope.dominantLengthFilter (Z : Zonotope (Vec 𝕋 n)) (k : ℕ) : List (Fin Z.h) :=
   let len := fun j => sumUp fun i => mulUp (Z.G j i) (Z.G j i)               -- sum(G.^2, 1)
   let top := ((List.finRange Z.h).mergeSort fun a b => le (len b) (len a)).take k  -- maxk
   (List.finRange Z.h).filter fun j => decide (j ∈ top)

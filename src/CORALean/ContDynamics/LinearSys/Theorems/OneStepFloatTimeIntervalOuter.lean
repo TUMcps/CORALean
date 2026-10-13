@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The state at every time of the step is in `oneStepFloat`'s time-interval set. -/
 theorem LinearSys.Trajectory.oneStepFloat_timeInterval_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
-    {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {X U : Zonotope 𝕋 n}
+    {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋 n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
     (traj : sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
@@ -71,7 +71,7 @@ theorem LinearSys.Trajectory.oneStepFloat_timeInterval_outer {sys : LinearSys �
   have hp := traj.sub_mem_inputReach_shift (S := fun k => Set (Vec ℝ k)) (U := U.construct) uR
     hWU hW hU ⟨ht0, htΔ⟩
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔt hη U
-    (sys.inputReach_mono (S := Zonotope 𝕋) hU h0 ht0 htΔ hp)
+    (sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k)) hU h0 ht0 htΔ hp)
   -- the constant's share, in `Pu`
   have hpt : uR ∈ (Zonotope.point u).construct := by
     rw [Zonotope.construct_point]; exact rfl
@@ -79,33 +79,39 @@ theorem LinearSys.Trajectory.oneStepFloat_timeInterval_outer {sys : LinearSys �
     ⟨fun _ => uR, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A uR hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
-  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes
+  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
       (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (sys.expIntervalFloat Δt Δt (m + 2)) X) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ X
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ X
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
         (Set.mem_image_of_mem _ traj.init))
   -- the `linComb` of `X` and `Htp` holds the interpolated point
   have hHtp : exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ uR
       ∈ construct (Plus.plus (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (sys.expIntervalFloat Δt Δt (m + 2)) X)
         (sys.inputSolutionFloat Δt (m + 2) (Zonotope.point u))) :=
     Plus.plus_outer _ _ (Set.add_mem_add hex hPu)
-  have hlin := LinComb.linComb_outer X (Plus.plus (Mtimes.mtimes
+  have hlin := LinComb.linComb_outer X (Plus.plus (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
     (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (sys.expIntervalFloat Δt Δt (m + 2)) X)
     (sys.inputSolutionFloat Δt (m + 2) (Zonotope.point u)))
     ⟨x 0, traj.init, _, hHtp, 1 - lam, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
   -- the two interpolation errors
   have hF : (exp (t • A) - 1 - lam • (exp (r • A) - 1)) *ᵥ x 0
       ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt (m + 2)) X) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ X
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ X
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2
         (Interval.mem_point sys.A) ht0 htΔ) (Set.mem_image_of_mem _ traj.init))
   have hG : (Real.MatExp.expIntegral A t - lam • Real.MatExp.expIntegral A r) *ᵥ uR
       ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalConstCorrectionMatrix (Interval.point sys.A) Δt (m + 2))
         (Zonotope.point u)) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ _
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ _
       (Set.mem_biUnion (MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix _ hΔt (m + 2)
         hη.2 (Interval.mem_point sys.A) ht0 htΔ) (Set.mem_image_of_mem _ hpt))
   -- the state is the interpolated point, the two errors, and the input's share
@@ -119,9 +125,9 @@ theorem LinearSys.Trajectory.oneStepFloat_timeInterval_outer {sys : LinearSys �
     abel
   -- the four parts, regrouped into `((Hti ⊞ PU) ⊞ C_input)`
   rw [hx]
-  exact Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add
-    (Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add
-      (Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add hlin hF)) hPU)) hG)
+  exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
+    (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
+      (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hlin hF)) hPU)) hG)
 
 end CORALean
 

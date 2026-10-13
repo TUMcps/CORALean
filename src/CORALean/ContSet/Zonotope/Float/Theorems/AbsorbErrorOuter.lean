@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `absorbError`'s generator count. -/
-theorem Zonotope.aux_sum_univ_absorbError {Z : Zonotope 𝕋 n} (f : Fin (Z.h + n) → ℝ) :
+theorem Zonotope.aux_sum_univ_absorbError {Z : Zonotope (Vec 𝕋 n)} (f : Fin (Z.h + n) → ℝ) :
     ∑ j : Fin Z.absorbError.h, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd Z.h j) :=
   Fin.sum_univ_add f
@@ -46,7 +46,7 @@ theorem Zonotope.aux_sum_univ_absorbError {Z : Zonotope 𝕋 n} (f : Fin (Z.h + 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.absorbError_outer (Z : Zonotope 𝕋 n) :
+theorem Zonotope.absorbError_outer (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.absorbError.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'

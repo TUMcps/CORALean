@@ -52,7 +52,7 @@ theorem VPolytope.aux_div_le {s sU k kD kU : ℝ} (hs : s ≤ sU) (hD : 0 < kD) 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.centerBox_meets (P : VPolytope 𝕋 n) (hk : 0 < P.k) :
+theorem VPolytope.centerBox_meets (P : VPolytope (Vec 𝕋 n)) (hk : 0 < P.k) :
     ∃ x ∈ P.centerBox.construct, {x} + P.E.construct ⊆ P.construct := by -- --- PROOF ---
   -- the exact mean of the nominal vertices
   refine ⟨(InflatedContSet.nominal P).center, ?_, ?_⟩

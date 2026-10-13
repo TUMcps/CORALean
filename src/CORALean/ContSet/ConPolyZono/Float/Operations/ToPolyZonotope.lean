@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.toPolyZonotope (cPZ : ConPolyZono 𝕋 n) : PolyZonotope 𝕋 n where
+def ConPolyZono.toPolyZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := cPZ.p
   h := cPZ.h
   q := cPZ.q

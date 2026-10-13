@@ -39,18 +39,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reach sets `Rs` that are not certified to have no outward flow on their projection. -/
-def Location.checkFlowFloat (ℓ : Location (Zonotope 𝕋) G L 𝕋 n) (c : Vec 𝕋 n) (d : 𝕋)
-    (Rs : List (Zonotope 𝕋 n)) : List (Zonotope 𝕋 n) :=
+def Location.checkFlowFloat (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n)
+    (c : Vec 𝕋 n) (d : 𝕋)
+    (Rs : List (Zonotope (Vec 𝕋 n))) : List (Zonotope (Vec 𝕋 n)) :=
   Rs.filter fun R =>
     -- project the reach set onto the hyperplane
-    let Rproj := ContSet.projectOnHyperplaneFloat R c d
+    let Rproj := ContSet.projectOnHyperplaneFloat (S := fun k => Zonotope (Vec 𝕋 k)) R c d
     -- fast check: the flow at the centre of the projection, with the centre input
-    let m := ScalarCentre.centreVec Rproj
-    let uc := ScalarCentre.centreVec ℓ.U
+    let m := ScalarCentre.centreVec (S := fun k => Zonotope (Vec 𝕋 k)) Rproj
+    let uc := ScalarCentre.centreVec (S := fun k => Zonotope (Vec 𝕋 k)) ℓ.U
     let flowC := sumUp fun i =>
       mulUp (c i) (addUp (sumUp fun j => mulUp (ℓ.dynamics.A i j) (m j)) (uc i))
     -- the flow set `A proj ⊞ U`, bounded from above along `c`
-    let flowSet := Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) ℓ.dynamics.A Rproj) ℓ.U
+    let flowSet := Plus.plus
+      (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) ℓ.dynamics.A Rproj) ℓ.U
     let flowUp := (flowSet.boundDot (c := rowLin (fun _ : Fin 1 => c) 0) c fun _ => rfl).val
     !le flowC zero || !le flowUp zero
 

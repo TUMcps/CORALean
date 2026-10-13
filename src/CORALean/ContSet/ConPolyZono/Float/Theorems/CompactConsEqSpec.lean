@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.compactCons_eq_spec (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.compactCons_eq_spec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.compactCons = cPZ.compactConsSpec := by
   simp only [ConPolyZono.compactCons, ConPolyZono.compactConsSpec,
     ConPolyZono.compactConsB, PolyZonotope.repTab_getD, PolyZonotope.tabAt_keepTab]

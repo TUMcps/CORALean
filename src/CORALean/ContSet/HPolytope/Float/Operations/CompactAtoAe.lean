@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The rows normalized, then each inverted pair of inequalities made an equality. -/
-def HPolytope.compactAtoAe (p : ℕ) (P : HPolytope 𝕋 n) (dom : Interval (Vec 𝕋 n)) :
-    HPolytope 𝕋 n :=
+def HPolytope.compactAtoAe (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (dom : Interval (Vec 𝕋 n)) :
+    HPolytope 𝕋 (Vec 𝕋 n) :=
   (P.normalizeRows p dom).pairsToEq
 
 end CORALean.Float

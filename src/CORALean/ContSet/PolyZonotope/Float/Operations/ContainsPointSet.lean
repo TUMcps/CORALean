@@ -38,15 +38,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- No point is certified outside the polytopes of the reduced zonotopes of every piece and of
 the set. -/
-def PolyZonotope.containsPointSet [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) {N : ℕ}
+def PolyZonotope.containsPointSet [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) {N : ℕ}
     (points : Fin N → Vec 𝕋 n) (splits order : ℕ)
-    (dirs : Zonotope 𝕋 n → Σ m, Mat 𝕋 m n) : Bool :=
+    (dirs : Zonotope (Vec 𝕋 n) → Σ m, Mat 𝕋 m n) : Bool :=
   let pZsplit := pZ.splitMany splits
   -- polytope(reduce(zonotope(·), 'girard', order)), one per piece and one for `pZ`
-  let poly : PolyZonotope 𝕋 n → HPolytope 𝕋 n := fun q =>
+  let poly : PolyZonotope (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) := fun q =>
     let Z := q.zonotopeCora.reduceGirard order
     Z.hPolytope (dirs Z).2
-  let qZsplit : List (HPolytope 𝕋 n) := pZsplit.map poly ++ [poly pZ]
+  let qZsplit : List (HPolytope 𝕋 (Vec 𝕋 n)) := pZsplit.map poly ++ [poly pZ]
   (List.finRange N).all fun i => qZsplit.any fun P => !P.excludesPoint (points i)
 
 end CORALean.Float

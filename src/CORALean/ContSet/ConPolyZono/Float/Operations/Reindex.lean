@@ -26,7 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.reindex (e : Fin m ≃ Fin n) (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 m where
+def ConPolyZono.reindex (e : Fin m ≃ Fin n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono
+    𝕋 (Vec 𝕋 m) where
   p := cPZ.p
   h := cPZ.h
   q := cPZ.q

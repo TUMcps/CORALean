@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.boxOut_outer (pZ : PolyZonotope 𝕋 n) (removed : Fin pZ.h → Bool)
+theorem PolyZonotope.boxOut_outer (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h → Bool)
     (taken : Fin pZ.q → Bool) :
     pZ.construct ⊆ (pZ.boxOut removed taken).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩

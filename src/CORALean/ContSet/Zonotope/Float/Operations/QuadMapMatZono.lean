@@ -43,9 +43,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m ν : ℕ}
 
 /-- [1, Thm. 1] at interval-matrix centres: `Z_D̲ ⊕ ([-1, 1] ⊗ Z_K(1)) ⊕ ... ⊕ [-e, e]`. -/
 def Zonotope.quadMapMatZono (D : Fin m → Interval (Mat 𝕋 n n))
-    (K : Fin ν → Fin m → Mat 𝕋 n n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m :=
+    (K : Fin ν → Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 m) :=
   let ZD := Z.quadMap fun i => (D i).inf                 -- `Z_D` at the lower ends
-  let ZK : ℕ → Zonotope 𝕋 m := fun j =>                  -- `[-1, 1] ⊗ Z_K(j)`
+  let ZK : ℕ → Zonotope (Vec 𝕋 m) := fun j =>                  -- `[-1, 1] ⊗ Z_K(j)`
     if hj : j < ν then (Z.quadMap (K ⟨j, hj⟩)).unitIntervalMul else Zonotope.point fun _ => zero
   let r : Vec 𝕋 n := Z.absBoundError                     -- `|xₗ| ≤ rₗ` over `Z`
   let w : Fin m → Mat 𝕋 n n := fun i l k =>              -- the width `D̄ − D̲`, up

@@ -33,11 +33,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 def Polygon.isDisjoint (P Q : Polygon 𝕋) : Bool :=
   -- every vertex difference of a piece, turned by a right angle
-  let normals : VPolytope 𝕋 2 → List (Vec 𝕋 2) := fun r =>
+  let normals : VPolytope (Vec 𝕋 2) → List (Vec 𝕋 2) := fun r =>
     (List.finRange r.k).flatMap fun l => (List.finRange r.k).map fun m =>
       ![subDown (r.V l 1) (r.V m 1), subDown (r.V m 0) (r.V l 0)]
   -- `d` keeps `p` certainly below `q`
-  let separates : VPolytope 𝕋 2 → VPolytope 𝕋 2 → Vec 𝕋 2 → Bool := fun p q d =>
+  let separates : VPolytope (Vec 𝕋 2) → VPolytope (Vec 𝕋 2) → Vec 𝕋 2 → Bool := fun p q d =>
     let negD : Vec 𝕋 2 := fun j => neg (d j)
     let hiP := (p.boundDot (c := rowLin (fun _ : Fin 1 => d) 0) d fun _ => rfl).val
     let hiQ := (q.boundDot (c := rowLin (fun _ : Fin 1 => negD) 0) negD fun _ => rfl).val

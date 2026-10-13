@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.cubMapDep (T : Fin m → Fin n → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
-    PolyZonotope 𝕋 m where
+def PolyZonotope.cubMapDep (T : Fin m → Fin n → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n)) :
+    PolyZonotope (Vec 𝕋 m) where
   p := pZ.p
   h := (pZ.h + 1) * (pZ.h + 1) * (pZ.h + 1)
   q := 0

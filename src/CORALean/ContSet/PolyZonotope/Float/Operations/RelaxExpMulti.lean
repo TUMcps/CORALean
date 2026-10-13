@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 /-- The two generators `part.right` names merged into one, at the exponent
 column of the second, the first scaled by the summed `ξ_E` becoming
 independent. -/
-def PolyZonotope.relaxExpMulti (pZ : PolyZonotope 𝕋 n)
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : PolyZonotope 𝕋 n where
+def PolyZonotope.relaxExpMulti (pZ : PolyZonotope (Vec 𝕋 n))
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := d + 1
   q := pZ.q + 1

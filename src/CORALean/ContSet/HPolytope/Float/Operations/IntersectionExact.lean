@@ -21,7 +21,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.intersection_exact (P₁ P₂ : HPolytope 𝕋 n) :
+theorem HPolytope.intersection_exact (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) :
     P₁.construct ∩ P₂.construct = (P₁.intersection P₂).construct :=
   Set.ext fun _ => HPolytope.mem_intersection_iff.symm
 

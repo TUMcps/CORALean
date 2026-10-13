@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- What the two error boxes let the two nominal points differ by, and the
 tolerance the stored rows amount to covers it. -/
-theorem ConPolyZono.aux_mem_intersectionD (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) {e₁ e₂ : Vec ℝ n}
+theorem ConPolyZono.aux_mem_intersectionD (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {e₁ e₂ : Vec ℝ n}
     (h₁ : e₁ ∈ cPZ₁.err.construct) (h₂ : e₂ ∈ cPZ₂.err.construct) :
     e₂ - e₁ ∈ (ConPolyZono.intersectionD cPZ₁ cPZ₂).construct := by -- --- PROOF ---
   intro i
@@ -52,7 +52,7 @@ theorem ConPolyZono.aux_mem_intersectionD (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) {
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the nominal side is the exact layer's intersection, at the tolerance `intersectionD` supplies
-theorem ConPolyZono.intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (hq₁ : cPZ₁.q = 0)
+theorem ConPolyZono.intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hq₁ : cPZ₁.q = 0)
     (hq₂ : cPZ₂.q = 0) :
     cPZ₁.construct ∩ cPZ₂.construct ⊆ (cPZ₁.intersectionDep cPZ₂).construct := by -- --- PROOF ---
   have hnom : nominalSet (cPZ₁.intersectionDep cPZ₂)

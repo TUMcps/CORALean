@@ -60,7 +60,7 @@ theorem aux_zero_mem_origin :
 /-- Every difference `e^{As} x - x` between a state of the step and the state it
 started from, for `x ∈ R` and `s ∈ [0, Δt]`. -/
 theorem LinearSys.deltaReachFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope 𝕋 n)
+    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
     {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) :
     exp (s • Scalar.toRealMat sys.A) *ᵥ x - x
       ∈ (sys.deltaReachFloat Δt η R).construct := by -- --- PROOF ---
@@ -76,19 +76,21 @@ theorem LinearSys.deltaReachFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {�
     simp only [Matrix.sub_mulVec, smul_mulVec, Matrix.one_mulVec, smul_sub]
     abel
   -- `(e^{AΔt} - I) x` lies in `([e^{AΔt}] - I) R`
-  have hE : (exp (r • A) - 1) *ᵥ x ∈ construct (Mtimes.mtimes
+  have hE : (exp (r • A) - 1) *ᵥ x ∈ construct (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
       (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (Interval.matPlus (sys.expIntervalFloat Δt Δt (m + 2))
         (Interval.point (negIdentityMat 𝕋 n))) R) := by
     have hM := Interval.matPlus_outer _ _ (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
       aux_negOne_mem_point
     rw [← sub_eq_add_neg] at hM
-    exact Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ R
+    exact Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
       (Set.mem_biUnion hM (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `[F] R`
   have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ construct
-      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ R
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2
         (Interval.mem_point sys.A) hs0 hs) (Set.mem_image_of_mem _ hx))
   rw [hdecomp]

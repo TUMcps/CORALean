@@ -31,8 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 4-11: the windows `R̂(τ_k), …, R̂(τ_{k+K-1})` of `K` iterations from `s`. -/
-def LinearSys.manualRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋 n) (Δt : 𝕋)
-    (η ρ : ℕ) : ℕ → LinearSys.ManualStateFloat 𝕋 n → Option (List (Zonotope 𝕋 n))
+def LinearSys.manualRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
+    (η ρ : ℕ) : ℕ → LinearSys.ManualStateFloat 𝕋 n → Option (List (Zonotope (Vec 𝕋 n)))
   | 0, _ => some []
   | K + 1, s => do
     let (s', Rτk) ← sys.manualStepFloat X₀ V Δt η ρ s               -- 5.-11. one iteration

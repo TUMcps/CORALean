@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- CORA's `reduce`: compact, then rank. A caller names an order and gets an
 over-approximation of bounded size; which rule ranked it goes no further. -/
-def ConPolyZono.reduce (cPZ : ConPolyZono 𝕋 n) (o : ℕ) : ConPolyZono 𝕋 n :=
+def ConPolyZono.reduce (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (o : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   cPZ.compact.reduceGirard o
 
 end CORALean.Float

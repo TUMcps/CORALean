@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The rows normalized, then the zero rows dropped or the empty set returned. -/
-def HPolytope.compactZeros (p : ℕ) (P : HPolytope 𝕋 n) (dom : Interval (Vec 𝕋 n)) :
-    HPolytope 𝕋 n :=
+def HPolytope.compactZeros (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (dom : Interval (Vec 𝕋 n)) :
+    HPolytope 𝕋 (Vec 𝕋 n) :=
   (P.normalizeRows p dom).dropZeros
 
 end CORALean.Float

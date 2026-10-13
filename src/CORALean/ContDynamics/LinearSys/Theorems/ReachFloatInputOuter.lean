@@ -35,8 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U` is,
 at every time of window `k`, in the `k`-th time-interval set. -/
 theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope 𝕋 n)}
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
     ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
       Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
@@ -48,14 +48,14 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant B h
   refine ⟨N, hNΔt, by simp [hlen], fun {x u} traj k hk t ht => ?_⟩
   set Δ := toReal options.timeStep with hΔ
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) B params.U with hV
+  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U with hV
   have hk' : k < S.length := by simpa using hk
   obtain ⟨-, h2, h3, -⟩ := hinv k hk'
   -- the run's inputs are in `B U`'s float enclosure
   have hUV : ContSet.construct ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct)
       ⊆ ContSet.construct V := by
     rintro _ ⟨w, hw, rfl⟩
-    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) B params.U
+    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U
       (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
   -- window `k` lies inside the horizon
   have hkN : ((k : ℝ) + 1) * Δ ≤ (params.tFinal : ℝ) - params.tStart := by
@@ -63,7 +63,8 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n
     have : (k : ℝ) + 1 ≤ N := by rw [← hlen]; exact_mod_cast hk'
     exact mul_le_mul_of_nonneg_right this hΔt.le
   have ht0 : 0 ≤ t := le_trans (by positivity) ht.1
-  have hd := traj.sub_mem_inputReach_recentre hUV ⟨ht0, ht.2.trans hkN⟩
+  have hd := traj.sub_mem_inputReach_recentre (S' := fun k => Zonotope (Vec 𝕋 k)) hUV
+    ⟨ht0, ht.2.trans hkN⟩
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
   have hy := h3 (sys.inputReach_mono (CompactSet.isBounded_construct _)
     (Recentre.zero_mem_recentre _) ht0 (by push_cast; exact ht.2) hd)

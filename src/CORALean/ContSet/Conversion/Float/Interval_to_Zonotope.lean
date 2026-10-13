@@ -49,7 +49,7 @@ theorem Interval.reaches (I : Interval (Vec 𝕋 n)) (i : Fin n) :
     linarith
 
 -- the stored centre, and one diagonal generator per coordinate
-def Interval.zonotope (I : Interval (Vec 𝕋 n)) : Zonotope 𝕋 n where
+def Interval.zonotope (I : Interval (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := n
   c := I.center
   G := diagonalBlock I.radiusFrom

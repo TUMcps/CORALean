@@ -40,26 +40,26 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance {n : ℕ} : Plus (PolyZonotope 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Plus (PolyZonotope (Vec 𝕋 n)) (Vec ℝ n) where
   plus pZ₁ pZ₂ := (pZ₁.plus pZ₂).materialise
   plus_outer pZ₁ pZ₂ := by
     rw [PolyZonotope.materialise_eq]
     exact PolyZonotope.plus_outer pZ₁ pZ₂
 
-instance {n : ℕ} : LinComb (PolyZonotope 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : LinComb (PolyZonotope (Vec 𝕋 n)) (Vec ℝ n) where
   linComb pZ₁ pZ₂ := (pZ₁.linComb pZ₂).materialise
   linComb_outer pZ₁ pZ₂ := by
     rw [PolyZonotope.materialise_eq]
     exact PolyZonotope.linComb_outer pZ₁ pZ₂
 
 -- `reduce` is computable here, `sortPerm` asking its comparator for no laws
-instance {n : ℕ} : Reduce (PolyZonotope 𝕋 n) (Vec ℝ n) where
+instance {n : ℕ} : Reduce (PolyZonotope (Vec 𝕋 n)) (Vec ℝ n) where
   reduce pZ o := (pZ.reduce o).materialise
   reduce_outer pZ o := by
     rw [PolyZonotope.materialise_eq]
     exact PolyZonotope.reduce_outer pZ o
 
-instance : Mtimes (Mat 𝕋) (PolyZonotope 𝕋) where
+instance : Mtimes (Mat 𝕋) (fun k => PolyZonotope (Vec 𝕋 k)) where
   mtimes M pZ := (PolyZonotope.mtimes M pZ).materialise
   mtimes_outer M pZ := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, PolyZonotope.materialise_eq]
@@ -67,7 +67,7 @@ instance : Mtimes (Mat 𝕋) (PolyZonotope 𝕋) where
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/
-instance : Reindex (PolyZonotope 𝕋) where
+instance : Reindex (fun k => PolyZonotope (Vec 𝕋 k)) where
   reindex e pZ := (PolyZonotope.reindex e pZ).materialise
   reindex_exact e pZ := by
     rw [PolyZonotope.materialise_eq]

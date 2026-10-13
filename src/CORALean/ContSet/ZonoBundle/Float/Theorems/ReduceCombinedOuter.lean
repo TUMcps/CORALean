@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.reduceCombined_outer (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k) :
+theorem ZonoBundle.reduceCombined_outer (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) :
     zB.construct ⊆ (zB.reduceCombined hk).construct :=
   ZonoBundle.enclosingParallelotope_outer zB hk _
 

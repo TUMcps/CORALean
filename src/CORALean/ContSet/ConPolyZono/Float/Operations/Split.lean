@@ -26,8 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.split (cPZ : ConPolyZono 𝕋 n) (d : Fin n) :
-    ConPolyZono 𝕋 n × ConPolyZono 𝕋 n :=
+def ConPolyZono.split (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (d : Fin n) :
+    ConPolyZono 𝕋 (Vec 𝕋 n) × ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let I := cPZ.interval
   -- the box cut at the middle of side `d`
   let (I₁, I₂) := I.splitAt d

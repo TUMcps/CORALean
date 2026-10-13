@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A zonotope whose error box is the point `0` is its nominal part. -/
-theorem aux_construct_nominal_point {V : Zonotope 𝕋 n}
+theorem aux_construct_nominal_point {V : Zonotope (Vec 𝕋 n)}
     (hE : V.E = Interval.point fun _ => FloatOps.zero)
     {y : Vec ℝ n} (hy : y ∈ V.construct) : y ∈ nominalSet V := by -- --- PROOF ---
   obtain ⟨z, hz, e, he, rfl⟩ := hy
@@ -63,7 +63,8 @@ theorem aux_construct_nominal_point {V : Zonotope 𝕋 n}
   exact hz
 
 /-- A point of the nominal part reaches no further than `|c| + Σ|G|`, rounded up. -/
-theorem aux_abs_nominal_le (V : Zonotope 𝕋 n) {z : Vec ℝ n} (hz : z ∈ nominalSet V) (j : Fin n) :
+theorem aux_abs_nominal_le (V : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
+    (hz : z ∈ nominalSet V) (j : Fin n) :
     |z j| ≤ toReal (addUp (absolute (V.c j)) (radius (fun i j => V.G j i) j)) := by -- --- PROOF ---
   obtain ⟨β, hβ, hval⟩ := Zonotope.mem_nominalSet_iff.mp hz
   have hgen := abs_sum_le_radius (d := fun i j => V.G j i) (Δ := fun i j => toReal (V.G j i))
@@ -87,7 +88,7 @@ theorem aux_mid_add_rad_le {lo hi C M : ℝ} (hlo : |lo - C| ≤ M) (hhi : |hi -
 theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Mat ℝ m n)}
     {IMf : Interval (Mat 𝕋 m n)} (hlo : IMr.inf ∈ IMf.construct) (hhi : IMr.sup ∈ IMf.construct)
     (hle : ∀ i j, IMr.inf i j ≤ IMr.sup i j) {Zr : CORALean.Real.Zonotope (Vec ℝ n)}
-    {V : Zonotope 𝕋 n} (hE : V.E = Interval.point fun _ => FloatOps.zero)
+    {V : Zonotope (Vec 𝕋 n)} (hE : V.E = Interval.point fun _ => FloatOps.zero)
     (hZ : Zr.construct ⊆ V.construct) :
     (CORALean.Real.Zonotope.mtimesIntervalMat IMr Zr).construct ⊆
       (Zonotope.mtimesIntervalMat IMf V).construct := by -- --- PROOF ---

@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.convex_construct (zB : ZonoBundle 𝕋 n) : Convex ℝ zB.construct :=
+theorem ZonoBundle.convex_construct (zB : ZonoBundle (Vec 𝕋 n)) : Convex ℝ zB.construct :=
   convex_iInter fun i => Zonotope.convex_construct (zB.Z i)
 
 end CORALean.Float

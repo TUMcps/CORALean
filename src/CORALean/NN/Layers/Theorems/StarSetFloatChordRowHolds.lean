@@ -6,7 +6,7 @@ import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
 # The float chord row holds at the ReLU of a bounded neuron
 
 At a point of the star set, the neuron lying within its bounds, the value `β = max(y, 0)` of
-its ReLU satisfies the chord row, whenever `StarSetFloat.chordGuard` accepts the bounds. The
+its ReLU satisfies the chord row, whenever `StarSet.chordGuard` accepts the bounds. The
 rounding of `k` and of its products with the generators is paid by the right-hand side.
 -/
 
@@ -18,7 +18,7 @@ rounding of `k` and of its products with the generators is paid by the right-han
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Float
 
 open Float Float.FloatOps Float.SoundFloatArithmetic
 
@@ -27,8 +27,8 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSetFloat.chordRow_holds (s : StarSetFloat 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋)
-    (hg : StarSetFloat.chordGuard b = true) (α : Fin s.m → ℝ)
+theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋)
+    (hg : StarSet.chordGuard b = true) (α : Fin s.m → ℝ)
     (hα : ∀ k, toReal (s.l k) ≤ α k ∧ α k ≤ toReal (s.u k))
     (hy : toReal b.1 ≤ toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ∧
       toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ≤ toReal b.2) :
@@ -40,7 +40,7 @@ theorem StarSetFloat.chordRow_holds (s : StarSetFloat 𝕋 n) (j : Fin n) (b : �
   set y := toReal (s.c j) + ∑ k, toReal (s.G j k) * α k with hydef
   set lf := toReal b.1 with hlf
   set uf := toReal b.2 with huf
-  unfold StarSetFloat.chordGuard at hg
+  unfold StarSet.chordGuard at hg
   simp only [Bool.and_eq_true] at hg
   obtain ⟨⟨h1, h2⟩, h3⟩ := hg
   have hl0 : lf < 0 := by
@@ -117,7 +117,7 @@ theorem StarSetFloat.chordRow_holds (s : StarSetFloat 𝕋 n) (j : Fin n) (b : �
   have hk' : k * (y - lf) = k * (toReal (s.c j) - lf) + k * ∑ i, toReal (s.G j i) * α i := by
     rw [hS]; ring
   -- read the row off the definition
-  unfold StarSetFloat.chordRow
+  unfold StarSet.chordRow
   simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last, toReal_neg, toReal_one,
     one_mul]
   have e : ∑ i : Fin s.m, -toReal (Interval.mulLo klo khi (s.G j i) (s.G j i)) * α i
@@ -127,7 +127,7 @@ theorem StarSetFloat.chordRow_holds (s : StarSetFloat 𝕋 n) (j : Fin n) (b : �
   rw [e]
   linarith [hc.2, hsplit, hk', hchord, hsumterm, hrhs]
 
-end CORALean
+end CORALean.Float
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [2, Alg. 1] as `innerApproxImage` runs it, from the box `X₀` of the domain `X`. -/
-def PolyZonotope.innerApproxImage (pZ : PolyZonotope 𝕋 n) (X : Interval (Vec 𝕋 pZ.p)) (tol : 𝕋)
+def PolyZonotope.innerApproxImage (pZ : PolyZonotope (Vec 𝕋 n))
+    (X : Interval (Vec 𝕋 pZ.p)) (tol : 𝕋)
     (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ) :
     ℕ → Interval (Vec 𝕋 pZ.p) → List (Interval (Vec 𝕋 n))
   | 0, _ => []

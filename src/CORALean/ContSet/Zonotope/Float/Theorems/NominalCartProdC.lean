@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The nominal centre of the product is the exact pair, appended. -/
-theorem Zonotope.nominal_cartProd_c (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope 𝕋 n₂) :
+theorem Zonotope.nominal_cartProd_c (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂)) :
     (InflatedContSet.nominal (Z₁.cartProd Z₂)).c =
       appendLinear n₁ n₂
         ((InflatedContSet.nominal Z₁).c, (InflatedContSet.nominal Z₂).c) := by -- --- PROOF ---

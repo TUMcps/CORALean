@@ -9,14 +9,14 @@ import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
 /-!
 # The float interval backpropagation encloses the real one
 
-For a float chain `c` that stands for the real chain `r` (`IntervalChainFloat.Sound`), an input
+For a float chain `c` that stands for the real chain `r` (`IntervalChain.Sound`), an input
 pair `p` and an output gradient pair `g` of real vectors inside the boxes `P` and `G`, the pair
-`IntervalChain.backprop` returns lies, bound by bound, in the boxes `IntervalChainFloat.backprop`
-returns. The forward values `p` the real recursion needs are the ones `IntervalChainFloat.fwd`
+`Real.IntervalChain.backprop` returns lies, bound by bound, in the boxes `IntervalChain.backprop`
+returns. The forward values `p` the real recursion needs are the ones `IntervalChain.fwd`
 encloses, so each layer's rule is enclosed at its own box: the linear layer's `dmu = Wᵀ (gu +
 gl)/2`, `dr = |W|ᵀ (gu - gl)/2` by `Interval.mtimes` of the transposed float matrices, the
 activation's `σ'(l) ⊙ gl` by `Interval.times` of the stored derivative enclosure. What the real
-row proves of the returned value (`IntervalChain.backprop_adjoint`, the adjoint of the tangent
+row proves of the returned value (`Real.IntervalChain.backprop_adjoint`, the adjoint of the tangent
 propagation, hence the transposed derivative of the forward pass) thus holds of a value the
 float result encloses.
 -/
@@ -38,8 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem IntervalChainFloat.backprop_outer {n k : ℕ} {c : IntervalChainFloat 𝕋 n k}
-    {r : IntervalChain n k} (hc : c.Sound r) :
+theorem IntervalChain.backprop_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
+    {r : Real.IntervalChain n k} (hc : c.Sound r) :
     ∀ (P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)) (p : Vec ℝ n × Vec ℝ n)
       (G : Interval (Vec 𝕋 k) × Interval (Vec 𝕋 k)) (g : Vec ℝ k × Vec ℝ k),
       p.1 ∈ P.1.construct → p.2 ∈ P.2.construct → g.1 ∈ G.1.construct → g.2 ∈ G.2.construct →
@@ -50,8 +50,8 @@ theorem IntervalChainFloat.backprop_outer {n k : ℕ} {c : IntervalChainFloat �
   | @linear n m k W b c r _ ih =>
     intro P p G g h1 h2 hg1 hg2
     -- the box the layer's output interval lives in, as in the forward pass
-    have hmu := IntervalChainFloat.linear_mu_mem W b h1 h2
-    have hr := IntervalChainFloat.linear_r_mem W h1 h2
+    have hmu := IntervalChain.linear_mu_mem W b h1 h2
+    have hr := IntervalChain.linear_r_mem W h1 h2
     obtain ⟨hl, hu⟩ := ih (Interval.minus (Interval.plus (Interval.mtimes W (Interval.halve
         (Interval.plus P.1 P.2))) ⟨b, b⟩) (Interval.mtimes (W.map absolute)
         (Interval.halve (Interval.minus P.2 P.1))),

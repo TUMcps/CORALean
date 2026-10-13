@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `zonotope/rotate`. -/
-def Zonotope.rotate (p : ℕ) {n : ℕ} (Z : Zonotope 𝕋 n) (i j : Fin n) (angle : 𝕋) :
-    Zonotope 𝕋 n :=
+def Zonotope.rotate (p : ℕ) {n : ℕ} (Z : Zonotope (Vec 𝕋 n)) (i j : Fin n) (angle : 𝕋) :
+    Zonotope (Vec 𝕋 n) :=
   Zonotope.mtimesIntervalMat (rotMat p n i j angle) Z
 
 end CORALean.Float

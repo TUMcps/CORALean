@@ -25,7 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.reindex (e : Fin m ≃ Fin n) (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 m where
+def ConZonotope.reindex (e : Fin m ≃ Fin n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope
+    𝕋 (Vec 𝕋 m) where
   h := cZ.h
   c := fun i => cZ.c (e i)
   G := fun j i => cZ.G j (e i)

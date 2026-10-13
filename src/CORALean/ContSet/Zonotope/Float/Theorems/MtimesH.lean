@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [SoundFloatArithmetic 𝕋] in
-@[simp] theorem Zonotope.mtimes_h (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) :
+@[simp] theorem Zonotope.mtimes_h (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
     (Zonotope.mtimes M Z).h = Z.h := rfl
 
 end CORALean.Float

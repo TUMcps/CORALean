@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 
 -- `R_x` after `k` steps holds the initial error under `(A - L C)^k`
 theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (L : Mat 𝕋 n p) (R₀ W : Zonotope 𝕋 n) (V : Zonotope 𝕋 p) (u : ℕ → Vec 𝕋 n)
+    (L : Mat 𝕋 n p) (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n)
     (y : ℕ → Vec 𝕋 p) {M : Mat ℝ n n} (hM : M ∈ (LinearSysDT.errMatFloat sys.A L C).construct)
     {e : Vec ℝ n} (he : e ∈ R₀.construct) (k : ℕ) :
     (M ^ k) *ᵥ e ∈
@@ -60,7 +60,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 n) (C : 
 
 -- `D` after `k` steps holds the disturbance terms under `(A - L C)^k`
 theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (L : Mat 𝕋 n p) (R₀ W : Zonotope 𝕋 n) (V : Zonotope 𝕋 p) (u : ℕ → Vec 𝕋 n)
+    (L : Mat 𝕋 n p) (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n)
     (y : ℕ → Vec 𝕋 p) {M : Mat ℝ n n} (hM : M ∈ (LinearSysDT.errMatFloat sys.A L C).construct)
     {d : Vec ℝ n}
     (hd : d ∈ ((Zonotope.mtimes (fun i j => neg (L i j)) V).plus W).construct) (k : ℕ) :
@@ -74,7 +74,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (C : M
 
 -- the boxed disturbance terms hold every sum `∑ (A - L C)^m d_m`
 theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (L : Mat 𝕋 n p) (R₀ W : Zonotope 𝕋 n) (V : Zonotope 𝕋 p) (u : ℕ → Vec 𝕋 n)
+    (L : Mat 𝕋 n p) (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n)
     (y : ℕ → Vec 𝕋 p) {M : Mat ℝ n n} (hM : M ∈ (LinearSysDT.errMatFloat sys.A L C).construct)
     (d : ℕ → Vec ℝ n)
     (hd : ∀ j, d j ∈ ((Zonotope.mtimes (fun i j => neg (L i j)) V).plus W).construct) (k : ℕ) :
@@ -101,7 +101,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (C :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.observeIntervalFloat_outer (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (L : Mat 𝕋 n p) (R₀ W : Zonotope 𝕋 n) (V : Zonotope 𝕋 p) (u : ℕ → Vec 𝕋 n)
+    (L : Mat 𝕋 n p) (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n)
     (y : ℕ → Vec 𝕋 p) (x w : ℕ → Vec ℝ n) (v : ℕ → Vec ℝ p)
     (h0 : x 0 - toRealVec R₀.c ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
     (hv : ∀ k, v k ∈ V.construct)

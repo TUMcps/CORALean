@@ -6,7 +6,7 @@ import CORALean.NN.Operations.IntervalChainFwdFloat
 /-!
 # The linear layer's radius is in its float box
 The radius `r = |W| (u - l)/2` of the layer's output interval, for `l`, `u` in their boxes, is in
-the box `IntervalChainFloat.fwd` and `backprop` compute it as.
+the box `IntervalChain.fwd` and `backprop` compute it as.
 -/
 
 -- Authors:       Tobias Ladner
@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem IntervalChainFloat.linear_r_mem {n m : ℕ} (W : Mat 𝕋 m n)
+theorem IntervalChain.linear_r_mem {n m : ℕ} (W : Mat 𝕋 m n)
     {P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)} {p : Vec ℝ n × Vec ℝ n}
     (h1 : p.1 ∈ P.1.construct) (h2 : p.2 ∈ P.2.construct) :
     (toRealMat W).map abs *ᵥ ((1 / 2 : ℝ) • (p.2 - p.1))

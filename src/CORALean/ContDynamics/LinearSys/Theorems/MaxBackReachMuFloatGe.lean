@@ -87,7 +87,7 @@ theorem aux_l2_opNorm_le {m h : ℕ} (A : Matrix (Fin m) (Fin h) ℝ) {s : ℝ} 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.maxBackReachMu_le_muFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) (p : ℕ) (B : Zonotope 𝕋 n) :
+    (hη : sys.OrderAdmissibleFloat Δt Δt η) (p : ℕ) (B : Zonotope (Vec 𝕋 n)) :
     sys.maxBackReachMu (toReal Δt) (InflatedContSet.nominal B)
       ≤ toReal (sys.maxBackReachMuFloat Δt η p B) := by -- --- PROOF ---
   set EI := Interval.matPlus (sys.expIntervalFloat Δt Δt η)

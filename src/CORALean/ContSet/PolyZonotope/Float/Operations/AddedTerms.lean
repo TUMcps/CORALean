@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The centre's column and every generator's `i`-th entry, times the new factor `lᵢ`. -/
-def PolyZonotope.addedTerms (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 1 where
+def PolyZonotope.addedTerms (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 1) where
   p := pZ.p + n
   h := n * (pZ.h + 1)
   q := 0

@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋]  {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Row `i` multiplied by `sA i` (`sE i`), the rounding moved to the right-hand sides. -/
-def HPolytope.scaleRows (P : HPolytope 𝕋 n) (sA : Fin P.m → 𝕋) (sE : Fin P.me → 𝕋)
-    (dom : Interval (Vec 𝕋 n)) : HPolytope 𝕋 n where
+def HPolytope.scaleRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (sA : Fin P.m → 𝕋) (sE : Fin P.me → 𝕋)
+    (dom : Interval (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := P.m
   A := fun i j => mulDown (P.A i j) (sA i)
   b := fun i => subUp (mulUp (P.b i) (sA i)) (HPolytope.scaleDevLo (P.A i) (sA i) dom)

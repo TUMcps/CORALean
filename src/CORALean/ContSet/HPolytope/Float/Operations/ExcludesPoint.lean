@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.excludesPoint (P : HPolytope 𝕋 n) (x : Vec 𝕋 n) : Bool :=
+def HPolytope.excludesPoint (P : HPolytope 𝕋 (Vec 𝕋 n)) (x : Vec 𝕋 n) : Bool :=
   -- an inequality violated: b < Aᵢ x
   (List.finRange P.m).any (fun i => ltStrict (P.b i) (dotDown (P.A i) x))
     -- an equality violated: be.sup < Aeᵢ x, or Aeᵢ x < be.inf

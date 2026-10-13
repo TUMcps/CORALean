@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.convHull (P Q : VPolytope 𝕋 n) : VPolytope 𝕋 n where
+def VPolytope.convHull (P Q : VPolytope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := P.k + Q.k
   V := Fin.append P.V Q.V
   E := P.E.or Q.E

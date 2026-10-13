@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.affineWindowFloat_outer (sys : LinearSys 𝕋 n) {H Hnext : Zonotope 𝕋 n}
+theorem LinearSys.affineWindowFloat_outer (sys : LinearSys 𝕋 n) {H Hnext : Zonotope (Vec 𝕋 n)}
     {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.construct)
     (hnext : exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ h
@@ -63,7 +63,7 @@ theorem LinearSys.affineWindowFloat_outer (sys : LinearSys 𝕋 n) {H Hnext : Zo
     simp only [Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec]
     module
   rw [heq]
-  exact Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add hcomb hcurv)
+  exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hcomb hcurv)
 
 end CORALean
 

@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinParamSys.timeIntervalStepFloat_outer
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope 𝕋 n)
+    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ}
     (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) :
     exp (s • A) *ᵥ x ∈ (sys.timeIntervalStepFloat Δt η R).construct := by -- --- PROOF ---
@@ -48,16 +48,19 @@ theorem LinParamSys.timeIntervalStepFloat_outer
     simp only [Matrix.sub_mulVec, smul_mulVec, Matrix.one_mulVec, sub_smul, smul_sub, one_smul]
     abel
   -- `e^{AΔt} x` lies in `[e^{AΔt}] R`
-  have hE : exp (r • A) *ᵥ x ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+  have hE : exp (r • A) *ᵥ x ∈ construct
+    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
       (sys.expIntervalFloat Δt Δt (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ R
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη hA le_rfl le_rfl)
         (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `[F] R`
   have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ construct
-      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ R
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2 hA hs0 hs)
         (Set.mem_image_of_mem _ hx))
   rw [hdecomp]

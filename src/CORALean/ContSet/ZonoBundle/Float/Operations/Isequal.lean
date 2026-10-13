@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.isequal (zB S : ZonoBundle 𝕋 n) : Bool :=
+def ZonoBundle.isequal (zB S : ZonoBundle (Vec 𝕋 n)) : Bool :=
   if e : zB.k = S.k then
     (List.finRange zB.k).all fun i => Zonotope.isequal (zB.Z i) (S.Z (Fin.cast e i))
   else false

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- CORA's `val = sqrt(min(b.^2))`, as an upper bound: the least rounded-up offset over the
 subsets of `n` generators. -/
-def Zonotope.minnorm (p : ℕ) (Z : Zonotope 𝕋 (n + 1)) : Option 𝕋 :=
+def Zonotope.minnorm (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) : Option 𝕋 :=
   let b := (List.sublistsLen n (List.finRange Z.h)).filterMap fun T =>      -- b, one row per subset
     if hT : T.length = n then Z.minnormOffset p fun k => T.get (k.cast hT.symm) else none
   b.foldl (fun best o => match best with                                   -- min(b)

@@ -27,8 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The rows normalized, then the dominated rows with an equal normal dropped. -/
-def HPolytope.compactAlignedIneq (p : ℕ) (P : HPolytope 𝕋 n) (dom : Interval (Vec 𝕋 n)) :
-    HPolytope 𝕋 n :=
+def HPolytope.compactAlignedIneq (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (dom : Interval (Vec 𝕋 n)) :
+    HPolytope 𝕋 (Vec 𝕋 n) :=
   (P.normalizeRows p dom).dropAligned
 
 end CORALean.Float

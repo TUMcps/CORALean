@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.rotate_outer (p : ℕ) {n : ℕ} (Z : Zonotope 𝕋 n) (i j : Fin n) (angle : 𝕋) :
+theorem Zonotope.rotate_outer (p : ℕ) {n : ℕ} (Z : Zonotope (Vec 𝕋 n)) (i j : Fin n) (angle : 𝕋) :
     (Real.rotMat n i j (toReal angle) *ᵥ ·) '' Z.construct ⊆
       (Zonotope.rotate p Z i j angle).construct := fun _ hy =>
   Zonotope.mtimesIntervalMat_outer _ Z (Set.mem_biUnion (rotMat_mem p n i j angle) hy)

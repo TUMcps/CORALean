@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.toRealMat_intersectionA (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.toRealMat_intersectionA (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     toRealMat (ConPolyZono.intersectionA cPZ₁ cPZ₂)
       = Real.ConPolyZono.intersectionA (nominal cPZ₁) (nominal cPZ₂) := by -- --- PROOF ---
   -- the exact layer's matrix spelled out, so the four `Fin.addCases` branches below match it

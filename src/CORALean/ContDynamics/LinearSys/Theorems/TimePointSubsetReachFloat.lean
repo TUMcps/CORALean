@@ -43,9 +43,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- Every `k` in range: the nominal time-point set at `k · toReal Δt` is inside
 `reachFloat`'s float one. -/
 theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n)
-    {X₀ : Real.Zonotope (Vec ℝ n)} {X₀float : Zonotope 𝕋 n}
+    {X₀ : Real.Zonotope (Vec ℝ n)} {X₀float : Zonotope (Vec 𝕋 n)}
     (hX₀ : construct X₀ ⊆ X₀float.construct) {tStart tFinal : ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope 𝕋 n)}
+    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options = some (Rti, Rtp)) :
     ∀ (k : ℕ) (hk : k < Rtp.length),
       construct (sys.timePoint (S := fun n => Real.Zonotope (Vec ℝ n)) (toReal options.timeStep)

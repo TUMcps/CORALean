@@ -48,8 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `err = aux_abstractionError(A,U,R0,th,tmax,order)`, with `err1` accumulated, at floats. -/
-def GuardMap.abstractionErrorFloat (A : Mat 𝕋 n n) (U R₀ : Zonotope 𝕋 n) (th tmax : 𝕋)
-    (η : ℕ) : Zonotope 𝕋 n :=
+def GuardMap.abstractionErrorFloat (A : Mat 𝕋 n n) (U R₀ : Zonotope (Vec 𝕋 n)) (th tmax : 𝕋)
+    (η : ℕ) : Zonotope (Vec 𝕋 n) :=
   -- `[a, b] * Z` of a float interval and a zonotope, as the interval matrix `[a, b] I`
   let mulI : 𝕋 → 𝕋 → Interval (Mat 𝕋 n n) := fun a b =>
     Interval.smul a b (Interval.point (diagonalBlock fun _ => one))

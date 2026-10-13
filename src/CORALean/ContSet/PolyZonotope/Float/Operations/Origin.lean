@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.origin (n : ℕ) : PolyZonotope 𝕋 n where
+def PolyZonotope.origin (n : ℕ) : PolyZonotope (Vec 𝕋 n) where
   p := 0
   h := 0
   q := 0

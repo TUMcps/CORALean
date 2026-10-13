@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 n} (h : Z.isequal S = true) :
+theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 (Vec 𝕋 n)} (h : Z.isequal S = true) :
     Z.construct = S.construct := by -- --- PROOF ---
   unfold ConZonotope.isequal at h
   split at h
@@ -55,14 +55,15 @@ theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 n} (h : Z.isequal S = 
         simp only [Interval.nominal, e₁, e₂]
       unfold Interval.construct
       rw [this]
-    have hN : (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 n)) =
-        nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 n) := by
+    have hN : (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) =
+        nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 (Vec 𝕋 n)) := by
       show (⟨h₁, toRealVec c₁, fun j => toRealVec (G₁ j), P₁.nominal⟩ :
           CORALean.Real.ConZonotope (Vec ℝ n)) =
         ⟨h₁, toRealVec c₂, fun j => toRealVec (G₂ j), P₂.nominal⟩
       rw [hc, hG, hPn]
-    change ContSet.construct (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 n)) + E₁.construct =
-      ContSet.construct (nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 n)) + E₂.construct
+    change ContSet.construct (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) +
+      E₁.construct =
+      ContSet.construct (nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) + E₂.construct
     rw [hN, hE]
   · simp at h
 

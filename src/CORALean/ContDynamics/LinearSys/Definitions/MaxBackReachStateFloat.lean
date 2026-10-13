@@ -44,17 +44,17 @@ structure LinearSys.MaxBackReachStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : �
   /-- `t_k`, line 7: an upper end. -/
   tHi : 𝕋
   /-- `Z̲_U(t_k)`, line 8: within `UErr` of the exact set, in every coordinate. -/
-  ZU : Zonotope 𝕋 n
+  ZU : Zonotope (Vec 𝕋 n)
   /-- How far `ZU` lies outside the exact `Z̲_U(t_k)`, per coordinate. -/
   UErr : Vec 𝕋 n
   /-- `Ẑ_{W₀}(t_k)`, line 9: an outer set. -/
-  ZW₀ : Zonotope 𝕋 n
+  ZW₀ : Zonotope (Vec 𝕋 n)
   /-- `Ẑ_W(τ_{k-1})`, line 10: an outer set. -/
-  ZW : Zonotope 𝕋 n
+  ZW : Zonotope (Vec 𝕋 n)
   /-- The hull of line 11 mapped by `e^{-A t_k}`: the first summand of line 12. -/
-  RH : ConZonotope 𝕋 n
+  RH : ConZonotope 𝕋 (Vec 𝕋 n)
   /-- `e^{-A t_k}` applied to `Z̲_U(t_{k-1})`: line 12 subtracts it. -/
-  RU : Zonotope 𝕋 n
+  RU : Zonotope (Vec 𝕋 n)
 
 /-- `R̂^{∃∀}(-τ_{k-1})`, line 12: the first summand and the negated second. -/
 def LinearSys.MaxBackReachStateFloat.R [SoundFloatArithmetic 𝕋]

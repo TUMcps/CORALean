@@ -42,13 +42,13 @@ structure LinearSys.AutoStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) where
   /-- `Δt_{k-1}`, the step line 5 doubles. -/
   Δt : 𝕋
   /-- `H(t_k)`, lines 1 and 26. -/
-  H : Zonotope 𝕋 n
+  H : Zonotope (Vec 𝕋 n)
   /-- `P^u(t_k)`, lines 2 and 25. -/
   Pu : Interval (Vec 𝕋 n)
   /-- `P̂^U_0(t_k)`, lines 2 and 18. -/
-  PU0 : Zonotope 𝕋 n
+  PU0 : Zonotope (Vec 𝕋 n)
   /-- `P̂^U_∞(t_k)`, lines 2 and 17. -/
-  PUinf : Zonotope 𝕋 n
+  PUinf : Zonotope (Vec 𝕋 n)
   /-- `ε^a_k`, lines 1 (as `0`) and 29, eq. (33). -/
   εa : ℚ
   /-- `ε^r_k`, lines 1 (as `0`) and 29, eq. (28). -/

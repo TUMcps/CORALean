@@ -25,7 +25,7 @@ open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def PolyZonotope.taylm (pZ : PolyZonotope 𝕋 n) (N : ℕ) : Fin n → Taylm 𝕋 (pZ.p + pZ.q) :=
+def PolyZonotope.taylm (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) : Fin n → Taylm 𝕋 (pZ.p + pZ.q) :=
   fun i => ⟨(pZ.c i, 0) :: (List.ofFn (fun j => (pZ.G j i, Fin.append (fun k => pZ.E k j) 0))
     ++ List.ofFn (fun l => (pZ.GI l i, Pi.single (Fin.natAdd pZ.p l) 1))),
     pZ.err.inf i, pZ.err.sup i, N⟩
@@ -35,7 +35,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope 𝕋 n) (N : ℕ) (i : Fin n)
+theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n)
     (t : Vec ℝ (pZ.p + pZ.q)) :
     (pZ.taylm N i).nominal.poly t = toReal (pZ.c i)
       + ∑ j, toReal (pZ.G j i)
@@ -54,7 +54,7 @@ theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope 𝕋 n) (N : ℕ) (i : Fi
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.taylm_exact (pZ : PolyZonotope 𝕋 n) (N : ℕ) :
+theorem PolyZonotope.taylm_exact (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) :
     Taylm.construct (pZ.taylm N) = pZ.construct := by -- --- PROOF ---
   ext x
   constructor

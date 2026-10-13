@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.centre_between (cZ : ConZonotope 𝕋 n) (β₀ : Vec 𝕋 cZ.h) (i : Fin n) :
+theorem ConZonotope.centre_between (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 cZ.h) (i : Fin n) :
     toReal (cZ.centreLo β₀ i) ≤ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j)
       ∧ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j)
         ≤ toReal (cZ.centreHi β₀ i) := by -- --- PROOF ---

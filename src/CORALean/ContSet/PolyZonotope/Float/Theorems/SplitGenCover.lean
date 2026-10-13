@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Whichever way it splits, the halves cover the set. -/
-theorem PolyZonotope.splitGen_cover (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.splitGen_cover (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.splitGen.1.construct ∪ pZ.splitGen.2.construct := by
   unfold PolyZonotope.splitGen
   cases pZ.longestFactor with

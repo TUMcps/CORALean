@@ -35,9 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The relaxation loop over-approximates, at every selection and every number
 of steps. -/
 theorem PolyZonotope.relaxExpGreedy_outer
-    (sel : (pZ : PolyZonotope 𝕋 n) →
+    (sel : (pZ : PolyZonotope (Vec 𝕋 n)) →
       Option ((d : ℕ) × (Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2))))
-    (m : ℕ) (pZ : PolyZonotope 𝕋 n) :
+    (m : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel m pZ).construct := by -- --- PROOF ---
   induction m generalizing pZ with
   | zero => exact subset_rfl

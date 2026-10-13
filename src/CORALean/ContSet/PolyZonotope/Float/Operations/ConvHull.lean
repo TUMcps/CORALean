@@ -35,15 +35,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.convHull (pZ₁ pZ₂ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
+def PolyZonotope.convHull (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
   -- pZ1_ = polyZonotope(pZ1.c, pZ1.G, [], pZ1.E, pZ1.id), and pZ2_ likewise
   let pZ₁' := pZ₁.noIndep
   let pZ₂' := pZ₂.noIndep
   -- pZ = linComb(linComb(pZ1_, pZ1_), linComb(pZ2_, pZ2_))
   let pZ := (pZ₁'.linComb pZ₁').linComb (pZ₂'.linComb pZ₂')
   -- Z1 = zonotope(c0, pZ1.GI), Z2 = zonotope(c0, S.GI)
-  let Z₁ : Zonotope 𝕋 n := ⟨pZ₁.q, fun _ => zero, pZ₁.GI, Interval.origin n⟩
-  let Z₂ : Zonotope 𝕋 n := ⟨pZ₂.q, fun _ => zero, pZ₂.GI, Interval.origin n⟩
+  let Z₁ : Zonotope (Vec 𝕋 n) := ⟨pZ₁.q, fun _ => zero, pZ₁.GI, Interval.origin n⟩
+  let Z₂ : Zonotope (Vec 𝕋 n) := ⟨pZ₂.q, fun _ => zero, pZ₂.GI, Interval.origin n⟩
   -- Z = enclose(Z1, Z2)
   let Z := Z₁.linComb Z₂
   -- pZ.GI = Z.G

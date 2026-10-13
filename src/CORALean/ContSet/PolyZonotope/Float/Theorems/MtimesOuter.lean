@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' nominalSet pZ ⊆
       nominalSet (PolyZonotope.mtimes M pZ)
         + (PolyZonotope.mtimesResidual M pZ).construct := by -- --- PROOF ---
@@ -106,7 +106,7 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope �
   linarith [hdep, hind]
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
-theorem PolyZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' (error pZ).construct + (PolyZonotope.mtimesResidual M pZ).construct ⊆
       (error (PolyZonotope.mtimes M pZ)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M pZ.err))
@@ -115,7 +115,7 @@ theorem PolyZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.mtimes_outer (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.mtimes_outer (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' pZ.construct ⊆ (PolyZonotope.mtimes M pZ).construct :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (PolyZonotope.aux_mtimes_nominal M pZ) (PolyZonotope.aux_mtimes_error M pZ)

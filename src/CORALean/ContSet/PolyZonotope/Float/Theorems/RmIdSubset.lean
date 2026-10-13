@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Inner: the pinned set lies in the original. -/
-theorem PolyZonotope.rmId_subset (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p)) :
+theorem PolyZonotope.rmId_subset (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p)) :
     (pZ.rmId S).construct ⊆ pZ.construct := by
   rw [PolyZonotope.rmId_construct]
   rintro _ ⟨_, ⟨a, β, ha, _, hβ, rfl⟩, e, he, rfl⟩

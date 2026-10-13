@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `Λ * zonotope(B)`, widened by `q m` for the residual `(1 - Λ H) x` of a candidate `H`. -/
 def ZonoBundle.parallelotope (Λ H : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (m : 𝕋) :
-    Zonotope 𝕋 n :=
+    Zonotope (Vec 𝕋 n) :=
   let Z := Zonotope.mtimes Λ B.zonotope                         -- Λ * zonotope(B)
   let e := mulUp (Zonotope.rightInvQ Λ H) m                     -- reach of (1 - Λ H) x
   { h := Z.h

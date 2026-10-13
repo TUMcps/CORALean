@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The specification of `compactFactors`: the factors neither block reads, dropped.
 Only `p` and the two exponent matrices change, all over ℕ, so nothing rounds and
 neither `b` nor the box moves. -/
-def ConPolyZono.compactFactorsSpec (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+def ConPolyZono.compactFactorsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.EC).card
   h := cPZ.h
   q := cPZ.q

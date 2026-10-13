@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.reduceLift (cZ : ConZonotope 𝕋 n) (o : ℕ) : ConZonotope 𝕋 n :=
+def ConZonotope.reduceLift (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (o : ℕ) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- the order of the lifted zonotope that leaves `o n + mₑ` generators
   let o' : ℕ := max 1 ((o * n + cZ.P.me) / (n + cZ.P.me))
   if hlt : o' * (n + cZ.P.me) < cZ.h then cZ.reduceLiftBy (cZ.liftEq.girardSplit o' hlt)

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 /-- The constraint says of the image what it said of the argument, the stored
 system being the same floats over the same factors. -/
-theorem ConPolyZono.satisfies_mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 n)
+theorem ConPolyZono.satisfies_mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (a : Fin cPZ.p → ℝ) : (ConPolyZono.mtimes M cPZ).satisfies a ↔ cPZ.satisfies a := Iff.rfl
 
 end CORALean.Float

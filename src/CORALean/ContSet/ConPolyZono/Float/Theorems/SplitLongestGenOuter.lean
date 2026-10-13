@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.splitLongestGen_outer (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.splitLongestGen_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.construct ⊆ cPZ.splitLongestGen.1.construct ∪ cPZ.splitLongestGen.2.construct := by
   unfold ConPolyZono.splitLongestGen
   cases cPZ.longestFactor with

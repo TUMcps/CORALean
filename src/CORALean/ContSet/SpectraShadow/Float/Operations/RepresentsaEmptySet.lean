@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.representsa_emptySet (S : SpectraShadow 𝕋 n) (Y : Mat 𝕋 S.k S.k) : Bool :=
+def SpectraShadow.representsa_emptySet (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (Y : Mat 𝕋 S.k S.k) : Bool :=
   let traceA₀ : ℚ := ∑ r, ∑ j, toRat (S.A₀ r j) * toRat (Y j r)
   S.dualCertified (fun _ => zero) Y && decide (traceA₀ < 0) && noNaN (𝕋 := 𝕋) S.A₀
 

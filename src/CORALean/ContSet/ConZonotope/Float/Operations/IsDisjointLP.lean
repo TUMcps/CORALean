@@ -42,7 +42,7 @@ def ConZonotope.aux_place {h : ℕ} (f : Fin h → ℚ) (off v : ℕ) : ℚ :=
 
 /-- A constraint polytope's rows on the coefficients at offset `off`: `A ≤ b`,
 `Ae ≤ be.sup`, `-Ae ≤ -be.inf`, and the unit box both ways. -/
-def ConZonotope.aux_coeffRows (cZ : ConZonotope 𝕋 n) (off : ℕ) : List ((ℕ → ℚ) × ℚ) :=
+def ConZonotope.aux_coeffRows (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (off : ℕ) : List ((ℕ → ℚ) × ℚ) :=
   let A := fun k j => ToRat.toRat (cZ.P.A k j)
   let Ae := fun k j => ToRat.toRat (cZ.P.Ae k j)
   (List.finRange cZ.P.m).map (fun k => (ConZonotope.aux_place (A k) off, ToRat.toRat (cZ.P.b k)))
@@ -56,7 +56,7 @@ def ConZonotope.aux_coeffRows (cZ : ConZonotope 𝕋 n) (off : ℕ) : List ((ℕ
       (ConZonotope.aux_place (fun l => if l = j then -1 else 0) off, 1))
 
 /-- The gap rows, `±((G₁β₁ - G₂β₂)ᵢ) - s ≤ ±(c₂ - c₁)ᵢ`, the `+` block first. -/
-def ConZonotope.aux_gapRows (cZ₁ cZ₂ : ConZonotope 𝕋 n) : List ((ℕ → ℚ) × ℚ) :=
+def ConZonotope.aux_gapRows (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : List ((ℕ → ℚ) × ℚ) :=
   let s := cZ₁.h + cZ₂.h
   let gap (i : Fin n) : ℕ → ℚ := fun v =>
     ConZonotope.aux_place (fun j => ToRat.toRat (cZ₁.G j i)) 0 v
@@ -71,7 +71,7 @@ def ConZonotope.aux_ratSigned (q : ℚ) : 𝕋 := if 0 ≤ q then ratUp q else n
 /-- The direction the program's dual proposes: the `-` block's weight minus the
 `+` block's, coordinate by coordinate. All zero when the simplex returns
 nothing, which then fails the check below. -/
-def ConZonotope.aux_separator (cZ₁ cZ₂ : ConZonotope 𝕋 n) : Vec 𝕋 n :=
+def ConZonotope.aux_separator (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Vec 𝕋 n :=
   let rows := ConZonotope.aux_coeffRows cZ₁ 0 ++ ConZonotope.aux_coeffRows cZ₂ cZ₁.h
     ++ ConZonotope.aux_gapRows cZ₁ cZ₂
   let N := cZ₁.h + cZ₂.h + 1
@@ -91,7 +91,7 @@ def ConZonotope.aux_separator (cZ₁ cZ₂ : ConZonotope 𝕋 n) : Vec 𝕋 n :=
 
 /-- Disjoint if the proposed direction, or its negation, separates the two
 bounds. Sound when `true`; `false` decides nothing. -/
-def ConZonotope.isDisjointLP (cZ₁ cZ₂ : ConZonotope 𝕋 n) : Bool :=
+def ConZonotope.isDisjointLP (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Bool :=
   let a := ConZonotope.aux_separator cZ₁ cZ₂
   ConZonotope.separatesAlong cZ₁ cZ₂ a || ConZonotope.separatesAlong cZ₁ cZ₂ fun i => neg (a i)
 

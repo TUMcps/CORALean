@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.absorbError (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n where
+def Zonotope.absorbError (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := Z.h + n
   c := Z.shiftDown
   G := Fin.append Z.G (diagonalBlock Z.errorRadius)

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.isequal (Z S : PolyZonotope 𝕋 n) : Bool :=
+def PolyZonotope.isequal (Z S : PolyZonotope (Vec 𝕋 n)) : Bool :=
   if e : Z.p = S.p ∧ Z.h = S.h ∧ Z.q = S.q then
     (List.finRange n).all (fun i =>
       (le (Z.c i) (S.c i) && le (S.c i) (Z.c i)) &&

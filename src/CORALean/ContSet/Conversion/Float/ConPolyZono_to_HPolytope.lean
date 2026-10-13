@@ -20,13 +20,14 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 
-def ConPolyZono.hPolytope (cPZ : ConPolyZono 𝕋 n) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 n :=
+def ConPolyZono.hPolytope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) : HPolytope
+    𝕋 (Vec 𝕋 n) :=
   cPZ.zonotope.hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.hPolytope_contains (cPZ : ConPolyZono 𝕋 n) (Aq : Mat 𝕋 q n) :
+theorem ConPolyZono.hPolytope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) :
     cPZ.construct ⊆ (cPZ.hPolytope Aq).construct :=
   subset_trans cPZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
 

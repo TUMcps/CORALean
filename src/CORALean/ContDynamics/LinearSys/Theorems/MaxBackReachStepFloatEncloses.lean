@@ -63,7 +63,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
-    (P₁ P₂ : HPolytope 𝕋 n) {U W₀ : Zonotope 𝕋 n} {Zw : 𝕋 → 𝕋 → Zonotope 𝕋 n} {Δt : 𝕋}
+    (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) {U W₀ : Zonotope (Vec 𝕋 n)}
+    {Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)} {Δt : 𝕋}
     {η η' : ℕ} {s s' : LinearSys.MaxBackReachStateFloat 𝕋 n}
     (h : sys.maxBackReachStepFloat Bx P₁ P₂ U W₀ Zw Δt η s = some s')
     (hη' : sys.reachOrderFloat Δt Δt η = some η')
@@ -126,7 +127,8 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     rw [← CORALean.Real.Zonotope.mtimes_exact] at hb
     obtain ⟨b', hb', rfl⟩ := hb
     exact Plus.plus_outer s.ZW₀ _ (Set.add_mem_add (hs.ZW₀ ha)
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) Φk _
+      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k)) Φk _
         (Set.mem_biUnion hΦk (Set.mem_image_of_mem _ (hW hb')))))
   -- and so is the new `Ẑ_W`: the new `Ẑ_{W₀}` plus the disturbance part
   have h6 : construct (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW ⊆ ZW.construct := by
@@ -301,7 +303,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
       show toReal (neg (ρe i)) ≤ δ i ∧ δ i ≤ toReal (ρe i)
       rw [toReal_neg]
       exact ⟨h.1, h.2⟩
-    have hblock : ∀ (P : HPolytope 𝕋 n) (Pr : CORALean.Real.HPolytope (Vec ℝ n)),
+    have hblock : ∀ (P : HPolytope 𝕋 (Vec 𝕋 n)) (Pr : CORALean.Real.HPolytope (Vec ℝ n)),
         P.construct ⊆ Pr.construct → (∀ i (y : Vec ℝ n), (toRealMat P.Ae *ᵥ y) i = 0) →
         (∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) →
         ∀ y ∈ nominalSet (LinearSys.maxBackReachCZFloat Bx P ZWe),

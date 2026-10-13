@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- `ξ_E` summed over every factor, read off the exponent matrix and so the
 exact layer's own width. -/
-def PolyZonotope.relaxWidthMulti (pZ : PolyZonotope 𝕋 n)
+def PolyZonotope.relaxWidthMulti (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : ℕ :=
   ∑ k, Real.PolyZonotope.eDiff (pZ.E k (part.right 0)) (pZ.E k (part.right 1))
 

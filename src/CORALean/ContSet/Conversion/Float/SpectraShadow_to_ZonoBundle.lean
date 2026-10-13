@@ -21,15 +21,16 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
-def SpectraShadow.zonoBundle (S : SpectraShadow 𝕋 n) (Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k) :
-    Option (ZonoBundle 𝕋 n) :=
+def SpectraShadow.zonoBundle (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k) :
+    Option (ZonoBundle (Vec 𝕋 n)) :=
   (S.zonotope Yup Ylo).map Zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.zonoBundle_contains {S : SpectraShadow 𝕋 n}
-    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} {W : ZonoBundle 𝕋 n} (h : S.zonoBundle Yup Ylo = some W) :
+theorem SpectraShadow.zonoBundle_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
+    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} {W : ZonoBundle (Vec 𝕋 n)}
+    (h : S.zonoBundle Yup Ylo = some W) :
     S.construct ⊆ W.construct := by
   simp only [SpectraShadow.zonoBundle, Option.map_eq_some_iff] at h
   obtain ⟨Z, hZ, rfl⟩ := h

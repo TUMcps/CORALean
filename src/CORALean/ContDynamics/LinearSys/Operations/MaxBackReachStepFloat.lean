@@ -52,7 +52,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- Lines 7-12: one iteration of [1, Alg. 2]'s main loop from the inside. `Zw tLo tHi` holds
 `Ẑ_W`'s disturbance part at every time of the bracket. -/
 def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
-    (P₁ P₂ : HPolytope 𝕋 n) (U W₀ : Zonotope 𝕋 n) (Zw : 𝕋 → 𝕋 → Zonotope 𝕋 n) (Δt : 𝕋)
+    (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) (U W₀ : Zonotope (Vec 𝕋 n))
+    (Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (η : ℕ) (s : LinearSys.MaxBackReachStateFloat 𝕋 n) :
     Option (LinearSys.MaxBackReachStateFloat 𝕋 n) := do
   let tk1Lo := addDown s.tLo Δt                                     -- 7. t_{k+1} ← t_k + Δt
@@ -66,12 +67,14 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
   let Φn := sys.expIntervalFloat (neg tk1Hi) (neg tk1Lo) ηn         -- [e^{-A t_{k+1}}]
   let I := MatExp.adaptiveIntegral (Interval.point sys.A) Δt η'     -- [∫₀^Δt e^{As}ds]
   let M := Interval.matMul Φk I                                     -- [e^{A t_k} ∫₀^Δt e^{As}ds]
-  let T := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) M U
+  let T := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (S := fun k => Zonotope (Vec 𝕋 k)) M U
   let ZU := s.ZU ⊞ T                                                -- 8. Z̲_U(t_{k+1})
   let UErr : Vec 𝕋 n := fun i =>                                    -- what ZU lies outside by
     addUp (addUp (s.UErr i) ((Zonotope.mtimesIntervalMatBox M U).magnitude i))
       ((Zonotope.plusBox s.ZU T).magnitude i)
-  let ZW₀ := s.ZW₀ ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) Φk   -- 9. Ẑ_{W₀}(t_{k+1})
+  let ZW₀ := s.ZW₀ ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- 9. Ẑ_{W₀}(t_{k+1})
+    (S := fun k => Zonotope (Vec 𝕋 k)) Φk
     (sys.inputSolutionFloat Δt η' W₀)
   let ZW := ZW₀ ⊞ Zw s.tLo s.tHi                                    -- 10. Ẑ_W(τ_k)
   let Z₀ := Bx.zonotope                                             -- the conversion box
@@ -93,7 +96,8 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
            ZW₀ := ZW₀
            ZW := ZW
            RH := H.mtimesNominal Φn.inf                             -- 12. e^{-A t_{k+1}} CZ …
-           RU := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) Φn s.ZU }  -- … Z̲_U
+           RU := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- … Z̲_U
+             (S := fun k => Zonotope (Vec 𝕋 k)) Φn s.ZU }
   else none
 
 end CORALean

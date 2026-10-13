@@ -52,7 +52,7 @@ def scalarJson (toD : 𝕋 → Float) (toExact : Option (𝕋 → String)) (x : 
 /-- One `sets`/`sets_ti`/`sets_tp` record: `k`, the time interval it covers
 (equal endpoints for a time-point set), and the zonotope's own fields. -/
 def stepJson (toD : 𝕋 → Float) (toExact : Option (𝕋 → String)) (k : ℕ) (t0 t1 : Float)
-    (Z : Zonotope 𝕋 2) (overflowed : Bool := false) : Json :=
+    (Z : Zonotope (Vec 𝕋 2)) (overflowed : Bool := false) : Json :=
   let sj := scalarJson toD toExact
   Json.mkObj <| (if overflowed then [("overflow", Json.bool true)] else []) ++
     [ ("k", Lean.toJson k),
@@ -96,7 +96,7 @@ def metaJson (experiment scheme ty format : String) (sig : ℕ) (configJ : Json)
 /-- One row of the CSV per step: `k`, `t`, the nominal hull's width per
 dimension (`2 * sum |G_ij|`, CORA's own interval-hull formula), and the error
 box's radius per dimension (`sup - inf`, unsigned by construction). -/
-def csvRow (toD : 𝕋 → Float) (k : ℕ) (t : Float) (Z : Zonotope 𝕋 2) : String :=
+def csvRow (toD : 𝕋 → Float) (k : ℕ) (t : Float) (Z : Zonotope (Vec 𝕋 2)) : String :=
   let width (i : Fin 2) : Float :=
     2.0 * (Array.ofFn fun j => (toD (Z.G j i)).abs).foldl (· + ·) 0.0
   let radius (i : Fin 2) : Float := toD (Z.E.sup i) - toD (Z.E.inf i)
@@ -107,7 +107,7 @@ def csvHeader : String := "k,t,width0,width1,Eradius0,Eradius1"
 
 /-- One `sets_ti`/`sets_tp` CSV row: `csvRow`'s own columns, `set` (`"ti"` or
 `"tp"`) ahead of `k` so both arrays share one file. -/
-def csvRowTagged (toD : 𝕋 → Float) (tag : String) (k : ℕ) (t : Float) (Z : Zonotope 𝕋 2) :
+def csvRowTagged (toD : 𝕋 → Float) (tag : String) (k : ℕ) (t : Float) (Z : Zonotope (Vec 𝕋 2)) :
     String :=
   s!"{tag},{csvRow toD k t Z}"
 
@@ -120,7 +120,7 @@ def csvHeaderTagged : String := "set," ++ csvHeader
 `Zonotope` per `k`, at time `t k`). Creates `out`'s parent directory first. -/
 def writeRun (out : System.FilePath) (experiment scheme ty format : String) (sig : ℕ)
     (configJ : Json) (eta : ℕ) (samples : Array Nat) (medianNs : Nat) (toD : 𝕋 → Float)
-    (toExact : Option (𝕋 → String)) (dtFloat : Float) (steps : Array (Zonotope 𝕋 2)) :
+    (toExact : Option (𝕋 → String)) (dtFloat : Float) (steps : Array (Zonotope (Vec 𝕋 2))) :
     IO Unit := do
   -- Creates `out`'s directory first, so a fresh `<config>/<exp>/` need not exist.
   match out.parent with
@@ -173,7 +173,7 @@ arrays, tagged) for `headline-a`/`headline-b`/`exp2-timepoint` -- either array
 may be empty, the scheme that has none of one kind. -/
 def writeRunTiTp (out : System.FilePath) (experiment scheme ty format : String) (sig : ℕ)
     (configJ : Json) (eta rho N : ℕ) (samples : Array Nat) (medianNs : Nat) (toD : 𝕋 → Float)
-    (toExact : Option (𝕋 → String)) (dtFloat : Float) (ti tp : Array (Zonotope 𝕋 2))
+    (toExact : Option (𝕋 → String)) (dtFloat : Float) (ti tp : Array (Zonotope (Vec 𝕋 2)))
     (nt : NumberType 𝕋 := {}) : IO Unit := do
   match out.parent with
   | some dir => IO.FS.createDirAll dir

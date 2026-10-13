@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.boundDot_le [ToRat 𝕋] (cZ : ConZonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
+theorem ConZonotope.boundDot_le [ToRat 𝕋] (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     ∀ x ∈ cZ.construct, c x ≤ toReal (cZ.boundDot a hc).val :=
   (cZ.boundDot a hc).le

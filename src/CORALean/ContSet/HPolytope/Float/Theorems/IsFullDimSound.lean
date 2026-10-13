@@ -36,7 +36,7 @@ theorem HPolytope.aux_continuous_row {m : ℕ} (M : Mat ℝ m n) (i : Fin m) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isFullDim_sound {P : HPolytope 𝕋 n} {x₀ : Vec 𝕋 n}
+theorem HPolytope.isFullDim_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {x₀ : Vec 𝕋 n}
     (h : P.isFullDim x₀ = true) : (interior P.construct).Nonempty := by -- --- PROOF ---
   simp only [HPolytope.isFullDim, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

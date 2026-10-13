@@ -10,11 +10,11 @@ directly — one ambient box cannot stand in for the members': `⋂ᵢ (Nᵢ + E
 be nonempty where `⋂ᵢ Nᵢ` is empty, and no `E` then makes `(⋂ᵢ Nᵢ) + E` contain
 it.
 
-`GZonoBundle α` is indexed by the ambient type its members store, as the exact
-layer's `ZonoBundle α` is, each member a `GZonotope α`, and what it denotes is the
-intersection of the members' generic sets. `ZonoBundle 𝕋 n` is the vector case, a
-reducible abbreviation, so the family `ZonoBundle 𝕋 : ℕ → Type` an algorithm is
-generic over keeps its spelling, and its operations keep the names `ZonoBundle.*`.
+`ZonoBundle α` is indexed by the ambient type its members store, as the exact
+layer's `ZonoBundle α` is, each member a `Zonotope α`, and what it denotes is the
+intersection of the members' generic sets. The vector case is
+`ZonoBundle (Vec 𝕋 n)`, and an algorithm generic over the dimension takes the
+family `fun k => ZonoBundle (Vec 𝕋 k)`.
 
 `k = 0` denotes an intersection over an empty family, which is `univ` — the
 whole space, not `∅` — exactly as over ℝ, and every degenerate case below is
@@ -41,22 +41,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure GZonoBundle (α : Type) where
+structure ZonoBundle (α : Type) where
   k : ℕ
-  Z : Fin k → GZonotope α
+  Z : Fin k → Zonotope α
 
-abbrev ZonoBundle (𝕋 : Type) (n : ℕ) := GZonoBundle (Vec 𝕋 n)
 
 /-- What the family denotes, at any ambient type: the intersection of the members'
 own inflated sets, so the rounding each has paid for is already inside this. -/
-def GZonoBundle.construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
-    [Entrywise β ι] (zB : GZonoBundle α) : Set β :=
+def ZonoBundle.construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
+    [Entrywise β ι] (zB : ZonoBundle α) : Set β :=
   ⋂ i, (zB.Z i).construct
-
-/-- The generic set at `Vec`, spelled through the members' `Zonotope.construct` so
-statements read locally; it is `GZonoBundle.construct` by definition. -/
-def ZonoBundle.construct (zB : ZonoBundle 𝕋 n) : Set (Vec ℝ n) :=
-  ⋂ i, Zonotope.construct (zB.Z i)
 
 /-! ## Storage
 
@@ -66,13 +60,13 @@ whole history on every entry read. `materialise` stores the family and every
 member in it; `materialise_eq` says it is the identity, which is what each proof
 in `Instances` rewrites with, exactly as `Zonotope`'s does. -/
 
-def ZonoBundle.materialise (zB : ZonoBundle 𝕋 n) : ZonoBundle 𝕋 n :=
-  let Z : Vector (Zonotope 𝕋 n) zB.k := Vector.ofFn fun i => Zonotope.materialise (zB.Z i)
+def ZonoBundle.materialise (zB : ZonoBundle (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) :=
+  let Z : Vector (Zonotope (Vec 𝕋 n)) zB.k := Vector.ofFn fun i => Zonotope.materialise (zB.Z i)
   { k := zB.k
     Z := fun i => Z[i.val]'i.isLt }
 
 omit [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] in
-@[simp] theorem ZonoBundle.materialise_eq (zB : ZonoBundle 𝕋 n) : zB.materialise = zB := by
+@[simp] theorem ZonoBundle.materialise_eq (zB : ZonoBundle (Vec 𝕋 n)) : zB.materialise = zB := by
   simp [ZonoBundle.materialise]
 
 end CORALean.Float

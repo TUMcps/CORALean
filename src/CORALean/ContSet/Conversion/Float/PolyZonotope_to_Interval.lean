@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The centre, then each block's reach in turn: three directed roundings rather
 than one, so no intermediate sum is ever rounded the wrong way. -/
-def PolyZonotope.interval (pZ : PolyZonotope 𝕋 n) : Interval (Vec 𝕋 n) :=
+def PolyZonotope.interval (pZ : PolyZonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
   -- each block's reach, read off the generators laid out as CORA's `n × h` matrix
   let rG := radius fun i l => pZ.G l i
   let rGI := radius fun i j => pZ.GI j i
@@ -47,7 +47,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.interval_contains (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.interval_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.interval.construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hzmem

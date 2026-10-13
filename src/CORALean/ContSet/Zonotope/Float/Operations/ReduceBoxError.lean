@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `err` at the box a reduction to order `o` absorbs the dropped generators into, from above. -/
-def Zonotope.reduceBoxError (Z : Zonotope 𝕋 n) (o : ℕ) : 𝕋 :=
+def Zonotope.reduceBoxError (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : 𝕋 :=
   (Z.reduceGirardBox o).errUp
 
 end CORALean.Float

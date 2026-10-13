@@ -34,7 +34,7 @@ def ConPolyZono.aux_girardMetric {m : ℕ} (G : Fin m → Vec 𝕋 n) (l : Fin m
   subDown (sumUp fun i => absolute (G l i)) (maximumOver fun i => absolute (G l i))
 
 /-- CORA's `[G, GI]`: the two blocks as one family, which is what it ranks. -/
-def ConPolyZono.aux_concatGens (cPZ : ConPolyZono 𝕋 n) : Fin (cPZ.h + cPZ.q) → Vec 𝕋 n :=
+def ConPolyZono.aux_concatGens (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Fin (cPZ.h + cPZ.q) → Vec 𝕋 n :=
   Fin.append cPZ.G cPZ.GI
 
 /-- The `k` generators a metric ranks first, against the rest. Clamped to the
@@ -49,7 +49,7 @@ def ConPolyZono.aux_girardSplit {m : ℕ} (metric : Fin m → 𝕋) (k : ℕ) :
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once
 over generators nothing memoizes. The cap at `K` never binds. -/
-def ConPolyZono.aux_girardKeptDep (cPZ : ConPolyZono 𝕋 n) (K : ℕ) : ℕ :=
+def ConPolyZono.aux_girardKeptDep (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (K : ℕ) : ℕ :=
   let metric := ConPolyZono.aux_girardMetric cPZ.aux_concatGens
   let rank := (sortPerm fun l₁ l₂ => le (metric l₂) (metric l₁)).symm
   min K (Finset.univ.filter fun l : Fin cPZ.h =>
@@ -61,7 +61,7 @@ def ConPolyZono.aux_girardKeptDep (cPZ : ConPolyZono 𝕋 n) (K : ℕ) : ℕ :=
 /-- CORA's `reduce(cPZ, 'girard', o)`: past `n·o` generators in the two blocks
 together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. At that order or below, nothing happens. -/
-def ConPolyZono.reduceGirard (cPZ : ConPolyZono 𝕋 n) (o : ℕ) : ConPolyZono 𝕋 n :=
+def ConPolyZono.reduceGirard (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (o : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   if o * n < cPZ.h + cPZ.q then
     let K := (o - 1) * n
     let d := cPZ.aux_girardKeptDep K

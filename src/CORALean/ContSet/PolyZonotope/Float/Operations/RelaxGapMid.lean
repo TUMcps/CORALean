@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 /-- What the merged column, the halved column and the shifted centre can each be
 off by, every one of them a gap between two roundings of one expression. -/
-def PolyZonotope.relaxGapMid (pZ : PolyZonotope 𝕋 n)
+def PolyZonotope.relaxGapMid (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Mat 𝕋 n 3 :=
   fun i =>
     ![subUp (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) (pZ.mergedGen part i),

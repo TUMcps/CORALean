@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.reduceDependent (pZ : PolyZonotope 𝕋 n) (o : ℕ) : PolyZonotope 𝕋 n :=
+def PolyZonotope.reduceDependent (pZ : PolyZonotope (Vec 𝕋 n)) (o : ℕ) : PolyZonotope (Vec 𝕋 n) :=
   pZ.compact.reduceGirardDependent o
 
 end CORALean.Float

@@ -26,10 +26,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `evalPoly`'s recursion, paired with the proof that it never leaves `pZ`'s
 factor count. -/
-def PolyZonotope.evalPolyP (pZ : PolyZonotope 𝕋 n) :
-    List (Vec 𝕋 n) → {R : PolyZonotope 𝕋 n // R.p = pZ.p}
+def PolyZonotope.evalPolyP (pZ : PolyZonotope (Vec 𝕋 n)) :
+    List (Vec 𝕋 n) → {R : PolyZonotope (Vec 𝕋 n) // R.p = pZ.p}
   | [] => ⟨(⟨pZ.p, 0, 0, fun _ => zero, Fin.elim0, fun _ => Fin.elim0, Fin.elim0,
-      ⟨fun _ => zero, fun _ => zero⟩⟩ : PolyZonotope 𝕋 n), rfl⟩
+      ⟨fun _ => zero, fun _ => zero⟩⟩ : PolyZonotope (Vec 𝕋 n)), rfl⟩
   | a :: rest =>
       let R := PolyZonotope.evalPolyP pZ rest
       ⟨PolyZonotope.evalPolyStep R.1 pZ R.2 a, R.2⟩

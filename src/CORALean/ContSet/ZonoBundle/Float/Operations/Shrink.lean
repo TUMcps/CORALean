@@ -38,10 +38,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- CORA's `shrink`: each member replaced by the parallelotope, along the edges of its `methC`
 reduction to order `1`, around the intersection of those reductions. -/
-def ZonoBundle.shrink (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k) : ZonoBundle 𝕋 n :=
-  let Zred : Fin zB.k → Zonotope 𝕋 n :=                     -- reduce(Z_i, 'methC', 1)
+def ZonoBundle.shrink (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) : ZonoBundle (Vec 𝕋 n) :=
+  let Zred : Fin zB.k → Zonotope (Vec 𝕋 n) :=                     -- reduce(Z_i, 'methC', 1)
     fun i => Zonotope.reduceMethC (zB.Z i) 1
-  let P : ZonoBundle 𝕋 n := ⟨zB.k, Zred⟩                    -- `⋂ polytope(Zred_i)`
+  let P : ZonoBundle (Vec 𝕋 n) := ⟨zB.k, Zred⟩                    -- `⋂ polytope(Zred_i)`
   ⟨zB.k, fun i =>
     P.enclosingParallelotope hk                              -- parallelotope(P, Zred_i.G)
       (fun r c => if hc : c.val < (Zred i).h then (Zred i).G ⟨c.val, hc⟩ r else zero)⟩

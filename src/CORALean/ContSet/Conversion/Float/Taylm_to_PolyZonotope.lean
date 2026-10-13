@@ -35,7 +35,7 @@ def Taylm.aux_allTerms (T : Fin m → Taylm 𝕋 n) : List (Fin m × (𝕋 × (F
   (List.finRange m).flatMap fun i => (T i).terms.map fun a => (i, a)
 
 
-def Taylm.polyZonotope (T : Fin m → Taylm 𝕋 n) : PolyZonotope 𝕋 m where
+def Taylm.polyZonotope (T : Fin m → Taylm 𝕋 n) : PolyZonotope (Vec 𝕋 m) where
   p := n
   h := (Taylm.aux_allTerms T).length
   q := 0

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (zB : ZonoBundle 𝕋 n) :
+theorem ZonoBundle.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (zB : ZonoBundle (Vec 𝕋 n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' zB.construct) ⊆
       (zB.mtimesIntervalMat IM).construct := by -- --- PROOF ---
   intro y hy

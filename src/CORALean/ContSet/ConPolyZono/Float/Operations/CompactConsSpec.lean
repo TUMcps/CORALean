@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The specification of `compactCons`: equal constraint exponent columns added
 together, the stored value the lower rounding and the widening paid into `b`.
 The generators stand, so the ambient box is untouched. -/
-def ConPolyZono.compactConsSpec (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+def ConPolyZono.compactConsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := cPZ.h
   q := cPZ.q

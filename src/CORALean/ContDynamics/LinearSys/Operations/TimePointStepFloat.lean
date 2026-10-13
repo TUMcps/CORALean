@@ -28,10 +28,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[e^{AΔt}] R` at Taylor order `η`. -/
-def LinearSys.timePointStepFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (R : Zonotope 𝕋 n) :
-    Zonotope 𝕋 n :=
+def LinearSys.timePointStepFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (R : Zonotope (Vec 𝕋 n)) :
+    Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                                  -- [e^{AΔt}]
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt R              -- [e^{AΔt}] R
+  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{AΔt}] R
+    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt R
 
 end CORALean
 

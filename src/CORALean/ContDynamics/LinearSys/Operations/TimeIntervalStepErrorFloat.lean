@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `Σⱼ|X₀|ⱼ (‖e^{rA} - I‖ + 2(e^{r‖A‖} - 1 - r‖A‖ + E(rA, η)))`, rounded up. -/
 def LinearSys.timeIntervalStepErrorFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ)
-    (X₀ : Zonotope 𝕋 n) : 𝕋 :=
+    (X₀ : Zonotope (Vec 𝕋 n)) : 𝕋 :=
   let S := sumUp fun j => X₀.absBoundError j                              -- ≥ Σⱼ |X₀|ⱼ
   let nrm := MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))  -- ≥ r ‖A‖
   let hull := subUp (sys.expNormUpFloat r η) one                         -- ≥ ‖e^{rA} - I‖

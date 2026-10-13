@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- The rows in ℚ, exactly, with the margin `t` as the last variable: `A`, `Ae`, `-Ae`, then the
 unit box `I` and `-I`, each row ending in `1`. -/
-def HPolytope.aux_marginRows (P : HPolytope 𝕋 h) :
+def HPolytope.aux_marginRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
     Fin (P.m + (P.me + P.me) + (h + h)) → Fin (h + 1) → ℚ :=
   fun i j =>
     if hj : j.val < h then
@@ -51,7 +51,7 @@ def HPolytope.aux_marginRows (P : HPolytope 𝕋 h) :
     else 1
 
 /-- The right-hand sides matching `aux_marginRows`. -/
-def HPolytope.aux_marginRhs (P : HPolytope 𝕋 h) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
+def HPolytope.aux_marginRhs (P : HPolytope 𝕋 (Vec 𝕋 h)) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
   Fin.append
     (Fin.append (fun i => ToRat.toRat (P.b i))
       (Fin.append (fun i => ToRat.toRat (P.be.sup i)) fun i => -ToRat.toRat (P.be.inf i)))
@@ -62,7 +62,7 @@ def HPolytope.aux_marginRhs (P : HPolytope 𝕋 h) : Fin (P.m + (P.me + P.me) + 
 
 /-- Weights `(y, zu, zl)` for the rows `A`, `Ae ≤ be.sup` and `-Ae ≤ -be.inf`. All zero where the
 simplex returns nothing. A proposal, not a certificate. -/
-def HPolytope.emptyWeights (P : HPolytope 𝕋 h) :
+def HPolytope.emptyWeights (P : HPolytope 𝕋 (Vec 𝕋 h)) :
     Vec 𝕋 P.m × Vec 𝕋 P.me × Vec 𝕋 P.me :=
   let k := P.m + (P.me + P.me) + (h + h)
   -- maximise the margin `t`, the last variable

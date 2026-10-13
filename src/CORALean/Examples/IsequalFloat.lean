@@ -44,11 +44,11 @@ def box0 : Interval (Vec D 2) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A zonotope with generators `(2, 0)`, `(0, 1)` and the same one with `2` written `1 · 2¹`. -/
-def Z₁ : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
-def Z₂ : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 1, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def Z₁ : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def Z₂ : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 1, d 0 0], ![d 0 0, d 1 0]], box0⟩
 
 /-- The same generators in the other order: the same set, but not certified equal. -/
-def Z₃ : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 0 0, d 1 0], ![d 2 0, d 0 0]], box0⟩
+def Z₃ : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 0 0, d 1 0], ![d 2 0, d 0 0]], box0⟩
 
 #eval ContSet.eqBool Z₁ Z₂   -- true
 #eval ContSet.eqBool Z₁ Z₃   -- false: a refutation of nothing
@@ -65,7 +65,7 @@ def I₂ : Interval (Vec D 1) := ⟨![d 0 0], ![d 1 1]⟩
 set_option maxRecDepth 4096 in
 /-- A certified `true` is a proof that the denoted sets of reals are equal. -/
 theorem Z₁_eq_Z₂ : Z₁.construct = Z₂.construct :=
-  ContSet.eqBool_sound (S := Zonotope D 2) (s := Z₁) (t := Z₂) rfl
+  ContSet.eqBool_sound (S := Zonotope (Vec D 2)) (s := Z₁) (t := Z₂) rfl
 
 /-- `[0, 1] ≠ [0, 2]` as sets of reals, so `neBool` is `true` (as the run shows). -/
 theorem I₁_ne_I₂ : ContSet.neBool I₁ I₂ = true := by -- --- PROOF ---

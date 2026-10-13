@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.maxExp (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) : ℕ :=
+def PolyZonotope.maxExp (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) : ℕ :=
   Finset.univ.sup fun i => pZ.E k i
 
 end CORALean.Float

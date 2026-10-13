@@ -22,7 +22,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The new generators reach every point the box did. -/
-theorem Zonotope.abs_sub_mid_le_errorRadius (Z : Zonotope 𝕋 n) {e : Vec ℝ n}
+theorem Zonotope.abs_sub_mid_le_errorRadius (Z : Zonotope (Vec 𝕋 n)) {e : Vec ℝ n}
     (he : e ∈ Z.E.construct) (i : Fin n) :
     |e i - (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2|
       ≤ toReal (Z.errorRadius i) := by -- --- PROOF ---

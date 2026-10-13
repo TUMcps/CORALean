@@ -94,7 +94,7 @@ def handleLinearSysReach {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic �
     let eta ← natField req "taylorTerms"
     let rho ← natField req "zonotopeOrder"
     -- CORA's `params` and `options`, under CORA's own names
-    let params : Reach.Params (Zonotope 𝕋 n) ℚ :=
+    let params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ :=
       { R0 := X0, tFinal := (aux_toRat tFinal).1 / (aux_toRat tFinal).2 }
     let options : LinearSys.ReachOptions 𝕋 :=
       { timeStep := Δt, taylorTerms := eta, zonotopeOrder := rho }

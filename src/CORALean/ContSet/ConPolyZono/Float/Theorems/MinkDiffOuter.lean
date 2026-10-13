@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A float vector as a one-point set holds that point, read as reals. -/
-theorem ConPolyZono.aux_mem_plus_point (cPZ : ConPolyZono 𝕋 n) (w : Vec 𝕋 n) {y : Vec ℝ n}
+theorem ConPolyZono.aux_mem_plus_point (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (w : Vec 𝕋 n) {y : Vec ℝ n}
     (hy : y - toRealVec w ∈ cPZ.construct) :
     y ∈ (cPZ.plus (Zonotope.point w).conPolyZono).construct := by
   refine ConPolyZono.plus_outer _ _ ⟨_, hy, toRealVec w, ?_, sub_add_cancel _ _⟩
@@ -44,7 +44,7 @@ theorem ConPolyZono.aux_mem_plus_point (cPZ : ConPolyZono 𝕋 n) (w : Vec 𝕋 
 /-- The fold over the generators `g`: a point whose every corner `y + Σ ±gⱼ` lies in `A`, and
 `A` in the start, lies in the result. -/
 theorem ConPolyZono.aux_minkDiff_fold :
-    ∀ {m : ℕ} (g : Fin m → Vec 𝕋 n) (cur : ConPolyZono 𝕋 n) (A : Set (Vec ℝ n)),
+    ∀ {m : ℕ} (g : Fin m → Vec 𝕋 n) (cur : ConPolyZono 𝕋 (Vec 𝕋 n)) (A : Set (Vec ℝ n)),
       A ⊆ cur.construct →
       {y | ∀ s : Fin m → Bool, y + ∑ j, (if s j then (1 : ℝ) else -1) • toRealVec (g j) ∈ A}
         ⊆ (Fin.foldl m (fun cPZ i => (cPZ.plus (Zonotope.point (g i)).conPolyZono).intersection
@@ -87,7 +87,7 @@ theorem ConPolyZono.aux_minkDiff_fold :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Outer: `P ⊖ Z ⊆ minkDiff P Z` for a float subtrahend whose error box holds `0`. -/
-theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono 𝕋 n) (Z : Zonotope 𝕋 n)
+theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n))
     (h0 : (0 : Vec ℝ n) ∈ Z.E.construct) :
     minkowskiDiff cPZ₁.construct Z.construct ⊆ (cPZ₁.minkDiff Z).construct := by -- --- PROOF ---
   intro x hx

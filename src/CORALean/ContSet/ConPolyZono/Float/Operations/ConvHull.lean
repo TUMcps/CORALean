@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The convex hull, as `n + 1` weighted copies of the linear combination. -/
-def ConPolyZono.convHull (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+def ConPolyZono.convHull (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   ConPolyZono.convHullSingle (n + 1) (cPZ₁.linComb cPZ₂)
 
 end CORALean.Float

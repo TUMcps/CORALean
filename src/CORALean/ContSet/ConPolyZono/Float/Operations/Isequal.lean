@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 n) : Bool :=
+def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
   if e : Z.p = S.p ∧ Z.h = S.h ∧ Z.q = S.q ∧ Z.m = S.m ∧ Z.s = S.s then
     -- the centre, the error box and the two generator blocks, entry by entry
     (List.finRange n).all (fun i =>

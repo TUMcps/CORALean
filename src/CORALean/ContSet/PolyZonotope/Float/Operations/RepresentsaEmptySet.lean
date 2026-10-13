@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.representsa_emptySet (pZ : PolyZonotope 𝕋 n) : Bool :=
+def PolyZonotope.representsa_emptySet (pZ : PolyZonotope (Vec 𝕋 n)) : Bool :=
   pZ.err.representsa_emptySet
 
 end CORALean.Float

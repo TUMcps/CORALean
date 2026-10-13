@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 n) :
+theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
     Q.pairsToEq.construct = Q.construct := by -- --- PROOF ---
   ext x
   rw [HPolytope.mem_construct_iff, HPolytope.mem_construct_iff]

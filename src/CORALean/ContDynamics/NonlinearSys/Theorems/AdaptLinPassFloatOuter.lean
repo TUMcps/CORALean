@@ -38,8 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 inputs in `U` whose `f(x, u) - A(x - x✱)` stays in `f(z✱) ⊕ B(U - u✱)` is in `R_lin(τ_k)` over
 the step and in `R_lin(t_{k+1})` at its end. -/
 theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer
-    {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} {U : Zonotope 𝕋 m}
-    {options : LinearSys.ReachOptions 𝕋} {R Rt Rτ : Zonotope 𝕋 n} {A : Mat 𝕋 n n}
+    {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} {U : Zonotope (Vec 𝕋 m)}
+    {options : LinearSys.ReachOptions 𝕋} {R Rt Rτ : Zonotope (Vec 𝕋 n)} {A : Mat 𝕋 n n}
     (hpass : fm.adaptLinPassFloat U options R = some (A, Rt, Rτ)) :
     0 < toReal options.timeStep ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.timeStep))
@@ -49,7 +49,7 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer
           (x t - toRealVec (fm.linPointFloat options.timeStep R U).1) ∈
           ((fm.f (Interval.point (fm.linPointFloat options.timeStep R U).1)
             (Interval.point (fm.linPointFloat options.timeStep R U).2)).zonotope ⊞
-            Mtimes.mtimes (𝕄 := Mat 𝕋)
+            Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
               (fm.linearizeFloat (fm.linPointFloat options.timeStep R U).1
                 (fm.linPointFloat options.timeStep R U).2).2
               (Recentre.recentre U)).construct) →

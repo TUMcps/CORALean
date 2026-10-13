@@ -29,7 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.normalizeRows_outer (p : ℕ) (P : HPolytope 𝕋 n) (dom : Interval (Vec 𝕋 n)) :
+theorem HPolytope.normalizeRows_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n))
+    (dom : Interval (Vec 𝕋 n)) :
     P.construct ∩ dom.construct ⊆ (P.normalizeRows p dom).construct ∩ dom.construct :=
   HPolytope.scaleRows_outer P _ _ (HPolytope.rowScale_pos p P) (fun _ => HPolytope.recipUp_pos _)
     dom

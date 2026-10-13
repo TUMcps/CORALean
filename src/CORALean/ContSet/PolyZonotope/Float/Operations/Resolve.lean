@@ -23,7 +23,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.resolve (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (x : 𝕋) : PolyZonotope 𝕋 n :=
+def PolyZonotope.resolve (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (x : 𝕋) :
+    PolyZonotope (Vec 𝕋 n) :=
   pZ.getSubset k x zero
 
 end CORALean.Float

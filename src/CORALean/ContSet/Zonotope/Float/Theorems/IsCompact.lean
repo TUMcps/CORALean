@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.isCompact_construct (Z : Zonotope 𝕋 n) : IsCompact Z.construct :=
+theorem Zonotope.isCompact_construct (Z : Zonotope (Vec 𝕋 n)) : IsCompact Z.construct :=
   IsCompact.add (nominal Z).isCompact_construct Z.E.nominal.isCompact_construct
 
 end CORALean.Float

@@ -4,7 +4,7 @@ import CORALean.ContSet.Zonotope.Float.Instances
 /-!
 # Per-run summary statistics, so a run's JSON answers without post-processing
 
-Four numbers per dimension, over a run's `Array (Zonotope 𝕋 2)`: the error
+Four numbers per dimension, over a run's `Array (Zonotope (Vec 𝕋 2))`: the error
 box's final and worst-over-steps radius `(E.sup - E.inf) / 2`, the final
 nominal hull's half-width `Σ_j |G_ij|` doubled into a width, and the final
 total width once `E` is added back on both sides. Beside them, for the
@@ -35,23 +35,23 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `(E.sup - E.inf) / 2` at dimension `i` -- the box's radius, half of
 `Output.csvRow`'s full-width `Eradius` column. -/
-def aux_eRadius (toD : 𝕋 → Float) (Z : Zonotope 𝕋 2) (i : Fin 2) : Float :=
+def aux_eRadius (toD : 𝕋 → Float) (Z : Zonotope (Vec 𝕋 2)) (i : Fin 2) : Float :=
   (toD (Z.E.sup i) - toD (Z.E.inf i)) / 2.0
 
 /-- `Σ_j |G_ij|` at dimension `i` -- the nominal hull's half-width, CORA's own
 formula halved. -/
-def aux_nominalHalfWidth (toD : 𝕋 → Float) (Z : Zonotope 𝕋 2) (i : Fin 2) : Float :=
+def aux_nominalHalfWidth (toD : 𝕋 → Float) (Z : Zonotope (Vec 𝕋 2)) (i : Fin 2) : Float :=
   (Array.ofFn fun j => (toD (Z.G j i)).abs).foldl (· + ·) 0.0
 
 /-- The larger of the two dimensions' values of `f`, `0.0` on an empty run. -/
-def aux_maxOverDims (f : Zonotope 𝕋 2 → Fin 2 → Float) (Z : Zonotope 𝕋 2) : Float :=
+def aux_maxOverDims (f : Zonotope (Vec 𝕋 2) → Fin 2 → Float) (Z : Zonotope (Vec 𝕋 2)) : Float :=
   let v0 := f Z 0
   let v1 := f Z 1
   if v0 < v1 then v1 else v0
 
 /-- The first index `i < steps.size` at which `p steps[i]` holds, `none` if it
 never does -- `Array.findIdx?`, named for what this file uses it for. -/
-def aux_firstIndexWhere (p : Zonotope 𝕋 2 → Bool) (steps : Array (Zonotope 𝕋 2)) :
+def aux_firstIndexWhere (p : Zonotope (Vec 𝕋 2) → Bool) (steps : Array (Zonotope (Vec 𝕋 2))) :
     Option ℕ :=
   steps.findIdx? p
 
@@ -81,12 +81,12 @@ def aux_isBlowup (e : Float) : Bool := decide (e > 1.0) || aux_notFinite e
 #guard aux_isBlowup 0.5 = false
 
 /-- Whether any number `Z` stores is past the type's range: centre, generators, error box. -/
-def zonoOverflows (overflows : 𝕋 → Bool) (Z : Zonotope 𝕋 2) : Bool :=
+def zonoOverflows (overflows : 𝕋 → Bool) (Z : Zonotope (Vec 𝕋 2)) : Bool :=
   (List.finRange 2).any fun i => overflows (Z.c i) || overflows (Z.E.inf i) ||
     overflows (Z.E.sup i) || (List.finRange Z.h).any fun j => overflows (Z.G j i)
 
 /-- The first step whose set stores a value past the range, `none` if none does. -/
-def firstOverflowStep (overflows : 𝕋 → Bool) (steps : Array (Zonotope 𝕋 2)) : Option ℕ :=
+def firstOverflowStep (overflows : 𝕋 → Bool) (steps : Array (Zonotope (Vec 𝕋 2))) : Option ℕ :=
   steps.findIdx? (zonoOverflows overflows)
 
 
@@ -95,7 +95,7 @@ def firstOverflowStep (overflows : 𝕋 → Bool) (steps : Array (Zonotope 𝕋 
 /-- One run's summary, over its own `steps` -- final/max error radius, final nominal and total
 hull width, the first step the error dominates or blows up past `1`, and, given `overflows`, the
 first step past the range. `{"empty": true}` on an empty run. -/
-def summaryJson (toD : 𝕋 → Float) (steps : Array (Zonotope 𝕋 2))
+def summaryJson (toD : 𝕋 → Float) (steps : Array (Zonotope (Vec 𝕋 2)))
     (overflows : Option (𝕋 → Bool) := none) : Json :=
   match steps.back? with
   | none => Json.mkObj [("empty", Json.bool true)]

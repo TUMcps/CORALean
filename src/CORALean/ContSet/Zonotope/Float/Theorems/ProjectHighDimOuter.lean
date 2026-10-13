@@ -50,7 +50,7 @@ theorem Zonotope.aux_embed_find (proj : Fin n → Fin N) (hproj : Function.Injec
     refine Finset.sum_eq_zero fun k _ => ?_
     rw [if_neg fun hk => h ⟨k, hk⟩, zero_mul]
 
-theorem Zonotope.aux_nominal_projectHighDim_ (Z : Zonotope 𝕋 n) (proj : Fin n → Fin N)
+theorem Zonotope.aux_nominal_projectHighDim_ (Z : Zonotope (Vec 𝕋 n)) (proj : Fin n → Fin N)
     (hproj : Function.Injective proj) :
     nominal (Z.projectHighDim_ N proj)
       = Real.Zonotope.projectHighDim_ (nominal Z) proj := by -- --- PROOF ---
@@ -86,7 +86,7 @@ theorem Zonotope.aux_extend_eq_embed (proj : Fin n → Fin N) (hproj : Function.
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.projectHighDim_outer (Z : Zonotope 𝕋 n) (proj : Fin n → Fin N)
+theorem Zonotope.projectHighDim_outer (Z : Zonotope (Vec 𝕋 n)) (proj : Fin n → Fin N)
     (hproj : Function.Injective proj) :
     (fun x => Function.extend proj x 0) '' Z.construct ⊆
       (Z.projectHighDim_ N proj).construct := by -- --- PROOF ---

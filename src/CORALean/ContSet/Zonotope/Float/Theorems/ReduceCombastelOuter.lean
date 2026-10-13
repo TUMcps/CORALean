@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Same two cases, at Combastel's partition instead of Girard's — the metric
 never appears, which is `reduceBy_outer`'s whole point. -/
-theorem Zonotope.reduceCombastel_outer (Z : Zonotope 𝕋 n) (o : ℕ) :
+theorem Zonotope.reduceCombastel_outer (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) :
     Z.construct ⊆ (Z.reduceCombastel o).construct := by
   unfold Zonotope.reduceCombastel
   split_ifs with hlt

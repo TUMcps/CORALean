@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- An injective renaming denotes the same set. -/
-theorem PolyZonotope.replaceId_exact (pZ : PolyZonotope 𝕋 n) {p' : ℕ} (f : Fin pZ.p → Fin p')
+theorem PolyZonotope.replaceId_exact (pZ : PolyZonotope (Vec 𝕋 n)) {p' : ℕ} (f : Fin pZ.p → Fin p')
     (hf : Function.Injective f) : (pZ.replaceId f).construct = pZ.construct := by -- --- PROOF ---
   have h : nominalSet (pZ.replaceId f) = ((nominal pZ).replaceId f).construct := rfl
   show nominalSet (pZ.replaceId f) + (pZ.replaceId f).err.construct

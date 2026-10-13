@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The sum of every `Float` a zonotope's four fields hold, over a whole
 rollout -- forces every entry of every step, so the loop the array came from
 cannot have left anything unevaluated. -/
-def checksum (toD : 𝕋 → Float) (arr : Array (Zonotope 𝕋 2)) : Float :=
+def checksum (toD : 𝕋 → Float) (arr : Array (Zonotope (Vec 𝕋 2))) : Float :=
   arr.foldl (fun acc Z =>
     let cSum := (Array.ofFn Z.c).foldl (· + toD ·) 0.0
     let rowSum (i : Fin 2) : Float := (Array.ofFn fun j => Z.G j i).foldl (· + toD ·) 0.0
@@ -58,7 +58,7 @@ def medianNanos (xs : Array Nat) : Nat :=
 the result through `checksum`. Returns every sample in nanoseconds, their
 median, and the last run's checksum and array (every run computes the same). -/
 def timeRollout (toD : 𝕋 → Float) (S : System 𝕋) (o N reps : ℕ) :
-    IO (Array Nat × Nat × Float × Array (Zonotope 𝕋 2)) := do
+    IO (Array Nat × Nat × Float × Array (Zonotope (Vec 𝕋 2))) := do
   let mut samples := #[]
   let mut lastArr := #[]
   let mut lastSum := 0.0
@@ -80,10 +80,10 @@ def timeRollout (toD : 𝕋 → Float) (S : System 𝕋) (o N reps : ℕ) :
 -- `reps` times, forcing a `some` result's lists through `checksum` exactly as
 `timeRollout` forces `rollout`'s; a `none` needs no forcing. -/
 def timeAlgo (toD : 𝕋 → Float)
-    (f : Unit → Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2))) (reps : ℕ) :
-    IO (Array Nat × Nat × Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2))) := do
+    (f : Unit → Option (List (Zonotope (Vec 𝕋 2)) × List (Zonotope (Vec 𝕋 2)))) (reps : ℕ) :
+    IO (Array Nat × Nat × Option (List (Zonotope (Vec 𝕋 2)) × List (Zonotope (Vec 𝕋 2)))) := do
   let mut samples := #[]
-  let mut lastR : Option (List (Zonotope 𝕋 2) × List (Zonotope 𝕋 2)) := none
+  let mut lastR : Option (List (Zonotope (Vec 𝕋 2)) × List (Zonotope (Vec 𝕋 2))) := none
   for _ in [0:reps] do
     let t0 ← IO.monoNanosNow
     let r := f ()

@@ -40,8 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 headline system carries no input) input set `reach` still asks for. -/
 structure System (𝕋 : Type) where
   sys : LinearSysDT 𝕋 2
-  X0 : Zonotope 𝕋 2
-  U : Zonotope 𝕋 2
+  X0 : Zonotope (Vec 𝕋 2)
+  U : Zonotope (Vec 𝕋 2)
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -54,14 +54,14 @@ def aux_readVec (field : String) (inst : String → ExactDyadic → Except Strin
 
 /-- The zero-input zonotope `reach` still takes: a single point at the origin,
 no generators, no error. -/
-def aux_zeroInput (z0 : 𝕋) : Zonotope 𝕋 2 :=
+def aux_zeroInput (z0 : 𝕋) : Zonotope (Vec 𝕋 2) :=
   { h := 0, c := fun _ => z0, G := fun j => j.elim0, E := ⟨fun _ => z0, fun _ => z0⟩ }
 
 /-- `X0` from the config's center and generator rows, all read into `𝕋` through
 `inst` -- shared with `ContRollout.buildContSystem`, so not `aux_`-named despite
 living beside the auxiliaries it is built from. -/
 def buildX0 (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except String 𝕋)
-    (z0 : 𝕋) : Except String (Zonotope 𝕋 2) := do
+    (z0 : 𝕋) : Except String (Zonotope (Vec 𝕋 2)) := do
   if cfg.x0Center.size ≠ 2 then throw "config `x0.center` must have exactly 2 entries" else
   let cArr ← aux_readVec "x0.center" inst cfg.x0Center
   let h := cfg.x0Generators.size
@@ -100,13 +100,13 @@ def buildSystem (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except
 
 /-- One step of `LinearSysDT.reach`'s own recursion, exposed so `rollout` and
 the theorem it mirrors read the same equation. -/
-def step (sys : LinearSysDT 𝕋 2) (o : ℕ) (U Z : Zonotope 𝕋 2) : Zonotope 𝕋 2 :=
-  reduce (plus (mtimes sys.A Z) U) o
+def step (sys : LinearSysDT 𝕋 2) (o : ℕ) (U Z : Zonotope (Vec 𝕋 2)) : Zonotope (Vec 𝕋 2) :=
+  reduce (plus (mtimes (S := fun k => Zonotope (Vec 𝕋 k)) sys.A Z) U) o
 
 /-- `#[reach 0, reach 1, ..., reach N]`, computed in one accumulating pass. See
 the module docstring for why this equals repeated calls to `LinearSysDT.reach`
 without their `O(N²)` cost. -/
-def rollout (S : System 𝕋) (o N : ℕ) : Array (Zonotope 𝕋 2) := Id.run do
+def rollout (S : System 𝕋) (o N : ℕ) : Array (Zonotope (Vec 𝕋 2)) := Id.run do
   let mut Z := S.X0
   let mut acc := #[Z]
   for _ in [0:N] do

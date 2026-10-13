@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.isFullDimWith (P : VPolytope 𝕋 n) (H : Mat 𝕋 P.k (n + 1)) : Bool :=
+def VPolytope.isFullDimWith (P : VPolytope (Vec 𝕋 n)) (H : Mat 𝕋 P.k (n + 1)) : Bool :=
   -- the coefficient bound `δ`, below `1 / k` after rounding, and the radius `B` it allows
   let δ : 𝕋 := half (divDown one (nsmulUp P.k one))
   Nat.ble 1 P.k && le (nsmulUp P.k δ) one

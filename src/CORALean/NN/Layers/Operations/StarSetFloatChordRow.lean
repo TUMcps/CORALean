@@ -20,7 +20,7 @@ is added to the right-hand side, together with `k (c_j - l)` rounded up.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Float
 
 open Float Float.FloatOps
 
@@ -30,7 +30,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The chord row for neuron `j` with bounds `b = (l, u)`. -/
-def StarSetFloat.chordRow (s : StarSetFloat 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋) :
+def StarSet.chordRow (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋) :
     (Fin (s.m + 1) → 𝕋) × 𝕋 :=
   let klo := divDown b.2 (subUp b.2 b.1)
   let khi := divUp b.2 (subDown b.2 b.1)
@@ -42,7 +42,7 @@ def StarSetFloat.chordRow (s : StarSetFloat 𝕋 n) (j : Fin n) (b : 𝕋 × �
          (Interval.mulLo klo khi (s.G j k) (s.G j k)))
        (maximum (absolute (s.l k)) (absolute (s.u k)))))
 
-end CORALean
+end CORALean.Float
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

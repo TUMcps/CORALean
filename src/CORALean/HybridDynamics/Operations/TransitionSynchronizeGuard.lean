@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q k : ℕ} {L : Fin k → Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The guard of the synchronized transition: `fullspace` and then each guard, `and_` in turn. -/
-def Transition.synchronizeGuard (g : Fin q → HPolytope 𝕋 n) : HPolytope 𝕋 n :=
+def Transition.synchronizeGuard (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
   (List.finRange q).foldl (fun guard i => HPolytope.intersection guard (g i))
     (HPolytope.fullspace 𝕋 n)
 

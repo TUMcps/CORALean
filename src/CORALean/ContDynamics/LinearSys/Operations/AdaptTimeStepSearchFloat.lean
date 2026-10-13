@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- Lines 3-12: shrink `Δt_i` by `μ` until some order clears both bounds,
 returning the step, the order and its `ε_H` and `ε_P`. -/
 def LinearSys.adaptTimeStepSearchFloat (sys : LinearSys 𝕋 n) (eAt : Interval (Mat 𝕋 n n))
-    (X₀ U : Zonotope 𝕋 n) (εHmax εPmax εPacc tf ti : ℚ) (μ : 𝕋) (ηmax : ℕ) :
+    (X₀ U : Zonotope (Vec 𝕋 n)) (εHmax εPmax εPacc tf ti : ℚ) (μ : 𝕋) (ηmax : ℕ) :
     𝕋 → ℕ → Option (𝕋 × ℕ × ℚ × ℚ)
   | _, 0 => none
   | Δt, k + 1 =>

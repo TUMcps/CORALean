@@ -26,7 +26,7 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def Zonotope.polyZonotope (Z : Zonotope 𝕋 n) : PolyZonotope 𝕋 n where
+def Zonotope.polyZonotope (Z : Zonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := Z.h
   h := Z.h
   q := 0
@@ -41,7 +41,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.polyZonotope_contains (Z : Zonotope 𝕋 n) :
+theorem Zonotope.polyZonotope_contains (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.polyZonotope.construct := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx

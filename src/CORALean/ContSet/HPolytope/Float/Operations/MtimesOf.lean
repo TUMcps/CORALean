@@ -22,7 +22,7 @@ namespace CORALean.Float
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n p : ℕ}
-variable {P : HPolytope 𝕋 n}
+variable {P : HPolytope 𝕋 (Vec 𝕋 n)}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -31,7 +31,7 @@ variable {P : HPolytope 𝕋 n}
 through what that matrix denotes. -/
 def HPolytope.mtimesOf (M : Mat 𝕋 p n) (Aq : Mat 𝕋 q p)
     (u : ∀ i, FloatBound 𝕋 P.construct ((rowLin Aq i).comp (mulVecLin (toRealMat M)))) :
-    HPolytope 𝕋 p :=
+    HPolytope 𝕋 (Vec 𝕋 p) :=
   HPolytope.ofBounds Aq fun i => FloatBound.image _ (u i)
 
 end CORALean.Float

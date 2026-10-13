@@ -30,7 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.isFullDim (cZ : ConZonotope 𝕋 n) (H : Mat 𝕋 cZ.h n) (β₀ : Vec 𝕋 cZ.h) : Bool :=
+def ConZonotope.isFullDim (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (H : Mat 𝕋 cZ.h n)
+    (β₀ : Vec 𝕋 cZ.h) : Bool :=
   let δ := cZ.interiorMargin β₀
   cZ.interiorCert H β₀ δ (Zonotope.ballB H δ)
     && (List.finRange n).all fun i => le (cZ.E.inf i) (cZ.E.sup i)

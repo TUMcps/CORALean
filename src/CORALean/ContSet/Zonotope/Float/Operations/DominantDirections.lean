@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- CORA's `dominantDirections`: the `n` generators, as columns, of least `dominantScore` among the
 shortlist; `none` where there is none. -/
-def Zonotope.dominantDirections (Z : Zonotope 𝕋 n)
+def Zonotope.dominantDirections (Z : Zonotope (Vec 𝕋 n))
     (filterLength₁ : ℕ := n + 5) (filterLength₂ : ℕ := n + 3) : Option (Mat 𝕋 n n) :=
   let nrOfGens := Z.nonzeroCount                                         -- size(nonzeroFilter(G),2)
   let L₁ := min filterLength₁ nrOfGens                                    -- clamp filterLength1

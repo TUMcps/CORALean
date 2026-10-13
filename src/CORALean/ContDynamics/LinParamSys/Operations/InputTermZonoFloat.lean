@@ -35,10 +35,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Aᵢ r^{i+1}/(i+1)!` over the system's whole float matrix zonotope, for `r ≥ 0`. -/
-def LinParamSys.inputTermZonoFloat (sys : LinParamSys (fun m n => GZonotope (Mat 𝕋 m n)) n)
-    (r : 𝕋) (i : ℕ) : GZonotope (Mat 𝕋 n n) :=
+def LinParamSys.inputTermZonoFloat (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n)
+    (r : 𝕋) (i : ℕ) : Zonotope (Mat 𝕋 n n) :=
   let c := MatExp.taylorCoeffBounds r (i + 1)                  -- r^{i+1}/(i+1)! ∈ [c.1, c.2]
-  (GZonotope.matSmul c.1 c.2 (sys.A.matPow i)).materialiseMat    -- · Aᵢ
+  (Zonotope.matSmul c.1 c.2 (sys.A.matPow i)).materialiseMat    -- · Aᵢ
 
 end CORALean
 

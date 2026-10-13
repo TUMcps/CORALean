@@ -9,7 +9,7 @@ import Mathlib.Data.Matrix.Basic
 The centre give or take the generators' total reach, each end rounded away from
 the zonotope.
 
-`GZonotope.interval` is the same entry by entry at `Mat`, CORA's
+`Zonotope.matInterval` is the same entry by entry at `Mat`, CORA's
 `intervalMatrix(matZonotope)`: what the matrix-zonotope product needs of a factor's
 error terms, and what bounds a norm.
 -/
@@ -28,11 +28,11 @@ open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def Zonotope.interval (Z : Zonotope 𝕋 n) : Interval (Vec 𝕋 n) where
+def Zonotope.interval (Z : Zonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   inf := fun i => addDown (subDown (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.E.inf i)
   sup := fun i => addUp (addUp (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.E.sup i)
 
-def GZonotope.interval {m : ℕ} (Z : GZonotope (Mat 𝕋 m n)) : Interval (Mat 𝕋 m n) :=
+def Zonotope.matInterval {m : ℕ} (Z : Zonotope (Mat 𝕋 m n)) : Interval (Mat 𝕋 m n) :=
   let r : Mat 𝕋 m n := fun i j => sumUp fun k => absolute (Z.G k i j)   -- Σ |G_k|
   ⟨fun i j => addDown (subDown (Z.c i j) (r i j)) (Z.E.inf i j),
    fun i j => addUp (addUp (Z.c i j) (r i j)) (Z.E.sup i j)⟩
@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.interval_contains (Z : Zonotope 𝕋 n) :
+theorem Zonotope.interval_contains (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hzmem
@@ -68,8 +68,8 @@ theorem Zonotope.interval_contains (Z : Zonotope 𝕋 n) :
     rw [hzi]
     linarith
 
-theorem GZonotope.interval_contains {m : ℕ} (Z : GZonotope (Mat 𝕋 m n)) :
-    Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
+theorem Zonotope.matInterval_contains {m : ℕ} (Z : Zonotope (Mat 𝕋 m n)) :
+    Z.construct ⊆ Z.matInterval.construct := by -- --- PROOF ---
   rintro _ ⟨a, ⟨β, hβ, ha⟩, e, he, rfl⟩
   show a + e ∈ _
   refine Interval.mem_mat_iff.mpr fun i j => ?_

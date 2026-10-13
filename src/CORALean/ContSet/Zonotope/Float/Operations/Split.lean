@@ -27,7 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two halves of `Z` along its `j`-th generator. -/
-def Zonotope.split (Z : Zonotope 𝕋 n) (j : Fin Z.h) : Zonotope 𝕋 n × Zonotope 𝕋 n :=
+def Zonotope.split (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) : Zonotope (Vec 𝕋 n) ×
+    Zonotope (Vec 𝕋 n) :=
   let g := fun i => half (Z.G j i)
   (Z.splitHalf j fun i => neg (g i), Z.splitHalf j g)
 

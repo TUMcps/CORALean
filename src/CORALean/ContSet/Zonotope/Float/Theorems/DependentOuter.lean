@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `dependent`'s generator count, stated through the projection because
 that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_dependent {Z : Zonotope 𝕋 n} (f : Fin (Z.h + n) → ℝ) :
+theorem Zonotope.aux_sum_univ_dependent {Z : Zonotope (Vec 𝕋 n)} (f : Fin (Z.h + n) → ℝ) :
     ∑ l : Fin Z.dependent.h, f l
       = ∑ l, f (Fin.castAdd n l) + ∑ l, f (Fin.natAdd Z.h l) :=
   Fin.sum_univ_add f
@@ -42,7 +42,7 @@ theorem Zonotope.aux_sum_univ_dependent {Z : Zonotope 𝕋 n} (f : Fin (Z.h + n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.dependent_outer (Z : Zonotope 𝕋 n) :
+theorem Zonotope.dependent_outer (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ nominalSet Z.dependent := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'

@@ -34,7 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of a real half, its centre read off with the shift `s`, plus a point of the box,
 lies in the stored half: same coefficients, and the centre rounding in the box. -/
-theorem Zonotope.aux_splitHalf_mem (Z : Zonotope 𝕋 n) (j : Fin Z.h) (s : Vec 𝕋 n) {zn e : Vec ℝ n}
+theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n)
+    {zn e : Vec ℝ n}
     (he : e ∈ Z.E.construct) (β : Vec ℝ Z.h) (hβ : ∀ k, |β k| ≤ 1)
     (hzn : ∀ i, zn i = toReal (Z.c i) + toReal (s i)
       + ∑ k, β k * Function.update (fun k => toReal (Z.G k i)) j (toReal (Z.G j i) / 2) k) :
@@ -70,7 +71,7 @@ theorem Zonotope.aux_splitHalf_mem (Z : Zonotope 𝕋 n) (j : Fin Z.h) (s : Vec 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.split_outer (Z : Zonotope 𝕋 n) (j : Fin Z.h) :
+theorem Zonotope.split_outer (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) :
     Z.construct ⊆ (Z.split j).1.construct ∪ (Z.split j).2.construct := by -- --- PROOF ---
   rintro _ ⟨zn, hzn, e, he, rfl⟩
   -- the nominal point lies in one of the real halves

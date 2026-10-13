@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_restrict_iff {P : HPolytope 𝕋 n} {keepA : Fin P.m → Bool}
+theorem HPolytope.mem_restrict_iff {P : HPolytope 𝕋 (Vec 𝕋 n)} {keepA : Fin P.m → Bool}
     {keepE : Fin P.me → Bool} {x : Vec ℝ n} :
     x ∈ (P.restrict keepA keepE).construct ↔
       (∀ i, keepA i = true → (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i))

@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `pZ` summed with `L 0, ..., L (m-1)` over `pZ`'s factors. -/
-def PolyZonotope.sum {m : ℕ} (pZ : PolyZonotope 𝕋 n) (L : Fin m → PolyZonotope 𝕋 n)
-    (hp : ∀ i, (L i).p = pZ.p) : PolyZonotope 𝕋 n where
+def PolyZonotope.sum {m : ℕ} (pZ : PolyZonotope (Vec 𝕋 n)) (L : Fin m → PolyZonotope (Vec 𝕋 n))
+    (hp : ∀ i, (L i).p = pZ.p) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := pZ.h + ∑ i, (L i).h
   q := pZ.q + ∑ i, (L i).q

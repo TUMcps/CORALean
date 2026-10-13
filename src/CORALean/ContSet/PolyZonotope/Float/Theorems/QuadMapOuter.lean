@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the whole operation: `dependent` first, then the exact map, then this refinement
-theorem PolyZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n)) :
     Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' pZ.construct
       ⊆ (PolyZonotope.quadMap Q pZ).construct := by
   refine subset_trans (Set.image_mono (PolyZonotope.dependent_nominal pZ)) ?_

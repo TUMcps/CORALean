@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.inter_outer (S₁ S₂ : SpectraShadow 𝕋 n) :
+theorem SpectraShadow.inter_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     S₁.construct ∩ S₂.construct ⊆ (S₁.inter S₂).construct :=
   subset_trans (Set.inter_subset_inter S₁.construct_subset_absorb S₂.construct_subset_absorb)
     (SpectraShadow.tieInter_outer _ _)

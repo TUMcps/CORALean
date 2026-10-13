@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {F : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The point `1 bᵀ` (the same bias at each of `N` nodes), stacked. -/
-def GNN.biasPoint (N : ℕ) (b : Vec 𝕋 F) : PolyZonotope 𝕋 (N * F) :=
+def GNN.biasPoint (N : ℕ) (b : Vec 𝕋 F) : PolyZonotope (Vec 𝕋 (N * F)) :=
   { PolyZonotope.origin (N * F) with c := fun r => b (finProdFinEquiv.symm r).2 }
 
 end CORALean.Float

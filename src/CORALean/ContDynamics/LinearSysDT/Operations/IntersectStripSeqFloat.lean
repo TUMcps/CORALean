@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 /-- The strips of `C`, `φ`, `y` met one after the other, strip `i` at the gain column `i` of `Λ`
 evaluated at the zonotope it meets. -/
 def LinearSysDT.intersectStripSeqFloat (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p)
-    (Λ : Zonotope 𝕋 n → Mat 𝕋 n p) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+    (Λ : Zonotope (Vec 𝕋 n) → Mat 𝕋 n p) (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   (List.finRange p).foldl
     (fun X i =>                                                  -- X̂_{k/i} from X̂_{k/i-1}
       let c_i : Mat 𝕋 1 n := Matrix.of fun _ => C i              -- the row c_iᵀ

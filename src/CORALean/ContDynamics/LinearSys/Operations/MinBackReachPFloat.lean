@@ -32,8 +32,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 4 and 14: `p_(j)` after the steps `0` to `k`. -/
-def LinearSys.minBackReachPFloat (sys : LinearSys 𝕋 n) (CZ : ConZonotope 𝕋 n)
-    (W₀ U₀ : Zonotope 𝕋 n) (Zw : 𝕋 → Zonotope 𝕋 n) (N : Mat 𝕋 q n) (t₀ Δt : 𝕋) (η ν : ℕ) :
+def LinearSys.minBackReachPFloat (sys : LinearSys 𝕋 n) (CZ : ConZonotope 𝕋 (Vec 𝕋 n))
+    (W₀ U₀ : Zonotope (Vec 𝕋 n)) (Zw : 𝕋 → Zonotope (Vec 𝕋 n)) (N : Mat 𝕋 q n)
+    (t₀ Δt : 𝕋) (η ν : ℕ) :
     ℕ → Fin q → 𝕋
   | 0 => fun j => sys.minBackReachSupportFloat CZ W₀ U₀ Zw N t₀ Δt η ν 0 j
   | k + 1 => fun j => maximum (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν k j)

@@ -35,15 +35,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The four enclosures the loop state `s` owes after `k` passes, steps `Δt`,
 initial states `X₀`, constant input `ũ` and recentred input set `Ũ`. -/
 def LinearSys.ReachFloatInputInvariant (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : Set (Vec ℝ n))
-    (ũ : Vec ℝ n) (Ũ : Zonotope 𝕋 n) (k : ℕ)
-    (s : Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n) : Prop :=
+    (ũ : Vec ℝ n) (Ũ : Float.Zonotope (Vec 𝕋 n)) (k : ℕ)
+    (s : Float.Zonotope (Vec 𝕋 n) × Float.Zonotope (Vec 𝕋 n) × Float.Zonotope (Vec 𝕋 n) ×
+    Float.Zonotope (Vec 𝕋 n)) : Prop :=
   let A := Scalar.toRealMat sys.A
   (∀ x₀ ∈ X₀, exp ((((k + 1 : ℕ) : ℝ) * Δt) • A) *ᵥ x₀
       + MatExp.expIntegral A (((k + 1 : ℕ) : ℝ) * Δt) *ᵥ ũ ∈ s.1.construct) ∧
     (∀ x₀ ∈ X₀, ∀ τ ∈ Set.Icc 0 Δt, exp (((k : ℝ) * Δt + τ) • A) *ᵥ x₀
       + MatExp.expIntegral A ((k : ℝ) * Δt + τ) *ᵥ ũ ∈ s.2.1.construct) ∧
-    sys.inputReach (S := Zonotope 𝕋) Ũ (((k + 1 : ℕ) : ℝ) * Δt) ⊆ s.2.2.1.construct ∧
-    (fun y => exp (((k : ℝ) * Δt) • A) *ᵥ y) '' sys.inputReach (S := Zonotope 𝕋) Ũ Δt
+    sys.inputReach (S := fun k => Float.Zonotope (Vec 𝕋 k)) Ũ (((k + 1 : ℕ) : ℝ) * Δt) ⊆
+      s.2.2.1.construct ∧
+    (fun y => exp (((k : ℝ) * Δt) • A) *ᵥ y) '' sys.inputReach
+      (S := fun k => Float.Zonotope (Vec 𝕋 k)) Ũ Δt
       ⊆ s.2.2.2.construct
 
 end CORALean

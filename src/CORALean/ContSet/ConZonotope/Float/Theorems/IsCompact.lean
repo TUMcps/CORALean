@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isCompact_construct (cZ : ConZonotope 𝕋 n) : IsCompact cZ.construct :=
+theorem ConZonotope.isCompact_construct (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : IsCompact cZ.construct :=
   InflatedContSet.isCompact_construct cZ
 
 end CORALean.Float

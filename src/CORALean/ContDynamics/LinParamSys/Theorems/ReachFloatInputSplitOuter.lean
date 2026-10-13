@@ -46,12 +46,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.reachFloatInputSplit_outer
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {U : Zonotope 𝕋 n}
-    {params : Reach.Params (Zonotope 𝕋 n) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rs : List (Zonotope 𝕋 n)} (h : sys.reachFloatInputSplit U params options = some Rs) :
+    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {U : Zonotope (Vec 𝕋 n)}
+    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
+    {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInputSplit U params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.timeStep = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {A : Mat ℝ n n} {x u : ℝ → Vec ℝ n},
-        sys.ConstTrajectory (S := Zonotope 𝕋) (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
+        sys.ConstTrajectory (S := fun k => Zonotope (Vec 𝕋 k))
+          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
           params.R0 U x u A →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.timeStep)
           (((k : ℝ) + 1) * toReal options.timeStep), x t ∈ Rs[k].construct := by -- --- PROOF ---
@@ -71,7 +72,7 @@ theorem LinParamSys.reachFloatInputSplit_outer
   obtain ⟨Hτk, hH, PRtk, hP, hRk⟩ := hwin
   set Δ := toReal Δt with hΔ
   -- the split's centre `ũ`, the stored one
-  set uc : Vec 𝕋 n := ScalarCentre.centreVec (S := Zonotope 𝕋) U with huc
+  set uc : Vec 𝕋 n := ScalarCentre.centreVec (S := fun k => Zonotope (Vec 𝕋 k)) U with huc
   set ũ : Vec ℝ n := Scalar.toRealVec uc with hũ
   have hũc : ũ = Recentre.centre U := rfl
   -- window `k` lies inside the horizon
@@ -96,10 +97,14 @@ theorem LinParamSys.reachFloatInputSplit_outer
     fun s hs => Recentre.sub_centre_mem_recentre (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - ũ) (volume.restrict (Set.Icc 0 t)) :=
     (lin.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
-  have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht0
-    (CompactSet.isBounded_construct (OfScalarPoint.ofVec uc : Zonotope 𝕋 n))
-    (fun _ _ => OfScalarPoint.mem_ofVec (S := Zonotope 𝕋) uc) aestronglyMeasurable_const
-  have hint₀ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht0
+  have hint₁ := intervalIntegrable_expSub_mulVec (S := fun k => Zonotope (Vec 𝕋 k))
+    (A := A) (c := t) ht0
+    (CompactSet.isBounded_construct
+      (OfScalarPoint.ofVec (S := fun k => Zonotope (Vec 𝕋 k)) uc : Zonotope (Vec 𝕋 n)))
+    (fun _ _ => OfScalarPoint.mem_ofVec (S := fun k => Zonotope (Vec 𝕋 k)) uc)
+      aestronglyMeasurable_const
+  have hint₀ := intervalIntegrable_expSub_mulVec (S := fun k => Zonotope (Vec 𝕋 k))
+    (A := A) (c := t) ht0
     (CompactSet.isBounded_construct (Recentre.recentre U)) hmem₀ hmeas₀
   have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
       = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ ũ)

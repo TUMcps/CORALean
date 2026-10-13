@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.representsa_origin_sound {S : SpectraShadow 𝕋 n}
+theorem SpectraShadow.representsa_origin_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
     {Yup Ylo : Fin n → Mat 𝕋 S.k S.k} {β : Vec 𝕋 S.m}
     (h : S.representsa_origin Yup Ylo β = true) : S.construct = {0} := by -- --- PROOF ---
   simp only [SpectraShadow.representsa_origin, Bool.and_eq_true] at h

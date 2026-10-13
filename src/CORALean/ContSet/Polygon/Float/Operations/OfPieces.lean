@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The union of the float convex pieces `pieces`. -/
-def Polygon.ofPieces (pieces : List (VPolytope 𝕋 2)) : Polygon 𝕋 := ⟨pieces⟩
+def Polygon.ofPieces (pieces : List (VPolytope (Vec 𝕋 2))) : Polygon 𝕋 := ⟨pieces⟩
 
 end CORALean.Float
 

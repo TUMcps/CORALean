@@ -18,8 +18,8 @@ costs.
 
 The error box is `err` rather than `E`, which the exponent matrix has taken.
 
-`GPolyZonotope α` is generic over its ambient type, generators a family, as the exact
-layer's `PolyZonotope α` is; `PolyZonotope 𝕋 n` is its reducible vector case.
+`PolyZonotope α` is generic over its ambient type, generators a family, as the exact
+layer's `PolyZonotope α` is; its vector case is `PolyZonotope (Vec 𝕋 n)`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure GPolyZonotope (α : Type) where
+structure PolyZonotope (α : Type) where
   /-- The dependent factors, shared across all of `G`. -/
   p : ℕ
   /-- The dependent generators. -/
@@ -52,35 +52,34 @@ structure GPolyZonotope (α : Type) where
   GI : Fin q → α
   err : Interval α
 
-abbrev PolyZonotope (𝕋 : Type) (n : ℕ) := GPolyZonotope (Vec 𝕋 n)
 
 /-- The exact polynomial zonotope the stored floats describe, read through `RealImage`. -/
-abbrev GPolyZonotope.nominal {α β : Type} [RealImage α β] (pZ : GPolyZonotope α) :
+protected abbrev PolyZonotope.nominal {α β : Type} [RealImage α β] (pZ : PolyZonotope α) :
     CORALean.Real.PolyZonotope β :=
   ⟨pZ.p, pZ.h, pZ.q, RealImage.realImage pZ.c, fun l => RealImage.realImage (pZ.G l), pZ.E,
     fun j => RealImage.realImage (pZ.GI j)⟩
 
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
-    InflatedContSet (GPolyZonotope α) (CORALean.Real.PolyZonotope β) α β where
-  nominal := GPolyZonotope.nominal
+    InflatedContSet (PolyZonotope α) (CORALean.Real.PolyZonotope β) α β where
+  nominal := PolyZonotope.nominal
   error pZ := pZ.err
 
 /-! The nominal set's fields, so proofs can see through the instance. -/
 
-theorem PolyZonotope.nominal_p [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.nominal_p [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
     (InflatedContSet.nominal pZ).p = pZ.p := rfl
 
-theorem PolyZonotope.nominal_h [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.nominal_h [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
     (InflatedContSet.nominal pZ).h = pZ.h := rfl
 
-theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
     (InflatedContSet.nominal pZ).q = pZ.q := rfl
 
-theorem PolyZonotope.nominal_E [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.nominal_E [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
     (InflatedContSet.nominal pZ).E = pZ.E := rfl
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev PolyZonotope.construct [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope 𝕋 n) :
+abbrev PolyZonotope.construct [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
     Set (Vec ℝ n) := InflatedContSet.construct pZ
 
 /-! ## Storage
@@ -93,7 +92,7 @@ says it is the identity; `Global/Tensor` says why the vectors are built here.
 `Mat`, and `compact` reads it through two index maps, so it is where an
 unstored exponent matrix costs the most. -/
 
-def PolyZonotope.materialise (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
+def PolyZonotope.materialise (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
   let c : Vector 𝕋 n := Vector.ofFn pZ.c
   let G : Vector (Vector 𝕋 n) pZ.h := Vector.ofFn fun l => Vector.ofFn (pZ.G l)
   let E : Vector (Vector ℕ pZ.h) pZ.p := Vector.ofFn fun k => Vector.ofFn fun l => pZ.E k l
@@ -108,7 +107,8 @@ def PolyZonotope.materialise (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
     err := pZ.err.materialise }
 
 omit [FloatOps 𝕋] in
-@[simp] theorem PolyZonotope.materialise_eq (pZ : PolyZonotope 𝕋 n) : pZ.materialise = pZ := by
+@[simp] theorem PolyZonotope.materialise_eq (pZ : PolyZonotope (Vec 𝕋 n)) :
+    pZ.materialise = pZ := by
   simp [PolyZonotope.materialise]
 
 end CORALean.Float

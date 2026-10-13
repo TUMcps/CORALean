@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m q : ℕ}
 /-- CORA's `encloseMany(Z, direction)`: the oriented box, in the frame whose first axis is
 `direction`, around the parallelotope reductions of the cells `Zs`; `p` Newton steps of the
 norm. -/
-def Zonotope.encloseMany (p : ℕ) (Zs : Fin (q + 1) → Zonotope 𝕋 (m + 1))
-    (direction : Vec 𝕋 (m + 1)) : Option (Zonotope 𝕋 (m + 1)) :=
+def Zonotope.encloseMany (p : ℕ) (Zs : Fin (q + 1) → Zonotope (Vec 𝕋 (m + 1)))
+    (direction : Vec 𝕋 (m + 1)) : Option (Zonotope (Vec 𝕋 (m + 1))) :=
   let newGen : Vec 𝕋 (m + 1) := fun i => divDown (direction i) (normUp p direction)
   let dropped := Zonotope.encloseManyDropped newGen
   if ltStrict zero (newGen dropped) || ltStrict (newGen dropped) zero then

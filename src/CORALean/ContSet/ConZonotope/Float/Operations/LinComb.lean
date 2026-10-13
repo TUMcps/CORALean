@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
+def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) where
   h := cZ₁.h + cZ₂.h + 1
   c := Zonotope.midpoint cZ₁.c cZ₂.c
   G := Fin.append (Fin.append cZ₁.G cZ₂.G)

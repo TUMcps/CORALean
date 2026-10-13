@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- CORA's `reduce`: to a maximum order, by whichever rule the representation
 sees fit. Girard's is the one here, as over ℝ, and which it is goes no further —
 a caller names an order and gets an over-approximation. -/
-def Zonotope.reduceGirard (Z : Zonotope 𝕋 n) (o : ℕ) : Zonotope 𝕋 n :=
+def Zonotope.reduceGirard (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : Zonotope (Vec 𝕋 n) :=
   if hlt : o * n < Z.h then Z.reduceBy (Z.girardSplit o hlt) else Z
 
 end CORALean.Float

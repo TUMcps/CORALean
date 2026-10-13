@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `(c⁽ᵐ⁾ - c⁽ˢ⁾, Ĝ⁽ᵐ⁾µ)`, [1, Thm. 4] and [1, Thm. 5]'s shared generator representation, each
 entry bracketed and the gaps paid into the box. -/
-def Zonotope.minkDiffStretch (Z₁ Z₂ : Zonotope 𝕋 n) (μ : Fin Z₁.h → 𝕋) : Zonotope 𝕋 n :=
+def Zonotope.minkDiffStretch (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (μ : Fin Z₁.h → 𝕋) : Zonotope (Vec 𝕋 n) :=
   let cLo := fun r => subDown (Z₁.c r) (Z₂.c r)  -- c₁ - c₂, rounded down
   let cHi := fun r => subUp (Z₁.c r) (Z₂.c r)  -- c₁ - c₂, rounded up
   let GLo : Mat 𝕋 n Z₁.h := fun r i => mulDown (μ i) (Z₁.G i r)  -- μᵢ gᵢ, rounded down

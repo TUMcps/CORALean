@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A merged constraint column is off by at most the gap between the two
 directed masked sums, as a generator column is. -/
-theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 n) (i : Fin cPZ.m)
+theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
     (l : Fin (PolyZonotope.repKeep cPZ.EC).card) :
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.EC)
         (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.EC l)
@@ -59,7 +59,7 @@ theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 n) (i : Fin cPZ.m
 
 /-- The widened bound admits every factor vector the old one did: the row moved
 by at most one `radius` of its gaps, and `b` moved out by exactly that. -/
-theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 n) {a : Fin cPZ.p → ℝ}
+theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {a : Fin cPZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (hsat : cPZ.satisfies a) :
     cPZ.compactConsSpec.satisfies a := by -- --- PROOF ---
   intro i
@@ -116,7 +116,7 @@ theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 n) {a : Fi
 
 /-- Only the constraint weakens, so the nominal set grows and the error box does
 not move. -/
-theorem ConPolyZono.aux_compactCons_nominal (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.aux_compactCons_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     nominalSet cPZ ⊆ nominalSet cPZ.compactConsSpec := by
   intro x hx
   obtain ⟨a, β, ha, hβ, hsat, hxi⟩ := ConPolyZono.mem_nominalSet_iff.mp hx
@@ -126,7 +126,7 @@ theorem ConPolyZono.aux_compactCons_nominal (cPZ : ConPolyZono 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.compactCons_outer (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.compactCons_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.construct ⊆ cPZ.compactCons.construct := by
   rw [ConPolyZono.compactCons_eq_spec]
   exact InflatedContSet.mono_subset (ConPolyZono.aux_compactCons_nominal cPZ) (subset_refl _)

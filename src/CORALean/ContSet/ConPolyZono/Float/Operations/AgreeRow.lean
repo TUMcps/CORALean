@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The row pinning the two points together in coordinate `i`. Entries are
 copied and `neg` is exact, so nothing here rounds. -/
-def ConPolyZono.agreeRow (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (i : Fin n) :
+def ConPolyZono.agreeRow (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin n) :
     Fin (cPZ₁.h + cPZ₂.h) → 𝕋 :=
   Fin.append (fun l => cPZ₁.G l i) fun l => neg (cPZ₂.G l i)
 

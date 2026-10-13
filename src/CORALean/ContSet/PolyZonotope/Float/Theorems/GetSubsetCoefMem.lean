@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.getSubsetCoef_mem (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (cen rad : 𝕋)
+theorem PolyZonotope.getSubsetCoef_mem (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋)
     (i : Fin pZ.h) (j : ℕ) :
     toReal (pZ.getSubsetCoef k cen rad i j).1 ≤
         ((pZ.E k i).choose j : ℝ) * toReal cen ^ (pZ.E k i - j) * toReal rad ^ j ∧

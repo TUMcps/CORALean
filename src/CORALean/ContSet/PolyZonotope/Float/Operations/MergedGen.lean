@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two merged generators as stored: their sum, rounded down. -/
-def PolyZonotope.mergedGen (pZ : PolyZonotope 𝕋 n)
+def PolyZonotope.mergedGen (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : Vec 𝕋 n :=
   fun i => addDown (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)
 

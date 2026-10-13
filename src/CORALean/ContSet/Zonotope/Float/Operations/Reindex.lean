@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.reindex (e : Fin m ≃ Fin n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m where
+def Zonotope.reindex (e : Fin m ≃ Fin n) (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 m) where
   h := Z.h
   c := fun i => Z.c (e i)
   G := fun j i => Z.G j (e i)

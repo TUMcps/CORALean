@@ -31,7 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.project (pZ : PolyZonotope 𝕋 n) (dims : Fin m → Fin n) : PolyZonotope 𝕋 m where
+def PolyZonotope.project (pZ : PolyZonotope (Vec 𝕋 n)) (dims : Fin m → Fin n) :
+    PolyZonotope (Vec 𝕋 m) where
   p := pZ.p
   h := pZ.h
   q := pZ.q

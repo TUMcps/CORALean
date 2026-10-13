@@ -26,8 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.construct_enlarge (zB : ZonoBundle 𝕋 n) (f : Vec 𝕋 n) :
-    (zB.enlarge f).construct = ⋂ i, (ContSet.enlargeScalar (S := Zonotope 𝕋)
+theorem ZonoBundle.construct_enlarge (zB : ZonoBundle (Vec 𝕋 n)) (f : Vec 𝕋 n) :
+    (zB.enlarge f).construct = ⋂ i, (ContSet.enlargeScalar (S := fun k => Zonotope (Vec 𝕋 k))
       (zB.Z i) f).construct := rfl
 
 end CORALean.Float

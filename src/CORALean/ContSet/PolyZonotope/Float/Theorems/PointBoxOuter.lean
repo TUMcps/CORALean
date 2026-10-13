@@ -30,15 +30,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.pointBox_outer (pZ : PolyZonotope 𝕋 n) (X : Interval (Vec 𝕋 pZ.p))
+theorem PolyZonotope.pointBox_outer (pZ : PolyZonotope (Vec 𝕋 n)) (X : Interval (Vec 𝕋 pZ.p))
     {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) :
-    (GPolyZonotope.nominal pZ).point a ∈
+    (PolyZonotope.nominal pZ).point a ∈
       (PolyZonotope.pointBox pZ X).construct := by -- --- PROOF ---
   have hm := PolyZonotope.monoBox_outer pZ.E X ha
   have hM := Interval.mtimes_outer (fun i l => pZ.G l i) (PolyZonotope.monoBox pZ.E X) ⟨_, hm, rfl⟩
   have h := Interval.plus_outer (Interval.point pZ.c) _ ⟨_, Interval.mem_point pZ.c, _, hM, rfl⟩
   -- the point, coordinate by coordinate, is the centre plus the generators' row times the monomials
-  have e : (GPolyZonotope.nominal pZ).point a = RealImage.realImage pZ.c
+  have e : (PolyZonotope.nominal pZ).point a = RealImage.realImage pZ.c
       + Matrix.mulVec (toRealMat fun i l => pZ.G l i)
         (fun l => Real.PolyZonotope.monomial pZ.E a l) := by
     funext i

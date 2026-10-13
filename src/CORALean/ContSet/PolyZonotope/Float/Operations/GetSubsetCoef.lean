@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.getSubsetCoef (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (cen rad : 𝕋)
+def PolyZonotope.getSubsetCoef (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋)
     (i : Fin pZ.h) (j : ℕ) : 𝕋 × 𝕋 :=
   let e := pZ.E k i
   -- the integer, then the power of the centre, then the power of the radius

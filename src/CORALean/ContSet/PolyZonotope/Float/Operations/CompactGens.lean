@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Equal exponent columns added together, the stored value the lower rounding
 and the gap paid into the box. The factors are untouched. -/
-def PolyZonotope.compactGens (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+def PolyZonotope.compactGens (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := (PolyZonotope.repKeep pZ.E).card
   q := pZ.q

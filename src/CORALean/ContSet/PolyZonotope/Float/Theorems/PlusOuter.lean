@@ -39,7 +39,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem PolyZonotope.aux_sum_univ_plus_h {pZ₁ pZ₂ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_plus_h {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ₁.h + pZ₂.h) → ℝ) :
     ∑ l : Fin (pZ₁.plus pZ₂).h, f l
       = ∑ l, f (Fin.castAdd pZ₂.h l) + ∑ l, f (Fin.natAdd pZ₁.h l) :=
@@ -47,14 +47,14 @@ theorem PolyZonotope.aux_sum_univ_plus_h {pZ₁ pZ₂ : PolyZonotope 𝕋 n}
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent generator count. -/
-theorem PolyZonotope.aux_sum_univ_plus_q {pZ₁ pZ₂ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_plus_q {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ₁.q + pZ₂.q) → ℝ) :
     ∑ j : Fin (pZ₁.plus pZ₂).q, f j
       = ∑ j, f (Fin.castAdd pZ₂.q j) + ∑ j, f (Fin.natAdd pZ₁.q j) :=
   Fin.sum_univ_add f
 
 /-- The concatenated blocks account for everything but the centre rounding. -/
-theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     nominalSet pZ₁ + nominalSet pZ₂ ⊆
       nominalSet (pZ₁.plus pZ₂)
         + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct := by -- --- PROOF ---
@@ -85,7 +85,7 @@ theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
     ring
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
-theorem PolyZonotope.aux_plus_error (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.aux_plus_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     pZ₁.err.construct + pZ₂.err.construct
         + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct ⊆
       (pZ₁.plus pZ₂).err.construct :=
@@ -95,7 +95,7 @@ theorem PolyZonotope.aux_plus_error (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.plus_outer (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.plus_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     pZ₁.construct + pZ₂.construct ⊆ (pZ₁.plus pZ₂).construct :=
   InflatedContSet.plus_subset (PolyZonotope.aux_plus_nominal pZ₁ pZ₂)
     (PolyZonotope.aux_plus_error pZ₁ pZ₂)

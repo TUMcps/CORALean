@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Lines 20-22: the coarsest order `ρ ≥ 1` at which `Δε^r_k(ρ)` clears the admissible share,
 `none` where the sweep reaches `Z.h + 1` without one. -/
-def Zonotope.autoTuneSetOrder (Z : Zonotope 𝕋 n) (εrτ : ℚ) : ℕ → ℕ → Option ℕ
+def Zonotope.autoTuneSetOrder (Z : Zonotope (Vec 𝕋 n)) (εrτ : ℚ) : ℕ → ℕ → Option ℕ
   | _, 0 => none
   | ρ, k + 1 =>
     let ρ' := ρ + 1                                           -- 21. ρ_k ← ρ_k + 1

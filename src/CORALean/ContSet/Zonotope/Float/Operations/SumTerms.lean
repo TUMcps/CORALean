@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `f 0 ⊕ … ⊕ f (m - 1)`, `{0}` for `m = 0`. -/
-def Zonotope.sumTerms (f : ℕ → Zonotope 𝕋 n) : ℕ → Zonotope 𝕋 n
+def Zonotope.sumTerms (f : ℕ → Zonotope (Vec 𝕋 n)) : ℕ → Zonotope (Vec 𝕋 n)
   | 0 => Zonotope.point fun _ => zero
   | m + 1 => ((Zonotope.sumTerms f m).plus (f m)).materialise
 

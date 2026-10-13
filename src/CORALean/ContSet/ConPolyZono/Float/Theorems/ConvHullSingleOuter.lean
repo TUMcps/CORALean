@@ -49,7 +49,7 @@ theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G
 
 /-- The stored nominal point at factors the exact form satisfies, which the stored form does
 too, moved by the shortfall of the centre. -/
-theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 n)
+theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ) (hv : ∀ k, |v k| ≤ 1)
     (hsat : (Real.ConPolyZono.convHullSingle a (nominal cPZ)).satisfies v) :
     (fun i => toReal ((cPZ.convHullSingle a).c i)
@@ -66,7 +66,7 @@ theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 n) (hq : cPZ.q = 0)
+theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hq : cPZ.q = 0)
     (ha : n + 1 ≤ a) :
     convexHull ℝ cPZ.construct ⊆ (cPZ.convHullSingle a).construct := by -- --- PROOF ---
   intro x hx

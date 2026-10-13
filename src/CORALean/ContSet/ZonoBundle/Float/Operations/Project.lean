@@ -24,7 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.project (zB : ZonoBundle 𝕋 n) (dims : Fin m → Fin n) : ZonoBundle 𝕋 m where
+def ZonoBundle.project (zB : ZonoBundle (Vec 𝕋 n)) (dims : Fin m → Fin n) :
+    ZonoBundle (Vec 𝕋 m) where
   k := zB.k
   Z := fun i => Zonotope.project (zB.Z i) dims
 

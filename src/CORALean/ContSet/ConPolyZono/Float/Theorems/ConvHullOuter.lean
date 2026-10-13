@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.convHull_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n)
+theorem ConPolyZono.convHull_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hq₁ : cPZ₁.q = 0) (hq₂ : cPZ₂.q = 0)
     (hne₁ : cPZ₁.construct.Nonempty) (hne₂ : cPZ₂.construct.Nonempty) :
     convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct)

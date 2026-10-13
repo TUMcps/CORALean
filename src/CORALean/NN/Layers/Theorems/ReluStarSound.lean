@@ -28,7 +28,7 @@ open ContSet
 theorem Layer.reluStar_sound (n : ℕ) :
     (Layer.reluStar n).Sound fun x i => max (x i) 0 := by -- --- PROOF ---
   -- the ReLU at the neurons of a list, applied one neuron at a time
-  have key : ∀ (L : List (Fin n)) (t : StarSet n) (x : Vec ℝ n), x ∈ construct t →
+  have key : ∀ (L : List (Fin n)) (t : Real.StarSet n) (x : Vec ℝ n), x ∈ construct t →
       (fun i => if i ∈ L then max (x i) 0 else x i : Vec ℝ n) ∈ construct
         (L.foldl (fun t j => t.reluNeuron j (t.rowBounds j)) t) := by
     intro L
@@ -37,8 +37,8 @@ theorem Layer.reluStar_sound (n : ℕ) :
     | cons j L ih =>
       -- one more neuron: its step encloses its ReLU, then the rest of the list
       intro t x hx
-      have h1 := StarSet.reluNeuron_outer t j (t.rowBounds j)
-        (fun y hy => StarSet.rowBounds_mem t j hy) ⟨x, hx, rfl⟩
+      have h1 := Real.StarSet.reluNeuron_outer t j (t.rowBounds j)
+        (fun y hy => Real.StarSet.rowBounds_mem t j hy) ⟨x, hx, rfl⟩
       have h2 := ih _ _ h1
       -- the two points are the same
       refine (congrArg (· ∈ construct _) ?_).mp h2

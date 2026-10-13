@@ -16,7 +16,7 @@ interval `d` the linear layer may carry is not modelled.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open Matrix
 
@@ -32,7 +32,7 @@ noncomputable def IntervalChain.fwd : ∀ {n k : ℕ}, IntervalChain n k →
     rest.fwd (mu - r, mu + r)
   | _, _, .act σ _ rest, p => rest.fwd (fun i => σ (p.1 i), fun i => σ (p.2 i))
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

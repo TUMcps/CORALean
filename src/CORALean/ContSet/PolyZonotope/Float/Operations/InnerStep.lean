@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The step `t` of [1, Alg. 3] at the current `U1_`, or `none` if `diag(J1)` holds `0`. -/
-def PolyZonotope.innerStep (pZ : PolyZonotope 𝕋 n) (X₀ : Interval (Vec 𝕋 pZ.p))
+def PolyZonotope.innerStep (pZ : PolyZonotope (Vec 𝕋 n)) (X₀ : Interval (Vec 𝕋 pZ.p))
     (ind : Fin n ↪ Fin pZ.p) (C : Mat 𝕋 n n) (xc : Vec 𝕋 pZ.p) (b U : Interval (Vec 𝕋 n)) :
     Option (Interval (Vec 𝕋 n)) :=
   -- the coordinates of `u₁`

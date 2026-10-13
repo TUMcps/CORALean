@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     segments (nominalSet cPZ₁) (nominalSet cPZ₂) ⊆
       nominalSet (cPZ₁.linComb cPZ₂)
         + ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).construct
@@ -81,7 +81,7 @@ theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
 
 /-- The box absorbs the two incoming boxes, both centre roundings and the
 independent block's, exactly as for the unconstrained set. -/
-theorem ConPolyZono.aux_linComb_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.aux_linComb_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     segments cPZ₁.err.construct cPZ₂.err.construct
         + ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).construct
             + ((PolyZonotope.halfDiffError cPZ₁.c cPZ₂.c).construct
@@ -98,7 +98,7 @@ theorem ConPolyZono.aux_linComb_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.linComb_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.linComb_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     segments cPZ₁.construct cPZ₂.construct ⊆ (cPZ₁.linComb cPZ₂).construct :=
   InflatedContSet.linComb_subset (ConPolyZono.aux_linComb_nominal cPZ₁ cPZ₂)
     (ConPolyZono.aux_linComb_error cPZ₁ cPZ₂)

@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n k m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.matMap (pZ₁ : GPolyZonotope (Mat 𝕋 n k)) (pZ₂ : GPolyZonotope (Mat 𝕋 k m))
-    (hp : pZ₁.p = pZ₂.p) : GPolyZonotope (Mat 𝕋 n m) :=
+def PolyZonotope.matMap (pZ₁ : PolyZonotope (Mat 𝕋 n k)) (pZ₂ : PolyZonotope (Mat 𝕋 k m))
+    (hp : pZ₁.p = pZ₂.p) : PolyZonotope (Mat 𝕋 n m) :=
   -- the rounding of every stored product, dependent then independent
   let gap := PolyZonotope.matGeneratorError
     (Fin.append (PolyZonotope.pairG matMulDiff pZ₁ pZ₂) (PolyZonotope.pairGI matMulDiff pZ₁ pZ₂))

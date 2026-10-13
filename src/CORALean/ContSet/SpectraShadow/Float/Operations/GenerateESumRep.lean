@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.generateESumRep (S : SpectraShadow 𝕋 n) : SpectraShadow.ESumRep 𝕋 n where
+def SpectraShadow.generateESumRep (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow.ESumRep 𝕋 n where
   k := S.k + (n + n)
   q := S.m
   B₀ := blockDiag zero S.A₀ (blockDiag zero (diagonalBlock fun i => neg (S.c i))

@@ -30,7 +30,7 @@ open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 /-- Nonnegative, summing to one. -/
-def VPolytope.simplex (𝕋 : Type) [FloatOps 𝕋] (k : ℕ) : HPolytope 𝕋 k :=
+def VPolytope.simplex (𝕋 : Type) [FloatOps 𝕋] (k : ℕ) : HPolytope 𝕋 (Vec 𝕋 k) :=
   (HPolytope.ineqs (negIdentityMat 𝕋 k) fun _ => zero).intersection
     (HPolytope.eqs (fun (_ : Fin 1) (_ : Fin k) => one) ⟨fun _ => one, fun _ => one⟩)
 
@@ -67,7 +67,7 @@ theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} :
       exact ⟨le_refl 1, le_refl 1⟩
 
 -- the vertices become the generators and the simplex their coefficient domain
-def VPolytope.conZonotope (P : VPolytope 𝕋 n) : ConZonotope 𝕋 n where
+def VPolytope.conZonotope (P : VPolytope (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) where
   h := P.k
   c := fun _ => zero
   G := P.V
@@ -77,7 +77,7 @@ def VPolytope.conZonotope (P : VPolytope 𝕋 n) : ConZonotope 𝕋 n where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.conZonotope_contains (P : VPolytope 𝕋 n) :
+theorem VPolytope.conZonotope_contains (P : VPolytope (Vec 𝕋 n)) :
     P.construct ⊆ P.conZonotope.construct := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hnn, hsum, hval⟩ := hx

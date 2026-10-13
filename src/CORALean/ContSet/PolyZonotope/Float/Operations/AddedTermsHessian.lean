@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- An interval holding the Hessian entry `H(a, l)ⱼₖ` for every `a ∈ A`, `l ∈ L`. -/
-def PolyZonotope.addedTermsHessian (pZ : PolyZonotope 𝕋 n) (A : Interval (Vec 𝕋 pZ.p))
+def PolyZonotope.addedTermsHessian (pZ : PolyZonotope (Vec 𝕋 n)) (A : Interval (Vec 𝕋 pZ.p))
     (L : Interval (Vec 𝕋 n)) (j k : Fin pZ.p) : Interval 𝕋 :=
   -- the sum and the two factors differentiated
   let T := pZ.addedTerms

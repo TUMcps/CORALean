@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d r dI rI 
 /-- What the dropped dependent generators contribute, so what the block must
 cover. The coefficients are monomials, and `abs_sum_le_radius` asks only that
 they lie in `[-1, 1]`. -/
-theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin pZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
     |∑ l, toReal (pZ.G (partD.right l) i)
@@ -40,7 +40,7 @@ theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope 𝕋 n)
 
 /-- The same for the dropped independent generators, whose coefficients are
 free to begin with. -/
-theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope (Vec 𝕋 n))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin pZ.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, toReal (pZ.GI (partI.right j) i) * β (partI.right j)|
@@ -52,7 +52,7 @@ theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope 𝕋 n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One box for the two dropped blocks: their radii, added upward. -/
-theorem PolyZonotope.abs_dropped_le_dropRadius (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.abs_dropped_le_dropRadius (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {a : Fin pZ.p → ℝ}
     {β : Fin pZ.q → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :

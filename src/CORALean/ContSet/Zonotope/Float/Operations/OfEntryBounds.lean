@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The lower bounds stored, the gaps to the upper ones paid into the box beside `E`. -/
 def Zonotope.ofEntryBounds {h : ℕ} (cLo cHi : Vec 𝕋 n) (GLo GHi : Mat 𝕋 n h)
-    (E : Interval (Vec 𝕋 n)) : Zonotope 𝕋 n :=
+    (E : Interval (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let W : Mat 𝕋 n h := fun i k => subUp (GHi i k) (GLo i k)       -- each generator's width
   { h := h
     c := cLo

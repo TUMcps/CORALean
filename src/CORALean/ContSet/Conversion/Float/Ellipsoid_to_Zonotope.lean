@@ -24,7 +24,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Ellipsoid.zonotope (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Zonotope 𝕋 n :=
+def Ellipsoid.zonotope (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Zonotope (Vec 𝕋 n) :=
   (E.interval s).zonotope
 
 

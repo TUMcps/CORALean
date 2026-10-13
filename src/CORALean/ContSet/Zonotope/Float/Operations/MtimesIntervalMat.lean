@@ -36,7 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 /-- `mid(M) Z`, plus `m` generators for what the radius does to the nominal part
 and a box for what it does to the error box. -/
-def Zonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m :=
+def Zonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope (Vec 𝕋 n)) :
+    Zonotope (Vec 𝕋 m) :=
   let C := Interval.centreMat IM                                    -- mid(M), stored
   let Rs := Interval.matResidual IM.inf IM.sup C                    -- M - mid(M), a box
   let MZ := Zonotope.mtimes C Z                                     -- mid(M) Z

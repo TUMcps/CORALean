@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {N : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.cone (T : SpectraShadow 𝕋 N) : SpectraShadow 𝕋 N :=
-  let T' : SpectraShadow 𝕋 N := T.absorb
+def SpectraShadow.cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : SpectraShadow 𝕋 (Vec 𝕋 N) :=
+  let T' : SpectraShadow 𝕋 (Vec 𝕋 N) := T.absorb
   { k := T'.k + (N + 1)
     m := 1 + T'.m + 1
     A₀ := fun _ _ => zero

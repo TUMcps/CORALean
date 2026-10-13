@@ -79,10 +79,10 @@ theorem aux_boxBound_le (I : Interval (Vec 𝕋 n)) :
   fun a => (I.boundDot (c := aux_dirLin a) a fun _ => rfl).le
 
 /-- A zonotope's bound along `a`, with no solver. -/
-def aux_zonoBound (Z : Zonotope 𝕋 n) (a : Vec 𝕋 n) : 𝕋 :=
+def aux_zonoBound (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
   (Z.boundDot (c := aux_dirLin a) a fun _ => rfl).val
 
-theorem aux_zonoBound_le (Z : Zonotope 𝕋 n) :
+theorem aux_zonoBound_le (Z : Zonotope (Vec 𝕋 n)) :
     ∀ a, ∀ x ∈ Z.construct, ∑ j, toReal (a j) * x j ≤ toReal (aux_zonoBound Z a) :=
   fun a => (Z.boundDot (c := aux_dirLin a) a fun _ => rfl).le
 
@@ -129,12 +129,12 @@ theorem aux_neg_bound {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
   linarith
 
 /-- Every row of `P` bounded on the set by `bnd`, an equality row from both sides. -/
-def aux_containsRows (P : HPolytope 𝕋 n) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
+def aux_containsRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
   (List.finRange P.m).all (fun i => le (bnd (P.A i)) (P.b i)) &&
     (List.finRange P.me).all fun i =>
       le (bnd (P.Ae i)) (P.be.sup i) && le (P.be.inf i) (neg (bnd fun j => neg (P.Ae i j)))
 
-theorem aux_containsRows_sound {P : HPolytope 𝕋 n} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
+theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
     (h : aux_containsRows P bnd = true) : X ⊆ P.construct := by -- --- PROOF ---
   simp only [aux_containsRows, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
@@ -146,10 +146,10 @@ theorem aux_containsRows_sound {P : HPolytope 𝕋 n} {X : Set (Vec ℝ n)} {bnd
   · exact le_trans (hb (P.Ae i) x hx) (toReal_le_of_le (h.2 i).1)
 
 /-- One row of `P` the whole set lies strictly beyond. -/
-def aux_disjointRows (P : HPolytope 𝕋 n) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
+def aux_disjointRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
   (List.finRange P.m).any fun i => ltStrict (P.b i) (neg (bnd fun j => neg (P.A i j)))
 
-theorem aux_disjointRows_sound {P : HPolytope 𝕋 n} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
+theorem aux_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
     (h : aux_disjointRows P bnd = true) : Disjoint X P.construct := by -- --- PROOF ---
   simp only [aux_disjointRows, List.any_eq_true, List.mem_finRange, true_and] at h
@@ -186,10 +186,10 @@ instance (priority := 50) isDisjointBoxBoxOuter {T S : ℕ → Type}
       (IntervalOuter.interval_outer t)
 
 /-- Some member's hull of `zB` strictly to one side of `B`. -/
-def aux_disjointBundleBox (zB : ZonoBundle 𝕋 n) (B : Interval (Vec 𝕋 n)) : Bool :=
+def aux_disjointBundleBox (zB : ZonoBundle (Vec 𝕋 n)) (B : Interval (Vec 𝕋 n)) : Bool :=
   (List.finRange zB.k).any fun i => aux_disjointBox (Zonotope.interval (zB.Z i)) B
 
-theorem aux_disjointBundleBox_sound {zB : ZonoBundle 𝕋 n} {B : Interval (Vec 𝕋 n)}
+theorem aux_disjointBundleBox_sound {zB : ZonoBundle (Vec 𝕋 n)} {B : Interval (Vec 𝕋 n)}
     (h : aux_disjointBundleBox zB B = true) :
     Disjoint B.construct zB.construct := by
   simp only [aux_disjointBundleBox, List.any_eq_true, List.mem_finRange, true_and] at h
@@ -198,10 +198,10 @@ theorem aux_disjointBundleBox_sound {zB : ZonoBundle 𝕋 n} {B : Interval (Vec 
     ((Set.iInter_subset _ i).trans (Zonotope.interval_contains (zB.Z i)))
 
 /-- Some member of `zB'` and some member of `zB` with disjoint hulls. -/
-def aux_disjointBundles (zB zB' : ZonoBundle 𝕋 n) : Bool :=
+def aux_disjointBundles (zB zB' : ZonoBundle (Vec 𝕋 n)) : Bool :=
   (List.finRange zB'.k).any fun j => aux_disjointBundleBox zB (Zonotope.interval (zB'.Z j))
 
-theorem aux_disjointBundles_sound {zB zB' : ZonoBundle 𝕋 n}
+theorem aux_disjointBundles_sound {zB zB' : ZonoBundle (Vec 𝕋 n)}
     (h : aux_disjointBundles zB zB' = true) :
     Disjoint zB'.construct zB.construct := by
   simp only [aux_disjointBundles, List.any_eq_true, List.mem_finRange, true_and] at h
@@ -214,37 +214,47 @@ theorem aux_disjointBundles_sound {zB zB' : ZonoBundle 𝕋 n}
 /-- A bundle lies in each member, so one member's hull apart from the other hull suffices; the
 bundle has no total box of its own (`k = 0` is the whole space). -/
 instance (priority := 50) isDisjointZonoBundleOuter {S : ℕ → Type}
-    [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] : IsDisjoint (ZonoBundle 𝕋 n) (S n) where
+    [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] : IsDisjoint
+    (ZonoBundle (Vec 𝕋 n)) (S n) where
   isDisjoint zB s := aux_disjointBundleBox zB (IntervalOuter.interval s)
   isDisjoint_sound _ s h :=
     (aux_disjointBundleBox_sound h).mono_left (IntervalOuter.interval_outer s)
 
 -- the same with the bundle second
 instance (priority := 50) isDisjointOuterZonoBundle {T : ℕ → Type}
-    [∀ n, ContSet (T n) (Vec ℝ n)] [IntervalOuter T 𝕋] : IsDisjoint (T n) (ZonoBundle 𝕋 n) where
+    [∀ n, ContSet (T n) (Vec ℝ n)] [IntervalOuter T 𝕋] : IsDisjoint (T n)
+    (ZonoBundle (Vec 𝕋 n)) where
   isDisjoint t zB := aux_disjointBundleBox zB (IntervalOuter.interval t)
   isDisjoint_sound t _ h :=
     (aux_disjointBundleBox_sound h).symm.mono_right (IntervalOuter.interval_outer t)
 
 -- and a bundle against a bundle
 instance (priority := 50) isDisjointZonoBundleZonoBundle :
-    IsDisjoint (ZonoBundle 𝕋 n) (ZonoBundle 𝕋 n) where
+    IsDisjoint (ZonoBundle (Vec 𝕋 n)) (ZonoBundle (Vec 𝕋 n)) where
   isDisjoint := aux_disjointBundles
   isDisjoint_sound _ _ := aux_disjointBundles_sound
 
-instance containsPolytopeInterval : Contains (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
+/-- The box's pair at a float zonotope, `S` fixed rather than inferred: the generic instances
+above cannot find a family written as a lambda. -/
+instance containsBoxZonotope : Contains (Interval (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) :=
+  containsBoxOuter (S := fun k => Zonotope (Vec 𝕋 k))
+
+instance isDisjointBoxZonotope : IsDisjoint (Interval (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) :=
+  isDisjointBoxOuter (S := fun k => Zonotope (Vec 𝕋 k))
+
+instance containsPolytopeInterval : Contains (HPolytope 𝕋 (Vec 𝕋 n)) (Interval (Vec 𝕋 n)) where
   contains P I := aux_containsRows P (aux_boxBound I)
   contains_sound _ I := aux_containsRows_sound (aux_boxBound_le I)
 
-instance containsPolytopeZonotope : Contains (HPolytope 𝕋 n) (Zonotope 𝕋 n) where
+instance containsPolytopeZonotope : Contains (HPolytope 𝕋 (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) where
   contains P Z := aux_containsRows P (aux_zonoBound Z)
   contains_sound _ Z := aux_containsRows_sound (aux_zonoBound_le Z)
 
-instance isDisjointPolytopeInterval : IsDisjoint (HPolytope 𝕋 n) (Interval (Vec 𝕋 n)) where
+instance isDisjointPolytopeInterval : IsDisjoint (HPolytope 𝕋 (Vec 𝕋 n)) (Interval (Vec 𝕋 n)) where
   isDisjoint P I := aux_disjointRows P (aux_boxBound I)
   isDisjoint_sound _ I := aux_disjointRows_sound (aux_boxBound_le I)
 
-instance isDisjointPolytopeZonotope : IsDisjoint (HPolytope 𝕋 n) (Zonotope 𝕋 n) where
+instance isDisjointPolytopeZonotope : IsDisjoint (HPolytope 𝕋 (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) where
   isDisjoint P Z := aux_disjointRows P (aux_zonoBound Z)
   isDisjoint_sound _ Z := aux_disjointRows_sound (aux_zonoBound_le Z)
 
@@ -312,48 +322,48 @@ instance fullDimTestPolygon : FullDimTest (Polygon 𝕋) where
 /-- Sadraddini and Tedrake's `'approx:st'`, made rounding-proof: approximate coefficients from the
 default right inverse of the container's generators, the leftover absorbed by a certified box.
 Strict: a set touching the container's boundary is not accepted. -/
-instance containsZonotopeZonotope : Contains (Zonotope 𝕋 n) (Zonotope 𝕋 n) where
+instance containsZonotopeZonotope : Contains (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) where
   contains Z₂ Z₁ := Z₂.containsZonotope Z₁ (Zonotope.rightInvCandidate fun i j => Z₂.G j i)
   contains_sound _ _ h := Zonotope.containsZonotope_sound h
 
 /-- A checked right inverse of the generator matrix: a box of positive radius around the centre
 is reached with coefficients in `[-1, 1]`. -/
-instance fullDimTestZonotope : FullDimTest (Zonotope 𝕋 n) where
+instance fullDimTestZonotope : FullDimTest (Zonotope (Vec 𝕋 n)) where
   isFullDim := Zonotope.isFullDim
   isFullDim_sound _ h := Zonotope.isFullDim_sound h
 
 /-- The origin proposed as the interior point: `true` where every row is strictly slack there. A
 caller with a better point (a Chebyshev centre) calls `HPolytope.isFullDim` itself. -/
-instance fullDimTestHPolytope : FullDimTest (HPolytope 𝕋 n) where
+instance fullDimTestHPolytope : FullDimTest (HPolytope 𝕋 (Vec 𝕋 n)) where
   isFullDim P := P.isFullDim fun _ => zero
   isFullDim_sound _ h := HPolytope.isFullDim_sound h
 
 /-- The default right inverse of the vertex matrix bordered with a row of ones: `true` for
 vertices that affinely span the space, certified. -/
-instance fullDimTestVPolytope : FullDimTest (VPolytope 𝕋 n) where
+instance fullDimTestVPolytope : FullDimTest (VPolytope (Vec 𝕋 n)) where
   isFullDim := VPolytope.isFullDim
   isFullDim_sound _ h := VPolytope.isFullDim_sound h
 
 /-- The default right inverse, and the origin as the coefficient point: `true` where it lies
 strictly inside the constraints. A caller with a better point calls `ConZonotope.isFullDim`. -/
-instance fullDimTestConZonotope : FullDimTest (ConZonotope 𝕋 n) where
+instance fullDimTestConZonotope : FullDimTest (ConZonotope 𝕋 (Vec 𝕋 n)) where
   isFullDim cZ := cZ.isFullDim (Zonotope.rightInvCandidate fun i j => cZ.G j i) fun _ => zero
   isFullDim_sound _ h := ConZonotope.isFullDim_sound h
 
 /-- The default right inverse of the independent generators. -/
-instance fullDimTestPolyZonotope : FullDimTest (PolyZonotope 𝕋 n) where
+instance fullDimTestPolyZonotope : FullDimTest (PolyZonotope (Vec 𝕋 n)) where
   isFullDim := PolyZonotope.isFullDim
   isFullDim_sound _ h := PolyZonotope.isFullDim_sound h
 
 /-- The default right inverse of the independent generators, the factors `0` satisfying the
 constraints. -/
-instance fullDimTestConPolyZono : FullDimTest (ConPolyZono 𝕋 n) where
+instance fullDimTestConPolyZono : FullDimTest (ConPolyZono 𝕋 (Vec 𝕋 n)) where
   isFullDim := ConPolyZono.isFullDim
   isFullDim_sound _ h := ConPolyZono.isFullDim_sound h
 
 /-- The default right inverse of every member, and the first member's centre as the common point:
 `true` where it is strictly inside every member. A bundle without members is the whole space. -/
-instance fullDimTestZonoBundle : FullDimTest (ZonoBundle 𝕋 n) where
+instance fullDimTestZonoBundle : FullDimTest (ZonoBundle (Vec 𝕋 n)) where
   isFullDim zB := zB.isFullDim (fun i => Zonotope.rightInvCandidate fun r j => (zB.Z i).G j r)
     (if hk : 0 < zB.k then (zB.Z ⟨0, hk⟩).c else fun _ => zero)
   isFullDim_sound _ h := ZonoBundle.isFullDim_sound h

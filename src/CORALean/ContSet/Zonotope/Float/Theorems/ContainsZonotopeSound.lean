@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope 𝕋 n} {H : Mat 𝕋 Z₂.h n}
+theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z₂.h n}
     (h : Z₂.containsZonotope Z₁ H = true) : Z₁.construct ⊆ Z₂.construct := by -- --- PROOF ---
   simp only [Zonotope.containsZonotope, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

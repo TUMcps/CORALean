@@ -5,7 +5,7 @@ import CORALean.ContSet.VPolytope.Float.VPolytope
 
 CORA's `matPolytope(P)`: every vertex read as the `n × 1` matrix with that column. Nothing is
 computed on the entries, so nothing rounds: the vertices and the two bounds of the error box are
-re-indexed into `Mat 𝕋 n 1`. This is a `GVPolytope` of the ambient type `Mat 𝕋 n 1`.
+re-indexed into `Mat 𝕋 n 1`. This is a `VPolytope` of the ambient type `Mat 𝕋 n 1`.
 -/
 
 -- Authors:       Tobias Ladner
@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.matPolytope (P : VPolytope 𝕋 n) : GVPolytope (Mat 𝕋 n 1) where
+def VPolytope.matPolytope (P : VPolytope (Vec 𝕋 n)) : VPolytope (Mat 𝕋 n 1) where
   k := P.k
   V := fun l i _ => P.V l i
   E := ⟨fun i _ => P.E.inf i, fun i _ => P.E.sup i⟩

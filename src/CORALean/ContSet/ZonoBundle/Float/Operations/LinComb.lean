@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.linComb (zB₁ zB₂ : ZonoBundle 𝕋 n) : ZonoBundle 𝕋 n where
+def ZonoBundle.linComb (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) where
   k := zB₁.k * zB₂.k
   Z := fun p =>
     Zonotope.linComb (zB₁.Z (finProdFinEquiv.symm p).1) (zB₂.Z (finProdFinEquiv.symm p).2)

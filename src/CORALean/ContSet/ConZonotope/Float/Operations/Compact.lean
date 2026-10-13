@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.compact (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n :=
+def ConZonotope.compact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- an entry certified zero
   let isZero : 𝕋 → Bool := fun a => le a zero && le zero a
   -- the generators kept: some entry of the column of `[G; A; Ae]` not certified zero

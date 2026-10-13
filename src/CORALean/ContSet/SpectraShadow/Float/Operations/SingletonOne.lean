@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-abbrev SpectraShadow.singletonOne : SpectraShadow 𝕋 1 where
+abbrev SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1) where
   k := 2
   m := 1
   A₀ := fun p q => if p = q then (if p = 0 then one else neg one) else zero

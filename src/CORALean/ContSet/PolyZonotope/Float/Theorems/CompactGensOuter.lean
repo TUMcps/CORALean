@@ -41,7 +41,7 @@ theorem PolyZonotope.aux_sum_keep (s : Finset (Fin h)) (f : Fin h → ℝ) :
 
 /-- The exact layer's regrouping at this layer's stored generators, the merged
 columns still exact reals. -/
-theorem PolyZonotope.aux_merge (pZ : PolyZonotope 𝕋 n) (a : Fin pZ.p → ℝ) (i : Fin n) :
+theorem PolyZonotope.aux_merge (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fin pZ.p → ℝ) (i : Fin n) :
     (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
       = ∑ j : Fin (PolyZonotope.repKeep pZ.E).card,
           Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep pZ.E)
@@ -71,7 +71,7 @@ theorem PolyZonotope.aux_merge (pZ : PolyZonotope 𝕋 n) (a : Fin pZ.p → ℝ)
 
 /-- A merged column is off by at most the gap between the two directed masked
 sums. -/
-theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope 𝕋 n) (i : Fin n)
+theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (PolyZonotope.repKeep pZ.E).card) :
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep pZ.E)
         (fun l => toReal (pZ.G l i)) (PolyZonotope.keepIdx pZ.E j)
@@ -92,7 +92,7 @@ theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope 𝕋 n) (i : Fin n)
   constructor <;> linarith
 
 -- the merged column is stored downward, and that gap is what the box pays for
-theorem PolyZonotope.aux_compactGens_nominal (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.aux_compactGens_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
     nominalSet pZ ⊆ nominalSet pZ.compactGens
       + (PolyZonotope.generatorError (PolyZonotope.compactGap pZ)).construct := by -- --- PROOF ---
   intro x hx
@@ -136,7 +136,7 @@ theorem PolyZonotope.aux_compactGens_nominal (pZ : PolyZonotope 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.compactGens_outer (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.compactGens_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.compactGens.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', d, hd, hsum⟩ := PolyZonotope.aux_compactGens_nominal pZ hz

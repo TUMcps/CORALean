@@ -3,7 +3,7 @@ import CORALean.ContSet.Zonotope.Float.Theorems.MatMulOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.OfIntervalMatOuter
 
 /-!
-# `GZonotope.matMulIntervalMat` over-approximates every product
+# `Zonotope.matMulIntervalMat` over-approximates every product
 
 `ofIntervalMat_outer` places the interval factor's member in its matrix zonotope, and
 `matMul_outer` does the rest.
@@ -24,12 +24,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p q r : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GZonotope.matMulIntervalMat_outer (M : GZonotope (Mat 𝕋 p q)) (I : Interval (Mat 𝕋 q r)) :
+theorem Zonotope.matMulIntervalMat_outer (M : Zonotope (Mat 𝕋 p q)) (I : Interval (Mat 𝕋 q r)) :
     (⋃ A ∈ M.construct, (A * ·) '' I.construct)
-      ⊆ (GZonotope.matMulIntervalMat M I).construct := by
-  refine subset_trans ?_ (GZonotope.matMul_outer M (GZonotope.ofIntervalMat I))
+      ⊆ (Zonotope.matMulIntervalMat M I).construct := by
+  refine subset_trans ?_ (Zonotope.matMul_outer M (Zonotope.ofIntervalMat I))
   refine Set.iUnion₂_mono fun A _ => ?_
-  exact Set.image_mono (GZonotope.ofIntervalMat_outer I)
+  exact Set.image_mono (Zonotope.ofIntervalMat_outer I)
 
 end CORALean.Float
 

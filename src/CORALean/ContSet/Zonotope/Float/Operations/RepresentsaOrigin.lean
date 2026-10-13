@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.representsa_origin (Z : Zonotope 𝕋 n) : Bool :=
+def Zonotope.representsa_origin (Z : Zonotope (Vec 𝕋 n)) : Bool :=
   (((List.finRange Z.h).all fun j => (List.finRange n).all fun i =>
     FloatOps.le (Z.G j i) zero && FloatOps.le zero (Z.G j i)) &&
     (List.finRange n).all (fun i => FloatOps.le (Z.c i) zero && FloatOps.le zero (Z.c i)) &&

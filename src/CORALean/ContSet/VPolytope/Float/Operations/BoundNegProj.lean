@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.boundNegProj (P : VPolytope 𝕋 n) (j : Fin n) :
+def VPolytope.boundNegProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :
     FloatBound 𝕋 P.construct (-LinearMap.proj j) :=
   InflatedContSet.boundOfParts (P.nominalBoundNegProj j) (P.E.boundNegProj j)
 

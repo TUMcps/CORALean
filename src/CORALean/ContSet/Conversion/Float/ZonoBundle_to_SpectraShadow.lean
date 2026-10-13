@@ -24,7 +24,7 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def ZonoBundle.spectraShadow (zB : ZonoBundle 𝕋 n) : SpectraShadow 𝕋 n :=
+def ZonoBundle.spectraShadow (zB : ZonoBundle (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   match List.ofFn fun i => Zonotope.spectraShadow (zB.Z i) with
   | [] => SpectraShadow.Inf n                    -- no member: the whole space
   | S :: Ss => Ss.foldl SpectraShadow.inter S    -- `and_` of the members, in order
@@ -34,7 +34,7 @@ def ZonoBundle.spectraShadow (zB : ZonoBundle 𝕋 n) : SpectraShadow 𝕋 n :=
 
 /-- A point of the start and of every shadow folded in is a point of the left fold of `inter`. -/
 theorem ZonoBundle.aux_mem_foldl_inter {x : Vec ℝ n} :
-    ∀ (Ss : List (SpectraShadow 𝕋 n)) (S : SpectraShadow 𝕋 n), x ∈ S.construct →
+    ∀ (Ss : List (SpectraShadow 𝕋 (Vec 𝕋 n))) (S : SpectraShadow 𝕋 (Vec 𝕋 n)), x ∈ S.construct →
       (∀ T ∈ Ss, x ∈ T.construct) → x ∈ (Ss.foldl SpectraShadow.inter S).construct
   | [], _, h, _ => h
   | T :: Ts, S, h, hT => ZonoBundle.aux_mem_foldl_inter Ts (S.inter T)
@@ -44,7 +44,7 @@ theorem ZonoBundle.aux_mem_foldl_inter {x : Vec ℝ n} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.spectraShadow_contains (zB : ZonoBundle 𝕋 n) :
+theorem ZonoBundle.spectraShadow_contains (zB : ZonoBundle (Vec 𝕋 n)) :
     zB.construct ⊆ zB.spectraShadow.construct := by -- --- PROOF ---
   intro x hx
   -- every member's shadow holds the point

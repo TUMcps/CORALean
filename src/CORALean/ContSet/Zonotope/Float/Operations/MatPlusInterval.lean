@@ -2,7 +2,7 @@ import CORALean.ContSet.Interval.Float.Operations.MatPlus
 import CORALean.ContSet.Zonotope.Float.Zonotope
 
 /-!
-# `GZonotope.matPlusInterval`
+# `Zonotope.matPlusInterval`
 
 An interval matrix added to a matrix zonotope goes straight into the box, which is an
 interval matrix already: the nominal part is untouched and only the box's bounds round.
@@ -24,8 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def GZonotope.matPlusInterval (Z : GZonotope (Mat 𝕋 m n)) (I : Interval (Mat 𝕋 m n)) :
-    GZonotope (Mat 𝕋 m n) :=
+def Zonotope.matPlusInterval (Z : Zonotope (Mat 𝕋 m n)) (I : Interval (Mat 𝕋 m n)) :
+    Zonotope (Mat 𝕋 m n) :=
   { Z with E := Interval.matPlus Z.E I }
 
 end CORALean.Float

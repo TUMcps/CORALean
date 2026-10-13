@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.toReal_agreeRow (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (i : Fin n)
+theorem ConPolyZono.toReal_agreeRow (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin n)
     (l : Fin (cPZ₁.h + cPZ₂.h)) :
     toReal (ConPolyZono.agreeRow cPZ₁ cPZ₂ i l)
       = Real.ConPolyZono.agreeRow (nominal cPZ₁) (nominal cPZ₂) i l := by -- --- PROOF ---

@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 /-- The box `reduceBy` absorbs the dropped generators into, on its own: one
 generator per coordinate, the rounded-up absorbed rows' `1`-norm, centred at
 the origin, with a degenerate error box of its own. -/
-def Zonotope.reduceByBox (Z : Zonotope 𝕋 n)
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope 𝕋 n where
+def Zonotope.reduceByBox (Z : Zonotope (Vec 𝕋 n))
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope (Vec 𝕋 n) where
   h := n
   c := fun _ => zero
   G := diagonalBlock (radius fun i l => Z.G (part.right l) i)

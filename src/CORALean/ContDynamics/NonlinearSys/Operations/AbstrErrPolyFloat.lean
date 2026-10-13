@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 over `X × U` the products of the Hessian box that carry a difference in `Rdiff`. -/
 def NonlinearSys.FloatHessModel.abstrErrPolyFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) (xs : Vec 𝕋 n) (us : Vec 𝕋 m) (X : Interval (Vec 𝕋 n))
-    (U : Interval (Vec 𝕋 m)) (Rdelta Rdiff : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
+    (U : Interval (Vec 𝕋 m)) (Rdelta Rdiff : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   -- priv_precompStatError: half the Hessian at `z✱`, on the start set
   let Hs := fun i => (fm.hess (Interval.point xs) (Interval.point us) i).centreMat  -- H(z✱)
   let Q : Fin n → Mat 𝕋 n n := fun i j k => half (Hs i (Fin.castAdd m j) (Fin.castAdd m k))

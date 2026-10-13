@@ -35,16 +35,16 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
-def SpectraShadow.zonotope (S : SpectraShadow 𝕋 n) (Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k) :
-    Option (Zonotope 𝕋 n) :=
+def SpectraShadow.zonotope (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k) :
+    Option (Zonotope (Vec 𝕋 n)) :=
   (S.base.interval Yup Ylo).map fun B =>
     (Zonotope.mtimes (fun r j => S.G j r) B.zonotope).plus ((Interval.point S.c).plus S.E).zonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.zonotope_contains {S : SpectraShadow 𝕋 n}
-    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} {Z : Zonotope 𝕋 n} (h : S.zonotope Yup Ylo = some Z) :
+theorem SpectraShadow.zonotope_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
+    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} {Z : Zonotope (Vec 𝕋 n)} (h : S.zonotope Yup Ylo = some Z) :
     S.construct ⊆ Z.construct := by -- --- PROOF ---
   simp only [SpectraShadow.zonotope, Option.map_eq_some_iff] at h
   obtain ⟨B, hB, rfl⟩ := h

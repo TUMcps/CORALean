@@ -24,7 +24,7 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 
-def Taylm.conPolyZono (T : Fin m → Taylm 𝕋 n) : ConPolyZono 𝕋 m :=
+def Taylm.conPolyZono (T : Fin m → Taylm 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 m) :=
   (Taylm.polyZonotope T).conPolyZono
 
 variable [SoundFloatArithmetic 𝕋]

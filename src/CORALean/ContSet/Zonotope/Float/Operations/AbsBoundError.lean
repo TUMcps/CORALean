@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- How far coordinate `j` can reach from the origin, over the whole
 `construct` — nominal part and error box together. -/
-def Zonotope.absBoundError (Z : Zonotope 𝕋 n) (j : Fin n) : 𝕋 :=
+def Zonotope.absBoundError (Z : Zonotope (Vec 𝕋 n)) (j : Fin n) : 𝕋 :=
   addUp (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
     (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j)))
 

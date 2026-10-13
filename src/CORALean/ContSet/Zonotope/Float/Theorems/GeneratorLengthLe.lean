@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.generatorLength_le (k : ℕ) (Z : Zonotope 𝕋 n) (j : Fin Z.h) :
+theorem Zonotope.generatorLength_le (k : ℕ) (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) :
     (CORALean.Real.Zonotope.generatorLength (nominal Z) j : ℝ) ≤
       toReal (Z.generatorLength k j) := by
   exact norm₂_le_normUp k fun i => le_refl _

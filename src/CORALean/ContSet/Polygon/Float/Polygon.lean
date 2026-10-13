@@ -26,7 +26,7 @@ namespace CORALean.Float
 
 open FloatOps in
 /-- A float polygon: a finite list of float polytopes in the plane, denoting their union. -/
-abbrev Polygon (𝕋 : Type) [FloatOps 𝕋] : Type := SetUnion (VPolytope 𝕋 2)
+abbrev Polygon (𝕋 : Type) [FloatOps 𝕋] : Type := SetUnion (VPolytope (Vec 𝕋 2))
 
 end CORALean.Float
 

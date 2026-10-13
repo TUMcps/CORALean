@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F₁ F₂ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GNN.linear_outer (W : Mat 𝕋 F₂ F₁) (b : Vec 𝕋 F₂) (pZ : PolyZonotope 𝕋 (N * F₁))
+theorem GNN.linear_outer (W : Mat 𝕋 F₂ F₁) (b : Vec 𝕋 F₂) (pZ : PolyZonotope (Vec 𝕋 (N * F₁)))
     (H : Mat ℝ N F₁) (hH : GNN.flatten H ∈ pZ.construct) :
     GNN.flatten (Real.GNN.linear (toRealMat W) (toRealVec b) H)
       ∈ (GNN.linear W b pZ).construct := by -- --- PROOF ---

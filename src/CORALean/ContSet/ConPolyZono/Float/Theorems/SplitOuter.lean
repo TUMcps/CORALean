@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.split_outer (cPZ : ConPolyZono 𝕋 n) (d : Fin n) :
+theorem ConPolyZono.split_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (d : Fin n) :
     cPZ.construct ⊆ (cPZ.split d).1.construct ∪ (cPZ.split d).2.construct := by -- --- PROOF ---
   intro x hx
   -- the set is in its box, which the two half boxes cover

@@ -44,8 +44,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 in the float time-interval step of the initial set. -/
 theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer
     {sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n} {T : Set ℝ}
-    {R₀ U : Zonotope 𝕋 n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
-    (traj : sys.Trajectory T R₀ U x u A) {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
+    {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
+    (traj : sys.Trajectory (S := fun k => Zonotope (Vec 𝕋 k)) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
+    (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 (toReal Δt) ⊆ T) (hu : ∀ s ∈ Set.Ico 0 (toReal Δt), u s = 0)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt) :
     x t ∈ (sys.timeIntervalStepFloat Δt η R₀).construct := by -- --- PROOF ---
@@ -53,7 +54,7 @@ theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer
   set r := toReal Δt with hr
   -- the same run, read at the box's nominal real system
   let sysR : LinParamSys (fun m n => Real.Interval (Mat ℝ m n)) n := ⟨sys.A.nominal⟩
-  have trajR : sysR.Trajectory T R₀ U x u A :=
+  have trajR : sysR.Trajectory (S := fun k => Zonotope (Vec 𝕋 k)) T R₀ U x u A :=
     ⟨traj.init, traj.input, traj.param, traj.meas, traj.measParam, traj.cont, traj.flow⟩
   obtain ⟨Â, hÂi, hÂB, hx⟩ := trajR.exists_integral_eq hΔt.le hT hu
   have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
@@ -77,15 +78,19 @@ theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer
     rw [← heq]; abel
   have hx₀ := traj.init
   -- the interpolation to the member `Φ` of `[e^{AΔt}]`, and the member `F` of `[F]`
-  have hE : Φ *ᵥ x 0 ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+  have hE : Φ *ᵥ x 0 ∈ construct
+    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
       (sys.expIntervalFloat Δt Δt (m + 2)) R₀) := by
-    refine Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ R₀
+    refine Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ R₀
       (Set.mem_biUnion ?_ (Set.mem_image_of_mem _ hx₀))
     rw [LinParamSys.expIntervalFloat, Interval.materialiseMat_eq]
     exact hΦ
-  have hFm : F *ᵥ x 0 ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+  have hFm : F *ᵥ x 0 ∈ construct
+    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
       (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R₀) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ R₀
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ R₀
       (Set.mem_biUnion hF (Set.mem_image_of_mem _ hx₀))
   rw [hxt]
   refine Plus.plus_outer _ _ (Set.add_mem_add (LinComb.linComb_outer _ _ ?_) hFm)

@@ -45,7 +45,7 @@ theorem SpectraShadow.aux_mul_le_corner (a lo hi : 𝕋) {e : ℝ} (he₁ : toRe
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 n} {a : Vec 𝕋 n} {Y : Mat 𝕋 S.k S.k}
+theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {a : Vec 𝕋 n} {Y : Mat 𝕋 S.k S.k}
     (h : S.dualCertified a Y = true) :
     ∀ x ∈ S.construct, ∑ r, toReal (a r) * x r ≤ toReal (S.dualBound a Y) := by -- --- PROOF ---
   simp only [SpectraShadow.dualCertified, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,

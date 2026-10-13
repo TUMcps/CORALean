@@ -25,8 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.cartProd (S : SpectraShadow 𝕋 n) (T : SpectraShadow 𝕋 m) :
-    SpectraShadow 𝕋 (n + m) :=
+def SpectraShadow.cartProd (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (T : SpectraShadow 𝕋 (Vec 𝕋 m)) :
+    SpectraShadow 𝕋 (Vec 𝕋 (n + m)) :=
   let left := S.padLeft m
   let right := T.padRight n
   left.plus right

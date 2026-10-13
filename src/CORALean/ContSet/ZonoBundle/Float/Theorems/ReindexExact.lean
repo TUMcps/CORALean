@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.reindex_exact (e : Fin m ≃ Fin n) (zB : ZonoBundle 𝕋 n) :
+theorem ZonoBundle.reindex_exact (e : Fin m ≃ Fin n) (zB : ZonoBundle (Vec 𝕋 n)) :
     (zB.reindex e).construct = reindexLin e '' zB.construct := by -- --- PROOF ---
   -- `e`'s own cancellation laws move straight through the coordinate swap.
   have hl : Function.LeftInverse (reindexLin e.symm) (reindexLin e) :=

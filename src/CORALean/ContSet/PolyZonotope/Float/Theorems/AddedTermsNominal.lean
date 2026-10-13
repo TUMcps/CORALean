@@ -27,10 +27,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.addedTerms_nominal (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.addedTerms_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
     (∀ idx, toReal (pZ.addedTerms.G idx 0)
-      = (Real.PolyZonotope.addedTerms (GPolyZonotope.nominal pZ)).G idx)
-    ∧ pZ.addedTerms.E = (Real.PolyZonotope.addedTerms (GPolyZonotope.nominal pZ)).E
+      = (Real.PolyZonotope.addedTerms (PolyZonotope.nominal pZ)).G idx)
+    ∧ pZ.addedTerms.E = (Real.PolyZonotope.addedTerms (PolyZonotope.nominal pZ)).E
     ∧ pZ.addedTerms.err = Interval.point fun _ => zero := by -- --- PROOF ---
   refine ⟨fun idx => ?_, rfl, rfl⟩
   simp only [PolyZonotope.addedTerms, Real.PolyZonotope.addedTerms]

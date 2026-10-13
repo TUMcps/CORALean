@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ProbZonotope.vPolytope (P : ProbZonotope 𝕋 n) : VPolytope 𝕋 n := P.Z.vPolytope
+def ProbZonotope.vPolytope (P : ProbZonotope 𝕋 n) : VPolytope (Vec 𝕋 n) := P.Z.vPolytope
 end CORALean.Float
 
 

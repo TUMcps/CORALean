@@ -39,13 +39,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every scalar a zonotope stores. -/
-def aux_scalars (Z : Zonotope 𝕋 2) : List 𝕋 :=
+def aux_scalars (Z : Zonotope (Vec 𝕋 2)) : List 𝕋 :=
   List.ofFn Z.c ++ (List.ofFn fun i => List.ofFn fun j => Z.G j i).flatten ++
     List.ofFn Z.E.inf ++ List.ofFn Z.E.sup
 
 /-- The sets of a successful step: `R_0` from `Rti`, `X_1` from `Rtp`, and the status they earn. -/
-def aux_sets (nonFinite : 𝕋 → Bool) (X0 : Zonotope 𝕋 2) (etaUsed : ℕ)
-    (Rti Rtp : List (Zonotope 𝕋 2)) : Option (String × String × List (String × Json)) :=
+def aux_sets (nonFinite : 𝕋 → Bool) (X0 : Zonotope (Vec 𝕋 2)) (etaUsed : ℕ)
+    (Rti Rtp : List (Zonotope (Vec 𝕋 2))) : Option (String × String × List (String × Json)) :=
   match Rti, Rtp with
   | R0 :: _, _ :: X1 :: _ =>
     -- a scalar past the range is `null` in the sets, and the whole record says so
@@ -81,7 +81,7 @@ def aux_result (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except 
   | .ok dt, .ok A =>
   let sys : LinearSys 𝕋 2 := ⟨A⟩
   let dtJ := [("dt_represented", ratJson (ToRat.toRat dt))]
-  let params : Reach.Params (Zonotope 𝕋 2) ℚ := { R0 := X0, tFinal := ToRat.toRat dt }
+  let params : Reach.Params (Zonotope (Vec 𝕋 2)) ℚ := { R0 := X0, tFinal := ToRat.toRat dt }
   let options : LinearSys.ReachOptions 𝕋 :=
     { timeStep := dt, taylorTerms := cfg.eta, zonotopeOrder := cfg.rho }
   -- the order check ahead of `reachFloat`, as `Registry.aux_runTiTp`, for a clear reason

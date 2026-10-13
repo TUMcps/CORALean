@@ -31,9 +31,10 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 /-- The part of `reachSet X₀ ℓ₀ ℓ` reached within `tFinal` and `K` jumps lies in the
 sets `reachFloat` computed for `ℓ`. -/
 theorem HybridAutomaton.reachSet_subset_reachFloat
-    (HA : HybridAutomaton (Zonotope 𝕋) (HPolytope 𝕋) L 𝕋 n) {tFinal : ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ : L} {X₀ : Zonotope 𝕋 n}
-    {out : List (L × Zonotope 𝕋 n)} (h : HA.reachFloat tFinal options K ℓ₀ X₀ = some out)
+    (HA : HybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
+    n) {tFinal : ℚ}
+    {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ : L} {X₀ : Zonotope (Vec 𝕋 n)}
+    {out : List (L × Zonotope (Vec 𝕋 n))} (h : HA.reachFloat tFinal options K ℓ₀ X₀ = some out)
     (ℓ : L) :
     (⋃ (T : ℝ) (_ : T ≤ tFinal) (k : ℕ) (_ : k ≤ K),
         {y | ∃ x ∈ construct X₀, HA.RunUntil T k ℓ₀ x ℓ y})

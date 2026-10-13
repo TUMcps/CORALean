@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The rows outside an inverted pair, and the lead row of each pair as an equality. -/
-def HPolytope.pairsToEq (Q : HPolytope 𝕋 n) : HPolytope 𝕋 n where
+def HPolytope.pairsToEq (Q : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := Q.keptRows.length
   A := fun k => Q.A (Q.keptRows.get k)
   b := fun k => Q.b (Q.keptRows.get k)

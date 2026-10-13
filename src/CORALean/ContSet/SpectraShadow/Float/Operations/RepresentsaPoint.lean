@@ -28,7 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.representsa_point (S : SpectraShadow 𝕋 n) (Yup Ylo : Fin n → Mat 𝕋 S.k S.k)
+def SpectraShadow.representsa_point (S : SpectraShadow 𝕋 (Vec 𝕋 n))
+    (Yup Ylo : Fin n → Mat 𝕋 S.k S.k)
     (β : Vec 𝕋 S.m) : Bool :=
   match S.interval Yup Ylo with
   | some I => ((List.finRange n).all fun i => le (I.inf i) (I.sup i) && le (I.sup i) (I.inf i))

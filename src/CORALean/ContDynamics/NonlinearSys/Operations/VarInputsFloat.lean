@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m o : ℕ}
 /-- Every value the time-varying input part can take over a step, given the step's three ranges,
 enclosed. -/
 def varInputsFloat (B : Mat 𝕋 n m) (D : Fin n → Mat 𝕋 o o)
-    (Rz RzΔ : PolyZonotope 𝕋 o) (UΔ : PolyZonotope 𝕋 m) : PolyZonotope 𝕋 n :=
+    (Rz RzΔ : PolyZonotope (Vec 𝕋 o)) (UΔ : PolyZonotope (Vec 𝕋 m)) : PolyZonotope (Vec 𝕋 n) :=
   let BU := PolyZonotope.mtimes B UΔ                       -- B ⊗ U∆
   let DzzΔ := PolyZonotope.quadMapMixed D Rz RzΔ           -- D[z, z∆]
   let DzΔz := PolyZonotope.quadMapMixed D RzΔ Rz           -- D[z∆, z]

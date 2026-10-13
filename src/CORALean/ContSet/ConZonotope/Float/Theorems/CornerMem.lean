@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.corner_mem {cZ : ConZonotope 𝕋 n}
+theorem ConZonotope.corner_mem {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
     (hE : ∀ i, le (cZ.E.inf i) (cZ.E.sup i) = true) :
     (fun i => toReal (cZ.E.inf i)) ∈ (error cZ).construct := fun i =>
   ⟨le_refl _, toReal_le_of_le (hE i)⟩

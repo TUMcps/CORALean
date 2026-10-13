@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 1-2, before the first iteration. -/
-def LinearSys.autoInitFloat (X₀ : Zonotope 𝕋 n) (tend : 𝕋) : LinearSys.AutoStateFloat 𝕋 n :=
+def LinearSys.autoInitFloat (X₀ : Zonotope (Vec 𝕋 n)) (tend : 𝕋) : LinearSys.AutoStateFloat 𝕋 n :=
   { t := 0, tLo := zero, tHi := zero                                -- 1. t₀ ← 0
     Δt := tend                                                      -- 1. Δt₋₁ ← t_end
     H := X₀                                                         -- 1. H(t₀) ← X₀

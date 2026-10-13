@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope 𝕋 n}
+theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope 𝕋 (Vec 𝕋 n)}
     {x : Vec ℝ n} :
     x ∈ P.construct ↔
       (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i))

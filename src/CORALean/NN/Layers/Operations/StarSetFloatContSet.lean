@@ -16,7 +16,7 @@ in the denotation of the set it returns.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Float
 
 open ContSet Float.SoundFloatArithmetic
 
@@ -25,12 +25,12 @@ open ContSet Float.SoundFloatArithmetic
 
 /-- The points of the star set, read as reals. -/
 instance {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] (n : ℕ) :
-    ContSet (StarSetFloat 𝕋 n) (Vec ℝ n) where
+    ContSet (StarSet 𝕋 n) (Vec ℝ n) where
   construct s := {x | ∃ α : Fin s.m → ℝ, (∀ k, toReal (s.l k) ≤ α k ∧ α k ≤ toReal (s.u k)) ∧
     (∀ r ∈ s.cons, ∑ k, toReal (r.1 k) * α k ≤ toReal r.2) ∧
     ∀ i, x i = toReal (s.c i) + ∑ k, toReal (s.G i k) * α k}
 
-end CORALean
+end CORALean.Float
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -45,9 +45,10 @@ theorem SpectraShadow.aux_inf_lmi (n : ℕ) (β : Fin (SpectraShadow.Inf (𝕋 :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.Inf_exact (n : ℕ) :
-    (SpectraShadow.Inf n : SpectraShadow 𝕋 n).construct = Set.univ := by -- --- PROOF ---
+    (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)).construct = Set.univ := by -- --- PROOF ---
   -- the nominal part is everything: the coefficients are the point itself
-  have hN : InflatedContSet.nominalSet (SpectraShadow.Inf n : SpectraShadow 𝕋 n) = Set.univ := by
+  have hN : InflatedContSet.nominalSet (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)) =
+    Set.univ := by
     ext x
     simp only [Set.mem_univ, iff_true]
     refine SpectraShadow.mem_nominalSet_iff.mpr
@@ -64,10 +65,11 @@ theorem SpectraShadow.Inf_exact (n : ℕ) :
           simp [hij, this, toReal_zero]
       simp [SpectraShadow.Inf, toReal_zero, h]
   -- the box is the origin, so the sum is unchanged
-  show InflatedContSet.nominalSet (SpectraShadow.Inf n : SpectraShadow 𝕋 n)
-      + (SpectraShadow.Inf n : SpectraShadow 𝕋 n).E.construct = _
+  show InflatedContSet.nominalSet (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n))
+      + (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)).E.construct = _
   rw [hN]
-  have hE : (SpectraShadow.Inf n : SpectraShadow 𝕋 n).E.construct = {0} := Interval.origin_exact n
+  have hE : (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)).E.construct = {0} :=
+    Interval.origin_exact n
   rw [hE]
   simp
 

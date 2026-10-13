@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The true generators `(E - I_n)G_h`, under `genMinus` in magnitude, have `genOpNorm₂` under
 `genOpNormUp`. -/
 theorem MatExp.genOpNorm₂_genMinus_le (p : ℕ) {eA : Interval (Mat 𝕋 n n)} {E : Mat ℝ n n}
-    (hE : E ∈ eA.construct) (H : Zonotope 𝕋 n) :
+    (hE : E ∈ eA.construct) (H : Zonotope (Vec 𝕋 n)) :
     genOpNorm₂ (fun l : Fin H.h => (E - 1) *ᵥ fun i => toReal (H.G l i))
       ≤ toReal (genOpNormUp p (MatExp.genMinus eA H)) :=
   genOpNorm₂_le_genOpNormUp p fun l j =>

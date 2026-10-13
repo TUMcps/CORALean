@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.origin (n : ℕ) : HPolytope 𝕋 n where
+def HPolytope.origin (n : ℕ) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := 0
   A := fun i => i.elim0
   b := fun i => i.elim0

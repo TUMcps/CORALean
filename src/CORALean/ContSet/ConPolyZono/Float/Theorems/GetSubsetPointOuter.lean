@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.getSubset_point_outer (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p)
+theorem ConPolyZono.getSubset_point_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p)
     (cen rad : 𝕋) (a : Fin cPZ.p → ℝ) (ha : ∀ k, |a k| ≤ 1)
     (hsat : cPZ.satisfies (Function.update a k (toReal cen + toReal rad * a k))) :
     (cPZ.getSubset k cen rad).satisfies a ∧ ∀ e ∈ cPZ.err.construct,

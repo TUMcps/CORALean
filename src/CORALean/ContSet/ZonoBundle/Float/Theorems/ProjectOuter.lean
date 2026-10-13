@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.project_outer (zB : ZonoBundle 𝕋 n) (dims : Fin m → Fin n) :
+theorem ZonoBundle.project_outer (zB : ZonoBundle (Vec 𝕋 n)) (dims : Fin m → Fin n) :
     (fun x k => x (dims k)) '' zB.construct ⊆ (zB.project dims).construct := by -- --- PROOF ---
   rintro _ ⟨a, ha, rfl⟩
   simp only [ZonoBundle.construct, Set.mem_iInter] at ha ⊢

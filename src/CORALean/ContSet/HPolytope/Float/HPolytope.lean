@@ -18,8 +18,8 @@ interval and the row reads `Ae x ∈ be`.
 
 The nominal reading is the exact layer's `slab`, so every operation owes only enclosure.
 It stays at `Vec`, the only place either layer pairs a row with a point, though
-`GHPolytope 𝕋 α` stores its rows as a family in `α` as the exact layer does;
-`HPolytope 𝕋 n` is the reducible vector case, rows of a matrix.
+`HPolytope 𝕋 α` stores its rows as a family in `α` as the exact layer does;
+`HPolytope 𝕋 (Vec 𝕋 n)` is the vector case, rows of a matrix.
 -/
 
 -- Authors:       Tobias Ladner
@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure GHPolytope (𝕋 α : Type) where
+structure HPolytope (𝕋 α : Type) where
   m : ℕ
   A : Fin m → α
   b : Vec 𝕋 m
@@ -49,14 +49,13 @@ structure GHPolytope (𝕋 α : Type) where
   equality's rounding goes. -/
   be : Interval (Vec 𝕋 me)
 
-abbrev HPolytope (𝕋 : Type) (n : ℕ) := GHPolytope 𝕋 (Vec 𝕋 n)
 
-def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 n) :
+def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     CORALean.Real.HPolytope (Vec ℝ n) :=
   (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).intersection
     (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be.inf) (toRealVec P.be.sup))
 
-def HPolytope.construct [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 n) : Set (Vec ℝ n) :=
+def HPolytope.construct [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 (Vec 𝕋 n)) : Set (Vec ℝ n) :=
   P.nominal.construct
 
 /-! ## Storage
@@ -65,7 +64,7 @@ Every field is a function type, so the polytope an operation returns is a closur
 over the one it was given. `materialise` stores them and `materialise_eq` says it
 is the identity; `Global/Tensor` says why the vectors are built here. -/
 
-def HPolytope.materialise (P : HPolytope 𝕋 n) : HPolytope 𝕋 n :=
+def HPolytope.materialise (P : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
   let A : Vector (Vector 𝕋 n) P.m := Vector.ofFn fun i => Vector.ofFn fun j => P.A i j
   let b : Vector 𝕋 P.m := Vector.ofFn P.b
   let Ae : Vector (Vector 𝕋 n) P.me := Vector.ofFn fun i => Vector.ofFn fun j => P.Ae i j
@@ -77,7 +76,7 @@ def HPolytope.materialise (P : HPolytope 𝕋 n) : HPolytope 𝕋 n :=
     be := P.be.materialise }
 
 omit [FloatOps 𝕋] in
-@[simp] theorem HPolytope.materialise_eq (P : HPolytope 𝕋 n) : P.materialise = P := by
+@[simp] theorem HPolytope.materialise_eq (P : HPolytope 𝕋 (Vec 𝕋 n)) : P.materialise = P := by
   simp [HPolytope.materialise]
 
 end CORALean.Float

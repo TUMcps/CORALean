@@ -35,7 +35,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono 𝕋 n}
+theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     (f : Fin (cPZ₁.h + cPZ₂.h) → ℝ) :
     ∑ l : Fin (cPZ₁.plus cPZ₂).h, f l
       = ∑ l, f (Fin.castAdd cPZ₂.h l) + ∑ l, f (Fin.natAdd cPZ₁.h l) :=
@@ -43,13 +43,13 @@ theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono 𝕋 n}
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent generator count. -/
-theorem ConPolyZono.aux_sum_univ_plus_q {cPZ₁ cPZ₂ : ConPolyZono 𝕋 n}
+theorem ConPolyZono.aux_sum_univ_plus_q {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     (f : Fin (cPZ₁.q + cPZ₂.q) → ℝ) :
     ∑ j : Fin (cPZ₁.plus cPZ₂).q, f j
       = ∑ j, f (Fin.castAdd cPZ₂.q j) + ∑ j, f (Fin.natAdd cPZ₁.q j) :=
   Fin.sum_univ_add f
 
-theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     nominalSet cPZ₁ + nominalSet cPZ₂ ⊆
       nominalSet (cPZ₁.plus cPZ₂)
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
@@ -88,7 +88,7 @@ theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
     ring
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
-theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ₁.err.construct + cPZ₂.err.construct
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct ⊆ (cPZ₁.plus cPZ₂).err.construct :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer cPZ₁.err cPZ₂.err))
@@ -97,7 +97,7 @@ theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.plus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.plus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ₁.construct + cPZ₂.construct ⊆ (cPZ₁.plus cPZ₂).construct :=
   InflatedContSet.plus_subset (ConPolyZono.aux_plus_nominal cPZ₁ cPZ₂)
     (ConPolyZono.aux_plus_error cPZ₁ cPZ₂)

@@ -23,7 +23,7 @@ carries its function and its derivative as data, `σ'` being what CORA's `df` is
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -41,7 +41,7 @@ def IntervalChain.Smooth : ∀ {n k : ℕ}, IntervalChain n k → Prop
   | _, _, .linear _ _ rest => rest.Smooth
   | _, _, .act σ σ' rest => (∀ x, HasDerivAt σ (σ' x) x) ∧ rest.Smooth
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

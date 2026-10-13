@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- `true` only when, in direction `a`, the first set's upper bound lies strictly
 below the second set's lower bound. -/
-def ConZonotope.separatesAlong (cZ₁ cZ₂ : ConZonotope 𝕋 n) (a : Vec 𝕋 n) : Bool :=
+def ConZonotope.separatesAlong (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) : Bool :=
   ltStrict (cZ₁.boundDot (c := rowLin (fun (_ : Fin 1) => a) 0) a fun _ => rfl).val
     (neg (cZ₂.boundDot (c := rowLin (fun (_ : Fin 1) j => neg (a j)) 0) (fun j => neg (a j))
       fun _ => rfl).val)

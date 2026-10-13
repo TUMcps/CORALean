@@ -40,11 +40,12 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- Every sample `x (k Δt)`, `k ≤ K`, of a run on `[0, K Δt]` lies in the float-sampled
 system's `reach` under the float input solution of `U`. -/
 theorem LinearSys.Trajectory.discretizeEnclosureFloat_mem_reach_horizon {sys : LinearSys 𝕋 n}
-    {T : Set ℝ} {R₀ U : Zonotope 𝕋 n} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η K : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < toReal Δt)
+    {T : Set ℝ} {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η K : ℕ}
+    (traj : sys.Trajectory (S := fun k => Zonotope (Vec 𝕋 k)) T R₀ U x u) (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 ((K : ℝ) * toReal Δt) ⊆ T) (hη : sys.OrderAdmissibleFloat Δt Δt η)
     {o : ℕ} (ho : 0 < o) :
-    ∀ k ≤ K, x ((k : ℝ) * toReal Δt) ∈ construct ((sys.discretizeEnclosureFloat Δt η).reach
+    ∀ k ≤ K, x ((k : ℝ) * toReal Δt) ∈ construct
+    ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   -- the exact sampling, every step's input inside the float input solution
   have hdt := traj.discretize_horizon (Ud := sys.inputSolutionFloat Δt η U) hΔt.le hT
@@ -52,14 +53,16 @@ theorem LinearSys.Trajectory.discretizeEnclosureFloat_mem_reach_horizon {sys : L
       sys.inputReach_subset_inputSolutionFloat hΔt hη U
         (traj.stepInput_mem_inputReach j (step_subset_horizon hΔt.le hT hj))
   -- the same run, its matrix only enclosed
-  have hon : (sys.discretizeEnclosureFloat Δt η).TrajectoryOn R₀ (sys.inputSolutionFloat Δt η U) K
+  have hon : (sys.discretizeEnclosureFloat Δt η).TrajectoryOn (S := fun k => Zonotope (Vec 𝕋 k)) R₀
+    (sys.inputSolutionFloat Δt η U) K
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) :=
     { init := hdt.init
       input := hdt.input
       step := fun j hj => ⟨exp (toReal Δt • Scalar.toRealMat sys.A),
         sys.exp_mem_expIntervalFloat hη le_rfl le_rfl, by
           simpa [LinearSys.discretize] using hdt.step j hj⟩ }
-  exact fun k hk => (sys.discretizeEnclosureFloat Δt η).reach_outer_on ho R₀ _ hon k hk
+  exact fun k hk => (sys.discretizeEnclosureFloat Δt η).reach_outer_on
+    (S := fun k => Zonotope (Vec 𝕋 k)) ho R₀ _ hon k hk
 
 end CORALean
 

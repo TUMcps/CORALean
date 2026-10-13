@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GNN.sumPool_outer (pZ : PolyZonotope 𝕋 (N * F)) (H : Mat ℝ N F)
+theorem GNN.sumPool_outer (pZ : PolyZonotope (Vec 𝕋 (N * F))) (H : Mat ℝ N F)
     (hH : GNN.flatten H ∈ pZ.construct) :
     Real.GNN.sumPoolLin N F H ∈ (GNN.sumPool pZ).construct := by
   rw [← GNN.sumPoolMat_mulVec (𝕋 := 𝕋)]

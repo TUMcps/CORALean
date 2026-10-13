@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A block meeting a polytope's rows and the unit box's at weight `lam` is `lam` times a
 coefficient vector of the polytope inside the unit box, the polytope being nonempty there. -/
-theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 k)
+theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
     (hne : ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.construct) {γ : Vec ℝ k} {lam : ℝ}
     (hl0 : 0 ≤ lam)
     (hA : ∀ i, (toRealMat (P.intersection (HPolytope.unitBox 𝕋 k)).A *ᵥ γ) i
@@ -92,7 +92,8 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 k)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.linCombSameCentre_subset (cZ₁ cZ₂ : ConZonotope 𝕋 n) (hc : cZ₂.c = cZ₁.c)
+theorem ConZonotope.linCombSameCentre_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n))
+    (hc : cZ₂.c = cZ₁.c)
     (hne₁ : (nominalSet cZ₁).Nonempty) (hne₂ : (nominalSet cZ₂).Nonempty) :
     nominalSet (cZ₁.linCombSameCentre cZ₂) ⊆
       segments (nominalSet cZ₁) (nominalSet cZ₂) := by -- --- PROOF ---

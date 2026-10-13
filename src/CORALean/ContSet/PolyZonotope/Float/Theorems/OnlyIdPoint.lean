@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generator matrices of both parts are the exact layer's. -/
-theorem PolyZonotope.aux_onlyId_nominal_G (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p)) :
+theorem PolyZonotope.aux_onlyId_nominal_G (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p)) :
     (nominal (pZ.onlyId S).1).G = (Real.PolyZonotope.onlyId (nominal pZ) S).1.G ∧
       (nominal (pZ.onlyId S).2).G =
         (Real.PolyZonotope.onlyId (nominal pZ) S).2.G := by -- --- PROOF ---
@@ -45,7 +45,7 @@ theorem PolyZonotope.aux_onlyId_nominal_G (pZ : PolyZonotope 𝕋 n) (S : Finset
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Exact at the nominal points. -/
-theorem PolyZonotope.onlyId_point (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p))
+theorem PolyZonotope.onlyId_point (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p))
     (a : Fin pZ.p → ℝ) :
     (nominal pZ).point a
       = (nominal (pZ.onlyId S).1).point (fun k' : Fin S.card => a (S.orderIsoOfFin rfl k').1)

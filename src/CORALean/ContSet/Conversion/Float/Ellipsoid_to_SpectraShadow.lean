@@ -27,7 +27,7 @@ open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def Ellipsoid.spectraShadow (E : Ellipsoid 𝕋 n) : SpectraShadow 𝕋 n where
+def Ellipsoid.spectraShadow (E : Ellipsoid 𝕋 n) : SpectraShadow 𝕋 (Vec 𝕋 n) where
   k := E.k + 1
   m := E.k
   A₀ := fun p q => if p = q then one else zero

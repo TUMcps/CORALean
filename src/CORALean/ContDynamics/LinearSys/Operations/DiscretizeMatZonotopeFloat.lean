@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The system a step of `Δt` leaves behind, its matrix the float matrix-zonotope
 enclosure of `e^{AΔt}` at Taylor order `η`. -/
 def LinearSys.discretizeMatZonotopeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) :
-    LinParamSysDT (fun m n => GZonotope (Mat 𝕋 m n)) n :=
-  let AΔt := GZonotope.matSmul Δt Δt (GZonotope.pointMat sys.A)     -- AΔt, rounded
+    LinParamSysDT (fun m n => Zonotope (Mat 𝕋 m n)) n :=
+  let AΔt := Zonotope.matSmul Δt Δt (Zonotope.pointMat sys.A)     -- AΔt, rounded
   let eAΔt := MatExp.expMatZonoEnclosure AΔt η                      -- [e^{AΔt}]
   ⟨eAΔt⟩                                                            -- x_{k+1} ∈ [e^{AΔt}] x_k + u_k
 

@@ -41,10 +41,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `true` proves that the point `s` lies in `pZ`. -/
-def PolyZonotope.containsPointApprox (pZ : PolyZonotope 𝕋 n) (s : Vec 𝕋 n)
+def PolyZonotope.containsPointApprox (pZ : PolyZonotope (Vec 𝕋 n)) (s : Vec 𝕋 n)
     (start : Vec 𝕋 (pZ.p + pZ.q)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ) : Bool :=
   -- fHan = aux_funcPoly(x, c, G, GI, E)
-  let pZd : PolyZonotope 𝕋 n := pZ.indepFactors
+  let pZd : PolyZonotope (Vec 𝕋 n) := pZ.indepFactors
   -- X = interval(-onesVec, onesVec)
   let X : Interval (Vec 𝕋 (pZ.p + pZ.q)) := ⟨fun _ => neg one, fun _ => one⟩
   -- res(i) = all(withinTol(S(:,i), pZ.c)), exactly, and the centre in the set

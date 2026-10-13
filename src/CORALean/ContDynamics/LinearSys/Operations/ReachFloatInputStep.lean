@@ -30,14 +30,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The loop state one step on, from `[e^{AΔt}]`, the constant input's
 `P̃(Δt)` and the order `ρ`. -/
-def LinearSys.reachFloatInputStep (eAΔt : Interval (Mat 𝕋 n n)) (Pu : Zonotope 𝕋 n) (ρ : ℕ)
-    (s : Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n) :
-    Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n × Zonotope 𝕋 n :=
+def LinearSys.reachFloatInputStep (eAΔt : Interval (Mat 𝕋 n n)) (Pu : Zonotope (Vec 𝕋 n)) (ρ : ℕ)
+    (s : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) :
+    Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
   let Htp := s.1                                                    -- H(t_{k+1})
   let Hti := s.2.1                                                  -- H(τ_k)
   let PU := s.2.2.1                                                 -- P^R(t_{k+1})
   let PUnext := s.2.2.2                                             -- [e^{AΔt}]^k P^R(Δt)
-  let eA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt   -- [e^{AΔt}] ·
+  let eA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{AΔt}] ·
+    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt
   let PUnext' := eA PUnext                                          -- [e^{AΔt}]^{k+1} P^R(Δt)
   (Reduce.reduce (eA Htp ⊞ Pu) ρ,                                   -- H(t_{k+2})
     Reduce.reduce (eA Hti ⊞ Pu) ρ,                                  -- H(τ_{k+1})

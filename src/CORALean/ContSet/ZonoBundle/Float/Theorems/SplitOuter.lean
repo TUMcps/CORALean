@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.split_outer (Λ : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (j : Fin n)
-    (zB : ZonoBundle 𝕋 n) (hB : zB.construct ⊆ (toRealMat Λ *ᵥ ·) '' B.construct) :
+    (zB : ZonoBundle (Vec 𝕋 n)) (hB : zB.construct ⊆ (toRealMat Λ *ᵥ ·) '' B.construct) :
     zB.construct ⊆
       (zB.split Λ B j).1.construct ∪ (zB.split Λ B j).2.construct := by -- --- PROOF ---
   intro x hx
@@ -40,8 +40,8 @@ theorem ZonoBundle.split_outer (Λ : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (
     obtain ⟨y, hy, rfl⟩ := hB hx
     exact Zonotope.mtimes_outer Λ B.zonotope ⟨y, Interval.zonotope_contains B hy, rfl⟩
   -- a one-member bundle denotes its member
-  have h1 : ∀ Z : Zonotope 𝕋 n,
-      ZonoBundle.construct (⟨1, fun _ => Z⟩ : ZonoBundle 𝕋 n) = Z.construct :=
+  have h1 : ∀ Z : Zonotope (Vec 𝕋 n),
+      ZonoBundle.construct (⟨1, fun _ => Z⟩ : ZonoBundle (Vec 𝕋 n)) = Z.construct :=
     fun Z => Set.iInter_const (ι := Fin 1) Z.construct
   -- so in one of the two halves, and the bundle half is the bundle cut with it
   rcases Zonotope.split_outer (Zonotope.mtimes Λ B.zonotope) j hΨ with h | h

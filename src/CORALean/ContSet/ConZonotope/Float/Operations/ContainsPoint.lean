@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.containsPoint (cZ : ConZonotope 𝕋 n) (H : Mat 𝕋 cZ.h n) (β₀ : Vec 𝕋 cZ.h)
+def ConZonotope.containsPoint (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (H : Mat 𝕋 cZ.h n) (β₀ : Vec 𝕋 cZ.h)
     (p : Vec 𝕋 n) : Bool :=
   let δ := cZ.interiorMargin β₀
   cZ.interiorCert H β₀ δ (Zonotope.ballB H δ)

@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.intersection (zB₁ zB₂ : ZonoBundle 𝕋 n) : ZonoBundle 𝕋 n where
+def ZonoBundle.intersection (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) where
   k := zB₁.k + zB₂.k
   Z := Fin.append zB₁.Z zB₂.Z
 

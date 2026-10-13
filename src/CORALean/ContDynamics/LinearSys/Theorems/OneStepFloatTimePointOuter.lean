@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The state at the end of the step is in `oneStepFloat`'s time-point set. -/
 theorem LinearSys.Trajectory.oneStepFloat_timePoint_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
-    {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {X U : Zonotope 𝕋 n}
+    {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋 n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
     (traj : sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
@@ -66,16 +66,17 @@ theorem LinearSys.Trajectory.oneStepFloat_timePoint_outer {sys : LinearSys 𝕋 
     ⟨fun _ => toRealVec u, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A (toRealVec u) hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
-  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes
+  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
       (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (sys.expIntervalFloat Δt Δt η) X) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ X
+    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) _ X
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
         (Set.mem_image_of_mem _ traj.init))
   have hx : x r = (exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ toRealVec u)
       + (x r - (exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ toRealVec u)) := by abel
   rw [hx]
-  exact Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add
-    (Plus.plus_outer (S := Zonotope 𝕋 n) _ _ (Set.add_mem_add hex hPu)) hPU)
+  exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
+    (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hex hPu)) hPU)
 
 end CORALean
 

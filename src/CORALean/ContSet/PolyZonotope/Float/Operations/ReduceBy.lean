@@ -31,9 +31,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.reduceBy (pZ : PolyZonotope 𝕋 n)
+def PolyZonotope.reduceBy (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) : PolyZonotope 𝕋 n where
+    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := d
   q := dI + n

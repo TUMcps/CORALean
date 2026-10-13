@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The whole generator matrix at one rounding: the two paired blocks and the
 generator spanning the half-difference of the centres. -/
-def Zonotope.linCombG (add sub : 𝕋 → 𝕋 → 𝕋) (Z₁ Z₂ : Zonotope 𝕋 n) :
+def Zonotope.linCombG (add sub : 𝕋 → 𝕋 → 𝕋) (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
     Mat 𝕋 n (Z₁.h + Z₂.h + 1) :=
   fun i => Fin.append
     (Fin.append (Zonotope.pairSum add (fun j => Z₁.G j i) (fun j => Z₂.G j i))

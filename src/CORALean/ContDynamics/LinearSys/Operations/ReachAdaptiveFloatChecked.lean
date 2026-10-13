@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `reachAdaptiveFloat`, or `none` if a float of its result is a NaN. -/
 def LinearSys.reachAdaptiveFloatChecked (sys : LinearSys 𝕋 n)
     (B : Mat 𝕋 n m)
-    (params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ)
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
     (options : LinearSys.AdaptiveOptions 𝕋) :
     Option (List (LinearSys.AdaptiveStepInfo 𝕋 n)) :=
   (sys.reachAdaptiveFloat B params options).bind fun infos =>

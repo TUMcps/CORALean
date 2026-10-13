@@ -47,27 +47,29 @@ def toF (x : D) : Float := Float.scaleB (Float.ofInt x.mantissa) x.exponent
 def box0 : Interval (Vec D 2) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 /-- The hull of a zonotope, as `(lo₁, hi₁), (lo₂, hi₂)`. -/
-def hull (Z : Zonotope D 2) : (Float × Float) × (Float × Float) :=
+def hull (Z : Zonotope (Vec D 2)) : (Float × Float) × (Float × Float) :=
   let I := Z.interval
   ((toF (I.inf 0), toF (I.sup 0)), (toF (I.inf 1), toF (I.sup 1)))
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def square : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
-def diamond : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d (-1) 0]], box0⟩
+def square : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def diamond : Zonotope (Vec D 2) :=
+    ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d (-1) 0]], box0⟩
 
 /-- `square ∩ diamond`. -/
-def I : SetIntersection (Zonotope D 2) := ⟨[square, diamond]⟩
+def I : SetIntersection (Zonotope (Vec D 2)) := ⟨[square, diamond]⟩
 
 /-- A segment `[-1/2, 1/2] × {0}`, intersected with the square. -/
-def segment : Zonotope D 2 := ⟨1, ![d 0 0, d 0 0], ![![d 1 (-1), d 0 0]], box0⟩
-def J : SetIntersection (Zonotope D 2) := ⟨[segment, square]⟩
+def segment : Zonotope (Vec D 2) := ⟨1, ![d 0 0, d 0 0], ![![d 1 (-1), d 0 0]], box0⟩
+def J : SetIntersection (Zonotope (Vec D 2)) := ⟨[segment, square]⟩
 
-def sum : SetIntersection (Zonotope D 2) := Plus.plus I J
-def image : SetIntersection (Zonotope D 2) :=
-  Mtimes.mtimes (S := fun n => SetIntersection (Zonotope D n)) (𝕄 := Mat D) (identityMat D 2) I
-def small : SetIntersection (Zonotope D 2) := Reduce.reduce I 1
+def sum : SetIntersection (Zonotope (Vec D 2)) := Plus.plus I J
+def image : SetIntersection (Zonotope (Vec D 2)) :=
+  Mtimes.mtimes (S := fun n => SetIntersection (Zonotope (Vec D n))) (𝕄 := Mat D)
+    (identityMat D 2) I
+def small : SetIntersection (Zonotope (Vec D 2)) := Reduce.reduce I 1
 
 #eval sum.sets.length      -- 4 branches: every pair
 #eval sum.sets.map hull
@@ -85,14 +87,14 @@ theorem sum_outer : ContSet.construct I + ContSet.construct J ⊆ ContSet.constr
 theorem image_outer :
     (⋃ A ∈ ContSet.construct (identityMat D 2), (A *ᵥ ·) '' ContSet.construct I) ⊆
       ContSet.construct image :=
-  SetIntersection.mtimes_outer (S := fun n => Zonotope D n) (𝕄 := Mat D) (identityMat D 2) I
+  SetIntersection.mtimes_outer (S := fun n => Zonotope (Vec D n)) (𝕄 := Mat D) (identityMat D 2) I
 
 /-- The reduced branches still contain the intersection. -/
 theorem small_outer : ContSet.construct I ⊆ ContSet.construct small :=
   SetIntersection.reduce_outer I 1
 
 /-- The centre of a zonotope with no error is one of its points. -/
-theorem centre_mem (Z : Zonotope D 2) (h : Z.E = box0) : toRealVec Z.c ∈ Z.construct :=
+theorem centre_mem (Z : Zonotope (Vec D 2)) (h : Z.E = box0) : toRealVec Z.c ∈ Z.construct :=
   Zonotope.centre_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
 
 /-- The origin is in the square and the diamond, hence in `I`. -/

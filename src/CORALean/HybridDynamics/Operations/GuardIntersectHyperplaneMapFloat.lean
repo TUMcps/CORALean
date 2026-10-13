@@ -58,16 +58,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 
 /-- `R = guardIntersect_hyperplaneMap(loc,guard,R0,params,options)` at floats, at the refined
 `R₀` and `tmax`, `η = options.taylorTerms`, `p` the precision of the square root of `nᵀn`. -/
-def Location.guardIntersectHyperplaneMapFloat (ℓ : Location (Zonotope 𝕋) G L 𝕋 n) (nv : Vec 𝕋 n)
-    (d : 𝕋) (R₀ : Zonotope 𝕋 n) (tmax : 𝕋) (η guardOrder zonotopeOrder p : ℕ) :
-    Option (Zonotope 𝕋 n) :=
+def Location.guardIntersectHyperplaneMapFloat (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n)
+    (nv : Vec 𝕋 n)
+    (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) (η guardOrder zonotopeOrder p : ℕ) :
+    Option (Zonotope (Vec 𝕋 n)) :=
   -- `[a, b] * Z` of a float interval and a zonotope, as the interval matrix `[a, b] I`
   let mulI : 𝕋 → 𝕋 → Interval (Mat 𝕋 n n) := fun a b =>
     Interval.smul a b (Interval.point (diagonalBlock fun _ => one))
   -- `1/[lo, hi]`, for an interval certified to exclude `0`
   let recipI : 𝕋 → 𝕋 → Interval (Vec 𝕋 1) := fun lo hi => Interval.recip ⟨fun _ => lo, fun _ => hi⟩
   let A : Mat 𝕋 n n := ℓ.dynamics.A                                -- [A,U] = aux_systemParams
-  let U : Zonotope 𝕋 n := ℓ.U
+  let U : Zonotope (Vec 𝕋 n) := ℓ.U
   let th : 𝕋 := half tmax                                           -- th = tmax/2
   let bI := GuardMap.sdcInputFloat A U.c th η R₀.c                  -- b = aux_constantFlow, a box
   let b : Vec 𝕋 n := bI.inf                                         -- its lower end
@@ -130,7 +131,7 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location (Zonotope 𝕋) G 
     if (ltStrict zero Λint.1 || ltStrict Λint.2 zero) && (ltStrict zero denInt.1 ||
         ltStrict denInt.2 zero) && ltStrict zero (mulDown Λmin Λmin) && ltStrict zero nrmLo &&
         le nrmA (half (nsmulDown (η + 2) one)) then
-      some (ContSet.projectOnHyperplaneIntervalFloat R cI           -- projectOnHyperplane
+      some (ContSet.projectOnHyperplaneIntervalFloat (S := fun k => Zonotope (Vec 𝕋 k)) R cI
         (Interval.mulLo d d rLo rHi) (Interval.mulHi d d rLo rHi))
     else none
   | _, _ => none

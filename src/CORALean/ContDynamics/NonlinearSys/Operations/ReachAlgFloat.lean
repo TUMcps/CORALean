@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 `U`, each step abstracted by `alg`, [1, Alg. 1]'s `R([0, t_f])`. -/
 def NonlinearSys.FloatHessModel.reachAlgFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (alg : NonlinearSys.LinReachAlg)
-    (params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope 𝕋 n)) := do
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
+    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt)  -- (tFinal - tStart) / Δt ∈ ℕ

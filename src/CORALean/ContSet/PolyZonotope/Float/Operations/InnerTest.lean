@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 3] as CORA runs it: `true` proves `Y ⊆ f(X)` for the dependent point map `f`. -/
-def PolyZonotope.innerTest (pZ : PolyZonotope 𝕋 n) (X X₀ : Interval (Vec 𝕋 pZ.p))
+def PolyZonotope.innerTest (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (Vec 𝕋 pZ.p))
     (Y : Interval (Vec 𝕋 n)) (ind : Fin n ↪ Fin pZ.p) (M C : Mat 𝕋 n n) (iter : ℕ) : Bool :=
   -- tau = 1.01; mu = 0.9 (squared)
   let τ : 𝕋 := divUp (nsmulUp 101 one) (nsmulUp 100 one)

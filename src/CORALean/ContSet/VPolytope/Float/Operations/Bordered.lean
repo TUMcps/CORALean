@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.bordered (P : VPolytope 𝕋 n) : Mat 𝕋 (n + 1) P.k := fun i j =>
+def VPolytope.bordered (P : VPolytope (Vec 𝕋 n)) : Mat 𝕋 (n + 1) P.k := fun i j =>
   if h : i.val < n then P.V j ⟨i.val, h⟩ else one
 
 end CORALean.Float

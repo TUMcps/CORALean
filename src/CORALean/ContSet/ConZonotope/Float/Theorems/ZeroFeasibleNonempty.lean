@@ -26,7 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.zeroFeasible_nonempty {cZ : ConZonotope 𝕋 n} (h : cZ.zeroFeasible = true) :
+theorem ConZonotope.zeroFeasible_nonempty {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
+    (h : cZ.zeroFeasible = true) :
     (nominalSet cZ).Nonempty := by -- --- PROOF ---
   simp only [ConZonotope.zeroFeasible, Bool.and_eq_true, List.all_eq_true,
     List.mem_finRange, true_implies, Bool.and_eq_true] at h

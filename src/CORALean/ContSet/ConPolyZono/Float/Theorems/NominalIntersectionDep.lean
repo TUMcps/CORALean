@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.nominal_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.nominal_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     nominal (cPZ₁.intersectionDep cPZ₂)
       = Real.ConPolyZono.intersectionDep (nominal cPZ₁) (nominal cPZ₂)
         (ConPolyZono.intersectionD cPZ₁ cPZ₂) := by -- --- PROOF ---

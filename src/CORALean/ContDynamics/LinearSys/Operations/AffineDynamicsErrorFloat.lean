@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Eq. (23): `Δε^h_k(Δt, η) = 2 err(C) + √γ_h ‖G^{(-)}_h‖₂`, from above. -/
-def LinearSys.affineDynamicsErrorFloat (sys : LinearSys 𝕋 n) (H : Zonotope 𝕋 n) (ũ : Vec 𝕋 n)
+def LinearSys.affineDynamicsErrorFloat (sys : LinearSys 𝕋 n) (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n)
     (Δt : 𝕋) (η : ℕ) : 𝕋 :=
   let C := MatExp.curvatureEnclosure (Interval.point sys.A) H ũ Δt η  -- C, eq. (15)-(16)
   let eAΔt := sys.expIntervalFloat Δt Δt η                              -- [e^{AΔt}]

@@ -30,11 +30,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `k` steps of the recursion, from `[e^{AΔt}]` and the box paid at each step. -/
-def aux_reachInputErrorFloat (eAΔt : Interval (Mat 𝕋 n n)) (box : Zonotope 𝕋 n) :
-    ℕ → Zonotope 𝕋 n
+def aux_reachInputErrorFloat (eAΔt : Interval (Mat 𝕋 n n)) (box : Zonotope (Vec 𝕋 n)) :
+    ℕ → Zonotope (Vec 𝕋 n)
   | 0 => Zonotope.point fun _ => zero
   | k + 1 =>
-    Plus.plus (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt
+    Plus.plus (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+      (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt
       (aux_reachInputErrorFloat eAΔt box k)) box
 
 
@@ -43,7 +44,7 @@ def aux_reachInputErrorFloat (eAΔt : Interval (Mat 𝕋 n n)) (box : Zonotope �
 /-- What the input enclosures of `k` sampled steps owe together, enclosing the exact
 `reachInputError`. -/
 def LinearSys.reachInputErrorFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ)
-    (U : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
+    (U : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                          -- [e^{AΔt}]
   let box := sys.timePointStepErrorBoxFloat Δt η U                -- paid afresh at every step
   aux_reachInputErrorFloat eAΔt box k

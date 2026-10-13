@@ -32,7 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def LinearSysDT.observeIntervalFloat (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (L : Mat 𝕋 n p)
-    (R₀ W : Zonotope 𝕋 n) (V : Zonotope 𝕋 p) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p) (k : ℕ) :
+    (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n)
+    (y : ℕ → Vec 𝕋 p) (k : ℕ) :
     Interval (Vec 𝕋 n) :=
   let s := sys.observeIntervalStateFloat C L R₀ W V u y k
   let E := s.Rx.interval.plus s.Rwv                                  -- `box(R_x) + R_wv`

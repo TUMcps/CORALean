@@ -31,10 +31,12 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.reachFloat_outer
-    {P : ParallelHybridAutomaton (Zonotope 𝕋) (HPolytope 𝕋) k L 𝕋 n m} (hself : P.SelfBindFree)
-    (lift : ParallelHybridAutomaton.Lifting (Zonotope 𝕋) (HPolytope 𝕋) n m P.binds)
+    {P : ParallelHybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L
+    𝕋 n m} (hself : P.SelfBindFree)
+    (lift : ParallelHybridAutomaton.Lifting (fun k => Zonotope (Vec 𝕋 k))
+    (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m P.binds)
     {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
-    {X₀ : Zonotope 𝕋 (∑ i, n i)} {out : List ((∀ i, L i) × Zonotope 𝕋 (∑ i, n i))}
+    {X₀ : Zonotope (Vec 𝕋 (∑ i, n i))} {out : List ((∀ i, L i) × Zonotope (Vec 𝕋 (∑ i, n i)))}
     (h : P.reachFloat lift tFinal options K ℓ₀ X₀ = some out)
     {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ construct X₀) (run : P.Run ℓ₀ x ℓ y) :
     ∃ (T : ℝ) (j : ℕ), (P.product lift).RunUntil T j ℓ₀ (stack x) ℓ (stack y) ∧

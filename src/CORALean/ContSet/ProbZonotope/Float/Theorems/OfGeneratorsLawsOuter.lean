@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.ofGenerators_laws_outer {q : ℕ} (Z : Zonotope 𝕋 n) (g : Mat 𝕋 n q)
+theorem ProbZonotope.ofGenerators_laws_outer {q : ℕ} (Z : Zonotope (Vec 𝕋 n)) (g : Mat 𝕋 n q)
     {μ : Vec ℝ n} (hμ : μ ∈ Z.construct) :
     Real.gZonotopeLaw μ (toRealMat g) ∈ (ProbZonotope.ofGenerators Z g).laws := by
   have hg : toRealMat g ∈ (Interval.point g).construct := fun q => ⟨le_rfl, le_rfl⟩

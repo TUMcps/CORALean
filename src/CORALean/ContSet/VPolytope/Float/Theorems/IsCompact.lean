@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.isCompact_construct (P : VPolytope 𝕋 n) : IsCompact P.construct :=
+theorem VPolytope.isCompact_construct (P : VPolytope (Vec 𝕋 n)) : IsCompact P.construct :=
   InflatedContSet.isCompact_construct P
 
 end CORALean.Float

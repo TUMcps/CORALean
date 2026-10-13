@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.filterOut_keeps (Zs : Fin m → Zonotope 𝕋 n) (ind : Fin m)
+theorem Zonotope.filterOut_keeps (Zs : Fin m → Zonotope (Vec 𝕋 n)) (ind : Fin m)
     (hint : (interior ((Zs ind).construct \ ⋃ j ∈ {j | j ≠ ind}, (Zs j).construct)).Nonempty) :
     ind ∈ Zonotope.filterOut Zs := by -- --- PROOF ---
   by_contra hout

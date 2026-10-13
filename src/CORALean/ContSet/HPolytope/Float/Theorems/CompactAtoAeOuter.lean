@@ -26,7 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.compactAtoAe_outer (p : ℕ) (P : HPolytope 𝕋 n) (dom : Interval (Vec 𝕋 n)) :
+theorem HPolytope.compactAtoAe_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n))
+    (dom : Interval (Vec 𝕋 n)) :
     P.construct ∩ dom.construct ⊆
       (P.compactAtoAe p dom).construct ∩ dom.construct := by
   intro x hx

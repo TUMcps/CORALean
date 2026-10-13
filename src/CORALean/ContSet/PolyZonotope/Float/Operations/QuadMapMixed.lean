@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 /-- The quadratic map of two sets whose arguments range independently, CORA's
 `quadMap(pZ₁, pZ₂, Q)`. -/
-def PolyZonotope.quadMapMixed (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
-    PolyZonotope 𝕋 m :=
+def PolyZonotope.quadMapMixed (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
+    PolyZonotope (Vec 𝕋 m) :=
   let cp := pZ₁.dependent.cartProd pZ₂.dependent
   PolyZonotope.bilin (PolyZonotope.mixedForm Q) cp cp rfl
 

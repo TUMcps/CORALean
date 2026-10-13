@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.compactZeros_exact (Z : Zonotope 𝕋 n) :
+theorem Zonotope.compactZeros_exact (Z : Zonotope (Vec 𝕋 n)) :
     Z.compactZeros.construct = Z.construct := by -- --- PROOF ---
   have hz : ∀ j, Z.keepColumn j = false → (nominal Z).G j = 0 := by
     intro j hj

@@ -40,11 +40,11 @@ structure LinearSys.ManualStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) whe
   /-- A float above `t_k`. -/
   tHi : 𝕋
   /-- `H(t_k)`, lines 2 and 7. -/
-  H : Zonotope 𝕋 n
+  H : Zonotope (Vec 𝕋 n)
   /-- `P^u(t_k)`, lines 2 and 6. -/
   Pu : Interval (Vec 𝕋 n)
   /-- `P̂^U(t_k)`, lines 2 and 10. -/
-  PU : Zonotope 𝕋 n
+  PU : Zonotope (Vec 𝕋 n)
 
 end CORALean
 

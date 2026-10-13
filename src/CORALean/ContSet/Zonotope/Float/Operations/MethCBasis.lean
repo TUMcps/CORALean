@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The `n` longest generators, side by side. -/
-def Zonotope.methCBasis (Z : Zonotope 𝕋 n) : Mat 𝕋 n n := fun i k =>
+def Zonotope.methCBasis (Z : Zonotope (Vec 𝕋 n)) : Mat 𝕋 n n := fun i k =>
   if hk : k.val < Z.h then
     Z.G (sortPerm (fun j₁ j₂ => le (Z.generatorLength 2 j₂) (Z.generatorLength 2 j₁))
       ⟨k.val, hk⟩) i

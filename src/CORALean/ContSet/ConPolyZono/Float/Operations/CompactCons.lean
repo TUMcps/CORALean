@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- CORA's merge of equal constraint columns, as computed: `compactConsSpec` with
 the representative and kept-column lookups shared between entries. -/
-def ConPolyZono.compactCons (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+def ConPolyZono.compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let rt := PolyZonotope.repTab cPZ.EC
   let kt := PolyZonotope.keepTab rt
   let r : Fin cPZ.s → Fin cPZ.s := fun l => rt.getD l.val l

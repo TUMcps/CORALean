@@ -49,7 +49,7 @@ def sci (x : Float) : String :=
 
 /-- Generators, the hull's half-width per coordinate, and the error box's width
 per coordinate, printed through `Float`. -/
-def summary {𝕋 : Type} [FloatOps 𝕋] (toF : 𝕋 → Float) (Z : Zonotope 𝕋 2) :
+def summary {𝕋 : Type} [FloatOps 𝕋] (toF : 𝕋 → Float) (Z : Zonotope (Vec 𝕋 2)) :
     ℕ × List String × List String :=
   let I := Z.interval
   (Z.h, List.ofFn fun i => sci ((toF (I.sup i) - toF (I.inf i)) / 2),
@@ -60,7 +60,7 @@ def summary {𝕋 : Type} [FloatOps 𝕋] (toF : 𝕋 → Float) (Z : Zonotope �
 
 def sysD : LinearSys (Dyadic 64) 2 := ⟨!![d 0 0, d 1 0; d (-1) 0, d 0 0]⟩
 
-def X₀D : Zonotope (Dyadic 64) 2 where
+def X₀D : Zonotope (Vec (Dyadic 64) 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 (-4), d 0 0; d 0 0, d 1 (-4)]
@@ -70,26 +70,27 @@ def ΔtD : Dyadic 64 := d 1 (-6)
 
 /-- `[0, 1/8]` in eight windows, Taylor order at least `4`, the first window reduced to
 order `10`. -/
-def wrapFreeD : Option (List (Zonotope (Dyadic 64) 2)) :=
+def wrapFreeD : Option (List (Zonotope (Vec (Dyadic 64) 2))) :=
   sysD.reachWrappingFreeFloat { R0 := X₀D, tFinal := 1 / 8 }
     { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
 
 /-- The same settings, one step at a time: the windows, then `R_0, …, R_8`. -/
-def recursiveD : Option (List (Zonotope (Dyadic 64) 2) × List (Zonotope (Dyadic 64) 2)) :=
+def recursiveD : Option (List (Zonotope (Vec (Dyadic 64) 2)) × List
+    (Zonotope (Vec (Dyadic 64) 2))) :=
   sysD.reachFloat { R0 := X₀D, tFinal := 1 / 8 }
     { timeStep := ΔtD, taylorTerms := 4, zonotopeOrder := 10 }
 
 /-- What a successful wrapping-free run is worth: the exact flow, over every window,
 `1/8 = 8 Δt` split into the eight windows `Reach.steps` derived. -/
-example {Rs : List (Zonotope (Dyadic 64) 2)} (h : wrapFreeD = some Rs) :=
+example {Rs : List (Zonotope (Vec (Dyadic 64) 2))} (h : wrapFreeD = some Rs) :=
   sysD.reachWrappingFreeFloat_outer h
 
 /-- And the recursive one's, over every window. -/
-example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, Rtp)) :=
+example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (Rti, Rtp)) :=
   sysD.reachFloat_outer h
 
 /-- And at every step. -/
-example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, Rtp)) :=
+example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (Rti, Rtp)) :=
   sysD.reachFloat_timePoint_outer h
 
 
@@ -97,7 +98,7 @@ example {Rti Rtp : List (Zonotope (Dyadic 64) 2)} (h : recursiveD = some (Rti, R
 
 def sysF : LinearSys Float 2 := ⟨!![0.0, 1.0; -1.0, 0.0]⟩
 
-def X₀F : Zonotope Float 2 where
+def X₀F : Zonotope (Vec Float 2) where
   h := 2
   c := ![1.0, 0.0]
   G := !![0.0625, 0.0; 0.0, 0.0625]
@@ -109,11 +110,11 @@ def ΔtF : Float := 0.015625
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The Dyadic runs' settings at binary64. -/
-def wrapFreeF : Option (List (Zonotope Float 2)) :=
+def wrapFreeF : Option (List (Zonotope (Vec Float 2))) :=
   sysF.reachWrappingFreeFloat { R0 := X₀F, tFinal := 1 / 8 }
     { timeStep := ΔtF, taylorTerms := 4, zonotopeOrder := 10 }
 
-def recursiveF : Option (List (Zonotope Float 2) × List (Zonotope Float 2)) :=
+def recursiveF : Option (List (Zonotope (Vec Float 2)) × List (Zonotope (Vec Float 2))) :=
   sysF.reachFloat { R0 := X₀F, tFinal := 1 / 8 }
     { timeStep := ΔtF, taylorTerms := 4, zonotopeOrder := 10 }
 

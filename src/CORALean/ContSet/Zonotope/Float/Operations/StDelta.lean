@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.stDelta (Z₂ Z₁ : Zonotope 𝕋 n) (H : Mat 𝕋 Z₂.h n) : 𝕋 :=
+def Zonotope.stDelta (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) : 𝕋 :=
   half (subDown one (maximumOver (Z₂.stUsed Z₁ H)))
 
 end CORALean.Float

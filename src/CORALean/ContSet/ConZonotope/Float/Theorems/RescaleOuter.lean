@@ -70,7 +70,7 @@ theorem ConZonotope.aux_row_split {h : ℕ} (a m r : Vec 𝕋 h) (δ ξ : Vec �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 n) (ξL ξU : Vec 𝕋 cZ.h)
+theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU : Vec 𝕋 cZ.h)
     (hB : ∀ ξ : Vec ℝ cZ.h, (∀ j, |ξ j| ≤ 1) → ξ ∈ cZ.P.construct →
       ∀ j, toReal (ξL j) ≤ ξ j ∧ ξ j ≤ toReal (ξU j)) :
     cZ.construct ⊆ (cZ.rescale ξL ξU).construct := by -- --- PROOF ---

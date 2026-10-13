@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.longestFactor (cPZ : ConPolyZono 𝕋 n) : Option (Fin cPZ.p) :=
+def ConPolyZono.longestFactor (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Option (Fin cPZ.p) :=
   -- `indAll`: columns that are one factor to the power one and nothing else
   let indAll := Finset.univ.filter fun j : Fin cPZ.h =>
     ∃ i, ∑ j', cPZ.E i j' = 1 ∧ cPZ.E i j = 1 ∧ ∀ i', i' ≠ i → cPZ.E i' j = 0

@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ProbZonotope.mean (P : ProbZonotope 𝕋 n) : Zonotope 𝕋 n := P.Z
+def ProbZonotope.mean (P : ProbZonotope 𝕋 n) : Zonotope (Vec 𝕋 n) := P.Z
 end CORALean.Float
 
 

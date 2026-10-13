@@ -25,7 +25,7 @@ variable {α β γ : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `f` at each pair of extended generators, the pairs indexed by `finProdFinEquiv`. -/
-def PolyZonotope.pairG (f : α → β → γ) (pZ₁ : GPolyZonotope α) (pZ₂ : GPolyZonotope β) :
+def PolyZonotope.pairG (f : α → β → γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) :
     Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → γ :=
   fun l => f (PolyZonotope.extGens pZ₁ (finProdFinEquiv.symm l).1)
     (PolyZonotope.extGens pZ₂ (finProdFinEquiv.symm l).2)

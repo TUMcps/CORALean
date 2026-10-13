@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- What the stored generators fall short by: the gap between the two directed
 roundings, which a coefficient in `[-1,1]` then spreads either way. -/
-def Zonotope.linCombGDiff (Z₁ Z₂ : Zonotope 𝕋 n) : Mat 𝕋 n (Z₁.h + Z₂.h + 1) :=
+def Zonotope.linCombGDiff (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : Mat 𝕋 n (Z₁.h + Z₂.h + 1) :=
   fun i j => subUp (Zonotope.linCombG addUp subUp Z₁ Z₂ i j)
     (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)
 

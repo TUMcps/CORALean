@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- What `k` float sampled steps owe against the exact held-input sampled set: the run's own
 excess and the input enclosures' error boxes. -/
 def LinearSys.reachErrorFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η o : ℕ) (ho : 0 < o)
-    (R₀ U : Zonotope 𝕋 n) (k : ℕ) : Zonotope 𝕋 n :=
+    (R₀ U : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 n) :=
   sys.reachExcessFloat Δt η o ho R₀ U k ⊞ sys.reachInputErrorFloat Δt η U k
 
 end CORALean

@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.longestFactor (pZ : PolyZonotope 𝕋 n) : Option (Fin pZ.p) :=
+def PolyZonotope.longestFactor (pZ : PolyZonotope (Vec 𝕋 n)) : Option (Fin pZ.p) :=
   -- the first generator whose squared length is maximal
   let len := fun j => sumUp fun i => mulUp (pZ.G j i) (pZ.G j i)
   match (List.finRange pZ.h).foldl

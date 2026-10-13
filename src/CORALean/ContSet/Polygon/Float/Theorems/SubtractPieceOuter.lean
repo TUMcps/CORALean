@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.subtractPiece_outer (q r : VPolytope 𝕋 2) :
+theorem Polygon.subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) :
     r.construct \ q.construct ⊆
       {x | ∃ s ∈ Polygon.subtractPiece q r, x ∈ s.construct} := by -- --- PROOF ---
   rintro x ⟨hr, hq⟩

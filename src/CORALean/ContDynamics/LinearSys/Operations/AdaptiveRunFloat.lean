@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 4-11: the reports of the steps from `s` to `t_f`, at most `k` of them. -/
-def LinearSys.adaptiveRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋 n) (t₀ tf : ℚ)
+def LinearSys.adaptiveRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (t₀ tf : ℚ)
     (options : LinearSys.AdaptiveOptions 𝕋) :
     ℕ → LinearSys.AdaptiveState 𝕋 n → Option (List (LinearSys.AdaptiveStepInfo 𝕋 n))
   | 0, s => if tf ≤ s.t then some [] else none                      -- out of iterations

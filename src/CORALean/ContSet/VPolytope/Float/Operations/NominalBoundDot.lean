@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A general direction, at the price the coordinate ones avoid: a rounded dot
 product per vertex, then the largest of them. -/
-def VPolytope.nominalBoundDot (P : VPolytope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
+def VPolytope.nominalBoundDot (P : VPolytope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 (nominalSet P) c where
   val := maximumOver fun l => dotUp a (P.V l)

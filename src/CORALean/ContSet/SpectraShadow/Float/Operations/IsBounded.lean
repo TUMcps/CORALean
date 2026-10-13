@@ -24,7 +24,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.isBounded (S : SpectraShadow 𝕋 n) (Yup Ylo : Fin n → Mat 𝕋 S.k S.k) : Bool :=
+def SpectraShadow.isBounded (S : SpectraShadow 𝕋 (Vec 𝕋 n))
+    (Yup Ylo : Fin n → Mat 𝕋 S.k S.k) : Bool :=
   (S.interval Yup Ylo).isSome
 
 end CORALean.Float

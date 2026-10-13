@@ -27,7 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.cartProd (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope 𝕋 n₂) : Zonotope 𝕋 (n₁ + n₂) where
+def Zonotope.cartProd (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂)) :
+    Zonotope (Vec 𝕋 (n₁ + n₂)) where
   h := Z₁.h + Z₂.h
   c := Fin.append Z₁.c Z₂.c
   G := fun j i => genBlockDiag (fun i j => Z₁.G j i) (fun i j => Z₂.G j i) i j

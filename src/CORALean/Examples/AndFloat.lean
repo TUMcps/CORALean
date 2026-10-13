@@ -65,16 +65,17 @@ def boxF (I : Interval (Vec D 2)) : (Float × Float) × (Float × Float) :=
 /-! ## `Zonotope.and_` -/
 
 /-- The square `[-1, 1]²` and the diamond `|x| + |y| ≤ 2`, both centred at the origin. -/
-def square : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
-def diamond : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d (-1) 0]], box0⟩
+def square : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def diamond : Zonotope (Vec D 2) :=
+    ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d (-1) 0]], box0⟩
 
-def squareDiamond : Zonotope D 2 := square.and_ diamond
+def squareDiamond : Zonotope (Vec D 2) := square.and_ diamond
 
 #eval squareDiamond.h
 #eval boxF squareDiamond.interval   -- the hull of the answer
 
 /-- Both zonotopes have no error, so their centres are points of them. -/
-theorem centre_mem (Z : Zonotope D 2) (h : Z.E = box0) : toRealVec Z.c ∈ Z.construct :=
+theorem centre_mem (Z : Zonotope (Vec D 2)) (h : Z.E = box0) : toRealVec Z.c ∈ Z.construct :=
   Zonotope.centre_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
 
 /-- The origin is in both, hence in the answer. -/
@@ -91,7 +92,7 @@ theorem squareDiamond_outer : square.construct ∩ diamond.construct ⊆ squareD
 /-! ## `Polygon.and` -/
 
 /-- A vertex list with no rounding error. -/
-def poly (h : ℕ) (V : Fin h → Vec D 2) : VPolytope D 2 := ⟨h, V, box0⟩
+def poly (h : ℕ) (V : Fin h → Vec D 2) : VPolytope (Vec D 2) := ⟨h, V, box0⟩
 
 /-- The square `[0, 2]²` and a triangle with corners `(1, 1)`, `(3, 1)`, `(1, 3)`. -/
 def P : Polygon D :=

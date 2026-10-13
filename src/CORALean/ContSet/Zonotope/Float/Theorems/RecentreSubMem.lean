@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.sub_centre_mem_recentre {Z : Zonotope 𝕋 n} {y : Vec ℝ n}
+theorem Zonotope.sub_centre_mem_recentre {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}
     (hy : y ∈ Z.construct) : y - toRealVec Z.c ∈ Z.recentre.construct := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hy
   obtain ⟨β, hβ, ha⟩ := Zonotope.mem_nominalSet_iff.mp ha

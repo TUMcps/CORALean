@@ -21,7 +21,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.construct_ofPieces (pieces : List (VPolytope 𝕋 2)) :
+theorem Polygon.construct_ofPieces (pieces : List (VPolytope (Vec 𝕋 2))) :
     ContSet.construct (Polygon.ofPieces pieces) = ⋃ p ∈ pieces, VPolytope.construct p := rfl
 
 end CORALean.Float

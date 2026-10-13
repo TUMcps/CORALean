@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.getSubset (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) (cen rad : 𝕋) :
-    PolyZonotope 𝕋 n where
+def PolyZonotope.getSubset (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋) :
+    PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := pZ.h * (pZ.maxExp k + 1)
   q := pZ.q

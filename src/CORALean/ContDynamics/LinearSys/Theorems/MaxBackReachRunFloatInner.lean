@@ -34,7 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.maxBackReachRunFloat_inner (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
-    (P₁ P₂ : HPolytope 𝕋 n) {U W₀ : Zonotope 𝕋 n} {Zw : 𝕋 → 𝕋 → Zonotope 𝕋 n} {t₀ Δt : 𝕋}
+    (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) {U W₀ : Zonotope (Vec 𝕋 n)}
+    {Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)} {t₀ Δt : 𝕋}
     {η : ℕ}
     (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ),
       SupportBound P.construct c)

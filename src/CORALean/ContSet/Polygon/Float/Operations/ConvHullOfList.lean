@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Polygon.convHullOfList : List (VPolytope 𝕋 2) → VPolytope 𝕋 2
+def Polygon.convHullOfList : List (VPolytope (Vec 𝕋 2)) → VPolytope (Vec 𝕋 2)
   | [] => VPolytope.emptySet 𝕋 2
   | [p] => p
   | p :: q :: ps => p.convHull (Polygon.convHullOfList (q :: ps))

@@ -31,7 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The widened `b` holds wherever the exact constraint system does. -/
-theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) (cen rad : 𝕋)
+theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+    (k : Fin cPZ.p) (cen rad : 𝕋)
     (a : Fin cPZ.p → ℝ) (ha : ∀ k, |a k| ≤ 1)
     (hsat : (Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).satisfies a) :
     (cPZ.getSubset k cen rad).satisfies a := by -- --- PROOF ---

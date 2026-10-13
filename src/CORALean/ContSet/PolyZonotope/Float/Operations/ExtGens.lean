@@ -24,7 +24,7 @@ variable {α : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The centre, then the dependent generators. -/
-def PolyZonotope.extGens (pZ : GPolyZonotope α) : Fin (pZ.h + 1) → α := Fin.cons pZ.c pZ.G
+def PolyZonotope.extGens (pZ : PolyZonotope α) : Fin (pZ.h + 1) → α := Fin.cons pZ.c pZ.G
 
 end CORALean.Float
 

@@ -44,7 +44,7 @@ theorem ConZonotope.aux_row_move {m h : ℕ} (M : Mat 𝕋 m h) (v : Vec ℝ h) 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 n} {H : Mat 𝕋 cZ.h n} {β₀ : Vec 𝕋 cZ.h}
+theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cZ.h n} {β₀ : Vec 𝕋 cZ.h}
     {δ B : 𝕋} (hc : cZ.interiorCert H β₀ δ B = true) (y : Vec ℝ n)
     (hy : ∀ i, |y i - (toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))| ≤ toReal B) :
     y ∈ nominalSet cZ := by -- --- PROOF ---

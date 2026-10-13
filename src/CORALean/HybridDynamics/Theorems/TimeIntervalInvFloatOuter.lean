@@ -35,8 +35,9 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- Every state a stay passes through by time `r` lies in the float step from
 `R₀` plus `Ud`, cut to the location's invariant. -/
 theorem Location.Trajectory.timeIntervalInvFloat_outer
-    {ℓ : Location (Zonotope 𝕋) (HPolytope 𝕋) L 𝕋 n} {τ : ℝ} {x u : ℝ → Vec ℝ n}
-    (traj : ℓ.Trajectory τ x u) {R₀ Ud : Zonotope 𝕋 n} (h₀ : x 0 ∈ construct R₀) {r : 𝕋}
+    {ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n} {τ : ℝ}
+    {x u : ℝ → Vec ℝ n}
+    (traj : ℓ.Trajectory τ x u) {R₀ Ud : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct R₀) {r : 𝕋}
     {η : ℕ} (hr : 0 < toReal r) (hη : ℓ.dynamics.OrderAdmissibleFloat r r η) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) (htr : t ≤ toReal r)
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • Scalar.toRealMat ℓ.dynamics.A) *ᵥ u s)

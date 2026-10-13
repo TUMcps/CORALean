@@ -37,9 +37,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- CORA's `reduceCombined(zB, 'methC')`: the parallelotope along `n` of the generators of all
 members, around the bundle. -/
-def ZonoBundle.reduceCombined (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k) : Zonotope 𝕋 n :=
+def ZonoBundle.reduceCombined (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) : Zonotope (Vec 𝕋 n) :=
   let e := finSigmaFinEquiv (m := zB.k) (n := fun i => (zB.Z i).h)  -- (member, generator) ≃ index
-  let Zall : Zonotope 𝕋 n :=                                        -- the generators of all members
+  let Zall : Zonotope (Vec 𝕋 n) :=  -- the generators of all members
     ⟨∑ i, (zB.Z i).h, fun _ => zero, fun j => (zB.Z (e.symm j).1).G (e.symm j).2,
      ⟨fun _ => zero, fun _ => zero⟩⟩
   zB.enclosingParallelotope hk Zall.methCBasis                      -- `Γ box(Γ⁻¹ Z_∩)`

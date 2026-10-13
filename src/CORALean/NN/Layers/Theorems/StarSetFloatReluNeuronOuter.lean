@@ -5,7 +5,7 @@ import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
 # One ReLU neuron on a float star set encloses the ReLU
 
 If the bounds hold on the star set, the image of the set under the ReLU at the neuron `j` lies
-in the set the step returns, as in `StarSet.reluNeuron_outer`, with the stored numbers read as
+in the set the step returns, as in `Real.StarSet.reluNeuron_outer`, with the stored numbers read as
 reals. The branches are taken on `le`, which certifies `≤` only, so the last branch is sound
 without knowing the bounds straddle `0`.
 -/
@@ -18,7 +18,7 @@ without knowing the bounds straddle `0`.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Float
 
 open ContSet Float.FloatOps Float.SoundFloatArithmetic
 
@@ -27,7 +27,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSetFloat.reluNeuron_outer (s : StarSetFloat 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋)
+theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋)
     (hb : ∀ x ∈ construct s, toReal b.1 ≤ x j ∧ x j ≤ toReal b.2) :
     (fun (x : Vec ℝ n) => (Function.update x j (max (x j) 0) : Vec ℝ n)) '' construct s
       ⊆ construct (s.reluNeuron j b) := by -- --- PROOF ---
@@ -35,7 +35,7 @@ theorem StarSetFloat.reluNeuron_outer (s : StarSetFloat 𝕋 n) (j : Fin n) (b :
   beta_reduce
   have hbx := hb x hx
   obtain ⟨α, hα, hcα, hxα⟩ := hx
-  unfold StarSetFloat.reluNeuron
+  unfold StarSet.reluNeuron
   -- the neuron is nonnegative everywhere: the ReLU is the identity
   by_cases h0 : le zero b.1 = true
   · rw [if_pos h0]
@@ -82,7 +82,7 @@ theorem StarSetFloat.reluNeuron_outer (s : StarSetFloat 𝕋 n) (j : Fin n) (b :
     · split_ifs at hc with hg
       · simp only [List.mem_singleton] at hc
         subst hc
-        have := StarSetFloat.chordRow_holds s j b hg α hα (by rw [← hxj]; exact hbx)
+        have := StarSet.chordRow_holds s j b hg α hα (by rw [← hxj]; exact hbx)
         rw [← hxj] at this
         exact this
       · simp at hc
@@ -92,7 +92,7 @@ theorem StarSetFloat.reluNeuron_outer (s : StarSetFloat 𝕋 n) (j : Fin n) (b :
       simp [Fin.sum_univ_castSucc, toReal_zero, toReal_one]
     · simp [Fin.sum_univ_castSucc, hi, hxα i, toReal_zero]
 
-end CORALean
+end CORALean.Float
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

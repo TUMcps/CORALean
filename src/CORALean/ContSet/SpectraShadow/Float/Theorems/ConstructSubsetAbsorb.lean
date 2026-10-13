@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.construct_subset_absorb (S : SpectraShadow 𝕋 n) :
+theorem SpectraShadow.construct_subset_absorb (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     S.construct ⊆ nominalSet S.absorb := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨β, hP, hyβ⟩ := SpectraShadow.mem_nominalSet_iff.mp hy

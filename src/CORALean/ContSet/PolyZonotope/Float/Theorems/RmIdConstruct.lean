@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.rmId_construct (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p)) :
+theorem PolyZonotope.rmId_construct (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p)) :
     (pZ.rmId S).construct
       = {x | ∃ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ), (∀ k, |a k| ≤ 1) ∧ (∀ k ∈ S, a k = 1)
           ∧ (∀ j, |β j| ≤ 1) ∧ x = (nominal pZ).point a + ∑ j, β j • (nominal pZ).GI j}

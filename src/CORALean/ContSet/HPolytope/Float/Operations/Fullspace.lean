@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- No constraints, so every point qualifies: what a zonotope's coefficients
 answer to beyond the unit box. -/
-def HPolytope.fullspace (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 n where
+def HPolytope.fullspace (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := 0
   A := fun i => i.elim0
   b := fun i => i.elim0

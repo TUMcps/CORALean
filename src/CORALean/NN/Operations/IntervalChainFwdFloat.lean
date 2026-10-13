@@ -7,8 +7,8 @@ import CORALean.ContSet.Interval.Float.Operations.Halve
 
 /-!
 # The forward pass of a float interval chain
-`IntervalChain.fwd` on boxes: the box of vectors the input interval's lower and upper bound range
-over is carried through each layer by outward-rounded interval arithmetic. The linear layer's
+`Real.IntervalChain.fwd` on boxes: the box of vectors the input interval's lower and upper bound
+range over is carried through each layer by outward-rounded interval arithmetic. The linear layer's
 `mu = W (l + u)/2 + b`, `r = |W| (u - l)/2` are `Interval.mtimes` of the float `W` and `|W|`
 (`absolute` entrywise, exact) against the halved sum and difference, read back as
 `[mu - r, mu + r]`; the activation's is the stored scalar enclosure `σE`, entrywise.
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def IntervalChainFloat.fwd : ∀ {n k : ℕ}, IntervalChainFloat 𝕋 n k →
+def IntervalChain.fwd : ∀ {n k : ℕ}, IntervalChain 𝕋 n k →
     Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n) → Interval (Vec 𝕋 k) × Interval (Vec 𝕋 k)
   | _, _, .nil, p => p
   | _, _, .linear W b rest, p =>

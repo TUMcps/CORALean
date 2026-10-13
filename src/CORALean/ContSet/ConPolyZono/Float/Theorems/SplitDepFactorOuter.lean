@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.splitDepFactor_outer (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) :
+theorem ConPolyZono.splitDepFactor_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) :
     cPZ.construct ⊆
       (cPZ.splitDepFactor k).1.construct ∪ (cPZ.splitDepFactor k).2.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩

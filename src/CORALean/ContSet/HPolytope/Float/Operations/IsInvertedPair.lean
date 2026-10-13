@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[aⱼ, bⱼ] = -[aᵢ, bᵢ]` and `[aᵢ, bᵢ] = -[aⱼ, bⱼ]`, each certified. -/
-def HPolytope.isInvertedPair (Q : HPolytope 𝕋 n) (i j : Fin Q.m) : Bool :=
+def HPolytope.isInvertedPair (Q : HPolytope 𝕋 (Vec 𝕋 n)) (i j : Fin Q.m) : Bool :=
   HPolytope.eqVec (Q.A j) (fun c => neg (Q.A i c)) && HPolytope.eqScalar (Q.b j) (neg (Q.b i)) &&
     HPolytope.eqVec (Q.A i) (fun c => neg (Q.A j c)) && HPolytope.eqScalar (Q.b i) (neg (Q.b j))
 

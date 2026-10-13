@@ -22,8 +22,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.replace_construct (zB : ZonoBundle 𝕋 n) (index : Fin zB.k)
-    (Z : Zonotope 𝕋 n) :
+theorem ZonoBundle.replace_construct (zB : ZonoBundle (Vec 𝕋 n)) (index : Fin zB.k)
+    (Z : Zonotope (Vec 𝕋 n)) :
     (zB.replace index Z).construct =
       Z.construct ∩ ⋂ i : {i : Fin zB.k // i ≠ index}, (zB.Z i).construct := by -- --- PROOF ---
   ext x

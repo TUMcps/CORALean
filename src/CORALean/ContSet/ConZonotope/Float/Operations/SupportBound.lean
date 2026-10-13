@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The bound at the weights the exact simplex proposes for `Gᵀa`, computed in ℚ
 from the floats' own values. Checked, not trusted. -/
-def ConZonotope.boundDot [ToRat 𝕋] (cZ : ConZonotope 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
+def ConZonotope.boundDot [ToRat 𝕋] (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 cZ.construct c :=
   let w := cZ.P.dualWeights fun j => ∑ i, ToRat.toRat (a i) * ToRat.toRat (cZ.G j i)

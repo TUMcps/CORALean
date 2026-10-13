@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.mtimes (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 m where
+def PolyZonotope.mtimes (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 m) where
   p := pZ.p
   h := pZ.h
   q := pZ.q

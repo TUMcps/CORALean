@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The intersection of every member's box, starting from the first member's. -/
-def ZonoBundle.intervalAll (zB : ZonoBundle 𝕋 n) (hk : 0 < zB.k) : Interval (Vec 𝕋 n) :=
+def ZonoBundle.intervalAll (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) : Interval (Vec 𝕋 n) :=
   (List.finRange zB.k).foldl (fun I i => Interval.intersection I (Zonotope.interval (zB.Z i)))
     (Zonotope.interval (zB.Z ⟨0, hk⟩))
 

@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.isFullDimWith (cPZ : ConPolyZono 𝕋 n) (H : Mat 𝕋 cPZ.q n) : Bool :=
+def ConPolyZono.isFullDimWith (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (H : Mat 𝕋 cPZ.q n) : Bool :=
   Zonotope.ballCert (fun i j => cPZ.GI j i) H (Zonotope.ballB H one) one
     && (List.finRange cPZ.m).all (fun i =>
       le (cPZ.b.inf i) (dotDown (cPZ.A i) cPZ.zeroMonomials)

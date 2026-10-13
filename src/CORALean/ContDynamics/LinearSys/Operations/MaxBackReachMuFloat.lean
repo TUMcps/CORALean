@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Line 3: `μ ← √γ ‖(e^{AΔt} - I_n)G‖₂`, an upper bound; `G` and `γ` from `box(X_end)`, `B`.
 `η` is the Taylor order of the exponential's enclosure and `p` the Newton steps of each root. -/
 def LinearSys.maxBackReachMuFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η p : ℕ)
-    (B : Zonotope 𝕋 n) : 𝕋 :=
+    (B : Zonotope (Vec 𝕋 n)) : 𝕋 :=
   let EI := Interval.matPlus (sys.expIntervalFloat Δt Δt η)         -- [e^{AΔt}] - I
     (Interval.point (negIdentityMat 𝕋 n))
   let mag : Mat 𝕋 n n := fun i k =>                                 -- |e^{AΔt} - I|, entrywise

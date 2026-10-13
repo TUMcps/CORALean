@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 `red.toNonlinearSys`. -/
 def NonlinDASys.reachFloat {sys : NonlinDASys n p m} (_red : sys.ReducedModel)
     (fm : NonlinearSys.FloatModel 𝕋 n m)
-    (params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope 𝕋 n)) :=
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
+    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) :=
   fm.reachFloat params options
 
 end CORALean

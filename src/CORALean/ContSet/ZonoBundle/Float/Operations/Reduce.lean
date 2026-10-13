@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.reduce (zB : ZonoBundle 𝕋 n) (o : ℕ) : ZonoBundle 𝕋 n where
+def ZonoBundle.reduce (zB : ZonoBundle (Vec 𝕋 n)) (o : ℕ) : ZonoBundle (Vec 𝕋 n) where
   k := min zB.k o
   Z := fun i => zB.Z (Fin.castLE (min_le_left zB.k o) i)
 

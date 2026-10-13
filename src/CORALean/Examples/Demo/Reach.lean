@@ -53,14 +53,14 @@ def A : Mat (Dyadic p) 2 2 := !![dy 15 (-4), dy (-1) (-3); dy 1 (-3), dy 15 (-4)
 def sys : LinearSysDT (Dyadic p) 2 := ⟨A p⟩
 
 /-- `[0.875, 1.125] × [-0.125, 0.125]`, as a zonotope with two generators. -/
-def R₀ : Zonotope (Dyadic p) 2 where
+def R₀ : Zonotope (Vec (Dyadic p) 2) where
   h := 2
   c := ![dy 1 0, dy 0 0]
   G := !![dy 1 (-3), dy 0 0; dy 0 0, dy 1 (-3)]
   E := zeroBox 2
 
 /-- `[-1/64, 1/64]²`, the set every step's input is drawn from. -/
-def U : Zonotope (Dyadic p) 2 where
+def U : Zonotope (Vec (Dyadic p) 2) where
   h := 2
   c := ![dy 0 0, dy 0 0]
   G := !![dy 1 (-6), dy 0 0; dy 0 0, dy 1 (-6)]
@@ -76,8 +76,8 @@ def steps : ℕ := 5
 /-- The reachable set after `k` steps. Recomputed per row rather than folded, so
 a table of `k` rows costs `k²/2` steps where a fold would cost `k`, and every
 row is one call to the definition the theorems are about. -/
-def R (k : ℕ) : Zonotope (Dyadic p) 2 :=
-  (sys p).reach (S := Zonotope (Dyadic p)) ⟨R₀ p, U p, 0, k⟩ ⟨order, by decide⟩
+def R (k : ℕ) : Zonotope (Vec (Dyadic p) 2) :=
+  (sys p).reach (S := fun k => Zonotope (Vec (Dyadic p) k)) ⟨R₀ p, U p, 0, k⟩ ⟨order, by decide⟩
 
 def reachRow (k : ℕ) : String :=
   let Z := R p k
@@ -96,7 +96,8 @@ def out : OutputEq (Dyadic p) 2 2 1 where
 
 /-- The output set at step `k`, from the reachable set and the same input set
 the step was taken with. -/
-def Y (k : ℕ) : Zonotope (Dyadic p) 1 := (out p).outputSet (R p k) (U p)
+def Y (k : ℕ) : Zonotope (Vec (Dyadic p) 1) :=
+  (out p).outputSet (S := fun k => Zonotope (Vec (Dyadic p) k)) (R p k) (U p)
 
 def outputRow (k : ℕ) : String :=
   let Z := Y p k

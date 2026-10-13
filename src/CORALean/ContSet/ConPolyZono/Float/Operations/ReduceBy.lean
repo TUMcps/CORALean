@@ -26,9 +26,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d r dI rI : ℕ}
 /-- CORA's reduction at a given pair of partitions, sound for every one of them:
 kept dependent generators keep their exponent columns, kept independent ones are
 copied, and the rest becomes a box no longer tied to the factors. -/
-def ConPolyZono.reduceBy (cPZ : ConPolyZono 𝕋 n)
+def ConPolyZono.reduceBy (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono 𝕋 n where
+    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := d
   q := dI + n

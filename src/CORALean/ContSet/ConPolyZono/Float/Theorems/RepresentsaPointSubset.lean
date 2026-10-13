@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.construct_subset_of_representsa_point (cPZ : ConPolyZono 𝕋 n)
+theorem ConPolyZono.construct_subset_of_representsa_point (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (h : cPZ.representsa_point = true) :
     cPZ.construct ⊆ {toRealVec cPZ.c} + cPZ.err.construct := by
   -- the nominal set has the same generator counts, so the exact layer's test passes on it

@@ -35,22 +35,26 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem SpectraShadow.aux_singletonOne_mem :
     (fun _ : Fin 1 => (1 : ℝ))
-      ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 1).construct := by -- --- PROOF ---
+      ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).construct := by -- --- PROOF ---
   -- the error box is the origin, and the nominal part holds `1` at `β = 1`
-  have hE : (0 : Vec ℝ 1) ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 1).E.construct := by
-    rw [show (SpectraShadow.singletonOne : SpectraShadow 𝕋 1).E = Interval.origin 1 from rfl,
+  have hE : (0 : Vec ℝ 1) ∈
+    (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).E.construct := by
+    rw [show (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).E =
+      Interval.origin 1 from rfl,
       Interval.origin_exact]; rfl
   refine ⟨_, ?_, 0, hE, add_zero _⟩
+  -- the nominal part, witnessed by `β = 1`
   refine SpectraShadow.mem_nominalSet_iff.2 ⟨fun _ => 1, ?_, fun i => ?_⟩
-  · have : toRealMat (SpectraShadow.singletonOne : SpectraShadow 𝕋 1).A₀
+  · have : toRealMat (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).A₀
         + ∑ i, (fun _ : Fin 1 => (1 : ℝ)) i •
-          toRealMat ((SpectraShadow.singletonOne : SpectraShadow 𝕋 1).A i) = (0 : Mat ℝ 2 2) := by
+          toRealMat ((SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).A i) =
+            (0 : Mat ℝ 2 2) := by
       ext p q
       fin_cases p <;> fin_cases q <;>
         simp [toRealMat, SpectraShadow.singletonOne, toReal_one, toReal_zero, toReal_neg]
-    show Matrix.PosSemidef (toRealMat (SpectraShadow.singletonOne : SpectraShadow 𝕋 1).A₀
+    show Matrix.PosSemidef (toRealMat (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).A₀
         + ∑ i, (fun _ : Fin 1 => (1 : ℝ)) i •
-          toRealMat ((SpectraShadow.singletonOne : SpectraShadow 𝕋 1).A i))
+          toRealMat ((SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).A i))
     rw [this]
     exact Matrix.PosSemidef.zero
   · simp [SpectraShadow.singletonOne, toReal_zero, toReal_one]
@@ -79,29 +83,29 @@ theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.convHull_outer (S₁ S₂ : SpectraShadow 𝕋 n) :
+theorem SpectraShadow.convHull_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     convexHull ℝ (S₁.construct ∪ S₂.construct) ⊆ (S₁.convHull_ S₂).construct := by -- --- PROOF ---
   unfold SpectraShadow.convHull_
   simp only [SpectraShadow.materialise_eq]
   refine convexHull_min ?_ (SpectraShadow.convex_construct _)
   -- a point `x` of a shadow, at height one, is in the product with `{1}`
-  have happ : ∀ (S : SpectraShadow 𝕋 n) (x : Vec ℝ n), x ∈ S.construct →
+  have happ : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ S.construct →
       (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
         ∈ (S.cartProd SpectraShadow.singletonOne).construct := fun S x hx =>
     SpectraShadow.cartProd_outer S SpectraShadow.singletonOne
       ⟨(x, fun _ => 1), ⟨hx, SpectraShadow.aux_singletonOne_mem⟩, rfl⟩
   -- and in the cone of the product (`s = 1`)
-  have hcone : ∀ (S : SpectraShadow 𝕋 n) (x : Vec ℝ n), x ∈ S.construct →
+  have hcone : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ S.construct →
       (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
         ∈ (S.cartProd SpectraShadow.singletonOne).cone.construct := fun S x hx =>
     SpectraShadow.cone_outer (Nat.succ_pos n) _
       (Or.inr ⟨1, one_pos, _, happ S x hx, (one_smul _ _).symm⟩)
   -- the origin is in every cone
-  have h0 : ∀ (S : SpectraShadow 𝕋 n), (0 : Vec ℝ (n + 1))
+  have h0 : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)), (0 : Vec ℝ (n + 1))
       ∈ (S.cartProd SpectraShadow.singletonOne).cone.construct := fun S =>
     SpectraShadow.cone_outer (Nat.succ_pos n) _ (Or.inl rfl)
   -- a point at height one of a sum of cones is in the hyperplane and projects to `x`
-  have hfin : ∀ (A : SpectraShadow 𝕋 (n + 1)) (x : Vec ℝ n),
+  have hfin : ∀ (A : SpectraShadow 𝕋 (Vec 𝕋 (n + 1))) (x : Vec ℝ n),
       (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1)) ∈ A.construct →
       x ∈ ((A.inter (SpectraShadow.hyperplaneOne 𝕋 n)).project (Fin.castAdd 1)).construct :=
     fun A x hA =>

@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 
 /-- `S k`, the set the observer holds for the state at step `k`. -/
 def LinearSysDT.observePropagationFloat (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (gain : Zonotope 𝕋 n → Mat 𝕋 n p) (order : ℕ) (W R₀ : Zonotope 𝕋 n)
-    (V : Zonotope 𝕋 p) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p) : ℕ → Zonotope 𝕋 n
+    (gain : Zonotope (Vec 𝕋 n) → Mat 𝕋 n p) (order : ℕ) (W R₀ : Zonotope (Vec 𝕋 n))
+    (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p) : ℕ → Zonotope (Vec 𝕋 n)
   | 0 => R₀
   | k + 1 =>
     let S := sys.observePropagationFloat C gain order W R₀ V u y k

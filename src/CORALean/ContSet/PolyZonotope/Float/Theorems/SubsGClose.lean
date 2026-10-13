@@ -27,7 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subsG_close (pZ : PolyZonotope 𝕋 n) {nu : ℕ} (pZin : PolyZonotope 𝕋 nu)
+theorem PolyZonotope.subsG_close (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
+    (pZin : PolyZonotope (Vec 𝕋 nu))
     (idu : Fin nu → Fin pZ.p) (l : Fin (pZ.subsTerms pZin idu).length) (r : Fin n) {ρ : ℝ}
     (h₁ : toReal ((pZ.subsTerms pZin idu).get l).2.1.1 ≤ ρ)
     (h₂ : ρ ≤ toReal ((pZ.subsTerms pZin idu).get l).2.1.2) :

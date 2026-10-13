@@ -32,7 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (hp : cPZ₁.p = cPZ₂.p) :
+theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
+    (hp : cPZ₁.p = cPZ₂.p) :
     (Real.ConPolyZono.exactPlus (nominal cPZ₁) (nominal cPZ₂) hp).construct
       ⊆ nominalSet (cPZ₁.exactPlus cPZ₂ hp)
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
@@ -79,7 +80,7 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.exactPlus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) (hp : cPZ₁.p = cPZ₂.p) :
+theorem ConPolyZono.exactPlus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hp : cPZ₁.p = cPZ₂.p) :
     (Real.ConPolyZono.exactPlus (nominal cPZ₁) (nominal cPZ₂) hp).construct
         + (cPZ₁.err.construct + cPZ₂.err.construct)
       ⊆ (cPZ₁.exactPlus cPZ₂ hp).construct := by -- --- PROOF ---

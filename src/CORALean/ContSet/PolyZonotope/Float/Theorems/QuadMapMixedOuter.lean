@@ -45,7 +45,7 @@ theorem PolyZonotope.aux_mixedForm_eval (Q : Fin m → Mat 𝕋 n n) (x y : Vec 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.quadMapMixed_outer (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.quadMapMixed_outer (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     (fun x : Vec ℝ n × Vec ℝ n => Real.PolyZonotope.quadBilin (fun k => toRealMat (Q k)) x.1 x.2)
         '' (pZ₁.construct ×ˢ pZ₂.construct)
       ⊆ (PolyZonotope.quadMapMixed Q pZ₁ pZ₂).construct := by -- --- PROOF ---

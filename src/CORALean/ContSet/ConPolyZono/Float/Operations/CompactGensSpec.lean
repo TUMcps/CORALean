@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The specification of `compactGens`: equal exponent columns added together, the
 stored value the lower rounding and the gap paid into the ambient box. The
 constraint block stands. -/
-def ConPolyZono.compactGensSpec (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+def ConPolyZono.compactGensSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := (PolyZonotope.repKeep cPZ.E).card
   q := cPZ.q

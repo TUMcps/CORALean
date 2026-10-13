@@ -25,8 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The accumulator of the guard fold is the intersection so far. -/
-theorem aux_synchronizeGuard_fold (g : Fin q → HPolytope 𝕋 n) (l : List (Fin q))
-    (P : HPolytope 𝕋 n) :
+theorem aux_synchronizeGuard_fold (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (l : List (Fin q))
+    (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     (l.foldl (fun guard i => HPolytope.intersection guard (g i)) P).construct =
       P.construct ∩ ⋂ i ∈ l, (g i).construct := by -- --- PROOF ---
   induction l generalizing P with
@@ -39,7 +39,7 @@ theorem aux_synchronizeGuard_fold (g : Fin q → HPolytope 𝕋 n) (l : List (Fi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The synchronized guard denotes the intersection of the guards: exact. -/
-theorem Transition.synchronizeGuard_exact (g : Fin q → HPolytope 𝕋 n) :
+theorem Transition.synchronizeGuard_exact (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) :
     (Transition.synchronizeGuard g).construct = ⋂ i, (g i).construct := by -- --- PROOF ---
   unfold Transition.synchronizeGuard
   rw [aux_synchronizeGuard_fold]

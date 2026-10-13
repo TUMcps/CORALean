@@ -42,15 +42,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- [1, Alg. 1]: the windows `R̂(τ_0), …, R̂(τ_{N-1})` of `ẋ = Ax + Bu` from `X₀` under
 inputs in `U`, or `none`. -/
 def LinearSys.manualReachFloat (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    (params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope 𝕋 n)) := do
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
+    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let η := options.taylorTerms
   let ρ := options.zonotopeOrder
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
-  let V := Mtimes.mtimes (𝕄 := Mat 𝕋) B params.U                   -- B U, in the state space
+  let V := Mtimes.mtimes (𝕄 := Mat 𝕋)  -- B U, in the state space
+    (S := fun k => Zonotope (Vec 𝕋 k)) B params.U
   sys.manualRunFloat X₀ V Δt η' ρ N (LinearSys.manualInitFloat X₀)  -- 1.-11.
 
 end CORALean

@@ -28,7 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The derivative with respect to the factor `k`. -/
-def PolyZonotope.jacobian (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) : PolyZonotope 𝕋 n where
+def PolyZonotope.jacobian (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) :
+    PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := pZ.h
   q := 0

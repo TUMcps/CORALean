@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The pairwise vertex sums, rounded whichever way is asked. -/
-def VPolytope.pairSum (add : 𝕋 → 𝕋 → 𝕋) (P₁ P₂ : VPolytope 𝕋 n) :
+def VPolytope.pairSum (add : 𝕋 → 𝕋 → 𝕋) (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
     Fin (P₁.k * P₂.k) → Vec 𝕋 n :=
   fun l i => add (P₁.V (finProdFinEquiv.symm l).1 i) (P₂.V (finProdFinEquiv.symm l).2 i)
 

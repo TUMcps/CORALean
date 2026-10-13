@@ -27,7 +27,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n N : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.projectHighDim (P : HPolytope 𝕋 n) (dims : Fin n → Fin N) : HPolytope 𝕋 N :=
+def HPolytope.projectHighDim (P : HPolytope 𝕋 (Vec 𝕋 n)) (dims : Fin n → Fin N) : HPolytope
+    𝕋 (Vec 𝕋 N) :=
   -- the coordinates `dims` leaves out
   let new := Finset.univ.filter fun j : Fin N => ∀ k, dims k ≠ j
   (P.lift_ dims).intersection

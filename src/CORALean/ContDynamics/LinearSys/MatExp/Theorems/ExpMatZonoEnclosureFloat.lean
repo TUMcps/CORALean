@@ -40,25 +40,26 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.exp_mem_expMatZonoEnclosure (M : GZonotope (Mat 𝕋 n n)) (η : ℕ)
+theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat 𝕋 n n)) (η : ℕ)
     {A : Mat ℝ n n} (hA : A ∈ M.construct)
-    (hε : toReal (MatExp.normUpperBound M.interval) / ((η : ℝ) + 2) ≤ 1 / 2) :
+    (hε : toReal (MatExp.normUpperBound M.matInterval) / ((η : ℝ) + 2) ≤ 1 / 2) :
     exp A ∈ (MatExp.expMatZonoEnclosure M η).construct := by -- --- PROOF ---
-  have hnorm : ‖A‖ ≤ toReal (MatExp.normUpperBound M.interval) :=
-    le_trans (Real.Interval.norm_le_absMax (GZonotope.interval_contains M hA))
+  have hnorm : ‖A‖ ≤ toReal (MatExp.normUpperBound M.matInterval) :=
+    le_trans (Real.Interval.norm_le_absMax (Zonotope.matInterval_contains M hA))
       (MatExp.norm_absMax_le_normUpperBound _)
-  have hnn : (0 : ℝ) ≤ toReal (MatExp.normUpperBound M.interval) := le_trans (norm_nonneg A) hnorm
-  have hfrac : ‖A‖ / ((η : ℝ) + 2) ≤ toReal (MatExp.normUpperBound M.interval) / ((η : ℝ) + 2) :=
+  have hnn : (0 : ℝ) ≤ toReal (MatExp.normUpperBound M.matInterval) := le_trans
+    (norm_nonneg A) hnorm
+  have hfrac : ‖A‖ / ((η : ℝ) + 2) ≤ toReal (MatExp.normUpperBound M.matInterval) / ((η : ℝ) + 2) :=
     by gcongr
   have hεA : ‖A‖ / ((η : ℝ) + 2) < 1 := lt_of_le_of_lt (le_trans hfrac hε) (by norm_num)
   -- the tail at `A`, widened to the one float bound the whole zonotope answers for
   have htail : ‖exp A - Real.MatExp.expTaylor A η‖
-      ≤ toReal (MatExp.expRemainderBound (MatExp.normUpperBound M.interval) η) :=
+      ≤ toReal (MatExp.expRemainderBound (MatExp.normUpperBound M.matInterval) η) :=
     le_trans (Real.norm_exp_sub_expTaylor_le A η hεA) (MatExp.expRemainderBound_le η hnorm hnn hε)
   have hrem : exp A - Real.MatExp.expTaylor A η ∈ (MatExp.expMatZonoRemainder n
-      (MatExp.expRemainderBound (MatExp.normUpperBound M.interval) η)).construct :=
+      (MatExp.expRemainderBound (MatExp.normUpperBound M.matInterval) η)).construct :=
     MatExp.mem_expMatZonoRemainder fun i j => le_trans (Real.abs_entry_le_norm _ i j) htail
-  have hmem := GZonotope.matPlusInterval_outer _ _
+  have hmem := Zonotope.matPlusInterval_outer _ _
     (Set.add_mem_add (MatExp.expTaylor_mem_expMatZonoTaylor M hA η) hrem)
   have heq : Real.MatExp.expTaylor A η + (exp A - Real.MatExp.expTaylor A η) = exp A := by abel
   rw [heq] at hmem

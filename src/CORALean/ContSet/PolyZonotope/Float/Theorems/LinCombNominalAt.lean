@@ -40,7 +40,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
 the projection because that is the form the goal has and simp will not rewrite a
 binder's type. Only the outermost split needs it. -/
-theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → ℝ) :
     ∑ l : Fin (pZ₁.linComb pZ₂).h, f l
       = ∑ l, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) l)
@@ -51,12 +51,12 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- The independent count read off the projection, which is the only thing the
 goal and the pairing lemmas disagree about: the block is not split here, the
 pairing crossing the two halves rather than closing on each. -/
-theorem PolyZonotope.aux_sum_univ_linComb_q {pZ₁ pZ₂ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_linComb_q {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ₁.q + pZ₂.q) → ℝ) :
     ∑ j : Fin (pZ₁.linComb pZ₂).q, f j = ∑ j : Fin (pZ₁.q + pZ₂.q), f j := rfl
 
 /-- The independent block `linComb` would store if nothing rounded. -/
-noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (i : Fin n) :
+noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n) :
     Fin (pZ₁.q + pZ₂.q) → ℝ :=
   Fin.append
     (Real.Zonotope.pairSum (fun j => toReal (pZ₁.GI j i)) (fun j => toReal (pZ₂.GI j i)))
@@ -64,7 +64,7 @@ noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope �
 
 /-- What the stored independent generators are wrong by, entrywise, which is
 what `linCombGIDiff` records. -/
-theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (i : Fin n)
+theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (pZ₁.q + pZ₂.q)) :
     |PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         - toReal (PolyZonotope.linCombGI addDown subDown pZ₁ pZ₂ i j)|
@@ -92,7 +92,7 @@ theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (i 
 
 /-- One row of the exact independent generators against the coefficients the
 segment supplies: the pairing gives back the two sets' own sums. -/
-theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (i : Fin n)
+theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
     (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (lam : ℝ) :
     (∑ j, PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
@@ -181,7 +181,7 @@ theorem PolyZonotope.aux_sum_neg_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.linComb_nominal_at (pZ₁ pZ₂ : PolyZonotope 𝕋 n) {a₁ : Fin pZ₁.p → ℝ}
+theorem PolyZonotope.linComb_nominal_at (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) {a₁ : Fin pZ₁.p → ℝ}
     {a₂ : Fin pZ₂.p → ℝ} {β₁ : Fin pZ₁.q → ℝ} {β₂ : Fin pZ₂.q → ℝ} {lam : ℝ}
     (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
     ∃ β : Fin (pZ₁.linComb pZ₂).q → ℝ, (∀ j, |β j| ≤ 1) ∧

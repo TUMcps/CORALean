@@ -25,7 +25,7 @@ import CORALean.NN.Theorems.MemSafeSet
 /-!
 # The same feed-forward network, over a floating-point scalar
 
-`Examples.FeedForward` at `Float.Zonotope 𝕋` instead of `Real.Zonotope`, and the
+`Examples.FeedForward` at `Float.Zonotope (Vec 𝕋 n)` instead of `Real.Zonotope`, and the
 point of compiling it is what does *not* appear below: `NeuralNetwork`, `.cons`,
 `enclose`, `enclose_outer`, `mem_safeSet` and `classifies` are the exact layer's,
 used unchanged. Only the layer constructors are float ones, their weights in `𝕋`.
@@ -63,29 +63,29 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Affine, ReLU, affine: two inputs, three hidden neurons, two labels. -/
 def Example.feedForward (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) :
-    NeuralNetwork (Zonotope 𝕋) 2 2 :=
+    NeuralNetwork (fun k => Zonotope (Vec 𝕋 k)) 2 2 :=
   .layer (LinearLayer.mk W₁ b₁)
     (.layer (ReluLayer.mk (𝕋 := 𝕋) reluSlope rfl) (.layer (LinearLayer.mk W₂ b₂) .output))
 
 -- anonymous: each is the exact layer's theorem, read at a float representation
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
-example {nn : NeuralNetwork (Zonotope 𝕋) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope 𝕋 2) {x : Vec ℝ 2}
+example {nn : NeuralNetwork (fun k => Zonotope (Vec 𝕋 k)) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
+    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 2)) {x : Vec ℝ 2}
     (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- A safe set the enclosed zonotope stays inside is a safe set every output
 stays inside. -/
-example {nn : NeuralNetwork (Zonotope 𝕋) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope 𝕋 2)
+example {nn : NeuralNetwork (fun k => Zonotope (Vec 𝕋 k)) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
+    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 2))
     {safe : Set (Vec ℝ 2)} (h : construct (nn.enclose X) ⊆ safe) {x : Vec ℝ 2}
     (hx : x ∈ construct X) : f x ∈ safe :=
   NeuralNetwork.mem_safeSet hf X h hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
-example {nn : NeuralNetwork (Zonotope 𝕋) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope 𝕋 2) (l : Fin 2)
+example {nn : NeuralNetwork (fun k => Zonotope (Vec 𝕋 k)) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
+    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 2)) (l : Fin 2)
     (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 2} (hx : x ∈ construct X)
     {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
@@ -93,13 +93,13 @@ example {nn : NeuralNetwork (Zonotope 𝕋) 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
 
 /-- The network above is one of those, which is the only thing left to check. -/
 example (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2)
-    (X : Zonotope 𝕋 2) : Zonotope 𝕋 2 :=
+    (X : Zonotope (Vec 𝕋 2)) : Zonotope (Vec 𝕋 2) :=
   (Example.feedForward W₁ b₁ W₂ b₂).enclose X
 
 /-- Sigmoid and tanh in one chain, and it is a `def`: each kind's `eval` is `Erased`,
 so nothing here is noncomputable. -/
 def Example.sigmoidTanhNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3)
-    (b₂ : Vec 𝕋 2) : NeuralNetwork (Zonotope 𝕋) 2 2 :=
+    (b₂ : Vec 𝕋 2) : NeuralNetwork (fun k => Zonotope (Vec 𝕋 k)) 2 2 :=
   .layer (LinearLayer.mk W₁ b₁)
     (.layer (SigmoidLayer.mk (𝕋 := 𝕋) k rfl)
       (.layer (LinearLayer.mk W₂ b₂) (.layer (TanhLayer.mk (𝕋 := 𝕋) k rfl) .output)))
@@ -122,7 +122,7 @@ theorem Example.sigmoidTanhNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec
 a `def` for the same reason: the fits and the grids are floats. -/
 def Example.sigmoidPolyNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat 𝕋 2 3)
     (b₂ : Vec 𝕋 2) (c : Fin 3 → 𝕋 → 𝕋 → Fin 3 → 𝕋) (dx : Fin 3 → 𝕋 → 𝕋 → 𝕋)
-    (p : Fin 3 → 𝕋 → 𝕋 → Fin 5 → 𝕋) : NeuralNetwork (PolyZonotope 𝕋) 2 2 :=
+    (p : Fin 3 → 𝕋 → 𝕋 → Fin 5 → 𝕋) : NeuralNetwork (fun k => PolyZonotope (Vec 𝕋 k)) 2 2 :=
   .layer (LinearLayer.mk W₁ b₁)
     (.layer (SigmoidPolyLayer.mk k 2 4 c dx p rfl) (.layer (LinearLayer.mk W₂ b₂) .output))
 

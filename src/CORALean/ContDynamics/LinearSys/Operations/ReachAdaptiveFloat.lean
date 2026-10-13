@@ -40,11 +40,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- [1, Alg. 1]: the steps covering `[tStart, tFinal]`, each with its window
 `R([t_i,t_{i+1}])` and the parameters it was tuned to, or `none`. -/
 def LinearSys.reachAdaptiveFloat (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    (params : Reach.InputParams (Zonotope 𝕋 n) (Zonotope 𝕋 m) ℚ)
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
     (options : LinearSys.AdaptiveOptions 𝕋) :
     Option (List (LinearSys.AdaptiveStepInfo 𝕋 n)) :=
   let X₀ := params.R0                                               -- the paper's symbols
-  let V := Mtimes.mtimes (𝕄 := Mat 𝕋) B params.U                   -- B U, in the state space
+  let V := Mtimes.mtimes (𝕄 := Mat 𝕋)  -- B U, in the state space
+    (S := fun k => Zonotope (Vec 𝕋 k)) B params.U
   let tf := params.tFinal - params.tStart                           -- shifted to start at 0
   let s₀ : LinearSys.AdaptiveState 𝕋 n :=                           -- 1.-3. initialize
     { t := 0, tLo := zero, tHi := zero,                             -- 1. t ← 0

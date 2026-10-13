@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.plus (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
+def ConZonotope.plus (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) where
   h := cZ₁.h + cZ₂.h
   c := fun i => addDown (cZ₁.c i) (cZ₂.c i)
   G := Fin.append cZ₁.G cZ₂.G

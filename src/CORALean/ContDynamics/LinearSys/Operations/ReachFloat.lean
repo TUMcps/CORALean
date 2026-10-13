@@ -50,9 +50,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- The windows `R(τ_0), …, R(τ_{N-1})` and the time-point sets `R_0, …, R_N`
 from `X₀`, reducing to order `ρ` after every step. -/
-def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (params : Reach.Params (Zonotope 𝕋 n) ℚ)
+def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
     (options : LinearSys.ReachOptions 𝕋) :
-    Option (List (Zonotope 𝕋 n) × List (Zonotope 𝕋 n)) := do
+    Option (List (Zonotope (Vec 𝕋 n)) × List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let η := options.taylorTerms
@@ -62,11 +62,13 @@ def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (params : Reach.Params (Zonoto
   let eAΔt := sys.expIntervalFloat Δt Δt η'                         -- [e^{AΔt}], once
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η'   -- [F], once
   let next := fun R =>                                              -- reduce([e^{AΔt}] R_k, ρ)
-    Reduce.reduce (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt R) ρ
+    Reduce.reduce (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt R) ρ
   let Rtp := List.iterate next X₀ (N + 1)                           -- R_0, …, R_N
   let Rti := (Rtp.take N).map fun R =>                              -- R(τ_k) from R_k
-    LinComb.linComb R (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eAΔt R) ⊞
-      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) F R
+    LinComb.linComb R (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt R) ⊞
+      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) F R
   pure (Rti, Rtp)
 
 end CORALean

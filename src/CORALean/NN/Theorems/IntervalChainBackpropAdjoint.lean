@@ -21,7 +21,7 @@ activation's is a diagonal map, its own transpose.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 open Matrix
 
@@ -61,7 +61,7 @@ theorem IntervalChain.backprop_adjoint : ∀ {n k : ℕ} (c : IntervalChain n k)
     simp only [dotProduct]
     congr 1 <;> exact Finset.sum_congr rfl fun i _ => by ring
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

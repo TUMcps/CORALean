@@ -34,9 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The walk's `2 (h + 1)` corners of the sorted generators, or the box's four corners. -/
-def Zonotope.polygon (Z : Zonotope 𝕋 2) : VPolytope 𝕋 2 :=
+def Zonotope.polygon (Z : Zonotope (Vec 𝕋 2)) : VPolytope (Vec 𝕋 2) :=
   -- the stored fields, so that reading a generator costs nothing
-  let Zm : Zonotope 𝕋 2 := Z.materialise
+  let Zm : Zonotope (Vec 𝕋 2) := Z.materialise
   -- the generators in the half-plane `y > 0 ∨ (y = 0 ∧ x ≥ 0)`, up to sign
   let hat : Fin Z.h → Vec 𝕋 2 := fun j i =>
     if ltStrict (Zm.G j 1) zero || (!ltStrict zero (Zm.G j 1) && ltStrict (Zm.G j 0) zero)
@@ -45,7 +45,8 @@ def Zonotope.polygon (Z : Zonotope 𝕋 2) : VPolytope 𝕋 2 :=
   let cross : Vec 𝕋 2 → Vec 𝕋 2 → 𝕋 := fun a b => subDown (mulDown (a 0) (b 1)) (mulUp (a 1) (b 0))
   let order : List (Fin Z.h) := (List.finRange Z.h).mergeSort fun i j =>
     le zero (cross (hat i) (hat j))
-  let Zs : Zonotope 𝕋 2 := Zonotope.materialise ⟨Z.h, Zm.c, fun i => hat (order.getD i.val i), Zm.E⟩
+  let Zs : Zonotope (Vec 𝕋 2) := Zonotope.materialise
+    ⟨Z.h, Zm.c, fun i => hat (order.getD i.val i), Zm.E⟩
   -- the checks the walk needs
   let halfPlane : Bool := (List.finRange Z.h).all fun j =>
     le zero (Zs.G j 1) && (ltStrict zero (Zs.G j 1) || le zero (Zs.G j 0))

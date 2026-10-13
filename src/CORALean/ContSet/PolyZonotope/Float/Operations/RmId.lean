@@ -25,7 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `pZ` without the exponent rows of the factors in `S`. -/
-def PolyZonotope.rmId (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p)) : PolyZonotope 𝕋 n where
+def PolyZonotope.rmId (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p)) :
+    PolyZonotope (Vec 𝕋 n) where
   p := Sᶜ.card
   h := pZ.h
   q := pZ.q

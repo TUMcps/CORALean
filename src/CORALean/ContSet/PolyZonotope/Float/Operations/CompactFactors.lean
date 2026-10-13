@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The factors no column reads, dropped. Only `p` and the exponent matrix
 change, both over ℕ, so nothing rounds and the box is untouched. -/
-def PolyZonotope.compactFactors (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+def PolyZonotope.compactFactors (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := (Real.PolyZonotope.usedFactors pZ.E).card
   h := pZ.h
   q := pZ.q

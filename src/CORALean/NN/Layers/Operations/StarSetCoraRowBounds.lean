@@ -20,7 +20,7 @@ a step appends have. Read from the source, not run.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Real
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -30,7 +30,7 @@ noncomputable def StarSet.coraRowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : 
   let r := ∑ k, |(1 / 2) * s.G j k * (s.u k - s.l k)|
   (c_ - r, c_ + r)
 
-end CORALean
+end CORALean.Real
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

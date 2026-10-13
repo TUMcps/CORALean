@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 nominal zonotope, widened by `timePointStepExcessFloat` and the step's float error box — the
 upper side of the float step, at `r > 0` and an admissible order. -/
 theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X U : Zonotope 𝕋 n}
+    (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
     (hX : (0 : Vec ℝ n) ∈ X.E.construct) (hU : (0 : Vec ℝ n) ∈ U.E.construct) :
     (sys.timePointStepInputFloat r η X U).construct
       ⊆ (exp (toReal r • Scalar.toRealMat sys.A) *ᵥ ·) '' X.construct
@@ -59,7 +59,8 @@ theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys �
         + (sys.timePointStepExcessFloat r η X U).construct
         + (sys.timePointStepErrorBoxFloat r η U).construct := by -- --- PROOF ---
   set eA := sys.expIntervalFloat r r η
-  set M := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eA X
+  set M := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+    (S := fun k => Zonotope (Vec 𝕋 k)) eA X
   set P := sys.inputSolutionFloat r η U
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal r) le_rfl le_rfl
   have hM0 : (0 : Vec ℝ n) ∈ M.E.construct := by

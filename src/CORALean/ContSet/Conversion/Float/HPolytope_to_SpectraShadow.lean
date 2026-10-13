@@ -29,7 +29,7 @@ open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
-def HPolytope.spectraShadow (P : HPolytope 𝕋 n) : SpectraShadow 𝕋 n where
+def HPolytope.spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) where
   k := P.m + (P.me + P.me)
   m := n
   -- `A₀ = diag(d)` with `d = [b; be.sup; -be.inf]`
@@ -63,7 +63,7 @@ theorem HPolytope.aux_lmi_diag {k : ℕ} (d : Fin k → 𝕋) (C : Fin n → Fin
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- At a point of the polytope the stored inequality is positive semidefinite. -/
-theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 n) {x : Vec ℝ n}
+theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) {x : Vec ℝ n}
     (hx : x ∈ P.construct) :
     (toRealMat P.spectraShadow.A₀
       + ∑ i, x i • toRealMat (P.spectraShadow.A i)).PosSemidef := by -- --- PROOF ---
@@ -90,7 +90,7 @@ theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 n) {x : Vec ℝ n
     simp only [mul_comm (x _), neg_mul, Finset.sum_neg_distrib] at this ⊢
     linarith
 
-theorem HPolytope.spectraShadow_contains (P : HPolytope 𝕋 n) :
+theorem HPolytope.spectraShadow_contains (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     P.construct ⊆ P.spectraShadow.construct := by -- --- PROOF ---
   intro x hx
   -- the error box is the origin, so the nominal part carries the point

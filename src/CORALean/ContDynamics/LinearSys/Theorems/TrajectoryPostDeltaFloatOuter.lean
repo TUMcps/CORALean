@@ -48,7 +48,7 @@ theorem aux_zero_mem_segStart :
 /-- Every run on `[0, Δt]` from `R` under inputs in `U ⊆ V` differs from its start,
 at every time of the step, by a point of `postDeltaFloat`. -/
 theorem LinearSys.Trajectory.postDeltaFloat_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {R V : Zonotope 𝕋 n}
+    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {R V : Zonotope (Vec 𝕋 n)}
     {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n}
     (traj : sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal Δt)) R.construct U
       x u) (hUV : U ⊆ V.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 (toReal Δt)) :

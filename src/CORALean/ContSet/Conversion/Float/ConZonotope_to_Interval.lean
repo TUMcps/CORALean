@@ -21,13 +21,13 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def ConZonotope.interval (cZ : ConZonotope 𝕋 n) : Interval (Vec 𝕋 n) :=
+def ConZonotope.interval (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
   cZ.zonotope.interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.interval_contains (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.interval_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ.construct ⊆ cZ.interval.construct :=
   subset_trans cZ.zonotope_contains (Zonotope.interval_contains _)
 

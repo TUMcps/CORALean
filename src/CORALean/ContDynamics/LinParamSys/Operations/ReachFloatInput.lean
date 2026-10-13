@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 under inputs in `U`, the first reduced to order `ρ`, at Taylor order `η` raised
 until admissible. -/
 def LinParamSys.reachFloatInput (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
-    (U : Zonotope 𝕋 n) (params : Reach.Params (Zonotope 𝕋 n) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope 𝕋 n)) := do
+    (U : Zonotope (Vec 𝕋 n)) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
+    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.R0                                               -- the paper's symbols
   let Δt := options.timeStep
   let η := options.taylorTerms

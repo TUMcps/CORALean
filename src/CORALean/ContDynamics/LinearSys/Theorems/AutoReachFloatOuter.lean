@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 omit [ToRat 𝕋] in
 /-- `autoInitFloat` holds what a state owes at `t₀ = 0`. -/
-theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋 n)
+theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n))
     (tend : 𝕋) :
     sys.AutoInvariantFloat X₀ V (LinearSys.autoInitFloat X₀ tend) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
@@ -63,8 +63,8 @@ theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V :
 
 /-- Every run on `[0, t_end]` from `X₀` under inputs in `V` is, at every time, in one of the
 windows, the one covering that time. -/
-theorem LinearSys.autoReachFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope 𝕋 n} {tend : 𝕋}
-    {εmax ζ : ℚ} {ηmax fuel K : ℕ} {Rs : List (ℚ × ℚ × Zonotope 𝕋 n)}
+theorem LinearSys.autoReachFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {tend : 𝕋}
+    {εmax ζ : ℚ} {ηmax fuel K : ℕ} {Rs : List (ℚ × ℚ × Zonotope (Vec 𝕋 n))}
     (h : sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K = some Rs) :
     ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
       sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 T) X₀.construct U x u →

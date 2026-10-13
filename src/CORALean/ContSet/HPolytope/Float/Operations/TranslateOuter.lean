@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.translate_outer (t : Vec 𝕋 n) (P : HPolytope 𝕋 n) :
+theorem HPolytope.translate_outer (t : Vec 𝕋 n) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     (toRealVec t + ·) '' P.construct ⊆ (HPolytope.translate t P).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩
   obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hy

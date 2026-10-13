@@ -81,7 +81,7 @@ def Layer.vec (inst : ExactDyadic → 𝕋) (L : Layer ExactDyadic) (m : ℕ) : 
   fun i => inst (L.b.getD i ExactDyadic.zero)
 
 /-- `X` as a float zonotope: its center, one generator per coordinate, no error. -/
-def inputZonotope (inst : ExactDyadic → 𝕋) : Zonotope 𝕋 1 :=
+def inputZonotope (inst : ExactDyadic → 𝕋) : Zonotope (Vec 𝕋 1) :=
   let (c, r) := centerRadius (boxLo.getD 0 ExactDyadic.zero) (boxHi.getD 0 ExactDyadic.zero)
   ⟨1, fun _ => inst c, fun _ _ => inst r, ⟨fun _ => inst ExactDyadic.zero,
     fun _ => inst ExactDyadic.zero⟩⟩
@@ -90,7 +90,7 @@ def inputBox (inst : ExactDyadic → 𝕋) : Interval (Vec 𝕋 1) :=
   ⟨fun i => inst (boxLo.getD i ExactDyadic.zero), fun i => inst (boxHi.getD i ExactDyadic.zero)⟩
 
 /-- `y ≤ threshold` as a one-row halfspace, the safe set `Specification.check` tests. -/
-def spec (inst : ExactDyadic → 𝕋) : Specification (HPolytope 𝕋 1) :=
+def spec (inst : ExactDyadic → 𝕋) : Specification (HPolytope 𝕋 (Vec 𝕋 1)) :=
   .safeSet ⟨1, fun _ _ => inst ExactDyadic.one, fun _ => inst threshold, 0, fun i => i.elim0,
     ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 

@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope 𝕋 n)
+theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope (Vec 𝕋 n))
     (guess : Interval (Vec 𝕋 n) → Interval (Vec 𝕋 (pZ.p + pZ.q)))
     (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter fuel : ℕ)
     (h : PolyZonotope.containsSetApprox pZ S guess inv iter fuel = true) :
@@ -47,7 +47,7 @@ theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope 𝕋 n)
     exact ⟨le_of_le_of_eq (toReal_le_of_le h.1) toReal_zero,
       le_of_eq_of_le toReal_zero.symm (toReal_le_of_le h.2)⟩
   -- a piece the test accepts is inside `pZ`
-  have hproven : ∀ T : PolyZonotope 𝕋 n, PolyZonotope.innerGeneral pZ.indepFactors
+  have hproven : ∀ T : PolyZonotope (Vec 𝕋 n), PolyZonotope.innerGeneral pZ.indepFactors
       ⟨fun _ => neg one, fun _ => one⟩ (guess T.interval) T.interval inv iter = true →
         T.construct ⊆ pZ.construct := by
     intro T hT x hx
@@ -65,7 +65,7 @@ theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope 𝕋 n)
   -- every point of `S` is in `pZ` or in a piece still listed, and `true` ends the list empty
   revert hit
   refine (Function.Iterate.rec
-    (fun s : List (PolyZonotope 𝕋 n) × ℕ × ℕ × Option Bool =>
+    (fun s : List (PolyZonotope (Vec 𝕋 n)) × ℕ × ℕ × Option Bool =>
       (∀ x ∈ S.construct, x ∈ pZ.construct ∨ ∃ T ∈ s.1, x ∈ T.construct) ∧
         (s.2.2.2 = some true → S.construct ⊆ pZ.construct))
     (⟨fun x hx => Or.inr ⟨S, List.mem_singleton_self S, hx⟩, fun h => by cases h⟩) ?_ fuel).2

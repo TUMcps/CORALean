@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.mul (pZ₁ pZ₂ : PolyZonotope 𝕋 n) (hp : pZ₁.p = pZ₂.p) : PolyZonotope 𝕋 n where
+def PolyZonotope.mul (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁.p = pZ₂.p) :
+    PolyZonotope (Vec 𝕋 n) where
   p := pZ₁.p
   h := (pZ₁.h + 1) * (pZ₂.h + 1)
   q := 0

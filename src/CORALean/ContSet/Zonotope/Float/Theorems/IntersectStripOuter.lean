@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ : Mat 𝕋 n p)
-    (Z : Zonotope 𝕋 n) :
+    (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
       (Z.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
   rintro x ⟨hx, hs⟩
@@ -65,7 +65,7 @@ theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ
   have h1 := Zonotope.mtimesIntervalMat_outer _ Z
     (Set.mem_iUnion₂.mpr ⟨_, hA, Set.mem_image_of_mem _ hx⟩)
   -- `C x` is a point of the strip zonotope
-  let strip : Zonotope 𝕋 p :=
+  let strip : Zonotope (Vec 𝕋 p) :=
     { h := p, c := y, G := fun j i => if i = j then φ i else zero, E := Interval.origin p }
   have hCx : toRealMat C *ᵥ x ∈ strip.construct := by
     refine ⟨toRealMat C *ᵥ x, ?_, 0, ?_, add_zero _⟩

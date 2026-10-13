@@ -28,7 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 /-- What `mtimes` owes beyond its nominal part: the centre, and both generator
 blocks. -/
-def PolyZonotope.mtimesResidual (M : Mat 𝕋 m n) (pZ : PolyZonotope 𝕋 n) : Interval (Vec 𝕋 m) :=
+def PolyZonotope.mtimesResidual (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) :
+    Interval (Vec 𝕋 m) :=
   ((Interval.residual (mulVecDown M pZ.c) (mulVecUp M pZ.c) (mulVecDown M pZ.c)).plus
       (PolyZonotope.generatorError (matMulDiff M (fun i l => pZ.G l i)))).plus
     (PolyZonotope.generatorError (matMulDiff M (fun i j => pZ.GI j i)))

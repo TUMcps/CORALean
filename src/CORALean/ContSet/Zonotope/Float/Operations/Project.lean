@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.project (Z : Zonotope 𝕋 n) (dims : Fin m → Fin n) : Zonotope 𝕋 m where
+def Zonotope.project (Z : Zonotope (Vec 𝕋 n)) (dims : Fin m → Fin n) : Zonotope (Vec 𝕋 m) where
   h := Z.h
   c := fun k => Z.c (dims k)
   G := fun j k => Z.G j (dims k)

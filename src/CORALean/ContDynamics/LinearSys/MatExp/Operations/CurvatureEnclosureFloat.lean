@@ -40,12 +40,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Line 8 of [1, Alg. 1]: the curvature enclosure `C = [F] H(t_k) ⊕ [G] {ũ}`. -/
-def MatExp.curvatureEnclosure (A : Interval (Mat 𝕋 n n)) (H : Zonotope 𝕋 n) (ũ : Vec 𝕋 n)
-    (Δt : 𝕋) (η : ℕ) : Zonotope 𝕋 n :=
+def MatExp.curvatureEnclosure (A : Interval (Mat 𝕋 n n)) (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n)
+    (Δt : 𝕋) (η : ℕ) : Zonotope (Vec 𝕋 n) :=
   let F := MatExp.intervalCorrectionMatrix A Δt η                     -- [F(Δt,η)]
   let G := MatExp.intervalConstCorrectionMatrix A Δt η                -- [G(Δt,η)]
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) F H ⊞         -- [F] H(t_k) ⊕
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) G (Interval.point ũ).zonotope  -- [G] ũ
+  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [F] H(t_k) ⊕
+    (S := fun k => Zonotope (Vec 𝕋 k)) F H ⊞
+    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [G] ũ
+      (S := fun k => Zonotope (Vec 𝕋 k)) G (Interval.point ũ).zonotope
 
 end CORALean.Float
 

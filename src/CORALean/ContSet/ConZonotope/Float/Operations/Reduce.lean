@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.reduce (cZ : ConZonotope 𝕋 n) (o : ℕ) : ConZonotope 𝕋 n :=
+def ConZonotope.reduce (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (o : ℕ) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   if o * n < cZ.h then (cZ.zonotope.reduce o).conZonotope else cZ
 
 end CORALean.Float

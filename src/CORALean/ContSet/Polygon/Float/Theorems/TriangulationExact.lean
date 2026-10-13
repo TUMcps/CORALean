@@ -37,8 +37,8 @@ theorem Polygon.triangulation_exact (P : Polygon 𝕋) :
     obtain ⟨_, _, _, _, _, _, _, _, rfl⟩ := ht
     rfl
   · -- the nominal part of a triangle is the real triangle of the nominal vertices
-    have hnom : ∀ (p : VPolytope 𝕋 2) (a b c : Fin p.k),
-        (nominal (⟨3, ![p.V a, p.V b, p.V c], p.E⟩ : VPolytope 𝕋 2)) =
+    have hnom : ∀ (p : VPolytope (Vec 𝕋 2)) (a b c : Fin p.k),
+        (nominal (⟨3, ![p.V a, p.V b, p.V c], p.E⟩ : VPolytope (Vec 𝕋 2))) =
           (⟨3, ![(nominal p).V a, (nominal p).V b, (nominal p).V c]⟩ :
             Real.VPolytope (Vec ℝ 2)) := fun p a b c => by
       show Real.VPolytope.mk 3 _ = _

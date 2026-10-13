@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The independent block emptied. -/
-def PolyZonotope.noIndep (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n where
+def PolyZonotope.noIndep (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := pZ.h
   q := 0

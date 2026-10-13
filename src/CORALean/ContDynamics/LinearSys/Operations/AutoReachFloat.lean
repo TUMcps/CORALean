@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- [1, Alg. 2]: the windows `(t_k, t_{k+1}, R̂(τ_k))` covering `[0, t_end]` from `X₀` under
 inputs in `V`, or `none`. -/
-def LinearSys.autoReachFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope 𝕋 n) (tend : 𝕋)
-    (εmax ζ : ℚ) (ηmax fuel K : ℕ) : Option (List (ℚ × ℚ × Zonotope 𝕋 n)) :=
+def LinearSys.autoReachFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (tend : 𝕋)
+    (εmax ζ : ℚ) (ηmax fuel K : ℕ) : Option (List (ℚ × ℚ × Zonotope (Vec 𝕋 n))) :=
   if 0 < ToRat.toRat tend ∧ ToRat.isNaN tend = false then               -- a positive horizon
     match sys.autoRunFloat X₀ V tend εmax ζ ηmax fuel K (LinearSys.autoInitFloat X₀ tend) with
     | none => none                                                      -- the tuning gave out

@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.mem_base {S : SpectraShadow 𝕋 n} {β : Vec ℝ S.m}
+theorem SpectraShadow.mem_base {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {β : Vec ℝ S.m}
     (hP : (toRealMat S.A₀ + ∑ i, β i • toRealMat (S.A i)).PosSemidef) :
     β ∈ S.base.construct := by -- --- PROOF ---
   refine ⟨β, SpectraShadow.mem_nominalSet_iff.mpr ⟨β, hP, fun r => ?_⟩, 0, ?_, add_zero β⟩

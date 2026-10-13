@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Every row multiplied by `1 / |right-hand side|` rounded up, the rounding moved to the
 right-hand sides. -/
-def HPolytope.normalizeConstraints (P : HPolytope 𝕋 n) (dom : Interval (Vec 𝕋 n)) :
-    HPolytope 𝕋 n :=
+def HPolytope.normalizeConstraints (P : HPolytope 𝕋 (Vec 𝕋 n)) (dom : Interval (Vec 𝕋 n)) :
+    HPolytope 𝕋 (Vec 𝕋 n) :=
   P.scaleRows (fun i => HPolytope.recipUp (absolute (P.b i)))
     (fun i => HPolytope.recipUp (absolute (P.be.inf i))) dom
 

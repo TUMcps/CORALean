@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 /-- The map on a set with no independent block and no error box. Sound only
 there, so nothing calls it directly. -/
-def PolyZonotope.quadMapDep (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
-    PolyZonotope 𝕋 m := PolyZonotope.bilin Q pZ pZ rfl
+def PolyZonotope.quadMapDep (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n)) :
+    PolyZonotope (Vec 𝕋 m) := PolyZonotope.bilin Q pZ pZ rfl
 
 end CORALean.Float
 

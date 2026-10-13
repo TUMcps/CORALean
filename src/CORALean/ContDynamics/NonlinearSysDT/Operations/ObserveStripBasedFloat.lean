@@ -38,10 +38,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `R k`, the set the observer holds after the measurement `y k`. -/
-def NonlinearSysDT.observeStripBasedFloat (sys : NonlinearSysDT n m) {U : Zonotope 𝕋 m}
-    (steps : ℕ → sys.LinStep 𝕋 U) (o : NonlinearSysDT.ReachOptions) (C : Mat 𝕋 p n)
-    (σ : Vec 𝕋 p) (W R₀ : Zonotope 𝕋 n) (y : ℕ → Vec 𝕋 p)
-    (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) : ℕ → Zonotope 𝕋 n
+def NonlinearSysDT.observeStripBasedFloat (sys : NonlinearSysDT n m) {U : Zonotope (Vec 𝕋 m)}
+    (steps : ℕ → sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U)
+    (o : NonlinearSysDT.ReachOptions) (C : Mat 𝕋 p n)
+    (σ : Vec 𝕋 p) (W R₀ : Zonotope (Vec 𝕋 n)) (y : ℕ → Vec 𝕋 p)
+    (options : LinearSysDT.ObserveStripOptionsFloat 𝕋 n p) : ℕ → Zonotope (Vec 𝕋 n)
   | 0 =>
     if options.sequential then LinearSysDT.intersectStripSeqFloat C σ (y 0) options.gain R₀
     else Zonotope.intersectStrip C σ (y 0) (options.gain R₀) R₀

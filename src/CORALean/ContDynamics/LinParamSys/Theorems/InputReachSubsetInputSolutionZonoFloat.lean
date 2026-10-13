@@ -15,10 +15,10 @@ import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
 `inputReach_subset_inputSolutionFloat` takes it: `inputReach_subset_inputSolution` at plain
 sets gives the member's orders `0 … η` and its remainder. Orders `0` and `1` then sit in
 `inputTermZonoFloat` (`smul_pow_mem_inputTermZonoFloat`), orders from `2` in the interval
-terms at `sys.A.interval`, and the remainder in `intervalInputRemainder` there; the
+terms at `sys.A.matInterval`, and the remainder in `intervalInputRemainder` there; the
 exact sum is regrouped as the float one is, Minkowski sums being associative.
 
-`hη` is `OrderAdmissibleFloat` of the interval system `sys.A.interval` — a float check.
+`hη` is `OrderAdmissibleFloat` of the interval system `sys.A.matInterval` — a float check.
 
 ## References
 
@@ -68,40 +68,47 @@ attribute [local instance] aux_zonoSetPlus aux_zonoSetMtimes aux_zonoSetMtimesIn
 
 /-- One exact order's image inside the float product at a family that holds its matrix. -/
 theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
-    [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 (Zonotope 𝕋)] {M : Mat ℝ n n} {X : 𝕄 n n}
-    (hM : M ∈ construct X) (V : Zonotope 𝕋 n) :
-    (M *ᵥ ·) '' V.construct ⊆ construct (Mtimes.mtimes X V) :=
+    [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 (fun k => Zonotope (Vec 𝕋 k))]
+    {M : Mat ℝ n n} {X : 𝕄 n n}
+    (hM : M ∈ construct X) (V : Zonotope (Vec 𝕋 n)) :
+    (M *ᵥ ·) '' V.construct ⊆ construct (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k)) X V) :=
   (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct) hM).trans
-    (Mtimes.mtimes_outer (S := Zonotope 𝕋) X V)
+    (Mtimes.mtimes_outer (S := fun k => Zonotope (Vec 𝕋 k)) X V)
 
 /-- The member's exact orders `0 … m + 2`, regrouped as the float sum is: orders `0` and
 `1` through the matrix zonotope, then the interval tail. -/
 theorem LinParamSys.aux_inputTaylorSum_subset_zono
-    (sys : LinParamSys (fun m n => GZonotope (Mat 𝕋 m n)) n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope 𝕋 n) :
+    (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n) {r : 𝕋} (hr : 0 ≤ toReal r)
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
     ∀ m, construct ((LinearSys.mk A : LinearSys ℝ n).inputTaylorSum
       (S := fun k => Set (Vec ℝ k)) (toReal r) V.construct (m + 2))
-      ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n))
+      ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
           (sys.inputTermZonoFloat r 0) V ⊞
-          Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n)) (sys.inputTermZonoFloat r 1) V)
+          Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+            (sys.inputTermZonoFloat r 1) V)
         + construct ((LinParamSys.mk (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-            sys.A.interval).inputTaylorSumTailFloat r V (m + 2)) := by -- --- PROOF ---
-  have hAI : A ∈ sys.A.interval.construct := GZonotope.interval_contains _ hA
+            sys.A.matInterval).inputTaylorSumTailFloat r V (m + 2)) := by -- --- PROOF ---
+  have hAI : A ∈ sys.A.matInterval.construct := Zonotope.matInterval_contains _ hA
   -- orders `0` and `1`, through the matrix zonotope
   have hZ : ∀ i, ((LinearSys.mk A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) '' V.construct
-      ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n))
+      ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (sys.inputTermZonoFloat r i) V) :=
     fun i => LinParamSys.aux_image_subset_mtimes
       (sys.smul_pow_mem_inputTermZonoFloat hr hA i) V
   -- every later order, through the interval matrix the zonotope encloses
   have hI : ∀ i, ((LinearSys.mk A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) '' V.construct
       ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (MatExp.intervalInputTerm sys.A.interval r i) V) :=
+        (S := fun k => Zonotope (Vec 𝕋 k))
+        (MatExp.intervalInputTerm sys.A.matInterval r i) V) :=
     fun i => LinParamSys.aux_image_subset_mtimes
       (MatExp.smul_pow_mem_intervalInputTerm _ hr hAI i) V
   have h01 := (Set.add_subset_add (hZ 0) (hZ 1)).trans (Plus.plus_outer
-    (Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n)) (sys.inputTermZonoFloat r 0) V)
-    (Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n)) (sys.inputTermZonoFloat r 1) V))
+    (Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      (sys.inputTermZonoFloat r 0) V)
+    (Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      (sys.inputTermZonoFloat r 1) V))
   intro m
   induction m with
   | zero => exact Set.add_subset_add h01 (hI 2)
@@ -110,28 +117,29 @@ theorem LinParamSys.aux_inputTaylorSum_subset_zono
     refine (Set.add_subset_add ih (hI (m + 3))).trans ?_
     rw [add_assoc]
     exact Set.add_subset_add le_rfl (Plus.plus_outer ((LinParamSys.mk (𝕄 := fun m n =>
-      Interval (Mat 𝕋 m n)) sys.A.interval).inputTaylorSumTailFloat r V (m + 2))
-      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (MatExp.intervalInputTerm sys.A.interval r (m + 3)) V))
+      Interval (Mat 𝕋 m n)) sys.A.matInterval).inputTaylorSumTailFloat r V (m + 2))
+      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+        (MatExp.intervalInputTerm sys.A.matInterval r (m + 3)) V))
 
 /-- The member's remainder, closed and convexified, inside the float product. -/
 theorem LinParamSys.aux_inputRemainder_subset_zono
-    (sys : LinParamSys (fun m n => GZonotope (Mat 𝕋 m n)) n) {r : 𝕋} (hr : 0 ≤ toReal r)
+    (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : (LinParamSys.mk (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      sys.A.interval).OrderAdmissibleFloat r r η)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope 𝕋 n) :
+      sys.A.matInterval).OrderAdmissibleFloat r r η)
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
     construct (Mtimes.mtimes (𝕄 := fun m k => Real.Interval (Mat ℝ m k))
       (S := fun k => Set (Vec ℝ k)) (Real.MatExp.inputRemainder A (toReal r) η)
       (V.construct : Set (Vec ℝ n)))
       ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (MatExp.intervalInputRemainder sys.A.interval r η) V) := by -- --- PROOF ---
-  set Z := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (MatExp.intervalInputRemainder sys.A.interval r η) V
+        (S := fun k => Zonotope (Vec 𝕋 k))
+        (MatExp.intervalInputRemainder sys.A.matInterval r η) V) := by -- --- PROOF ---
+  set Z := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (MatExp.intervalInputRemainder sys.A.matInterval r η) V
   refine closure_minimal (convexHull_min ?_ (ConvexSet.convex_construct Z))
     (CompactSet.isClosed_construct Z)
   refine Set.iUnion₂_subset fun M hM => ?_
   exact LinParamSys.aux_image_subset_mtimes (MatExp.inputRemainder_subset_intervalInputRemainder
-    _ hr η hη.2 (GZonotope.interval_contains _ hA) hM) V
+    _ hr η hη.2 (Zonotope.matInterval_contains _ hA) hM) V
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -139,19 +147,19 @@ theorem LinParamSys.aux_inputRemainder_subset_zono
 /-- Everything an input in `V` contributes over `[0, Δt]` at a member `A ∈ sys.A`
 lies in `inputSolutionZonoFloat`. -/
 theorem LinParamSys.inputReach_subset_inputSolutionZonoFloat
-    (sys : LinParamSys (fun m n => GZonotope (Mat 𝕋 m n)) n) {Δt : 𝕋} {η : ℕ}
+    (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : (LinParamSys.mk (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      sys.A.interval).OrderAdmissibleFloat Δt Δt η)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope 𝕋 n) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := Zonotope 𝕋) V (toReal Δt)
+      sys.A.matInterval).OrderAdmissibleFloat Δt Δt η)
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
+    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := fun k => Zonotope (Vec 𝕋 k)) V (toReal Δt)
       ⊆ (sys.inputSolutionZonoFloat Δt η V).construct := by -- --- PROOF ---
   -- the float bound's condition is the exact one's, with room to spare
   have hε : ‖toReal Δt • A‖ / ((η : ℝ) + 2) < 1 := by
-    have hnorm := MatExp.norm_smul_le_normUpperBound sys.A.interval Δt
-      (GZonotope.interval_contains _ hA)
+    have hnorm := MatExp.norm_smul_le_normUpperBound sys.A.matInterval Δt
+      (Zonotope.matInterval_contains _ hA)
     have hpos : (0:ℝ) < (η : ℝ) + 2 := by positivity
     calc ‖toReal Δt • A‖ / ((η : ℝ) + 2)
-        ≤ toReal (MatExp.normUpperBound (Interval.smul Δt Δt sys.A.interval))
+        ≤ toReal (MatExp.normUpperBound (Interval.smul Δt Δt sys.A.matInterval))
           / ((η : ℝ) + 2) := div_le_div_of_nonneg_right hnorm hpos.le
       _ ≤ 1 / 2 := hη.2
       _ < 1 := by norm_num

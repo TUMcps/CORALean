@@ -36,7 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The hull of two constrained zonotopes at the centre of the first, exact where it is also the
 centre of the second. -/
-def ConZonotope.linCombSameCentre (cZ₁ cZ₂ : ConZonotope 𝕋 n) : ConZonotope 𝕋 n where
+def ConZonotope.linCombSameCentre (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope
+    𝕋 (Vec 𝕋 n) where
   h := cZ₁.h + cZ₂.h + 1
   c := cZ₁.c
   G := Fin.append (Fin.append cZ₁.G cZ₂.G) fun _ : Fin 1 => fun _ => zero

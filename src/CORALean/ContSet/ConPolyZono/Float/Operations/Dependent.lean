@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.dependent (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+def ConPolyZono.dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p + cPZ.q
   h := cPZ.h + cPZ.q
   q := 0

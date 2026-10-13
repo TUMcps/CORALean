@@ -74,7 +74,8 @@ theorem ConZonotope.aux_strip_mulDown_gap (a r : 𝕋) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 n) (C : Mat 𝕋 s n) (φ y : Vec 𝕋 s)
+theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C : Mat 𝕋 s n)
+    (φ y : Vec 𝕋 s)
     (Λ : Mat 𝕋 n s) :
     cZ.construct ∩ {x | ∀ k, |(toRealMat C *ᵥ x) k - toReal (y k)| ≤ toReal (φ k)}
       ⊆ (cZ.intersectStrip C φ y Λ).construct := by -- --- PROOF ---

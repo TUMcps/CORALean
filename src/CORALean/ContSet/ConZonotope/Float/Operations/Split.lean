@@ -26,8 +26,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.split (cZ : ConZonotope 𝕋 n) (d : Fin n) :
-    ConZonotope 𝕋 n × ConZonotope 𝕋 n :=
+def ConZonotope.split (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (d : Fin n) :
+    ConZonotope 𝕋 (Vec 𝕋 n) × ConZonotope 𝕋 (Vec 𝕋 n) :=
   let I := cZ.interval
   -- the box cut at the middle of side `d`
   let (I₁, I₂) := I.splitAt d

@@ -31,9 +31,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 an admissible order. -/
 theorem LinearSys.zero_mem_discretizeEnclosureFloat_reach_error (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     (hΔt : 0 ≤ toReal Δt) {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o)
-    {R₀ U : Zonotope 𝕋 n} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
+    {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
-    (0 : Vec ℝ n) ∈ ((sys.discretizeEnclosureFloat Δt η).reach (S := Zonotope 𝕋)
+    (0 : Vec ℝ n) ∈ ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).E.construct := by -- --- PROOF ---
   induction k with
   | zero => exact hR₀

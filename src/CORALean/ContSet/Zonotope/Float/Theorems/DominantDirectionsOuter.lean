@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.dominantDirections_outer (Z : Zonotope 𝕋 n) (a b : ℕ) (P : Mat 𝕋 n n)
+theorem Zonotope.dominantDirections_outer (Z : Zonotope (Vec 𝕋 n)) (a b : ℕ) (P : Mat 𝕋 n n)
     (_ : Z.dominantDirections a b = some P) (hP : IsUnit (toRealMat P).det) :
     nominalSet Z ⊆ ((nominal Z).parallelotope (toRealMat P)).construct :=
   CORALean.Real.Zonotope.parallelotope_outer hP (nominal Z)

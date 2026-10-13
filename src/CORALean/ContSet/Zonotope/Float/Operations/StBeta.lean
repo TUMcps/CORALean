@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.stBeta (Z₂ Z₁ : Zonotope 𝕋 n) (H : Mat 𝕋 Z₂.h n) : Vec 𝕋 Z₂.h :=
+def Zonotope.stBeta (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) : Vec 𝕋 Z₂.h :=
   fun k => dotDown (H k) fun l => subDown (subDown (Z₁.c l) (Z₂.c l)) (Z₂.E.inf l)
 
 end CORALean.Float

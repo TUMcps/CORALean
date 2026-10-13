@@ -8,7 +8,7 @@ import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 
 `LinParamSys.inputSolutionZono` computed in `𝕋` [1, Prop. 3.6]: orders `0` and `1` through
 the system's float matrix zonotope (`inputTermZonoFloat`), orders `2 … η` and the remainder
-`[E(r)·r]` over the interval matrix it encloses, `sys.A.interval`. The four pieces stay
+`[E(r)·r]` over the interval matrix it encloses, `sys.A.matInterval`. The four pieces stay
 four products, as printed.
 
 ## References
@@ -36,13 +36,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- [1, Prop. 3.6] in floats: `A_Z r U ⊕ A_Z r²/2! U`, then orders `2 … η` and the remainder
 over `A_Z`'s interval matrix. -/
-def LinParamSys.inputSolutionZonoFloat (sys : LinParamSys (fun m n => GZonotope (Mat 𝕋 m n)) n)
-    (r : 𝕋) (η : ℕ) (V : Zonotope 𝕋 n) : Zonotope 𝕋 n :=
-  let IA := sys.A.interval                                             -- A_Z's interval matrix
-  Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n)) (sys.inputTermZonoFloat r 0) V ⊞
-    Mtimes.mtimes (𝕄 := fun m n => GZonotope (Mat 𝕋 m n)) (sys.inputTermZonoFloat r 1) V ⊞
+def LinParamSys.inputSolutionZonoFloat (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n)
+    (r : 𝕋) (η : ℕ) (V : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
+  let IA := sys.A.matInterval                                             -- A_Z's interval matrix
+  Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (sys.inputTermZonoFloat r 0) V ⊞
+    Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      (sys.inputTermZonoFloat r 1) V ⊞
     (LinParamSys.mk (𝕄 := fun m n => Interval (Mat 𝕋 m n)) IA).inputTaylorSumTailFloat r V η ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (MatExp.intervalInputRemainder IA r η) V
+    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      (MatExp.intervalInputRemainder IA r η) V
 
 end CORALean
 

@@ -36,7 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 under inputs in `U` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.orderStepFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {κ : ℕ} {U : Zonotope 𝕋 m} {options : LinearSys.ReachOptions 𝕋} {R Rτ Rt : Zonotope 𝕋 n}
+    {κ : ℕ} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
+    {R Rτ Rt : Zonotope (Vec 𝕋 n)}
     (hstep : fm.orderStepFloat κ U options R = some (Rτ, Rt)) :
     0 < toReal options.timeStep ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.timeStep))

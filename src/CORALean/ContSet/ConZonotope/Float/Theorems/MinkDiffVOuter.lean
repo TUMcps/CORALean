@@ -31,7 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the start and of every intersected set is a point of the fold. -/
 theorem ConZonotope.aux_mem_foldl_intersection {x : Vec ℝ n} :
-    ∀ {m : ℕ} (g : Fin m → ConZonotope 𝕋 n) (cZ : ConZonotope 𝕋 n), x ∈ cZ.construct →
+    ∀ {m : ℕ} (g : Fin m → ConZonotope 𝕋 (Vec 𝕋 n)) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)), x ∈
+    cZ.construct →
       (∀ i, x ∈ (g i).construct) →
         x ∈ (Fin.foldl m (fun cZ i => cZ.intersection (g i)) cZ).construct
   | 0, _, _, h, _ => by simpa using h
@@ -43,7 +44,7 @@ theorem ConZonotope.aux_mem_foldl_intersection {x : Vec ℝ n} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.minkDiffV_outer {k : ℕ} (Z : Zonotope 𝕋 n) (v : Fin (k + 1) → Vec 𝕋 n) :
+theorem ConZonotope.minkDiffV_outer {k : ℕ} (Z : Zonotope (Vec 𝕋 n)) (v : Fin (k + 1) → Vec 𝕋 n) :
     minkowskiDiff Z.construct
         (⟨k + 1, fun i => toRealVec (v i)⟩ : Real.VPolytope (Vec ℝ n)).construct
       ⊆ (ConZonotope.minkDiffV Z v).construct := by -- --- PROOF ---

@@ -25,7 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.blockPadLeft (n₂ : ℕ) (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 (n + n₂) where
+def PolyZonotope.blockPadLeft (n₂ : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) :
+    PolyZonotope (Vec 𝕋 (n + n₂)) where
   p := pZ.p
   h := pZ.h
   q := pZ.q

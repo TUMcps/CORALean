@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The factors neither block reads, dropped: `compactFactorsSpec` with the list of
 used factors built once. -/
-def ConPolyZono.compactFactors (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+def ConPolyZono.compactFactors (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let ft := ((List.finRange cPZ.p).filter fun k =>
     (∃ i, Real.ConPolyZono.appendE cPZ.E cPZ.EC k i ≠ 0 : Bool)).toArray
   let f := PolyZonotope.tabAt (Real.ConPolyZono.usedFactors cPZ.E cPZ.EC) ft

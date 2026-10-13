@@ -21,7 +21,7 @@ open InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-def ConPolyZono.interval (cPZ : ConPolyZono 𝕋 n) : Interval (Vec 𝕋 n) :=
+def ConPolyZono.interval (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
   cPZ.polyZonotope.interval
 
 variable [SoundFloatArithmetic 𝕋]
@@ -29,7 +29,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.interval_contains (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.interval_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.construct ⊆ cPZ.interval.construct :=
   subset_trans cPZ.polyZonotope_contains cPZ.polyZonotope.interval_contains
 

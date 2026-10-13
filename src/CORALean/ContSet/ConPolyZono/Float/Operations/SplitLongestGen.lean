@@ -23,8 +23,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.splitLongestGen (cPZ : ConPolyZono 𝕋 n) :
-    ConPolyZono 𝕋 n × ConPolyZono 𝕋 n :=
+def ConPolyZono.splitLongestGen (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    ConPolyZono 𝕋 (Vec 𝕋 n) × ConPolyZono 𝕋 (Vec 𝕋 n) :=
   match cPZ.longestFactor with
   | some k => cPZ.splitDepFactor k
   | none => (cPZ, cPZ)

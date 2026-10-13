@@ -128,7 +128,7 @@ theorem Polygon.aux_fan {k : ℕ} (u : Fin k → Vec ℝ 2) (x : Vec ℝ 2) (hk 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.innerHRep_inner {p : VPolytope 𝕋 2} {H : HPolytope 𝕋 2}
+theorem Polygon.innerHRep_inner {p : VPolytope (Vec 𝕋 2)} {H : HPolytope 𝕋 (Vec 𝕋 2)}
     (h : Polygon.innerHRep p = some H) : H.construct ⊆ p.construct := by -- --- PROOF ---
   simp only [Polygon.innerHRep] at h
   split_ifs at h with hc

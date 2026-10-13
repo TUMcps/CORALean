@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The box of radius `B` around the centre lies in the nominal set. -/
-theorem Zonotope.box_subset {Z : Zonotope 𝕋 n} {H : Mat 𝕋 Z.h n} {B : 𝕋}
+theorem Zonotope.box_subset {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n} {B : 𝕋}
     (hc : Zonotope.ballCert (fun i j => Z.G j i) H B one = true) (y : Vec ℝ n)
     (hy : ∀ i, |y i - toReal (Z.c i)| ≤ toReal B) : y ∈ nominalSet Z := by -- --- PROOF ---
   obtain ⟨-, hreach⟩ := Zonotope.ballCert_reach hc

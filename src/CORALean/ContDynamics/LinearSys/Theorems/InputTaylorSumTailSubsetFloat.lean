@@ -53,19 +53,23 @@ attribute [local instance] aux_setPlusTail aux_setMtimesTail
 
 /-- At `r ≥ 0`, every order count `i`: the exact tail at plain sets is in the float tail. -/
 theorem LinearSys.inputTaylorSumTail_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) (U : Zonotope 𝕋 n) : ∀ i,
+    (hr : 0 ≤ toReal r) (U : Zonotope (Vec 𝕋 n)) : ∀ i,
     construct (sys.inputTaylorSumTail (S := fun k => Set (Vec ℝ k)) (toReal r) U.construct i)
       ⊆ (sys.inputTaylorSumTailFloat r U i).construct := by -- --- PROOF ---
   -- a matrix in a float box maps `U` into the float product
   have hprod : ∀ {B : Interval (Mat 𝕋 n n)} {M : Mat ℝ n n}, M ∈ B.construct →
       (M *ᵥ ·) '' U.construct
-        ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) B U) :=
+        ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+          (S := fun k => Zonotope (Vec 𝕋 k)) B U) :=
     fun {B} {_} hM => (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' U.construct) hM).trans
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := Zonotope 𝕋) B U)
+      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k)) B U)
   have hterm : ∀ i, (sys.inputTerm (toReal r) i *ᵥ ·) '' U.construct
       ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (S := fun k => Zonotope (Vec 𝕋 k))
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) U) :=
     fun i => hprod (MatExp.smul_pow_mem_intervalInputTerm _ hr (Interval.mem_point sys.A) i)
+  -- the tail, term by term, by strong induction on the order
   intro i
   induction i using Nat.strong_induction_on with
   | _ i ih =>

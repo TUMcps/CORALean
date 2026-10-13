@@ -54,11 +54,12 @@ def d (m e : ℤ) : D := ⟨m, e⟩
 def box0 : Interval (Vec D 2) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 /-- Zonotopes centred at the origin: invertible, rank one, wide, and nearly singular. -/
-def zInv : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 1 0, d 1 0]], box0⟩
-def zRank1 : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d 1 0]], box0⟩
-def zWide : Zonotope D 2 :=
+def zInv : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 1 0, d 1 0]], box0⟩
+def zRank1 : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d 1 0]], box0⟩
+def zWide : Zonotope (Vec D 2) :=
   ⟨3, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0], ![d 1 0, d 1 0]], box0⟩
-def zNear : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 1 0, d 1 (-30)]], box0⟩
+def zNear : Zonotope (Vec D 2) :=
+    ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 1 0, d 1 (-30)]], box0⟩
 
 #eval zInv.isFullDim     -- true
 #eval zRank1.isFullDim   -- false, the generators span a line
@@ -66,28 +67,28 @@ def zNear : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 1 0, d
 #eval zNear.isFullDim    -- true
 
 /-- `β₁ + β₂ ≤ 1`. -/
-def sumLeOne : HPolytope D 2 :=
+def sumLeOne : HPolytope D (Vec D 2) :=
   ⟨1, fun _ _ => d 1 0, fun _ => d 1 0, 0, fun i => i.elim0, ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
 /-- `-β₁ ≤ -3`, unsatisfiable within the unit box. -/
-def beyondBox : HPolytope D 2 :=
+def beyondBox : HPolytope D (Vec D 2) :=
   ⟨1, fun _ j => if j = 0 then d (-1) 0 else d 0 0, fun _ => d (-3) 0, 0, fun i => i.elim0,
     ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
 /-- `β₁ + β₂ ∈ [-1/2, 1/2]`, an equality row with slack. -/
-def slab : HPolytope D 2 :=
+def slab : HPolytope D (Vec D 2) :=
   ⟨0, fun i => i.elim0, fun i => i.elim0, 1, fun _ _ => d 1 0,
     ⟨fun _ => d (-1) (-1), fun _ => d 1 (-1)⟩⟩
 
 /-- The unit square's generators with the constraint `P`. -/
-def square (P : HPolytope D 2) : ConZonotope D 2 :=
+def square (P : HPolytope D (Vec D 2)) : ConZonotope D (Vec D 2) :=
   ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], P, box0⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The default right inverse of the square's generators. -/
-def H₀ (P : HPolytope D 2) : Mat D 2 2 :=
+def H₀ (P : HPolytope D (Vec D 2)) : Mat D 2 2 :=
   Zonotope.rightInvCandidate fun i j => (square P).G j i
 
 #eval (square sumLeOne).isFullDim (H₀ sumLeOne) (fun _ => d 0 0)    -- true
@@ -105,19 +106,20 @@ def H₀ (P : HPolytope D 2) : Mat D 2 2 :=
 #eval sumLeOne.isFullDim ![d 1 0, d 0 0]   -- false: `1 < 1` fails
 
 /-- A triangle and three collinear points, as vertices. -/
-def triangle : VPolytope D 2 := ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
-def segment : VPolytope D 2 := ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 1 0], ![d 2 0, d 2 0]], box0⟩
+def triangle : VPolytope (Vec D 2) :=
+    ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def segment : VPolytope (Vec D 2) := ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 1 0], ![d 2 0, d 2 0]], box0⟩
 
 #eval triangle.isFullDim   -- true
 #eval segment.isFullDim    -- false, the points lie on a line
 
 /-- A flat box and a thin parallelogram, which meet near the origin. -/
-def bundle : ZonoBundle D 2 :=
+def bundle : ZonoBundle (Vec D 2) :=
   ⟨2, ![⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 1 (-3)]], box0⟩,
         ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 2 0], ![d 1 (-3), d (-1) (-3)]], box0⟩]⟩
 
 /-- Two unit segments five apart. -/
-def apart : ZonoBundle D 2 :=
+def apart : ZonoBundle (Vec D 2) :=
   ⟨2, ![⟨1, ![d 0 0, d 0 0], ![![d 1 0, d 0 0]], box0⟩,
         ⟨1, ![d 5 0, d 0 0], ![![d 1 0, d 0 0]], box0⟩]⟩
 
@@ -127,10 +129,11 @@ def apart : ZonoBundle D 2 :=
 #eval apart.representsa_emptySet    -- true
 
 /-- `[-2, 2]²`, a unit square shifted by `(1/2, 0)`, one centred at `(3, 0)`, a diagonal segment. -/
-def big : Zonotope D 2 := ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 2 0]], box0⟩
-def inside : Zonotope D 2 := ⟨2, ![d 1 (-1), d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
-def outside : Zonotope D 2 := ⟨2, ![d 3 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
-def diagonal : Zonotope D 2 := ⟨1, ![d 0 0, d 0 0], ![![d 1 0, d 1 0]], box0⟩
+def big : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 2 0]], box0⟩
+def inside : Zonotope (Vec D 2) :=
+    ⟨2, ![d 1 (-1), d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def outside : Zonotope (Vec D 2) := ⟨2, ![d 3 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+def diagonal : Zonotope (Vec D 2) := ⟨1, ![d 0 0, d 0 0], ![![d 1 0, d 1 0]], box0⟩
 
 #eval Contains.contains big inside     -- true
 #eval Contains.contains big outside    -- false

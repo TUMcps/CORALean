@@ -40,7 +40,7 @@ example {α : Type} [AddCommGroup α] [Module ℝ α] (pZ : Real.PolyZonotope α
 /-- The same rule at a float representation, whose exponents are the same
 naturals; it needs no float counterpart of its own. -/
 example {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
-    (pZ : Float.PolyZonotope 𝕋 n) (η m : ℕ) :
+    (pZ : Float.PolyZonotope (Vec 𝕋 n)) (η m : ℕ) :
     pZ.construct ⊆ (Float.PolyZonotope.relaxExpGreedy
       (fun pZ' => Real.PolyZonotope.expGreedySel pZ'.E η) m pZ).construct :=
   Float.PolyZonotope.relaxExpGreedy_outer _ m pZ

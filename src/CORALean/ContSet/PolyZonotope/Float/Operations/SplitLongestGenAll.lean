@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The pieces of `pZ` split along its longest generator, dependent or independent. -/
-def PolyZonotope.splitLongestGenAll (pZ : PolyZonotope 𝕋 n) : List (PolyZonotope 𝕋 n) :=
+def PolyZonotope.splitLongestGenAll (pZ : PolyZonotope (Vec 𝕋 n)) : List (PolyZonotope (Vec 𝕋 n)) :=
   -- len = sum([pZ.G, pZ.GI].^2, 1)
   let len : Fin (pZ.h + pZ.q) → 𝕋 := Fin.append
     (fun l => sumUp fun i => mulUp (pZ.G l i) (pZ.G l i))

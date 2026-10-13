@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [FloatOps 𝕋] in
-theorem ConPolyZono.compactFactors_eq_spec (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.compactFactors_eq_spec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.compactFactors = cPZ.compactFactorsSpec := by -- --- PROOF ---
   have hf : ∀ k, PolyZonotope.tabAt (Real.ConPolyZono.usedFactors cPZ.E cPZ.EC)
       (((List.finRange cPZ.p).filter fun k =>

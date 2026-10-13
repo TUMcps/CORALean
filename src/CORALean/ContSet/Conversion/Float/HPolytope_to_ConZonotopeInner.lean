@@ -31,7 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The rows carried onto the coefficients and *tightened* by what carrying them rounds off:
 the opposite widening to `onCoefficients`, so every coefficient vector meeting the stored rows
 meets the exact ones. -/
-def HPolytope.onCoefficientsInner (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : HPolytope 𝕋 Z.h :=
+def HPolytope.onCoefficientsInner (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) : HPolytope
+    𝕋 (Vec 𝕋 Z.h) :=
   -- how far a row's carried product can be off, and the same for the equality rows
   let err := radius (matMulDiff P.A (fun i j => Z.G j i))
   let errE := radius (matMulDiff P.Ae (fun i j => Z.G j i))
@@ -45,7 +46,8 @@ def HPolytope.onCoefficientsInner (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) :
 
 /-- `{c + Gβ}` at the stored `c` and `G` of `Z`, with the rows of `P` tightened and no error box:
 a constrained zonotope whose every point is a point of `P`, wherever `Z` lies. -/
-def HPolytope.conZonotopeInnerOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZonotope 𝕋 n where
+def HPolytope.conZonotopeInnerOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) : ConZonotope
+    𝕋 (Vec 𝕋 n) where
   h := Z.h
   c := Z.c
   G := Z.G
@@ -54,12 +56,13 @@ def HPolytope.conZonotopeInnerOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : 
 
 /-- The tightened conversion of `P` at the box `Bx`, inside `P`: the box only decides how much of
 `P` it covers, never whether it stays inside. -/
-def HPolytope.conZonotopeInner (P : HPolytope 𝕋 n) (Bx : Interval (Vec 𝕋 n)) : ConZonotope 𝕋 n :=
+def HPolytope.conZonotopeInner (P : HPolytope 𝕋 (Vec 𝕋 n)) (Bx : Interval (Vec 𝕋 n)) : ConZonotope
+    𝕋 (Vec 𝕋 n) :=
   P.conZonotopeInnerOf Bx.zonotope
 
 /-- A point of the tightened conversion is a point of `P`: its coefficients meet the exact rows
 because the tightening covers the carrying error. -/
-theorem HPolytope.conZonotopeInnerOf_subset (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) :
+theorem HPolytope.conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) :
     (P.conZonotopeInnerOf Z).construct ⊆ P.construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, e, he, rfl⟩
   -- the error box is the point `0`
@@ -112,13 +115,14 @@ theorem HPolytope.conZonotopeInnerOf_subset (P : HPolytope 𝕋 n) (Z : Zonotope
     linarith [herr.1, herr.2]
 
 /-- Inside `P`, whatever box the conversion is taken at. -/
-theorem HPolytope.conZonotopeInner_subset (P : HPolytope 𝕋 n) (Bx : Interval (Vec 𝕋 n)) :
+theorem HPolytope.conZonotopeInner_subset (P : HPolytope 𝕋 (Vec 𝕋 n)) (Bx : Interval (Vec 𝕋 n)) :
     (P.conZonotopeInner Bx).construct ⊆ P.construct :=
   P.conZonotopeInnerOf_subset Bx.zonotope
 
 /-- A point of the tightened conversion reaches no further than `|c| + Σ|G|` of the zonotope it is
 taken at, whatever the polytope. -/
-theorem HPolytope.abs_nominal_conZonotopeInnerOf_le (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n)
+theorem HPolytope.abs_nominal_conZonotopeInnerOf_le (P : HPolytope 𝕋 (Vec 𝕋 n))
+    (Z : Zonotope (Vec 𝕋 n))
     {y : Vec ℝ n} (hy : y ∈ nominalSet (P.conZonotopeInnerOf Z)) (k : Fin n) :
     |y k| ≤
       toReal (addUp (absolute (Z.c k)) (radius (fun i j => Z.G j i) k)) := by -- --- PROOF ---

@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.intersection_outer (cZ₁ cZ₂ : ConZonotope 𝕋 n) :
+theorem ConZonotope.intersection_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ₁.construct ∩ cZ₂.construct ⊆ (cZ₁.intersection cZ₂).construct := by -- --- PROOF ---
   rintro x ⟨⟨y₁, hy₁', e₁, he₁, hx₁⟩, y₂, hy₂', e₂, he₂, hx₂⟩
   obtain ⟨β₁, hβ₁, hP₁, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'

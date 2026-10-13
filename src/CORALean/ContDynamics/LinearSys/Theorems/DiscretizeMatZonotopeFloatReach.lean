@@ -25,7 +25,7 @@ open Matrix ContSet
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (fun m n => GZonotope (Mat 𝕋 m n)) S]
+variable [Mtimes (fun m n => Zonotope (Mat 𝕋 m n)) S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -38,7 +38,7 @@ theorem LinearSys.Trajectory.discretizeMatZonotopeFloat_mem_reach {sys : LinearS
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hε : toReal (MatExp.normUpperBound
-      (GZonotope.matSmul Δt Δt (GZonotope.pointMat sys.A)).interval) / ((η : ℝ) + 2) ≤ 1 / 2)
+      (Zonotope.matSmul Δt Δt (Zonotope.pointMat sys.A)).matInterval) / ((η : ℝ) + 2) ≤ 1 / 2)
     {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * toReal Δt) ∈ construct ((sys.discretizeMatZonotopeFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
       ⟨o, ho⟩) :=

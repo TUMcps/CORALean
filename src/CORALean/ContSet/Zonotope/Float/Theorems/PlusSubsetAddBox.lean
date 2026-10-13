@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the
 projection because that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_plus_box {Z₁ Z₂ : Zonotope 𝕋 n} (f : Fin (Z₁.h + Z₂.h) → ℝ) :
+theorem Zonotope.aux_sum_univ_plus_box {Z₁ Z₂ : Zonotope (Vec 𝕋 n)} (f : Fin (Z₁.h + Z₂.h) → ℝ) :
     ∑ j : Fin (Z₁.plus Z₂).h, f j
       = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=
   Fin.sum_univ_add f
@@ -46,7 +46,7 @@ theorem Zonotope.aux_sum_univ_plus_box {Z₁ Z₂ : Zonotope 𝕋 n} (f : Fin (Z
 
 /-- `plus` reaches no further than `Z₁.construct + Z₂.construct`, widened by
 `plusBox`, provided both operands already bracket `0` in their own box. -/
-theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope 𝕋 n)
+theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
     (h₁ : (0 : Vec ℝ n) ∈ Z₁.E.construct) (h₂ : (0 : Vec ℝ n) ∈ Z₂.E.construct) :
     (Z₁.plus Z₂).construct ⊆
       Z₁.construct + Z₂.construct + (Zonotope.plusBox Z₁ Z₂).construct := by -- --- PROOF ---

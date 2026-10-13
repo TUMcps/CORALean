@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.cubMapDep_coeff (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope 𝕋 n)
+theorem Zonotope.cubMapDep_coeff (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n))
     (p : Fin Z.h → ℝ) (hp : ∀ j, |p j| ≤ 1) :
     ∃ γ : Fin (Zonotope.cubMapDep T Z).h → ℝ, (∀ l, |γ l| ≤ 1)
       ∧ (∀ j : Fin Z.h,

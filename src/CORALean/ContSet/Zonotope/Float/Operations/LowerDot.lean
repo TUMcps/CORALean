@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `aᵀc + Σⱼ |aᵀGⱼ| + Σᵢ min(aᵢ E.infᵢ, aᵢ E.supᵢ)`, every rounding downward. -/
-def Zonotope.lowerDot (Z : Zonotope 𝕋 n) (a : Vec 𝕋 n) : 𝕋 :=
+def Zonotope.lowerDot (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
   let centre := dotDown a Z.c                                       -- aᵀc
   let gens := sumDown fun j => maximum zero                         -- Σⱼ |aᵀGⱼ|, from below
     (maximum (dotDown a (Z.G j)) (neg (dotUp a (Z.G j))))

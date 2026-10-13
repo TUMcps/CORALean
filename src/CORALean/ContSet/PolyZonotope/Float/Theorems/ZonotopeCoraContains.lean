@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.zonotopeCora_contains (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.zonotopeCora_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.zonotopeCora.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hz

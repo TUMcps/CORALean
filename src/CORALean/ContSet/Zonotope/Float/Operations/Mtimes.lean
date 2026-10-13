@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.mtimes (M : Mat 𝕋 m n) (Z : Zonotope 𝕋 n) : Zonotope 𝕋 m where
+def Zonotope.mtimes (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 m) where
   h := Z.h
   c := mulVecDown M Z.c
   G := fun j => mulVecDown M (Z.G j)

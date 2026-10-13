@@ -25,7 +25,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def SpectraShadow.padRight (n : ℕ) (S : SpectraShadow 𝕋 m) : SpectraShadow 𝕋 (n + m) where
+def SpectraShadow.padRight (n : ℕ) (S : SpectraShadow 𝕋 (Vec 𝕋 m)) : SpectraShadow
+    𝕋 (Vec 𝕋 (n + m)) where
   k := S.k
   m := S.m
   A₀ := S.A₀

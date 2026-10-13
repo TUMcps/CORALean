@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `P^R(t_{k+1})` at index `k`, at every member of `sys.A`: `P^R(t_1) = P^R(Δt)`, and
 `P^R(t_{k+2}) = P^R(t_{k+1}) ⊕ [e^{[A] t_{k+1}}] P^R(Δt)`, reduced to order `ρ`. -/
 def LinParamSys.particularSolutionFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
-    (Δt : 𝕋) (η ρ : ℕ) (U : Zonotope 𝕋 n) : ℕ → Option (Zonotope 𝕋 n)
+    (Δt : 𝕋) (η ρ : ℕ) (U : Zonotope (Vec 𝕋 n)) : ℕ → Option (Zonotope (Vec 𝕋 n))
   | 0 => some (sys.inputSolutionFloat Δt η U)                    -- P^R(t_1) = P^R(Δt)
   | k + 1 => do
     let PRtk ← sys.particularSolutionFloat Δt η ρ U k            -- P^R(t_{k+1})

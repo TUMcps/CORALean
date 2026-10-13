@@ -6,10 +6,10 @@ import CORALean.ContSet.InflatedContSet.InflatedContSet
 
 CORA's `conPolyZono` with its five counts, its two generator blocks and its
 constraint system `A μ(α) ∈ b`, plus the error box that makes it an
-`InflatedContSet`. `GConPolyZono 𝕋 α` is generic over its ambient type,
+`InflatedContSet`. `ConPolyZono 𝕋 α` is generic over its ambient type,
 generators a family, as the exact layer's `ConPolyZono α` is; `𝕋` stays, the
-constraint system being scalar at every ambient type. `ConPolyZono 𝕋 n` is the
-reducible vector case.
+constraint system being scalar at every ambient type. `ConPolyZono 𝕋 (Vec 𝕋 n)`
+is the vector case.
 
 `A` and `b` move to `𝕋` and are read back exactly: the nominal set is *defined*
 as what the stored floats denote, so its constraint is the one they state.
@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure GConPolyZono (𝕋 α : Type) where
+structure ConPolyZono (𝕋 α : Type) where
   /-- The dependent factors, shared by the generators and the constraints. -/
   p : ℕ
   /-- The dependent generators. -/
@@ -61,41 +61,40 @@ structure GConPolyZono (𝕋 α : Type) where
   EC : Fin p → Fin s → ℕ
   err : Interval α
 
-abbrev ConPolyZono (𝕋 : Type) (n : ℕ) := GConPolyZono 𝕋 (Vec 𝕋 n)
 
 /-- The exact constrained polynomial zonotope the stored floats describe, read
 through `RealImage`. -/
-abbrev GConPolyZono.nominal {α β : Type} [RealImage α β] [SoundFloatArithmetic 𝕋]
-    (cPZ : GConPolyZono 𝕋 α) : CORALean.Real.ConPolyZono β :=
+protected abbrev ConPolyZono.nominal {α β : Type} [RealImage α β] [SoundFloatArithmetic 𝕋]
+    (cPZ : ConPolyZono 𝕋 α) : CORALean.Real.ConPolyZono β :=
   ⟨cPZ.p, cPZ.h, cPZ.q, cPZ.m, cPZ.s, RealImage.realImage cPZ.c,
     fun l => RealImage.realImage (cPZ.G l), cPZ.E, fun j => RealImage.realImage (cPZ.GI j),
     toRealMat cPZ.A, cPZ.b.nominal, cPZ.EC⟩
 
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
-    InflatedContSet (GConPolyZono 𝕋 α) (CORALean.Real.ConPolyZono β) α β where
-  nominal := GConPolyZono.nominal
+    InflatedContSet (ConPolyZono 𝕋 α) (CORALean.Real.ConPolyZono β) α β where
+  nominal := ConPolyZono.nominal
   error cPZ := cPZ.err
 
 /-- What this set's own factors must satisfy, spelt in its own fields: the
 instance's constraint block unfolded, as the three equations below unfold the
 rest of it. -/
-def ConPolyZono.satisfies [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 n)
+def ConPolyZono.satisfies [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (a : Fin cPZ.p → ℝ) : Prop :=
   Real.ConPolyZono.holds (toRealMat cPZ.A) cPZ.b.nominal cPZ.EC a
 
 /-! The nominal set's fields, so proofs can see through the instance. -/
 
-theorem ConPolyZono.nominal_A [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.nominal_A [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (InflatedContSet.nominal cPZ).A = toRealMat cPZ.A := rfl
 
-theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (InflatedContSet.nominal cPZ).b = cPZ.b.nominal := rfl
 
-theorem ConPolyZono.nominal_EC [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 n) :
+theorem ConPolyZono.nominal_EC [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (InflatedContSet.nominal cPZ).EC = cPZ.EC := rfl
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev ConPolyZono.construct [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 n) :
+abbrev ConPolyZono.construct [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     Set (Vec ℝ n) := InflatedContSet.construct cPZ
 
 /-! ## Storage
@@ -106,7 +105,7 @@ says it is the identity; `Global/Tensor` says why the vectors are built here.
 Both exponent matrices are stored along with the floats, being curried functions
 rather than `Mat`s. -/
 
-def ConPolyZono.materialise (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
+def ConPolyZono.materialise (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let c : Vector 𝕋 n := Vector.ofFn cPZ.c
   let G : Vector (Vector 𝕋 n) cPZ.h := Vector.ofFn fun l => Vector.ofFn (cPZ.G l)
   let E : Vector (Vector ℕ cPZ.h) cPZ.p := Vector.ofFn fun k => Vector.ofFn fun l => cPZ.E k l
@@ -129,7 +128,8 @@ def ConPolyZono.materialise (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n :=
     err := cPZ.err.materialise }
 
 omit [FloatOps 𝕋] in
-@[simp] theorem ConPolyZono.materialise_eq (cPZ : ConPolyZono 𝕋 n) : cPZ.materialise = cPZ := by
+@[simp] theorem ConPolyZono.materialise_eq (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    cPZ.materialise = cPZ := by
   simp [ConPolyZono.materialise]
 
 end CORALean.Float

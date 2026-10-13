@@ -38,13 +38,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
 because that is the form the goal has and simp will not rewrite a binder's type. -/
-theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope 𝕋 n} (f : Fin (Z₁.h + Z₂.h) → ℝ) :
+theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope (Vec 𝕋 n)} (f : Fin (Z₁.h + Z₂.h) → ℝ) :
     ∑ j : Fin (Z₁.plus Z₂).h, f j
       = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=
   Fin.sum_univ_add f
 
 /-- The concatenated generators account for everything but the centre rounding. -/
-theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n) :
+theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
     (nominal Z₁).construct + (nominal Z₂).construct ⊆
       (nominal (Z₁.plus Z₂)).construct
         + (Zonotope.centerResidual Z₁.c Z₂.c).construct := by -- --- PROOF ---
@@ -67,7 +67,7 @@ theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋
     ring
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
-theorem Zonotope.aux_plus_error (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n) :
+theorem Zonotope.aux_plus_error (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
     Z₁.E.construct + Z₂.E.construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct ⊆
       (Z₁.plus Z₂).E.construct :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer Z₁.E Z₂.E))
@@ -76,7 +76,7 @@ theorem Zonotope.aux_plus_error (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.plus_outer (Z₁ : Zonotope 𝕋 n) (Z₂ : Zonotope 𝕋 n) :
+theorem Zonotope.plus_outer (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
     Z₁.construct + Z₂.construct ⊆ (Z₁.plus Z₂).construct :=
   InflatedContSet.plus_subset (Zonotope.aux_plus_nominal Z₁ Z₂) (Zonotope.aux_plus_error Z₁ Z₂)
 

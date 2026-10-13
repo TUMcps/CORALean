@@ -40,7 +40,7 @@ theorem aux_toRealMat_arrowMat (s t : 𝕋) (w : Vec 𝕋 N) :
     simp [toRealMat, arrowMat, Real.arrowMat, toRealVec]
   split_ifs <;> simp [toReal_zero]
 
-theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 N) :
+theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) :
     InflatedContSet.nominal T.cone
       = Real.SpectraShadow.cone (InflatedContSet.nominal T.absorb) := by -- --- PROOF ---
   -- the six fields: the sizes agree, the matrices, centre and generators entry by entry
@@ -87,7 +87,7 @@ theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 N) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.cone_outer (hN : 0 < N) (T : SpectraShadow 𝕋 N) :
+theorem SpectraShadow.cone_outer (hN : 0 < N) (T : SpectraShadow 𝕋 (Vec 𝕋 N)) :
     {z : Vec ℝ N | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ T.construct, z = s • x}
       ⊆ T.cone.construct := by -- --- PROOF ---
   -- the point is in the nominal part, by the exact layer's description of the cone

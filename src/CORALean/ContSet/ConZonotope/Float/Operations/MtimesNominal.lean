@@ -29,7 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `M c` and `M G` rounded down, the rows of `cZ` and no error box. -/
-def ConZonotope.mtimesNominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 m where
+def ConZonotope.mtimesNominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope
+    𝕋 (Vec 𝕋 m) where
   h := cZ.h
   c := fun i => dotDown (M i) cZ.c
   G := fun j => mulVecDown M (cZ.G j)

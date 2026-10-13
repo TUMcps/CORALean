@@ -5,12 +5,12 @@ import CORALean.ContSet.Zonotope.Real.Operations.MatMul
 import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
 
 /-!
-# `GZonotope.matMul` over-approximates every product of two members
+# `Zonotope.matMul` over-approximates every product of two members
 
 `(a + e)(b + f) = ab + (af + e(b + f))`. The nominal product `ab` lies in the exact
 `Zonotope.matMul` (`matMul_outer`), whose centre and generators the directed products
 bracket, entry by entry, as `dotDown_le`/`le_dotUp` state them; `af` and `e(b + f)` are
-`Interval.matMul_outer` at the two boxes `interval_contains` supplies.
+`Interval.matMul_outer` at the two boxes `matInterval_contains` supplies.
 -/
 
 -- Authors:       Tobias Ladner
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p q r : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One exact product of stored matrices, between its two directed roundings. -/
-theorem GZonotope.aux_matMul_bounds (A : Mat 𝕋 p q) (B : Mat 𝕋 q r) (i : Fin p) (j : Fin r) :
+theorem Zonotope.aux_matMul_bounds (A : Mat 𝕋 p q) (B : Mat 𝕋 q r) (i : Fin p) (j : Fin r) :
     toReal (matMulDown A B i j) ≤ matMulBilin (toRealMat A) (toRealMat B) i j
       ∧ matMulBilin (toRealMat A) (toRealMat B) i j ≤ toReal (matMulUp A B i j) := by
   rw [matMulBilin_apply, Matrix.mul_apply]
@@ -40,9 +40,9 @@ theorem GZonotope.aux_matMul_bounds (A : Mat 𝕋 p q) (B : Mat 𝕋 q r) (i : F
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GZonotope.matMul_outer (M : GZonotope (Mat 𝕋 p q)) (N : GZonotope (Mat 𝕋 q r)) :
+theorem Zonotope.matMul_outer (M : Zonotope (Mat 𝕋 p q)) (N : Zonotope (Mat 𝕋 q r)) :
     (⋃ A ∈ M.construct, (A * ·) '' N.construct)
-      ⊆ (GZonotope.matMul M N).construct := by -- --- PROOF ---
+      ⊆ (Zonotope.matMul M N).construct := by -- --- PROOF ---
   intro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨_, ⟨a, ha, e, he, rfl⟩, _, ⟨b, hb, f, hf, rfl⟩, rfl⟩ := hy
@@ -51,14 +51,14 @@ theorem GZonotope.matMul_outer (M : GZonotope (Mat 𝕋 p q)) (N : GZonotope (Ma
     CORALean.Real.Zonotope.matMul_outer _ _ (Set.mem_biUnion ha ⟨b, hb, rfl⟩)
   -- the first nominal part, boxed: it is the nominal part of `M` with a zero box
   have ha' : a ∈ ({ M with E := Interval.point fun _ _ => zero } :
-      GZonotope (Mat 𝕋 p q)).interval.construct := by
-    refine GZonotope.interval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
+      Zonotope (Mat 𝕋 p q)).matInterval.construct := by
+    refine Zonotope.matInterval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     show toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)
     rw [toReal_zero]
     exact ⟨le_rfl, le_rfl⟩
-  have hB : b + f ∈ N.interval.construct :=
-    GZonotope.interval_contains N ⟨b, hb, f, hf, rfl⟩
+  have hB : b + f ∈ N.matInterval.construct :=
+    Zonotope.matInterval_contains N ⟨b, hb, f, hf, rfl⟩
   -- each generator block of `bilin`, bracketed by the same directed products
   have hG : ∀ k i j, toReal (Fin.append (Fin.append (fun i => matMulDown (M.G i) N.c)
         (fun j => matMulDown M.c (N.G j))) (fun k => matMulDown (M.G (finProdFinEquiv.symm k).1)
@@ -69,11 +69,11 @@ theorem GZonotope.matMul_outer (M : GZonotope (Mat 𝕋 p q)) (N : GZonotope (Ma
     intro k i j
     refine Fin.addCases (fun k' => Fin.addCases (fun l => ?_) (fun l => ?_) k') (fun l => ?_) k
       <;> simp only [Z, CORALean.Real.Zonotope.matMul, CORALean.Real.Zonotope.bilin,
-        GZonotope.nominal, realImage_mat, Fin.append_left, Fin.append_right]
-      <;> exact GZonotope.aux_matMul_bounds _ _ i j
+        Zonotope.nominal, realImage_mat, Fin.append_left, Fin.append_right]
+      <;> exact Zonotope.aux_matMul_bounds _ _ i j
   -- the nominal product rounded, the two error terms in the box
-  have hmem : a * b + (a * f + e * (b + f)) ∈ (GZonotope.matMul M N).construct :=
-    GZonotope.ofEntryBoundsMat_outer Z _ (fun i j => GZonotope.aux_matMul_bounds M.c N.c i j) hG
+  have hmem : a * b + (a * f + e * (b + f)) ∈ (Zonotope.matMul M N).construct :=
+    Zonotope.ofEntryBoundsMat_outer Z _ (fun i j => Zonotope.aux_matMul_bounds M.c N.c i j) hG
       ⟨a * b, hab, _, Interval.matPlus_outer _ _ (Interval.matMul_outer _ _ ha' hf)
         (Interval.matMul_outer _ _ he hB), rfl⟩
   have heq : (a + e) * (b + f) = a * b + (a * f + e * (b + f)) := by

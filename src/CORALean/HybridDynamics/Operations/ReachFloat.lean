@@ -40,9 +40,10 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 
 /-- The time-interval sets of every run from `X₀` at `ℓ` with at most `K` jumps and
 stays of at most `tFinal`, each paired with its location. -/
-def HybridAutomaton.reachFloat (HA : HybridAutomaton (Zonotope 𝕋) (HPolytope 𝕋) L 𝕋 n)
+def HybridAutomaton.reachFloat
+    (HA : HybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
     (tFinal : ℚ) (options : LinearSys.ReachOptions 𝕋) :
-    ℕ → L → Zonotope 𝕋 n → Option (List (L × Zonotope 𝕋 n))
+    ℕ → L → Zonotope (Vec 𝕋 n) → Option (List (L × Zonotope (Vec 𝕋 n)))
   | K, ℓ, X₀ => do
     let Rs ← (HA.loc ℓ).reachFloat tFinal options X₀               -- the stay in ℓ
     let here := Rs.map fun R => (ℓ, R)

@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `(pZ_id, pZ_r)`: the generators that depend on `S` alone, and the rest. -/
-def PolyZonotope.onlyId (pZ : PolyZonotope 𝕋 n) (S : Finset (Fin pZ.p)) :
-    PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
+def PolyZonotope.onlyId (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p)) :
+    PolyZonotope (Vec 𝕋 n) × PolyZonotope (Vec 𝕋 n) :=
   let mask : Fin pZ.h → Bool := fun i => decide (∀ k, k ∉ S → pZ.E k i = 0)
   (⟨S.card, pZ.h, 0, pZ.c, fun j i => if mask j then pZ.G j i else zero,
       fun k' i => pZ.E (S.orderIsoOfFin rfl k').1 i, Fin.elim0, Interval.origin n⟩,

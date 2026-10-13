@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.splitDepFactor_outer (pZ : PolyZonotope 𝕋 n) (k : Fin pZ.p) :
+theorem PolyZonotope.splitDepFactor_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) :
     pZ.construct ⊆
       (pZ.splitDepFactor k).1.construct ∪ (pZ.splitDepFactor k).2.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩

@@ -24,7 +24,7 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def VPolytope.interval (P : VPolytope 𝕋 n) : Interval (Vec 𝕋 n) :=
+def VPolytope.interval (P : VPolytope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
   Interval.ofBounds P.boundProj P.boundNegProj
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.interval_contains (P : VPolytope 𝕋 n) :
+theorem VPolytope.interval_contains (P : VPolytope (Vec 𝕋 n)) :
     P.construct ⊆ P.interval.construct :=
   Interval.subset_ofBounds _ _
 

@@ -41,8 +41,8 @@ def PolyZonotope.aux_outerApproxCount (Th : Vec 𝕋 n) : List (Vec 𝕋 n) → 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `outerApprox(pZ, tol, id)`. -/
-def PolyZonotope.outerApprox (pZ : PolyZonotope 𝕋 n) (tol : 𝕋) (S : Finset (Fin pZ.p)) :
-    PolyZonotope 𝕋 n :=
+def PolyZonotope.outerApprox (pZ : PolyZonotope (Vec 𝕋 n)) (tol : 𝕋) (S : Finset (Fin pZ.p)) :
+    PolyZonotope (Vec 𝕋 n) :=
   -- `ii`: the dependent generators that depend on a factor outside `id`
   let dep : Fin pZ.h → Bool := fun i => decide (∃ k, k ∉ S ∧ 0 < pZ.E k i)
   -- `ind_even`: the monomial is even in every factor, so it lies in `[0, 1]`

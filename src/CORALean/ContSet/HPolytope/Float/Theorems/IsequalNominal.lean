@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isequal_nominal {P Q : HPolytope 𝕋 n} (h : P.isequal Q = true) :
+theorem HPolytope.isequal_nominal {P Q : HPolytope 𝕋 (Vec 𝕋 n)} (h : P.isequal Q = true) :
     P.nominal = Q.nominal := by -- --- PROOF ---
   unfold HPolytope.isequal at h
   split at h

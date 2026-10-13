@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.noIndep_subset (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.noIndep_subset (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.noIndep.construct ⊆ pZ.construct := by -- --- PROOF ---
   have h : InflatedContSet.nominal pZ.noIndep = (InflatedContSet.nominal pZ).noIndep := by
     show Real.PolyZonotope.mk _ _ _ _ _ _ _ = Real.PolyZonotope.mk _ _ _ _ _ _ _

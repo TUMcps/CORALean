@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 n) (k : Fin cPZ.p) (cen rad : 𝕋) :
+theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) (cen rad : 𝕋) :
     (Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).construct
         + cPZ.err.construct ⊆ (cPZ.getSubset k cen rad).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩

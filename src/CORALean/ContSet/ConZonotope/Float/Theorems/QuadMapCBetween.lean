@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.quadMapC_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n)
+theorem ConZonotope.quadMapC_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     (i : Fin m) :
     toReal (ConZonotope.quadMapCDown Q cZ i)
         ≤ (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i

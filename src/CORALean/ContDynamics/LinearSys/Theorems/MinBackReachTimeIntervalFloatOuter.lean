@@ -45,7 +45,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 time-interval minimal backward reachable set. -/
 theorem LinearSys.minBackReachTimeIntervalFloat_outer (sys : LinearSys 𝕋 n) {T τ : Set ℝ}
     {U W Xend : S n}
-    {CZ : ConZonotope 𝕋 n} {W₀ U₀ : Zonotope 𝕋 n} {Zw : 𝕋 → Zonotope 𝕋 n}
+    {CZ : ConZonotope 𝕋 (Vec 𝕋 n)} {W₀ U₀ : Zonotope (Vec 𝕋 n)} {Zw : 𝕋 → Zonotope (Vec 𝕋 n)}
     {N : Mat 𝕋 q n} {t₀ Δt : 𝕋} {η ν ω : ℕ}
     -- `Û ⊂ U`: the centre trajectory `u₀(·)` and the `q` others, all admissible
     {u₀ : ℝ → Vec ℝ n} {û : Fin q → ℝ → Vec ℝ n}

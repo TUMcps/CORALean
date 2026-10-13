@@ -26,8 +26,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The inequality rows `i` with `keepA i` and the equality rows `r` with `keepE r`. -/
-def HPolytope.restrict (P : HPolytope 𝕋 n) (keepA : Fin P.m → Bool) (keepE : Fin P.me → Bool) :
-    HPolytope 𝕋 n where
+def HPolytope.restrict (P : HPolytope 𝕋 (Vec 𝕋 n)) (keepA : Fin P.m → Bool)
+    (keepE : Fin P.me → Bool) :
+    HPolytope 𝕋 (Vec 𝕋 n) where
   m := ((List.finRange P.m).filter keepA).length
   A := fun k => P.A (((List.finRange P.m).filter keepA).get k)
   b := fun k => P.b (((List.finRange P.m).filter keepA).get k)

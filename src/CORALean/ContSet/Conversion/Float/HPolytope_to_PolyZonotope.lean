@@ -19,10 +19,10 @@ namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P : HPolytope 𝕋 n}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P : HPolytope 𝕋 (Vec 𝕋 n)}
 
 def HPolytope.polyZonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : PolyZonotope 𝕋 n :=
+    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : PolyZonotope (Vec 𝕋 n) :=
   (HPolytope.zonotope up lo).polyZonotope
 
 

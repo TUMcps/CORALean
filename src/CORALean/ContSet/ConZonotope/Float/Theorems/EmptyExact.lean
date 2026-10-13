@@ -26,16 +26,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.empty_exact (n : ℕ) :
-    (ConZonotope.empty n : ConZonotope 𝕋 n).construct = ∅ := by -- --- PROOF ---
-  have hN : InflatedContSet.nominalSet (ConZonotope.empty n : ConZonotope 𝕋 n) = ∅ := by
+    (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)).construct = ∅ := by -- --- PROOF ---
+  have hN : InflatedContSet.nominalSet (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)) = ∅ := by
     ext x
     simp only [Set.mem_empty_iff_false, iff_false]
     rintro ⟨β, -, hβ, -⟩
     have h : β ∈ (HPolytope.emptySet 𝕋 0).construct := hβ
     rw [HPolytope.construct_emptySet] at h
     exact h
-  show InflatedContSet.nominalSet (ConZonotope.empty n : ConZonotope 𝕋 n)
-      + (ConZonotope.empty n : ConZonotope 𝕋 n).E.construct = _
+  show InflatedContSet.nominalSet (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n))
+      + (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)).E.construct = _
   rw [hN, Set.empty_add]
 
 end CORALean.Float

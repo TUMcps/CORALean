@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `relaxExpMid`'s dependent count, stated through the
 projection because that is the form the goal has. -/
-theorem PolyZonotope.aux_sum_univ_relaxExpMid_h {pZ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_relaxExpMid_h {pZ : PolyZonotope (Vec 𝕋 n)}
     {part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)} {k₀ : Fin pZ.p} (f : Fin (d + 1) → ℝ) :
     ∑ l : Fin (pZ.relaxExpMid part k₀).h, f l
       = ∑ l, f (Fin.castAdd 1 l) + ∑ l : Fin 1, f (Fin.natAdd d l) :=
@@ -52,7 +52,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpMid_h {pZ : PolyZonotope 𝕋 n}
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent count. -/
-theorem PolyZonotope.aux_sum_univ_relaxExpMid_q {pZ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_relaxExpMid_q {pZ : PolyZonotope (Vec 𝕋 n)}
     {part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)} {k₀ : Fin pZ.p} (f : Fin (pZ.q + 1) → ℝ) :
     ∑ j : Fin (pZ.relaxExpMid part k₀).q, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j : Fin 1, f (Fin.natAdd pZ.q j) :=
@@ -60,7 +60,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpMid_q {pZ : PolyZonotope 𝕋 n}
 
 /-- The halved column is stored downward and its upward twin lies above the
 exact half-width, so the gap between them covers it. -/
-theorem PolyZonotope.aux_relaxGenMid_gap (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.aux_relaxGenMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) :
     |(((pZ.relaxDrift part k₀).1 : ℝ) / 2 + ((pZ.relaxDrift part k₀).2 : ℝ) / 2)
         * toReal (pZ.G (part.right 0) i) - toReal (pZ.relaxGenMid part k₀ i)|
@@ -91,7 +91,7 @@ theorem PolyZonotope.aux_relaxGenMid_gap (pZ : PolyZonotope 𝕋 n)
 
 /-- The shift is stored below the exact midpoint and its upward twin above it,
 so the centre stored downward stays below the exact one and the gap covers it. -/
-theorem PolyZonotope.aux_relaxCentreMid_gap (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.aux_relaxCentreMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) :
     |toReal (pZ.c i)
         + (((pZ.relaxDrift part k₀).2 : ℝ) / 2 - ((pZ.relaxDrift part k₀).1 : ℝ) / 2)
@@ -128,7 +128,7 @@ theorem PolyZonotope.aux_relaxCentreMid_gap (pZ : PolyZonotope 𝕋 n)
   constructor <;> linarith
 
 -- the three stored quantities and their three gaps, the drift split in two
-theorem PolyZonotope.aux_relaxExpMid_nominal (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.aux_relaxExpMid_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) :
     nominalSet pZ ⊆ nominalSet (pZ.relaxExpMid part k₀)
@@ -232,7 +232,7 @@ theorem PolyZonotope.aux_relaxExpMid_nominal (pZ : PolyZonotope 𝕋 n)
 
 /-- Merging two generators whose exponent columns agree off `k₀`
 over-approximates, with the drift's midpoint moved into the centre. -/
-theorem PolyZonotope.relaxExpMid_outer (pZ : PolyZonotope 𝕋 n)
+theorem PolyZonotope.relaxExpMid_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) :
     pZ.construct ⊆ (pZ.relaxExpMid part k₀).construct := by -- --- PROOF ---

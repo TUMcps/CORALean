@@ -39,7 +39,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `dependent`'s generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem PolyZonotope.aux_sum_univ_dependent {pZ : PolyZonotope 𝕋 n}
+theorem PolyZonotope.aux_sum_univ_dependent {pZ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ.h + (pZ.q + n)) → ℝ) :
     ∑ l : Fin pZ.dependent.h, f l
       = ∑ l, f (Fin.castAdd (pZ.q + n) l) + ∑ l, f (Fin.natAdd pZ.h l) :=
@@ -49,7 +49,7 @@ theorem PolyZonotope.aux_sum_univ_dependent {pZ : PolyZonotope 𝕋 n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the error box is freed into `n` fresh factors, one per coordinate
-theorem PolyZonotope.dependent_nominal (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.dependent_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ nominalSet pZ.dependent := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hz'

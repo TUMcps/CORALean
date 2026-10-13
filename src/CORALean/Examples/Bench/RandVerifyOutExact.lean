@@ -44,7 +44,7 @@ def aux_apply (C : Array ℤ) (v : Array ℤ) : ℤ × ℤ :=
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def outputZonoExact (C : Array (Array ℚ)) (R : Zonotope 𝕋 5) : RandOutZono :=
+def outputZonoExact (C : Array (Array ℚ)) (R : Zonotope (Vec 𝕋 5)) : RandOutZono :=
   -- `C` over `D_C`, row-major
   let cq : Array ℚ := (C.getD 0 #[]).extract 0 5 ++ (C.getD 1 #[]).extract 0 5
   let dC := aux_lcmDen cq

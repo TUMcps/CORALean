@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The pieces that cover `r \ q`. -/
-def Polygon.subtractPiece (q r : VPolytope 𝕋 2) : List (VPolytope 𝕋 2) :=
+def Polygon.subtractPiece (q r : VPolytope (Vec 𝕋 2)) : List (VPolytope (Vec 𝕋 2)) :=
   if Polygon.pieceSubset r q then []
   else match Polygon.innerHRep q with
     | some H =>

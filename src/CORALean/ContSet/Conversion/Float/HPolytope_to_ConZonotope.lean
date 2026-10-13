@@ -86,7 +86,8 @@ theorem HPolytope.prodError (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ 
 
 /-- The rows, carried onto the coefficients and widened by what carrying them
 rounds off. -/
-def HPolytope.onCoefficients (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : HPolytope 𝕋 Z.h :=
+def HPolytope.onCoefficients (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) : HPolytope
+    𝕋 (Vec 𝕋 Z.h) :=
   -- how far a row's carried product can be off, and the same for the equality rows
   let err := radius (matMulDiff P.A (fun i j => Z.G j i))
   let errE := radius (matMulDiff P.Ae (fun i j => Z.G j i))
@@ -98,7 +99,8 @@ def HPolytope.onCoefficients (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : HPol
     be := ⟨fun i => subDown (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c)) (errE i),
            fun i => addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c)) (errE i)⟩ }
 
-def HPolytope.conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZonotope 𝕋 n where
+def HPolytope.conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) : ConZonotope
+    𝕋 (Vec 𝕋 n) where
   h := Z.h
   c := Z.c
   G := Z.G
@@ -106,7 +108,7 @@ def HPolytope.conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n) : ConZo
   E := Z.E
 
 -- the coefficients meet the carried rows because the widening covers the carrying error
-theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonotope 𝕋 n)
+theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n))
     (hZ : P.construct ⊆ nominalSet Z) :
     P.construct ⊆ nominalSet (P.conZonotopeOf Z) := by -- --- PROOF ---
   intro x hx
@@ -154,15 +156,15 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 n) (Z : Zonot
     linarith [herr.1, herr.2]
 
 -- with certificates in hand: a box from the bounds, a zonotope from the box, these rows on it
-def HPolytope.conZonotope {P : HPolytope 𝕋 n}
+def HPolytope.conZonotope {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConZonotope 𝕋 n :=
+    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   P.conZonotopeOf (HPolytope.zonotope up lo)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.conZonotope_contains {P : HPolytope 𝕋 n}
+theorem HPolytope.conZonotope_contains {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.conZonotope up lo).construct := by -- --- PROOF ---

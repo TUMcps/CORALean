@@ -43,11 +43,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- [1, Alg. 1] in floats: `Q₀ = P₀ + □(α_r + β_r)`, then `Qᵢ = [e^{rA}]Qᵢ₋₁ + □(β_r)` for
 `i < N`, returned as the list of the `Qᵢ`, or `none` if no order admits `[e^{rA}]`. -/
-def LinearSys.girardReachFloat (sys : LinearSys 𝕋 n) (I : Zonotope 𝕋 n) (μ r : 𝕋) (T : ℚ) :
-    Option (List (Zonotope 𝕋 n)) := do
+def LinearSys.girardReachFloat (sys : LinearSys 𝕋 n) (I : Zonotope (Vec 𝕋 n)) (μ r : 𝕋) (T : ℚ) :
+    Option (List (Zonotope (Vec 𝕋 n))) := do
   let N := ⌈T / ToRat.toRat r⌉₊                                     -- N = ⌈T/r⌉
   let η ← sys.reachOrderFloat r r 2                                 -- an order [e^{rA}] admits
   let eRA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{rA}] ·
+    (S := fun k => Zonotope (Vec 𝕋 k))
     (sys.expIntervalFloat r r η)
   let nA := MatExp.normUpperBound (Interval.point sys.A)            -- ≥ ‖A‖
   let x := mulUp r nA                                               -- ≥ r‖A‖
@@ -60,7 +61,7 @@ def LinearSys.girardReachFloat (sys : LinearSys 𝕋 n) (I : Zonotope 𝕋 n) (�
   let Q₀ := P₀ ⊞ cube (addUp αr βr)                                 -- Q₀ = P₀ + □(α_r + β_r)
   let R₀ := [Q₀]                                                    -- R₀ = Q₀
   pure ((List.range (N - 1)).foldl
-    (fun (QR : Zonotope 𝕋 n × List (Zonotope 𝕋 n)) _ =>
+    (fun (QR : Zonotope (Vec 𝕋 n) × List (Zonotope (Vec 𝕋 n))) _ =>
       let Pᵢ := eRA QR.1                                            -- Pᵢ = [e^{rA}] Qᵢ₋₁
       let Qᵢ := Pᵢ ⊞ cube βr                                        -- Qᵢ = Pᵢ + □(β_r)
       let Rᵢ := QR.2 ++ [Qᵢ]                                        -- Rᵢ = Rᵢ₋₁ ∪ Qᵢ

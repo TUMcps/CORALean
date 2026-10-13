@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.polytopeOuter_outer (S : SpectraShadow 𝕋 n) (dirs : Fin N → Vec 𝕋 n)
+theorem SpectraShadow.polytopeOuter_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (dirs : Fin N → Vec 𝕋 n)
     (Y : (i : Fin N) → Mat 𝕋 S.k S.k) :
     S.construct ⊆ (S.polytopeOuter dirs Y).construct := by -- --- PROOF ---
   intro x hx

@@ -60,7 +60,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The same cut on a machine: the only non-convex intersection in this
 repository that a float layer computes. -/
-example (cPZ : ConPolyZono 𝕋 n) (G : ConZonotope 𝕋 n) :
+example (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (G : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cPZ.construct ∩ G.construct ⊆ (cPZ.intersection G.conPolyZono).construct :=
   subset_trans (Set.inter_subset_inter subset_rfl (ConZonotope.conPolyZono_contains G))
     (ConPolyZono.intersection_outer cPZ G.conPolyZono)

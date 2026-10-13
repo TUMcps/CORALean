@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Polygon.convHull (P : Polygon 𝕋) : VPolytope 𝕋 2 :=
+def Polygon.convHull (P : Polygon 𝕋) : VPolytope (Vec 𝕋 2) :=
   Polygon.convHullOfList P.sets
 
 end CORALean.Float

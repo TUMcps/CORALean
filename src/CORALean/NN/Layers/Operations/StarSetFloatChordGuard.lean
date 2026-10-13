@@ -16,7 +16,7 @@ chord: the new factor is then only bounded, which loses precision and not soundn
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean
+namespace CORALean.Float
 
 open Float Float.FloatOps
 
@@ -26,10 +26,10 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `l < 0`, `0 < u` and `0 < u - l` (rounded down), each certified. -/
-def StarSetFloat.chordGuard (b : 𝕋 × 𝕋) : Bool :=
+def StarSet.chordGuard (b : 𝕋 × 𝕋) : Bool :=
   ltStrict b.1 zero && ltStrict zero b.2 && ltStrict zero (subDown b.2 b.1)
 
-end CORALean
+end CORALean.Float
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

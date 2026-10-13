@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Sec. 5.2]: `[ω̲, ω̄]`, the range of `nᵀx − d` over `Z`, rounded outward. -/
-def Zonotope.halfspaceRange (nv : Vec 𝕋 n) (d : 𝕋) (Z : Zonotope 𝕋 n) : 𝕋 × 𝕋 :=
+def Zonotope.halfspaceRange (nv : Vec 𝕋 n) (d : 𝕋) (Z : Zonotope (Vec 𝕋 n)) : 𝕋 × 𝕋 :=
   let ωcLo := subDown (dotDown nv Z.c) d                  -- the centre `nᵀc − d`, down
   let ωcHi := subUp (dotUp nv Z.c) d                      -- and up
   let ρ := sumUp fun j =>                                 -- `∑ⱼ |nᵀgⱼ|`, up

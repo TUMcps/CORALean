@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def HPolytope.unitBox (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 n where
+def HPolytope.unitBox (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := n + n
   A := Fin.append (fun j k => if j = k then one else zero)
         fun j k => if j = k then neg one else zero

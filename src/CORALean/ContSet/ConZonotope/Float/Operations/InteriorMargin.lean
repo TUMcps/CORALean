@@ -33,7 +33,7 @@ def ConZonotope.aux_ratio (s r : 𝕋) : 𝕋 := if ltStrict zero r then divDown
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.interiorMargin (cZ : ConZonotope 𝕋 n) (β₀ : Vec 𝕋 cZ.h) : 𝕋 :=
+def ConZonotope.interiorMargin (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 cZ.h) : 𝕋 :=
   let box := (List.finRange cZ.h).foldl
     (fun acc j => minimum acc (subDown one (absolute (β₀ j)))) one
   let ineq := (List.finRange cZ.P.m).foldl

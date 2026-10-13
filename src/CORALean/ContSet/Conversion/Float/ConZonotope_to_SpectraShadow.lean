@@ -27,7 +27,7 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
-def ConZonotope.spectraShadow (cZ : ConZonotope 𝕋 n) : SpectraShadow 𝕋 n where
+def ConZonotope.spectraShadow (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) where
   k := (cZ.h + cZ.h) + (cZ.P.m + (cZ.P.me + cZ.P.me))
   m := cZ.h
   A₀ := blockDiag FloatOps.zero cZ.zonotope.spectraShadow.A₀ cZ.P.spectraShadow.A₀
@@ -41,7 +41,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.spectraShadow_contains (cZ : ConZonotope 𝕋 n) :
+theorem ConZonotope.spectraShadow_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ.construct ⊆ cZ.spectraShadow.construct := by -- --- PROOF ---
   -- the box is carried over, so only the nominal parts are compared
   refine mono_subset (fun x hx => ?_) subset_rfl

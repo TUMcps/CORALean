@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.dominantDirections_mem (Z : Zonotope 𝕋 n) (a b : ℕ) (P : Mat 𝕋 n n)
+theorem Zonotope.dominantDirections_mem (Z : Zonotope (Vec 𝕋 n)) (a b : ℕ) (P : Mat 𝕋 n n)
     (h : Z.dominantDirections a b = some P) :
     ∃ T ∈ Z.dominantShortlist (min a Z.nonzeroCount) (min b Z.nonzeroCount),
       P = Z.generatorMatrix T := by -- --- PROOF ---

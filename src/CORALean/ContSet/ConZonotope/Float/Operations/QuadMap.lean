@@ -28,7 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) : ConZonotope 𝕋 m :=
+def ConZonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope
+    𝕋 (Vec 𝕋 m) :=
   ConZonotope.quadMapDep Q cZ.dependent
 
 end CORALean.Float

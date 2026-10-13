@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 n where
+def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ₁.p + cPZ₂.p
   h := cPZ₁.h + cPZ₂.h
   q := cPZ₁.q + cPZ₂.q

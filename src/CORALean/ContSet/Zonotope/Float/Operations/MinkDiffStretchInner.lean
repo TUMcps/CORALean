@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- [1, Thm. 4]'s stretched minuend at `μ`, certified against the minuend with the right inverse
 `H`; `none` where the check does not go through. -/
-def Zonotope.minkDiffStretchInner (Z₁ Z₂ : Zonotope 𝕋 n) (μ : Fin Z₁.h → 𝕋)
-    (H : Mat 𝕋 Z₁.h n) : Option (Zonotope 𝕋 n) :=
+def Zonotope.minkDiffStretchInner (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (μ : Fin Z₁.h → 𝕋)
+    (H : Mat 𝕋 Z₁.h n) : Option (Zonotope (Vec 𝕋 n)) :=
   let D := Z₁.minkDiffStretch Z₂ μ
   if Z₁.containsZonotope (D.plus Z₂) H then some D else none
 

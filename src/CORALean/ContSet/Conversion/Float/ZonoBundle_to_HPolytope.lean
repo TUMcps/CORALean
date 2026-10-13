@@ -20,14 +20,14 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def ZonoBundle.hPolytope {q : ℕ} (zB : ZonoBundle 𝕋 n) (i : Fin zB.k) (Aq : Mat 𝕋 q n) :
-    HPolytope 𝕋 n :=
+def ZonoBundle.hPolytope {q : ℕ} (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) (Aq : Mat 𝕋 q n) :
+    HPolytope 𝕋 (Vec 𝕋 n) :=
   (zB.zonotope i).hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.hPolytope_contains {q : ℕ} (zB : ZonoBundle 𝕋 n) (i : Fin zB.k)
+theorem ZonoBundle.hPolytope_contains {q : ℕ} (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k)
     (Aq : Mat 𝕋 q n) : zB.construct ⊆ (zB.hPolytope i Aq).construct :=
   subset_trans (zB.zonotope_contains i) (Zonotope.hPolytope_contains _ _)
 

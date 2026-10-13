@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.liftEq (cZ : ConZonotope 𝕋 n) : Zonotope 𝕋 (n + cZ.P.me) where
+def ConZonotope.liftEq (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋 (n + cZ.P.me)) where
   h := cZ.h
   c := Fin.append cZ.c fun _ => zero
   G := fun j => Fin.append (cZ.G j) fun i => cZ.P.Ae i j

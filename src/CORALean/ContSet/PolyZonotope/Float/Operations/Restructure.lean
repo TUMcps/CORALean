@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Every independent generator boxed away into `n` diagonal ones, and those
 made dependent: what comes back has an empty independent block. -/
-def PolyZonotope.restructure (pZ : PolyZonotope 𝕋 n) : PolyZonotope 𝕋 n :=
+def PolyZonotope.restructure (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
   let reduced := pZ.reduceBy (Partition.split pZ.h 0)
     ((Partition.split 0 pZ.q).reindex (finCongr (Nat.zero_add pZ.q).symm))
   reduced.dependent

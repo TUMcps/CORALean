@@ -33,11 +33,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.cubMap (T : Fin m → Fin n → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 n) :
-    ConZonotope 𝕋 m :=
+def ConZonotope.cubMap (T : Fin m → Fin n → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+    ConZonotope 𝕋 (Vec 𝕋 m) :=
   let d := cZ.dependent
   -- the zonotope `Zonotope.cubMapDep` maps
-  let Z : Zonotope 𝕋 n := ⟨d.h, d.c, d.G, d.E⟩
+  let Z : Zonotope (Vec 𝕋 n) := ⟨d.h, d.c, d.G, d.E⟩
   { h := (Zonotope.cubMapDep T Z).h
     c := (Zonotope.cubMapDep T Z).c
     G := (Zonotope.cubMapDep T Z).G

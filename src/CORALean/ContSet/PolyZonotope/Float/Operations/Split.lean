@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `split(pZ, gen)`: the two halves of the parallelotope along its generator `j`. -/
-def PolyZonotope.split (pZ : PolyZonotope 𝕋 n) (j : Fin pZ.splitParallelotope.h) :
-    PolyZonotope 𝕋 n × PolyZonotope 𝕋 n :=
+def PolyZonotope.split (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ.splitParallelotope.h) :
+    PolyZonotope (Vec 𝕋 n) × PolyZonotope (Vec 𝕋 n) :=
   ((pZ.splitParallelotope.split j).1.polyZonotope,
     (pZ.splitParallelotope.split j).2.polyZonotope)
 

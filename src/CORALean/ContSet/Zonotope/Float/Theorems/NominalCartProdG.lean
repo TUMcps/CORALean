@@ -26,13 +26,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_realG_left (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope 𝕋 n₂) (j : Fin Z₁.h) :
+theorem Zonotope.aux_realG_left (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂))
+    (j : Fin Z₁.h) :
     (Real.Zonotope.cartProd (InflatedContSet.nominal Z₁) (InflatedContSet.nominal Z₂)).G
       (Fin.castAdd Z₂.h j) = ((InflatedContSet.nominal Z₁).G j, 0) := by
   dsimp only [Real.Zonotope.cartProd]
   exact Fin.append_left (m := Z₁.h) (n := Z₂.h) _ _ j
 
-theorem Zonotope.aux_realG_right (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope 𝕋 n₂) (j : Fin Z₂.h) :
+theorem Zonotope.aux_realG_right (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂))
+    (j : Fin Z₂.h) :
     (Real.Zonotope.cartProd (InflatedContSet.nominal Z₁) (InflatedContSet.nominal Z₂)).G
       (Fin.natAdd Z₁.h j) = (0, (InflatedContSet.nominal Z₂).G j) := by
   dsimp only [Real.Zonotope.cartProd]
@@ -42,7 +44,7 @@ theorem Zonotope.aux_realG_right (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The nominal generators of the product are the exact block-diagonal ones, appended. -/
-theorem Zonotope.nominal_cartProd_G (Z₁ : Zonotope 𝕋 n₁) (Z₂ : Zonotope 𝕋 n₂)
+theorem Zonotope.nominal_cartProd_G (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂))
     (j : Fin (Z₁.h + Z₂.h)) :
     (InflatedContSet.nominal (Z₁.cartProd Z₂)).G j = appendLinear n₁ n₂
       ((Real.Zonotope.cartProd (InflatedContSet.nominal Z₁)

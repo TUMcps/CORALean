@@ -145,10 +145,10 @@ structure DynMat (𝕋 : Type) where
   c : Nat
   M : Mat 𝕋 r c
 
-/-- A zonotope whose dimension `n` is a runtime value -- `Σ n, Zonotope 𝕋 n`, named. -/
+/-- A zonotope whose dimension `n` is a runtime value -- `Σ n, Zonotope (Vec 𝕋 n)`, named. -/
 structure DynZonotope (𝕋 : Type) where
   n : Nat
-  Z : Zonotope 𝕋 n
+  Z : Zonotope (Vec 𝕋 n)
 
 /-- A matrix of off-grid scalars, row-major and flat -- `roundTo`'s one exception to "every
 input is exactly representable", so no `readD` and no `Mat` (which would ask a `FloatOps`
@@ -276,7 +276,7 @@ def parseZonotope (j : Json) : Except String (DynZonotope 𝕋) := do
   pure ⟨n, { h := h, c := cVec, G := fun j i => gMat i j, E := eBox }⟩
 
 /-- The same, at an already-known `n` -- the second zonotope of a two-operand op. -/
-def parseZonotopeFixed (n : Nat) (j : Json) : Except String (Zonotope 𝕋 n) := do
+def parseZonotopeFixed (n : Nat) (j : Json) : Except String (Zonotope (Vec 𝕋 n)) := do
   let cVec ← parseVecFixed readD n (← field j "c")
   let ⟨h, gMat⟩ ← parseMatRowsFixed readD n (← field j "G")
   let eBox ← parseIntervalVecFixed readD n (← field j "E")
@@ -302,7 +302,7 @@ def printIntervalVec {n : Nat} (I : Interval (Vec 𝕋 n)) : Json :=
 def printIntervalMat {r c : Nat} (I : Interval (Mat 𝕋 r c)) : Json :=
   Json.mkObj [("inf", printMat showD I.inf), ("sup", printMat showD I.sup)]
 
-def printZonotope {n : Nat} (Z : Zonotope 𝕋 n) : Json :=
+def printZonotope {n : Nat} (Z : Zonotope (Vec 𝕋 n)) : Json :=
   Json.mkObj
     [("c", printVec showD Z.c), ("G", printMat showD fun i j => Z.G j i),
       ("E", printIntervalVec showD Z.E)]

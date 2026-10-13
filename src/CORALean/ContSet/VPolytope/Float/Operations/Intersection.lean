@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def VPolytope.intersection (P₁ P₂ : VPolytope 𝕋 n) : VPolytope 𝕋 n :=
+def VPolytope.intersection (P₁ P₂ : VPolytope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) :=
   Interval.vPolytope (P₁.interval.intersection P₂.interval)
 
 end CORALean.Float

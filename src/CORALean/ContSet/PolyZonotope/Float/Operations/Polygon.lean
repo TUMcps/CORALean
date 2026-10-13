@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The union of the polygons of the zonotopes of the final pieces. -/
-def PolyZonotope.polygon (pZ : PolyZonotope 𝕋 2) (splits : ℕ)
-    (pick : ℕ → PolyZonotope 𝕋 2 → Bool) : Polygon 𝕋 :=
+def PolyZonotope.polygon (pZ : PolyZonotope (Vec 𝕋 2)) (splits : ℕ)
+    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) : Polygon 𝕋 :=
   Polygon.ofPieces ((pZ.polygonPieces splits pick).map fun q => q.zonotope.polygon)
 
 end CORALean.Float

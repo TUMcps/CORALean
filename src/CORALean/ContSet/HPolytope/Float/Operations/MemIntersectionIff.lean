@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- membership splits with the rows, each half read on the polytope it came from
-theorem HPolytope.mem_intersection_iff {P₁ P₂ : HPolytope 𝕋 n} {x : Vec ℝ n} :
+theorem HPolytope.mem_intersection_iff {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n} :
     x ∈ (P₁.intersection P₂).construct ↔ x ∈ P₁.construct ∧ x ∈ P₂.construct := by -- --- PROOF ---
   constructor
   · intro hmem

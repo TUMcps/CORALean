@@ -63,7 +63,8 @@ theorem ConZonotope.aux_mulVec_regroup {h : ℕ} (M : Mat 𝕋 m n) (c : Vec �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 n) (cZ₂ : ConZonotope 𝕋 m)
+theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n))
+    (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 m))
     (M : Mat 𝕋 m n) :
     {x | x ∈ cZ₁.construct ∧ toRealMat M *ᵥ x ∈ cZ₂.construct}
       ⊆ (cZ₁.conIntersect cZ₂ M).construct := by -- --- PROOF ---

@@ -23,7 +23,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.origin (n : ℕ) : ZonoBundle 𝕋 n := ⟨1, fun _ => Zonotope.origin n⟩
+def ZonoBundle.origin (n : ℕ) : ZonoBundle (Vec 𝕋 n) := ⟨1, fun _ => Zonotope.origin n⟩
 
 end CORALean.Float
 

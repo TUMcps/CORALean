@@ -40,8 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- [1, Prop. 5]'s closed form, its generators shrunk by `ρ`, certified against the minuend with
 the right inverse `H`; `none` where the check does not go through. -/
-def Zonotope.minkDiffAligned (Z₁ Z₂ : Zonotope 𝕋 n) (hh : Z₁.h = Z₂.h) (ρ : 𝕋)
-    (H : Mat 𝕋 Z₁.h n) : Option (Zonotope 𝕋 n) :=
+def Zonotope.minkDiffAligned (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (hh : Z₁.h = Z₂.h) (ρ : 𝕋)
+    (H : Mat 𝕋 Z₁.h n) : Option (Zonotope (Vec 𝕋 n)) :=
   let D := Z₁.minkDiffAlignedCandidate Z₂ hh ρ
   if Z₁.containsZonotope (D.plus Z₂) H then some D else none
 

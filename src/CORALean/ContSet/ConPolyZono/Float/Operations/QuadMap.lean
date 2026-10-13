@@ -30,7 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.quadMap (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 n) : ConPolyZono 𝕋 k :=
+def ConPolyZono.quadMap (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono
+    𝕋 (Vec 𝕋 k) :=
   -- every coefficient dependent, the error box included
   let pZ := cPZ.toPolyZonotope.dependent
   -- the image of the generator part, its rounding in the error box

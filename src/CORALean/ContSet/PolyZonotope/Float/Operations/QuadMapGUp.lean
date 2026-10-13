@@ -24,7 +24,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.quadMapGUp (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope 𝕋 n) :
+def PolyZonotope.quadMapGUp (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n)) :
     Mat 𝕋 m ((pZ.h + 1) * (pZ.h + 1)) :=
   PolyZonotope.bilinGUp Q pZ pZ
 

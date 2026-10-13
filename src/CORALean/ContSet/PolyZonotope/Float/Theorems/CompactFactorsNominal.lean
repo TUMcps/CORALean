@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Dropping unused factors is the exact layer's step verbatim: the nominal part
 of the result is `compactFactors` of the nominal part. -/
-theorem PolyZonotope.compactFactors_nominal (pZ : PolyZonotope 𝕋 n) :
+theorem PolyZonotope.compactFactors_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
     nominalSet pZ = nominalSet pZ.compactFactors :=
   Real.PolyZonotope.compactFactors_exact (InflatedContSet.nominal pZ)
 
