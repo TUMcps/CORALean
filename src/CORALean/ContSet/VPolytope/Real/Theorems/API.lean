@@ -42,6 +42,7 @@ import CORALean.ContSet.VPolytope.Real.Theorems.SupportFuncEq
 import CORALean.ContSet.VPolytope.Real.Theorems.HausdorffDistEq
 import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
 import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
+import CORALean.ContSet.VPolytope.Real.Theorems.RepresentsaHalfspaceCoraCrash
 
 /-!
 # What `VPolytope` guarantees

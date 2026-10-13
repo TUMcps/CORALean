@@ -147,6 +147,7 @@ import CORALean.ContSet.PolyZonotope.Real.Operations.Subs
 import CORALean.ContSet.PolyZonotope.Real.Operations.Sum
 import CORALean.ContSet.PolyZonotope.Real.Operations.SumCora
 import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaPoint
+import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaCapsuleCora
 import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaEmptySet
 import CORALean.ContSet.PolyZonotope.Real.Operations.ReplaceId
 import CORALean.ContSet.PolyZonotope.Real.Operations.OnlyId

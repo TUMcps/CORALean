@@ -183,6 +183,11 @@
     }
   },
   "contSet/capsule": {
+    "convHull_": {
+      "description": "empty second operand leaves the output unassigned",
+      "kind": "other",
+      "cex": "ConvHullCoraEmptyCrash.lean"
+    },
     "enclose": {
       "description": "code omits Cplus; documented hull not enclosed",
       "kind": "unsound"
@@ -269,6 +274,12 @@
       ],
       "cex": "ContainsEllipsoidCoraCounterexample.lean"
     },
+    "convHull_": {
+      "description": "empty second operand leaves the output unassigned",
+      "kind": "other",
+      "cex": "ConvHullCoraEmptyCrash.lean",
+      "fix": null
+    },
     "enclose": {
       "description": "code omits Eplus; documented hull not enclosed",
       "kind": "unsound",
@@ -348,6 +359,11 @@
       "description": "wrong for exponents above one; accepts non-convex sets",
       "kind": "other",
       "cex": "IsPolytopeCexNotPolytope.lean"
+    },
+    "representsa_": {
+      "description": "capsule test on a point errors: non-scalar &&",
+      "kind": "other",
+      "cex": "RepresentsaCapsuleCoraCrash.lean"
     },
     "sum": {
       "description": "adds first centre in every pass; centre wrong",
@@ -434,13 +450,14 @@
       "fix": null
     },
     "representsa_": {
-      "description": "empty as point, whole space as hyperplane, zero rows skipped",
+      "description": "empty as point, ℝⁿ as hyperplane, zero rows, halfspace crash",
       "kind": "other",
       "cex": "RepresentsaIntervalCoraCounterexample.lean",
       "findings": [
         "Polytope `representsa_`, `'point'`, empty polytope",
         "Polytope `representsa_`, `'hyperplane'`, unconstrained polytope",
-        "Polytope `representsa_`, `'interval'`, infeasible zero row"
+        "Polytope `representsa_`, `'interval'`, infeasible zero row",
+        "Polytope `representsa_`, `'halfspace'`, vertex representation"
       ]
     }
   },
