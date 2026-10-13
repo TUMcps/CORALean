@@ -1269,6 +1269,13 @@ FNR == 1 { delete seen }
 ' $files)
 report "$out"
 
+# A CI script line that starts with `!` never fails the job: the runner's `set -e`
+# ignores a negated command's status. The warning gate was such a line and let a
+# warning through to main.
+out=$(grep -nE '^[[:space:]]*-[[:space:]]+"?![[:space:]]' .gitlab-ci.yml |
+  sed 's/^\([0-9]*\):.*/.gitlab-ci.yml:\1: a script line negated with `!` cannot fail the job — use `if …; then exit 1; fi`/')
+report "$out"
+
 if [ "$status" -eq 0 ]; then
   printf 'conventions: %s files, all checks passed\n' "$(printf '%s\n' "$files" | wc -l | tr -d ' ')"
 fi

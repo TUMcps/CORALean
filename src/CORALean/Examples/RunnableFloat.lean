@@ -1122,10 +1122,8 @@ example {alg : NonlinearSys.LinReachAlg} {Rs : List (Zonotope (Vec D 2))}
     (h : vdpReachAlg alg = some Rs) :=
   vdpHessModel_encloses.reachAlgFloat_outer h
 
--- `'lin'` with the Hessian, then `'poly'` at `errorOrder = 2`, each window about `0.22` wide.
+-- `'lin'` with the Hessian, each window about `0.22` wide; `'poly'`, a minute here, is RunCheck's.
 #eval (vdpReachAlg .lin).map (·.map fun Z =>
-  (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
-#eval (vdpReachAlg (.poly 2)).map (·.map fun Z =>
   (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
 
 /-! ### The rest of the nonlinear block: centre linearization, adaptive tuning, cubic remainder
@@ -1162,10 +1160,9 @@ example {ss : List (NonlinearSys.AdaptState (fun k => Zonotope (Vec D k)) 2 ℚ 
     (h : vdpAdaptRun = some ss) :=
   vdpHessModel_encloses.adaptRunFloat_outer 4 h
 
--- The times reached, the orders chosen, and each window's `x₂` range.
-#eval vdpAdaptRun.map (·.map fun st => (st.t, st.κ))
+-- The times reached, the orders chosen, and each window's `x₂` range: one `#eval`, one run.
 #eval vdpAdaptRun.map (·.map fun st =>
-  (vdpF ((Zonotope.interval st.Rτ).inf 1), vdpF ((Zonotope.interval st.Rτ).sup 1)))
+  ((st.t, st.κ), (vdpF ((Zonotope.interval st.Rτ).inf 1), vdpF ((Zonotope.interval st.Rτ).sup 1))))
 
 /-- The third derivatives of `f₂` in `(x₁, x₂, u)` are `-2` at the permutations of `(x₁, x₁, x₂)`
 and `0` elsewhere; `f₁ = x₂` has none. -/

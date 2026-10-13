@@ -147,7 +147,9 @@ build:
     # examples and the demo.
     - set -o pipefail
     - lake build 2>&1 | tee build.log
-    - "! grep -q '^warning: src/' build.log"
+    # Not `! grep -q …`: the runner's `set -e` ignores a negated command's status,
+    # so that form never failed the job, and a warning reached main through it.
+    - "if grep '^warning: src/' build.log; then exit 1; fi"
     # What a green build cannot say: whether an enclosure is any good. Runs the
     # demo and diffs it against the committed numbers, so a change that widens
     # one fails here.
@@ -251,7 +253,7 @@ flint-check:
       fi
     - bash scripts/build-flint-shim.sh
     - lake build flintcheck bench-flint 2>&1 | tee flint-build.log
-    - "! grep -q '^warning: src/' flint-build.log"
+    - "if grep '^warning: src/' flint-build.log; then exit 1; fi"
     # What `trustedFlint` assumes, sampled; exits 1 on any violation.
     - .lake/build/bin/flintcheck | tee flintcheck.log
     # Against `Dyadic p` at every op and precision, then a short run through the whole algorithm.

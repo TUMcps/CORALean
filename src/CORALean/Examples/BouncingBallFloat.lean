@@ -110,8 +110,8 @@ def firstImpact : Option (Interval (Vec D 2)) :=
 def bounds (I : Interval (Vec D 2)) : List ℚ :=
   [I.inf 0, I.sup 0, I.inf 1, I.sup 1].map ToRat.toRat
 
-#eval ballReach.map List.length
-#eval ballHull.map bounds
+-- One `#eval` for both: a second one would run the whole reachability again.
+#eval (ballReach.map List.length, ballHull.map bounds)
 #eval firstImpact.map bounds
 
 end CORALean.BouncingBallFloat
