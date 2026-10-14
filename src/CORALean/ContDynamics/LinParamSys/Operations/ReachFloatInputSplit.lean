@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- The windows `τ_0, …, τ_{N-1}` of width `Δt` from `X₀` at every member of `sys.A`,
 under inputs in `U` wherever it sits, the first reduced to order `ρ`, at Taylor order
 `η` raised until admissible. -/
-def LinParamSys.reachFloatInputSplit (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.reachFloatInputSplit (sys : LinParamSys ℐ[𝕋] n)
     (U : Zonotope (Vec 𝕋 n)) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
     (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
@@ -49,7 +49,7 @@ def LinParamSys.reachFloatInputSplit (sys : LinParamSys (fun m n => Interval (Ma
   let ρ := options.ρ
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
-  let uc := ScalarCentre.centreVec (S := fun k => Zonotope (Vec 𝕋 k)) U  -- ũ, the constant
+  let uc := ScalarCentre.centreVec (S := 𝒵[𝕋]) U  -- ũ, the constant
   let HRτ₀ := sys.timeIntervalStepFloat Δt η' X₀                    -- H^R(τ_0)
   let PcRτ₀ := sys.constInputSolutionFloat Δt η' uc                 -- P̃^R(τ_0), ũ over τ_0
   let Rτ₀ := Reduce.reduce (HRτ₀ ⊞ PcRτ₀) ρ                         -- (H^R ⊕ P̃^R)(τ_0), to order ρ

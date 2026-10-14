@@ -47,8 +47,8 @@ zonotopes: `[e^{Ar}]` on `X₀`'s error box, the float excess, and the step's er
 def LinearSys.timePointStepInnerErrorFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ)
     (X₀ U : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let eAr := sys.expIntervalFloat r r η                                     -- [e^{Ar}]
-  let EX := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- on E(X₀)
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAr X₀.E.zonotope
+  let EX := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- on E(X₀)
+    (S := 𝒵[𝕋]) eAr X₀.E.zonotope
   (EX ⊞ sys.timePointStepExcessFloat r η X₀ U) ⊞                            -- floats' excess
     sys.timePointStepErrorBoxFloat r η U                                    -- P(r) beyond held
 

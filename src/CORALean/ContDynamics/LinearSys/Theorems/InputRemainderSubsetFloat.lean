@@ -35,6 +35,7 @@ here.
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic Matrix ContSet Pointwise
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -47,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- An interval matrix's images of a plain set, closed and convexified, so the
 remainder's product is the closed convex set the exact theorem asks for. -/
 @[reducible] noncomputable def aux_setMtimesIntervalRem :
-    Mtimes (fun m k => Real.Interval (Mat ℝ m k)) (fun k => Set (Vec ℝ k)) where
+    Mtimes ℐ 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
@@ -59,14 +60,14 @@ attribute [local instance] aux_setMtimesIntervalRem
 /-- The remainder's closed convex hull, inside the float product. -/
 theorem LinearSys.inputRemainder_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) (V : Zonotope (Vec 𝕋 n)) :
-    construct (Mtimes.mtimes (𝕄 := fun m k => Real.Interval (Mat ℝ m k))
-      (S := fun k => Set (Vec ℝ k))
+    construct (Mtimes.mtimes (𝕄 := ℐ)
+      (S := 𝒮)
       (Real.MatExp.inputRemainder (Scalar.toRealMat sys.A) (toReal r) η)
       (V.construct : Set (Vec ℝ n)))
-      ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (MatExp.intervalInputRemainder (Interval.point sys.A) r η) V) := by -- --- PROOF ---
-  set Z := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+  set Z := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
     (MatExp.intervalInputRemainder (Interval.point sys.A) r η) V
   refine closure_minimal (convexHull_min ?_ (ConvexSet.convex_construct Z))
     (CompactSet.isClosed_construct Z)
@@ -74,7 +75,7 @@ theorem LinearSys.inputRemainder_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋
   exact (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct)
     (MatExp.inputRemainder_subset_intervalInputRemainder _ hr η hη.2
       (Interval.mem_point sys.A) hA)).trans
-    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (MatExp.intervalInputRemainder (Interval.point sys.A) r η) V)
 
 end CORALean

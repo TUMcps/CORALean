@@ -57,7 +57,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
     (h : sys.reachWrappingFreeFloatInput B params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := fun k => Set (Vec ℝ k))
+        sys.Trajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
@@ -75,7 +75,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
   rw [List.length_range] at hHlen hPlen
   refine ⟨N, hNΔt, by simp [hHlen, hPlen], fun {x u} traj k hk t ht => ?_⟩
   set Δ := toReal Δt with hΔ
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B U with hV
+  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U with hV
   set A := Scalar.toRealMat sys.A with hA
   set ũ := Recentre.centre V with hũ
   set Ũ := Recentre.recentre V with hŨ
@@ -100,7 +100,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
     exact ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
   have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
-      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) W τ :=
+      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := 𝒵[𝕋]) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
   have hPu := sys.inputReach_subset_inputSolutionFloat hΔt hadm _ (hconst hpt hΔt.le)
@@ -108,7 +108,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
   -- the accumulation holds the constant's share by `t_j` plus any `Ũ`-input's
   set P := Pτ.scanl (fun P Q => Reduce.reduce (P ⊞ Q) ρ)
     (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope with hPdef
-  have hP : ∀ (j : ℕ) (hj : j < P.length), ∀ q ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ
+  have hP : ∀ (j : ℕ) (hj : j < P.length), ∀ q ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ
     ((j : ℝ) * Δ),
       Real.MatExp.expIntegral A ((j : ℝ) * Δ) *ᵥ ũ + q ∈ ContSet.construct P[j] := by
     intro j
@@ -130,7 +130,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
       have ht' : ((j + 1 : ℕ) : ℝ) * Δ = Δ + (j : ℝ) * Δ := by push_cast; ring
       rw [ht'] at hq ⊢
       obtain ⟨_, ⟨p, hp, rfl⟩, q', hq', rfl⟩ := sys.inputReach_separation_subset
-        (S := fun k => Zonotope (Vec 𝕋 k)) hΔt.le
+        (S := 𝒵[𝕋]) hΔt.le
         (by positivity) hbdd hq
       -- the step's share, carried across `t_j` by `[e^{A t_j}]`
       have hstep := sys.reachStepkWrappingFreeFloat_outer hadm.1 (hPget j hjN)
@@ -158,16 +158,16 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
   have hUV : ContSet.construct ((Scalar.toRealMat B *ᵥ ·) '' U.construct)
       ⊆ ContSet.construct V := by
     rintro _ ⟨w, hw, rfl⟩
-    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B U
+    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U
       (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
-  have hd := traj.sub_mem_inputReach_recentre (S' := fun k => Zonotope (Vec 𝕋 k)) hUV
+  have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) hUV
     ⟨ht0, ht.2.trans hkN⟩
   -- the `Ũ`-input's share by `t`: its first step carried across `t_k`, and the rest
-  have hd' := sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k)) hbdd
+  have hd' := sys.inputReach_mono (S := 𝒵[𝕋]) hbdd
     (Recentre.zero_mem_recentre V) ht0
     (show t ≤ Δ + (k : ℝ) * Δ by linarith [ht.2]) hd
   obtain ⟨_, ⟨p, hp, rfl⟩, q, hq, hpq⟩ := sys.inputReach_separation_subset
-    (S := fun k => Zonotope (Vec 𝕋 k))
+    (S := 𝒵[𝕋])
     hΔt.le hk0 hbdd hd'
   -- the free motion and the constant's share in the first window, carried to `t_k`
   have hfirst : exp ((t - k * Δ) • A) *ᵥ x 0 + Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ
@@ -176,7 +176,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
     Reduce.reduce_outer _ ρ (Plus.plus_outer _ _ (Set.add_mem_add
       (sys.timeIntervalStepFloat_outer hΔt hadm X₀ traj.init hτ.1 hτ.2)
       (sys.inputReach_subset_inputSolutionFloat hΔt hadm seg
-        (sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k)) (CompactSet.isBounded_construct seg)
+        (sys.inputReach_mono (S := 𝒵[𝕋]) (CompactSet.isBounded_construct seg)
           h0seg hτ.1 hτ.2
           (hconst hũseg hτ.1)))))
   have hk' : k < N := by simp [hHlen] at hk; omega

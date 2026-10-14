@@ -1,0 +1,25 @@
+# Files that still write a set family as a lambda, with the reason; the list only shrinks.
+# Read by the family-notation rule of scripts/check-conventions.sh.
+
+src/CORALean/ContDynamics/LinParamSys/Definitions/OrderAdmissibleFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Operations/DiscretizeEnclosureFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Operations/ExpIntervalFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Operations/ExpSquaringFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Operations/InputTermZonoFloat.lean  # does not import ContSet/Zonotope/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Operations/ReachOrderFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Operations/SquaringsFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Theorems/ExpMemExpIntervalFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Theorems/ExpMemExpSquaringFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Theorems/ReachOrderFloatSpec.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Theorems/SmulPowMemInputTermZonoFloat.lean  # does not import ContSet/Zonotope/Float/Instances.lean
+src/CORALean/ContDynamics/LinParamSys/Theorems/SquaringsFloatSpec.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinearSys/Operations/DiscretizeEnclosure.lean  # does not import ContSet/Interval/Real/Instances.lean
+src/CORALean/ContDynamics/LinearSys/Operations/DiscretizeEnclosureFloat.lean  # does not import ContSet/Interval/Float/Instances.lean
+src/CORALean/ContDynamics/LinearSys/Operations/DiscretizeMatZonotopeFloat.lean  # does not import ContSet/Zonotope/Float/Instances.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/DiscretizeMatZonotopeFloatReach.lean  # does not import ContSet/Zonotope/Float/Instances.lean
+src/CORALean/ContSet/ZonoBundle/Float/Operations/EncloseTight.lean  # does not import ContSet/Zonotope/Float/Instances.lean
+src/CORALean/ContSet/ZonoBundle/Float/Theorems/EncloseTightOuter.lean  # does not import ContSet/Zonotope/Float/Instances.lean
+src/CORALean/ContSet/ZonoBundle/Float/ZonoBundle.lean  # does not import ContSet/ZonoBundle/Float/Instances.lean
+src/CORALean/ContSet/ZonoBundle/Real/Operations/EncloseTightPoints.lean  # does not import ContSet/Zonotope/Real/Instances.lean
+src/CORALean/ContSet/Zonotope/Float/Zonotope.lean  # does not import ContSet/Zonotope/Float/Instances.lean
+src/CORALean/HybridDynamics/Operations/GuardIntersectFloat.lean  # does not import ContSet/Zonotope/Float/Instances.lean

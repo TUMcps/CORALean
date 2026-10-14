@@ -30,6 +30,11 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+/-- The vertex-polytope family over vectors.
+The scalar is an argument: a notation cannot capture the section
+variable `𝕋`, so `(S := 𝒱𝒫[𝕋])`. -/
+scoped notation "𝒱𝒫[" t "]" => fun n => VPolytope (Vec t n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -57,7 +62,7 @@ instance : Reduce (VPolytope (Vec 𝕋 n)) (Vec ℝ n) where
   reduce_outer P _ := by
     rw [VPolytope.materialise_eq]
 
-instance : Mtimes (Mat 𝕋) (fun k => VPolytope (Vec 𝕋 k)) where
+instance : Mtimes (Mat 𝕋) 𝒱𝒫[𝕋] where
   mtimes M P := (VPolytope.mtimes M P).materialise
   mtimes_outer M P := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, VPolytope.materialise_eq]

@@ -38,9 +38,9 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 /-- The time-interval sets of every run of the product from `X₀` at `ℓ` with at most `K` jumps and
 stays of at most `tFinal`, each paired with its location tuple. -/
 def ParallelHybridAutomaton.reachFloat
-    (P : ParallelHybridAutomaton (fun k => Zonotope (Vec 𝕋 k))
+    (P : ParallelHybridAutomaton 𝒵[𝕋]
     (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m)
-    (lift : ParallelHybridAutomaton.Lifting (fun k => Zonotope (Vec 𝕋 k))
+    (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋]
     (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m P.binds)
     (tFinal : ℚ) (options : LinearSys.ReachOptions 𝕋) (K : ℕ) (ℓ : ∀ i, L i)
     (X₀ : Zonotope (Vec 𝕋 (∑ i, n i))) : Option (List ((∀ i, L i) × Zonotope (Vec 𝕋 (∑ i, n i)))) :=

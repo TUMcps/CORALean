@@ -52,7 +52,7 @@ class IntervalOuter (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
   interval_outer {n : ℕ} (s : S n) : construct s ⊆ construct (interval s)
 
 /-- A box is its own. -/
-instance : IntervalOuter (fun n => Interval (Vec ℝ n)) where
+instance : IntervalOuter (ℐ𝒱) where
   interval I := I
   interval_outer _ := subset_rfl
 
@@ -60,7 +60,7 @@ instance : IntervalOuter 𝒵 where
   interval Z := Z.interval
   interval_outer Z := Zonotope.interval_contains Z
 
-instance : IntervalOuter (fun n => ConZonotope (Vec ℝ n)) where
+instance : IntervalOuter (𝒞) where
   interval C := C.interval
   interval_outer C := ConZonotope.interval_contains C
 
@@ -68,16 +68,16 @@ instance : IntervalOuter (fun n => Capsule n) where
   interval C := C.interval
   interval_outer C := Capsule.interval_contains C
 
-instance : IntervalOuter (fun n => ConPolyZono (Vec ℝ n)) where
+instance : IntervalOuter (𝒞𝒫𝒵) where
   interval C := C.interval
   interval_outer C := ConPolyZono.interval_contains C
 
-instance : IntervalOuter (fun n => PolyZonotope (Vec ℝ n)) where
+instance : IntervalOuter (𝒫𝒵) where
   interval P := P.interval
   interval_outer P := PolyZonotope.interval_contains P
 
 /-- The box of a vertex list: the extreme coordinates of its vertices. -/
-noncomputable instance : IntervalOuter (fun n => VPolytope (Vec ℝ n)) where
+noncomputable instance : IntervalOuter (𝒱𝒫) where
   interval P := P.interval
   interval_outer P := VPolytope.interval_contains P
 

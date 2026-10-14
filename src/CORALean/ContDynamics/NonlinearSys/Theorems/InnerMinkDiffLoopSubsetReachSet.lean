@@ -56,19 +56,19 @@ theorem NonlinearSys.innerMinkDiffLoop_subset_reachSet (ops : NonlinearSys.Inner
     (sys : NonlinearSys n m) (u₀ : Vec ℝ m) (U : Set (Vec ℝ m)) (hu₀ : u₀ ∈ U) {Δt : ℝ}
     (hΔt : 0 ≤ Δt) (μ : ℝ) (fuel : ℕ) (X₀ : Set (Vec ℝ n))
     (hcert : ∀ (T : ℝ) (X : Set (Vec ℝ n)) (st : NonlinearSys.InnerMinkDiffState n 𝓛),
-      X ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 T) X₀ {u₀} T →
+      X ⊆ sys.reachSet (S := 𝒮) (Icc 0 T) X₀ {u₀} T →
       NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X = some st →
       NonlinearSys.InnerMinkDiffCert sys u₀ Δt X st)
     {k : ℕ} {Rtk Rτ : Set (Vec ℝ n)}
     (h : NonlinearSys.innerMinkDiffLoop ops (fun x => sys.f x u₀) Δt μ fuel k X₀ ∅ =
       some (Rtk, Rτ)) :
-    Rtk ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 (k * Δt)) X₀ U
+    Rtk ⊆ sys.reachSet (S := 𝒮) (Icc 0 (k * Δt)) X₀ U
       (k * Δt) := by -- --- PROOF ---
   -- the induction over the steps, from any time `T` whose reachable set holds the start
   have step : ∀ (j : ℕ) (T : ℝ) (X Y X' Y' : Set (Vec ℝ n)), 0 ≤ T →
-      X ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 T) X₀ {u₀} T →
+      X ⊆ sys.reachSet (S := 𝒮) (Icc 0 T) X₀ {u₀} T →
       NonlinearSys.innerMinkDiffLoop ops (fun x => sys.f x u₀) Δt μ fuel j X Y = some (X', Y') →
-      X' ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 (T + j * Δt)) X₀ {u₀}
+      X' ⊆ sys.reachSet (S := 𝒮) (Icc 0 (T + j * Δt)) X₀ {u₀}
         (T + j * Δt) := by
     intro j
     induction j with
@@ -85,7 +85,7 @@ theorem NonlinearSys.innerMinkDiffLoop_subset_reachSet (ops : NonlinearSys.Inner
       have h2 := ih (T + Δt) _ _ X' Y' (by positivity) h1 hl
       rwa [show T + Δt + (j : ℝ) * Δt = T + ((j + 1 : ℕ) : ℝ) * Δt by push_cast; ring] at h2
   -- `R̂(t₀) = X₀` is reached at `0`: on `{0}` any derivative is one
-  have base : X₀ ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 0) X₀ {u₀} 0 := by
+  have base : X₀ ⊆ sys.reachSet (S := 𝒮) (Icc 0 0) X₀ {u₀} 0 := by
     intro y hy
     refine ⟨fun _ => y, fun _ => u₀, ⟨hy, fun _ _ => rfl, fun t ht => ?_⟩, rfl⟩
     rw [Icc_self] at ht ⊢

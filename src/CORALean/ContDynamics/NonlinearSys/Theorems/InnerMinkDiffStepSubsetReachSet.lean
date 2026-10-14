@@ -50,7 +50,7 @@ theorem NonlinearSys.innerMinkDiffStep_subset_reachSet (ops : NonlinearSys.Inner
     {X : Set (Vec ℝ n)} {st : NonlinearSys.InnerMinkDiffState n 𝓛}
     (h : NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X = some st)
     (cert : NonlinearSys.InnerMinkDiffCert sys u₀ Δt X st) :
-    st.Rtk1 ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 Δt) X {u₀}
+    st.Rtk1 ⊆ sys.reachSet (S := 𝒮) (Icc 0 Δt) X {u₀}
       Δt := by -- --- PROOF ---
   -- what line 15 and lines 7-8 computed
   have hst : st.Rtk1 = (fun x => x + (2 : ℝ) • st.c) '' minkowskiDiff st.Raff st.Rerr ∧
@@ -69,7 +69,7 @@ theorem NonlinearSys.innerMinkDiffStep_subset_reachSet (ops : NonlinearSys.Inner
   -- `Prop. 1` for the affine map, (21) rewritten about `x*`
   obtain ⟨Ω, K, hLip, hex⟩ := cert.flow
   rw [hst.1, hRaff]
-  refine NonlinearSys.minkowskiDiff_add_subset_reachSet (S := fun k => Set (Vec ℝ k)) sys X {u₀}
+  refine NonlinearSys.minkowskiDiff_add_subset_reachSet (S := 𝒮) sys X {u₀}
     hΔt M
     ((Matrix.isUnit_iff_isUnit_det _).mp (Matrix.isUnit_exp _)) v cert.compact cert.convex
     cert.nonempty cert.symm (mem_singleton u₀) hLip hex fun x₀ hx₀ x hx0 hder => ?_

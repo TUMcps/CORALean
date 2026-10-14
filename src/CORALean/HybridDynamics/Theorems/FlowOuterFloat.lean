@@ -45,7 +45,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 /-- Every state a stay passes through by time `r` lies in the float step from
 `R₀` plus the input contribution `Ud` named by the caller. -/
 theorem Location.Trajectory.timeIntervalFloat_outer
-    {ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n}
+    {ℓ : Location 𝒵[𝕋] G L 𝕋 n}
     {τ : ℝ} {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {R₀ Ud : Zonotope (Vec 𝕋 n)}
     (h₀ : x 0 ∈ construct R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
     (hη : ℓ.dynamics.OrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)

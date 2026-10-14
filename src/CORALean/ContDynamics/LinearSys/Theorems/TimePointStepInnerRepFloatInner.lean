@@ -50,6 +50,7 @@ namespace CORALean
 
 open CORALean.Float FloatOps SoundFloatArithmetic InflatedContSet Matrix NormedSpace
 open scoped Pointwise
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -69,7 +70,7 @@ theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r :
       Fin (sys.timePointStepInnerErrorFloat r η X₀ U).h → 𝕋) (ρ : 𝕋)
     (H : Mat 𝕋 (sys.timePointStepInputFloat r η X₀ U).h n) {D : Zonotope (Vec 𝕋 n)}
     (hD : sys.timePointStepInnerRepFloat r η X₀ U M ρ H = some D) :
-    D.construct ⊆ sys.reachSet (S := fun k => Real.Zonotope (Vec ℝ k))
+    D.construct ⊆ sys.reachSet (S := 𝒵)
       (Set.Icc 0 (toReal r)) (nominal X₀) (nominal U) (toReal r) := by -- --- PROOF ---
   set S := sys.timePointStepInputFloat r η X₀ U
   set B := sys.timePointStepInnerErrorFloat r η X₀ U
@@ -81,7 +82,7 @@ theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r :
     sys.zero_mem_timePointStepInputFloat_error hr.le hη hX₀ hU
   obtain ⟨_, -, b, hb, -⟩ := hout (Zonotope.centre_mem_construct S hS0)
   have hinner := (sys.discretize (toReal r)).reachSet_inner_of_outer
-    (S := fun k => Real.Zonotope (Vec ℝ k))
+    (S := 𝒵)
     (Real.Zonotope.convex_construct (nominal X₀)) (Real.Zonotope.isCompact_construct (nominal X₀))
     (Real.Zonotope.convex_construct Q) (Real.Zonotope.isCompact_construct Q) 1
     ⟨b, hb⟩ (Zonotope.isCompact_construct B).isBounded hout
@@ -93,11 +94,11 @@ theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r :
     rw [← Real.Zonotope.mtimes_exact] at hv'
     obtain ⟨c, hc, rfl⟩ := hv'
     exact ⟨c, hc, rfl⟩
-  have hzoh := sys.discretize_reachSet_subset_inputReach (S := fun k => Real.Zonotope (Vec ℝ k))
+  have hzoh := sys.discretize_reachSet_subset_inputReach (S := 𝒵)
     hr (nominal X₀) (nominal U) Q (Real.Zonotope.isBounded_construct _)
     ⟨_, Real.Zonotope.centre_mem_construct _⟩ hstep 1
   have hint := sys.mulVecLin_image_add_inputReach_subset_reachSet
-    (S := fun k => Real.Zonotope (Vec ℝ k)) (nominal X₀) (nominal U)
+    (S := 𝒵) (nominal X₀) (nominal U)
     (t := ((1 : ℕ) : ℝ) * toReal r) (by positivity) (Real.Zonotope.isBounded_construct _)
   rw [Nat.cast_one, one_mul] at hzoh hint
   exact (Zonotope.minkDiffRep_inner hD).trans (hinner.trans (hzoh.trans hint))

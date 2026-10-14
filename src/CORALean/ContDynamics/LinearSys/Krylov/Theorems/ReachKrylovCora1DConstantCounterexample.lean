@@ -44,7 +44,7 @@ theorem Krylov.reachKrylovCora1D_constant_counterexample (Δt ε eps : ℝ) (o :
     ∃ R, Krylov.reachKrylovCora1D 0 1 1 Δt ε eps o = some R ∧
       ∃ x w : ℝ → Vec ℝ 1,
         (LinearSys.mk (0 : Mat ℝ 1 1) : LinearSys ℝ 1).ClassicalTrajectory
-          (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 Δt) {0} {fun _ => 1} x w ∧
+          (S := 𝒮) (Set.Icc 0 Δt) {0} {fun _ => 1} x w ∧
         x Δt ∉ R.construct := by -- --- PROOF ---
   -- Arnoldi on the zero matrix from `e₂`: `v⁽¹⁾ = e₂`, `h₁,₁ = h₂,₁ = 0`
   set K := Krylov.arnoldi (!![0, 1 * 0; 0, 0] : Mat ℝ 2 2) (Pi.single 1 1) 1 with hKdef

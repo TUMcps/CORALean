@@ -34,6 +34,7 @@ length `Δt` is in the sum of the two float sets, in that split: the exact order
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic Matrix ContSet Pointwise
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -48,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def aux_setMtimesSplit : Mtimes (Mat ℝ) (fun k => Set (Vec ℝ k)) where
+@[reducible] def aux_setMtimesSplit : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -56,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- An interval matrix's images of a plain set, closed and convexified. -/
 @[reducible] noncomputable def aux_setMtimesIntervalSplit :
-    Mtimes (fun m k => Real.Interval (Mat ℝ m k)) (fun k => Set (Vec ℝ k)) where
+    Mtimes ℐ 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
@@ -65,16 +66,16 @@ attribute [local instance] aux_setPlusSplit aux_setMtimesSplit aux_setMtimesInte
 /-- From order `1` on, the exact sum is order `0` and the exact tail. -/
 theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (r : ℝ)
     (U : Set (Vec ℝ n)) (m : ℕ) :
-    sys.inputTaylorSum (S := fun k => Set (Vec ℝ k)) r U (m + 1)
+    sys.inputTaylorSum (S := 𝒮) r U (m + 1)
       = (sys.inputTerm r 0 *ᵥ ·) '' U
-        + sys.inputTaylorSumTail (S := fun k => Set (Vec ℝ k)) r U (m + 1) := by -- --- PROOF ---
+        + sys.inputTaylorSumTail (S := 𝒮) r U (m + 1) := by -- --- PROOF ---
   induction m with
   | zero => rfl
   | succ m ih =>
-    show sys.inputTaylorSum (S := fun k => Set (Vec ℝ k)) r U (m + 1)
+    show sys.inputTaylorSum (S := 𝒮) r U (m + 1)
         + (sys.inputTerm r (m + 2) *ᵥ ·) '' U
       = (sys.inputTerm r 0 *ᵥ ·) '' U
-        + (sys.inputTaylorSumTail (S := fun k => Set (Vec ℝ k)) r U (m + 1)
+        + (sys.inputTaylorSumTail (S := 𝒮) r U (m + 1)
           + (sys.inputTerm r (m + 2) *ᵥ ·) '' U)
     rw [ih, add_assoc]
 
@@ -83,11 +84,11 @@ theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (
 
 theorem LinearSys.inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (V : Zonotope (Vec 𝕋 n)) :
-    sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) V (toReal Δt)
-      ⊆ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    sys.inputReach (S := 𝒵[𝕋]) V (toReal Δt)
+      ⊆ (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
           (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V).construct
-        + (sys.inputTaylorSumTailFloat Δt V η ⊞ Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-          (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (MatExp.intervalInputRemainder
+        + (sys.inputTaylorSumTailFloat Δt V η ⊞ Mtimes.mtimes (S := 𝒵[𝕋])
+          (𝕄 := ℐ[𝕋]) (MatExp.intervalInputRemainder
             (Interval.point sys.A) Δt η) V).construct := by -- --- PROOF ---
   have hε : ‖toReal Δt • Scalar.toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by
     have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point sys.A) Δt
@@ -100,24 +101,24 @@ theorem LinearSys.inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 
       _ < 1 := by norm_num
   -- the exact theorem at plain sets, its remainder inside the float product
   have hrem := sys.inputRemainder_subset_float hΔt.le hη V
-  have hexact := sys.inputReach_subset_inputSolution (S := fun k => Set (Vec ℝ k)) hΔt η hε
+  have hexact := sys.inputReach_subset_inputSolution (S := 𝒮) hΔt η hε
     (U := V.construct) (ConvexSet.convex_construct V) (CompactSet.isClosed_construct V)
     (CompactSet.isBounded_construct V) (convex_convexHull ℝ _).closure isClosed_closure
     ((CompactSet.isBounded_construct _).subset hrem)
   -- order `0`'s matrix is in its float box, so its image is in the float product
   have hterm0 : (sys.inputTerm (toReal Δt) 0 *ᵥ ·) '' V.construct
-      ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V) :=
     (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct)
       (MatExp.smul_pow_mem_intervalInputTerm _ hΔt.le (Interval.mem_point sys.A) 0)).trans
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V)
   -- from order `1` on, the exact sum is order `0` and the exact tail, and the float sets hold both
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 1 := ⟨η - 1, by have := hη.1; omega⟩
   refine hexact.trans ?_
   unfold LinearSys.inputSolution
-  show sys.inputTaylorSum (S := fun k => Set (Vec ℝ k)) (toReal Δt) V.construct (m + 1) + _ ⊆ _
+  show sys.inputTaylorSum (S := 𝒮) (toReal Δt) V.construct (m + 1) + _ ⊆ _
   rw [sys.aux_inputTaylorSum_eq_term_add_tail, add_assoc]
   exact Set.add_subset_add hterm0 ((Set.add_subset_add
     (sys.inputTaylorSumTail_subset_float hΔt.le V (m + 1)) hrem).trans

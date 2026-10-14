@@ -37,7 +37,7 @@ theorem LinearSys.zero_mem_discretizeEnclosureFloat_reach_error (sys : LinearSys
     (hΔt : 0 ≤ toReal Δt) {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o)
     {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
-    (0 : Vec ℝ n) ∈ ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+    (0 : Vec ℝ n) ∈ ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).E.construct := by -- --- PROOF ---
   induction k with
   | zero => exact hR₀

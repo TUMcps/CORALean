@@ -44,7 +44,7 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ParallelHybridAutomaton.conZonoLifting (binds : ∀ i, Fin (n i) → InputSource k n m) :
-    ParallelHybridAutomaton.Lifting (fun n => ConZonotope (Vec ℝ n)) (fun n => HPolytope (Vec ℝ n))
+    ParallelHybridAutomaton.Lifting (𝒞) (ℋ𝒫)
       n m binds where
   inv := HPolytope.stackProd
   guard i g := HPolytope.comap (blockProj i) g

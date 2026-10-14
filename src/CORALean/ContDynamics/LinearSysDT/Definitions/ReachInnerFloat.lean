@@ -46,7 +46,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 approximation of the exact reachable set, as a set. -/
 noncomputable def LinearSysDT.reachInnerFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec 𝕋 n)) (k : ℕ) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
+  minkowskiDiff (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
     (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
 
 end CORALean

@@ -140,7 +140,7 @@ theorem Krylov.varying_input_not_of_errorBound :
         ‖exp (t • Krylov.augment A u) *ᵥ v - Krylov.arnoldiBasis (Krylov.augment A u) v 1 *ᵥ
             (exp (t • Krylov.arnoldiHessenberg (Krylov.augment A u) v 1) *ᵥ Pi.single 0 1)‖₂
           ≤ ‖v‖₂ * ε * t)
-      ∧ ∃ y ∈ (LinearSys.mk A : LinearSys ℝ 2).inputReach (S := fun k => Set (Vec ℝ k)) U δ,
+      ∧ ∃ y ∈ (LinearSys.mk A : LinearSys ℝ 2).inputReach (S := 𝒮) U δ,
           ε * δ < |y 0| := by -- --- PROOF ---
   intro A w U v δ ε
   have hv : v = ![0, 0, 1] := by
@@ -210,7 +210,7 @@ theorem Krylov.varying_input_not_of_errorBound :
       nlinarith [norm_nonneg w, norm_nonneg β]
     refine ⟨_, ⟨fun s => c s • w, hU, hmeas, rfl⟩, ?_⟩
     have hint := intervalIntegrable_expSub_mulVec (A := A) (c := δ) (by norm_num : (0 : ℝ) ≤ δ)
-      (S := fun k => Set (Vec ℝ k)) (U := U) hbdd hU hmeas
+      (S := 𝒮) (U := U) hbdd hU hmeas
     -- the first coordinate, read through the coordinate projection
     have hproj := ContinuousLinearMap.intervalIntegral_comp_comm
       (ContinuousLinearMap.proj (R := ℝ) (φ := fun _ : Fin 2 => ℝ) 0) hint

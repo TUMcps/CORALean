@@ -35,9 +35,9 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.reachFloat_outer
-    {P : ParallelHybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L
+    {P : ParallelHybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L
     𝕋 n m} (hself : P.SelfBindFree)
-    (lift : ParallelHybridAutomaton.Lifting (fun k => Zonotope (Vec 𝕋 k))
+    (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋]
     (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m P.binds)
     {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
     {X₀ : Zonotope (Vec 𝕋 (∑ i, n i))} {out : List ((∀ i, L i) × Zonotope (Vec 𝕋 (∑ i, n i)))}

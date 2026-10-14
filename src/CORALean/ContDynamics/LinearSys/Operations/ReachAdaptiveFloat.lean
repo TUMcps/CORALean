@@ -49,7 +49,7 @@ def LinearSys.reachAdaptiveFloat (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
     Option (List (LinearSys.AdaptiveStepInfo 𝕋 n)) :=
   let X₀ := params.X₀                                               -- the paper's symbols
   let V := Mtimes.mtimes (𝕄 := Mat 𝕋)  -- B U, in the state space
-    (S := fun k => Zonotope (Vec 𝕋 k)) B params.U
+    (S := 𝒵[𝕋]) B params.U
   let tf := params.tFinal - params.tStart                           -- shifted to start at 0
   let s₀ : LinearSys.AdaptiveState 𝕋 n :=                           -- 1.-3. initialize
     { t := 0, tLo := zero, tHi := zero,                             -- 1. t ← 0

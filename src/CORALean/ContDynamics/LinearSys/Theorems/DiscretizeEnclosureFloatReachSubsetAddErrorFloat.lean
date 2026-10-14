@@ -41,6 +41,7 @@ namespace CORALean
 
 open CORALean.Float FloatOps SoundFloatArithmetic InflatedContSet Matrix NormedSpace
 open scoped Pointwise
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -57,9 +58,9 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     {Δt : 𝕋} (hΔt : 0 < toReal Δt) {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ}
     (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
-    ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+    ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).construct
-      ⊆ (sys.discretize (toReal Δt)).reachSet (S := fun k => Real.Zonotope (Vec ℝ k))
+      ⊆ (sys.discretize (toReal Δt)).reachSet (S := 𝒵)
           (nominal R₀)
           (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt))
             (nominal U)) k
@@ -69,9 +70,9 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     (nominal U)
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal Δt) le_rfl le_rfl
   -- the claim with the two summands of the budget kept apart
-  suffices h : ∀ k, ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+  suffices h : ∀ k, ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).construct
-      ⊆ (sys.discretize (toReal Δt)).reachSet (S := fun k => Real.Zonotope (Vec ℝ k))
+      ⊆ (sys.discretize (toReal Δt)).reachSet (S := 𝒵)
           (nominal R₀) Q k
         + (sys.reachExcessFloat Δt η o ho R₀ U k).construct
         + (sys.reachInputErrorFloat Δt η U k).construct by
@@ -94,7 +95,7 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
       simp [toRealVec, toReal_zero]
     exact ⟨a + e₀, ⟨a, ha, e₀, Interval.zonotope_contains _ he₀, rfl⟩, 0, h0, add_zero _⟩
   | succ k ih =>
-    set Rk := (sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+    set Rk := (sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩ with hRk
     set W := sys.timePointStepInputFloat Δt η Rk U
     have hRk0 : (0 : Vec ℝ n) ∈ Rk.E.construct :=
@@ -108,33 +109,33 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     -- the previous float point: the exact set, the run's excess and the input errors
     obtain ⟨_, ⟨z, hz, d, hd, rfl⟩, i, hi, rfl⟩ := ih hy
     set E := exp (toReal Δt • Scalar.toRealMat sys.A)
-    have hEd : E *ᵥ d ∈ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eA
+    have hEd : E *ᵥ d ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eA
         (sys.reachExcessFloat Δt η o ho R₀ U k)).construct :=
-      Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eA _
+      Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eA _
         (Set.mem_biUnion he ⟨d, hd, rfl⟩)
-    have hEi : E *ᵥ i ∈ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eA
+    have hEi : E *ᵥ i ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eA
         (sys.reachInputErrorFloat Δt η U k)).construct :=
-      Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eA _
+      Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eA _
         (Set.mem_biUnion he ⟨i, hi, rfl⟩)
     -- the step's two outputs, each one more application of the same sum
     have hD : E *ᵥ d + b + g ∈ (sys.reachExcessFloat Δt η o ho R₀ U (k + 1)).construct := by
       show _ ∈ ContSet.construct
-        ((Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eA
+        ((Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
         (sys.reachExcessFloat Δt η o ho R₀ U k) ⊞ sys.timePointStepExcessFloat Δt η Rk U) ⊞
           Zonotope.reduceGirardBox W o)
       exact Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add hEd hb)) hg)
     have hI : E *ᵥ i + t ∈ (sys.reachInputErrorFloat Δt η U (k + 1)).construct := by
       show _ ∈ ContSet.construct
-        (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eA
+        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
         (sys.reachInputErrorFloat Δt η U k) ⊞ sys.timePointStepErrorBoxFloat Δt η U)
       exact Plus.plus_outer _ _ (Set.add_mem_add hEi ht)
     -- the exact part is the exact set's own step
     have hZ : E *ᵥ z + q ∈ (sys.discretize (toReal Δt)).reachSet
-        (S := fun k => Real.Zonotope (Vec ℝ k)) (nominal R₀) Q (k + 1) :=
+        (S := 𝒵) (nominal R₀) Q (k + 1) :=
       ⟨_, ⟨z, hz, rfl⟩, q, hq, rfl⟩
     refine ⟨_, ⟨_, hZ, _, hD, rfl⟩, _, hI, ?_⟩
     simp only [Matrix.mulVec_add]

@@ -30,7 +30,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Location.reachFloatChecked_eq_some
-    (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n) (tFinal : ℚ)
+    (ℓ : Location 𝒵[𝕋] G L 𝕋 n) (tFinal : ℚ)
     (options : LinearSys.ReachOptions 𝕋) (X₀ : Zonotope (Vec 𝕋 n))
     {Rs : (List (Zonotope (Vec 𝕋 n)))}
     (h : ℓ.reachFloatChecked tFinal options X₀ = some Rs) :

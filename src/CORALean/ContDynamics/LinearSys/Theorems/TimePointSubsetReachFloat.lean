@@ -35,6 +35,7 @@ compared here.
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -52,7 +53,7 @@ theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n)
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
     (h : sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options = some (Rti, Rtp)) :
     ∀ (k : ℕ) (hk : k < Rtp.length),
-      construct (sys.timePoint (S := fun n => Real.Zonotope (Vec ℝ n)) (toReal options.Δt)
+      construct (sys.timePoint (S := 𝒵) (toReal options.Δt)
         X₀ k) ⊆ Rtp[k].construct := by -- --- PROOF ---
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
@@ -68,10 +69,10 @@ theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n)
   | succ k ih =>
     rw [Function.iterate_succ_apply']
     -- `timePoint`'s own step is exact, at a `Real.Zonotope`
-    have hstep : construct (sys.timePoint (S := fun n => Real.Zonotope (Vec ℝ n))
+    have hstep : construct (sys.timePoint (S := 𝒵)
           (toReal Δt) X₀ (k + 1))
         = (exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ ·) ''
-          construct (sys.timePoint (S := fun n => Real.Zonotope (Vec ℝ n)) (toReal Δt) X₀ k) :=
+          construct (sys.timePoint (S := 𝒵) (toReal Δt) X₀ k) :=
       (Real.Zonotope.mtimes_exact _ _).symm
     rw [hstep]
     rintro _ ⟨x, hx, rfl⟩

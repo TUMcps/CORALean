@@ -54,6 +54,7 @@ which is a cast the compiler erases.
 namespace CORALean
 
 open Matrix ContSet Float Float.SoundFloatArithmetic
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
@@ -199,7 +200,7 @@ instance : Enclose IdentityLayer S where
       exact Layer.identity_sound.image_subset s
 
 /-- `Layer.sigmoidPoly`, at a polynomial zonotope. -/
-instance : Enclose (SigmoidPolyLayer 𝕋) (fun k => Float.PolyZonotope (Vec 𝕋 k)) where
+instance : Enclose (SigmoidPolyLayer 𝕋) 𝒫𝒵[𝕋] where
   eval := fun {n m} l => match n, m, l with
     | _, _, ⟨_, _, _, _, _, _, rfl⟩ => Erased.mk fun x i => Real.sigmoid (x i)
   enclose := fun {n m} l => match n, m, l with
@@ -210,7 +211,7 @@ instance : Enclose (SigmoidPolyLayer 𝕋) (fun k => Float.PolyZonotope (Vec �
       exact (Layer.sigmoidPoly_sound k c dx p).image_subset s
 
 /-- `Layer.activationPoly`, at a polynomial zonotope. -/
-instance : Enclose (ActivationPolyLayer 𝕋) (fun k => Float.PolyZonotope (Vec 𝕋 k)) where
+instance : Enclose (ActivationPolyLayer 𝕋) 𝒫𝒵[𝕋] where
   eval := fun {n m} l => match n, m, l with
     | _, _, ⟨_, _, hP, rfl⟩ => Erased.mk fun x i => hP.choose (x i)
   enclose := fun {n m} l => match n, m, l with

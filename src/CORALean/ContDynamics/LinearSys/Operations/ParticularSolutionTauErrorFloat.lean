@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Eq. (26): `Δε^{U,τ}_k(Δt, η) = err([e^{At_k}] bPU(Δt))`, from above. -/
 def LinearSys.particularSolutionTauErrorFloat (sys : LinearSys 𝕋 n)
     (eAtk : Interval (Mat 𝕋 n n)) (U₀ : Zonotope (Vec 𝕋 n)) (Δt : 𝕋) (η : ℕ) : 𝕋 :=
-  (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
+  (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eAtk
     (sys.inputSolutionFloat Δt η U₀)).errUp                               -- err([e^{At_k}] bPU(Δt))
 
 end CORALean

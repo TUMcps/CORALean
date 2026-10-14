@@ -63,11 +63,11 @@ class IntervalOuter (S : ℕ → Type) (𝕋 : outParam Type) [FloatOps 𝕋]
   interval_outer {n : ℕ} (s : S n) : construct s ⊆ construct (interval s)
 
 /-- A box is its own. -/
-instance : IntervalOuter (fun n => Interval (Vec 𝕋 n)) 𝕋 where
+instance : IntervalOuter ℐ𝒱[𝕋] 𝕋 where
   interval I := I
   interval_outer _ := subset_rfl
 
-instance : IntervalOuter (fun n => Zonotope (Vec 𝕋 n)) 𝕋 where
+instance : IntervalOuter 𝒵[𝕋] 𝕋 where
   interval Z := Z.interval
   interval_outer Z := Zonotope.interval_contains Z
 
@@ -83,12 +83,12 @@ instance : IntervalOuter (fun n => ConPolyZono 𝕋 (Vec 𝕋 n)) 𝕋 where
   interval C := C.interval
   interval_outer C := ConPolyZono.interval_contains C
 
-instance : IntervalOuter (fun n => PolyZonotope (Vec 𝕋 n)) 𝕋 where
+instance : IntervalOuter 𝒫𝒵[𝕋] 𝕋 where
   interval P := P.interval
   interval_outer P := PolyZonotope.interval_contains P
 
 /-- The box of a vertex list: the bounds `boundProj`/`boundNegProj` of every coordinate. -/
-instance : IntervalOuter (fun n => VPolytope (Vec 𝕋 n)) 𝕋 where
+instance : IntervalOuter 𝒱𝒫[𝕋] 𝕋 where
   interval P := P.interval
   interval_outer P := VPolytope.interval_contains P
 

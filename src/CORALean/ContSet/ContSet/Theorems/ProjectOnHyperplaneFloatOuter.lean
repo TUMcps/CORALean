@@ -24,10 +24,11 @@ the result. Outer only.
 namespace CORALean
 
 open ContSet Float FloatOps SoundFloatArithmetic Pointwise
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (fun m n => Interval (Mat 𝕋 m n)) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ[𝕋] S]
 variable [OfInterval S 𝕋]
 
 
@@ -41,7 +42,7 @@ theorem ContSet.projectOnHyperplaneFloat_outer (s : S n) (c : Vec 𝕋 n) (d : �
     toReal d • toRealVec c, OfInterval.ofInterval_outer _ ?_, ?_⟩
   · -- the projected point is the real projector's image of `x`, a point of the interval matrix's
     -- image
-    refine Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ s ?_
+    refine Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) _ s ?_
     refine Set.mem_iUnion₂.mpr ⟨1 - Matrix.vecMulVec (toRealVec c) (toRealVec c), ?_, x, hx, rfl⟩
     -- the real projector lies between the bracketing entries
     rintro ⟨i, j⟩

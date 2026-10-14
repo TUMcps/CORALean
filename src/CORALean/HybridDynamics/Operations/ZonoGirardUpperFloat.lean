@@ -47,7 +47,7 @@ def Location.zonoGirardUpperFloat (Z : Zonotope (Vec 𝕋 n)) (nv : Vec 𝕋 n) 
     (ℓ : Vec 𝕋 n) : 𝕋 :=
   -- the plane image `Π_{n,ℓ}(Z)`, a zonogon
   let S : Zonotope (Vec 𝕋 2) :=
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋])
       (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) Z
   -- the dual bound at the multiplier `μ`
   let dual : 𝕋 → 𝕋 := fun μ =>

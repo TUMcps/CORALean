@@ -38,7 +38,7 @@ theorem LinearSys.timePointStepFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     (hx : x ∈ R.construct) :
     exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ x
       ∈ (sys.timePointStepFloat Δt η R).construct :=
-  Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) _ R
+  Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) _ R
     (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl) (Set.mem_image_of_mem _ hx))
 
 end CORALean

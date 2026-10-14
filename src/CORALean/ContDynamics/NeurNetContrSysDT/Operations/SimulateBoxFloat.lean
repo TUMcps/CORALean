@@ -36,11 +36,11 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The boxes `B_k` of the closed loop from `x₀`: `B_{k+1} = A B_k ⊕ enclose(B_k)`. -/
-def NeurNetContrSysDT.simulateBox (sys : NeurNetContrSysDT 𝕋 (fun n => Interval (Vec 𝕋 n)) n)
+def NeurNetContrSysDT.simulateBox (sys : NeurNetContrSysDT 𝕋 ℐ𝒱[𝕋] n)
     (x₀ : Vec 𝕋 n) : ℕ → Interval (Vec 𝕋 n)
   | 0 => Interval.point x₀
   | k + 1 =>
-    plus (S := Interval (Vec 𝕋 n)) (mtimes (S := fun n => Interval (Vec 𝕋 n)) sys.plant.A
+    plus (S := Interval (Vec 𝕋 n)) (mtimes (S := ℐ𝒱[𝕋]) sys.plant.A
       (sys.simulateBox x₀ k)) (sys.contr.enclose (sys.simulateBox x₀ k))
 
 end CORALean

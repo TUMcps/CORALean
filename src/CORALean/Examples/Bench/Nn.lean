@@ -161,7 +161,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- `NeuralNetwork.enclose` over float zonotopes at `𝕋`, and `Specification.check`
 on what comes back. -/
 def soundZonotope (inst : ExactDyadic → 𝕋) : Zonotope (Vec 𝕋 1) × Bool :=
-  let Z := (network (S := fun k => Zonotope (Vec 𝕋 k)) (layer₁.mat inst 1 1) (layer₁.vec inst 1)
+  let Z := (network (S := 𝒵[𝕋]) (layer₁.mat inst 1 1) (layer₁.vec inst 1)
     (layer₂.mat inst 1 1) (layer₂.vec inst 1)).enclose (inputZonotope inst)
   (Z, (spec inst).check Z)
 
@@ -177,7 +177,7 @@ example {x : Vec ℝ 1}
 
 /-- The same over float intervals. -/
 def soundInterval (inst : ExactDyadic → 𝕋) : Interval (Vec 𝕋 1) × Bool :=
-  let I := (network (S := fun n => Interval (Vec 𝕋 n)) (layer₁.mat inst 1 1)
+  let I := (network (S := ℐ𝒱[𝕋]) (layer₁.mat inst 1 1)
     (layer₁.vec inst 1) (layer₂.mat inst 1 1) (layer₂.vec inst 1)).enclose (inputBox inst)
   (I, (spec inst).check I)
 

@@ -30,7 +30,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.construct_enlarge (zB : ZonoBundle (Vec ℝ n)) (f : Vec ℝ n) :
-    (zB.enlarge f).construct = ⋂ i, (ContSet.enlarge (S := fun n => Zonotope (Vec ℝ n))
+    (zB.enlarge f).construct = ⋂ i, (ContSet.enlarge (S := 𝒵)
       (zB.Z i) f).construct := rfl
 
 end CORALean.Real

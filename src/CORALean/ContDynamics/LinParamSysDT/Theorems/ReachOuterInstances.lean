@@ -54,8 +54,8 @@ example {n : ℕ} (sys : LinParamSysDT (Mat ℝ) n) {o : ℕ} (ho : 0 < o) (R₀
 the four whose set family is not `𝒵`. -/
 example {n : ℕ} (sys : LinParamSysDT 𝕄𝒫 n) {o : ℕ} (ho : 0 < o) (R₀ U : VPolytope (Vec ℝ n))
     {x u : ℕ → Vec ℝ n}
-    (traj : sys.Trajectory (S := fun n => VPolytope (Vec ℝ n)) R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach (S := fun n => VPolytope (Vec ℝ n)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
-  sys.reach_outer (S := fun n => VPolytope (Vec ℝ n)) ho R₀ U traj k
+    (traj : sys.Trajectory (S := 𝒱𝒫) R₀ U x u) (k : ℕ) :
+    x k ∈ construct (sys.reach (S := 𝒱𝒫) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
+  sys.reach_outer (S := 𝒱𝒫) ho R₀ U traj k
 
 end CORALean

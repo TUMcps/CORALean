@@ -46,7 +46,7 @@ theorem LinearSys.autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope
       sys.AutoInvariantFloat X₀ V s →
       sys.AutoInvariantFloat X₀ V s' ∧ s.t ≤ s'.t ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 T) X₀.construct U x u →
+          sys.Trajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
           U ⊆ V.construct → s.t < s'.t → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
             ∃ w ∈ Ws, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.construct := by -- --- PROOF ---
   intro K

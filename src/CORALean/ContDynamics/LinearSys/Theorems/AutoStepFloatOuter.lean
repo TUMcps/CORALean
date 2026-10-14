@@ -61,7 +61,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     (hinv : sys.AutoInvariantFloat X₀ V s) :
     sys.AutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 T) X₀.construct U x u →
+        sys.Trajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
         U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
           x t ∈ R.construct := by -- --- PROOF ---
   obtain ⟨h0, hlo, hhi, hH, hPu, hPU⟩ := hinv
@@ -92,20 +92,20 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     push_cast; rw [hΔq]; ring
   -- `[e^{At_k}] Z` and `[e^{At_{k+1}}] Z` hold `e^{At_k} z` and `e^{At_{k+1}} z`
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (tk • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eAtk Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eAtk Z
+      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eAtk Z) :=
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eAtk Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec (le_max_right _ _) hsq) hlo hhi)
         (Set.mem_image_of_mem _ hz))
   have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct
       → exp ((toReal Δt + tk) • A) *ᵥ z
-        ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k))
+        ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋])
           (sys.expSquaringFloat (addDown s.tLo Δt) (addUp s.tHi Δt) η sq1) Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ Z
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec hη2 hsq1)
         ((addDown_le_add _ _).trans (by linarith)) (le_trans (by linarith) (add_le_addUp _ _)))
@@ -115,21 +115,21 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     Interval.zonotope_contains _ (Interval.mem_point V.c)
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
   have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
-      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) W τ :=
+      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := 𝒵[𝕋]) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
   have hPuΔ := sys.inputReach_subset_inputSolutionFloat hΔr hadm _ (hconst hpt hΔr.le)
   have hsplit := sys.inputReach_subset_split_float hΔr hadm Ũ
   -- the `Ũ`-input's share by `t_k + Δt`, in the two halves of eq. (27)
-  have hPU' : ∀ y ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ (toReal Δt + tk),
-      y ∈ (s.PU0 ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
-          (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+  have hPU' : ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ (toReal Δt + tk),
+      y ∈ (s.PU0 ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eAtk
+          (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
             (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) Ũ)).construct
-        + (s.PUinf ⊞ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
-          (sys.inputTaylorSumTailFloat Δt Ũ η ⊞ Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-            (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        + (s.PUinf ⊞ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋]) eAtk
+          (sys.inputTaylorSumTailFloat Δt Ũ η ⊞ Mtimes.mtimes (S := 𝒵[𝕋])
+            (𝕄 := ℐ[𝕋])
             (MatExp.intervalInputRemainder (Interval.point sys.A) Δt η) Ũ)).interval.zonotope
           ).construct := by
     -- split `y` at `t_k` and send each part to its summand
@@ -145,8 +145,8 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     beta_reduce; rw [Matrix.mulVec_add]; abel
   -- the constant's share by `t_{k+1}`, in the box `P^u(t_{k+1})`
   have hPu' : Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ
-      ∈ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
+      ∈ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eAtk
         (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval).construct := by
     rw [Real.MatExp.expIntegral_add_mulVec A ũ hΔr.le htk0, add_comm]
     exact Zonotope.interval_contains _ (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
@@ -154,11 +154,11 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
   -- `H(t_{k+1})` holds the affine flow from `X₀`
   have hH' : ∀ x₀ ∈ X₀.construct, exp ((toReal Δt + tk) • A) *ᵥ x₀
       + Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ ∈
-        (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-        (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        (Mtimes.mtimes (S := 𝒵[𝕋])
+        (𝕄 := ℐ[𝕋])
         (sys.expSquaringFloat (addDown s.tLo Δt) (addUp s.tHi Δt) η sq1) X₀
-        ⊞ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
+        ⊞ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋]) eAtk
           (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval).zonotope
         ).construct := fun x₀ hx₀ =>
     Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
@@ -188,9 +188,9 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     have hτ0 : 0 ≤ τ := sub_nonneg.mpr ht.1
     have hτΔ : τ ≤ toReal Δt := by linarith [ht.2]
     -- the run's departure from the affine flow by `t`, inside the input's share by `t_{k+1}`
-    have hd := traj.sub_mem_inputReach_recentre (S' := fun k => Zonotope (Vec 𝕋 k)) (V := V)
+    have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) (V := V)
       hUV ⟨ht0, htT⟩
-    have hd' := sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k))
+    have hd' := sys.inputReach_mono (S := 𝒵[𝕋])
       (CompactSet.isBounded_construct Ũ)
       (Recentre.zero_mem_recentre V) ht0 ht.2 hd
     obtain ⟨d0, hd0, di, hdi, hdeq⟩ := hPU' _ hd'
@@ -198,11 +198,11 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     have hxk := hH (x 0) traj.init
     have hnext : exp (toReal Δt • A) *ᵥ (exp (tk • A) *ᵥ x 0 + Real.MatExp.expIntegral A tk *ᵥ ũ)
         + Real.MatExp.expIntegral A (toReal Δt) *ᵥ ũ ∈
-          (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-          (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+          (Mtimes.mtimes (S := 𝒵[𝕋])
+          (𝕄 := ℐ[𝕋])
           (sys.expSquaringFloat (addDown s.tLo Δt) (addUp s.tHi Δt) η sq1) X₀
-          ⊞ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-            (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
+          ⊞ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
+            (S := 𝒵[𝕋]) eAtk
             (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval).zonotope
           ).construct := by
       -- both the exponential and the integral split at `t_k`, so `x_k` one step on is `t_{k+1}`'s
@@ -229,14 +229,14 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
       abel
     -- the departure, in `P̂^U(t_{k+1})`: `P̂^U_0` reduced, `P̂^U_∞` kept
     have hPUk1 : x t - (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ) ∈ (Reduce.reduce
-        (s.PU0 ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
-          (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+        (s.PU0 ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋]) eAtk
+          (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
             (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) Ũ)) ρ
-        ⊞ (s.PUinf ⊞ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
-          (sys.inputTaylorSumTailFloat Δt Ũ η ⊞ Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-            (𝕄 := fun m n => Interval (Mat 𝕋 m n))
+        ⊞ (s.PUinf ⊞ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋]) eAtk
+          (sys.inputTaylorSumTailFloat Δt Ũ η ⊞ Mtimes.mtimes (S := 𝒵[𝕋])
+            (𝕄 := ℐ[𝕋])
             (MatExp.intervalInputRemainder (Interval.point sys.A) Δt η) Ũ)).interval.zonotope)
         ).construct := by
       rw [← hdeq]

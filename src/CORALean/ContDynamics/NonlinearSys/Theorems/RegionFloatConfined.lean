@@ -59,7 +59,7 @@ theorem aux_picard {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n
     (h : fm.Encloses sys) {Δt : 𝕋} {X Ω : Interval (Vec 𝕋 n)}
     {Ub : Interval (Vec 𝕋 m)} {T : Set ℝ} {R₀ : Set (Vec ℝ n)} {U : Set (Vec ℝ m)}
     {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.Trajectory (S := fun k => Set (Vec ℝ k)) T R₀ U x u)
+    (traj : sys.Trajectory (S := 𝒮) T R₀ U x u)
     (hU : U ⊆ Ub.construct) {a : ℝ} (hT : Set.Icc a (a + toReal Δt) ⊆ T)
     (hxa : x a ∈ X.construct) (hΩ : ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct) :
     ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ (⟨fun i => addDown (X.inf i)
@@ -130,7 +130,7 @@ theorem NonlinearSys.FloatModel.Encloses.regionFloat_confined
     {Δt : 𝕋} {X Ω : Interval (Vec 𝕋 n)} {Ub : Interval (Vec 𝕋 m)}
     (hΩ : fm.regionFloat Δt X Ub = some Ω) (hΔt : 0 ≤ toReal Δt) {T : Set ℝ}
     {R₀ : Set (Vec ℝ n)} {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.Trajectory (S := fun k => Set (Vec ℝ k)) T R₀ U x u)
+    (traj : sys.Trajectory (S := 𝒮) T R₀ U x u)
     (hU : U ⊆ Ub.construct) {a : ℝ} (hT : Set.Icc a (a + toReal Δt) ⊆ T)
     (hxa : x a ∈ X.construct) :
     ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct := by -- --- PROOF ---

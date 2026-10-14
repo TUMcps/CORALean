@@ -39,7 +39,7 @@ theorem LinearSysDT.mem_simulateBoxIn (sys : LinearSysDT 𝕋 n) (B₀ : Interva
   | succ k ih =>
     rw [hstep k]
     exact plus_outer (S := Interval (Vec 𝕋 n)) _ _
-      (Set.add_mem_add (mtimes_outer (S := fun n => Interval (Vec 𝕋 n)) sys.A _
+      (Set.add_mem_add (mtimes_outer (S := ℐ𝒱[𝕋]) sys.A _
         (Set.mem_biUnion rfl (Set.mem_image_of_mem _ ih))) (hu k))
 
 end CORALean

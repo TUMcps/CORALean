@@ -60,7 +60,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
     {k : ℕ} (hk : k ≤ N) {t : ℝ}
     (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) :
     ∃ R, Rs[k]? = some R ∧
-      sys.reachSet (S := fun k => Zonotope (Vec 𝕋 k)) (Set.Icc 0 t) X₀ U t
+      sys.reachSet (S := 𝒵[𝕋]) (Set.Icc 0 t) X₀ U t
         ⊆ R.construct := by -- --- PROOF ---
   -- the order is the search's, and the list is the loop's
   simp only [LinearSys.reachBoxFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
@@ -76,12 +76,12 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
   set V₀ := sys.inputSolutionFloat r η' U
   set step : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)
       → Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
-    fun s => (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eAr s.1,
-      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eAr s.2.1,
-      s.2.2 ⊞ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eAr s.2.1).interval.zonotope)
+    fun s => (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eAr s.1,
+      Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eAr s.2.1,
+      s.2.2 ⊞ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eAr s.2.1).interval.zonotope)
   -- the loop's output and its closed form
   set out : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) → Zonotope (Vec 𝕋 n) :=
     fun s => s.1 ⊞ s.2.2
@@ -98,10 +98,10 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
   -- `e^{Ar}` is in `[e^{Ar}]`, so one more step is enclosed
   have hE : E ∈ eAr.construct := sys.exp_mem_expIntervalFloat hadm le_rfl le_rfl
   have hstep : ∀ (Z : Zonotope (Vec 𝕋 n)) (y : Vec ℝ n), y ∈ Z.construct →
-      E *ᵥ y ∈ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eAr Z).construct :=
-    fun Z y hy => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eAr Z
+      E *ᵥ y ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eAr Z).construct :=
+    fun Z y hy => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eAr Z
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hy))
   have hbox : ∀ Z : Zonotope (Vec 𝕋 n), Z.construct ⊆ Z.interval.zonotope.construct :=
     fun Z => (Zonotope.interval_contains Z).trans (Interval.zonotope_contains _)
@@ -111,16 +111,16 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
     rintro τ hτ _ ⟨x, hx, rfl⟩
     exact sys.timeIntervalStepFloat_outer hr hadm X₀ hx hτ.1 hτ.2
   -- and `V₀` the input's reach, once `inputReach U τ ⊆ inputReach U r`
-  have hi : ∀ τ ∈ Set.Icc (0:ℝ) ρ, sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U τ ⊆
+  have hi : ∀ τ ∈ Set.Icc (0:ℝ) ρ, sys.inputReach (S := 𝒵[𝕋]) U τ ⊆
     V₀.construct :=
     fun τ hτ => (sys.inputReach_mono hU h0 hτ.1 hτ.2).trans
       (sys.inputReach_subset_inputSolutionFloat hr hadm U)
   -- the three invariants, by induction on `k`
   have hinv : ∀ k : ℕ, ∀ τ ∈ Set.Icc (0:ℝ) ρ,
       (fun x => exp ((k * ρ + τ) • A) *ᵥ x) '' X₀.construct ⊆ (step^[k] s₀).1.construct
-      ∧ (fun y => exp ((k * ρ) • A) *ᵥ y) '' sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U τ
+      ∧ (fun y => exp ((k * ρ) • A) *ᵥ y) '' sys.inputReach (S := 𝒵[𝕋]) U τ
           ⊆ (step^[k] s₀).2.1.construct
-      ∧ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U (k * ρ + τ) ⊆
+      ∧ sys.inputReach (S := 𝒵[𝕋]) U (k * ρ + τ) ⊆
         (step^[k] s₀).2.2.construct := by
     intro k
     -- at `k = 0` the three are the first window's, `box(V₀)` holding `V₀`
@@ -141,7 +141,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
           exp_add_smul_eq_mul]
       -- `V_{k+1}`: one more `e^{Ar}`
       have h2 : (fun y => exp ((((k + 1 : ℕ) : ℝ) * ρ) • A) *ᵥ y) ''
-          sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U τ ⊆
+          sys.inputReach (S := 𝒵[𝕋]) U τ ⊆
             (step (step^[k] s₀)).2.1.construct := by
         rintro _ ⟨v, hv, rfl⟩
         have := hstep _ _ ((ih τ hτ).2.1 ⟨v, hv, rfl⟩)
@@ -152,7 +152,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
         have := hstep _ _ ((ih τ hτ).1 ⟨x, hx, rfl⟩)
         simpa only [hEkτ, Matrix.mulVec_mulVec] using this
       -- `P^R_{k+1}`: what `[0, τ]` contributes, propagated, plus `[0, (k+1)r]`
-      · have hsep := sys.inputReach_separation_eq (S := fun k => Zonotope (Vec 𝕋 k)) hτ0
+      · have hsep := sys.inputReach_separation_eq (S := 𝒵[𝕋]) hτ0
           (hkr (k + 1)) hU
         rw [show (((k + 1 : ℕ) : ℝ) * ρ + τ) = τ + ((k + 1 : ℕ) : ℝ) * ρ by ring, hsep]
         rintro _ ⟨w, hw, v, hv, rfl⟩
@@ -170,7 +170,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
     rw [ List.getElem?_map, List.getElem?_range (by omega)]
     rfl
   · have ht0 : 0 ≤ t := (hkr k).trans ht.1
-    rw [sys.reachSet_eq (S := fun k => Zonotope (Vec 𝕋 k)) X₀ U ht0 hU]
+    rw [sys.reachSet_eq (S := 𝒵[𝕋]) X₀ U ht0 hU]
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * ρ) hτ
     rw [show (k : ℝ) * ρ + (t - k * ρ) = t by ring] at hI

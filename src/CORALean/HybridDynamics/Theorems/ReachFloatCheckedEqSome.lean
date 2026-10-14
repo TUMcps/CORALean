@@ -31,7 +31,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.reachFloatChecked_eq_some
-    (HA : HybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
+    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
     (tFinal : ℚ) (options : LinearSys.ReachOptions 𝕋) (K : ℕ) (ℓ : L) (X₀ : Zonotope (Vec 𝕋 n))
     {Rs : List (L × Zonotope (Vec 𝕋 n))}
     (h : HA.reachFloatChecked tFinal options K ℓ X₀ = some Rs) :

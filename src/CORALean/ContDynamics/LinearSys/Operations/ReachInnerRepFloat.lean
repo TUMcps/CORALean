@@ -43,14 +43,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 margin `ρ` and right inverse `H`: `none` where the certificate does not go through. -/
 def LinearSys.reachInnerRepFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec 𝕋 n)) (k : ℕ)
-    (M : Fin ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+    (M : Fin ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h →
       Fin (sys.reachErrorFloat Δt η o ho R₀ U k).h → 𝕋) (ρ : 𝕋)
-    (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+    (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h n) : Option (Zonotope (Vec 𝕋 n)) :=
   let P := sys.inputSolutionFloat Δt η U                            -- the input set, in floats
   let R := (sys.discretizeEnclosureFloat Δt η).reach  -- R_k, the float run
-    (S := fun k => Zonotope (Vec 𝕋 k))
+    (S := 𝒵[𝕋])
     ⟨R₀, P, 0, k⟩ ⟨o, ho⟩
   let B := sys.reachErrorFloat Δt η o ho R₀ U k                     -- what it owes
   R.minkDiffRep B M ρ H                                             -- R ⊖ B, certified

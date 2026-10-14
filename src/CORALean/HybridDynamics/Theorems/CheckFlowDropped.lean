@@ -25,6 +25,7 @@ itself, and it says nothing about states that left the invariant by another face
 namespace CORALean
 
 open Matrix Scalar
+open scoped CORALean.Real
 
 variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
@@ -33,7 +34,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 
 omit [∀ n, ContSet (G n) (Vec ℝ n)] in
 /-- A dropped set carries the flow nowhere outward on its projection. -/
-theorem Location.checkFlow_dropped (ℓ : Location (fun n => Real.Zonotope (Vec ℝ n)) G L ℝ n)
+theorem Location.checkFlow_dropped (ℓ : Location 𝒵 G L ℝ n)
     (c : Vec ℝ n) (d : ℝ) (Rs : List (Real.Zonotope (Vec ℝ n)))
     {R : Real.Zonotope (Vec ℝ n)} (hR : R ∈ Rs) (hdrop : R ∉ ℓ.checkFlow c d Rs)
     {x u : Vec ℝ n} (hx : x ∈ R.construct) (hu : u ∈ ContSet.construct ℓ.U) :

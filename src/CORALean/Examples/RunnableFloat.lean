@@ -255,7 +255,7 @@ def arxB : Mat D 2 1 := arxD.inputMat 0
 
 /-- Two scalar components `ẋ = x + u`, each input bound to the other's state: the merged flow is
 `[[1, 1], [1, 1]]`, built with no rounding arithmetic, at `D` (#117). -/
-def parP : ParallelHybridAutomaton (fun n => Interval (Vec D n)) (fun n => Interval (Vec D n)) 2
+def parP : ParallelHybridAutomaton ℐ𝒱[D] ℐ𝒱[D] 2
     (fun _ => Unit) D (fun _ => 1) 0 where
   comp _ := ⟨fun _ => ⟨zbox 1, ⟨fun _ _ => d 1 0⟩, zbox 1, []⟩⟩
   binds i _ := .state i.rev 0
@@ -275,9 +275,9 @@ def Z_plus : Zonotope (Vec D 2) := Z.plus Z
 def Z_linComb : Zonotope (Vec D 2) := LinComb.linComb Z Z
 def Z_reduce : Zonotope (Vec D 2) := Z.reduce 1
 def Z_reindex : Zonotope (Vec D 2) :=
-  Reindex.reindex (S := fun k => Zonotope (Vec D k)) (Equiv.refl (Fin 2)) Z
+  Reindex.reindex (S := 𝒵[D]) (Equiv.refl (Fin 2)) Z
 def Z_mtimes : Zonotope (Vec D 2) :=
-  Mtimes.mtimes (S := fun k => Zonotope (Vec D k)) (identityMat D 2) Z
+  Mtimes.mtimes (S := 𝒵[D]) (identityMat D 2) Z
 
 -- `SetUnion` of float zonotopes: `Plus`, `Reduce`, `Mtimes`, generic over the member type
 def uZ : SetUnion (Zonotope (Vec D 2)) := ⟨[Z, Z_mtimes]⟩
@@ -293,9 +293,9 @@ def I_intersection : Interval (Vec D 2) := Intersection.intersection I I
 def I_linComb : Interval (Vec D 2) := LinComb.linComb I I
 def I_reduce : Interval (Vec D 2) := Reduce.reduce I 1
 def I_reindex : Interval (Vec D 2) :=
-  Reindex.reindex (S := fun n => Interval (Vec D n)) (Equiv.refl (Fin 2)) I
+  Reindex.reindex (S := ℐ𝒱[D]) (Equiv.refl (Fin 2)) I
 def I_mtimes : Interval (Vec D 2) :=
-  Mtimes.mtimes (S := fun n => Interval (Vec D n)) (identityMat D 2) I
+  Mtimes.mtimes (S := ℐ𝒱[D]) (identityMat D 2) I
 
 
 /-! ## The float interval-matrix chain: `matMul`/`matPow`/`smul`/`expIntervalEnclosure`
@@ -323,12 +323,12 @@ def quadTermBoundsRun : Interval D :=
   ⟨MatExp.quadTermLo (d 1 (-1)) (d (-3) 0) (d 1 0), MatExp.quadTermHi (d 1 (-1)) (d (-3) 0) (d 1 0)⟩
 
 def mtimesIntervalMatRun : Interval (Vec D 2) :=
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat D m n)) (S := fun n => Interval (Vec D n))
+  Mtimes.mtimes (𝕄 := ℐ[D]) (S := ℐ𝒱[D])
     matExpA I
 
 -- the same interval matrix, at `expEnclosureRun`, times a float zonotope (#1, phase 3 prep)
 def mtimesIntervalMatZonoRun : Zonotope (Vec D 2) :=
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat D m n)) (S := fun k => Zonotope (Vec D k))
+  Mtimes.mtimes (𝕄 := ℐ[D]) (S := 𝒵[D])
     expEnclosureRun Z
 
 -- `HPolytope`: `Reduce`, `Intersection`
@@ -341,7 +341,7 @@ def V_intersection : VPolytope (Vec D 2) := Intersection.intersection V V
 def V_linComb : VPolytope (Vec D 2) := LinComb.linComb V V
 def V_reduce : VPolytope (Vec D 2) := Reduce.reduce V 1
 def V_mtimes : VPolytope (Vec D 2) :=
-  Mtimes.mtimes (S := fun k => VPolytope (Vec D k)) (identityMat D 2) V
+  Mtimes.mtimes (S := 𝒱𝒫[D]) (identityMat D 2) V
 
 -- `ConZonotope`: `Plus`, `LinComb`, `Reduce`
 def cZ_plus : ConZonotope D (Vec D 2) := Plus.plus cZ cZ
@@ -353,7 +353,7 @@ def pZ_plus : PolyZonotope (Vec D 2) := Plus.plus pZ pZ
 def pZ_linComb : PolyZonotope (Vec D 2) := LinComb.linComb pZ pZ
 def pZ_reduce : PolyZonotope (Vec D 2) := Reduce.reduce pZ 1
 def pZ_mtimes : PolyZonotope (Vec D 2) :=
-  Mtimes.mtimes (S := fun k => PolyZonotope (Vec D k)) (identityMat D 2) pZ
+  Mtimes.mtimes (S := 𝒫𝒵[D]) (identityMat D 2) pZ
 def pZ_convHull : PolyZonotope (Vec D 2) := PolyZonotope.convHull pZ pZ
 
 -- the quadratic map `x ↦ xᵀ x` of `pZ`, its two-operand pairings, and the varying input part
@@ -379,9 +379,9 @@ def zB_linComb : ZonoBundle (Vec D 2) := LinComb.linComb zB zB
 def zB_intersection : ZonoBundle (Vec D 2) := Intersection.intersection zB zB
 def zB_reduce : ZonoBundle (Vec D 2) := Reduce.reduce zB 1
 def zB_reindex : ZonoBundle (Vec D 2) :=
-  Reindex.reindex (S := fun k => ZonoBundle (Vec D k)) (Equiv.refl (Fin 2)) zB
+  Reindex.reindex (S := 𝒵ℬ[D]) (Equiv.refl (Fin 2)) zB
 def zB_mtimes : ZonoBundle (Vec D 2) :=
-  Mtimes.mtimes (S := fun k => ZonoBundle (Vec D k)) (identityMat D 2) zB
+  Mtimes.mtimes (S := 𝒵ℬ[D]) (identityMat D 2) zB
 
 -- `Ellipsoid`: `Mtimes` alone — the rest of its operations have no float file yet
 def E_mtimes : Ellipsoid D 2 := Mtimes.mtimes (identityMat D 2) E
@@ -417,9 +417,9 @@ The same `A` and `r`, sampled by `discretizeEnclosureFloat` into a `LinParamSysD
 interval matrices, and five steps of its `reach` under the input set `Z`. -/
 
 def ctSys : LinearSys D 2 := ⟨!![d (-1) 0, d (-4) 0; d 4 0, d (-1) 0]⟩
-def ctSysD : LinParamSysDT (fun m n => Interval (Mat D m n)) 2 :=
+def ctSysD : LinParamSysDT ℐ[D] 2 :=
   ctSys.discretizeEnclosureFloat stepR 4
-def ctReachRun : Zonotope (Vec D 2) := ctSysD.reach (S := fun k => Zonotope (Vec D k))
+def ctReachRun : Zonotope (Vec D 2) := ctSysD.reach (S := 𝒵[D])
     ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
 
 -- what the input enclosures of five sampled steps owe, and the box one step pays (#1)
@@ -484,7 +484,7 @@ def minkDiffStretchInnerRun : Zonotope (Vec D 2) :=
 
 /-- A location flowing by the same `A`, its input `Z` off the origin, and its stay over
 `[0, r]` from `Z` by the float step and by the split float step. -/
-def ctLoc : Location (fun k => Zonotope (Vec D k)) (fun k => Zonotope (Vec D k)) Unit D 2 :=
+def ctLoc : Location 𝒵[D] 𝒵[D] Unit D 2 :=
     ⟨Z, ctSys, Z, []⟩
 def locStepRun : Zonotope (Vec D 2) := ctLoc.timeIntervalStepFloat stepR 4 Z
 def locSplitRun : Zonotope (Vec D 2) := ctLoc.timeIntervalStepSplitFloat stepR 4 Z
@@ -502,7 +502,7 @@ def checkFlowRun : List (Zonotope (Vec D 2)) := ctLoc.checkFlowFloat hpNormal hp
 
 /-- A location drifting along `e₁` at unit speed under a slow rotation, and the guard map of the
 box of half-width `2⁻⁴` about `(1, 0)` onto `x₁ = 1`, `tmax = 2⁻³`, two Taylor terms. -/
-def hpMapLoc : Location (fun k => Zonotope (Vec D k)) (fun k => Zonotope (Vec D k)) Unit D 2 :=
+def hpMapLoc : Location 𝒵[D] 𝒵[D] Unit D 2 :=
   ⟨Z, ⟨!![d 0 0, d (-1) (-1); d 1 (-1), d 0 0]⟩, Zonotope.point ![d 1 0, d 0 0], []⟩
 def hpMapR0 : Zonotope (Vec D 2) where
   h := 2
@@ -517,12 +517,12 @@ admissible order, one step of its flow, its input solution over `Z`, and five sa
 def lpA : Interval (Mat D 2 2) :=
   ⟨!![d (-33) (-5), d (-129) (-5); d 127 (-5), d (-33) (-5)],
     !![d (-31) (-5), d (-127) (-5); d 129 (-5), d (-31) (-5)]⟩
-def lpSys : LinParamSys (fun m n => Interval (Mat D m n)) 2 := ⟨lpA⟩
+def lpSys : LinParamSys ℐ[D] 2 := ⟨lpA⟩
 def lpOrderRun : Option ℕ := lpSys.reachOrderFloat stepR stepR 2
 def lpStepRun : Zonotope (Vec D 2) := lpSys.timeIntervalStepFloat stepR 4 Z
 def lpInputRun : Zonotope (Vec D 2) := lpSys.inputSolutionFloat stepR 4 Z
 def lpReachRun : Zonotope (Vec D 2) :=
-  (lpSys.discretizeEnclosureFloat stepR 4).reach (S := fun k => Zonotope (Vec D k))
+  (lpSys.discretizeEnclosureFloat stepR 4).reach (S := 𝒵[D])
     ⟨Z, lpInputRun, 0, 5⟩
     ⟨2, two_pos⟩
 /-- Four windows of `[0, 2⁻³]` at every member, each from the first by scaling and squaring. -/
@@ -566,13 +566,13 @@ def ctInnerStepOpt : Option (Zonotope (Vec D 1)) :=
 def ctInnerStepRun : Zonotope (Vec D 1) := ctInnerStepOpt.getD (Zonotope.point ![d 0 0])
 -- five sampled steps: the float run, its budget, and the run minus its budget
 def ctInnerReach : Zonotope (Vec D 1) :=
-  (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach (S := fun k => Zonotope (Vec D k))
+  (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach (S := 𝒵[D])
     ⟨ctInnerX, ctInnerSys.inputSolutionFloat (d 1 (-3)) 4 ctInnerU, 0, 5⟩ ⟨2, two_pos⟩
 def ctInnerReachError : Zonotope (Vec D 1) :=
   ctInnerSys.reachErrorFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
 def ctInnerReachOpt : Option (Zonotope (Vec D 1)) :=
   let R := (ctInnerSys.discretizeEnclosureFloat (d 1 (-3)) 4).reach
-    (S := fun k => Zonotope (Vec D k))
+    (S := 𝒵[D])
     ⟨ctInnerX, ctInnerSys.inputSolutionFloat (d 1 (-3)) 4 ctInnerU, 0, 5⟩ ⟨2, two_pos⟩
   let B := ctInnerSys.reachErrorFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
   ctInnerSys.reachInnerRepFloat (d 1 (-3)) 4 2 two_pos ctInnerX ctInnerU 5
@@ -591,11 +591,11 @@ def mzA : Zonotope (Mat D 2 2) := Zonotope.ofIntervalMat lpA
 def mzExpRun : Zonotope (Mat D 2 2) :=
   MatExp.expMatZonoEnclosure (Zonotope.matSmul stepR stepR mzA) 3
 -- the system matrix itself sampled through a point matrix zonotope, and its reach
-def ctSysMZ : LinParamSysDT (fun m n => Zonotope (Mat D m n)) 2 :=
+def ctSysMZ : LinParamSysDT 𝕄𝒵[D] 2 :=
   ctSys.discretizeMatZonotopeFloat stepR 4
-def ctMZReachRun : Zonotope (Vec D 2) := ctSysMZ.reach (S := fun k => Zonotope (Vec D k))
+def ctMZReachRun : Zonotope (Vec D 2) := ctSysMZ.reach (S := 𝒵[D])
     ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
-def lpMZSys : LinParamSys (fun m n => Zonotope (Mat D m n)) 2 := ⟨mzA⟩
+def lpMZSys : LinParamSys 𝕄𝒵[D] 2 := ⟨mzA⟩
 def lpMZInputRun : Zonotope (Vec D 2) := lpMZSys.inputSolutionZonoFloat stepR 4 Z
 
 
@@ -736,10 +736,10 @@ def sys : LinearSysDT D 2 := ⟨!![d 15 (-4), d (-1) (-3); d 1 (-3), d 15 (-4)]�
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Five reachability steps, order at most `4`. -/
-def reachRun : Zonotope (Vec D 2) := sys.reach (S := fun k => Zonotope (Vec D k)) ⟨Z, Z, 0, 5⟩
+def reachRun : Zonotope (Vec D 2) := sys.reach (S := 𝒵[D]) ⟨Z, Z, 0, 5⟩
     ⟨2, by decide⟩
 
-def net : NeuralNetwork (fun k => Zonotope (Vec D k)) 2 2 :=
+def net : NeuralNetwork 𝒵[D] 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
     (.layer (⟨reluSlope, rfl⟩ : ReluLayer D 2 2) .output)
 
@@ -748,18 +748,18 @@ def encloseRun : Zonotope (Vec D 2) := net.enclose Z
 /-- Linear, sigmoid, activation at `Real.sigmoid`, linear, and `net` nested as one layer:
 five `Enclose` kinds in one chain, each `eval` over ℝ held `Erased`, which is what this
 compiling and running checks. -/
-def mixedNet : NeuralNetwork (fun k => Zonotope (Vec D k)) 2 2 :=
+def mixedNet : NeuralNetwork 𝒵[D] 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
     (.layer (⟨2, rfl⟩ : SigmoidLayer D 2 2)
       (.layer (ActivationLayer.of (sigmoidRelaxation_sound (𝕋 := D) 2))
-        (.layer (Enclose.pack (S := fun k => Zonotope (Vec D k)) net)
+        (.layer (Enclose.pack (S := 𝒵[D]) net)
           (.layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2) .output))))
 
 def mixedEncloseRun : Zonotope (Vec D 2) := mixedNet.enclose Z
 
 /-- `net` at the interval hull representation: the stretch `propagateBounds` pushes bounds
 through. -/
-def netBox : NeuralNetwork (fun n => Interval (Vec D n)) 2 2 :=
+def netBox : NeuralNetwork ℐ𝒱[D] 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
     (.layer (⟨reluSlope, rfl⟩ : ReluLayer D 2 2) .output)
 
@@ -786,7 +786,7 @@ def findRegionPolysRun : Option (List (RegionPoly D)) :=
 #eval findRegionPolysRun.map List.length
 
 /-- `ctSys` closed around `net`, two control periods of two float steps of `r` each (#1). -/
-def nnContrSys : NeurNetContrSys D (fun k => Zonotope (Vec D k)) 2 := ⟨ctSys, net⟩
+def nnContrSys : NeurNetContrSys D 𝒵[D] 2 := ⟨ctSys, net⟩
 def nnContrReachRun : Zonotope (Vec D 2) := nnContrSys.reachFloat ⟨Z, 0, 2⟩
     ⟨stepR, 2, 4, 2, two_pos⟩
 /-- The same loop's set at every period boundary `0, 1, 2`, at an order `reachOrderFloat` finds. -/
@@ -1148,14 +1148,14 @@ example {Rs : List (Zonotope (Vec D 2))} (h : vdpCentreReach = some Rs) :=
 /-- The adaptive loop from `vdpX₀` to `t = 1/8`: first horizon `1/32` (a step of `1/16` fails the
 region check), last gain `7/8`, order `1`. The options' own step size is not read: every step
 takes the one the tuning picked. -/
-def vdpAdaptRun : Option (List (NonlinearSys.AdaptState (fun k => Zonotope (Vec D k)) 2 ℚ D)) :=
+def vdpAdaptRun : Option (List (NonlinearSys.AdaptState 𝒵[D] 2 ℚ D)) :=
   vdpHessModel.adaptRunFloat vdpU { Δt := d 1 (-5), η := 4, ρ := 10 }
     (d 15 (-4)) (d 7 (-3)) (d 1 (-3)) (d 1 (-1)) 20 20 2 (1 / 8) 4
     (NonlinearSys.adaptInit vdpX₀ (d 1 (-5)) (d 7 (-3)) (d 1 (-6)) 1)
 
 /-- What a successful run is worth: every run of the real system, over each window the tuning
 chose. -/
-example {ss : List (NonlinearSys.AdaptState (fun k => Zonotope (Vec D k)) 2 ℚ D)}
+example {ss : List (NonlinearSys.AdaptState 𝒵[D] 2 ℚ D)}
     (h : vdpAdaptRun = some ss) :=
   vdpHessModel_encloses.adaptRunFloat_outer 4 h
 

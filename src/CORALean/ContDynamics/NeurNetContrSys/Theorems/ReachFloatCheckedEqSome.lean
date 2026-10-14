@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSys.reachFloatChecked_eq_some
-    (sys : NeurNetContrSys 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
+    (sys : NeurNetContrSys 𝕋 𝒵[𝕋] n)
     (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋)
     {R : Zonotope (Vec 𝕋 n)} (h : sys.reachFloatChecked params options = some R) :
     sys.reachFloat params options = R ∧ noNaN (𝕋 := 𝕋) R = true := by

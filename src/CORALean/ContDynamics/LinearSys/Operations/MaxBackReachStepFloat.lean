@@ -71,14 +71,14 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
   let Φn := sys.expIntervalFloat (neg tk1Hi) (neg tk1Lo) ηn         -- [e^{-A t_{k+1}}]
   let I := MatExp.adaptiveIntegral (Interval.point sys.A) Δt η'     -- [∫₀^Δt e^{As}ds]
   let M := Interval.matMul Φk I                                     -- [e^{A t_k} ∫₀^Δt e^{As}ds]
-  let T := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k)) M U
+  let T := Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋]) M U
   let ZU := s.ZU ⊞ T                                                -- 8. Z̲_U(t_{k+1})
   let UErr : Vec 𝕋 n := fun i =>                                    -- what ZU lies outside by
     addUp (addUp (s.UErr i) ((Zonotope.mtimesIntervalMatBox M U).magnitude i))
       ((Zonotope.plusBox s.ZU T).magnitude i)
-  let ZW₀ := s.ZW₀ ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- 9. Ẑ_{W₀}(t_{k+1})
-    (S := fun k => Zonotope (Vec 𝕋 k)) Φk
+  let ZW₀ := s.ZW₀ ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 9. Ẑ_{W₀}(t_{k+1})
+    (S := 𝒵[𝕋]) Φk
     (sys.inputSolutionFloat Δt η' W₀)
   let ZW := ZW₀ ⊞ Zw s.tLo s.tHi                                    -- 10. Ẑ_W(τ_k)
   let Z₀ := Bx.zonotope                                             -- the conversion box
@@ -100,8 +100,8 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
            ZW₀ := ZW₀
            ZW := ZW
            RH := H.mtimesNominal Φn.inf                             -- 12. e^{-A t_{k+1}} CZ …
-           RU := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- … Z̲_U
-             (S := fun k => Zonotope (Vec 𝕋 k)) Φn s.ZU }
+           RU := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- … Z̲_U
+             (S := 𝒵[𝕋]) Φn s.ZU }
   else none
 
 end CORALean

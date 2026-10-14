@@ -47,10 +47,10 @@ def LinearSys.ReachFloatInputInvariant (sys : LinearSys 𝕋 n) (Δt : ℝ) (X�
       + MatExp.expIntegral A (((k + 1 : ℕ) : ℝ) * Δt) *ᵥ ũ ∈ s.1.construct) ∧
     (∀ x₀ ∈ X₀, ∀ τ ∈ Set.Icc 0 Δt, exp (((k : ℝ) * Δt + τ) • A) *ᵥ x₀
       + MatExp.expIntegral A ((k : ℝ) * Δt + τ) *ᵥ ũ ∈ s.2.1.construct) ∧
-    sys.inputReach (S := fun k => Float.Zonotope (Vec 𝕋 k)) Ũ (((k + 1 : ℕ) : ℝ) * Δt) ⊆
+    sys.inputReach (S := 𝒵[𝕋]) Ũ (((k + 1 : ℕ) : ℝ) * Δt) ⊆
       s.2.2.1.construct ∧
     (fun y => exp (((k : ℝ) * Δt) • A) *ᵥ y) '' sys.inputReach
-      (S := fun k => Float.Zonotope (Vec 𝕋 k)) Ũ Δt
+      (S := 𝒵[𝕋]) Ũ Δt
       ⊆ s.2.2.2.construct
 
 end CORALean

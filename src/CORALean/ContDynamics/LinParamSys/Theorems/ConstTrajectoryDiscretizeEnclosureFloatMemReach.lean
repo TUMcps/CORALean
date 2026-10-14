@@ -29,7 +29,7 @@ open Matrix ContSet
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (fun m n => Interval (Mat 𝕋 m n)) S]
+variable [Mtimes ℐ[𝕋] S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -37,7 +37,7 @@ variable [Mtimes (fun m n => Interval (Mat 𝕋 m n)) S]
 /-- Every sample `x (k Δt)` of a `'constParam'` run lies in the float-sampled
 system's `reach` after `k` steps under the sampled inputs `Ud`. -/
 theorem LinParamSys.ConstTrajectory.discretizeEnclosureFloat_mem_reach
-    {sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n} {T : Set ℝ}
+    {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {Δt : 𝕋} {η : ℕ}
     (traj : sys.ConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))

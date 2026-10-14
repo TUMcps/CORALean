@@ -36,7 +36,7 @@ variable {n : ℕ}
 theorem ZonoBundle.enlarge_outer (zB : ZonoBundle (Vec ℝ n)) (f : Vec ℝ n) (i : Fin zB.k) :
     (fun x : Vec ℝ n => (zB.Z i).c + fun j => f j * (x j - (zB.Z i).c j)) ''
       (zB.Z i).construct ⊆ ((zB.enlarge f).Z i).construct :=
-  ContSet.enlarge_outer (S := fun n => Zonotope (Vec ℝ n)) (𝕋 := ℝ) (zB.Z i) f
+  ContSet.enlarge_outer (S := 𝒵) (𝕋 := ℝ) (zB.Z i) f
 
 end CORALean.Real
 

@@ -37,11 +37,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- What the constant `ũ` contributes at any time of `[0, r]`, at every member of
 `sys.A`: `C(r)` applied to `[0, ũ]`, at Taylor order `η`. -/
-def LinParamSys.constInputSolutionFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.constInputSolutionFloat (sys : LinParamSys ℐ[𝕋] n)
     (r : 𝕋) (η : ℕ) (uc : Vec 𝕋 n) : Zonotope (Vec 𝕋 n) :=
-  let O : Zonotope (Vec 𝕋 n) := OfScalarPoint.ofVec (S := fun k => Zonotope (Vec 𝕋 k))  -- {0}
+  let O : Zonotope (Vec 𝕋 n) := OfScalarPoint.ofVec (S := 𝒵[𝕋])  -- {0}
     (fun _ => (zero : 𝕋))
-  let ũ : Zonotope (Vec 𝕋 n) := OfScalarPoint.ofVec (S := fun k => Zonotope (Vec 𝕋 k)) uc  -- {ũ}
+  let ũ : Zonotope (Vec 𝕋 n) := OfScalarPoint.ofVec (S := 𝒵[𝕋]) uc  -- {ũ}
   let seg := LinComb.linComb O ũ                                       -- [0, ũ]
   sys.inputSolutionFloat r η seg                                       -- C(r) applied to [0, ũ]
 

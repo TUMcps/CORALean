@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.timeIntervalStepZonoFloat_outer
-    (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n) {Δt : 𝕋} {m : ℕ}
+    (sys : LinParamSys 𝕄𝒵[𝕋] n) {Δt : 𝕋} {m : ℕ}
     (hΔt : 0 < toReal Δt)
     (hεe : toReal (MatExp.normUpperBound (Zonotope.matSmul Δt Δt sys.A).matInterval)
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
@@ -60,18 +60,18 @@ theorem LinParamSys.timeIntervalStepZonoFloat_outer
   have hrA : r • A ∈ (Zonotope.matSmul Δt Δt sys.A).construct :=
     Zonotope.matSmul_outer le_rfl le_rfl sys.A hA
   have hE : exp (r • A) *ᵥ x ∈ construct
-    (Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
       (MatExp.expMatZonoEnclosure (Zonotope.matSmul Δt Δt sys.A) (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Zonotope (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
+    Mtimes.mtimes_outer (𝕄 := 𝕄𝒵[𝕋])
+      (S := 𝒵[𝕋]) _ R
       (Set.mem_biUnion (MatExp.exp_mem_expMatZonoEnclosure _ (m + 2) hrA hεe)
         (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `F R`
   have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ construct
-      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.matZonoCorrectionMatrix sys.A Δt (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ R
       (Set.mem_biUnion (MatExp.expDiff_mem_matZonoCorrectionMatrix _ hΔt hεF hA hs0 hs)
         (Set.mem_image_of_mem _ hx))
   rw [hdecomp]

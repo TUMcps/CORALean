@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The recursion encloses the member's propagation of the one-step set, window
 by window. -/
 theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {Δt : 𝕋} {η ρ : ℕ}
+    (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η ρ : ℕ}
     (h2 : 2 ≤ η) (U : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) :
     ∀ (k : ℕ) {P : Zonotope (Vec 𝕋 n)}, sys.particularSolutionFloat Δt η ρ U k = some P →
     (LinearSys.mk A : LinearSys ℝ n).propagateInputSolution (toReal Δt)
@@ -75,27 +75,27 @@ theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
 /-- Everything an input in `U` holding the origin contributes under a member `A` by
 any `t ≤ t_{k+1}` lies in `P^R(t_{k+1})` as `particularSolutionFloat` computes it. -/
 theorem LinParamSys.inputReach_subset_particularSolutionFloat
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {Δt : 𝕋} {η ρ : ℕ}
+    (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η ρ : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {U : Zonotope (Vec 𝕋 n)}
     (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ} {P : Zonotope (Vec 𝕋 n)}
     (hP : sys.particularSolutionFloat Δt η ρ U k = some P) {t : ℝ} (ht0 : 0 ≤ t)
     (htk : t ≤ ((k + 1 : ℕ) : ℝ) * toReal Δt) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U t
+    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t
       ⊆ P.construct := by -- --- PROOF ---
   set L : LinearSys ℝ n := LinearSys.mk A
   have hbdd := CompactSet.isBounded_construct U
   -- [1, Thm. 3.1]: one step of the input under `A`, inside `inputSolutionFloat`
-  have hΔ : L.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U (toReal Δt)
+  have hΔ : L.inputReach (S := 𝒵[𝕋]) U (toReal Δt)
       ⊆ (sys.inputSolutionFloat Δt η U).construct :=
     sys.inputReach_subset_inputSolutionFloat hΔt hη hA U
-  calc L.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U t
+  calc L.inputReach (S := 𝒵[𝕋]) U t
       -- [1, Prop. 3.3]: `0 ∈ U`, so the window's right end bounds every earlier time
-      ⊆ L.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U (((k + 1 : ℕ) : ℝ) * toReal Δt) :=
+      ⊆ L.inputReach (S := 𝒵[𝕋]) U (((k + 1 : ℕ) : ℝ) * toReal Δt) :=
         L.inputReach_mono hbdd h0 ht0 htk
     -- [1, Prop. 3.2]: exactly the one-step set, propagated `k + 1` times
     _ = L.propagateInputSolution (toReal Δt)
-      (L.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) U (toReal Δt)) (k + 1) :=
+      (L.inputReach (S := 𝒵[𝕋]) U (toReal Δt)) (k + 1) :=
       (L.propagateInputSolution_inputReach hΔt.le hbdd ⟨0, h0⟩ (k + 1)).symm
     _ ⊆ L.propagateInputSolution (toReal Δt) (sys.inputSolutionFloat Δt η U).construct (k + 1) :=
       L.propagateInputSolution_mono (toReal Δt) hΔ (k + 1)

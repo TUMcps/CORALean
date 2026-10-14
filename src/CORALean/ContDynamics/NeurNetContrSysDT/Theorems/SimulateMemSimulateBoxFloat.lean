@@ -33,14 +33,14 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.simulate_mem_simulateBox
-    (sys : NeurNetContrSysDT 𝕋 (fun n => Interval (Vec 𝕋 n)) n) {π : Vec ℝ n → Vec ℝ n}
+    (sys : NeurNetContrSysDT 𝕋 ℐ𝒱[𝕋] n) {π : Vec ℝ n → Vec ℝ n}
     (hπ : sys.contr.Sound π) (x₀ : Vec 𝕋 n) (k : ℕ) :
     sys.simulate π (Scalar.toRealVec x₀) k ∈ construct (sys.simulateBox x₀ k) := by -- --- PROOF ---
   induction k with
   | zero => exact Interval.mem_point x₀
   | succ k ih =>
     exact plus_outer (S := Interval (Vec 𝕋 n)) _ _
-      (Set.add_mem_add (mtimes_outer (S := fun n => Interval (Vec 𝕋 n)) sys.plant.A _
+      (Set.add_mem_add (mtimes_outer (S := ℐ𝒱[𝕋]) sys.plant.A _
         (Set.mem_biUnion rfl (Set.mem_image_of_mem _ ih))) (hπ.enclose_outer _ _ ih))
 
 end CORALean

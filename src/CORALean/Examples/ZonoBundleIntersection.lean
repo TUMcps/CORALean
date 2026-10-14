@@ -67,8 +67,8 @@ example :
 site has to. -/
 example (M : Mat ℝ 2 2) :
     (⋃ A ∈ construct M, (A *ᵥ ·) '' construct Example.boxBundle)
-      ⊆ construct (Mtimes.mtimes (S := fun n => ZonoBundle (Vec ℝ n)) M Example.boxBundle) :=
-  Mtimes.mtimes_outer (S := fun n => ZonoBundle (Vec ℝ n)) M Example.boxBundle
+      ⊆ construct (Mtimes.mtimes (S := 𝒵ℬ) M Example.boxBundle) :=
+  Mtimes.mtimes_outer (S := 𝒵ℬ) M Example.boxBundle
 
 /-- Compact, since this bundle's `k` is `1`, not `0`. -/
 example : IsCompact Example.boxBundle.construct :=

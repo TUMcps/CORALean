@@ -53,14 +53,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.Trajectory.oneStepFloat_timePoint_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋 n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
-    (traj : sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal Δt)) X.construct
+    (traj : sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
     (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) :
     x (toReal Δt) ∈ (sys.oneStepFloat X U u Δt η).1.construct := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
   set r := toReal Δt with hr
   -- the `U`-input's share, in `PU`
-  have hp := traj.sub_mem_inputReach_shift (S := fun k => Set (Vec ℝ k)) (U := U.construct)
+  have hp := traj.sub_mem_inputReach_shift (S := 𝒮) (U := U.construct)
     (toRealVec u) hWU hW (CompactSet.isBounded_construct U) ⟨hΔt.le, le_rfl⟩
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔt hη U hp
   -- the constant's share, in `Pu`
@@ -70,10 +70,10 @@ theorem LinearSys.Trajectory.oneStepFloat_timePoint_outer {sys : LinearSys 𝕋 
     ⟨fun _ => toRealVec u, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A (toRealVec u) hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
-  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-      (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (sys.expIntervalFloat Δt Δt η) X) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ X
+  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (S := 𝒵[𝕋])
+      (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt η) X) :=
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ X
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
         (Set.mem_image_of_mem _ traj.init))
   have hx : x r = (exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ toRealVec u)

@@ -55,10 +55,10 @@ theorem MatExp.curvatureEnclosure_outer (A : Interval (Mat 𝕋 n n)) {H : Zonot
   have hpt : toRealVec ũ ∈ (Interval.point ũ).zonotope.construct :=
     Interval.zonotope_contains _ (Interval.mem_point ũ)
   exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
-    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ H
+    (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ H
       (Set.mem_biUnion hF (Set.mem_image_of_mem _ hx)))
-    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) _
+    (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) _
       (Interval.point ũ).zonotope
       (Set.mem_biUnion hG (Set.mem_image_of_mem _ hpt))))
 

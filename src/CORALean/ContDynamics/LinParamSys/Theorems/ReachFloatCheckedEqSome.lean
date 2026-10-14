@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.reachFloatChecked_eq_some
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+    (sys : LinParamSys ℐ[𝕋] n)
     (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachOptions 𝕋)
     {Rs : (List (Zonotope (Vec 𝕋 n)))}
     (h : sys.reachFloatChecked params options = some Rs) :

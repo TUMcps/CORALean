@@ -51,8 +51,8 @@ def LinearSys.girardReachFloat (sys : LinearSys 𝕋 n) (I : Zonotope (Vec 𝕋 
     Option (List (Zonotope (Vec 𝕋 n))) := do
   let N := ⌈T / ToRat.toRat r⌉₊                                     -- N = ⌈T/r⌉
   let η ← sys.reachOrderFloat r r 2                                 -- an order [e^{rA}] admits
-  let eRA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{rA}] ·
-    (S := fun k => Zonotope (Vec 𝕋 k))
+  let eRA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{rA}] ·
+    (S := 𝒵[𝕋])
     (sys.expIntervalFloat r r η)
   let nA := MatExp.normUpperBound (Interval.point sys.A)            -- ≥ ‖A‖
   let x := mulUp r nA                                               -- ≥ r‖A‖

@@ -58,7 +58,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
     {xs : Vec 𝕋 n} {V R Rτ Rt : Zonotope (Vec 𝕋 n)} {options : LinearSys.ReachOptions 𝕋}
     (hstep : NonlinearSys.oneStepFloat A xs V R options = some (Rτ, Rt)) :
     0 < toReal options.Δt ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
+      sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U x u →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt),
         sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs) ∈ V.construct) →
@@ -77,7 +77,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   have hTf : (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)) = toReal Δt := by
     rw [ToRat.toReal_toRat, Rat.cast_zero, sub_zero]
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
-  have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := fun k => Set (Vec ℝ k))
+  have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := 𝒮)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))).construct

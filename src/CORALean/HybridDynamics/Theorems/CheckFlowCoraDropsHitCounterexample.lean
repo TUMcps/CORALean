@@ -39,6 +39,7 @@ invariant and reaches the guard at `t = 1/g`, in `(0, -1)`. The tree's `Location
 namespace CORALean
 
 open Matrix Scalar
+open scoped CORALean.Real
 
 variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type}
 
@@ -47,7 +48,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type}
 
 /-- CORA drops a reach set that a run leaves through the guard; the tree's `checkFlow` keeps it. -/
 theorem Location.checkFlowCora_drops_hit_counterexample
-    (ℓ : Location (fun n => Real.Zonotope (Vec ℝ n)) G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
+    (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hU : ![0, -g] ∈ ContSet.construct ℓ.U)
     (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) :
     let R : Real.Zonotope (Vec ℝ 2) := ⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩

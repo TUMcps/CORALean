@@ -62,7 +62,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 
 /-- `R = guardIntersect_hyperplaneMap(loc,guard,R0,params,options)` at floats, at the refined
 `R₀` and `tmax`, `η = options.η`, `p` the precision of the square root of `nᵀn`. -/
-def Location.guardIntersectHyperplaneMapFloat (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n)
+def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (nv : Vec 𝕋 n)
     (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) (η guardOrder zonotopeOrder p : ℕ) :
     Option (Zonotope (Vec 𝕋 n)) :=
@@ -135,7 +135,7 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location (fun k => Zonotope
     if (ltStrict zero Λint.1 || ltStrict Λint.2 zero) && (ltStrict zero denInt.1 ||
         ltStrict denInt.2 zero) && ltStrict zero (mulDown Λmin Λmin) && ltStrict zero nrmLo &&
         le nrmA (half (nsmulDown (η + 2) one)) then
-      some (ContSet.projectOnHyperplaneIntervalFloat (S := fun k => Zonotope (Vec 𝕋 k)) R cI
+      some (ContSet.projectOnHyperplaneIntervalFloat (S := 𝒵[𝕋]) R cI
         (Interval.mulLo d d rLo rHi) (Interval.mulHi d d rLo rHi))
     else none
   | _, _ => none

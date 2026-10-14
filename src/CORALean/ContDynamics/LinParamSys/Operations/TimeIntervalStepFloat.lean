@@ -40,14 +40,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `linComb(R, [e^{AΔt}] R) ⊕ [F] R` over every `A ∈ sys.A`, at Taylor order `η`,
 [1, Alg. 4]. -/
-def LinParamSys.timeIntervalStepFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.timeIntervalStepFloat (sys : LinParamSys ℐ[𝕋] n)
     (Δt : 𝕋) (η : ℕ) (R : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                                  -- [e^{AΔt}]
   let F := MatExp.intervalCorrectionMatrix sys.A Δt η                       -- [F]
-  LinComb.linComb R (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt R) ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- linComb(R, e R) ⊕ F R
-      (S := fun k => Zonotope (Vec 𝕋 k)) F R
+  LinComb.linComb R (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋]) eAΔt R) ⊞
+    Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- linComb(R, e R) ⊕ F R
+      (S := 𝒵[𝕋]) F R
 
 end CORALean
 

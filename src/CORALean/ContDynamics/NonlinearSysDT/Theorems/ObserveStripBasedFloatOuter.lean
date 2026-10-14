@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.observeStripBasedFloat_outer (sys : NonlinearSysDT n m)
-    {U : Zonotope (Vec 𝕋 m)} (steps : ℕ → sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U)
+    {U : Zonotope (Vec 𝕋 m)} (steps : ℕ → sys.LinStep (S := 𝒵[𝕋]) 𝕋 U)
     (o : NonlinearSysDT.ReachOptions)
     (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W R₀ : Zonotope (Vec 𝕋 n)) (y : ℕ → Vec 𝕋 p)
     (options : LinearSysDT.ObserveStripOptions 𝕋 (Zonotope (Vec 𝕋 n)) n p)
@@ -58,7 +58,7 @@ theorem NonlinearSysDT.observeStripBasedFloat_outer (sys : NonlinearSysDT n m)
   | zero =>
     unfold NonlinearSysDT.observeStripBasedFloat
     split
-    · exact ContSet.intersectStripSeq_outer (S := fun k => Zonotope (Vec 𝕋 k)) _ _ _ _ _ ⟨h0, hy 0⟩
+    · exact ContSet.intersectStripSeq_outer (S := 𝒵[𝕋]) _ _ _ _ _ ⟨h0, hy 0⟩
     · exact Zonotope.intersectStrip_outer _ _ _ _ _ ⟨h0, hy 0⟩
   | succ k ih =>
     unfold NonlinearSysDT.observeStripBasedFloat

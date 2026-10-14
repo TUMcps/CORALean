@@ -48,7 +48,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 /-- Every state a stay passes through by time `r` lies in the split float step
 from `R₀`, with no assumption on where `ℓ.U` sits. -/
 theorem Location.Trajectory.timeIntervalSplitFloat_outer
-    {ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n} {τ : ℝ} {x u : ℝ → Vec ℝ n}
+    {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x u : ℝ → Vec ℝ n}
     (traj : ℓ.Trajectory τ x u)
     {R₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
     (hη : ℓ.dynamics.OrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)
@@ -59,7 +59,7 @@ theorem Location.Trajectory.timeIntervalSplitFloat_outer
   -- `x t` less its free motion and the constant's share is one `Ũ`-input's share
   have hrest := ((traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, ht0.trans htτ⟩
     (CompactSet.isBounded_construct ℓ.U)).sub_mem_inputReach_recentre
-      (S' := fun k => Zonotope (Vec 𝕋 k)) (V := ℓ.U)
+      (S' := 𝒵[𝕋]) (V := ℓ.U)
       subset_rfl
     ⟨ht0, htτ⟩
   -- `{ũ}` and `[0, ũ]` hold what they are built from
@@ -79,7 +79,7 @@ theorem Location.Trajectory.timeIntervalSplitFloat_outer
       (Interval.point ℓ.U.c).zonotope ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, t]` is an admissible input of `[0, ũ]`
   have hconst : Real.MatExp.expIntegral A t *ᵥ ũ
-      ∈ ℓ.dynamics.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) seg t :=
+      ∈ ℓ.dynamics.inputReach (S := 𝒵[𝕋]) seg t :=
     ⟨fun _ => ũ, fun _ _ => hũseg, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ ht0).symm⟩
   have hc := ℓ.dynamics.inputReach_subset_inputSolutionFloat hr hη seg

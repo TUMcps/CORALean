@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `reachFloat`, or `none` if a float of its result is a NaN. -/
-def NeurNetContrSys.reachFloatChecked (sys : NeurNetContrSys 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
+def NeurNetContrSys.reachFloatChecked (sys : NeurNetContrSys 𝕋 𝒵[𝕋] n)
     (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋) :
     Option (Zonotope (Vec 𝕋 n)) :=
   ifNoNaN (𝕋 := 𝕋) (sys.reachFloat params options)

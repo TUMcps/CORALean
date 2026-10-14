@@ -78,15 +78,15 @@ theorem aux_linReach_input {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : Nonlin
       (x - toRealVec xs) + Scalar.toRealMat B *ᵥ (u - toRealVec U.c)) ∈ L.construct) :
     sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs) ∈
       (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
-        Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B (Recentre.recentre U)) ⊞
+        Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recentre.recentre U)) ⊞
           L).construct := by -- --- PROOF ---
   set us := toRealVec U.c
   have hf₀ : sys.f (toRealVec xs) us ∈ (fm.f (Interval.point xs) (Interval.point U.c)).construct :=
     h.f_mem _ _ _ (Interval.mem_point (α := Vec 𝕋 n) xs) _ (Interval.mem_point (α := Vec 𝕋 m) U.c)
   have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ construct
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
       (Recentre.recentre U)) :=
-    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B _
+    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B _
       (Set.mem_biUnion (Set.mem_singleton _)
       (Set.mem_image_of_mem _ (Zonotope.sub_centre_mem_recentre hu)))
   have hsplit : sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs)
@@ -107,7 +107,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
     {R Rτ Rt : Zonotope (Vec 𝕋 n)} (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt)) :
     0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
+      sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
         x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
@@ -128,7 +128,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
   have husU' := (aux_linReach_mem_hull U.interval U.c).2
   -- a run stays in `Ω`, so in `X`
   have hconf : 0 < toReal Δt → ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal Δt)) R.construct
+      sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct
         U.construct x u → ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.construct :=
     fun hΔt {x u} traj t ht => (aux_linReach_mem_hull Ω xs).1
       (h.regionFloat_confined hΩ hΔt.le traj (Zonotope.interval_contains U) (a := 0)
@@ -137,7 +137,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
   have hlin : ∀ {x : Vec ℝ n} {u : Vec ℝ m}, x ∈ X.construct → u ∈ U.construct →
       sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs) ∈
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
-          Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B (Recentre.recentre U)) ⊞
+          Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recentre.recentre U)) ⊞
             (fm.hessRemainder A B xs U.c X U').zonotope).construct := fun {x u} hx hu =>
     aux_linReach_input h.toEncloses A B xs hu (Interval.zonotope_contains _
       ((h.hessRemainder_abstractionError A B hxsX husU').encloses x hx u (hUU' hu)))
@@ -162,10 +162,10 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
         ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
     -- `x - x✱` is a run of the `'lin'` linearization, so its differences are in `Rdiff`
-    have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := fun k => Set (Vec ℝ k))
+    have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := 𝒮)
         (Set.Icc 0 (toReal Δt)) Rdelta.construct
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
-          Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B (Recentre.recentre U)) ⊞
+          Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recentre.recentre U)) ⊞
             (fm.hessRemainder A B xs U.c X U').zonotope).construct
         (fun t => x t - toRealVec xs)
         (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) :=

@@ -43,7 +43,7 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ParallelHybridAutomaton.boxLifting (binds : ∀ i, Fin (n i) → InputSource k n m) :
-    ParallelHybridAutomaton.Lifting (fun n => Interval (Vec ℝ n)) (fun n => HPolytope (Vec ℝ n))
+    ParallelHybridAutomaton.Lifting (ℐ𝒱) (ℋ𝒫)
       n m binds where
   inv := HPolytope.stackProd
   guard i g := HPolytope.comap (blockProj i) g

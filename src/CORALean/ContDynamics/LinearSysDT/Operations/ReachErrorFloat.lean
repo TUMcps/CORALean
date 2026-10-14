@@ -61,7 +61,7 @@ noncomputable def LinearSysDT.reachErrorFloat (sys : LinearSysDT 𝕋 n)
   let rec E : ℕ → Real.Zonotope (Vec ℝ n)  -- E_k
     | 0 => R₀.E.nominal.zonotope
     | k + 1 =>
-      let Rk := sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ options
+      let Rk := sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ options
       let M := Zonotope.mtimes sys.A Rk
       let W := M.plus U
       (Real.Zonotope.mtimes (Scalar.toRealMat sys.A) (E k)).plus

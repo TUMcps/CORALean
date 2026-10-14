@@ -32,7 +32,7 @@ variable {n : ℕ}
 
 def ZonoBundle.enlarge (zB : ZonoBundle (Vec ℝ n)) (factor : Vec ℝ n) : ZonoBundle (Vec ℝ n) where
   k := zB.k
-  Z := fun i => ContSet.enlarge (S := fun n => Zonotope (Vec ℝ n)) (zB.Z i) factor
+  Z := fun i => ContSet.enlarge (S := 𝒵) (zB.Z i) factor
 
 end CORALean.Real
 

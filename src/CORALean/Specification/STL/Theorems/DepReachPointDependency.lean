@@ -87,7 +87,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
       (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l)) i := by
     rw [hξd]
     -- `heldSim` is the solution at `t_i`, for the inputs `B u` in `B U`
-    refine (LinearSys.mk A).closedForm_heldInput (S := fun k => Zonotope (Vec ℝ k))
+    refine (LinearSys.mk A).closedForm_heldInput (S := 𝒵)
       (U := Zonotope.mtimes B U) (Zonotope.isBounded_construct _) hΔt _ ?_ i
     intro j
     refine ⟨fun l => α (X₀.h + j * U.h + l), fun l => hα _, ?_⟩

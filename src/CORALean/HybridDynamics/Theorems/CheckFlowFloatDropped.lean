@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 omit [∀ n, ContSet (G n) (Vec ℝ n)] in
 /-- A dropped set carries the flow nowhere outward on its projection. -/
 theorem Location.checkFlowFloat_dropped
-    (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n) (c : Vec 𝕋 n)
+    (ℓ : Location 𝒵[𝕋] G L 𝕋 n) (c : Vec 𝕋 n)
     (d : 𝕋) (Rs : List (Zonotope (Vec 𝕋 n))) {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ Rs)
     (hdrop : R ∉ ℓ.checkFlowFloat c d Rs) {x u : Vec ℝ n} (hx : x ∈ R.construct)
     (hu : u ∈ ContSet.construct ℓ.U) :
@@ -44,26 +44,26 @@ theorem Location.checkFlowFloat_dropped
       (x - (toRealVec c ⬝ᵥ x - toReal d) • toRealVec c) + u) ≤ 0 := by -- --- PROOF ---
   -- dropped means the second test certified `flowUp ≤ 0`
   have hle : le (((Plus.plus
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) ℓ.dynamics.A
-      (ContSet.projectOnHyperplaneFloat (S := fun k => Zonotope (Vec 𝕋 k)) R c d)) ℓ.U).boundDot
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A
+      (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d)) ℓ.U).boundDot
         (c := rowLin (fun _ : Fin 1 => c) 0) c fun _ => rfl).val) zero = true := by
     by_contra hne
     refine hdrop (List.mem_filter.mpr ⟨hR, ?_⟩)
     simp only [Bool.or_eq_true, Bool.not_eq_true']
     exact Or.inr (by simpa using hne)
   -- the projected state, a flow input and the flow set
-  have hp := ContSet.projectOnHyperplaneFloat_outer (S := fun k => Zonotope (Vec 𝕋 k)) R c
+  have hp := ContSet.projectOnHyperplaneFloat_outer (S := 𝒵[𝕋]) R c
     d ⟨x, hx, rfl⟩
-  have hmap := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) ℓ.dynamics.A
-    (ContSet.projectOnHyperplaneFloat (S := fun k => Zonotope (Vec 𝕋 k)) R c d)
+  have hmap := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A
+    (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d)
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hp))
   have hflow := Plus.plus_outer
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) ℓ.dynamics.A
-      (ContSet.projectOnHyperplaneFloat (S := fun k => Zonotope (Vec 𝕋 k)) R c d)) ℓ.U
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A
+      (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d)) ℓ.U
     ⟨_, hmap, u, hu, rfl⟩
   have hb := (((Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋)
-    (S := fun k => Zonotope (Vec 𝕋 k)) ℓ.dynamics.A
-      (ContSet.projectOnHyperplaneFloat (S := fun k => Zonotope (Vec 𝕋 k)) R c d)) ℓ.U).boundDot
+    (S := 𝒵[𝕋]) ℓ.dynamics.A
+      (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d)) ℓ.U).boundDot
         (c := rowLin (fun _ : Fin 1 => c) 0) c fun _ => rfl)).le _ hflow
   have h0 := toReal_le_of_le hle
   rw [toReal_zero] at h0

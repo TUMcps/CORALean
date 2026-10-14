@@ -46,6 +46,9 @@ open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
+/-- The zonotope-bundle family over vectors: pins `(S := 𝒵ℬ)`. -/
+scoped notation "𝒵ℬ" => fun n => ZonoBundle (Vec ℝ n)
+
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
@@ -84,11 +87,11 @@ instance : OfPoint (ZonoBundle α) α where
 
 /-- `map` at the relabelling: `reindexLin e` is bijective, so `map_exact`
 applies, unlike `Zonotope`'s instance of it, which needs no hypothesis. -/
-instance : Reindex (fun n => ZonoBundle (Vec ℝ n)) where
+instance : Reindex (𝒵ℬ) where
   reindex e zB := ZonoBundle.map (reindexLin e) zB
   reindex_exact e zB := ZonoBundle.map_exact (reindexLin e) (aux_reindexLin_bijective e) zB
 
-instance : Mtimes (Mat ℝ) (fun n => ZonoBundle (Vec ℝ n)) where
+instance : Mtimes (Mat ℝ) (𝒵ℬ) where
   mtimes := ZonoBundle.mtimes
   mtimes_outer M zB := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -96,7 +99,7 @@ instance : Mtimes (Mat ℝ) (fun n => ZonoBundle (Vec ℝ n)) where
 
 /-- The same operation at a matrix zonotope, which keeps the correlations an
 interval matrix would throw away. Componentwise, as `mtimes` is. -/
-noncomputable instance : Mtimes 𝕄𝒵 (fun n => ZonoBundle (Vec ℝ n)) where
+noncomputable instance : Mtimes 𝕄𝒵 (𝒵ℬ) where
   mtimes := ZonoBundle.mtimesMatZonotope
   mtimes_outer M zB := ZonoBundle.mtimesMatZonotope_outer M zB
 

@@ -42,7 +42,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAlgFloat_outer
     (hR : fm.reachAlgFloat alg params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-        sys.Trajectory (S := fun k => Set (Vec ℝ k))
+        sys.Trajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           params.U.construct x u →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)

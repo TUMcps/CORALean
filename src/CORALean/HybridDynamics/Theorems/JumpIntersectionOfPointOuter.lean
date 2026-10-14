@@ -28,6 +28,7 @@ nowhere else to put it (#39).
 namespace CORALean
 
 open Matrix ContSet Scalar Plus Mtimes OfPoint
+open scoped CORALean.Real
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
@@ -48,7 +49,7 @@ theorem Transition.jumpIntersectionOfPoint_outer [∀ n, Intersection (S n) (Vec
 /-- Anonymous, its content being that it elaborates (#38): `Real.ConPolyZono` has no
 `Real.OfInterval` instance, yet this typechecks, and its `Intersection` is exact, so the
 reset cuts a non-convex reachable set by its guard exactly. -/
-example (e : Transition (fun n => Real.ConPolyZono (Vec ℝ n)) L ℝ n)
+example (e : Transition 𝒞𝒫𝒵 L ℝ n)
     (R : Real.ConPolyZono (Vec ℝ n))
     {z : Vec ℝ n} (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (e.jumpIntersectionOfPoint R) :=

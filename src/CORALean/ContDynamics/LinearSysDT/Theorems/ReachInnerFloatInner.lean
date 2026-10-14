@@ -42,6 +42,7 @@ namespace CORALean
 
 open CORALean.Float
 open CORALean.Float.InflatedContSet
+open scoped CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
@@ -55,9 +56,9 @@ theorem LinearSysDT.reachInnerFloat_inner (sys : LinearSysDT 𝕋 n) {o : ℕ} (
     {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
     sys.reachInnerFloat o ho R₀ U k ⊆
-      sys.reachSet (S := fun n => Real.Zonotope (Vec ℝ n))
+      sys.reachSet (S := 𝒵)
         (nominal R₀) (nominal U) k :=
-  sys.reachSet_inner_of_outer (S := fun n => Real.Zonotope (Vec ℝ n))
+  sys.reachSet_inner_of_outer (S := 𝒵)
     (Real.Zonotope.convex_construct _) (Real.Zonotope.isCompact_construct _)
     (Real.Zonotope.convex_construct _) (Real.Zonotope.isCompact_construct _) k
     ⟨_, Real.Zonotope.centre_mem_construct _⟩ (Real.Zonotope.isBounded_construct _)

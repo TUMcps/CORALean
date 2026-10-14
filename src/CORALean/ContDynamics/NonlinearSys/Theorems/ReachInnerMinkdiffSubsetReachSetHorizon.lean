@@ -44,21 +44,21 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSet_horizon
     (U : Set (Vec ℝ m)) (hu₀ : u₀ ∈ U) {Δt : ℝ} (hΔt : 0 ≤ Δt) (steps fuel : ℕ)
     (X₀ : Set (Vec ℝ n))
     (hcert : ∀ (T : ℝ) (X : Set (Vec ℝ n)) (e : Vec ℝ n) (st : NonlinearSys.LinReachInnerState n 𝓛),
-      X ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 T) X₀ {u₀} T →
+      X ⊆ sys.reachSet (S := 𝒮) (Icc 0 T) X₀ {u₀} T →
       NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st) →
       NonlinearSys.LinReachInnerCert sys u₀ Δt X st)
     {timePoint timeInt : ℕ → Set (Vec ℝ n)}
     (h : NonlinearSys.reachInnerMinkdiff ops (fun x => sys.f x u₀) X₀ Δt steps fuel =
       some (timePoint, timeInt)) :
     (⋃ k, timePoint k) ∪ (⋃ k, timeInt k) ⊆ ⋃ t ∈ Icc 0 (steps * Δt),
-      sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 t) X₀ U t := by -- --- PROOF ---
+      sys.reachSet (S := 𝒮) (Icc 0 t) X₀ U t := by -- --- PROOF ---
   obtain ⟨htp, hti, htp0, hti0⟩ :=
     NonlinearSys.reachInnerMinkdiff_subset_reachSet ops sys u₀ U hu₀ hΔt steps fuel X₀ hcert h
   refine union_subset (iUnion_subset fun k => ?_) (iUnion_subset fun k => ?_)
   · -- a time-point cell at `k Δt ≤ steps Δt`
     rcases le_or_gt k steps with hk | hk
     · refine (htp k).trans (subset_biUnion_of_mem (u := fun t =>
-        sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 t) X₀ U t) ⟨by positivity, ?_⟩)
+        sys.reachSet (S := 𝒮) (Icc 0 t) X₀ U t) ⟨by positivity, ?_⟩)
       exact mul_le_mul_of_nonneg_right (by exact_mod_cast hk) hΔt
     · rw [htp0 k hk]; exact empty_subset _
   · -- a time-interval cell in `[k Δt, (k+1) Δt] ⊆ [0, steps Δt]`

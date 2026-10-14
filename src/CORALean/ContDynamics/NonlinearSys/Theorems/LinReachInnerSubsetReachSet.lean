@@ -52,7 +52,7 @@ theorem NonlinearSys.linReachInner_subset_reachSet (ops : NonlinearSys.LinReachI
     {X : Set (Vec ℝ n)} {e : Vec ℝ n} {st : NonlinearSys.LinReachInnerState n 𝓛}
     (h : NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st))
     (cert : NonlinearSys.LinReachInnerCert sys u₀ Δt X st) :
-    st.Rtp ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 Δt) X {u₀}
+    st.Rtp ⊆ sys.reachSet (S := 𝒮) (Icc 0 Δt) X {u₀}
       Δt := by -- --- PROOF ---
   -- what `Rtp.set` and `Rlintp__ + p` are
   have hst : st.Rtp = minkowskiDiff st.Rlintp st.Rerror ∧
@@ -74,7 +74,7 @@ theorem NonlinearSys.linReachInner_subset_reachSet (ops : NonlinearSys.LinReachI
     abel
   -- `Prop. 1` for the affine map at the centre `0`, (21) rewritten about `p`
   obtain ⟨Ω, K, hLip, hex⟩ := cert.flow
-  have key := NonlinearSys.minkowskiDiff_add_subset_reachSet (S := fun k => Set (Vec ℝ k)) sys
+  have key := NonlinearSys.minkowskiDiff_add_subset_reachSet (S := 𝒮) sys
     X {u₀} hΔt M ((Matrix.isUnit_iff_isUnit_det _).mp (Matrix.isUnit_exp _)) v cert.compact
     cert.convex cert.nonempty (c := 0)
     (fun e he => by rw [smul_zero, zero_sub]; exact cert.symm e he) (mem_singleton u₀) hLip hex

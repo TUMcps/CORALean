@@ -42,7 +42,7 @@ def LinearSysDT.simulateBoxIn (sys : LinearSysDT 𝕋 n) (B₀ : Interval (Vec �
     (U : ℕ → Interval (Vec 𝕋 n)) : ℕ → Interval (Vec 𝕋 n)
   | 0 => B₀
   | k + 1 =>
-    plus (S := Interval (Vec 𝕋 n)) (mtimes (S := fun n => Interval (Vec 𝕋 n)) sys.A
+    plus (S := Interval (Vec 𝕋 n)) (mtimes (S := ℐ𝒱[𝕋]) sys.A
       (sys.simulateBoxIn B₀ U k)) (U k)
 
 end CORALean

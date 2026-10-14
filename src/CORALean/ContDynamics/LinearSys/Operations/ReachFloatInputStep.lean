@@ -41,8 +41,8 @@ def LinearSys.reachFloatInputStep (eAΔt : Interval (Mat 𝕋 n n)) (Pu : Zonoto
   let Hti := s.2.1                                                  -- H(τ_k)
   let PU := s.2.2.1                                                 -- P^R(t_{k+1})
   let PUnext := s.2.2.2                                             -- [e^{AΔt}]^k P^R(Δt)
-  let eA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{AΔt}] ·
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt
+  let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{AΔt}] ·
+    (S := 𝒵[𝕋]) eAΔt
   let PUnext' := eA PUnext                                          -- [e^{AΔt}]^{k+1} P^R(Δt)
   (Reduce.reduce (eA Htp ⊞ Pu) ρ,                                   -- H(t_{k+2})
     Reduce.reduce (eA Hti ⊞ Pu) ρ,                                  -- H(τ_{k+1})

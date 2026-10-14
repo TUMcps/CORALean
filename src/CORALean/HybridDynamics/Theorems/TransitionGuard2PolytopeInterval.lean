@@ -25,6 +25,7 @@ A box guard, converted by `Interval.hPolytope`, is the same guard: exact
 namespace CORALean
 
 open ContSet
+open scoped CORALean.Real
 
 variable {L : Type} {𝕋 : Type} {n : ℕ}
 
@@ -33,8 +34,8 @@ variable {L : Type} {𝕋 : Type} {n : ℕ}
 
 /-- A box guard, converted by `Interval.hPolytope`, is the same guard: exact. -/
 theorem Transition.guard2polytope_interval
-    (e : Transition (fun n => Real.Interval (Vec ℝ n)) L 𝕋 n) :
-    construct (e.guard2polytope (P := fun n => Real.HPolytope (Vec ℝ n))
+    (e : Transition ℐ𝒱 L 𝕋 n) :
+    construct (e.guard2polytope (P := ℋ𝒫)
       Real.Interval.hPolytope).guard = construct e.guard :=
   Transition.guard2polytope_exact _ (fun g => Real.Interval.hPolytope_exact g) e
 

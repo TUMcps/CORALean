@@ -52,14 +52,14 @@ theorem LinearSys.affineTimePointNextFloat_outer (sys : LinearSys 𝕋 n) {H : Z
       ∈ (sys.affineTimePointNextFloat H ũ Δt η).construct := by -- --- PROOF ---
   -- `e^{AΔt} h` in `[e^{AΔt}] H`
   have hexp := sys.exp_mem_expIntervalFloat hη le_rfl le_rfl
-  have hmt := Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k))
+  have hmt := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋])
     (sys.expIntervalFloat Δt Δt η) H (Set.mem_biUnion hexp (Set.mem_image_of_mem _ hh))
   -- the input held at `ũ` over `[0, Δt]` contributes the constant's share
   have hpt : toRealVec ũ ∈ (Interval.point ũ).zonotope.construct :=
     Interval.zonotope_contains _ (Interval.mem_point ũ)
   have hreach : Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ toRealVec ũ
-      ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) (Interval.point ũ).zonotope (toReal Δt) :=
+      ∈ sys.inputReach (S := 𝒵[𝕋]) (Interval.point ũ).zonotope (toReal Δt) :=
     ⟨fun _ => toRealVec ũ, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput _ _ hΔt.le).symm⟩
   exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hmt

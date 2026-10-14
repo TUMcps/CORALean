@@ -52,6 +52,16 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+/-- The interval-matrix family.
+The scalar is an argument: a notation cannot capture the section
+variable `𝕋`, so `(S := ℐ[𝕋])`. -/
+scoped notation "ℐ[" t "]" => fun m n => Interval (Mat t m n)
+
+/-- The interval-vector family.
+The scalar is an argument: a notation cannot capture the section
+variable `𝕋`, so `(S := ℐ𝒱[𝕋])`. -/
+scoped notation "ℐ𝒱[" t "]" => fun n => Interval (Vec t n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -99,13 +109,13 @@ instance : Reduce (Interval (Vec 𝕋 n)) (Vec ℝ n) where
 
 /-- The one field here that is an equality: a relabelling does no arithmetic, so
 the float box loses exactly what the exact one does, namely nothing. -/
-instance : Reindex (fun n => Interval (Vec 𝕋 n)) where
+instance : Reindex ℐ𝒱[𝕋] where
   reindex e I := (Interval.reindex e I).materialise
   reindex_exact e I := by
     rw [Interval.materialise_eq]
     exact Interval.reindex_exact e I
 
-instance : Mtimes (Mat 𝕋) (fun n => Interval (Vec 𝕋 n)) where
+instance : Mtimes (Mat 𝕋) ℐ𝒱[𝕋] where
   mtimes M I := (Interval.mtimes M I).materialise
   mtimes_outer M I := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, Interval.materialise_eq]
@@ -113,20 +123,20 @@ instance : Mtimes (Mat 𝕋) (fun n => Interval (Vec 𝕋 n)) where
 
 /-- The same operation at an interval matrix, which the float `expIntervalTaylor`
 chain builds towards: a box needs no fresh generator to absorb the rounding.
-No scoped `ℐ` here, unlike `Real`'s: it would have to close over `𝕋`. -/
-instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun n => Interval (Vec 𝕋 n)) where
+The family is `ℐ[𝕋]`. -/
+instance : Mtimes ℐ[𝕋] ℐ𝒱[𝕋] where
   mtimes IM I := (Interval.mtimesIntervalMat IM I).materialise
   mtimes_outer IM I := by
     rw [Interval.materialise_eq]
     exact Interval.mtimesIntervalMat_outer IM I
 
 /-- A zero-width box at the stored point, nothing rounded. -/
-instance : OfScalarPoint 𝕋 (fun n => Interval (Vec 𝕋 n)) where
+instance : OfScalarPoint 𝕋 ℐ𝒱[𝕋] where
   ofVec v := Interval.point v
   mem_ofVec v := Interval.mem_point v
 
 /-- The rounded midpoint: any point of the box would do, as `enlarge` is sound about any. -/
-instance : ScalarCentre 𝕋 (fun n => Interval (Vec 𝕋 n)) where
+instance : ScalarCentre 𝕋 ℐ𝒱[𝕋] where
   centreVec I := Interval.center I
 
 /-- The floats of the lower and the upper bound, for `ifNoNaN`. -/

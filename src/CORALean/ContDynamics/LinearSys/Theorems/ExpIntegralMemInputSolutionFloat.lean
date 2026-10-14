@@ -39,7 +39,7 @@ theorem LinearSys.expIntegral_mem_inputSolutionFloat (sys : LinearSys 𝕋 n) {�
     Real.MatExp.expIntegral (toRealMat sys.A) (toReal Δt) *ᵥ uc
       ∈ (sys.inputSolutionFloat Δt η V).construct :=
   sys.inputReach_subset_inputSolutionFloat hΔt hη V
-    (sys.expIntegral_mem_inputReach (S := fun k => Zonotope (Vec 𝕋 k)) hΔt.le huc)
+    (sys.expIntegral_mem_inputReach (S := 𝒵[𝕋]) hΔt.le huc)
 
 end CORALean
 

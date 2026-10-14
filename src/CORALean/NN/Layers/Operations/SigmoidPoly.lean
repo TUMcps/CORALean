@@ -23,6 +23,7 @@ built rather than merely stated, every stored field an expression in the scalar.
 namespace CORALean
 
 open Float Float.FloatOps
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {N : ℕ}
 
@@ -32,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {
 /-- The polynomial activation layer at the sigmoid, one fit and one grid per neuron. -/
 def Layer.sigmoidPoly (k : ℕ) (c : Fin n → 𝕋 → 𝕋 → Fin (m + 1) → 𝕋)
     (dx : Fin n → 𝕋 → 𝕋 → 𝕋) (p : Fin n → 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) :
-    Layer (fun k => Float.PolyZonotope (Vec 𝕋 k)) n n :=
+    Layer 𝒫𝒵[𝕋] n n :=
   Layer.activationPoly fun i => sigmoidPolyRelaxation k (c i) (dx i) (p i)
 
 end CORALean

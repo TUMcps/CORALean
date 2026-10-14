@@ -42,6 +42,7 @@ family is written out here, as `discretizeEnclosure` writes out `ℐ`.
 namespace CORALean
 
 open Matrix Scalar
+open scoped CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
@@ -51,7 +52,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- The system a step of `Δt` leaves behind, its matrix enclosed by a matrix
 zonotope: the Taylor truncation at order `η` widened by the tail bound. -/
 noncomputable def LinearSys.discretizeMatZonotope (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) :
-    LinParamSysDT (fun m n => Real.Zonotope (Mat ℝ m n)) n :=
+    LinParamSysDT 𝕄𝒵 n :=
   ⟨Real.MatExp.expMatZonoEnclosure (Real.Zonotope.ofPoint (Δt • toRealMat sys.A)) η⟩
 
 end CORALean

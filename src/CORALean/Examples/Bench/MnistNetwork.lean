@@ -73,21 +73,21 @@ theorem mem_outVec {m : ℕ} (b : Vec 𝕋 m) : toRealVec b ∈ (outVec b).const
 /-! ## The affine layer, weights rounded outward -/
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (Mat 𝕋) S] [Mtimes (fun m n => Interval (Mat 𝕋 m n)) S] [Float.IntervalOuter S 𝕋]
+  [Mtimes (Mat 𝕋) S] [Mtimes ℐ[𝕋] S] [Float.IntervalOuter S 𝕋]
   [Float.OfInterval S 𝕋] {n m : ℕ}
 
 /-- CORA's affine layer, `x ↦ W x + b`, at `outMat W`/`outVec b` rather than
 the plain `Mtimes` instance -- sound at every precision, exact where `W`/`b`
 already sit on `𝕋`'s grid. -/
 def affineLayer (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Layer S n m where
-  enclose s := plus (mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (outMat W) s)
+  enclose s := plus (mtimes (𝕄 := ℐ[𝕋]) (outMat W) s)
     (ofInterval (outVec b))
 
 set_option linter.unusedSectionVars false in
 theorem affineLayer_sound (W : Mat 𝕋 m n) (b : Vec 𝕋 m) :
     (affineLayer (S := S) W b).Sound fun x => toRealMat W *ᵥ x + toRealVec b :=
   ⟨fun s _x hx => plus_outer _ _ (Set.add_mem_add
-    (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (outMat W) s
+    (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (outMat W) s
       (Set.mem_biUnion (mem_outMat W) (Set.mem_image_of_mem _ hx)))
     (ofInterval_outer _ (mem_outVec b)))⟩
 
@@ -172,7 +172,7 @@ value, so a caller can read `S` back after each layer instead of only at the
 end -- calling exactly the same `affineLayer.enclose`/`Layer.relu.enclose`
 `buildChain` packs into `NeuralNetwork` nodes, so the two never disagree.
 
-Run at `S := fun n => Interval (Vec 𝕋 n)`: a box carries no generators, so
+Run at `S := ℐ𝒱[𝕋]`: a box carries no generators, so
 `Mtimes`/`Relu` cost exactly `O(rows × cols)` per layer with nothing further
 to bound. `Float.Zonotope` was tried first and dropped -- at these networks'
 256-wide layers, its generator bookkeeping (`affineLayer`'s residual block,
@@ -211,10 +211,10 @@ def runReport (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
   | [], _, s => (s, #[], false)
   | l :: rest, n, s =>
     let s1 : Interval (Vec 𝕋 l.outDim) :=
-      (affineLayer (S := fun n => Interval (Vec 𝕋 n)) (layerMat instUnchecked l n).get
+      (affineLayer (S := ℐ𝒱[𝕋]) (layerMat instUnchecked l n).get
         (layerVec instUnchecked l).get).enclose s
     let s2 : Interval (Vec 𝕋 l.outDim) :=
-      if l.relu then (Layer.relu (S := fun n => Interval (Vec 𝕋 n)) reluSlope).enclose s1 else s1
+      if l.relu then (Layer.relu (S := ℐ𝒱[𝕋]) reluSlope).enclose s1 else s1
     let (final, restRadii, restOver) := runReport instUnchecked toD overflows rest s2
     (final, #[meanRadius toD s2] ++ restRadii,
       boxOverflows overflows s1 || boxOverflows overflows s2 || restOver)

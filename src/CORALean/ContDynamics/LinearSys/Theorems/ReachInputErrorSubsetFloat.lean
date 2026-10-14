@@ -74,7 +74,7 @@ theorem LinearSys.reachInputError_subset_float (sys : LinearSys 𝕋 n) {Δt : �
     rw [← Real.Zonotope.mtimes_exact] at hy
     obtain ⟨z, hz, rfl⟩ := hy
     exact Plus.plus_outer _ _ (Set.add_mem_add
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n)) _ _
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) _ _
         (Set.mem_biUnion heA (Set.mem_image_of_mem _ (ih hz)))) (hbox hb))
 
 end CORALean

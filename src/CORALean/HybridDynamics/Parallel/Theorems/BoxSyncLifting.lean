@@ -32,8 +32,8 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ParallelHybridAutomaton.boxSyncLifting (binds : ∀ i, Fin (n i) → InputSource k n m) :
-    ParallelHybridAutomaton.SyncLifting (fun n => Interval (Vec ℝ n))
-      (fun n => HPolytope (Vec ℝ n)) n m binds where
+    ParallelHybridAutomaton.SyncLifting (ℐ𝒱)
+      (ℋ𝒫) n m binds where
   toLifting := ParallelHybridAutomaton.boxLifting binds
   guardAll gs := HPolytope.stackProd fun i => match gs i with
     | some g => g

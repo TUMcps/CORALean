@@ -40,6 +40,7 @@ namespace CORALean
 
 open CORALean.Float FloatOps SoundFloatArithmetic InflatedContSet Matrix
 open scoped Pointwise
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -53,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 by that order's box. -/
 theorem aux_inputTerm_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {U : Zonotope (Vec 𝕋 n)} (hU : (0 : Vec ℝ n) ∈ U.E.construct) (i : ℕ) :
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) U).construct
       ⊆ (sys.inputTerm (toReal r) i *ᵥ ·) '' ContSet.construct (nominal U)
         + (sys.inputTermBoxFloat r U i).construct := by -- --- PROOF ---
@@ -69,10 +70,10 @@ theorem aux_inputTerm_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0
   obtain ⟨_, ⟨u, hu, rfl⟩, b, hb, rfl⟩ := Zonotope.mtimesIntervalMat_subset_add_box IT U hU hT hx'
   obtain ⟨a, ha, e, he, rfl⟩ := hu
   have hTe : sys.inputTerm (toReal r) i *ᵥ e ∈
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       IT U.E.zonotope).construct :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) IT _
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) IT _
       (Set.mem_biUnion hT ⟨e, Interval.zonotope_contains _ he, rfl⟩)
   have hb' : b ∈ ContSet.construct (Zonotope.mtimesIntervalMatBox IT U).zonotope :=
     Interval.zonotope_contains _ hb
@@ -86,7 +87,7 @@ box. -/
 theorem aux_inputTaylorSumFloat_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) {U : Zonotope (Vec 𝕋 n)} (hU : (0 : Vec ℝ n) ∈ U.E.construct) :
     ∀ i, (sys.inputTaylorSumFloat r U i).construct
-      ⊆ ContSet.construct (sys.inputTaylorSum (S := fun k => Real.Zonotope (Vec ℝ k))
+      ⊆ ContSet.construct (sys.inputTaylorSum (S := 𝒵)
           (toReal r) (nominal U) i)
         + (sys.inputTaylorSumBoxFloat r U i).construct := by -- --- PROOF ---
   intro i
@@ -101,7 +102,7 @@ theorem aux_inputTaylorSumFloat_subset_add_box (sys : LinearSys 𝕋 n) {r : �
   | succ i ih =>
     -- one more float sum: both summands keep `0` in their error boxes
     set S := sys.inputTaylorSumFloat r U i
-    set T := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    set T := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (MatExp.intervalInputTerm (Interval.point sys.A) r (i + 1)) U
     have hS0 := sys.zero_mem_inputTaylorSumFloat_error hr hU i
     have hT0 : (0 : Vec ℝ n) ∈ T.E.construct := by
@@ -121,7 +122,7 @@ theorem aux_inputTaylorSumFloat_subset_add_box (sys : LinearSys 𝕋 n) {r : �
     have hp' : p ∈ ContSet.construct (Zonotope.plusBox S T).zonotope :=
       Interval.zonotope_contains _ hp
     refine ⟨s₀ + t₀, ?_, bs + bt + p, ?_, by dsimp only; abel⟩
-    · show s₀ + t₀ ∈ ((sys.inputTaylorSum (S := fun k => Real.Zonotope (Vec ℝ k)) (toReal r)
+    · show s₀ + t₀ ∈ ((sys.inputTaylorSum (S := 𝒵) (toReal r)
         (nominal U) i).plus (Real.Zonotope.mtimes (sys.inputTerm (toReal r) (i + 1))
           (nominal U))).construct
       rw [← Real.Zonotope.plus_exact, ← Real.Zonotope.mtimes_exact]
@@ -138,13 +139,13 @@ theorem LinearSys.inputSolutionFloat_subset_add_box (sys : LinearSys 𝕋 n) {r 
     (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {U : Zonotope (Vec 𝕋 n)}
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) :
     (sys.inputSolutionFloat r η U).construct
-      ⊆ ContSet.construct (sys.inputSolution (S := fun k => Real.Zonotope (Vec ℝ k))
+      ⊆ ContSet.construct (sys.inputSolution (S := 𝒵)
           (toReal r) η (nominal U))
         + (sys.inputSolutionBoxFloat r η U).construct := by -- --- PROOF ---
   set S := sys.inputTaylorSumFloat r U η
   set Rm := MatExp.intervalInputRemainder (Interval.point sys.A) r η
-  set F := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k)) Rm U
+  set F := Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋]) Rm U
   have h0 := sys.zero_mem_intervalInputRemainder hr hη
   have hF0 : (0 : Vec ℝ n) ∈ F.E.construct := by
     show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat _ U).materialise).E.construct
@@ -184,7 +185,7 @@ theorem LinearSys.inputSolutionFloat_subset_add_box (sys : LinearSys 𝕋 n) {r 
   have hbf' : bf ∈ ContSet.construct (Zonotope.mtimesIntervalMatBox Rm U).zonotope :=
     Interval.zonotope_contains _ hbf
   refine ⟨s₀ + 0, ?_, bs + bf + p, ?_, ?_⟩
-  · show s₀ + 0 ∈ ((sys.inputTaylorSum (S := fun k => Real.Zonotope (Vec ℝ k)) (toReal r)
+  · show s₀ + 0 ∈ ((sys.inputTaylorSum (S := 𝒵) (toReal r)
       (nominal U) η).plus (Real.Zonotope.mtimesIntervalMat
         (Real.MatExp.inputRemainder (Scalar.toRealMat sys.A) (toReal r) η) (nominal U))).construct
     rw [← Real.Zonotope.plus_exact]

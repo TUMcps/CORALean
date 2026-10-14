@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- What the constant `ũ` contributes by `t_k = k Δt`, at any member `A` of `sys.A`, lies in
 `constPropagateFloat Δt η ρ ũ k`, at an order admissible for `Δt`. -/
 theorem LinParamSys.expIntegral_mem_constPropagateFloat
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {Δt : 𝕋} {η : ℕ} (ρ : ℕ)
+    (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ} (ρ : ℕ)
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) (uc : Vec 𝕋 n) (k : ℕ) :
     Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt) *ᵥ Scalar.toRealVec uc
@@ -49,7 +49,7 @@ theorem LinParamSys.expIntegral_mem_constPropagateFloat
     have hz : Real.MatExp.expIntegral A (((0 : ℕ) : ℝ) * toReal Δt) = 0 := by
       simp [Real.MatExp.expIntegral]
     rw [hz, Matrix.zero_mulVec]
-    have h0 := OfScalarPoint.mem_ofVec (S := fun k => Zonotope (Vec 𝕋 k))
+    have h0 := OfScalarPoint.mem_ofVec (S := 𝒵[𝕋])
       (fun _ : Fin n => (zero : 𝕋))
     rwa [show Scalar.toRealVec (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
@@ -62,11 +62,11 @@ theorem LinParamSys.expIntegral_mem_constPropagateFloat
     rw [htk, hrec]
     -- the earlier part, carried across one window by `[e^{[A]Δt}]`
     have h1 : exp (toReal Δt • A) *ᵥ (Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt)
-        *ᵥ Scalar.toRealVec uc) ∈ construct (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-          (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (sys.expIntervalFloat Δt Δt η)
+        *ᵥ Scalar.toRealVec uc) ∈ construct (Mtimes.mtimes (S := 𝒵[𝕋])
+          (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt η)
           (sys.constPropagateFloat Δt η ρ uc k)) :=
-      Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) _ _
+      Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) _ _
         (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη hA (le_refl _) (le_refl _))
           (Set.mem_image_of_mem _ ih))
     -- the new window's part

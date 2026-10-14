@@ -66,13 +66,13 @@ def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (params : Reach.Params (Zonoto
   let eAΔt := sys.expIntervalFloat Δt Δt η'                         -- [e^{AΔt}], once
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η'   -- [F], once
   let next := fun R =>                                              -- reduce([e^{AΔt}] R_k, ρ)
-    Reduce.reduce (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt R) ρ
+    Reduce.reduce (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋]) eAΔt R) ρ
   let Rtp := List.iterate next X₀ (N + 1)                           -- R_0, …, R_N
   let Rti := (Rtp.take N).map fun R =>                              -- R(τ_k) from R_k
-    LinComb.linComb R (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt R) ⊞
-      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) F R
+    LinComb.linComb R (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋]) eAΔt R) ⊞
+      Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) F R
   pure (Rti, Rtp)
 
 end CORALean

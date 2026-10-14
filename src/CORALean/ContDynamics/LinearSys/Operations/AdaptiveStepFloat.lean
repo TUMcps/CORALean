@@ -59,8 +59,8 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec
   let ηe := max options.ηmax 2                                      -- [e^{At_i}]'s order
   let sq ← sys.squaringsFloat s.Δt s.tLo s.tHi ηe                   -- t_i / 2^sq within Δt_{i-1}
   let eAt := sys.expSquaringFloat s.tLo s.tHi ηe sq                 -- [e^{A t_i}]
-  let eA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{A t_i}] ·
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAt
+  let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_i}] ·
+    (S := 𝒵[𝕋]) eAt
   let (Δt, η, εH, εP) ← sys.adaptTimeStepFloat eAt X₀ Ũ options.εHmax    -- 5. Alg. 2
     options.εPmax s.εP tf s.t s.Δt options.μ options.ηmax options.fuel
   let nrm := MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point sys.A))  -- ≥ ‖Δt A‖

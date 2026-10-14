@@ -28,10 +28,11 @@ act through `mtimes` at an interval matrix and the bias enters as a box.
 namespace CORALean
 
 open ContSet Plus Mtimes Float.OfInterval
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (fun m n => Float.Interval (Mat 𝕋 m n)) S] [Float.OfInterval S 𝕋] {n m : ℕ}
+  [Mtimes ℐ[𝕋] S] [Float.OfInterval S 𝕋] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -40,7 +41,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 def Layer.lipConstrLinearFloat (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (lam : 𝕋) : Layer S n m where
   enclose s :=
     let N : Float.Interval (Vec 𝕋 m) := Layer.lipConstrScaleFloat W lam
-    plus (mtimes (𝕄 := fun m n => Float.Interval (Mat 𝕋 m n))
+    plus (mtimes (𝕄 := ℐ[𝕋])
       ⟨fun i j => Float.Interval.mulLo (N.inf i) (N.sup i) (W i j) (W i j),
        fun i j => Float.Interval.mulHi (N.inf i) (N.sup i) (W i j) (W i j)⟩ s)
       (ofInterval ⟨fun i => Float.Interval.mulLo (N.inf i) (N.sup i) (b i) (b i),

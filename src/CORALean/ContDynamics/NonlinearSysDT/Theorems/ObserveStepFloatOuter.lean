@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zonotope (Vec 𝕋 m)}
-    (step : sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U) (o : NonlinearSysDT.ReachOptions)
+    (step : sys.LinStep (S := 𝒵[𝕋]) 𝕋 U) (o : NonlinearSysDT.ReachOptions)
     (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W : Zonotope (Vec 𝕋 n))
     (options : LinearSysDT.ObserveStripOptions 𝕋 (Zonotope (Vec 𝕋 n)) n p) (y : Vec 𝕋 p)
     (Xhat : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n} {u : Vec ℝ m} {w : Vec ℝ n}
@@ -55,7 +55,7 @@ theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zo
     sys.f x u + w ∈
       (sys.observeStepFloat step o C σ W options y Xhat).construct := by -- --- PROOF ---
   -- the prediction: the linearized step on the widened input holds `f(x, u)`
-  have key := LinearSysDT.reach_one_outer (S := fun k => Zonotope (Vec 𝕋 k))
+  have key := LinearSysDT.reach_one_outer (S := 𝒵[𝕋])
     (NonlinearSysDT.linearize step.A) o.hZonotopeOrder
     Xhat step.linInput hx (step.linInput_outer hR hu)
   have heq : Scalar.toRealMat (NonlinearSysDT.linearize step.A).A *ᵥ x
@@ -64,19 +64,19 @@ theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zo
     abel
   rw [heq] at key
   -- plus the disturbance, then the update; one step of `reach` is read off `Nat.fold`
-  have hone : sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)
-      = (NonlinearSysDT.linearize step.A).reach (S := fun k => Zonotope (Vec 𝕋 k))
+  have hone : sys.reach (S := 𝒵[𝕋]) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)
+      = (NonlinearSysDT.linearize step.A).reach (S := 𝒵[𝕋])
         ⟨Xhat, step.linInput, 0, 1⟩ ⟨o.ρ, o.hZonotopeOrder⟩ := by
     show Nat.fold (1 - 0) _ Xhat = _
     rw [Nat.sub_zero, Nat.fold_succ, Nat.fold_zero]
   have hpred : sys.f x u + w ∈
-    ((sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)).plus
+    ((sys.reach (S := 𝒵[𝕋]) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)).plus
       W).construct := by
     rw [hone]
     exact Zonotope.plus_outer _ _ ⟨_, key, w, hw, rfl⟩
   unfold NonlinearSysDT.observeStepFloat
   split
-  · exact ContSet.intersectStripSeq_outer (S := fun k => Zonotope (Vec 𝕋 k)) _ _ _ _ _ ⟨hpred, hy⟩
+  · exact ContSet.intersectStripSeq_outer (S := 𝒵[𝕋]) _ _ _ _ _ ⟨hpred, hy⟩
   · exact Zonotope.intersectStrip_outer _ _ _ _ _ ⟨hpred, hy⟩
 
 end CORALean

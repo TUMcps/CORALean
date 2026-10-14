@@ -40,15 +40,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- [1, Prop. 3.6] in floats: `A_Z r U ⊕ A_Z r²/2! U`, then orders `2 … η` and the remainder
 over `A_Z`'s interval matrix. -/
-def LinParamSys.inputSolutionZonoFloat (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n)
+def LinParamSys.inputSolutionZonoFloat (sys : LinParamSys 𝕄𝒵[𝕋] n)
     (r : 𝕋) (η : ℕ) (V : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let IA := sys.A.matInterval                                             -- A_Z's interval matrix
-  Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+  Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
     (sys.inputTermZonoFloat r 0) V ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Zonotope (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
       (sys.inputTermZonoFloat r 1) V ⊞
-    (LinParamSys.mk (𝕄 := fun m n => Interval (Mat 𝕋 m n)) IA).inputTaylorSumTailFloat r V η ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (LinParamSys.mk (𝕄 := ℐ[𝕋]) IA).inputTaylorSumTailFloat r V η ⊞
+    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (MatExp.intervalInputRemainder IA r η) V
 
 end CORALean

@@ -51,10 +51,10 @@ def LinearSys.bundleReachFloat (sys : LinearSys 𝕋 n) (Rh₀ : ZonoBundle (Vec
   ((List.range N).foldl
     (fun (S : (ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) × List
       (ZonoBundle (Vec 𝕋 n))) _ =>
-      let Rhₖ := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => ZonoBundle (Vec 𝕋 k)) E S.1.1
-      let Riₖ := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) E S.1.2.1
+      let Rhₖ := Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵ℬ[𝕋]) E S.1.1
+      let Riₖ := Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) E S.1.2.1
       let Pₖ := Plus.plus S.1.2.2 Riₖ.interval.zonotope
       let Rₖ := Plus.plus Rhₖ Pₖ.zonoBundle
       ((Rhₖ, Riₖ, Pₖ), S.2 ++ [Rₖ]))

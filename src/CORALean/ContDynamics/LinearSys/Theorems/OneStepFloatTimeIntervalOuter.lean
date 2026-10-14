@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.Trajectory.oneStepFloat_timeInterval_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋 n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
-    (traj : sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal Δt)) X.construct
+    (traj : sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
     (h0 : (0 : Vec ℝ n) ∈ U.construct) {t : ℝ} (ht0 : 0 ≤ t) (htΔ : t ≤ toReal Δt)
     (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) :
@@ -72,10 +72,10 @@ theorem LinearSys.Trajectory.oneStepFloat_timeInterval_outer {sys : LinearSys �
   have hl1 : lam ≤ 1 := (div_le_one hΔt).mpr htΔ
   -- the `U`-input's share up to `t`, lifted to `Δt`, in `PU`
   have hU := CompactSet.isBounded_construct U
-  have hp := traj.sub_mem_inputReach_shift (S := fun k => Set (Vec ℝ k)) (U := U.construct) uR
+  have hp := traj.sub_mem_inputReach_shift (S := 𝒮) (U := U.construct) uR
     hWU hW hU ⟨ht0, htΔ⟩
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔt hη U
-    (sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k)) hU h0 ht0 htΔ hp)
+    (sys.inputReach_mono (S := 𝒵[𝕋]) hU h0 ht0 htΔ hp)
   -- the constant's share, in `Pu`
   have hpt : uR ∈ (Zonotope.point u).construct := by
     rw [Zonotope.construct_point]; exact rfl
@@ -83,39 +83,39 @@ theorem LinearSys.Trajectory.oneStepFloat_timeInterval_outer {sys : LinearSys �
     ⟨fun _ => uR, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A uR hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
-  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-      (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (sys.expIntervalFloat Δt Δt (m + 2)) X) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ X
+  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (S := 𝒵[𝕋])
+      (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt (m + 2)) X) :=
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ X
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
         (Set.mem_image_of_mem _ traj.init))
   -- the `linComb` of `X` and `Htp` holds the interpolated point
   have hHtp : exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ uR
-      ∈ construct (Plus.plus (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      ∈ construct (Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (sys.expIntervalFloat Δt Δt (m + 2)) X)
         (sys.inputSolutionFloat Δt (m + 2) (Zonotope.point u))) :=
     Plus.plus_outer _ _ (Set.add_mem_add hex hPu)
-  have hlin := LinComb.linComb_outer X (Plus.plus (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-    (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (sys.expIntervalFloat Δt Δt (m + 2)) X)
+  have hlin := LinComb.linComb_outer X (Plus.plus (Mtimes.mtimes (S := 𝒵[𝕋])
+    (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt (m + 2)) X)
     (sys.inputSolutionFloat Δt (m + 2) (Zonotope.point u)))
     ⟨x 0, traj.init, _, hHtp, 1 - lam, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
   -- the two interpolation errors
   have hF : (exp (t • A) - 1 - lam • (exp (r • A) - 1)) *ᵥ x 0
-      ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      ∈ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt (m + 2)) X) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ X
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ X
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2
         (Interval.mem_point sys.A) ht0 htΔ) (Set.mem_image_of_mem _ traj.init))
   have hG : (Real.MatExp.expIntegral A t - lam • Real.MatExp.expIntegral A r) *ᵥ uR
-      ∈ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      ∈ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (MatExp.intervalConstCorrectionMatrix (Interval.point sys.A) Δt (m + 2))
         (Zonotope.point u)) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ _
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ _
       (Set.mem_biUnion (MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix _ hΔt (m + 2)
         hη.2 (Interval.mem_point sys.A) ht0 htΔ) (Set.mem_image_of_mem _ hpt))
   -- the state is the interpolated point, the two errors, and the input's share

@@ -46,12 +46,12 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
     {prec bis fuel : ℕ} {tend : ℚ} :
-    ∀ (k : ℕ) {s : NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋}
-      {ss : List (NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋)},
+    ∀ (k : ℕ) {s : NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋}
+      {ss : List (NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋)},
       fm.adaptRunFloat U options ζδ ζh ζZ ζK prec bis fuel tend k s = some ss →
       s.t ≤ ((s :: ss).getLast (List.cons_ne_nil _ _)).t ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-          sys.Trajectory (S := fun k => Set (Vec ℝ k))
+          sys.Trajectory (S := 𝒮)
             (Set.Icc 0 ((((s :: ss).getLast (List.cons_ne_nil _ _)).t - s.t : ℚ) : ℝ))
             s.R.construct U.construct x u →
           ∀ (j : ℕ) (hj : j < ss.length), ∀ t ∈ Set.Icc

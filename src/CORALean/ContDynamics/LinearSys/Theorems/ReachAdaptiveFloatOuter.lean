@@ -49,7 +49,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat �
     (∀ t ∈ Set.Icc (params.tStart : ℝ) params.tFinal, ∃ (k : ℕ) (hk : k < steps.length),
         t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧
       ∀ {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := fun k => Set (Vec ℝ k))
+        sys.Trajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < steps.length), ∀ t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd,
@@ -57,7 +57,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat �
   unfold LinearSys.reachAdaptiveFloat at h
   dsimp only at h
   split_ifs at h with htf
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U with hV
+  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B params.U with hV
   -- nothing is contributed by time `0`
   have hinv : sys.AdaptiveInvariant V (⟨0, zero, zero,
       mulDown (ratUp (params.tFinal - params.tStart)) options.μ, 0, 0,
@@ -81,7 +81,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat �
   · -- the run's inputs are in `B U`'s float enclosure
     have hUV : (Scalar.toRealMat B *ᵥ ·) '' params.U.construct ⊆ V.construct := by
       rintro _ ⟨w, hw, rfl⟩
-      exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B params.U
+      exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B params.U
         (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
     rw [← htf'] at traj
     exact hsnd _ (List.getElem_mem hk) traj hUV t ht

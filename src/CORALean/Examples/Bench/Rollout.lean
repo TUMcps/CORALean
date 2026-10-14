@@ -101,7 +101,7 @@ def buildSystem (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except
 /-- One step of `LinearSysDT.reach`'s own recursion, exposed so `rollout` and
 the theorem it mirrors read the same equation. -/
 def step (sys : LinearSysDT 𝕋 2) (o : ℕ) (U Z : Zonotope (Vec 𝕋 2)) : Zonotope (Vec 𝕋 2) :=
-  reduce (plus (mtimes (S := fun k => Zonotope (Vec 𝕋 k)) sys.A Z) U) o
+  reduce (plus (mtimes (S := 𝒵[𝕋]) sys.A Z) U) o
 
 /-- `#[reach 0, reach 1, ..., reach N]`, computed in one accumulating pass. See
 the module docstring for why this equals repeated calls to `LinearSysDT.reach`

@@ -25,10 +25,11 @@ interval matrix, then `plus` with the box taken into the representation (`ofInte
 namespace CORALean
 
 open ContSet Float FloatOps SoundFloatArithmetic
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (fun m n => Interval (Mat 𝕋 m n)) S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ[𝕋] S]
 variable [OfInterval S 𝕋]
 
 
@@ -41,7 +42,7 @@ def ContSet.projectOnHyperplaneFloat (s : S n) (c : Vec 𝕋 n) (d : 𝕋) : S n
       fun i j => subUp (if i = j then one else zero) (mulDown (c i) (c j))⟩
   -- the translation `d c`, bracketed
   let b : Interval (Vec 𝕋 n) := ⟨fun i => mulDown d (c i), fun i => mulUp d (c i)⟩
-  Plus.plus (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) A s) (OfInterval.ofInterval b)
+  Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋]) A s) (OfInterval.ofInterval b)
 
 end CORALean
 

@@ -301,7 +301,7 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
 /-- [1, Sec. 5.4] at floats: a run from `R₀` on the hyperplane at `t ≤ tmax` is in the float
 mapped set, `η ≥ 1`. -/
 theorem Location.guardIntersectHyperplaneMapFloat_outer
-    (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n)
+    (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (nv : Vec 𝕋 n) (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) {η : ℕ}
     (guardOrder zonotopeOrder p : ℕ) (hη : 1 ≤ η) {τ : ℝ} {x u : ℝ → Vec ℝ n}
     (traj : ℓ.Trajectory τ x u) (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ)
@@ -479,7 +479,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer
     -- a point of the hyperplane is its own projection
     have hproj : x t - ((nrm⁻¹ • nr) ⬝ᵥ x t - toReal d * nrm⁻¹) • (nrm⁻¹ • nr) = x t := by
       rw [smul_dotProduct, hhit, smul_eq_mul, mul_comm, sub_self, zero_smul, sub_zero]
-    refine ContSet.projectOnHyperplaneIntervalFloat_outer (S := fun n => Zonotope (Vec 𝕋 n)) _ _ _ _
+    refine ContSet.projectOnHyperplaneIntervalFloat_outer (S := 𝒵[𝕋]) _ _ _ _
       (cr := nrm⁻¹ • nr)
       (fun i => ?_) hδ.1 hδ.2 ⟨x t, ?_, hproj⟩
     · -- `n/‖n‖`, entry by entry

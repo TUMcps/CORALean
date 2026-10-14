@@ -59,7 +59,7 @@ def LinearSys.reachBoxFloat (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec �
   let P₀ := V₀.interval.zonotope                                   -- P^R_0 = box(V₀)
   let R₀ := H₀ ⊞ P₀                                                -- R₀ = H^R_0 + P^R_0
   let ℰ := fun (Z : Zonotope (Vec 𝕋 n)) =>                               -- Z ↦ [e^{Ar}] Z
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eAr Z
+    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eAr Z
   pure ((List.range N).foldl
     (fun (s : (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) × List
       (Zonotope (Vec 𝕋 n))) _ =>

@@ -43,6 +43,7 @@ namespace CORALean
 
 open CORALean.Float
 open Matrix Pointwise ContSet InflatedContSet FloatOps SoundFloatArithmetic
+open scoped CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
@@ -91,8 +92,8 @@ provided both `R₀` and `U` bracket `0` in their own error boxes. -/
 theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT 𝕋 n) {o : ℕ}
     (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
-    (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
-      sys.reachSet (S := fun n => Real.Zonotope (Vec ℝ n)) (nominal R₀) (nominal U) k
+    (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
+      sys.reachSet (S := 𝒵) (nominal R₀) (nominal U) k
         + (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
   induction k with
   | zero =>
@@ -100,14 +101,14 @@ theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT �
     obtain ⟨n₀, hn₀, e₀, he₀, rfl⟩ := hx
     exact ⟨n₀, hn₀, e₀, Real.Interval.zonotope_contains _ he₀, rfl⟩
   | succ k ih =>
-    set Rk := sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ with hRkdef
+    set Rk := sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ with hRkdef
     set M := Zonotope.mtimes sys.A Rk with hMdef
     set W := M.plus U with hWdef
     -- `reach`'s step, past the `Plus`/`Mtimes`/`Reduce` instances' own `materialise`
-    have hstep : sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ =
+    have hstep : sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ =
       W.reduceGirard o := by
       show Reduce.reduce (Plus.plus
-        (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) sys.A Rk) U) o = _
+        (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.A Rk) U) o = _
       simp only [Mtimes.mtimes, Plus.plus, Reduce.reduce, Zonotope.materialise_eq,
         Zonotope.reduce, hMdef, hWdef]
     -- what `plus_subset_add_box` and `mtimes_subset_add_box` ask beyond `reduce_subset_add_box`
@@ -134,7 +135,7 @@ theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT �
         ⟨e, he, rfl⟩
     -- the exact part reassembles into `reachSet`'s own step
     have hA : toRealMat sys.A *ᵥ s + nu
-        ∈ sys.reachSet (S := fun n => Real.Zonotope (Vec ℝ n)) (nominal R₀) (nominal U) (k + 1) :=
+        ∈ sys.reachSet (S := 𝒵) (nominal R₀) (nominal U) (k + 1) :=
       ⟨_, ⟨s, hs, rfl⟩, nu, hnu, rfl⟩
     -- `plus` is exact at `Real`, so membership in a sum of constructs lifts to `.plus`
     have plusMem : ∀ (A B : Real.Zonotope (Vec ℝ n)) {a b : Vec ℝ n},
