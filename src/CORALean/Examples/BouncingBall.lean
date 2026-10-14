@@ -14,24 +14,24 @@ import CORALean.HybridDynamics.Theorems.JumpOuter
 The textbook automaton: one location, one transition back into it. The state is
 `(position, velocity)`, the dynamics are `ṗ = v`, `v̇ = -g` written as a constant
 input, `LinearSys` having no offset. The reset flips the velocity and damps it
-by `d`.
+by `d`. Two representations at once (#39): the reachable set is a `Zonotope`, the
+guard and the invariant are `HPolytope`s — the guard the *unbounded* halfspace
+description `p = 0 ∧ v ≤ 0`, the floor met from above, which no zonotope states.
 
-Two representations at once, which is what a separate guard parameter buys
-(#39): the reachable set is a `Zonotope`, the guard and the invariant are
-`HPolytope`s. The guard is the *unbounded* halfspace description `p = 0 ∧ v ≤ 0`
-— the floor met from above — which no zonotope states, and `ballBox` is the
-invariant as a slab. Neither is ever read except through `construct`.
+`ballZono` is the invariant said again as a zonotope, which is what `R` has to be, and
+`bounceCut` the guard intersection `jump_outer` asks for — both proved against their
+halfspace counterparts here (`Zonotope` has no `Intersection` instance, so the cut is a
+set inclusion).
 
-`Zonotope` has no `Intersection` instance still, so `timeIntervalStepInv` and `jumpIntersection`
-stay out of reach; `InvariantOfEnclosureCut` needs neither, cutting with `ℓ.inv`
-and with the guard as set inclusions. `ballZono` is the invariant said again as
-a zonotope, which is what `R` has to be, and `bounceCut` the guard intersection
-`jump_outer` asks for — both proved against their halfspace counterparts here.
+The result is the invariant theorem `bouncingBall_invariant`: the box `[0, p] × [-v, v]`
+is kept at every dwell time and across every bounce, exactly when the damping is at
+most one. The generic hybrid-automaton lemmas used at this automaton's types are
+`BouncingBallUseSites`'.
 -/
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   07-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -89,49 +89,6 @@ noncomputable def Example.ballZono (p v : ℝ) : Zonotope (Vec ℝ 2) :=
 `v`. This is the `Rg` that `jump_outer` asks a caller to name. -/
 noncomputable def Example.bounceCut (v : ℝ) : Zonotope (Vec ℝ 2) :=
   ⟨1, ![0, -v / 2], ![![0, v / 2]]⟩
-
--- anonymous, since their content is that they elaborate at this automaton's types
-
-/-- A run that starts inside the invariant ends inside it, however many bounces
-it took and wherever it stopped. -/
-example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
-    (hinv : HA.Invariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.Run ℓ x ℓ' y)
-    (hx : x ∈ construct (R ℓ)) : y ∈ construct (R ℓ') :=
-  run.mem_of_invariant hinv hx
-
-/-- The floor as a requirement rather than as a guard: checked on the invariant
-of the location a run ends in, it is answered for the state it ends at. -/
-example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
-    (hinv : HA.Invariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.Run ℓ x ℓ' y)
-    (hx : x ∈ construct (R ℓ))
-    (h : (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds (construct (R ℓ'))) :
-    (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds {y} :=
-  HA.holds_of_invariant hinv _ run hx h
-
-/-- A stay is enclosed by the linear time-interval step, which is what holding
-`LinearSys` dynamics in a location buys. -/
-example (ℓ : Location 𝒵 ℋ𝒫 Unit ℝ 2) {τ : ℝ} {x u : ℝ → Vec ℝ 2}
-    (traj : ℓ.Trajectory τ x u) {R₀ Ud : Zonotope (Vec ℝ 2)}
-    (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
-    (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.U))
-    (hUd : (∫ s in (0 : ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ u s)
-      ∈ construct Ud) :
-    x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀) Ud) :=
-  traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd
-
-/-- The whole point of the separation: a zonotope reachable set, a halfspace
-guard, and the reset image once the caller has cut the one down to the other. -/
-example (e : Transition ℋ𝒫 Unit ℝ 2) {R Rg : Zonotope (Vec ℝ 2)}
-    (hand : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ 2}
-    (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (e.jump (S := 𝒵) Rg) :=
-  e.jump_outer hand hz hguard
-
-/-- The one thing the automaton computes, at the concrete transition: `jump`
-needs `Mtimes`, `Plus` and `OfInterval` at `Zonotope` and nothing at `ℋ𝒫`. -/
-noncomputable example (d : ℝ) (Rg : Zonotope (Vec ℝ 2)) : Zonotope (Vec ℝ 2) :=
-  (Example.bounce d).jump (S := 𝒵) Rg
 
 /-- The reset image of the cut set, in coordinates: the floor, left with an
 upward velocity of at most `d v`. -/

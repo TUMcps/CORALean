@@ -13,14 +13,17 @@ matrix is uncertain — `sys.A` is one fixed real matrix throughout — but beca
 it. `LinParamSysDT` is simply where a matrix that can only be enclosed has to
 live; the interval it carries is numerical error, not modelling uncertainty.
 
+The system is the decay `ẋ = -x`, so the state genuinely moves: the run checked against
+`reach` is `x(k) = (e^{-Δt})ᵏ x₀`, not a fixed point.
+
 From there the chain is the one every `LinParamSysDT` runs: `reach`, and
 `holds_of_reach` for whatever specification a caller checks the reachable set
 against.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,12 +36,13 @@ open Matrix ContSet NormedSpace Scalar
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-/-- The system left with no dynamics at all, so the one hypothesis the
-enclosure needs is immediate: `‖0‖ = 0` dominates any geometric series. -/
-def Example.sys : LinearSys ℝ 1 := LinearSys.canonical 0
+/-- A decay, `ẋ = -x`: its flow is a contraction, and the one hypothesis the enclosure
+needs is `‖Δt • A‖ / 2 = 1 / 2 < 1`. -/
+def Example.sys : LinearSys ℝ 1 := LinearSys.canonical (-1)
 
 theorem Example.hε : ‖(1:ℝ) • toRealMat Example.sys.A‖ / ((0:ℕ) + 2 : ℝ) < 1 := by
-  simp [Example.sys]
+  simp [Example.sys, toRealMat]
+  norm_num
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -58,17 +62,19 @@ def Example.x0 : Vec ℝ 1 := ![1]
 def Example.R0 : Interval (Vec ℝ 1) := Interval.point Example.x0
 def Example.U : Interval (Vec ℝ 1) := Interval.point (0 : Vec ℝ 1)
 
-/-- A run at the true exponential, `exp 0 = 1`, so the state never moves. -/
+/-- The run at the true exponential, `x(k) = (e^{-Δt})ᵏ x₀`: the decay itself. -/
 theorem Example.traj : Example.sysD.Trajectory (S := ℐ𝒱) Example.R0 Example.U
-    (fun _ => Example.x0) (fun _ => 0) where
-  init := Interval.mem_point Example.x0
+    (fun k => Example.A0 ^ k *ᵥ Example.x0) (fun _ => 0) where
+  init := by rw [pow_zero, Matrix.one_mulVec]; exact Interval.mem_point _
   input _ := Interval.mem_point 0
-  step _ := ⟨Example.A0, Example.A0_mem, by
-    simp [Example.A0, Example.sys, Example.x0, exp_zero, Matrix.one_mulVec]⟩
+  step k := ⟨Example.A0, Example.A0_mem, by
+    simp [Matrix.mulVec_mulVec, pow_succ']⟩
 
-/-- `reach_outer`, at the interval matrix `discretizeEnclosure` produced. -/
+/-- `reach_outer`, at the interval matrix `discretizeEnclosure` produced: the decayed
+state after `k` steps is in the computed set. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    Example.x0 ∈ construct (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩) :=
+    Example.A0 ^ k *ᵥ Example.x0 ∈
+      construct (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩) :=
   Example.sysD.reach_outer (S := ℐ𝒱) ho Example.R0 Example.U Example.traj k
 
 /-- `holds_of_reach`, closing the chain at whatever specification the caller
@@ -76,7 +82,7 @@ checks the computed reachable set against. -/
 example (spec : Specification (Set (Vec ℝ 1))) {o : ℕ} (ho : 0 < o) (k : ℕ)
     (h : spec.Holds
       (construct (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩))) :
-    spec.Holds {Example.x0} :=
+    spec.Holds {Example.A0 ^ k *ᵥ Example.x0} :=
   Example.sysD.holds_of_reach (S := ℐ𝒱) ho Example.R0 Example.U spec Example.traj k h
 
 end CORALean.Real

@@ -10,7 +10,7 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 # An intersection of float zonotopes, operated on branch-wise
 
 A `SetIntersection` keeps a list of members and denotes their intersection. Here the members are
-the float zonotopes at `Dyadic 53` of a square `[-1, 1]²` and a diamond `|x| + |y| ≤ 2`, so the
+the float zonotopes at `Dyadic 53` of a square `[-1, 1]²` and a diamond `|x| + |y| ≤ 3/2`, so the
 set is the octagon they share, with no single zonotope denoting it. `plus`, `mtimes` and `reduce`
 run on it as on any `ContSet`, each mapping the member's own float operation over the branches
 (a Minkowski sum pairs every branch of one operand with every branch of the other), and the
@@ -24,7 +24,7 @@ is carried through `plus` to show the guarantee used.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -57,7 +57,7 @@ def hull (Z : Zonotope (Vec D 2)) : (Float × Float) × (Float × Float) :=
 
 def square : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
 def diamond : Zonotope (Vec D 2) :=
-    ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d (-1) 0]], box0⟩
+    ⟨2, ![d 0 0, d 0 0], ![![d 3 (-2), d 3 (-2)], ![d 3 (-2), d (-3) (-2)]], box0⟩
 
 /-- `square ∩ diamond`. -/
 def I : SetIntersection (Zonotope (Vec D 2)) := ⟨[square, diamond]⟩

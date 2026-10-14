@@ -1,32 +1,30 @@
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsDisjointLPSound
 import CORALean.ContSet.HPolytope.Float.Operations.RowLin
-import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
 import CORALean.Global.Float.Instances.Dyadic.Instances
 
 /-!
-# The float LP driver, run
+# A support value of a constrained zonotope, from the float LP driver
 
-At `Dyadic 53`, values printed exactly through `ToRat`. Constrained zonotopes on
-the unit square's generators: `ConZonotope.boundDot` reaches the support value
-where the constraint-blind zonotope bound does not, and lands a few units in the
-last place above a non-dyadic one, never below. A bundle whose members each reach
-`x = 2` but meet only where `x ≤ 3/8`: the least member bound says `2`,
-`ZonoBundle.boundDotLP` says `3/8`. Two parallel segments whose interval hulls
-overlap: `ConZonotope.isDisjointLP` finds the separating direction.
+At `Dyadic 53`, values printed exactly through `ToRat`. Constrained zonotopes on the unit
+square's generators: `ConZonotope.boundDot` reaches the support value where the
+constraint-blind zonotope bound does not. Under `β₁ + β₂ = 0` the set is the segment
+`{(t, -t)}`, whose support in the diagonal direction is `0`, where the zonotope bound is `2`;
+under `β₁ + β₂ ≤ 0` it is a triangle. Under `3β₁ + β₂ ≤ 1` the support value in direction
+`(1, 0)` is `2/3`, not a dyadic, and the float bound lands a few units in the last place above
+it, never below.
 
-`ConZonotope.boundDot_le`, `ZonoBundle.boundDotLP_le` and
-`ConZonotope.isDisjointLP_sound` make each value a guarantee rather than a number.
+`ConZonotope.boundDot_le` makes each value a guarantee rather than a number.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Examples.ConZonotopeSupportFloat
+namespace CORALean.Examples.ConZonotopeBoundFloat
 
 open CORALean CORALean.Float FloatOps
 
@@ -59,20 +57,6 @@ def thirdRow : HPolytope D (Vec D 2) :=
   ⟨1, fun _ j => if j = 0 then d 3 0 else d 1 0, fun _ => d 1 0, 0, fun i => i.elim0,
     ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
-/-- The segment moved by `(1/2, 1/2)`: parallel to it, disjoint, the same hull. -/
-def shifted : ConZonotope D (Vec D 2) := { square eqRow with c := ![d 1 (-1), d 1 (-1)] }
-
-/-- A flat box `[-2, 2] × [-1/8, 1/8]` and a thin parallelogram along the
-diagonal, no rounding error yet. -/
-def bundle : ZonoBundle (Vec D 2) :=
-  ⟨2, ![⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 1 (-3)]],
-          ⟨fun _ => d 0 0, fun _ => d 0 0⟩⟩,
-        ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 2 0], ![d 1 (-3), d (-1) (-3)]],
-          ⟨fun _ => d 0 0, fun _ => d 0 0⟩⟩]⟩
-
-/-- Direction `(1, 0)`. -/
-def e₁ : Vec D 2 := ![d 1 0, d 0 0]
-
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
@@ -86,17 +70,7 @@ def bound (cZ : ConZonotope D (Vec D 2)) (a : Vec D 2) : ℚ :=
 #eval bound (square ineqRow) ![d (-1) 0, d 0 0]  -- 1
 #eval bound (square thirdRow) ![d 1 0, d 0 0] - 2 / 3  -- a few ulps above 2/3, never below
 
-#eval (square eqRow).isDisjointLP shifted     -- true: parallel segments
-#eval (square eqRow).isDisjointLP (square ineqRow)  -- false: they meet
-
--- 2, the least member bound
-#eval ToRat.toRat (bundle.boundDot (by decide) (c := rowLin (fun (_ : Fin 1) => e₁) 0) e₁
-  fun _ => rfl).val
--- 3/8, the linear program over the intersection
-#eval ToRat.toRat (bundle.boundDotLP (by decide) (c := rowLin (fun (_ : Fin 1) => e₁) 0) e₁
-  fun _ => rfl).val
-
-end CORALean.Examples.ConZonotopeSupportFloat
+end CORALean.Examples.ConZonotopeBoundFloat
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --
