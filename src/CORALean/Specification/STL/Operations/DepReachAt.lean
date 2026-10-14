@@ -38,7 +38,9 @@ variable {n : ℕ}
 /-- The state at `t_i = iΔt` of [1, Alg. 1]. -/
 noncomputable def STL.depReachAt (A : Mat ℝ n n) (Δt : ℝ) (cs : STL.DepReachConsts n)
     (X₀ : Zonotope (Vec ℝ n)) : ℕ → STL.DepReachState n
+  -- 2. `t₀ ← 0`, `H(t₀) ← X₀`, `P_c(t₀), D₀ ← 0`, `C₀ ← interval(F X₀ ⊕ G ũ)`
   | 0 => STL.depReachInit X₀ cs
+  -- 5. the pass of the `for` loop from `t_i` to `t_{i+1}`
   | i + 1 => STL.depReachStep A Δt cs (STL.depReachAt A Δt cs X₀ i)
 
 end CORALean

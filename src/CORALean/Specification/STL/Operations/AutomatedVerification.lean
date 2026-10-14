@@ -42,13 +42,19 @@ def STL.automatedVerification (tuneκ : 𝕋 → ℕ) (check checkNeg : 𝕋 →
     (falsifiable : List (Set X) → Bool) : ℕ → 𝕋 → Option Bool
   | 0, _ => none
   | fuel + 1, Δt =>
-    let κ := tuneκ Δt -- line 4
-    let L := check Δt κ -- line 5
-    if L.isEmpty then some true -- lines 6-7
+    -- 4. `κ ← increase κ until 1 − ‖T(κ)‖_F / ‖T(κ+1)‖_F ≤ 10⁻¹⁰`, here `tuneκ`
+    let κ := tuneκ Δt
+    -- 5. `L ← model check φ with parameters Δt and κ using Alg. 2`
+    let L := check Δt κ
+    -- 6. `if L = ∅ then return safe`
+    if L.isEmpty then some true
     else
-      let L' := checkNeg Δt κ -- line 8
-      if falsifiable L' then some false -- lines 9-10
-      else STL.automatedVerification tuneκ check checkNeg falsifiable fuel (Δt / 2) -- line 11
+      -- 8. `L ← model check ¬φ with parameters Δt and κ using Alg. 2`
+      let L' := checkNeg Δt κ
+      -- 9. `if ∃ α̃ ∈ [-1, 1]^p : α̃ ∉ K_j ∀ K_j ∈ L then return unsafe`
+      if falsifiable L' then some false
+      -- 11. `Δt ← Δt / 2`, and the `repeat` of line 3 goes round again
+      else STL.automatedVerification tuneκ check checkNeg falsifiable fuel (Δt / 2)
 
 end CORALean
 

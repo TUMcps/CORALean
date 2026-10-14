@@ -44,11 +44,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 set `Y` it computes on the way; `none` where [1, Alg. 1] ran out of `fuel` at some layer. -/
 def reduceOnTheFly (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) {n m : ℕ} (X : S n) (ρ : 𝕋) :
     ReducibleNetwork 𝕋 n m → Option (ReducibleNetwork 𝕋 n m × S m)
-  | .nil => some (.nil, X)                                          -- κ = 0: no layer to reduce
+  -- 2. `for k = 2, 4, …, κ`, empty for `κ = 0`: nothing to reduce, `Y ← H_0`
+  | .nil => some (.nil, X)
   | .cons L_1 L_2 hσ B rest =>
-    let H_0 := X                                                    -- Alg. 2, line 1
-    let Lhat_1 := L_1                                               -- Alg. 2, line 1
-    reduceOnTheFlyFrom le tol fuel ρ H_0 Lhat_1 L_2 hσ B rest       -- Alg. 2, lines 2-13
+    -- 1. `H_0 ← X`
+    let H_0 := X
+    -- 1. `L̂_1 ← L_1`
+    let Lhat_1 := L_1
+    -- 2. `for k = 2, 4, …, κ` (lines 3-12), then 13. `return Y ← H_κ`
+    reduceOnTheFlyFrom le tol fuel ρ H_0 Lhat_1 L_2 hσ B rest
 
 end CORALean
 

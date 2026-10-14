@@ -50,24 +50,37 @@ def reduceOnTheFlyFrom (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (
     ∀ {n n₁ m : ℕ}, S n → ReducedLinear 𝕋 n n₁ → (R : Relaxation 𝕋) →
       (∃ σ : ℝ → ℝ, R.Sound σ) → MergeBuckets 𝕋 → ReducibleNetwork 𝕋 n₁ m →
       Option (ReducibleNetwork 𝕋 n m × S m)
-  | _, _, _, H_km2, Lhat_km1, L_k, hσ_k, B, .nil =>                 -- Alg. 2, line 3: k = κ
-    let H_km1 := Lhat_km1.toLayer.enclose H_km2                     -- Alg. 2, line 10
-    let H_k := (Layer.activation L_k).enclose H_km1                 -- Alg. 2, line 11
-    some (.cons Lhat_km1 L_k hσ_k B .nil, H_k)                      -- Alg. 2, line 13: Y ← H_κ
-  | _, _, _, H_km2, Lhat_km1, L_k, hσ_k, B, .cons L_kp1 L_kp2 hσ_kp2 B' rest =>  -- l. 3: k < κ
-    let I_km2 := interval H_km2                                     -- Alg. 2, line 4
-    let I_k :=                                                      -- Alg. 2, line 5
+  -- 3. `if k < κ` fails, `k = κ`: no look-ahead, lines 4-8 are skipped
+  | _, _, _, H_km2, Lhat_km1, L_k, hσ_k, B, .nil =>
+    -- 10. `H_{k-1} ← enclose(L̂_{k-1}, H_{k-2})` (Prop. 3)
+    let H_km1 := Lhat_km1.toLayer.enclose H_km2
+    -- 11. `H_k ← enclose(L̂_k, H_{k-1})`
+    let H_k := (Layer.activation L_k).enclose H_km1
+    -- 13. `return Y ← H_κ`
+    some (.cons Lhat_km1 L_k hσ_k B .nil, H_k)
+  -- 3. `if k < κ` holds: the look-ahead of lines 4-7
+  | _, _, _, H_km2, Lhat_km1, L_k, hσ_k, B, .cons L_kp1 L_kp2 hσ_kp2 B' rest =>
+    -- 4. `I_{k-2} ← interval(H_{k-2})` (Prop. 1)
+    let I_km2 := interval H_km2
+    -- 5. `I_k ← L_k(L̂_{k-1}(I_{k-2}))`
+    let I_k :=
       (Layer.activation (S := ℐ𝒱[𝕋]) L_k).enclose
         ((Lhat_km1.toLayer (S := ℐ𝒱[𝕋])).enclose I_km2)
-    match bucketTolerance le tol fuel B I_k ρ with                  -- Alg. 2, line 6
+    -- 6. determine the merge buckets `B_{k,δ}` (Sec. 3.3, Alg. 1)
+    match bucketTolerance le tol fuel B I_k ρ with
     | none => none
     | some B_kδ =>
-      let part := Partition.ofPred fun i => B_kδ i = true           -- Alg. 2, line 7: B̄ ⊕ B
-      let Lhat_km1 := Lhat_km1.mergeRows part                       -- Alg. 2, line 7: L̂_{k-1}
-      let Lhat_kp1 := L_kp1.mergeCols part I_k                      -- Alg. 2, line 7: L̂_{k+1}
-      let H_km1 := Lhat_km1.toLayer.enclose H_km2                   -- Alg. 2, line 10
-      let H_k := (Layer.activation L_k).enclose H_km1               -- Alg. 2, line 11: L̂_k
-      -- Alg. 2, line 2: k + 2
+      -- 7. `L̂_{k-1}, L̂_k, L̂_{k+1} ← merge`: the neurons the buckets merge
+      let part := Partition.ofPred fun i => B_kδ i = true
+      -- 7. … `L̂_{k-1}`, its rows merged (Prop. 4)
+      let Lhat_km1 := Lhat_km1.mergeRows part
+      -- 7. … `L̂_{k+1}`, its columns merged
+      let Lhat_kp1 := L_kp1.mergeCols part I_k
+      -- 10. `H_{k-1} ← enclose(L̂_{k-1}, H_{k-2})` (Prop. 3)
+      let H_km1 := Lhat_km1.toLayer.enclose H_km2
+      -- 11. `H_k ← enclose(L̂_k, H_{k-1})`
+      let H_k := (Layer.activation L_k).enclose H_km1
+      -- 2. `for k = 2, 4, …, κ`: the next pass is `k + 2`
       match reduceOnTheFlyFrom le tol fuel ρ H_k Lhat_kp1 L_kp2 hσ_kp2 B' rest with
       | none => none
       | some (Φhat, Y) => some (.cons Lhat_km1 L_k hσ_k B Φhat, Y)

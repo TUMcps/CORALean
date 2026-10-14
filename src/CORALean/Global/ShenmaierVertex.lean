@@ -45,8 +45,15 @@ noncomputable def shenmaierVertexValue (G : E₁ →ₗ[ℝ] V) (c : V) (H : E�
 /-- `[1, Alg. 3]`: `none` (non-containment confirmed) or the lower bound `P_Svs`. -/
 noncomputable def shenmaierVertex (G : E₁ →ₗ[ℝ] V) (c : V) (H : E₂ →ₗ[ℝ] V) (d : V) (n : ℕ)
     {N : ℕ} (hN : 0 < N) (z : Fin N → E₁) : Option ℝ :=
-  let rSvs := shenmaierVertexValue G c H d hN z
-  if rSvs > 1 then none else some (shenmaierProb n N 0 (1 - rSvs))
+  -- 3. `r_Svs,i ← ‖G zᵢ + c − d‖_{E_q(H)}` and 4. `r_Svs ← maxᵢ r_Svs,i`; lines 1-2 are `z`
+  let r_Svs := shenmaierVertexValue G c H d hN z
+  -- 5. `if r_Svs > 1 then return False`
+  if r_Svs > 1 then none
+  else
+    -- 8. `P_Svs ← P_S(1 − r_Svs)`, with `ϑ` set to 0
+    let P_Svs := shenmaierProb n N 0 (1 - r_Svs)
+    -- 9. `return P_Svs`
+    some P_Svs
 
 end CORALean
 

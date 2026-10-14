@@ -37,10 +37,14 @@ variable {n : ℕ}
 abstraction level `k` with `r` refinements still to spend. -/
 def explanationRefineLoop (absSuff genuine : ℕ → Finset (Fin n) → Bool) (E : Finset (Fin n)) :
     ℕ → ℕ → Bool
+  -- 5. the last pass of the `do`, with no refinement left: only `suff(f′, x, S∖{i}, ϵp)` counts
   | k, 0 => absSuff k E
   | k, r + 1 =>
+      -- 5. `if suff(f′, x, S∖{i}, ϵp) then S ← S∖{i}; break`, `f′` at abstraction level `k`
       if absSuff k E then true
+      -- 8. `x̃ ← obtain counterexample`, 9. `if arg maxⱼ f(x̃)(j) ≠ t then F ← F∖{i}; break`
       else if genuine k E then false
+      -- 12. `f″ ← Refine f′` (Prop. 2), 13. `f′ ← f″`, 16. `while true`: the next pass
       else explanationRefineLoop absSuff genuine E (k + 1) r
 
 end CORALean

@@ -43,11 +43,15 @@ variable {n : ℕ}
 /-- Lines 2-3 of [1, Alg. 1]: the state at `t₀ = 0`. -/
 noncomputable def STL.depReachInit (X₀ : Zonotope (Vec ℝ n)) (cs : STL.DepReachConsts n) :
     STL.DepReachState n :=
-  let H₀ := X₀                                                       -- H(t₀) ← X₀
-  let Pc₀ : Zonotope (Vec ℝ n) := Zonotope.ofPoint 0                 -- P_c(t₀) ← 0
-  let D₀ : Zonotope (Vec ℝ n) := Zonotope.ofPoint 0                  -- D₀ ← 0
+  -- 2. `H(t₀) ← X₀`
+  let H₀ := X₀
+  -- 2. `P_c(t₀) ← 0`
+  let Pc₀ : Zonotope (Vec ℝ n) := Zonotope.ofPoint 0
+  -- 2. `D₀ ← 0`
+  let D₀ : Zonotope (Vec ℝ n) := Zonotope.ofPoint 0
+  -- 3. `C₀ ← interval(F X₀ ⊕ G ũ)`
   let C₀ := STL.depBox ((Zonotope.mtimesIntervalMat cs.F X₀).plus
-    (Zonotope.mtimesIntervalMat cs.G (Zonotope.ofPoint cs.ũ)))       -- C₀ ← interval(F X₀ ⊕ G ũ)
+    (Zonotope.mtimesIntervalMat cs.G (Zonotope.ofPoint cs.ũ)))
   ⟨H₀, Pc₀, D₀, C₀⟩
 
 end CORALean

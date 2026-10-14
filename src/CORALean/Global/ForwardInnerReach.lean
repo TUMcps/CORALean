@@ -56,10 +56,13 @@ structure ForwardInnerState (n : ℕ) where
 
 /-- [1, Alg. 1]'s initialization `j = 0`, `[z₀] = z₀`, `[z̃₀] = z̃₀`, `[J₀] = Id`. -/
 def forwardInnerInit (lo hi z₀ : Fin n → ℝ) : ForwardInnerState n where
+  -- 0. Init: `[z₀] = z₀`, the initial box
   zlo := lo
   zhi := hi
+  -- 0. Init: `[z̃₀] = z̃₀`, the one point
   ztlo := z₀
   zthi := z₀
+  -- 0. Init: `[J₀] = Id`
   Jlo := 1
   Jhi := 1
 
@@ -69,17 +72,23 @@ def forwardInnerState (models : ℕ → ForwardInnerState n → ℝ → ForwardI
     (t : ℕ → ℝ) (lo hi z₀ : Fin n → ℝ) : ℕ → ForwardInnerState n
   | 0 => forwardInnerInit lo hi z₀
   | j + 1 =>
-    let s := forwardInnerState models t lo hi z₀ j                -- enclosures at `t_j`
-    let s' := models j s (t (j + 1))                              -- Steps 1-2 at `t_{j+1}`
-    s'                                                            -- Step 4
+    -- 4. `[z_j], [z̃_j], [J_j]`, the enclosures Step 4 of the passes before left at `t_j`
+    let Z_j := forwardInnerState models t lo hi z₀ j
+    -- 2. Steps 1-2 of the pass: the Taylor models (15)-(17) of `[t_j, t_{j+1}]`, read at `t_{j+1}`
+    let Z_j1 := models j Z_j (t (j + 1))
+    -- 4. Step 4: `[z_{j+1}], [z̃_{j+1}], [J_{j+1}]` are those models at `t_{j+1}`
+    Z_j1
 
 /-- [1, Alg. 1, Step 3] at time `t` of step `j`, component `i`: the (possibly improper) interval
 `]z[ᵢ(t, t_j)` of (18), from the Taylor models (Steps 1-2) at `t`. -/
 noncomputable def forwardInnerRange (models : ℕ → ForwardInnerState n → ℝ → ForwardInnerState n)
     (t : ℕ → ℝ) (lo hi z₀ : Fin n → ℝ) (j : ℕ) (τ : ℝ) (i : Fin n) : ℝ × ℝ :=
-  let s := forwardInnerState models t lo hi z₀ j                  -- enclosures at `t_j`
-  let m := models j s τ                                           -- Steps 1-2 at `τ`
-  kaucherInnerStep m.ztlo m.zthi m.Jlo m.Jhi lo hi z₀ i           -- Step 3, (18)
+  -- 4. `[z_j], [z̃_j], [J_j]`, the enclosures Step 4 of the passes before left at `t_j`
+  let Z_j := forwardInnerState models t lo hi z₀ j
+  -- 2. Steps 1-2: the Taylor models (15)-(17) of `[t_j, t_{j+1}]`, read at `τ`
+  let Z_τ := models j Z_j τ
+  -- 3. Step 3: `]z[ᵢ(τ, t_j) = [z̃ᵢ](τ, …) + [Jᵢ](τ, …) ∗ ([z₀, z₀] − z̃₀)`, (18)
+  kaucherInnerStep Z_τ.ztlo Z_τ.zthi Z_τ.Jlo Z_τ.Jhi lo hi z₀ i
 
 /-- What the Taylor models must be: at time `τ`, `[z]` holds the flow of every initial value
 of the box, `[z̃]` that of `z̃₀`, and `[J]` the Jacobian of the flow on the box. -/

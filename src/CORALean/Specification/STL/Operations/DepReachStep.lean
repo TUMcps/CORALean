@@ -48,13 +48,15 @@ variable {n : ℕ}
 /-- Lines 5-7 of [1, Alg. 1]. -/
 noncomputable def STL.depReachStep (A : Mat ℝ n n) (Δt : ℝ) (cs : STL.DepReachConsts n)
     (s : STL.DepReachState n) : STL.DepReachState n :=
-  let Φ := exp (Δt • A)                                              -- e^{AΔt}
-  let C' := Zonotope.mtimes Φ s.C                                    -- C_{i+1} ← e^{AΔt} C_i
-  -- H(t_{i+1}) ← e^{AΔt} H(t_i) ⊕ T ũ
+  -- 5. `e^{AΔt}`, which lines 5-7 apply to every set
+  let Φ := exp (Δt • A)
+  -- 5. `C_{i+1} ← e^{AΔt} C_i`
+  let C' := Zonotope.mtimes Φ s.C
+  -- 6. `H(t_{i+1}) ← e^{AΔt} H(t_i) ⊕ T ũ`
   let H' := (Zonotope.mtimes Φ s.H).plus (Zonotope.ofPoint (cs.T *ᵥ cs.ũ))
-  -- D_{i+1} ← interval(e^{AΔt} D_i ⊕ D)
+  -- 6. `D_{i+1} ← interval(e^{AΔt} D_i ⊕ D)`
   let D' := STL.depBox ((Zonotope.mtimes Φ s.D).plus cs.D)
-  -- P_c(t_{i+1}) ← e^{AΔt} P_c(t_i) ⊕ T U₀
+  -- 7. `P_c(t_{i+1}) ← e^{AΔt} P_c(t_i) ⊕ T U₀`
   let Pc' := (Zonotope.mtimes Φ s.Pc).plus (Zonotope.mtimes cs.T cs.U₀)
   ⟨H', Pc', D', C'⟩
 

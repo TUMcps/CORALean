@@ -41,18 +41,28 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 open scoped Classical in
-/-- `[1, Alg. 2]`: at round `r`, `2 ^ r` steps and every direction at once — `unsafe` the
-moment some lower bound clears its offset, `safe` once every upper bound stays under it,
-otherwise the step halves and the search continues on `fuel`. -/
+/-- `[1, Alg. 2]` at round `r`, `Δt = t_end / 2 ^ r`, over every direction at once; line 6's bounds
+are `bndUp`, `bndLo`: `unsafe` once a lower one clears its offset, `safe` once every upper one
+stays under it, else the step halves and the search continues on `fuel`. -/
 noncomputable def verifyHalfspace {ι : Type} (bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι → ℝ)
     (d : ι → ℝ) : ℕ → ℕ → VerifyAnswer
   | r, 0 =>
-      if ∃ (k : Fin (2 ^ r)) (i : ι), d i < bndLo r k i then .violated
-      else if ∀ (k : Fin (2 ^ r)) (i : ι), bndUp r k i ≤ d i then .safe
+      -- 9. some step `k` and row `i` with `ρ(Ř(τₖ), ℓᵢ) > f(i)`: `return unsafe`
+      let falsified := ∃ (k : Fin (2 ^ r)) (i : ι), d i < bndLo r k i
+      -- 7. every `ρ(R̂(τₖ), ℓᵢ) > f(i)` fails, so `verified` stays `true`
+      let verified := ∀ (k : Fin (2 ^ r)) (i : ι), bndUp r k i ≤ d i
+      if falsified then .violated
+      else if verified then .safe
       else .undecided
   | r, fuel + 1 =>
-      if ∃ (k : Fin (2 ^ r)) (i : ι), d i < bndLo r k i then .violated
-      else if ∀ (k : Fin (2 ^ r)) (i : ι), bndUp r k i ≤ d i then .safe
+      -- 9. some step `k` and row `i` with `ρ(Ř(τₖ), ℓᵢ) > f(i)`: `return unsafe`
+      let falsified := ∃ (k : Fin (2 ^ r)) (i : ι), d i < bndLo r k i
+      -- 7. no `ρ(R̂(τₖ), ℓᵢ) > f(i)`, so `verified = true` ends the `repeat`
+      let verified := ∀ (k : Fin (2 ^ r)) (i : ι), bndUp r k i ≤ d i
+      if falsified then .violated
+      -- 16. `return safe`
+      else if verified then .safe
+      -- 13. `Δt ← 0.5 Δt`
       else verifyHalfspace bndUp bndLo d (r + 1) fuel
 
 end CORALean

@@ -36,7 +36,10 @@ variable {n : ℕ}
 stays sufficient, otherwise keep `E` as it is. -/
 def greedyExplanationStep (suff : Finset (Fin n) → Bool) (E : Finset (Fin n)) (i : Fin n) :
     Finset (Fin n) :=
-  if suff (E \ {i}) then E \ {i} else E
+  -- 4. `S ∖ {i}`, the candidate with feature `i` dropped
+  let S' := E \ {i}
+  -- 3. `if suff(f, x, S∖{i}, ϵp) then S ← S∖{i}`
+  if suff S' then S' else E
 
 end CORALean
 

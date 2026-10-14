@@ -46,9 +46,14 @@ noncomputable def GNN.alg1Graph (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin 
     (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
     (f : ∀ t, PolyZonotope (Vec ℝ (c (L + t))) → PolyZonotope (Vec ℝ (c (L + (t + 1)))))
     (X : PolyZonotope (Mat ℝ N (c 0))) : PolyZonotope (Vec ℝ (c (L + T))) :=
-  let H := GNN.alg1Node R A U L c W acts X                           -- 1-6: graph layers
-  let H' := GNN.sumPool H                                            -- 10: global pooling (Prop. 3)
-  GNN.tailEnclose T (fun t => c (L + t)) f H'                        -- 11-14: standard layers
+  -- 1. `H₀ ← X`, `P` and the `κ′` graph layer pairs of lines 1-6, up to `H_{2κ′}`
+  let H := GNN.alg1Node R A U L c W acts X
+  -- 10. `H_{2κ′+1} ← L^GP(H_{2κ′}, G)`, the global pooling layer (Prop. 3)
+  let H_pool := GNN.sumPool H
+  -- 11. `for k = 2κ′+2, …, κ`: `H_k ← L^LIN(H_{k-1})`, `H_{k+1} ← enclose(L^ACT, H_k)` (Prop. 1)
+  let H_κ := GNN.tailEnclose T (fun t => c (L + t)) f H_pool
+  -- 15. `Y ← H_κ`
+  H_κ
 
 end CORALean.Real
 

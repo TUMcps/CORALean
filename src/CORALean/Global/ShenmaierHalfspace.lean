@@ -50,8 +50,15 @@ noncomputable def shenmaierHalfspaceValue (G : E →ₗ[ℝ] V) (c d : V) {N : �
 /-- `[1, Alg. 2]`: `none` (non-containment confirmed) or the lower bound `P_Shs`. -/
 noncomputable def shenmaierHalfspace (G : E →ₗ[ℝ] V) (c d : V) {N : ℕ} (hN : 0 < N)
     (z : Fin N → V →L[ℝ] ℝ) (ϑ : ℝ) : Option ℝ :=
-  let rShs := shenmaierHalfspaceValue G c d hN z
-  if rShs > 1 then none else some (shenmaierProb (Module.finrank ℝ V) N ϑ (1 - rShs))
+  -- 3. `r_Shs,i ← ‖Gᵀzᵢ‖_{p*} + zᵢᵀ(c − d)` and 4. `r_Shs ← maxᵢ r_Shs,i`; lines 1-2 are `z`
+  let r_Shs := shenmaierHalfspaceValue G c d hN z
+  -- 5. `if r_Shs > 1 then return False`
+  if r_Shs > 1 then none
+  else
+    -- 8. `P_Shs ← P_S(1 − r_Shs)`
+    let P_Shs := shenmaierProb (Module.finrank ℝ V) N ϑ (1 - r_Shs)
+    -- 9. `return P_Shs`
+    some P_Shs
 
 end CORALean
 

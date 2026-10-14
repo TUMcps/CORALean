@@ -39,9 +39,12 @@ variable {S X : Type}
 def STL.factorStep (Rj : Set S) (Pjk : List (Set S)) (unsafeSet : Set S → Set X)
     (meets : Set S → Set S → Bool) (isEmpty : Set X → Bool) (V : List (Set X)) :
     List (Set X) :=
-  let W := (Pjk.filter fun Pl => meets Rj Pl).map unsafeSet -- lines 8-11
-  let V' := STL.factorMeet V W -- line 12
-  V'.filter fun v => !isEmpty v -- line 13
+  -- 7. `W ← ∅`, then for each `l` with `R̃(jΔt/2) ∩ P_hjkl ≠ ∅` (line 9) append `K` (line 10)
+  let W := (Pjk.filter fun Pl => meets Rj Pl).map unsafeSet
+  -- 12. `V ← (V(1) ∩ W(1), …, V(|V|) ∩ W(|W|))`
+  let V' := STL.factorMeet V W
+  -- 13. `V ← remove empty polytopes from V`
+  V'.filter fun v => !isEmpty v
 
 end CORALean
 

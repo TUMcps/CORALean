@@ -46,9 +46,12 @@ variable {N m : ℕ}
 noncomputable def GNN.alg1Node (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N)
     (L : ℕ) (c : ℕ → ℕ) (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
     (X : PolyZonotope (Mat ℝ N (c 0))) : PolyZonotope (Mat ℝ N (c L)) :=
-  let H₀ := X.dependent                                           -- 1: H₀ ← X
-  let P := GNN.messagePassingEnclosure R A U                      -- 2: P (Prop. 4)
-  GNN.gcnActSteps L c W acts (P.padBack H₀.p) (H₀.padFront P.p) rfl  -- 3-6: Prop. 5, Prop. 1
+  -- 1. `H₀ ← X`, its generators made dependent
+  let H₀ := X.dependent
+  -- 2. `P ← compute message passing based on G` (Prop. 4)
+  let P := GNN.messagePassingEnclosure R A U
+  -- 3. `for k′ = 2, …, 2κ′`: `enclose(L^GC, H, P)` (Prop. 5), `enclose(L^ACT, H)` (Prop. 1)
+  GNN.gcnActSteps L c W acts (P.padBack H₀.p) (H₀.padFront P.p) rfl
 
 end CORALean.Real
 
