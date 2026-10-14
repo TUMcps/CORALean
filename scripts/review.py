@@ -6,6 +6,8 @@
 # own block, so a section is picked, opened at its banner and reviewed alone.
 #
 #   python3 scripts/review.py [--any] [--in FRAGMENT] [--main] [--commit]
+#   answers: [g]ood stamps `Reviewed:`; [w]rong prints a pre-filled issue link; [m]inor does
+#   both (accepted as it is, but worth an issue, titled `Review (minor): …`)
 #   --main: only main-type files, <Dir>/<Layer>/<Dir>.lean or <Dir>/<Dir>.lean
 #           holding the `MAIN TYPE` banner of check-conventions.sh
 #   python3 scripts/review.py --status: how much is human-reviewed, and how much more the goal
@@ -219,10 +221,10 @@ def main():
         else:
             print(f"open: {at if label else f}")
         print(what)
-        ans = input("[g]ood / [w]rong / [s]kip / [q]uit: ").strip().lower()[:1]
+        ans = input("[g]ood / [m]inor / [w]rong / [s]kip / [q]uit: ").strip().lower()[:1]
         if ans == "q":
             break
-        if ans == "g":
+        if ans in ("g", "m"):  # minor: accepted as it is, so it is stamped, but worth an issue
             new = add_review(f.read_text(encoding="utf-8"), f"{today()} ({name})", start)
             assert valid(new, start)
             write_like(f, new)
@@ -230,9 +232,10 @@ def main():
             if "--commit" in a:
                 subprocess.run(["git", "add", rel], cwd=ROOT)
                 subprocess.run(["git", "commit", "-q", "-m", f"Review {what}"], cwd=ROOT)
-        elif ans == "w":
+        if ans in ("w", "m"):
+            kind = "Review (minor)" if ans == "m" else "Review"
             desc = f"File: {what}\nCommit: {git('rev-parse', 'HEAD')}\n"
-            print(PROJECT + "?" + "issue[title]=" + urllib.parse.quote(f"Review: {what}") +
+            print(PROJECT + "?" + "issue[title]=" + urllib.parse.quote(f"{kind}: {what}") +
                   "&issue[description]=" + urllib.parse.quote(desc))
     rev, tot = tally()
     print(f"reviewed this run: {done}; reviewed in the tree: {rev}/{tot} files and sections")
