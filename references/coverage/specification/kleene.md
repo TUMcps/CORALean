@@ -2,11 +2,11 @@
 
 CORA methods of `specification/@kleene/` (a class of `specification/` or `specification/signals/`; a single-file class lists its public methods, constructor included), one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** none.
+**CORALean counterpart:** `Kleene` (`src/CORALean/Specification/Kleene/`), the three members `False(0)`, `Unknown(1)`, `True(2)` of CORA's enumeration.
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `and` | — | — |  |
-| `fromBool` | — | — |  |
-| `not` | — | — |  |
-| `or` | — | — |  |
+| `and` | float | [`Kleene`](../../../src/CORALean/Specification/Kleene/Kleene.lean), [`Kleene.and`](../../../src/CORALean/Specification/Kleene/Operations/And.lean), [`Kleene.code_and`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean), [`Kleene.and_comm`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean) | route b (scalar-free) — the three masks of `and`, no scalar; `code_and` says it is the minimum of the stored codes, and commutativity, associativity, idempotence, De Morgan, absorption and distributivity are proved; MATLAB's elementwise extension to arrays is not modelled. |
+| `fromBool` | float | [`Kleene`](../../../src/CORALean/Specification/Kleene/Kleene.lean), [`Kleene.fromBool`](../../../src/CORALean/Specification/Kleene/Operations/Basic.lean), [`Kleene.fromBool_and`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean), [`Kleene.fromBool_not`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean) | route b (scalar-free) — `True` for `true`, `False` for `false`; commutes with `and`, `or` and `not` (`fromBool_and`, `fromBool_or`, `fromBool_not`). |
+| `not` | float | [`Kleene`](../../../src/CORALean/Specification/Kleene/Kleene.lean), [`Kleene.not`](../../../src/CORALean/Specification/Kleene/Operations/Basic.lean), [`Kleene.code_not`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean), [`Kleene.not_not`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean) | route b (scalar-free) — swaps `True` and `False`; `code_not` reverses the stored codes, `not_not` is an involution; arrays are not modelled. |
+| `or` | float | [`Kleene`](../../../src/CORALean/Specification/Kleene/Kleene.lean), [`Kleene.or`](../../../src/CORALean/Specification/Kleene/Operations/Or.lean), [`Kleene.code_or`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean), [`Kleene.or_comm`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean) | route b (scalar-free) — the three masks of `or`, no scalar; `code_or` says it is the maximum of the stored codes, with the dual laws of `and`; arrays are not modelled. |

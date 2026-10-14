@@ -140,3 +140,4 @@ src/CORALean/NN/Layers/Theorems/Real/ApproxErrorTanh.lean::approxError_tanh  que
 src/CORALean/NN/Theorems/CatMaxSegmentsEvalIff.lean::Cat.maxSegments_eval_iff  queued: not named yet (78 characters, 3 times)
 src/CORALean/Specification/STL/Theorems/DepReachAtSum.lean::STL.depReachAt_sum  queued: not named yet (105 characters, 3 times)
 src/CORALean/Specification/STL/Theorems/FactorCheckSound.lean::STL.factorCheck_sound  queued: not named yet (91 characters, 3 times)
+src/CORALean/Specification/PointSegmentSignal/Theorems/SetBoundsSpec.lean::aux_set_ne  pending: the statement is the full specification of `setBounds` (160 characters, 3 times)

@@ -1,0 +1,44 @@
+module
+
+public import Mathlib.Data.Nat.Notation
+
+@[expose] public section
+
+/-!
+# Three-valued logic
+
+CORA's `kleene` (`specification/kleene.m`) is an enumeration on `uint32` with `False(0)`,
+`Unknown(1)` and `True(2)`. `Kleene` has the same three members, and `Kleene.code` is the stored
+integer. The operators of the class are in `Operations/`; MATLAB's elementwise extension to arrays
+(and its `dimensionMismatch` check) is not modelled, a value being a single member.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- ========================================  MAIN TYPE  ========================================= --
+
+inductive Kleene
+  | ff
+  | uu
+  | tt
+  deriving DecidableEq
+
+/-- The `uint32` CORA stores for a member: `False(0)`, `Unknown(1)`, `True(2)`. -/
+def Kleene.code : Kleene → ℕ
+  | .ff => 0
+  | .uu => 1
+  | .tt => 2
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

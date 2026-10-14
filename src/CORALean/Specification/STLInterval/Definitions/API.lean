@@ -6,6 +6,7 @@ public import CORALean.Specification.STLInterval.Definitions.Endpoint
 public import CORALean.Specification.STLInterval.Definitions.Fields
 public import CORALean.Specification.STLInterval.Definitions.FieldsContainsPoint
 public import CORALean.Specification.STLInterval.Definitions.Isequal
+public import CORALean.Specification.STLInterval.Definitions.MemBounds
 public import CORALean.Specification.STLInterval.Definitions.Representsa
 public import CORALean.Specification.STLInterval.Definitions.RepresentsaType
 public import CORALean.Specification.STLInterval.Definitions.WithinTol

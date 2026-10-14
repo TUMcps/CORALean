@@ -2,25 +2,25 @@
 
 CORA methods of `specification/@fourValuedSignal/` (a class of `specification/` or `specification/signals/`; a single-file class lists its public methods, constructor included), one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** none.
+**CORALean counterpart:** `FourValuedSignal` (`src/CORALean/Specification/FourValuedSignal/`), a Kleene signal and an inconclusive part, over any ordered time type with `0`.
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `and_` | — | — |  |
-| `at` | — | — |  |
-| `combine` | — | — |  |
+| `at` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.at`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean), [`FourValuedSignal.at_not`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/AtNot.lean), [`FourValuedSignal.indicator_spec`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/IndicatorSpec.lean) | `at` is `Inconclusive` where `isInconclusive.at` holds, else `fromKleene(signal.at)`; time `≥ 0` is a precondition (CORA checks it). |
+| `combine` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.combine`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Combine.lean), [`FourValuedSignal.combine_spec`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/CombineSpec.lean) | `combine_spec`: for valid inputs each output is a valid signal whose value at every `t ≥ 0` is `op` of the inputs' values, for a time type that is dense with no maximum (the unknown part of the inconclusive output is `false`, so `toBoolSignal()` does not throw); `toBoolSignal()` is `KleeneSignal.toBoolSignal?` (CORA throws where it is `none`). |
 | `conclusiveInterval` | — | — |  |
-| `eq` | — | — |  |
+| `eq` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.eq`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean), [`FourValuedSignal.eq_iff`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/Basic.lean), [`FourValuedSignal.at_eq_of_eq`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/Basic.lean), [`FourValuedSignal.eq_not_complete`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/EqNotComplete.lean) | `eq` is structural: the Kleene part (by `kleeneSignal` `eq`) and the inconclusive part equal; equal signals have equal values, but not conversely (`eq_not_complete`: an `Inconclusive` signal and its negation). |
 | `findIntervals` | — | — |  |
-| `fourValuedSignal` | — | — |  |
-| `fromKleeneSignal` | — | — |  |
-| `indicator` | — | — |  |
+| `fourValuedSignal` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.IsValid`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.at`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean), [`FourValued.ofKleeneInc_toKleene_isInconclusive`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean) | the two parts and the value they denote (`Inconclusive` where `isInconclusive` holds, else the Kleene part as a four-valued one); the constructor checks nothing, `IsValid` asks both parts to be valid; `ofKleeneInc_toKleene_isInconclusive` says a four-valued value is recovered from its two parts. |
+| `fromKleeneSignal` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.fromKleeneSignal`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean), [`FourValuedSignal.fromKleeneSignal_spec`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/FromKleeneSignalSpec.lean) | `fromKleeneSignal_spec`: valid, and the value at every `t ≥ 0` is `fromKleene` of the Kleene signal's value. |
+| `indicator` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.indicator`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean), [`FourValuedSignal.indicator_spec`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/IndicatorSpec.lean) | `indicator_spec`: valid, with value `val` at the times of the interval and `default` elsewhere (`t ≥ 0`); the interval is an `STLInterval`. |
 | `merge` | — | — |  |
-| `not` | — | — |  |
+| `not` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.not`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean), [`FourValuedSignal.at_not`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/AtNot.lean), [`FourValuedSignal.not_isValid`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/Basic.lean) | `at_not`: for a valid signal the value of `~obj` at every time is the four-valued negation of the value of `obj`. |
 | `or_` | — | — |  |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `plotSig` | out-of-scope | n/a — plotting/display |  |
-| `set` | — | — |  |
+| `set` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.set`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean), [`FourValuedSignal.set_spec`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/SetSpec.lean) | `set_spec`: valid, with `value` at the times of the interval and the old value elsewhere; both parts are set (`u2ToKleeneInc`). |
 | `toKleeneSignal` | — | — |  |
-| `uniformSignal` | — | — |  |
+| `uniformSignal` | proved | [`FourValuedSignal`](../../../src/CORALean/Specification/FourValuedSignal/FourValuedSignal.lean), [`FourValuedSignal.uniformSignal`](../../../src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean), [`FourValuedSignal.uniformSignal_spec`](../../../src/CORALean/Specification/FourValuedSignal/Theorems/UniformSignalSpec.lean) | `uniformSignal_spec`: valid, with value `val` at every `t ≥ 0`; CORA's `stlInterval()` is `STLInterval.empty`. |
 | `until` | — | — |  |
